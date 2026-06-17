@@ -3581,6 +3581,24 @@ const LOGIN_CSS = `
 
 function LoginScreen({ onStudent, onAdmin }) {
   const [method, setMethod] = useState("email");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [error, setError] = useState("");
+
+const handleSignIn = async () => {
+  setError("");
+  const { createClient } = await import("@supabase/supabase-js");
+  const sb = createClient(
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_ANON_KEY
+  );
+  const { error: err } = await sb.auth.signInWithPassword({ email, password });
+  if (err) { setError(err.message); return; }
+  const { data: u } = await sb.auth.getUser();
+  const { data: profile } = await sb.from("profiles").select("role").eq("id", u.user.id).single();
+  if (profile?.role === "admin") onAdmin();
+  else onStudent();
+};
   return (
     <div className="login-root">
       <style>{LOGIN_CSS}</style>
@@ -3605,8 +3623,8 @@ function LoginScreen({ onStudent, onAdmin }) {
           </div>
           {method === "email" ? (
             <>
-              <div className="lf-field"><label>Email address</label><input placeholder="you@example.com" /></div>
-              <div className="lf-field"><label>Password</label><input type="password" placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" /></div>
+              <div className="lf-field"><label>Email address</label><input placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
+              <div className="lf-field"><label>Password</label><input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" /></div>
             </>
           ) : (
             <>
@@ -3614,7 +3632,7 @@ function LoginScreen({ onStudent, onAdmin }) {
               <div className="lf-field"><label>OTP</label><input placeholder="6-digit code" /></div>
             </>
           )}
-          <button className="lf-primary" onClick={onStudent}>Sign in <ArrowRight size={17} /></button>
+          <button className="lf-primary" onClick={handleSignIn}>Sign in <ArrowRight size={17} /></button>
           <div className="lf-divider">or</div>
           <button className="lf-google" onClick={onStudent}><span className="lf-gicon">G</span> Continue with Google</button>
           <button className="lf-admin" onClick={onAdmin}><ShieldCheck size={16} /> Enter admin console</button>
