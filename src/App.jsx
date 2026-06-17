@@ -3630,6 +3630,17 @@ function LoginScreen({ onStudent, onAdmin }) {
    ============================================================ */
 export default function App() {
   const [route, setRoute] = useState("login");
+useEffect(() => {
+    import("@supabase/supabase-js").then(({ createClient }) => {
+      const sb = createClient(
+        import.meta.env.VITE_SUPABASE_URL,
+        import.meta.env.VITE_SUPABASE_ANON_KEY
+      );
+      sb.auth.getSession().then(({ data }) => {
+        if (data.session) setRoute("student");
+      });
+    });
+  }, []);
   if (route === "login") return <LoginScreen onStudent={() => setRoute("student")} onAdmin={() => setRoute("admin")} />;
   if (route === "student") return <StudentApp onLaunchExam={() => setRoute("exam")} onLogout={() => setRoute("login")} />;
   if (route === "exam") return <ExamApp onExit={() => setRoute("student")} />;
