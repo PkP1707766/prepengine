@@ -3580,25 +3580,101 @@ const LOGIN_CSS = `
 `;
 
 function LoginScreen({ onStudent, onAdmin }) {
-  const [method, setMethod] = useState("email");
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [error, setError] = useState("");
+  /* mode: "login" | "signup" | "phone" | "otp" */
+  const [mode, setMode] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState("");
+  const [msg, setMsg] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
 
-const handleSignIn = async () => {
-  setError("");
-  const { createClient } = await import("@supabase/supabase-js");
-  const sb = createClient(
-    import.meta.env.VITE_SUPABASE_URL,
-    import.meta.env.VITE_SUPABASE_ANON_KEY
-  );
-  const { error: err } = await sb.auth.signInWithPassword({ email, password });
-  if (err) { setError(err.message); return; }
-  const { data: u } = await sb.auth.getUser();
-  const { data: profile } = await sb.from("profiles").select("role").eq("id", u.user.id).single();
-  if (profile?.role === "admin") onAdmin();
-  else onStudent();
-};
+  const getSB = async () => {
+    const { createClient } = await import("@supabase/supabase-js");
+    return createClient(
+      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_ANON_KEY
+    );
+  };
+
+  const afterLogin = async (sb) => {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    const { data: profile } = await sb
+      .from("profiles").select("role").eq("id", user.id).single();
+    if (profile?.role === "admin") onAdmin();
+    else onStudent();
+  };
+
+  const handleEmailLogin = async () => {
+    setErr(""); setMsg("");
+    if (!email.trim()) return setErr("Email daalna zaroori hai.");
+    if (!password) return setErr("Password daalna zaroori hai.");
+    setLoading(true);
+    const sb = await getSB();
+    const { error } = await sb.auth.signInWithPassword({ email: email.trim(), password });
+    setLoading(false);
+    if (error) return setErr(error.message === "Invalid login credentials" ? "Email ya password galat hai." : error.message);
+    await afterLogin(sb);
+  };
+
+  const handleEmailSignup = async () => {
+    setErr(""); setMsg("");
+    if (!fullName.trim()) return setErr("Apna naam daalo.");
+    if (!email.trim()) return setErr("Email daalna zaroori hai.");
+    if (password.length < 8) return setErr("Password kam se kam 8 characters ka hona chahiye.");
+    setLoading(true);
+    const sb = await getSB();
+    const { error } = await sb.auth.signUp({
+      email: email.trim(), password,
+      options: { data: { full_name: fullName.trim() } }
+    });
+    setLoading(false);
+    if (error) return setErr(error.message);
+    setMsg("Account ban gaya! Ab login karo.");
+    setMode("login");
+  };
+
+  const handleSendOtp = async () => {
+    setErr(""); setMsg("");
+    let p = phone.trim().replace(/\s/g, "");
+    if (!p.startsWith("+")) p = "+91" + p.replace(/^0/, "");
+    if (p.length < 10) return setErr("Sahi phone number daalo.");
+    setLoading(true);
+    const sb = await getSB();
+    const { error } = await sb.auth.signInWithOtp({ phone: p });
+    setLoading(false);
+    if (error) return setErr(error.message);
+    setPhone(p);
+    setMsg("OTP bhej diya gaya " + p + " pe!");
+    setMode("otp");
+  };
+
+  const handleVerifyOtp = async () => {
+    setErr(""); setMsg("");
+    if (otp.length < 4) return setErr("Sahi OTP daalo.");
+    setLoading(true);
+    const sb = await getSB();
+    const { error } = await sb.auth.verifyOtp({ phone, token: otp, type: "sms" });
+    setLoading(false);
+    if (error) return setErr("OTP galat hai ya expire ho gaya.");
+    await afterLogin(sb);
+  };
+
+  const handleGoogle = async () => {
+    setErr("");
+    const sb = await getSB();
+    await sb.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin }
+    });
+  };
+
+  const isEmail = mode === "login" || mode === "signup";
+
   return (
     <div className="login-root">
       <style>{LOGIN_CSS}</style>
@@ -3606,37 +3682,136 @@ const handleSignIn = async () => {
         <div className="login-brand">
           <div className="lb-mark">P</div>
           <div className="lb-title">PrepEngine</div>
-          <div className="lb-sub">Your all-in-one exam preparation platform for civil services aspirants.</div>
+          <div className="lb-sub">Apni civil services taiyaari ka sabse powerful platform.</div>
           <ul className="lb-points">
             <li><CheckCircle2 size={17} /> Real exam-style mock tests</li>
             <li><CheckCircle2 size={17} /> Deep performance analytics</li>
             <li><CheckCircle2 size={17} /> Rank, percentile &amp; leaderboard</li>
+            <li><CheckCircle2 size={17} /> Expert study material</li>
           </ul>
           <div className="lb-foot">BPSC &middot; UPSC &middot; State PSC</div>
         </div>
+
         <div className="login-form">
-          <h2>Welcome back</h2>
-          <div className="lf-sub">Sign in to continue your preparation</div>
-          <div className="lf-tabs">
-            <button className={method === "email" ? "on" : ""} onClick={() => setMethod("email")}><Mail size={15} /> Email</button>
-            <button className={method === "phone" ? "on" : ""} onClick={() => setMethod("phone")}><Phone size={15} /> Phone</button>
-          </div>
-          {method === "email" ? (
+          {/* HEADER */}
+          {mode === "login" && <><h2>Welcome back</h2><div className="lf-sub">Apne account mein sign in karo</div></>}
+          {mode === "signup" && <><h2>Account banao</h2><div className="lf-sub">Apni preparation aaj se shuru karo — free</div></>}
+          {mode === "phone" && <><h2>Phone se login</h2><div className="lf-sub">OTP aayega tera phone pe</div></>}
+          {mode === "otp" && <><h2>OTP verify karo</h2><div className="lf-sub">{msg || "OTP enter karo"}</div></>}
+
+          {/* METHOD TABS (only on login/signup) */}
+          {isEmail && (
+            <div className="lf-tabs" style={{ marginBottom: 18 }}>
+              <button className={mode === "login" ? "on" : ""} onClick={() => { setMode("login"); setErr(""); setMsg(""); }}>
+                <Mail size={15} /> Sign In
+              </button>
+              <button className={mode === "signup" ? "on" : ""} onClick={() => { setMode("signup"); setErr(""); setMsg(""); }}>
+                <User size={15} /> Sign Up
+              </button>
+            </div>
+          )}
+
+          {/* SUCCESS MESSAGE */}
+          {msg && mode !== "otp" && (
+            <div style={{ display: "flex", alignItems: "center", gap: 9, background: "#e8f6ee", border: "1px solid #c9e8d5", borderRadius: 9, padding: "11px 14px", marginBottom: 14, fontSize: 13.5, color: "#1a6b3c", fontWeight: 600 }}>
+              <CheckCircle2 size={17} />{msg}
+            </div>
+          )}
+
+          {/* ERROR */}
+          {err && (
+            <div style={{ display: "flex", alignItems: "center", gap: 9, background: "#fbeaea", border: "1px solid #f1cccc", borderRadius: 9, padding: "11px 14px", marginBottom: 14, fontSize: 13.5, color: "#a13232", fontWeight: 600 }}>
+              <AlertCircle size={17} />{err}
+            </div>
+          )}
+
+          {/* SIGNUP FIELDS */}
+          {mode === "signup" && (
+            <div className="lf-field">
+              <label>Poora naam <span style={{ color: "var(--red)" }}>*</span></label>
+              <input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Priyadarshee Kumar" />
+            </div>
+          )}
+
+          {/* EMAIL + PASSWORD */}
+          {isEmail && (
             <>
-              <div className="lf-field"><label>Email address</label><input placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
-              <div className="lf-field"><label>Password</label><input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" /></div>
-            </>
-          ) : (
-            <>
-              <div className="lf-field"><label>Phone number</label><input placeholder="+91 90000 00000" /></div>
-              <div className="lf-field"><label>OTP</label><input placeholder="6-digit code" /></div>
+              <div className="lf-field">
+                <label>Email address <span style={{ color: "var(--red)" }}>*</span></label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@gmail.com"
+                  onKeyDown={(e) => e.key === "Enter" && (mode === "login" ? handleEmailLogin() : handleEmailSignup())} />
+              </div>
+              <div className="lf-field">
+                <label>Password <span style={{ color: "var(--red)" }}>*</span></label>
+                <div style={{ position: "relative" }}>
+                  <input type={showPwd ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)}
+                    placeholder={mode === "signup" ? "Min 8 characters" : "••••••••"} style={{ paddingRight: 44 }}
+                    onKeyDown={(e) => e.key === "Enter" && (mode === "login" ? handleEmailLogin() : handleEmailSignup())} />
+                  <button onClick={() => setShowPwd(!showPwd)}
+                    style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9db0c2", padding: 4 }}>
+                    {showPwd ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+                {mode === "signup" && <div style={{ fontSize: 11.5, color: "#9db0c2", marginTop: 5 }}>Kam se kam 8 characters, ek number ya special character include karo.</div>}
+              </div>
+              <button className="lf-primary" onClick={mode === "login" ? handleEmailLogin : handleEmailSignup} disabled={loading}>
+                {loading ? "Please wait…" : mode === "login" ? <><span>Sign in</span><ArrowRight size={17} /></> : <><span>Account banao</span><ArrowRight size={17} /></>}
+              </button>
+              <div className="lf-divider">ya</div>
+              <button className="lf-google" onClick={handleGoogle}>
+                <span className="lf-gicon">G</span> Google se continue karo
+              </button>
+              <button className="lf-google" style={{ marginTop: 10 }} onClick={() => { setMode("phone"); setErr(""); setMsg(""); }}>
+                <Phone size={16} /> Phone OTP se login karo
+              </button>
             </>
           )}
-          <button className="lf-primary" onClick={handleSignIn}>Sign in <ArrowRight size={17} /></button>
-          <div className="lf-divider">or</div>
-          <button className="lf-google" onClick={onStudent}><span className="lf-gicon">G</span> Continue with Google</button>
-          <button className="lf-admin" onClick={onAdmin}><ShieldCheck size={16} /> Enter admin console</button>
-          <div className="lf-note">Demo mode &mdash; choose how you'd like to explore. No real account needed yet.</div>
+
+          {/* PHONE OTP FLOW */}
+          {mode === "phone" && (
+            <>
+              <div className="lf-field">
+                <label>Phone number <span style={{ color: "var(--red)" }}>*</span></label>
+                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 43210"
+                  onKeyDown={(e) => e.key === "Enter" && handleSendOtp()} />
+                <div style={{ fontSize: 11.5, color: "#9db0c2", marginTop: 5 }}>+91 automatic add ho jayega agar na daala ho.</div>
+              </div>
+              <button className="lf-primary" onClick={handleSendOtp} disabled={loading}>
+                {loading ? "Bhej raha hoon…" : <><span>OTP bhejo</span><ArrowRight size={17} /></>}
+              </button>
+              <button onClick={() => { setMode("login"); setErr(""); }} style={{ marginTop: 14, fontSize: 13.5, color: "#5e7d86", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
+                <ArrowLeft size={15} /> Email se login karo
+              </button>
+            </>
+          )}
+
+          {mode === "otp" && (
+            <>
+              <div className="lf-field">
+                <label>6-digit OTP <span style={{ color: "var(--red)" }}>*</span></label>
+                <input type="number" value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="123456"
+                  style={{ letterSpacing: "0.2em", fontSize: 20, fontWeight: 700, textAlign: "center" }}
+                  onKeyDown={(e) => e.key === "Enter" && handleVerifyOtp()} maxLength={6} />
+              </div>
+              <button className="lf-primary" onClick={handleVerifyOtp} disabled={loading}>
+                {loading ? "Verify ho raha hai…" : <><span>Verify &amp; Login</span><ArrowRight size={17} /></>}
+              </button>
+              <button onClick={() => { setMode("phone"); setErr(""); setMsg(""); }}
+                style={{ marginTop: 14, fontSize: 13.5, color: "#5e7d86", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
+                <ArrowLeft size={15} /> OTP dobara bhejo
+              </button>
+            </>
+          )}
+
+          {/* ADMIN LINK (subtle) */}
+          {isEmail && (
+            <div style={{ marginTop: 18, textAlign: "center" }}>
+              <button onClick={onAdmin}
+                style={{ fontSize: 12, color: "#9db0c2", background: "none", border: "none", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 5 }}>
+                <ShieldCheck size={13} /> Admin console
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -3648,17 +3823,6 @@ const handleSignIn = async () => {
    ============================================================ */
 export default function App() {
   const [route, setRoute] = useState("login");
-useEffect(() => {
-    import("@supabase/supabase-js").then(({ createClient }) => {
-      const sb = createClient(
-        import.meta.env.VITE_SUPABASE_URL,
-        import.meta.env.VITE_SUPABASE_ANON_KEY
-      );
-      sb.auth.getSession().then(({ data }) => {
-        if (data.session) setRoute("student");
-      });
-    });
-  }, []);
   if (route === "login") return <LoginScreen onStudent={() => setRoute("student")} onAdmin={() => setRoute("admin")} />;
   if (route === "student") return <StudentApp onLaunchExam={() => setRoute("exam")} onLogout={() => setRoute("login")} />;
   if (route === "exam") return <ExamApp onExit={() => setRoute("student")} />;
