@@ -7,7 +7,7 @@ import {
   Award, Play, RotateCcw, Lock, Calendar, Bell, Star, Zap, ArrowUp, ArrowDown,
   Medal, Sparkles, LogOut, Mail, Phone, ArrowRight, ShieldCheck,
   Moon, Sun, Globe, MessageCircle, MapPin, Send, ChevronDown, Headphones,
-  Instagram, Youtube, Twitter, HelpCircle,
+  Share2, Video, AtSign, HelpCircle,
 } from "lucide-react";
 import {
   AreaChart, Area, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis,
@@ -3893,9 +3893,9 @@ function ContactModal({ onClose }) {
           <span className="jn-cmeta"><b>New Delhi, India</b><span>Mon–Sat, 10am–7pm</span></span>
         </div>
         <div className="jn-social">
-          <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-          <a href="#" aria-label="YouTube"><Youtube size={18} /></a>
-          <a href="#" aria-label="Twitter"><Twitter size={18} /></a>
+          <a href="#" aria-label="Instagram"><Share2 size={18} /></a>
+          <a href="#" aria-label="YouTube"><Video size={18} /></a>
+          <a href="#" aria-label="Twitter"><AtSign size={18} /></a>
         </div>
         <button className="jn-cta" style={{ marginTop: 16 }} onClick={onClose}>{t("close")}</button>
       </div>
