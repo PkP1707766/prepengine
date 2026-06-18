@@ -4036,7 +4036,7 @@ function LoginScreen({ onStudent, onAdmin }) {
             <div className="tr">"{t("shloka_en")}"</div>
             <div className="src">Bṛhadāraṇyaka Upaniṣad · I.3.28</div>
           </div>
-          <div className="jn-foot">BPSC · UPSC · State PSC</div>
+          <div className="jn-foot">UPSC · BPSC · State PSC</div>
         </div>
 
         {/* FORM */}
