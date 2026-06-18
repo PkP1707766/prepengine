@@ -192,19 +192,21 @@ function AppProviders({ children }) {
 function ChromeControls({ light = false }) {
   const { lang, setLang } = useLang();
   const { theme, toggle } = useTheme();
-  const base = {
-    display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer",
-    border: "1px solid " + (light ? "rgba(255,255,255,.35)" : "rgba(110,80,30,.25)"),
-    background: light ? "rgba(255,255,255,.14)" : "rgba(255,255,255,.7)",
-    color: light ? "#fff" : "#5c4636", borderRadius: 999, padding: "7px 12px",
-    fontSize: 12.5, fontWeight: 700, backdropFilter: "blur(6px)",
+  const pill = {
+    display: "inline-flex", alignItems: "center", gap: 5, cursor: "pointer",
+    border: "1px solid " + (light ? "rgba(255,255,255,.38)" : "rgba(107,26,26,.22)"),
+    background: light ? "rgba(0,0,0,.22)" : "rgba(255,255,255,.82)",
+    color: light ? "#fdeecb" : "#5c3018",
+    borderRadius: 999, padding: "6px 11px",
+    fontSize: 12, fontWeight: 700, backdropFilter: "blur(8px)",
+    whiteSpace: "nowrap", lineHeight: 1,
   };
   return (
-    <div style={{ display: "flex", gap: 8 }}>
-      <button style={base} onClick={() => setLang(lang === "en" ? "hi" : "en")} aria-label="Switch language">
-        <Globe size={14} /> {lang === "en" ? "हिन्दी" : "English"}
+    <div style={{ display: "flex", gap: 6 }}>
+      <button style={pill} onClick={() => setLang(lang === "en" ? "hi" : "en")} aria-label="Switch language">
+        <Globe size={13} /> {lang === "en" ? "हिन्दी" : "EN"}
       </button>
-      <button style={base} onClick={toggle} aria-label="Toggle theme">
+      <button style={{ ...pill, padding: "6px 9px", minWidth: 32 }} onClick={toggle} aria-label="Toggle theme">
         {theme === "light" ? <Moon size={14} /> : <Sun size={14} />}
       </button>
     </div>
@@ -3759,7 +3761,7 @@ const LOGIN_CSS = `
 }
 .jn-root *{box-sizing:border-box}
 .jn-root button{font-family:inherit;cursor:pointer;border:none;background:none}
-.jn-topbar{position:fixed;top:16px;right:16px;z-index:5}
+.jn-topbar{display:none}
 
 .jn-card{display:grid;grid-template-columns:1.05fr 1fr;width:100%;max-width:940px;
   background:var(--surface);border-radius:22px;overflow:hidden;
@@ -3768,10 +3770,12 @@ const LOGIN_CSS = `
 /* ---- brand panel ---- */
 .jn-brand{position:relative;background:var(--panel);color:#fdeecb;padding:42px 36px;display:flex;flex-direction:column;overflow:hidden}
 .jn-mandala{position:absolute;inset:0;opacity:.14;pointer-events:none}
-.jn-brand-top{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
-.jn-word{font-family:var(--font-display,serif);font-weight:700;font-size:25px;letter-spacing:.04em;line-height:1}
+.jn-brand-header{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:2}
+.jn-brand-top{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.jn-controls{display:flex;gap:7px;flex-shrink:0}
+.jn-word{font-family:var(--font-display,serif);font-weight:700;font-size:22px;letter-spacing:.04em;line-height:1;white-space:nowrap}
 .jn-word b{color:var(--gold2)}
-.jn-tag{font-family:var(--font-quote,serif);font-style:italic;font-size:14px;color:#e7c98e;margin-top:3px;letter-spacing:.02em}
+.jn-tag{font-family:var(--font-quote,serif);font-style:italic;font-size:13px;color:#e7c98e;margin-top:3px;letter-spacing:.02em}
 .jn-intro{position:relative;z-index:1;margin-top:22px;font-size:14px;line-height:1.6;color:#f2ddb6;max-width:34ch}
 .jn-points{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:13px;position:relative;z-index:1}
 .jn-points li{display:flex;align-items:center;gap:11px;font-size:13.5px;color:#f3e2bd;font-weight:500}
@@ -3800,11 +3804,13 @@ const LOGIN_CSS = `
 .jn-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,146,58,.16);background:var(--surface)}
 .jn-hint{font-size:11.5px;color:#a8997c;margin-top:5px}
 .jn-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#b0a07e;padding:5px}
-.jn-cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;color:#fff;font-weight:700;font-size:15px;
-  padding:13px;border-radius:11px;margin-top:6px;transition:.16s;
-  background:linear-gradient(135deg,#8a2222,#5b1414);box-shadow:0 10px 26px rgba(91,20,20,.34)}
-.jn-cta:hover{filter:brightness(1.06)}
-.jn-cta:disabled{opacity:.65;cursor:default}
+.jn-cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  color:#fff !important;font-weight:700;font-size:15px;
+  padding:13px;border-radius:11px;margin-top:6px;transition:.16s;border:none;
+  background:linear-gradient(135deg,#8a2222 0%,#5b1414 100%) !important;
+  box-shadow:0 8px 24px rgba(91,20,20,.38) !important;cursor:pointer}
+.jn-cta:hover:not(:disabled){filter:brightness(1.08)}
+.jn-cta:disabled{opacity:.6;cursor:default}
 .jn-div{display:flex;align-items:center;gap:12px;margin:18px 0;color:#b6a888;font-size:12px;font-weight:600}
 .jn-div::before,.jn-div::after{content:"";flex:1;height:1px;background:var(--line)}
 .jn-alt{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--surface);
@@ -3824,18 +3830,21 @@ const LOGIN_CSS = `
 
 /* ---- responsive ---- */
 @media (max-width:880px){
-  .jn-card{grid-template-columns:1fr;max-width:460px}
-  .jn-brand{padding:26px 26px 22px;flex-direction:column}
+  .jn-card{grid-template-columns:1fr;max-width:480px}
+  .jn-brand{padding:20px 22px 18px}
   .jn-intro,.jn-points{display:none}
-  .jn-shloka{margin-top:18px}
-  .jn-foot{display:none}
-}
-@media (max-width:440px){
-  .jn-root{padding:0}
-  .jn-card{border-radius:0;min-height:100vh;min-height:100dvh}
-  .jn-form{padding:26px 22px 40px}
-  .jn-brand{padding:24px 22px 20px}
   .jn-shloka{display:none}
+  .jn-foot{display:none}
+  .jn-word{font-size:20px}
+  .jn-tag{font-size:12px}
+}
+@media (max-width:520px){
+  .jn-root{padding:0}
+  .jn-card{border-radius:0;min-height:100vh;min-height:100dvh;max-width:100%}
+  .jn-form{padding:24px 20px 40px}
+  .jn-brand{padding:16px 18px 14px}
+  .jn-word{font-size:18px}
+  .jn-controls button{font-size:11px;padding:5px 9px}
 }
 
 /* ---- contact modal ---- */
@@ -4000,18 +4009,20 @@ function LoginScreen({ onStudent, onAdmin }) {
   return (
     <div className="jn-root">
       <style>{LOGIN_CSS}</style>
-      <div className="jn-topbar"><ChromeControls /></div>
 
       <div className="jn-card">
         {/* BRAND */}
         <div className="jn-brand">
           <Mandala />
-          <div className="jn-brand-top">
-            <DiyaLogo size={54} boxed radius={15} />
-            <div>
-              <div className="jn-word">JUNOON<b>IAS</b></div>
-              <div className="jn-tag">{t("tagline")}</div>
+          <div className="jn-brand-header">
+            <div className="jn-brand-top">
+              <DiyaLogo size={44} boxed radius={12} />
+              <div>
+                <div className="jn-word">JUNOON<b>IAS</b></div>
+                <div className="jn-tag">{t("tagline")}</div>
+              </div>
             </div>
+            <div className="jn-controls"><ChromeControls light /></div>
           </div>
           <div className="jn-intro">{t("intro_sub")}</div>
           <ul className="jn-points">
