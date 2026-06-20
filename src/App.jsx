@@ -153,6 +153,24 @@ const STR = {
   err_bad_otp: { en: "The code is invalid or has expired.", hi: "कोड अमान्य है या समाप्त हो चुका है।" },
   ok_acc_created: { en: "Account created! Please sign in.", hi: "खाता बन गया! कृपया साइन इन करें।" },
   ok_otp_sent: { en: "Code sent to", hi: "कोड भेजा गया" },
+  // ----- join / paywall -----
+  join_hi: { en: "Hello", hi: "नमस्ते" },
+  join_title: { en: "One step left to begin", hi: "शुरू करने के लिए बस एक कदम" },
+  join_sub: { en: "Unlock the full test series and start preparing today.", hi: "पूरी टेस्ट सीरीज़ अनलॉक करें और आज ही तैयारी शुरू करें।" },
+  plan_name: { en: "Prelims Test Series 2026", hi: "प्रीलिम्स टेस्ट सीरीज़ 2026" },
+  plan_tests: { en: "30 full-length mock tests", hi: "30 पूर्ण-लंबाई मॉक टेस्ट" },
+  plan_analytics: { en: "Detailed performance analytics", hi: "विस्तृत प्रदर्शन विश्लेषण" },
+  plan_solutions: { en: "Solutions & explanations for every question", hi: "हर प्रश्न का हल और व्याख्या" },
+  plan_rank: { en: "All-India rank & percentile", hi: "अखिल भारतीय रैंक और पर्सेंटाइल" },
+  plan_validity: { en: "Valid till the 2026 exam", hi: "2026 परीक्षा तक मान्य" },
+  plan_best: { en: "BEST VALUE", hi: "सर्वोत्तम मूल्य" },
+  pay_join: { en: "Pay & Join now", hi: "भुगतान करें और जुड़ें" },
+  secure_pay: { en: "Secure payment via Razorpay · UPI, cards, netbanking", hi: "Razorpay से सुरक्षित भुगतान · UPI, कार्ड, नेटबैंकिंग" },
+  already_enrolled: { en: "Checking your access…", hi: "आपकी पहुँच जाँच रहे हैं…" },
+  pay_failed: { en: "Payment could not be started. Please try again.", hi: "भुगतान शुरू नहीं हो सका। कृपया पुनः प्रयास करें।" },
+  pay_processing: { en: "Confirming your payment…", hi: "आपके भुगतान की पुष्टि हो रही है…" },
+  logout: { en: "Log out", hi: "लॉग आउट" },
+  one_time: { en: "one-time", hi: "एकमुश्त" },
 };
 const LangCtx = React.createContext({ lang: "en", t: (k) => k, setLang: () => {} });
 function useLang() { return React.useContext(LangCtx); }
@@ -3658,6 +3676,23 @@ function App({ onLaunchExam, onLogout }) {
     (async () => {
       const saved = await loadKey("dash:profile", null);
       if (saved) setProfile((p) => ({ ...p, ...saved }));
+      try {
+        const sb = await getSupabase();
+        const { data: { user } } = await sb.auth.getUser();
+        if (user) {
+          const { data: prof } = await sb.from("profiles")
+            .select("full_name, email, created_at").eq("id", user.id).single();
+          const realName = (prof?.full_name && prof.full_name.trim())
+            || (user.user_metadata && user.user_metadata.full_name)
+            || (user.email ? user.email.split("@")[0] : "Student");
+          setProfile((p) => ({
+            ...p,
+            name: realName,
+            email: prof?.email || user.email || p.email,
+            memberSince: prof?.created_at ? prof.created_at.slice(0, 10) : p.memberSince,
+          }));
+        }
+      } catch (e) { /* offline / not signed in: keep defaults */ }
       setLoading(false);
     })();
   }, []);
@@ -4138,29 +4173,187 @@ function LoginScreen({ onStudent, onAdmin }) {
 }
 
 /* ============================================================
+   ENROLLMENT + PAYMENT  (paywall before the student dashboard)
+   ============================================================ */
+
+/* Does this user already have access (any active enrollment)? */
+async function hasAccess(sb, userId) {
+  try {
+    const { data } = await sb.from("enrollments").select("id, expires_at").eq("user_id", userId);
+    if (!data || data.length === 0) return false;
+    const now = Date.now();
+    return data.some((e) => !e.expires_at || new Date(e.expires_at).getTime() > now);
+  } catch { return false; }
+}
+
+/* Load Razorpay checkout script once. */
+function loadRazorpayScript() {
+  if (typeof window !== "undefined" && window.Razorpay) return Promise.resolve(true);
+  return new Promise((res) => {
+    const s = document.createElement("script");
+    s.src = "https://checkout.razorpay.com/v1/checkout.js";
+    s.onload = () => res(true); s.onerror = () => res(false);
+    document.body.appendChild(s);
+  });
+}
+
+const PLAN = { price: 499, mrp: 999, currency: "INR" };
+
+function JoinScreen({ onJoined, onLogout }) {
+  const { t } = useLang();
+  const [first, setFirst] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [phase, setPhase] = useState("idle"); // idle | confirming
+  const [err, setErr] = useState("");
+  const [contact, setContact] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const sb = await getSupabase();
+        const { data: { user } } = await sb.auth.getUser();
+        if (!user) return;
+        const { data: prof } = await sb.from("profiles").select("full_name").eq("id", user.id).single();
+        const nm = (prof?.full_name && prof.full_name.trim()) || (user.email ? user.email.split("@")[0] : "");
+        setFirst(nm.split(" ")[0]);
+        if (await hasAccess(sb, user.id)) onJoined();   // already paid → straight in
+      } catch { /* ignore */ }
+    })();
+  }, []);
+
+  const pay = async () => {
+    setErr(""); setBusy(true);
+    try {
+      const sb = await getSupabase();
+      const { data: { user } } = await sb.auth.getUser();
+      // Ask the backend to create a Razorpay order (price is set server-side).
+      const { data: order, error } = await sb.functions.invoke("join-order", { body: { plan: "prelims-2026" } });
+      if (error || !order || order.error || !order.orderId) { setBusy(false); return setErr(t("pay_failed")); }
+      const ready = await loadRazorpayScript();
+      if (!ready) { setBusy(false); return setErr(t("pay_failed")); }
+      const rzp = new window.Razorpay({
+        key: order.keyId, order_id: order.orderId, amount: order.amount, currency: order.currency || "INR",
+        name: "JUNOONIAS", description: t("plan_name"),
+        prefill: { name: first, email: user?.email || "" },
+        theme: { color: "#6b1a1a" },
+        handler: async () => {
+          setPhase("confirming");
+          for (let i = 0; i < 12; i++) {            // wait for webhook to grant access
+            await new Promise((r) => setTimeout(r, 1500));
+            if (await hasAccess(sb, user.id)) { onJoined(); return; }
+          }
+          onJoined(); // dashboard re-checks anyway
+        },
+        modal: { ondismiss: () => { setBusy(false); setPhase("idle"); } },
+      });
+      rzp.open();
+    } catch (e) { setBusy(false); setErr(t("pay_failed")); }
+  };
+
+  const off = PLAN.mrp > PLAN.price ? Math.round((1 - PLAN.price / PLAN.mrp) * 100) : 0;
+
+  return (
+    <div className="jn-root">
+      <style>{LOGIN_CSS}</style>
+      <div className="jn-card" style={{ maxWidth: 560, gridTemplateColumns: "1fr" }}>
+        <div className="jn-form" style={{ padding: "34px 32px 30px" }}>
+          <div className="jn-brand-header" style={{ marginBottom: 18 }}>
+            <div className="jn-brand-top">
+              <DiyaLogo size={40} boxed radius={11} />
+              <div>
+                <div className="jn-word" style={{ color: "var(--garnet)" }}>JUNOON<b style={{ color: "var(--gold)" }}>IAS</b></div>
+                <div className="jn-tag" style={{ color: "var(--sub)" }}>{t("tagline")}</div>
+              </div>
+            </div>
+            <div className="jn-controls"><ChromeControls /></div>
+          </div>
+
+          <h2 className="jn-h">{t("join_hi")}{first ? ", " + first : ""} 🪔</h2>
+          <div className="jn-hsub">{t("join_title")} — {t("join_sub")}</div>
+
+          {phase === "confirming" && <div className="jn-banner ok"><CheckCircle2 size={17} />{t("pay_processing")}</div>}
+          {err && <div className="jn-banner err"><AlertCircle size={17} />{err}</div>}
+
+          {/* PLAN CARD */}
+          <div style={{
+            border: "1.5px solid var(--gold)", borderRadius: 16, padding: "20px 20px 22px", marginTop: 6,
+            background: "linear-gradient(180deg, rgba(212,166,74,.10), rgba(212,166,74,.02))", position: "relative",
+          }}>
+            {off > 0 && (
+              <div style={{ position: "absolute", top: -11, right: 16, background: "linear-gradient(135deg,#8a2222,#5b1414)",
+                color: "#fff", fontSize: 11, fontWeight: 800, letterSpacing: ".06em", padding: "4px 10px", borderRadius: 999 }}>
+                {off}% OFF · {t("plan_best")}
+              </div>
+            )}
+            <div style={{ fontFamily: "var(--font-display,serif)", fontWeight: 600, fontSize: 18, color: "var(--ink)" }}>{t("plan_name")}</div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 9, margin: "10px 0 4px" }}>
+              <span style={{ fontFamily: "var(--font-display,serif)", fontWeight: 700, fontSize: 34, color: "var(--garnet)" }}>₹{PLAN.price}</span>
+              {off > 0 && <span style={{ fontSize: 16, color: "var(--sub)", textDecoration: "line-through" }}>₹{PLAN.mrp}</span>}
+              <span style={{ fontSize: 12.5, color: "var(--sub)", fontWeight: 600 }}>{t("one_time")}</span>
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: "14px 0 0", display: "flex", flexDirection: "column", gap: 10 }}>
+              {[t("plan_tests"), t("plan_solutions"), t("plan_analytics"), t("plan_rank"), t("plan_validity")].map((f, i) => (
+                <li key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13.5, color: "var(--ink)", fontWeight: 500 }}>
+                  <CheckCircle2 size={17} style={{ color: "#1f8a4c", flex: "0 0 auto" }} /> {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button className="jn-cta" style={{ marginTop: 18 }} onClick={pay} disabled={busy}>
+            {busy ? t("please_wait") : (<><span>{t("pay_join")} · ₹{PLAN.price}</span><ArrowRight size={17} /></>)}
+          </button>
+          <div style={{ textAlign: "center", fontSize: 11.5, color: "var(--sub)", marginTop: 10, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+            <Lock size={12} /> {t("secure_pay")}
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 18 }}>
+            <button className="jn-link" onClick={() => setContact(true)} style={{ marginTop: 0 }}><Headphones size={14} /> {t("need_help")}</button>
+            <button className="jn-link" onClick={onLogout} style={{ marginTop: 0 }}><LogOut size={14} /> {t("logout")}</button>
+          </div>
+        </div>
+      </div>
+      {contact && <ContactModal onClose={() => setContact(false)} />}
+    </div>
+  );
+}
+
+/* ============================================================
    ROOT ROUTER  —  session-aware, role-gated, secure
    ============================================================ */
 function Root() {
   const [route, setRoute] = useState("login");
   const [booting, setBooting] = useState(true);
 
-  // On load (and after Google redirect): if a session exists, route by role.
+  // Decide where a logged-in user belongs: admin → admin; student → dashboard if
+  // they have access, otherwise the join/paywall screen.
+  const resolveDestination = async (sb) => {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return "login";
+    const { data: profile } = await sb.from("profiles").select("role").eq("id", user.id).single();
+    if (profile?.role === "admin") return "admin";
+    return (await hasAccess(sb, user.id)) ? "student" : "join";
+  };
+
+  // On load (and after Google redirect): if a session exists, route appropriately.
   useEffect(() => {
     let alive = true;
     (async () => {
       try {
         const sb = await getSupabase();
         const { data: { session } } = await sb.auth.getSession();
-        if (alive && session) {
-          const { data: { user } } = await sb.auth.getUser();
-          const { data: profile } = await sb.from("profiles").select("role").eq("id", user.id).single();
-          setRoute(profile?.role === "admin" ? "admin" : "student");
-        }
+        if (alive && session) setRoute(await resolveDestination(sb));
       } catch (e) { /* stay on login */ }
       if (alive) setBooting(false);
     })();
     return () => { alive = false; };
   }, []);
+
+  // Called after a successful credential/OTP/Google login.
+  const afterAuth = async () => {
+    try { const sb = await getSupabase(); setRoute(await resolveDestination(sb)); }
+    catch { setRoute("join"); }
+  };
 
   const logout = async () => {
     try { const sb = await getSupabase(); await sb.auth.signOut(); } catch {}
@@ -4179,7 +4372,8 @@ function Root() {
     );
   }
 
-  if (route === "login") return <LoginScreen onStudent={() => setRoute("student")} onAdmin={() => setRoute("admin")} />;
+  if (route === "login") return <LoginScreen onStudent={afterAuth} onAdmin={afterAuth} />;
+  if (route === "join") return <JoinScreen onJoined={() => setRoute("student")} onLogout={logout} />;
   if (route === "student") return <StudentApp onLaunchExam={() => setRoute("exam")} onLogout={logout} />;
   if (route === "exam") return <ExamApp onExit={() => setRoute("student")} />;
   if (route === "admin") return <AdminApp onLogout={logout} />;
