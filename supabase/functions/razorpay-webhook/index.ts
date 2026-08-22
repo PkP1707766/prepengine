@@ -4,7 +4,9 @@
 // body with the webhook secret; anything that does not verify is dropped.
 // Deploy with `--no-verify-jwt` (Razorpay does not send a Supabase JWT):
 //   supabase functions deploy razorpay-webhook --no-verify-jwt
-import { adminClient, grantEnrollment, redeemCoupon } from "../_shared/supabase.ts";
+import {
+  adminClient, grantEnrollment, redeemCoupon, creditReferralBonus, reverseReferralBonus,
+} from "../_shared/supabase.ts";
 
 const WEBHOOK_SECRET = Deno.env.get("RAZORPAY_WEBHOOK_SECRET") ?? "";
 
@@ -90,6 +92,9 @@ Deno.serve(async (req) => {
         // Idempotent — the browser's own confirmation may already have done
         // this for the same payment.
         await redeemCoupon(sb, payment.coupon_id, payment.user_id, payment.id, payment.discount_paise ?? 0);
+        // Idempotent too — whichever of the webhook and the browser arrives
+        // second gets 'already_credited' and changes nothing.
+        await creditReferralBonus(sb, payment.id);
         await sb.from("notifications").insert({
           user_id: payment.user_id,
           kind: "success",
@@ -120,6 +125,8 @@ Deno.serve(async (req) => {
           .update({ status: "refunded" })
           .eq("student_id", payment.user_id)
           .eq("plan_code", payment.plan_code ?? "prelims-2026");
+        // Take the referrer's bonus back with it.
+        await reverseReferralBonus(sb, payment.id);
       }
       break;
     }

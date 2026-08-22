@@ -31,6 +31,82 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 23 Aug 2026 — Phase 5: wallet ledger + referral bonus (bundles spec §2.5, §3)
+
+Migration `0010`. Edge functions `verify-payment` v3 and `razorpay-webhook` v3.
+
+### There is no balance column
+
+A balance is always `sum(amount_paise) where status = 'completed'`, derived on
+read. A stored balance is a number two code paths can disagree about, and when
+they disagree it is real money that is wrong. Reversals therefore cost nothing
+to implement: flip a row's status and it drops out of every sum automatically,
+while staying in the ledger as an audit trail.
+
+Money stays integer paise, the same deviation from the spec's `numeric` that
+the coupon phase made, for the same reason.
+
+### The bonus cannot fire from the client
+
+`credit_referral_bonus(payment_id)` is driven by a payment row, and only when
+that row already says `status = 'paid'`. It is called from the two places a
+payment is confirmed — the browser's post-checkout call and the Razorpay
+webhook — and is revoked from `anon` and `authenticated` entirely, so a
+student cannot reach it over PostgREST at all. Verified: a signed-in student
+calling it directly is blocked.
+
+Idempotency is structural rather than defensive. A partial unique index —
+`(reference_id) where type = 'referral_bonus'` — means one referral can produce
+exactly one bonus line, ever. Both callers race on the same payment routinely;
+whichever loses gets `already_credited` and changes nothing.
+
+One bonus per *referred person*, not per purchase: their second and third
+bundle do not pay the referrer again.
+
+### Refund claw-back
+
+A refund inside a configurable window (`referral_reversal_window_days`,
+default 7) flips the bonus to `reversed`, so refund-then-keep-the-bonus does
+not work. Past the window it is left alone deliberately — by then the money may
+already have been withdrawn, and reversing would only manufacture a debt nobody
+can collect. Inside the window a reversal *can* push a balance negative if the
+referrer withdrew in the meantime; that is intended, and the shortfall has to
+be earned back before the threshold is reachable again.
+
+### Verified — 25 assertions, all passing
+
+Credit path: unpaid payment earns nothing; paid payment credits exactly
+₹99; the buyer earns nothing; a second call is a no-op; the balance does not
+double; a second purchase by the same person pays nothing; the referrer gets a
+notification.
+
+Reversal path: refund claws it back; balance returns to zero; the row is kept,
+not deleted; reversing twice is a no-op; re-crediting after a reversal is
+refused; a refund past the window is ignored and leaves the balance alone.
+
+RLS: an uninvolved student sees zero ledger rows; a student inserting their own
+₹5,000 credit is blocked; a student calling the credit function directly is
+blocked; the owner sees their own line.
+
+All test data — ledger rows, referral, two payments, notifications — removed
+afterwards; the tables are back to empty.
+
+### The ₹99 is back on the share card
+
+It was pulled in phase 4 because the wallet that pays it did not exist. It does
+now, so the amount is honest again, and the card carries the withdrawal rule in
+the fine print as the spec asks. Withdrawal itself — the form, the admin payout
+panel — is phase 6, so the card shows the two gates as a checklist rather than
+a button that would not work yet.
+
+### Deferred to phase 6, deliberately
+
+Spec rule 10 (wallet balance spendable at checkout) is the route by which a
+student whose enrollment lapsed becomes eligible to withdraw again. That only
+matters once withdrawal exists, so it belongs next to it rather than here.
+
+---
+
 ## 22 Aug 2026 — Phase 4: referral capture & binding (bundles spec §2.4, §7)
 
 Tracking only — no wallet, no payout. What this phase buys is the record
@@ -219,8 +295,9 @@ impersonation:
 3. ✅ Coupons (`coupons`, `coupon_redemptions`, server-side validation in
    `join-order`) — **live**
 4. ✅ Referral capture + binding — **live**, tracking only
-5. ⬜ Wallet ledger + ₹99 bonus on verified paid referral
-6. ⬜ Withdrawal requests + admin payout panel
+5. ✅ Wallet ledger + ₹99 bonus on verified paid referral — **live**
+6. ⬜ Withdrawal requests + admin payout panel (plus spec rule 10: spending
+   wallet balance at checkout)
 
 The spec's own advice — don't ship all six at once — is worth keeping.
 

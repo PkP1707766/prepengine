@@ -85,3 +85,37 @@ export async function redeemCoupon(
   });
   if (error) console.error("redeem_coupon failed", error);
 }
+
+/** Credit the referrer's wallet for a verified paid enrollment.
+ *
+ *  Idempotent by construction — a partial unique index on the ledger means one
+ *  referral can only ever produce one bonus line, so the browser's confirmation
+ *  and the webhook can both call this for the same payment and only one wins.
+ *  Never called from signup, and never reachable by a client (fraud rule 1). */
+export async function creditReferralBonus(sb: SupabaseClient, paymentId: string) {
+  const { data, error } = await sb.rpc("credit_referral_bonus", { p_payment: paymentId });
+  if (error) {
+    console.error("credit_referral_bonus failed", error);
+    return null;
+  }
+  // Most payments have no referrer behind them; that is not worth logging.
+  if (data && data !== "no_referral" && data !== "already_credited") {
+    console.log("referral bonus:", data, "payment:", paymentId);
+  }
+  return data as string | null;
+}
+
+/** Claw the bonus back when the referred student's payment is refunded, so
+ *  refund-then-keep-the-bonus does not work (fraud rule 4). Bounded by a
+ *  configurable window — past it the money may already be withdrawn. */
+export async function reverseReferralBonus(sb: SupabaseClient, paymentId: string) {
+  const { data, error } = await sb.rpc("reverse_referral_bonus", { p_payment: paymentId });
+  if (error) {
+    console.error("reverse_referral_bonus failed", error);
+    return null;
+  }
+  if (data && data !== "no_referral" && data !== "no_bonus") {
+    console.log("referral reversal:", data, "payment:", paymentId);
+  }
+  return data as string | null;
+}

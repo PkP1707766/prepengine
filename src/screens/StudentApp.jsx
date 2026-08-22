@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Menu, CheckCircle2, BookOpen, Clock, Layers, Eye, Save, TrendingUp, Home, BarChart3, Trophy, User, Flame, Target, Award, Play, RotateCcw, Lock, Calendar, Bell, Zap, ArrowUp, ArrowDown, Medal, Sparkles, LogOut, Share2, Camera, Gift, Copy, Users, UserPlus } from "lucide-react";
+import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Menu, CheckCircle2, BookOpen, Clock, Layers, Eye, Save, TrendingUp, Home, BarChart3, Trophy, User, Flame, Target, Award, Play, RotateCcw, Lock, Calendar, Bell, Zap, ArrowUp, ArrowDown, Medal, Sparkles, LogOut, Share2, Camera, Gift, Copy, Users, UserPlus, Wallet, IndianRupee } from "lucide-react";
 import { AreaChart, Area, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
@@ -348,6 +348,26 @@ const CSS = `
 .empty-ic{width:54px;height:54px;border-radius:14px;background:#fdf6e3;display:grid;place-items:center;margin:0 auto 14px;color:#bcae94}
 .loader{display:grid;place-items:center;min-height:100vh;width:100%;color:var(--muted);font-size:14px}
 
+.rf-wallet{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;background:var(--card);margin-bottom:20px}
+.rf-wal-main{padding:24px;background:linear-gradient(140deg,#fdf8ec,#faf2dc)}
+[data-theme="dark"] .rf-wal-main{background:linear-gradient(140deg,#241a12,#1c150f)}
+.rf-wal-label{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.rf-wal-amt{font-size:38px;font-weight:800;color:var(--ink);line-height:1.05;margin:7px 0 3px;
+  display:flex;align-items:baseline;gap:3px}
+.rf-wal-amt small{font-size:20px;font-weight:700}
+.rf-wal-sub{font-size:12.5px;color:var(--muted)}
+.rf-wal-side{padding:24px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.rf-gate{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;line-height:1.5}
+.rf-gate .tick{width:18px;height:18px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+  font-size:11px;font-weight:800;margin-top:1px}
+.rf-gate.ok .tick{background:#e8f6ee;color:#1f8a4c}
+.rf-gate.no .tick{background:#f6ecd2;color:#8a6a2a}
+.rf-ledger-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.rf-ledger-row:last-child{border-bottom:0}
+.rf-ledger-row .amt{font-weight:800;font-size:14.5px;margin-left:auto;white-space:nowrap}
+.rf-ledger-row .amt.rev{color:var(--muted);text-decoration:line-through}
+
 /* REFER & EARN */
 .rf-hero{background:linear-gradient(150deg,#7a1f1f,#4e1114);color:#fdf6e3;border-radius:16px;
   padding:26px;position:relative;overflow:hidden}
@@ -389,6 +409,8 @@ const CSS = `
   .content{padding:18px}
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:39}
   .rf-steps{grid-template-columns:1fr}
+  .rf-wallet{grid-template-columns:1fr}
+  .rf-wal-main,.rf-wal-side{padding:20px}
   .rf-hero{padding:20px}
   .rf-code{font-size:18px;letter-spacing:.13em}
   .rf-act{flex:1 1 auto}
@@ -1400,9 +1422,18 @@ function ProfileView({ toast }) {
    link-only rule exists to stop. The code rides in ?ref= and is
    bound automatically, once, on the invitee's first sign-in.
    ============================================================ */
+const LEDGER_LABEL = {
+  referral_bonus: "Referral bonus",
+  withdrawal: "Withdrawal",
+  adjustment: "Manual adjustment",
+  reversal: "Reversal",
+};
+
 function ReferView({ toast }) {
   const [stats, setStats] = useState(null);
   const [list, setList] = useState([]);
+  const [wallet, setWallet] = useState(null);
+  const [ledger, setLedger] = useState([]);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -1410,10 +1441,14 @@ function ReferView({ toast }) {
     let alive = true;
     (async () => {
       try {
-        const [s, l] = await Promise.all([DB.myReferralStats(), DB.myReferrals()]);
+        const [s, l, w, tx] = await Promise.all([
+          DB.myReferralStats(), DB.myReferrals(), DB.myWallet(), DB.myWalletTransactions(),
+        ]);
         if (!alive) return;
         setStats(s);
         setList(l);
+        setWallet(w);
+        setLedger(tx);
       } catch (e) {
         if (alive) setErr(e?.message || "Could not load your referral details");
       }
@@ -1464,12 +1499,41 @@ function ReferView({ toast }) {
 
   return (
     <div>
+      {wallet && (
+        <div className="rf-wallet">
+          <div className="rf-wal-main">
+            <div className="rf-wal-label">Wallet balance</div>
+            <div className="rf-wal-amt"><small>₹</small>{wallet.balance}</div>
+            <div className="rf-wal-sub">
+              ₹{wallet.lifetime} earned in total from {stats.paid} paid referral{stats.paid === 1 ? "" : "s"}
+            </div>
+          </div>
+          <div className="rf-wal-side">
+            <div className="rf-wal-label" style={{ marginBottom: -4 }}>Withdrawal unlocks at</div>
+            <div className={"rf-gate " + (wallet.balance >= wallet.minWithdraw ? "ok" : "no")}>
+              <span className="tick">{wallet.balance >= wallet.minWithdraw ? "✓" : "1"}</span>
+              <span>₹{wallet.minWithdraw} balance — you have ₹{wallet.balance}</span>
+            </div>
+            <div className={"rf-gate " + (wallet.hasActiveCourse ? "ok" : "no")}>
+              <span className="tick">{wallet.hasActiveCourse ? "✓" : "2"}</span>
+              <span>
+                One currently active course
+                {wallet.hasActiveCourse ? "" : " — buy or renew any series to unlock"}
+              </span>
+            </div>
+            <div style={{ fontSize: 11.5, color: "var(--muted)", lineHeight: 1.5 }}>
+              Payouts open shortly. Your balance keeps growing either way — earning is never blocked.
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="rf-hero">
         <div className="rf-hero-in">
-          <h3><Gift size={20} /> Invite friends, earn rewards</h3>
+          <h3><Gift size={20} /> Invite friends, earn ₹{stats.bonus}</h3>
           <p>
-            Share your link with someone preparing for the same exam. Every friend who joins and buys
-            a test series counts as a successful referral. There is no limit on how many you invite.
+            Share your link with someone preparing for the same exam. The moment they buy any test
+            series, ₹{stats.bonus} lands in your wallet. There is no limit on how many you invite.
           </p>
 
           <div className="rf-code"><span>{stats.code}</span></div>
@@ -1481,16 +1545,18 @@ function ReferView({ toast }) {
           </div>
 
           <p className="rf-fine">
-            Referrals are being tracked from today. Reward amounts and payouts open along with your
-            wallet shortly, and everyone you invite before then still counts. Self-referrals and duplicate
-            accounts don't count.
+            Bonus withdraw karne ke liye ₹{wallet ? wallet.minWithdraw : 500} balance aur ek currently
+            active course zaroori hai. Bonus tabhi milta hai jab aapka friend actually payment kare —
+            self-referral aur duplicate accounts count nahi hote, aur refund hone par bonus wapas le liya
+            jaata hai.
           </p>
         </div>
       </div>
 
       <div className="stats" style={{ marginTop: 22 }}>
         <StatCard icon={<Users size={19} />} color="#7a1f1f" n={stats.total} label="Friends joined" sub="Signed up on your link" />
-        <StatCard icon={<CheckCircle2 size={19} />} color="#1f8a4c" n={stats.paid} label="Bought a series" sub="These are the ones that count" />
+        <StatCard icon={<CheckCircle2 size={19} />} color="#1f8a4c" n={stats.paid} label="Bought a series" sub="These are the ones that pay" />
+        <StatCard icon={<IndianRupee size={19} />} color="#b8923a" n={`₹${wallet ? wallet.lifetime : 0}`} label="Lifetime earned" sub="Before any withdrawals" />
       </div>
 
       <div className="rf-steps">
@@ -1507,7 +1573,7 @@ function ReferView({ toast }) {
         <div className="rf-step">
           <div className="n">3</div>
           <b>You earn</b>
-          <span>A reward lands the moment they buy any test series.</span>
+          <span>₹{stats.bonus} lands in your wallet the moment they buy.</span>
         </div>
       </div>
 
@@ -1536,6 +1602,41 @@ function ReferView({ toast }) {
           </div>
         ))}
       </div>
+
+      {ledger.length > 0 && (
+        <div className="card card-pad" style={{ marginTop: 18 }}>
+          <div className="sec-head">
+            <div>
+              <h2>Wallet history</h2>
+              <div className="note">Every credit and debit, including anything reversed</div>
+            </div>
+          </div>
+          {ledger.map((t) => (
+            <div className="rf-ledger-row" key={t.id}>
+              <div style={{
+                width: 34, height: 34, borderRadius: 10, flex: "0 0 auto", display: "grid",
+                placeItems: "center",
+                background: t.status === "reversed" ? "#f4efe4" : "#e8f6ee",
+                color: t.status === "reversed" ? "#a89474" : "#1f8a4c",
+              }}>
+                <Wallet size={16} />
+              </div>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 13.5, fontWeight: 700 }}>
+                  {LEDGER_LABEL[t.type] || t.type.replace(/_/g, " ")}
+                  {t.status === "reversed" && (
+                    <span style={{ fontWeight: 600, color: "var(--muted)" }}> · reversed after refund</span>
+                  )}
+                </div>
+                <div style={{ fontSize: 12, color: "var(--muted)" }}>{fmtDate(t.at)}</div>
+              </div>
+              <div className={"amt" + (t.status === "reversed" ? " rev" : "")}>
+                {t.amount > 0 ? "+" : "−"}₹{Math.abs(t.amount)}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

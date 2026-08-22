@@ -1268,6 +1268,57 @@ export function referralLink(code) {
   return `${origin}/?ref=${code}`;
 }
 
+
+/* ---------------------------------------------------------------- wallet -- */
+
+/**
+ * Balance is never stored — it is `sum(amount_paise)` over completed ledger
+ * lines, computed on read. A stored balance is a number two code paths can
+ * disagree about, and when they disagree it is real money that is wrong.
+ *
+ * `can_withdraw` is evaluated fresh on every call, never cached: eligibility
+ * turns on and off as enrollments expire and renew (spec fraud rule 8).
+ */
+export async function myWallet() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_WALLET;
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("my_wallet");
+  if (error) throw error;
+  const r = Array.isArray(data) ? data[0] : data;
+  if (!r) return null;
+  return {
+    balance: (r.balance_paise ?? 0) / 100,
+    lifetime: (r.lifetime_paise ?? 0) / 100,
+    pending: (r.pending_paise ?? 0) / 100,
+    bonus: (r.bonus_paise ?? 0) / 100,
+    minWithdraw: (r.min_withdraw_paise ?? 0) / 100,
+    canWithdraw: !!r.can_withdraw,
+    hasActiveCourse: !!r.has_active_course,
+  };
+}
+
+/** The student's own ledger. RLS restricts this to their rows; there is no
+ *  write path from the browser at all — every line is written by a
+ *  service-role function behind a verified payment. */
+export async function myWalletTransactions({ limit = 50 } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_WALLET_TX;
+  const sb = await getSupabase();
+  const { data, error } = await sb
+    .from("wallet_transactions")
+    .select("id, amount_paise, type, status, note, created_at")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []).map((t) => ({
+    id: t.id,
+    amount: (t.amount_paise ?? 0) / 100,
+    type: t.type,
+    status: t.status,
+    note: t.note || "",
+    at: t.created_at,
+  }));
+}
+
 /* ----------------------------------------------------------- admin views -- */
 
 export async function adminStudents() {

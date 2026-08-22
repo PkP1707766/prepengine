@@ -209,12 +209,12 @@ export const FX_EXAM = {
 
 /* Referral fixtures. Long masked names and a mix of converted/unconverted so
    the share card and the admin table can be measured with realistic content. */
-export const FX_REFERRAL_STATS = { code: "K7MTQ2XR", total: 4, paid: 2, pending: 4, bonus: 99 };
+export const FX_REFERRAL_STATS = { code: "K7MTQ2XR", total: 4, paid: 3, pending: 1, bonus: 99 };
 
 export const FX_REFERRAL_LIST = [
-  { name: "Shubhangi P.", joined: "2026-08-14T09:12:00Z", paid: true, status: "pending" },
-  { name: "Ravi K.", joined: "2026-08-11T17:40:00Z", paid: true, status: "pending" },
-  { name: "Aparajita B.", joined: "2026-08-06T06:05:00Z", paid: false, status: "pending" },
+  { name: "Shubhangi P.", joined: "2026-08-14T09:12:00Z", paid: true, status: "credited" },
+  { name: "Ravi K.", joined: "2026-08-11T17:40:00Z", paid: true, status: "credited" },
+  { name: "Aparajita B.", joined: "2026-08-06T06:05:00Z", paid: true, status: "credited" },
   { name: "Aspirant", joined: "2026-07-29T13:20:00Z", paid: false, status: "pending" },
 ];
 
@@ -229,3 +229,22 @@ export const FX_ADMIN_REFERRALS = Array.from({ length: 9 }, (_, i) => ({
   status: i % 3 === 0 ? "pending" : "pending",
   at: new Date(Date.now() - i * 3 * 86400000).toISOString(),
 }));
+
+/* Wallet fixtures — a balance below the withdrawal threshold and no active
+   course, so the blocked-eligibility copy is what gets measured. */
+export const FX_WALLET = {
+  // Deliberately consistent with FX_WALLET_TX below: three credited bonuses
+  // (297) minus one 100 withdrawal = 197. The reversed line counts toward
+  // neither, which is the whole point of keeping it in the ledger.
+  balance: 197, lifetime: 297, pending: 0, bonus: 99,
+  minWithdraw: 500, canWithdraw: false, hasActiveCourse: false,
+};
+
+const BONUS_NOTE = "Referral bonus — a friend you invited bought a test series";
+export const FX_WALLET_TX = [
+  { id: "w1", amount: 99,   type: "referral_bonus", status: "completed", note: BONUS_NOTE, at: "2026-08-20T10:15:00Z" },
+  { id: "w2", amount: -100, type: "withdrawal",     status: "completed", note: "Withdrawal to UPI", at: "2026-08-16T08:00:00Z" },
+  { id: "w3", amount: 99,   type: "referral_bonus", status: "completed", note: BONUS_NOTE, at: "2026-08-14T09:12:00Z" },
+  { id: "w4", amount: 99,   type: "referral_bonus", status: "completed", note: BONUS_NOTE, at: "2026-08-11T17:40:00Z" },
+  { id: "w5", amount: 99,   type: "referral_bonus", status: "reversed",  note: BONUS_NOTE, at: "2026-08-02T11:05:00Z" },
+];

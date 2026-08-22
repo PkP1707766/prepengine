@@ -5,7 +5,9 @@
 // student is not left staring at a spinner while the webhook makes its way
 // over. The signature is verified here exactly the way the webhook verifies
 // its own — a forged callback grants nothing.
-import { adminClient, callerFromRequest, grantEnrollment, redeemCoupon } from "../_shared/supabase.ts";
+import {
+  adminClient, callerFromRequest, grantEnrollment, redeemCoupon, creditReferralBonus,
+} from "../_shared/supabase.ts";
 import { json, preflight } from "../_shared/cors.ts";
 
 const RZP_KEY_SECRET = Deno.env.get("RAZORPAY_KEY_SECRET") ?? "";
@@ -85,6 +87,10 @@ Deno.serve(async (req) => {
   // A coupon is only spent once real money has moved and the signature has
   // verified — an abandoned checkout must never burn a use.
   await redeemCoupon(sb, payment.coupon_id, user.id, payment.id, payment.discount_paise ?? 0);
+
+  // Whoever introduced this student gets paid — but only now, once real money
+  // has actually moved and the signature has verified.
+  await creditReferralBonus(sb, payment.id);
 
   return json(req, { ok: true });
 });
