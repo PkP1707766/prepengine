@@ -3,7 +3,11 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+// Clear the pre-JS boot placeholder painted by index.html.
+const root = document.getElementById('root')
+root.innerHTML = ''
+
+createRoot(root).render(
   <StrictMode>
     <App />
   </StrictMode>,

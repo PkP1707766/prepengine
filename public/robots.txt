@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /$
+# Everything behind sign-in is private and has no crawlable content anyway.
+Disallow: /#/dashboard
+Disallow: /#/admin
+Disallow: /#/exam
+Disallow: /#/join
+
+Sitemap: https://junoonias.vercel.app/sitemap.xml
