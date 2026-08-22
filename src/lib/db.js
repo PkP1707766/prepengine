@@ -541,22 +541,20 @@ export async function deleteTest(id) {
 export async function loadExamTest(testId) {
   if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_EXAM;
   const sb = await getSupabase();
-  const { data: test, error } = await sb
-    .from("tests")
-    .select("*, test_series(title)")
-    .eq("id", testId)
-    .eq("is_published", true)
-    .single();
-  if (error) throw error;
 
-  const t = testFromRow(test);
-  const ids = t.sections.flatMap((s) => s.questionIds || []);
-  if (ids.length === 0) throw new Error("This test has no questions yet.");
-
-  const { data: qRows, error: qErr } = await sb.from("questions").select("*").in("id", ids);
-  if (qErr) throw qErr;
-
-  const byId = new Map((qRows ?? []).map((r) => [r.id, r]));
+  // The paper comes from a database function that strips every answer field.
+  // It used to be `select * from questions`, which put options[].isCorrect,
+  // numeric_answer and the explanation in the browser before the student had
+  // answered anything — readable straight from the Network tab mid-exam.
+  const { data, error } = await sb.rpc("exam_paper", { p_test: testId });
+  if (error) {
+    const msg = String(error.message || "");
+    if (msg.includes("no_access")) throw new Error("You don't have access to this test.");
+    if (msg.includes("test_not_found")) throw new Error("This test is not available.");
+    throw error;
+  }
+  const paper = data;
+  if (!paper || !Array.isArray(paper.sections)) throw new Error("This test has no questions yet.");
 
   const shuffle = (arr) => {
     const a = [...arr];
@@ -567,13 +565,19 @@ export async function loadExamTest(testId) {
     return a;
   };
 
-  const sections = t.sections
+  // Shuffling stays client-side and is now harmless: an option carries its own
+  // id, and that id is what travels back at submit time, so the order the
+  // student saw cannot change what counts as correct.
+  const sections = paper.sections
     .map((sec) => {
-      let qids = (sec.questionIds || []).filter((id) => byId.has(id));
-      if (t.shuffleQuestions) qids = shuffle(qids);
+      let qs = Array.isArray(sec.questions) ? sec.questions : [];
+      if (paper.shuffleQuestions) qs = shuffle(qs);
       return {
         name: sec.name || "Section",
-        questions: qids.map((id) => examQuestion(byId.get(id), t.shuffleOptions)),
+        questions: qs.map((q) => ({
+          ...q,
+          options: paper.shuffleOptions && Array.isArray(q.options) ? shuffle(q.options) : (q.options || []),
+        })),
       };
     })
     .filter((s) => s.questions.length > 0);
@@ -581,51 +585,35 @@ export async function loadExamTest(testId) {
   if (sections.length === 0) throw new Error("This test has no questions yet.");
 
   return {
-    id: t.id,
-    title: t.title,
-    seriesTitle: t.seriesTitle,
-    durationSec: t.durationMin * 60,
-    durationMin: t.durationMin,
-    shuffleQuestions: t.shuffleQuestions,
-    shuffleOptions: t.shuffleOptions,
+    id: paper.id,
+    title: paper.title,
+    seriesTitle: paper.seriesTitle || "",
+    durationSec: (paper.durationMin ?? 60) * 60,
+    durationMin: paper.durationMin ?? 60,
+    shuffleQuestions: !!paper.shuffleQuestions,
+    shuffleOptions: !!paper.shuffleOptions,
     sections,
   };
 }
 
-/** questions row → exam-engine question. */
-function examQuestion(r, shuffleOptions) {
-  const base = {
-    id: r.id,
-    topic: r.topic || r.subject || "General",
-    subject: r.subject,
-    type: r.type,
-    marks: Number(r.marks_correct ?? 2),
-    negative: Number(r.marks_wrong ?? 0),
-    text: r.body,
-    explanation: r.explanation || "",
-  };
-
-  if (r.type === "numerical") {
-    return { ...base, correct: Number(r.numeric_answer), tolerance: Number(r.numeric_tolerance ?? 0.01) };
+/**
+ * Submit a finished paper. The browser sends which option ids were chosen and
+ * nothing else — the score, the section and topic breakdowns, the rank and the
+ * percentile are all computed server-side and written by the service role.
+ * `attempts` is no longer writable from the client at all.
+ */
+export async function submitAttempt({ testId, answers, timeSpent, timeUsed, startedAt }) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.functions.invoke("submit-attempt", {
+    body: { testId, answers, timeSpent, timeUsed, startedAt },
+  });
+  if (error) {
+    const detail = await error?.context?.json?.().catch(() => null);
+    if (detail?.error === "no_access") throw new Error("You don't have access to this test.");
+    throw error;
   }
-
-  let opts = (Array.isArray(r.options) ? r.options : []).map((o, i) => ({ ...o, _i: i }));
-  if (shuffleOptions) {
-    for (let i = opts.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [opts[i], opts[j]] = [opts[j], opts[i]];
-    }
-  }
-  const correctIdx = opts.reduce((acc, o, i) => (o.isCorrect ? [...acc, i] : acc), []);
-
-  return {
-    ...base,
-    options: opts.map((o) => o.body),
-    correct: r.type === "multiple" ? correctIdx : (correctIdx[0] ?? -1),
-  };
+  return data;
 }
-
-/* --------------------------------------------------------------- attempts -- */
 
 export function attemptFromRow(r) {
   const max = Number(r.max_score || 0);
@@ -672,55 +660,11 @@ export async function listAttempts(userId, { limit = 100 } = {}) {
   return (data ?? []).map(attemptFromRow);
 }
 
-export async function saveAttempt(userId, payload) {
-  const sb = await getSupabase();
-  const row = {
-    student_id: userId,
-    test_id: payload.testId ?? null,
-    test_title: payload.title ?? null,
-    series_title: payload.seriesTitle ?? null,
-    score: payload.score,
-    max_score: payload.maxScore,
-    total_questions: payload.total,
-    correct_count: payload.correct,
-    wrong_count: payload.wrong,
-    accuracy: Number(payload.accuracy?.toFixed?.(2) ?? payload.accuracy ?? 0),
-    time_taken_sec: Math.round(payload.timeUsed || 0),
-    duration_min: payload.durationMin ?? 0,
-    answers: payload.answers || {},
-    section_stats: payload.sections || [],
-    topic_stats: payload.topics || [],
-    review: payload.review || [],
-    status: "submitted",
-    started_at: payload.startedAt || new Date().toISOString(),
-    submitted_at: new Date().toISOString(),
-  };
-  const { data, error } = await sb.from("attempts").insert(row).select().single();
-  if (error) throw error;
-  return attemptFromRow(data);
-}
 
 /** Persist the standing snapshot so the report still shows a rank after a
     reload — it used to be computed once and then thrown away. */
-export async function saveAttemptStanding(attemptId, standing) {
-  if (!attemptId || !standing) return;
-  const sb = await getSupabase();
-  await sb
-    .from("attempts")
-    .update({
-      percentile: standing.percentile ?? null,
-      rank_in_test: standing.rank ?? null,
-      total_peers: standing.total ?? null,
-    })
-    .eq("id", attemptId);
-}
 
 /** Recompute a stored standing — cheap enough to run when a report is opened. */
-export async function refreshAttemptStanding(attemptId) {
-  const standing = await attemptStanding(attemptId);
-  if (standing) await saveAttemptStanding(attemptId, standing).catch(() => {});
-  return standing;
-}
 
 /** Real rank + percentile for a submitted attempt, computed in Postgres. */
 export async function attemptStanding(attemptId) {
@@ -865,16 +809,14 @@ export async function toggleReminder(userId, testId, on) {
   }
 }
 
-export async function listBookmarks(userId) {
-  const sb = await getSupabase();
-  const { data, error } = await sb
-    .from("bookmarks")
-    .select("id, note, created_at, questions(id, subject, topic, body, options, explanation, type, numeric_answer)")
-    .eq("student_id", userId)
-    .order("created_at", { ascending: false });
-  if (error) throw error;
-  return (data ?? []).filter((b) => b.questions);
-}
+/* listBookmarks() removed. It embedded questions(options, explanation,
+   numeric_answer) — the answer key — and no screen ever called it. Students no
+   longer have any direct read on `questions`, so it would return nothing
+   anyway. If a bookmarks screen is built later it must read from
+   attempts.review, or go through a SECURITY DEFINER function that checks the
+   student actually sat the paper first. toggleBookmark() below still works:
+   it only writes. */
+
 
 export async function toggleBookmark(userId, questionId, on) {
   const sb = await getSupabase();

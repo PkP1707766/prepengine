@@ -31,6 +31,100 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 23 Aug 2026 — Security & integrity audit (phase 6 on hold)
+
+Phase 6 is paused pending Razorpay KYC. This pass went looking for everything
+else. Findings were confirmed by running the attack against the live database,
+not by reading policies and assuming they worked — which matters, because the
+worst one looked correct on paper.
+
+Migrations `0011`, `0012`, `0013`. Edge function `submit-attempt` v1.
+
+### CRITICAL — any student could make themselves an admin
+
+`guard_profile_role()` was declared `SECURITY DEFINER`. **Inside a SECURITY
+DEFINER function `current_user` is the function's owner, not the caller**, so
+the check `current_user in ('anon','authenticated')` was never true and the
+guard passed every update it existed to stop. One REST call was enough:
+
+    PATCH /rest/v1/profiles?id=eq.<self>   {"role":"admin"}
+
+That is full admin: the entire question bank, every student's details, all
+payments, coupons, wallet ledger.
+
+Fixed in two independent layers, precisely because one subtly-wrong trigger is
+what caused it. **Column-level privileges** are now the hard guarantee —
+`authenticated` simply has no write grant on `role`, `id`, `created_at` or
+`referral_code`, so Postgres rejects the UPDATE regardless of triggers or
+policies. The trigger was also corrected to `SECURITY INVOKER` and now allows
+admins through via `is_admin()`.
+
+Verified: self-promotion blocked, promoting others blocked, rewriting one's own
+`referral_code` blocked, rewriting one's own id blocked — and ordinary profile
+editing still works.
+
+### CRITICAL — the exam was unverifiable end to end
+
+Two halves of one hole.
+
+**The answer key was in the browser.** The paper was loaded with
+`select * from questions`, which returns `options[].isCorrect`,
+`numeric_answer` and the explanation. Every answer was in the Network tab
+before the student answered anything.
+
+**The browser wrote its own result.** It computed the score locally and
+inserted it, and `saveAttemptStanding()` let it write its own `percentile` and
+`rank_in_test`. A student could skip the paper and post 200/200, rank 1 — so
+the leaderboard and the All-India Rank, the headline paid feature, meant
+nothing.
+
+Now: `exam_paper()` serves the paper with every answer field stripped; scoring,
+persistence and standing all happen in the `submit-attempt` edge function under
+the service role; and `attempts` is no longer insertable or updatable by the
+client at all.
+
+Options carry a stable id, and the browser sends back which **ids** it chose.
+That keeps client-side shuffling — which the paper still uses — completely
+harmless, because position no longer means anything.
+
+**Closing only half of it would have been worthless**, and nearly happened:
+sanitising `exam_paper()` left `questions_select` in place, so a paying student
+could still have run `GET /rest/v1/questions?select=*` and dumped the whole key.
+Students now have no direct read on `questions` at all — the live paper comes
+from `exam_paper()`, the review comes from the `attempts.review` snapshot
+written at submit time, and admins keep full access.
+
+### Verified
+
+- 7 assertions on the escalation fix, incl. that normal profile editing survives
+- 11 on the exam paper: no `isCorrect` / `explanation` / `numeric_answer` in the
+  payload, non-payers and anonymous visitors refused, forged scores and
+  self-written ranks both blocked, students still read their own attempts
+- 5 that the raw question bank is closed to students and anon but open to admins
+- 15 unit tests on the scoring algorithm: negative marking, multiple-correct
+  exact/subset/superset, numerical tolerance, blank and garbage input, and a
+  **forged option id, which scores zero**
+- the submit failure path in the browser: the paper stays on screen with the
+  answers intact and a retry, rather than losing the attempt
+
+### Not a finding, checked anyway
+
+RLS is enabled with policies on all 32 tables. No `dangerouslySetInnerHTML`,
+no `eval`, no secrets in the client bundle, and every `target="_blank"` carries
+`rel="noreferrer"`.
+
+### Still open for you
+
+`listBookmarks()` was deleted: it embedded the answer key and no screen called
+it. A bookmarks feature can be rebuilt from `attempts.review`.
+
+The one thing I could not test is a signed-in end-to-end paper, since that
+needs a real student session. **Please sit one short mock and confirm the score
+and rank come out right** — everything under it is verified, but that run is
+worth doing before the next paid cohort.
+
+---
+
 ## 23 Aug 2026 — Phase 5: wallet ledger + referral bonus (bundles spec §2.5, §3)
 
 Migration `0010`. Edge functions `verify-payment` v3 and `razorpay-webhook` v3.
@@ -379,9 +473,9 @@ says it has none:
 
 ## Still open
 
-- **Client-side scoring.** Answer keys reach the browser. Fine for a
-  self-paced mock (this is what competitors do); move `evaluate()` into an edge
-  function before running a proctored All-India test with prizes.
+- ~~**Client-side scoring.**~~ Fixed 23 Aug 2026 — scoring, persistence and
+  ranking all moved into the `submit-attempt` edge function, and the paper no
+  longer carries answers. See the security & integrity audit entry above.
 - **Razorpay is still on a test key** (`rzp_test_…`). Swap to live keys, and run
   one real ₹1 transaction end-to-end before launch.
 - **Notification delivery.** Reminders and preferences are stored, and

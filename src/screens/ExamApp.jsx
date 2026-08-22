@@ -3,7 +3,7 @@ import { AlertCircle, Trophy } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
-import { loadExamTest, saveAttempt, attemptStanding, saveAttemptStanding, testStats, currentUser, getProfile } from "../lib/db.js";
+import { loadExamTest, submitAttempt, currentUser, getProfile } from "../lib/db.js";
 
 
 const ExamApp = (() => {
@@ -25,27 +25,11 @@ const fmt = (s) => {
   const pad = (n) => String(n).padStart(2, "0");
   return h > 0 ? `${pad(h)}:${pad(m)}:${pad(sec)}` : `${pad(m)}:${pad(sec)}`;
 };
-const arraysEqual = (a, b) => {
-  if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) return false;
-  const x = [...a].sort(), y = [...b].sort();
-  return x.every((v, i) => v === y[i]);
-};
 const hasAnswer = (a) => {
   if (a === undefined || a === null) return false;
   if (Array.isArray(a)) return a.length > 0;
   if (typeof a === "string") return a.trim() !== "";
   return true;
-};
-const evaluate = (q, ans) => {
-  const attempted = hasAnswer(ans);
-  let correct = false;
-  if (attempted) {
-    if (q.type === "mcq") correct = ans === q.correct;
-    else if (q.type === "multiple") correct = arraysEqual(ans, q.correct);
-    else if (q.type === "numerical") correct = Math.abs(parseFloat(ans) - q.correct) <= (q.tolerance || 0.01);
-  }
-  const awarded = !attempted ? 0 : correct ? q.marks : -q.negative;
-  return { attempted, correct, awarded };
 };
 const estPercentile = (p) => {
   const pts = [[0, 1], [20, 16], [35, 36], [50, 56], [60, 71], [72, 84], [82, 92], [90, 97], [100, 99.6]];
@@ -65,7 +49,7 @@ const gradeFor = (p) => {
   return { g: "D", c: "#c0392b" };
 };
 const SEM = { strong: "#1f8a4c", average: "#b8923a", weak: "#c0392b" };
-const bandFor = (acc) => (acc >= 75 ? "strong" : acc >= 50 ? "average" : "weak");
+// bandFor moved to the server with the rest of the scoring.
 
 /* ============================================================
    STYLES (self-contained design system)
@@ -140,6 +124,16 @@ const CSS = `
 .begin-btn{background:var(--green);color:#ffffff;font-weight:700;font-size:15px;padding:13px 28px;border-radius:10px;transition:.15s}
 .begin-btn:disabled{background:#c6b896;cursor:not-allowed}
 .begin-btn:not(:disabled):hover{background:#1a7a42}
+
+.ee-blocker{position:fixed;inset:0;z-index:120;display:grid;place-items:center;
+  background:rgba(28,18,10,.55);backdrop-filter:blur(3px);padding:20px}
+.ee-blocker-card{background:var(--card,#fff);border-radius:16px;padding:26px 28px;max-width:400px;
+  display:flex;flex-direction:column;gap:7px;text-align:center;align-items:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);font-size:13.5px;line-height:1.55}
+.ee-blocker-card b{font-size:16px}
+.ee-spin{width:30px;height:30px;border-radius:50%;border:3px solid #e8d9b8;border-top-color:#8a2222;
+  animation:ee-rot .8s linear infinite;margin-bottom:6px}
+@keyframes ee-rot{to{transform:rotate(360deg)}}
 
 /* ---------- EXAM SHELL ---------- */
 .exam-head{background:linear-gradient(110deg,#c39d44,#8a6a14);color:#ffffff;position:sticky;top:0;z-index:20}
@@ -508,14 +502,16 @@ function ExamScreen({ state, actions, candidateName }) {
           ) : (
             <div className="opts">
               {q.options.map((opt, i) => {
+                // The answer is stored as the option's own id, not its
+                // position, so shuffling cannot change what was chosen.
                 const selected = q.type === "multiple"
-                  ? Array.isArray(answers[q.id]) && answers[q.id].includes(i)
-                  : answers[q.id] === i;
+                  ? Array.isArray(answers[q.id]) && answers[q.id].includes(opt.id)
+                  : answers[q.id] === opt.id;
                 return (
-                  <button key={i} className={"opt" + (selected ? " sel" : "")}
-                    onClick={() => q.type === "multiple" ? actions.toggleMulti(q.id, i) : actions.selectMcq(q.id, i)}>
+                  <button key={opt.id} className={"opt" + (selected ? " sel" : "")}
+                    onClick={() => q.type === "multiple" ? actions.toggleMulti(q.id, opt.id) : actions.selectMcq(q.id, opt.id)}>
                     <span className={"opt-mark" + (q.type === "multiple" ? " sq" : "")}>{selected ? "✓" : ""}</span>
-                    <span className="opt-txt"><span className="opt-key">{optLetter(i)}.</span> {opt}</span>
+                    <span className="opt-txt"><span className="opt-key">{optLetter(i)}.</span> {opt.body}</span>
                   </button>
                 );
               })}
@@ -935,6 +931,8 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
   const [timeLeft, setTimeLeft] = useState(EXAM.durationSec);
   const [showSubmit, setShowSubmit] = useState(false);
   const [results, setResults] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitErr, setSubmitErr] = useState("");
   const timeSpent = useRef({});
   const enteredAt = useRef(0);
   const startedAt = useRef(new Date().toISOString());
@@ -989,10 +987,10 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
     goTo,
     prev: () => goByOffset(-1),
     saveNext: () => goByOffset(1),
-    selectMcq: (qid, i) => { setAnswers((a) => ({ ...a, [qid]: i })); setVisited((v) => new Set(v).add(qid)); },
-    toggleMulti: (qid, i) => setAnswers((a) => {
+    selectMcq: (qid, optId) => { setAnswers((a) => ({ ...a, [qid]: optId })); setVisited((v) => new Set(v).add(qid)); },
+    toggleMulti: (qid, optId) => setAnswers((a) => {
       const cur = Array.isArray(a[qid]) ? a[qid] : [];
-      const next = cur.includes(i) ? cur.filter((x) => x !== i) : [...cur, i];
+      const next = cur.includes(optId) ? cur.filter((x) => x !== optId) : [...cur, optId];
       return { ...a, [qid]: next };
     }),
     setNumerical: (qid, v) => { setAnswers((a) => ({ ...a, [qid]: v })); setVisited((vv) => new Set(vv).add(qid)); },
@@ -1012,86 +1010,32 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
     return { answered, unanswered: order.length - answered, marked: marks, notVisited };
   }, [answers, visited, marked, order]);
 
-  const doSubmit = () => {
+  /* Scoring happens on the server. The browser sends which option ids were
+     chosen and nothing else — it no longer knows the answers, and it can no
+     longer write to `attempts` at all. */
+  const doSubmit = async () => {
     flush(curId());
-    // build review + aggregates
-    const review = [];
-    const sectionAgg = {};
-    const topicAgg = {};
-    let score = 0, maxScore = 0, attempted = 0, correctN = 0, wrongN = 0;
-
-    const times = order.map(({ id }) => timeSpent.current[id] || 0);
-    const avgTime = times.reduce((a, b) => a + b, 0) / (times.length || 1);
-    const slowThreshold = Math.max(avgTime * 1.6, 25);
-
-    EXAM.sections.forEach((s) => {
-      sectionAgg[s.name] = { name: s.name, score: 0, max: 0, correct: 0, wrong: 0, unattempted: 0 };
-      s.questions.forEach((q) => {
-        const ans = answers[q.id];
-        const ev = evaluate(q, ans);
-        const t = timeSpent.current[q.id] || 0;
-        maxScore += q.marks;
-        score += ev.awarded;
-        sectionAgg[s.name].max += q.marks;
-        sectionAgg[s.name].score += ev.awarded;
-
-        if (!topicAgg[q.topic]) topicAgg[q.topic] = { name: q.topic, subject: q.subject || q.topic, correct: 0, total: 0 };
-        topicAgg[q.topic].total += 1;
-
-        if (ev.attempted) {
-          attempted++;
-          if (ev.correct) { correctN++; sectionAgg[s.name].correct++; topicAgg[q.topic].correct++; }
-          else { wrongN++; sectionAgg[s.name].wrong++; }
-        } else {
-          sectionAgg[s.name].unattempted++;
-        }
-
-        review.push({
-          id: q.id, num: review.length + 1, section: s.name,
-          text: q.text, type: q.type, options: q.options || [],
-          topic: q.topic, explanation: q.explanation,
-          yourVal: q.type === "numerical" ? (ev.attempted ? ans : null) : ans,
-          correctVal: q.correct,
-          attempted: ev.attempted, correct: ev.correct, awarded: ev.awarded,
-          time: t, slow: t >= slowThreshold && t > 0,
-        });
-      });
-    });
-
-    const total = order.length;
-    const unattempted = total - attempted;
-    const accuracy = attempted > 0 ? (correctN / attempted) * 100 : 0;
-    const scorePct = maxScore > 0 ? (Math.max(0, score) / maxScore) * 100 : 0;
-
-    const topics = Object.values(topicAgg).map((t) => {
-      const acc = t.total > 0 ? (t.correct / t.total) * 100 : 0;
-      return { name: t.name, subject: t.subject, correct: t.correct, total: t.total, acc, band: bandFor(acc) };
-    });
-
-    const payload = {
-      testId: EXAM.id,
-      title: EXAM.title,
-      seriesTitle: EXAM.seriesTitle,
-      durationMin: EXAM.durationMin,
-      startedAt: startedAt.current,
-      answers,
-      score: +score.toFixed(2), maxScore, scorePct, attempted, total, unattempted,
-      correct: correctN, wrong: wrongN, accuracy,
-      timeUsed: EXAM.durationSec - timeLeft,
-      sections: Object.values(sectionAgg),
-      topics, review,
-    };
-
-    setResults(payload);
     setShowSubmit(false);
-    setScreen("result");
-
-    // Saving happens after the result is on screen — a network hiccup must
-    // never cost a student the analysis they just earned.
-    if (onSubmitted) {
-      onSubmitted(payload).then((standing) => {
-        if (standing) setResults((r) => (r ? { ...r, ...standing } : r));
+    setSubmitErr("");
+    setSubmitting(true);
+    try {
+      const data = await onSubmitted({
+        testId: EXAM.id,
+        answers,
+        timeSpent: { ...timeSpent.current },
+        timeUsed: EXAM.durationSec - timeLeft,
+        startedAt: startedAt.current,
       });
+      if (!data) throw new Error("Could not score this paper.");
+      setResults(data);
+      setScreen("result");
+    } catch (e) {
+      console.error("submit failed", e);
+      // The answers stay exactly where they are — a failed submit must never
+      // cost a student the paper they just sat.
+      setSubmitErr(e?.message || "Could not submit. Check your connection and try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -1109,6 +1053,28 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
       {screen === "exam" && <ExamScreen state={{ secIdx, qIdx, answers, visited, marked, timeLeft }} actions={actions} candidateName={candidateName} />}
       {screen === "result" && results && <Results data={results} onRetake={retake} onExit={onExit} />}
       {showSubmit && <SubmitModal counts={counts} onCancel={() => setShowSubmit(false)} onConfirm={doSubmit} />}
+      {submitting && (
+        <div className="ee-blocker">
+          <div className="ee-blocker-card">
+            <div className="ee-spin" />
+            <b>Scoring your paper…</b>
+            <span>Your answers are being checked on our servers.</span>
+          </div>
+        </div>
+      )}
+      {submitErr && (
+        <div className="ee-blocker">
+          <div className="ee-blocker-card">
+            <b>Submission failed</b>
+            <span>{submitErr}</span>
+            <span style={{ color: "var(--muted)" }}>Your answers are safe — nothing has been lost.</span>
+            <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
+              <button className="btn btn-primary" onClick={doSubmit}>Try again</button>
+              <button className="btn btn-ghost" onClick={() => setSubmitErr("")}>Back to paper</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1155,26 +1121,14 @@ function App({ testId, onExit }) {
   }, []);
 
   /* Persist the attempt and return the student's real standing. */
-  const handleSubmitted = async (payload) => {
-    if (!userId) return null;
-    try {
-      const saved = await saveAttempt(userId, payload);
-      const standing = await attemptStanding(saved.id);
-      // Store it, or the rank is gone the moment the student reloads.
-      if (standing) await saveAttemptStanding(saved.id, standing).catch(() => {});
-      const stats = await testStats(payload.testId).catch(() => null);
-      return {
-        attemptId: saved.id,
-        percentile: standing?.percentile ?? null,
-        rank: standing?.rank ?? null,
-        totalStudents: standing?.total ?? null,
-        peerAvg: stats?.avgPct ?? null,
-        peerBest: stats?.bestPct ?? null,
-      };
-    } catch (e) {
-      console.error("could not save attempt", e);
-      return { saveFailed: true };
-    }
+  /* One server round trip does the whole thing: it scores the paper, writes
+     the attempt, computes the rank and percentile, and returns the report.
+     The failure is deliberately propagated rather than swallowed — the runner
+     keeps the student's answers on screen and offers a retry, which is far
+     better than showing a score that was never saved. */
+  const handleSubmitted = async (raw) => {
+    if (!userId) throw new Error("You appear to be signed out. Sign in again to submit.");
+    return await submitAttempt(raw);
   };
 
   if (err) {
