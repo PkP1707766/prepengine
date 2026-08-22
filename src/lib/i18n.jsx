@@ -25,7 +25,7 @@ function useBrandChrome() {
       // Fraunces (display) + Inter (body) + Noto Serif Devanagari, per the
       // agreed design direction. Fraunces is a variable optical-size serif, so
       // headings stay characterful at 48px without turning mushy at 16px.
-      l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500;700&display=swap";
+      l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,500;1,600&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Devanagari:wght@500;700&display=swap";
       document.head.appendChild(l);
     }
     if (!document.getElementById("junoon-base")) {
@@ -36,8 +36,16 @@ function useBrandChrome() {
         *{ -webkit-tap-highlight-color: transparent; }
         :root{
           --font-display:"Fraunces",Georgia,serif;
-          --font-quote:"Fraunces",Georgia,serif;
+          /* Calligraphic italic, for the half-line of a headline that should
+             feel written rather than set, and for pull quotes. */
+          --font-quote:"Cormorant Garamond",Georgia,serif;
+          /* Classical Roman capitals — used only for small tracked-out labels,
+             where its lack of a lowercase companion does not matter. */
+          --font-roman:"Marcellus",Georgia,serif;
           --font-deva:"Noto Serif Devanagari",serif;
+          /* A true Devanagari text serif for the shloka. Noto is the safe
+             choice for Hindi UI; this is the one worth looking at. */
+          --font-shloka:"Tiro Devanagari Hindi","Noto Serif Devanagari",serif;
           --font-body:"Inter",system-ui,-apple-system,sans-serif;
 
           /* ---- BRAND SCALE ----------------------------------------------
@@ -53,6 +61,13 @@ function useBrandChrome() {
 
           --gold-600:#b5871f;  --gold-500:#c9a227;  --gold-300:#e3c877; --gold-100:#f5e6bd;
           --cream-50:#fbf6ec;  --cream-100:#f3ead8; --cream-200:#eadfc7;
+          /* Foreground for surfaces that are dark in BOTH themes — the hero,
+             the free-resources band, the buttons sitting on them. Those used
+             --cream-50, which the dark palettes flip to a near-black: in dark
+             mode the hero headline was rendering #1a0f0b on a #150609
+             gradient, i.e. invisible. Deliberately never redefined below. */
+          --on-dark:#fbf6ec;
+          --on-dark-soft:#e6d8be;
           --ink-900:#241a15;   --ink-600:#5a4a3f;   --ink-400:#8a7a6c;
           --line:#e7dcc4;
           --ok-600:#1f7a4c;    --warn-600:#b5871f;  --bad-600:#a3312a;
@@ -220,6 +235,15 @@ function useBrandChrome() {
         .reveal-d3.in{ transition-delay:.21s } .reveal-d4.in{ transition-delay:.28s }
         @media (prefers-reduced-motion: reduce){
           .reveal{ opacity:1 !important; transform:none !important; }
+          /* Everything decorative stops: the button sheen, the lift on hover,
+             the arrow nudge, the drawn chart strokes. Nothing that carries
+             meaning depends on any of them. */
+          .pb-btn::after{ display:none !important; }
+          .pb-btn, .pb-card, .pb-btn svg{ transition:none !important; }
+          .pb-btn:hover, .pb-card:hover, .pb-btn:active{ transform:none !important; }
+          .pb-nav .link::after{ transition:none !important; }
+          .in .ill-line-draw, .in .ill-ring-draw{ animation:none !important;
+            stroke-dashoffset:0 !important; }
         }
 
         /* Language / theme pills, shared by every shell. */
