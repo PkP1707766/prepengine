@@ -41,6 +41,21 @@ Deno.serve(async (req) => {
     return json(req, { error: "plan_not_found" }, 404);
   }
 
+  // Refuse to sell a bundle with nothing in it. The storefront already hides
+  // the Enroll button on an empty series, but that is presentation — this is
+  // the rule. Three of the four live bundles had zero published papers and a
+  // working checkout, which is a chargeback waiting to happen.
+  const { data: hasPaper } = await sb
+    .from("plan_tests")
+    .select("test_id, tests!inner(id, is_published)")
+    .eq("plan_code", plan.code)
+    .eq("tests.is_published", true)
+    .limit(1);
+  if (!hasPaper || hasPaper.length === 0) {
+    console.warn("blocked order for empty plan", plan.code);
+    return json(req, { error: "plan_empty" }, 409);
+  }
+
   // Already own THIS bundle? Don't let them buy it twice. Checking for "any
   // active enrollment" would wrongly block a UPSC subscriber from buying BPSC.
   const { data: existing } = await sb

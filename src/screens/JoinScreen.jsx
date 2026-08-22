@@ -133,14 +133,28 @@ function JoinScreen({ planCode, onJoined, onLogout, onBrowse }) {
       if (error || !order || order.error) {
         console.error("order failed", error || order);
         setBusy(false);
-        if (order?.error === "coupon_invalid") {
+
+        // A non-2xx from an edge function leaves `data` null and puts the body
+        // on error.context — reading `order.error` alone silently missed every
+        // one of these, so a stale coupon showed the generic payment failure
+        // instead of saying what was actually wrong.
+        const body = error
+          ? await error?.context?.json?.().catch(() => null)
+          : order;
+        const code = body?.error;
+
+        if (code === "coupon_invalid") {
           // The code went stale between applying and paying — someone else took
           // the last use, or it expired in the meantime.
           setApplied(null);
           setCouponMsg("That code is no longer valid. Remove it or try another.");
           return;
         }
-        return setErr(order?.error === "payments_unconfigured"
+        if (code === "plan_empty") {
+          return setErr("This series doesn't have its papers up yet, so it can't be bought right now. "
+            + "We'll announce it the moment the first paper is live.");
+        }
+        return setErr(code === "payments_unconfigured"
           ? "Payments aren't switched on yet. Please contact us and we'll enrol you directly."
           : t("pay_failed"));
       }

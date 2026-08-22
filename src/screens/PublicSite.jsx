@@ -102,7 +102,8 @@ const CSS = `
   width:460px;height:460px;opacity:.15;pointer-events:none;z-index:0}
 
 /* ---------- TABS + CARDS ---------- */
-.pb-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:34px;flex-wrap:wrap}
+.pb-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:34px;flex-wrap:wrap;
+  scroll-margin-top:88px}
 .pb-tab{padding:10px 22px;border-radius:100px;border:1.5px solid var(--line);background:var(--cream-50);
   font:inherit;font-weight:700;font-size:14px;color:var(--ink-600);cursor:pointer;transition:.16s}
 .pb-tab:hover{border-color:var(--gold-500)}
@@ -114,6 +115,10 @@ const CSS = `
 .pb-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;
   background:linear-gradient(90deg,var(--gold-500),var(--brand-600))}
 .pb-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+.pb-card-soon{opacity:.82}
+.pb-card-soon::before{background:linear-gradient(90deg,var(--ink-400),var(--clay-400,#b9a184))}
+.pb-soon{background:var(--cream-100);color:var(--ink-400);border:1.5px dashed var(--line);cursor:not-allowed}
+.pb-soon:hover{transform:none}
 .pb-card-exam{display:inline-flex;align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.1em;
   text-transform:uppercase;padding:5px 11px;border-radius:100px;margin-bottom:12px;
   background:color-mix(in srgb,var(--gold-300) 34%,transparent);color:var(--brand-700)}
@@ -402,19 +407,36 @@ const money = (n) => "₹" + Number(n || 0).toLocaleString("en-IN", { maximumFra
 function useReveal(deps = []) {
   const root = useRef(null);
   useEffect(() => {
+    const el = root.current;
+    if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const els = root.current?.querySelectorAll(".reveal:not(.in)") ?? [];
-    if (reduced || !("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("in"));
-      return;
-    }
+    const showAll = () => el.querySelectorAll(".reveal:not(.in)").forEach((n) => n.classList.add("in"));
+
+    if (reduced || !("IntersectionObserver" in window)) { showAll(); return; }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    const observeAll = () => el.querySelectorAll(".reveal:not(.in)").forEach((n) => io.observe(n));
+    observeAll();
+
+    // Filtering the catalogue replaces every card with a brand-new node.
+    // Those nodes were never observed, so they stayed at opacity 0 and the
+    // whole section appeared to vanish the moment anyone tapped an exam tab.
+    // Watching the tree means no future filter has to remember to add itself
+    // to this hook's dependency list — the class of bug is gone, not just the
+    // one instance of it.
+    const mo = new MutationObserver(observeAll);
+    mo.observe(el, { childList: true, subtree: true });
+
+    // Failsafe. An animation that fails should cost a fade, never the content:
+    // anything still hidden after a moment is shown regardless.
+    const failsafe = setTimeout(showAll, 1600);
+
+    return () => { io.disconnect(); mo.disconnect(); clearTimeout(failsafe); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
   return root;
@@ -433,13 +455,19 @@ function BrandMark({ size = 40 }) {
 /* ------------------------------------------------------------------ card -- */
 function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
   const off = b.mrp && b.mrp > b.price ? Math.round((1 - b.price / b.mrp) * 100) : 0;
+  // A bundle with no published test is not something anyone should be able to
+  // pay for. It is shown, so the exam still appears in the catalogue and the
+  // interest is visible, but it cannot be bought until a paper exists in it.
+  const empty = !b.testCount;
   return (
-    <div className={`pb-card reveal reveal-d${delay}`}>
+    <div className={`pb-card reveal reveal-d${delay}${empty ? " pb-card-soon" : ""}`}>
       <span className="pb-card-exam" title={b.examFullName || undefined}>{b.examLabel}</span>
       <h3 className="pb-card-title">{b.name}</h3>
       <div className="pb-card-meta">
-        {b.testCount} mock test{b.testCount === 1 ? "" : "s"}
-        {b.freeTestCount > 0 ? ` · ${b.freeTestCount} free to try` : ""}
+        {empty
+          ? "Papers being finalised"
+          : `${b.testCount} mock test${b.testCount === 1 ? "" : "s"}`}
+        {!empty && b.freeTestCount > 0 ? ` · ${b.freeTestCount} free to try` : ""}
         {b.durationDays ? ` · ${Math.round(b.durationDays / 30)} months` : " · lifetime"}
       </div>
       <p className="pb-card-desc">{b.tagline || b.description}</p>
@@ -451,6 +479,10 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
         {owned ? (
           <button className="pb-btn pb-btn-block pb-owned" onClick={onView}>
             <CheckCircle2 size={16} />You own this
+          </button>
+        ) : empty ? (
+          <button className="pb-btn pb-btn-block pb-soon" disabled title="No papers in this series yet">
+            <Timer size={16} />Coming soon
           </button>
         ) : (
           <>
@@ -591,6 +623,23 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
   const [bundles, setBundles] = useState(null);
   const [err, setErr] = useState("");
   const [exam, setExam] = useState("all");
+  const tabsRef = useRef(null);
+
+  /* Filtering removes cards, so the page gets shorter while the browser keeps
+     scrollY exactly where it was — on a phone that silently pushes the whole
+     catalogue up off the top of the screen. Re-anchor the tab row whenever it
+     ends up outside the viewport after a filter change. */
+  const pickExam = (code) => {
+    setExam(code);
+    requestAnimationFrame(() => {
+      const el = tabsRef.current;
+      if (!el) return;
+      const { top } = el.getBoundingClientRect();
+      if (top < 64 || top > window.innerHeight - 140) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  };
   const [detail, setDetail] = useState(null);
   const [owned, setOwned] = useState(new Set());
   const [contact, setContact] = useState(false);
@@ -745,13 +794,13 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               </div>
 
               {examTabs.length > 1 && (
-                <div className="pb-tabs reveal">
-                  <button className={"pb-tab" + (exam === "all" ? " on" : "")} onClick={() => setExam("all")}>
+                <div className="pb-tabs reveal" ref={tabsRef}>
+                  <button className={"pb-tab" + (exam === "all" ? " on" : "")} onClick={() => pickExam("all")}>
                     All exams
                   </button>
                   {examTabs.map((e) => (
                     <button key={e.code} className={"pb-tab" + (exam === e.code ? " on" : "")}
-                            onClick={() => setExam(e.code)}>
+                            onClick={() => pickExam(e.code)}>
                       {e.label}
                     </button>
                   ))}
