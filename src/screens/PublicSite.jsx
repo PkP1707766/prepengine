@@ -277,24 +277,53 @@ const CSS = `
    the page ends deliberately instead of just running out. Two halves split by
    a rule: the brand and the newsletter on the left, the link columns on the
    right; then a separated bottom bar for the legal line. */
-.pb-foot{background:var(--cream-100);border-top:1px solid var(--line);padding:56px 24px 26px}
-.pb-foot-card{max-width:1180px;margin:0 auto;background:var(--cream-50);border:1px solid var(--line);
-  border-radius:26px;overflow:hidden;box-shadow:var(--shadow-card)}
-.pb-foot-in{display:grid;grid-template-columns:1.05fr 1.35fr;gap:0}
+/* The footer was a cream card on a cream page: the same two values the whole
+   site is built from, so it read as one more section rather than as the end
+   of the page. It is now dark, on the brand colour the resources band already
+   uses, and it follows whichever palette the reader picked. A page needs a
+   floor. */
+/* The colophon strip runs edge to edge while the rest of the footer is
+   inset, so it has to cancel exactly the padding above it. Carried as a
+   variable rather than repeated as a number in two media queries, which is
+   how the two got out of step in the first place. */
+.pb-foot{--foot-pad:24px;
+  background:var(--brand-900);color:var(--on-dark);padding:48px var(--foot-pad) 0;
+  position:relative}
+[data-theme="dark"] .pb-foot{background:#150609}
+/* A gold hairline where the page meets it, the same gesture as the header. */
+.pb-foot::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 70%,transparent) 50%,transparent)}
+.pb-foot-card{max-width:1180px;margin:0 auto;background:none;border:0;border-radius:0;
+  box-shadow:none;overflow:visible}
+/* Three blocks now, not two: identity, links, and the follow row. On a wide
+   screen the follow row belongs under the newsletter it shares a column
+   with; stacked on a phone it belongs after the links, which is the order it
+   is actually read in -- who this is, subscribe, go somewhere, follow. Grid
+   areas because that is a different order in each layout, and DOM order can
+   only be one of them. */
+.pb-foot-in{display:grid;grid-template-columns:1.05fr 1.35fr;
+  grid-template-areas:"brand links" "social links";grid-template-rows:auto 1fr;gap:0}
+.pb-foot-brand{grid-area:brand}
+.pb-foot-social{grid-area:social;padding:0 40px 34px 0;
+  border-right:1px solid rgba(255,255,255,.10)}
+.pb-foot-links{grid-area:links}
 
 /* -- left: identity + newsletter -- */
-.pb-foot-brand{padding:42px 40px;border-right:1px solid var(--line);min-width:0}
+.pb-foot-brand{padding:8px 40px 34px 0;border-right:1px solid rgba(255,255,255,.10);min-width:0}
 .pb-foot-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.pb-foot-blurb{font-size:14px;line-height:1.7;color:var(--ink-600);margin:0 0 30px;max-width:40ch}
+.pb-foot .pb-name{color:var(--on-dark)}
+.pb-foot .pb-tagline{color:var(--on-dark-soft);opacity:.7}
+.pb-foot-blurb{font-size:14px;line-height:1.7;color:var(--on-dark-soft);margin:0 0 30px;max-width:40ch}
 .pb-news h5{font-family:var(--font-display);font-size:20px;font-weight:600;text-transform:none;
-  letter-spacing:-.01em;color:var(--ink-900);margin:0 0 6px}
-.pb-news p{font-size:13px;color:var(--ink-400);margin:0 0 14px;line-height:1.6}
-.pb-news-row{display:flex;align-items:stretch;background:var(--cream-50);border:1.5px solid var(--line);
+  letter-spacing:-.01em;color:var(--on-dark);margin:0 0 6px}
+.pb-news p{font-size:13px;color:var(--on-dark-soft);opacity:.75;margin:0 0 14px;line-height:1.6}
+.pb-news-row{display:flex;align-items:stretch;background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.16);
   border-radius:100px;padding:5px 5px 5px 6px;transition:border-color .18s,box-shadow .18s;max-width:420px}
 .pb-news-row:focus-within{border-color:var(--gold-500);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold-500) 16%,transparent)}
 .pb-news-row input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:14.5px;
-  color:var(--ink-900);padding:10px 12px}
-.pb-news-row input::placeholder{color:var(--ink-400)}
+  color:var(--on-dark);padding:10px 12px}
+.pb-news-row input::placeholder{color:rgba(251,246,236,.45)}
 .pb-news-btn{flex:0 0 auto;border:0;border-radius:100px;font:inherit;font-weight:700;font-size:14px;
   padding:10px 22px;cursor:pointer;color:#2a1e05;background:linear-gradient(155deg,var(--gold-500),var(--gold-600));
   transition:filter .16s,transform .16s}
@@ -303,42 +332,53 @@ const CSS = `
 .pb-news-msg{margin:11px 2px 0;font-size:12.5px;line-height:1.5;display:flex;align-items:flex-start;gap:6px}
 .pb-news-msg.ok{color:var(--ok-600)}
 .pb-news-msg.bad{color:var(--bad-600)}
-.pb-socials{display:flex;gap:10px;margin-top:26px}
+/* Six bordered circles, five of them dashed, read as five broken images
+   rather than as five handles not yet filled in. Bare glyphs instead: the
+   live one at full strength, the rest dimmed. Nothing is drawn around them,
+   so there is no empty container to look unfinished. */
+.pb-socials{display:flex;gap:6px;margin-top:24px;align-items:center}
+.pb-foot-follow{display:none;font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--gold-300);margin:0 0 12px;font-weight:700}
 /* Scoped under .pb-foot so it outranks the .pb-foot a rule (display:block,
    width:100%), which was turning the linked icon into a 240px-wide block and
    squeezing the rest of the row down to 25px. flex:0 0 auto stops them shrinking at all. */
-.pb-foot .pb-social{flex:0 0 auto;width:42px;height:42px;margin:0;border-radius:50%;
-  border:1.5px solid var(--line);background:var(--cream-50);
-  display:grid;place-items:center;color:var(--ink-600);cursor:pointer;text-align:center;
-  transition:border-color .18s,color .18s,transform .18s,background .18s}
-.pb-foot .pb-social:hover{border-color:var(--brand-700);color:var(--brand-700);transform:translateY(-2px);
-  background:color-mix(in srgb,var(--gold-300) 18%,transparent)}
-/* Placed but not yet linked. Muted and inert — the row reads as designed
-   rather than broken, and nothing here opens a dead tab. */
-.pb-foot .pb-social-soon{opacity:.34;cursor:default;border-style:dashed}
-.pb-foot .pb-social-soon:hover{border-color:var(--line);color:var(--ink-600);transform:none;background:var(--cream-50)}
+.pb-foot .pb-social{flex:0 0 auto;width:40px;height:40px;margin:0;border-radius:11px;
+  border:0;background:none;
+  display:grid;place-items:center;color:var(--on-dark);cursor:pointer;text-align:center;
+  transition:color .18s,transform .18s,background .18s}
+.pb-foot .pb-social:hover{color:var(--gold-300);transform:translateY(-2px);
+  background:rgba(255,255,255,.08)}
+/* Placed but not yet linked. Dimmed and inert — nothing here opens a dead tab. */
+.pb-foot .pb-social-soon{opacity:.30;cursor:default}
+.pb-foot .pb-social-soon:hover{color:var(--on-dark);transform:none;background:none}
 
 /* -- right: link columns -- */
-.pb-foot-links{padding:42px 40px;display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:28px;min-width:0}
-.pb-foot h5{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-600);
+.pb-foot-links{padding:8px 0 34px 40px;display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:28px;min-width:0}
+.pb-foot h5{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-300);
   margin:0 0 16px;font-weight:800;font-family:var(--font-roman)}
-.pb-foot a,.pb-foot .flink{display:block;width:100%;font-size:14px;color:var(--ink-600);margin-bottom:11px;
+.pb-foot a,.pb-foot .flink{display:block;width:100%;font-size:14px;color:var(--on-dark-soft);margin-bottom:11px;
   background:none;border:0;font-family:inherit;padding:0;cursor:pointer;text-align:left;
   transition:color .16s,transform .16s;min-width:0;overflow-wrap:break-word}
-.pb-foot a:hover,.pb-foot .flink:hover{color:var(--brand-700);transform:translateX(2px)}
-.pb-foot-contact{font-size:13.5px;line-height:1.7;color:var(--ink-600);margin:0}
+.pb-foot a:hover,.pb-foot .flink:hover{color:var(--gold-300);transform:translateX(2px)}
+.pb-foot-contact{font-size:13.5px;line-height:1.7;color:var(--on-dark-soft);margin:0}
 .pb-foot-supl{margin-top:10px}
-.pb-foot-contact a{display:inline;margin:0;color:var(--brand-700);text-decoration:underline;
+.pb-foot-contact a{display:inline;margin:0;color:var(--gold-300);text-decoration:underline;
   text-underline-offset:2px;overflow-wrap:break-word;word-break:normal}
 
-/* -- bottom bar -- */
-.pb-foot-bottom{max-width:1180px;margin:22px auto 0;padding:0 8px;
+/* -- bottom bar --
+   Its own darker strip running the full width, the way a colophon sits below
+   a page rather than inside it. Full-bleed via negative margins because
+   .pb-foot carries the horizontal padding the rest of the footer needs. */
+.pb-foot-bottom{margin:34px calc(var(--foot-pad) * -1) 0;padding:18px var(--foot-pad);
+  background:rgba(0,0,0,.38);border-top:1px solid rgba(255,255,255,.07);
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
-  font-size:12.5px;color:var(--ink-400)}
-.pb-foot-legal{display:flex;gap:16px;flex-wrap:wrap}
-.pb-foot-legal button{background:none;border:0;font:inherit;font-size:12.5px;color:var(--ink-400);
+  font-size:12.5px;color:var(--on-dark-soft)}
+.pb-foot-bottom > span{opacity:.72}
+.pb-foot-legal{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.pb-foot-legal button{background:none;border:0;font:inherit;font-size:12.5px;color:var(--on-dark-soft);
   cursor:pointer;padding:0;transition:color .16s}
-.pb-foot-legal button:hover{color:var(--brand-700)}
+.pb-foot-legal button:hover{color:var(--gold-300)}
+.pb-foot-legal > span{opacity:.6}
 
 /* ---------- CONTENT HUB ---------- */
 .pb-panel{background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);
@@ -483,13 +523,14 @@ const CSS = `
   .pb-quote .deva{font-size:23px}
   .pb-quote p{font-size:15.5px}
 
-  .pb-foot{padding:30px 12px 18px}
-  .pb-foot-card{border-radius:20px}
-  /* 18px, not 22. Four pixels each side is eight across the card, which is
-     four per link column -- and the widest label clears its column by three.
-     Room that small only matters because it is the difference between one
-     line and two. */
-  .pb-foot-brand,.pb-foot-links{padding:24px 18px}
+  /* No card any more, so the footer's own padding is the only horizontal
+     inset on a phone -- which is what gave the link columns the room to hold
+     "Previous year papers" on one line. The stacked rules above do the rest;
+     all this breakpoint changes is how tight it all is. */
+  .pb-foot{--foot-pad:18px;padding-top:32px}
+  .pb-foot-card{border-radius:0}
+  .pb-foot-links{column-gap:14px}
+  .pb-foot-supl{column-gap:14px}
   /* The identity block was set to desktop rhythm: 30px under the blurb and
      16px under the logo, which on a phone is a gap you scroll past rather
      than a break you read. */
@@ -497,13 +538,7 @@ const CSS = `
   .pb-foot-blurb{margin-bottom:20px}
   .pb-news h5{font-size:18px}
   .pb-news p{margin-bottom:11px}
-  .pb-foot-bottom{flex-direction:column;align-items:flex-start;gap:9px;padding:0 6px;margin-top:16px}
-  .pb-foot-legal{gap:8px 14px;width:100%}
-  /* The sign-off is not a legal link and should not sit in a row of them.
-     Dropped to its own line, quieter, with the rule above separating the
-     two kinds of thing. */
-  .pb-foot-legal > span{flex-basis:100%;margin-top:3px;padding-top:9px;
-    border-top:1px solid var(--line);color:var(--ink-400);font-size:12px}
+  .pb-foot-bottom{padding-top:16px}
 
   .pb-panel{padding:20px;border-radius:18px}
   .pb-h3{font-size:17px}
@@ -531,6 +566,16 @@ const CSS = `
   .pb-buy{position:static}
 }
 @media (max-width:1000px){
+  /* Three link columns stop fitting well before the footer stops being
+     side-by-side. At 950px they were 117px wide and both "Previous year
+     papers" and "Daily current affairs" wrapped -- so this pairing belongs
+     to the width where the columns get tight, not to the width where the
+     two halves stack. Getting that wrong is what broke 901-1000px. */
+  .pb-foot-links{grid-template-columns:1fr 1fr;column-gap:22px;row-gap:0}
+  .pb-foot-links > div:nth-child(3){grid-column:1 / -1;
+    margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.10)}
+  .pb-foot-supl{margin-top:2px;display:grid;grid-template-columns:1fr 1fr;column-gap:22px}
+
   .pb-nav{display:none}
   .pb-nav.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;
     align-items:stretch;background:var(--cream-50);border-bottom:1px solid var(--line);padding:12px;gap:5px;
@@ -540,7 +585,6 @@ const CSS = `
   .pb-head-in{position:relative}
   .pb-strip-in{grid-template-columns:1fr 1fr;row-gap:20px}
   .pb-strip-item:nth-child(3){border-left:0;padding-left:0}
-  .pb-foot-links{grid-template-columns:1fr 1fr;gap:22px}
 }
 @media (max-width:560px){
   .pb-sec{padding-block:56px}
@@ -595,8 +639,28 @@ const CSS = `
 /* The footer's two halves stack below 900px; the divider becomes a rule
    between them rather than beside them. */
 @media (max-width:900px){
-  .pb-foot-in{grid-template-columns:1fr}
-  .pb-foot-brand{border-right:0;border-bottom:1px solid var(--line)}
+  /* Below this width the footer stacks, and everything that follows from
+     stacking belongs here rather than in a narrower phone breakpoint. That
+     split is what left a tablet with the columns of a phone and the socials
+     of a desktop: left-aligned under a heading that was still hidden, a
+     Support group sitting in half a row, and a colophon that stopped short
+     of both edges. */
+  .pb-foot-in{grid-template-columns:1fr;grid-template-rows:none;
+    grid-template-areas:"brand" "links" "social"}
+  .pb-foot-brand{padding:0 0 26px}
+  .pb-foot-social{padding:0;border-right:0}
+  .pb-foot-links{padding:26px 0 30px}
+
+  .pb-foot-follow{display:block;text-align:center;margin:26px 0 10px;
+    padding-top:22px;border-top:1px solid rgba(255,255,255,.10)}
+  .pb-socials{justify-content:center;gap:4px;margin-top:0}
+
+  .pb-foot-bottom{flex-direction:column;align-items:center;text-align:center;
+    gap:10px;margin-top:26px;
+    padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+  .pb-foot-legal{gap:6px 16px;width:100%;justify-content:center}
+  .pb-foot-legal > span{flex-basis:100%;margin-top:2px;font-size:11.5px;opacity:.55}
+  .pb-foot-brand{border-right:0;border-bottom:1px solid rgba(255,255,255,.10)}
 }
 
 /* Newsletter on a phone. Two fixes, both learned the hard way:
@@ -636,10 +700,6 @@ const CSS = `
   .pb-foot h5{margin-bottom:6px}
   .pb-foot-contact{padding:4px 0 0}
 
-  .pb-foot-links{grid-template-columns:1fr 1fr;column-gap:14px;row-gap:0}
-  .pb-foot-links > div:nth-child(3){grid-column:1 / -1;
-    margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-  .pb-foot-supl{margin-top:2px;display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
 }
 
 /* Note on a page pinned to English, shown only to a Hindi reader. */
@@ -911,6 +971,13 @@ const CSS = `
      keeps the pair together -- cheaper than taking the room from the
      section's margins, which every other block on the page is using. */
   .pb-h2{font-size:23px}
+  /* The footer needs nine more pixels a column here, and the reason is worth
+     stating: "Previous year papers" fits at 375px and does not at 320px, and
+     with only one of the two long labels wrapping the columns stop lining up
+     row for row. Either both wrap or neither does; neither is achievable, so
+     the margins give way instead. */
+  .pb-foot{--foot-pad:12px}
+  .pb-foot-links,.pb-foot-supl{column-gap:10px}
   .pb-name{font-size:13.5px}
   .pb-mark{width:26px !important;height:26px !important}
   .pb-head-cta{padding:0 9px;font-size:11.5px}
@@ -1586,9 +1653,13 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
       )}
 
       {/* ---------------- FOOTER ----------------
-          One inset card rather than a full-bleed band, so the page ends
-          deliberately. Left half carries who we are and the newsletter; right
-          half the link columns; the legal line sits outside the card. */}
+          A dark band, not a card. It was a cream card on a cream page, which
+          made the end of the site look like one more section of it.
+
+          Three blocks: identity and the newsletter, the link columns, and the
+          follow row. Grid areas place them, because a phone reads them in a
+          different order than a desktop lays them out. The colophon is a
+          darker strip below all three. */}
       <footer className="pb-foot">
         <div className="pb-foot-card">
           <div className="pb-foot-in">
@@ -1624,6 +1695,10 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 )}
               </div>
 
+            </div>
+
+            <div className="pb-foot-social">
+              <p className="pb-foot-follow">{t("foot_follow")}</p>
               <div className="pb-socials">
                 {SOCIALS.map((sc) => (sc.href ? (
                   <a className="pb-social" key={sc.label} href={sc.href} aria-label={sc.label}

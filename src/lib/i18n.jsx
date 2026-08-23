@@ -619,6 +619,7 @@ Object.assign(STR, {
   nav_login:      { en: "Log in", hi: "लॉगिन" },
   nav_start:      { en: "Get started", hi: "शुरू करें" },
   nav_colour:     { en: "Colour theme", hi: "रंग-रूप" },
+  foot_follow:    { en: "Follow us", hi: "हमें फ़ॉलो करें" },
   nav_colour_change: { en: "Change colour theme", hi: "रंग-रूप बदलें" },
   back_home:      { en: "Back to home", hi: "होम पर वापस" },
   free_no_login:  { en: "Free · no login needed", hi: "निःशुल्क · लॉगिन ज़रूरी नहीं" },
