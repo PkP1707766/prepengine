@@ -429,14 +429,14 @@ function Instructions({ onStart, onExit }) {
 /* ============================================================
    EXAM SCREEN
    ============================================================ */
-function ExamScreen({ state, actions, candidateName }) {
+function ExamScreen({ state, actions, candidateName, candidateId }) {
   const { t } = useLang();
   const EXAM = useExam();
   const { secIdx, qIdx, answers, visited, marked, timeLeft } = state;
   const sec = EXAM.sections[secIdx];
   const q = sec.questions[qIdx];
   const danger = timeLeft <= 60;
-  const candidate = candidateName || "Candidate";
+  const candidate = candidateName || t("ex_candidate");
   const initials = candidate.split(" ").map((w) => w[0]).slice(0, 2).join("");
 
   const getStatus = (qid) => {
@@ -460,13 +460,21 @@ function ExamScreen({ state, actions, candidateName }) {
             <div className="cand-av">{initials}</div>
             <div style={{ minWidth: 0 }}>
               <div className="cand-name">{candidate}</div>
-              <div className="cand-sub">Roll No: BPSC2026-04417</div>
+              <div className="cand-sub">{candidateId ? `${t("ex_candidate_id")}: ${candidateId}` : ""}</div>
             </div>
           </div>
-          <div className={"timer-box" + (danger ? " danger" : "")}>
-            <div>
-              <div className="timer-label">Time Left</div>
-              <div className="timer-val">{fmt(timeLeft)}</div>
+          {/* A student who starts the paper in English and finds they cannot
+              follow it must be able to switch mid-attempt — this used to exist
+              only on the instructions page, so they were stuck for the whole
+              two hours. Changing language re-renders; it does not remount the
+              runner, so answers and the clock survive. */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: "auto" }}>
+            <ChromeControls />
+            <div className={"timer-box" + (danger ? " danger" : "")}>
+              <div>
+                <div className="timer-label">{t("ex_time_left")}</div>
+                <div className="timer-val">{fmt(timeLeft)}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -485,10 +493,10 @@ function ExamScreen({ state, actions, candidateName }) {
         {/* QUESTION */}
         <div className="q-card">
           <div className="q-top">
-            <span className="q-no">Question {qIdx + 1}</span>
+            <span className="q-no">{t("ex_question_n")} {qIdx + 1}</span>
             <div className="q-tags">
               <span className="tag tag-topic">{q.topic}</span>
-              <span className="tag tag-type">{q.type === "mcq" ? "Single Correct" : q.type === "multiple" ? "Multiple Correct" : "Numerical"}</span>
+              <span className="tag tag-type">{q.type === "mcq" ? t("ex_single") : q.type === "multiple" ? t("ex_multiple") : t("ex_numerical")}</span>
               <span className="tag tag-pos">+{q.marks}</span>
               {q.negative > 0 && <span className="tag tag-neg">−{q.negative}</span>}
             </div>
@@ -535,15 +543,15 @@ function ExamScreen({ state, actions, candidateName }) {
             <div className="pal-av">{initials}</div>
             <div>
               <div style={{ fontWeight: 700, fontSize: 13.5 }}>{candidate}</div>
-              <div style={{ fontSize: 11.5, color: "var(--muted)" }}>Attempt in progress</div>
+              <div style={{ fontSize: 11.5, color: "var(--muted)" }}>{t("ex_in_progress")}</div>
             </div>
           </div>
           <div className="pal-legend">
-            <div className="lg"><span className="lg-box" style={{ background: STATUS.answered.bg }} /> Answered</div>
-            <div className="lg"><span className="lg-box" style={{ background: STATUS.notAnswered.bg }} /> Not Answered</div>
-            <div className="lg"><span className="lg-box" style={{ background: STATUS.notVisited.bg, border: "1.5px solid " + STATUS.notVisited.bd }} /> Not Visited</div>
-            <div className="lg"><span className="lg-box" style={{ background: STATUS.marked.bg }} /> Marked</div>
-            <div className="lg" style={{ gridColumn: "1/-1" }}><span className="lg-box" style={{ background: STATUS.ansMarked.bg }}><span className="dot" /></span> Answered &amp; Marked for Review</div>
+            <div className="lg"><span className="lg-box" style={{ background: STATUS.answered.bg }} /> {t("ex_answered")}</div>
+            <div className="lg"><span className="lg-box" style={{ background: STATUS.notAnswered.bg }} /> {t("ex_notanswered")}</div>
+            <div className="lg"><span className="lg-box" style={{ background: STATUS.notVisited.bg, border: "1.5px solid " + STATUS.notVisited.bd }} /> {t("ex_notvisited")}</div>
+            <div className="lg"><span className="lg-box" style={{ background: STATUS.marked.bg }} /> {t("ex_marked")}</div>
+            <div className="lg" style={{ gridColumn: "1/-1" }}><span className="lg-box" style={{ background: STATUS.ansMarked.bg }}><span className="dot" /></span> {t("ex_ansmarked_l")}</div>
           </div>
 
           {EXAM.sections.map((s, si) => (
@@ -568,7 +576,7 @@ function ExamScreen({ state, actions, candidateName }) {
           ))}
 
           <div className="pal-foot">
-            <button className="submit-btn" onClick={actions.openSubmit}>Submit Test</button>
+            <button className="submit-btn" onClick={actions.openSubmit}>{t("ex_submit_test")}</button>
           </div>
         </div>
       </div>
@@ -585,7 +593,7 @@ function SubmitModal({ counts, onCancel, onConfirm }) {
     <div className="overlay" onClick={onCancel}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-head">
-          <h3>Submit your test?</h3>
+          <h3>{t("ex_submit_q")}</h3>
           <p>{t("ex_submit_warn")}</p>
         </div>
         <div className="modal-stats">
@@ -925,7 +933,7 @@ function Results({ data, onRetake, onExit }) {
 /* ============================================================
    APP (state machine + scoring)
    ============================================================ */
-function ExamRunner({ onExit, candidateName, onSubmitted }) {
+function ExamRunner({ onExit, candidateName, candidateId, onSubmitted }) {
   const EXAM = useExam();
   const { t } = useLang();
   const [screen, setScreen] = useState("instructions"); // instructions | exam | result
@@ -1056,7 +1064,7 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
     <div className="ee-root">
       <style>{CSS}</style>
       {screen === "instructions" && <Instructions onStart={start} onExit={onExit} />}
-      {screen === "exam" && <ExamScreen state={{ secIdx, qIdx, answers, visited, marked, timeLeft }} actions={actions} candidateName={candidateName} />}
+      {screen === "exam" && <ExamScreen state={{ secIdx, qIdx, answers, visited, marked, timeLeft }} actions={actions} candidateName={candidateName} candidateId={candidateId} />}
       {screen === "result" && results && <Results data={results} onRetake={retake} onExit={onExit} />}
       {showSubmit && <SubmitModal counts={counts} onCancel={() => setShowSubmit(false)} onConfirm={doSubmit} />}
       {submitting && (
@@ -1173,7 +1181,9 @@ function App({ testId, onExit }) {
 
   return (
     <ExamCtx.Provider value={exam}>
-      <ExamRunner onExit={onExit} candidateName={candidateName} onSubmitted={handleSubmitted} />
+      <ExamRunner onExit={onExit} candidateName={candidateName}
+                  candidateId={userId ? "JN-" + userId.replace(/-/g, "").slice(0, 8).toUpperCase() : ""}
+                  onSubmitted={handleSubmitted} />
     </ExamCtx.Provider>
   );
 }

@@ -31,6 +31,49 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 23 Aug 2026 — Language switch inside the live exam
+
+The toggle existed on the instructions page and nowhere after it. A student who
+began a paper in English and found, twenty minutes in, that they could not
+follow it had no way to change — for the remaining hour and forty minutes.
+
+`ChromeControls` now sits in the exam header for the whole attempt, next to the
+clock.
+
+The thing that had to be proved, not assumed, is that switching mid-paper costs
+nothing. `AppProviders` renders `{children}` with no key derived from `lang`, so
+a language change re-renders rather than remounts — but on an exam screen that
+is not a claim worth making on inspection alone. Measured in the browser, live,
+with a question already answered:
+
+    before   timer 01:59:42   option C selected   buttons in English
+    after    timer 01:59:41   option C selected   buttons in Hindi
+
+The clock kept counting through the switch and the answer survived it.
+
+Also translated everything else visible during an attempt, which the earlier
+pass had missed: the question palette legend in the sidebar, the question
+number, the question-type chip, "Attempt in progress", the Submit Test button
+and the whole submit dialog.
+
+### And a hardcoded roll number
+
+The exam header printed `Roll No: BPSC2026-04417` for every candidate, on every
+paper — a fixed string left over from the mock-up. It now shows a real
+identifier derived from the student's own id (`JN-` + the first eight
+characters), labelled "Candidate ID" rather than "Roll No", because JUNOONIAS
+does not issue exam roll numbers and should not imply that it does.
+
+### What the toggle still cannot reach
+
+The question text, the options, the section names. Those are the paper itself,
+written in the admin panel, and no UI setting can translate them. A Hindi
+student who switches mid-exam gets a Hindi interface around an English paper.
+Genuinely bilingual papers need Hindi fields on `questions` — worth doing
+before a Hindi-medium cohort, and a bigger piece of work than this was.
+
+---
+
 ## 23 Aug 2026 — The Hindi toggle actually does something now
 
 The language switch shipped working. What it switched was two screens.

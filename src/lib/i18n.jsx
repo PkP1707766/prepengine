@@ -752,6 +752,7 @@ Object.assign(STR, {
   ex_enter_ans:   { en: "Enter your answer", hi: "अपना उत्तर लिखिए" },
   ex_type_number: { en: "Type a number…", hi: "एक संख्या लिखिए…" },
   ex_submit_test: { en: "Submit Test", hi: "टेस्ट जमा करें" },
+  ex_submit_q:    { en: "Submit your test?", hi: "टेस्ट जमा करें?" },
   ex_resume:      { en: "Resume Test", hi: "टेस्ट जारी रखें" },
   ex_submit_now:  { en: "Submit Now", hi: "अभी जमा करें" },
   ex_submit_warn: { en: "Once submitted, you cannot change your answers. Please review the summary below.", hi: "जमा करने के बाद आप उत्तर नहीं बदल सकते। कृपया नीचे का सारांश देख लीजिए।" },
@@ -763,6 +764,14 @@ Object.assign(STR, {
   ex_try_again:   { en: "Try again", hi: "पुनः प्रयास करें" },
   ex_back_paper:  { en: "Back to paper", hi: "पेपर पर वापस" },
   ex_in_progress: { en: "Attempt in progress", hi: "प्रयास जारी है" },
+  ex_time_left:   { en: "Time Left", hi: "शेष समय" },
+  ex_question_n:  { en: "Question", hi: "प्रश्न" },
+  ex_single:      { en: "Single Correct", hi: "एक सही विकल्प" },
+  ex_multiple:    { en: "Multiple Correct", hi: "एक से अधिक सही" },
+  ex_numerical:   { en: "Numerical", hi: "संख्यात्मक" },
+  ex_ansmarked_l: { en: "Answered & Marked for Review", hi: "उत्तर दिया और समीक्षा हेतु चिह्नित" },
+  ex_candidate:   { en: "Candidate", hi: "अभ्यर्थी" },
+  ex_candidate_id:{ en: "Candidate ID", hi: "अभ्यर्थी क्रमांक" },
 
   /* --- report --- */
   ex_report:      { en: "Performance Report", hi: "प्रदर्शन रिपोर्ट" },
