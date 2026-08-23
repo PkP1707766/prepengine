@@ -604,9 +604,49 @@ const CSS = `
 /* flex:0 0 auto on the group and nowrap on the button, or the button is the
    thing that gives way in a tight row — it collapsed to a one-letter column
    reading L / o / g / i / n. The brand yields instead, and truncates. */
-.pb-head-mobile{display:none;align-items:center;gap:7px;margin-left:auto;flex:0 0 auto}
-.pb-head-cta{white-space:nowrap;flex:0 0 auto}
-.pb-head-mobile .jn-pill{flex:0 0 auto;white-space:nowrap}
+.pb-head-mobile{display:none;align-items:center;gap:8px;margin-left:auto;flex:0 0 auto}
+
+/* The one thing in the header that should pull the eye. Gold, because that is
+   the colour the page already uses for its primary action — a maroon button
+   sitting between a cream capsule and a maroon burger read as a third
+   unrelated control rather than the thing to press. */
+.pb-head-cta{
+  display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; white-space:nowrap;
+  border:0; cursor:pointer; font:inherit; font-weight:800; font-size:13px; letter-spacing:.01em;
+  padding:0 15px; min-height:38px; border-radius:100px; color:#3a2a06;
+  background:linear-gradient(150deg,var(--gold-300),var(--gold-500) 52%,var(--gold-600));
+  box-shadow:0 4px 14px -4px rgba(181,135,31,.55), inset 0 1px 0 rgba(255,255,255,.4);
+  transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease, filter .16s;
+}
+.pb-head-cta:hover{ transform:translateY(-1px); filter:brightness(1.04);
+  box-shadow:0 7px 20px -5px rgba(181,135,31,.7), inset 0 1px 0 rgba(255,255,255,.5) }
+.pb-head-cta:active{ transform:translateY(0) scale(.97); transition-duration:.06s }
+.pb-head-cta:focus-visible{ outline:2.5px solid var(--brand-700); outline-offset:2px }
+.pb-head-cta svg{ transition:transform .2s cubic-bezier(.2,.8,.3,1) }
+.pb-head-cta:hover svg{ transform:translateX(2px) }
+
+/* A slow breath on the glow, shown only to a visitor who is not signed in.
+   Two seconds apart and barely moving — enough to catch the eye on a page
+   full of text, not enough to nag. */
+@keyframes pb-cta-breathe{
+  0%,72%,100%{ box-shadow:0 4px 14px -4px rgba(181,135,31,.55), inset 0 1px 0 rgba(255,255,255,.4) }
+  86%{ box-shadow:0 6px 22px -3px rgba(201,162,39,.85), inset 0 1px 0 rgba(255,255,255,.55) }
+}
+.pb-head-cta-pulse{ animation:pb-cta-breathe 4.6s ease-in-out infinite }
+.pb-head-cta-pulse:hover{ animation:none }
+@media (prefers-reduced-motion: reduce){
+  .pb-head-cta-pulse{ animation:none }
+  .pb-head-cta, .pb-head-cta svg{ transition:none }
+  .pb-head-cta:hover, .pb-head-cta:active{ transform:none }
+}
+
+/* The burger is navigation, not an action — it should sit behind the gold,
+   not compete with it in a bordered box of its own. */
+@media (max-width:1000px){
+  .pb-burger{ border-color:transparent; background:none; color:var(--ink-400) }
+  .pb-burger:hover{ background:color-mix(in srgb,var(--gold-300) 20%,transparent);
+    color:var(--brand-700) }
+}
 @media (max-width:1000px){
   .pb-head-mobile{display:flex}
   .pb-brand{flex:1 1 auto;min-width:0;overflow:hidden}
@@ -623,14 +663,11 @@ const CSS = `
   .pb-mark{width:30px !important;height:30px !important}
   .pb-head-in{padding:8px 11px;gap:5px}
   .pb-head-mobile{gap:4px}
-  .pb-head-cta{padding:9px 12px;font-size:12.5px}
+  /* The capsule and the action share one height so the row has a single
+     optical baseline instead of three different ones. */
+  .pb-head-cta{padding:0 13px;font-size:12.5px}
+  .jn-seg .jn-seg-btn{padding:0 9px}
   .pb-burger{width:34px}
-  /* The language label drops to two characters here. Spelling out हिन्दी cost
-     24px, which was the difference between the wordmark fitting and being
-     clipped to "JUNOON" — half a brand name reads as a bug, and the globe
-     icon carries the meaning anyway. */
-  .pb-head-mobile .jn-pill{padding-inline:8px}
-  .pb-head-mobile .jn-pill-label{font-size:11.5px}
 }
 @media (max-width:340px){
   /* Narrower than any common phone. The mark alone still identifies the site;
@@ -991,10 +1028,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               switch to Hindi, without first discovering the burger — which is
               the one thing a Hindi-medium student needs before anything else. */}
           <div className="pb-head-mobile">
-            <ChromeControls />
-            <button className="pb-btn pb-btn-maroon pb-btn-sm pb-head-cta"
+            <ChromeControls segmented />
+            <button className={"pb-head-cta" + (session ? "" : " pb-head-cta-pulse")}
                     onClick={session ? onDashboard : onLogin}>
-              {session ? t("nav_dashboard") : t("nav_login")}
+              <span>{session ? t("nav_dashboard") : t("nav_login")}</span>
+              <ArrowRight size={14} />
             </button>
           </div>
 

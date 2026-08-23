@@ -228,6 +228,33 @@ function useBrandChrome() {
 
         /* ---- SCROLL REVEAL ----------------------------------------------
            Used sparingly — section headers and cards, not every element. */
+        /* ---- SEGMENTED CHROME (mobile header) ---- */
+        /* The capsule owns the height and the touch target; the segments fill
+           it. Without the nested selector the coarse-pointer rule
+           (.pb-root button{min-height:44px}) applies to the inner buttons
+           instead and the border pushes the capsule to 46px, half a pixel out
+           of line with the action beside it. */
+        .jn-seg{
+          display:inline-flex; align-items:stretch; flex:0 0 auto;
+          height:44px; box-sizing:border-box;
+          background:var(--cream-50); border:1px solid var(--line);
+          border-radius:100px; overflow:hidden;
+          box-shadow:0 1px 2px rgba(70,40,20,.05);
+        }
+        .jn-seg .jn-seg-btn{ min-height:0; height:100% }
+        .jn-seg-btn{
+          display:inline-flex; align-items:center; justify-content:center; gap:4px;
+          background:none; border:0; cursor:pointer; font:inherit;
+          padding:0 10px; min-height:38px; color:var(--ink-600);
+          transition:background .16s, color .16s;
+        }
+        .jn-seg-btn:hover{ background:color-mix(in srgb,var(--gold-300) 22%,transparent); color:var(--brand-700) }
+        .jn-seg-btn:active{ background:color-mix(in srgb,var(--gold-300) 34%,transparent) }
+        .jn-seg-btn:focus-visible{ outline:2px solid var(--gold-500); outline-offset:-2px }
+        .jn-seg-icon{ padding:0 9px }
+        .jn-seg-label{ font-size:12px; font-weight:800; letter-spacing:.01em; line-height:1 }
+        .jn-seg-div{ width:1px; background:var(--line); flex:0 0 auto; align-self:stretch }
+
         .jn-pill-short{ display:none }
         @media (max-width:560px){
           .jn-pill-long{ display:none }
@@ -1001,7 +1028,7 @@ export function AppProviders({ children }) {
 }
 
 /* Floating language + theme toggles. */
-export function ChromeControls({ light = false, palettePicker = false }) {
+export function ChromeControls({ light = false, palettePicker = false, segmented = false }) {
   const { lang, setLang } = useLang();
   const { theme, toggle, palette, setPalette } = useTheme();
   const [open, setOpen] = useState(false);
@@ -1016,6 +1043,26 @@ export function ChromeControls({ light = false, palettePicker = false }) {
     background: light ? "rgba(0,0,0,.22)" : "rgba(255,255,255,.82)",
     color: light ? "#fdeecb" : "#5c3018",
   };
+  /* Segmented: language and theme read as one object with a hairline between
+     them, rather than two separate circles competing with the primary action
+     beside them. Same buttons, same behaviour — only the chrome differs. */
+  if (segmented) {
+    return (
+      <div className="jn-seg">
+        <button type="button" className="jn-seg-btn" onClick={() => setLang(lang === "en" ? "hi" : "en")}
+                aria-label={lang === "en" ? "Switch to Hindi" : "Switch to English"}>
+          <Globe size={13} />
+          <span className="jn-seg-label">{lang === "en" ? "हि" : "EN"}</span>
+        </button>
+        <span className="jn-seg-div" aria-hidden="true" />
+        <button type="button" className="jn-seg-btn jn-seg-icon" onClick={toggle}
+                aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}>
+          {theme === "light" ? <Moon size={14} /> : <Sun size={14} />}
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div style={{ display: "flex", gap: 6 }}>
       <button type="button" className="jn-pill" style={pill} onClick={() => setLang(lang === "en" ? "hi" : "en")}
