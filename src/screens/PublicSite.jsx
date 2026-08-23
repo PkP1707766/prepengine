@@ -647,12 +647,12 @@ const CSS = `
      of both edges. */
   .pb-foot-in{grid-template-columns:1fr;grid-template-rows:none;
     grid-template-areas:"brand" "links" "social"}
-  .pb-foot-brand{padding:0 0 26px}
+  .pb-foot-brand{padding:0 0 22px}
   .pb-foot-social{padding:0;border-right:0}
-  .pb-foot-links{padding:26px 0 30px}
+  .pb-foot-links{padding:22px 0 4px}
 
-  .pb-foot-follow{display:block;text-align:center;margin:26px 0 10px;
-    padding-top:22px;border-top:1px solid rgba(255,255,255,.10)}
+  .pb-foot-follow{display:block;text-align:center;margin:24px 0 10px;
+    padding-top:18px;border-top:1px solid rgba(255,255,255,.10)}
   .pb-socials{justify-content:center;gap:4px;margin-top:0}
 
   .pb-foot-bottom{flex-direction:column;align-items:center;text-align:center;
@@ -1741,7 +1741,6 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                     <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />{t("foot_help")}
                   </button>
                   <button className="flink" onClick={() => onNavigate("contact")}>{t("lg_contact")}</button>
-                  <button className="flink" onClick={() => onNavigate("refund")}>{t("lg_refund")}</button>
                 </div>
               </div>
             </div>

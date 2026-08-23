@@ -722,7 +722,7 @@ Object.assign(STR, {
   foot_explore: { en: "Explore", hi: "एक्सप्लोर" },
   foot_free:    { en: "Free resources", hi: "निःशुल्क संसाधन" },
   foot_support: { en: "Support", hi: "सहायता" },
-  foot_pyq:     { en: "Previous year papers", hi: "पिछले वर्षों के पेपर" },
+  foot_pyq:     { en: "PYQ papers", hi: "PYQ पेपर" },
   foot_mydash:  { en: "My dashboard", hi: "मेरा डैशबोर्ड" },
   foot_material:{ en: "Study material", hi: "अध्ययन सामग्री" },
   foot_ncert:   { en: "NCERT books", hi: "NCERT किताबें" },
