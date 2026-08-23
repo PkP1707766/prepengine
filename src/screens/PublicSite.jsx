@@ -592,6 +592,51 @@ const CSS = `
   .pb-step{padding:20px 18px}
   .pb-sec-mandala{width:280px;height:280px;top:-40px}
 }
+
+/* ---------- MOBILE HEADER ----------
+   Above 1000px the full nav carries login and the chrome controls, so this
+   block is hidden. Below it, the nav collapses into the burger and these
+   three things come out of it: language, theme, and one primary action.
+
+   The brand is trimmed to make room — the tagline goes and the wordmark
+   steps down a size. Measured at 375px there is 343px of usable header, and
+   the burger, brand, pills and button have to share it. */
+/* flex:0 0 auto on the group and nowrap on the button, or the button is the
+   thing that gives way in a tight row — it collapsed to a one-letter column
+   reading L / o / g / i / n. The brand yields instead, and truncates. */
+.pb-head-mobile{display:none;align-items:center;gap:7px;margin-left:auto;flex:0 0 auto}
+.pb-head-cta{white-space:nowrap;flex:0 0 auto}
+.pb-head-mobile .jn-pill{flex:0 0 auto;white-space:nowrap}
+@media (max-width:1000px){
+  .pb-head-mobile{display:flex}
+  .pb-brand{flex:1 1 auto;min-width:0;overflow:hidden}
+  .pb-name{overflow:hidden;text-overflow:ellipsis}
+  /* One copy of the controls, not two: the header copy is always visible, so
+     the one inside the collapsed nav would only be a duplicate. */
+  .pb-nav-chrome{display:none}
+  .pb-head-in{gap:8px}
+  .pb-nav{margin-left:0}
+}
+@media (max-width:560px){
+  .pb-tagline{display:none}
+  .pb-name{font-size:15.5px}
+  .pb-mark{width:30px !important;height:30px !important}
+  .pb-head-in{padding:8px 11px;gap:5px}
+  .pb-head-mobile{gap:4px}
+  .pb-head-cta{padding:9px 12px;font-size:12.5px}
+  .pb-burger{width:34px}
+  /* The language label drops to two characters here. Spelling out हिन्दी cost
+     24px, which was the difference between the wordmark fitting and being
+     clipped to "JUNOON" — half a brand name reads as a bug, and the globe
+     icon carries the meaning anyway. */
+  .pb-head-mobile .jn-pill{padding-inline:8px}
+  .pb-head-mobile .jn-pill-label{font-size:11.5px}
+}
+@media (max-width:340px){
+  /* Narrower than any common phone. The mark alone still identifies the site;
+     losing the login button would not be recoverable. */
+  .pb-name{display:none}
+}
 `;
 
 const money = (n) => "₹" + Number(n || 0).toLocaleString("en-IN", { maximumFractionDigits: 0 });
@@ -941,6 +986,18 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             </span>
           </button>
 
+          {/* Shown only on phones, where the nav collapses. A first-time
+              visitor could otherwise find no way to sign in, and no way to
+              switch to Hindi, without first discovering the burger — which is
+              the one thing a Hindi-medium student needs before anything else. */}
+          <div className="pb-head-mobile">
+            <ChromeControls />
+            <button className="pb-btn pb-btn-maroon pb-btn-sm pb-head-cta"
+                    onClick={session ? onDashboard : onLogin}>
+              {session ? t("nav_dashboard") : t("nav_login")}
+            </button>
+          </div>
+
           <button className="pb-burger" onClick={() => setNavOpen(!navOpen)} aria-label="Menu" aria-expanded={navOpen}>
             {navOpen ? <X size={19} /> : <Menu size={19} />}
           </button>
@@ -950,7 +1007,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             <button className="link" onClick={() => { setNavOpen(false); onNavigate("syllabus"); }}>{t("nav_syllabus")}</button>
             <button className="link" onClick={() => { setNavOpen(false); goResources(); }}>{t("nav_free")}</button>
             <button className="link" onClick={() => { setNavOpen(false); onNavigate("faq"); }}>{t("nav_faq")}</button>
-            <ChromeControls palettePicker />
+            <span className="pb-nav-chrome"><ChromeControls palettePicker /></span>
             {session
               ? <button className="pb-btn pb-btn-maroon pb-btn-sm" onClick={onDashboard}>{t("nav_dashboard")}<ArrowRight size={15} /></button>
               : (

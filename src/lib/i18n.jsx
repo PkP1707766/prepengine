@@ -228,6 +228,12 @@ function useBrandChrome() {
 
         /* ---- SCROLL REVEAL ----------------------------------------------
            Used sparingly — section headers and cards, not every element. */
+        .jn-pill-short{ display:none }
+        @media (max-width:560px){
+          .jn-pill-long{ display:none }
+          .jn-pill-short{ display:inline }
+        }
+
         .reveal{ opacity:0; transform:translateY(16px); }
         .reveal.in{ opacity:1; transform:none;
           transition:opacity .62s cubic-bezier(.22,.7,.3,1), transform .62s cubic-bezier(.22,.7,.3,1); }
@@ -1014,7 +1020,9 @@ export function ChromeControls({ light = false, palettePicker = false }) {
     <div style={{ display: "flex", gap: 6 }}>
       <button type="button" className="jn-pill" style={pill} onClick={() => setLang(lang === "en" ? "hi" : "en")}
               aria-label={lang === "en" ? "Switch to Hindi" : "Switch to English"}>
-        <Globe size={13} /> <span className="jn-pill-label">{lang === "en" ? "हिन्दी" : "EN"}</span>
+        <Globe size={13} />{" "}
+        <span className="jn-pill-label jn-pill-long">{lang === "en" ? "हिन्दी" : "English"}</span>
+        <span className="jn-pill-label jn-pill-short">{lang === "en" ? "हि" : "EN"}</span>
       </button>
       <button type="button" className="jn-pill jn-pill-icon" style={pill} onClick={toggle}
               aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}>
