@@ -402,7 +402,9 @@ const CSS = `
   .pb-stage{min-height:240px;order:-1}
   .pb-lede{max-width:none}
   .pb-show-grid{grid-template-columns:1fr;gap:34px;padding:58px 24px}
-  .pb-steps{grid-template-columns:1fr;gap:30px}
+  /* Three across on a tablet, one on a phone. Written as a range so it
+     does not depend on where this block sits in the sheet. */
+  .pb-steps{grid-template-columns:1fr;gap:26px}
   .pb-detail{grid-template-columns:1fr}
   .pb-buy{position:static}
 }
@@ -426,6 +428,14 @@ const CSS = `
   .pb-ticket{padding:22px}
   .pb-quote{padding:56px 20px}
   .pb-sec-mandala{width:340px;height:340px}
+}
+
+/* Tablets keep the three steps side by side; phones stack them. Placed last
+   on purpose — an earlier max-width:980px rule also targets .pb-steps, and
+   with equal specificity the later block wins. That ordering is exactly how
+   this collapsed to a single column across the whole tablet range. */
+@media (min-width:641px) and (max-width:980px){
+  .pb-steps{grid-template-columns:repeat(3,1fr);gap:18px}
 }
 `;
 
