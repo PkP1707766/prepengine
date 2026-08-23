@@ -610,18 +610,41 @@ const CSS = `
    the colour the page already uses for its primary action — a maroon button
    sitting between a cream capsule and a maroon burger read as a third
    unrelated control rather than the thing to press. */
+.pb-head-mobile .pb-head-cta{ min-height:34px }
 .pb-head-cta{
+  position:relative; isolation:isolate;
   display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; white-space:nowrap;
-  border:0; cursor:pointer; font:inherit; font-weight:800; font-size:13px; letter-spacing:.01em;
-  padding:0 15px; min-height:38px; border-radius:100px; color:#3a2a06;
-  background:linear-gradient(150deg,var(--gold-300),var(--gold-500) 52%,var(--gold-600));
-  box-shadow:0 4px 14px -4px rgba(181,135,31,.55), inset 0 1px 0 rgba(255,255,255,.4);
+  border:0; cursor:pointer; font:inherit; font-weight:800; font-size:12.5px; letter-spacing:.015em;
+  padding:0 14px; height:34px; border-radius:11px; color:#3a2506;
+  /* Lit from above: a bright edge along the top, the body in the middle, a
+     deeper tone at the base. Flat gold looked like a swatch; this reads as a
+     physical key you could press. */
+  background:linear-gradient(180deg,#f7dd95 0%,var(--gold-500) 46%,#a97c17 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    inset 0 -1px 0 rgba(90,60,5,.28),
+    0 2px 5px -1px rgba(140,100,20,.42),
+    0 6px 16px -6px rgba(181,135,31,.6);
   transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease, filter .16s;
 }
-.pb-head-cta:hover{ transform:translateY(-1px); filter:brightness(1.04);
-  box-shadow:0 7px 20px -5px rgba(181,135,31,.7), inset 0 1px 0 rgba(255,255,255,.5) }
-.pb-head-cta:active{ transform:translateY(0) scale(.97); transition-duration:.06s }
+/* A slow sheen crossing the face, the same gesture the page CTAs use. */
+.pb-head-cta::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  border-radius:inherit; overflow:hidden;
+  background:linear-gradient(105deg,transparent 36%,rgba(255,255,255,.5) 50%,transparent 64%);
+  transform:translateX(-130%); transition:transform .7s cubic-bezier(.3,.7,.3,1);
+}
+@media (hover:hover){ .pb-head-cta:hover::before{ transform:translateX(130%) } }
+.pb-head-cta:hover{ transform:translateY(-1px); filter:brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    inset 0 -1px 0 rgba(90,60,5,.3),
+    0 3px 7px -1px rgba(140,100,20,.46),
+    0 10px 22px -6px rgba(201,162,39,.75) }
+.pb-head-cta:active{ transform:translateY(1px) scale(.98); transition-duration:.06s;
+  box-shadow:inset 0 2px 4px rgba(90,60,5,.35), inset 0 1px 0 rgba(255,255,255,.35) }
 .pb-head-cta:focus-visible{ outline:2.5px solid var(--brand-700); outline-offset:2px }
+.pb-head-cta::after{ content:""; position:absolute; left:0; right:0; top:-5px; bottom:-5px }
 .pb-head-cta svg{ transition:transform .2s cubic-bezier(.2,.8,.3,1) }
 .pb-head-cta:hover svg{ transform:translateX(2px) }
 
@@ -629,8 +652,12 @@ const CSS = `
    Two seconds apart and barely moving — enough to catch the eye on a page
    full of text, not enough to nag. */
 @keyframes pb-cta-breathe{
-  0%,72%,100%{ box-shadow:0 4px 14px -4px rgba(181,135,31,.55), inset 0 1px 0 rgba(255,255,255,.4) }
-  86%{ box-shadow:0 6px 22px -3px rgba(201,162,39,.85), inset 0 1px 0 rgba(255,255,255,.55) }
+  0%,72%,100%{ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72), inset 0 -1px 0 rgba(90,60,5,.28),
+    0 2px 5px -1px rgba(140,100,20,.42), 0 6px 16px -6px rgba(181,135,31,.6) }
+  86%{ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(90,60,5,.28),
+    0 2px 5px -1px rgba(140,100,20,.42), 0 9px 26px -5px rgba(201,162,39,.92) }
 }
 .pb-head-cta-pulse{ animation:pb-cta-breathe 4.6s ease-in-out infinite }
 .pb-head-cta-pulse:hover{ animation:none }
@@ -643,8 +670,20 @@ const CSS = `
 /* The burger is navigation, not an action — it should sit behind the gold,
    not compete with it in a bordered box of its own. */
 @media (max-width:1000px){
-  .pb-burger{ border-color:transparent; background:none; color:var(--ink-400) }
-  .pb-burger:hover{ background:color-mix(in srgb,var(--gold-300) 20%,transparent);
+  /* Same glass family as the capsule so the row reads as two materials —
+     glass for navigation and settings, gold for the one action. */
+  .pb-burger{
+    width:34px; height:34px; min-height:34px; border-radius:11px;
+    background:color-mix(in srgb,var(--cream-50) 62%,transparent);
+    border:1px solid color-mix(in srgb,var(--line) 78%,transparent);
+    -webkit-backdrop-filter:blur(10px) saturate(1.5);
+    backdrop-filter:blur(10px) saturate(1.5);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+    color:var(--ink-600); position:relative;
+  }
+  .pb-head-in .pb-burger{ min-height:34px }
+  .pb-burger::after{ content:""; position:absolute; left:-4px; right:-4px; top:-5px; bottom:-5px }
+  .pb-burger:hover{ background:color-mix(in srgb,var(--gold-300) 26%,transparent);
     color:var(--brand-700) }
 }
 @media (max-width:1000px){
@@ -665,8 +704,10 @@ const CSS = `
   .pb-head-mobile{gap:4px}
   /* The capsule and the action share one height so the row has a single
      optical baseline instead of three different ones. */
-  .pb-head-cta{padding:0 13px;font-size:12.5px}
-  .jn-seg .jn-seg-btn{padding:0 9px}
+  .pb-head-cta{padding:0 12px;font-size:12px}
+  .jn-seg .jn-seg-btn{padding:0 8px}
+  .pb-name{font-size:16px}
+  .pb-mark{width:32px !important;height:32px !important}
   .pb-burger{width:34px}
 }
 @media (max-width:340px){

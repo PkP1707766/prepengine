@@ -229,31 +229,45 @@ function useBrandChrome() {
         /* ---- SCROLL REVEAL ----------------------------------------------
            Used sparingly — section headers and cards, not every element. */
         /* ---- SEGMENTED CHROME (mobile header) ---- */
-        /* The capsule owns the height and the touch target; the segments fill
-           it. Without the nested selector the coarse-pointer rule
-           (.pb-root button{min-height:44px}) applies to the inner buttons
-           instead and the border pushes the capsule to 46px, half a pixel out
-           of line with the action beside it. */
+        /* Visually 34px, but every segment still answers to a 44px finger —
+           the ::after below extends the hit area past the drawn edge. Sizing
+           the control itself at 44px is what made the row feel stuffed; a
+           touch target does not have to be a visible box.
+
+           Squircle rather than a full pill: at this size a 100px radius reads
+           as a lozenge and fights the round brand mark next to it.
+
+           Glass, because the header behind it is already translucent — a solid
+           cream block sat on top of that looked pasted on. */
         .jn-seg{
           display:inline-flex; align-items:stretch; flex:0 0 auto;
-          height:44px; box-sizing:border-box;
-          background:var(--cream-50); border:1px solid var(--line);
-          border-radius:100px; overflow:hidden;
-          box-shadow:0 1px 2px rgba(70,40,20,.05);
+          height:34px; box-sizing:border-box; border-radius:11px; overflow:visible;
+          background:color-mix(in srgb,var(--cream-50) 62%,transparent);
+          border:1px solid color-mix(in srgb,var(--line) 78%,transparent);
+          -webkit-backdrop-filter:blur(10px) saturate(1.5);
+          backdrop-filter:blur(10px) saturate(1.5);
+          box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 1px 3px rgba(70,40,20,.07);
         }
         .jn-seg .jn-seg-btn{ min-height:0; height:100% }
+        .jn-seg .jn-seg-btn:first-child{ border-radius:10px 0 0 10px }
+        .jn-seg .jn-seg-btn:last-child{ border-radius:0 10px 10px 0 }
         .jn-seg-btn{
+          position:relative;
           display:inline-flex; align-items:center; justify-content:center; gap:4px;
           background:none; border:0; cursor:pointer; font:inherit;
-          padding:0 10px; min-height:38px; color:var(--ink-600);
+          padding:0 9px; color:var(--ink-600);
           transition:background .16s, color .16s;
         }
-        .jn-seg-btn:hover{ background:color-mix(in srgb,var(--gold-300) 22%,transparent); color:var(--brand-700) }
-        .jn-seg-btn:active{ background:color-mix(in srgb,var(--gold-300) 34%,transparent) }
+        /* Hit area only — invisible, and it reaches the 44px floor from a 34px
+           control. */
+        .jn-seg-btn::after{ content:""; position:absolute; left:0; right:0; top:-5px; bottom:-5px }
+        .jn-seg-btn:hover{ background:color-mix(in srgb,var(--gold-300) 26%,transparent); color:var(--brand-700) }
+        .jn-seg-btn:active{ background:color-mix(in srgb,var(--gold-300) 38%,transparent) }
         .jn-seg-btn:focus-visible{ outline:2px solid var(--gold-500); outline-offset:-2px }
-        .jn-seg-icon{ padding:0 9px }
-        .jn-seg-label{ font-size:12px; font-weight:800; letter-spacing:.01em; line-height:1 }
-        .jn-seg-div{ width:1px; background:var(--line); flex:0 0 auto; align-self:stretch }
+        .jn-seg-icon{ padding:0 8px }
+        .jn-seg-label{ font-size:11.5px; font-weight:800; letter-spacing:.02em; line-height:1 }
+        .jn-seg-div{ width:1px; background:color-mix(in srgb,var(--line) 70%,transparent);
+          flex:0 0 auto; align-self:stretch }
 
         .jn-pill-short{ display:none }
         @media (max-width:560px){
