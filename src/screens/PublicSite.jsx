@@ -257,11 +257,19 @@ const CSS = `
 .pb-news-msg.ok{color:var(--ok-600)}
 .pb-news-msg.bad{color:var(--bad-600)}
 .pb-socials{display:flex;gap:10px;margin-top:26px}
-.pb-social{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--cream-50);
-  display:grid;place-items:center;color:var(--ink-600);cursor:pointer;
+/* Scoped under .pb-foot so it outranks the .pb-foot a rule (display:block,
+   width:100%), which was turning the linked icon into a 240px-wide block and
+   squeezing the rest of the row down to 25px. flex:0 0 auto stops them shrinking at all. */
+.pb-foot .pb-social{flex:0 0 auto;width:42px;height:42px;margin:0;border-radius:50%;
+  border:1.5px solid var(--line);background:var(--cream-50);
+  display:grid;place-items:center;color:var(--ink-600);cursor:pointer;text-align:center;
   transition:border-color .18s,color .18s,transform .18s,background .18s}
-.pb-social:hover{border-color:var(--brand-700);color:var(--brand-700);transform:translateY(-2px);
+.pb-foot .pb-social:hover{border-color:var(--brand-700);color:var(--brand-700);transform:translateY(-2px);
   background:color-mix(in srgb,var(--gold-300) 18%,transparent)}
+/* Placed but not yet linked. Muted and inert — the row reads as designed
+   rather than broken, and nothing here opens a dead tab. */
+.pb-foot .pb-social-soon{opacity:.34;cursor:default;border-style:dashed}
+.pb-foot .pb-social-soon:hover{border-color:var(--line);color:var(--ink-600);transform:none;background:var(--cream-50)}
 
 /* -- right: link columns -- */
 .pb-foot-links{padding:42px 40px;display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:28px;min-width:0}
@@ -550,6 +558,11 @@ const CSS = `
   .pb-foot h5{margin-bottom:6px}
   .pb-foot-contact{padding:6px 0}
 }
+
+/* Note on a page pinned to English, shown only to a Hindi reader. */
+.lg-enonly{margin:14px 0 0;font-size:13px;line-height:1.6;color:var(--ink-600);
+  background:var(--cream-100);border-left:3px solid var(--gold-500);border-radius:0 8px 8px 0;
+  padding:10px 14px;max-width:62ch}
 `;
 
 const money = (n) => "₹" + Number(n || 0).toLocaleString("en-IN", { maximumFractionDigits: 0 });
@@ -660,9 +673,11 @@ const SOCIAL_DEFS = [
   { key: "linkedin",  label: "LinkedIn",  Icon: LinkedIn },
   { key: "x",         label: "X",         Icon: XMark },
 ];
-const SOCIALS = SOCIAL_DEFS
-  .filter((d) => (SOCIAL_LINKS[d.key] || "").trim())
-  .map((d) => ({ ...d, href: SOCIAL_LINKS[d.key].trim() }));
+/* Every icon is placed so the row is designed and spaced now; the ones
+   without a URL yet render as inert placeholders rather than links to
+   nowhere. Fill a handle in SOCIAL_LINKS and that icon becomes live with no
+   further change here. */
+const SOCIALS = SOCIAL_DEFS.map((d) => ({ ...d, href: (SOCIAL_LINKS[d.key] || "").trim() }));
 
 /* ---------------------------------------------------------------- detail -- */
 function BundleDetail({ code, owned, onBack, onEnroll }) {
@@ -1176,16 +1191,19 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 )}
               </div>
 
-              {SOCIALS.length > 0 && (
               <div className="pb-socials">
-                {SOCIALS.map((sc) => (
+                {SOCIALS.map((sc) => (sc.href ? (
                   <a className="pb-social" key={sc.label} href={sc.href} aria-label={sc.label}
                      target="_blank" rel="noreferrer noopener">
                     <sc.Icon size={17} />
                   </a>
-                ))}
+                ) : (
+                  <span className="pb-social pb-social-soon" key={sc.label}
+                        title={sc.label + " — " + t("soc_soon")} aria-hidden="true">
+                    <sc.Icon size={17} />
+                  </span>
+                )))}
               </div>
-              )}
             </div>
 
             <div className="pb-foot-links">

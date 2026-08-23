@@ -372,20 +372,25 @@ function LegalPage({ page }) {
   const { t, lang } = useLang();
   const doc = LEGAL[page];
   if (!doc) return null;
-  const L = (o) => (o && (o[lang] ?? o.en)) || "";
+  // Some documents are pinned to English — see the note on LEGAL.refund.
+  const docLang = doc.englishOnly ? "en" : lang;
+  const L = (o) => (o && (o[docLang] ?? o.en)) || "";
 
   return (
     <div className="lg-doc">
       <header className="lg-head">
         <h1>{L(doc.title)}</h1>
         <p>{L(doc.intro)}</p>
+        {doc.englishOnly && lang !== "en" && (
+          <p className="lg-enonly">{t("lg_en_only")}</p>
+        )}
       </header>
 
       {doc.blocks.map((b, i) => (
         <section className="lg-block" key={i}>
           <h2>{L(b.h)}</h2>
           <ul>
-            {(b.p[lang] ?? b.p.en).map((line, j) => <li key={j}>{line}</li>)}
+            {(b.p[docLang] ?? b.p.en).map((line, j) => <li key={j}>{line}</li>)}
           </ul>
         </section>
       ))}

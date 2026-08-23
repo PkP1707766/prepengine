@@ -33,7 +33,10 @@ export const COMPANY = {
   city:       "Delhi",
   state:      "Delhi",          // also the jurisdiction named in the Terms
   email:      "junoonias123@gmail.com",
-  phone:      "",               // optional — the row is hidden while blank
+  /* Deliberately empty and deliberately staying empty: no phone number is
+     published on the site. The row is omitted entirely rather than rendered
+     blank, and email is the stated contact route on every legal page. */
+  phone:      "",
   gstin:      "",               // not GST registered
   cin:        "",               // not a company
 };
@@ -236,6 +239,12 @@ export const LEGAL = {
 
   /* ----------------------------------------------------------------- refund */
   refund: {
+    /* English only, on purpose. A refund policy is the page most likely to be
+       read in a dispute, and a loose translation of it is a liability rather
+       than a courtesy — an imprecise Hindi rendering of "consumed", "licence"
+       or "conclusive" could be read against us. The page states plainly that
+       it is available in English only. */
+    englishOnly: true,
     title: { en: "Refund & Cancellation Policy", hi: "धन-वापसी एवं रद्दीकरण नीति" },
     intro: {
       en: "Everything sold here is digital course material delivered the moment payment is confirmed. Please read this before you enrol, because access, once opened, cannot be returned.",
