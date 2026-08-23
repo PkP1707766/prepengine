@@ -482,6 +482,7 @@ function BrandMark({ size = 40 }) {
 
 /* ------------------------------------------------------------------ card -- */
 function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
+  const { t } = useLang();
   const off = b.mrp && b.mrp > b.price ? Math.round((1 - b.price / b.mrp) * 100) : 0;
   // A bundle with no published test is not something anyone should be able to
   // pay for. It is shown, so the exam still appears in the catalogue and the
@@ -493,10 +494,10 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
       <h3 className="pb-card-title">{b.name}</h3>
       <div className="pb-card-meta">
         {empty
-          ? "Papers being finalised"
-          : `${b.testCount} mock test${b.testCount === 1 ? "" : "s"}`}
-        {!empty && b.freeTestCount > 0 ? ` · ${b.freeTestCount} free to try` : ""}
-        {b.durationDays ? ` · ${Math.round(b.durationDays / 30)} months` : " · lifetime"}
+          ? t("card_papers_soon")
+          : `${b.testCount} ${b.testCount === 1 ? t("card_mock_one") : t("card_mock_many")}`}
+        {!empty && b.freeTestCount > 0 ? ` · ${b.freeTestCount} ${t("card_free_try")}` : ""}
+        {b.durationDays ? ` · ${Math.round(b.durationDays / 30)} ${t("card_months")}` : ` · ${t("card_lifetime")}`}
       </div>
       <p className="pb-card-desc">{b.tagline || b.description}</p>
       <div className="pb-price-row">
@@ -506,18 +507,18 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
       <div className="pb-card-btns">
         {owned ? (
           <button className="pb-btn pb-btn-block pb-owned" onClick={onView}>
-            <CheckCircle2 size={16} />You own this
+            <CheckCircle2 size={16} />{t("card_owned")}
           </button>
         ) : empty ? (
           <button className="pb-btn pb-btn-block pb-soon" disabled title="No papers in this series yet">
-            <Timer size={16} />Coming soon
+            <Timer size={16} />{t("card_soon")}
           </button>
         ) : (
           <>
             <button className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={onEnroll}>
-              Enroll now<ArrowRight size={15} />
+              {t("card_enroll")}<ArrowRight size={15} />
             </button>
-            <button className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onView}>Details</button>
+            <button className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onView}>{t("card_details")}</button>
           </>
         )}
       </div>
@@ -527,6 +528,7 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
 
 /* ---------------------------------------------------------------- detail -- */
 function BundleDetail({ code, owned, onBack, onEnroll }) {
+  const { t } = useLang();
   const [bundle, setBundle] = useState(null);
   const [tests, setTests] = useState([]);
   const [err, setErr] = useState("");
@@ -585,14 +587,14 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
           <p className="pb-sub" style={{ margin: "0 0 26px" }}>{bundle.description || bundle.tagline}</p>
 
           <div className="pb-panel" style={{ marginBottom: 20 }}>
-            <div className="pb-kicker">What's included</div>
+            <div className="pb-kicker">{t("card_included")}</div>
             <ul className="pb-list">
               {bundle.features.map((f, i) => <li key={i}><CheckCircle2 size={17} />{f}</li>)}
             </ul>
           </div>
 
           <div className="pb-panel">
-            <div className="pb-kicker">Tests in this series</div>
+            <div className="pb-kicker">{t("card_tests_in")}</div>
             <div className="pb-h3">{tests.length} test{tests.length === 1 ? "" : "s"} published</div>
             {tests.length === 0 ? (
               <p style={{ fontSize: 14, color: "var(--ink-400)", lineHeight: 1.7, margin: 0 }}>
@@ -610,7 +612,7 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
                   </div>
                 </div>
                 {t.isFree
-                  ? <span className="pb-off">Free sample</span>
+                  ? <span className="pb-off">{t("card_free_sample")}</span>
                   : <Lock size={15} style={{ color: "var(--ink-400)", flex: "0 0 auto" }} />}
               </div>
             ))}
@@ -629,7 +631,7 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
               : "One-time payment · lifetime access"}
           </p>
           <button className={"pb-btn pb-btn-block " + (owned ? "pb-owned" : "pb-btn-gold")} onClick={onEnroll}>
-            {owned ? <><CheckCircle2 size={16} />Go to your dashboard</> : <>Enroll now<ArrowRight size={15} /></>}
+            {owned ? <><CheckCircle2 size={16} />{t("card_goto_dash")}</> : <>Enroll now<ArrowRight size={15} /></>}
           </button>
           <div style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: 18 }}>
             <span style={{ fontSize: 12.5, color: "var(--ink-400)", display: "flex", alignItems: "center", gap: 7 }}>
@@ -735,17 +737,17 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </button>
 
           <nav className={"pb-nav" + (navOpen ? " open" : "")}>
-            <button className="link" onClick={() => { setNavOpen(false); goCatalog(); }}>Test Series</button>
-            <button className="link" onClick={() => { setNavOpen(false); onNavigate("syllabus"); }}>Syllabus</button>
-            <button className="link" onClick={() => { setNavOpen(false); goResources(); }}>Free Resources</button>
-            <button className="link" onClick={() => { setNavOpen(false); onNavigate("faq"); }}>FAQ</button>
+            <button className="link" onClick={() => { setNavOpen(false); goCatalog(); }}>{t("nav_tests")}</button>
+            <button className="link" onClick={() => { setNavOpen(false); onNavigate("syllabus"); }}>{t("nav_syllabus")}</button>
+            <button className="link" onClick={() => { setNavOpen(false); goResources(); }}>{t("nav_free")}</button>
+            <button className="link" onClick={() => { setNavOpen(false); onNavigate("faq"); }}>{t("nav_faq")}</button>
             <ChromeControls palettePicker />
             {session
-              ? <button className="pb-btn pb-btn-maroon pb-btn-sm" onClick={onDashboard}>Dashboard<ArrowRight size={15} /></button>
+              ? <button className="pb-btn pb-btn-maroon pb-btn-sm" onClick={onDashboard}>{t("nav_dashboard")}<ArrowRight size={15} /></button>
               : (
                 <>
-                  <button className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onLogin}>Log in</button>
-                  <button className="pb-btn pb-btn-gold pb-btn-sm" onClick={goCatalog}>Get started</button>
+                  <button className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onLogin}>{t("nav_login")}</button>
+                  <button className="pb-btn pb-btn-gold pb-btn-sm" onClick={goCatalog}>{t("nav_start")}</button>
                 </>
               )}
           </nav>
@@ -755,12 +757,12 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
       {page ? (
         <div className="pb-sec pb-sec-narrow">
           <button className="pb-btn pb-btn-ghost pb-btn-sm" style={{ marginBottom: 24 }} onClick={home}>
-            <ArrowLeft size={15} />Back to home
+            <ArrowLeft size={15} />{t("back_home")}
           </button>
           <div style={{ marginBottom: 28 }}>
-            <div className="pb-eyebrow">Free · no login needed</div>
-            <h1 className="pb-h2" style={{ margin: "10px 0 10px" }}>{RESOURCE_TITLES[page]?.t}</h1>
-            <p className="pb-sub">{RESOURCE_TITLES[page]?.s}</p>
+            <div className="pb-eyebrow">{t("free_no_login")}</div>
+            <h1 className="pb-h2" style={{ margin: "10px 0 10px" }}>{t(RESOURCE_TITLES[page]?.tKey)}</h1>
+            <p className="pb-sub">{t(RESOURCE_TITLES[page]?.sKey)}</p>
           </div>
           <ContentPage page={page} />
         </div>
@@ -773,22 +775,18 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             <div className="pb-hero-grid">
               <div>
                 <div className="pb-hero-deva">तमसो मा ज्योतिर्गमय</div>
-                <h1 className="pb-h1">Lead your prep{" "}<br /><em>from darkness, unto light.</em></h1>
-                <p className="pb-lede">
-                  Papers built to the real pattern. Analysis that names your weak topics instead of
-                  flattering you. And a rank you can trust, because it is computed against every
-                  aspirant who sat the same paper — not invented.
-                </p>
+                <h1 className="pb-h1">{t("hero_h1_a")}{" "}<br /><em>{t("hero_h1_b")}</em></h1>
+                <p className="pb-lede">{t("hero_lede")}</p>
                 <div className="pb-hero-ctas">
                   <button className="pb-btn pb-btn-gold" onClick={goCatalog}>
-                    Explore test series<ArrowRight size={17} />
+                    {t("cta_explore")}<ArrowRight size={17} />
                   </button>
-                  <button className="pb-btn pb-btn-onDark" onClick={goResources}>Browse free resources</button>
+                  <button className="pb-btn pb-btn-onDark" onClick={goResources}>{t("cta_browse_free")}</button>
                 </div>
                 <ul className="pb-ticks">
-                  <li><CheckCircle2 size={16} />Exam-pattern papers</li>
-                  <li><CheckCircle2 size={16} />All-India rank &amp; percentile</li>
-                  <li><CheckCircle2 size={16} />No login needed to browse</li>
+                  <li><CheckCircle2 size={16} />{t("tick_pattern")}</li>
+                  <li><CheckCircle2 size={16} />{t("tick_rank")}</li>
+                  <li><CheckCircle2 size={16} />{t("tick_nologin")}</li>
                 </ul>
               </div>
               <div className="pb-stage"><Diya size={330} /></div>
@@ -801,10 +799,10 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               claim is gone rather than restyled. */}
           <div className="pb-strip">
             <div className="pb-strip-in">
-              <div className="pb-strip-item"><b>Written to the pattern</b>Same sections, same negative marking</div>
-              <div className="pb-strip-item"><b>Weakness, named</b>Topic-level accuracy after every paper</div>
-              <div className="pb-strip-item"><b>Pay for one exam</b>Bundles never bundle you into extras</div>
-              <div className="pb-strip-item"><b>Look before you buy</b>Whole catalogue open, no login wall</div>
+              <div className="pb-strip-item"><b>{t("strip1_t")}</b>{t("strip1_d")}</div>
+              <div className="pb-strip-item"><b>{t("strip2_t")}</b>{t("strip2_d")}</div>
+              <div className="pb-strip-item"><b>{t("strip3_t")}</b>{t("strip3_d")}</div>
+              <div className="pb-strip-item"><b>{t("strip4_t")}</b>{t("strip4_d")}</div>
             </div>
           </div>
 
@@ -813,18 +811,15 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             <div className="pb-sec-narrow">
               <div className="pb-sec-head reveal">
                 <Mandala className="pb-sec-mandala" />
-                <div className="pb-eyebrow">Test Series</div>
-                <h2 className="pb-h2">One exam. One price. Nothing extra.</h2>
-                <p className="pb-sub">
-                  Each series stands on its own. You pay for the exam you are actually writing —
-                  and buying one never quietly unlocks, or charges for, another.
-                </p>
+                <div className="pb-eyebrow">{t("nav_tests")}</div>
+                <h2 className="pb-h2">{t("cat_h2")}</h2>
+                <p className="pb-sub">{t("cat_sub")}</p>
               </div>
 
               {examTabs.length > 1 && (
                 <div className="pb-tabs reveal" ref={tabsRef}>
                   <button className={"pb-tab" + (exam === "all" ? " on" : "")} onClick={() => pickExam("all")}>
-                    All exams
+                    {t("tab_all")}
                   </button>
                   {examTabs.map((e) => (
                     <button key={e.code} className={"pb-tab" + (exam === e.code ? " on" : "")}
@@ -848,7 +843,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 </div>
               ) : shown.length === 0 ? (
                 <div className="pb-panel" style={{ textAlign: "center", color: "var(--ink-600)" }}>
-                  No test series published for this exam yet.
+                  {t("cat_empty")}
                 </div>
               ) : (
                 <div className="pb-grid">
@@ -866,24 +861,19 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           <section className="pb-sec" style={{ paddingTop: 0 }}>
             <div className="pb-sec-narrow">
               <div className="pb-sec-head reveal">
-                <div className="pb-eyebrow">How it works</div>
-                <h2 className="pb-h2">Sit. Read. Fix. Again.</h2>
-                <p className="pb-sub">
-                  A mock is not the exam — it is the rehearsal. What you do in the hour after it
-                  is where the marks actually come from.
-                </p>
+                <div className="pb-eyebrow">{t("how_eyebrow")}</div>
+                <h2 className="pb-h2">{t("how_h2")}</h2>
+                <p className="pb-sub">{t("how_sub")}</p>
               </div>
               <div className="pb-steps">
                 {[
-                  { t: "Choose without signing up", d: "Every series, every price, every test list — open. Make the decision first, create the account after." },
-                  { t: "Write it like the real thing", d: "Same sections, same clock, same negative marking. A mock that is easier than the exam teaches you nothing." },
-                  { t: "Find out what went wrong", d: "Which topics leaked marks, which questions ate your clock, and what to open tonight." },
+                  { k: "step1" }, { k: "step2" }, { k: "step3" },
                 ].map((s, i) => (
-                  <div className={`pb-step reveal reveal-d${i + 1}`} key={s.t}>
+                  <div className={`pb-step reveal reveal-d${i + 1}`} key={s.k}>
                     <span className="pb-step-n">{i + 1}</span>
                     <StepArt step={i + 1} />
-                    <h3>{s.t}</h3>
-                    <p>{s.d}</p>
+                    <h3>{t(`${s.k}_t`)}</h3>
+                    <p>{t(`${s.k}_d`)}</p>
                   </div>
                 ))}
               </div>
@@ -894,28 +884,25 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           <section className="pb-show">
             <div className="pb-show-grid">
               <div className="reveal">
-                <div className="pb-eyebrow">After every test</div>
-                <h2 className="pb-h2" style={{ textAlign: "left" }}>A diagnosis, not a scoreboard</h2>
-                <p className="pb-sub">
-                  Any site can hand you a number. The useful part is knowing which twenty minutes
-                  of tonight's revision will earn the most marks next time.
-                </p>
+                <div className="pb-eyebrow">{t("rep_eyebrow")}</div>
+                <h2 className="pb-h2" style={{ textAlign: "left" }}>{t("rep_h2")}</h2>
+                <p className="pb-sub">{t("rep_sub")}</p>
                 <ul className="pb-show-list">
                   <li>
                     <span className="pb-show-ic"><Target size={17} /></span>
-                    <span><b>Topic-level accuracy</b><em>Polity strong, Economy weak — graded from your attempts, not a guess.</em></span>
+                    <span><b>{t("rep1_t")}</b><em>{t("rep1_d")}</em></span>
                   </li>
                   <li>
                     <span className="pb-show-ic"><Timer size={17} /></span>
-                    <span><b>Time per question</b><em>The four questions that quietly cost you the last section, named.</em></span>
+                    <span><b>{t("rep2_t")}</b><em>{t("rep2_d")}</em></span>
                   </li>
                   <li>
                     <span className="pb-show-ic"><Layers size={17} /></span>
-                    <span><b>Section-wise split</b><em>Where the marks came from — and exactly where they drained out.</em></span>
+                    <span><b>{t("rep3_t")}</b><em>{t("rep3_d")}</em></span>
                   </li>
                   <li>
                     <span className="pb-show-ic"><CheckCircle2 size={17} /></span>
-                    <span><b>Full solutions</b><em>Every answer reasoned out, including why the tempting wrong option is wrong.</em></span>
+                    <span><b>{t("rep4_t")}</b><em>{t("rep4_d")}</em></span>
                   </li>
                 </ul>
               </div>
@@ -928,12 +915,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             <Mandala className="pb-res-mandala" />
             <div className="pb-sec pb-sec-narrow" style={{ position: "relative", zIndex: 2 }}>
               <div className="pb-sec-head reveal">
-                <div className="pb-eyebrow">No login needed</div>
-                <h2 className="pb-h2">Take what's free first</h2>
-                <p className="pb-sub">
-                  Syllabus, past papers, NCERTs, daily current affairs — all of it open, no account,
-                  no email. Judge us on this before you judge us on the price.
-                </p>
+                <div className="pb-eyebrow">{t("res_eyebrow")}</div>
+                <h2 className="pb-h2">{t("res_h2")}</h2>
+                <p className="pb-sub">{t("res_sub")}</p>
               </div>
               <div className="pb-resgrid">
                 {RESOURCES.map((r, i) => {
@@ -942,16 +926,17 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                     <button className={`pb-rescard reveal reveal-d${(i % 4) + 1}`} key={r.key}
                             onClick={() => onNavigate(r.key)}>
                       <Icon size={26} />
-                      <h4>{r.label}</h4>
-                      <p>{r.blurb}</p>
+                      <h4>{t(r.labelKey)}</h4>
+                      <p>{t(r.blurbKey)}</p>
                     </button>
                   );
                 })}
               </div>
               {totalTests > 0 && (
                 <p style={{ textAlign: "center", marginTop: 30, fontSize: 13.5, color: "#c9b998" }}>
-                  {totalTests} test{totalTests === 1 ? "" : "s"} published across {bundles?.length ?? 0} series
-                  {freeTests > 0 ? ` · ${freeTests} free to try without paying` : ""}
+                  {totalTests} {totalTests === 1 ? t("card_mock_one") : t("card_mock_many")}{" "}
+                  {t("res_published")} {bundles?.length ?? 0} {t("res_series_word")}
+                  {freeTests > 0 ? ` · ${freeTests} ${t("res_free_try")}` : ""}
                 </p>
               )}
             </div>
@@ -963,14 +948,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               <span className="pb-notch pb-notch-l" />
               <span className="pb-ticket-ic"><TicketIcon size={24} /></span>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <h4>Have a coupon code?</h4>
-                <p>
-                  Enter it on the payment screen. The reduced price appears before you pay —
-                  never a surprise afterwards.
-                </p>
+                <h4>{t("coupon_h4")}</h4>
+                <p>{t("coupon_p")}</p>
               </div>
               <button className="pb-btn pb-btn-maroon" style={{ flex: "0 0 auto" }} onClick={goCatalog}>
-                See test series<ArrowRight size={15} />
+                {t("coupon_cta")}<ArrowRight size={15} />
               </button>
               <span className="pb-notch pb-notch-r" />
             </div></div>
@@ -980,8 +962,8 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           <div className="pb-quote">
             <Divider className="pb-quote-rule" />
             <div className="deva">तमसो मा ज्योतिर्गमय</div>
-            <p>"Lead me from darkness, unto light."</p>
-            <div className="src">Br̥hadāraṇyaka Upaniṣad · 1.3.28</div>
+            <p>{t("shloka_en")}</p>
+            <div className="src">{t("shloka_src")}</div>
           </div>
         </>
       )}
@@ -995,37 +977,37 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               <span className="pb-name">JUNOON<span>IAS</span></span>
             </div>
             <p style={{ fontSize: 13.5, color: "var(--ink-400)", maxWidth: "34ch", margin: 0, lineHeight: 1.65 }}>
-              Your preparation platform for UPSC, BPSC and UPPCS civil services.
+              {t("foot_blurb")}
             </p>
           </div>
           <div>
-            <h5>Explore</h5>
-            <button className="flink" onClick={goCatalog}>Test series</button>
-            <button className="flink" onClick={() => onNavigate("syllabus")}>Syllabus</button>
-            <button className="flink" onClick={() => onNavigate("pyq")}>Previous year papers</button>
+            <h5>{t("foot_explore")}</h5>
+            <button className="flink" onClick={goCatalog}>{t("nav_tests")}</button>
+            <button className="flink" onClick={() => onNavigate("syllabus")}>{t("nav_syllabus")}</button>
+            <button className="flink" onClick={() => onNavigate("pyq")}>{t("foot_pyq")}</button>
             <button className="flink" onClick={session ? onDashboard : onLogin}>
-              {session ? "My dashboard" : "Log in"}
+              {session ? t("foot_mydash") : t("nav_login")}
             </button>
           </div>
           <div>
-            <h5>Free resources</h5>
-            <button className="flink" onClick={() => onNavigate("materials")}>Study material</button>
-            <button className="flink" onClick={() => onNavigate("ncert")}>NCERT books</button>
-            <button className="flink" onClick={() => onNavigate("news")}>Daily current affairs</button>
-            <button className="flink" onClick={() => onNavigate("faq")}>FAQ</button>
+            <h5>{t("foot_free")}</h5>
+            <button className="flink" onClick={() => onNavigate("materials")}>{t("foot_material")}</button>
+            <button className="flink" onClick={() => onNavigate("ncert")}>{t("foot_ncert")}</button>
+            <button className="flink" onClick={() => onNavigate("news")}>{t("foot_news")}</button>
+            <button className="flink" onClick={() => onNavigate("faq")}>{t("nav_faq")}</button>
           </div>
           <div>
-            <h5>Support</h5>
+            <h5>{t("foot_support")}</h5>
             <a href="mailto:junoonias123@gmail.com">junoonias123@gmail.com</a>
             <button className="flink" onClick={() => setContact(true)}>
-              <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />Help &amp; refunds
+              <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />{t("foot_help")}
             </button>
-            <button className="flink" onClick={() => onNavigate("faq")}>Refunds &amp; access</button>
+            <button className="flink" onClick={() => onNavigate("faq")}>{t("foot_refunds")}</button>
           </div>
         </div>
         <div className="pb-foot-bottom">
-          <span>© {new Date().getFullYear()} JUNOONIAS. All rights reserved.</span>
-          <span>Made for aspirants, in India.</span>
+          <span>© {new Date().getFullYear()} JUNOONIAS. {t("foot_rights")}</span>
+          <span>{t("foot_made")}</span>
         </div>
       </footer>
 

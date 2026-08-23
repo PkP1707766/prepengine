@@ -533,6 +533,357 @@ Object.assign(STR, {
 });
 
 
+/* ---------------------------------------------------------------------------
+ * Public storefront + student shell.
+ *
+ * The language toggle shipped working, but only the login and checkout screens
+ * were ever translated — every page a Hindi-medium student actually reads was
+ * English, so flipping the switch appeared to do nothing. These are the strings
+ * that were missing.
+ *
+ * Written as a Hindi-medium aspirant reads, not as a dictionary translates:
+ * ordinary words where they exist, and the English term in Devanagari where
+ * that is genuinely what people say (टेस्ट सीरीज़, रैंक, सिलेबस).
+ * ------------------------------------------------------------------------ */
+Object.assign(STR, {
+  /* --- header / nav --- */
+  nav_tests:      { en: "Test Series", hi: "टेस्ट सीरीज़" },
+  nav_syllabus:   { en: "Syllabus", hi: "सिलेबस" },
+  nav_free:       { en: "Free Resources", hi: "निःशुल्क संसाधन" },
+  nav_faq:        { en: "FAQ", hi: "सामान्य प्रश्न" },
+  nav_dashboard:  { en: "Dashboard", hi: "डैशबोर्ड" },
+  nav_login:      { en: "Log in", hi: "लॉग इन" },
+  nav_start:      { en: "Get started", hi: "शुरू करें" },
+  back_home:      { en: "Back to home", hi: "होम पर वापस" },
+  free_no_login:  { en: "Free · no login needed", hi: "निःशुल्क · लॉगिन ज़रूरी नहीं" },
+
+  /* --- hero --- */
+  hero_h1_a:      { en: "Lead your prep", hi: "अपनी तैयारी को ले चलिए" },
+  hero_h1_b:      { en: "from darkness, unto light.", hi: "अंधकार से प्रकाश की ओर।" },
+  hero_lede:      { en: "Papers built to the real pattern. Analysis that names your weak topics instead of flattering you. And a rank you can trust, because it is computed against every aspirant who sat the same paper — not invented.",
+                    hi: "असली पैटर्न पर बने पेपर। ऐसा विश्लेषण जो तारीफ़ करने के बजाय आपके कमज़ोर टॉपिक का नाम बताता है। और एक ऐसी रैंक जिस पर भरोसा हो — क्योंकि वह उसी पेपर को देने वाले हर अभ्यर्थी के सामने निकाली जाती है, गढ़ी नहीं जाती।" },
+  cta_explore:    { en: "Explore test series", hi: "टेस्ट सीरीज़ देखें" },
+  cta_browse_free:{ en: "Browse free resources", hi: "निःशुल्क संसाधन देखें" },
+  tick_pattern:   { en: "Exam-pattern papers", hi: "परीक्षा-पैटर्न पेपर" },
+  tick_rank:      { en: "All-India rank & percentile", hi: "अखिल भारतीय रैंक और पर्सेंटाइल" },
+  tick_nologin:   { en: "No login needed to browse", hi: "देखने के लिए लॉगिन ज़रूरी नहीं" },
+
+  /* --- claim strip --- */
+  strip1_t: { en: "Written to the pattern", hi: "पैटर्न के अनुसार बने" },
+  strip1_d: { en: "Same sections, same negative marking", hi: "वही सेक्शन, वही नेगेटिव मार्किंग" },
+  strip2_t: { en: "Weakness, named", hi: "कमज़ोरी, नाम के साथ" },
+  strip2_d: { en: "Topic-level accuracy after every paper", hi: "हर पेपर के बाद टॉपिक-स्तर की सटीकता" },
+  strip3_t: { en: "Pay for one exam", hi: "एक ही परीक्षा का भुगतान" },
+  strip3_d: { en: "Bundles never bundle you into extras", hi: "बंडल आपको बेवजह की चीज़ों में नहीं बाँधते" },
+  strip4_t: { en: "Look before you buy", hi: "खरीदने से पहले देखिए" },
+  strip4_d: { en: "Whole catalogue open, no login wall", hi: "पूरा कैटलॉग खुला, कोई लॉगिन दीवार नहीं" },
+
+  /* --- catalogue --- */
+  cat_h2:    { en: "One exam. One price. Nothing extra.", hi: "एक परीक्षा। एक क़ीमत। कुछ भी अतिरिक्त नहीं।" },
+  cat_sub:   { en: "Each series stands on its own. You pay for the exam you are actually writing — and buying one never quietly unlocks, or charges for, another.",
+               hi: "हर सीरीज़ अपने आप में पूरी है। आप उसी परीक्षा का भुगतान करते हैं जो आप वाकई दे रहे हैं — और एक खरीदने पर दूसरी न चुपचाप खुलती है, न उसका पैसा लगता है।" },
+  tab_all:   { en: "All exams", hi: "सभी परीक्षाएँ" },
+  cat_empty: { en: "No test series published for this exam yet.", hi: "इस परीक्षा के लिए अभी कोई टेस्ट सीरीज़ प्रकाशित नहीं हुई है।" },
+
+  /* --- cards --- */
+  card_enroll:     { en: "Enroll now", hi: "अभी नामांकन करें" },
+  card_details:    { en: "Details", hi: "विवरण" },
+  card_owned:      { en: "You own this", hi: "यह आपके पास है" },
+  card_soon:       { en: "Coming soon", hi: "जल्द आ रहा है" },
+  card_papers_soon:{ en: "Papers being finalised", hi: "पेपर तैयार हो रहे हैं" },
+  card_mock_one:   { en: "mock test", hi: "मॉक टेस्ट" },
+  card_mock_many:  { en: "mock tests", hi: "मॉक टेस्ट" },
+  card_free_try:   { en: "free to try", hi: "मुफ़्त आज़माने को" },
+  card_months:     { en: "months", hi: "महीने" },
+  card_lifetime:   { en: "lifetime", hi: "आजीवन" },
+  card_included:   { en: "What's included", hi: "इसमें क्या शामिल है" },
+  card_tests_in:   { en: "Tests in this series", hi: "इस सीरीज़ के टेस्ट" },
+  card_free_sample:{ en: "Free sample", hi: "मुफ़्त नमूना" },
+  card_goto_dash:  { en: "Go to your dashboard", hi: "अपने डैशबोर्ड पर जाएँ" },
+
+  /* --- how it works --- */
+  how_eyebrow: { en: "How it works", hi: "यह कैसे काम करता है" },
+  how_h2:      { en: "Sit. Read. Fix. Again.", hi: "दीजिए। पढ़िए। सुधारिए। फिर दीजिए।" },
+  how_sub:     { en: "A mock is not the exam — it is the rehearsal. What you do in the hour after it is where the marks actually come from.",
+                 hi: "मॉक परीक्षा नहीं है — वह रिहर्सल है। असली अंक उस एक घंटे से आते हैं जो आप उसके बाद लगाते हैं।" },
+  step1_t: { en: "Choose without signing up", hi: "बिना साइन-अप चुनिए" },
+  step1_d: { en: "Every series, every price, every test list — open. Make the decision first, create the account after.",
+             hi: "हर सीरीज़, हर क़ीमत, हर टेस्ट सूची — खुली हुई। पहले फ़ैसला कीजिए, खाता बाद में बनाइए।" },
+  step2_t: { en: "Write it like the real thing", hi: "असली की तरह दीजिए" },
+  step2_d: { en: "Same sections, same clock, same negative marking. A mock that is easier than the exam teaches you nothing.",
+             hi: "वही सेक्शन, वही घड़ी, वही नेगेटिव मार्किंग। परीक्षा से आसान मॉक कुछ नहीं सिखाता।" },
+  step3_t: { en: "Find out what went wrong", hi: "जानिए कहाँ चूक हुई" },
+  step3_d: { en: "Which topics leaked marks, which questions ate your clock, and what to open tonight.",
+             hi: "किन टॉपिक में अंक गए, किन सवालों ने घड़ी खा ली, और आज रात कौन-सी किताब खोलनी है।" },
+
+  /* --- report showcase --- */
+  rep_eyebrow: { en: "After every test", hi: "हर टेस्ट के बाद" },
+  rep_h2:      { en: "A diagnosis, not a scoreboard", hi: "निदान, न कि स्कोरबोर्ड" },
+  rep_sub:     { en: "Any site can hand you a number. The useful part is knowing which twenty minutes of tonight's revision will earn the most marks next time.",
+                 hi: "नंबर तो कोई भी साइट दे देगी। काम की बात यह जानना है कि आज रात की बीस मिनट की रिवीज़न कहाँ लगाई जाए ताकि अगली बार सबसे ज़्यादा अंक मिलें।" },
+  rep1_t: { en: "Topic-level accuracy", hi: "टॉपिक-स्तर की सटीकता" },
+  rep1_d: { en: "Polity strong, Economy weak — graded from your attempts, not a guess.",
+            hi: "पॉलिटी मज़बूत, अर्थव्यवस्था कमज़ोर — आपके ही प्रयासों से निकाला गया, अंदाज़े से नहीं।" },
+  rep2_t: { en: "Time per question", hi: "प्रति प्रश्न समय" },
+  rep2_d: { en: "The four questions that quietly cost you the last section, named.",
+            hi: "वे चार सवाल जिन्होंने चुपचाप आपका आख़िरी सेक्शन छीन लिया — नाम के साथ।" },
+  rep3_t: { en: "Section-wise split", hi: "सेक्शन-वार विभाजन" },
+  rep3_d: { en: "Where the marks came from — and exactly where they drained out.",
+            hi: "अंक कहाँ से आए — और ठीक कहाँ बह गए।" },
+  rep4_t: { en: "Full solutions", hi: "पूर्ण समाधान" },
+  rep4_d: { en: "Every answer reasoned out, including why the tempting wrong option is wrong.",
+            hi: "हर उत्तर तर्क सहित — यह भी कि लुभाने वाला ग़लत विकल्प ग़लत क्यों है।" },
+
+  /* --- free resources band --- */
+  res_eyebrow: { en: "No login needed", hi: "लॉगिन ज़रूरी नहीं" },
+  res_h2:      { en: "Take what's free first", hi: "पहले वह लीजिए जो मुफ़्त है" },
+  res_sub:     { en: "Syllabus, past papers, NCERTs, daily current affairs — all of it open, no account, no email. Judge us on this before you judge us on the price.",
+                 hi: "सिलेबस, पिछले पेपर, NCERT, रोज़ के करेंट अफेयर्स — सब खुला, न खाता, न ईमेल। क़ीमत पर राय बनाने से पहले इस पर बनाइए।" },
+  res_published:   { en: "published across", hi: "प्रकाशित, कुल" },
+  res_series_word: { en: "series", hi: "सीरीज़ में" },
+  res_free_try:    { en: "free to try without paying", hi: "बिना भुगतान आज़माने को मुफ़्त" },
+
+  /* --- coupon ticket --- */
+  coupon_h4:  { en: "Have a coupon code?", hi: "कूपन कोड है?" },
+  coupon_p:   { en: "Enter it on the payment screen. The reduced price appears before you pay — never a surprise afterwards.",
+                hi: "भुगतान वाली स्क्रीन पर डालिए। घटी हुई क़ीमत भुगतान से पहले दिखती है — बाद में कोई चौंकाने वाली बात नहीं।" },
+  coupon_cta: { en: "See test series", hi: "टेस्ट सीरीज़ देखें" },
+
+  /* --- footer --- */
+  foot_blurb:   { en: "Your preparation platform for UPSC, BPSC and UPPCS civil services.",
+                  hi: "UPSC, BPSC और UPPCS सिविल सेवा के लिए आपका तैयारी मंच।" },
+  foot_explore: { en: "Explore", hi: "एक्सप्लोर" },
+  foot_free:    { en: "Free resources", hi: "निःशुल्क संसाधन" },
+  foot_support: { en: "Support", hi: "सहायता" },
+  foot_pyq:     { en: "Previous year papers", hi: "पिछले वर्षों के पेपर" },
+  foot_mydash:  { en: "My dashboard", hi: "मेरा डैशबोर्ड" },
+  foot_material:{ en: "Study material", hi: "अध्ययन सामग्री" },
+  foot_ncert:   { en: "NCERT books", hi: "NCERT किताबें" },
+  foot_news:    { en: "Daily current affairs", hi: "रोज़ाना करेंट अफेयर्स" },
+  foot_help:    { en: "Help & refunds", hi: "सहायता और रिफ़ंड" },
+  foot_refunds: { en: "Refunds & access", hi: "रिफ़ंड और पहुँच" },
+  foot_rights:  { en: "All rights reserved.", hi: "सर्वाधिकार सुरक्षित।" },
+  foot_made:    { en: "Made for aspirants, in India.", hi: "अभ्यर्थियों के लिए, भारत में बना।" },
+});
+
+
+/* Free-resources hub: card labels and the standalone page headers. */
+Object.assign(STR, {
+  res_syllabus_l:  { en: "Syllabus", hi: "सिलेबस" },
+  res_syllabus_b:  { en: "Full UPSC / BPSC / UPPCS syllabus, topic by topic.", hi: "UPSC / BPSC / UPPCS का पूरा सिलेबस, टॉपिक दर टॉपिक।" },
+  res_pyq_l:       { en: "Previous Year Papers", hi: "पिछले वर्षों के पेपर" },
+  res_pyq_b:       { en: "Solved papers going back several attempts.", hi: "कई वर्षों के हल किए हुए पेपर।" },
+  res_materials_l: { en: "Free Materials", hi: "निःशुल्क सामग्री" },
+  res_materials_b: { en: "Notes and PDFs, free to download.", hi: "नोट्स और PDF, मुफ़्त डाउनलोड।" },
+  res_ncert_l:     { en: "NCERT Books", hi: "NCERT किताबें" },
+  res_ncert_b:     { en: "Class 6–12 NCERTs, organised by subject.", hi: "कक्षा 6–12 की NCERT, विषय के अनुसार।" },
+  res_news_l:      { en: "Daily Current Affairs", hi: "रोज़ाना करेंट अफेयर्स" },
+  res_news_b:      { en: "Today's news, filtered for what's exam-relevant.", hi: "आज की ख़बरें, परीक्षा के लिहाज़ से छाँटी हुई।" },
+  res_faq_l:       { en: "FAQ", hi: "सामान्य प्रश्न" },
+  res_faq_b:       { en: "Tests, payments, access and refunds.", hi: "टेस्ट, भुगतान, पहुँच और रिफ़ंड।" },
+
+  rt_syllabus_t:  { en: "Syllabus", hi: "सिलेबस" },
+  rt_syllabus_s:  { en: "What each exam actually asks of you", hi: "हर परीक्षा असल में आपसे क्या माँगती है" },
+  rt_pyq_t:       { en: "Previous Year Papers", hi: "पिछले वर्षों के पेपर" },
+  rt_pyq_s:       { en: "The best predictor of what comes next", hi: "आगे क्या आएगा, इसका सबसे भरोसेमंद संकेत" },
+  rt_materials_t: { en: "Free Study Material", hi: "निःशुल्क अध्ययन सामग्री" },
+  rt_materials_s: { en: "Open to everyone, no account needed", hi: "सबके लिए खुली, खाता ज़रूरी नहीं" },
+  rt_ncert_t:     { en: "NCERT Books", hi: "NCERT किताबें" },
+  rt_ncert_s:     { en: "The foundation every serious aspirant starts from", hi: "हर गंभीर अभ्यर्थी की शुरुआत यहीं से होती है" },
+  rt_news_t:      { en: "Daily Current Affairs", hi: "रोज़ाना करेंट अफेयर्स" },
+  rt_news_s:      { en: "Filtered for what the exam actually asks", hi: "परीक्षा जो पूछती है, उसी के हिसाब से छाँटी हुई" },
+  rt_faq_t:       { en: "Frequently Asked Questions", hi: "अक्सर पूछे जाने वाले प्रश्न" },
+  rt_faq_s:       { en: "Tests, payments, access and refunds", hi: "टेस्ट, भुगतान, पहुँच और रिफ़ंड" },
+
+  shloka_src:     { en: "Br\u0325hada\u0304ran\u0323yaka Upanis\u0323ad \u00b7 1.3.28", hi: "बृहदारण्यक उपनिषद् · १.३.२८" },
+});
+
+
+/* ---------------------------------------------------------------------------
+ * The exam hall and the report that follows it.
+ *
+ * This is the screen a paying student is inside for two hours, under time
+ * pressure. If any of it is in a language they do not read, that is not a
+ * cosmetic problem — it is the difference between attempting a question and
+ * skipping it.
+ * ------------------------------------------------------------------------ */
+Object.assign(STR, {
+  /* --- instructions --- */
+  ex_online:      { en: "Online Examination", hi: "ऑनलाइन परीक्षा" },
+  ex_duration:    { en: "Duration:", hi: "अवधि:" },
+  ex_questions:   { en: "Questions:", hi: "प्रश्न:" },
+  ex_maxmarks:    { en: "Max Marks:", hi: "अधिकतम अंक:" },
+  ex_sections:    { en: "Sections:", hi: "सेक्शन:" },
+  ex_min:         { en: "min", hi: "मिनट" },
+  ex_gen_inst:    { en: "General Instructions", hi: "सामान्य निर्देश" },
+  ex_i1a:         { en: "The countdown timer at the top right shows the time remaining. When it reaches zero, the test is ", hi: "ऊपर दाईं ओर का टाइमर शेष समय दिखाता है। शून्य होते ही टेस्ट " },
+  ex_i1b:         { en: "submitted automatically", hi: "अपने आप जमा हो जाता है" },
+  ex_i2a:         { en: "The timer turns ", hi: "टाइमर " },
+  ex_i2b:         { en: "red in the last 60 seconds", hi: "आख़िरी 60 सेकंड में लाल" },
+  ex_i2c:         { en: " as a final warning.", hi: " हो जाता है — यह आख़िरी चेतावनी है।" },
+  ex_i3:          { en: "The question palette on the right shows the status of every question using the colour codes below.", hi: "दाईं ओर का प्रश्न पैलेट नीचे दिए रंगों से हर प्रश्न की स्थिति दिखाता है।" },
+  ex_i4:          { en: "You may move between sections and questions freely using the palette or the navigation buttons.", hi: "आप पैलेट या नेविगेशन बटन से सेक्शन और प्रश्नों के बीच स्वतंत्र रूप से आ-जा सकते हैं।" },
+  ex_i5a:         { en: "Use ", hi: "उत्तर सहेजने के लिए " },
+  ex_i5b:         { en: " to save your answer, ", hi: " दबाइए, प्रश्न पर निशान लगाने के लिए " },
+  ex_i5c:         { en: " to flag a question, and ", hi: ", और अपना चयन हटाने के लिए " },
+  ex_i5d:         { en: " to remove your selection.", hi: " दबाइए।" },
+  ex_i6:          { en: "Question and option order is randomised per candidate to maintain exam integrity.", hi: "परीक्षा की शुचिता बनाए रखने के लिए हर अभ्यर्थी के लिए प्रश्नों और विकल्पों का क्रम बदला जाता है।" },
+  ex_marking:     { en: "Marking Scheme", hi: "अंकन योजना" },
+  ex_for_correct: { en: "for each correct answer", hi: "प्रत्येक सही उत्तर के लिए" },
+  ex_for_wrong:   { en: "for each wrong answer", hi: "प्रत्येक ग़लत उत्तर के लिए" },
+  ex_no_negative: { en: "no negative marking", hi: "कोई नेगेटिव मार्किंग नहीं" },
+  ex_multi_t:     { en: "Multiple-correct questions:", hi: "बहु-सही प्रश्न:" },
+  ex_multi_d:     { en: "full marks only if every correct option — and no incorrect one — is selected.", hi: "पूरे अंक तभी जब हर सही विकल्प चुना गया हो और कोई ग़लत विकल्प न चुना गया हो।" },
+  ex_legend:      { en: "Question Palette Legend", hi: "प्रश्न पैलेट संकेत" },
+  ex_answered:    { en: "Answered", hi: "उत्तर दिया" },
+  ex_notanswered: { en: "Not Answered", hi: "उत्तर नहीं दिया" },
+  ex_notvisited:  { en: "Not Visited", hi: "देखा नहीं" },
+  ex_marked:      { en: "Marked for Review", hi: "समीक्षा के लिए चिह्नित" },
+  ex_ansmarked:   { en: "Answered & Marked", hi: "उत्तर दिया और चिह्नित" },
+  ex_consent:     { en: "I have read and understood all the instructions. I declare that I am not in possession of any prohibited material and I agree to abide by the examination rules.", hi: "मैंने सभी निर्देश पढ़ और समझ लिए हैं। मैं घोषणा करता/करती हूँ कि मेरे पास कोई प्रतिबंधित सामग्री नहीं है और मैं परीक्षा के नियमों का पालन करूँगा/करूँगी।" },
+  ex_begin:       { en: "I am ready to begin", hi: "मैं शुरू करने के लिए तैयार हूँ" },
+  ex_dashboard:   { en: "Dashboard", hi: "डैशबोर्ड" },
+
+  /* --- in the exam --- */
+  ex_save_next:   { en: "Save & Next", hi: "सहेजें और आगे" },
+  ex_mark_next:   { en: "Mark for Review & Next", hi: "चिह्नित करें और आगे" },
+  ex_clear:       { en: "Clear Response", hi: "उत्तर हटाएँ" },
+  ex_previous:    { en: "Previous", hi: "पिछला" },
+  ex_enter_ans:   { en: "Enter your answer", hi: "अपना उत्तर लिखिए" },
+  ex_type_number: { en: "Type a number…", hi: "एक संख्या लिखिए…" },
+  ex_submit_test: { en: "Submit Test", hi: "टेस्ट जमा करें" },
+  ex_resume:      { en: "Resume Test", hi: "टेस्ट जारी रखें" },
+  ex_submit_now:  { en: "Submit Now", hi: "अभी जमा करें" },
+  ex_submit_warn: { en: "Once submitted, you cannot change your answers. Please review the summary below.", hi: "जमा करने के बाद आप उत्तर नहीं बदल सकते। कृपया नीचे का सारांश देख लीजिए।" },
+  ex_preparing:   { en: "Preparing your question paper…", hi: "आपका प्रश्नपत्र तैयार हो रहा है…" },
+  ex_scoring:     { en: "Scoring your paper…", hi: "आपका पेपर जाँचा जा रहा है…" },
+  ex_scoring_sub: { en: "Your answers are being checked on our servers.", hi: "आपके उत्तर हमारे सर्वर पर जाँचे जा रहे हैं।" },
+  ex_sub_failed:  { en: "Submission failed", hi: "जमा नहीं हो सका" },
+  ex_answers_safe:{ en: "Your answers are safe — nothing has been lost.", hi: "आपके उत्तर सुरक्षित हैं — कुछ भी नहीं गया।" },
+  ex_try_again:   { en: "Try again", hi: "पुनः प्रयास करें" },
+  ex_back_paper:  { en: "Back to paper", hi: "पेपर पर वापस" },
+  ex_in_progress: { en: "Attempt in progress", hi: "प्रयास जारी है" },
+
+  /* --- report --- */
+  ex_report:      { en: "Performance Report", hi: "प्रदर्शन रिपोर्ट" },
+  ex_correct:     { en: "Correct", hi: "सही" },
+  ex_wrong:       { en: "Wrong", hi: "ग़लत" },
+  ex_skipped:     { en: "Skipped", hi: "छोड़े गए" },
+  ex_accuracy:    { en: "Accuracy", hi: "सटीकता" },
+  ex_all:         { en: "All", hi: "सभी" },
+  ex_benchmark:   { en: "Benchmark", hi: "तुलना" },
+  ex_breakdown:   { en: "Breakdown", hi: "विश्लेषण" },
+  ex_diagnosis:   { en: "Diagnosis", hi: "निदान" },
+  ex_deep_review: { en: "Deep Review", hi: "विस्तृत समीक्षा" },
+  ex_action_plan: { en: "Action Plan", hi: "कार्य योजना" },
+  ex_sec_perf:    { en: "Section-wise Performance", hi: "सेक्शन-वार प्रदर्शन" },
+  ex_sec_sub:     { en: "Score in each section as a share of its maximum.", hi: "हर सेक्शन में अधिकतम के मुक़ाबले आपका स्कोर।" },
+  ex_topic_sub:   { en: "Each topic graded by your accuracy.", hi: "हर टॉपिक आपकी सटीकता के आधार पर।" },
+  ex_coverage:    { en: "Accuracy across every topic tested.", hi: "जितने टॉपिक पूछे गए, सबमें सटीकता।" },
+  ex_qbyq:        { en: "Question-by-Question Analysis", hi: "प्रश्न-दर-प्रश्न विश्लेषण" },
+  ex_qbyq_sub:    { en: "Your answer, the correct answer, marks awarded, time spent, and a full explanation for every question.", hi: "हर प्रश्न पर आपका उत्तर, सही उत्तर, मिले अंक, लगा समय और पूरी व्याख्या।" },
+  ex_correct_ans: { en: "Correct answer", hi: "सही उत्तर" },
+  ex_explanation: { en: "Explanation:", hi: "व्याख्या:" },
+  ex_back_dash:   { en: "Back to dashboard", hi: "डैशबोर्ड पर वापस" },
+  ex_come_back:   { en: "Come back after others attempt it to see where you stand.", hi: "दूसरों के प्रयास के बाद लौटिए, तब पता चलेगा आप कहाँ खड़े हैं।" },
+  ex_slow_note:   { en: "Bars in red took noticeably longer than your average — target these for speed.", hi: "लाल पट्टियों में आपने औसत से काफ़ी ज़्यादा समय लिया — गति के लिए इन्हीं पर काम कीजिए।" },
+  ex_prio:        { en: "Priority — Weak areas to fix first", hi: "प्राथमिकता — पहले ये कमज़ोरियाँ सुधारिए" },
+  ex_strengthen:  { en: "Strengthen — Almost there", hi: "मज़बूत कीजिए — बस थोड़ा और" },
+  ex_keepitup:    { en: "Keep it up — Your strengths", hi: "बनाए रखिए — आपकी मज़बूती" },
+  ex_speed:       { en: "Speed — Manage your time better", hi: "गति — समय बेहतर सँभालिए" },
+  ex_cov_head:    { en: "Coverage — Don't leave marks on the table", hi: "कवरेज — अंक छोड़कर मत आइए" },
+});
+
+
+/* ---------------------------------------------------------------------------
+ * Student dashboard: navigation, page headers and the labels that repeat on
+ * every screen. This is the shell a paying student moves through daily.
+ * ------------------------------------------------------------------------ */
+Object.assign(STR, {
+  sd_home:        { en: "Home", hi: "होम" },
+  sd_home_s:      { en: "Your preparation command centre", hi: "आपकी तैयारी का नियंत्रण केंद्र" },
+  sd_tests:       { en: "Test Series", hi: "टेस्ट सीरीज़" },
+  sd_tests_s:     { en: "Attempt mocks and review past tests", hi: "मॉक दीजिए और पुराने टेस्ट देखिए" },
+  sd_perf:        { en: "My Performance", hi: "मेरा प्रदर्शन" },
+  sd_perf_s:      { en: "Deep analytics across every attempt", hi: "हर प्रयास का गहरा विश्लेषण" },
+  sd_batches:     { en: "My Batches", hi: "मेरे बैच" },
+  sd_batches_s:   { en: "Courses you're enrolled in", hi: "जिन कोर्स में आपका नामांकन है" },
+  sd_materials:   { en: "Study Material", hi: "अध्ययन सामग्री" },
+  sd_materials_s: { en: "PDFs, notes and videos", hi: "PDF, नोट्स और वीडियो" },
+  sd_leaderboard: { en: "Leaderboard", hi: "लीडरबोर्ड" },
+  sd_leaderboard_s:{ en: "See where you rank", hi: "देखिए आपकी रैंक कहाँ है" },
+  sd_refer:       { en: "Refer & Earn", hi: "रेफ़र करें, कमाएँ" },
+  sd_refer_s:     { en: "Invite friends and earn rewards", hi: "दोस्तों को बुलाइए और इनाम पाइए" },
+  sd_profile:     { en: "Profile", hi: "प्रोफ़ाइल" },
+  sd_profile_s:   { en: "Your account and achievements", hi: "आपका खाता और उपलब्धियाँ" },
+
+  /* repeated labels */
+  sd_notifications:{ en: "Notifications", hi: "सूचनाएँ" },
+  sd_nothing_new: { en: "Nothing new right now.", hi: "अभी कुछ नया नहीं है।" },
+  sd_logout:      { en: "Log out", hi: "लॉग आउट" },
+  sd_view_all:    { en: "View all", hi: "सभी देखें" },
+  sd_close:       { en: "Close", hi: "बंद करें" },
+  sd_free:        { en: "Free", hi: "निःशुल्क" },
+  sd_rank:        { en: "Rank", hi: "रैंक" },
+  sd_accuracy:    { en: "Accuracy", hi: "सटीकता" },
+  sd_browse_tests:{ en: "Browse tests", hi: "टेस्ट देखें" },
+  sd_full_analytics:{ en: "Full analytics", hi: "पूरा विश्लेषण" },
+  sd_last_attempt:{ en: "Last attempt", hi: "पिछला प्रयास" },
+  sd_available:   { en: "Available tests", hi: "उपलब्ध टेस्ट" },
+  sd_all_series:  { en: "All test series", hi: "सभी टेस्ट सीरीज़" },
+  sd_achievements:{ en: "Achievements", hi: "उपलब्धियाँ" },
+  sd_milestones:  { en: "Milestones", hi: "पड़ाव" },
+  sd_active_enrol:{ en: "Active enrollment", hi: "सक्रिय नामांकन" },
+  sd_expired:     { en: "Expired", hi: "समाप्त" },
+  sd_full_name:   { en: "Full name", hi: "पूरा नाम" },
+  sd_email:       { en: "Email", hi: "ईमेल" },
+  sd_city:        { en: "City", hi: "शहर" },
+
+  /* refer & earn view */
+  sd_ref_invite:  { en: "Invite friends, earn", hi: "दोस्तों को बुलाइए, कमाइए" },
+  sd_ref_lede:    { en: "Share your link with someone preparing for the same exam. The moment they buy any test series, the bonus lands in your wallet. There is no limit on how many you invite.",
+                    hi: "अपना लिंक उसी परीक्षा की तैयारी करने वाले किसी साथी को भेजिए। जैसे ही वे कोई टेस्ट सीरीज़ खरीदते हैं, बोनस आपके वॉलेट में आ जाता है। कितने लोगों को बुलाएँ, इसकी कोई सीमा नहीं।" },
+  sd_ref_fine:    { en: "A balance and one currently active course are required to withdraw. The bonus is credited only when your friend actually pays — self-referrals and duplicate accounts do not count, and the bonus is taken back if the payment is refunded.",
+                    hi: "निकासी के लिए ज़रूरी बैलेंस और एक चालू कोर्स होना आवश्यक है। बोनस तभी मिलता है जब आपका साथी वाकई भुगतान करे — सेल्फ़-रेफ़रल और डुप्लिकेट खाते नहीं गिने जाते, और भुगतान वापस होने पर बोनस भी वापस ले लिया जाता है।" },
+  sd_ref_copy:    { en: "Copy", hi: "कॉपी" },
+  sd_ref_share:   { en: "Share", hi: "शेयर" },
+  sd_ref_copied:  { en: "Invite link copied", hi: "इनवाइट लिंक कॉपी हो गया" },
+  sd_ref_joined:  { en: "Friends joined", hi: "जुड़े हुए साथी" },
+  sd_ref_joined_s:{ en: "Signed up on your link", hi: "आपके लिंक से साइन अप किया" },
+  sd_ref_bought:  { en: "Bought a series", hi: "सीरीज़ खरीदी" },
+  sd_ref_bought_s:{ en: "These are the ones that pay", hi: "इन्हीं पर बोनस मिलता है" },
+  sd_ref_lifetime:{ en: "Lifetime earned", hi: "कुल कमाई" },
+  sd_ref_lifetime_s:{ en: "Before any withdrawals", hi: "निकासी से पहले" },
+  sd_ref_s1_t:    { en: "Send your link", hi: "अपना लिंक भेजिए" },
+  sd_ref_s1_d:    { en: "WhatsApp it to a study group or a friend sitting the same exam.", hi: "किसी स्टडी ग्रुप या उसी परीक्षा के साथी को WhatsApp कीजिए।" },
+  sd_ref_s2_t:    { en: "They join", hi: "वे जुड़ते हैं" },
+  sd_ref_s2_d:    { en: "The link tags their account automatically — they never type a code.", hi: "लिंक उनका खाता अपने आप जोड़ देता है — उन्हें कोई कोड नहीं लिखना पड़ता।" },
+  sd_ref_s3_t:    { en: "You earn", hi: "आप कमाते हैं" },
+  sd_ref_s3_d:    { en: "The bonus lands in your wallet the moment they buy.", hi: "जैसे ही वे खरीदते हैं, बोनस आपके वॉलेट में आ जाता है।" },
+  sd_ref_people:  { en: "People you invited", hi: "जिन्हें आपने बुलाया" },
+  sd_ref_masked:  { en: "Names are shortened — we don't share your friends' contact details.", hi: "नाम छोटे कर दिए गए हैं — हम आपके साथियों की संपर्क जानकारी साझा नहीं करते।" },
+  sd_ref_none:    { en: "No one has joined on your link yet. Share it and they'll show up here.", hi: "अभी आपके लिंक से कोई नहीं जुड़ा। लिंक भेजिए, वे यहाँ दिखेंगे।" },
+  sd_ref_browsing:{ en: "Browsing", hi: "देख रहे हैं" },
+  sd_wallet_bal:  { en: "Wallet balance", hi: "वॉलेट बैलेंस" },
+  sd_wallet_unlock:{ en: "Withdrawal unlocks at", hi: "निकासी तब खुलेगी जब" },
+  sd_wallet_hist: { en: "Wallet history", hi: "वॉलेट इतिहास" },
+  sd_wallet_hist_s:{ en: "Every credit and debit, including anything reversed", hi: "हर जमा और निकासी, वापस लिए गए सहित" },
+  sd_wallet_payouts:{ en: "Payouts open shortly. Your balance keeps growing either way — earning is never blocked.", hi: "भुगतान जल्द शुरू होंगे। आपका बैलेंस बढ़ता रहेगा — कमाई कभी नहीं रुकती।" },
+  sd_wallet_bonus:{ en: "Referral bonus", hi: "रेफ़रल बोनस" },
+  sd_wallet_wd:   { en: "Withdrawal", hi: "निकासी" },
+  sd_wallet_adj:  { en: "Manual adjustment", hi: "मैनुअल समायोजन" },
+  sd_wallet_rev:  { en: "Reversal", hi: "वापसी" },
+  sd_wallet_revd: { en: "reversed after refund", hi: "रिफ़ंड के बाद वापस" },
+  sd_ref_loading: { en: "Loading your invite link…", hi: "आपका इनवाइट लिंक लोड हो रहा है…" },
+  sd_earned_from: { en: "earned in total from", hi: "कुल कमाए —" },
+  sd_paid_refs:   { en: "paid referrals", hi: "सफल रेफ़रल से" },
+  sd_paid_ref_one:{ en: "paid referral", hi: "सफल रेफ़रल से" },
+  sd_you_have:    { en: "you have", hi: "आपके पास है" },
+  sd_one_active:  { en: "One currently active course", hi: "एक चालू कोर्स" },
+  sd_buy_unlock:  { en: "buy or renew any series to unlock", hi: "खोलने के लिए कोई भी सीरीज़ लें या नवीनीकृत करें" },
+});
+
+
 export function AppProviders({ children }) {
   useBrandChrome();
   const [lang, setLangRaw] = useState(() => loadKey("lang", "en"));

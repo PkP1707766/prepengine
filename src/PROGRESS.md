@@ -31,6 +31,54 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 23 Aug 2026 — The Hindi toggle actually does something now
+
+The language switch shipped working. What it switched was two screens.
+
+Coverage before this pass, counted by t() calls: LoginScreen 68, JoinScreen 23,
+authChrome 3 — and **PublicSite 1, StudentApp 0, ExamApp 0, ContentPages 0**.
+So every page a Hindi-medium student actually reads was English: the storefront
+they land on, the dashboard they live in, and the exam hall they sit in for two
+hours. Flipping the toggle appeared to do nothing, which is worse than not
+offering it.
+
+The dictionary went from 81 keys to 346. PublicSite went from 1 t() call to 88.
+
+Translated:
+- the whole storefront — nav, hero, claim strip, catalogue, how-it-works, the
+  report showcase, the free-resources band, the coupon ticket, the footer
+- the exam hall — instructions, marking scheme, palette legend, the consent
+  declaration, in-paper controls, the submit dialog, the scoring overlay and
+  its failure path, and the report headings
+- the student shell — sidebar, page headers, and the whole Refer & Earn and
+  wallet view
+
+Two structural changes were needed, both because module-level constants cannot
+call t(): `RESOURCES`/`RESOURCE_TITLES` in resources.js and `NAV`/`META` in
+StudentApp now carry dictionary KEYS rather than English text, resolved at
+render time.
+
+Written the way a Hindi-medium aspirant reads rather than the way a dictionary
+translates — ordinary words where they exist, and the English term in
+Devanagari where that is genuinely what people say (टेस्ट सीरीज़, रैंक, सिलेबस).
+
+### One thing the toggle still cannot touch
+
+Bundle names and taglines, test titles and section names come from the
+database — they are what you type in the admin panel. In Hindi the storefront
+now leaves exactly five English strings, and all five are yours: "Full Test
+Series", "Bihar-focused GS with current affairs depth", and so on. Translating
+those needs Hindi columns on `plans`/`tests` and a second field in the admin
+form. Say the word and I will add it.
+
+### Still English
+
+The deeper analytics micro-copy inside My Performance, and the admin panel
+(which only you use). Neither blocks a student from navigating, sitting a paper
+or paying — but the analytics pass is worth doing before a Hindi-medium cohort.
+
+---
+
 ## 23 Aug 2026 — Security & integrity audit (phase 6 on hold)
 
 Phase 6 is paused pending Razorpay KYC. This pass went looking for everything

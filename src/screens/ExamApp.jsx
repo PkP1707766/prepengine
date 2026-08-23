@@ -3,6 +3,7 @@ import { AlertCircle, Trophy } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
+import { useLang } from "../lib/contexts.js";
 import { loadExamTest, submitAttempt, currentUser, getProfile } from "../lib/db.js";
 
 
@@ -350,6 +351,7 @@ function ScoreRing({ score, max, grade }) {
    ============================================================ */
 function Instructions({ onStart, onExit }) {
   const EXAM = useExam();
+  const { t } = useLang();
   const [agree, setAgree] = useState(false);
   const totalQ = EXAM.sections.reduce((s, x) => s + x.questions.length, 0);
   const maxMarks = EXAM.sections.reduce((s, x) => s + x.questions.reduce((a, q) => a + q.marks, 0), 0);
@@ -367,56 +369,56 @@ function Instructions({ onStart, onExit }) {
       <div className="inst-card">
         <div className="inst-head">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
-            <div className="inst-eyebrow">Online Examination</div>
+            <div className="inst-eyebrow">{t("ex_online")}</div>
             <ChromeControls />
           </div>
           <h1 className="inst-title">{EXAM.title}</h1>
           <div className="inst-meta">
-            <span>Duration: <b>{Math.round(EXAM.durationSec / 60)} min</b></span>
-            <span>Questions: <b>{totalQ}</b></span>
-            <span>Max Marks: <b>{maxMarks}</b></span>
-            <span>Sections: <b>{EXAM.sections.length}</b></span>
+            <span>{t("ex_duration")} <b>{Math.round(EXAM.durationSec / 60)} {t("ex_min")}</b></span>
+            <span>{t("ex_questions")} <b>{totalQ}</b></span>
+            <span>{t("ex_maxmarks")} <b>{maxMarks}</b></span>
+            <span>{t("ex_sections")} <b>{EXAM.sections.length}</b></span>
           </div>
         </div>
         <div className="inst-body">
-          <div className="inst-h">General Instructions</div>
+          <div className="inst-h">{t("ex_gen_inst")}</div>
           <ol className="inst-list">
-            <li>The countdown timer at the top right shows the time remaining. When it reaches zero, the test is <b>submitted automatically</b>.</li>
-            <li>The timer turns <b style={{ color: "var(--red)" }}>red in the last 60 seconds</b> as a final warning.</li>
-            <li>The question palette on the right shows the status of every question using the colour codes below.</li>
-            <li>You may move between sections and questions freely using the palette or the navigation buttons.</li>
-            <li>Use <b>Save &amp; Next</b> to save your answer, <b>Mark for Review &amp; Next</b> to flag a question, and <b>Clear Response</b> to remove your selection.</li>
-            {shuffled && <li>Question and option order is randomised per candidate to maintain exam integrity.</li>}
+            <li>{t("ex_i1a")}<b>{t("ex_i1b")}</b>.</li>
+            <li>{t("ex_i2a")}<b style={{ color: "var(--red)" }}>{t("ex_i2b")}</b>{t("ex_i2c")}</li>
+            <li>{t("ex_i3")}</li>
+            <li>{t("ex_i4")}</li>
+            <li>{t("ex_i5a")}<b>{t("ex_save_next")}</b>{t("ex_i5b")}<b>{t("ex_mark_next")}</b>{t("ex_i5c")}<b>{t("ex_clear")}</b>{t("ex_i5d")}</li>
+            {shuffled && <li>{t("ex_i6")}</li>}
           </ol>
 
-          <div className="inst-h">Marking Scheme</div>
+          <div className="inst-h">{t("ex_marking")}</div>
           <ul className="inst-list">
             {marking.map((m) => (
               <li key={m.section}>
-                <b>{m.section}:</b> {m.plus} for each correct answer
-                {m.minus ? <>, −{m.minus} for each wrong answer</> : <>, no negative marking</>}.
+                <b>{m.section}:</b> {m.plus} {t("ex_for_correct")}
+                {m.minus ? <>, −{m.minus} {t("ex_for_wrong")}</> : <>, {t("ex_no_negative")}</>}.
               </li>
             ))}
-            <li><b>Multiple-correct questions:</b> full marks only if every correct option — and no incorrect one — is selected.</li>
+            <li><b>{t("ex_multi_t")}</b> {t("ex_multi_d")}</li>
           </ul>
 
-          <div className="inst-h">Question Palette Legend</div>
+          <div className="inst-h">{t("ex_legend")}</div>
           <div className="legend-grid">
-            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.answered.bg }}>1</span> Answered</div>
-            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.notAnswered.bg }}>2</span> Not Answered</div>
-            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.notVisited.bg, color: STATUS.notVisited.fg, border: "1.5px solid " + STATUS.notVisited.bd }}>3</span> Not Visited</div>
-            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.marked.bg }}>4</span> Marked for Review</div>
-            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.ansMarked.bg }}>5<span className="dot" /></span> Answered &amp; Marked</div>
+            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.answered.bg }}>1</span> {t("ex_answered")}</div>
+            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.notAnswered.bg }}>2</span> {t("ex_notanswered")}</div>
+            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.notVisited.bg, color: STATUS.notVisited.fg, border: "1.5px solid " + STATUS.notVisited.bd }}>3</span> {t("ex_notvisited")}</div>
+            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.marked.bg }}>4</span> {t("ex_marked")}</div>
+            <div className="legend-row"><span className="lg-box" style={{ background: STATUS.ansMarked.bg }}>5<span className="dot" /></span> {t("ex_ansmarked")}</div>
           </div>
 
           <div className="consent">
             <input id="agree" type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
-            <label htmlFor="agree">I have read and understood all the instructions. I declare that I am not in possession of any prohibited material and I agree to abide by the examination rules.</label>
+            <label htmlFor="agree">{t("ex_consent")}</label>
           </div>
 
           <div className="begin-row">
-            <button className="begin-btn" disabled={!agree} onClick={onStart}>I am ready to begin →</button>
-            <button onClick={onExit} style={{ marginLeft: 12, padding: "13px 22px", background: "var(--card)", border: "1.5px solid #e6d6b2", borderRadius: 10, color: "var(--muted)", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>← Dashboard</button>
+            <button className="begin-btn" disabled={!agree} onClick={onStart}>{t("ex_begin")} →</button>
+            <button onClick={onExit} style={{ marginLeft: 12, padding: "13px 22px", background: "var(--card)", border: "1.5px solid #e6d6b2", borderRadius: 10, color: "var(--muted)", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>← {t("ex_dashboard")}</button>
           </div>
         </div>
       </div>
@@ -428,6 +430,7 @@ function Instructions({ onStart, onExit }) {
    EXAM SCREEN
    ============================================================ */
 function ExamScreen({ state, actions, candidateName }) {
+  const { t } = useLang();
   const EXAM = useExam();
   const { secIdx, qIdx, answers, visited, marked, timeLeft } = state;
   const sec = EXAM.sections[secIdx];
@@ -495,8 +498,8 @@ function ExamScreen({ state, actions, candidateName }) {
 
           {q.type === "numerical" ? (
             <div className="num-in">
-              <label>Enter your answer</label>
-              <input type="number" inputMode="decimal" value={answers[q.id] ?? ""} placeholder="Type a number…"
+              <label>{t("ex_enter_ans")}</label>
+              <input type="number" inputMode="decimal" value={answers[q.id] ?? ""} placeholder={t("ex_type_number")}
                 onChange={(e) => actions.setNumerical(q.id, e.target.value)} />
             </div>
           ) : (
@@ -519,10 +522,10 @@ function ExamScreen({ state, actions, candidateName }) {
           )}
 
           <div className="q-actions">
-            <button className="btn btn-ghost" onClick={actions.prev}>← Previous</button>
-            <button className="btn btn-ghost" onClick={() => actions.clear(q.id)}>Clear Response</button>
-            <button className="btn btn-mark" onClick={() => actions.markNext(q.id)}>Mark for Review &amp; Next</button>
-            <button className="btn btn-save" onClick={actions.saveNext}>Save &amp; Next</button>
+            <button className="btn btn-ghost" onClick={actions.prev}>← {t("ex_previous")}</button>
+            <button className="btn btn-ghost" onClick={() => actions.clear(q.id)}>{t("ex_clear")}</button>
+            <button className="btn btn-mark" onClick={() => actions.markNext(q.id)}>{t("ex_mark_next")}</button>
+            <button className="btn btn-save" onClick={actions.saveNext}>{t("ex_save_next")}</button>
           </div>
         </div>
 
@@ -577,22 +580,23 @@ function ExamScreen({ state, actions, candidateName }) {
    SUBMIT MODAL
    ============================================================ */
 function SubmitModal({ counts, onCancel, onConfirm }) {
+  const { t } = useLang();
   return (
     <div className="overlay" onClick={onCancel}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-head">
           <h3>Submit your test?</h3>
-          <p>Once submitted, you cannot change your answers. Please review the summary below.</p>
+          <p>{t("ex_submit_warn")}</p>
         </div>
         <div className="modal-stats">
-          <div className="mstat"><div className="n" style={{ color: "var(--green)" }}>{counts.answered}</div><div className="l">Answered</div></div>
-          <div className="mstat"><div className="n" style={{ color: "var(--red)" }}>{counts.unanswered}</div><div className="l">Unanswered</div></div>
-          <div className="mstat"><div className="n" style={{ color: "#8a2727" }}>{counts.marked}</div><div className="l">Marked for Review</div></div>
-          <div className="mstat"><div className="n" style={{ color: "var(--muted)" }}>{counts.notVisited}</div><div className="l">Not Visited</div></div>
+          <div className="mstat"><div className="n" style={{ color: "var(--green)" }}>{counts.answered}</div><div className="l">{t("ex_answered")}</div></div>
+          <div className="mstat"><div className="n" style={{ color: "var(--red)" }}>{counts.unanswered}</div><div className="l">{t("ex_notanswered")}</div></div>
+          <div className="mstat"><div className="n" style={{ color: "#8a2727" }}>{counts.marked}</div><div className="l">{t("ex_marked")}</div></div>
+          <div className="mstat"><div className="n" style={{ color: "var(--muted)" }}>{counts.notVisited}</div><div className="l">{t("ex_notvisited")}</div></div>
         </div>
         <div className="modal-foot">
-          <button className="btn btn-ghost" onClick={onCancel}>Resume Test</button>
-          <button className="btn btn-danger" onClick={onConfirm}>Submit Now</button>
+          <button className="btn btn-ghost" onClick={onCancel}>{t("ex_resume")}</button>
+          <button className="btn btn-danger" onClick={onConfirm}>{t("ex_submit_now")}</button>
         </div>
       </div>
     </div>
@@ -604,6 +608,7 @@ function SubmitModal({ counts, onCancel, onConfirm }) {
    ============================================================ */
 function Results({ data, onRetake, onExit }) {
   const EXAM = useExam();
+  const { t } = useLang();
   const [filter, setFilter] = useState("all");
   const [open, setOpen] = useState(null);
 
@@ -662,7 +667,7 @@ function Results({ data, onRetake, onExit }) {
             </div>
           )}
           <div className="hero-stats">
-            <div className="hs"><div className="n" style={{ color: "#7fe0a3" }}>{data.correct}</div><div className="l">Correct</div></div>
+            <div className="hs"><div className="n" style={{ color: "#7fe0a3" }}>{data.correct}</div><div className="l">{t("ex_correct")}</div></div>
             <div className="hs"><div className="n" style={{ color: "#f29b9b" }}>{data.wrong}</div><div className="l">Wrong</div></div>
             <div className="hs"><div className="n">{data.unattempted}</div><div className="l">Skipped</div></div>
             <div className="hs"><div className="n">{data.accuracy.toFixed(0)}%</div><div className="l">Accuracy</div></div>
@@ -674,7 +679,7 @@ function Results({ data, onRetake, onExit }) {
         {/* SECTION-WISE */}
         <div className="panel">
           <div className="panel-eyebrow">Breakdown</div>
-          <div className="panel-title">Section-wise Performance</div>
+          <div className="panel-title">{t("ex_sec_perf")}</div>
           <p className="panel-note">Score in each section as a share of its maximum.</p>
           {data.sections.map((s) => {
             const pct = s.max > 0 ? (Math.max(0, s.score) / s.max) * 100 : 0;
@@ -844,7 +849,7 @@ function Results({ data, onRetake, onExit }) {
         {/* QUESTION-BY-QUESTION REVIEW */}
         <div className="panel full">
           <div className="panel-eyebrow">Deep Review</div>
-          <div className="panel-title">Question-by-Question Analysis</div>
+          <div className="panel-title">{t("ex_qbyq")}</div>
           <p className="panel-note">Your answer, the correct answer, marks awarded, time spent, and a full explanation for every question.</p>
           <div className="rev-filters">
             {[["all", "All"], ["correct", "Correct"], ["wrong", "Wrong"], ["skipped", "Skipped"]].map(([k, label]) => (
@@ -893,7 +898,7 @@ function Results({ data, onRetake, onExit }) {
                       </div>
                     ) : (
                       <div className="rev-opts">
-                        <div className={"rev-opt correct"}><span className="rev-opt-key">✓</span><span>Correct answer: {r.correctVal}</span></div>
+                        <div className={"rev-opt correct"}><span className="rev-opt-key">✓</span><span>{t("ex_correct_ans")}: {r.correctVal}</span></div>
                         <div className={"rev-opt " + (r.correct ? "correct" : r.attempted ? "wrong" : "neutral")}>
                           <span className="rev-opt-key">{r.attempted ? (r.correct ? "✓" : "✗") : "—"}</span>
                           <span>Your answer: {r.attempted ? r.yourVal : "Not attempted"}</span>
@@ -911,7 +916,7 @@ function Results({ data, onRetake, onExit }) {
 
       <div className="res-foot">
         <button className="foot-btn" onClick={onRetake}>↻ Re-attempt test</button>
-        <button className="foot-btn primary" onClick={onExit}>Back to dashboard →</button>
+        <button className="foot-btn primary" onClick={onExit}>{t("ex_back_dash")} →</button>
       </div>
     </div>
   );
@@ -922,6 +927,7 @@ function Results({ data, onRetake, onExit }) {
    ============================================================ */
 function ExamRunner({ onExit, candidateName, onSubmitted }) {
   const EXAM = useExam();
+  const { t } = useLang();
   const [screen, setScreen] = useState("instructions"); // instructions | exam | result
   const [secIdx, setSecIdx] = useState(0);
   const [qIdx, setQIdx] = useState(0);
@@ -1057,20 +1063,20 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
         <div className="ee-blocker">
           <div className="ee-blocker-card">
             <div className="ee-spin" />
-            <b>Scoring your paper…</b>
-            <span>Your answers are being checked on our servers.</span>
+            <b>{t("ex_scoring")}</b>
+            <span>{t("ex_scoring_sub")}</span>
           </div>
         </div>
       )}
       {submitErr && (
         <div className="ee-blocker">
           <div className="ee-blocker-card">
-            <b>Submission failed</b>
+            <b>{t("ex_sub_failed")}</b>
             <span>{submitErr}</span>
-            <span style={{ color: "var(--muted)" }}>Your answers are safe — nothing has been lost.</span>
+            <span style={{ color: "var(--muted)" }}>{t("ex_answers_safe")}</span>
             <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
-              <button className="btn btn-primary" onClick={doSubmit}>Try again</button>
-              <button className="btn btn-ghost" onClick={() => setSubmitErr("")}>Back to paper</button>
+              <button className="btn btn-primary" onClick={doSubmit}>{t("ex_try_again")}</button>
+              <button className="btn btn-ghost" onClick={() => setSubmitErr("")}>{t("ex_back_paper")}</button>
             </div>
           </div>
         </div>
@@ -1083,6 +1089,7 @@ function ExamRunner({ onExit, candidateName, onSubmitted }) {
    LOADER — resolves the real test, then hands it to the runner.
    ============================================================ */
 function App({ testId, onExit }) {
+  const { t } = useLang();
   const [exam, setExam] = useState(null);
   const [err, setErr] = useState("");
   const [candidateName, setCandidateName] = useState("Candidate");
@@ -1157,7 +1164,7 @@ function App({ testId, onExit }) {
         <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", gap: 14 }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
             <div style={{ animation: "jn-breathe 2.2s ease-in-out infinite" }}><DiyaLogo size={50} ring /></div>
-            <div style={{ color: "var(--muted)", fontWeight: 600 }}>Preparing your question paper…</div>
+            <div style={{ color: "var(--muted)", fontWeight: 600 }}>{t("ex_preparing")}</div>
           </div>
         </div>
       </div>

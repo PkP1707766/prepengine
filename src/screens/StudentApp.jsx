@@ -3,6 +3,7 @@ import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Me
 import { AreaChart, Area, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
+import { useLang } from "../lib/contexts.js";
 import { EmptyState, ErrorState } from "../ui/Feedback.jsx";
 
 import * as DB from "../lib/db.js";
@@ -1422,14 +1423,15 @@ function ProfileView({ toast }) {
    link-only rule exists to stop. The code rides in ?ref= and is
    bound automatically, once, on the invitee's first sign-in.
    ============================================================ */
-const LEDGER_LABEL = {
-  referral_bonus: "Referral bonus",
-  withdrawal: "Withdrawal",
-  adjustment: "Manual adjustment",
-  reversal: "Reversal",
+const LEDGER_KEY = {
+  referral_bonus: "sd_wallet_bonus",
+  withdrawal: "sd_wallet_wd",
+  adjustment: "sd_wallet_adj",
+  reversal: "sd_wallet_rev",
 };
 
 function ReferView({ toast }) {
+  const { t } = useLang();
   const [stats, setStats] = useState(null);
   const [list, setList] = useState([]);
   const [wallet, setWallet] = useState(null);
@@ -1463,7 +1465,7 @@ function ReferView({ toast }) {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(link);
-      toast("Invite link copied");
+      toast(t("sd_ref_copied"));
     } catch {
       // The Clipboard API needs a secure context and a user gesture; on older
       // Android browsers neither is guaranteed. Fall back to a selection.
@@ -1476,7 +1478,7 @@ function ReferView({ toast }) {
         el.select();
         document.execCommand("copy");
         document.body.removeChild(el);
-        toast("Invite link copied");
+        toast(t("sd_ref_copied"));
       } catch {
         toast("Couldn't copy — long-press the link to copy it manually");
       }
@@ -1493,7 +1495,7 @@ function ReferView({ toast }) {
     window.open(`https://wa.me/?text=${encodeURIComponent(pitch)}`, "_blank", "noopener,noreferrer");
   };
 
-  if (loading) return <div className="card card-pad" style={{ textAlign: "center", color: "var(--muted)" }}>Loading your invite link…</div>;
+  if (loading) return <div className="card card-pad" style={{ textAlign: "center", color: "var(--muted)" }}>{t("sd_ref_loading")}</div>;
   if (err) return <ErrorState message={err} onRetry={() => window.location.reload()} />;
   if (!stats) return <ErrorState message="Your referral code hasn't been generated yet. Reload the page." onRetry={() => window.location.reload()} />;
 
@@ -1502,27 +1504,27 @@ function ReferView({ toast }) {
       {wallet && (
         <div className="rf-wallet">
           <div className="rf-wal-main">
-            <div className="rf-wal-label">Wallet balance</div>
+            <div className="rf-wal-label">{t("sd_wallet_bal")}</div>
             <div className="rf-wal-amt"><small>₹</small>{wallet.balance}</div>
             <div className="rf-wal-sub">
-              ₹{wallet.lifetime} earned in total from {stats.paid} paid referral{stats.paid === 1 ? "" : "s"}
+              ₹{wallet.lifetime} {t("sd_earned_from")} {stats.paid} {stats.paid === 1 ? t("sd_paid_ref_one") : t("sd_paid_refs")}
             </div>
           </div>
           <div className="rf-wal-side">
-            <div className="rf-wal-label" style={{ marginBottom: -4 }}>Withdrawal unlocks at</div>
+            <div className="rf-wal-label" style={{ marginBottom: -4 }}>{t("sd_wallet_unlock")}</div>
             <div className={"rf-gate " + (wallet.balance >= wallet.minWithdraw ? "ok" : "no")}>
               <span className="tick">{wallet.balance >= wallet.minWithdraw ? "✓" : "1"}</span>
-              <span>₹{wallet.minWithdraw} balance — you have ₹{wallet.balance}</span>
+              <span>₹{wallet.minWithdraw} — {t("sd_you_have")} ₹{wallet.balance}</span>
             </div>
             <div className={"rf-gate " + (wallet.hasActiveCourse ? "ok" : "no")}>
               <span className="tick">{wallet.hasActiveCourse ? "✓" : "2"}</span>
               <span>
-                One currently active course
-                {wallet.hasActiveCourse ? "" : " — buy or renew any series to unlock"}
+                {t("sd_one_active")}
+                {wallet.hasActiveCourse ? "" : ` — ${t("sd_buy_unlock")}`}
               </span>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--muted)", lineHeight: 1.5 }}>
-              Payouts open shortly. Your balance keeps growing either way — earning is never blocked.
+              {t("sd_wallet_payouts")}
             </div>
           </div>
         </div>
@@ -1530,64 +1532,60 @@ function ReferView({ toast }) {
 
       <div className="rf-hero">
         <div className="rf-hero-in">
-          <h3><Gift size={20} /> Invite friends, earn ₹{stats.bonus}</h3>
+          <h3><Gift size={20} /> {t("sd_ref_invite")} ₹{stats.bonus}</h3>
           <p>
-            Share your link with someone preparing for the same exam. The moment they buy any test
-            series, ₹{stats.bonus} lands in your wallet. There is no limit on how many you invite.
+            {t("sd_ref_lede")}
           </p>
 
           <div className="rf-code"><span>{stats.code}</span></div>
 
           <div className="rf-linkrow">
             <input className="rf-linkbox" readOnly value={link} onFocus={(e) => e.target.select()} aria-label="Your invite link" />
-            <button className="rf-act rf-act-gold" onClick={copy}><Copy size={15} /> Copy</button>
-            <button className="rf-act rf-act-line" onClick={share}><Share2 size={15} /> Share</button>
+            <button className="rf-act rf-act-gold" onClick={copy}><Copy size={15} /> {t("sd_ref_copy")}</button>
+            <button className="rf-act rf-act-line" onClick={share}><Share2 size={15} /> {t("sd_ref_share")}</button>
           </div>
 
           <p className="rf-fine">
-            Bonus withdraw karne ke liye ₹{wallet ? wallet.minWithdraw : 500} balance aur ek currently
-            active course zaroori hai. Bonus tabhi milta hai jab aapka friend actually payment kare —
-            self-referral aur duplicate accounts count nahi hote, aur refund hone par bonus wapas le liya
-            jaata hai.
+            {t("sd_ref_fine")}
           </p>
         </div>
       </div>
 
       <div className="stats" style={{ marginTop: 22 }}>
-        <StatCard icon={<Users size={19} />} color="#7a1f1f" n={stats.total} label="Friends joined" sub="Signed up on your link" />
-        <StatCard icon={<CheckCircle2 size={19} />} color="#1f8a4c" n={stats.paid} label="Bought a series" sub="These are the ones that pay" />
-        <StatCard icon={<IndianRupee size={19} />} color="#b8923a" n={`₹${wallet ? wallet.lifetime : 0}`} label="Lifetime earned" sub="Before any withdrawals" />
+        <StatCard icon={<Users size={19} />} color="#7a1f1f" n={stats.total} label={t("sd_ref_joined")} sub={t("sd_ref_joined_s")} />
+        <StatCard icon={<CheckCircle2 size={19} />} color="#1f8a4c" n={stats.paid} label={t("sd_ref_bought")} sub={t("sd_ref_bought_s")} />
+        <StatCard icon={<IndianRupee size={19} />} color="#b8923a" n={`₹${wallet ? wallet.lifetime : 0}`} label={t("sd_ref_lifetime")} sub={t("sd_ref_lifetime_s")} />
       </div>
 
       <div className="rf-steps">
         <div className="rf-step">
           <div className="n">1</div>
-          <b>Send your link</b>
-          <span>WhatsApp it to a study group or a friend sitting the same exam.</span>
+          <b>{t("sd_ref_s1_t")}</b>
+          <span>{t("sd_ref_s1_d")}</span>
         </div>
         <div className="rf-step">
           <div className="n">2</div>
-          <b>They join</b>
-          <span>The link tags their account automatically — they never type a code.</span>
+          <b>{t("sd_ref_s2_t")}</b>
+          <span>{t("sd_ref_s2_d")}</span>
         </div>
         <div className="rf-step">
           <div className="n">3</div>
-          <b>You earn</b>
-          <span>₹{stats.bonus} lands in your wallet the moment they buy.</span>
+          <b>{t("sd_ref_s3_t")}</b>
+          <span>{t("sd_ref_s3_d")}</span>
         </div>
       </div>
 
       <div className="card card-pad">
         <div className="sec-head">
           <div>
-            <h2>People you invited</h2>
-            <div className="note">Names are shortened — we don't share your friends' contact details.</div>
+            <h2>{t("sd_ref_people")}</h2>
+            <div className="note">{t("sd_ref_masked")}</div>
           </div>
         </div>
         {list.length === 0 ? (
           <div className="empty">
             <div className="empty-ic"><UserPlus size={24} /></div>
-            No one has joined on your link yet. Share it and they'll show up here.
+            {t("sd_ref_none")}
           </div>
         ) : list.map((r, i) => (
           <div className="rf-row" key={i}>
@@ -1597,8 +1595,8 @@ function ReferView({ toast }) {
               <span>Joined {fmtDate(r.joined)}</span>
             </div>
             {r.paid
-              ? <Badge color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}>Bought a series</Badge>
-              : <Badge color={{ bg: "#fdf6e3", fg: "#a89474" }}>Browsing</Badge>}
+              ? <Badge color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}>{t("sd_ref_bought")}</Badge>
+              : <Badge color={{ bg: "#fdf6e3", fg: "#a89474" }}>{t("sd_ref_browsing")}</Badge>}
           </div>
         ))}
       </div>
@@ -1607,31 +1605,31 @@ function ReferView({ toast }) {
         <div className="card card-pad" style={{ marginTop: 18 }}>
           <div className="sec-head">
             <div>
-              <h2>Wallet history</h2>
-              <div className="note">Every credit and debit, including anything reversed</div>
+              <h2>{t("sd_wallet_hist")}</h2>
+              <div className="note">{t("sd_wallet_hist_s")}</div>
             </div>
           </div>
-          {ledger.map((t) => (
-            <div className="rf-ledger-row" key={t.id}>
+          {ledger.map((tx) => (
+            <div className="rf-ledger-row" key={tx.id}>
               <div style={{
                 width: 34, height: 34, borderRadius: 10, flex: "0 0 auto", display: "grid",
                 placeItems: "center",
-                background: t.status === "reversed" ? "#f4efe4" : "#e8f6ee",
-                color: t.status === "reversed" ? "#a89474" : "#1f8a4c",
+                background: tx.status === "reversed" ? "#f4efe4" : "#e8f6ee",
+                color: tx.status === "reversed" ? "#a89474" : "#1f8a4c",
               }}>
                 <Wallet size={16} />
               </div>
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 13.5, fontWeight: 700 }}>
-                  {LEDGER_LABEL[t.type] || t.type.replace(/_/g, " ")}
-                  {t.status === "reversed" && (
-                    <span style={{ fontWeight: 600, color: "var(--muted)" }}> · reversed after refund</span>
+                  {LEDGER_KEY[tx.type] ? t(LEDGER_KEY[tx.type]) : tx.type.replace(/_/g, " ")}
+                  {tx.status === "reversed" && (
+                    <span style={{ fontWeight: 600, color: "var(--muted)" }}> · {t("sd_wallet_revd")}</span>
                   )}
                 </div>
-                <div style={{ fontSize: 12, color: "var(--muted)" }}>{fmtDate(t.at)}</div>
+                <div style={{ fontSize: 12, color: "var(--muted)" }}>{fmtDate(tx.at)}</div>
               </div>
-              <div className={"amt" + (t.status === "reversed" ? " rev" : "")}>
-                {t.amount > 0 ? "+" : "−"}₹{Math.abs(t.amount)}
+              <div className={"amt" + (tx.status === "reversed" ? " rev" : "")}>
+                {tx.amount > 0 ? "+" : "−"}₹{Math.abs(tx.amount)}
               </div>
             </div>
           ))}
@@ -1641,25 +1639,22 @@ function ReferView({ toast }) {
   );
 }
 
+/* Labels are dictionary keys, not text: these are module constants, so they
+   cannot call t() themselves — the sidebar and the page header resolve them
+   at render time. */
 const NAV = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "tests", label: "Test Series", icon: FileText },
-  { id: "performance", label: "My Performance", icon: BarChart3 },
-  { id: "batches", label: "My Batches", icon: GraduationCap },
-  { id: "materials", label: "Study Material", icon: FolderOpen },
-  { id: "leaderboard", label: "Leaderboard", icon: Trophy },
-  { id: "refer", label: "Refer & Earn", icon: Gift },
-  { id: "profile", label: "Profile", icon: User },
+  { id: "home", key: "sd_home", icon: Home },
+  { id: "tests", key: "sd_tests", icon: FileText },
+  { id: "performance", key: "sd_perf", icon: BarChart3 },
+  { id: "batches", key: "sd_batches", icon: GraduationCap },
+  { id: "materials", key: "sd_materials", icon: FolderOpen },
+  { id: "leaderboard", key: "sd_leaderboard", icon: Trophy },
+  { id: "refer", key: "sd_refer", icon: Gift },
+  { id: "profile", key: "sd_profile", icon: User },
 ];
-const META = {
-  home: { t: "Home", s: "Your preparation command centre" },
-  tests: { t: "Test Series", s: "Attempt mocks and review past tests" },
-  performance: { t: "My Performance", s: "Deep analytics across every attempt" },
-  batches: { t: "My Batches", s: "Courses you're enrolled in" },
-  materials: { t: "Study Material", s: "PDFs, notes and videos" },
-  leaderboard: { t: "Leaderboard", s: "See where you rank" },
-  refer: { t: "Refer & Earn", s: "Invite friends and earn rewards" },
-  profile: { t: "Profile", s: "Your account and achievements" },
+const META_KEY = {
+  home: "sd_home", tests: "sd_tests", performance: "sd_perf", batches: "sd_batches",
+  materials: "sd_materials", leaderboard: "sd_leaderboard", refer: "sd_refer", profile: "sd_profile",
 };
 
 const NOTIF_ICON = {
@@ -1670,6 +1665,7 @@ const NOTIF_ICON = {
 };
 
 function App({ onLaunchExam, onLogout, onBrowse }) {
+  const { t } = useLang();
   const [view, setView] = useState("home");
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -1820,7 +1816,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
           <nav className="sb-nav">
             {NAV.map((it) => { const Icon = it.icon; return (
               <button key={it.id} className={"sb-item" + (view === it.id ? " active" : "")} onClick={() => go(it.id)}
-                      aria-current={view === it.id ? "page" : undefined}><Icon size={18} />{it.label}</button>
+                      aria-current={view === it.id ? "page" : undefined}><Icon size={18} />{t(it.key)}</button>
             ); })}
             <div className="sb-streak">
               <div className="sb-streak-top"><Flame size={17} />{derived.streak}-day streak</div>
@@ -1840,7 +1836,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
           <header className="topbar">
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <button className="hamburger" onClick={() => setSbOpen(true)} aria-label="Open menu"><Menu size={20} /></button>
-              <div><h1>{META[view].t}</h1><div className="sub">{META[view].s}</div></div>
+              <div><h1>{t(META_KEY[view])}</h1><div className="sub">{t(META_KEY[view] + "_s")}</div></div>
             </div>
             <div className="tb-right">
               <div style={{ position: "relative" }} onClick={(e) => e.stopPropagation()}>

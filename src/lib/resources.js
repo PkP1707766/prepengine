@@ -3,24 +3,30 @@ import {
 } from "lucide-react";
 
 /* The public content hub's index. Kept out of the component file so hot
-   reload doesn't tear down the whole page when only copy changes. */
+   reload doesn't tear down the whole page when only copy changes.
+ *
+ * Labels are dictionary KEYS, not English text. They used to be literal
+ * strings, which is why the whole free-resources band stayed English no
+ * matter what the language toggle said. The component resolves them with
+ * t(); the Hindi lives in i18n.jsx alongside every other string. */
 
 export const RESOURCES = [
-  { key: "syllabus",  label: "Syllabus",              icon: BookOpen,      blurb: "Full UPSC / BPSC / UPPCS syllabus, topic by topic." },
-  { key: "pyq",       label: "Previous Year Papers",  icon: FileText,      blurb: "Solved papers going back several attempts." },
-  { key: "materials", label: "Free Materials",        icon: FolderOpen,    blurb: "Notes and PDFs, free to download." },
-  { key: "ncert",     label: "NCERT Books",           icon: GraduationCap, blurb: "Class 6–12 NCERTs, organised by subject." },
-  { key: "news",      label: "Daily Current Affairs", icon: Newspaper,     blurb: "Today's news, filtered for what's exam-relevant." },
-  { key: "faq",       label: "FAQ",                   icon: HelpCircle,    blurb: "Tests, payments, access and refunds." },
+  { key: "syllabus",  icon: BookOpen,      labelKey: "res_syllabus_l",  blurbKey: "res_syllabus_b" },
+  { key: "pyq",       icon: FileText,      labelKey: "res_pyq_l",       blurbKey: "res_pyq_b" },
+  { key: "materials", icon: FolderOpen,    labelKey: "res_materials_l", blurbKey: "res_materials_b" },
+  { key: "ncert",     icon: GraduationCap, labelKey: "res_ncert_l",     blurbKey: "res_ncert_b" },
+  { key: "news",      icon: Newspaper,     labelKey: "res_news_l",      blurbKey: "res_news_b" },
+  { key: "faq",       icon: HelpCircle,    labelKey: "res_faq_l",       blurbKey: "res_faq_b" },
 ];
 
 export const RESOURCE_KEYS = RESOURCES.map((r) => r.key);
 
+/* Page headers for each standalone content page, same arrangement. */
 export const RESOURCE_TITLES = {
-  syllabus:  { t: "Syllabus",                   s: "What each exam actually asks of you" },
-  pyq:       { t: "Previous Year Papers",       s: "The best predictor of what comes next" },
-  materials: { t: "Free Study Material",        s: "Open to everyone, no account needed" },
-  ncert:     { t: "NCERT Books",                s: "The foundation every serious aspirant starts from" },
-  news:      { t: "Daily Current Affairs",      s: "Filtered for what the exam actually asks" },
-  faq:       { t: "Frequently Asked Questions", s: "Tests, payments, access and refunds" },
+  syllabus:  { tKey: "rt_syllabus_t",  sKey: "rt_syllabus_s" },
+  pyq:       { tKey: "rt_pyq_t",       sKey: "rt_pyq_s" },
+  materials: { tKey: "rt_materials_t", sKey: "rt_materials_s" },
+  ncert:     { tKey: "rt_ncert_t",     sKey: "rt_ncert_s" },
+  news:      { tKey: "rt_news_t",      sKey: "rt_news_s" },
+  faq:       { tKey: "rt_faq_t",       sKey: "rt_faq_s" },
 };
