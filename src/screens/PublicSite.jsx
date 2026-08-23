@@ -605,6 +605,7 @@ const CSS = `
    thing that gives way in a tight row — it collapsed to a one-letter column
    reading L / o / g / i / n. The brand yields instead, and truncates. */
 .pb-head-mobile{display:none;align-items:center;gap:8px;margin-left:auto;flex:0 0 auto}
+.pb-nav-palette{display:none}
 
 /* The one thing in the header that should pull the eye. Gold, because that is
    the colour the page already uses for its primary action — a maroon button
@@ -689,31 +690,74 @@ const CSS = `
 @media (max-width:1000px){
   .pb-head-mobile{display:flex}
   .pb-brand{flex:1 1 auto;min-width:0;overflow:hidden}
+  .pb-brand > span{min-width:0}
   .pb-name{overflow:hidden;text-overflow:ellipsis}
   /* One copy of the controls, not two: the header copy is always visible, so
      the one inside the collapsed nav would only be a duplicate. */
+  /* Language and theme are in the header capsule on a phone, so this copy
+     would only duplicate them — but hiding the whole block took the colour
+     chooser with it. The menu now shows the palette picker on its own. */
   .pb-nav-chrome{display:none}
+  .pb-nav-palette{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    width:100%;padding:10px 12px;margin-top:2px;border-top:1px solid var(--line)}
+  .pb-nav-palette-l{font-size:14px;font-weight:600;color:var(--ink-600)}
   .pb-head-in{gap:8px}
   .pb-nav{margin-left:0}
 }
+/* ---- HEADER AT PHONE WIDTHS ----------------------------------------
+   Four things compete for one row: wordmark, language+theme capsule, the
+   login action, and the burger. Nothing here may be dropped — each was put
+   in the header on purpose — so the row gives up size in steps instead.
+
+   Measured in Hindi, which is the tight case: "लॉगिन" is wider than "Log in"
+   and it was Hindi that clipped the wordmark to "JUNOONIA". Every tier below
+   was checked at 320/360/375/414 with the Hindi copy loaded. */
 @media (max-width:560px){
   .pb-tagline{display:none}
-  .pb-name{font-size:15.5px}
-  .pb-mark{width:30px !important;height:30px !important}
   .pb-head-in{padding:8px 11px;gap:5px}
   .pb-head-mobile{gap:4px}
-  /* The capsule and the action share one height so the row has a single
-     optical baseline instead of three different ones. */
-  .pb-head-cta{padding:0 12px;font-size:12px}
-  .jn-seg .jn-seg-btn{padding:0 8px}
+  .pb-brand{gap:8px}
   .pb-name{font-size:16px}
   .pb-mark{width:32px !important;height:32px !important}
+  .pb-head-cta{padding:0 12px;font-size:12px}
+  .jn-seg .jn-seg-btn{padding:0 8px}
   .pb-burger{width:34px}
 }
+@media (max-width:400px){
+  .pb-brand{gap:7px}
+  .pb-name{font-size:15px}
+  .pb-mark{width:30px !important;height:30px !important}
+  .pb-head-cta{padding:0 10px;font-size:11.5px}
+  .jn-seg .jn-seg-btn{padding:0 7px}
+}
+/* 375px and 360px fitted the wordmark with nothing to spare — need and have
+   were the same number to the pixel. That is not a fit, it is a coincidence:
+   a device whose font metrics round the other way clips the "S". This tier
+   buys a few pixels back from spacing rather than from the name itself. */
+@media (max-width:380px){
+  .pb-head-in{padding-inline:8px}
+  .pb-brand{gap:6px}
+  .jn-seg-label{font-size:11px}
+}
+@media (max-width:365px){
+  /* The globe goes, not the label. "EN" / "हि" names the language outright;
+     the globe only repeats it, and at this width repetition costs the
+     wordmark its last two letters. The theme icon stays — an icon is all it
+     has ever had. */
+  .jn-seg-btn:first-child > svg{display:none}
+  .pb-name{font-size:14.5px}
+  .pb-mark{width:28px !important;height:28px !important}
+  .pb-head-cta{padding:0 9px}
+  .pb-head-in{padding:8px 9px;gap:4px}
+}
+/* 320px — the narrowest phone still in use. The wordmark stays; it is the one
+   thing on this row that cannot be replaced by an icon. Everything else gives
+   up another pixel or two so it can. */
 @media (max-width:340px){
-  /* Narrower than any common phone. The mark alone still identifies the site;
-     losing the login button would not be recoverable. */
-  .pb-name{display:none}
+  .pb-name{font-size:13.5px}
+  .pb-mark{width:26px !important;height:26px !important}
+  .pb-head-cta{padding:0 8px;font-size:11px}
+  .pb-head-in{padding:8px 8px;gap:4px}
 }
 `;
 
@@ -1087,6 +1131,10 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             <button className="link" onClick={() => { setNavOpen(false); goResources(); }}>{t("nav_free")}</button>
             <button className="link" onClick={() => { setNavOpen(false); onNavigate("faq"); }}>{t("nav_faq")}</button>
             <span className="pb-nav-chrome"><ChromeControls palettePicker /></span>
+            <span className="pb-nav-palette">
+              <span className="pb-nav-palette-l">{t("nav_colour")}</span>
+              <ChromeControls paletteOnly />
+            </span>
             {session
               ? <button className="pb-btn pb-btn-maroon pb-btn-sm" onClick={onDashboard}>{t("nav_dashboard")}<ArrowRight size={15} /></button>
               : (

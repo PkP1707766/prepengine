@@ -599,8 +599,10 @@ Object.assign(STR, {
   nav_free:       { en: "Free Resources", hi: "निःशुल्क संसाधन" },
   nav_faq:        { en: "FAQ", hi: "सामान्य प्रश्न" },
   nav_dashboard:  { en: "Dashboard", hi: "डैशबोर्ड" },
-  nav_login:      { en: "Log in", hi: "लॉग इन" },
+  nav_login:      { en: "Log in", hi: "लॉगिन" },
   nav_start:      { en: "Get started", hi: "शुरू करें" },
+  nav_colour:     { en: "Colour theme", hi: "रंग-रूप" },
+  nav_colour_change: { en: "Change colour theme", hi: "रंग-रूप बदलें" },
   back_home:      { en: "Back to home", hi: "होम पर वापस" },
   free_no_login:  { en: "Free · no login needed", hi: "निःशुल्क · लॉगिन ज़रूरी नहीं" },
 
@@ -1042,8 +1044,8 @@ export function AppProviders({ children }) {
 }
 
 /* Floating language + theme toggles. */
-export function ChromeControls({ light = false, palettePicker = false, segmented = false }) {
-  const { lang, setLang } = useLang();
+export function ChromeControls({ light = false, palettePicker = false, segmented = false, paletteOnly = false }) {
+  const { lang, t, setLang } = useLang();
   const { theme, toggle, palette, setPalette } = useTheme();
   const [open, setOpen] = useState(false);
   // These are inline-styled, and inline styles beat the stylesheet — so the
@@ -1057,6 +1059,40 @@ export function ChromeControls({ light = false, palettePicker = false, segmented
     background: light ? "rgba(0,0,0,.22)" : "rgba(255,255,255,.82)",
     color: light ? "#fdeecb" : "#5c3018",
   };
+  const paletteMenu = (
+    <div className="jn-pal-wrap" onMouseLeave={() => setOpen(false)}>
+      <button type="button" className="jn-pill jn-pill-icon" style={pill}
+              onClick={() => setOpen(!open)} aria-label={t("nav_colour_change")} aria-expanded={open}>
+        <Palette size={14} />
+      </button>
+      {open && (
+        <div className="jn-palettes" role="menu">
+          <div className="jn-palettes-t">{t("nav_colour")}</div>
+          {PALETTES.map((p) => (
+            <button key={p.key} role="menuitemradio" aria-checked={palette === p.key}
+                    className={"jn-pal" + (palette === p.key ? " on" : "")}
+                    onClick={() => { setPalette(p.key); setOpen(false); }}>
+              <span className="jn-pal-sw" style={{ background: p.brand, borderColor: p.cream }} />
+              <span>
+                <b>{lang === "hi" ? p.labelHi : p.label}</b>
+                <em>{lang === "hi" ? p.hintHi : p.hint}</em>
+              </span>
+              {palette === p.key && <Check size={14} />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  /* Just the colour chooser. On a phone language and theme live in the header
+     capsule, so the menu shows only what the header does not — the palette
+     picker was briefly lost when the whole block was hidden to avoid showing
+     language and theme twice. */
+  if (paletteOnly) {
+    return <div style={{ display: "flex", gap: 6 }}>{paletteMenu}</div>;
+  }
+
   /* Segmented: language and theme read as one object with a hairline between
      them, rather than two separate circles competing with the primary action
      beside them. Same buttons, same behaviour — only the chrome differs. */
@@ -1090,31 +1126,7 @@ export function ChromeControls({ light = false, palettePicker = false, segmented
         {theme === "light" ? <Moon size={14} /> : <Sun size={14} />}
       </button>
 
-      {palettePicker && (
-        <div className="jn-pal-wrap" onMouseLeave={() => setOpen(false)}>
-          <button type="button" className="jn-pill jn-pill-icon" style={pill}
-                  onClick={() => setOpen(!open)} aria-label="Change colour theme" aria-expanded={open}>
-            <Palette size={14} />
-          </button>
-          {open && (
-            <div className="jn-palettes" role="menu">
-              <div className="jn-palettes-t">Colour theme</div>
-              {PALETTES.map((p) => (
-                <button key={p.key} role="menuitemradio" aria-checked={palette === p.key}
-                        className={"jn-pal" + (palette === p.key ? " on" : "")}
-                        onClick={() => { setPalette(p.key); setOpen(false); }}>
-                  <span className="jn-pal-sw" style={{ background: p.brand, borderColor: p.cream }} />
-                  <span>
-                    <b>{p.label}</b>
-                    <em>{p.hint}</em>
-                  </span>
-                  {palette === p.key && <Check size={14} />}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+      {palettePicker && paletteMenu}
     </div>
   );
 }
