@@ -21,6 +21,13 @@ export const RESOURCES = [
 
 export const RESOURCE_KEYS = RESOURCES.map((r) => r.key);
 
+/* Legal pages are routed the same way but are deliberately NOT in RESOURCES —
+   they belong in the footer, not in the "free study resources" grid. */
+export const LEGAL_PAGE_KEYS = ["privacy", "terms", "refund", "contact"];
+
+/* Everything reachable at #/<key>. */
+export const PAGE_KEYS = [...RESOURCE_KEYS, ...LEGAL_PAGE_KEYS];
+
 /* Page headers for each standalone content page, same arrangement. */
 export const RESOURCE_TITLES = {
   syllabus:  { tKey: "rt_syllabus_t",  sKey: "rt_syllabus_s" },

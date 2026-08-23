@@ -894,6 +894,38 @@ Object.assign(STR, {
 });
 
 
+/* Legal pages: the "who you are dealing with" block every policy needs. */
+Object.assign(STR, {
+  lg_who:        { en: "Who you are dealing with", hi: "आप किससे व्यवहार कर रहे हैं" },
+  lg_brand:      { en: "Brand", hi: "ब्रांड" },
+  lg_legal_name: { en: "Registered name", hi: "पंजीकृत नाम" },
+  lg_address:    { en: "Registered address", hi: "पंजीकृत पता" },
+  lg_email:      { en: "Email", hi: "ईमेल" },
+  lg_phone:      { en: "Phone", hi: "फ़ोन" },
+  lg_updated:    { en: "Last updated", hi: "अंतिम बार अद्यतन" },
+  lg_privacy:    { en: "Privacy Policy", hi: "गोपनीयता नीति" },
+  lg_terms:      { en: "Terms & Conditions", hi: "नियम एवं शर्तें" },
+  lg_refund:     { en: "Refund Policy", hi: "धन-वापसी नीति" },
+  lg_contact:    { en: "Contact Us", hi: "संपर्क करें" },
+});
+
+
+/* Footer newsletter. */
+Object.assign(STR, {
+  news_h:       { en: "Get papers & updates", hi: "पेपर और अपडेट पाइए" },
+  news_p:       { en: "New test series, free papers and exam notes — occasionally, never spam.",
+                  hi: "नई टेस्ट सीरीज़, निःशुल्क पेपर और परीक्षा से जुड़ी बातें — कभी-कभार, स्पैम कभी नहीं।" },
+  news_ph:      { en: "you@email.com", hi: "aap@email.com" },
+  news_btn:     { en: "Subscribe", hi: "जोड़ें" },
+  news_sending: { en: "Adding…", hi: "जोड़ रहे हैं…" },
+  news_ok:      { en: "Done — we'll write when there's something worth reading.",
+                  hi: "हो गया — जब कुछ पढ़ने लायक होगा, हम लिखेंगे।" },
+  news_already: { en: "You're already on the list.", hi: "आप पहले से सूची में हैं।" },
+  news_bad:     { en: "That doesn't look like an email address.", hi: "यह ईमेल पते जैसा नहीं लग रहा।" },
+  news_fail:    { en: "Couldn't add you just now. Please try again.", hi: "अभी जोड़ नहीं सके। कृपया दोबारा कोशिश कीजिए।" },
+});
+
+
 export function AppProviders({ children }) {
   useBrandChrome();
   const [lang, setLangRaw] = useState(() => loadKey("lang", "en"));

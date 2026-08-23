@@ -10,6 +10,8 @@ import { ErrorState, Skeleton } from "../ui/Feedback.jsx";
 import { Diya, Mandala, StepArt, ReportArt, TicketIcon, Divider } from "../ui/Illustrations.jsx";
 import ContentPage from "./ContentPages.jsx";
 import { RESOURCES, RESOURCE_TITLES } from "../lib/resources.js";
+import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
+import { Instagram, YouTube, Telegram, WhatsApp, LinkedIn, XMark } from "../ui/SocialIcons.jsx";
 import * as DB from "../lib/db.js";
 
 /* ============================================================
@@ -223,18 +225,64 @@ const CSS = `
   max-width:480px;margin:0 auto}
 .pb-quote .src{margin-top:10px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-400)}
 
-/* ---------- FOOTER ---------- */
-.pb-foot{background:var(--cream-100);border-top:1px solid var(--line);padding:54px 0 26px;color:var(--ink-600)}
-.pb-foot-in{max-width:1180px;margin:0 auto;padding-inline:24px;display:grid;
-  grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px;margin-bottom:36px}
-.pb-foot h5{font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-400);
-  margin:0 0 14px;font-weight:700}
-.pb-foot a,.pb-foot .flink{display:block;font-size:14px;color:var(--ink-600);margin-bottom:9px;
-  background:none;border:0;font-family:inherit;padding:0;cursor:pointer;text-align:left}
-.pb-foot a:hover,.pb-foot .flink:hover{color:var(--brand-700)}
-.pb-foot-bottom{max-width:1180px;margin:0 auto;padding:22px 24px 0;border-top:1px solid var(--line);
+/* ---------- FOOTER ----------
+   Built as one inset card on a darker ground rather than a full-bleed band, so
+   the page ends deliberately instead of just running out. Two halves split by
+   a rule: the brand and the newsletter on the left, the link columns on the
+   right; then a separated bottom bar for the legal line. */
+.pb-foot{background:var(--cream-100);border-top:1px solid var(--line);padding:56px 24px 26px}
+.pb-foot-card{max-width:1180px;margin:0 auto;background:var(--cream-50);border:1px solid var(--line);
+  border-radius:26px;overflow:hidden;box-shadow:var(--shadow-card)}
+.pb-foot-in{display:grid;grid-template-columns:1.05fr 1.35fr;gap:0}
+
+/* -- left: identity + newsletter -- */
+.pb-foot-brand{padding:42px 40px;border-right:1px solid var(--line);min-width:0}
+.pb-foot-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.pb-foot-blurb{font-size:14px;line-height:1.7;color:var(--ink-600);margin:0 0 30px;max-width:40ch}
+.pb-news h5{font-family:var(--font-display);font-size:20px;font-weight:600;text-transform:none;
+  letter-spacing:-.01em;color:var(--ink-900);margin:0 0 6px}
+.pb-news p{font-size:13px;color:var(--ink-400);margin:0 0 14px;line-height:1.6}
+.pb-news-row{display:flex;align-items:stretch;background:var(--cream-50);border:1.5px solid var(--line);
+  border-radius:100px;padding:5px 5px 5px 6px;transition:border-color .18s,box-shadow .18s;max-width:420px}
+.pb-news-row:focus-within{border-color:var(--gold-500);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold-500) 16%,transparent)}
+.pb-news-row input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:14.5px;
+  color:var(--ink-900);padding:10px 12px}
+.pb-news-row input::placeholder{color:var(--ink-400)}
+.pb-news-btn{flex:0 0 auto;border:0;border-radius:100px;font:inherit;font-weight:700;font-size:14px;
+  padding:10px 22px;cursor:pointer;color:#2a1e05;background:linear-gradient(155deg,var(--gold-500),var(--gold-600));
+  transition:filter .16s,transform .16s}
+.pb-news-btn:hover:not(:disabled){filter:brightness(1.06);transform:translateY(-1px)}
+.pb-news-btn:disabled{opacity:.55;cursor:default}
+.pb-news-msg{margin:11px 2px 0;font-size:12.5px;line-height:1.5;display:flex;align-items:flex-start;gap:6px}
+.pb-news-msg.ok{color:var(--ok-600)}
+.pb-news-msg.bad{color:var(--bad-600)}
+.pb-socials{display:flex;gap:10px;margin-top:26px}
+.pb-social{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--cream-50);
+  display:grid;place-items:center;color:var(--ink-600);cursor:pointer;
+  transition:border-color .18s,color .18s,transform .18s,background .18s}
+.pb-social:hover{border-color:var(--brand-700);color:var(--brand-700);transform:translateY(-2px);
+  background:color-mix(in srgb,var(--gold-300) 18%,transparent)}
+
+/* -- right: link columns -- */
+.pb-foot-links{padding:42px 40px;display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:28px;min-width:0}
+.pb-foot h5{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-600);
+  margin:0 0 16px;font-weight:800;font-family:var(--font-roman)}
+.pb-foot a,.pb-foot .flink{display:block;width:100%;font-size:14px;color:var(--ink-600);margin-bottom:11px;
+  background:none;border:0;font-family:inherit;padding:0;cursor:pointer;text-align:left;
+  transition:color .16s,transform .16s;min-width:0;overflow-wrap:break-word}
+.pb-foot a:hover,.pb-foot .flink:hover{color:var(--brand-700);transform:translateX(2px)}
+.pb-foot-contact{font-size:13.5px;line-height:1.7;color:var(--ink-600);margin:0}
+.pb-foot-contact a{display:inline;margin:0;color:var(--brand-700);text-decoration:underline;
+  text-underline-offset:2px;overflow-wrap:break-word;word-break:normal}
+
+/* -- bottom bar -- */
+.pb-foot-bottom{max-width:1180px;margin:22px auto 0;padding:0 8px;
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
   font-size:12.5px;color:var(--ink-400)}
+.pb-foot-legal{display:flex;gap:16px;flex-wrap:wrap}
+.pb-foot-legal button{background:none;border:0;font:inherit;font-size:12.5px;color:var(--ink-400);
+  cursor:pointer;padding:0;transition:color .16s}
+.pb-foot-legal button:hover{color:var(--brand-700)}
 
 /* ---------- CONTENT HUB ---------- */
 .pb-panel{background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);
@@ -379,9 +427,10 @@ const CSS = `
   .pb-quote .deva{font-size:23px}
   .pb-quote p{font-size:15.5px}
 
-  .pb-foot{padding:40px 0 22px}
-  .pb-foot-in{gap:26px;margin-bottom:26px}
-  .pb-foot-bottom{flex-direction:column;align-items:flex-start;gap:6px}
+  .pb-foot{padding:34px 14px 20px}
+  .pb-foot-card{border-radius:20px}
+  .pb-foot-brand,.pb-foot-links{padding:28px 22px}
+  .pb-foot-bottom{flex-direction:column;align-items:flex-start;gap:10px;padding:0 6px}
 
   .pb-panel{padding:20px;border-radius:18px}
   .pb-h3{font-size:17px}
@@ -418,13 +467,13 @@ const CSS = `
   .pb-head-in{position:relative}
   .pb-strip-in{grid-template-columns:1fr 1fr;row-gap:20px}
   .pb-strip-item:nth-child(3){border-left:0;padding-left:0}
-  .pb-foot-in{grid-template-columns:1fr 1fr}
+  .pb-foot-links{grid-template-columns:1fr 1fr;gap:22px}
 }
 @media (max-width:560px){
   .pb-sec{padding:56px 0}
   .pb-strip-in{grid-template-columns:1fr}
   .pb-strip-item{border-left:0;padding-left:0}
-  .pb-foot-in{grid-template-columns:1fr}
+  .pb-foot-links{grid-template-columns:1fr;gap:4px}
   .pb-ticket{padding:22px}
   .pb-quote{padding:56px 20px}
   .pb-sec-mandala{width:340px;height:340px}
@@ -436,6 +485,70 @@ const CSS = `
    this collapsed to a single column across the whole tablet range. */
 @media (min-width:641px) and (max-width:980px){
   .pb-steps{grid-template-columns:repeat(3,1fr);gap:18px}
+}
+
+/* ---------- LEGAL PAGES ---------- */
+.lg-doc{max-width:760px}
+.lg-head{padding-bottom:24px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.lg-head h1{font-family:var(--font-display);font-size:clamp(27px,4vw,38px);font-weight:600;
+  line-height:1.15;margin:0 0 12px;color:var(--ink-900)}
+.lg-head p{margin:0;font-size:16px;line-height:1.65;color:var(--ink-600);max-width:62ch}
+.lg-block{padding:26px 0;border-bottom:1px solid var(--line)}
+.lg-block:last-of-type{border-bottom:0}
+.lg-block h2{font-family:var(--font-display);font-size:19px;font-weight:600;margin:0 0 14px;
+  color:var(--brand-700);letter-spacing:-.005em}
+.lg-block ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.lg-block li{position:relative;padding-left:20px;font-size:15px;line-height:1.7;color:var(--ink-600)}
+.lg-block li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;
+  background:var(--gold-500)}
+.lg-who{background:var(--cream-100);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:24px 26px;margin-top:26px}
+.lg-dl{margin:0;display:grid;gap:11px}
+.lg-dl > div{display:grid;grid-template-columns:170px 1fr;gap:14px;align-items:baseline}
+.lg-dl dt{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink-400);margin:0}
+.lg-dl dd{margin:0;font-size:14.5px;color:var(--ink-900);line-height:1.55;min-width:0;overflow-wrap:anywhere}
+.lg-dl a{color:var(--brand-700);text-decoration:underline;text-underline-offset:2px}
+.lg-updated{margin:18px 0 0;font-size:12.5px;color:var(--ink-400)}
+
+/* A 170px label column leaves nothing for a long registered address. */
+@media (max-width:640px){
+  .lg-block{padding:22px 0}
+  .lg-who{padding:20px 18px}
+  .lg-dl > div{grid-template-columns:1fr;gap:3px}
+  .lg-dl dt{font-size:11.5px}
+}
+
+
+/* The footer's two halves stack below 900px; the divider becomes a rule
+   between them rather than beside them. */
+@media (max-width:900px){
+  .pb-foot-in{grid-template-columns:1fr}
+  .pb-foot-brand{border-right:0;border-bottom:1px solid var(--line)}
+}
+
+/* Newsletter on a phone. Two fixes, both learned the hard way:
+   - 16px on the input. The baseline rule .pb-root input{font-size:16px} and
+     .pb-news-row input{font-size:14.5px} have identical specificity, so the
+     later one won and iOS would have zoomed the whole page on focus — exactly
+     the bug the baseline rule exists to prevent.
+   - Stacked, because side by side the button took 114px of 257px and left the
+     address field 130px to type an email into. */
+@media (max-width:560px){
+  .pb-news-row{flex-direction:column;border-radius:16px;padding:6px;gap:6px;max-width:none}
+  .pb-news-row input{font-size:16px;padding:11px 12px;width:100%}
+  .pb-news-btn{width:100%;padding:13px 22px;border-radius:12px}
+}
+
+/* Footer links on a phone. The coarse-pointer baseline already gives every
+   button a 44px touch target, so the 11px margin on top of it pushed each
+   link 55px apart and made the footer enormous. Drop the margin and let the
+   touch target do the spacing; separate the groups instead. */
+@media (max-width:640px){
+  .pb-foot a,.pb-foot .flink{margin-bottom:0;display:flex;align-items:center}
+  .pb-foot-links > div + div{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+  .pb-foot h5{margin-bottom:6px}
+  .pb-foot-contact{padding:6px 0}
 }
 `;
 
@@ -535,6 +648,21 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
     </div>
   );
 }
+
+/* Only the profiles that are actually configured are rendered. An icon that
+   opens a 404 — or somebody else's account — is worse than no icon, so the
+   defaults in legal.js are empty and this filters them out. */
+const SOCIAL_DEFS = [
+  { key: "instagram", label: "Instagram", Icon: Instagram },
+  { key: "youtube",   label: "YouTube",   Icon: YouTube },
+  { key: "telegram",  label: "Telegram",  Icon: Telegram },
+  { key: "whatsapp",  label: "WhatsApp",  Icon: WhatsApp },
+  { key: "linkedin",  label: "LinkedIn",  Icon: LinkedIn },
+  { key: "x",         label: "X",         Icon: XMark },
+];
+const SOCIALS = SOCIAL_DEFS
+  .filter((d) => (SOCIAL_LINKS[d.key] || "").trim())
+  .map((d) => ({ ...d, href: SOCIAL_LINKS[d.key].trim() }));
 
 /* ---------------------------------------------------------------- detail -- */
 function BundleDetail({ code, owned, onBack, onEnroll }) {
@@ -665,6 +793,33 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
   const [exam, setExam] = useState("all");
   const tabsRef = useRef(null);
 
+  /* Footer newsletter. Deliberately available to signed-out visitors — that is
+     the entire point of a footer form. */
+  const [email, setEmail] = useState("");
+  const [newsBusy, setNewsBusy] = useState(false);
+  const [news, setNews] = useState(null);
+
+  const subscribe = async (e) => {
+    e.preventDefault();
+    if (newsBusy) return;
+    setNewsBusy(true);
+    setNews(null);
+    try {
+      const r = await DB.subscribeEmail(email);
+      if (r.ok) {
+        // "Already on the list" is a success to the reader, not an error.
+        setNews({ ok: true, msg: r.reason === "already" ? t("news_already") : t("news_ok") });
+        setEmail("");
+      } else {
+        setNews({ ok: false, msg: r.reason === "invalid" ? t("news_bad") : t("news_fail") });
+      }
+    } catch {
+      setNews({ ok: false, msg: t("news_fail") });
+    } finally {
+      setNewsBusy(false);
+    }
+  };
+
   /* Filtering removes cards, so the page gets shorter while the browser keeps
      scrollY exactly where it was — on a phone that silently pushes the whole
      catalogue up off the top of the screen. Re-anchor the tab row whenever it
@@ -769,11 +924,15 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           <button className="pb-btn pb-btn-ghost pb-btn-sm" style={{ marginBottom: 24 }} onClick={home}>
             <ArrowLeft size={15} />{t("back_home")}
           </button>
-          <div style={{ marginBottom: 28 }}>
-            <div className="pb-eyebrow">{t("free_no_login")}</div>
-            <h1 className="pb-h2" style={{ margin: "10px 0 10px" }}>{t(RESOURCE_TITLES[page]?.tKey)}</h1>
-            <p className="pb-sub">{t(RESOURCE_TITLES[page]?.sKey)}</p>
-          </div>
+          {/* Legal pages carry their own heading and a different tone —
+              "Free · no login needed" over a refund policy reads as a joke. */}
+          {RESOURCE_TITLES[page] && (
+            <div style={{ marginBottom: 28 }}>
+              <div className="pb-eyebrow">{t("free_no_login")}</div>
+              <h1 className="pb-h2" style={{ margin: "10px 0 10px" }}>{t(RESOURCE_TITLES[page]?.tKey)}</h1>
+              <p className="pb-sub">{t(RESOURCE_TITLES[page]?.sKey)}</p>
+            </div>
+          )}
           <ContentPage page={page} />
         </div>
       ) : detail ? (
@@ -978,46 +1137,98 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
         </>
       )}
 
-      {/* ---------------- FOOTER ---------------- */}
+      {/* ---------------- FOOTER ----------------
+          One inset card rather than a full-bleed band, so the page ends
+          deliberately. Left half carries who we are and the newsletter; right
+          half the link columns; the legal line sits outside the card. */}
       <footer className="pb-foot">
-        <div className="pb-foot-in">
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 13 }}>
-              <BrandMark size={36} />
-              <span className="pb-name">JUNOON<span>IAS</span></span>
+        <div className="pb-foot-card">
+          <div className="pb-foot-in">
+
+            <div className="pb-foot-brand">
+              <div className="pb-foot-logo">
+                <BrandMark size={40} />
+                <span>
+                  <span className="pb-name">JUNOON<span>IAS</span></span>
+                  <span className="pb-tagline">{t("tagline")}</span>
+                </span>
+              </div>
+              <p className="pb-foot-blurb">{t("foot_blurb")}</p>
+
+              <div className="pb-news">
+                <h5>{t("news_h")}</h5>
+                <p>{t("news_p")}</p>
+                <form className="pb-news-row" onSubmit={subscribe}>
+                  <input
+                    type="email" inputMode="email" autoComplete="email"
+                    value={email} onChange={(e) => { setEmail(e.target.value); setNews(null); }}
+                    placeholder={t("news_ph")} aria-label={t("news_h")}
+                  />
+                  <button className="pb-news-btn" type="submit" disabled={newsBusy}>
+                    {newsBusy ? t("news_sending") : t("news_btn")}
+                  </button>
+                </form>
+                {news && (
+                  <p className={"pb-news-msg " + (news.ok ? "ok" : "bad")} role="status">
+                    {news.ok ? <CheckCircle2 size={14} style={{ flex: "0 0 auto", marginTop: 1 }} /> : null}
+                    <span>{news.msg}</span>
+                  </p>
+                )}
+              </div>
+
+              {SOCIALS.length > 0 && (
+              <div className="pb-socials">
+                {SOCIALS.map((sc) => (
+                  <a className="pb-social" key={sc.label} href={sc.href} aria-label={sc.label}
+                     target="_blank" rel="noreferrer noopener">
+                    <sc.Icon size={17} />
+                  </a>
+                ))}
+              </div>
+              )}
             </div>
-            <p style={{ fontSize: 13.5, color: "var(--ink-400)", maxWidth: "34ch", margin: 0, lineHeight: 1.65 }}>
-              {t("foot_blurb")}
-            </p>
-          </div>
-          <div>
-            <h5>{t("foot_explore")}</h5>
-            <button className="flink" onClick={goCatalog}>{t("nav_tests")}</button>
-            <button className="flink" onClick={() => onNavigate("syllabus")}>{t("nav_syllabus")}</button>
-            <button className="flink" onClick={() => onNavigate("pyq")}>{t("foot_pyq")}</button>
-            <button className="flink" onClick={session ? onDashboard : onLogin}>
-              {session ? t("foot_mydash") : t("nav_login")}
-            </button>
-          </div>
-          <div>
-            <h5>{t("foot_free")}</h5>
-            <button className="flink" onClick={() => onNavigate("materials")}>{t("foot_material")}</button>
-            <button className="flink" onClick={() => onNavigate("ncert")}>{t("foot_ncert")}</button>
-            <button className="flink" onClick={() => onNavigate("news")}>{t("foot_news")}</button>
-            <button className="flink" onClick={() => onNavigate("faq")}>{t("nav_faq")}</button>
-          </div>
-          <div>
-            <h5>{t("foot_support")}</h5>
-            <a href="mailto:junoonias123@gmail.com">junoonias123@gmail.com</a>
-            <button className="flink" onClick={() => setContact(true)}>
-              <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />{t("foot_help")}
-            </button>
-            <button className="flink" onClick={() => onNavigate("faq")}>{t("foot_refunds")}</button>
+
+            <div className="pb-foot-links">
+              <div>
+                <h5>{t("foot_explore")}</h5>
+                <button className="flink" onClick={goCatalog}>{t("nav_tests")}</button>
+                <button className="flink" onClick={() => onNavigate("syllabus")}>{t("nav_syllabus")}</button>
+                <button className="flink" onClick={() => onNavigate("pyq")}>{t("foot_pyq")}</button>
+                <button className="flink" onClick={session ? onDashboard : onLogin}>
+                  {session ? t("foot_mydash") : t("nav_login")}
+                </button>
+              </div>
+              <div>
+                <h5>{t("foot_free")}</h5>
+                <button className="flink" onClick={() => onNavigate("materials")}>{t("foot_material")}</button>
+                <button className="flink" onClick={() => onNavigate("ncert")}>{t("foot_ncert")}</button>
+                <button className="flink" onClick={() => onNavigate("news")}>{t("foot_news")}</button>
+                <button className="flink" onClick={() => onNavigate("faq")}>{t("nav_faq")}</button>
+              </div>
+              <div>
+                <h5>{t("foot_support")}</h5>
+                <p className="pb-foot-contact">
+                  <a href={"mailto:" + COMPANY.email}>{COMPANY.email}</a>
+                </p>
+                <button className="flink" style={{ marginTop: 10 }} onClick={() => setContact(true)}>
+                  <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />{t("foot_help")}
+                </button>
+                <button className="flink" onClick={() => onNavigate("contact")}>{t("lg_contact")}</button>
+                <button className="flink" onClick={() => onNavigate("refund")}>{t("lg_refund")}</button>
+              </div>
+            </div>
+
           </div>
         </div>
+
         <div className="pb-foot-bottom">
-          <span>© {new Date().getFullYear()} JUNOONIAS. {t("foot_rights")}</span>
-          <span>{t("foot_made")}</span>
+          <span>&copy; {new Date().getFullYear()} JUNOONIAS. {t("foot_rights")}</span>
+          <div className="pb-foot-legal">
+            <button onClick={() => onNavigate("privacy")}>{t("lg_privacy")}</button>
+            <button onClick={() => onNavigate("terms")}>{t("lg_terms")}</button>
+            <button onClick={() => onNavigate("refund")}>{t("lg_refund")}</button>
+            <span>{t("foot_made")}</span>
+          </div>
         </div>
       </footer>
 

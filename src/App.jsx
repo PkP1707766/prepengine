@@ -9,7 +9,7 @@ import {
 } from "./lib/db.js";
 
 import PublicSite from "./screens/PublicSite.jsx";
-import { RESOURCE_KEYS } from "./lib/resources.js";
+import { PAGE_KEYS } from "./lib/resources.js";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import JoinScreen from "./screens/JoinScreen.jsx";
 import StudentApp from "./screens/StudentApp.jsx";
@@ -167,14 +167,14 @@ function Root() {
 
         const hash = window.location.hash;
         const contentKey = hash.replace(/^#\//, "");
-        if (RESOURCE_KEYS.includes(contentKey)) { setContentPage(contentKey); setRoute("public"); }
+        if (PAGE_KEYS.includes(contentKey)) { setContentPage(contentKey); setRoute("public"); }
         if (s) {
           const dest = await resolveDestination(sb);
           const m = hash.match(/^#\/exam\/([\w-]+)$/);
           if (dest === "student" && m) { setExamTestId(m[1]); setRoute("exam"); }
           // A signed-in visitor who deep-linked to the storefront stays there —
           // browsing the catalogue while logged in is perfectly normal.
-          else if (hash === "#/" || hash === "" || RESOURCE_KEYS.includes(contentKey)) setRoute("public");
+          else if (hash === "#/" || hash === "" || PAGE_KEYS.includes(contentKey)) setRoute("public");
           else go(dest);
         } else if (hash === "#/signin") {
           setRoute("login");
@@ -208,7 +208,7 @@ function Root() {
       const h = window.location.hash;
       if (h.startsWith("#/exam/")) return; // leaving an exam is confirmed inside the exam screen
       const key = h.replace(/^#\//, "");
-      if (RESOURCE_KEYS.includes(key)) { setContentPage(key); setRoute("public"); return; }
+      if (PAGE_KEYS.includes(key)) { setContentPage(key); setRoute("public"); return; }
       setContentPage(null);
       const hit = Object.entries(HASH_ROUTES).find(([, v]) => v === h);
       if (hit && hit[0] !== "exam") setRoute(hit[0]);

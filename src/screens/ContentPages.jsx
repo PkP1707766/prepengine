@@ -4,6 +4,8 @@ import {
   ArrowRight, ChevronDown, Download, ExternalLink, Search, Calendar, Play, Eye,
 } from "lucide-react";
 import { ErrorState, Skeleton } from "../ui/Feedback.jsx";
+import { useLang } from "../lib/contexts.js";
+import { LEGAL, COMPANY, val } from "../lib/legal.js";
 import * as DB from "../lib/db.js";
 
 /* ============================================================
@@ -361,6 +363,50 @@ function FaqPage() {
   );
 }
 
+
+/* ---------------------------------------------------------------- legal -- */
+/* Privacy, Terms, Refund and Contact. Plain prose in two languages, no
+   accordion and no cleverness — these are pages people read once, under some
+   stress, usually looking for one specific sentence. */
+function LegalPage({ page }) {
+  const { t, lang } = useLang();
+  const doc = LEGAL[page];
+  if (!doc) return null;
+  const L = (o) => (o && (o[lang] ?? o.en)) || "";
+
+  return (
+    <div className="lg-doc">
+      <header className="lg-head">
+        <h1>{L(doc.title)}</h1>
+        <p>{L(doc.intro)}</p>
+      </header>
+
+      {doc.blocks.map((b, i) => (
+        <section className="lg-block" key={i}>
+          <h2>{L(b.h)}</h2>
+          <ul>
+            {(b.p[lang] ?? b.p.en).map((line, j) => <li key={j}>{line}</li>)}
+          </ul>
+        </section>
+      ))}
+
+      <section className="lg-block lg-who">
+        <h2>{t("lg_who")}</h2>
+        <dl className="lg-dl">
+          <div><dt>{t("lg_brand")}</dt><dd>{COMPANY.brand}</dd></div>
+          <div><dt>{t("lg_legal_name")}</dt><dd>{val(COMPANY.legalName, lang)}</dd></div>
+          <div><dt>{t("lg_address")}</dt><dd>{val(COMPANY.address, lang)}</dd></div>
+          <div><dt>{t("lg_email")}</dt><dd><a href={"mailto:" + COMPANY.email}>{COMPANY.email}</a></dd></div>
+          <div><dt>{t("lg_phone")}</dt><dd>{val(COMPANY.phone, lang)}</dd></div>
+          {COMPANY.gstin ? <div><dt>GSTIN</dt><dd>{COMPANY.gstin}</dd></div> : null}
+          {COMPANY.cin ? <div><dt>CIN</dt><dd>{COMPANY.cin}</dd></div> : null}
+        </dl>
+        <p className="lg-updated">{t("lg_updated")} {new Date().toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { year: "numeric", month: "long" })}</p>
+      </section>
+    </div>
+  );
+}
+
 /* ---------------------------------------------------------------- router -- */
 export default function ContentPage({ page }) {
   switch (page) {
@@ -370,6 +416,8 @@ export default function ContentPage({ page }) {
     case "ncert": return <NcertPage />;
     case "news": return <NewsPage />;
     case "faq": return <FaqPage />;
+    case "privacy": case "terms": case "refund": case "contact":
+      return <LegalPage page={page} />;
     default: return null;
   }
 }

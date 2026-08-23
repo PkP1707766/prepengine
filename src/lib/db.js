@@ -1268,6 +1268,30 @@ export async function myWalletTransactions({ limit = 50 } = {}) {
   }));
 }
 
+
+/* ------------------------------------------------------------ newsletter -- */
+
+/**
+ * Footer newsletter signup. Open to signed-out visitors on purpose — that is
+ * the whole point of a footer form. The table grants INSERT only: the list
+ * cannot be read back with the anon key, or the form would double as an
+ * email-harvesting endpoint.
+ */
+export async function subscribeEmail(email, source = "footer") {
+  const clean = String(email || "").trim().toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(clean)) return { ok: false, reason: "invalid" };
+  const sb = await getSupabase();
+  const { error } = await sb.from("subscribers").insert({ email: clean, source });
+  if (error) {
+    // 23505 is the unique index on lower(email): already on the list, which is
+    // a success from the reader's point of view, not an error to show them.
+    if (error.code === "23505") return { ok: true, reason: "already" };
+    console.error("subscribe failed", error);
+    return { ok: false, reason: "failed" };
+  }
+  return { ok: true, reason: "added" };
+}
+
 /* ----------------------------------------------------------- admin views -- */
 
 export async function adminStudents() {
