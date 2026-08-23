@@ -1292,6 +1292,81 @@ export async function subscribeEmail(email, source = "footer") {
   return { ok: true, reason: "added" };
 }
 
+/* -------------------------------------------------------------- feedback -- */
+
+/**
+ * A student's own report. The row is written with their own id — RLS refuses
+ * an insert claiming to be anyone else — and cannot be edited afterwards, so
+ * the admin queue stays trustworthy.
+ *
+ * name and email are snapshotted rather than joined: the report should stay
+ * readable if the account is later deleted.
+ */
+export async function submitFeedback({ kind, rating, message, page, testId }) {
+  const sb = await getSupabase();
+  const { data: { user } } = await sb.auth.getUser();
+  if (!user) throw new Error("not_signed_in");
+
+  const profile = await getProfile(user.id).catch(() => null);
+  const { error } = await sb.from("feedback").insert({
+    student_id: user.id,
+    name: profile?.full_name || null,
+    email: profile?.email || user.email || null,
+    kind: kind || "general",
+    rating: rating || null,
+    message: String(message || "").trim(),
+    page: page || null,
+    test_id: testId || null,
+  });
+  if (error) throw error;
+  return true;
+}
+
+/** What this student has sent, and anything an admin wrote back. */
+export async function myFeedback() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_MY_FEEDBACK;
+  const sb = await getSupabase();
+  const { data, error } = await sb
+    .from("feedback")
+    .select("id, kind, rating, message, status, admin_note, created_at")
+    .order("created_at", { ascending: false })
+    .limit(50);
+  if (error) throw error;
+  return (data ?? []).map((f) => ({
+    id: f.id, kind: f.kind, rating: f.rating, message: f.message,
+    status: f.status, reply: f.admin_note || "", at: f.created_at,
+  }));
+}
+
+export async function adminFeedback() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_ADMIN_FEEDBACK;
+  const sb = await getSupabase();
+  const { data, error } = await sb
+    .from("feedback")
+    .select("id, name, email, kind, rating, message, page, status, admin_note, created_at")
+    .order("created_at", { ascending: false })
+    .limit(500);
+  if (error) throw error;
+  return (data ?? []).map((f) => ({
+    id: f.id,
+    name: f.name || "Aspirant",
+    email: f.email || "—",
+    kind: f.kind, rating: f.rating, message: f.message,
+    page: f.page || "", status: f.status, reply: f.admin_note || "",
+    at: f.created_at,
+  }));
+}
+
+/** Admin-only: RLS refuses this for anyone else. */
+export async function updateFeedback(id, patch) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("feedback")
+    .update({ status: patch.status, admin_note: patch.reply ?? null })
+    .eq("id", id);
+  if (error) throw error;
+  return true;
+}
+
 /* ----------------------------------------------------------- admin views -- */
 
 export async function adminStudents() {

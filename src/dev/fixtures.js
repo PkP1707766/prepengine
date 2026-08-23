@@ -254,3 +254,34 @@ export const FX_WALLET_TX = [
   { id: "w4", amount: 99,   type: "referral_bonus", status: "completed", note: BONUS_NOTE, at: "2026-08-11T17:40:00Z" },
   { id: "w5", amount: 99,   type: "referral_bonus", status: "reversed",  note: BONUS_NOTE, at: "2026-08-02T11:05:00Z" },
 ];
+
+/* Feedback fixtures — a mix of statuses so the queue and the student's own
+   list can both be measured with something realistic in them. */
+export const FX_MY_FEEDBACK = [
+  { id: "f1", kind: "bug", rating: 4, status: "resolved",
+    message: "On my phone the timer sat on top of the question text in the last section.",
+    reply: "Fixed on 22 Aug — the header no longer overlaps at narrow widths. Thank you for the exact detail.",
+    at: "2026-08-19T11:20:00Z" },
+  { id: "f2", kind: "content", rating: 5, status: "seen",
+    message: "Polity paper 3, question 14 — the explanation cites Article 21 but the answer key says 32.",
+    reply: "", at: "2026-08-21T08:05:00Z" },
+];
+
+export const FX_ADMIN_FEEDBACK = Array.from({ length: 7 }, (_, i) => ({
+  id: "af" + i,
+  name: ["Shubhangi Prasad", "Ravi Kumar Singh", "Aparajita Bhattacharya"][i % 3],
+  email: ["shubhangi.prasad.aspirant@gmail.com", "ravi.k.singh@gmail.com", "aparajita.b@gmail.com"][i % 3],
+  kind: ["bug", "content", "suggestion", "payment", "test", "general"][i % 6],
+  rating: (i % 5) + 1,
+  message: [
+    "On my phone the timer sat on top of the question text in the last section.",
+    "Polity paper 3, question 14 — the explanation cites Article 21 but the answer key says 32.",
+    "Please add a Hindi option for the CSAT papers too.",
+    "Paid yesterday but the series did not unlock for about ten minutes.",
+    "The rank showed as estimated even after 40 people had attempted.",
+  ][i % 5],
+  page: ["/exam", "/tests", "/", "/join", "/performance"][i % 5],
+  status: ["new", "seen", "in_progress", "resolved"][i % 4],
+  reply: i % 4 === 3 ? "Fixed and deployed. Thanks for the report." : "",
+  at: new Date(Date.now() - i * 2 * 86400000).toISOString(),
+}));

@@ -926,6 +926,45 @@ Object.assign(STR, {
 });
 
 
+/* Student feedback. */
+Object.assign(STR, {
+  sd_feedback:   { en: "Feedback", hi: "प्रतिक्रिया" },
+  sd_feedback_s: { en: "Tell us what is working and what is not", hi: "बताइए क्या ठीक चल रहा है और क्या नहीं" },
+
+  fb_h:        { en: "Tell us something", hi: "हमें कुछ बताइए" },
+  fb_sub:      { en: "A person reads every one of these.", hi: "इनमें से हर एक को एक व्यक्ति पढ़ता है।" },
+  fb_what:     { en: "What is this about?", hi: "बात किस बारे में है?" },
+  fb_rate:     { en: "How is JUNOONIAS working for you? (optional)", hi: "JUNOONIAS आपके लिए कैसा चल रहा है? (वैकल्पिक)" },
+  fb_msg:      { en: "Your message", hi: "आपका संदेश" },
+  fb_ph:       { en: "The more exact you are, the faster we can fix it. Test name, question number, what you expected and what happened.",
+                 hi: "जितना सटीक बताएँगे, उतनी जल्दी ठीक होगा। टेस्ट का नाम, प्रश्न संख्या, आपने क्या सोचा था और क्या हुआ।" },
+  fb_tip:      { en: "Hindi or English — whichever is easier for you.", hi: "हिन्दी या अंग्रेज़ी — जो आपको आसान लगे।" },
+  fb_send:     { en: "Send", hi: "भेजें" },
+  fb_sending:  { en: "Sending…", hi: "भेजा जा रहा है…" },
+  fb_sent:     { en: "Sent — thank you. We read these properly.", hi: "भेज दिया — धन्यवाद। हम इन्हें ध्यान से पढ़ते हैं।" },
+  fb_failed:   { en: "Could not send just now. Please try again.", hi: "अभी भेज नहीं सके। कृपया दोबारा कोशिश कीजिए।" },
+  fb_too_short:{ en: "Please write a little more so we can act on it.", hi: "थोड़ा और लिखिए ताकि हम उस पर काम कर सकें।" },
+  fb_mine:     { en: "What you have sent", hi: "आपने जो भेजा" },
+  fb_mine_sub: { en: "With our reply, when there is one", hi: "जहाँ उत्तर आया है, वहाँ उत्तर सहित" },
+  fb_none:     { en: "Nothing yet. If something is broken or confusing, tell us — it genuinely helps.",
+                 hi: "अभी कुछ नहीं। कुछ टूटा हुआ या उलझन भरा लगे तो बताइए — इससे सचमुच मदद मिलती है।" },
+  fb_reply:    { en: "Our reply", hi: "हमारा उत्तर" },
+
+  fb_k_bug:        { en: "Something is broken", hi: "कुछ टूटा हुआ है" },
+  fb_k_content:    { en: "Question or answer", hi: "प्रश्न या उत्तर" },
+  fb_k_test:       { en: "A test", hi: "कोई टेस्ट" },
+  fb_k_payment:    { en: "Payment or access", hi: "भुगतान या पहुँच" },
+  fb_k_suggestion: { en: "A suggestion", hi: "एक सुझाव" },
+  fb_k_general:    { en: "Something else", hi: "कुछ और" },
+
+  fb_s_new:         { en: "Sent", hi: "भेजा गया" },
+  fb_s_seen:        { en: "Read", hi: "पढ़ा गया" },
+  fb_s_in_progress: { en: "Being fixed", hi: "ठीक किया जा रहा है" },
+  fb_s_resolved:    { en: "Resolved", hi: "हल हो गया" },
+  fb_s_wont_fix:    { en: "Closed", hi: "बंद" },
+});
+
+
 export function AppProviders({ children }) {
   useBrandChrome();
   const [lang, setLangRaw] = useState(() => loadKey("lang", "en"));

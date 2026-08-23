@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Menu, CheckCircle2, BookOpen, Clock, Layers, Eye, Save, TrendingUp, Home, BarChart3, Trophy, User, Flame, Target, Award, Play, RotateCcw, Lock, Calendar, Bell, Zap, ArrowUp, ArrowDown, Medal, Sparkles, LogOut, Share2, Camera, Gift, Copy, Users, UserPlus, Wallet, IndianRupee } from "lucide-react";
+import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Menu, CheckCircle2, BookOpen, Clock, Layers, Eye, Save, TrendingUp, Home, BarChart3, Trophy, User, Flame, Target, Award, Play, RotateCcw, Lock, Calendar, Bell, Zap, ArrowUp, ArrowDown, Medal, Sparkles, LogOut, Share2, Camera, Gift, Copy, Users, UserPlus, Wallet, IndianRupee, MessageSquare, Star, Send } from "lucide-react";
 import { AreaChart, Area, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
@@ -321,7 +321,14 @@ const CSS = `
 .prof-meta{font-size:13px;color:var(--muted);margin-top:4px}
 .field{margin-bottom:16px}
 .field label{display:block;font-size:12.5px;font-weight:700;color:#4a3322;margin-bottom:6px}
-.inp{width:100%;padding:11px 13px;border:1.5px solid #e6d6b2;border-radius:9px;font-size:14px;color:var(--ink);outline:none}
+/* background and font-family must be stated. Without them a <textarea> keeps
+   the browser's own form-control defaults — monospace, and a dark canvas under
+   a dark colour-scheme — which put dark text on a near-black box while every
+   input beside it stayed cream. */
+.inp{width:100%;padding:11px 13px;border:1.5px solid #e6d6b2;border-radius:9px;font-size:14px;
+  color:var(--ink);outline:none;background:var(--card);font-family:inherit;line-height:1.55}
+.inp::placeholder{color:var(--muted);opacity:1}
+textarea.inp{resize:vertical;min-height:88px}
 .inp:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(20,150,180,.1)}
 .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid #fdf6e3}
 .toggle-row:last-child{border-bottom:none}
@@ -368,6 +375,31 @@ const CSS = `
 .rf-ledger-row:last-child{border-bottom:0}
 .rf-ledger-row .amt{font-weight:800;font-size:14.5px;margin-left:auto;white-space:nowrap}
 .rf-ledger-row .amt.rev{color:var(--muted);text-decoration:line-through}
+
+/* FEEDBACK */
+.fb-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start}
+.fb-kinds{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.fb-kind{padding:9px 15px;border-radius:100px;border:1.5px solid var(--line);background:var(--card);
+  font:inherit;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:.16s}
+.fb-kind:hover{border-color:var(--gold-2,#b8923a)}
+.fb-kind.on{background:#7a1f1f;border-color:#7a1f1f;color:#fff}
+.fb-stars{display:flex;gap:5px}
+.fb-star{background:none;border:0;padding:4px;cursor:pointer;color:#dccfae;transition:transform .14s,color .14s;
+  line-height:0}
+.fb-star:hover{transform:scale(1.14)}
+.fb-star.on{color:#e0a92a}
+.fb-note{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.55}
+.fb-item{border:1px solid var(--line);border-radius:13px;padding:15px 16px;margin-bottom:11px;
+  background:var(--card)}
+.fb-item-head{display:flex;align-items:center;gap:9px;margin-bottom:8px;flex-wrap:wrap}
+.fb-msg{font-size:13.5px;line-height:1.6;color:var(--ink);margin:0}
+.fb-reply{margin-top:11px;padding:11px 13px;border-radius:10px;background:#f3f8f4;border:1px solid #d8eadd;
+  font-size:13px;line-height:1.6;color:#1f5c39}
+.fb-reply b{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:#2f9e58;margin-bottom:4px}
+@media(max-width:860px){
+  .fb-grid{grid-template-columns:1fr}
+}
 
 /* REFER & EARN */
 .rf-hero{background:linear-gradient(150deg,#7a1f1f,#4e1114);color:#fdf6e3;border-radius:16px;
@@ -1642,6 +1674,135 @@ function ReferView({ toast }) {
 /* Labels are dictionary keys, not text: these are module constants, so they
    cannot call t() themselves — the sidebar and the page header resolve them
    at render time. */
+
+/* ============================================================
+   FEEDBACK
+
+   A place to say something went wrong, and to see that a person
+   read it. The reply is the point: feedback that vanishes into a
+   form teaches students not to bother a second time.
+   ============================================================ */
+const FB_KINDS = ["bug", "content", "test", "payment", "suggestion", "general"];
+const FB_STATUS_COLOR = {
+  new:         { bg: "#fdf6e3", fg: "#a89474" },
+  seen:        { bg: "#f6ecd2", fg: "#8a6a2a" },
+  in_progress: { bg: "#faf2dc", fg: "#b8923a" },
+  resolved:    { bg: "#e8f6ee", fg: "#1f8a4c" },
+  wont_fix:    { bg: "#f4efe4", fg: "#8a7a6c" },
+};
+
+function FeedbackView({ toast }) {
+  const { t } = useLang();
+  const [kind, setKind] = useState("bug");
+  const [rating, setRating] = useState(0);
+  const [message, setMessage] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [mine, setMine] = useState([]);
+  const [err, setErr] = useState("");
+
+  const load = useCallback(async () => {
+    try { setMine(await DB.myFeedback()); }
+    catch (e) { console.error(e); }
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const send = async (e) => {
+    e.preventDefault();
+    const text = message.trim();
+    if (text.length < 5) { setErr(t("fb_too_short")); return; }
+    setErr("");
+    setBusy(true);
+    try {
+      await DB.submitFeedback({ kind, rating: rating || null, message: text, page: "/dashboard" });
+      setMessage(""); setRating(0);
+      toast(t("fb_sent"));
+      await load();
+    } catch (e2) {
+      console.error("feedback failed", e2);
+      setErr(t("fb_failed"));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="fb-grid">
+      <div className="card card-pad">
+        <div className="sec-head">
+          <div>
+            <h2>{t("fb_h")}</h2>
+            <div className="note">{t("fb_sub")}</div>
+          </div>
+        </div>
+
+        <form onSubmit={send}>
+          <label className="lbl">{t("fb_what")}</label>
+          <div className="fb-kinds">
+            {FB_KINDS.map((k) => (
+              <button type="button" key={k} className={"fb-kind" + (kind === k ? " on" : "")}
+                      onClick={() => setKind(k)}>{t("fb_k_" + k)}</button>
+            ))}
+          </div>
+
+          <label className="lbl" style={{ marginTop: 16 }}>{t("fb_rate")}</label>
+          <div className="fb-stars">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button type="button" key={n} className={"fb-star" + (n <= rating ? " on" : "")}
+                      onClick={() => setRating(n === rating ? 0 : n)}
+                      aria-label={`${n} / 5`}>
+                <Star size={24} fill={n <= rating ? "currentColor" : "none"} />
+              </button>
+            ))}
+          </div>
+
+          <label className="lbl" style={{ marginTop: 16 }}>{t("fb_msg")}</label>
+          <textarea className="inp" rows={5} value={message} maxLength={2000}
+                    placeholder={t("fb_ph")}
+                    onChange={(e) => { setMessage(e.target.value); setErr(""); }} />
+          <div className="fb-note">{t("fb_tip")}</div>
+
+          {err && <div className="fb-note" style={{ color: "var(--red,#c0392b)" }}>{err}</div>}
+
+          <button className="btn btn-primary" type="submit" disabled={busy} style={{ marginTop: 14 }}>
+            <Send size={15} />{busy ? t("fb_sending") : t("fb_send")}
+          </button>
+        </form>
+      </div>
+
+      <div className="card card-pad">
+        <div className="sec-head">
+          <div>
+            <h2>{t("fb_mine")}</h2>
+            <div className="note">{t("fb_mine_sub")}</div>
+          </div>
+        </div>
+
+        {mine.length === 0 ? (
+          <div className="empty">
+            <div className="empty-ic"><MessageSquare size={24} /></div>
+            {t("fb_none")}
+          </div>
+        ) : mine.map((f) => (
+          <div className="fb-item" key={f.id}>
+            <div className="fb-item-head">
+              <Badge color={FB_STATUS_COLOR[f.status] || FB_STATUS_COLOR.new}>{t("fb_s_" + f.status)}</Badge>
+              <span style={{ fontSize: 12, color: "var(--muted)" }}>{t("fb_k_" + f.kind)}</span>
+              <span style={{ fontSize: 12, color: "var(--muted)", marginLeft: "auto" }}>{fmtDate(f.at)}</span>
+            </div>
+            <p className="fb-msg">{f.message}</p>
+            {f.reply && (
+              <div className="fb-reply">
+                <b>{t("fb_reply")}</b>
+                {f.reply}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const NAV = [
   { id: "home", key: "sd_home", icon: Home },
   { id: "tests", key: "sd_tests", icon: FileText },
@@ -1650,11 +1811,13 @@ const NAV = [
   { id: "materials", key: "sd_materials", icon: FolderOpen },
   { id: "leaderboard", key: "sd_leaderboard", icon: Trophy },
   { id: "refer", key: "sd_refer", icon: Gift },
+  { id: "feedback", key: "sd_feedback", icon: MessageSquare },
   { id: "profile", key: "sd_profile", icon: User },
 ];
 const META_KEY = {
   home: "sd_home", tests: "sd_tests", performance: "sd_perf", batches: "sd_batches",
-  materials: "sd_materials", leaderboard: "sd_leaderboard", refer: "sd_refer", profile: "sd_profile",
+  materials: "sd_materials", leaderboard: "sd_leaderboard", refer: "sd_refer",
+  feedback: "sd_feedback", profile: "sd_profile",
 };
 
 const NOTIF_ICON = {
@@ -1877,6 +2040,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
             {view === "materials" && <MaterialsView toast={toast} />}
             {view === "leaderboard" && <LeaderboardView toast={toast} />}
             {view === "refer" && <ReferView toast={toast} />}
+            {view === "feedback" && <FeedbackView toast={toast} />}
             {view === "profile" && <ProfileView toast={toast} />}
           </main>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { LayoutDashboard, ListChecks, FileText, GraduationCap, FolderOpen, Users, IndianRupee, Plus, Search, Pencil, Trash2, X, Upload, Check, ChevronRight, Menu, AlertCircle, CheckCircle2, Clock, Layers, Eye, EyeOff, Save, ArrowLeft, TrendingUp, Sparkles, Newspaper, Tag, LogOut, Download, Gift } from "lucide-react";
+import { LayoutDashboard, ListChecks, FileText, GraduationCap, FolderOpen, Users, IndianRupee, Plus, Search, Pencil, Trash2, X, Upload, Check, ChevronRight, Menu, AlertCircle, CheckCircle2, Clock, Layers, Eye, EyeOff, Save, ArrowLeft, TrendingUp, Sparkles, Newspaper, Tag, LogOut, Download, Gift, MessageSquare, Star } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
@@ -238,7 +238,14 @@ table.tbl{width:100%;border-collapse:collapse;min-width:640px}
 @media(max-width:560px){.field-row{grid-template-columns:1fr}}
 .field label{display:block;font-size:12.5px;font-weight:700;color:#4a3322;margin-bottom:6px}
 .field .req{color:var(--red)}
-.inp{width:100%;padding:11px 13px;border:1.5px solid #e6d6b2;border-radius:9px;font-size:14px;color:var(--ink);outline:none;transition:.13s;background:#ffffff}
+/* font-family must be stated: a <textarea> otherwise keeps the browser's
+   monospace default, which the question body, the explanation and the new
+   Hindi fields all render in — Devanagari especially badly. */
+.inp{width:100%;padding:11px 13px;border:1.5px solid #e6d6b2;border-radius:9px;font-size:14px;
+  color:var(--ink);outline:none;transition:.13s;background:var(--card,#ffffff);
+  font-family:inherit;line-height:1.55}
+.inp::placeholder{color:var(--muted);opacity:1}
+textarea.inp{resize:vertical;min-height:80px}
 .inp:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(20,150,180,.1)}
 textarea.inp{resize:vertical;min-height:74px;line-height:1.55}
 .hint{font-size:11.5px;color:var(--muted);margin-top:5px}
@@ -965,6 +972,7 @@ const NAV = [
   { group: "People & Revenue", items: [
     { id: "students", label: "Students", icon: Users },
     { id: "referrals", label: "Referrals", icon: Gift },
+    { id: "feedback", label: "Feedback", icon: MessageSquare },
     { id: "sales", label: "Sales", icon: IndianRupee },
   ]},
 ];
@@ -974,6 +982,7 @@ const PAGE_META = {
   tests: { title: "Tests & Series", sub: "Build tests from your question bank" },
   bundles: { title: "Bundles & Pricing", sub: "What students can buy, and what it costs" },
   referrals: { title: "Referrals", sub: "Who invited whom, and what it converted to" },
+  feedback: { title: "Feedback", sub: "What students are telling you — read it" },
   exams: { title: "Exams & Categories", sub: "The exams your bundles and content are filed under" },
   coupons: { title: "Coupons", sub: "Discount codes students apply at checkout" },
   courses: { title: "Courses & Batches", sub: "Organise your offerings and pricing" },
@@ -1261,6 +1270,7 @@ function App({ onLogout }) {
           {view === "content" && <Content {...{ toast, askDelete }} />}
           {view === "students" && <Students toast={toast} />}
           {view === "referrals" && <Referrals />}
+          {view === "feedback" && <Feedback toast={toast} />}
           {view === "sales" && <Sales toast={toast} />}
         </main>
       </div>
@@ -3045,6 +3055,162 @@ function Students({ toast }) {
 /* ============================================================
    VIEW: SALES  —  verified Razorpay transactions
    ============================================================ */
+function Feedback({ toast }) {
+  const [rows, setRows] = useState(null);
+  const [err, setErr] = useState("");
+  const [filter, setFilter] = useState("open");
+  const [open, setOpen] = useState(null);
+  const [reply, setReply] = useState("");
+  const [status, setStatus] = useState("seen");
+  const [saving, setSaving] = useState(false);
+
+  const load = useCallback(async () => {
+    setErr("");
+    try { setRows(await DB.adminFeedback()); }
+    catch (e) { console.error(e); setErr(e?.message || "Could not load feedback."); }
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  if (err) return <div className="panel"><ErrorState message={err} onRetry={load} /></div>;
+  if (!rows) return <SkeletonCards count={3} height={110} />;
+
+  const OPEN = ["new", "seen", "in_progress"];
+  const shown = filter === "all" ? rows
+    : filter === "open" ? rows.filter((r) => OPEN.includes(r.status))
+    : rows.filter((r) => r.status === filter);
+
+  const counts = {
+    all: rows.length,
+    open: rows.filter((r) => OPEN.includes(r.status)).length,
+    resolved: rows.filter((r) => r.status === "resolved").length,
+  };
+  const rated = rows.filter((r) => r.rating);
+  const avg = rated.length ? (rated.reduce((a, r) => a + r.rating, 0) / rated.length) : 0;
+
+  const kindColor = {
+    bug: { bg: "#fbeaea", fg: "#c0392b" },
+    content: { bg: "#faf2dc", fg: "#b8923a" },
+    test: { bg: "#f6ecd2", fg: "#7a1f1f" },
+    payment: { bg: "#e8f6ee", fg: "#1f8a4c" },
+    suggestion: { bg: "#eef2fb", fg: "#3a5ba0" },
+    general: { bg: "#fdf6e3", fg: "#a89474" },
+  };
+  const statusColor = {
+    new: { bg: "#fbeaea", fg: "#c0392b" },
+    seen: { bg: "#fdf6e3", fg: "#a89474" },
+    in_progress: { bg: "#faf2dc", fg: "#b8923a" },
+    resolved: { bg: "#e8f6ee", fg: "#1f8a4c" },
+    wont_fix: { bg: "#f4efe4", fg: "#8a7a6c" },
+  };
+
+  const startReply = (r) => { setOpen(r); setReply(r.reply || ""); setStatus(r.status === "new" ? "seen" : r.status); };
+
+  const save = async () => {
+    if (!open) return;
+    setSaving(true);
+    try {
+      await DB.updateFeedback(open.id, { status, reply: reply.trim() || null });
+      toast?.("Reply saved — the student sees it on their Feedback screen");
+      setOpen(null);
+      await load();
+    } catch (e) {
+      console.error(e);
+      toast?.("Could not save that reply", "err");
+    } finally { setSaving(false); }
+  };
+
+  return (
+    <div>
+      <div className="stats">
+        <StatCard icon={<MessageSquare size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }}
+                  n={counts.open} label="Waiting on you" sub="new, read or in progress" />
+        <StatCard icon={<CheckCircle2 size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}
+                  n={counts.resolved} label="Resolved" sub="closed with a reply" />
+        <StatCard icon={<Star size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }}
+                  n={avg ? avg.toFixed(1) : "—"} label="Average rating"
+                  sub={rated.length + " rated"} />
+      </div>
+
+      <div className="sec-head">
+        <div><h2>Student feedback</h2><div className="note">Oldest open items first deserve your attention</div></div>
+        <div className="tabs">
+          {[["open", "Open"], ["resolved", "Resolved"], ["all", "All"]].map(([k, label]) => (
+            <button key={k} className={"tab" + (filter === k ? " active" : "")} onClick={() => setFilter(k)}>
+              {label} ({counts[k] ?? 0})
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {shown.length === 0 ? (
+        <div className="panel">
+          <Empty icon={<MessageSquare size={26} />} title="Nothing here"
+                 text="When a student sends feedback from their dashboard it lands in this queue." />
+        </div>
+      ) : shown.map((r) => (
+        <div className="panel panel-pad" key={r.id} style={{ marginBottom: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 9, flexWrap: "wrap", marginBottom: 9 }}>
+            <Badge color={statusColor[r.status] || statusColor.new}>{r.status.replace(/_/g, " ")}</Badge>
+            <Badge color={kindColor[r.kind] || kindColor.general}>{r.kind}</Badge>
+            {r.rating ? (
+              <span style={{ fontSize: 12.5, color: "#b8923a", fontWeight: 700 }}>{"★".repeat(r.rating)}</span>
+            ) : null}
+            <span style={{ fontSize: 12.5, color: "var(--muted)", marginLeft: "auto" }}>{fmtLongDate(r.at)}</span>
+          </div>
+
+          <p style={{ margin: "0 0 10px", fontSize: 14, lineHeight: 1.65, color: "var(--ink)" }}>{r.message}</p>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 12.5, color: "var(--muted)" }}>
+              {r.name} · {r.email}{r.page ? " · " + r.page : ""}
+            </span>
+            <button className="btn btn-ghost btn-sm" style={{ marginLeft: "auto" }} onClick={() => startReply(r)}>
+              {r.reply ? "Edit reply" : "Reply"}
+            </button>
+          </div>
+
+          {r.reply && (
+            <div style={{ marginTop: 11, padding: "11px 13px", borderRadius: 10, background: "#f3f8f4",
+                          border: "1px solid #d8eadd", fontSize: 13, lineHeight: 1.6, color: "#1f5c39" }}>
+              <b style={{ display: "block", fontSize: 11.5, letterSpacing: ".06em", textTransform: "uppercase",
+                          color: "#2f9e58", marginBottom: 4 }}>Your reply</b>
+              {r.reply}
+            </div>
+          )}
+        </div>
+      ))}
+
+      {open && (
+        <Modal title="Reply to this student" onClose={() => setOpen(null)}
+               footer={
+                 <>
+                   <button className="btn btn-ghost" onClick={() => setOpen(null)}>Cancel</button>
+                   <button className="btn btn-primary" onClick={save} disabled={saving}>
+                     {saving ? "Saving…" : "Save reply"}
+                   </button>
+                 </>
+               }>
+          <p style={{ margin: "0 0 14px", fontSize: 13.5, lineHeight: 1.65, color: "var(--muted)" }}>
+            {open.message}
+          </p>
+          <Field label="Status">
+            <select className="sel" value={status} onChange={(e) => setStatus(e.target.value)}>
+              <option value="seen">Read</option>
+              <option value="in_progress">Being fixed</option>
+              <option value="resolved">Resolved</option>
+              <option value="wont_fix">Closed — not changing this</option>
+            </select>
+          </Field>
+          <Field label="Reply" hint="The student sees this on their own Feedback screen">
+            <textarea className="inp" rows={4} value={reply} onChange={(e) => setReply(e.target.value)}
+                      placeholder="What you did about it, or why not." />
+          </Field>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
 function Referrals() {
   const [rows, setRows] = useState(null);
   const [err, setErr] = useState("");
