@@ -110,8 +110,37 @@ const CSS = `
 .pb-btn:hover svg:last-child{transform:translateX(3px)}
 .pb-btn[disabled]{cursor:not-allowed;transform:none}
 .pb-btn[disabled]::after{display:none}
-.pb-btn-gold{background:linear-gradient(155deg,var(--gold-500),var(--gold-600));color:#2a1e05;
-  box-shadow:0 10px 24px -10px rgba(197,150,30,.65)}
+/* The same sunset the header's login button runs, on the same reasoning:
+   colour left to right, light top to bottom, two gradients because one has
+   only one axis. Worth doing here because .pb-btn-gold is never a repeating
+   list item -- it is the hero CTA, the nav's "Get started", and the enrol
+   button on a bundle page, at most one or two in any view. A directional
+   gradient stops being a signature the moment it appears six times down a
+   scroll; the catalogue's enrol buttons are maroon, so that never happens.
+
+   The ramp is gentler here than in the header, and that is the whole point.
+   The header's button is 85px wide, so its last 20% is 17px -- a lit edge.
+   This one is 330px, where the same 20% is 67px and stops reading as an
+   edge at all: it reads as a second colour stuck onto the first. Tried the
+   header's exact stops here first and it looked like an orange block. Same
+   hues, longer surface, so the turn starts earlier and arrives softer --
+   the way a larger typeface wants a lighter weight.
+
+   Text here is centred rather than filling the box, so the label sits over
+   the middle of the ramp where there is the most room -- but it is still
+   measured, not assumed. */
+.pb-btn-gold{color:#2a1e05;
+  background:
+    linear-gradient(180deg,rgba(255,249,228,.38) 0%,rgba(255,255,255,.05) 46%,rgba(74,28,4,.18) 100%),
+    linear-gradient(90deg,#cdaa2a 0%,#c9a227 30%,#cb9524 55%,#d18a21 74%,#d8801e 88%,#d4701c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,244,214,.75),
+    inset 0 -1px 0 rgba(74,30,4,.26),
+    0 10px 24px -10px rgba(197,150,30,.65)}
+.pb-btn-gold:hover{box-shadow:
+    inset 0 1px 0 rgba(255,247,222,.85),
+    inset 0 -1px 0 rgba(74,30,4,.28),
+    0 14px 30px -10px rgba(205,124,30,.72)}
 .pb-btn-maroon{background:var(--brand-700);color:#fff;box-shadow:0 10px 24px -12px rgba(99,19,34,.7)}
 /* Desktop login. It sits beside the gold "Get started", so it must not shout
    in the same voice — but a bare outline is not worth clicking either. A warm
