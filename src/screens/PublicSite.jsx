@@ -121,7 +121,7 @@ const CSS = `
   margin-bottom:4px;font-weight:600}
 
 /* ---------- SECTIONS ---------- */
-.pb-sec{padding:76px 0;position:relative}
+.pb-sec{padding-block:76px;position:relative}
 .pb-sec-head{max-width:660px;margin:0 auto 42px;text-align:center;position:relative;z-index:2}
 .pb-h2{font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(27px,3.1vw,37px);
   margin:9px 0 12px;font-weight:600;line-height:1.16;color:var(--ink-900)}
@@ -219,6 +219,7 @@ const CSS = `
 .pb-ticket p{margin:0;font-size:13.5px;color:var(--ink-600);line-height:1.55}
 
 /* ---------- QUOTE ---------- */
+.pb-sec-coupon{padding-block:62px}
 .pb-quote{text-align:center;padding:74px 24px}
 .pb-quote .deva{font-family:var(--font-deva);font-size:27px;color:var(--brand-700);margin-bottom:12px}
 .pb-quote p{font-family:var(--font-display);font-style:italic;color:var(--ink-600);font-size:17px;
@@ -372,7 +373,7 @@ const CSS = `
   .ill-diya{width:186px;height:186px}
   .pb-hero-deva{font-size:14px;margin-bottom:6px}
   .pb-h1{font-size:30px;line-height:1.14;letter-spacing:-.015em;margin-bottom:14px}
-  .pb-h1 br{display:none}
+  .pb-h1 br{display:inline}
   .pb-lede{font-size:15.5px;line-height:1.6;margin-bottom:22px}
   .pb-hero-ctas{gap:10px;margin-bottom:24px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:14px 20px;font-size:15px}
@@ -382,7 +383,7 @@ const CSS = `
   .pb-name{font-size:17px}
   .pb-tagline{font-size:9.5px}
 
-  .pb-sec{padding:48px 0}
+  .pb-sec{padding-block:48px}
   /* The tab rows bleed to the screen edge with a negative margin so they can
      scroll edge-to-edge. Clipping here keeps that bleed from becoming a
      page-level scrollbar. (clip, not hidden — hidden would break any sticky
@@ -478,7 +479,7 @@ const CSS = `
   .pb-foot-links{grid-template-columns:1fr 1fr;gap:22px}
 }
 @media (max-width:560px){
-  .pb-sec{padding:56px 0}
+  .pb-sec{padding-block:56px}
   .pb-strip-in{grid-template-columns:1fr}
   .pb-strip-item{border-left:0;padding-left:0}
   .pb-foot-links{grid-template-columns:1fr;gap:4px}
@@ -563,6 +564,34 @@ const CSS = `
 .lg-enonly{margin:14px 0 0;font-size:13px;line-height:1.6;color:var(--ink-600);
   background:var(--cream-100);border-left:3px solid var(--gold-500);border-radius:0 8px 8px 0;
   padding:10px 14px;max-width:62ch}
+
+/* ---------- MOBILE VERTICAL RHYTHM ----------
+   Desktop spacing on a phone is what made this feel empty. Each section
+   carried 56px of padding top AND bottom, the section heading added another
+   42px beneath itself, and the dark bands nested a padded section inside a
+   padded band — so the measured gap between the catalogue cards and the next
+   heading was 229px, and between the report and the resources grid 230px. On
+   an 812px screen that is a third of the view showing nothing at all.
+
+   Measured targets here: section-to-section gaps of roughly 64-76px, and a
+   page that scrolls in about seven screens rather than nine and a half. */
+@media (max-width:640px){
+  /* padding-block, not the padding shorthand: .pb-sec-narrow carries the
+     side padding, shares the .pb-sec class, and is declared earlier in the
+     sheet — a shorthand here wiped its padding-inline and ran the legal pages
+     edge to edge on a phone. */
+  .pb-sec{padding-block:38px}
+  .pb-sec-head{margin-bottom:24px}
+  .pb-sec-coupon{padding-block:34px}
+  .pb-quote{padding:40px 20px}
+  .pb-show-grid{padding:38px 20px;gap:26px}
+  .pb-strip-in{padding:20px 20px}
+  .pb-hero-grid{padding:30px 20px 36px;gap:20px}
+  .pb-stage{min-height:190px}
+  .pb-steps{gap:18px}
+  .pb-step{padding:20px 18px}
+  .pb-sec-mandala{width:280px;height:280px;top:-40px}
+}
 `;
 
 const money = (n) => "₹" + Number(n || 0).toLocaleString("en-IN", { maximumFractionDigits: 0 });
@@ -1127,7 +1156,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </section>
 
           {/* ---------------- COUPON ---------------- */}
-          <div className="pb-sec pb-sec-narrow" style={{ paddingBlock: 62 }}>
+          <div className="pb-sec pb-sec-narrow pb-sec-coupon">
             <div className="pb-ticket-wrap"><div className="pb-ticket reveal">
               <span className="pb-notch pb-notch-l" />
               <span className="pb-ticket-ic"><TicketIcon size={24} /></span>

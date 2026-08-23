@@ -448,6 +448,21 @@ textarea.inp{resize:vertical;min-height:88px}
   .rf-code{font-size:18px;letter-spacing:.13em}
   .rf-act{flex:1 1 auto}
 }
+
+/* ---------- MOBILE ----------
+   The stat cards fell to a single column on a phone and four numbers then
+   took 720px of scrolling. The cause was arithmetic, not intent:
+   minmax(170px,1fr) with a 16px gap needs 356px and the container is 323px,
+   so auto-fit dropped to one track by two pixels a side. Stated as two
+   columns explicitly, with the padding brought in to match. */
+@media(max-width:560px){
+  .stats{grid-template-columns:1fr 1fr;gap:11px;margin-bottom:16px}
+  .stats > *{padding:14px 13px}
+  .stat-n,.stats .n{font-size:26px}
+  .card-pad{padding:17px}
+  .sec-head{margin-bottom:13px}
+  .sec-head h2{font-size:15px}
+}
 `;
 
 /* ============================================================
