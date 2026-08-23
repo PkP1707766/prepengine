@@ -20,7 +20,7 @@ import { json, preflight } from "../_shared/cors.ts";
 const bandFor = (accuracy: number) =>
   accuracy >= 75 ? "strong" : accuracy >= 50 ? "average" : "weak";
 
-type Opt = { id?: string; body?: string; isCorrect?: boolean };
+type Opt = { id?: string; body?: string; body_hi?: string | null; isCorrect?: boolean };
 
 Deno.serve(async (req) => {
   const pre = preflight(req);
@@ -61,7 +61,7 @@ Deno.serve(async (req) => {
 
   const { data: test } = await sb
     .from("tests")
-    .select("id, title, duration_min, sections, series_id, is_published, test_series(title)")
+    .select("id, title, title_hi, duration_min, sections, series_id, is_published, test_series(title, title_hi)")
     .eq("id", testId)
     .eq("is_published", true)
     .single();
@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
 
   const { data: qRows } = await sb
     .from("questions")
-    .select("id, subject, topic, type, body, options, numeric_answer, numeric_tolerance, marks_correct, marks_wrong, explanation")
+    .select("id, subject, topic, type, body, body_hi, options, numeric_answer, numeric_tolerance, marks_correct, marks_wrong, explanation, explanation_hi")
     .in("id", allIds);
   const byId = new Map((qRows ?? []).map((q) => [q.id, q]));
 
@@ -170,11 +170,18 @@ Deno.serve(async (req) => {
       const t = Number(timeSpent[qid]) || 0;
       review.push({
         id: q.id, num: review.length + 1, section: name,
-        text: q.body, type: q.type,
+        type: q.type, topic,
+        // Both languages are snapshotted, so a student can read their report in
+        // either one later — and it stays readable even if the question is
+        // edited or translated after the attempt.
+        text: q.body,
+        text_hi: q.body_hi || null,
         // Bodies only — the review screen renders these, and the answer is
         // carried separately as an index now that the paper is over.
         options: opts.map((o) => o.body ?? ""),
-        topic, explanation: q.explanation || "",
+        options_hi: opts.map((o) => o.body_hi ?? null),
+        explanation: q.explanation || "",
+        explanation_hi: q.explanation_hi || null,
         yourVal, correctVal,
         attempted: isAttempted, correct: isCorrect, awarded,
         time: t, slow: t >= slowThreshold && t > 0,
@@ -195,6 +202,7 @@ Deno.serve(async (req) => {
   // ---- persist -----------------------------------------------------------
   const startedAt = body.startedAt || new Date().toISOString();
   const durationMin = Number(test.duration_min ?? 60);
+  const series = (test as { test_series?: { title?: string; title_hi?: string } }).test_series;
 
   const { data: saved, error: insErr } = await sb
     .from("attempts")
@@ -202,7 +210,7 @@ Deno.serve(async (req) => {
       student_id: user.id,
       test_id: test.id,
       test_title: test.title,
-      series_title: (test as { test_series?: { title?: string } }).test_series?.title ?? null,
+      series_title: series?.title ?? null,
       score: Number(score.toFixed(2)),
       max_score: maxScore,
       total_questions: total,
@@ -266,7 +274,9 @@ Deno.serve(async (req) => {
     attemptId: saved.id,
     testId: test.id,
     title: test.title,
-    seriesTitle: (test as { test_series?: { title?: string } }).test_series?.title ?? "",
+    title_hi: test.title_hi ?? null,
+    seriesTitle: series?.title ?? "",
+    seriesTitle_hi: series?.title_hi ?? null,
     durationMin,
     startedAt,
     answers,

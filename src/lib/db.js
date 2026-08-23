@@ -351,12 +351,17 @@ export function questionFromRow(r) {
     type: r.type,
     difficulty: r.difficulty,
     body: r.body,
+    bodyHi: r.body_hi || "",
+    // Option translations ride inside the option object as `body_hi`, keyed to
+    // the option's own id — a parallel array would fall out of step the first
+    // time an option is reordered or removed.
     options: Array.isArray(r.options) ? r.options : [],
     numericAnswer: r.numeric_answer,
     numericTolerance: r.numeric_tolerance ?? 0.01,
     marksCorrect: Number(r.marks_correct ?? 2),
     marksWrong: Number(r.marks_wrong ?? 0),
     explanation: r.explanation || "",
+    explanationHi: r.explanation_hi || "",
     tags: r.tags || [],
     createdAt: r.created_at,
   };
@@ -370,12 +375,14 @@ export function questionToRow(q) {
     type: q.type,
     difficulty: q.difficulty,
     body: q.body,
+    body_hi: (q.bodyHi || "").trim() || null,
     options: q.options || [],
     numeric_answer: q.type === "numerical" ? q.numericAnswer : null,
     numeric_tolerance: q.numericTolerance ?? 0.01,
     marks_correct: q.marksCorrect,
     marks_wrong: q.marksWrong,
     explanation: q.explanation || null,
+    explanation_hi: (q.explanationHi || "").trim() || null,
     tags: q.tags || [],
     updated_at: new Date().toISOString(),
   };

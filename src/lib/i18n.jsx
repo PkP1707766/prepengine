@@ -792,6 +792,7 @@ Object.assign(STR, {
   ex_qbyq:        { en: "Question-by-Question Analysis", hi: "प्रश्न-दर-प्रश्न विश्लेषण" },
   ex_qbyq_sub:    { en: "Your answer, the correct answer, marks awarded, time spent, and a full explanation for every question.", hi: "हर प्रश्न पर आपका उत्तर, सही उत्तर, मिले अंक, लगा समय और पूरी व्याख्या।" },
   ex_correct_ans: { en: "Correct answer", hi: "सही उत्तर" },
+  ex_your_answer: { en: "Your answer", hi: "आपका उत्तर" },
   ex_explanation: { en: "Explanation:", hi: "व्याख्या:" },
   ex_back_dash:   { en: "Back to dashboard", hi: "डैशबोर्ड पर वापस" },
   ex_come_back:   { en: "Come back after others attempt it to see where you stand.", hi: "दूसरों के प्रयास के बाद लौटिए, तब पता चलेगा आप कहाँ खड़े हैं।" },

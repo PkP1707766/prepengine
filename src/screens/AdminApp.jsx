@@ -245,6 +245,9 @@ textarea.inp{resize:vertical;min-height:74px;line-height:1.55}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
 .seg button{flex:1;min-width:90px;padding:10px;border:1.5px solid #e6d6b2;border-radius:9px;font-size:13px;font-weight:700;color:#7a6450;background:#ffffff;transition:.13s}
 .seg button.on{border-color:var(--navy);background:#faf2dc;color:var(--navy)}
+.opt-edit-hi{margin-top:6px;margin-left:38px}
+.opt-hi-tag{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--muted);
+  background:var(--bg2,#faf5e9);border:1px solid var(--line);border-radius:6px;padding:4px 7px}
 .opt-edit{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .opt-edit .pick{width:36px;height:36px;border-radius:8px;border:1.5px solid #e6d6b2;display:grid;place-items:center;flex:0 0 auto;color:#ffffff;background:#ffffff;transition:.13s}
 .opt-edit .pick.on{background:var(--green);border-color:var(--green)}
@@ -387,11 +390,17 @@ function QuestionForm({ initial, onSave, onClose }) {
     });
   };
   const setOpt = (id, body) => set("options", f.options.map((o) => o.id === id ? { ...o, body } : o));
+  const setOptHi = (id, v) => set("options", f.options.map((o) => o.id === id ? { ...o, body_hi: v } : o));
   const toggleCorrect = (id) => set("options", f.options.map((o) => {
     if (f.type === "mcq") return { ...o, isCorrect: o.id === id };
     return o.id === id ? { ...o, isCorrect: !o.isCorrect } : o;
   }));
   const addOpt = () => set("options", [...f.options, { id: uid(), body: "", isCorrect: false }]);
+  /* Hindi is optional per question — English is the fallback everywhere — so
+     the fields stay out of the way until asked for, and open automatically for
+     a question that already has a translation. */
+  const [showHi, setShowHi] = useState(() =>
+    !!(f.bodyHi || f.explanationHi || (f.options || []).some((o) => o.body_hi)));
   const rmOpt = (id) => { if (f.options.length <= 2) return; set("options", f.options.filter((o) => o.id !== id)); };
 
   const submit = () => {
@@ -445,8 +454,19 @@ function QuestionForm({ initial, onSave, onClose }) {
         </div>
       </Field>
 
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: -6 }}>
+        <button className="btn btn-ghost btn-sm" onClick={() => setShowHi((v) => !v)}>
+          {showHi ? "Hide Hindi fields" : "+ Add Hindi translation"}
+        </button>
+      </div>
+
       <Field label="Question text" req>
         <textarea className="inp" rows={3} value={f.body} placeholder="Type the full question…" onChange={(e) => set("body", e.target.value)} />
+        {showHi && (
+          <textarea className="inp" rows={3} lang="hi" style={{ marginTop: 8 }} value={f.bodyHi || ""}
+                    placeholder="हिन्दी में पूरा प्रश्न लिखिए… (खाली छोड़ने पर अंग्रेज़ी दिखेगी)"
+                    onChange={(e) => set("bodyHi", e.target.value)} />
+        )}
       </Field>
 
       {f.type === "numerical" ? (
@@ -457,12 +477,22 @@ function QuestionForm({ initial, onSave, onClose }) {
       ) : (
         <Field label={f.type === "mcq" ? "Options (tap the box to mark the correct one)" : "Options (tap boxes to mark all correct ones)"} req>
           {f.options.map((o, i) => (
-            <div className="opt-edit" key={o.id}>
-              <button className={"pick" + (o.isCorrect ? " on" : "")} onClick={() => toggleCorrect(o.id)} title="Mark correct">
-                {o.isCorrect && <Check size={16} />}
-              </button>
-              <input className="inp" value={o.body} placeholder={"Option " + String.fromCharCode(65 + i)} onChange={(e) => setOpt(o.id, e.target.value)} />
-              <button className="rm" onClick={() => rmOpt(o.id)} title="Remove"><Trash2 size={16} /></button>
+            <div key={o.id}>
+              <div className="opt-edit">
+                <button className={"pick" + (o.isCorrect ? " on" : "")} onClick={() => toggleCorrect(o.id)} title="Mark correct">
+                  {o.isCorrect && <Check size={16} />}
+                </button>
+                <input className="inp" value={o.body} placeholder={"Option " + String.fromCharCode(65 + i)} onChange={(e) => setOpt(o.id, e.target.value)} />
+                <button className="rm" onClick={() => rmOpt(o.id)} title="Remove"><Trash2 size={16} /></button>
+              </div>
+              {showHi && (
+                <div className="opt-edit opt-edit-hi">
+                  <span className="opt-hi-tag">हिन्दी</span>
+                  <input className="inp" lang="hi" value={o.body_hi || ""}
+                         placeholder={"विकल्प " + String.fromCharCode(65 + i) + " (वैकल्पिक)"}
+                         onChange={(e) => setOptHi(o.id, e.target.value)} />
+                </div>
+              )}
             </div>
           ))}
           <button className="add-opt" onClick={addOpt}><Plus size={15} />Add option</button>
@@ -485,6 +515,11 @@ function QuestionForm({ initial, onSave, onClose }) {
 
       <Field label="Explanation" hint="Shown to students in the deep review after submission">
         <textarea className="inp" rows={3} value={f.explanation} placeholder="Explain why the answer is correct…" onChange={(e) => set("explanation", e.target.value)} />
+        {showHi && (
+          <textarea className="inp" rows={3} lang="hi" style={{ marginTop: 8 }} value={f.explanationHi || ""}
+                    placeholder="हिन्दी में व्याख्या… (वैकल्पिक)"
+                    onChange={(e) => set("explanationHi", e.target.value)} />
+        )}
       </Field>
     </Modal>
   );

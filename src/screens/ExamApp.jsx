@@ -50,6 +50,12 @@ const gradeFor = (p) => {
   return { g: "D", c: "#c0392b" };
 };
 const SEM = { strong: "#1f8a4c", average: "#b8923a", weak: "#c0392b" };
+
+/* The paper carries both languages, so switching mid-attempt is a re-render
+   and not a re-fetch — the question order the student is halfway through never
+   rearranges under them. English is the fallback for anything untranslated,
+   which is what lets a question bank be translated a few papers at a time. */
+const inLang = (lang, en, hi) => (lang === "hi" && hi ? hi : en);
 // bandFor moved to the server with the rest of the scoring.
 
 /* ============================================================
@@ -351,7 +357,7 @@ function ScoreRing({ score, max, grade }) {
    ============================================================ */
 function Instructions({ onStart, onExit }) {
   const EXAM = useExam();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [agree, setAgree] = useState(false);
   const totalQ = EXAM.sections.reduce((s, x) => s + x.questions.length, 0);
   const maxMarks = EXAM.sections.reduce((s, x) => s + x.questions.reduce((a, q) => a + q.marks, 0), 0);
@@ -372,7 +378,7 @@ function Instructions({ onStart, onExit }) {
             <div className="inst-eyebrow">{t("ex_online")}</div>
             <ChromeControls />
           </div>
-          <h1 className="inst-title">{EXAM.title}</h1>
+          <h1 className="inst-title">{inLang(lang, EXAM.title, EXAM.title_hi)}</h1>
           <div className="inst-meta">
             <span>{t("ex_duration")} <b>{Math.round(EXAM.durationSec / 60)} {t("ex_min")}</b></span>
             <span>{t("ex_questions")} <b>{totalQ}</b></span>
@@ -430,7 +436,7 @@ function Instructions({ onStart, onExit }) {
    EXAM SCREEN
    ============================================================ */
 function ExamScreen({ state, actions, candidateName, candidateId }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const EXAM = useExam();
   const { secIdx, qIdx, answers, visited, marked, timeLeft } = state;
   const sec = EXAM.sections[secIdx];
@@ -502,7 +508,7 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
             </div>
           </div>
 
-          <div className="q-text">{q.text}</div>
+          <div className="q-text">{inLang(lang, q.text, q.text_hi)}</div>
 
           {q.type === "numerical" ? (
             <div className="num-in">
@@ -522,7 +528,7 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
                   <button key={opt.id} className={"opt" + (selected ? " sel" : "")}
                     onClick={() => q.type === "multiple" ? actions.toggleMulti(q.id, opt.id) : actions.selectMcq(q.id, opt.id)}>
                     <span className={"opt-mark" + (q.type === "multiple" ? " sq" : "")}>{selected ? "✓" : ""}</span>
-                    <span className="opt-txt"><span className="opt-key">{optLetter(i)}.</span> {opt.body}</span>
+                    <span className="opt-txt"><span className="opt-key">{optLetter(i)}.</span> {inLang(lang, opt.body, opt.body_hi)}</span>
                   </button>
                 );
               })}
@@ -616,7 +622,7 @@ function SubmitModal({ counts, onCancel, onConfirm }) {
    ============================================================ */
 function Results({ data, onRetake, onExit }) {
   const EXAM = useExam();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [filter, setFilter] = useState("all");
   const [open, setOpen] = useState(null);
 
@@ -657,7 +663,7 @@ function Results({ data, onRetake, onExit }) {
         <ScoreRing score={data.score} max={data.maxScore} grade={grade} />
         <div>
           <div className="hero-eyebrow">Performance Report</div>
-          <div className="hero-title">{EXAM.title}</div>
+          <div className="hero-title">{inLang(lang, EXAM.title, EXAM.title_hi)}</div>
           <div className="hero-sub">Attempted {data.attempted} of {data.total} questions in {fmt(data.timeUsed)}</div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
             <div className="pct-badge" style={{ margin: 0 }}>
@@ -885,7 +891,7 @@ function Results({ data, onRetake, onExit }) {
                 </div>
                 {isOpen && (
                   <div className="rev-body">
-                    <div className="rev-qfull">{r.text}</div>
+                    <div className="rev-qfull">{inLang(lang, r.text, r.text_hi)}</div>
                     {r.type !== "numerical" ? (
                       <div className="rev-opts">
                         {r.options.map((opt, i) => {
@@ -897,9 +903,9 @@ function Results({ data, onRetake, onExit }) {
                           return (
                             <div key={i} className={"rev-opt " + cls}>
                               <span className="rev-opt-key">{String.fromCharCode(65 + i)}.</span>
-                              <span>{opt}</span>
-                              {isCorrect && <span className="rev-flag flag-c">Correct answer</span>}
-                              {isYour && !isCorrect && <span className="rev-flag flag-w">Your answer</span>}
+                              <span>{inLang(lang, opt, r.options_hi?.[i])}</span>
+                              {isCorrect && <span className="rev-flag flag-c">{t("ex_correct_ans")}</span>}
+                              {isYour && !isCorrect && <span className="rev-flag flag-w">{t("ex_your_answer")}</span>}
                             </div>
                           );
                         })}
@@ -913,7 +919,7 @@ function Results({ data, onRetake, onExit }) {
                         </div>
                       </div>
                     )}
-                    <div className="expl"><b>Explanation:</b> {r.explanation}</div>
+                    <div className="expl"><b>{t("ex_explanation")}</b> {inLang(lang, r.explanation, r.explanation_hi)}</div>
                   </div>
                 )}
               </div>
