@@ -327,6 +327,7 @@ const CSS = `
   transition:color .16s,transform .16s;min-width:0;overflow-wrap:break-word}
 .pb-foot a:hover,.pb-foot .flink:hover{color:var(--brand-700);transform:translateX(2px)}
 .pb-foot-contact{font-size:13.5px;line-height:1.7;color:var(--ink-600);margin:0}
+.pb-foot-supl{margin-top:10px}
 .pb-foot-contact a{display:inline;margin:0;color:var(--brand-700);text-decoration:underline;
   text-underline-offset:2px;overflow-wrap:break-word;word-break:normal}
 
@@ -482,10 +483,27 @@ const CSS = `
   .pb-quote .deva{font-size:23px}
   .pb-quote p{font-size:15.5px}
 
-  .pb-foot{padding:34px 14px 20px}
+  .pb-foot{padding:30px 12px 18px}
   .pb-foot-card{border-radius:20px}
-  .pb-foot-brand,.pb-foot-links{padding:28px 22px}
-  .pb-foot-bottom{flex-direction:column;align-items:flex-start;gap:10px;padding:0 6px}
+  /* 18px, not 22. Four pixels each side is eight across the card, which is
+     four per link column -- and the widest label clears its column by three.
+     Room that small only matters because it is the difference between one
+     line and two. */
+  .pb-foot-brand,.pb-foot-links{padding:24px 18px}
+  /* The identity block was set to desktop rhythm: 30px under the blurb and
+     16px under the logo, which on a phone is a gap you scroll past rather
+     than a break you read. */
+  .pb-foot-logo{margin-bottom:12px}
+  .pb-foot-blurb{margin-bottom:20px}
+  .pb-news h5{font-size:18px}
+  .pb-news p{margin-bottom:11px}
+  .pb-foot-bottom{flex-direction:column;align-items:flex-start;gap:9px;padding:0 6px;margin-top:16px}
+  .pb-foot-legal{gap:8px 14px;width:100%}
+  /* The sign-off is not a legal link and should not sit in a row of them.
+     Dropped to its own line, quieter, with the rule above separating the
+     two kinds of thing. */
+  .pb-foot-legal > span{flex-basis:100%;margin-top:3px;padding-top:9px;
+    border-top:1px solid var(--line);color:var(--ink-400);font-size:12px}
 
   .pb-panel{padding:20px;border-radius:18px}
   .pb-h3{font-size:17px}
@@ -528,7 +546,6 @@ const CSS = `
   .pb-sec{padding-block:56px}
   .pb-strip-in{grid-template-columns:1fr}
   .pb-strip-item{border-left:0;padding-left:0}
-  .pb-foot-links{grid-template-columns:1fr;gap:4px}
   .pb-ticket{padding:22px}
   .pb-quote{padding:56px 20px}
   .pb-sec-mandala{width:340px;height:340px}
@@ -595,15 +612,34 @@ const CSS = `
   .pb-news-btn{width:100%;padding:13px 22px;border-radius:12px}
 }
 
-/* Footer links on a phone. The coarse-pointer baseline already gives every
-   button a 44px touch target, so the 11px margin on top of it pushed each
-   link 55px apart and made the footer enormous. Drop the margin and let the
-   touch target do the spacing; separate the groups instead. */
+/* Footer links on a phone.
+
+   Two problems, and the first one hid the second. The coarse-pointer
+   baseline gives every button a 44px touch target, so an 11px margin on top
+   of that pushed each link 55px apart. That was fixed by dropping the
+   margin -- but the groups were still stacked one under another, twelve
+   links in a single column, and the footer ran 1342px: one and two-thirds
+   of the screen, for a list of links.
+
+   Explore and Free resources now sit abreast, which halves eight rows into
+   four, and Support runs across their foot with its own links paired. The
+   rule that drew a divider above each group has gone: it was written for a
+   single column and, once there were two, it was putting a line above the
+   right-hand group for no reason -- which it had already been doing between
+   561 and 640px, where this grid has been two columns all along.
+
+   Only Support keeps a divider, and it earns it: it is a different kind of
+   thing from the two navigation lists, and it is the one place the rule
+   separates rows rather than columns. */
 @media (max-width:640px){
   .pb-foot a,.pb-foot .flink{margin-bottom:0;display:flex;align-items:center}
-  .pb-foot-links > div + div{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
   .pb-foot h5{margin-bottom:6px}
-  .pb-foot-contact{padding:6px 0}
+  .pb-foot-contact{padding:4px 0 0}
+
+  .pb-foot-links{grid-template-columns:1fr 1fr;column-gap:14px;row-gap:0}
+  .pb-foot-links > div:nth-child(3){grid-column:1 / -1;
+    margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  .pb-foot-supl{margin-top:2px;display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
 }
 
 /* Note on a page pinned to English, shown only to a Hindi reader. */
@@ -1625,11 +1661,13 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 <p className="pb-foot-contact">
                   <a href={"mailto:" + COMPANY.email}>{COMPANY.email}</a>
                 </p>
-                <button className="flink" style={{ marginTop: 10 }} onClick={() => setContact(true)}>
-                  <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />{t("foot_help")}
-                </button>
-                <button className="flink" onClick={() => onNavigate("contact")}>{t("lg_contact")}</button>
-                <button className="flink" onClick={() => onNavigate("refund")}>{t("lg_refund")}</button>
+                <div className="pb-foot-supl">
+                  <button className="flink" onClick={() => setContact(true)}>
+                    <Headphones size={13} style={{ verticalAlign: -2, marginRight: 6 }} />{t("foot_help")}
+                  </button>
+                  <button className="flink" onClick={() => onNavigate("contact")}>{t("lg_contact")}</button>
+                  <button className="flink" onClick={() => onNavigate("refund")}>{t("lg_refund")}</button>
+                </div>
               </div>
             </div>
 

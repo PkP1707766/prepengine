@@ -461,9 +461,26 @@ function useBrandChrome() {
            horizontal padding as the floor, so nothing shifts on a device
            without insets. */
         @supports (padding: max(0px)) {
-          .pb-head-in, .pb-sec, .pb-foot-in, .pb-foot-bottom {
+          .pb-head-in, .pb-sec, .pb-foot-bottom {
             padding-left: max(22px, env(safe-area-inset-left));
             padding-right: max(22px, env(safe-area-inset-right));
+          }
+          /* .pb-foot-in belonged in the list above until it was measured. The
+             others each carry their own horizontal padding, so max() only
+             ever preserves it. This one has none -- it is a bare grid whose
+             two children do the padding -- so max() was not protecting a
+             floor, it was inventing 22px that the design never had, on top of
+             the 22px its children already apply. On a 375px phone that put
+             88px of a 375px screen into margins and squeezed the footer's
+             link columns to 122px, which is why "Previous year papers" could
+             not fit on one line. Invisible on desktop, where the card is
+             capped at 1180px and 22px is a rounding error.
+
+             It still needs the inset itself, for a notched phone held
+             sideways -- but as the inset, with no floor under it. */
+          .pb-foot-in {
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
           }
           .sd-root .content, .ad-root .content, .sd-foot {
             padding-left: max(26px, env(safe-area-inset-left));
