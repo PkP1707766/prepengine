@@ -286,10 +286,19 @@ const CSS = `
    inset, so it has to cancel exactly the padding above it. Carried as a
    variable rather than repeated as a number in two media queries, which is
    how the two got out of step in the first place. */
+/* Not brand-900 itself. That exact value is already the hero band and the
+   free-resources band, so on a phone the scroll went dark maroon, cream,
+   dark maroon again -- three of the same block, and the last of them read as
+   a repeat rather than as an ending. Mixed down toward a near-black it keeps
+   the palette's hue (deep wine here, deep navy under Sapphire, green-black
+   under Forest) while sitting clearly beneath the bands above it. Gold reads
+   louder against it too, which is what the headings and the live social icon
+   are doing. */
 .pb-foot{--foot-pad:24px;
-  background:var(--brand-900);color:var(--on-dark);padding:48px var(--foot-pad) 0;
+  background:color-mix(in srgb, var(--brand-900) 42%, #140e0b);
+  color:var(--on-dark);padding:48px var(--foot-pad) 0;
   position:relative}
-[data-theme="dark"] .pb-foot{background:#150609}
+[data-theme="dark"] .pb-foot{background:#100407}
 /* A gold hairline where the page meets it, the same gesture as the header. */
 .pb-foot::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 70%,transparent) 50%,transparent)}
@@ -378,7 +387,7 @@ const CSS = `
 .pb-foot-legal button{background:none;border:0;font:inherit;font-size:12.5px;color:var(--on-dark-soft);
   cursor:pointer;padding:0;transition:color .16s}
 .pb-foot-legal button:hover{color:var(--gold-300)}
-.pb-foot-legal > span{opacity:.6}
+.pb-foot-legal > span{opacity:.72}
 
 /* ---------- CONTENT HUB ---------- */
 .pb-panel{background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);
@@ -659,7 +668,10 @@ const CSS = `
     gap:10px;margin-top:26px;
     padding-bottom:calc(18px + env(safe-area-inset-bottom))}
   .pb-foot-legal{gap:6px 16px;width:100%;justify-content:center}
-  .pb-foot-legal > span{flex-basis:100%;margin-top:2px;font-size:11.5px;opacity:.55}
+  /* Raised from .55. Deepening the ground darkened this text with it --
+     opacity composites toward the background, so a darker floor costs
+     contrast rather than gaining it. It measured 4.74 against a 4.5 bar. */
+  .pb-foot-legal > span{flex-basis:100%;margin-top:2px;font-size:11.5px;opacity:.72}
   .pb-foot-brand{border-right:0;border-bottom:1px solid rgba(255,255,255,.10)}
 }
 
