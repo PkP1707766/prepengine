@@ -662,27 +662,34 @@ const CSS = `
   position:relative; isolation:isolate;
   display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; white-space:nowrap;
   border:0; cursor:pointer; font:inherit; font-weight:800; font-size:13px; letter-spacing:.02em;
-  padding:0 15px; height:36px; border-radius:12px; color:#3a2405;
+  padding:0 15px; height:36px; border-radius:12px; color:#331a04;
   /* Two pixels taller than the capsule beside it, deliberately. Matching
      heights made the row read as four settings in a line; the small
      difference is what says one of these is the thing to press.
 
      Struck metal rather than a coloured rectangle: a bright lit edge, a
-     saturated amber body, a deep bronze base, and a warm inner rim that
-     keeps the shape crisp against the glass behind it. */
-  background:linear-gradient(177deg,#ffeeb8 0%,#f3ce55 34%,var(--gold-500) 62%,#a3730f 100%);
+     saturated body, a deep base, and a warm inner rim that keeps the shape
+     crisp against the glass behind it.
+
+     The yellow gold it started as read as decoration next to a maroon
+     brand. This runs the ramp from honey through deep amber into a burnt
+     rust, so the hue leans toward the maroon as it darkens instead of away
+     from it -- the redness is in the shadow, not painted over the face.
+     Every glow below moved with it; a gold halo around an amber button is
+     the tell that a colour was changed in one place only. */
+  background:linear-gradient(177deg,#f7d182 0%,#e3a838 32%,#c9801f 62%,#9a4f16 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.9),
-    inset 0 0 0 1px rgba(255,238,184,.35),
-    inset 0 -1px 0 rgba(84,54,3,.32),
-    0 2px 5px -1px rgba(140,100,20,.45),
-    0 7px 18px -7px rgba(201,162,39,.7);
+    inset 0 1px 0 rgba(255,240,205,.85),
+    inset 0 0 0 1px rgba(255,214,150,.32),
+    inset 0 -1px 0 rgba(74,32,4,.36),
+    0 2px 5px -1px rgba(120,64,12,.5),
+    0 7px 18px -7px rgba(186,108,28,.72);
   transition:transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .22s ease, filter .16s;
 }
 /* Gold goes muddy against a dark ground, so it is lifted rather than reused. */
 [data-theme="dark"] .pb-head-cta{
-  color:#2c1c02;
-  background:linear-gradient(177deg,#fff3c9 0%,#f8d968 34%,#e0b652 62%,#b0801a 100%);
+  color:#2b1503;
+  background:linear-gradient(177deg,#fbdc97 0%,#eeb545 32%,#d68a24 62%,#a85819 100%);
 }
 /* The shine sweeps by moving the gradient WITHIN the box rather than sliding
    a strip across it. The strip needed overflow:hidden to stay inside the
@@ -706,19 +713,19 @@ const CSS = `
   0%,64%   { background-position:100% 0 }
   93%,100% { background-position:0% 0 }
 }
-.pb-head-cta:hover{ transform:translateY(-1.5px); filter:brightness(1.06) saturate(1.05);
+.pb-head-cta:hover{ transform:translateY(-1.5px); filter:brightness(1.07) saturate(1.06);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 0 0 1px rgba(255,241,196,.5),
-    inset 0 -1px 0 rgba(84,54,3,.34),
-    0 4px 9px -2px rgba(140,100,20,.5),
-    0 12px 26px -8px rgba(201,162,39,.9) }
+    inset 0 1px 0 rgba(255,244,214,.95),
+    inset 0 0 0 1px rgba(255,222,166,.46),
+    inset 0 -1px 0 rgba(74,32,4,.38),
+    0 4px 9px -2px rgba(120,64,12,.55),
+    0 12px 26px -8px rgba(198,116,30,.92) }
 /* Pressed metal: the lit edge moves to the bottom and the face darkens. */
 .pb-head-cta:active{ transform:translateY(1px) scale(.975); transition-duration:.07s;
-  filter:brightness(.97);
+  filter:brightness(.96);
   box-shadow:
-    inset 0 2px 5px rgba(84,54,3,.4),
-    inset 0 -1px 0 rgba(255,255,255,.4) }
+    inset 0 2px 5px rgba(64,26,3,.46),
+    inset 0 -1px 0 rgba(255,236,200,.4) }
 .pb-head-cta:focus-visible{ outline:2.5px solid var(--brand-700); outline-offset:2px }
 .pb-head-cta::after{ content:""; position:absolute; left:0; right:0; top:-5px; bottom:-5px }
 .pb-head-cta svg{ transition:transform .2s cubic-bezier(.2,.8,.3,1) }
@@ -734,26 +741,26 @@ const CSS = `
    someone's eye once, not to flash at a person trying to read. */
 @keyframes pb-cta-halo{
   0%,60%{ box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.9),
-    inset 0 0 0 1px rgba(255,238,184,.35),
-    inset 0 -1px 0 rgba(84,54,3,.32),
-    0 2px 5px -1px rgba(140,100,20,.45),
-    0 7px 18px -7px rgba(201,162,39,.7),
-    0 0 0 0 rgba(201,162,39,.5) }
+    inset 0 1px 0 rgba(255,240,205,.85),
+    inset 0 0 0 1px rgba(255,214,150,.32),
+    inset 0 -1px 0 rgba(74,32,4,.36),
+    0 2px 5px -1px rgba(120,64,12,.5),
+    0 7px 18px -7px rgba(186,108,28,.72),
+    0 0 0 0 rgba(198,116,30,.5) }
   78%{ box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 0 0 1px rgba(255,241,196,.5),
-    inset 0 -1px 0 rgba(84,54,3,.32),
-    0 2px 5px -1px rgba(140,100,20,.45),
-    0 10px 24px -6px rgba(201,162,39,.92),
-    0 0 0 7px rgba(201,162,39,.16) }
+    inset 0 1px 0 rgba(255,244,214,.95),
+    inset 0 0 0 1px rgba(255,222,166,.46),
+    inset 0 -1px 0 rgba(74,32,4,.36),
+    0 2px 5px -1px rgba(120,64,12,.5),
+    0 10px 24px -6px rgba(198,116,30,.92),
+    0 0 0 7px rgba(198,116,30,.18) }
   100%{ box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.9),
-    inset 0 0 0 1px rgba(255,238,184,.35),
-    inset 0 -1px 0 rgba(84,54,3,.32),
-    0 2px 5px -1px rgba(140,100,20,.45),
-    0 7px 18px -7px rgba(201,162,39,.7),
-    0 0 0 13px rgba(201,162,39,0) }
+    inset 0 1px 0 rgba(255,240,205,.85),
+    inset 0 0 0 1px rgba(255,214,150,.32),
+    inset 0 -1px 0 rgba(74,32,4,.36),
+    0 2px 5px -1px rgba(120,64,12,.5),
+    0 7px 18px -7px rgba(186,108,28,.72),
+    0 0 0 13px rgba(198,116,30,0) }
 }
 .pb-head-cta-pulse{ animation:pb-cta-halo 4.9s ease-out infinite }
 .pb-head-cta-pulse::before{ animation:pb-cta-shine 5.3s ease-in-out infinite }
