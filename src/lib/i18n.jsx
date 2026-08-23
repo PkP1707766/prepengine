@@ -898,8 +898,11 @@ Object.assign(STR, {
 Object.assign(STR, {
   lg_who:        { en: "Who you are dealing with", hi: "आप किससे व्यवहार कर रहे हैं" },
   lg_brand:      { en: "Brand", hi: "ब्रांड" },
-  lg_legal_name: { en: "Registered name", hi: "पंजीकृत नाम" },
-  lg_address:    { en: "Registered address", hi: "पंजीकृत पता" },
+  lg_legal_name: { en: "Operated by", hi: "संचालक" },
+  lg_address:    { en: "Address", hi: "पता" },
+  lg_type:       { en: "Business type", hi: "व्यवसाय का स्वरूप" },
+  lg_type_sole:  { en: "Individual proprietorship (not GST registered)",
+                   hi: "व्यक्तिगत स्वामित्व (GST पंजीकृत नहीं)" },
   lg_email:      { en: "Email", hi: "ईमेल" },
   lg_phone:      { en: "Phone", hi: "फ़ोन" },
   lg_updated:    { en: "Last updated", hi: "अंतिम बार अद्यतन" },

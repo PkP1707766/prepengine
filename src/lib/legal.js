@@ -22,14 +22,20 @@
 
 export const COMPANY = {
   brand:      "JUNOONIAS",
-  legalName:  "",            // TODO e.g. "Junoonias Edutech Private Limited"
-  address:    "",            // TODO full registered address with PIN
-  city:       "",            // TODO
-  state:      "",            // TODO — also the jurisdiction for disputes
+  legalName:  "Junoon IAS",
+  /* Run as an individual proprietorship, not an incorporated company: there is
+     no CIN and no GST registration. Both fields stay blank and their rows are
+     omitted from the page entirely — a legal page should not display "GSTIN:
+     [ to be filled ]" for a business that is not required to have one. */
+  proprietorship: true,
+  address:    "Delhi, India",
+  addressHi:  "दिल्ली, भारत",   // falls back to `address` when blank
+  city:       "Delhi",
+  state:      "Delhi",          // also the jurisdiction named in the Terms
   email:      "junoonias123@gmail.com",
-  phone:      "",            // TODO a number you will actually answer
-  gstin:      "",            // TODO if registered; leave blank if not
-  cin:        "",            // TODO if a private limited company
+  phone:      "",               // optional — the row is hidden while blank
+  gstin:      "",               // not GST registered
+  cin:        "",               // not a company
 };
 
 /** Anything still unfilled renders as an obvious marker rather than a blank,
@@ -44,7 +50,7 @@ export const LEGAL_KEYS = ["privacy", "terms", "refund", "contact"];
    Fill in the full https:// URL of each profile you actually run. */
 export const SOCIAL_LINKS = {
   instagram: "",   // TODO
-  youtube:   "",   // TODO
+  youtube:   "https://youtube.com/@JunoonIAS",
   telegram:  "",   // TODO
   whatsapp:  "",   // TODO e.g. https://whatsapp.com/channel/... or a wa.me link
   linkedin:  "",   // TODO
@@ -198,6 +204,19 @@ export const LEGAL = {
         },
       },
       {
+        h: { en: "Governing law", hi: "लागू विधि" },
+        p: {
+          en: [
+            "JUNOONIAS is operated as an individual proprietorship based in Delhi, India. It is not an incorporated company and is not registered under GST.",
+            "These terms are governed by the laws of India, and the courts at Delhi have exclusive jurisdiction over any dispute arising from them.",
+          ],
+          hi: [
+            "JUNOONIAS दिल्ली, भारत में स्थित एक व्यक्तिगत स्वामित्व के रूप में संचालित है। यह कोई निगमित कंपनी नहीं है और GST के अंतर्गत पंजीकृत नहीं है।",
+            "ये शर्तें भारत के क़ानूनों से शासित हैं, और इनसे उत्पन्न किसी भी विवाद पर दिल्ली के न्यायालयों का अनन्य क्षेत्राधिकार होगा।",
+          ],
+        },
+      },
+      {
         h: { en: "Honest limits", hi: "ईमानदार सीमाएँ" },
         p: {
           en: [
@@ -219,48 +238,78 @@ export const LEGAL = {
   refund: {
     title: { en: "Refund & Cancellation Policy", hi: "धन-वापसी एवं रद्दीकरण नीति" },
     intro: {
-      en: "Written plainly, because a refund policy nobody can understand is not a policy.",
-      hi: "सीधी भाषा में, क्योंकि जो नीति समझ ही न आए वह नीति नहीं है।",
+      en: "Everything sold here is digital course material delivered the moment payment is confirmed. Please read this before you enrol, because access, once opened, cannot be returned.",
+      hi: "यहाँ जो कुछ बेचा जाता है वह डिजिटल अध्ययन सामग्री है, जो भुगतान की पुष्टि होते ही उपलब्ध हो जाती है। नामांकन से पहले इसे पढ़ लीजिए, क्योंकि एक बार खोली गई पहुँच लौटाई नहीं जा सकती।",
     },
     blocks: [
       {
-        h: { en: "The 7-day window", hi: "7 दिन की अवधि" },
+        h: { en: "Nature of what you are buying", hi: "आप क्या खरीद रहे हैं" },
         p: {
           en: [
-            "Ask within 7 days of payment and we will refund you in full, provided you have attempted no more than one paper from the series.",
-            "We would rather you tried a free paper first — every series lists which of its papers are free to attempt without paying.",
+            "Enrolment grants an immediate, non-transferable licence to access proprietary question papers, answer keys, explanations and recorded material.",
+            "Delivery is complete at the moment access is granted to your account. Because the material is intellectual property that can be read, copied or retained on first viewing, it cannot be surrendered or restored to us once access has begun.",
+            "By completing payment you expressly consent to immediate delivery and acknowledge the consequences set out below.",
           ],
           hi: [
-            "भुगतान के 7 दिनों के भीतर कहिए, और यदि आपने सीरीज़ का एक से अधिक पेपर नहीं दिया है तो पूरी राशि वापस कर दी जाएगी।",
-            "बेहतर होगा कि पहले कोई निःशुल्क पेपर देख लें — हर सीरीज़ बताती है कि उसके कौन-से पेपर बिना भुगतान दिए जा सकते हैं।",
+            "नामांकन आपको स्वामित्व-युक्त प्रश्नपत्र, उत्तर-कुंजी, व्याख्या और रिकॉर्ड की गई सामग्री तक तत्काल, अहस्तांतरणीय पहुँच का अधिकार देता है।",
+            "आपके खाते में पहुँच मिलते ही वितरण पूर्ण मान लिया जाता है। यह सामग्री बौद्धिक संपदा है जिसे पहली बार देखते ही पढ़ा, प्रतिलिपि या सुरक्षित किया जा सकता है, इसलिए पहुँच शुरू होने के बाद इसे लौटाया नहीं जा सकता।",
+            "भुगतान पूरा करके आप तत्काल वितरण के लिए स्पष्ट सहमति देते हैं और नीचे दिए परिणामों को स्वीकार करते हैं।",
           ],
         },
       },
       {
-        h: { en: "After 7 days, or after two papers", hi: "7 दिन बाद, या दो पेपर बाद" },
+        h: { en: "Test series", hi: "टेस्ट सीरीज़" },
         p: {
           en: [
-            "We do not refund once the series has genuinely been used, because the papers and solutions cannot be returned.",
-            "If something is actually wrong — a broken paper, a wrong answer key, access you paid for but never received — tell us. That is not a refund question, it is a mistake on our side and we will fix it or refund you regardless of the window.",
+            "Enrolment in a test series is final upon payment. The full body of papers, solutions and analytics becomes available to you at that point, and no refund or cancellation is available thereafter.",
+            "We therefore ask you to satisfy yourself before enrolling. Each series lists its papers, its price and its validity in full before checkout, and any paper marked free may be attempted without payment.",
           ],
           hi: [
-            "सीरीज़ का वास्तविक उपयोग हो जाने के बाद धन-वापसी नहीं होती, क्योंकि पेपर और समाधान लौटाए नहीं जा सकते।",
-            "यदि सचमुच कुछ ग़लत है — ख़राब पेपर, ग़लत उत्तर-कुंजी, भुगतान के बाद भी न मिली पहुँच — तो हमें बताइए। यह धन-वापसी का प्रश्न नहीं, हमारी ग़लती है; हम उसे ठीक करेंगे या अवधि देखे बिना पैसा लौटाएँगे।",
+            "टेस्ट सीरीज़ में नामांकन भुगतान के साथ ही अंतिम हो जाता है। उसी क्षण पेपर, समाधान और विश्लेषण की पूरी सामग्री आपको उपलब्ध हो जाती है, और उसके बाद कोई धन-वापसी या रद्दीकरण संभव नहीं है।",
+            "इसलिए हमारा अनुरोध है कि नामांकन से पहले स्वयं संतुष्ट हो लें। हर सीरीज़ अपने पेपर, क़ीमत और वैधता भुगतान से पहले पूरी तरह दिखाती है, और जो पेपर निःशुल्क चिह्नित है वह बिना भुगतान दिया जा सकता है।",
           ],
         },
       },
       {
-        h: { en: "How to ask, and how long it takes", hi: "कैसे कहें, और कितना समय लगेगा" },
+        h: { en: "Courses and live classes", hi: "कोर्स और लाइव क्लास" },
         p: {
           en: [
-            "Write to us with the email you paid from and the payment reference. There is no form to hunt for and no queue to survive.",
-            "We reply within 2 working days. An approved refund goes back to the original payment method through Razorpay, and usually reaches you in 5–7 working days depending on your bank.",
-            "Referral bonus credited into your wallet is not cash and is not refundable; it is reversed if the purchase behind it is refunded.",
+            "Where a course or class package has been purchased and no lecture has yet been opened, played or downloaded, you may request cancellation and we will consider it on its merits.",
+            "Once any lecture — in whole or in part, live or recorded — has been opened, played or downloaded from your account, the course is treated as consumed and no refund is available, irrespective of how much of the remaining material is used.",
+            "Access logs recorded against your account are conclusive for this purpose.",
           ],
           hi: [
-            "जिस ईमेल से भुगतान किया, उससे भुगतान संदर्भ के साथ लिखिए। न कोई फ़ॉर्म खोजना है, न क़तार में लगना है।",
-            "हम 2 कार्य-दिवस में उत्तर देते हैं। स्वीकृत धन-वापसी Razorpay के माध्यम से उसी भुगतान माध्यम में जाती है और आपके बैंक के अनुसार सामान्यतः 5–7 कार्य-दिवस में पहुँचती है।",
-            "वॉलेट में जमा रेफ़रल बोनस नक़द नहीं है और वापसी योग्य नहीं है; उसके पीछे की खरीद वापस होने पर वह भी वापस ले लिया जाता है।",
+            "यदि कोई कोर्स या क्लास पैकेज खरीदा गया है और अभी तक कोई भी लेक्चर खोला, चलाया या डाउनलोड नहीं किया गया है, तो आप रद्दीकरण का अनुरोध कर सकते हैं और हम उस पर गुण-दोष के आधार पर विचार करेंगे।",
+            "जैसे ही आपके खाते से कोई भी लेक्चर — पूरा या आंशिक, लाइव या रिकॉर्डेड — खोला, चलाया या डाउनलोड कर लिया जाता है, कोर्स उपभोग किया हुआ माना जाता है और कोई धन-वापसी संभव नहीं है, चाहे शेष सामग्री कितनी भी उपयोग हुई हो।",
+            "इस प्रयोजन के लिए आपके खाते के विरुद्ध दर्ज पहुँच-अभिलेख निर्णायक होंगे।",
+          ],
+        },
+      },
+      {
+        h: { en: "Where the failure is ours", hi: "जहाँ चूक हमारी हो" },
+        p: {
+          en: [
+            "The above does not apply where we have failed to deliver what you paid for. If a payment is debited but access is not granted, if you are charged more than once for the same enrolment, or if material you have paid for is unavailable or defective and we are unable to put it right, we will correct the position or refund you in full.",
+            "Raise it with us first. A dispute settled directly is settled faster than one raised with your bank, and we would rather fix the problem than argue about it.",
+          ],
+          hi: [
+            "उपर्युक्त बातें वहाँ लागू नहीं होतीं जहाँ हमने वह नहीं दिया जिसका आपने भुगतान किया। यदि भुगतान कट गया पर पहुँच नहीं मिली, यदि एक ही नामांकन के लिए एक से अधिक बार शुल्क लिया गया, या यदि जिस सामग्री का आपने भुगतान किया वह उपलब्ध नहीं है या त्रुटिपूर्ण है और हम उसे ठीक नहीं कर पाते, तो हम स्थिति सुधारेंगे या पूरा पैसा लौटाएँगे।",
+            "पहले हमसे कहिए। सीधे सुलझा विवाद बैंक तक ले जाने वाले विवाद से जल्दी सुलझता है, और हम बहस करने के बजाय समस्या ठीक करना पसंद करेंगे।",
+          ],
+        },
+      },
+      {
+        h: { en: "How to raise a request", hi: "अनुरोध कैसे करें" },
+        p: {
+          en: [
+            "Write to us from the email address used for the purchase, quoting the payment reference and the name of the series or course.",
+            "We acknowledge within 2 working days. Where a refund is approved it is returned to the original payment method through our payment gateway, and typically reaches you within 5 to 7 working days depending on your bank.",
+            "Referral bonus credited to your wallet is a promotional credit, not money paid by you. It is not redeemable for cash and is not refundable, and it is reversed if the purchase behind it is refunded.",
+          ],
+          hi: [
+            "जिस ईमेल पते से खरीद की गई है, उसी से भुगतान संदर्भ और सीरीज़ या कोर्स का नाम लिखकर हमें भेजिए।",
+            "हम 2 कार्य-दिवस में प्राप्ति की सूचना देते हैं। धन-वापसी स्वीकृत होने पर वह हमारे पेमेंट गेटवे के माध्यम से उसी भुगतान माध्यम में लौटाई जाती है और आपके बैंक के अनुसार सामान्यतः 5 से 7 कार्य-दिवस में पहुँच जाती है।",
+            "वॉलेट में जमा रेफ़रल बोनस प्रचार-क्रेडिट है, आपका दिया हुआ पैसा नहीं। वह नक़द में नहीं बदला जा सकता और वापसी योग्य नहीं है, तथा उसके पीछे की खरीद वापस होने पर वह भी वापस ले लिया जाता है।",
           ],
         },
       },

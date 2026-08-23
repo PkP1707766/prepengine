@@ -395,9 +395,16 @@ function LegalPage({ page }) {
         <dl className="lg-dl">
           <div><dt>{t("lg_brand")}</dt><dd>{COMPANY.brand}</dd></div>
           <div><dt>{t("lg_legal_name")}</dt><dd>{val(COMPANY.legalName, lang)}</dd></div>
-          <div><dt>{t("lg_address")}</dt><dd>{val(COMPANY.address, lang)}</dd></div>
+          {COMPANY.proprietorship && (
+            <div><dt>{t("lg_type")}</dt><dd>{t("lg_type_sole")}</dd></div>
+          )}
+          <div><dt>{t("lg_address")}</dt><dd>{val(lang === "hi" ? (COMPANY.addressHi || COMPANY.address) : COMPANY.address, lang)}</dd></div>
           <div><dt>{t("lg_email")}</dt><dd><a href={"mailto:" + COMPANY.email}>{COMPANY.email}</a></dd></div>
-          <div><dt>{t("lg_phone")}</dt><dd>{val(COMPANY.phone, lang)}</dd></div>
+          {/* Optional rows are omitted while blank rather than showing a
+              "to be filled" marker: an unregistered proprietorship has no GSTIN
+              or CIN, and a legal page should not advertise a gap that is not
+              actually a gap. The marker stays on the fields that are required. */}
+          {COMPANY.phone ? <div><dt>{t("lg_phone")}</dt><dd>{COMPANY.phone}</dd></div> : null}
           {COMPANY.gstin ? <div><dt>GSTIN</dt><dd>{COMPANY.gstin}</dd></div> : null}
           {COMPANY.cin ? <div><dt>CIN</dt><dd>{COMPANY.cin}</dd></div> : null}
         </dl>
