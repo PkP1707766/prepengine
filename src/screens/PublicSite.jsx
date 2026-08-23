@@ -38,12 +38,41 @@ const CSS = `
   background:linear-gradient(90deg,transparent,var(--gold-500),transparent)}
 
 /* ---------- HEADER ---------- */
-.pb-head{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-  background:color-mix(in srgb,var(--cream-50) 86%,transparent);border-bottom:1px solid var(--line)}
+/* The header reacts to the page moving under it: translucent and weightless
+   at the top, denser and lifted once you scroll. That one change is most of
+   what separates a header that feels built from one that feels placed. */
+.pb-head{position:sticky;top:0;z-index:50;
+  -webkit-backdrop-filter:blur(12px) saturate(1.2);
+  backdrop-filter:blur(12px) saturate(1.2);
+  background:color-mix(in srgb,var(--cream-50) 84%,transparent);
+  transition:background .3s ease, box-shadow .3s ease}
+/* A hairline that is line-coloured at the ends and gold through the middle,
+   so the header is closed off by something belonging to the brand rather
+   than by a grey rule. */
+.pb-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,
+    color-mix(in srgb,var(--line) 92%,transparent) 16%,
+    color-mix(in srgb,var(--gold-500) 60%,transparent) 50%,
+    color-mix(in srgb,var(--line) 92%,transparent) 84%,transparent);
+  opacity:.85;transition:opacity .3s ease}
+.pb-head-on{
+  background:color-mix(in srgb,var(--cream-50) 95%,transparent);
+  -webkit-backdrop-filter:blur(20px) saturate(1.45);
+  backdrop-filter:blur(20px) saturate(1.45);
+  box-shadow:0 8px 26px -16px rgba(70,40,20,.55)}
+.pb-head-on::after{opacity:1}
 .pb-head-in{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px}
 .pb-brand{display:flex;align-items:center;gap:11px;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
 .pb-mark{border-radius:11px;flex:0 0 auto;display:grid;place-items:center;
   background:linear-gradient(155deg,var(--brand-700),var(--brand-900));box-shadow:var(--shadow-card)}
+/* The mark is a diya. A lamp that sits perfectly still is a logo; one that
+   breathes is a lamp. Slow enough (5.6s) to be felt rather than watched, and
+   drawn with box-shadow so it glows around the tile instead of over it. */
+@keyframes pb-mark-glow{
+  0%,58%,100%{box-shadow:var(--shadow-card),0 0 10px -3px rgba(201,162,39,.28)}
+  79%        {box-shadow:var(--shadow-card),0 0 20px -2px rgba(201,162,39,.62)}
+}
+.pb-head .pb-mark{animation:pb-mark-glow 7.4s ease-in-out infinite}
 .pb-name{display:block;font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:.01em;
   color:var(--ink-900);line-height:1.1;text-align:left;white-space:nowrap}
 .pb-name span{color:var(--gold-600)}
@@ -84,7 +113,24 @@ const CSS = `
 .pb-btn-gold{background:linear-gradient(155deg,var(--gold-500),var(--gold-600));color:#2a1e05;
   box-shadow:0 10px 24px -10px rgba(197,150,30,.65)}
 .pb-btn-maroon{background:var(--brand-700);color:#fff;box-shadow:0 10px 24px -12px rgba(99,19,34,.7)}
-.pb-btn-ghost{border-color:var(--brand-700);color:var(--brand-700);background:transparent}
+/* Desktop login. It sits beside the gold "Get started", so it must not shout
+   in the same voice — but a bare outline is not worth clicking either. A warm
+   tinted ground and a gold rim that lights up under the pointer. */
+.pb-btn-ghost{border-color:color-mix(in srgb,var(--gold-600) 55%,transparent);
+  color:var(--brand-700);
+  background:color-mix(in srgb,var(--gold-100) 45%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.pb-btn-ghost:hover{border-color:var(--gold-500);
+  background:color-mix(in srgb,var(--gold-100) 85%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 6px 16px -8px rgba(201,162,39,.6)}
+@keyframes pb-ghost-halo{
+  0%,62%{ box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 0 rgba(201,162,39,.45) }
+  81%   { box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 0 0 6px rgba(201,162,39,.15) }
+  100%  { box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 11px rgba(201,162,39,0) }
+}
+.pb-nav .pb-btn-ghost{ animation:pb-ghost-halo 5.6s ease-out infinite }
+.pb-nav .pb-btn-ghost:hover{ animation:none }
+@media (prefers-reduced-motion: reduce){ .pb-nav .pb-btn-ghost{ animation:none } }
 .pb-btn-onDark{border:1.5px solid rgba(255,255,255,.34);color:var(--on-dark);background:rgba(255,255,255,.06)}
 .pb-btn-onDark:hover{background:rgba(255,255,255,.13)}
 .pb-btn-sm{padding:9px 16px;font-size:13.5px}
@@ -611,60 +657,112 @@ const CSS = `
    the colour the page already uses for its primary action — a maroon button
    sitting between a cream capsule and a maroon burger read as a third
    unrelated control rather than the thing to press. */
-.pb-head-mobile .pb-head-cta{ min-height:34px }
+.pb-head-mobile .pb-head-cta{ min-height:36px }
 .pb-head-cta{
   position:relative; isolation:isolate;
   display:inline-flex; align-items:center; gap:6px; flex:0 0 auto; white-space:nowrap;
-  border:0; cursor:pointer; font:inherit; font-weight:800; font-size:12.5px; letter-spacing:.015em;
-  padding:0 14px; height:34px; border-radius:11px; color:#3a2506;
-  /* Lit from above: a bright edge along the top, the body in the middle, a
-     deeper tone at the base. Flat gold looked like a swatch; this reads as a
-     physical key you could press. */
-  background:linear-gradient(180deg,#f7dd95 0%,var(--gold-500) 46%,#a97c17 100%);
+  border:0; cursor:pointer; font:inherit; font-weight:800; font-size:13px; letter-spacing:.02em;
+  padding:0 15px; height:36px; border-radius:12px; color:#3a2405;
+  /* Two pixels taller than the capsule beside it, deliberately. Matching
+     heights made the row read as four settings in a line; the small
+     difference is what says one of these is the thing to press.
+
+     Struck metal rather than a coloured rectangle: a bright lit edge, a
+     saturated amber body, a deep bronze base, and a warm inner rim that
+     keeps the shape crisp against the glass behind it. */
+  background:linear-gradient(177deg,#ffeeb8 0%,#f3ce55 34%,var(--gold-500) 62%,#a3730f 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.72),
-    inset 0 -1px 0 rgba(90,60,5,.28),
-    0 2px 5px -1px rgba(140,100,20,.42),
-    0 6px 16px -6px rgba(181,135,31,.6);
-  transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease, filter .16s;
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 0 0 1px rgba(255,238,184,.35),
+    inset 0 -1px 0 rgba(84,54,3,.32),
+    0 2px 5px -1px rgba(140,100,20,.45),
+    0 7px 18px -7px rgba(201,162,39,.7);
+  transition:transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .22s ease, filter .16s;
 }
-/* A slow sheen crossing the face, the same gesture the page CTAs use. */
+/* Gold goes muddy against a dark ground, so it is lifted rather than reused. */
+[data-theme="dark"] .pb-head-cta{
+  color:#2c1c02;
+  background:linear-gradient(177deg,#fff3c9 0%,#f8d968 34%,#e0b652 62%,#b0801a 100%);
+}
+/* The shine sweeps by moving the gradient WITHIN the box rather than sliding
+   a strip across it. The strip needed overflow:hidden to stay inside the
+   button, and overflow:hidden would also clip the ::after further down, which
+   is the entire touch target. Moving the background costs nothing and cannot
+   escape: at both ends of the travel the bright band sits outside the visible
+   third of the image, so the loop point is invisible. */
 .pb-head-cta::before{
   content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  border-radius:inherit; overflow:hidden;
-  background:linear-gradient(105deg,transparent 36%,rgba(255,255,255,.5) 50%,transparent 64%);
-  transform:translateX(-130%); transition:transform .7s cubic-bezier(.3,.7,.3,1);
+  border-radius:inherit;
+  background:linear-gradient(100deg,
+    transparent 30%,
+    rgba(255,255,255,.20) 42%,
+    rgba(255,255,255,.92) 50%,
+    rgba(255,255,255,.20) 58%,
+    transparent 70%);
+  background-size:300% 100%;
+  background-position:100% 0;
 }
-@media (hover:hover){ .pb-head-cta:hover::before{ transform:translateX(130%) } }
-.pb-head-cta:hover{ transform:translateY(-1px); filter:brightness(1.05);
+@keyframes pb-cta-shine{
+  0%,64%   { background-position:100% 0 }
+  93%,100% { background-position:0% 0 }
+}
+.pb-head-cta:hover{ transform:translateY(-1.5px); filter:brightness(1.06) saturate(1.05);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    inset 0 -1px 0 rgba(90,60,5,.3),
-    0 3px 7px -1px rgba(140,100,20,.46),
-    0 10px 22px -6px rgba(201,162,39,.75) }
-.pb-head-cta:active{ transform:translateY(1px) scale(.98); transition-duration:.06s;
-  box-shadow:inset 0 2px 4px rgba(90,60,5,.35), inset 0 1px 0 rgba(255,255,255,.35) }
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 0 0 1px rgba(255,241,196,.5),
+    inset 0 -1px 0 rgba(84,54,3,.34),
+    0 4px 9px -2px rgba(140,100,20,.5),
+    0 12px 26px -8px rgba(201,162,39,.9) }
+/* Pressed metal: the lit edge moves to the bottom and the face darkens. */
+.pb-head-cta:active{ transform:translateY(1px) scale(.975); transition-duration:.07s;
+  filter:brightness(.97);
+  box-shadow:
+    inset 0 2px 5px rgba(84,54,3,.4),
+    inset 0 -1px 0 rgba(255,255,255,.4) }
 .pb-head-cta:focus-visible{ outline:2.5px solid var(--brand-700); outline-offset:2px }
 .pb-head-cta::after{ content:""; position:absolute; left:0; right:0; top:-5px; bottom:-5px }
 .pb-head-cta svg{ transition:transform .2s cubic-bezier(.2,.8,.3,1) }
 .pb-head-cta:hover svg{ transform:translateX(2px) }
 
-/* A slow breath on the glow, shown only to a visitor who is not signed in.
-   Two seconds apart and barely moving — enough to catch the eye on a page
-   full of text, not enough to nag. */
-@keyframes pb-cta-breathe{
-  0%,72%,100%{ box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.72), inset 0 -1px 0 rgba(90,60,5,.28),
-    0 2px 5px -1px rgba(140,100,20,.42), 0 6px 16px -6px rgba(181,135,31,.6) }
-  86%{ box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(90,60,5,.28),
-    0 2px 5px -1px rgba(140,100,20,.42), 0 9px 26px -5px rgba(201,162,39,.92) }
+/* Shown only to a visitor who is not signed in: a halo that opens outward and
+   fades, the way a ring spreads on water. It is drawn as the last box-shadow
+   layer, so it needs no extra element and nothing can clip it — which matters,
+   because the touch target is also a pseudo-element and the two would
+   otherwise fight over overflow.
+
+   4.9s, and most of that is rest. The point is to catch the corner of
+   someone's eye once, not to flash at a person trying to read. */
+@keyframes pb-cta-halo{
+  0%,60%{ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 0 0 1px rgba(255,238,184,.35),
+    inset 0 -1px 0 rgba(84,54,3,.32),
+    0 2px 5px -1px rgba(140,100,20,.45),
+    0 7px 18px -7px rgba(201,162,39,.7),
+    0 0 0 0 rgba(201,162,39,.5) }
+  78%{ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 0 0 1px rgba(255,241,196,.5),
+    inset 0 -1px 0 rgba(84,54,3,.32),
+    0 2px 5px -1px rgba(140,100,20,.45),
+    0 10px 24px -6px rgba(201,162,39,.92),
+    0 0 0 7px rgba(201,162,39,.16) }
+  100%{ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 0 0 1px rgba(255,238,184,.35),
+    inset 0 -1px 0 rgba(84,54,3,.32),
+    0 2px 5px -1px rgba(140,100,20,.45),
+    0 7px 18px -7px rgba(201,162,39,.7),
+    0 0 0 13px rgba(201,162,39,0) }
 }
-.pb-head-cta-pulse{ animation:pb-cta-breathe 4.6s ease-in-out infinite }
+.pb-head-cta-pulse{ animation:pb-cta-halo 4.9s ease-out infinite }
+.pb-head-cta-pulse::before{ animation:pb-cta-shine 5.3s ease-in-out infinite }
+/* Hover hands the shadow back to :hover, which a running animation would
+   otherwise win. The shine lives on a different element and keeps going. */
 .pb-head-cta-pulse:hover{ animation:none }
 @media (prefers-reduced-motion: reduce){
-  .pb-head-cta-pulse{ animation:none }
-  .pb-head-cta, .pb-head-cta svg{ transition:none }
+  .pb-head-cta-pulse, .pb-head-cta-pulse::before, .pb-head .pb-mark{ animation:none }
+  .pb-head-cta, .pb-head-cta svg, .pb-head, .pb-head::after{ transition:none }
   .pb-head-cta:hover, .pb-head-cta:active{ transform:none }
 }
 
@@ -719,7 +817,7 @@ const CSS = `
   .pb-brand{gap:8px}
   .pb-name{font-size:16px}
   .pb-mark{width:32px !important;height:32px !important}
-  .pb-head-cta{padding:0 12px;font-size:12px}
+  .pb-head-cta{padding:0 15px;font-size:13px}
   .jn-seg .jn-seg-btn{padding:0 8px}
   .pb-burger{width:34px}
 }
@@ -727,7 +825,7 @@ const CSS = `
   .pb-brand{gap:7px}
   .pb-name{font-size:15px}
   .pb-mark{width:30px !important;height:30px !important}
-  .pb-head-cta{padding:0 10px;font-size:11.5px}
+  .pb-head-cta{padding:0 13px;font-size:12.5px}
   .jn-seg .jn-seg-btn{padding:0 7px}
 }
 /* 375px and 360px fitted the wordmark with nothing to spare — need and have
@@ -747,7 +845,7 @@ const CSS = `
   .jn-seg-btn:first-child > svg{display:none}
   .pb-name{font-size:14.5px}
   .pb-mark{width:28px !important;height:28px !important}
-  .pb-head-cta{padding:0 9px}
+  .pb-head-cta{padding:0 11px;font-size:12px}
   .pb-head-in{padding:8px 9px;gap:4px}
 }
 /* 320px — the narrowest phone still in use. The wordmark stays; it is the one
@@ -756,7 +854,7 @@ const CSS = `
 @media (max-width:340px){
   .pb-name{font-size:13.5px}
   .pb-mark{width:26px !important;height:26px !important}
-  .pb-head-cta{padding:0 8px;font-size:11px}
+  .pb-head-cta{padding:0 9px;font-size:11.5px}
   .pb-head-in{padding:8px 8px;gap:4px}
 }
 `;
@@ -1004,6 +1102,29 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
   const [exam, setExam] = useState("all");
   const tabsRef = useRef(null);
 
+  /* The header densifies once the page moves under it. Read through rAF so a
+     fast scroll cannot queue a state update per frame, and compared against
+     the current value so React only re-renders on the two crossings rather
+     than on every pixel. The threshold is 6px, far enough that a rubber-band
+     bounce at the very top does not flicker it.
+
+     Deliberately no height change on scroll: the header is sticky, so its box
+     is in flow, and shrinking it would pull the whole page up by that many
+     pixels the moment someone starts scrolling. */
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    let frame = 0, on = false;
+    const read = () => {
+      frame = 0;
+      const next = window.scrollY > 6;
+      if (next !== on) { on = next; setScrolled(next); }
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(read); };
+    read();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); if (frame) cancelAnimationFrame(frame); };
+  }, []);
+
   /* Footer newsletter. Deliberately available to signed-out visitors — that is
      the entire point of a footer form. */
   const [email, setEmail] = useState("");
@@ -1098,7 +1219,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
     <div className="pb-root" ref={revealRoot}>
       <style>{CSS}</style>
 
-      <header className="pb-head">
+      <header className={"pb-head" + (scrolled ? " pb-head-on" : "")}>
         <div className="pb-head-in">
           <button className="pb-brand" onClick={home}>
             <BrandMark />
