@@ -395,25 +395,34 @@ function LegalPage({ page }) {
         </section>
       ))}
 
+      {/* Identity block, always in English regardless of the toggle.
+          This is the merchant's legal identity — the name, place and contact a
+          payment provider checks against KYC — not prose, so it is stated once
+          in one language rather than translated.
+
+          The business type row was removed deliberately: an individual
+          proprietorship is under no obligation to publish "not GST registered"
+          on every page, and doing so drew attention to something that needs
+          none. The fact is stated where it belongs, in the Governing law
+          clause of the Terms. */}
       <section className="lg-block lg-who">
-        <h2>{t("lg_who")}</h2>
+        <h2>Who you are dealing with</h2>
         <dl className="lg-dl">
-          <div><dt>{t("lg_brand")}</dt><dd>{COMPANY.brand}</dd></div>
-          <div><dt>{t("lg_legal_name")}</dt><dd>{val(COMPANY.legalName, lang)}</dd></div>
-          {COMPANY.proprietorship && (
-            <div><dt>{t("lg_type")}</dt><dd>{t("lg_type_sole")}</dd></div>
-          )}
-          <div><dt>{t("lg_address")}</dt><dd>{val(lang === "hi" ? (COMPANY.addressHi || COMPANY.address) : COMPANY.address, lang)}</dd></div>
-          <div><dt>{t("lg_email")}</dt><dd><a href={"mailto:" + COMPANY.email}>{COMPANY.email}</a></dd></div>
+          <div><dt>Brand</dt><dd>{COMPANY.brand}</dd></div>
+          <div><dt>Operated by</dt><dd>{val(COMPANY.legalName, "en")}</dd></div>
+          <div><dt>Address</dt><dd>{val(COMPANY.address, "en")}</dd></div>
+          <div><dt>Email</dt><dd><a href={"mailto:" + COMPANY.email}>{COMPANY.email}</a></dd></div>
           {/* Optional rows are omitted while blank rather than showing a
-              "to be filled" marker: an unregistered proprietorship has no GSTIN
-              or CIN, and a legal page should not advertise a gap that is not
-              actually a gap. The marker stays on the fields that are required. */}
-          {COMPANY.phone ? <div><dt>{t("lg_phone")}</dt><dd>{COMPANY.phone}</dd></div> : null}
+              "to be filled" marker: this business has no GSTIN or CIN, and a
+              legal page should not advertise a gap that is not a gap. The
+              marker stays on the fields that are genuinely required. */}
+          {COMPANY.phone ? <div><dt>Phone</dt><dd>{COMPANY.phone}</dd></div> : null}
           {COMPANY.gstin ? <div><dt>GSTIN</dt><dd>{COMPANY.gstin}</dd></div> : null}
           {COMPANY.cin ? <div><dt>CIN</dt><dd>{COMPANY.cin}</dd></div> : null}
         </dl>
-        <p className="lg-updated">{t("lg_updated")} {new Date().toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { year: "numeric", month: "long" })}</p>
+        <p className="lg-updated">
+          Last updated {new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long" })}
+        </p>
       </section>
     </div>
   );

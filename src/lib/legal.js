@@ -65,6 +65,10 @@ export const SOCIAL_LINKS = {
 export const LEGAL = {
   /* ---------------------------------------------------------------- privacy */
   privacy: {
+    /* English only — see the note on refund. The Hindi renderings of these
+       documents were not accurate enough to stand behind, and an inaccurate
+       policy is worse than one the reader has to work slightly harder at. */
+    englishOnly: true,
     title: { en: "Privacy Policy", hi: "गोपनीयता नीति" },
     intro: {
       en: "This policy explains what we collect when you use JUNOONIAS, why we collect it, and what we do not do with it.",
@@ -140,6 +144,7 @@ export const LEGAL = {
 
   /* ------------------------------------------------------------------ terms */
   terms: {
+    englishOnly: true,
     title: { en: "Terms & Conditions", hi: "नियम एवं शर्तें" },
     intro: {
       en: "By creating an account or buying a test series you agree to these terms.",
