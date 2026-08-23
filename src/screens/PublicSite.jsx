@@ -44,6 +44,11 @@ const CSS = `
 .pb-head{position:sticky;top:0;z-index:50;
   -webkit-backdrop-filter:blur(12px) saturate(1.2);
   backdrop-filter:blur(12px) saturate(1.2);
+  /* Solid first, translucent second. A browser without color-mix() drops
+     the second line and keeps a usable opaque header; without the first it
+     would drop the only background it has and leave dark nav text sitting
+     on the dark hero. Same trap the footer fell into. */
+  background:var(--cream-50);
   background:color-mix(in srgb,var(--cream-50) 84%,transparent);
   transition:background .3s ease, box-shadow .3s ease}
 /* A hairline that is line-coloured at the ends and gold through the middle,
@@ -56,6 +61,7 @@ const CSS = `
     color-mix(in srgb,var(--line) 92%,transparent) 84%,transparent);
   opacity:.85;transition:opacity .3s ease}
 .pb-head-on{
+  background:var(--cream-50);
   background:color-mix(in srgb,var(--cream-50) 95%,transparent);
   -webkit-backdrop-filter:blur(20px) saturate(1.45);
   backdrop-filter:blur(20px) saturate(1.45);
@@ -289,16 +295,24 @@ const CSS = `
 /* Not brand-900 itself. That exact value is already the hero band and the
    free-resources band, so on a phone the scroll went dark maroon, cream,
    dark maroon again -- three of the same block, and the last of them read as
-   a repeat rather than as an ending. Mixed down toward a near-black it keeps
-   the palette's hue (deep wine here, deep navy under Sapphire, green-black
-   under Forest) while sitting clearly beneath the bands above it. Gold reads
-   louder against it too, which is what the headings and the live social icon
-   are doing. */
+   a repeat rather than as an ending. --foot-ground is that colour taken down
+   toward a near-black: it keeps the palette's hue (deep wine here, navy
+   under Sapphire, green-black under Forest) while sitting clearly beneath
+   the bands above it.
+
+   It is a real token declared beside --brand-900 in every palette, NOT a
+   color-mix() computed here, and that distinction is the whole reason this
+   rule looks the way it does. Written as color-mix() it rendered correctly
+   in this browser and vanished on a phone: a browser that does not
+   understand the function drops the whole declaration, which left the
+   footer with no background at all -- the cream page showing through, under
+   cream text. Plenty of Android WebViews still do not have it. A background
+   that carries every word in the footer is not the place to depend on a
+   feature; hover tints elsewhere can degrade quietly, this cannot. */
 .pb-foot{--foot-pad:24px;
-  background:color-mix(in srgb, var(--brand-900) 42%, #140e0b);
+  background:var(--foot-ground);
   color:var(--on-dark);padding:48px var(--foot-pad) 0;
   position:relative}
-[data-theme="dark"] .pb-foot{background:#100407}
 /* A gold hairline where the page meets it, the same gesture as the header. */
 .pb-foot::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 70%,transparent) 50%,transparent)}
@@ -355,11 +369,20 @@ const CSS = `
   border:0;background:none;
   display:grid;place-items:center;color:var(--on-dark);cursor:pointer;text-align:center;
   transition:color .18s,transform .18s,background .18s}
-.pb-foot .pb-social:hover{color:var(--gold-300);transform:translateY(-2px);
-  background:rgba(255,255,255,.08)}
+.pb-foot .pb-social:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
 /* Placed but not yet linked. Dimmed and inert — nothing here opens a dead tab. */
-.pb-foot .pb-social-soon{opacity:.30;cursor:default}
-.pb-foot .pb-social-soon:hover{color:var(--on-dark);transform:none;background:none}
+.pb-foot .pb-social-soon{opacity:.42;cursor:default}
+.pb-foot .pb-social-soon:hover{transform:none;background:none}
+
+/* Instagram has no single colour, so its warm middle stands for it — a
+   gradient inside a 17px glyph would read as mud. X is drawn in the
+   foreground colour, since its own mark is black and would vanish here. */
+.pb-foot .pb-social[data-net="instagram"]{color:#e1306c}
+.pb-foot .pb-social[data-net="youtube"]  {color:#ff3d34}
+.pb-foot .pb-social[data-net="telegram"] {color:#3aa8e0}
+.pb-foot .pb-social[data-net="whatsapp"] {color:#3ecb5f}
+.pb-foot .pb-social[data-net="linkedin"] {color:#4a9fe0}
+.pb-foot .pb-social[data-net="x"]        {color:var(--on-dark)}
 
 /* -- right: link columns -- */
 .pb-foot-links{padding:8px 0 34px 40px;display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:28px;min-width:0}
@@ -379,7 +402,7 @@ const CSS = `
    a page rather than inside it. Full-bleed via negative margins because
    .pb-foot carries the horizontal padding the rest of the footer needs. */
 .pb-foot-bottom{margin:34px calc(var(--foot-pad) * -1) 0;padding:18px var(--foot-pad);
-  background:rgba(0,0,0,.38);border-top:1px solid rgba(255,255,255,.07);
+  background:#08060a;border-top:1px solid rgba(255,255,255,.07);
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
   font-size:12.5px;color:var(--on-dark-soft)}
 .pb-foot-bottom > span{opacity:.72}
@@ -1714,11 +1737,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               <div className="pb-socials">
                 {SOCIALS.map((sc) => (sc.href ? (
                   <a className="pb-social" key={sc.label} href={sc.href} aria-label={sc.label}
-                     target="_blank" rel="noreferrer noopener">
+                     data-net={sc.key} target="_blank" rel="noreferrer noopener">
                     <sc.Icon size={17} />
                   </a>
                 ) : (
-                  <span className="pb-social pb-social-soon" key={sc.label}
+                  <span className="pb-social pb-social-soon" key={sc.label} data-net={sc.key}
                         title={sc.label + " — " + t("soc_soon")} aria-hidden="true">
                     <sc.Icon size={17} />
                   </span>

@@ -56,7 +56,7 @@ function useBrandChrome() {
 
              Gold, cream and ink stay constant across palettes — they are what
              make every variant still feel like the same product.           */
-          --brand-900:#3d0d16; --brand-800:#4a0f19; --brand-700:#631322;
+          --brand-900:#3d0d16; --foot-ground:#250e10; --brand-800:#4a0f19; --brand-700:#631322;
           --brand-600:#7d1a28; --brand-500:#9b2a38;
 
           --gold-600:#b5871f;  --gold-500:#c9a227;  --gold-300:#e3c877; --gold-100:#f5e6bd;
@@ -92,7 +92,7 @@ function useBrandChrome() {
 
         /* Indigo — the most "classic exam hall" of the set. */
         [data-palette="indigo"]{
-          --brand-900:#141a3a; --brand-800:#1b2350; --brand-700:#2b3a76;
+          --brand-900:#141a3a; --foot-ground:#14131f; --brand-800:#1b2350; --brand-700:#2b3a76;
           --brand-600:#3a4c92; --brand-500:#5162ac;
           --cream-50:#f7f6f0; --cream-100:#eeecdf; --cream-200:#e2dfcd;
           --ink-900:#1b1c28; --ink-600:#4b4c5c; --ink-400:#7c7d8e;
@@ -103,7 +103,7 @@ function useBrandChrome() {
         }
         /* Sapphire — the आसमानी / sky variant. */
         [data-palette="sapphire"]{
-          --brand-900:#07293f; --brand-800:#0a3552; --brand-700:#0f5079;
+          --brand-900:#07293f; --foot-ground:#0f1921; --brand-800:#0a3552; --brand-700:#0f5079;
           --brand-600:#1a6b9c; --brand-500:#2f8bbd;
           --gold-600:#c08a1c; --gold-500:#d8a92a; --gold-300:#eed189; --gold-100:#f7ead0;
           --cream-50:#f6f8f6; --cream-100:#e9efee; --cream-200:#dbe4e3;
@@ -115,7 +115,7 @@ function useBrandChrome() {
         }
         /* Amethyst — deep aubergine, still warm enough for the gold. */
         [data-palette="amethyst"]{
-          --brand-900:#2a1038; --brand-800:#38154a; --brand-700:#552271;
+          --brand-900:#2a1038; --foot-ground:#1d0f1e; --brand-800:#38154a; --brand-700:#552271;
           --brand-600:#6d3190; --brand-500:#8a4cae;
           --cream-50:#faf6f6; --cream-100:#f0e9ee; --cream-200:#e4dae2;
           --ink-900:#221a25; --ink-600:#524a58; --ink-400:#847b8b;
@@ -126,7 +126,7 @@ function useBrandChrome() {
         }
         /* Forest — quieter, for a calmer look. */
         [data-palette="forest"]{
-          --brand-900:#0f2a1e; --brand-800:#153626; --brand-700:#215139;
+          --brand-900:#0f2a1e; --foot-ground:#121a13; --brand-800:#153626; --brand-700:#215139;
           --brand-600:#2d6b4b; --brand-500:#438a64;
           --cream-50:#f8f7ee; --cream-100:#edeedd; --cream-200:#dfe2cd;
           --ink-900:#1a2119; --ink-600:#47533f; --ink-400:#79856f;
@@ -140,31 +140,31 @@ function useBrandChrome() {
            warm near-black so the gold still reads as firelight. */
         [data-theme="dark"] [data-palette="indigo"],
         [data-theme="dark"][data-palette="indigo"]{
-          --brand-900:#0b0f22; --brand-800:#121737; --brand-700:#8f9ede; --brand-600:#a3b0e6;
+          --brand-900:#0b0f22; --foot-ground:#070a18; --brand-800:#121737; --brand-700:#8f9ede; --brand-600:#a3b0e6;
           --cream-50:#0f1120; --cream-100:#171a2d; --cream-200:#1f2338;
           --ink-900:#eceef8; --ink-600:#a8adc6; --ink-400:#7d829b; --line:#2a2f48;
         }
         [data-theme="dark"] [data-palette="sapphire"],
         [data-theme="dark"][data-palette="sapphire"]{
-          --brand-900:#04161f; --brand-800:#072230; --brand-700:#5fb3dd; --brand-600:#7cc4e8;
+          --brand-900:#04161f; --foot-ground:#020e15; --brand-800:#072230; --brand-700:#5fb3dd; --brand-600:#7cc4e8;
           --cream-50:#08161c; --cream-100:#0e2028; --cream-200:#152b34;
           --ink-900:#e6f2f6; --ink-600:#9fb6bf; --ink-400:#748a93; --line:#1e333d;
         }
         [data-theme="dark"] [data-palette="amethyst"],
         [data-theme="dark"][data-palette="amethyst"]{
-          --brand-900:#160a1d; --brand-800:#221031; --brand-700:#b585d8; --brand-600:#c69ce4;
+          --brand-900:#160a1d; --foot-ground:#0f0614; --brand-800:#221031; --brand-700:#b585d8; --brand-600:#c69ce4;
           --cream-50:#140d1a; --cream-100:#1d1425; --cream-200:#261c30;
           --ink-900:#f2eaf6; --ink-600:#b6a6c0; --ink-400:#8a7d94; --line:#31243c;
         }
         [data-theme="dark"] [data-palette="forest"],
         [data-theme="dark"][data-palette="forest"]{
-          --brand-900:#07160f; --brand-800:#0d2118; --brand-700:#6fbf93; --brand-600:#8bd0aa;
+          --brand-900:#07160f; --foot-ground:#040e09; --brand-800:#0d2118; --brand-700:#6fbf93; --brand-600:#8bd0aa;
           --cream-50:#0a150f; --cream-100:#101d16; --cream-200:#17261d;
           --ink-900:#e8f3ec; --ink-600:#a3b8ab; --ink-400:#7a8c81; --line:#213026;
         }
 
         [data-theme="dark"]:root{
-          --brand-900:#1c0a0e; --brand-800:#2a0d13; --brand-700:#c4566a;
+          --brand-900:#1c0a0e; --foot-ground:#100407; --brand-800:#2a0d13; --brand-700:#c4566a;
           --brand-600:#d4707f; --brand-500:#e08a95;
           --gold-600:#d4a63a;  --gold-500:#e0b652;  --gold-300:#f0d68f; --gold-100:#3a2c12;
           --cream-50:#1a0f0b;  --cream-100:#241611; --cream-200:#2e1c15;
