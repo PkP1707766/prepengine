@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
   ShieldCheck, Layers, Target, Timer,
@@ -870,6 +870,11 @@ const CSS = `
    thing on this row that cannot be replaced by an icon. Everything else gives
    up another pixel or two so it can. */
 @media (max-width:340px){
+  /* "One exam. One price." wants 253px of the 240px this screen offers, and
+     falls to a line per sentence. Two pixels off the heading buys 20 and
+     keeps the pair together -- cheaper than taking the room from the
+     section's margins, which every other block on the page is using. */
+  .pb-h2{font-size:23px}
   .pb-name{font-size:13.5px}
   .pb-mark{width:26px !important;height:26px !important}
   .pb-head-cta{padding:0 9px;font-size:11.5px}
@@ -878,6 +883,46 @@ const CSS = `
 `;
 
 const money = (n) => "₹" + Number(n || 0).toLocaleString("en-IN", { maximumFractionDigits: 0 });
+
+/* A heading made of short sentences should break BETWEEN them. Left to
+   itself the catalogue heading wrapped as
+
+       One exam. One
+       price. Nothing extra.
+
+   which reads as a typo rather than a line -- text-wrap:balance is only
+   trying to even out the two lines and has no idea a sentence is a unit.
+
+   Each sentence becomes an unbreakable run, so the only break opportunities
+   left are the spaces between them. On a phone that yields
+
+       One exam. One price.
+       Nothing extra.
+
+   and on a wide screen it still sets on one line, because nothing here
+   forces a break -- it only forbids the wrong ones. If a screen is ever
+   too narrow even for the first pair, it falls to one sentence per line,
+   which is still a sentence per line.
+
+   Splitting on the character rather than with a regex lookbehind: Devanagari
+   ends its sentences with a danda, and both marks are handled the same way.
+   The heading is centred by .pb-sec-head, so each line centres itself. */
+function Sentences({ text }) {
+  const parts = [];
+  let buf = "";
+  for (const ch of text) {
+    buf += ch;
+    if (ch === "." || ch === "\u0964") { parts.push(buf.trim()); buf = ""; }
+  }
+  if (buf.trim()) parts.push(buf.trim());
+
+  return parts.map((part, i) => (
+    <Fragment key={i}>
+      {i > 0 && " "}
+      <span style={{ whiteSpace: "nowrap" }}>{part}</span>
+    </Fragment>
+  ));
+}
 
 /* Scroll reveal — observes once, then forgets the element. */
 function useReveal(deps = []) {
@@ -1348,7 +1393,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               <div className="pb-sec-head reveal">
                 <Mandala className="pb-sec-mandala" />
                 <div className="pb-eyebrow">{t("nav_tests")}</div>
-                <h2 className="pb-h2">{t("cat_h2")}</h2>
+                <h2 className="pb-h2"><Sentences text={t("cat_h2")} /></h2>
                 <p className="pb-sub">{t("cat_sub")}</p>
               </div>
 
