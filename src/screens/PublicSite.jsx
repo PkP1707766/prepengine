@@ -1469,7 +1469,13 @@ function splitGraphemes(str) {
    so the sheen pass knows where each visual line is. A visually-hidden copy
    carries the whole text for assistive tech. Keyed on language by the caller,
    so switching EN/HI replays both acts; reduced-motion readers get it whole. */
-const LEDE_PER = 20, LEDE_START = 260;   // ms per character, and the lead-in
+const LEDE_PER = 20, LEDE_START = 260;   // typing: ms per character, and the lead-in
+/* The sheen keeps its own clock, slower than the typing it follows: that pass
+   is a hand writing the words, this one is a light crossing them once they are
+   written, and at the typewriter's pace it went by before the eye caught it.
+   SHEEN_PAUSE is the rest between passes -- without it a loop reads as a
+   stutter rather than as something that comes round again. */
+const SHEEN_PER = 46, SHEEN_MIN = 320, SHEEN_PAUSE = 1500;
 
 function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
   const reduced = usePrefersReducedMotion();
@@ -1477,7 +1483,8 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
   const [lines, setLines] = useState(null);           // measured visual lines
   const [n, setN] = useState(0);                      // characters typed so far
   const [typingDone, setTypingDone] = useState(false); // act 1 complete -> sheen
-  const [done, setDone] = useState(false);            // both acts done -> plain
+  const [cycle, setCycle] = useState(0);              // which pass of the sheen
+  const [measure, setMeasure] = useState(0);          // bumped on resize
 
   // Three runs in reading order for the typewriter: plain, gold highlight, plain.
   const segs = useMemo(() => [
@@ -1522,7 +1529,7 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
       const e = k + 1 < starts.length ? starts[k + 1] : fullText.length;
       return { s, e, chars: e - s };
     }));
-  }, [reduced, fullText]);
+  }, [reduced, fullText, measure]);
 
   // Act 1: type the paragraph in, then hand off to the sheen after a short beat.
   useEffect(() => {
@@ -1538,17 +1545,32 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
     return () => timers.forEach(clearTimeout);
   }, [reduced, total]);
 
-  // Act 2 done: after the sheen has crossed the last line, swap to the plain
-  // paragraph so it re-wraps normally on any later resize.
+  // Act 2 loops. When the sheen has crossed the last line it waits a beat and
+  // runs the whole pass again. Bumping the cycle re-keys the lines below, and
+  // that remount is what restarts their CSS animations from the top with the
+  // per-line stagger intact -- iteration-count cannot do it, because after the
+  // first pass every line would lose its delay and light in unison.
   useEffect(() => {
     if (reduced || !typingDone || !lines) return;
-    const sheenTotal = lines.reduce((t, l) => t + Math.max(l.chars * LEDE_PER, 120), 0);
-    const id = setTimeout(() => setDone(true), sheenTotal + 500);
+    const sweep = lines.reduce((t, l) => t + Math.max(l.chars * SHEEN_PER, SHEEN_MIN), 0);
+    const id = setTimeout(() => setCycle((v) => v + 1), sweep + SHEEN_PAUSE);
     return () => clearTimeout(id);
-  }, [reduced, typingDone, lines]);
+  }, [reduced, typingDone, lines, cycle]);
 
-  // Reduced motion, or after both acts: the plain paragraph.
-  if (reduced || done) {
+  // The paragraph stays split into pre-measured, non-wrapping lines now that
+  // the sheen runs forever -- it no longer swaps back to plain text after one
+  // pass. So a resize has to re-measure, or those lines keep the wrapping of
+  // the screen they were measured on.
+  useEffect(() => {
+    if (reduced) return;
+    let t = 0;
+    const onResize = () => { clearTimeout(t); t = setTimeout(() => setMeasure((v) => v + 1), 180); };
+    window.addEventListener("resize", onResize);
+    return () => { window.removeEventListener("resize", onResize); clearTimeout(t); };
+  }, [reduced]);
+
+  // Reduced motion gets the plain paragraph and no passes at all.
+  if (reduced) {
     return (
       <p className="pb-lede">{fullMain}{" "}<em className="pb-lede-close">{close}</em></p>
     );
@@ -1587,7 +1609,7 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
     // turn at the typewriter's pace.
     let acc = 0;
     liveMain = (lines || []).map((ln, i) => {
-      const d = Math.max(ln.chars * LEDE_PER, 120);
+      const d = Math.max(ln.chars * SHEEN_PER, SHEEN_MIN);
       const delay = acc; acc += d;
       return (
         <span className="pb-glass-sheen-line" key={i}
@@ -1609,7 +1631,7 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
       </span>
       {/* Painted over the ghost — act 1 types, act 2 sweeps line by line. */}
       <span className="pb-lede-live" aria-hidden="true">
-        <span className="pb-lede-main">{liveMain}</span>
+        <span className="pb-lede-main" key={typingDone ? "sheen-" + cycle : "typing"}>{liveMain}</span>
         {closeEl}
       </span>
       {/* For screen readers, which get neither of the two above. */}
