@@ -177,13 +177,19 @@ const CSS = `
    two lines hold their final space from the first frame and nothing below the
    headline shifts. */
 .pb-h1-anim .pb-h1-l1,
-.pb-h1-anim .pb-h1-l2{display:block;will-change:clip-path,opacity,transform}
+.pb-h1-anim .pb-h1-l2{display:block}
 .pb-h1-anim .pb-h1-l1{animation:pb-swoosh .62s cubic-bezier(.2,.75,.3,1) .12s both}
 .pb-h1-anim .pb-h1-l2{animation:pb-swoosh .62s cubic-bezier(.2,.75,.3,1) .74s both}
+/* Every inset but the right one is NEGATIVE, and that is the whole point.
+   fill-mode holds the last frame forever, so a flat inset(0) would keep
+   clipping to the line box for the life of the page -- and these glyphs paint
+   5px outside it: the descender of "your", the g of "light.", the overhang of
+   the italic. Both were visibly sliced. Opening the box on three sides leaves
+   the wipe to the right edge alone, which is the only edge that should cut. */
 @keyframes pb-swoosh{
-  0%  {opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(.16em)}
+  0%  {opacity:0;clip-path:inset(-.4em 100% -.4em -.2em);transform:translateY(.16em)}
   32% {opacity:1}
-  100%{opacity:1;clip-path:inset(0 0 0 0);transform:none}
+  100%{opacity:1;clip-path:inset(-.4em -.2em -.4em -.2em);transform:none}
 }
 /* Reduced motion: both lines are simply present, no sweep. */
 @media (prefers-reduced-motion: reduce){
@@ -655,10 +661,13 @@ const CSS = `
     grid-template-columns:1fr;
     grid-template-areas:"diya" "head" "body" "ticks";
     justify-items:stretch}
-  /* Sized off the viewport so it scales with the phone -- roughly twice the
-     old chip, and centred over the text it introduces. */
-  .pb-stage{min-height:0;justify-self:center;margin-bottom:14px}
-  .ill-diya{width:min(58vw,206px);height:min(58vw,206px)}
+  /* Set to the right and allowed to run past the grid's padding, the way it
+     sits on a desktop -- a lamp standing off to one side of the words rather
+     than a centred emblem above them. .pb-hero clips, so the bleed costs no
+     horizontal scroll. Larger too: at this placement the empty maroon to its
+     left is what gives it the room to read as light in a dark room. */
+  .pb-stage{min-height:0;justify-self:end;margin:0 -22px 10px 0}
+  .ill-diya{width:min(64vw,238px);height:min(64vw,238px)}
   .pb-hero-head{align-self:start}
   .pb-hero-body{margin-top:20px}
   /* The headline owns the full width now, so it can be a step larger than the
@@ -679,11 +688,12 @@ const CSS = `
   .pb-hero-ctas{gap:9px;margin-bottom:20px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
   .pb-ticks{gap:9px 18px;font-size:12.5px}
-  /* The lamp is top-centre now, so the warm pool sits under it and a little
-     wider, lighting the space the diya stands in. */
+  /* The pool follows the lamp to the right and sits a shade stronger: it is
+     the light the lamp is casting, so it has to come from where the lamp
+     actually is or the whole corner reads as flat paint. */
   .pb-hero::before{background:
-    radial-gradient(320px 280px at 50% 13%, rgba(224,178,64,.30), transparent 68%),
-    radial-gradient(460px 220px at 50% -12%, rgba(255,255,255,.05), transparent 72%)}
+    radial-gradient(300px 260px at 76% 12%, rgba(224,178,64,.34), transparent 66%),
+    radial-gradient(460px 220px at 55% -12%, rgba(255,255,255,.05), transparent 72%)}
 
   .pb-head-in{padding:10px 16px;gap:10px}
   .pb-name{font-size:17px}
