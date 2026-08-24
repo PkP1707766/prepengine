@@ -717,8 +717,8 @@ Object.assign(STR, {
   coupon_cta: { en: "See test series", hi: "टेस्ट सीरीज़ देखें" },
 
   /* --- footer --- */
-  foot_blurb:   { en: "Your preparation platform for UPSC, BPSC and UPPCS civil services.",
-                  hi: "UPSC, BPSC और UPPCS सिविल सेवा के लिए आपका तैयारी मंच।" },
+  foot_blurb:   { en: "UPSC, BPSC and UPPCS \u2014 papers on the real pattern, honest analysis, and an All-India rank. In Hindi and English, both.",
+                  hi: "UPSC, BPSC और UPPCS — असली पैटर्न पर पेपर, ईमानदार विश्लेषण और अखिल भारतीय रैंक। हिन्दी और अंग्रेज़ी, दोनों में।" },
   foot_explore: { en: "Explore", hi: "एक्सप्लोर" },
   foot_free:    { en: "Free resources", hi: "निःशुल्क संसाधन" },
   foot_support: { en: "Support", hi: "सहायता" },
@@ -975,9 +975,9 @@ Object.assign(STR, {
 
 /* Footer newsletter. */
 Object.assign(STR, {
-  news_h:       { en: "Get papers & updates", hi: "पेपर और अपडेट पाइए" },
-  news_p:       { en: "New test series, free papers and exam notes — occasionally, never spam.",
-                  hi: "नई टेस्ट सीरीज़, निःशुल्क पेपर और परीक्षा से जुड़ी बातें — कभी-कभार, स्पैम कभी नहीं।" },
+  news_h:       { en: "Free papers, in your inbox", hi: "मुफ़्त पेपर, सीधे आपके इनबॉक्स में" },
+  news_p:       { en: "New test series, PYQ sets and current-affairs notes \u2014 only when there is something worth sending. Never spam.",
+                  hi: "नई टेस्ट सीरीज़, PYQ सेट और करेंट अफेयर्स नोट्स — तभी भेजते हैं जब भेजने लायक़ कुछ हो। स्पैम कभी नहीं।" },
   news_ph:      { en: "you@email.com", hi: "aap@email.com" },
   news_btn:     { en: "Subscribe", hi: "जोड़ें" },
   news_sending: { en: "Adding…", hi: "जोड़ रहे हैं…" },

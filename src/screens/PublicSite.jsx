@@ -337,9 +337,12 @@ const CSS = `
 .pb-foot .pb-name{color:var(--on-dark)}
 .pb-foot .pb-tagline{color:var(--on-dark-soft);opacity:.7}
 .pb-foot-blurb{font-size:14px;line-height:1.7;color:var(--on-dark-soft);margin:0 0 30px;max-width:40ch}
-.pb-news h5{font-family:var(--font-display);font-size:20px;font-weight:600;text-transform:none;
-  letter-spacing:-.01em;color:var(--on-dark);margin:0 0 6px}
-.pb-news p{font-size:13px;color:var(--on-dark-soft);opacity:.75;margin:0 0 14px;line-height:1.6}
+/* Same label as EXPLORE and SUPPORT. It was 20px in the display face while
+   they are 12px in the same face and the same gold -- one treatment at
+   nearly twice the size, which read as shouting rather than as a heading. */
+.pb-news h5{font-size:12px;letter-spacing:.13em;margin:0 0 7px}
+.pb-news p{font-size:13px;color:var(--on-dark-soft);opacity:.78;margin:0 0 13px;line-height:1.6;
+  max-width:46ch}
 .pb-news-row{display:flex;align-items:stretch;background:rgba(255,255,255,.07);
   border:1.5px solid rgba(255,255,255,.16);
   border-radius:100px;padding:5px 5px 5px 6px;transition:border-color .18s,box-shadow .18s;max-width:420px}
@@ -574,7 +577,6 @@ const CSS = `
      than a break you read. */
   .pb-foot-logo{margin-bottom:12px}
   .pb-foot-blurb{margin-bottom:20px}
-  .pb-news h5{font-size:18px}
   .pb-news p{margin-bottom:11px}
   .pb-foot-bottom{padding-top:14px}
 
@@ -611,7 +613,7 @@ const CSS = `
      two halves stack. Getting that wrong is what broke 901-1000px. */
   .pb-foot-links{grid-template-columns:1fr 1fr;column-gap:22px;row-gap:0}
   .pb-foot-links > div:nth-child(3){grid-column:1 / -1;
-    margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.10)}
+    margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.10)}
   .pb-foot-supl{margin-top:2px;display:grid;grid-template-columns:1fr 1fr;column-gap:22px}
 
   .pb-nav{display:none}
@@ -685,16 +687,22 @@ const CSS = `
      of both edges. */
   .pb-foot-in{grid-template-columns:1fr;grid-template-rows:none;
     grid-template-areas:"brand" "links" "social"}
-  .pb-foot-brand{padding:0 0 22px}
+  /* One rhythm for the whole stack: 18px from the last line of a section to
+     its rule and 18px from the rule to the next heading, everywhere. The
+     brand break was 45px and the other three were 26-29px, which is what
+     made the sections feel unevenly spaced rather than any one of them
+     being wrong. Support keeps a smaller 12px pair, because it divides two
+     rows inside one block rather than two blocks. */
+  .pb-foot-brand{padding:0 0 18px}
   .pb-foot-social{padding:0;border-right:0}
-  .pb-foot-links{padding:22px 0 4px}
+  .pb-foot-links{padding:18px 0 4px}
 
-  .pb-foot-follow{display:block;text-align:center;margin:24px 0 10px;
+  .pb-foot-follow{display:block;text-align:center;margin:14px 0 10px;
     padding-top:18px;border-top:1px solid rgba(255,255,255,.10)}
   .pb-socials{justify-content:center;gap:4px;margin-top:0}
 
   .pb-foot-bottom{flex-direction:column;align-items:center;text-align:center;
-    gap:9px;margin-top:26px;
+    gap:9px;margin-top:22px;
     padding-bottom:calc(16px + env(safe-area-inset-bottom))}
   .pb-foot-legal{gap:0;width:100%;justify-content:center}
   /* .72, not the .55 this started at. Deepening the ground darkened this
@@ -713,8 +721,20 @@ const CSS = `
    - Stacked, because side by side the button took 114px of 257px and left the
      address field 130px to type an email into. */
 @media (max-width:560px){
-  .pb-news-row{flex-direction:column;border-radius:16px;padding:6px;gap:6px;max-width:none}
-  .pb-news-row input{font-size:16px;padding:11px 12px;width:100%}
+  /* Stacked, and the frame around the pair is gone. Wrapping a transparent
+     input and a button in one bordered box made the box the object and the
+     field invisible inside it -- a large empty rectangle with a gold button
+     at its foot. The field now looks like a field and the button like a
+     button, which is the only thing either of them has to do. */
+  .pb-news-row{flex-direction:column;gap:9px;padding:0;max-width:none;
+    background:none;border:0;border-radius:0}
+  .pb-news-row:focus-within{box-shadow:none}
+  .pb-news-row input{font-size:16px;width:100%;padding:13px 14px;border-radius:12px;
+    background:rgba(255,255,255,.07);
+    border:1.5px solid rgba(255,255,255,.16);
+    transition:border-color .18s, box-shadow .18s}
+  .pb-news-row input:focus{border-color:var(--gold-500);
+    box-shadow:0 0 0 3px rgba(201,162,39,.20)}
   .pb-news-btn{width:100%;padding:13px 22px;border-radius:12px}
 }
 
