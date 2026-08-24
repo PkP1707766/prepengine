@@ -721,21 +721,18 @@ const CSS = `
    - Stacked, because side by side the button took 114px of 257px and left the
      address field 130px to type an email into. */
 @media (max-width:560px){
-  /* Stacked, and the frame around the pair is gone. Wrapping a transparent
-     input and a button in one bordered box made the box the object and the
-     field invisible inside it -- a large empty rectangle with a gold button
-     at its foot. The field now looks like a field and the button like a
-     button, which is the only thing either of them has to do. */
-  .pb-news-row{flex-direction:column;gap:9px;padding:0;max-width:none;
-    background:none;border:0;border-radius:0}
-  .pb-news-row:focus-within{box-shadow:none}
-  .pb-news-row input{font-size:16px;width:100%;padding:13px 14px;border-radius:12px;
-    background:rgba(255,255,255,.07);
-    border:1.5px solid rgba(255,255,255,.16);
-    transition:border-color .18s, box-shadow .18s}
-  .pb-news-row input:focus{border-color:var(--gold-500);
-    box-shadow:0 0 0 3px rgba(201,162,39,.20)}
-  .pb-news-btn{width:100%;padding:13px 22px;border-radius:12px}
+  /* The same single pill the desktop has: field and button in one row, the
+     button carrying the only colour. It was stacked here, which turned one
+     control into two objects and a lot of empty ground between them.
+
+     Only two things change for the phone. The width cap comes off so it
+     fills the column, and the input goes to 16px -- below that iOS zooms
+     the whole page on focus, which is a far worse thing to fix afterwards
+     than a half-point of type. The button loses a little side padding so
+     the field keeps room to actually type an address in. */
+  .pb-news-row{max-width:none;padding:5px 5px 5px 8px}
+  .pb-news-row input{font-size:16px;padding:10px 6px 10px 4px}
+  .pb-news-btn{padding:11px 18px;font-size:13.5px}
 }
 
 /* Footer links on a phone.

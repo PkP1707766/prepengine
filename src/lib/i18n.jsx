@@ -975,9 +975,9 @@ Object.assign(STR, {
 
 /* Footer newsletter. */
 Object.assign(STR, {
-  news_h:       { en: "Free papers, in your inbox", hi: "मुफ़्त पेपर, सीधे आपके इनबॉक्स में" },
-  news_p:       { en: "New test series, PYQ sets and current-affairs notes \u2014 only when there is something worth sending. Never spam.",
-                  hi: "नई टेस्ट सीरीज़, PYQ सेट और करेंट अफेयर्स नोट्स — तभी भेजते हैं जब भेजने लायक़ कुछ हो। स्पैम कभी नहीं।" },
+  news_h:       { en: "Free test papers & updates", hi: "मुफ़्त टेस्ट पेपर और अपडेट" },
+  news_p:       { en: "A free paper now and then, and word when a new test series opens. Nothing else, and never spam.",
+                  hi: "बीच-बीच में एक मुफ़्त पेपर, और नई टेस्ट सीरीज़ आने पर ख़बर। इसके अलावा कुछ नहीं, स्पैम कभी नहीं।" },
   news_ph:      { en: "you@email.com", hi: "aap@email.com" },
   news_btn:     { en: "Subscribe", hi: "जोड़ें" },
   news_sending: { en: "Adding…", hi: "जोड़ रहे हैं…" },
