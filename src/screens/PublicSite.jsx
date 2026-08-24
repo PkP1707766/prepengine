@@ -405,12 +405,18 @@ const CSS = `
   background:#08060a;border-top:1px solid rgba(255,255,255,.07);
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
   font-size:12.5px;color:var(--on-dark-soft)}
-.pb-foot-bottom > span{opacity:.72}
-.pb-foot-legal{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+/* Desktop keeps the copyright left and the links right; the DOM has them
+   the other way round so a phone reads the links first. */
+.pb-foot-bottom{flex-direction:row-reverse}
+.pb-foot-cr{opacity:.72;display:inline-flex;align-items:center;flex-wrap:wrap;
+  justify-content:center;gap:0 2px}
+.pb-foot-legal{display:flex;gap:0;flex-wrap:wrap;align-items:center}
 .pb-foot-legal button{background:none;border:0;font:inherit;font-size:12.5px;color:var(--on-dark-soft);
   cursor:pointer;padding:0;transition:color .16s}
 .pb-foot-legal button:hover{color:var(--gold-300)}
-.pb-foot-legal > span{opacity:.72}
+/* Separators, not links: they sit outside the buttons so nothing enlarges a
+   target or reads a stray character out to a screen reader. */
+.pb-foot-dot{opacity:.55;padding:0 7px;user-select:none}
 
 /* ---------- CONTENT HUB ---------- */
 .pb-panel{background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);
@@ -570,7 +576,7 @@ const CSS = `
   .pb-foot-blurb{margin-bottom:20px}
   .pb-news h5{font-size:18px}
   .pb-news p{margin-bottom:11px}
-  .pb-foot-bottom{padding-top:16px}
+  .pb-foot-bottom{padding-top:14px}
 
   .pb-panel{padding:20px;border-radius:18px}
   .pb-h3{font-size:17px}
@@ -688,13 +694,14 @@ const CSS = `
   .pb-socials{justify-content:center;gap:4px;margin-top:0}
 
   .pb-foot-bottom{flex-direction:column;align-items:center;text-align:center;
-    gap:10px;margin-top:26px;
-    padding-bottom:calc(18px + env(safe-area-inset-bottom))}
-  .pb-foot-legal{gap:6px 16px;width:100%;justify-content:center}
-  /* Raised from .55. Deepening the ground darkened this text with it --
-     opacity composites toward the background, so a darker floor costs
-     contrast rather than gaining it. It measured 4.74 against a 4.5 bar. */
-  .pb-foot-legal > span{flex-basis:100%;margin-top:2px;font-size:11.5px;opacity:.72}
+    gap:9px;margin-top:26px;
+    padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+  .pb-foot-legal{gap:0;width:100%;justify-content:center}
+  /* .72, not the .55 this started at. Deepening the ground darkened this
+     text with it -- opacity composites toward the background, so a darker
+     floor costs contrast rather than gaining it; it measured 4.74 against a
+     4.5 bar before the lift. */
+  .pb-foot-cr{font-size:11.5px;justify-content:center}
   .pb-foot-brand{border-right:0;border-bottom:1px solid rgba(255,255,255,.10)}
 }
 
@@ -1013,6 +1020,12 @@ const CSS = `
      the margins give way instead. */
   .pb-foot{--foot-pad:12px}
   .pb-foot-links,.pb-foot-supl{column-gap:10px}
+  /* The colophon's two rows want 314px and 296px is what this screen has,
+     so both wrapped and it went back to being four ragged lines. A step
+     down in size buys 33px and holds the pair. */
+  .pb-foot-legal button{font-size:11.5px}
+  .pb-foot-dot{padding:0 5px}
+  .pb-foot-cr{font-size:11px}
   .pb-name{font-size:13.5px}
   .pb-mark{width:26px !important;height:26px !important}
   .pb-head-cta{padding:0 9px;font-size:11.5px}
@@ -1783,14 +1796,25 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </div>
         </div>
 
+        {/* Legal first in the DOM, because on a phone that is the row you
+            read first. Desktop reverses the row so the copyright still sits
+            left and the links right, which is where they were. */}
         <div className="pb-foot-bottom">
-          <span>&copy; {new Date().getFullYear()} JUNOONIAS. {t("foot_rights")}</span>
           <div className="pb-foot-legal">
             <button onClick={() => onNavigate("privacy")}>{t("lg_privacy")}</button>
+            <span className="pb-foot-dot" aria-hidden="true">&middot;</span>
             <button onClick={() => onNavigate("terms")}>{t("lg_terms")}</button>
+            <span className="pb-foot-dot" aria-hidden="true">&middot;</span>
             <button onClick={() => onNavigate("refund")}>{t("lg_refund")}</button>
-            <span>{t("foot_made")}</span>
           </div>
+          {/* The copyright and the sign-off share a line. Separately they were
+              two more centred rows of near-equal weight, which is the raggedness
+              the rest of this footer was just cleaned of. */}
+          <span className="pb-foot-cr">
+            &copy; {new Date().getFullYear()} JUNOONIAS
+            <span className="pb-foot-dot" aria-hidden="true">&middot;</span>
+            {t("foot_made")}
+          </span>
         </div>
       </footer>
 
