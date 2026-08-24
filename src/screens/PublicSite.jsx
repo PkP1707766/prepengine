@@ -200,8 +200,11 @@ const CSS = `
   font-size:16.5px;line-height:1.58;font-weight:400;color:#ecdfca;max-width:46ch;
   margin:0 0 26px;letter-spacing:.002em}
 .pb-lede-hi{font-weight:700;color:var(--gold-300)}
-.pb-lede-close{font-family:var(--font-quote);font-style:italic;font-weight:500;
-  color:var(--gold-300)}
+/* On its own line below the paragraph, back at the size and style it had
+   before the flow change: a block, a step larger, in the quote italic. The
+   paragraph flows; this one line stands apart as the close. */
+.pb-lede-close{display:block;margin-top:13px;font-family:var(--font-quote);font-style:italic;
+  font-weight:500;font-size:1.14em;color:var(--gold-300)}
 .pb-hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px}
 /* The leading icon is quieter than the label and the trailing arrow; it
    identifies the action rather than competing with it. */
@@ -577,6 +580,7 @@ const CSS = `
   .pb-eyebrow-hero{font-size:9.5px;letter-spacing:.11em;margin-bottom:10px;line-height:1.5}
   .pb-orn{margin-bottom:15px;max-width:150px}
   .pb-lede{font-size:15.5px;line-height:1.55;margin-bottom:20px;max-width:none}
+  .pb-lede-close{font-size:1.2em;margin-top:12px}
   /* One per row on a phone: three columns of this would give each claim
      about 90px, which is not enough for its label let alone its line. */
   .pb-ticks{grid-template-columns:1fr;border-radius:14px;margin-top:0}
