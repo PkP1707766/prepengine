@@ -146,9 +146,18 @@ const CSS = `
 .pb-hero{position:relative;overflow:hidden;color:var(--on-dark);
   background:linear-gradient(175deg,var(--brand-800) 0%,var(--brand-900) 100%)}
 [data-theme="dark"] .pb-hero{background:linear-gradient(175deg,#2a0d13 0%,#150609 100%)}
+/* The ground was carrying a 2px diagonal pinstripe every 26px. On a desktop
+   it is a faint texture; on a phone at 2x it lands as visible hairlines
+   crawling across the maroon, which is what makes the panel look like a
+   rendering fault rather than a surface. Gone.
+
+   What replaces it is the one thing the section is about: the lamp lighting
+   the space it sits in. A warm pool centred where the diya actually is, and a
+   second, wider and much fainter one lifting the top edge so the band does
+   not read as flat paint. */
 .pb-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(620px 320px at 82% -8%, rgba(201,162,39,.20), transparent 62%),
-             repeating-linear-gradient(115deg, rgba(255,255,255,.02) 0 2px, transparent 2px 26px)}
+  background:radial-gradient(460px 380px at 78% 34%, rgba(224,178,64,.22), transparent 66%),
+             radial-gradient(760px 300px at 50% -18%, rgba(255,255,255,.05), transparent 70%)}
 .pb-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:0 44px;
   grid-template-areas:"head diya" "body diya";
   align-items:center;max-width:1180px;margin:0 auto;padding:74px 24px 66px}
@@ -509,14 +518,17 @@ const CSS = `
      block above the headline. Two columns for the top row only -- headline
      and lamp -- then the lede, the buttons and the ticks run the full width
      underneath, where they need it. */
-  .pb-hero-grid{padding:24px 20px 32px;gap:0 14px;
+  .pb-hero-grid{padding:26px 20px 34px;gap:0 12px;
     grid-template-columns:1fr auto;
     grid-template-areas:"head diya" "body body";
     align-items:center}
   .pb-stage{min-height:0;align-self:center}
-  .ill-diya{width:118px;height:118px}
+  /* Big enough to be the mark it is. At 104px beside a three-line headline it
+     read as a stray icon; the row is set by the headline either way, so the
+     size costs nothing in height until it passes it. */
+  .ill-diya{width:136px;height:136px}
   .pb-hero-head{align-self:center}
-  .pb-hero-body{margin-top:16px}
+  .pb-hero-body{margin-top:22px}
   .pb-h1{font-size:29px;line-height:1.12;letter-spacing:-.015em;margin-bottom:0}
   /* The break belongs between the two halves of the line here, not inside
      one of them -- the column is 200px wide now. */
@@ -525,6 +537,11 @@ const CSS = `
   .pb-hero-ctas{gap:9px;margin-bottom:20px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
   .pb-ticks{gap:9px 18px;font-size:12.5px}
+  /* The lamp is top-right and small here, so the pool follows it rather than
+     sitting where a desktop lamp would be. */
+  .pb-hero::before{background:
+    radial-gradient(260px 240px at 82% 15%, rgba(224,178,64,.26), transparent 68%),
+    radial-gradient(420px 200px at 40% -14%, rgba(255,255,255,.05), transparent 72%)}
 
   .pb-head-in{padding:10px 16px;gap:10px}
   .pb-name{font-size:17px}
@@ -609,12 +626,16 @@ const CSS = `
 /* Very narrow phones — 360px and below. */
 @media (max-width:380px){
   .pb-h1{font-size:26px}
-  .ill-diya{width:104px;height:104px}
+  .ill-diya{width:120px;height:120px}
 }
 /* At 320px the headline column came to 156px and its widest line to 152px --
    four pixels, which is not a fit, it is a near miss. The lamp gives some
    back rather than the type getting smaller again. */
 @media (max-width:340px){
+  /* "Lead your prep" wants 183px and the column was 176px, so it broke after
+     "your" and the headline ran to four lines. The lamp gives the 14px back
+     rather than the headline getting smaller -- it is the first thing anyone
+     reads on the site. */
   .ill-diya{width:86px;height:86px}
   .pb-hero-grid{padding-inline:16px}
   .pb-resgrid{grid-template-columns:1fr}
@@ -633,12 +654,17 @@ const CSS = `
    and hand a 360px screen the 230px lamp meant for a tablet -- which is
    exactly what it did until this was measured at 640px. */
 @media (min-width:641px) and (max-width:980px){
+  /* The lamp spans BOTH rows here, as it does on desktop -- there is width
+     for it at this size. Giving it only the top row made that row 230px tall
+     for an 80px headline, and the headline floated in the middle of it with a
+     100px hole underneath. On a phone the same arrangement is right, because
+     there the headline is three lines and taller than the lamp. */
   .pb-hero-grid{grid-template-columns:1fr auto;
-    grid-template-areas:"head diya" "body body";
+    grid-template-areas:"head diya" "body diya";
     align-items:center;padding:52px 20px 46px;gap:0 32px}
   .pb-stage{min-height:0}
   .ill-diya{width:230px;height:230px}
-  .pb-hero-body{margin-top:22px}
+  .pb-hero-body{margin-top:18px}
 }
 @media (max-width:980px){
   .pb-lede{max-width:none}
@@ -831,8 +857,11 @@ const CSS = `
   .pb-quote{padding:40px 20px}
   .pb-show-grid{padding:38px 20px;gap:26px}
   .pb-strip-in{padding:20px 20px}
-  .pb-hero-grid{padding:30px 20px 36px;gap:20px}
-  .pb-stage{min-height:190px}
+  /* The hero's padding, gap and stage height are set in the phone block
+     above, which sits earlier in this sheet -- so a second copy here won at
+     equal specificity and undid it. The 190px stage in particular was
+     written when the lamp had a row to itself; beside a 104px lamp it was
+     86px of dead height that pushed the lede down the screen. */
   .pb-steps{gap:18px}
   .pb-step{padding:20px 18px}
   .pb-sec-mandala{width:280px;height:280px;top:-40px}
