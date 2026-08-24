@@ -652,27 +652,25 @@ const CSS = `
    third line with one orphaned word, and every section carried desktop
    padding. Type, rhythm and density are all tightened here. */
 @media (max-width:640px){
-  /* The lamp gets a row of its own again, centred at the top of the hero.
-     It is the mark of the whole brand -- an Academy of Inner Fire -- and
-     shrunk to a 100px chip beside the headline it read as an afterthought.
-     One column now: lamp, then headline, lede, buttons and ticks stacked
-     full width beneath it. */
-  .pb-hero-grid{padding:28px 20px 36px;gap:0;
-    grid-template-columns:1fr;
-    grid-template-areas:"diya" "head" "body" "ticks";
-    justify-items:stretch}
-  /* Set to the right and allowed to run past the grid's padding, the way it
-     sits on a desktop -- a lamp standing off to one side of the words rather
-     than a centred emblem above them. .pb-hero clips, so the bleed costs no
-     horizontal scroll. Larger too: at this placement the empty maroon to its
-     left is what gives it the room to read as light in a dark room. */
-  .pb-stage{min-height:0;justify-self:end;margin:0 -22px 10px 0}
-  .ill-diya{width:min(64vw,238px);height:min(64vw,238px)}
-  .pb-hero-head{align-self:start}
-  .pb-hero-body{margin-top:20px}
-  /* The headline owns the full width now, so it can be a step larger than the
-     32px it was squeezed to beside the lamp. */
-  .pb-h1{font-size:34px;line-height:1.12;letter-spacing:-.015em;margin-bottom:0}
+  /* Headline left, lamp right, sharing the top row -- the arrangement the
+     desktop has. Only the lede, the buttons and the ticks drop to full width
+     underneath, because a paragraph in a 190px column is not a paragraph. */
+  .pb-hero-grid{padding:26px 20px 34px;gap:0 8px;
+    grid-template-columns:1fr auto;
+    grid-template-areas:"head diya" "body body" "ticks ticks";
+    align-items:center}
+  /* The lamp runs past the grid's padding toward the screen edge. That bleed
+     is what lets it read large while costing the headline only part of its
+     width -- the box is 45vw, the space it actually takes is 26px less, and
+     .pb-hero clips so none of it becomes horizontal scroll. */
+  .pb-stage{min-height:0;justify-self:end;align-self:center;margin:0 -30px 0 0}
+  .ill-diya{width:min(43vw,168px);height:min(43vw,168px)}
+  .pb-hero-head{align-self:center}
+  .pb-hero-body{margin-top:18px}
+  /* Measured against the column the lamp leaves, not chosen: "Lead your prep"
+     wants 187px at this size and tracking, and the column is 196px. A step
+     larger breaks it after "your" and orphans a word at the top of the page. */
+  .pb-h1{font-size:28px;line-height:1.16;letter-spacing:-.022em;margin-bottom:0}
   /* The break belongs between the two halves of the line here, not inside
      one of them -- the column is 200px wide now. */
   .pb-h1 br{display:block}
@@ -688,12 +686,12 @@ const CSS = `
   .pb-hero-ctas{gap:9px;margin-bottom:20px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
   .pb-ticks{gap:9px 18px;font-size:12.5px}
-  /* The pool follows the lamp to the right and sits a shade stronger: it is
-     the light the lamp is casting, so it has to come from where the lamp
-     actually is or the whole corner reads as flat paint. */
+  /* The pool sits where the lamp sits -- upper right, beside the headline --
+     and a shade stronger than the desktop's, because on a small screen it is
+     doing the work of separating the lamp from the maroon behind it. */
   .pb-hero::before{background:
-    radial-gradient(300px 260px at 76% 12%, rgba(224,178,64,.34), transparent 66%),
-    radial-gradient(460px 220px at 55% -12%, rgba(255,255,255,.05), transparent 72%)}
+    radial-gradient(260px 230px at 84% 16%, rgba(224,178,64,.34), transparent 66%),
+    radial-gradient(460px 220px at 50% -14%, rgba(255,255,255,.05), transparent 72%)}
 
   .pb-head-in{padding:10px 16px;gap:10px}
   .pb-name{font-size:17px}
@@ -807,16 +805,21 @@ const CSS = `
 
 /* Very narrow phones — 360px and below. The lamp scales with the viewport
    via min(58vw,…) above, so it needs no fixed size here. */
-@media (max-width:380px){
-  .pb-h1{font-size:31px}
+/* Narrower phones. The headline shares its row with the lamp, so each step
+   down in width costs the text column real millimetres and the type has to
+   follow -- these were LARGER than the base while the lamp sat on its own row,
+   which is the wrong direction now that it is back beside the words. */
+@media (max-width:365px){
+  .pb-h1{font-size:26px}
 }
-/* Smallest phones — 320px and below. The headline has the full width now
-   rather than a column shared with the lamp, so it no longer has to shrink to
-   hold "Lead your prep" on one line; a small step down is only to keep the
-   second, larger line comfortable. */
+/* Smallest phones — 320px and below. Here the lamp gives ground as well as the
+   type: at 24px "Lead your prep" wants 167px, and only a smaller lamp leaves
+   that much beside it. */
 @media (max-width:340px){
-  .pb-h1{font-size:30px}
+  .pb-h1{font-size:24px}
   .pb-hero-grid{padding-inline:16px}
+  .pb-stage{margin-right:-26px}
+  .ill-diya{width:min(40vw,132px);height:min(40vw,132px)}
   .pb-resgrid{grid-template-columns:1fr}
 }
 
