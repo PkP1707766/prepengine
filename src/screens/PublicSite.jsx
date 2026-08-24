@@ -159,14 +159,14 @@ const CSS = `
   background:radial-gradient(460px 380px at 78% 34%, rgba(224,178,64,.22), transparent 66%),
              radial-gradient(760px 300px at 50% -18%, rgba(255,255,255,.05), transparent 70%)}
 .pb-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:0 44px;
-  grid-template-areas:"brow brow" "head diya" "body diya" "ticks ticks";
+  grid-template-areas:"head diya" "body diya" "ticks ticks";
   align-items:center;max-width:1180px;margin:0 auto;padding:74px 24px 66px}
 .pb-hero-head{grid-area:head}
 .pb-stage{grid-area:diya}
 .pb-hero-body{grid-area:body}
 .pb-hero-deva{font-family:var(--font-shloka);font-size:19px;letter-spacing:.03em;color:var(--gold-300);
   opacity:.95;margin-bottom:12px;line-height:1.5}
-.pb-h1{font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(33px,4.6vw,53px);
+.pb-h1{font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(36px,5vw,60px);
   line-height:1.07;font-weight:600;letter-spacing:-.012em;margin:0 0 18px;text-wrap:balance}
 .pb-h1 em{font-family:var(--font-quote);font-style:italic;font-weight:500;color:var(--gold-300);
   font-size:1.14em;letter-spacing:-.005em}
@@ -174,22 +174,6 @@ const CSS = `
    next to two serifs above it. A little more size, a little more line, and a
    measure that stops at 42 characters so it sets in even lines rather than
    one long grey block. */
-/* A quiet line above the headline, in place of the Upanisad line that moved
-   to its own section. Small caps, wide tracking, gold -- it names the promise
-   before the headline makes it. */
-/* Its own row across the top. Left inside the headline column it had 196px
-   on a phone and broke into three lines of shouting capitals above a
-   three-line headline. */
-.pb-eyebrow-hero{grid-area:brow;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-  font-weight:700;color:var(--gold-300);opacity:.85;margin:0 0 14px}
-
-/* Rule, diamond, rule. Closes the headline before the argument begins. */
-.pb-orn{display:flex;align-items:center;gap:7px;margin:0 0 18px;max-width:210px}
-.pb-orn i{height:1px;flex:1;
-  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 70%,transparent))}
-.pb-orn i:last-child{background:linear-gradient(90deg,color-mix(in srgb,var(--gold-500) 70%,transparent),transparent)}
-.pb-orn span{width:5px;height:5px;flex:0 0 auto;transform:rotate(45deg);
-  background:var(--gold-500);opacity:.9}
 
 /* One flowing paragraph in the display serif, so it reads with the same
    voice as the headline rather than as plain UI text -- kept at the lede's
@@ -562,23 +546,22 @@ const CSS = `
      underneath, where they need it. */
   .pb-hero-grid{padding:26px 20px 34px;gap:0 12px;
     grid-template-columns:1fr auto;
-    grid-template-areas:"brow brow" "head diya" "body body" "ticks ticks";
+    grid-template-areas:"head diya" "body body" "ticks ticks";
     align-items:center}
   .pb-stage{min-height:0;align-self:center}
-  /* Big enough to be the mark it is. At 104px beside a three-line headline it
-     read as a stray icon; the row is set by the headline either way, so the
-     size costs nothing in height until it passes it. */
-  .ill-diya{width:136px;height:136px}
+  /* The lamp shares the top row with the headline, so its width comes off the
+     headline's column. It is sized per tier below so the bigger headline can
+     still hold "Lead your prep" on one line: smaller lamp on narrower phones,
+     never a wrapped wordmark. */
+  .ill-diya{width:100px;height:100px}
   .pb-hero-head{align-self:center}
   .pb-hero-body{margin-top:22px}
-  .pb-h1{font-size:29px;line-height:1.12;letter-spacing:-.015em;margin-bottom:0}
+  .pb-h1{font-size:32px;line-height:1.1;letter-spacing:-.015em;margin-bottom:0}
   /* The break belongs between the two halves of the line here, not inside
      one of them -- the column is 200px wide now. */
   .pb-h1 br{display:block}
   /* 330px of tracked capitals in a 320px row left "REAL PROGRESS." alone on
      a second line. A half point and a little tracking bring it to 305. */
-  .pb-eyebrow-hero{font-size:9.5px;letter-spacing:.11em;margin-bottom:10px;line-height:1.5}
-  .pb-orn{margin-bottom:15px;max-width:150px}
   .pb-lede{font-size:15.5px;line-height:1.55;margin-bottom:20px;max-width:none}
   .pb-lede-close{font-size:1.2em;margin-top:12px}
   /* One per row on a phone: three columns of this would give each claim
@@ -677,19 +660,19 @@ const CSS = `
 
 /* Very narrow phones — 360px and below. */
 @media (max-width:380px){
-  .pb-h1{font-size:26px}
-  .ill-diya{width:120px;height:120px}
+  .pb-h1{font-size:30px}
+  .ill-diya{width:80px;height:80px}
 }
 /* At 320px the headline column came to 156px and its widest line to 152px --
    four pixels, which is not a fit, it is a near miss. The lamp gives some
    back rather than the type getting smaller again. */
 @media (max-width:340px){
-  .pb-eyebrow-hero{font-size:9px;letter-spacing:.075em}
   /* "Lead your prep" wants 183px and the column was 176px, so it broke after
      "your" and the headline ran to four lines. The lamp gives the 14px back
      rather than the headline getting smaller -- it is the first thing anyone
      reads on the site. */
-  .ill-diya{width:86px;height:86px}
+  .pb-h1{font-size:27px}
+  .ill-diya{width:78px;height:78px}
   .pb-hero-grid{padding-inline:16px}
   .pb-resgrid{grid-template-columns:1fr}
 }
@@ -713,7 +696,7 @@ const CSS = `
      100px hole underneath. On a phone the same arrangement is right, because
      there the headline is three lines and taller than the lamp. */
   .pb-hero-grid{grid-template-columns:1fr auto;
-    grid-template-areas:"brow brow" "head diya" "body diya" "ticks ticks";
+    grid-template-areas:"head diya" "body diya" "ticks ticks";
     align-items:center;padding:52px 20px 46px;gap:0 32px}
   .pb-stage{min-height:0}
   /* 200, not 230. The two hero buttons gained leading icons and now want
@@ -1661,20 +1644,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 further down, with the translation and the citation, which is
                 where it earns the room. */}
             <div className="pb-hero-grid">
-              <div className="pb-eyebrow-hero">{t("hero_eyebrow")}</div>
               <div className="pb-hero-head">
                 <h1 className="pb-h1">{t("hero_h1_a")}{" "}<br /><em>{t("hero_h1_b")}</em></h1>
               </div>
               <div className="pb-stage"><Diya size={330} /></div>
               <div className="pb-hero-body">
-                {/* A rule with a diamond at its centre, closing the headline off
-                    before the argument starts. Drawn in CSS rather than as an
-                    image so it takes the palette with it. */}
-                <div className="pb-orn" aria-hidden="true"><i /><span /><i /></div>
-                {/* Staged rather than one paragraph: a flat opening, the claim
-                    in gold, the substance, then the line that asks for the
-                    click. One block of prose was doing all four jobs at once
-                    and none of them loudly. */}
                 <p className="pb-lede">
                   {t("hero_lede_a")}{" "}
                   {t("hero_lede_b1")}<b className="pb-lede-hi">{t("hero_lede_bh")}</b>{t("hero_lede_b2")}{" "}
