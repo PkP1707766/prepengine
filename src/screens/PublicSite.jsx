@@ -191,17 +191,17 @@ const CSS = `
 .pb-orn span{width:5px;height:5px;flex:0 0 auto;transform:rotate(45deg);
   background:var(--gold-500);opacity:.9}
 
-/* The lede is four beats, not one paragraph: a flat opening, the claim in
-   gold, the substance, then the line that asks for the click. Each is its own
-   block so the rhythm survives translation -- Hindi sets these at different
-   lengths and a single wrapped paragraph would lose the staging. */
-.pb-lede{font-size:16.5px;line-height:1.6;color:#ecdfca;max-width:46ch;margin:0 0 26px;
-  letter-spacing:.002em;display:flex;flex-direction:column;gap:7px}
-.pb-lede-a{opacity:.9}
-.pb-lede-hi{display:block;font-weight:700;color:var(--gold-300);font-size:1.03em;
-  letter-spacing:.004em}
-.pb-lede-close{display:block;font-family:var(--font-quote);font-style:italic;
-  font-size:1.14em;font-weight:500;color:var(--gold-300);margin-top:3px}
+/* One flowing paragraph in the display serif, so it reads with the same
+   voice as the headline rather than as plain UI text -- kept at the lede's
+   own size, not the headline's. The four parts run inline with normal word
+   spacing and wrap edge to edge; only "real exam" is gold, and the closing
+   line stays a gold italic the way the headline's second line is. */
+.pb-lede{font-family:var(--font-display);font-optical-sizing:auto;
+  font-size:16.5px;line-height:1.58;font-weight:400;color:#ecdfca;max-width:46ch;
+  margin:0 0 26px;letter-spacing:.002em}
+.pb-lede-hi{font-weight:700;color:var(--gold-300)}
+.pb-lede-close{font-family:var(--font-quote);font-style:italic;font-weight:500;
+  color:var(--gold-300)}
 .pb-hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px}
 /* The leading icon is quieter than the label and the trailing arrow; it
    identifies the action rather than competing with it. */
@@ -576,8 +576,7 @@ const CSS = `
      a second line. A half point and a little tracking bring it to 305. */
   .pb-eyebrow-hero{font-size:9.5px;letter-spacing:.11em;margin-bottom:10px;line-height:1.5}
   .pb-orn{margin-bottom:15px;max-width:150px}
-  .pb-lede{font-size:15.5px;line-height:1.56;margin-bottom:20px;max-width:none;gap:6px}
-  .pb-lede-close{font-size:1.2em}
+  .pb-lede{font-size:15.5px;line-height:1.55;margin-bottom:20px;max-width:none}
   /* One per row on a phone: three columns of this would give each claim
      about 90px, which is not enough for its label let alone its line. */
   .pb-ticks{grid-template-columns:1fr;border-radius:14px;margin-top:0}
@@ -1673,9 +1672,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                     click. One block of prose was doing all four jobs at once
                     and none of them loudly. */}
                 <p className="pb-lede">
-                  <span className="pb-lede-a">{t("hero_lede_a")}</span>
-                  <strong className="pb-lede-hi">{t("hero_lede_b")}</strong>
-                  <span>{t("hero_lede_c")}</span>
+                  {t("hero_lede_a")}{" "}
+                  {t("hero_lede_b1")}<b className="pb-lede-hi">{t("hero_lede_bh")}</b>{t("hero_lede_b2")}{" "}
+                  {t("hero_lede_c")}{" "}
                   <em className="pb-lede-close">{t("hero_lede_d")}</em>
                 </p>
                 <div className="pb-hero-ctas">
