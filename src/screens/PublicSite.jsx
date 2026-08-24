@@ -338,7 +338,14 @@ const CSS = `
 .pb-step p{font-size:14px;color:var(--ink-600);line-height:1.6;margin:0}
 
 /* ---------- REPORT SHOWCASE ---------- */
-.pb-show{background:var(--cream-100);border-block:1px solid var(--line)}
+/* The cream side of the seam steps down too, so the ramp into the dark band
+   is cream-100 -> cream-200 -> gold hairline -> the band's lighter shoulder,
+   rather than one flat cream meeting one flat maroon. Its bottom border goes
+   with it: a --line hairline directly above the gold one made the seam read as
+   two rules, not one. */
+.pb-show{background:var(--cream-100);
+  background:linear-gradient(180deg,var(--cream-100) 0%,var(--cream-100) 68%,var(--cream-200) 100%);
+  border-top:1px solid var(--line)}
 .pb-show-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center;
   max-width:1180px;margin:0 auto;padding:76px 24px}
 .pb-show-list{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:16px}
@@ -351,13 +358,52 @@ const CSS = `
   filter:drop-shadow(var(--shadow-soft))}
 
 /* ---------- FREE RESOURCES ---------- */
-.pb-res{background:var(--brand-900);color:var(--on-dark);position:relative;overflow:hidden}
-[data-theme="dark"] .pb-res{background:#150609}
+/* This band is cream above it and cream below it, and a flat fill met both
+   with a butt-join -- two pages stuck together rather than one page changing
+   register. Three things fix it, none of them a fade from cream to maroon
+   (that route only passes through mud):
+
+   - the band is no longer flat. It carries its own lighter shoulders, so the
+     edge that touches cream is the lightest maroon on the page and the middle
+     is the deepest.
+   - a warm bloom sits just inside each edge, so the seam looks lit.
+   - each seam gets the gold hairline the header and footer already use.
+
+   Solid first, gradient second: a browser that cannot parse the gradient list
+   keeps a usable opaque band instead of dropping the only background it has
+   and leaving cream text on cream -- the same trap the footer documents. */
+.pb-res{background:var(--brand-900);
+  background:
+    radial-gradient(760px 150px at 50% 0%, rgba(224,178,64,.12), transparent 72%),
+    radial-gradient(760px 150px at 50% 100%, rgba(224,178,64,.09), transparent 72%),
+    linear-gradient(180deg,
+      var(--brand-800) 0%, var(--brand-900) 34%,
+      var(--brand-900) 66%, var(--brand-800) 100%);
+  color:var(--on-dark);position:relative;overflow:hidden}
+[data-theme="dark"] .pb-res{background:#150609;
+  background:
+    radial-gradient(760px 150px at 50% 0%, rgba(224,178,64,.10), transparent 72%),
+    radial-gradient(760px 150px at 50% 100%, rgba(224,178,64,.07), transparent 72%),
+    linear-gradient(180deg,#210c11 0%,#150609 36%,#150609 64%,#210c11 100%)}
+/* The hairlines live on pseudo-elements, not in the background list above:
+   color-mix() is the one thing here an older WebView may not parse, and a
+   dropped decoration is nothing while a dropped background is a broken page. */
+.pb-res::before,.pb-res::after{content:"";position:absolute;left:0;right:0;height:1px;
+  z-index:3;pointer-events:none;
+  background:linear-gradient(90deg,transparent,
+    color-mix(in srgb,var(--gold-500) 62%,transparent) 50%,transparent)}
+.pb-res::before{top:0}
+.pb-res::after{bottom:0}
 .pb-res .pb-h2{color:var(--on-dark)}
 .pb-res .pb-sub{color:#d8c9ae}
 .pb-res .pb-eyebrow{color:var(--gold-300)}
 .pb-res-mandala{position:absolute;right:-170px;bottom:-190px;width:520px;height:520px;opacity:.10;color:var(--gold-300)}
-.pb-resgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:16px}
+/* Three across, because there are six of these. auto-fit fitted five on a wide
+   screen and left FAQ alone on a row of its own -- a grid that ends in one
+   stranded card reads as a card that failed to load. Three gives two full
+   rows, and the wider card lets every blurb sit on two lines instead of three. */
+.pb-resgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:980px){ .pb-resgrid{grid-template-columns:repeat(2,1fr)} }
 .pb-rescard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:16px;
   padding:22px 20px;text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;
   transition:background .2s ease,transform .2s ease,border-color .2s ease}
@@ -416,6 +462,21 @@ const CSS = `
 
 /* ---------- QUOTE ---------- */
 .pb-sec-coupon{padding-block:62px}
+/* Coming out of the dark band is that seam in reverse: the cream picks up
+   where the band left off and clears to the page colour over the first stretch
+   below it.
+
+   The ramp hangs off this full-width wrapper rather than off the section
+   itself, and that is the whole reason the wrapper exists. The section is
+   .pb-sec-narrow -- centred, max-width 1180 -- so a full-bleed ramp there
+   needed 100vw, and 100vw counts the scrollbar: it measured 8px wider than the
+   page and put a horizontal scrollbar under the whole site. left/right:0 on a
+   block that is already full width has no such opinion about scrollbars. */
+.pb-coupon-band{position:relative}
+.pb-coupon-band::before{content:"";position:absolute;left:0;right:0;top:0;height:150px;
+  pointer-events:none;z-index:0;
+  background:linear-gradient(180deg,var(--cream-200),transparent)}
+.pb-coupon-band > *{position:relative;z-index:1}
 .pb-quote{text-align:center;padding:74px 24px}
 .pb-quote .deva{font-family:var(--font-deva);font-size:27px;color:var(--brand-700);margin-bottom:12px}
 .pb-quote p{font-family:var(--font-display);font-style:italic;color:var(--ink-600);font-size:17px;
@@ -2213,7 +2274,6 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
             <Mandala className="pb-res-mandala" />
             <div className="pb-sec pb-sec-narrow" style={{ position: "relative", zIndex: 2 }}>
               <div className="pb-sec-head reveal">
-                <div className="pb-eyebrow">{t("res_eyebrow")}</div>
                 <h2 className="pb-h2">{t("res_h2")}</h2>
                 <p className="pb-sub">{t("res_sub")}</p>
               </div>
@@ -2234,6 +2294,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </section>
 
           {/* ---------------- COUPON ---------------- */}
+          {/* The wrapper is full width and exists only to carry the cream ramp
+              out of the dark band above; the section inside stays centred. */}
+          <div className="pb-coupon-band">
           <div className="pb-sec pb-sec-narrow pb-sec-coupon">
             {/* Two offers in the one strip. Refer-and-earn needs an account —
                 the invite link lives on the dashboard — so it sends a signed-in
@@ -2246,6 +2309,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 body: t("refer_p"), bodyShort: t("refer_p_s"),
                 cta: t("refer_cta"), onClick: session ? onDashboard : onLogin },
             ]} />
+          </div>
           </div>
 
           {/* ---------------- QUOTE ---------------- */}
