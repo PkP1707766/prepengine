@@ -1,7 +1,7 @@
-import { Fragment, useState, useEffect, useRef } from "react";
+import { Fragment, useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
-  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3,
+  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift,
 } from "lucide-react";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
@@ -170,6 +170,65 @@ const CSS = `
   line-height:1.07;font-weight:600;letter-spacing:-.012em;margin:0 0 18px;text-wrap:balance}
 .pb-h1 em{font-family:var(--font-quote);font-style:italic;font-weight:500;color:var(--gold-300);
   font-size:1.14em;letter-spacing:-.005em}
+/* The headline arrives one line at a time. Each line is a block that sweeps
+   in as a whole -- a left-to-right wipe with a small lift and fade -- rather
+   than a letter at a time. The first line lands, then a beat later the gold
+   second line follows. Only opacity, clip-path and transform animate, so the
+   two lines hold their final space from the first frame and nothing below the
+   headline shifts. */
+.pb-h1-anim .pb-h1-l1,
+.pb-h1-anim .pb-h1-l2{display:block;will-change:clip-path,opacity,transform}
+.pb-h1-anim .pb-h1-l1{animation:pb-swoosh .62s cubic-bezier(.2,.75,.3,1) .12s both}
+.pb-h1-anim .pb-h1-l2{animation:pb-swoosh .62s cubic-bezier(.2,.75,.3,1) .74s both}
+@keyframes pb-swoosh{
+  0%  {opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(.16em)}
+  32% {opacity:1}
+  100%{opacity:1;clip-path:inset(0 0 0 0);transform:none}
+}
+/* Reduced motion: both lines are simply present, no sweep. */
+@media (prefers-reduced-motion: reduce){
+  .pb-h1-anim .pb-h1-l1,.pb-h1-anim .pb-h1-l2{
+    animation:none;opacity:1;clip-path:none;transform:none}
+}
+
+/* The lede first types itself in, character by character. Once complete, a
+   glassmorphism sheen then sweeps across it a line at a time, left to right,
+   one line after another, each line taking the same time typing it did.
+
+   A ghost of the finished paragraph is laid out but not painted, holding the
+   full block open so the buttons and ticks below never jump; the live copy is
+   painted over it. */
+.pb-lede-type{position:relative}
+.pb-lede-ghost{visibility:hidden}
+.pb-lede-live{position:absolute;top:0;left:0;right:0}
+.pb-lede-main{display:block}
+/* Act two: one visual line during the sheen pass. The text is already there
+   (it was typed); only a frosted band crosses it. --d is the line's duration
+   and --delay its start, so the lines light one after another. overflow clips
+   the band to the line; nowrap keeps the pre-measured line on one row. */
+.pb-glass-sheen-line{display:block;position:relative;white-space:nowrap;overflow:hidden}
+.pb-glass-sheen-line::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,
+    transparent 40%,
+    rgba(255,255,255,.20) 47%,
+    rgba(255,247,224,.60) 50%,
+    rgba(240,214,138,.36) 53%,
+    transparent 60%);
+  mix-blend-mode:screen;transform:translateX(-105%);
+  animation:pb-glass-sheen var(--d) linear var(--delay) both}
+@keyframes pb-glass-sheen{to{transform:translateX(105%)}}
+/* The closing line is mounted only once the typing lands, and fades up from
+   that fresh mount so the fade always plays from the start. */
+.pb-glass-close-in{animation:pb-fade-up .5s ease both}
+@keyframes pb-fade-up{from{opacity:0;transform:translateY(.24em)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .pb-glass-sheen-line::after{display:none}
+  .pb-glass-close-in{animation:none}
+}
+/* Read by assistive tech only -- the ghost is visibility:hidden (out of the
+   a11y tree) and the live copy is aria-hidden, so this carries the full text. */
+.pb-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
 /* The lede was 15.5px Inter on a dark ground -- correct, and characterless
    next to two serifs above it. A little more size, a little more line, and a
    measure that stops at 42 characters so it sets in even lines rather than
@@ -313,6 +372,41 @@ const CSS = `
   background:var(--cream-100);color:var(--brand-700)}
 .pb-ticket h4{margin:0 0 4px;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink-900)}
 .pb-ticket p{margin:0;font-size:13.5px;color:var(--ink-600);line-height:1.55}
+.pb-ticket-copy{flex:1;min-width:0}
+.pb-ticket .pb-btn{flex:0 0 auto}
+/* The phone's shorter line; swapped in for the sentence at the breakpoint. */
+.pb-ticket-short{display:none}
+
+/* Two tickets -- the coupon one and refer-and-earn -- share this one slot and
+   swipe between themselves. Both are stacked in a single grid cell, so the slot
+   is as tall as the taller of the two and neither can shift the page as they
+   trade places; only transform and opacity animate. The wrap already clips
+   horizontally, which is what turns the translate into a swipe.
+
+   116%, not 100%: the ticket's notches hang 14px outside its own box, and at a
+   flat 100% the outgoing notch was left sitting in the wrap's padding. */
+.pb-ticket-stack{display:grid}
+.pb-ticket-slide{grid-area:1/1;display:grid;min-width:0;
+  transition:transform .62s cubic-bezier(.4,0,.2,1),opacity .46s ease}
+.pb-ticket-slide[data-pos="cur"] {transform:none;opacity:1}
+.pb-ticket-slide[data-pos="next"]{transform:translateX(116%);opacity:0;pointer-events:none}
+.pb-ticket-slide[data-pos="prev"]{transform:translateX(-116%);opacity:0;pointer-events:none}
+/* Which of the two is showing, and a way to choose. */
+.pb-ticket-dots{display:flex;justify-content:center;gap:8px;margin-top:15px}
+.pb-tdot{position:relative;width:8px;height:8px;min-height:0;padding:0;border:0;border-radius:50%;
+  background:color-mix(in srgb,var(--gold-600) 34%,transparent);cursor:pointer;
+  transition:background .2s,transform .2s}
+/* Hit area only — invisible, and it lifts an 8px dot to a 26px target. */
+.pb-tdot::after{content:"";position:absolute;inset:-9px}
+.pb-tdot:hover{background:color-mix(in srgb,var(--gold-600) 62%,transparent)}
+.pb-tdot.on{background:var(--brand-700);transform:scale(1.25)}
+.pb-tdot:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
+/* The global coarse-pointer rule puts every button at 44px; these are 8px
+   markers with their own 26px hit area, so they opt out of it. */
+@media (pointer:coarse){ .pb-root .pb-tdot{min-height:8px} }
+@media (prefers-reduced-motion: reduce){
+  .pb-ticket-slide{transition:none}
+}
 
 /* ---------- QUOTE ---------- */
 .pb-sec-coupon{padding-block:62px}
@@ -389,16 +483,21 @@ const CSS = `
   max-width:46ch}
 .pb-news-row{display:flex;align-items:stretch;background:rgba(255,255,255,.07);
   border:1.5px solid rgba(255,255,255,.16);
-  border-radius:100px;padding:5px 5px 5px 6px;transition:border-color .18s,box-shadow .18s;max-width:420px}
+  border-radius:100px;padding:4px 4px 4px 6px;transition:border-color .18s,box-shadow .18s;max-width:420px}
 .pb-news-row:focus-within{border-color:var(--gold-500);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold-500) 16%,transparent)}
 .pb-news-row input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:14.5px;
-  color:var(--on-dark);padding:10px 12px}
+  color:var(--on-dark);padding:8px 12px}
 .pb-news-row input::placeholder{color:rgba(251,246,236,.45)}
 .pb-news-btn{flex:0 0 auto;border:0;border-radius:100px;font:inherit;font-weight:700;font-size:14px;
-  padding:10px 22px;cursor:pointer;color:#2a1e05;background:linear-gradient(155deg,var(--gold-500),var(--gold-600));
+  padding:9px 22px;cursor:pointer;color:#2a1e05;background:linear-gradient(155deg,var(--gold-500),var(--gold-600));
   transition:filter .16s,transform .16s}
 .pb-news-btn:hover:not(:disabled){filter:brightness(1.06);transform:translateY(-1px)}
 .pb-news-btn:disabled{opacity:.55;cursor:default}
+/* On a touch device the global rule pins every button to a 44px tap target,
+   which is what made this pill sit tall. The subscribe button is wide and
+   clearly labelled, so it holds a slimmer 38px here -- still well clear of the
+   WCAG AA 24px floor -- and the whole row reads leaner. */
+@media (pointer:coarse){ .pb-root .pb-news-btn{min-height:38px} }
 .pb-news-msg{margin:11px 2px 0;font-size:12.5px;line-height:1.5;display:flex;align-items:flex-start;gap:6px}
 .pb-news-msg.ok{color:var(--ok-600)}
 .pb-news-msg.bad{color:var(--bad-600)}
@@ -441,8 +540,15 @@ const CSS = `
 .pb-foot a:hover,.pb-foot .flink:hover{color:var(--gold-300);transform:translateX(2px)}
 .pb-foot-contact{font-size:13.5px;line-height:1.7;color:var(--on-dark-soft);margin:0}
 .pb-foot-supl{margin-top:10px}
-.pb-foot-contact a{display:inline;margin:0;color:var(--gold-300);text-decoration:underline;
-  text-underline-offset:2px;overflow-wrap:break-word;word-break:normal}
+/* The support address is set in the quote italic serif, the same voice as the
+   hero's "Your race starts here." -- a written line rather than plain UI text.
+   The underline is kept for the hover only, so at rest it reads as the phrase
+   it is styled to be. */
+.pb-foot-contact a{display:inline;margin:0;color:var(--gold-300);
+  font-family:var(--font-quote);font-style:italic;font-weight:500;
+  font-size:15.5px;letter-spacing:.005em;text-decoration:none;
+  overflow-wrap:break-word;word-break:normal;transition:color .16s}
+.pb-foot-contact a:hover{color:var(--gold-500);text-decoration:underline;text-underline-offset:3px}
 
 /* -- bottom bar --
    Its own darker strip running the full width, the way a colophon sits below
@@ -540,23 +646,24 @@ const CSS = `
    third line with one orphaned word, and every section carried desktop
    padding. Type, rhythm and density are all tightened here. */
 @media (max-width:640px){
-  /* The lamp keeps the side it has on desktop instead of becoming a 190px
-     block above the headline. Two columns for the top row only -- headline
-     and lamp -- then the lede, the buttons and the ticks run the full width
-     underneath, where they need it. */
-  .pb-hero-grid{padding:26px 20px 34px;gap:0 12px;
-    grid-template-columns:1fr auto;
-    grid-template-areas:"head diya" "body body" "ticks ticks";
-    align-items:center}
-  .pb-stage{min-height:0;align-self:center}
-  /* The lamp shares the top row with the headline, so its width comes off the
-     headline's column. It is sized per tier below so the bigger headline can
-     still hold "Lead your prep" on one line: smaller lamp on narrower phones,
-     never a wrapped wordmark. */
-  .ill-diya{width:100px;height:100px}
-  .pb-hero-head{align-self:center}
-  .pb-hero-body{margin-top:22px}
-  .pb-h1{font-size:32px;line-height:1.1;letter-spacing:-.015em;margin-bottom:0}
+  /* The lamp gets a row of its own again, centred at the top of the hero.
+     It is the mark of the whole brand -- an Academy of Inner Fire -- and
+     shrunk to a 100px chip beside the headline it read as an afterthought.
+     One column now: lamp, then headline, lede, buttons and ticks stacked
+     full width beneath it. */
+  .pb-hero-grid{padding:28px 20px 36px;gap:0;
+    grid-template-columns:1fr;
+    grid-template-areas:"diya" "head" "body" "ticks";
+    justify-items:stretch}
+  /* Sized off the viewport so it scales with the phone -- roughly twice the
+     old chip, and centred over the text it introduces. */
+  .pb-stage{min-height:0;justify-self:center;margin-bottom:14px}
+  .ill-diya{width:min(58vw,206px);height:min(58vw,206px)}
+  .pb-hero-head{align-self:start}
+  .pb-hero-body{margin-top:20px}
+  /* The headline owns the full width now, so it can be a step larger than the
+     32px it was squeezed to beside the lamp. */
+  .pb-h1{font-size:34px;line-height:1.12;letter-spacing:-.015em;margin-bottom:0}
   /* The break belongs between the two halves of the line here, not inside
      one of them -- the column is 200px wide now. */
   .pb-h1 br{display:block}
@@ -572,11 +679,11 @@ const CSS = `
   .pb-hero-ctas{gap:9px;margin-bottom:20px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
   .pb-ticks{gap:9px 18px;font-size:12.5px}
-  /* The lamp is top-right and small here, so the pool follows it rather than
-     sitting where a desktop lamp would be. */
+  /* The lamp is top-centre now, so the warm pool sits under it and a little
+     wider, lighting the space the diya stands in. */
   .pb-hero::before{background:
-    radial-gradient(260px 240px at 82% 15%, rgba(224,178,64,.26), transparent 68%),
-    radial-gradient(420px 200px at 40% -14%, rgba(255,255,255,.05), transparent 72%)}
+    radial-gradient(320px 280px at 50% 13%, rgba(224,178,64,.30), transparent 68%),
+    radial-gradient(460px 220px at 50% -12%, rgba(255,255,255,.05), transparent 72%)}
 
   .pb-head-in{padding:10px 16px;gap:10px}
   .pb-name{font-size:17px}
@@ -624,12 +731,42 @@ const CSS = `
   .pb-rescard h4{font-size:13.5px}
   .pb-rescard p{font-size:11.5px;line-height:1.45}
 
-  .pb-ticket{padding:20px;gap:16px}
-  .pb-ticket-ic{width:44px;height:44px}
-  .pb-ticket h4{font-size:16.5px}
-  .pb-ticket p{font-size:13px}
-  .pb-ticket .pb-btn{width:100%}
+  /* A horizontal band on a phone too, the way it reads on desktop: icon, text
+     and the button in one row rather than a tall card with a full-width button
+     under it. It carries a title and one short line here, so it sits a little
+     thicker than a single-line strip -- which is the right trade for an offer
+     that has a number in it.
+
+     The wrap's 14px inset only existed to seat the notches, which are hidden
+     on a phone; dropping it hands those 28px back to the text column. */
+  .pb-ticket-wrap{padding-inline:0}
+  /* Two rows rather than one cramped line. Squeezed into a single row the
+     text column came to 127px and every line broke in two; given its own row
+     the title gets the full width and the short line shares the row below with
+     the button. Both columns are shared by the two rows, so the title spans
+     the copy and button columns, and the line spans the icon and copy ones. */
+  /* The icon spans both rows rather than sitting in the first: at 38px it was
+     taller than the title line and set the whole row to its own height, which
+     is 19px of nothing above the button. Spanning, it centres against the pair
+     and the rows cost only what their text and the button actually need. */
+  .pb-ticket{display:grid;grid-template-columns:auto 1fr auto;
+    grid-template-areas:"ic copy copy" "ic note btn";
+    column-gap:11px;row-gap:8px;align-items:center;padding:13px;border-radius:14px}
+  .pb-ticket-ic{grid-area:ic;width:38px;height:38px;border-radius:11px}
+  .pb-ticket-copy{grid-area:copy}
+  .pb-ticket h4{font-size:15px;margin:0;line-height:1.25}
+  .pb-ticket-long{display:none}
+  /* Scoped under .pb-ticket, not left as a bare class: the base rule is
+     .pb-ticket p, which carries an element on top of its class and would
+     otherwise keep this line at the desktop's 13.5px -- which is what made it
+     spill onto a second line beside the button. */
+  .pb-ticket .pb-ticket-short{grid-area:note;display:block;font-size:11.5px;
+    line-height:1.4;color:var(--ink-400);align-self:center}
+  .pb-ticket .pb-btn{grid-area:btn;justify-self:end;width:auto;gap:5px;
+    padding:8px 12px;font-size:11.5px;white-space:nowrap}
+  .pb-ticket .pb-btn svg{width:14px;height:14px}
   .pb-notch{display:none}
+  .pb-ticket-dots{margin-top:12px}
 
   .pb-quote{padding:48px 20px}
   .pb-quote .deva{font-size:23px}
@@ -649,7 +786,7 @@ const CSS = `
   .pb-foot-logo{margin-bottom:12px}
   .pb-foot-blurb{margin-bottom:20px}
   .pb-news p{margin-bottom:11px}
-  .pb-foot-bottom{padding-top:14px}
+  .pb-foot-bottom{padding-top:4px}
 
   .pb-panel{padding:20px;border-radius:18px}
   .pb-h3{font-size:17px}
@@ -658,43 +795,32 @@ const CSS = `
   .pb-detail{gap:22px}
 }
 
-/* Very narrow phones — 360px and below. */
+/* Very narrow phones — 360px and below. The lamp scales with the viewport
+   via min(58vw,…) above, so it needs no fixed size here. */
 @media (max-width:380px){
-  .pb-h1{font-size:30px}
-  .ill-diya{width:80px;height:80px}
+  .pb-h1{font-size:31px}
 }
-/* At 320px the headline column came to 156px and its widest line to 152px --
-   four pixels, which is not a fit, it is a near miss. The lamp gives some
-   back rather than the type getting smaller again. */
+/* Smallest phones — 320px and below. The headline has the full width now
+   rather than a column shared with the lamp, so it no longer has to shrink to
+   hold "Lead your prep" on one line; a small step down is only to keep the
+   second, larger line comfortable. */
 @media (max-width:340px){
-  /* "Lead your prep" wants 183px and the column was 176px, so it broke after
-     "your" and the headline ran to four lines. The lamp gives the 14px back
-     rather than the headline getting smaller -- it is the first thing anyone
-     reads on the site. */
-  .pb-h1{font-size:27px}
-  .ill-diya{width:78px;height:78px}
+  .pb-h1{font-size:30px}
   .pb-hero-grid{padding-inline:16px}
   .pb-resgrid{grid-template-columns:1fr}
 }
 
-/* Tablet hero. Same arrangement as the phone -- headline and lamp on the top
-   row, everything else full width below -- at tablet size.
-
-   It used to stack to one column and lift the lamp above the text with
-   order:-1, which stopped working the moment the grid gained named areas:
-   order does not move an area-placed item. The result was headline, lamp,
-   lede, with the lamp sandwiched into the middle of the sentence.
+/* Tablet hero. Text left, lamp right spanning both rows -- as on desktop.
+   The phone (below 641) stacks to one column with the lamp centred on top;
+   at tablet width there is room to set them side by side again.
 
    Written as a RANGE, not as max-width:980px. The phone block sits earlier in
    this sheet, so a plain max-width here would out-rank it at equal specificity
-   and hand a 360px screen the 230px lamp meant for a tablet -- which is
+   and hand a 360px screen the 200px lamp meant for a tablet -- which is
    exactly what it did until this was measured at 640px. */
 @media (min-width:641px) and (max-width:980px){
   /* The lamp spans BOTH rows here, as it does on desktop -- there is width
-     for it at this size. Giving it only the top row made that row 230px tall
-     for an 80px headline, and the headline floated in the middle of it with a
-     100px hole underneath. On a phone the same arrangement is right, because
-     there the headline is three lines and taller than the lamp. */
+     for it at this size. */
   .pb-hero-grid{grid-template-columns:1fr auto;
     grid-template-areas:"head diya" "body diya" "ticks ticks";
     align-items:center;padding:52px 20px 46px;gap:0 32px}
@@ -739,7 +865,7 @@ const CSS = `
   .pb-sec{padding-block:56px}
   .pb-strip-in{grid-template-columns:1fr}
   .pb-strip-item{border-left:0;padding-left:0}
-  .pb-ticket{padding:22px}
+  .pb-ticket{padding:13px 14px}
   .pb-quote{padding:56px 20px}
   .pb-sec-mandala{width:340px;height:340px}
 }
@@ -806,12 +932,19 @@ const CSS = `
   .pb-foot-social{padding:0;border-right:0}
   .pb-foot-links{padding:18px 0 4px}
 
-  .pb-foot-follow{display:block;text-align:center;margin:14px 0 10px;
+  .pb-foot-follow{display:block;text-align:center;margin:14px 0 8px;
     padding-top:18px;border-top:1px solid rgba(255,255,255,.10)}
   .pb-socials{justify-content:center;gap:4px;margin-top:0}
+  /* Smaller boxes on a phone: a 17px glyph in a 40px box left a broad ring of
+     dead space under the row. 34px still clears a comfortable tap target while
+     sitting the icons close to the strip below. */
+  .pb-foot .pb-social{width:34px;height:34px}
 
+  /* The strip used to sit 22px below the icons and open with 14px of its own
+     padding -- 36px of empty band between the icons and the legal line. Both
+     are pulled in so the colophon sits directly under the row it follows. */
   .pb-foot-bottom{flex-direction:column;align-items:center;text-align:center;
-    gap:9px;margin-top:22px;
+    gap:5px;margin-top:10px;
     padding-bottom:calc(16px + env(safe-area-inset-bottom))}
   .pb-foot-legal{gap:0;width:100%;justify-content:center}
   /* .72, not the .55 this started at. Deepening the ground darkened this
@@ -839,9 +972,9 @@ const CSS = `
      the whole page on focus, which is a far worse thing to fix afterwards
      than a half-point of type. The button loses a little side padding so
      the field keeps room to actually type an address in. */
-  .pb-news-row{max-width:none;padding:5px 5px 5px 8px}
-  .pb-news-row input{font-size:16px;padding:10px 6px 10px 4px}
-  .pb-news-btn{padding:11px 18px;font-size:13.5px}
+  .pb-news-row{max-width:none;padding:3px 3px 3px 8px}
+  .pb-news-row input{font-size:16px;padding:7px 6px 7px 4px}
+  .pb-news-btn{padding:8px 18px;font-size:13.5px}
 }
 
 /* Footer links on a phone.
@@ -1204,6 +1337,279 @@ function Sentences({ text }) {
   ));
 }
 
+/* The hero headline, revealed one line at a time. The first line "Lead your
+   prep" sweeps in, then a beat later the gold second line "from darkness, unto
+   light." follows. Both lines are real text and hold their space from the
+   first frame -- the animation is pure CSS (a staggered wipe), so nothing
+   below the headline shifts. Keyed on language by the caller, so switching
+   EN/HI remounts it and the sweep plays again. */
+function HeroHeadline({ a, b }) {
+  return (
+    <h1 className="pb-h1 pb-h1-anim">
+      <span className="pb-h1-l1">{a}</span>
+      <em className="pb-h1-l2">{b}</em>
+    </h1>
+  );
+}
+
+/* Reduced-motion preference, read live so a change to the OS setting turns the
+   typed lede into plain text at once. */
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(
+    () => typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false
+  );
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(mq.matches);
+    on();
+    mq.addEventListener?.("change", on);
+    return () => mq.removeEventListener?.("change", on);
+  }, []);
+  return reduced;
+}
+
+/* Split into what a reader sees as single characters. Intl.Segmenter keeps a
+   Devanagari consonant and its matra together ("तै" is one step, not a base
+   plus a mark that flashes in ahead of it); Array.from is the fallback. */
+function splitGraphemes(str) {
+  if (typeof Intl !== "undefined" && Intl.Segmenter) {
+    const seg = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+    return Array.from(seg.segment(str), (s) => s.segment);
+  }
+  return Array.from(str);
+}
+
+/* The hero lede runs in two acts. First it TYPES itself in, character by
+   character, from "We don't just" to "who sat the same paper" -- no caret.
+   Then, once it is complete, a glassmorphism sheen SWEEPS across it a line at a
+   time: left to right, one line after another, each line taking the same time
+   typing it did (its length x the per-character pace). The closing line "Your
+   race starts here." fades in when the typing lands, and is not part of the
+   sheen.
+
+   A ghost of the finished paragraph is laid out but never painted so it holds
+   the block open -- nothing below jumps -- and the live copy is painted over
+   it. The line wraps are measured off the ghost (present from the first frame)
+   so the sheen pass knows where each visual line is. A visually-hidden copy
+   carries the whole text for assistive tech. Keyed on language by the caller,
+   so switching EN/HI replays both acts; reduced-motion readers get it whole. */
+const LEDE_PER = 20, LEDE_START = 260;   // ms per character, and the lead-in
+
+function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
+  const reduced = usePrefersReducedMotion();
+  const ghostRef = useRef(null);
+  const [lines, setLines] = useState(null);           // measured visual lines
+  const [n, setN] = useState(0);                      // characters typed so far
+  const [typingDone, setTypingDone] = useState(false); // act 1 complete -> sheen
+  const [done, setDone] = useState(false);            // both acts done -> plain
+
+  // Three runs in reading order for the typewriter: plain, gold highlight, plain.
+  const segs = useMemo(() => [
+    { g: splitGraphemes(`${a} ${b1}`), hi: false },
+    { g: splitGraphemes(bh), hi: true },
+    { g: splitGraphemes(`${b2} ${c}`), hi: false },
+  ], [a, b1, bh, b2, c]);
+  const total = useMemo(() => segs.reduce((s, x) => s + x.g.length, 0), [segs]);
+
+  const fullText = `${a} ${b1}${bh}${b2} ${c}`;
+  const hiStart = `${a} ${b1}`.length;
+  const hiEnd = hiStart + bh.length;
+  const fullMain = (
+    <>{a}{" "}{b1}<b className="pb-lede-hi">{bh}</b>{b2}{" "}{c}</>
+  );
+
+  // Measure where the finished paragraph wraps (off the laid-out ghost), so the
+  // sheen pass can light one visual line at a time.
+  useLayoutEffect(() => {
+    if (reduced) return;
+    const host = ghostRef.current?.querySelector(".pb-lede-main");
+    if (!host) return;
+    const walker = document.createTreeWalker(host, NodeFilter.SHOW_TEXT);
+    const range = document.createRange();
+    const starts = [];
+    let idx = 0, lastTop = null, node;
+    while ((node = walker.nextNode())) {
+      const len = node.nodeValue.length;
+      for (let i = 0; i < len; i++) {
+        range.setStart(node, i); range.setEnd(node, i + 1);
+        const r = range.getBoundingClientRect();
+        // A character whose top jumps down starts a new visual line. Collapsed
+        // wrap-spaces have zero height and stay with the line before them.
+        if (r.height > 0 && (lastTop === null || r.top > lastTop + 2)) {
+          starts.push(idx); lastTop = r.top;
+        }
+        idx++;
+      }
+    }
+    if (!starts.length) starts.push(0);
+    setLines(starts.map((s, k) => {
+      const e = k + 1 < starts.length ? starts[k + 1] : fullText.length;
+      return { s, e, chars: e - s };
+    }));
+  }, [reduced, fullText]);
+
+  // Act 1: type the paragraph in, then hand off to the sheen after a short beat.
+  useEffect(() => {
+    if (reduced) return;
+    const timers = [];
+    let i = 0;
+    const step = () => {
+      setN(++i);
+      if (i < total) timers.push(setTimeout(step, LEDE_PER));
+      else timers.push(setTimeout(() => setTypingDone(true), 140));
+    };
+    timers.push(setTimeout(step, LEDE_START));
+    return () => timers.forEach(clearTimeout);
+  }, [reduced, total]);
+
+  // Act 2 done: after the sheen has crossed the last line, swap to the plain
+  // paragraph so it re-wraps normally on any later resize.
+  useEffect(() => {
+    if (reduced || !typingDone || !lines) return;
+    const sheenTotal = lines.reduce((t, l) => t + Math.max(l.chars * LEDE_PER, 120), 0);
+    const id = setTimeout(() => setDone(true), sheenTotal + 500);
+    return () => clearTimeout(id);
+  }, [reduced, typingDone, lines]);
+
+  // Reduced motion, or after both acts: the plain paragraph.
+  if (reduced || done) {
+    return (
+      <p className="pb-lede">{fullMain}{" "}<em className="pb-lede-close">{close}</em></p>
+    );
+  }
+
+  // Split a slice of the flattened text into plain / gold-highlight runs.
+  const runs = (s, e) => {
+    const hs = Math.max(s, hiStart), he = Math.min(e, hiEnd);
+    const out = [];
+    if (hs >= he) out.push({ t: fullText.slice(s, e), hi: false });
+    else {
+      if (s < hs) out.push({ t: fullText.slice(s, hs), hi: false });
+      out.push({ t: fullText.slice(hs, he), hi: true });
+      if (he < e) out.push({ t: fullText.slice(he, e), hi: false });
+    }
+    return out;
+  };
+  const renderRuns = (parts) => parts.map((p, j) => p.hi
+    ? <b className="pb-lede-hi" key={j}>{p.t}</b>
+    : <Fragment key={j}>{p.t}</Fragment>);
+
+  let liveMain, closeEl = null;
+  if (!typingDone) {
+    // Act 1 — the characters typed so far, carrying the highlight through.
+    let rem = n;
+    liveMain = segs.map((seg, i) => {
+      const take = Math.max(0, Math.min(rem, seg.g.length));
+      rem -= take;
+      const text = seg.g.slice(0, take).join("");
+      return seg.hi
+        ? <b className="pb-lede-hi" key={i}>{text}</b>
+        : <Fragment key={i}>{text}</Fragment>;
+    });
+  } else {
+    // Act 2 — the full text, split into visual lines, a sheen crossing each in
+    // turn at the typewriter's pace.
+    let acc = 0;
+    liveMain = (lines || []).map((ln, i) => {
+      const d = Math.max(ln.chars * LEDE_PER, 120);
+      const delay = acc; acc += d;
+      return (
+        <span className="pb-glass-sheen-line" key={i}
+              style={{ "--d": `${d}ms`, "--delay": `${delay}ms` }}>
+          {renderRuns(runs(ln.s, ln.e))}
+        </span>
+      );
+    });
+    closeEl = <em className="pb-lede-close pb-glass-close-in">{close}</em>;
+  }
+
+  return (
+    <p className="pb-lede pb-lede-type">
+      {/* Laid out but never painted — holds the block open, and is what the
+          line measurement reads. */}
+      <span className="pb-lede-ghost" aria-hidden="true" ref={ghostRef}>
+        <span className="pb-lede-main">{fullMain}</span>
+        <em className="pb-lede-close">{close}</em>
+      </span>
+      {/* Painted over the ghost — act 1 types, act 2 sweeps line by line. */}
+      <span className="pb-lede-live" aria-hidden="true">
+        <span className="pb-lede-main">{liveMain}</span>
+        {closeEl}
+      </span>
+      {/* For screen readers, which get neither of the two above. */}
+      <span className="pb-sr">{`${a} ${b1}${bh}${b2} ${c} ${close}`}</span>
+    </p>
+  );
+}
+
+/* The coupon ticket and the refer-and-earn ticket, sharing one slot and
+   swiping between themselves on a loop.
+
+   Both tickets stay mounted, stacked in one grid cell, so the slot never
+   changes height as they trade places and the page below cannot shift. The
+   rotation holds while a pointer is over the strip or a keyboard is inside it,
+   because a control that moves out from under someone mid-reach is the whole
+   reason auto-rotating banners have a bad name -- and it does not rotate at all
+   under prefers-reduced-motion. The dots below say how many there are and let
+   anyone pick one directly. Only the ticket on show is reachable by tab; the
+   other's button is taken out of the tab order. */
+function TicketCarousel({ slides, intervalMs = 5600 }) {
+  const reduced = usePrefersReducedMotion();
+  const [i, setI] = useState(0);
+  const [held, setHeld] = useState(false);
+  const n = slides.length;
+
+  useEffect(() => {
+    if (reduced || held || n < 2) return;
+    const id = setInterval(() => setI((v) => (v + 1) % n), intervalMs);
+    return () => clearInterval(id);
+  }, [reduced, held, n, intervalMs]);
+
+  return (
+    <div className="pb-ticket-wrap reveal"
+         onMouseEnter={() => setHeld(true)} onMouseLeave={() => setHeld(false)}
+         onFocusCapture={() => setHeld(true)} onBlurCapture={() => setHeld(false)}>
+      <div className="pb-ticket-stack">
+        {slides.map((s, k) => {
+          const on = k === i;
+          const pos = on ? "cur" : (k === (i - 1 + n) % n ? "prev" : "next");
+          return (
+            <div className="pb-ticket-slide" key={s.key} data-pos={pos} aria-hidden={!on}>
+              <div className="pb-ticket">
+                <span className="pb-notch pb-notch-l" />
+                <span className="pb-ticket-ic">{s.icon}</span>
+                <div className="pb-ticket-copy">
+                  <h4>{s.title}</h4>
+                  <p className="pb-ticket-long">{s.body}</p>
+                </div>
+                <button className="pb-btn pb-btn-maroon" onClick={s.onClick} tabIndex={on ? 0 : -1}>
+                  {s.cta}<ArrowRight size={15} />
+                </button>
+                {/* The phone's line, and a direct child rather than part of the
+                    copy block: down there the ticket becomes a two-row grid and
+                    this line shares the second row with the button. */}
+                <p className="pb-ticket-short">{s.bodyShort}</p>
+                <span className="pb-notch pb-notch-r" />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {n > 1 && (
+        <div className="pb-ticket-dots">
+          {slides.map((s, k) => (
+            <button key={s.key} className={"pb-tdot" + (k === i ? " on" : "")}
+                    aria-label={s.title} aria-current={k === i}
+                    onClick={() => setI(k)} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* Scroll reveal — observes once, then forgets the element. */
 function useReveal(deps = []) {
   const root = useRef(null);
@@ -1439,7 +1845,7 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
 
 /* ------------------------------------------------------------------ site -- */
 export default function PublicSite({ onLogin, onEnroll, onDashboard, session, page, onNavigate }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [bundles, setBundles] = useState(null);
   const [err, setErr] = useState("");
   const [exam, setExam] = useState("all");
@@ -1549,8 +1955,6 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
   });
   examTabs.sort((a, b) => a.sort - b.sort);
   const shown = (bundles || []).filter((b) => exam === "all" || b.exam === exam);
-  const totalTests = (bundles || []).reduce((s, b) => s + b.testCount, 0);
-  const freeTests = (bundles || []).reduce((s, b) => s + b.freeTestCount, 0);
 
   const scrollTo = (id) => setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 70);
   const goCatalog = () => { setDetail(null); if (page) onNavigate(null); scrollTo("catalog"); };
@@ -1645,16 +2049,15 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 where it earns the room. */}
             <div className="pb-hero-grid">
               <div className="pb-hero-head">
-                <h1 className="pb-h1">{t("hero_h1_a")}{" "}<br /><em>{t("hero_h1_b")}</em></h1>
+                {/* keyed on language so switching EN/HI retypes the line */}
+                <HeroHeadline key={lang} a={t("hero_h1_a")} b={t("hero_h1_b")} />
               </div>
               <div className="pb-stage"><Diya size={330} /></div>
               <div className="pb-hero-body">
-                <p className="pb-lede">
-                  {t("hero_lede_a")}{" "}
-                  {t("hero_lede_b1")}<b className="pb-lede-hi">{t("hero_lede_bh")}</b>{t("hero_lede_b2")}{" "}
-                  {t("hero_lede_c")}{" "}
-                  <em className="pb-lede-close">{t("hero_lede_d")}</em>
-                </p>
+                {/* keyed on language so switching EN/HI replays the reveal */}
+                <LedeGlassReveal key={lang}
+                  a={t("hero_lede_a")} b1={t("hero_lede_b1")} bh={t("hero_lede_bh")}
+                  b2={t("hero_lede_b2")} c={t("hero_lede_c")} close={t("hero_lede_d")} />
                 <div className="pb-hero-ctas">
                   <button className="pb-btn pb-btn-gold" onClick={goCatalog}>
                     <Compass size={17} />{t("cta_explore")}<ArrowRight size={17} />
@@ -1814,30 +2217,22 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                   );
                 })}
               </div>
-              {totalTests > 0 && (
-                <p style={{ textAlign: "center", marginTop: 30, fontSize: 13.5, color: "#c9b998" }}>
-                  {totalTests} {totalTests === 1 ? t("card_mock_one") : t("card_mock_many")}{" "}
-                  {t("res_published")} {bundles?.length ?? 0} {t("res_series_word")}
-                  {freeTests > 0 ? ` · ${freeTests} ${t("res_free_try")}` : ""}
-                </p>
-              )}
             </div>
           </section>
 
           {/* ---------------- COUPON ---------------- */}
           <div className="pb-sec pb-sec-narrow pb-sec-coupon">
-            <div className="pb-ticket-wrap"><div className="pb-ticket reveal">
-              <span className="pb-notch pb-notch-l" />
-              <span className="pb-ticket-ic"><TicketIcon size={24} /></span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h4>{t("coupon_h4")}</h4>
-                <p>{t("coupon_p")}</p>
-              </div>
-              <button className="pb-btn pb-btn-maroon" style={{ flex: "0 0 auto" }} onClick={goCatalog}>
-                {t("coupon_cta")}<ArrowRight size={15} />
-              </button>
-              <span className="pb-notch pb-notch-r" />
-            </div></div>
+            {/* Two offers in the one strip. Refer-and-earn needs an account —
+                the invite link lives on the dashboard — so it sends a signed-in
+                visitor there and everyone else to the login screen. */}
+            <TicketCarousel slides={[
+              { key: "coupon", icon: <TicketIcon size={24} />, title: t("coupon_h4"),
+                body: t("coupon_p"), bodyShort: t("coupon_p_s"),
+                cta: t("coupon_cta"), onClick: goCatalog },
+              { key: "refer", icon: <Gift size={23} />, title: t("refer_h4"),
+                body: t("refer_p"), bodyShort: t("refer_p_s"),
+                cta: t("refer_cta"), onClick: session ? onDashboard : onLogin },
+            ]} />
           </div>
 
           {/* ---------------- QUOTE ---------------- */}

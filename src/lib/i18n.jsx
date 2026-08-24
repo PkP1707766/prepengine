@@ -726,7 +726,23 @@ Object.assign(STR, {
   coupon_h4:  { en: "Have a coupon code?", hi: "कूपन कोड है?" },
   coupon_p:   { en: "Enter it on the payment screen. The reduced price appears before you pay — never a surprise afterwards.",
                 hi: "भुगतान वाली स्क्रीन पर डालिए। घटी हुई क़ीमत भुगतान से पहले दिखती है — बाद में कोई चौंकाने वाली बात नहीं।" },
+  /* The short line the phone shows in place of the one above — the strip is a
+     thin band there and has room for a clause, not a sentence. */
+  coupon_p_s: { en: "Use it at payment.", hi: "भुगतान के समय लगाइए।" },
   coupon_cta: { en: "See test series", hi: "टेस्ट सीरीज़ देखें" },
+
+  /* --- refer & earn ticket, alongside the coupon one ---
+     Every claim here is one the code actually keeps: the bonus is the ₹99 in
+     app_settings.referral_bonus_paise, it is credited only once the invited
+     friend's payment goes through, it lands in the wallet rather than in hand,
+     and nothing anywhere limits how many people you invite. */
+  refer_h4:   { en: "Refer a friend, get ₹99", hi: "साथी को बुलाइए, ₹99 पाइए" },
+  refer_p:    { en: "Share your invite link. Every friend who buys a test series puts ₹99 cashback in your wallet — and there is no cap on how many you invite.",
+                hi: "अपना इनवाइट लिंक भेजिए। जो भी साथी टेस्ट सीरीज़ खरीदे, ₹99 कैशबैक आपके वॉलेट में — और कितने लोगों को बुलाएँ, इसकी कोई सीमा नहीं।" },
+  /* The title already carries the number, so the phone's second line spends
+     itself on the condition instead of repeating it. */
+  refer_p_s:  { en: "When a friend buys.", hi: "जब कोई साथी ख़रीदे।" },
+  refer_cta:  { en: "Start earning", hi: "कमाना शुरू करें" },
 
   /* --- footer --- */
   foot_blurb:   { en: "UPSC, BPSC and UPPCS \u2014 papers on the real pattern, honest analysis, and an All-India rank. In Hindi and English, both.",
