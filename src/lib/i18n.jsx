@@ -627,8 +627,8 @@ Object.assign(STR, {
   /* --- hero --- */
   hero_h1_a:      { en: "Lead your prep", hi: "अपनी तैयारी को ले चलिए" },
   hero_h1_b:      { en: "from darkness, unto light.", hi: "अंधकार से प्रकाश की ओर।" },
-  hero_lede:      { en: "Papers built to the real pattern. Analysis that names your weak topics instead of flattering you. And a rank you can trust, because it is computed against every aspirant who sat the same paper — not invented.",
-                    hi: "असली पैटर्न पर बने पेपर। ऐसा विश्लेषण जो तारीफ़ करने के बजाय आपके कमज़ोर टॉपिक का नाम बताता है। और एक ऐसी रैंक जिस पर भरोसा हो — क्योंकि वह उसी पेपर को देने वाले हर अभ्यर्थी के सामने निकाली जाती है, गढ़ी नहीं जाती।" },
+  hero_lede:      { en: "Papers on the real pattern. Analysis that names your weak topics. And a rank measured against everyone who sat the same paper — not invented.",
+                    hi: "असली पैटर्न पर पेपर। ऐसा विश्लेषण जो आपके कमज़ोर टॉपिक का नाम बताए। और रैंक जो उसी पेपर को देने वाले हर अभ्यर्थी के सामने नापी जाती है — गढ़ी नहीं।" },
   cta_explore:    { en: "Explore test series", hi: "टेस्ट सीरीज़ देखें" },
   cta_browse_free:{ en: "Browse free resources", hi: "निःशुल्क संसाधन देखें" },
   tick_pattern:   { en: "Exam-pattern papers", hi: "परीक्षा-पैटर्न पेपर" },

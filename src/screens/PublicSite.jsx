@@ -149,15 +149,24 @@ const CSS = `
 .pb-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(620px 320px at 82% -8%, rgba(201,162,39,.20), transparent 62%),
              repeating-linear-gradient(115deg, rgba(255,255,255,.02) 0 2px, transparent 2px 26px)}
-.pb-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:44px;
+.pb-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:0 44px;
+  grid-template-areas:"head diya" "body diya";
   align-items:center;max-width:1180px;margin:0 auto;padding:74px 24px 66px}
+.pb-hero-head{grid-area:head}
+.pb-stage{grid-area:diya}
+.pb-hero-body{grid-area:body}
 .pb-hero-deva{font-family:var(--font-shloka);font-size:19px;letter-spacing:.03em;color:var(--gold-300);
   opacity:.95;margin-bottom:12px;line-height:1.5}
 .pb-h1{font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(33px,4.6vw,53px);
   line-height:1.07;font-weight:600;letter-spacing:-.012em;margin:0 0 18px;text-wrap:balance}
 .pb-h1 em{font-family:var(--font-quote);font-style:italic;font-weight:500;color:var(--gold-300);
-  font-size:1.1em;letter-spacing:-.005em}
-.pb-lede{font-size:17px;line-height:1.62;color:#e9ddc9;max-width:50ch;margin:0 0 28px}
+  font-size:1.14em;letter-spacing:-.005em}
+/* The lede was 15.5px Inter on a dark ground -- correct, and characterless
+   next to two serifs above it. A little more size, a little more line, and a
+   measure that stops at 42 characters so it sets in even lines rather than
+   one long grey block. */
+.pb-lede{font-size:17px;line-height:1.64;color:#ecdfca;max-width:46ch;margin:0 0 28px;
+  letter-spacing:.002em}
 .pb-hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:32px}
 .pb-ticks{display:flex;flex-wrap:wrap;gap:20px;padding:0;margin:0;list-style:none;font-size:13.5px;color:#d8c9ae}
 .pb-ticks li{display:flex;align-items:center;gap:8px}
@@ -496,16 +505,26 @@ const CSS = `
    third line with one orphaned word, and every section carried desktop
    padding. Type, rhythm and density are all tightened here. */
 @media (max-width:640px){
-  .pb-hero-grid{padding:26px 20px 38px;gap:18px}
-  .pb-stage{min-height:0}
-  .ill-diya{width:186px;height:186px}
-  .pb-hero-deva{font-size:14px;margin-bottom:6px}
-  .pb-h1{font-size:30px;line-height:1.14;letter-spacing:-.015em;margin-bottom:14px}
-  .pb-h1 br{display:inline}
-  .pb-lede{font-size:15.5px;line-height:1.6;margin-bottom:22px}
-  .pb-hero-ctas{gap:10px;margin-bottom:24px}
-  .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:14px 20px;font-size:15px}
-  .pb-ticks{gap:10px 18px;font-size:12.5px}
+  /* The lamp keeps the side it has on desktop instead of becoming a 190px
+     block above the headline. Two columns for the top row only -- headline
+     and lamp -- then the lede, the buttons and the ticks run the full width
+     underneath, where they need it. */
+  .pb-hero-grid{padding:24px 20px 32px;gap:0 14px;
+    grid-template-columns:1fr auto;
+    grid-template-areas:"head diya" "body body";
+    align-items:center}
+  .pb-stage{min-height:0;align-self:center}
+  .ill-diya{width:118px;height:118px}
+  .pb-hero-head{align-self:center}
+  .pb-hero-body{margin-top:16px}
+  .pb-h1{font-size:29px;line-height:1.12;letter-spacing:-.015em;margin-bottom:0}
+  /* The break belongs between the two halves of the line here, not inside
+     one of them -- the column is 200px wide now. */
+  .pb-h1 br{display:block}
+  .pb-lede{font-size:16px;line-height:1.62;margin-bottom:20px;max-width:none}
+  .pb-hero-ctas{gap:9px;margin-bottom:20px}
+  .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
+  .pb-ticks{gap:9px 18px;font-size:12.5px}
 
   .pb-head-in{padding:10px 16px;gap:10px}
   .pb-name{font-size:17px}
@@ -589,14 +608,39 @@ const CSS = `
 
 /* Very narrow phones — 360px and below. */
 @media (max-width:380px){
-  .pb-h1{font-size:28px}
-  .ill-diya{width:164px;height:164px}
+  .pb-h1{font-size:26px}
+  .ill-diya{width:104px;height:104px}
+}
+/* At 320px the headline column came to 156px and its widest line to 152px --
+   four pixels, which is not a fit, it is a near miss. The lamp gives some
+   back rather than the type getting smaller again. */
+@media (max-width:340px){
+  .ill-diya{width:86px;height:86px}
+  .pb-hero-grid{padding-inline:16px}
   .pb-resgrid{grid-template-columns:1fr}
 }
 
+/* Tablet hero. Same arrangement as the phone -- headline and lamp on the top
+   row, everything else full width below -- at tablet size.
+
+   It used to stack to one column and lift the lamp above the text with
+   order:-1, which stopped working the moment the grid gained named areas:
+   order does not move an area-placed item. The result was headline, lamp,
+   lede, with the lamp sandwiched into the middle of the sentence.
+
+   Written as a RANGE, not as max-width:980px. The phone block sits earlier in
+   this sheet, so a plain max-width here would out-rank it at equal specificity
+   and hand a 360px screen the 230px lamp meant for a tablet -- which is
+   exactly what it did until this was measured at 640px. */
+@media (min-width:641px) and (max-width:980px){
+  .pb-hero-grid{grid-template-columns:1fr auto;
+    grid-template-areas:"head diya" "body body";
+    align-items:center;padding:52px 20px 46px;gap:0 32px}
+  .pb-stage{min-height:0}
+  .ill-diya{width:230px;height:230px}
+  .pb-hero-body{margin-top:22px}
+}
 @media (max-width:980px){
-  .pb-hero-grid{grid-template-columns:1fr;padding:52px 20px 46px;gap:28px}
-  .pb-stage{min-height:240px;order:-1}
   .pb-lede{max-width:none}
   .pb-show-grid{grid-template-columns:1fr;gap:34px;padding:58px 24px}
   /* Three across on a tablet, one on a phone. Written as a range so it
@@ -1521,10 +1565,22 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
         <>
           {/* ---------------- HERO ---------------- */}
           <section className="pb-hero">
+            {/* Three areas rather than two columns of content. On a wide
+                screen they resolve to the same thing -- text left, lamp right,
+                lamp spanning both rows. On a phone the headline and the lamp
+                share the top row so the lamp keeps the side it has on
+                desktop, and everything below it runs the full width. Stacked,
+                the lamp was a 190px block of its own before a word was read.
+
+                The Upanisad line is not repeated here. It has its own section
+                further down, with the translation and the citation, which is
+                where it earns the room. */}
             <div className="pb-hero-grid">
-              <div>
-                <div className="pb-hero-deva">तमसो मा ज्योतिर्गमय</div>
+              <div className="pb-hero-head">
                 <h1 className="pb-h1">{t("hero_h1_a")}{" "}<br /><em>{t("hero_h1_b")}</em></h1>
+              </div>
+              <div className="pb-stage"><Diya size={330} /></div>
+              <div className="pb-hero-body">
                 <p className="pb-lede">{t("hero_lede")}</p>
                 <div className="pb-hero-ctas">
                   <button className="pb-btn pb-btn-gold" onClick={goCatalog}>
@@ -1538,7 +1594,6 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                   <li><CheckCircle2 size={16} />{t("tick_nologin")}</li>
                 </ul>
               </div>
-              <div className="pb-stage"><Diya size={330} /></div>
             </div>
           </section>
 
