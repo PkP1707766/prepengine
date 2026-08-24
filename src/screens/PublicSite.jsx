@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useRef } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
-  ShieldCheck, Layers, Target, Timer,
+  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3,
 } from "lucide-react";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
@@ -159,7 +159,7 @@ const CSS = `
   background:radial-gradient(460px 380px at 78% 34%, rgba(224,178,64,.22), transparent 66%),
              radial-gradient(760px 300px at 50% -18%, rgba(255,255,255,.05), transparent 70%)}
 .pb-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:0 44px;
-  grid-template-areas:"head diya" "body diya";
+  grid-template-areas:"brow brow" "head diya" "body diya" "ticks ticks";
   align-items:center;max-width:1180px;margin:0 auto;padding:74px 24px 66px}
 .pb-hero-head{grid-area:head}
 .pb-stage{grid-area:diya}
@@ -174,12 +174,51 @@ const CSS = `
    next to two serifs above it. A little more size, a little more line, and a
    measure that stops at 42 characters so it sets in even lines rather than
    one long grey block. */
-.pb-lede{font-size:17px;line-height:1.64;color:#ecdfca;max-width:46ch;margin:0 0 28px;
-  letter-spacing:.002em}
-.pb-hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:32px}
-.pb-ticks{display:flex;flex-wrap:wrap;gap:20px;padding:0;margin:0;list-style:none;font-size:13.5px;color:#d8c9ae}
-.pb-ticks li{display:flex;align-items:center;gap:8px}
-.pb-ticks svg{color:var(--gold-300);flex:none}
+/* A quiet line above the headline, in place of the Upanisad line that moved
+   to its own section. Small caps, wide tracking, gold -- it names the promise
+   before the headline makes it. */
+/* Its own row across the top. Left inside the headline column it had 196px
+   on a phone and broke into three lines of shouting capitals above a
+   three-line headline. */
+.pb-eyebrow-hero{grid-area:brow;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--gold-300);opacity:.85;margin:0 0 14px}
+
+/* Rule, diamond, rule. Closes the headline before the argument begins. */
+.pb-orn{display:flex;align-items:center;gap:7px;margin:0 0 18px;max-width:210px}
+.pb-orn i{height:1px;flex:1;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 70%,transparent))}
+.pb-orn i:last-child{background:linear-gradient(90deg,color-mix(in srgb,var(--gold-500) 70%,transparent),transparent)}
+.pb-orn span{width:5px;height:5px;flex:0 0 auto;transform:rotate(45deg);
+  background:var(--gold-500);opacity:.9}
+
+/* The lede is four beats, not one paragraph: a flat opening, the claim in
+   gold, the substance, then the line that asks for the click. Each is its own
+   block so the rhythm survives translation -- Hindi sets these at different
+   lengths and a single wrapped paragraph would lose the staging. */
+.pb-lede{font-size:16.5px;line-height:1.6;color:#ecdfca;max-width:46ch;margin:0 0 26px;
+  letter-spacing:.002em;display:flex;flex-direction:column;gap:7px}
+.pb-lede-a{opacity:.9}
+.pb-lede-hi{display:block;font-weight:700;color:var(--gold-300);font-size:1.03em;
+  letter-spacing:.004em}
+.pb-lede-close{display:block;font-family:var(--font-quote);font-style:italic;
+  font-size:1.14em;font-weight:500;color:var(--gold-300);margin-top:3px}
+.pb-hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px}
+/* The leading icon is quieter than the label and the trailing arrow; it
+   identifies the action rather than competing with it. */
+.pb-hero-ctas .pb-btn svg:first-child{opacity:.8}
+/* Three claims in a bordered strip rather than three loose checkmarks: an
+   icon that says which claim it is, the claim, and one line of what it means.
+   The dividers are the strip's own, so the group reads as one object. */
+.pb-ticks{grid-area:ticks;margin-top:30px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0;list-style:none;
+  border:1px solid rgba(255,255,255,.12);border-radius:16px;
+  background:rgba(255,255,255,.035)}
+.pb-ticks li{display:grid;grid-template-columns:auto 1fr;column-gap:11px;row-gap:2px;
+  align-items:center;padding:14px 16px;border-left:1px solid rgba(255,255,255,.10)}
+.pb-ticks li:first-child{border-left:0}
+.pb-ticks svg{color:var(--gold-300);flex:none;grid-row:span 2;align-self:center}
+.pb-ticks b{font-size:13.5px;font-weight:600;color:var(--on-dark);line-height:1.3}
+.pb-ticks span{font-size:12px;color:#c8b696;line-height:1.35}
 .pb-stage{display:flex;align-items:center;justify-content:center;min-height:340px;position:relative}
 
 /* ---------- FEATURE STRIP ---------- */
@@ -520,7 +559,7 @@ const CSS = `
      underneath, where they need it. */
   .pb-hero-grid{padding:26px 20px 34px;gap:0 12px;
     grid-template-columns:1fr auto;
-    grid-template-areas:"head diya" "body body";
+    grid-template-areas:"brow brow" "head diya" "body body" "ticks ticks";
     align-items:center}
   .pb-stage{min-height:0;align-self:center}
   /* Big enough to be the mark it is. At 104px beside a three-line headline it
@@ -533,7 +572,17 @@ const CSS = `
   /* The break belongs between the two halves of the line here, not inside
      one of them -- the column is 200px wide now. */
   .pb-h1 br{display:block}
-  .pb-lede{font-size:16px;line-height:1.62;margin-bottom:20px;max-width:none}
+  /* 330px of tracked capitals in a 320px row left "REAL PROGRESS." alone on
+     a second line. A half point and a little tracking bring it to 305. */
+  .pb-eyebrow-hero{font-size:9.5px;letter-spacing:.11em;margin-bottom:10px;line-height:1.5}
+  .pb-orn{margin-bottom:15px;max-width:150px}
+  .pb-lede{font-size:15.5px;line-height:1.56;margin-bottom:20px;max-width:none;gap:6px}
+  .pb-lede-close{font-size:1.2em}
+  /* One per row on a phone: three columns of this would give each claim
+     about 90px, which is not enough for its label let alone its line. */
+  .pb-ticks{grid-template-columns:1fr;border-radius:14px;margin-top:0}
+  .pb-ticks li{border-left:0;border-top:1px solid rgba(255,255,255,.10);padding:11px 14px}
+  .pb-ticks li:first-child{border-top:0}
   .pb-hero-ctas{gap:9px;margin-bottom:20px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
   .pb-ticks{gap:9px 18px;font-size:12.5px}
@@ -632,6 +681,7 @@ const CSS = `
    four pixels, which is not a fit, it is a near miss. The lamp gives some
    back rather than the type getting smaller again. */
 @media (max-width:340px){
+  .pb-eyebrow-hero{font-size:9px;letter-spacing:.075em}
   /* "Lead your prep" wants 183px and the column was 176px, so it broke after
      "your" and the headline ran to four lines. The lamp gives the 14px back
      rather than the headline getting smaller -- it is the first thing anyone
@@ -660,10 +710,13 @@ const CSS = `
      100px hole underneath. On a phone the same arrangement is right, because
      there the headline is three lines and taller than the lamp. */
   .pb-hero-grid{grid-template-columns:1fr auto;
-    grid-template-areas:"head diya" "body diya";
+    grid-template-areas:"brow brow" "head diya" "body diya" "ticks ticks";
     align-items:center;padding:52px 20px 46px;gap:0 32px}
   .pb-stage{min-height:0}
-  .ill-diya{width:230px;height:230px}
+  /* 200, not 230. The two hero buttons gained leading icons and now want
+     470px side by side; at 230 the text column was 451 and they wrapped into
+     two rows. Thirty pixels off the lamp gives the column 481. */
+  .ill-diya{width:200px;height:200px}
   .pb-hero-body{margin-top:18px}
 }
 @media (max-width:980px){
@@ -1605,24 +1658,43 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 further down, with the translation and the citation, which is
                 where it earns the room. */}
             <div className="pb-hero-grid">
+              <div className="pb-eyebrow-hero">{t("hero_eyebrow")}</div>
               <div className="pb-hero-head">
                 <h1 className="pb-h1">{t("hero_h1_a")}{" "}<br /><em>{t("hero_h1_b")}</em></h1>
               </div>
               <div className="pb-stage"><Diya size={330} /></div>
               <div className="pb-hero-body">
-                <p className="pb-lede">{t("hero_lede")}</p>
+                {/* A rule with a diamond at its centre, closing the headline off
+                    before the argument starts. Drawn in CSS rather than as an
+                    image so it takes the palette with it. */}
+                <div className="pb-orn" aria-hidden="true"><i /><span /><i /></div>
+                {/* Staged rather than one paragraph: a flat opening, the claim
+                    in gold, the substance, then the line that asks for the
+                    click. One block of prose was doing all four jobs at once
+                    and none of them loudly. */}
+                <p className="pb-lede">
+                  <span className="pb-lede-a">{t("hero_lede_a")}</span>
+                  <strong className="pb-lede-hi">{t("hero_lede_b")}</strong>
+                  <span>{t("hero_lede_c")}</span>
+                  <em className="pb-lede-close">{t("hero_lede_d")}</em>
+                </p>
                 <div className="pb-hero-ctas">
                   <button className="pb-btn pb-btn-gold" onClick={goCatalog}>
-                    {t("cta_explore")}<ArrowRight size={17} />
+                    <Compass size={17} />{t("cta_explore")}<ArrowRight size={17} />
                   </button>
-                  <button className="pb-btn pb-btn-onDark" onClick={goResources}>{t("cta_browse_free")}</button>
+                  <button className="pb-btn pb-btn-onDark" onClick={goResources}>
+                    <BookOpen size={17} />{t("cta_browse_free")}
+                  </button>
                 </div>
-                <ul className="pb-ticks">
-                  <li><CheckCircle2 size={16} />{t("tick_pattern")}</li>
-                  <li><CheckCircle2 size={16} />{t("tick_rank")}</li>
-                  <li><CheckCircle2 size={16} />{t("tick_nologin")}</li>
-                </ul>
               </div>
+              {/* Its own row across the foot of the hero. Inside the text
+                  column it was 490px carrying three claims, so every label
+                  broke over two lines. */}
+              <ul className="pb-ticks">
+                <li><Target size={19} /><b>{t("tick_pattern")}</b><span>{t("tick_pattern_s")}</span></li>
+                <li><BarChart3 size={19} /><b>{t("tick_rank")}</b><span>{t("tick_rank_s")}</span></li>
+                <li><ShieldCheck size={19} /><b>{t("tick_nologin")}</b><span>{t("tick_nologin_s")}</span></li>
+              </ul>
             </div>
           </section>
 

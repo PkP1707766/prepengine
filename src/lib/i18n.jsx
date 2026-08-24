@@ -625,6 +625,16 @@ Object.assign(STR, {
   free_no_login:  { en: "Free · no login needed", hi: "निःशुल्क · लॉगिन ज़रूरी नहीं" },
 
   /* --- hero --- */
+  hero_eyebrow:   { en: "Real pattern. Real competition. Real progress.",
+                    hi: "असली पैटर्न। असली मुक़ाबला। असली प्रगति।" },
+  hero_lede_a:    { en: "We don\u2019t just hand you papers.", hi: "हम सिर्फ़ पेपर नहीं थमाते।" },
+  hero_lede_b:    { en: "We show you the real exam pattern.", hi: "हम असली परीक्षा-पैटर्न दिखाते हैं।" },
+  hero_lede_c:    { en: "Find your weak topics, measure your accuracy, and see where you stand against everyone who sat the same paper.",
+                    hi: "अपने कमज़ोर टॉपिक पहचानिए, अपनी सटीकता नापिए, और देखिए कि उसी पेपर को देने वाले सबके बीच आप कहाँ हैं।" },
+  hero_lede_d:    { en: "Your race starts here.", hi: "आपकी दौड़ यहीं से शुरू होती है।" },
+  tick_pattern_s: { en: "As real as it gets.", hi: "जितना असली हो सकता है।" },
+  tick_rank_s:    { en: "See where you stand.", hi: "देखिए आप कहाँ हैं।" },
+  tick_nologin_s: { en: "Just choose and start.", hi: "बस चुनिए और शुरू कीजिए।" },
   hero_h1_a:      { en: "Lead your prep", hi: "अपनी तैयारी को ले चलिए" },
   hero_h1_b:      { en: "from darkness, unto light.", hi: "अंधकार से प्रकाश की ओर।" },
   hero_lede:      { en: "Papers on the real pattern. Analysis that names your weak topics. And a rank measured against everyone who sat the same paper — not invented.",
