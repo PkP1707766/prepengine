@@ -759,18 +759,27 @@ Object.assign(STR, {
   hero_lede_c:    { en: "Find your weak topics, measure your accuracy, and see where you stand against everyone who sat the same paper.",
                     hi: "अपने कमज़ोर टॉपिक पहचानिए, अपनी सटीकता नापिए, और देखिए कि उसी पेपर को देने वाले सबके बीच आप कहाँ हैं।" },
   hero_lede_d:    { en: "Your race starts here.", hi: "आपकी दौड़ यहीं से शुरू होती है।" },
-  tick_pattern_s: { en: "As real as it gets.", hi: "जितना असली हो सकता है।" },
-  tick_rank_s:    { en: "See where you stand.", hi: "देखिए आप कहाँ हैं।" },
-  tick_nologin_s: { en: "Just choose and start.", hi: "बस चुनिए और शुरू कीजिए।" },
   hero_h1_a:      { en: "Lead your prep", hi: "अपनी तैयारी को ले चलिए" },
   hero_h1_b:      { en: "from darkness, unto light.", hi: "अंधकार से प्रकाश की ओर।" },
   hero_lede:      { en: "Papers on the real pattern. Analysis that names your weak topics. And a rank measured against everyone who sat the same paper — not invented.",
                     hi: "असली पैटर्न पर पेपर। ऐसा विश्लेषण जो आपके कमज़ोर टॉपिक का नाम बताए। और रैंक जो उसी पेपर को देने वाले हर अभ्यर्थी के सामने नापी जाती है — गढ़ी नहीं।" },
   cta_explore:    { en: "Explore test series", hi: "टेस्ट सीरीज़ देखें" },
   cta_browse_free:{ en: "Browse free resources", hi: "निःशुल्क संसाधन देखें" },
-  tick_pattern:   { en: "Exam-pattern papers", hi: "परीक्षा-पैटर्न पेपर" },
-  tick_rank:      { en: "All-India rank & percentile", hi: "अखिल भारतीय रैंक और पर्सेंटाइल" },
-  tick_nologin:   { en: "No login needed to browse", hi: "देखने के लिए लॉगिन ज़रूरी नहीं" },
+  /* Six things the test series actually is, in the hero strip. Titles kept
+     short so they hold one line in a phone's two-column grid; the sub-lines
+     show on the wider layouts. */
+  tick_pattern:   { en: "Real exam pattern", hi: "असली परीक्षा पैटर्न" },
+  tick_pattern_s: { en: "Same sections, same negative marking.", hi: "वही सेक्शन, वही नेगेटिव मार्किंग।" },
+  tick_gsca:      { en: "GS + CA, synced", hi: "GS + CA, एक साथ" },
+  tick_gsca_s:    { en: "Current affairs woven into every paper.", hi: "हर पेपर में करेंट अफेयर्स घुला हुआ।" },
+  tick_csat:      { en: "CSAT integrated", hi: "CSAT भी शामिल" },
+  tick_csat_s:    { en: "Paper II practised alongside, not after.", hi: "पेपर II साथ-साथ, बाद में नहीं।" },
+  tick_pyq:       { en: "PYQ-driven", hi: "PYQ पर आधारित" },
+  tick_pyq_s:     { en: "Modelled on what the exam actually asked.", hi: "जो परीक्षा में सच में पूछा गया, उसी पर बना।" },
+  tick_rank:      { en: "All-India rank", hi: "अखिल भारतीय रैंक" },
+  tick_rank_s:    { en: "Percentile against everyone who sat it.", hi: "उसी पेपर को देने वालों के बीच पर्सेंटाइल।" },
+  tick_secure:    { en: "Authenticated & secure", hi: "प्रमाणित और सुरक्षित" },
+  tick_secure_s:  { en: "Genuine results, protected payments.", hi: "असली नतीजे, सुरक्षित भुगतान।" },
 
   /* --- claim strip --- */
   /* A marketing beat between the hero and the catalogue -- one hook, one line

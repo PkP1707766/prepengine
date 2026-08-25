@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
-  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift,
+  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History,
 } from "lucide-react";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
@@ -261,16 +261,26 @@ const CSS = `
 /* Three claims in a bordered strip rather than three loose checkmarks: an
    icon that says which claim it is, the claim, and one line of what it means.
    The dividers are the strip's own, so the group reads as one object. */
-.pb-ticks{grid-area:ticks;margin-top:30px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0;list-style:none;
-  border:1px solid rgba(255,255,255,.12);border-radius:16px;
-  background:rgba(255,255,255,.035)}
-.pb-ticks li{display:grid;grid-template-columns:auto 1fr;column-gap:11px;row-gap:2px;
-  align-items:center;padding:14px 16px;border-left:1px solid rgba(255,255,255,.10)}
-.pb-ticks li:first-child{border-left:0}
-.pb-ticks svg{color:var(--gold-300);flex:none;grid-row:span 2;align-self:center}
-.pb-ticks b{font-size:13.5px;font-weight:600;color:var(--on-dark);line-height:1.3}
-.pb-ticks span{font-size:12px;color:#c8b696;line-height:1.35}
+/* Six things the series is, as their own small cards rather than one divided
+   strip: a gold icon chip, the claim, a line of what it means. Cards lift on
+   hover -- gold on the dark ground is where the strip earns a second look.
+   Three across on a wide screen, two on a tablet, two on a phone. */
+.pb-ticks{grid-area:ticks;margin-top:28px;list-style:none;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pb-ticks li{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:3px;
+  align-items:center;padding:13px 15px;border-radius:13px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.pb-ticks li:hover{background:rgba(255,255,255,.075);transform:translateY(-2px);
+  border-color:rgba(227,200,119,.4);
+  border-color:color-mix(in srgb,var(--gold-300) 42%,transparent)}
+.pb-ticks .tick-ic{grid-row:span 2;align-self:center;width:36px;height:36px;flex:none;
+  border-radius:10px;display:grid;place-items:center;color:var(--gold-300);
+  background:rgba(227,200,119,.14);
+  background:color-mix(in srgb,var(--gold-300) 15%,transparent)}
+.pb-ticks b{font-size:13.5px;font-weight:700;color:var(--on-dark);line-height:1.25;letter-spacing:-.005em}
+.pb-ticks .tick-s{font-size:11.5px;color:#c8b696;line-height:1.32}
+@media (max-width:980px){ .pb-ticks{grid-template-columns:repeat(2,1fr)} }
 .pb-stage{display:flex;align-items:center;justify-content:center;min-height:340px;position:relative}
 
 /* ---------- FEATURE STRIP ---------- */
@@ -772,14 +782,16 @@ const CSS = `
      a second line. A half point and a little tracking bring it to 305. */
   .pb-lede{font-size:15.5px;line-height:1.55;margin-bottom:20px;max-width:none}
   .pb-lede-close{font-size:1.2em;margin-top:12px}
-  /* One per row on a phone: three columns of this would give each claim
-     about 90px, which is not enough for its label let alone its line. */
-  .pb-ticks{grid-template-columns:1fr;border-radius:14px;margin-top:0}
-  .pb-ticks li{border-left:0;border-top:1px solid rgba(255,255,255,.10);padding:11px 14px}
-  .pb-ticks li:first-child{border-top:0}
+  /* Two columns on a phone, and just the icon and the title -- the sub-lines
+     are the first thing to go when six cards have to share a narrow screen;
+     the titles are written to stand on their own. */
+  .pb-ticks{grid-template-columns:1fr 1fr;gap:8px;margin-top:0}
+  .pb-ticks li{padding:11px 12px;border-radius:11px;column-gap:10px}
+  .pb-ticks .tick-ic{width:30px;height:30px;border-radius:8px}
+  .pb-ticks b{font-size:12.5px}
+  .pb-ticks .tick-s{display:none}
   .pb-hero-ctas{gap:9px;margin-bottom:20px}
   .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
-  .pb-ticks{gap:9px 18px;font-size:12.5px}
   /* The pool sits where the lamp sits -- upper right, beside the headline --
      and a shade stronger than the desktop's, because on a small screen it is
      doing the work of separating the lamp from the maroon behind it. */
@@ -2258,9 +2270,12 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                   column it was 490px carrying three claims, so every label
                   broke over two lines. */}
               <ul className="pb-ticks">
-                <li><Target size={19} /><b>{t("tick_pattern")}</b><span>{t("tick_pattern_s")}</span></li>
-                <li><BarChart3 size={19} /><b>{t("tick_rank")}</b><span>{t("tick_rank_s")}</span></li>
-                <li><ShieldCheck size={19} /><b>{t("tick_nologin")}</b><span>{t("tick_nologin_s")}</span></li>
+                <li><span className="tick-ic"><Target size={18} /></span><b>{t("tick_pattern")}</b><span className="tick-s">{t("tick_pattern_s")}</span></li>
+                <li><span className="tick-ic"><Layers size={18} /></span><b>{t("tick_gsca")}</b><span className="tick-s">{t("tick_gsca_s")}</span></li>
+                <li><span className="tick-ic"><Calculator size={18} /></span><b>{t("tick_csat")}</b><span className="tick-s">{t("tick_csat_s")}</span></li>
+                <li><span className="tick-ic"><History size={18} /></span><b>{t("tick_pyq")}</b><span className="tick-s">{t("tick_pyq_s")}</span></li>
+                <li><span className="tick-ic"><BarChart3 size={18} /></span><b>{t("tick_rank")}</b><span className="tick-s">{t("tick_rank_s")}</span></li>
+                <li><span className="tick-ic"><ShieldCheck size={18} /></span><b>{t("tick_secure")}</b><span className="tick-s">{t("tick_secure_s")}</span></li>
               </ul>
             </div>
           </section>
