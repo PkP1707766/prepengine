@@ -278,8 +278,17 @@ const CSS = `
    centred on the cream. It replaced four small feature columns that repeated
    the hero's ticks and the catalogue heading. A short gold rule above it gives
    the moment a top rather than starting cold. */
-.pb-band{background:var(--cream-100);border-bottom:1px solid var(--line);text-align:center}
-.pb-band-in{max-width:760px;margin:0 auto;padding:56px 24px}
+/* On the page cream, textured with a faint mandala like the offer carousel it
+   borrows its swipe from -- not the flat cream block it used to be. */
+.pb-band{background:var(--cream-50);text-align:center;position:relative;overflow:hidden}
+.pb-band-mandala{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:520px;height:520px;opacity:.09;color:var(--gold-300);pointer-events:none;z-index:0}
+.pb-band-in{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:54px 24px}
+/* The stack swaps under the static gold rule; clipped horizontally so a leaving
+   quote slides off rather than showing beside the one arriving. */
+.pb-band-wrap{overflow-x:clip}
+.pb-band-wrap .pb-ticket-slide{align-content:center}
+.pb-band-quote{max-width:640px;margin:0 auto}
 .pb-band-rule{width:44px;height:2px;margin:0 auto 22px;border-radius:2px;
   background:linear-gradient(90deg,transparent,var(--gold-500),transparent)}
 .pb-band-h{font-family:var(--font-display);font-optical-sizing:auto;
@@ -1686,6 +1695,53 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
    under prefers-reduced-motion. The dots below say how many there are and let
    anyone pick one directly. Only the ticket on show is reachable by tab; the
    other's button is taken out of the tab order. */
+/* The quote beat below the hero, on the same swipe as the ticket carousel:
+   three quotes cycling, held while a pointer or keyboard is inside, still
+   under prefers-reduced-motion. Reuses the ticket carousel's stack/slide/dots
+   CSS -- only the content differs. */
+function QuoteCarousel({ quotes, intervalMs = 6200 }) {
+  const reduced = usePrefersReducedMotion();
+  const [i, setI] = useState(0);
+  const [held, setHeld] = useState(false);
+  const n = quotes.length;
+
+  useEffect(() => {
+    if (reduced || held || n < 2) return;
+    const id = setInterval(() => setI((v) => (v + 1) % n), intervalMs);
+    return () => clearInterval(id);
+  }, [reduced, held, n, intervalMs]);
+
+  return (
+    <div className="pb-band-wrap"
+         onMouseEnter={() => setHeld(true)} onMouseLeave={() => setHeld(false)}
+         onFocusCapture={() => setHeld(true)} onBlurCapture={() => setHeld(false)}>
+      <div className="pb-ticket-stack">
+        {quotes.map((q, k) => {
+          const on = k === i;
+          const pos = on ? "cur" : (k === (i - 1 + n) % n ? "prev" : "next");
+          return (
+            <div className="pb-ticket-slide" key={q.key} data-pos={pos} aria-hidden={!on}>
+              <div className="pb-band-quote">
+                <p className="pb-band-h">{q.a}<em>{q.em}</em>{q.b}</p>
+                <p className="pb-band-p">{q.line}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {n > 1 && (
+        <div className="pb-ticket-dots">
+          {quotes.map((q, k) => (
+            <button key={q.key} className={"pb-tdot" + (k === i ? " on" : "")}
+                    aria-label={q.a + q.em + q.b} aria-current={k === i}
+                    onClick={() => setI(k)} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function TicketCarousel({ slides, intervalMs = 5600 }) {
   const reduced = usePrefersReducedMotion();
   const [i, setI] = useState(0);
@@ -2214,10 +2270,14 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               claimed "1000+ aspirants" against 12 registered accounts; that
               claim is gone rather than restyled. */}
           <div className="pb-band">
+            <Mandala className="pb-band-mandala" />
             <div className="pb-band-in reveal">
               <div className="pb-band-rule" />
-              <p className="pb-band-h">{t("band_h_a")}<em>{t("band_h_em")}</em>{t("band_h_b")}</p>
-              <p className="pb-band-p">{t("band_line")}</p>
+              <QuoteCarousel quotes={[
+                { key: "q1", a: t("band1_a"), em: t("band1_em"), b: t("band1_b"), line: t("band1_l") },
+                { key: "q2", a: t("band2_a"), em: t("band2_em"), b: t("band2_b"), line: t("band2_l") },
+                { key: "q3", a: t("band3_a"), em: t("band3_em"), b: t("band3_b"), line: t("band3_l") },
+              ]} />
             </div>
           </div>
 

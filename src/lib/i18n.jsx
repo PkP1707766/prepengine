@@ -778,11 +778,27 @@ Object.assign(STR, {
      the catalogue heading. Rehearsal ties to the site's own line elsewhere:
      "a mock is not the exam, it is the rehearsal". The accent word carries an
      <em>, so it takes gold on cream the way the section headings do. */
-  band_h_a:  { en: "The exam rewards ", hi: "परीक्षा उम्मीद नहीं, " },
-  band_h_em: { en: "rehearsal", hi: "अभ्यास" },
-  band_h_b:  { en: ", not hope.", hi: " को इनाम देती है।" },
-  band_line: { en: "So every test is a full dress rehearsal — the real pattern, the real clock, and a report that names exactly where your marks went.",
-               hi: "इसलिए यहाँ हर टेस्ट पूरी रिहर्सल है — वही पैटर्न, वही घड़ी, और एक रिपोर्ट जो बताए कि आपके अंक ठीक कहाँ गए।" },
+  /* A rotating marketing beat between the hero and the catalogue -- three
+     quotes on the same swipe as the coupon/refer carousel. Each has an <em>
+     accent that takes gold on cream the way the section headings do; in Hindi
+     the hook takes the Rozha One display face, where a literal English tagline
+     would have drifted. Three pillars, one each: realism, an honest rank, the
+     report that follows. */
+  band1_a:  { en: "The exam rewards ", hi: "परीक्षा उम्मीद नहीं, " },
+  band1_em: { en: "rehearsal", hi: "अभ्यास" },
+  band1_b:  { en: ", not hope.", hi: " को इनाम देती है।" },
+  band1_l:  { en: "So every test is a full dress rehearsal — the real pattern, the real clock, and a report that names exactly where your marks went.",
+              hi: "इसलिए यहाँ हर टेस्ट पूरी रिहर्सल है — वही पैटर्न, वही घड़ी, और एक रिपोर्ट जो बताए कि आपके अंक ठीक कहाँ गए।" },
+  band2_a:  { en: "A rank is easy to ", hi: "रैंक " },
+  band2_em: { en: "fake", hi: "गढ़ना" },
+  band2_b:  { en: ". Ours is earned.", hi: " आसान है। हमारी कमाई हुई है।" },
+  band2_l:  { en: "Every percentile here is measured against the real aspirants who sat the same paper — never a number we made up.",
+              hi: "यहाँ हर पर्सेंटाइल उसी पेपर को देने वाले असली अभ्यर्थियों के सामने नापी जाती है — गढ़ी हुई नहीं।" },
+  band3_a:  { en: "Marks tell you where. The report tells you ", hi: "अंक बताते हैं कहाँ। रिपोर्ट बताती है " },
+  band3_em: { en: "why", hi: "क्यों" },
+  band3_b:  { en: ".", hi: "।" },
+  band3_l:  { en: "Which topics leaked marks, which questions ate your clock, and exactly which book to open tonight.",
+              hi: "किन टॉपिक में अंक गए, किन सवालों ने घड़ी खा ली, और आज रात कौन-सी किताब खोलनी है।" },
 
   /* --- catalogue --- */
   cat_h2:    { en: "One exam. One price. Nothing extra.", hi: "एक परीक्षा। एक क़ीमत। कुछ भी अतिरिक्त नहीं।" },
