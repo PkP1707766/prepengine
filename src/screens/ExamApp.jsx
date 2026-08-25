@@ -1,28 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo, Fragment } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { AlertCircle, Trophy } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
 import { loadExamTest, submitAttempt, currentUser, getProfile } from "../lib/db.js";
-
-/* Render a translated pattern that carries a bolded value inside it.
-   The bolded part does not sit in the same place in both languages -- English
-   opens with "You skipped 4 questions" and Hindi closes with "4 सवाल छोड़ दिए"
-   -- so the sentence cannot be built from fixed pieces around a <b>. The
-   pattern marks the bolded value {x} and a plain one {y}, and this splits on
-   them wherever the translator chose to put them. */
-function Pattern({ text, x, y }) {
-  const out = [];
-  text.split("{x}").forEach((chunk, ci) => {
-    if (ci > 0) out.push(<b key={"x" + ci}>{x}</b>);
-    chunk.split("{y}").forEach((piece, pi) => {
-      if (pi > 0) out.push(<Fragment key={"y" + ci + pi}>{y}</Fragment>);
-      if (piece) out.push(<Fragment key={"t" + ci + pi}>{piece}</Fragment>);
-    });
-  });
-  return out;
-}
+import Pattern from "../ui/Pattern.jsx";
 
 
 const ExamApp = (() => {
@@ -1084,9 +1067,6 @@ function ExamRunner({ onExit, candidateName, candidateId, onSubmitted }) {
   // timer
   useEffect(() => {
     if (screen !== "exam") return;
-    // Time running out IS the event here, not state chasing a render: the
-    // paper submits itself. The rule cannot tell the two apart.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (timeLeft <= 0) { doSubmit(); return; }
     const t = setTimeout(() => setTimeLeft((x) => x - 1), 1000);
     return () => clearTimeout(t);

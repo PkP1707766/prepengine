@@ -8,6 +8,7 @@ import { EmptyState, ErrorState } from "../ui/Feedback.jsx";
 
 import * as DB from "../lib/db.js";
 import { fmtDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
+import Pattern from "../ui/Pattern.jsx";
 
 const StudentApp = (() => {
 /* ============================================================
@@ -20,13 +21,7 @@ const StudentApp = (() => {
 const DataCtx = React.createContext(null);
 const useData = () => React.useContext(DataCtx);
 
-const QUOTES = [
-  "Consistency beats intensity. Show up today.",
-  "Every mock is a rehearsal for the real day.",
-  "Small daily progress compounds into ranks.",
-  "Revise what you learn, or you'll relearn what you forgot.",
-  "Discipline today, designation tomorrow.",
-];
+const QUOTES = ["sd_q1", "sd_q2", "sd_q3", "sd_q4", "sd_q5"];
 
 /** Aggregates the dashboard needs, derived from real attempts. */
 function derive(attempts, activity) {
@@ -565,7 +560,7 @@ function AnalysisModal({ a, onClose, onRetake }) {
         <div className="modal-foot">
           <button className="btn btn-ghost btn-sm" onClick={onClose}>Close</button>
           {a.testId && onRetake && (
-            <button className="btn btn-gold btn-sm" onClick={() => onRetake(a.testId)}><RotateCcw size={15} />Re-attempt</button>
+            <button className="btn btn-gold btn-sm" onClick={() => onRetake(a.testId)}><RotateCcw size={15} />{t("sd_reattempt")}</button>
           )}
         </div>
       </div>
@@ -582,7 +577,7 @@ function HomeView({ go, setAnalysis, onStart }) {
   const { t } = useLang();
   const { profile, attempts, tests, subjects, activity, derived, enrollments } = useData();
   const hr = new Date().getHours();
-  const greet = hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
+  const greet = t(hr < 12 ? "sd_morning" : hr < 17 ? "sd_afternoon" : "sd_evening");
   const quote = QUOTES[new Date().getDate() % QUOTES.length];
   const days = daysUntil(profile.targetDate);
 
@@ -602,13 +597,13 @@ function HomeView({ go, setAnalysis, onStart }) {
     <div>
       <div className="hero">
         <div>
-          <div className="hero-greet">{greet}, {(profile.name || "Aspirant").split(" ")[0]} 👋</div>
-          <div className="hero-quote"><Sparkles size={15} style={{ color: "#f2dcae" }} />{quote}</div>
+          <div className="hero-greet">{greet}, {(profile.name || t("sd_aspirant")).split(" ")[0]} 👋</div>
+          <div className="hero-quote"><Sparkles size={15} style={{ color: "#f2dcae" }} />{t(quote)}</div>
         </div>
         {profile.targetDate && (
           <div className="hero-cd">
             <div className="hero-cd-n">{days}</div>
-            <div className="hero-cd-l">days to your target</div>
+            <div className="hero-cd-l">{t("sd_days_target")}</div>
             <div className="hero-cd-d">{profile.target}</div>
           </div>
         )}
@@ -637,16 +632,16 @@ function HomeView({ go, setAnalysis, onStart }) {
       ) : (
         <div className="stats">
           <StatCard icon={<FileText size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={derived.n} label={t("sd_tests_att")}
-                    sub={derived.n === 1 ? "just getting started" : "keep going"} />
+                    sub={t(derived.n === 1 ? "sd_just_start" : "sd_keep_going")} />
           <StatCard icon={<Target size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }} n={derived.avgScore.toFixed(0) + "%"} label={t("sd_avg_score")}
-                    sub={derived.lastDelta === null ? "across all attempts"
-                      : <>{derived.lastDelta >= 0 ? <ArrowUp size={12} /> : <ArrowDown size={12} />} {Math.abs(derived.lastDelta).toFixed(0)}% vs last test</>}
+                    sub={derived.lastDelta === null ? t("sd_across_all")
+                      : <>{derived.lastDelta >= 0 ? <ArrowUp size={12} /> : <ArrowDown size={12} />} {Math.abs(derived.lastDelta).toFixed(0)}% {t("sd_vs_last")}</>}
                     subColor={derived.lastDelta === null ? undefined : derived.lastDelta >= 0 ? "#1f8a4c" : "#c0392b"} />
           <StatCard icon={<Award size={20} />} color={{ bg: "#fcf3df", fg: "#d4a64a" }}
                     n={derived.bestPct != null ? derived.bestPct : "—"} label={t("sd_best_pct")}
-                    sub={derived.bestPct != null && last ? "in " + last.title.slice(0, 18) : "ranked once others attempt"} />
-          <StatCard icon={<Flame size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }} n={derived.streak + (derived.streak === 1 ? " day" : " days")} label={t("sd_streak_l")}
-                    sub={derived.streak === 0 ? "practise today to start one" : derived.activeDays + " active days total"} />
+                    sub={derived.bestPct != null && last ? t("sd_in_test").replace("{x}", last.title.slice(0, 18)) : t("sd_ranked_once")} />
+          <StatCard icon={<Flame size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }} n={derived.streak + " " + t(derived.streak === 1 ? "sd_day" : "sd_days")} label={t("sd_streak_l")}
+                    sub={derived.streak === 0 ? t("sd_practise_today") : derived.activeDays + " " + t("sd_active_days")} />
         </div>
       )}
 
@@ -654,7 +649,7 @@ function HomeView({ go, setAnalysis, onStart }) {
         <div className="grid2 mb">
           <div className="card card-pad">
             <div className="sec-head"><div><div className="eyebrow">{t("sd_trajectory")}</div><div className="panel-title">{t("sd_trend_l")}</div></div>
-              <button className="btn btn-ghost btn-sm" onClick={() => go("performance")}>Full analytics<ChevronRight size={15} /></button></div>
+              <button className="btn btn-ghost btn-sm" onClick={() => go("performance")}>{t("sd_full_analytics")}<ChevronRight size={15} /></button></div>
             <div style={{ height: 230 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={trend} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
@@ -673,12 +668,12 @@ function HomeView({ go, setAnalysis, onStart }) {
           </div>
 
           <div className="card card-pad">
-            <div className="eyebrow">Last attempt</div>
+            <div className="eyebrow">{t("sd_last_attempt")}</div>
             <div className="panel-title" style={{ marginBottom: 16 }}>{last ? last.title : "—"}</div>
             <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
               <Ring value={last ? last.scorePct / 100 : 0} size={150} color={last ? gradeFor(last.scorePct).c : "#b8923a"}>
                 <div style={{ fontSize: 28, fontWeight: 800 }}>{last ? last.score : 0}<span style={{ fontSize: 15, color: "var(--muted)" }}>/{last ? last.maxScore : 0}</span></div>
-                <div style={{ fontSize: 12, color: "var(--muted)", fontWeight: 600 }}>{last ? last.accuracy.toFixed(0) + "% accuracy" : ""}</div>
+                <div style={{ fontSize: 12, color: "var(--muted)", fontWeight: 600 }}>{last ? t("sd_accuracy_of").replace("{n}", last.accuracy.toFixed(0)) : ""}</div>
               </Ring>
             </div>
             {last && <button className="btn btn-primary" onClick={() => setAnalysis(last)}><Eye size={16} />{t("sd_view_full")}</button>}
@@ -689,10 +684,10 @@ function HomeView({ go, setAnalysis, onStart }) {
       <div className="grid2 mb">
         <div className="card card-pad">
           <div className="sec-head"><div><div className="eyebrow">{t("sd_pickup")}</div><div className="panel-title">{t("sd_available")}</div></div>
-            <button className="btn btn-ghost btn-sm" onClick={() => go("tests")}>View all<ChevronRight size={15} /></button></div>
+            <button className="btn btn-ghost btn-sm" onClick={() => go("tests")}>{t("sd_view_all")}<ChevronRight size={15} /></button></div>
           {available.length === 0 ? (
             <div style={{ padding: "26px 0", textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>
-              {tests.length === 0 ? "No tests published yet." : "You've attempted every published test. New ones land here."}
+              {t(tests.length === 0 ? "sd_no_tests_yet" : "sd_all_attempted")}
             </div>
           ) : available.slice(0, 3).map((t) => (
             <div key={t.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 0", borderBottom: "1px solid var(--line)" }}>
@@ -733,24 +728,24 @@ function HomeView({ go, setAnalysis, onStart }) {
         <div style={{ overflowX: "auto" }}>
           <div className="heat">{activity.map((d, i) => (
             <div key={i} className="heat-cell" style={{ background: heatColor(d.count) }}
-                 title={fmtDate(d.date) + ": " + (d.count === 0 ? "no activity" : d.count + " test" + (d.count > 1 ? "s" : ""))} />
+                 title={fmtDate(d.date) + ": " + (d.count === 0 ? t("sd_no_activity") : t("sd_n_tests").replace("{n}", d.count))} />
           ))}</div>
         </div>
-        <div className="heat-legend">Less {[0, 1, 2, 3, 4].map((c) => <span key={c} className="heat-cell" style={{ background: heatColor(c) }} />)} More</div>
+        <div className="heat-legend">{t("sd_less")} {[0, 1, 2, 3, 4].map((c) => <span key={c} className="heat-cell" style={{ background: heatColor(c) }} />)} {t("sd_more")}</div>
       </div>
 
       {enrollments.length > 0 && (
         <div className="card card-pad">
           <div className="eyebrow">{t("sd_your_access")}</div>
-          <div className="panel-title" style={{ marginBottom: 10 }}>Active enrollment</div>
+          <div className="panel-title" style={{ marginBottom: 10 }}>{t("sd_active_enrol")}</div>
           {enrollments.map((e) => (
             <div key={e.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid var(--line)", flexWrap: "wrap", gap: 8 }}>
               <div>
                 <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: 14 }}>{e.batches?.name || e.plan_code || "Full access"}</div>
-                <div style={{ fontSize: 12.5, color: "var(--muted)" }}>Since {fmtDate(e.enrolled_at)}</div>
+                <div style={{ fontSize: 12.5, color: "var(--muted)" }}>{t("sd_since").replace("{d}", fmtDate(e.enrolled_at))}</div>
               </div>
               <Badge color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}>
-                {e.expires_at ? "Valid till " + fmtDate(e.expires_at) : "Lifetime"}
+                {e.expires_at ? t("sd_valid_till").replace("{d}", fmtDate(e.expires_at)) : t("sd_lifetime")}
               </Badge>
             </div>
           ))}
@@ -765,6 +760,9 @@ function HomeView({ go, setAnalysis, onStart }) {
    ============================================================ */
 function TestsView({ setAnalysis, onStart, toast }) {
   const { t } = useLang();
+  /* The rows below bind each test to a variable called t, which shadows the
+     translate function; tr is the same function under a name they cannot hide. */
+  const tr = t;
   const { tests, attempts, reminders, setReminders, profile } = useData();
   const [tab, setTab] = useState("available");
   const [q, setQ] = useState("");
@@ -804,9 +802,9 @@ function TestsView({ setAnalysis, onStart, toast }) {
     <div>
       <div className="sec-head" style={{ marginBottom: 4 }}>
         <div className="tabs">
-          {[["available", "Available (" + available.length + ")"],
-            ["upcoming", "Upcoming (" + upcoming.length + ")"],
-            ["attempted", "Attempted (" + attempted.length + ")"]].map(([k, l]) => (
+          {[["available", tr("sd_tab_avail").replace("{n}", available.length)],
+            ["upcoming", tr("sd_tab_upcoming").replace("{n}", upcoming.length)],
+            ["attempted", tr("sd_tab_attempted").replace("{n}", attempted.length)]].map(([k, l]) => (
             <button key={k} className={"tab" + (tab === k ? " active" : "")} onClick={() => setTab(k)}>{l}</button>
           ))}
         </div>
@@ -832,14 +830,14 @@ function TestsView({ setAnalysis, onStart, toast }) {
           {availableFiltered.map((t) => (
             <div className="test-card" key={t.id}>
               <div className="test-top">
-                <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || "Standalone test"}</div></div>
+                <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || tr("sd_standalone")}</div></div>
                 <Badge color={t.attemptedByMe ? { bg: "#e8f6ee", fg: "#1f8a4c" } : t.isFree ? { bg: "#faf2dc", fg: "#b8923a" } : { bg: "#fcf3df", fg: "#d4a64a" }}>
-                  {t.attemptedByMe ? "Done" : t.isFree ? "Free" : "Included"}
+                  {t.attemptedByMe ? tr("sd_done") : t.isFree ? tr("sd_free") : tr("sd_included")}
                 </Badge>
               </div>
               <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} Qs</span><span><Clock size={14} />{t.durationMin} min</span></div>
               <button className={"btn " + (t.attemptedByMe ? "btn-ghost" : "btn-primary")} onClick={() => onStart(t.id)}>
-                {t.attemptedByMe ? <><RotateCcw size={16} />Re-attempt</> : <><Play size={16} />Start test</>}
+                {t.attemptedByMe ? <><RotateCcw size={16} />{tr("sd_reattempt")}</> : <><Play size={16} />{tr("sd_start_test")}</>}
               </button>
             </div>
           ))}
@@ -856,7 +854,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
           {upcomingFiltered.map((t) => (
             <div className="test-card" key={t.id}>
               <div className="test-top">
-                <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || "Standalone test"}</div></div>
+                <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || tr("sd_standalone")}</div></div>
                 <Badge color={{ bg: "#faf2dc", fg: "#b8923a" }}><Calendar size={11} />{fmtDate(t.scheduledFor)}</Badge>
               </div>
               <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} Qs</span><span><Clock size={14} />{t.durationMin} min</span></div>
@@ -933,8 +931,8 @@ function PerformanceView({ go }) {
 
   const cmp = peer
     ? [{ name: "You", value: +derived.avgScore.toFixed(0), fill: "#b8923a" },
-       { name: "Batch avg", value: Math.round(peer.avgPct), fill: "#b0a080" },
-       { name: "Topper", value: Math.round(peer.bestPct), fill: "#dca84a" }]
+       { name: t("sd_batch_avg"), value: Math.round(peer.avgPct), fill: "#b0a080" },
+       { name: t("sd_topper"), value: Math.round(peer.bestPct), fill: "#dca84a" }]
     : null;
 
   return (
@@ -942,7 +940,7 @@ function PerformanceView({ go }) {
       <div className="stats">
         <StatCard icon={<FileText size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={derived.n} label={t("sd_tests_taken")} />
         <StatCard icon={<Target size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }} n={derived.avgScore.toFixed(0) + "%"} label={t("sd_avg_score_s")}
-                  sub={derived.lastDelta === null ? "best " + derived.bestScore.toFixed(0) + "%" : (derived.lastDelta >= 0 ? "↑ " : "↓ ") + Math.abs(derived.lastDelta).toFixed(0) + "% vs last test"}
+                  sub={derived.lastDelta === null ? t("sd_best_n") + " " + derived.bestScore.toFixed(0) + "%" : (derived.lastDelta >= 0 ? "↑ " : "↓ ") + Math.abs(derived.lastDelta).toFixed(0) + "% " + t("sd_vs_last")}
                   subColor={derived.lastDelta !== null ? (derived.lastDelta >= 0 ? "#1f8a4c" : "#c0392b") : undefined} />
         <StatCard icon={<Award size={20} />} color={{ bg: "#fcf3df", fg: "#d4a64a" }} n={derived.bestPct ?? "—"} label={t("sd_best_pct")} />
         <StatCard icon={<CheckCircle2 size={20} />} color={{ bg: "#f6ecd2", fg: "#7a1f1f" }} n={derived.avgAcc.toFixed(0) + "%"} label={t("sd_avg_acc")} />
@@ -952,7 +950,7 @@ function PerformanceView({ go }) {
       <div className="card card-pad mb">
         <div className="eyebrow">{t("sd_trajectory")}</div>
         <div className="panel-title">{t("sd_trend_time")}</div>
-        <p className="panel-note">Every attempt since you started — the trend is what matters, not any single test.</p>
+        <p className="panel-note">{t("sd_every_attempt")}</p>
         <div style={{ height: 280 }}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={trend} margin={{ top: 10, right: 10, left: -18, bottom: 0 }}>
@@ -970,7 +968,7 @@ function PerformanceView({ go }) {
 
       <div className="grid2b mb">
         <div className="card card-pad">
-          <div className="eyebrow">Diagnosis</div>
+          <div className="eyebrow">{t("sd_diagnosis")}</div>
           <div className="panel-title">{t("sd_subj_map")}</div>
           <p className="panel-note">{t("sd_subj_sub")}</p>
           {subjects.length < 3 ? (
@@ -992,10 +990,10 @@ function PerformanceView({ go }) {
         </div>
 
         <div className="card card-pad">
-          <div className="eyebrow">Benchmark</div>
+          <div className="eyebrow">{t("sd_benchmark")}</div>
           <div className="panel-title">{t("sd_vs")}</div>
           <p className="panel-note">
-            {cmp ? "Average score % against everyone who has taken the same tests." : "Comparison unlocks once other aspirants attempt the same tests."}
+            {t(cmp ? "sd_avg_vs_all" : "sd_cmp_locked")}
           </p>
           {!cmp ? (
             <EmptyState compact icon={<Trophy size={24} />} title={t("sd_ahead")}
@@ -1032,7 +1030,7 @@ function PerformanceView({ go }) {
               <div className="topic-row" key={s.name}>
                 <span className="topic-name">{s.name}</span>
                 <div className="topic-track"><div className="topic-fill" style={{ width: s.acc + "%", background: col }} /></div>
-                <span className="topic-band" style={{ background: bg, color: col }}>{s.band}</span>
+                <span className="topic-band" style={{ background: bg, color: col }}>{t("ex_band_" + s.band)}</span>
               </div>
             );
           })}
@@ -1065,16 +1063,17 @@ function PerformanceView({ go }) {
             <h4><Target size={15} style={{ color: SEM.weak }} />{t("sd_prio_subj")}</h4>
             <p style={{ margin: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               {weakest.length === 0
-                ? "No subject is in the weak band right now — hold the standard and add difficulty rather than volume."
-                : <>Your weakest areas are <b>{weakest.join(", ")}</b>. Spend the next study cycle revising concepts and drilling 25–30 previous-year questions in each before your next mock.</>}
+                ? t("sd_no_weak")
+                : <Pattern text={t("sd_weakest_d")} x={weakest.join(", ")} />}
             </p>
           </div>
           <div className="sw-box s">
             <h4><TrendingUp size={15} style={{ color: SEM.strong }} />{t("sd_momentum")}</h4>
             <p style={{ margin: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               {attempts.length < 2
-                ? <>You've scored <b>{derived.bestScore.toFixed(0)}%</b> so far. One attempt is a data point, not a trend — take two more and this turns into a real trajectory.</>
-                : <>Your score moved from <b>{first.scorePct.toFixed(0)}%</b> to <b>{derived.bestScore.toFixed(0)}%</b>{derived.bestPct != null ? <> and your best percentile is <b>{derived.bestPct}</b></> : null}. Keep the test–revise–retest loop going.</>}
+                ? <Pattern text={t("sd_one_point_d")} x={derived.bestScore.toFixed(0) + "%"} />
+                : <Pattern text={t("sd_moved_d").replace("{p}", derived.bestPct != null ? t("sd_best_pct_is").replace("{p}", derived.bestPct) : "")}
+                           x={first.scorePct.toFixed(0) + "%"} y={derived.bestScore.toFixed(0) + "%"} />}
             </p>
           </div>
         </div>
@@ -1111,7 +1110,7 @@ function BatchesView({ go, onStart, toast }) {
     <div className="test-grid">
       {enrollments.map((e, i) => {
         const name = e.batches?.name || (e.plan_code ? e.plan_code.replace(/-/g, " ") : "Full access");
-        const exam = e.batches?.courses?.exam_target || e.batches?.courses?.title || "All exams";
+        const exam = e.batches?.courses?.exam_target || e.batches?.courses?.title || t("sd_all_exams");
         const validTill = e.expires_at || e.batches?.end_date || null;
         const daysLeft = validTill ? Math.ceil((new Date(validTill) - now) / 86400000) : null;
         const expired = daysLeft !== null && daysLeft < 0;
@@ -1133,13 +1132,13 @@ function BatchesView({ go, onStart, toast }) {
             <div className="batch-body">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
                 <div className="batch-name" style={{ textTransform: "capitalize" }}>{name}</div>
-                {expired ? <span className="batch-tag expired">Expired</span>
-                  : urgent ? <span className="batch-tag urgent">{daysLeft}d left</span> : null}
+                {expired ? <span className="batch-tag expired">{t("sd_expired")}</span>
+                  : urgent ? <span className="batch-tag urgent">{t("sd_days_left").replace("{n}", daysLeft)}</span> : null}
               </div>
-              <div className="batch-exam">{exam} · {validTill ? "valid till " + fmtDate(validTill) : "lifetime access"}</div>
+              <div className="batch-exam">{exam} · {validTill ? t("sd_valid_till_l").replace("{d}", fmtDate(validTill)) : t("sd_lifetime_l")}</div>
               <div className="progress"><div className="progress-fill" style={{ width: p + "%", background: expired ? "#b0a596" : color }} /></div>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, color: "var(--muted)", fontWeight: 600 }}>
-                <span>{done} of {total} test{total === 1 ? "" : "s"} done</span><span>{p.toFixed(0)}%</span>
+                <span>{t("sd_tests_done").replace("{a}", done).replace("{b}", total)}</span><span>{p.toFixed(0)}%</span>
               </div>
               {expired ? (
                 <button className="btn btn-locked" style={{ marginTop: 16 }} onClick={() => toast(t("sd_renew_msg"))}><Lock size={16} />{t("sd_renew")}</button>
@@ -1161,6 +1160,9 @@ function BatchesView({ go, onStart, toast }) {
    ============================================================ */
 function MaterialsView({ toast }) {
   const { t } = useLang();
+  /* The filter tabs bind each type to a variable called t, shadowing the
+     translate function; tr is the same function under a name they cannot hide. */
+  const tr = t;
   const { materials } = useData();
   const [f, setF] = useState("all");
   const [q, setQ] = useState("");
@@ -1182,7 +1184,7 @@ function MaterialsView({ toast }) {
     <div>
       <div className="sec-head" style={{ marginBottom: 16 }}>
         <div className="tabs">{types.map((t) => (
-          <button key={t} className={"tab" + (f === t ? " active" : "")} onClick={() => setF(t)}>{t === "all" ? "All" : t.toUpperCase()}</button>
+          <button key={t} className={"tab" + (f === t ? " active" : "")} onClick={() => setF(t)}>{t === "all" ? tr("sd_mat_all") : tr("sd_type_" + t)}</button>
         ))}</div>
         <div className="lb-search" style={{ minWidth: 220 }}><Search size={15} /><input placeholder={t("sd_search_mat")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
       </div>
@@ -1194,7 +1196,7 @@ function MaterialsView({ toast }) {
         </div>
       ) : filtered.length === 0 ? (
         <div className="card card-pad" style={{ textAlign: "center", color: "var(--muted)", fontSize: 13.5, padding: "40px 20px" }}>
-          No material found{q ? ` matching "${q}"` : ` in ${f.toUpperCase()}`}.
+          {q ? t("sd_no_mat_q").replace("{q}", q) : t("sd_no_mat_f").replace("{f}", t("sd_type_" + f))}
         </div>
       ) : (
         <div className="mat-grid">
@@ -1207,12 +1209,12 @@ function MaterialsView({ toast }) {
                   <div className="mat-t">{m.title}</div>
                   <div className="mat-sub">
                     {m.subject ? <><span className="mat-subj-tag">{m.subject}</span> · </> : null}
-                    {m.isFree ? <span style={{ color: "var(--green)", fontWeight: 700 }}>Free</span>
+                    {m.isFree ? <span style={{ color: "var(--green)", fontWeight: 700 }}>{t("sd_free")}</span>
                               : <span style={{ color: "var(--gold-2)", fontWeight: 700 }}>{t("sd_included")}</span>}
                   </div>
                 </div>
                 <button className="btn btn-sm btn-ghost" onClick={() => openItem(m)} style={{ flex: "0 0 auto" }}>
-                  {m.type === "video" ? <Play size={14} /> : <Eye size={14} />}Open
+                  {m.type === "video" ? <Play size={14} /> : <Eye size={14} />}{t("sd_open")}
                 </button>
               </div>
             );
@@ -1261,21 +1263,21 @@ function LeaderboardView({ toast }) {
         <div className="lb-you">
           <div style={{ textAlign: "center" }}>
             <div className="lb-rank-big">#{me.rank}</div>
-            <div style={{ fontSize: 12, color: "#fffaef", marginTop: 4 }}>overall</div>
+            <div style={{ fontSize: 12, color: "#fffaef", marginTop: 4 }}>{t("sd_overall")}</div>
           </div>
           <div>
             <div style={{ fontSize: 18, fontWeight: 800 }}>
-              {me.rank <= 3 ? "You're on the podium!" : me.rank <= 10 ? "You're in the top 10!" : "Keep climbing"}
+              {t(me.rank <= 3 ? "sd_podium" : me.rank <= 10 ? "sd_top10" : "sd_keep_climb")}
             </div>
             <div style={{ fontSize: 13.5, color: "#fffaef", marginTop: 4 }}>
-              Rank <b style={{ color: "#fff" }}>#{me.rank}</b> of {rows.length} · top {Math.max(1, Math.round((me.rank / rows.length) * 100))}% · {me.tests_taken} test{me.tests_taken === 1 ? "" : "s"} taken
+              {t("sd_rank_line").replace("{r}", me.rank).replace("{n}", rows.length).replace("{p}", Math.max(1, Math.round((me.rank / rows.length) * 100))).replace("{c}", me.tests_taken)}
             </div>
           </div>
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: 28, fontWeight: 800, color: "#f2dcae" }}>{Number(me.avg_pct).toFixed(0)}%</div>
-            <div style={{ fontSize: 12, color: "#fffaef" }}>avg score</div>
+            <div style={{ fontSize: 12, color: "#fffaef" }}>{t("sd_avg_score_l")}</div>
           </div>
-          <button className="lb-share" onClick={share} title="Share your rank"><Share2 size={15} />Share</button>
+          <button className="lb-share" onClick={share} title={t("sd_share_rank")}><Share2 size={15} />{t("sd_share")}</button>
         </div>
       ) : (
         <div className="card card-pad mb" style={{ textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>
@@ -1302,7 +1304,7 @@ function LeaderboardView({ toast }) {
                   : <Avatar name={r.name} bg={r.you ? "#dca84a" : "#b8923a"} />}
                 <div className="lb-name">
                   {r.name}{r.you && <span style={{ marginLeft: 8, fontSize: 11, color: "var(--gold-2)", fontWeight: 800 }}>YOU</span>}
-                  <div style={{ fontSize: 11.5, color: "var(--muted)", fontWeight: 500 }}>{r.tests_taken} test{r.tests_taken === 1 ? "" : "s"} · {Number(r.avg_accuracy ?? 0).toFixed(0)}% accuracy</div>
+                  <div style={{ fontSize: 11.5, color: "var(--muted)", fontWeight: 500 }}>{t("sd_tests_acc").replace("{n}", r.tests_taken).replace("{a}", Number(r.avg_accuracy ?? 0).toFixed(0))}</div>
                 </div>
                 <div className="lb-score">{Number(r.avg_pct).toFixed(0)}%</div>
               </div>
@@ -1649,7 +1651,7 @@ function ReferView({ toast }) {
             <Avatar name={r.name} />
             <div className="who">
               <b>{r.name}</b>
-              <span>Joined {fmtDate(r.joined)}</span>
+              <span>{t("sd_joined_on").replace("{d}", fmtDate(r.joined))}</span>
             </div>
             {r.paid
               ? <Badge color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}>{t("sd_ref_bought")}</Badge>
@@ -1998,7 +2000,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
           <div className="sb-brand">
             <div className="sb-logo">
               <DiyaLogo size={36} boxed radius={9} />
-              <div><div className="sb-name" style={{ fontFamily: "var(--font-display)", letterSpacing: ".02em" }}>JUNOONIAS</div><div className="sb-tag">Student</div></div>
+              <div><div className="sb-name" style={{ fontFamily: "var(--font-display)", letterSpacing: ".02em" }}>JUNOONIAS</div><div className="sb-tag">{t("sd_student")}</div></div>
             </div>
           </div>
           <nav className="sb-nav">
@@ -2007,15 +2009,15 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
                       aria-current={view === it.id ? "page" : undefined}><Icon size={18} />{t(it.key)}</button>
             ); })}
             <div className="sb-streak">
-              <div className="sb-streak-top"><Flame size={17} />{derived.streak}-day streak</div>
+              <div className="sb-streak-top"><Flame size={17} />{t("sd_streak_days").replace("{n}", derived.streak)}</div>
               <div className="sb-streak-sub">
-                {derived.streak === 0 ? "Take a test today to start one." : "Don't break the chain — practise today!"}
+                {t(derived.streak === 0 ? "sd_start_chain" : "sd_keep_chain")}
               </div>
             </div>
           </nav>
           {profile.targetDate && (
             <div style={{ padding: "14px 16px", borderTop: "1px solid rgba(255,255,255,.08)", fontSize: 11.5, color: "#e8d8b0" }}>
-              {daysUntil(profile.targetDate)} days to {profile.target}
+              {t("sd_days_to").replace("{n}", daysUntil(profile.targetDate)).replace("{x}", profile.target)}
             </div>
           )}
         </aside>

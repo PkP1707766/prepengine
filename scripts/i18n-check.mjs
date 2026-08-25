@@ -65,7 +65,9 @@ for (const f of ["src/lib/resources.js"]) {
 
 const missing = [...used.keys()].filter((k) => !defined.has(k));
 
-const KEEP_SAME = /^"(FAQ|GSTIN|CIN|JUNOONIAS|NCERT|UPSC|BPSC|UPPCS|Rank|OTP)"$/;
+// Terms that are written the same in both languages. PDF sits here for the
+// same reason NCERT does: it is the word Hindi actually uses.
+const KEEP_SAME = /^"(FAQ|GSTIN|CIN|JUNOONIAS|NCERT|UPSC|BPSC|UPPCS|Rank|OTP|PDF)"$/;
 const noHi = [], sameAsEn = [];
 for (const m of i18n.matchAll(entryRe)) {
   const [, k, en, hi] = m;
