@@ -24,6 +24,22 @@ import * as DB from "../lib/db.js";
    reveal on section headers and cards only, never everywhere.
    ============================================================ */
 
+/* A target with an arrow in the bullseye -- built to the real pattern, and it
+   hits. Drawn to sit with the lucide icons around it: 24 viewBox, 2px round
+   strokes, currentColor, no fill. */
+function TargetArrow({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+         strokeLinejoin="round" aria-hidden="true" role="presentation">
+      <circle cx="10.5" cy="13.5" r="8.2" />
+      <circle cx="10.5" cy="13.5" r="3.3" />
+      <path d="M21.5 2.5 10.5 13.5" />
+      <path d="M14.8 13.5 10.5 13.5 10.5 9.2" />
+    </svg>
+  );
+}
+
 const CSS = `
 .pb-root{
   background:var(--cream-50); color:var(--ink-900); min-height:100vh;
@@ -2270,11 +2286,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                   column it was 490px carrying three claims, so every label
                   broke over two lines. */}
               <ul className="pb-ticks">
-                <li><span className="tick-ic"><Target size={18} /></span><b>{t("tick_pattern")}</b><span className="tick-s">{t("tick_pattern_s")}</span></li>
-                <li><span className="tick-ic"><Layers size={18} /></span><b>{t("tick_gsca")}</b><span className="tick-s">{t("tick_gsca_s")}</span></li>
-                <li><span className="tick-ic"><Calculator size={18} /></span><b>{t("tick_csat")}</b><span className="tick-s">{t("tick_csat_s")}</span></li>
-                <li><span className="tick-ic"><History size={18} /></span><b>{t("tick_pyq")}</b><span className="tick-s">{t("tick_pyq_s")}</span></li>
                 <li><span className="tick-ic"><BarChart3 size={18} /></span><b>{t("tick_rank")}</b><span className="tick-s">{t("tick_rank_s")}</span></li>
+                <li><span className="tick-ic"><TargetArrow size={18} /></span><b>{t("tick_pattern")}</b><span className="tick-s">{t("tick_pattern_s")}</span></li>
+                <li><span className="tick-ic"><Layers size={18} /></span><b>{t("tick_gsca")}</b><span className="tick-s">{t("tick_gsca_s")}</span></li>
+                <li><span className="tick-ic"><History size={18} /></span><b>{t("tick_pyq")}</b><span className="tick-s">{t("tick_pyq_s")}</span></li>
+                <li><span className="tick-ic"><Calculator size={18} /></span><b>{t("tick_csat")}</b><span className="tick-s">{t("tick_csat_s")}</span></li>
                 <li><span className="tick-ic"><ShieldCheck size={18} /></span><b>{t("tick_secure")}</b><span className="tick-s">{t("tick_secure_s")}</span></li>
               </ul>
             </div>
