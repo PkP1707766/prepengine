@@ -25,7 +25,7 @@ function useBrandChrome() {
       // Fraunces (display) + Inter (body) + Noto Serif Devanagari, per the
       // agreed design direction. Fraunces is a variable optical-size serif, so
       // headings stay characterful at 48px without turning mushy at 16px.
-      l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,500;1,600&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Devanagari:wght@500;700&display=swap";
+      l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,500;1,600&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Devanagari:wght@500;700&family=Rozha+One&display=swap";
       document.head.appendChild(l);
     }
     if (!document.getElementById("junoon-base")) {
@@ -43,6 +43,12 @@ function useBrandChrome() {
              where its lack of a lowercase companion does not matter. */
           --font-roman:"Marcellus",Georgia,serif;
           --font-deva:"Noto Serif Devanagari",serif;
+          /* Headline Devanagari. Noto Serif Devanagari is a text face and sets
+             headlines flat; Rozha One is the display cut -- high contrast, a
+             heavy shirorekha -- and it is what Fraunces is for the Latin side.
+             Fraunces carries no Devanagari at all, so a Hindi heading was
+             falling through to whatever serif the device happened to have. */
+          --font-deva-display:"Rozha One","Noto Serif Devanagari",serif;
           /* A true Devanagari text serif for the shloka. Noto is the safe
              choice for Hindi UI; this is the one worth looking at. */
           --font-shloka:"Tiro Devanagari Hindi","Noto Serif Devanagari",serif;
@@ -178,6 +184,99 @@ function useBrandChrome() {
 
         [lang="hi"] body, [data-applang="hi"]{ --font-body:"Inter",system-ui,sans-serif; }
         .deva{ font-family:var(--font-deva); }
+
+        /* ---- DEVANAGARI DISPLAY HEADINGS --------------------------------
+           Rozha One with a brand gradient washed through the letterforms, for
+           page and section titles when the site is in Hindi.
+
+           Two things make this safe rather than clever:
+
+           - The transparent fill lives inside @supports. background-clip:text
+             is what makes the gradient visible AT ALL; where it is missing,
+             -webkit-text-fill-color:transparent on its own does not degrade to
+             plain text, it degrades to INVISIBLE text. So the solid colour is
+             the base rule and the gradient is the enhancement on top.
+           - font-weight is pinned to 400. Rozha One ships one weight, and the
+             600/700 our headings ask for would be synthesised -- a fake bold
+             smeared across an already high-contrast face.
+
+           .on-dark is the same treatment for a heading standing on the maroon:
+           the light gradient's tail is a gold that only reads against cream. */
+        .deva-display{
+          font-family:var(--font-deva-display);
+          font-weight:400;
+          letter-spacing:0;
+          color:var(--brand-700);
+          background-image:linear-gradient(100deg,
+            var(--brand-800) 0%, var(--brand-700) 38%, var(--gold-600) 92%);
+        }
+        .deva-display.on-dark{
+          color:var(--on-dark);
+          background-image:linear-gradient(100deg,
+            var(--on-dark) 0%, var(--gold-100) 46%, var(--gold-300) 100%);
+        }
+        @supports (background-clip:text) or (-webkit-background-clip:text){
+          .deva-display{
+            -webkit-background-clip:text; background-clip:text;
+            -webkit-text-fill-color:transparent; color:transparent;
+          }
+        }
+
+        /* Applied by language, not by hand. data-applang sits on <html>, so one
+           rule reaches every title on every screen and no heading can be
+           forgotten -- which is the whole point of asking for this everywhere
+           rather than in the two places it started. The selectors below are the
+           page- and section-level titles: the public hero and section heads,
+           legal page titles, and the auth screens' headings.
+
+           Deliberately NOT the dashboard and admin panel headers. Those are
+           data ("12 tests", "All referrals"), sized as UI at 15-19px, and a
+           display gradient on a row counter reads as a mistake. */
+        [data-applang="hi"] .pb-h1,
+        [data-applang="hi"] .pb-h2,
+        [data-applang="hi"] .lg-head h1,
+        [data-applang="hi"] .jn-h,
+        [data-applang="hi"] .pb-h1 em,
+        [data-applang="hi"] .pb-h2 em{
+          font-family:var(--font-deva-display);
+          font-weight:400;
+          letter-spacing:0;
+        }
+        /* The italic runs are set in a Latin quote face that carries no
+           Devanagari, and Rozha One has no italic to slant to. */
+        [data-applang="hi"] .pb-h1 em,
+        [data-applang="hi"] .pb-h2 em{ font-style:normal; font-size:1em; }
+
+        /* The gradient goes on whatever element actually holds the text.
+
+           For most headings that is the heading itself. NOT for the hero: its
+           two lines are child spans carrying the swoosh's clip-path, and a
+           clipped child paints in its own context -- the parent's text-clipped
+           gradient never reaches it, while the transparent fill inherits into
+           it regardless. The headline came out invisible. So the hero's lines
+           each carry their own gradient, and the h1 carries none. */
+        [data-applang="hi"] .pb-h2,
+        [data-applang="hi"] .lg-head h1,
+        [data-applang="hi"] .jn-h{
+          background-image:linear-gradient(100deg,
+            var(--brand-800) 0%, var(--brand-700) 38%, var(--gold-600) 92%);
+        }
+        [data-applang="hi"] .pb-h1-l1,
+        [data-applang="hi"] .pb-h1-l2,
+        [data-applang="hi"] .pb-res .pb-h2{
+          background-image:linear-gradient(100deg,
+            var(--on-dark) 0%, var(--gold-100) 46%, var(--gold-300) 100%);
+        }
+        @supports (background-clip:text) or (-webkit-background-clip:text){
+          [data-applang="hi"] .pb-h2,
+          [data-applang="hi"] .lg-head h1,
+          [data-applang="hi"] .jn-h,
+          [data-applang="hi"] .pb-h1-l1,
+          [data-applang="hi"] .pb-h1-l2{
+            -webkit-background-clip:text; background-clip:text;
+            -webkit-text-fill-color:transparent; color:transparent;
+          }
+        }
         .display{ font-family:var(--font-display); font-optical-sizing:auto; }
 
         /* Shared motion. Every animation below is disabled for anyone who has
