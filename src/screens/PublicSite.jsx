@@ -790,8 +790,13 @@ const CSS = `
   .pb-card-title{font-size:18px}
   .pb-card-desc{min-height:0;margin-bottom:14px}
   .pb-price{font-size:24px}
-  .pb-card-btns{flex-direction:column}
-  .pb-card-btns .pb-btn{width:100%}
+  /* Enroll and Details sit side by side on a phone too, not stacked. Stacked,
+     two full-width buttons added ~50px of height to every card and made the
+     catalogue feel like a long scroll. Enroll grows, Details stays compact; the
+     lone "owned"/"coming soon" button keeps its own width:100%. nowrap keeps a
+     label from breaking onto two lines when the pair is tight. */
+  .pb-card-btns .pb-btn{white-space:nowrap}
+  .pb-card-btns .pb-btn-sm{flex:0 0 auto}
 
   .pb-tabs{gap:7px;margin-bottom:24px;justify-content:flex-start;
     flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
