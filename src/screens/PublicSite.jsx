@@ -304,12 +304,26 @@ const CSS = `
    centred on the cream. It replaced four small feature columns that repeated
    the hero's ticks and the catalogue heading. A short gold rule above it gives
    the moment a top rather than starting cold. */
+/* The hero's dark foot used to meet the cream strip on a single hard line, so
+   the band read like a plate laid on the page. This ramp carries the maroon
+   down into the cream over its own height, weighted so the cream rises most of
+   the way up (softer than a flat 50/50). color-mix keeps every stop inside the
+   active palette, so it stays warm -- never a grey mid-tone -- in each theme.
+   Top stop is brand-900 (the hero's bottom), last is cream-50 (the band). */
+.pb-seam{height:74px;
+  background:linear-gradient(to bottom,
+    var(--brand-900) 0%,
+    color-mix(in srgb, var(--brand-900) 60%, var(--cream-50)) 34%,
+    color-mix(in srgb, var(--brand-900) 27%, var(--cream-50)) 62%,
+    color-mix(in srgb, var(--brand-900) 8%, var(--cream-50)) 84%,
+    var(--cream-50) 100%)}
+
 /* On the page cream, textured with a faint mandala like the offer carousel it
    borrows its swipe from -- not the flat cream block it used to be. */
 .pb-band{background:var(--cream-50);text-align:center;position:relative;overflow:hidden}
 .pb-band-mandala{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:520px;height:520px;opacity:.09;color:var(--gold-300);pointer-events:none;z-index:0}
-.pb-band-in{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:54px 24px}
+.pb-band-in{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:40px 24px 54px}
 /* The stack swaps under the static gold rule; clipped horizontally so a leaving
    quote slides off rather than showing beside the one arriving. */
 .pb-band-wrap{overflow-x:clip}
@@ -1010,7 +1024,7 @@ const CSS = `
 }
 @media (max-width:560px){
   .pb-sec{padding-block:56px}
-  .pb-band-in{padding:40px 20px}
+  .pb-band-in{padding:26px 20px 40px}
   .pb-band-rule{margin-bottom:16px}
   .pb-band-h{font-size:22px;line-height:1.22}
   .pb-band-p{font-size:14.5px;margin-top:12px}
@@ -2297,6 +2311,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               </ul>
             </div>
           </section>
+
+          {/* The maroon eases into the cream instead of butting against it. */}
+          <div className="pb-seam" aria-hidden="true" />
 
           {/* ---------------- STRIP ----------------
               Every line here is checkable against the product. The old site
