@@ -792,14 +792,11 @@ Object.assign(STR, {
 
   /* --- catalogue --- */
   cat_h2:    { en: "One exam. One price. Nothing extra.", hi: "एक परीक्षा। एक क़ीमत। कुछ भी अतिरिक्त नहीं।" },
-  /* The catalogue heading gets two voices: a hook with some heat, then a chip
-     that states the same thing as a plain guarantee. "battle" is the site's
+  /* A hook with some heat under the catalogue title. "battle" is the site's
      own register -- An Academy of Inner Fire, the diya, "from darkness unto
      light" -- so the exam as a fight is not a reach here. */
   cat_hook:  { en: "You've chosen your battle. We won't charge you for someone else's.",
                hi: "आपने अपनी जंग चुन ली है। किसी और की जंग का दाम हम नहीं लेते।" },
-  cat_pill:  { en: "No bundling, no bleed-over — buy one exam, get exactly that.",
-               hi: "न बंडल, न ओवरलैप — एक परीक्षा लीजिए, बिलकुल वही मिलेगी।" },
   tab_all:   { en: "All exams", hi: "सभी परीक्षाएँ" },
   cat_empty: { en: "No test series published for this exam yet.", hi: "इस परीक्षा के लिए अभी कोई टेस्ट सीरीज़ नहीं आई है।" },
 

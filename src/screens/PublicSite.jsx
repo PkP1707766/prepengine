@@ -288,22 +288,12 @@ const CSS = `
   margin:9px 0 12px;font-weight:600;line-height:1.16;color:var(--ink-900)}
 .pb-sub{color:var(--ink-600);font-size:15.5px;line-height:1.65;margin:0}
 .pb-h2 em{font-family:var(--font-quote);font-style:italic;font-weight:500;font-size:1.08em;color:var(--brand-600)}
-/* Under a section title, a hook with some heat -- the quote serif in italic,
-   brand-coloured, one balanced measure -- then a chip that says the same thing
-   as a plain guarantee. The two split the work: the line sells, the chip
-   reassures. */
+/* Under a section title, a hook with some heat: the quote serif in italic,
+   brand-coloured, one balanced measure. */
 .pb-hook{font-family:var(--font-quote);font-style:italic;font-weight:500;
   font-size:clamp(17px,2.1vw,21px);line-height:1.45;color:var(--brand-600);
   max-width:600px;margin:14px auto 0;text-wrap:balance}
-.pb-clarity{display:inline-flex;align-items:center;gap:8px;margin-top:18px;
-  padding:9px 18px;border-radius:100px;font-size:13px;font-weight:600;
-  line-height:1.4;color:var(--brand-700);
-  /* Solid first, color-mix second: a WebView without the function keeps a
-     usable cream chip instead of dropping the fill and the border together. */
-  background:var(--cream-100);border:1px solid var(--gold-300);
-  background:color-mix(in srgb,var(--gold-300) 20%,transparent);
-  border:1px solid color-mix(in srgb,var(--gold-500) 42%,transparent)}
-.pb-clarity svg{color:var(--gold-600);flex:none}
+
 .pb-sec-mandala{position:absolute;top:-74px;left:50%;transform:translateX(-50%);
   width:460px;height:460px;opacity:.15;pointer-events:none;z-index:0}
 
@@ -784,10 +774,6 @@ const CSS = `
   .pb-h2{font-size:25px;line-height:1.2;text-wrap:balance}
   .pb-sub{font-size:14.5px;line-height:1.6}
   .pb-hook{font-size:17px;line-height:1.4;margin-top:12px}
-  /* The chip carries a full clause, so on a phone it reads as a rounded panel
-     rather than forcing one long line to fit a stadium. */
-  .pb-clarity{margin-top:14px;padding:10px 15px;font-size:12.5px;border-radius:15px;
-    max-width:340px;text-align:left}
   .pb-eyebrow{font-size:11px;letter-spacing:.12em}
 
   .pb-grid{gap:16px;grid-template-columns:1fr}
@@ -1004,7 +990,6 @@ const CSS = `
   .lg-dl > div{grid-template-columns:1fr;gap:3px}
   .lg-dl dt{font-size:11.5px}
 }
-
 
 /* The footer's two halves stack below 900px; the divider becomes a rule
    between them rather than beside them. */
@@ -2216,7 +2201,6 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 <div className="pb-eyebrow">{t("nav_tests")}</div>
                 <h2 className="pb-h2"><Sentences text={t("cat_h2")} /></h2>
                 <p className="pb-hook">{t("cat_hook")}</p>
-                <div className="pb-clarity"><CheckCircle2 size={15} />{t("cat_pill")}</div>
               </div>
 
               {examTabs.length > 1 && (
