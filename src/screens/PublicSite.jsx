@@ -806,8 +806,10 @@ const CSS = `
   .pb-ticks .tick-ic{width:30px;height:30px;border-radius:8px}
   .pb-ticks b{font-size:12.5px}
   .pb-ticks .tick-s{display:none}
-  .pb-hero-ctas{gap:9px;margin-bottom:20px}
-  .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:13px 20px;font-size:15px}
+  .pb-hero-ctas{gap:8px;margin-bottom:20px}
+  /* Slimmer stacked CTAs: 13px padding read as chunky on a phone. 10px lands
+     the pill on the 44px tap-target floor instead of overshooting it. */
+  .pb-hero-ctas .pb-btn{flex:1 1 100%;padding:10px 20px;font-size:14.5px}
   /* The pool sits where the lamp sits -- upper right, beside the headline --
      and a shade stronger than the desktop's, because on a small screen it is
      doing the work of separating the lamp from the maroon behind it. */
