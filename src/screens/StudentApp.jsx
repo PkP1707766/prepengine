@@ -56,19 +56,21 @@ function derive(attempts, activity) {
   };
 }
 
-/** Badges a student has genuinely earned — no participation trophies. */
+/** Badges a student has genuinely earned — no participation trophies.
+ *  Titles and blurbs are dictionary keys, not text: hardcoded here they stayed
+ *  English on a Hindi profile. */
 function achievementsFor(d) {
   return [
-    { key: "first", title: "First Step", desc: "Completed your first test", icon: Play, earned: d.n >= 1 },
-    { key: "ten", title: "Mock Marathoner", desc: "Completed 10 tests", icon: FileText, earned: d.n >= 10 },
-    { key: "score70", title: "Strong Scorer", desc: "Scored 70%+ in a test", icon: Target, earned: d.bestScore >= 70 },
-    { key: "streak7", title: "On Fire", desc: "7-day study streak", icon: Flame, earned: d.streak >= 7 },
-    { key: "pct80", title: "Top Percentile", desc: "Crossed the 80th percentile", icon: TrendingUp, earned: (d.bestPct ?? 0) >= 80 },
-    { key: "rank100", title: "Century Rank", desc: "Ranked inside the top 100", icon: Medal, earned: d.bestRank != null && d.bestRank <= 100 },
-    { key: "acc90", title: "Sniper", desc: "90%+ accuracy in a test", icon: Zap, earned: d.bestAcc >= 90 },
-    { key: "twentyfive", title: "Quarter Century", desc: "Complete 25 tests", icon: Award, earned: d.n >= 25 },
-    { key: "top10", title: "Elite Ten", desc: "Rank inside the top 10", icon: Trophy, earned: d.bestRank != null && d.bestRank <= 10 },
-    { key: "streak30", title: "Unstoppable", desc: "30-day study streak", icon: Sparkles, earned: d.streak >= 30 },
+    { key: "first", tKey: "ach_first_t", dKey: "ach_first_d", icon: Play, earned: d.n >= 1 },
+    { key: "ten", tKey: "ach_ten_t", dKey: "ach_ten_d", icon: FileText, earned: d.n >= 10 },
+    { key: "score70", tKey: "ach_score_t", dKey: "ach_score_d", icon: Target, earned: d.bestScore >= 70 },
+    { key: "streak7", tKey: "ach_fire_t", dKey: "ach_fire_d", icon: Flame, earned: d.streak >= 7 },
+    { key: "pct80", tKey: "ach_pct_t", dKey: "ach_pct_d", icon: TrendingUp, earned: (d.bestPct ?? 0) >= 80 },
+    { key: "rank100", tKey: "ach_rank_t", dKey: "ach_rank_d", icon: Medal, earned: d.bestRank != null && d.bestRank <= 100 },
+    { key: "acc90", tKey: "ach_acc_t", dKey: "ach_acc_d", icon: Zap, earned: d.bestAcc >= 90 },
+    { key: "twentyfive", tKey: "ach_25_t", dKey: "ach_25_d", icon: Award, earned: d.n >= 25 },
+    { key: "top10", tKey: "ach_top10_t", dKey: "ach_top10_d", icon: Trophy, earned: d.bestRank != null && d.bestRank <= 10 },
+    { key: "streak30", tKey: "ach_un_t", dKey: "ach_un_d", icon: Sparkles, earned: d.streak >= 30 },
   ];
 }
 
@@ -576,6 +578,7 @@ function SmallStat({ n, l, c, bg }) { return <div style={{ flex: 1, background: 
    VIEW: HOME
    ============================================================ */
 function HomeView({ go, setAnalysis, onStart }) {
+  const { t } = useLang();
   const { profile, attempts, tests, subjects, activity, derived, enrollments } = useData();
   const hr = new Date().getHours();
   const greet = hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
@@ -725,7 +728,7 @@ function HomeView({ go, setAnalysis, onStart }) {
 
       <div className="card card-pad mb">
         <div className="sec-head"><div><div className="eyebrow">Last 12 weeks</div><div className="panel-title">Study activity</div></div>
-          <span style={{ fontSize: 13, color: "var(--muted)", fontWeight: 600 }}><Flame size={14} style={{ verticalAlign: -2, color: "var(--red)" }} /> {derived.streak}-day streak</span></div>
+          <span style={{ fontSize: 13, color: "var(--muted)", fontWeight: 600 }}><Flame size={14} style={{ verticalAlign: -2, color: "var(--red)" }} /> {derived.streak} {t("sd_pf_streak")}</span></div>
         <div style={{ overflowX: "auto" }}>
           <div className="heat">{activity.map((d, i) => (
             <div key={i} className="heat-cell" style={{ background: heatColor(d.count) }}
@@ -1309,6 +1312,7 @@ function LeaderboardView({ toast }) {
    VIEW: PROFILE
    ============================================================ */
 function ProfileView({ toast }) {
+  const { t } = useLang();
   const { profile, setProfile, derived } = useData();
   const [form, setForm] = useState(profile);
   const [saving, setSaving] = useState(false);
@@ -1338,15 +1342,15 @@ function ProfileView({ toast }) {
       return true;
     } catch (e) {
       console.error(e);
-      toast("Couldn't save — check your connection and try again");
+      toast(t("sd_pf_savefail"));
       return false;
     }
   };
 
   const save = async () => {
-    if (!form.name?.trim()) { toast("Please enter your name"); return; }
+    if (!form.name?.trim()) { toast(t("sd_pf_needname")); return; }
     setSaving(true);
-    await persist({}, "Profile updated");
+    await persist({}, t("sd_pf_saved"));
     setSaving(false);
   };
 
@@ -1366,10 +1370,10 @@ function ProfileView({ toast }) {
     setUploadingPhoto(true);
     try {
       const url = await DB.uploadAvatar(profile.id, file);
-      await persist({ avatarUrl: url }, "Profile photo updated");
+      await persist({ avatarUrl: url }, t("sd_pf_photodone"));
     } catch (ex) {
       console.error(ex);
-      setAvatarErr(ex?.message || "That image couldn't be uploaded");
+      setAvatarErr(ex?.message || t("sd_pf_photofail"));
     }
     setUploadingPhoto(false);
   };
@@ -1383,19 +1387,19 @@ function ProfileView({ toast }) {
               {!form.avatarUrl && initials(form.name)}
             </div>
             <button className="prof-av-edit" onClick={() => fileRef.current?.click()} disabled={uploadingPhoto}
-                    title="Change photo" aria-label="Change profile photo"><Camera size={15} /></button>
+                    title={t("sd_pf_photo")} aria-label={t("sd_pf_photo")}><Camera size={15} /></button>
             <input ref={fileRef} type="file" accept="image/*" style={{ display: "none" }} onChange={onPhoto} />
           </div>
           <div style={{ flex: 1 }}>
             <div className="prof-name">{form.name}</div>
-            <div className="prof-meta">{form.target}{form.memberSince ? " · Member since " + fmtDate(form.memberSince) : ""}</div>
-            {uploadingPhoto && <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4, fontWeight: 600 }}>Uploading photo…</div>}
+            <div className="prof-meta">{form.target}{form.memberSince ? " · " + t("sd_pf_member").replace("{d}", fmtDate(form.memberSince)) : ""}</div>
+            {uploadingPhoto && <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4, fontWeight: 600 }}>{t("sd_pf_photoup")}</div>}
             {avatarErr && <div style={{ fontSize: 12, color: "#c0392b", marginTop: 4, fontWeight: 600 }}>{avatarErr}</div>}
-            {form.avatarUrl && <button className="prof-av-remove" onClick={() => persist({ avatarUrl: null }, "Photo removed")}>Remove photo</button>}
+            {form.avatarUrl && <button className="prof-av-remove" onClick={() => persist({ avatarUrl: null }, t("sd_pf_photormd"))}>{t("sd_pf_photorm")}</button>}
             <div style={{ display: "flex", gap: 8, marginTop: 10, flexWrap: "wrap" }}>
-              <span className="chip" style={{ background: "#fcf3df", color: "#d4a64a" }}><Trophy size={13} />{earned}/{achievements.length} badges</span>
-              <span className="chip" style={{ background: "#fbeaea", color: "#c0392b" }}><Flame size={13} />{derived.streak}-day streak</span>
-              {derived.bestRank != null && <span className="chip" style={{ background: "#e8f6ee", color: "#1f8a4c" }}><Medal size={13} />Best rank #{derived.bestRank}</span>}
+              <span className="chip" style={{ background: "#fcf3df", color: "#d4a64a" }}><Trophy size={13} />{earned}/{achievements.length} {t("sd_pf_badges")}</span>
+              <span className="chip" style={{ background: "#fbeaea", color: "#c0392b" }}><Flame size={13} />{derived.streak} {t("sd_pf_streak")}</span>
+              {derived.bestRank != null && <span className="chip" style={{ background: "#e8f6ee", color: "#1f8a4c" }}><Medal size={13} />{t("sd_pf_bestrank")} #{derived.bestRank}</span>}
             </div>
           </div>
         </div>
@@ -1403,30 +1407,30 @@ function ProfileView({ toast }) {
 
       <div className="grid2b mb">
         <div className="card card-pad">
-          <div className="eyebrow">Settings</div>
-          <div className="panel-title" style={{ marginBottom: 16 }}>Your details</div>
-          <div className="field"><label htmlFor="pf-name">Full name</label>
+          <div className="eyebrow">{t("sd_pf_settings")}</div>
+          <div className="panel-title" style={{ marginBottom: 16 }}>{t("sd_pf_details")}</div>
+          <div className="field"><label htmlFor="pf-name">{t("sd_pf_name")}</label>
             <input id="pf-name" className="inp" value={form.name || ""} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
-          <div className="field"><label htmlFor="pf-target">Target exam</label>
+          <div className="field"><label htmlFor="pf-target">{t("sd_pf_target")}</label>
             <input id="pf-target" className="inp" value={form.target || ""} onChange={(e) => setForm({ ...form, target: e.target.value })} placeholder="UPSC Prelims 2026" /></div>
-          <div className="field"><label htmlFor="pf-date">Target exam date</label>
+          <div className="field"><label htmlFor="pf-date">{t("sd_pf_tdate")}</label>
             <input id="pf-date" className="inp" type="date" value={form.targetDate || ""} onChange={(e) => setForm({ ...form, targetDate: e.target.value })} /></div>
-          <div className="field"><label htmlFor="pf-city">City</label>
+          <div className="field"><label htmlFor="pf-city">{t("sd_pf_city")}</label>
             <input id="pf-city" className="inp" value={form.city || ""} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Patna" /></div>
-          <div className="field"><label>Email</label>
+          <div className="field"><label>{t("sd_pf_email")}</label>
             <input className="inp" value={form.email || ""} disabled style={{ opacity: .65, cursor: "not-allowed" }} />
-            <div style={{ fontSize: 11.5, color: "var(--muted)", marginTop: 5 }}>Your sign-in email can't be changed here — contact support if you need it updated.</div></div>
+            <div style={{ fontSize: 11.5, color: "var(--muted)", marginTop: 5 }}>{t("sd_pf_emailnote")}</div></div>
           <button className="btn btn-primary" style={{ width: "auto" }} onClick={save} disabled={saving}>
-            <Save size={16} />{saving ? "Saving…" : "Save changes"}
+            <Save size={16} />{saving ? t("sd_pf_saving") : t("sd_pf_save")}
           </button>
         </div>
 
         <div className="card card-pad">
-          <div className="eyebrow">Notifications</div>
-          <div className="panel-title" style={{ marginBottom: 8 }}>Reminders &amp; alerts</div>
-          {[["email", "Email", "Test reminders & results"],
-            ["sms", "SMS", "Important updates only"],
-            ["whatsapp", "WhatsApp", "Daily practice nudges"]].map(([key, label, desc]) => (
+          <div className="eyebrow">{t("sd_pf_notif")}</div>
+          <div className="panel-title" style={{ marginBottom: 8 }}>{t("sd_pf_reminders")}</div>
+          {[["email", "Email", t("sd_pf_n_email")],
+            ["sms", "SMS", t("sd_pf_n_sms")],
+            ["whatsapp", "WhatsApp", t("sd_pf_n_wa")]].map(([key, label, desc]) => (
             <div className="toggle-row" key={key}>
               <div><div style={{ fontWeight: 700, fontSize: 14 }}>{label}</div><div style={{ fontSize: 12.5, color: "var(--muted)" }}>{desc}</div></div>
               <button className={"switch" + (notif[key] ? " on" : "")} onClick={() => toggleNotif(key)}
@@ -1437,8 +1441,8 @@ function ProfileView({ toast }) {
       </div>
 
       <div className="card card-pad">
-        <div className="sec-head"><div><div className="eyebrow">Milestones</div><div className="panel-title">Achievements</div></div>
-          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--gold-2)" }}>{earned} of {achievements.length} unlocked</span></div>
+        <div className="sec-head"><div><div className="eyebrow">{t("sd_ach_eyebrow")}</div><div className="panel-title">{t("sd_ach_h")}</div></div>
+          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--gold-2)" }}>{earned} {t("sd_ach_of")} {achievements.length} {t("sd_ach_unlocked")}</span></div>
         <div className="ach-grid">
           {achievements.map((a) => {
             const Icon = a.icon;
@@ -1447,8 +1451,8 @@ function ProfileView({ toast }) {
                 <div className="ach-ic" style={{ background: a.earned ? "linear-gradient(135deg,#ecca88,#dca84a)" : "#fdf6e3", color: a.earned ? "#ffffff" : "#bcae94" }}>
                   {a.earned ? <Icon size={24} /> : <Lock size={22} />}
                 </div>
-                <div className="ach-t">{a.title}</div>
-                <div className="ach-d">{a.desc}</div>
+                <div className="ach-t">{t(a.tKey)}</div>
+                <div className="ach-d">{t(a.dKey)}</div>
               </div>
             );
           })}

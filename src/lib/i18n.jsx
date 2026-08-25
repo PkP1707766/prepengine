@@ -25,7 +25,7 @@ function useBrandChrome() {
       // Fraunces (display) + Inter (body) + Noto Serif Devanagari, per the
       // agreed design direction. Fraunces is a variable optical-size serif, so
       // headings stay characterful at 48px without turning mushy at 16px.
-      l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,500;1,600&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Devanagari:wght@500;700&family=Rozha+One&display=swap";
+      l.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,500;1,600&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Devanagari:wght@500;700&family=Rozha+One&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap";
       document.head.appendChild(l);
     }
     if (!document.getElementById("junoon-base")) {
@@ -182,7 +182,16 @@ function useBrandChrome() {
           --shadow-lift:0 22px 44px -18px rgba(0,0,0,.55);
         }
 
-        [lang="hi"] body, [data-applang="hi"]{ --font-body:"Inter",system-ui,sans-serif; }
+        /* Inter carries no Devanagari glyph, so this stack used to hand every
+           Hindi sentence straight to system-ui -- Nirmala UI on Windows, Noto on
+           Android, Devanagari MT on a Mac. The same paragraph was set in a
+           different face on every device, and none of them were chosen. Noto
+           Sans Devanagari sits in front of that fallback now. Inter stays first
+           because font fallback is per glyph: Latin and digits still come from
+           Inter, and only the Devanagari is served by Noto. */
+        [lang="hi"] body, [data-applang="hi"]{
+          --font-body:"Inter","Noto Sans Devanagari",system-ui,sans-serif;
+        }
         .deva{ font-family:var(--font-deva); }
 
         /* ---- DEVANAGARI DISPLAY HEADINGS --------------------------------
@@ -276,6 +285,23 @@ function useBrandChrome() {
             -webkit-background-clip:text; background-clip:text;
             -webkit-text-fill-color:transparent; color:transparent;
           }
+        }
+
+        /* The dashboard, the profile and the result screens take the same face
+           and NOT the gradient. Their headings are UI-scale -- 15 to 21px --
+           and a wash of maroon-into-gold across sixteen pixels of type stops
+           being a treatment and starts being a legibility problem; the gradient
+           belongs to the display sizes it was drawn for. The face still carries
+           across, which is what makes the two halves of the site look related.
+           Weight 400 because Rozha One has no other, and 800 would be faked. */
+        [data-applang="hi"] .sd-root h1,
+        [data-applang="hi"] .sd-root h2,
+        [data-applang="hi"] .sd-root .sec-head h2,
+        [data-applang="hi"] .ee-root h1,
+        [data-applang="hi"] .ee-root h2{
+          font-family:var(--font-deva-display);
+          font-weight:400;
+          letter-spacing:0;
         }
         .display{ font-family:var(--font-display); font-optical-sizing:auto; }
 
@@ -1042,6 +1068,73 @@ Object.assign(STR, {
   sd_full_name:   { en: "Full name", hi: "पूरा नाम" },
   sd_email:       { en: "Email", hi: "ईमेल" },
   sd_city:        { en: "City", hi: "शहर" },
+
+  /* --- profile view ---
+     The whole panel was hardcoded English, so a Hindi profile showed a Hindi
+     sidebar wrapped around an English form. */
+  sd_pf_settings:  { en: "Settings", hi: "सेटिंग्स" },
+  sd_pf_details:   { en: "Your details", hi: "आपका विवरण" },
+  sd_pf_name:      { en: "Full name", hi: "पूरा नाम" },
+  sd_pf_target:    { en: "Target exam", hi: "लक्ष्य परीक्षा" },
+  sd_pf_tdate:     { en: "Target exam date", hi: "परीक्षा की तारीख़" },
+  sd_pf_city:      { en: "City", hi: "शहर" },
+  sd_pf_email:     { en: "Email", hi: "ईमेल" },
+  sd_pf_emailnote: { en: "Your sign-in email can't be changed here — contact support if you need it updated.",
+                     hi: "साइन-इन ईमेल यहाँ से नहीं बदला जा सकता — बदलवाना हो तो सहायता से संपर्क कीजिए।" },
+  sd_pf_save:      { en: "Save changes", hi: "बदलाव सहेजें" },
+  sd_pf_saving:    { en: "Saving…", hi: "सहेजा जा रहा है…" },
+  sd_pf_saved:     { en: "Profile updated", hi: "प्रोफ़ाइल अपडेट हो गई" },
+  sd_pf_needname:  { en: "Please enter your name", hi: "कृपया अपना नाम भरिए" },
+  sd_pf_savefail:  { en: "Couldn't save — check your connection and try again",
+                     hi: "सहेजा नहीं जा सका — कनेक्शन जाँचिए और दोबारा कोशिश कीजिए" },
+  sd_pf_notif:     { en: "Notifications", hi: "सूचनाएँ" },
+  sd_pf_reminders: { en: "Reminders & alerts", hi: "याद-दिहानी और अलर्ट" },
+  sd_pf_n_email:   { en: "Test reminders & results", hi: "टेस्ट की याद-दिहानी और नतीजे" },
+  sd_pf_n_sms:     { en: "Important updates only", hi: "सिर्फ़ ज़रूरी सूचनाएँ" },
+  sd_pf_n_wa:      { en: "Daily practice nudges", hi: "रोज़ अभ्यास की याद" },
+  sd_pf_photo:     { en: "Change photo", hi: "फ़ोटो बदलिए" },
+  sd_pf_photoup:   { en: "Uploading photo…", hi: "फ़ोटो चढ़ाई जा रही है…" },
+  sd_pf_photodone: { en: "Profile photo updated", hi: "प्रोफ़ाइल फ़ोटो बदल गई" },
+  sd_pf_photorm:   { en: "Remove photo", hi: "फ़ोटो हटाइए" },
+  sd_pf_photormd:  { en: "Photo removed", hi: "फ़ोटो हट गई" },
+  sd_pf_photofail: { en: "That image couldn't be uploaded", hi: "यह तस्वीर अपलोड नहीं हो सकी" },
+  /* A pattern, not two halves glued in a fixed order: English puts the date
+     last ("Member since 6 Feb") and Hindi puts it first ("6 फ़र॰ से सदस्य"). */
+  sd_pf_member:    { en: "Member since {d}", hi: "{d} से सदस्य" },
+  sd_pf_badges:    { en: "badges", hi: "बैज" },
+  sd_pf_streak:    { en: "day streak", hi: "दिन लगातार" },
+  sd_pf_bestrank:  { en: "Best rank", hi: "सर्वश्रेष्ठ रैंक" },
+
+  /* --- profile: milestones ---
+     These were hardcoded English and stayed English in Hindi, which is what
+     left "Century Rank" and "Quarter Century" sitting untranslated on the
+     profile. The cricket metaphors do not carry into Hindi as loanwords, so
+     they are rewritten to say the same thing in Hindi rather than transliterated. */
+  sd_ach_h:        { en: "Achievements", hi: "उपलब्धियाँ" },
+  sd_ach_eyebrow:  { en: "Milestones", hi: "पड़ाव" },
+  sd_ach_unlocked: { en: "unlocked", hi: "हासिल" },
+  sd_ach_of:       { en: "of", hi: "में से" },
+
+  ach_first_t:  { en: "First Step", hi: "पहला क़दम" },
+  ach_first_d:  { en: "Completed your first test", hi: "आपका पहला टेस्ट पूरा हुआ" },
+  ach_ten_t:    { en: "Mock Marathoner", hi: "लगातार अभ्यास" },
+  ach_ten_d:    { en: "Completed 10 tests", hi: "10 टेस्ट पूरे किए" },
+  ach_score_t:  { en: "Strong Scorer", hi: "मज़बूत स्कोर" },
+  ach_score_d:  { en: "Scored 70%+ in a test", hi: "किसी टेस्ट में 70%+ अंक" },
+  ach_fire_t:   { en: "On Fire", hi: "जोश बरक़रार" },
+  ach_fire_d:   { en: "7-day study streak", hi: "7 दिन लगातार पढ़ाई" },
+  ach_pct_t:    { en: "Top Percentile", hi: "शीर्ष पर्सेंटाइल" },
+  ach_pct_d:    { en: "Crossed the 80th percentile", hi: "80वें पर्सेंटाइल के पार" },
+  ach_rank_t:   { en: "Century Rank", hi: "शतक रैंक" },
+  ach_rank_d:   { en: "Ranked inside the top 100", hi: "टॉप 100 में जगह बनाई" },
+  ach_acc_t:    { en: "Sniper", hi: "अचूक निशाना" },
+  ach_acc_d:    { en: "90%+ accuracy in a test", hi: "किसी टेस्ट में 90%+ सटीकता" },
+  ach_25_t:     { en: "Quarter Century", hi: "पच्चीस का पड़ाव" },
+  ach_25_d:     { en: "Complete 25 tests", hi: "25 टेस्ट पूरे किए" },
+  ach_top10_t:  { en: "Elite Ten", hi: "शीर्ष दस" },
+  ach_top10_d:  { en: "Rank inside the top 10", hi: "टॉप 10 में रैंक" },
+  ach_un_t:     { en: "Unstoppable", hi: "अजेय" },
+  ach_un_d:     { en: "30-day study streak", hi: "30 दिन लगातार पढ़ाई" },
 
   /* refer & earn view */
   sd_ref_invite:  { en: "Invite friends, earn", hi: "दोस्तों को बुलाइए, कमाइए" },
