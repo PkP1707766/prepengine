@@ -307,11 +307,11 @@ function JoinScreen({ planCode, onJoined, onLogout, onBrowse }) {
                       value={couponInput}
                       onChange={(e) => { setCouponInput(e.target.value.toUpperCase()); setCouponMsg(""); }}
                       onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); applyCoupon(); } }}
-                      placeholder="Coupon code"
+                      placeholder={t("jn_coupon_ph")}
                       autoCapitalize="characters"
                       autoComplete="off"
                       spellCheck={false}
-                      aria-label="Coupon code"
+                      aria-label={t("jn_coupon_ph")}
                     />
                     <button type="button" className="jn-coupon-apply"
                             onClick={applyCoupon} disabled={checking || !couponInput.trim()}>
@@ -330,14 +330,14 @@ function JoinScreen({ planCode, onJoined, onLogout, onBrowse }) {
                       <b>{applied.code}</b>
                       <span>{applied.label} applied</span>
                     </div>
-                    <button type="button" className="jn-coupon-x" onClick={removeCoupon} aria-label="Remove coupon">
+                    <button type="button" className="jn-coupon-x" onClick={removeCoupon} aria-label={t("jn_coupon_rm")}>
                       <X size={15} />
                     </button>
                   </div>
                   <div className="jn-coupon-lines">
-                    <div><span>Test series</span><span>₹{(applied.grossPaise / 100).toLocaleString("en-IN")}</span></div>
+                    <div><span>{t("jn_row_series")}</span><span>₹{(applied.grossPaise / 100).toLocaleString("en-IN")}</span></div>
                     <div className="off"><span>Coupon {applied.code}</span><span>−₹{(applied.discountPaise / 100).toLocaleString("en-IN")}</span></div>
-                    <div className="total"><span>You pay</span><span>₹{(applied.finalPaise / 100).toLocaleString("en-IN")}</span></div>
+                    <div className="total"><span>{t("jn_row_pay")}</span><span>₹{(applied.finalPaise / 100).toLocaleString("en-IN")}</span></div>
                   </div>
                 </>
               )}
@@ -371,7 +371,7 @@ function JoinScreen({ planCode, onJoined, onLogout, onBrowse }) {
 
           {onBrowse && (
             <button className="jn-link" style={{ marginTop: 14 }} onClick={onBrowse}>
-              <ArrowLeft size={14} /> Compare all test series
+              <ArrowLeft size={14} /> {t("jn_compare")}
             </button>
           )}
 

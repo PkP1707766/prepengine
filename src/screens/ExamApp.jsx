@@ -1,10 +1,28 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, Fragment } from "react";
 import { AlertCircle, Trophy } from "lucide-react";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
 import { loadExamTest, submitAttempt, currentUser, getProfile } from "../lib/db.js";
+
+/* Render a translated pattern that carries a bolded value inside it.
+   The bolded part does not sit in the same place in both languages -- English
+   opens with "You skipped 4 questions" and Hindi closes with "4 सवाल छोड़ दिए"
+   -- so the sentence cannot be built from fixed pieces around a <b>. The
+   pattern marks the bolded value {x} and a plain one {y}, and this splits on
+   them wherever the translator chose to put them. */
+function Pattern({ text, x, y }) {
+  const out = [];
+  text.split("{x}").forEach((chunk, ci) => {
+    if (ci > 0) out.push(<b key={"x" + ci}>{x}</b>);
+    chunk.split("{y}").forEach((piece, pi) => {
+      if (pi > 0) out.push(<Fragment key={"y" + ci + pi}>{y}</Fragment>);
+      if (piece) out.push(<Fragment key={"t" + ci + pi}>{piece}</Fragment>);
+    });
+  });
+  return out;
+}
 
 
 const ExamApp = (() => {
@@ -623,6 +641,10 @@ function SubmitModal({ counts, onCancel, onConfirm }) {
 function Results({ data, onRetake, onExit }) {
   const EXAM = useExam();
   const { t, lang } = useLang();
+  /* The topic rows below bind each row to a variable called t, which shadows
+     the translate function. tr is that same function under a name the loop
+     cannot hide. */
+  const tr = t;
   const [filter, setFilter] = useState("all");
   const [open, setOpen] = useState(null);
 
@@ -662,29 +684,29 @@ function Results({ data, onRetake, onExit }) {
       <div className="res-hero">
         <ScoreRing score={data.score} max={data.maxScore} grade={grade} />
         <div>
-          <div className="hero-eyebrow">Performance Report</div>
+          <div className="hero-eyebrow">{t("ex_report")}</div>
           <div className="hero-title">{inLang(lang, EXAM.title, EXAM.title_hi)}</div>
-          <div className="hero-sub">Attempted {data.attempted} of {data.total} questions in {fmt(data.timeUsed)}</div>
+          <div className="hero-sub">{t("ex_attempted").replace("{a}", data.attempted).replace("{b}", data.total).replace("{t}", fmt(data.timeUsed))}</div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
             <div className="pct-badge" style={{ margin: 0 }}>
-              ★ {hasRealStanding ? "Percentile" : "Estimated percentile"}: {pctile.toFixed(1)}
+              ★ {hasRealStanding ? t("ex_percentile") : t("ex_est_pct")}: {pctile.toFixed(1)}
             </div>
             {hasRealStanding && (
               <div className="pct-badge" style={{ margin: 0 }}>
-                Rank #{data.rank} of {data.totalStudents}
+                {t("ex_rank_of").replace("{r}", data.rank).replace("{n}", data.totalStudents)}
               </div>
             )}
           </div>
           {data.saveFailed && (
             <div style={{ marginTop: 10, fontSize: 12.5, color: "#f29b9b", display: "flex", alignItems: "center", gap: 6 }}>
-              <AlertCircle size={14} /> We couldn't save this attempt to your account — the report below is still accurate.
+              <AlertCircle size={14} /> {t("ex_savefail")}
             </div>
           )}
           <div className="hero-stats">
             <div className="hs"><div className="n" style={{ color: "#7fe0a3" }}>{data.correct}</div><div className="l">{t("ex_correct")}</div></div>
-            <div className="hs"><div className="n" style={{ color: "#f29b9b" }}>{data.wrong}</div><div className="l">Wrong</div></div>
-            <div className="hs"><div className="n">{data.unattempted}</div><div className="l">Skipped</div></div>
-            <div className="hs"><div className="n">{data.accuracy.toFixed(0)}%</div><div className="l">Accuracy</div></div>
+            <div className="hs"><div className="n" style={{ color: "#f29b9b" }}>{data.wrong}</div><div className="l">{t("ex_wrong")}</div></div>
+            <div className="hs"><div className="n">{data.unattempted}</div><div className="l">{t("ex_skipped")}</div></div>
+            <div className="hs"><div className="n">{data.accuracy.toFixed(0)}%</div><div className="l">{t("ex_accuracy")}</div></div>
           </div>
         </div>
       </div>
@@ -692,9 +714,9 @@ function Results({ data, onRetake, onExit }) {
       <div className="res-grid">
         {/* SECTION-WISE */}
         <div className="panel">
-          <div className="panel-eyebrow">Breakdown</div>
+          <div className="panel-eyebrow">{t("ex_breakdown")}</div>
           <div className="panel-title">{t("ex_sec_perf")}</div>
-          <p className="panel-note">Score in each section as a share of its maximum.</p>
+          <p className="panel-note">{t("ex_sec_sub")}</p>
           {data.sections.map((s) => {
             const pct = s.max > 0 ? (Math.max(0, s.score) / s.max) * 100 : 0;
             const col = pct >= 65 ? SEM.strong : pct >= 40 ? SEM.average : SEM.weak;
@@ -713,19 +735,19 @@ function Results({ data, onRetake, onExit }) {
 
         {/* COMPARISON */}
         <div className="panel">
-          <div className="panel-eyebrow">Benchmark</div>
-          <div className="panel-title">You vs Batch vs Topper</div>
+          <div className="panel-eyebrow">{t("ex_benchmark")}</div>
+          <div className="panel-title">{t("ex_vs_title")}</div>
           <p className="panel-note">
             {hasPeers
-              ? `Your score % against the ${data.totalStudents} aspirants who have taken this paper.`
-              : "Nobody else has taken this paper yet — you're the first."}
+              ? t("ex_peers_note").replace("{n}", data.totalStudents)
+              : t("ex_nopeers")}
           </p>
           {!hasPeers ? (
             <div style={{ height: 230, display: "grid", placeItems: "center", textAlign: "center",
                           color: "var(--muted)", fontSize: 13.5, lineHeight: 1.7, padding: "0 20px" }}>
               <div>
                 <Trophy size={30} style={{ color: "#d4a64a", marginBottom: 10 }} />
-                <div>You set the benchmark on this test.<br />Come back after others attempt it to see where you stand.</div>
+                <div>{t("ex_first_bench")}<br />{t("ex_come_back")}</div>
               </div>
             </div>
           ) : (
@@ -749,9 +771,9 @@ function Results({ data, onRetake, onExit }) {
 
         {/* TOPIC RADAR */}
         <div className="panel">
-          <div className="panel-eyebrow">Diagnosis</div>
-          <div className="panel-title">Topic Strength Map</div>
-          <p className="panel-note">Accuracy across every topic tested.</p>
+          <div className="panel-eyebrow">{t("ex_diagnosis")}</div>
+          <div className="panel-title">{t("ex_topicmap")}</div>
+          <p className="panel-note">{t("ex_coverage")}</p>
           <div style={{ height: 250 }}>
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData} outerRadius="72%">
@@ -767,9 +789,9 @@ function Results({ data, onRetake, onExit }) {
 
         {/* TOPIC BANDS */}
         <div className="panel">
-          <div className="panel-eyebrow">Diagnosis</div>
-          <div className="panel-title">Strong / Average / Weak</div>
-          <p className="panel-note">Each topic graded by your accuracy.</p>
+          <div className="panel-eyebrow">{t("ex_diagnosis")}</div>
+          <div className="panel-title">{t("ex_bands")}</div>
+          <p className="panel-note">{t("ex_topic_sub")}</p>
           <div className="topic-list">
             {data.topics.slice().sort((a, b) => b.acc - a.acc).map((t) => {
               const col = SEM[t.band];
@@ -778,7 +800,7 @@ function Results({ data, onRetake, onExit }) {
                 <div className="topic-row" key={t.name}>
                   <span className="topic-name">{t.name}</span>
                   <div className="topic-track"><div className="topic-fill" style={{ width: t.acc + "%", background: col }} /></div>
-                  <span className="band" style={{ background: bg, color: col }}>{t.band}</span>
+                  <span className="band" style={{ background: bg, color: col }}>{tr("ex_band_" + t.band)}</span>
                 </div>
               );
             })}
@@ -787,9 +809,9 @@ function Results({ data, onRetake, onExit }) {
 
         {/* TIME PER QUESTION */}
         <div className="panel full">
-          <div className="panel-eyebrow">Time Management</div>
-          <div className="panel-title">Time Spent per Question</div>
-          <p className="panel-note">Bars in red took noticeably longer than your average — target these for speed.</p>
+          <div className="panel-eyebrow">{t("ex_timemgmt")}</div>
+          <div className="panel-title">{t("ex_timeper")}</div>
+          <p className="panel-note">{t("ex_slow_note")}</p>
           <div style={{ height: 240 }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={timeData} margin={{ top: 16, right: 8, left: -22, bottom: 0 }}>
@@ -808,16 +830,16 @@ function Results({ data, onRetake, onExit }) {
 
         {/* AI IMPROVEMENT PLAN */}
         <div className="panel full">
-          <div className="panel-eyebrow">Action Plan</div>
-          <div className="panel-title">Your Personalised Improvement Plan</div>
-          <p className="panel-note">Built from what actually happened in this attempt — your topic accuracy, the questions you spent too long on, and the ones you left blank.</p>
+          <div className="panel-eyebrow">{t("ex_action_plan")}</div>
+          <div className="panel-title">{t("ex_plan_title")}</div>
+          <p className="panel-note">{t("ex_plan_note")}</p>
           <div className="plan-list">
             {weak.length > 0 && (
               <div className="plan-item weak">
                 <div className="plan-ic" style={{ background: SEM.weak }}>!</div>
                 <div className="plan-txt">
-                  <h5>Priority — Weak areas to fix first</h5>
-                  <p>You scored below 50% in <b>{weak.map((t) => t.name).join(", ")}</b>. Dedicate the next 3–4 study sessions here: revise core concepts, then drill 20–30 PYQs per topic before re-testing.</p>
+                  <h5>{t("ex_prio")}</h5>
+                  <p><Pattern text={t("ex_prio_d")} x={weak.map((w) => w.name).join(", ")} /></p>
                 </div>
               </div>
             )}
@@ -825,8 +847,8 @@ function Results({ data, onRetake, onExit }) {
               <div className="plan-item avg">
                 <div className="plan-ic" style={{ background: SEM.average }}>~</div>
                 <div className="plan-txt">
-                  <h5>Strengthen — Almost there</h5>
-                  <p><b>{avg.map((t) => t.name).join(", ")}</b> {avg.length > 1 ? "are" : "is"} in the 50–75% range. You understand the basics but lose marks on tricky variants. Focus on application-level questions and previous mistakes.</p>
+                  <h5>{t("ex_strengthen")}</h5>
+                  <p><Pattern text={t("ex_str_d")} x={avg.map((w) => w.name).join(", ")} /></p>
                 </div>
               </div>
             )}
@@ -834,8 +856,10 @@ function Results({ data, onRetake, onExit }) {
               <div className="plan-item avg">
                 <div className="plan-ic" style={{ background: "#c39d44" }}>⏱</div>
                 <div className="plan-txt">
-                  <h5>Speed — Manage your time better</h5>
-                  <p>You spent too long on <b>{slowQ.length}</b> question{slowQ.length > 1 ? "s" : ""} ({slowQ.map((r) => "Q" + (r.num ?? "?")).join(", ")}). Practise a time cap per question and learn to flag-and-move instead of getting stuck.</p>
+                  <h5>{t("ex_speed")}</h5>
+                  <p><Pattern text={t("ex_speed_d")}
+                     x={slowQ.length + " " + t(slowQ.length > 1 ? "ex_q_many" : "ex_q_one")}
+                     y={slowQ.map((r) => "Q" + (r.num ?? "?")).join(", ")} /></p>
                 </div>
               </div>
             )}
@@ -843,8 +867,9 @@ function Results({ data, onRetake, onExit }) {
               <div className="plan-item avg">
                 <div className="plan-ic" style={{ background: "#8a2727" }}>○</div>
                 <div className="plan-txt">
-                  <h5>Coverage — Don't leave marks on the table</h5>
-                  <p>You skipped <b>{data.unattempted}</b> question{data.unattempted > 1 ? "s" : ""}. With negative marking in mind, attempt questions where you can eliminate at least two options — calculated guessing improves expected score.</p>
+                  <h5>{t("ex_cov_head")}</h5>
+                  <p><Pattern text={t("ex_cov_d")}
+                     x={data.unattempted + " " + t(data.unattempted > 1 ? "ex_q_many" : "ex_q_one")} /></p>
                 </div>
               </div>
             )}
@@ -852,8 +877,8 @@ function Results({ data, onRetake, onExit }) {
               <div className="plan-item good">
                 <div className="plan-ic" style={{ background: SEM.strong }}>✓</div>
                 <div className="plan-txt">
-                  <h5>Keep it up — Your strengths</h5>
-                  <p>Strong performance in <b>{strong.map((t) => t.name).join(", ")}</b>. Maintain with light weekly revision so these stay your scoring anchors on exam day.</p>
+                  <h5>{t("ex_keepitup")}</h5>
+                  <p><Pattern text={t("ex_keep_d")} x={strong.map((w) => w.name).join(", ")} /></p>
                 </div>
               </div>
             )}
@@ -862,11 +887,11 @@ function Results({ data, onRetake, onExit }) {
 
         {/* QUESTION-BY-QUESTION REVIEW */}
         <div className="panel full">
-          <div className="panel-eyebrow">Deep Review</div>
+          <div className="panel-eyebrow">{t("ex_deep_review")}</div>
           <div className="panel-title">{t("ex_qbyq")}</div>
-          <p className="panel-note">Your answer, the correct answer, marks awarded, time spent, and a full explanation for every question.</p>
+          <p className="panel-note">{t("ex_qbyq_sub")}</p>
           <div className="rev-filters">
-            {[["all", "All"], ["correct", "Correct"], ["wrong", "Wrong"], ["skipped", "Skipped"]].map(([k, label]) => (
+            {[["all", t("ex_all")], ["correct", t("ex_correct")], ["wrong", t("ex_wrong")], ["skipped", t("ex_skipped")]].map(([k, label]) => (
               <button key={k} className={"rev-f" + (filter === k ? " active" : "")} onClick={() => setFilter(k)}>
                 {label} ({k === "all" ? data.review.length : k === "correct" ? data.correct : k === "wrong" ? data.wrong : data.unattempted})
               </button>
@@ -965,14 +990,6 @@ function ExamRunner({ onExit, candidateName, candidateId, onSubmitted }) {
     return o;
   }, [EXAM.sections]);
 
-  // timer
-  useEffect(() => {
-    if (screen !== "exam") return;
-    if (timeLeft <= 0) { doSubmit(); return; }
-    const t = setTimeout(() => setTimeLeft((x) => x - 1), 1000);
-    return () => clearTimeout(t);
-    // eslint-disable-next-line
-  }, [screen, timeLeft]);
 
   const curId = () => EXAM.sections[secIdx].questions[qIdx].id;
 
@@ -1058,6 +1075,25 @@ function ExamRunner({ onExit, candidateName, candidateId, onSubmitted }) {
       setSubmitting(false);
     }
   };
+
+  /* Placed AFTER doSubmit deliberately. It used to sit sixty lines above the
+     declaration and call it on timeout, which works only because an effect
+     body runs after the const has initialised. The linter was right to call
+     that fragile; it stayed quiet only because the file was big enough for
+     the analyser to bail out, and one added line surfaced it. */
+  // timer
+  useEffect(() => {
+    if (screen !== "exam") return;
+    // Time running out IS the event here, not state chasing a render: the
+    // paper submits itself. The rule cannot tell the two apart.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (timeLeft <= 0) { doSubmit(); return; }
+    const t = setTimeout(() => setTimeLeft((x) => x - 1), 1000);
+    return () => clearTimeout(t);
+    // doSubmit is not listed on purpose -- it is redefined every render, and
+    // depending on it would restart the countdown continuously.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [screen, timeLeft]);
 
   const retake = () => {
     setScreen("instructions");
@@ -1164,7 +1200,7 @@ function App({ testId, onExit }) {
               Can't start this test
             </div>
             <div style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.6 }}>{err}</div>
-            <button className="begin-btn" style={{ marginTop: 20 }} onClick={onExit}>Back to dashboard</button>
+            <button className="begin-btn" style={{ marginTop: 20 }} onClick={onExit}>{t("ex_back_dash")}</button>
           </div>
         </div>
       </div>

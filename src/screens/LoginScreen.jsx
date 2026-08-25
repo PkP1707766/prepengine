@@ -191,7 +191,7 @@ function LoginScreen({ onStudent, onAdmin, onBack }) {
             <div className="tr">"{t("shloka_en")}"</div>
             <div className="src">Bṛhadāraṇyaka Upaniṣad · I.3.28</div>
           </div>
-          <div className="jn-foot">UPSC · BPSC · State PSC</div>
+          <div className="jn-foot">{t("lg_statepsc")}</div>
         </div>
 
         {/* FORM */}
@@ -234,7 +234,7 @@ function LoginScreen({ onStudent, onAdmin, onBack }) {
                     onChange={(e) => setPassword(e.target.value)} style={{ paddingRight: 44 }}
                     placeholder={mode === "signup" ? t("min8") : "••••••••"}
                     onKeyDown={onEnter(mode === "login" ? doLogin : doSignup)} />
-                  <button className="jn-eye" onClick={() => setShowPwd(!showPwd)} aria-label="Show password" type="button">
+                  <button className="jn-eye" onClick={() => setShowPwd(!showPwd)} aria-label={t("lg_showpwd")} type="button">
                     {showPwd ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
@@ -315,7 +315,7 @@ function LoginScreen({ onStudent, onAdmin, onBack }) {
           <div className="jn-foothelp">
             {onBack && (
               <button onClick={onBack} style={{ marginBottom: 8 }}>
-                <ArrowLeft size={14} /> Back to test series
+                <ArrowLeft size={14} /> {t("lg_back_tests")}
               </button>
             )}
             <button onClick={() => setContact(true)}><Headphones size={14} /> {t("need_help")} {t("contact_us")}</button>

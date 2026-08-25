@@ -1069,6 +1069,58 @@ Object.assign(STR, {
   sd_email:       { en: "Email", hi: "ईमेल" },
   sd_city:        { en: "City", hi: "शहर" },
 
+  /* --- exam report: panels and the improvement plan ---
+     Most of the report already had keys and the component simply never used
+     them -- "Wrong" and "Skipped" sat hardcoded next to a translated
+     "Correct". These are the ones that had no key at all.
+
+     The plan paragraphs are patterns with {x} for the bolded value, because
+     the bolded part does not sit in the same place in both languages. */
+  ex_attempted:   { en: "Attempted {a} of {b} questions in {t}", hi: "{b} में से {a} सवाल किए, {t} में" },
+  ex_percentile:  { en: "Percentile", hi: "पर्सेंटाइल" },
+  ex_est_pct:     { en: "Estimated percentile", hi: "अनुमानित पर्सेंटाइल" },
+  ex_rank_of:     { en: "Rank #{r} of {n}", hi: "{n} में से रैंक #{r}" },
+  ex_savefail:    { en: "We couldn't save this attempt to your account — the report below is still accurate.",
+                    hi: "यह प्रयास आपके खाते में सहेजा नहीं जा सका — नीचे की रिपोर्ट फिर भी सही है।" },
+  ex_vs_title:    { en: "You vs Batch vs Topper", hi: "आप बनाम बैच बनाम टॉपर" },
+  ex_peers_note:  { en: "Your score % against the {n} aspirants who have taken this paper.",
+                    hi: "यह पेपर दे चुके {n} अभ्यर्थियों के मुक़ाबले आपका स्कोर %।" },
+  ex_nopeers:     { en: "Nobody else has taken this paper yet — you're the first.",
+                    hi: "यह पेपर अभी किसी और ने नहीं दिया — आप पहले हैं।" },
+  ex_first_bench: { en: "You set the benchmark on this test.", hi: "इस टेस्ट का मानक आपने तय किया है।" },
+  ex_topicmap:    { en: "Topic Strength Map", hi: "टॉपिक मज़बूती का नक़्शा" },
+  ex_bands:       { en: "Strong / Average / Weak", hi: "मज़बूत / औसत / कमज़ोर" },
+  ex_band_strong: { en: "strong", hi: "मज़बूत" },
+  ex_band_average:{ en: "average", hi: "औसत" },
+  ex_band_weak:   { en: "weak", hi: "कमज़ोर" },
+  ex_timemgmt:    { en: "Time Management", hi: "समय प्रबंधन" },
+  ex_timeper:     { en: "Time Spent per Question", hi: "हर सवाल पर लगा समय" },
+  ex_plan_title:  { en: "Your Personalised Improvement Plan", hi: "आपके लिए बनी सुधार योजना" },
+  ex_plan_note:   { en: "Built from what actually happened in this attempt — your topic accuracy, the questions you spent too long on, and the ones you left blank.",
+                    hi: "इसी प्रयास में जो हुआ, उसी से बनी — आपकी टॉपिक सटीकता, जिन सवालों पर ज़्यादा समय लगा, और जो आपने छोड़ दिए।" },
+  ex_q_one:       { en: "question", hi: "सवाल" },
+  ex_q_many:      { en: "questions", hi: "सवाल" },
+  ex_prio_d:      { en: "You scored below 50% in {x}. Dedicate the next 3–4 study sessions here: revise core concepts, then drill 20–30 PYQs per topic before re-testing.",
+                    hi: "{x} में आपके 50% से कम अंक आए। अगली 3–4 बैठकें यहीं लगाइए: पहले बुनियादी कॉन्सेप्ट दोहराइए, फिर हर टॉपिक पर 20–30 PYQ लगाकर दोबारा टेस्ट दीजिए।" },
+  ex_str_d:       { en: "{x} is in the 50–75% range. You understand the basics but lose marks on tricky variants. Focus on application-level questions and previous mistakes.",
+                    hi: "{x} 50–75% के बीच है। बुनियाद समझ में आ गई है, पर घुमावदार सवालों में अंक कट रहे हैं। एप्लिकेशन वाले सवालों और पिछली ग़लतियों पर ध्यान दीजिए।" },
+  ex_speed_d:     { en: "You spent too long on {x} ({y}). Practise a time cap per question and learn to flag-and-move instead of getting stuck.",
+                    hi: "{x} पर आपने बहुत ज़्यादा समय लगाया ({y})। हर सवाल के लिए समय की हद तय कीजिए, और अटकने के बजाय निशान लगाकर आगे बढ़ना सीखिए।" },
+  ex_cov_d:       { en: "You skipped {x}. With negative marking in mind, attempt questions where you can eliminate at least two options — calculated guessing improves expected score.",
+                    hi: "आपने {x} छोड़ दिए। नेगेटिव मार्किंग ध्यान में रखते हुए वे सवाल कीजिए जिनमें कम से कम दो विकल्प हटा सकें — सोच-समझकर लगाया अंदाज़ा स्कोर बढ़ाता है।" },
+  ex_keep_d:      { en: "Strong performance in {x}. Maintain with light weekly revision so these stay your scoring anchors on exam day.",
+                    hi: "{x} में प्रदर्शन मज़बूत रहा। हफ़्ते में हल्की रिवीज़न से इसे बनाए रखिए, ताकि परीक्षा के दिन यही आपका सहारा बनें।" },
+
+  /* --- login + join: strings that were sitting in the JSX in English --- */
+  lg_statepsc:   { en: "UPSC · BPSC · State PSC", hi: "UPSC · BPSC · राज्य PSC" },
+  lg_showpwd:    { en: "Show password", hi: "पासवर्ड दिखाइए" },
+  lg_back_tests: { en: "Back to test series", hi: "टेस्ट सीरीज़ पर वापस" },
+  jn_coupon_ph:  { en: "Coupon code", hi: "कूपन कोड" },
+  jn_coupon_rm:  { en: "Remove coupon", hi: "कूपन हटाइए" },
+  jn_row_series: { en: "Test series", hi: "टेस्ट सीरीज़" },
+  jn_row_pay:    { en: "You pay", hi: "आप देंगे" },
+  jn_compare:    { en: "Compare all test series", hi: "सभी टेस्ट सीरीज़ देखिए" },
+
   /* --- profile view ---
      The whole panel was hardcoded English, so a Hindi profile showed a Hindi
      sidebar wrapped around an English form. */
