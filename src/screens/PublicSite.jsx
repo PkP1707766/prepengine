@@ -305,18 +305,19 @@ const CSS = `
    the hero's ticks and the catalogue heading. A short gold rule above it gives
    the moment a top rather than starting cold. */
 /* The hero's dark foot used to meet the cream strip on a single hard line, so
-   the band read like a plate laid on the page. This ramp carries the maroon
-   down into the cream over its own height, weighted so the cream rises most of
-   the way up (softer than a flat 50/50). color-mix keeps every stop inside the
-   active palette, so it stays warm -- never a grey mid-tone -- in each theme.
-   Top stop is brand-900 (the hero's bottom), last is cream-50 (the band). */
-.pb-seam{height:74px;
-  background:linear-gradient(to bottom,
-    var(--brand-900) 0%,
-    color-mix(in srgb, var(--brand-900) 60%, var(--cream-50)) 34%,
-    color-mix(in srgb, var(--brand-900) 27%, var(--cream-50)) 62%,
-    color-mix(in srgb, var(--brand-900) 8%, var(--cream-50)) 84%,
-    var(--cream-50) 100%)}
+   the band read like a plate laid on the page. A flat vertical blend only
+   traded the line for a dusty haze band, so instead the cream rises into the
+   maroon on a wide, shallow arch: a radial centred below the seam paints cream
+   inside its reach and maroon beyond, with a short warm feather along the curve
+   so the edge is soft, not a knife line. Crisp colours, no muddy band, and the
+   boundary reads as an organic curve rather than a slab edge. Top corners stay
+   full maroon to meet the hero; the floor stays cream to meet the band. */
+.pb-seam{height:66px;
+  background:radial-gradient(135% 100% at 50% 100%,
+    var(--cream-50) 64%,
+    color-mix(in srgb, var(--brand-900) 22%, var(--cream-50)) 70%,
+    color-mix(in srgb, var(--brand-900) 72%, var(--cream-50)) 75%,
+    var(--brand-900) 80%)}
 
 /* On the page cream, textured with a faint mandala like the offer carousel it
    borrows its swipe from -- not the flat cream block it used to be. */
