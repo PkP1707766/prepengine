@@ -504,6 +504,7 @@ const TYPE_ICON = { pdf: { ic: <FileText size={22} />, c: { bg: "#fbeaea", fg: "
    ATTEMPT ANALYSIS MODAL
    ============================================================ */
 function AnalysisModal({ a, onClose, onRetake }) {
+  const { t } = useLang();
   const pct = a.scorePct ?? (a.maxScore > 0 ? (a.score / a.maxScore) * 100 : 0);
   const grade = gradeFor(pct);
   const weak = (a.topics || []).filter((t) => t.band === "weak");
@@ -534,9 +535,9 @@ function AnalysisModal({ a, onClose, onRetake }) {
             <SmallStat n={a.skipped} l="Skipped" c="var(--muted)" bg="#f7efdd" />
           </div>
 
-          <div className="eyebrow" style={{ marginBottom: 10 }}>Section-wise</div>
+          <div className="eyebrow" style={{ marginBottom: 10 }}>{t("sd_secwise")}</div>
           {(a.sections || []).length === 0 && (
-            <div style={{ fontSize: 13, color: "var(--muted)" }}>No section breakdown was recorded for this attempt.</div>
+            <div style={{ fontSize: 13, color: "var(--muted)" }}>{t("sd_nosec")}</div>
           )}
           {(a.sections || []).map((s) => {
             const p = (s.score / s.max) * 100;
@@ -554,7 +555,7 @@ function AnalysisModal({ a, onClose, onRetake }) {
 
           {weak.length > 0 && (
             <div className="sw-box w" style={{ marginTop: 16 }}>
-              <h4><Target size={15} style={{ color: SEM.weak }} />Revise first</h4>
+              <h4><Target size={15} style={{ color: SEM.weak }} />{t("sd_revise_first")}</h4>
               <p style={{ margin: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
                 You lost the most marks in <b>{weak.map((t) => t.name).join(", ")}</b>. Go through those topics before your next attempt.
               </p>
@@ -618,7 +619,7 @@ function HomeView({ go, setAnalysis, onStart }) {
           <div style={{ width: 62, height: 62, borderRadius: 18, margin: "0 auto 16px", display: "grid", placeItems: "center", background: "linear-gradient(135deg,#ecca88,#dca84a)", color: "#fff" }}>
             <Play size={28} />
           </div>
-          <div style={{ fontFamily: "var(--font-display)", fontSize: 21, color: "var(--ink)" }}>Your first mock is waiting</div>
+          <div style={{ fontFamily: "var(--font-display)", fontSize: 21, color: "var(--ink)" }}>{t("sd_first_mock")}</div>
           <p style={{ fontSize: 14, color: "var(--muted)", maxWidth: 440, margin: "10px auto 20px", lineHeight: 1.7 }}>
             Everything on this dashboard — your trend line, subject map, rank and streak — is built from real attempts.
             Take one test and it all comes alive.
@@ -635,16 +636,16 @@ function HomeView({ go, setAnalysis, onStart }) {
         </div>
       ) : (
         <div className="stats">
-          <StatCard icon={<FileText size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={derived.n} label="Tests attempted"
+          <StatCard icon={<FileText size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={derived.n} label={t("sd_tests_att")}
                     sub={derived.n === 1 ? "just getting started" : "keep going"} />
-          <StatCard icon={<Target size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }} n={derived.avgScore.toFixed(0) + "%"} label="Average score"
+          <StatCard icon={<Target size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }} n={derived.avgScore.toFixed(0) + "%"} label={t("sd_avg_score")}
                     sub={derived.lastDelta === null ? "across all attempts"
                       : <>{derived.lastDelta >= 0 ? <ArrowUp size={12} /> : <ArrowDown size={12} />} {Math.abs(derived.lastDelta).toFixed(0)}% vs last test</>}
                     subColor={derived.lastDelta === null ? undefined : derived.lastDelta >= 0 ? "#1f8a4c" : "#c0392b"} />
           <StatCard icon={<Award size={20} />} color={{ bg: "#fcf3df", fg: "#d4a64a" }}
-                    n={derived.bestPct != null ? derived.bestPct : "—"} label="Best percentile"
+                    n={derived.bestPct != null ? derived.bestPct : "—"} label={t("sd_best_pct")}
                     sub={derived.bestPct != null && last ? "in " + last.title.slice(0, 18) : "ranked once others attempt"} />
-          <StatCard icon={<Flame size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }} n={derived.streak + (derived.streak === 1 ? " day" : " days")} label="Study streak"
+          <StatCard icon={<Flame size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }} n={derived.streak + (derived.streak === 1 ? " day" : " days")} label={t("sd_streak_l")}
                     sub={derived.streak === 0 ? "practise today to start one" : derived.activeDays + " active days total"} />
         </div>
       )}
@@ -652,7 +653,7 @@ function HomeView({ go, setAnalysis, onStart }) {
       {!firstRun && (
         <div className="grid2 mb">
           <div className="card card-pad">
-            <div className="sec-head"><div><div className="eyebrow">Your trajectory</div><div className="panel-title">Score &amp; percentile trend</div></div>
+            <div className="sec-head"><div><div className="eyebrow">{t("sd_trajectory")}</div><div className="panel-title">{t("sd_trend_l")}</div></div>
               <button className="btn btn-ghost btn-sm" onClick={() => go("performance")}>Full analytics<ChevronRight size={15} /></button></div>
             <div style={{ height: 230 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -680,14 +681,14 @@ function HomeView({ go, setAnalysis, onStart }) {
                 <div style={{ fontSize: 12, color: "var(--muted)", fontWeight: 600 }}>{last ? last.accuracy.toFixed(0) + "% accuracy" : ""}</div>
               </Ring>
             </div>
-            {last && <button className="btn btn-primary" onClick={() => setAnalysis(last)}><Eye size={16} />View full analysis</button>}
+            {last && <button className="btn btn-primary" onClick={() => setAnalysis(last)}><Eye size={16} />{t("sd_view_full")}</button>}
           </div>
         </div>
       )}
 
       <div className="grid2 mb">
         <div className="card card-pad">
-          <div className="sec-head"><div><div className="eyebrow">Pick up where you left</div><div className="panel-title">Available tests</div></div>
+          <div className="sec-head"><div><div className="eyebrow">{t("sd_pickup")}</div><div className="panel-title">{t("sd_available")}</div></div>
             <button className="btn btn-ghost btn-sm" onClick={() => go("tests")}>View all<ChevronRight size={15} /></button></div>
           {available.length === 0 ? (
             <div style={{ padding: "26px 0", textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>
@@ -706,7 +707,7 @@ function HomeView({ go, setAnalysis, onStart }) {
         </div>
 
         <div className="card card-pad">
-          <div className="sec-head"><div><div className="eyebrow">Strengths &amp; focus</div><div className="panel-title">Where you stand</div></div></div>
+          <div className="sec-head"><div><div className="eyebrow">{t("sd_str_focus")}</div><div className="panel-title">{t("sd_where_stand")}</div></div></div>
           {subjects.length === 0 ? (
             <div style={{ padding: "26px 0", textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>
               Attempt a test and your subject-wise strengths appear here.
@@ -714,11 +715,11 @@ function HomeView({ go, setAnalysis, onStart }) {
           ) : (
             <div className="sw-grid">
               <div className="sw-box s">
-                <h4><CheckCircle2 size={15} style={{ color: SEM.strong }} />Strongest</h4>
+                <h4><CheckCircle2 size={15} style={{ color: SEM.strong }} />{t("sd_strongest")}</h4>
                 <div className="sw-list">{strong.map((s) => <div className="sw-item" key={s.name}><span>{s.name}</span><span style={{ color: SEM.strong }}>{s.acc}%</span></div>)}</div>
               </div>
               <div className="sw-box w">
-                <h4><Target size={15} style={{ color: SEM.weak }} />Needs work</h4>
+                <h4><Target size={15} style={{ color: SEM.weak }} />{t("sd_needs_work")}</h4>
                 <div className="sw-list">{weak.map((s) => <div className="sw-item" key={s.name}><span>{s.name}</span><span style={{ color: SEM.weak }}>{s.acc}%</span></div>)}</div>
               </div>
             </div>
@@ -727,7 +728,7 @@ function HomeView({ go, setAnalysis, onStart }) {
       </div>
 
       <div className="card card-pad mb">
-        <div className="sec-head"><div><div className="eyebrow">Last 12 weeks</div><div className="panel-title">Study activity</div></div>
+        <div className="sec-head"><div><div className="eyebrow">{t("sd_last12")}</div><div className="panel-title">{t("sd_activity")}</div></div>
           <span style={{ fontSize: 13, color: "var(--muted)", fontWeight: 600 }}><Flame size={14} style={{ verticalAlign: -2, color: "var(--red)" }} /> {derived.streak} {t("sd_pf_streak")}</span></div>
         <div style={{ overflowX: "auto" }}>
           <div className="heat">{activity.map((d, i) => (
@@ -740,7 +741,7 @@ function HomeView({ go, setAnalysis, onStart }) {
 
       {enrollments.length > 0 && (
         <div className="card card-pad">
-          <div className="eyebrow">Your access</div>
+          <div className="eyebrow">{t("sd_your_access")}</div>
           <div className="panel-title" style={{ marginBottom: 10 }}>Active enrollment</div>
           {enrollments.map((e) => (
             <div key={e.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid var(--line)", flexWrap: "wrap", gap: 8 }}>
@@ -763,6 +764,7 @@ function HomeView({ go, setAnalysis, onStart }) {
    VIEW: TEST SERIES
    ============================================================ */
 function TestsView({ setAnalysis, onStart, toast }) {
+  const { t } = useLang();
   const { tests, attempts, reminders, setReminders, profile } = useData();
   const [tab, setTab] = useState("available");
   const [q, setQ] = useState("");
@@ -808,12 +810,12 @@ function TestsView({ setAnalysis, onStart, toast }) {
             <button key={k} className={"tab" + (tab === k ? " active" : "")} onClick={() => setTab(k)}>{l}</button>
           ))}
         </div>
-        {tab !== "attempted" && <div className="lb-search" style={{ minWidth: 220 }}><Search size={15} /><input placeholder="Search tests…" value={q} onChange={(e) => setQ(e.target.value)} /></div>}
+        {tab !== "attempted" && <div className="lb-search" style={{ minWidth: 220 }}><Search size={15} /><input placeholder={t("sd_search_tests")} value={q} onChange={(e) => setQ(e.target.value)} /></div>}
         {tab === "attempted" && attempted.length > 1 && (
           <select className="sort-select" value={sort} onChange={(e) => setSort(e.target.value)}>
-            <option value="date">Sort: Most recent</option>
-            <option value="score">Sort: Highest score</option>
-            <option value="rank">Sort: Best rank</option>
+            <option value="date">{t("sd_sort_recent")}</option>
+            <option value="score">{t("sd_sort_score")}</option>
+            <option value="rank">{t("sd_sort_rank")}</option>
           </select>
         )}
       </div>
@@ -859,7 +861,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
               </div>
               <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} Qs</span><span><Clock size={14} />{t.durationMin} min</span></div>
               <button className={"btn btn-sm " + (reminders.has(t.id) ? "btn-primary" : "btn-ghost")} onClick={() => toggleReminder(t)}>
-                {reminders.has(t.id) ? <><Check size={16} />Reminder set</> : <><Bell size={16} />Set reminder</>}
+                {reminders.has(t.id) ? <><Check size={16} />{t("sd_rem_set")}</> : <><Bell size={16} />{t("sd_set_rem")}</>}
               </button>
             </div>
           ))}
@@ -888,7 +890,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
                   <div style={{ width: 1, alignSelf: "stretch", background: "var(--line)" }} />
                   <div><div className="test-score-n">{a.rank ? "#" + a.rank : "—"}</div><div className="test-score-l">Rank</div></div>
                 </div>
-                <button className="btn btn-ghost" onClick={() => setAnalysis(a)}><Eye size={16} />View analysis</button>
+                <button className="btn btn-ghost" onClick={() => setAnalysis(a)}><Eye size={16} />{t("sd_view_anal")}</button>
               </div>
             );
           })}
@@ -902,6 +904,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
    VIEW: PERFORMANCE
    ============================================================ */
 function PerformanceView({ go }) {
+  const { t } = useLang();
   const { attempts, subjects, derived, peer } = useData();
 
   if (attempts.length === 0) {
@@ -909,7 +912,7 @@ function PerformanceView({ go }) {
       <div className="card card-pad">
         <EmptyState
           icon={<BarChart3 size={26} />}
-          title="No analytics yet"
+          title={t("sd_no_anal")}
           text="Analytics are built entirely from your own attempts — nothing here is simulated. Take a test and this page fills in."
           action={<button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => go("tests")}><Play size={16} />Browse tests</button>}
         />
@@ -937,18 +940,18 @@ function PerformanceView({ go }) {
   return (
     <div>
       <div className="stats">
-        <StatCard icon={<FileText size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={derived.n} label="Tests taken" />
-        <StatCard icon={<Target size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }} n={derived.avgScore.toFixed(0) + "%"} label="Avg score"
+        <StatCard icon={<FileText size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={derived.n} label={t("sd_tests_taken")} />
+        <StatCard icon={<Target size={20} />} color={{ bg: "#e8f6ee", fg: "#1f8a4c" }} n={derived.avgScore.toFixed(0) + "%"} label={t("sd_avg_score_s")}
                   sub={derived.lastDelta === null ? "best " + derived.bestScore.toFixed(0) + "%" : (derived.lastDelta >= 0 ? "↑ " : "↓ ") + Math.abs(derived.lastDelta).toFixed(0) + "% vs last test"}
                   subColor={derived.lastDelta !== null ? (derived.lastDelta >= 0 ? "#1f8a4c" : "#c0392b") : undefined} />
-        <StatCard icon={<Award size={20} />} color={{ bg: "#fcf3df", fg: "#d4a64a" }} n={derived.bestPct ?? "—"} label="Best percentile" />
-        <StatCard icon={<CheckCircle2 size={20} />} color={{ bg: "#f6ecd2", fg: "#7a1f1f" }} n={derived.avgAcc.toFixed(0) + "%"} label="Avg accuracy" />
-        <StatCard icon={<Clock size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }} n={fmtDuration(derived.totalTime)} label="Total time" />
+        <StatCard icon={<Award size={20} />} color={{ bg: "#fcf3df", fg: "#d4a64a" }} n={derived.bestPct ?? "—"} label={t("sd_best_pct")} />
+        <StatCard icon={<CheckCircle2 size={20} />} color={{ bg: "#f6ecd2", fg: "#7a1f1f" }} n={derived.avgAcc.toFixed(0) + "%"} label={t("sd_avg_acc")} />
+        <StatCard icon={<Clock size={20} />} color={{ bg: "#fbeaea", fg: "#c0392b" }} n={fmtDuration(derived.totalTime)} label={t("sd_total_time")} />
       </div>
 
       <div className="card card-pad mb">
-        <div className="eyebrow">Your trajectory</div>
-        <div className="panel-title">Score &amp; percentile over time</div>
+        <div className="eyebrow">{t("sd_trajectory")}</div>
+        <div className="panel-title">{t("sd_trend_time")}</div>
         <p className="panel-note">Every attempt since you started — the trend is what matters, not any single test.</p>
         <div style={{ height: 280 }}>
           <ResponsiveContainer width="100%" height="100%">
@@ -968,10 +971,10 @@ function PerformanceView({ go }) {
       <div className="grid2b mb">
         <div className="card card-pad">
           <div className="eyebrow">Diagnosis</div>
-          <div className="panel-title">Subject strength map</div>
-          <p className="panel-note">Accuracy across subjects, averaged over all attempts.</p>
+          <div className="panel-title">{t("sd_subj_map")}</div>
+          <p className="panel-note">{t("sd_subj_sub")}</p>
           {subjects.length < 3 ? (
-            <EmptyState compact icon={<Target size={24} />} title="Not enough data yet"
+            <EmptyState compact icon={<Target size={24} />} title={t("sd_not_enough")}
                         text="Attempt a full-length test covering several subjects to see this map." />
           ) : (
             <div style={{ height: 270 }}>
@@ -990,13 +993,13 @@ function PerformanceView({ go }) {
 
         <div className="card card-pad">
           <div className="eyebrow">Benchmark</div>
-          <div className="panel-title">You vs batch vs topper</div>
+          <div className="panel-title">{t("sd_vs")}</div>
           <p className="panel-note">
             {cmp ? "Average score % against everyone who has taken the same tests." : "Comparison unlocks once other aspirants attempt the same tests."}
           </p>
           {!cmp ? (
-            <EmptyState compact icon={<Trophy size={24} />} title="You're ahead of the pack"
-                        text="Nobody else has attempted your tests yet, so there is no honest comparison to draw." />
+            <EmptyState compact icon={<Trophy size={24} />} title={t("sd_ahead")}
+                        text={t("sd_ahead_d")} />
           ) : (
             <div style={{ height: 270 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -1018,11 +1021,11 @@ function PerformanceView({ go }) {
 
       <div className="grid2b mb">
         <div className="card card-pad">
-          <div className="eyebrow">Subject-wise</div>
-          <div className="panel-title">Strong / Average / Weak</div>
-          <p className="panel-note" style={{ marginBottom: 18 }}>Each subject graded by your accuracy.</p>
+          <div className="eyebrow">{t("sd_subjwise")}</div>
+          <div className="panel-title">{t("sd_bands")}</div>
+          <p className="panel-note" style={{ marginBottom: 18 }}>{t("sd_bands_sub")}</p>
           {subjects.length === 0 ? (
-            <EmptyState compact icon={<Layers size={24} />} title="No subject data yet" text="It appears after your first attempt." />
+            <EmptyState compact icon={<Layers size={24} />} title={t("sd_no_subj")} text="It appears after your first attempt." />
           ) : subjects.map((s) => {
             const col = SEM[s.band], bg = s.band === "strong" ? "var(--grn-bg)" : s.band === "average" ? "var(--amb-bg)" : "var(--red-bg)";
             return (
@@ -1036,9 +1039,9 @@ function PerformanceView({ go }) {
         </div>
 
         <div className="card card-pad">
-          <div className="eyebrow">Time management</div>
-          <div className="panel-title">Avg time per question</div>
-          <p className="panel-note">Trending down means you're getting faster.</p>
+          <div className="eyebrow">{t("sd_timemgmt")}</div>
+          <div className="panel-title">{t("sd_avg_time_q")}</div>
+          <p className="panel-note">{t("sd_trend_down")}</p>
           <div style={{ height: 250 }}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trend} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -1054,12 +1057,12 @@ function PerformanceView({ go }) {
       </div>
 
       <div className="card card-pad">
-        <div className="eyebrow">Action plan</div>
-        <div className="panel-title">What to focus on next</div>
-        <p className="panel-note">Built from your performance across all attempts.</p>
+        <div className="eyebrow">{t("sd_action_plan")}</div>
+        <div className="panel-title">{t("sd_focus_next")}</div>
+        <p className="panel-note">{t("sd_plan_sub")}</p>
         <div className="sw-grid">
           <div className="sw-box w">
-            <h4><Target size={15} style={{ color: SEM.weak }} />Priority subjects</h4>
+            <h4><Target size={15} style={{ color: SEM.weak }} />{t("sd_prio_subj")}</h4>
             <p style={{ margin: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               {weakest.length === 0
                 ? "No subject is in the weak band right now — hold the standard and add difficulty rather than volume."
@@ -1067,7 +1070,7 @@ function PerformanceView({ go }) {
             </p>
           </div>
           <div className="sw-box s">
-            <h4><TrendingUp size={15} style={{ color: SEM.strong }} />Momentum</h4>
+            <h4><TrendingUp size={15} style={{ color: SEM.strong }} />{t("sd_momentum")}</h4>
             <p style={{ margin: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.55 }}>
               {attempts.length < 2
                 ? <>You've scored <b>{derived.bestScore.toFixed(0)}%</b> so far. One attempt is a data point, not a trend — take two more and this turns into a real trajectory.</>
@@ -1084,6 +1087,7 @@ function PerformanceView({ go }) {
    VIEW: BATCHES
    ============================================================ */
 function BatchesView({ go, onStart, toast }) {
+  const { t } = useLang();
   const { enrollments, tests, attempts } = useData();
   const now = new Date();
   const palette = ["#b8923a", "#7a1f1f", "#1a6b3c", "#a07c2a"];
@@ -1093,9 +1097,9 @@ function BatchesView({ go, onStart, toast }) {
       <div className="card card-pad">
         <EmptyState
           icon={<GraduationCap size={26} />}
-          title="No batch enrollment yet"
+          title={t("sd_no_batch")}
           text="When you join a course or batch, it shows up here with its validity and how far through the test plan you are."
-          action={<button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => go("tests")}><FileText size={16} />See available tests</button>}
+          action={<button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => go("tests")}><FileText size={16} />{t("sd_see_avail")}</button>}
         />
       </div>
     );
@@ -1138,11 +1142,11 @@ function BatchesView({ go, onStart, toast }) {
                 <span>{done} of {total} test{total === 1 ? "" : "s"} done</span><span>{p.toFixed(0)}%</span>
               </div>
               {expired ? (
-                <button className="btn btn-locked" style={{ marginTop: 16 }} onClick={() => toast("This enrollment has expired — contact us to renew")}><Lock size={16} />Renew access</button>
+                <button className="btn btn-locked" style={{ marginTop: 16 }} onClick={() => toast(t("sd_renew_msg"))}><Lock size={16} />{t("sd_renew")}</button>
               ) : next ? (
-                <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => onStart(next.id)}><Play size={16} />Continue — {next.title.slice(0, 22)}</button>
+                <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => onStart(next.id)}><Play size={16} />{t("sd_continue")} — {next.title.slice(0, 22)}</button>
               ) : (
-                <button className="btn btn-ghost" style={{ marginTop: 16 }} onClick={() => go("performance")}><BarChart3 size={16} />All done — review analytics</button>
+                <button className="btn btn-ghost" style={{ marginTop: 16 }} onClick={() => go("performance")}><BarChart3 size={16} />{t("sd_all_done")}</button>
               )}
             </div>
           </div>
@@ -1156,6 +1160,7 @@ function BatchesView({ go, onStart, toast }) {
    VIEW: STUDY MATERIAL
    ============================================================ */
 function MaterialsView({ toast }) {
+  const { t } = useLang();
   const { materials } = useData();
   const [f, setF] = useState("all");
   const [q, setQ] = useState("");
@@ -1179,12 +1184,12 @@ function MaterialsView({ toast }) {
         <div className="tabs">{types.map((t) => (
           <button key={t} className={"tab" + (f === t ? " active" : "")} onClick={() => setF(t)}>{t === "all" ? "All" : t.toUpperCase()}</button>
         ))}</div>
-        <div className="lb-search" style={{ minWidth: 220 }}><Search size={15} /><input placeholder="Search materials or subject…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+        <div className="lb-search" style={{ minWidth: 220 }}><Search size={15} /><input placeholder={t("sd_search_mat")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
       </div>
 
       {materials.length === 0 ? (
         <div className="card card-pad">
-          <EmptyState icon={<FolderOpen size={26} />} title="No study material yet"
+          <EmptyState icon={<FolderOpen size={26} />} title={t("sd_no_mat")}
                       text="PDFs, notes and video links your mentor uploads will appear here." />
         </div>
       ) : filtered.length === 0 ? (
@@ -1203,7 +1208,7 @@ function MaterialsView({ toast }) {
                   <div className="mat-sub">
                     {m.subject ? <><span className="mat-subj-tag">{m.subject}</span> · </> : null}
                     {m.isFree ? <span style={{ color: "var(--green)", fontWeight: 700 }}>Free</span>
-                              : <span style={{ color: "var(--gold-2)", fontWeight: 700 }}>Included in your plan</span>}
+                              : <span style={{ color: "var(--gold-2)", fontWeight: 700 }}>{t("sd_included")}</span>}
                   </div>
                 </div>
                 <button className="btn btn-sm btn-ghost" onClick={() => openItem(m)} style={{ flex: "0 0 auto" }}>
@@ -1222,6 +1227,7 @@ function MaterialsView({ toast }) {
    VIEW: LEADERBOARD
    ============================================================ */
 function LeaderboardView({ toast }) {
+  const { t } = useLang();
   const { profile, leaderboard, derived } = useData();
   const [q, setQ] = useState("");
   const colors = ["#dca84a", "#b0a080", "#b8923a"];
@@ -1243,7 +1249,7 @@ function LeaderboardView({ toast }) {
   if (rows.length === 0) {
     return (
       <div className="card card-pad">
-        <EmptyState icon={<Trophy size={26} />} title="The board is empty"
+        <EmptyState icon={<Trophy size={26} />} title={t("sd_board_empty")}
                     text="Rankings are computed from real attempts across all aspirants. Take a test and you'll be the first name on it." />
       </div>
     );
@@ -1279,8 +1285,8 @@ function LeaderboardView({ toast }) {
 
       <div className="card">
         <div className="sec-head" style={{ padding: "18px 20px 0" }}>
-          <div><h2>Top performers</h2><div className="note">Ranked by average score across all attempts</div></div>
-          <div className="lb-search"><Search size={15} /><input placeholder="Find an aspirant…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+          <div><h2>{t("sd_top_perf")}</h2><div className="note">{t("sd_ranked_by")}</div></div>
+          <div className="lb-search"><Search size={15} /><input placeholder={t("sd_find_asp")} value={q} onChange={(e) => setQ(e.target.value)} /></div>
         </div>
         <div style={{ marginTop: 14 }}>
           {filtered.length === 0 && <div style={{ padding: "30px 20px", textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>No aspirant matches "{q}"</div>}
@@ -1591,7 +1597,7 @@ function ReferView({ toast }) {
           <div className="rf-code"><span>{stats.code}</span></div>
 
           <div className="rf-linkrow">
-            <input className="rf-linkbox" readOnly value={link} onFocus={(e) => e.target.select()} aria-label="Your invite link" />
+            <input className="rf-linkbox" readOnly value={link} onFocus={(e) => e.target.select()} aria-label={t("sd_your_link")} />
             <button className="rf-act rf-act-gold" onClick={copy}><Copy size={15} /> {t("sd_ref_copy")}</button>
             <button className="rf-act rf-act-line" onClick={share}><Share2 size={15} /> {t("sd_ref_share")}</button>
           </div>
@@ -1959,7 +1965,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
     return (
       <div className="sd-root">
         <style>{CSS}</style>
-        <div className="loader"><DiyaLogo size={40} ring /> Loading your dashboard…</div>
+        <div className="loader"><DiyaLogo size={40} ring /> {t("sd_loading_dash")}</div>
       </div>
     );
   }
@@ -1971,7 +1977,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
         <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
           <div style={{ maxWidth: 440, width: "100%" }}>
             <ErrorState message={loadError} onRetry={() => { setLoading(true); load(); }} />
-            <button className="btn btn-ghost" style={{ marginTop: 8 }} onClick={onLogout}><LogOut size={16} />Sign out</button>
+            <button className="btn btn-ghost" style={{ marginTop: 8 }} onClick={onLogout}><LogOut size={16} />{t("sd_signout")}</button>
           </div>
         </div>
       </div>
@@ -2017,7 +2023,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
         <div className="main">
           <header className="topbar">
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <button className="hamburger" onClick={() => setSbOpen(true)} aria-label="Open menu"><Menu size={20} /></button>
+              <button className="hamburger" onClick={() => setSbOpen(true)} aria-label={t("sd_open_menu")}><Menu size={20} /></button>
               <div><h1>{t(META_KEY[view])}</h1><div className="sub">{t(META_KEY[view] + "_s")}</div></div>
             </div>
             <div className="tb-right">
@@ -2044,7 +2050,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
               </div>
               <ChromeControls />
               <button className="bell" title="Log out" aria-label="Log out" onClick={onLogout} style={{ marginRight: 2 }}><LogOut size={19} /></button>
-              <button className="tb-av" onClick={() => go("profile")} aria-label="Open profile"
+              <button className="tb-av" onClick={() => go("profile")} aria-label={t("sd_open_profile")}
                       style={profile.avatarUrl ? { backgroundImage: `url(${profile.avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                 {!profile.avatarUrl && initials(profile.name)}
               </button>
