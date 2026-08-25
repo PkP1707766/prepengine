@@ -2277,6 +2277,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 { key: "q1", a: t("band1_a"), em: t("band1_em"), b: t("band1_b"), line: t("band1_l") },
                 { key: "q2", a: t("band2_a"), em: t("band2_em"), b: t("band2_b"), line: t("band2_l") },
                 { key: "q3", a: t("band3_a"), em: t("band3_em"), b: t("band3_b"), line: t("band3_l") },
+                { key: "q4", a: t("band4_a"), em: t("band4_em"), b: t("band4_b"), line: t("band4_l") },
               ]} />
             </div>
           </div>
