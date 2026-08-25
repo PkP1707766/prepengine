@@ -256,14 +256,6 @@ function useBrandChrome() {
         [data-applang="hi"] .pb-h1 em,
         [data-applang="hi"] .pb-h2 em{ font-style:normal; font-size:1em; }
 
-        /* The catalogue hook is set in the Latin quote serif, which has no
-           Devanagari; in Hindi it takes the same display face as the headings,
-           without a slant Rozha One does not carry. No gradient -- the title
-           above it already carries one, and two would muddy the pair. */
-        [data-applang="hi"] .pb-hook{
-          font-family:var(--font-deva-display); font-style:normal; font-weight:400;
-        }
-
         /* The gradient goes on whatever element actually holds the text.
 
            For most headings that is the heading itself. NOT for the hero: its
@@ -792,11 +784,6 @@ Object.assign(STR, {
 
   /* --- catalogue --- */
   cat_h2:    { en: "One exam. One price. Nothing extra.", hi: "एक परीक्षा। एक क़ीमत। कुछ भी अतिरिक्त नहीं।" },
-  /* A hook with some heat under the catalogue title. "battle" is the site's
-     own register -- An Academy of Inner Fire, the diya, "from darkness unto
-     light" -- so the exam as a fight is not a reach here. */
-  cat_hook:  { en: "You've chosen your battle. We won't charge you for someone else's.",
-               hi: "आपने अपनी जंग चुन ली है। किसी और की जंग का दाम हम नहीं लेते।" },
   tab_all:   { en: "All exams", hi: "सभी परीक्षाएँ" },
   cat_empty: { en: "No test series published for this exam yet.", hi: "इस परीक्षा के लिए अभी कोई टेस्ट सीरीज़ नहीं आई है।" },
 

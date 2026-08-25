@@ -289,10 +289,14 @@ const CSS = `
 .pb-sub{color:var(--ink-600);font-size:15.5px;line-height:1.65;margin:0}
 .pb-h2 em{font-family:var(--font-quote);font-style:italic;font-weight:500;font-size:1.08em;color:var(--brand-600)}
 /* Under a section title, a hook with some heat: the quote serif in italic,
-   brand-coloured, one balanced measure. */
+   brand-coloured. Kept to ONE line -- it is an English tagline whose rhythm is
+   the point, and a wrap breaks the two-beat cadence. The size is capped for a
+   wide screen and driven off the viewport below it, so the line still fits on a
+   phone; .pb-sec-narrow clips horizontally, so a slow-loading fallback face
+   that runs a hair wide cannot push a scrollbar onto the page. */
 .pb-hook{font-family:var(--font-quote);font-style:italic;font-weight:500;
-  font-size:clamp(17px,2.1vw,21px);line-height:1.45;color:var(--brand-600);
-  max-width:600px;margin:14px auto 0;text-wrap:balance}
+  white-space:nowrap;font-size:clamp(17px,2.1vw,21px);line-height:1.45;
+  color:var(--brand-600);margin:14px auto 0}
 
 .pb-sec-mandala{position:absolute;top:-74px;left:50%;transform:translateX(-50%);
   width:460px;height:460px;opacity:.15;pointer-events:none;z-index:0}
@@ -773,7 +777,12 @@ const CSS = `
   .pb-sec-head{margin-bottom:28px}
   .pb-h2{font-size:25px;line-height:1.2;text-wrap:balance}
   .pb-sub{font-size:14.5px;line-height:1.6}
-  .pb-hook{font-size:17px;line-height:1.4;margin-top:12px}
+  /* One line on a phone too. The section stacks two paddings (its own and the
+     narrow wrapper's), leaving barely 240px at 320px, so the hook reclaims the
+     wrapper's 18px on each side and the size is driven off the viewport to fit
+     what is left. sec-narrow clips horizontally, so even a hair over cannot
+     scroll the page. */
+  .pb-hook{font-size:clamp(11px,3.55vw,20px);line-height:1.4;margin:12px -18px 0}
   .pb-eyebrow{font-size:11px;letter-spacing:.12em}
 
   .pb-grid{gap:16px;grid-template-columns:1fr}
@@ -2200,7 +2209,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
                 <Mandala className="pb-sec-mandala" />
                 <div className="pb-eyebrow">{t("nav_tests")}</div>
                 <h2 className="pb-h2"><Sentences text={t("cat_h2")} /></h2>
-                <p className="pb-hook">{t("cat_hook")}</p>
+                {/* An English tagline by design -- its punch does not survive a
+                    translation, so it reads the same in both languages. */}
+                <p className="pb-hook">You’ve chosen your battle. We won’t charge you for someone else’s.</p>
               </div>
 
               {examTabs.length > 1 && (
