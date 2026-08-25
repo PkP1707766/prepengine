@@ -1442,7 +1442,7 @@ function ProfileView({ toast }) {
 
       <div className="card card-pad">
         <div className="sec-head"><div><div className="eyebrow">{t("sd_ach_eyebrow")}</div><div className="panel-title">{t("sd_ach_h")}</div></div>
-          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--gold-2)" }}>{earned} {t("sd_ach_of")} {achievements.length} {t("sd_ach_unlocked")}</span></div>
+          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--gold-2)" }}>{t("sd_ach_count").replace("{a}", earned).replace("{b}", achievements.length)}</span></div>
         <div className="ach-grid">
           {achievements.map((a) => {
             const Icon = a.icon;
