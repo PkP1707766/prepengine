@@ -304,6 +304,16 @@ const CSS = `
    centred on the cream. It replaced four small feature columns that repeated
    the hero's ticks and the catalogue heading. A short gold rule above it gives
    the moment a top rather than starting cold. */
+/* Marks the hero/cream seam with the same warm gold-to-maroon accent the
+   catalogue cards carry on top -- brand colour, not a muddy maroon/cream blend.
+   A hairline of maroon under the bar seats it against the hero so the bar reads
+   as a deliberate rule rather than a stripe dropped on the cream. */
+.pb-seam{height:5px;border-top:2px solid var(--brand-900);
+  background:linear-gradient(90deg,var(--gold-500),var(--brand-600))}
+/* Light only: in dark mode the two sections already meet cleanly, so the rule
+   stays out of the way. (data-theme is always an explicit light/dark here.) */
+[data-theme="dark"] .pb-seam{display:none}
+
 /* On the page cream, textured with a faint mandala like the offer carousel it
    borrows its swipe from -- not the flat cream block it used to be. */
 .pb-band{background:var(--cream-50);text-align:center;position:relative;overflow:hidden}
@@ -2297,6 +2307,10 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               </ul>
             </div>
           </section>
+
+          {/* A warm gold-to-maroon rule between the hero and the strip, echoing
+              the catalogue cards' top accent. */}
+          <div className="pb-seam" aria-hidden="true" />
 
           {/* ---------------- STRIP ----------------
               Every line here is checkable against the product. The old site
