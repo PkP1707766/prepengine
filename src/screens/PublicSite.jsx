@@ -274,12 +274,26 @@ const CSS = `
 .pb-stage{display:flex;align-items:center;justify-content:center;min-height:340px;position:relative}
 
 /* ---------- FEATURE STRIP ---------- */
-.pb-strip{background:var(--cream-100);border-bottom:1px solid var(--line)}
-.pb-strip-in{max-width:1180px;margin:0 auto;padding:26px 24px;display:grid;grid-template-columns:repeat(4,1fr)}
-.pb-strip-item{padding:0 22px;border-left:1px solid var(--line);font-size:13.5px;color:var(--ink-600);line-height:1.5}
-.pb-strip-item:first-child{border-left:0;padding-left:0}
-.pb-strip-item b{display:block;font-family:var(--font-display);font-size:16px;color:var(--brand-700);
-  margin-bottom:4px;font-weight:600}
+/* A marketing beat between the hero and the catalogue: one hook, one line,
+   centred on the cream. It replaced four small feature columns that repeated
+   the hero's ticks and the catalogue heading. A short gold rule above it gives
+   the moment a top rather than starting cold. */
+.pb-band{background:var(--cream-100);border-bottom:1px solid var(--line);text-align:center}
+.pb-band-in{max-width:760px;margin:0 auto;padding:56px 24px}
+.pb-band-rule{width:44px;height:2px;margin:0 auto 22px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-500),transparent)}
+.pb-band-h{font-family:var(--font-display);font-optical-sizing:auto;
+  font-size:clamp(23px,3.2vw,32px);line-height:1.18;font-weight:600;
+  letter-spacing:-.01em;color:var(--ink-900);margin:0;text-wrap:balance}
+.pb-band-h em{font-family:var(--font-quote);font-style:italic;font-weight:500;
+  font-size:1.06em;color:var(--brand-600)}
+.pb-band-p{font-size:16px;line-height:1.6;color:var(--ink-600);max-width:56ch;margin:15px auto 0}
+/* The hook has no Devanagari in Fraunces; in Hindi it and its accent take the
+   Rozha One display face, without the slant Rozha One does not carry. No
+   gradient -- solid on cream keeps the gold accent legible against it. */
+[data-applang="hi"] .pb-band-h,
+[data-applang="hi"] .pb-band-h em{font-family:var(--font-deva-display);font-weight:400;letter-spacing:0}
+[data-applang="hi"] .pb-band-h em{font-style:normal;font-size:1em}
 
 /* ---------- SECTIONS ---------- */
 .pb-sec{padding-block:76px;position:relative}
@@ -953,13 +967,14 @@ const CSS = `
   .pb-nav.open .link{text-align:left;width:100%}
   .pb-burger{display:flex}
   .pb-head-in{position:relative}
-  .pb-strip-in{grid-template-columns:1fr 1fr;row-gap:20px}
-  .pb-strip-item:nth-child(3){border-left:0;padding-left:0}
+
 }
 @media (max-width:560px){
   .pb-sec{padding-block:56px}
-  .pb-strip-in{grid-template-columns:1fr}
-  .pb-strip-item{border-left:0;padding-left:0}
+  .pb-band-in{padding:40px 20px}
+  .pb-band-rule{margin-bottom:16px}
+  .pb-band-h{font-size:22px;line-height:1.22}
+  .pb-band-p{font-size:14.5px;margin-top:12px}
   .pb-ticket{padding:13px 14px}
   .pb-quote{padding:56px 20px}
   .pb-sec-mandala{width:340px;height:340px}
@@ -1122,7 +1137,7 @@ const CSS = `
   .pb-sec-coupon{padding-block:34px}
   .pb-quote{padding:40px 20px}
   .pb-show-grid{padding:38px 20px;gap:26px}
-  .pb-strip-in{padding:20px 20px}
+
   /* The hero's padding, gap and stage height are set in the phone block
      above, which sits earlier in this sheet -- so a second copy here won at
      equal specificity and undid it. The 190px stage in particular was
@@ -2198,12 +2213,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               Every line here is checkable against the product. The old site
               claimed "1000+ aspirants" against 12 registered accounts; that
               claim is gone rather than restyled. */}
-          <div className="pb-strip">
-            <div className="pb-strip-in">
-              <div className="pb-strip-item"><b>{t("strip1_t")}</b>{t("strip1_d")}</div>
-              <div className="pb-strip-item"><b>{t("strip2_t")}</b>{t("strip2_d")}</div>
-              <div className="pb-strip-item"><b>{t("strip3_t")}</b>{t("strip3_d")}</div>
-              <div className="pb-strip-item"><b>{t("strip4_t")}</b>{t("strip4_d")}</div>
+          <div className="pb-band">
+            <div className="pb-band-in reveal">
+              <div className="pb-band-rule" />
+              <p className="pb-band-h">{t("band_h_a")}<em>{t("band_h_em")}</em>{t("band_h_b")}</p>
+              <p className="pb-band-p">{t("band_line")}</p>
             </div>
           </div>
 

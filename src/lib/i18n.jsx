@@ -773,14 +773,16 @@ Object.assign(STR, {
   tick_nologin:   { en: "No login needed to browse", hi: "देखने के लिए लॉगिन ज़रूरी नहीं" },
 
   /* --- claim strip --- */
-  strip1_t: { en: "Written to the pattern", hi: "पैटर्न के अनुसार बने" },
-  strip1_d: { en: "Same sections, same negative marking", hi: "वही सेक्शन, वही नेगेटिव मार्किंग" },
-  strip2_t: { en: "Weakness, named", hi: "कमज़ोरी, नाम के साथ" },
-  strip2_d: { en: "Topic-level accuracy after every paper", hi: "हर पेपर के बाद टॉपिक-स्तर की सटीकता" },
-  strip3_t: { en: "Pay for one exam", hi: "एक ही परीक्षा का भुगतान" },
-  strip3_d: { en: "Bundles never bundle you into extras", hi: "बंडल आपको बेवजह की चीज़ों में नहीं बाँधते" },
-  strip4_t: { en: "Look before you buy", hi: "खरीदने से पहले देखिए" },
-  strip4_d: { en: "Whole catalogue open, no login wall", hi: "पूरा कैटलॉग खुला, कोई लॉगिन दीवार नहीं" },
+  /* A marketing beat between the hero and the catalogue -- one hook, one line
+     -- instead of four small feature columns that echoed the hero's ticks and
+     the catalogue heading. Rehearsal ties to the site's own line elsewhere:
+     "a mock is not the exam, it is the rehearsal". The accent word carries an
+     <em>, so it takes gold on cream the way the section headings do. */
+  band_h_a:  { en: "The exam rewards ", hi: "परीक्षा उम्मीद नहीं, " },
+  band_h_em: { en: "rehearsal", hi: "अभ्यास" },
+  band_h_b:  { en: ", not hope.", hi: " को इनाम देती है।" },
+  band_line: { en: "So every test is a full dress rehearsal — the real pattern, the real clock, and a report that names exactly where your marks went.",
+               hi: "इसलिए यहाँ हर टेस्ट पूरी रिहर्सल है — वही पैटर्न, वही घड़ी, और एक रिपोर्ट जो बताए कि आपके अंक ठीक कहाँ गए।" },
 
   /* --- catalogue --- */
   cat_h2:    { en: "One exam. One price. Nothing extra.", hi: "एक परीक्षा। एक क़ीमत। कुछ भी अतिरिक्त नहीं।" },
