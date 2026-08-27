@@ -5,6 +5,7 @@ import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 
 import * as DB from "../lib/db.js";
+import { generateTest } from "../lib/generate.js";
 import { fmtINR, fmtLongDate, initials, uid } from "../lib/format.js";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
@@ -17,8 +18,19 @@ const AdminApp = (() => {
    that does not exist — so every course, batch, test and material an admin
    created was thrown away the moment the tab closed. */
 
-const TYPE_LABEL = { mcq: "Single Correct", multiple: "Multiple Correct", numerical: "Numerical" };
-const TYPE_COLOR = { mcq: { bg: "#f2e9d4", fg: "#a07c2a" }, multiple: { bg: "#f6ecd2", fg: "#7a1f1f" }, numerical: { bg: "#f4ecd6", fg: "#1a6b3c" } };
+const TYPE_LABEL = {
+  mcq: "Single Correct", multiple: "Multiple Correct", numerical: "Numerical",
+  statement_based: "Statement-based", match_the_following: "Match the Following",
+  assertion_reason: "Assertion–Reason", reasoning_aptitude: "Reasoning / Aptitude",
+};
+const TYPE_COLOR = {
+  mcq: { bg: "#f2e9d4", fg: "#a07c2a" }, multiple: { bg: "#f6ecd2", fg: "#7a1f1f" }, numerical: { bg: "#f4ecd6", fg: "#1a6b3c" },
+  statement_based: { bg: "#e9eff6", fg: "#3a5a7a" }, match_the_following: { bg: "#eeeee4", fg: "#5a5a34" },
+  assertion_reason: { bg: "#f2e9f2", fg: "#6a3a6a" }, reasoning_aptitude: { bg: "#e7f2ec", fg: "#2a6a52" },
+};
+// The four BPSC formats all score as a single correct option — only their stem
+// shape (question_data) and rendering differ.
+const SINGLE_CORRECT = (ty) => ty !== "multiple" && ty !== "numerical";
 const DIFF_COLOR = { easy: { bg: "#e8f6ee", fg: "#1f8a4c" }, medium: { bg: "#fcf3df", fg: "#d4a64a" }, hard: { bg: "#fbeaea", fg: "#c0392b" } };
 const SUBJECTS = ["Polity", "Modern History", "Ancient History", "Medieval History", "Geography", "Economy", "Environment", "Science & Tech", "Current Affairs", "Number System", "Reasoning", "Reading Comprehension", "Quantitative Aptitude", "Data Interpretation"];
 
@@ -170,6 +182,19 @@ const CSS = `
 /* CARDS / SECTIONS */
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(20,120,140,.05)}
 .panel-pad{padding:22px}
+.row-item{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.row-item:last-child{border-bottom:none}
+.gen-stats{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.gen-stat{flex:1;min-width:120px;border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+.gen-stat span{display:block;font-size:20px;font-weight:800;color:var(--ink)}
+.gen-stat span.ok{color:var(--green)}
+.gen-stat span.warn{color:var(--red)}
+.gen-stat label{font-size:12px;color:var(--muted);font-weight:600}
+.gen-row{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+.gen-row-label{flex:0 0 140px;font-size:12.5px;font-weight:700;color:var(--muted);padding-top:4px}
+.gen-chips{display:flex;flex-wrap:wrap;gap:6px}
+.gen-gaps{display:flex;flex-direction:column;gap:6px}
+.gen-gap{font-size:12.5px;color:var(--red);background:var(--red-bg);border-radius:7px;padding:6px 10px}
 .sec-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
 .sec-head h2{margin:0;font-size:16px;font-weight:800}
 .sec-head .note{font-size:12.5px;color:var(--muted);margin-top:2px}
@@ -261,6 +286,7 @@ textarea.inp{resize:vertical;min-height:74px;line-height:1.55}
 .opt-edit .inp{flex:1}
 .opt-edit .rm{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;color:#bdae8e;flex:0 0 auto}
 .opt-edit .rm:hover{color:var(--red);background:var(--red-bg)}
+.opt-edit .stmt-num{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto;font-size:13px;font-weight:800;color:var(--navy);background:#f3ecdb}
 .add-opt{font-size:13px;font-weight:700;color:var(--navy);display:inline-flex;align-items:center;gap:6px;padding:7px 0}
 .form-err{display:flex;align-items:center;gap:8px;background:var(--red-bg);border:1px solid #f1cccc;color:#a32f24;font-size:13px;font-weight:600;padding:11px 14px;border-radius:9px;margin-bottom:16px}
 
@@ -371,21 +397,65 @@ function Empty({ icon, title, text, action }) {
 /* ============================================================
    QUESTION FORM (add / edit)
    ============================================================ */
+/* Trim question_data down to just what the chosen format uses, so a plain MCQ
+   never carries a stray statements array and a match question never keeps an
+   empty assertion. Parallel *_hi lists are kept only when they hold something. */
+function buildCleanData(type, d) {
+  const arr = (a) => (Array.isArray(a) ? a.map((x) => String(x ?? "")) : []);
+  const nonEmpty = (a) => arr(a).filter((x) => x.trim());
+  if (type === "statement_based") {
+    const statements = nonEmpty(d.statements);
+    const out = { statements };
+    if (arr(d.statements_hi).some((x) => x.trim())) out.statements_hi = arr(d.statements_hi).slice(0, statements.length);
+    if (String(d.closing || "").trim()) out.closing = d.closing.trim();
+    if (String(d.closing_hi || "").trim()) out.closing_hi = d.closing_hi.trim();
+    return out;
+  }
+  if (type === "match_the_following") {
+    const list_1 = nonEmpty(d.list_1), list_2 = nonEmpty(d.list_2);
+    const out = { list_1, list_2 };
+    if (arr(d.list_1_hi).some((x) => x.trim())) out.list_1_hi = arr(d.list_1_hi).slice(0, list_1.length);
+    if (arr(d.list_2_hi).some((x) => x.trim())) out.list_2_hi = arr(d.list_2_hi).slice(0, list_2.length);
+    return out;
+  }
+  if (type === "assertion_reason") {
+    const out = { assertion: String(d.assertion || "").trim(), reason: String(d.reason || "").trim() };
+    if (String(d.assertion_hi || "").trim()) out.assertion_hi = d.assertion_hi.trim();
+    if (String(d.reason_hi || "").trim()) out.reason_hi = d.reason_hi.trim();
+    return out;
+  }
+  if (type === "reasoning_aptitude") {
+    const out = {};
+    if (String(d.series || "").trim()) out.series = d.series.trim();
+    if (String(d.series_hi || "").trim()) out.series_hi = d.series_hi.trim();
+    return out;
+  }
+  return {};
+}
+
 function QuestionForm({ initial, onSave, onClose }) {
   const blank = {
     id: null, subject: "", topic: "", type: "mcq", difficulty: "medium", body: "",
     options: [{ id: uid(), body: "", isCorrect: true }, { id: uid(), body: "", isCorrect: false }, { id: uid(), body: "", isCorrect: false }, { id: uid(), body: "", isCorrect: false }],
     numericAnswer: "", numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66, explanation: "",
+    questionData: {}, conceptGroupId: "", sourceType: "", sourceCitation: "", status: "published",
   };
   const [f, setF] = useState(() => initial ? JSON.parse(JSON.stringify(initial)) : blank);
   const [err, setErr] = useState("");
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
 
-  const setType = (t) => {
+  const AR_OPTIONS = [
+    "Both A and R are true and R is the correct explanation of A",
+    "Both A and R are true but R is NOT the correct explanation of A",
+    "A is true but R is false",
+    "A is false but R is true",
+  ];
+
+  const setType = (ty) => {
     setF((p) => {
       let opts = p.options;
-      if (t === "mcq") {
-        // keep only first correct
+      if (SINGLE_CORRECT(ty)) {
+        // Keep exactly one correct option for any single-answer format.
         let seen = false;
         opts = p.options.map((o) => {
           if (o.isCorrect && !seen) { seen = true; return o; }
@@ -393,32 +463,62 @@ function QuestionForm({ initial, onSave, onClose }) {
         });
         if (!seen && opts[0]) opts = opts.map((o, i) => i === 0 ? { ...o, isCorrect: true } : o);
       }
-      return { ...p, type: t, options: opts };
+      // Assertion–Reason has a fixed 4-option key — seed it when the options are
+      // still blank, so the author only picks which one is right.
+      if (ty === "assertion_reason" && opts.every((o) => !o.body.trim())) {
+        opts = AR_OPTIONS.map((body, i) => ({ id: uid(), body, isCorrect: i === 0 }));
+      }
+      return { ...p, type: ty, options: opts };
     });
   };
   const setOpt = (id, body) => set("options", f.options.map((o) => o.id === id ? { ...o, body } : o));
   const setOptHi = (id, v) => set("options", f.options.map((o) => o.id === id ? { ...o, body_hi: v } : o));
   const toggleCorrect = (id) => set("options", f.options.map((o) => {
-    if (f.type === "mcq") return { ...o, isCorrect: o.id === id };
+    if (SINGLE_CORRECT(f.type)) return { ...o, isCorrect: o.id === id };
     return o.id === id ? { ...o, isCorrect: !o.isCorrect } : o;
   }));
   const addOpt = () => set("options", [...f.options, { id: uid(), body: "", isCorrect: false }]);
+
+  // question_data editing: a merge-patch, plus list helpers that keep each
+  // English list and its parallel *_hi list aligned when an item is removed.
+  const d = f.questionData || {};
+  const setData = (patch) => setF((p) => ({ ...p, questionData: { ...(p.questionData || {}), ...patch } }));
+  const listOf = (k) => (Array.isArray(d[k]) ? d[k] : []);
+  const setListItem = (k, i, v) => { const a = [...listOf(k)]; a[i] = v; setData({ [k]: a }); };
+  const addListItem = (k) => setData({ [k]: [...listOf(k), ""] });
+  const rmListItem = (k, i) => setData({
+    [k]: listOf(k).filter((_, j) => j !== i),
+    [k + "_hi"]: listOf(k + "_hi").filter((_, j) => j !== i),
+  });
+
   /* Hindi is optional per question — English is the fallback everywhere — so
      the fields stay out of the way until asked for, and open automatically for
      a question that already has a translation. */
   const [showHi, setShowHi] = useState(() =>
-    !!(f.bodyHi || f.explanationHi || (f.options || []).some((o) => o.body_hi)));
+    !!(f.bodyHi || f.explanationHi || (f.options || []).some((o) => o.body_hi)
+       || (f.questionData && Object.keys(f.questionData).some((k) => k.endsWith("_hi")))));
   const rmOpt = (id) => { if (f.options.length <= 2) return; set("options", f.options.filter((o) => o.id !== id)); };
 
   const submit = () => {
     if (!f.body.trim()) return setErr("Question text is required.");
+
+    // Format-specific stem checks.
+    if (f.type === "statement_based" && listOf("statements").filter((s) => (s || "").trim()).length < 1)
+      return setErr("Add at least one statement.");
+    if (f.type === "match_the_following" &&
+        (listOf("list_1").filter((s) => (s || "").trim()).length < 2 ||
+         listOf("list_2").filter((s) => (s || "").trim()).length < 2))
+      return setErr("Match the Following needs at least two items in each list.");
+    if (f.type === "assertion_reason" && (!(d.assertion || "").trim() || !(d.reason || "").trim()))
+      return setErr("Both the Assertion and the Reason are required.");
+
     if (f.type === "numerical") {
       if (f.numericAnswer === "" || isNaN(parseFloat(f.numericAnswer))) return setErr("Enter a valid numerical answer.");
     } else {
       const filled = f.options.filter((o) => o.body.trim());
       if (filled.length < 2) return setErr("Add at least 2 options with text.");
       const correct = f.options.filter((o) => o.isCorrect && o.body.trim());
-      if (f.type === "mcq" && correct.length !== 1) return setErr("Mark exactly one correct option.");
+      if (SINGLE_CORRECT(f.type) && correct.length !== 1) return setErr("Mark exactly one correct option.");
       if (f.type === "multiple" && correct.length < 1) return setErr("Mark at least one correct option.");
     }
     const clean = {
@@ -426,11 +526,14 @@ function QuestionForm({ initial, onSave, onClose }) {
       id: f.id || uid(),
       subject: f.subject.trim() || "General",
       topic: f.topic.trim(),
+      conceptGroupId: (f.conceptGroupId || "").trim(),
+      sourceCitation: (f.sourceCitation || "").trim(),
       marksCorrect: parseFloat(f.marksCorrect) || 0,
       marksWrong: parseFloat(f.marksWrong) || 0,
       numericAnswer: f.type === "numerical" ? parseFloat(f.numericAnswer) : null,
       numericTolerance: parseFloat(f.numericTolerance) || 0.01,
       options: f.type === "numerical" ? [] : f.options.filter((o) => o.body.trim()),
+      questionData: buildCleanData(f.type, d),
       createdAt: f.createdAt || Date.now(),
     };
     onSave(clean);
@@ -454,11 +557,9 @@ function QuestionForm({ initial, onSave, onClose }) {
       </div>
 
       <Field label="Question type" req>
-        <div className="seg">
-          {["mcq", "multiple", "numerical"].map((t) => (
-            <button key={t} className={f.type === t ? "on" : ""} onClick={() => setType(t)}>{TYPE_LABEL[t]}</button>
-          ))}
-        </div>
+        <select className="inp" value={f.type} onChange={(e) => setType(e.target.value)}>
+          {Object.keys(TYPE_LABEL).map((ty) => <option key={ty} value={ty}>{TYPE_LABEL[ty]}</option>)}
+        </select>
       </Field>
 
       <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: -6 }}>
@@ -476,13 +577,92 @@ function QuestionForm({ initial, onSave, onClose }) {
         )}
       </Field>
 
+      {/* Format-specific stem. The options below still hold the answer (the
+          combination / mapping / A-R verdict); this is only the material the
+          options refer to. */}
+      {f.type === "statement_based" && (
+        <Field label="Statements" hint="The numbered statements the options refer to (Only 1 and 2, All of the above…).">
+          {listOf("statements").map((s, i) => (
+            <div key={i}>
+              <div className="opt-edit">
+                <span className="stmt-num">{i + 1}</span>
+                <input className="inp" value={s} placeholder={"Statement " + (i + 1)} onChange={(e) => setListItem("statements", i, e.target.value)} />
+                <button className="rm" onClick={() => rmListItem("statements", i)} title="Remove"><Trash2 size={16} /></button>
+              </div>
+              {showHi && (
+                <div className="opt-edit opt-edit-hi">
+                  <span className="opt-hi-tag">हिन्दी</span>
+                  <input className="inp" lang="hi" value={listOf("statements_hi")[i] || ""} placeholder={"कथन " + (i + 1) + " (वैकल्पिक)"} onChange={(e) => setListItem("statements_hi", i, e.target.value)} />
+                </div>
+              )}
+            </div>
+          ))}
+          <button className="add-opt" onClick={() => addListItem("statements")}><Plus size={15} />Add statement</button>
+        </Field>
+      )}
+
+      {f.type === "statement_based" && (
+        <Field label="Closing line" hint="Renders AFTER the statements (not before) — the line that turns them into a question.">
+          <input className="inp" value={d.closing || ""} placeholder="Which of the statements given above is/are correct?" onChange={(e) => setData({ closing: e.target.value })} />
+          {showHi && (
+            <input className="inp" lang="hi" style={{ marginTop: 8 }} value={d.closing_hi || ""}
+                   placeholder="उपर्युक्त कथनों में से कौन-सा/से सही है/हैं? (वैकल्पिक)"
+                   onChange={(e) => setData({ closing_hi: e.target.value })} />
+          )}
+        </Field>
+      )}
+
+      {f.type === "match_the_following" && (
+        <div className="field-row">
+          {[["list_1", "List I", "e.g. a. Charaka"], ["list_2", "List II", "e.g. 1. Medicine"]].map(([k, label, ph]) => (
+            <Field key={k} label={label} hint={ph}>
+              {listOf(k).map((s, i) => (
+                <div key={i}>
+                  <div className="opt-edit">
+                    <input className="inp" value={s} placeholder={label + " item " + (i + 1)} onChange={(e) => setListItem(k, i, e.target.value)} />
+                    <button className="rm" onClick={() => rmListItem(k, i)} title="Remove"><Trash2 size={16} /></button>
+                  </div>
+                  {showHi && (
+                    <div className="opt-edit opt-edit-hi">
+                      <span className="opt-hi-tag">हिन्दी</span>
+                      <input className="inp" lang="hi" value={listOf(k + "_hi")[i] || ""} placeholder="(वैकल्पिक)" onChange={(e) => setListItem(k + "_hi", i, e.target.value)} />
+                    </div>
+                  )}
+                </div>
+              ))}
+              <button className="add-opt" onClick={() => addListItem(k)}><Plus size={15} />Add item</button>
+            </Field>
+          ))}
+        </div>
+      )}
+
+      {f.type === "assertion_reason" && (
+        <div className="field-row">
+          <Field label="Assertion (A)" req>
+            <textarea className="inp" rows={2} value={d.assertion || ""} onChange={(e) => setData({ assertion: e.target.value })} />
+            {showHi && <textarea className="inp" rows={2} lang="hi" style={{ marginTop: 8 }} value={d.assertion_hi || ""} placeholder="अभिकथन (वैकल्पिक)" onChange={(e) => setData({ assertion_hi: e.target.value })} />}
+          </Field>
+          <Field label="Reason (R)" req>
+            <textarea className="inp" rows={2} value={d.reason || ""} onChange={(e) => setData({ reason: e.target.value })} />
+            {showHi && <textarea className="inp" rows={2} lang="hi" style={{ marginTop: 8 }} value={d.reason_hi || ""} placeholder="कारण (वैकल्पिक)" onChange={(e) => setData({ reason_hi: e.target.value })} />}
+          </Field>
+        </div>
+      )}
+
+      {f.type === "reasoning_aptitude" && (
+        <Field label="Series / prompt" hint="Optional — a number series or figure prompt, if it is separate from the question text.">
+          <input className="inp" value={d.series || ""} placeholder="e.g. 2, 6, 12, 20, ?" onChange={(e) => setData({ series: e.target.value })} />
+          {showHi && <input className="inp" lang="hi" style={{ marginTop: 8 }} value={d.series_hi || ""} placeholder="(वैकल्पिक)" onChange={(e) => setData({ series_hi: e.target.value })} />}
+        </Field>
+      )}
+
       {f.type === "numerical" ? (
         <div className="field-row">
           <Field label="Correct numerical answer" req><input className="inp" type="number" value={f.numericAnswer} placeholder="e.g. 36" onChange={(e) => set("numericAnswer", e.target.value)} /></Field>
           <Field label="Tolerance (±)" hint="How much deviation counts as correct"><input className="inp" type="number" value={f.numericTolerance} onChange={(e) => set("numericTolerance", e.target.value)} /></Field>
         </div>
       ) : (
-        <Field label={f.type === "mcq" ? "Options (tap the box to mark the correct one)" : "Options (tap boxes to mark all correct ones)"} req>
+        <Field label={SINGLE_CORRECT(f.type) ? "Options (tap the box to mark the correct one)" : "Options (tap boxes to mark all correct ones)"} req>
           {f.options.map((o, i) => (
             <div key={o.id}>
               <div className="opt-edit">
@@ -528,6 +708,15 @@ function QuestionForm({ initial, onSave, onClose }) {
                     onChange={(e) => set("explanationHi", e.target.value)} />
         )}
       </Field>
+
+      <div className="field-row">
+        <Field label="Concept group" hint="A slug shared by questions on the same fact. The generator never repeats a concept in one test — or across a theme (Bihar Special I/II/III).">
+          <input className="inp" value={f.conceptGroupId || ""} placeholder="e.g. bihar-first-governor" onChange={(e) => set("conceptGroupId", e.target.value)} />
+        </Field>
+        <Field label="Source citation" hint="Required for Bihar-specific static facts (Economic Survey, gazette, NCERT…).">
+          <input className="inp" value={f.sourceCitation || ""} placeholder="e.g. Bihar Economic Survey 2024–25" onChange={(e) => set("sourceCitation", e.target.value)} />
+        </Field>
+      </div>
     </Modal>
   );
 }
@@ -955,6 +1144,302 @@ function Confirm({ message, onYes, onClose }) {
 }
 
 /* ============================================================
+   SERIES, BLUEPRINTS & GENERATION
+   ============================================================ */
+const PATTERN_LABEL = { sectional: "Sectional", half_length: "Half Length", full_length: "Full Length" };
+const JSON_STYLE = { fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12.5 };
+
+// Returns the parsed object, or null when the text is not valid JSON — the
+// caller turns null into a form error rather than saving garbage.
+function jsonParseOr(text) {
+  try { const v = JSON.parse(text || "{}"); return v && typeof v === "object" ? v : null; }
+  catch { return null; }
+}
+
+function ConfigForm({ initial, onSave, onClose }) {
+  const src = initial || { name: "", subjectWeights: {}, difficultyWeights: { easy: 0.3, medium: 0.5, hard: 0.2 }, questionTypeWeights: {}, subTopicWeights: {} };
+  const [name, setName] = useState(src.name || "");
+  const [subj, setSubj] = useState(JSON.stringify(src.subjectWeights || {}, null, 2));
+  const [diff, setDiff] = useState(JSON.stringify(src.difficultyWeights || {}, null, 2));
+  const [types, setTypes] = useState(JSON.stringify(src.questionTypeWeights || {}, null, 2));
+  const [subtop, setSubtop] = useState(JSON.stringify(src.subTopicWeights || {}, null, 2));
+  const [err, setErr] = useState("");
+
+  const submit = () => {
+    if (!name.trim()) return setErr("Name is required.");
+    const sw = jsonParseOr(subj), dw = jsonParseOr(diff), tw = jsonParseOr(types), stw = jsonParseOr(subtop);
+    if (!sw || !dw || !tw || !stw) return setErr("One of the weight maps is not valid JSON.");
+    onSave({ id: src.id || undefined, name: name.trim(), subjectWeights: sw, difficultyWeights: dw, questionTypeWeights: tw, subTopicWeights: stw });
+  };
+
+  return (
+    <Modal wide title={initial ? "Edit distribution config" : "New distribution config"} onClose={onClose}
+      footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className="btn btn-primary" onClick={submit}><Save size={16} />Save</button></>}>
+      {err && <div className="form-err"><AlertCircle size={17} />{err}</div>}
+      <Field label="Name" req><input className="inp" value={name} placeholder="e.g. BPSC Prelims — full mix" onChange={(e) => setName(e.target.value)} /></Field>
+      <Field label="Subject weights" hint="Keys are your own subject values; weights are normalised, so they need not sum to 1.">
+        <textarea className="inp" style={JSON_STYLE} rows={5} value={subj} onChange={(e) => setSubj(e.target.value)} />
+      </Field>
+      <div className="field-row">
+        <Field label="Difficulty weights" hint='e.g. {"easy":0.3,"medium":0.5,"hard":0.2}'>
+          <textarea className="inp" style={JSON_STYLE} rows={4} value={diff} onChange={(e) => setDiff(e.target.value)} />
+        </Field>
+        <Field label="Question-type weights" hint='Per-subject {"Polity":{"statement_based":0.3,…}} or flat {"statement_based":0.3}'>
+          <textarea className="inp" style={JSON_STYLE} rows={4} value={types} onChange={(e) => setTypes(e.target.value)} />
+        </Field>
+      </div>
+      <Field label="Sub-topic weights" hint='Sectional papers, per subject: {"History":{"Ancient":0.25,"Medieval":0.35,"Modern":0.4}}'>
+        <textarea className="inp" style={JSON_STYLE} rows={4} value={subtop} onChange={(e) => setSubtop(e.target.value)} />
+      </Field>
+    </Modal>
+  );
+}
+
+function BlueprintForm({ initial, seriesList, configs, onSave, onClose }) {
+  const blank = { id: null, seriesId: "", sequencePosition: 1, title: "", patternType: "full_length", questionCount: 150, subjectScope: {}, distributionConfigId: "", themeGroupId: "", themePartIndex: "" };
+  const [b, setB] = useState(() => ({ ...blank, ...(initial || {}) }));
+  const [scope, setScope] = useState(JSON.stringify((initial || blank).subjectScope || {}, null, 2));
+  const [err, setErr] = useState("");
+  const set = (k, v) => setB((p) => ({ ...p, [k]: v }));
+
+  const submit = () => {
+    if (!b.title.trim()) return setErr("Title is required.");
+    const sc = jsonParseOr(scope);
+    if (!sc) return setErr("Subject scope is not valid JSON.");
+    onSave({ ...b, id: b.id || undefined, title: b.title.trim(), questionCount: Number(b.questionCount) || 150, sequencePosition: Number(b.sequencePosition) || 1, subjectScope: sc });
+  };
+
+  return (
+    <Modal wide title={initial ? "Edit blueprint" : "New blueprint"} onClose={onClose}
+      footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className="btn btn-primary" onClick={submit}><Save size={16} />Save</button></>}>
+      {err && <div className="form-err"><AlertCircle size={17} />{err}</div>}
+      <div className="field-row">
+        <Field label="Title" req><input className="inp" value={b.title} placeholder="e.g. Bihar Special – I" onChange={(e) => set("title", e.target.value)} /></Field>
+        <Field label="Series">
+          <select className="inp" value={b.seriesId || ""} onChange={(e) => set("seriesId", e.target.value)}>
+            <option value="">— none —</option>
+            {seriesList.map((s) => <option key={s.id} value={s.id}>{s.title}</option>)}
+          </select>
+        </Field>
+      </div>
+      <div className="field-row">
+        <Field label="Pattern">
+          <select className="inp" value={b.patternType} onChange={(e) => set("patternType", e.target.value)}>
+            {Object.keys(PATTERN_LABEL).map((p) => <option key={p} value={p}>{PATTERN_LABEL[p]}</option>)}
+          </select>
+        </Field>
+        <Field label="Question count"><input className="inp" type="number" value={b.questionCount} onChange={(e) => set("questionCount", e.target.value)} /></Field>
+        <Field label="Sequence #"><input className="inp" type="number" value={b.sequencePosition} onChange={(e) => set("sequencePosition", e.target.value)} /></Field>
+      </div>
+      <div className="field-row">
+        <Field label="Distribution config">
+          <select className="inp" value={b.distributionConfigId || ""} onChange={(e) => set("distributionConfigId", e.target.value)}>
+            <option value="">— none —</option>
+            {configs.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+          </select>
+        </Field>
+        <Field label="Theme group" hint="Same slug on parts of one theme — dedup spans them.">
+          <input className="inp" value={b.themeGroupId || ""} placeholder="e.g. bihar-special" onChange={(e) => set("themeGroupId", e.target.value)} />
+        </Field>
+        <Field label="Theme part #"><input className="inp" type="number" value={b.themePartIndex} onChange={(e) => set("themePartIndex", e.target.value)} /></Field>
+      </div>
+      <Field label="Subject scope" hint='Sectional: {"subject":"History","sub_topic_weights":{…}} · Half: {"subject":"Current Affairs","ca_date_range":{"from":"2026-01-01","to":"2026-02-28"}} · Full: {} uses the config'>
+        <textarea className="inp" style={JSON_STYLE} rows={5} value={scope} onChange={(e) => setScope(e.target.value)} />
+      </Field>
+    </Modal>
+  );
+}
+
+// The count map { key: n } rendered as a row of badges — used for the
+// subject / difficulty / type breakdowns of what the generator actually hit.
+function CountRow({ label, map }) {
+  const entries = Object.entries(map || {}).sort((a, b) => b[1] - a[1]);
+  if (entries.length === 0) return null;
+  return (
+    <div className="gen-row">
+      <span className="gen-row-label">{label}</span>
+      <div className="gen-chips">{entries.map(([k, n]) => <Badge key={k} color={{ bg: "#f3ecdb", fg: "#7a6450" }}>{k} · {n}</Badge>)}</div>
+    </div>
+  );
+}
+
+function GenReport({ blueprint, result, committing, onCommit, onClose }) {
+  const r = result.report;
+  const seqOk = r.sequence && r.sequence.ok;
+  return (
+    <Modal wide title={"Generated: " + blueprint.title} onClose={onClose}
+      footer={<>
+        <button className="btn btn-ghost" onClick={onClose}>Discard</button>
+        <button className="btn btn-primary" onClick={onCommit} disabled={committing || result.questionIds.length === 0}>
+          <Save size={16} />{committing ? "Saving…" : "Save as draft test"}
+        </button>
+      </>}>
+      <div className="gen-stats">
+        <div className="gen-stat"><span>{r.selected} / {r.target}</span><label>questions</label></div>
+        <div className="gen-stat"><span>{r.poolSize}</span><label>eligible pool</label></div>
+        <div className="gen-stat"><span className={seqOk ? "ok" : "warn"}>{seqOk ? "clean" : (r.sequence?.residualViolations ?? "—") + " left"}</span><label>sequencing</label></div>
+      </div>
+
+      {r.warnings && r.warnings.length > 0 && (
+        <div className="form-err"><AlertCircle size={17} />{r.warnings.join(" ")}</div>
+      )}
+
+      <CountRow label="By subject" map={r.distribution?.subject} />
+      <CountRow label="By difficulty" map={r.distribution?.difficulty} />
+      <CountRow label="By type" map={r.distribution?.type} />
+      <CountRow label="Answer letter (as authored)" map={r.answerBalance} />
+
+      {r.gaps && r.gaps.length > 0 && (
+        <Field label={"Bank gaps (" + r.gaps.length + ")"} hint="Cells the bank could not fill — aim content here.">
+          <div className="gen-gaps">
+            {r.gaps.map((g, i) => (
+              <div key={i} className="gen-gap">{g.subject} · {g.difficulty} · {g.type}{g.subTopic && g.subTopic !== "*" ? " · " + g.subTopic : ""} — short {g.short}</div>
+            ))}
+          </div>
+        </Field>
+      )}
+      {(!r.gaps || r.gaps.length === 0) && (
+        <p style={{ fontSize: 13, color: "var(--muted)", margin: "6px 2px 0" }}>Every target cell was filled from the bank. Saves as an unpublished draft you can review and publish under Tests &amp; Series.</p>
+      )}
+    </Modal>
+  );
+}
+
+function Blueprints({ questions, seriesList, toast, askDelete }) {
+  const [configs, setConfigs] = useState([]);
+  const [blueprints, setBlueprints] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [cfgEditor, setCfgEditor] = useState(null);   // config obj | {} for new
+  const [bpEditor, setBpEditor] = useState(null);     // blueprint obj | {} for new
+  const [gen, setGen] = useState(null);               // { blueprint, result }
+  const [committing, setCommitting] = useState(false);
+
+  const load = useCallback(async () => {
+    setError("");
+    try {
+      const [c, b] = await Promise.all([DB.distributionConfigs.list(), DB.listBlueprints()]);
+      setConfigs(c); setBlueprints(b);
+    } catch (e) {
+      setError(e?.message || "Could not load blueprints. Has migration 0016 been applied?");
+    }
+    setLoading(false);
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const saveConfig = async (c) => {
+    try { await DB.distributionConfigs.upsert(c); toast("Config saved"); setCfgEditor(null); load(); }
+    catch (e) { toast(e?.message || "Save failed", "err"); }
+  };
+  const saveBlueprint = async (b) => {
+    try { await DB.upsertBlueprint(b); toast("Blueprint saved"); setBpEditor(null); load(); }
+    catch (e) { toast(e?.message || "Save failed", "err"); }
+  };
+  const removeBlueprint = (id) => askDelete("Delete this blueprint? Generated tests are not affected.", async () => {
+    try { await DB.deleteBlueprint(id); toast("Blueprint deleted"); load(); }
+    catch (e) { toast(e?.message || "Delete failed", "err"); }
+  });
+
+  const runGenerate = async (bp) => {
+    try {
+      const cfg = configs.find((c) => c.id === bp.distributionConfigId) || {};
+      const [usages, recent] = await Promise.all([DB.questionUsages(), DB.recentTestIds(5)]);
+      const result = generateTest({ blueprint: bp, config: cfg, bank: questions, usages, options: { cooldownTestIds: recent } });
+      setGen({ blueprint: bp, result });
+    } catch (e) {
+      toast(e?.message || "Generation failed", "err");
+    }
+  };
+
+  const commit = async () => {
+    if (!gen) return;
+    setCommitting(true);
+    try {
+      const { blueprint: bp, result } = gen;
+      const count = result.questionIds.length;
+      const test = {
+        id: uid(),
+        title: bp.title + " — " + new Date().toLocaleDateString(),
+        seriesId: bp.seriesId || null,
+        durationMin: Math.max(1, Math.round(count * 0.8)),
+        sections: result.sections,
+        isFree: false, isPublished: false, shuffleQuestions: true, shuffleOptions: true,
+      };
+      await DB.commitGeneratedTest(test, { blueprintId: bp.id, themeGroupId: bp.themeGroupId || null });
+      toast("Draft test created — review it under Tests & Series");
+      setGen(null);
+    } catch (e) {
+      toast(e?.message || "Could not save the test", "err");
+    }
+    setCommitting(false);
+  };
+
+  if (loading) return <SkeletonCards />;
+
+  return (
+    <div>
+      {error && <div className="form-err" style={{ marginBottom: 16 }}><AlertCircle size={17} />{error}</div>}
+
+      {/* Distribution configs */}
+      <div className="panel panel-pad" style={{ marginBottom: 18 }}>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
+          <div>
+            <h3 style={{ margin: 0, fontSize: 16 }}>Distribution configs</h3>
+            <p style={{ margin: "3px 0 0", fontSize: 13, color: "var(--muted)" }}>PYQ-derived target weights the generator matches.</p>
+          </div>
+          <button className="btn btn-ghost btn-sm" style={{ marginLeft: "auto" }} onClick={() => setCfgEditor({})}><Plus size={14} />New config</button>
+        </div>
+        {configs.length === 0 ? (
+          <Empty icon={<TrendingUp size={24} />} title="No configs yet" text="A config holds the subject / difficulty / question-type weights for a paper." />
+        ) : configs.map((c) => (
+          <div key={c.id} className="row-item">
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontWeight: 700, fontSize: 14 }}>{c.name}</div>
+              <div style={{ fontSize: 12.5, color: "var(--muted)", marginTop: 3 }}>{Object.keys(c.subjectWeights || {}).length} subjects · {Object.keys(c.questionTypeWeights || {}).length} type rules</div>
+            </div>
+            <button className="btn-icon" style={{ marginLeft: "auto" }} onClick={() => setCfgEditor(c)}><Pencil size={15} /></button>
+          </div>
+        ))}
+      </div>
+
+      {/* Blueprints */}
+      <div className="panel panel-pad">
+        <div style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
+          <div>
+            <h3 style={{ margin: 0, fontSize: 16 }}>Blueprints</h3>
+            <p style={{ margin: "3px 0 0", fontSize: 13, color: "var(--muted)" }}>Each blueprint is one test in the series. Generate turns it into a draft paper.</p>
+          </div>
+          <button className="btn btn-primary btn-sm" style={{ marginLeft: "auto", width: "auto" }} onClick={() => setBpEditor({})}><Plus size={14} />New blueprint</button>
+        </div>
+        {blueprints.length === 0 ? (
+          <Empty icon={<Sparkles size={24} />} title="No blueprints yet" text="Define the pattern, question count and scope for each test in your series." />
+        ) : blueprints.map((b) => (
+          <div key={b.id} className="row-item">
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontWeight: 700, fontSize: 14, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <span>{b.sequencePosition}. {b.title}</span>
+                <Badge color={{ bg: "#eef3f8", fg: "#3a5a7a" }}>{PATTERN_LABEL[b.patternType] || b.patternType}</Badge>
+                {b.themeGroupId && <Badge color={{ bg: "#f2e9f2", fg: "#6a3a6a" }}>{b.themeGroupId}{b.themePartIndex ? " · " + b.themePartIndex : ""}</Badge>}
+              </div>
+              <div style={{ fontSize: 12.5, color: "var(--muted)", marginTop: 3 }}>{b.questionCount} questions{b.distributionConfigId ? " · " + (configs.find((c) => c.id === b.distributionConfigId)?.name || "config") : " · no config"}</div>
+            </div>
+            <div style={{ marginLeft: "auto", display: "flex", gap: 6 }}>
+              <button className="btn btn-ghost btn-sm" onClick={() => runGenerate(b)}><Sparkles size={14} />Generate</button>
+              <button className="btn-icon" onClick={() => setBpEditor(b)}><Pencil size={15} /></button>
+              <button className="btn-icon danger" onClick={() => removeBlueprint(b.id)}><Trash2 size={15} /></button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {cfgEditor && <ConfigForm initial={cfgEditor.id ? cfgEditor : null} onSave={saveConfig} onClose={() => setCfgEditor(null)} />}
+      {bpEditor && <BlueprintForm initial={bpEditor.id ? bpEditor : null} seriesList={seriesList} configs={configs} onSave={saveBlueprint} onClose={() => setBpEditor(null)} />}
+      {gen && <GenReport blueprint={gen.blueprint} result={gen.result} committing={committing} onCommit={commit} onClose={() => setGen(null)} />}
+    </div>
+  );
+}
+
+/* ============================================================
    APP
    ============================================================ */
 const NAV = [
@@ -962,6 +1447,7 @@ const NAV = [
   { group: "Content", items: [
     { id: "questions", label: "Question Bank", icon: ListChecks },
     { id: "tests", label: "Tests & Series", icon: FileText },
+    { id: "blueprints", label: "Series & Blueprints", icon: Sparkles },
     { id: "bundles", label: "Bundles & Pricing", icon: Layers },
     { id: "exams", label: "Exams & Categories", icon: GraduationCap },
     { id: "coupons", label: "Coupons", icon: Tag },
@@ -980,6 +1466,7 @@ const PAGE_META = {
   overview: { title: "Dashboard", sub: "Your platform at a glance" },
   questions: { title: "Question Bank", sub: "Create and manage all questions" },
   tests: { title: "Tests & Series", sub: "Build tests from your question bank" },
+  blueprints: { title: "Series & Blueprints", sub: "Auto-generate a test series from PYQ-matched blueprints" },
   bundles: { title: "Bundles & Pricing", sub: "What students can buy, and what it costs" },
   referrals: { title: "Referrals", sub: "Who invited whom, and what it converted to" },
   feedback: { title: "Feedback", sub: "What students are telling you — read it" },
@@ -1262,6 +1749,7 @@ function App({ onLogout }) {
           {view === "overview" && <Overview {...{ questions, tests, courses, batches, go, loadStarterPack }} />}
           {view === "questions" && <QuestionBank {...{ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete }} />}
           {view === "tests" && <Tests {...{ tests, saveTest, removeTest, questions, seriesList, toast, askDelete }} />}
+          {view === "blueprints" && <Blueprints {...{ questions, seriesList, toast, askDelete }} />}
           {view === "bundles" && <Bundles {...{ tests, toast }} />}
           {view === "courses" && <Courses {...{ courses, saveCourse, removeCourse, batches, saveBatch, removeBatch, askDelete }} />}
           {view === "materials" && <Materials {...{ materials, saveMaterial, removeMaterial, batches, askDelete }} />}
@@ -1405,7 +1893,8 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
         <div className="search"><Search size={17} /><input value={q} placeholder="Search by question or topic…" onChange={(e) => setQ(e.target.value)} /></div>
         <select className="sel" value={subj} onChange={(e) => setSubj(e.target.value)}>{subjects.map((s) => <option key={s} value={s}>{s === "all" ? "All subjects" : s}</option>)}</select>
         <select className="sel" value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="all">All types</option><option value="mcq">Single Correct</option><option value="multiple">Multiple Correct</option><option value="numerical">Numerical</option>
+          <option value="all">All types</option>
+          {Object.keys(TYPE_LABEL).map((ty) => <option key={ty} value={ty}>{TYPE_LABEL[ty]}</option>)}
         </select>
         <button className="btn btn-ghost" onClick={() => setBulk(true)}><Upload size={16} />Bulk import</button>
         <button className="btn btn-primary" onClick={() => setEditing({})}><Plus size={16} />Add question</button>

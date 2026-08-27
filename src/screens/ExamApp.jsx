@@ -59,6 +59,75 @@ const SEM = { strong: "#1f8a4c", average: "#b8923a", weak: "#c0392b" };
 const inLang = (lang, en, hi) => (lang === "hi" && hi ? hi : en);
 // bandFor moved to the server with the rest of the scoring.
 
+// The tag on each question card. The four BPSC formats all score as a single
+// correct option, so their difference is only what the reader sees.
+const typeLabel = (type, t) => {
+  switch (type) {
+    case "mcq": return t("ex_single");
+    case "multiple": return t("ex_multiple");
+    case "numerical": return t("ex_numerical");
+    case "statement_based": return t("ex_statements");
+    case "match_the_following": return t("ex_match");
+    case "assertion_reason": return t("ex_assertion_reason");
+    case "reasoning_aptitude": return t("ex_reasoning");
+    default: return type;
+  }
+};
+
+/**
+ * The type-specific stem that sits between the prompt and the options: the
+ * numbered statements, the List-I / List-II pairing, or the Assertion/Reason
+ * block. Answer-free — the correct combination lives in the options. Shared by
+ * the live paper and the post-attempt review, and bilingual throughout (Hindi
+ * rides inside `data` as parallel *_hi arrays/strings).
+ */
+function StemData({ data }) {
+  const { t, lang } = useLang();
+  if (!data || typeof data !== "object") return null;
+  const statements = Array.isArray(data.statements) ? data.statements : null;
+  const list1 = Array.isArray(data.list_1) ? data.list_1 : null;
+  const list2 = Array.isArray(data.list_2) ? data.list_2 : null;
+  const hasMatch = list1 && list2 && (list1.length > 0 || list2.length > 0);
+  const hasAR = data.assertion || data.reason;
+  const series = data.series;
+  // Trailing prompt that must read AFTER the statements/lists — e.g. "Which of
+  // the statements given above is/are correct?" — not before them.
+  const closing = data.closing;
+  if (!statements && !hasMatch && !hasAR && !series && !closing) return null;
+
+  return (
+    <div className="stem-data">
+      {statements && statements.length > 0 && (
+        <ol className="stmt-list">
+          {statements.map((s, i) => (
+            <li key={i}>{inLang(lang, s, (data.statements_hi || [])[i])}</li>
+          ))}
+        </ol>
+      )}
+      {hasMatch && (
+        <div className="match-grid">
+          <div className="match-col">
+            <div className="match-head">{t("ex_list_i")}</div>
+            {list1.map((x, i) => <div className="match-cell" key={i}>{inLang(lang, x, (data.list_1_hi || [])[i])}</div>)}
+          </div>
+          <div className="match-col">
+            <div className="match-head">{t("ex_list_ii")}</div>
+            {list2.map((x, i) => <div className="match-cell" key={i}>{inLang(lang, x, (data.list_2_hi || [])[i])}</div>)}
+          </div>
+        </div>
+      )}
+      {hasAR && (
+        <div className="ar-block">
+          {data.assertion && <div className="ar-row"><span className="ar-key">{t("ex_assertion")}:</span> {inLang(lang, data.assertion, data.assertion_hi)}</div>}
+          {data.reason && <div className="ar-row"><span className="ar-key">{t("ex_reason")}:</span> {inLang(lang, data.reason, data.reason_hi)}</div>}
+        </div>
+      )}
+      {series && <div className="series-line">{inLang(lang, series, data.series_hi)}</div>}
+      {closing && <div className="stem-closing">{inLang(lang, closing, data.closing_hi)}</div>}
+    </div>
+  );
+}
+
 /* ============================================================
    STYLES (self-contained design system)
    ============================================================ */
@@ -175,7 +244,20 @@ const CSS = `
 .tag-pos{background:var(--grn-bg);color:#1a6b3c}
 .tag-neg{background:var(--red-bg);color:#a32f24}
 .tag-topic{background:#f6ecd2;color:#7a1f1f}
-.q-text{padding:20px 20px 6px;font-size:16px;line-height:1.62;color:#2e1c12;white-space:pre-wrap}
+.q-text{padding:20px 20px 6px;font-size:16px;line-height:1.62;color:var(--ink);white-space:pre-wrap}
+.stem-data{padding:2px 20px 8px;display:flex;flex-direction:column;gap:12px}
+.stmt-list{margin:0;padding-left:24px;display:flex;flex-direction:column;gap:7px;font-size:15px;line-height:1.55}
+.stmt-list li{padding-left:4px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:9px;overflow:hidden;font-size:14.5px}
+.match-col{display:flex;flex-direction:column}
+.match-col+.match-col{border-left:1px solid var(--line)}
+.match-head{padding:8px 12px;font-weight:700;background:rgba(140,110,60,.08);border-bottom:1px solid var(--line)}
+.match-cell{padding:8px 12px;border-bottom:1px solid var(--line);line-height:1.45}
+.match-cell:last-child{border-bottom:none}
+.ar-block{display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.55;border-left:3px solid var(--line);padding:2px 0 2px 14px}
+.ar-key{font-weight:700;margin-right:4px}
+.series-line{font-size:16px;letter-spacing:.4px;font-weight:600}
+.stem-closing{font-size:15.5px;line-height:1.55;color:var(--ink);font-weight:600}
 .opts{padding:6px 20px 20px;display:flex;flex-direction:column;gap:10px}
 .opt{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1.5px solid #ece2cc;border-radius:10px;transition:.12s;background:#ffffff}
 .opt:hover{border-color:#d8c79c;background:#fbf5e7}
@@ -503,13 +585,14 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
             <span className="q-no">{t("ex_question_n")} {qIdx + 1}</span>
             <div className="q-tags">
               <span className="tag tag-topic">{q.topic}</span>
-              <span className="tag tag-type">{q.type === "mcq" ? t("ex_single") : q.type === "multiple" ? t("ex_multiple") : t("ex_numerical")}</span>
+              <span className="tag tag-type">{typeLabel(q.type, t)}</span>
               <span className="tag tag-pos">+{q.marks}</span>
               {q.negative > 0 && <span className="tag tag-neg">−{q.negative}</span>}
             </div>
           </div>
 
           <div className="q-text">{inLang(lang, q.text, q.text_hi)}</div>
+          <StemData data={q.data} />
 
           {q.type === "numerical" ? (
             <div className="num-in">
@@ -900,6 +983,7 @@ function Results({ data, onRetake, onExit }) {
                 {isOpen && (
                   <div className="rev-body">
                     <div className="rev-qfull">{inLang(lang, r.text, r.text_hi)}</div>
+                    <StemData data={r.data} />
                     {r.type !== "numerical" ? (
                       <div className="rev-opts">
                         {r.options.map((opt, i) => {

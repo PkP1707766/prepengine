@@ -210,6 +210,82 @@ export const FX_EXAM = {
         ],
       })),
     },
+    {
+      name: "BPSC Formats",
+      questions: [
+        {
+          id: "fx-eb0", subject: "Polity", topic: "Fundamental Rights", type: "statement_based", marks: 2, negative: 0.66,
+          text: "Consider the following statements about the Fundamental Rights in the Indian Constitution:",
+          text_hi: "भारतीय संविधान में मौलिक अधिकारों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:",
+          data: {
+            statements: [
+              "The Right to Constitutional Remedies is itself a Fundamental Right.",
+              "The Right to Property is a Fundamental Right under Part III.",
+              "The Right to Education was inserted as Article 21A by the 86th Amendment.",
+            ],
+            statements_hi: [
+              "संवैधानिक उपचारों का अधिकार स्वयं एक मौलिक अधिकार है।",
+              "संपत्ति का अधिकार भाग-III के अंतर्गत एक मौलिक अधिकार है।",
+              "शिक्षा का अधिकार 86वें संशोधन द्वारा अनुच्छेद 21क के रूप में जोड़ा गया।",
+            ],
+            closing: "Which of the statements given above is/are correct?",
+            closing_hi: "उपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+          },
+          options: [
+            { id: "fx-eb0-a", body: "Only 1 and 3", body_hi: "केवल 1 और 3" },
+            { id: "fx-eb0-b", body: "Only 2 and 3", body_hi: "केवल 2 और 3" },
+            { id: "fx-eb0-c", body: "Only 1 and 2", body_hi: "केवल 1 और 2" },
+            { id: "fx-eb0-d", body: "All of the above", body_hi: "उपर्युक्त सभी" },
+          ],
+        },
+        {
+          id: "fx-eb1", subject: "Ancient History", topic: "Science", type: "match_the_following", marks: 2, negative: 0.66,
+          text: "Match List-I (Scholar) with List-II (Field) and select the correct answer using the code given below:",
+          text_hi: "सूची-I (विद्वान) का सूची-II (क्षेत्र) से मिलान कीजिए और नीचे दिए गए कूट का प्रयोग कर सही उत्तर चुनिए:",
+          data: {
+            list_1: ["a. Charaka", "b. Aryabhata", "c. Sushruta", "d. Brahmagupta"],
+            list_2: ["1. Astronomy", "2. Surgery", "3. Medicine", "4. Mathematics"],
+            list_1_hi: ["a. चरक", "b. आर्यभट", "c. सुश्रुत", "d. ब्रह्मगुप्त"],
+            list_2_hi: ["1. खगोलशास्त्र", "2. शल्यचिकित्सा", "3. आयुर्विज्ञान", "4. गणित"],
+          },
+          options: [
+            { id: "fx-eb1-a", body: "a-3, b-1, c-2, d-4", body_hi: "a-3, b-1, c-2, d-4" },
+            { id: "fx-eb1-b", body: "a-2, b-1, c-3, d-4", body_hi: "a-2, b-1, c-3, d-4" },
+            { id: "fx-eb1-c", body: "a-3, b-4, c-2, d-1", body_hi: "a-3, b-4, c-2, d-1" },
+            { id: "fx-eb1-d", body: "a-1, b-3, c-4, d-2", body_hi: "a-1, b-3, c-4, d-2" },
+          ],
+        },
+        {
+          id: "fx-eb2", subject: "Geography", topic: "Rivers", type: "assertion_reason", marks: 2, negative: 0.66,
+          text: "Read the Assertion (A) and the Reason (R) below and choose the correct option:",
+          text_hi: "नीचे दिए गए अभिकथन (A) और कारण (R) को पढ़िए और सही विकल्प चुनिए:",
+          data: {
+            assertion: "The Ganga is the longest river flowing within India.",
+            reason: "The Ganga originates from the Gangotri glacier in Uttarakhand.",
+            assertion_hi: "गंगा भारत के भीतर बहने वाली सबसे लंबी नदी है।",
+            reason_hi: "गंगा का उद्गम उत्तराखंड में गंगोत्री हिमनद से होता है।",
+          },
+          options: [
+            { id: "fx-eb2-a", body: "Both A and R are true and R is the correct explanation of A", body_hi: "A और R दोनों सही हैं तथा R, A की सही व्याख्या है" },
+            { id: "fx-eb2-b", body: "Both A and R are true but R is NOT the correct explanation of A", body_hi: "A और R दोनों सही हैं परन्तु R, A की सही व्याख्या नहीं है" },
+            { id: "fx-eb2-c", body: "A is true but R is false", body_hi: "A सही है परन्तु R गलत है" },
+            { id: "fx-eb2-d", body: "A is false but R is true", body_hi: "A गलत है परन्तु R सही है" },
+          ],
+        },
+        {
+          id: "fx-eb3", subject: "Reasoning", topic: "Number Series", type: "reasoning_aptitude", marks: 2, negative: 0.66,
+          text: "Find the missing term in the following number series:",
+          text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",
+          data: { series: "2, 6, 12, 20, 30, ?", series_hi: "2, 6, 12, 20, 30, ?" },
+          options: [
+            { id: "fx-eb3-a", body: "40" },
+            { id: "fx-eb3-b", body: "42" },
+            { id: "fx-eb3-c", body: "44" },
+            { id: "fx-eb3-d", body: "46" },
+          ],
+        },
+      ],
+    },
   ],
 };
 

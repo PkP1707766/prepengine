@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
 
   const { data: qRows } = await sb
     .from("questions")
-    .select("id, subject, topic, type, body, body_hi, options, numeric_answer, numeric_tolerance, marks_correct, marks_wrong, explanation, explanation_hi")
+    .select("id, subject, topic, type, body, body_hi, question_data, options, numeric_answer, numeric_tolerance, marks_correct, marks_wrong, explanation, explanation_hi")
     .in("id", allIds);
   const byId = new Map((qRows ?? []).map((q) => [q.id, q]));
 
@@ -176,6 +176,9 @@ Deno.serve(async (req) => {
         // edited or translated after the attempt.
         text: q.body,
         text_hi: q.body_hi || null,
+        // Type-specific stem (statements / lists / assertion+reason), snapshotted
+        // so the report renders the BPSC formats exactly as sat. Answer-free.
+        data: q.question_data && typeof q.question_data === "object" ? q.question_data : {},
         // Bodies only — the review screen renders these, and the answer is
         // carried separately as an index now that the paper is over.
         options: opts.map((o) => o.body ?? ""),

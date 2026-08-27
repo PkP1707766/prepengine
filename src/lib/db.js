@@ -352,6 +352,9 @@ export function questionFromRow(r) {
     difficulty: r.difficulty,
     body: r.body,
     bodyHi: r.body_hi || "",
+    // Type-specific stem for the BPSC formats (statements / list_1+list_2 /
+    // assertion+reason / series). Hindi rides inside as parallel *_hi keys.
+    questionData: r.question_data && typeof r.question_data === "object" ? r.question_data : {},
     // Option translations ride inside the option object as `body_hi`, keyed to
     // the option's own id — a parallel array would fall out of step the first
     // time an option is reordered or removed.
@@ -363,6 +366,18 @@ export function questionFromRow(r) {
     explanation: r.explanation || "",
     explanationHi: r.explanation_hi || "",
     tags: r.tags || [],
+    isActive: r.is_active !== false,
+    // Tagging / provenance the generator and the QC workflow read.
+    conceptGroupId: r.concept_group_id || "",
+    sourceType: r.source_type || "",
+    sourceCitation: r.source_citation || "",
+    status: r.status || "published",
+    caValidUntil: r.ca_valid_until || "",
+    reviewDueDate: r.review_due_date || "",
+    // System-managed usage/recalibration fields — read-only from the editor.
+    timesUsed: r.times_used ?? 0,
+    lastUsedDate: r.last_used_date || null,
+    correctRate: r.correct_rate ?? null,
     createdAt: r.created_at,
   };
 }
@@ -376,6 +391,8 @@ export function questionToRow(q) {
     difficulty: q.difficulty,
     body: q.body,
     body_hi: (q.bodyHi || "").trim() || null,
+    // {} for the plain formats; the BPSC formats carry their stem here.
+    question_data: q.questionData && typeof q.questionData === "object" ? q.questionData : {},
     options: q.options || [],
     numeric_answer: q.type === "numerical" ? q.numericAnswer : null,
     numeric_tolerance: q.numericTolerance ?? 0.01,
@@ -384,6 +401,15 @@ export function questionToRow(q) {
     explanation: q.explanation || null,
     explanation_hi: (q.explanationHi || "").trim() || null,
     tags: q.tags || [],
+    concept_group_id: q.conceptGroupId || null,
+    source_type: q.sourceType || null,
+    source_citation: q.sourceCitation || null,
+    status: q.status || "published",
+    ca_valid_until: q.caValidUntil || null,
+    review_due_date: q.reviewDueDate || null,
+    // times_used / last_used_* / correct_rate are written by the server
+    // (commit_generated_test and the Phase-2 recalibration loop), never here —
+    // a counter the editor could overwrite is a counter two paths disagree on.
     updated_at: new Date().toISOString(),
   };
 }
@@ -536,6 +562,143 @@ export async function deleteTest(id) {
   const sb = await getSupabase();
   const { error } = await sb.from("tests").delete().eq("id", id);
   if (error) throw error;
+}
+
+/* ----------------------------------------------- generation: config & blueprints -- */
+
+/**
+ * distribution_config — the PYQ-derived target weights the generator matches.
+ * Weights key on the existing free-text subject/topic values (no enum), so a
+ * new subject the admin adds simply becomes another weightable key.
+ */
+export const distributionConfigs = crud(
+  "distribution_config",
+  (r) => ({
+    id: r.id,
+    name: r.name,
+    subjectWeights: r.subject_weights || {},
+    difficultyWeights: r.difficulty_weights || {},
+    questionTypeWeights: r.question_type_weights || {},
+    subTopicWeights: r.sub_topic_weights || {},
+    createdAt: r.created_at,
+  }),
+  (c) => ({
+    id: c.id || undefined,
+    name: c.name,
+    subject_weights: c.subjectWeights || {},
+    difficulty_weights: c.difficultyWeights || {},
+    question_type_weights: c.questionTypeWeights || {},
+    sub_topic_weights: c.subTopicWeights || {},
+    updated_at: new Date().toISOString(),
+  }),
+);
+
+const blueprintFromRow = (r) => ({
+  id: r.id,
+  seriesId: r.series_id,
+  sequencePosition: r.sequence_position ?? 1,
+  title: r.title,
+  titleHi: r.title_hi || "",
+  patternType: r.pattern_type,
+  questionCount: r.question_count ?? 150,
+  subjectScope: r.subject_scope || {},
+  distributionConfigId: r.distribution_config_id || "",
+  themeGroupId: r.theme_group_id || "",
+  themePartIndex: r.theme_part_index ?? "",
+  createdAt: r.created_at,
+});
+
+const blueprintToRow = (b) => ({
+  id: b.id || undefined,
+  series_id: b.seriesId || null,
+  sequence_position: Number(b.sequencePosition || 1),
+  title: b.title,
+  title_hi: (b.titleHi || "").trim() || null,
+  pattern_type: b.patternType,
+  question_count: Number(b.questionCount || 150),
+  subject_scope: b.subjectScope || {},
+  distribution_config_id: b.distributionConfigId || null,
+  theme_group_id: b.themeGroupId || null,
+  theme_part_index: b.themePartIndex === "" || b.themePartIndex == null ? null : Number(b.themePartIndex),
+  updated_at: new Date().toISOString(),
+});
+
+/** Blueprints for a series (or all of them), ordered by their sequence. */
+export async function listBlueprints(seriesId = null) {
+  const sb = await getSupabase();
+  let q = sb.from("test_blueprints").select("*").order("sequence_position");
+  if (seriesId) q = q.eq("series_id", seriesId);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data ?? []).map(blueprintFromRow);
+}
+
+export async function upsertBlueprint(b) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("test_blueprints").upsert(blueprintToRow(b)).select().single();
+  if (error) throw error;
+  return blueprintFromRow(data);
+}
+
+export async function deleteBlueprint(id) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("test_blueprints").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** The whole usage ledger — the generator reads it for cooldown + theme dedup. */
+export async function questionUsages() {
+  const sb = await getSupabase();
+  const { data, error } = await sb
+    .from("question_usages")
+    .select("question_id, test_id, blueprint_id, theme_group_id, concept_group_id, used_at");
+  if (error) throw error;
+  return (data ?? []).map((u) => ({
+    questionId: u.question_id,
+    testId: u.test_id,
+    blueprintId: u.blueprint_id,
+    themeGroupId: u.theme_group_id,
+    conceptGroupId: u.concept_group_id,
+    usedAt: u.used_at,
+  }));
+}
+
+/** The most recent N test ids — the cooldown window for the generator. */
+export async function recentTestIds(limit = 5) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("tests").select("id").order("created_at", { ascending: false }).limit(limit);
+  if (error) throw error;
+  return (data ?? []).map((r) => r.id);
+}
+
+/**
+ * Persist a generated paper atomically. The server writes the test row, records
+ * one question_usages line per question, and recomputes each question's
+ * times_used from that ledger — so the counters stay honest even on a re-commit.
+ */
+export async function commitGeneratedTest(test, { blueprintId = null, themeGroupId = null } = {}) {
+  const sb = await getSupabase();
+  const p_test = {
+    id: test.id || undefined,
+    title: test.title,
+    title_hi: (test.titleHi || "").trim() || null,
+    description: test.description || null,
+    series_id: test.seriesId || null,
+    duration_min: Number(test.durationMin || 60),
+    sections: test.sections || [],
+    is_free: !!test.isFree,
+    is_published: !!test.isPublished,
+    shuffle_questions: test.shuffleQuestions !== false,
+    shuffle_options: test.shuffleOptions !== false,
+    scheduled_for: test.scheduledFor || null,
+  };
+  const { data, error } = await sb.rpc("commit_generated_test", {
+    p_test,
+    p_blueprint: blueprintId || null,
+    p_theme_group: themeGroupId || null,
+  });
+  if (error) throw error;
+  return data; // the persisted test id
 }
 
 /**
