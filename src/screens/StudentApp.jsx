@@ -9,6 +9,7 @@ import { EmptyState, ErrorState } from "../ui/Feedback.jsx";
 import * as DB from "../lib/db.js";
 import { fmtDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
 import Pattern from "../ui/Pattern.jsx";
+import { ReviewCard, ReviewStyles } from "../ui/Review.jsx";
 
 const StudentApp = (() => {
 /* ============================================================
@@ -498,6 +499,69 @@ const TYPE_ICON = { pdf: { ic: <FileText size={22} />, c: { bg: "#fbeaea", fg: "
 /* ============================================================
    ATTEMPT ANALYSIS MODAL
    ============================================================ */
+/**
+ * The per-question solutions for one past attempt (§7: the review is reachable
+ * later, not only right after submitting). Renders the shared ReviewCard from
+ * the attempt's stored review rows, so it matches the post-test result screen.
+ */
+function SolutionsSection({ review }) {
+  const { t } = useLang();
+  const [show, setShow] = useState(false);
+  if (!Array.isArray(review) || review.length === 0) return null;
+  return (
+    <div style={{ marginTop: 16 }}>
+      <button className="btn btn-ghost btn-sm" onClick={() => setShow((s) => !s)}>
+        <Eye size={15} />{show ? t("sd_hide_sol") : t("sd_view_sol")}
+      </button>
+      {show && (
+        <div style={{ marginTop: 12 }}>
+          <ReviewStyles />
+          {review.map((r, i) => <ReviewCard key={r.id ?? i} r={r} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * My-Performance drill-down (§7): every question the student got wrong in one
+ * subject, across all attempts, in the same ReviewCard the result screen uses —
+ * filtered instead of scoped to one test. Data comes from the my_review RPC.
+ */
+function SubjectDrilldown({ subject, onClose }) {
+  const { t } = useLang();
+  const [rows, setRows] = useState(null);
+  const [err, setErr] = useState("");
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const r = await DB.myReview(subject, { wrongOnly: true });
+        if (alive) setRows(r);
+      } catch (e) { if (alive) setErr(e?.message || "Could not load your review."); }
+    })();
+    return () => { alive = false; };
+  }, [subject]);
+
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 720 }}>
+        <div className="modal-head"><h3>{subject} — {t("sd_mistakes")}</h3><button className="x" onClick={onClose}><X size={19} /></button></div>
+        <div className="modal-body">
+          <ReviewStyles />
+          {err && <div style={{ color: "var(--red)", fontSize: 13, marginBottom: 10 }}>{err}</div>}
+          {rows === null && !err && <p style={{ fontSize: 13, color: "var(--muted)" }}>{t("sd_loading")}</p>}
+          {rows !== null && rows.length === 0 && (
+            <EmptyState compact icon={<CheckCircle2 size={24} />} title={t("sd_no_mistakes")} text={t("sd_no_mistakes_sub")} />
+          )}
+          {rows && rows.map((r, i) => <ReviewCard key={r.responseId ?? i} r={r} defaultOpen={rows.length <= 3} />)}
+        </div>
+        <div className="modal-foot"><button className="btn btn-ghost btn-sm" onClick={onClose}>{t("sd_close")}</button></div>
+      </div>
+    </div>
+  );
+}
+
 function AnalysisModal({ a, onClose, onRetake }) {
   const { t } = useLang();
   const pct = a.scorePct ?? (a.maxScore > 0 ? (a.score / a.maxScore) * 100 : 0);
@@ -556,6 +620,8 @@ function AnalysisModal({ a, onClose, onRetake }) {
               </p>
             </div>
           )}
+
+          <SolutionsSection review={a.review} />
         </div>
         <div className="modal-foot">
           <button className="btn btn-ghost btn-sm" onClick={onClose}>Close</button>
@@ -904,6 +970,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
 function PerformanceView({ go }) {
   const { t } = useLang();
   const { attempts, subjects, derived, peer } = useData();
+  const [drill, setDrill] = useState(null);
 
   if (attempts.length === 0) {
     return (
@@ -1021,16 +1088,17 @@ function PerformanceView({ go }) {
         <div className="card card-pad">
           <div className="eyebrow">{t("sd_subjwise")}</div>
           <div className="panel-title">{t("sd_bands")}</div>
-          <p className="panel-note" style={{ marginBottom: 18 }}>{t("sd_bands_sub")}</p>
+          <p className="panel-note" style={{ marginBottom: 18 }}>{t("sd_bands_sub")} {t("sd_tap_subject")}</p>
           {subjects.length === 0 ? (
             <EmptyState compact icon={<Layers size={24} />} title={t("sd_no_subj")} text="It appears after your first attempt." />
           ) : subjects.map((s) => {
             const col = SEM[s.band], bg = s.band === "strong" ? "var(--grn-bg)" : s.band === "average" ? "var(--amb-bg)" : "var(--red-bg)";
             return (
-              <div className="topic-row" key={s.name}>
+              <div className="topic-row drill" key={s.name} onClick={() => setDrill(s.name)} title={t("sd_view_sol")} style={{ cursor: "pointer" }}>
                 <span className="topic-name">{s.name}</span>
                 <div className="topic-track"><div className="topic-fill" style={{ width: s.acc + "%", background: col }} /></div>
                 <span className="topic-band" style={{ background: bg, color: col }}>{t("ex_band_" + s.band)}</span>
+                <ChevronRight size={15} style={{ color: "var(--muted)", flex: "0 0 auto" }} />
               </div>
             );
           })}
@@ -1078,6 +1146,7 @@ function PerformanceView({ go }) {
           </div>
         </div>
       </div>
+      {drill && <SubjectDrilldown subject={drill} onClose={() => setDrill(null)} />}
     </div>
   );
 }

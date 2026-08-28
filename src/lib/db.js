@@ -772,10 +772,11 @@ export async function loadExamTest(testId) {
  * percentile are all computed server-side and written by the service role.
  * `attempts` is no longer writable from the client at all.
  */
-export async function submitAttempt({ testId, answers, timeSpent, timeUsed, startedAt }) {
+export async function submitAttempt({ testId, answers, timeSpent, timeUsed, startedAt, shownOrder, marked }) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_EXAM_RESULT;
   const sb = await getSupabase();
   const { data, error } = await sb.functions.invoke("submit-attempt", {
-    body: { testId, answers, timeSpent, timeUsed, startedAt },
+    body: { testId, answers, timeSpent, timeUsed, startedAt, shownOrder, marked },
   });
   if (error) {
     const detail = await error?.context?.json?.().catch(() => null);
@@ -811,6 +812,8 @@ export function attemptFromRow(r) {
     durationMin: r.duration_min ?? 0,
     sections: Array.isArray(r.section_stats) ? r.section_stats : [],
     topics: Array.isArray(r.topic_stats) ? r.topic_stats : [],
+    difficultyStats: Array.isArray(r.difficulty_stats) ? r.difficulty_stats : [],
+    typeStats: Array.isArray(r.type_stats) ? r.type_stats : [],
     review: Array.isArray(r.review) ? r.review : [],
     answers: r.answers || {},
   };
@@ -828,6 +831,29 @@ export async function listAttempts(userId, { limit = 100 } = {}) {
     .limit(limit);
   if (error) throw error;
   return (data ?? []).map(attemptFromRow);
+}
+
+/**
+ * The cross-attempt review drill-down (§7). Returns this student's own answered
+ * questions — optionally one subject, optionally only the wrong ones — each in
+ * the review-row shape ReviewCard renders, with explanation, source and the
+ * crowd success rate. Goes through the SECURITY DEFINER my_review() because
+ * students have no direct read on `questions`; the function only ever returns
+ * the caller's own rows.
+ */
+export async function myReview(subject = null, { wrongOnly = false } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) {
+    let rows = fx().FX_MY_REVIEW;
+    if (subject) rows = rows.filter((r) => r.subject === subject);
+    return rows;
+  }
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("my_review", {
+    p_subject: subject || null,
+    p_wrong_only: !!wrongOnly,
+  });
+  if (error) throw error;
+  return Array.isArray(data) ? data : [];
 }
 
 

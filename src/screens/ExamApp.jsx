@@ -4,8 +4,9 @@ import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
-import { loadExamTest, submitAttempt, currentUser, getProfile } from "../lib/db.js";
+import { loadExamTest, submitAttempt, currentUser, getProfile, listAttempts, subjectStrength } from "../lib/db.js";
 import Pattern from "../ui/Pattern.jsx";
+import { StemData, ReviewCard } from "../ui/Review.jsx";
 
 
 const ExamApp = (() => {
@@ -74,59 +75,9 @@ const typeLabel = (type, t) => {
   }
 };
 
-/**
- * The type-specific stem that sits between the prompt and the options: the
- * numbered statements, the List-I / List-II pairing, or the Assertion/Reason
- * block. Answer-free — the correct combination lives in the options. Shared by
- * the live paper and the post-attempt review, and bilingual throughout (Hindi
- * rides inside `data` as parallel *_hi arrays/strings).
- */
-function StemData({ data }) {
-  const { t, lang } = useLang();
-  if (!data || typeof data !== "object") return null;
-  const statements = Array.isArray(data.statements) ? data.statements : null;
-  const list1 = Array.isArray(data.list_1) ? data.list_1 : null;
-  const list2 = Array.isArray(data.list_2) ? data.list_2 : null;
-  const hasMatch = list1 && list2 && (list1.length > 0 || list2.length > 0);
-  const hasAR = data.assertion || data.reason;
-  const series = data.series;
-  // Trailing prompt that must read AFTER the statements/lists — e.g. "Which of
-  // the statements given above is/are correct?" — not before them.
-  const closing = data.closing;
-  if (!statements && !hasMatch && !hasAR && !series && !closing) return null;
-
-  return (
-    <div className="stem-data">
-      {statements && statements.length > 0 && (
-        <ol className="stmt-list">
-          {statements.map((s, i) => (
-            <li key={i}>{inLang(lang, s, (data.statements_hi || [])[i])}</li>
-          ))}
-        </ol>
-      )}
-      {hasMatch && (
-        <div className="match-grid">
-          <div className="match-col">
-            <div className="match-head">{t("ex_list_i")}</div>
-            {list1.map((x, i) => <div className="match-cell" key={i}>{inLang(lang, x, (data.list_1_hi || [])[i])}</div>)}
-          </div>
-          <div className="match-col">
-            <div className="match-head">{t("ex_list_ii")}</div>
-            {list2.map((x, i) => <div className="match-cell" key={i}>{inLang(lang, x, (data.list_2_hi || [])[i])}</div>)}
-          </div>
-        </div>
-      )}
-      {hasAR && (
-        <div className="ar-block">
-          {data.assertion && <div className="ar-row"><span className="ar-key">{t("ex_assertion")}:</span> {inLang(lang, data.assertion, data.assertion_hi)}</div>}
-          {data.reason && <div className="ar-row"><span className="ar-key">{t("ex_reason")}:</span> {inLang(lang, data.reason, data.reason_hi)}</div>}
-        </div>
-      )}
-      {series && <div className="series-line">{inLang(lang, series, data.series_hi)}</div>}
-      {closing && <div className="stem-closing">{inLang(lang, closing, data.closing_hi)}</div>}
-    </div>
-  );
-}
+// StemData + ReviewCard now live in ../ui/Review.jsx so the My-Performance
+// drill-down renders the exact same card. ExamApp keeps the `.stem-*`/`.rev-*`
+// styles below, so it renders them without <ReviewStyles/>.
 
 /* ============================================================
    STYLES (self-contained design system)
@@ -383,7 +334,7 @@ const CSS = `
 .rev-chev{color:#bcae94;font-size:13px;transition:.2s}
 .rev-chev.open{transform:rotate(90deg)}
 .rev-body{padding:0 16px 18px;border-top:1px solid var(--line);background:#fdfaf0}
-.rev-qfull{font-size:14.5px;color:#2e1c12;line-height:1.6;white-space:pre-wrap;padding:16px 0 14px}
+.rev-qfull{font-size:14.5px;color:var(--ink);line-height:1.6;white-space:pre-wrap;padding:16px 0 14px}
 .rev-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
 .rev-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:9px;font-size:14px;border:1.5px solid transparent}
 .rev-opt.correct{background:var(--grn-bg);border-color:#bfe3cd;color:#176437}
@@ -401,6 +352,16 @@ const CSS = `
 .foot-btn:hover{background:#faf2dc}
 .foot-btn.primary{background:var(--navy);color:#ffffff}
 .foot-btn.primary:hover{background:var(--navy-2)}
+.brk-label{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:6px 0 8px}
+.brk-pct{font-size:12.5px;font-weight:800;color:var(--ink);flex:0 0 auto;min-width:82px;text-align:right}
+.brk-n{font-weight:600;color:var(--muted)}
+.trend-strip{margin-top:24px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;flex-direction:column;gap:10px}
+.trend-eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.trend-rows{display:flex;flex-wrap:wrap;gap:8px}
+.trend-chip{font-size:13px;padding:7px 13px;border-radius:20px;background:var(--line);color:var(--ink);font-weight:600}
+.trend-chip b{font-weight:800;margin-right:5px}
+.trend-up{color:#1f8a4c;font-weight:800}
+.trend-down{color:#c0392b;font-weight:800}
 `;
 
 /* palette status colors */
@@ -704,6 +665,58 @@ function SubmitModal({ counts, onCancel, onConfirm }) {
 /* ============================================================
    RESULTS SCREEN
    ============================================================ */
+/**
+ * "How this attempt fits your trend" (§7): after submitting, the student sees
+ * their cumulative accuracy in this paper's subjects and whether it moved,
+ * rather than having to navigate to My Performance to find out. Reuses
+ * subjectStrength() over the attempt history — the just-submitted attempt is
+ * the last row, so slicing it off gives the "before" picture.
+ */
+function TrendStrip({ data }) {
+  const { t } = useLang();
+  const [rows, setRows] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const u = await currentUser();
+        if (!u) return;
+        const all = await listAttempts(u.id, { limit: 200 });
+        if (!alive || all.length === 0) return;
+        const now = subjectStrength(all);
+        const prevMap = new Map(subjectStrength(all.slice(0, -1)).map((s) => [s.name, s.acc]));
+        const out = (data.topics || [])
+          .map((tp) => {
+            const cur = now.find((s) => s.name === tp.name);
+            if (!cur) return null;
+            return { name: tp.name, acc: cur.acc, delta: prevMap.has(tp.name) ? cur.acc - prevMap.get(tp.name) : null };
+          })
+          .filter(Boolean)
+          .slice(0, 4);
+        if (alive) setRows(out);
+      } catch { /* the trend strip is a nicety, not a requirement */ }
+    })();
+    return () => { alive = false; };
+  }, [data]);
+
+  if (!rows || rows.length === 0) return null;
+  return (
+    <div className="trend-strip">
+      <span className="trend-eyebrow">{t("ex_trend_title")}</span>
+      <div className="trend-rows">
+        {rows.map((d) => (
+          <span className="trend-chip" key={d.name}>
+            <b>{d.name}</b> {d.acc}%
+            {d.delta != null && d.delta !== 0 && (
+              <span className={d.delta > 0 ? "trend-up" : "trend-down"}>{d.delta > 0 ? " ▲" : " ▼"}{Math.abs(d.delta)}</span>
+            )}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Results({ data, onRetake, onExit }) {
   const EXAM = useExam();
   const { t, lang } = useLang();
@@ -712,7 +725,6 @@ function Results({ data, onRetake, onExit }) {
      cannot hide. */
   const tr = t;
   const [filter, setFilter] = useState("all");
-  const [open, setOpen] = useState(null);
 
   const grade = gradeFor(data.scorePct);
   // A real percentile arrives once the attempt is scored against everyone who
@@ -873,6 +885,51 @@ function Results({ data, onRetake, onExit }) {
           </div>
         </div>
 
+        {/* DIFFICULTY & FORMAT — is it a topic gap or a format gap? */}
+        {((data.difficultyStats && data.difficultyStats.length > 0) || (data.typeStats && data.typeStats.length > 0)) && (
+          <div className="panel">
+            <div className="panel-eyebrow">{t("ex_format_eyebrow")}</div>
+            <div className="panel-title">{t("ex_by_format")}</div>
+            <p className="panel-note">{t("ex_by_format_sub")}</p>
+            {data.difficultyStats && data.difficultyStats.length > 0 && (
+              <>
+                <div className="brk-label">{t("ex_by_difficulty")}</div>
+                <div className="topic-list">
+                  {data.difficultyStats.map((d) => {
+                    const acc = Math.round(d.acc);
+                    const col = acc >= 75 ? SEM.strong : acc >= 50 ? SEM.average : SEM.weak;
+                    return (
+                      <div className="topic-row" key={d.name}>
+                        <span className="topic-name">{tr("ex_diff_" + d.name)}</span>
+                        <div className="topic-track"><div className="topic-fill" style={{ width: acc + "%", background: col }} /></div>
+                        <span className="brk-pct">{acc}% <span className="brk-n">({d.correct}/{d.total})</span></span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+            {data.typeStats && data.typeStats.length > 0 && (
+              <>
+                <div className="brk-label" style={{ marginTop: 14 }}>{t("ex_by_type")}</div>
+                <div className="topic-list">
+                  {data.typeStats.map((ty) => {
+                    const acc = Math.round(ty.acc);
+                    const col = acc >= 75 ? SEM.strong : acc >= 50 ? SEM.average : SEM.weak;
+                    return (
+                      <div className="topic-row" key={ty.name}>
+                        <span className="topic-name">{typeLabel(ty.name, tr)}</span>
+                        <div className="topic-track"><div className="topic-fill" style={{ width: acc + "%", background: col }} /></div>
+                        <span className="brk-pct">{acc}% <span className="brk-n">({ty.correct}/{ty.total})</span></span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
         {/* TIME PER QUESTION */}
         <div className="panel full">
           <div className="panel-eyebrow">{t("ex_timemgmt")}</div>
@@ -964,61 +1021,11 @@ function Results({ data, onRetake, onExit }) {
             ))}
           </div>
 
-          {filtered.map((r) => {
-            const col = !r.attempted ? "#b0a080" : r.correct ? SEM.strong : SEM.weak;
-            const isOpen = open === r.id;
-            return (
-              <div className="rev-item" key={r.id}>
-                <div className="rev-bar" onClick={() => setOpen(isOpen ? null : r.id)}>
-                  <div className="rev-idx" style={{ background: col }}>{r.num ?? "?"}</div>
-                  <div className="rev-q">{r.text.split("\n")[0]}</div>
-                  <div className="rev-meta">
-                    <span className="rev-time">⏱ {fmt(r.time)}</span>
-                    <span className="rev-marks" style={{ color: r.awarded > 0 ? SEM.strong : r.awarded < 0 ? SEM.weak : "var(--muted)" }}>
-                      {r.awarded > 0 ? "+" : ""}{r.awarded.toFixed(2)}
-                    </span>
-                    <span className={"rev-chev" + (isOpen ? " open" : "")}>▶</span>
-                  </div>
-                </div>
-                {isOpen && (
-                  <div className="rev-body">
-                    <div className="rev-qfull">{inLang(lang, r.text, r.text_hi)}</div>
-                    <StemData data={r.data} />
-                    {r.type !== "numerical" ? (
-                      <div className="rev-opts">
-                        {r.options.map((opt, i) => {
-                          const isCorrect = r.type === "multiple" ? r.correctVal.includes(i) : r.correctVal === i;
-                          const isYour = r.type === "multiple" ? (Array.isArray(r.yourVal) && r.yourVal.includes(i)) : r.yourVal === i;
-                          let cls = "neutral";
-                          if (isCorrect) cls = "correct";
-                          else if (isYour && !isCorrect) cls = "wrong";
-                          return (
-                            <div key={i} className={"rev-opt " + cls}>
-                              <span className="rev-opt-key">{String.fromCharCode(65 + i)}.</span>
-                              <span>{inLang(lang, opt, r.options_hi?.[i])}</span>
-                              {isCorrect && <span className="rev-flag flag-c">{t("ex_correct_ans")}</span>}
-                              {isYour && !isCorrect && <span className="rev-flag flag-w">{t("ex_your_answer")}</span>}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ) : (
-                      <div className="rev-opts">
-                        <div className={"rev-opt correct"}><span className="rev-opt-key">✓</span><span>{t("ex_correct_ans")}: {r.correctVal}</span></div>
-                        <div className={"rev-opt " + (r.correct ? "correct" : r.attempted ? "wrong" : "neutral")}>
-                          <span className="rev-opt-key">{r.attempted ? (r.correct ? "✓" : "✗") : "—"}</span>
-                          <span>Your answer: {r.attempted ? r.yourVal : "Not attempted"}</span>
-                        </div>
-                      </div>
-                    )}
-                    <div className="expl"><b>{t("ex_explanation")}</b> {inLang(lang, r.explanation, r.explanation_hi)}</div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {filtered.map((r) => <ReviewCard key={r.id} r={r} />)}
         </div>
       </div>
+
+      <TrendStrip data={data} />
 
       <div className="res-foot">
         <button className="foot-btn" onClick={onRetake}>↻ Re-attempt test</button>
@@ -1123,12 +1130,20 @@ function ExamRunner({ onExit, candidateName, candidateId, onSubmitted }) {
     setSubmitErr("");
     setSubmitting(true);
     try {
+      // The exact on-screen option order per question, so the review can show
+      // the paper as it was sat (§7). Numerical questions have no options.
+      const shownOrder = {};
+      EXAM.sections.forEach((s) => s.questions.forEach((q) => {
+        if (Array.isArray(q.options) && q.options.length) shownOrder[q.id] = q.options.map((o) => o.id);
+      }));
       const data = await onSubmitted({
         testId: EXAM.id,
         answers,
         timeSpent: { ...timeSpent.current },
         timeUsed: EXAM.durationSec - timeLeft,
         startedAt: startedAt.current,
+        shownOrder,
+        marked: [...marked],
       });
       if (!data) throw new Error("Could not score this paper.");
       setResults(data);

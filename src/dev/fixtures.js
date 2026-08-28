@@ -27,6 +27,79 @@ export const FX_PROFILE = {
   created_at: iso(200),
 };
 
+/* Shared review rows (§7) — one of each BPSC format, a mix of right/wrong/
+   skipped, carrying the new fields (shown-order options, difficulty, source,
+   crowd correct_rate). Used by the result screen, the past-attempt solutions,
+   and the My-Performance drill-down so all three render in dev. */
+export const FX_REVIEW_ROWS = [
+  {
+    id: "frv-1", num: 1, section: "General Studies", type: "statement_based", topic: "Polity", subject: "Polity",
+    text: "Consider the following statements about the Fundamental Rights in the Indian Constitution:",
+    text_hi: "भारतीय संविधान में मौलिक अधिकारों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:",
+    data: {
+      statements: [
+        "The Right to Constitutional Remedies is itself a Fundamental Right.",
+        "The Right to Property is a Fundamental Right under Part III.",
+        "The Right to Education was inserted as Article 21A by the 86th Amendment.",
+      ],
+      statements_hi: [
+        "संवैधानिक उपचारों का अधिकार स्वयं एक मौलिक अधिकार है।",
+        "संपत्ति का अधिकार भाग-III के अंतर्गत एक मौलिक अधिकार है।",
+        "शिक्षा का अधिकार 86वें संशोधन द्वारा अनुच्छेद 21क के रूप में जोड़ा गया।",
+      ],
+      closing: "Which of the statements given above is/are correct?",
+      closing_hi: "उपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+    },
+    options: ["Only 1 and 3", "Only 2 and 3", "Only 1 and 2", "All of the above"],
+    options_hi: ["केवल 1 और 3", "केवल 2 और 3", "केवल 1 और 2", "उपर्युक्त सभी"],
+    explanation: "Statement 2 is wrong: the 44th Amendment (1978) removed the Right to Property as a Fundamental Right; it is now a legal right under Article 300A. Statements 1 and 3 are correct — so 'Only 1 and 3'.",
+    explanation_hi: "कथन 2 गलत है: 44वें संशोधन (1978) ने संपत्ति के अधिकार को मौलिक अधिकार से हटा दिया; अब यह अनुच्छेद 300क के अंतर्गत विधिक अधिकार है। कथन 1 और 3 सही हैं — अतः 'केवल 1 और 3'।",
+    difficulty: "medium", sourceCitation: "NCERT Indian Polity; 44th Amendment Act, 1978", correctRate: 41,
+    responseId: "sr-1", yourVal: 3, correctVal: 0, attempted: true, correct: false, awarded: -0.66, time: 52,
+  },
+  {
+    id: "frv-2", num: 2, section: "General Studies", type: "mcq", topic: "Geography", subject: "Geography",
+    text: "Which river is known as the 'Sorrow of Bihar'?",
+    text_hi: "किस नदी को 'बिहार का शोक' कहा जाता है?",
+    data: {},
+    options: ["Ganga", "Kosi", "Son", "Gandak"],
+    options_hi: ["गंगा", "कोसी", "सोन", "गंडक"],
+    explanation: "The Kosi is called the 'Sorrow of Bihar' for its frequent devastating floods and its shifting course across north Bihar.",
+    explanation_hi: "कोसी को उसकी बार-बार आने वाली विनाशकारी बाढ़ और उत्तर बिहार में मार्ग बदलने के कारण 'बिहार का शोक' कहा जाता है।",
+    difficulty: "easy", sourceCitation: "Bihar Economic Survey 2024–25", correctRate: 73,
+    responseId: "sr-2", yourVal: 1, correctVal: 1, attempted: true, correct: true, awarded: 2, time: 24,
+  },
+  {
+    id: "frv-3", num: 3, section: "General Studies", type: "match_the_following", topic: "Ancient History", subject: "Ancient History",
+    text: "Match List-I (Scholar) with List-II (Field) and select the correct answer using the code given below:",
+    text_hi: "सूची-I (विद्वान) का सूची-II (क्षेत्र) से मिलान कीजिए और नीचे दिए गए कूट का प्रयोग कर सही उत्तर चुनिए:",
+    data: {
+      list_1: ["a. Charaka", "b. Aryabhata", "c. Sushruta", "d. Brahmagupta"],
+      list_2: ["1. Astronomy", "2. Surgery", "3. Medicine", "4. Mathematics"],
+      list_1_hi: ["a. चरक", "b. आर्यभट", "c. सुश्रुत", "d. ब्रह्मगुप्त"],
+      list_2_hi: ["1. खगोलशास्त्र", "2. शल्यचिकित्सा", "3. आयुर्विज्ञान", "4. गणित"],
+    },
+    options: ["a-3, b-1, c-2, d-4", "a-2, b-1, c-3, d-4", "a-3, b-4, c-2, d-1", "a-1, b-3, c-4, d-2"],
+    options_hi: ["a-3, b-1, c-2, d-4", "a-2, b-1, c-3, d-4", "a-3, b-4, c-2, d-1", "a-1, b-3, c-4, d-2"],
+    explanation: "Charaka — Medicine (3); Aryabhata — Astronomy (1); Sushruta — Surgery (2); Brahmagupta — Mathematics (4). So a-3, b-1, c-2, d-4.",
+    explanation_hi: "चरक — आयुर्विज्ञान (3); आर्यभट — खगोलशास्त्र (1); सुश्रुत — शल्यचिकित्सा (2); ब्रह्मगुप्त — गणित (4)। अतः a-3, b-1, c-2, d-4।",
+    difficulty: "hard", sourceCitation: "NCERT Ancient India", correctRate: 38,
+    responseId: "sr-3", yourVal: 2, correctVal: 0, attempted: true, correct: false, awarded: -0.66, time: 71,
+  },
+  {
+    id: "frv-4", num: 4, section: "CSAT (Aptitude)", type: "reasoning_aptitude", topic: "Number Series", subject: "Reasoning",
+    text: "Find the missing term in the following number series:",
+    text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",
+    data: { series: "2, 6, 12, 20, 30, ?", series_hi: "2, 6, 12, 20, 30, ?" },
+    options: ["40", "42", "44", "46"],
+    options_hi: ["40", "42", "44", "46"],
+    explanation: "The differences run 4, 6, 8, 10, so the next is 12: 30 + 12 = 42 (the pattern is n² + n).",
+    explanation_hi: "अंतर 4, 6, 8, 10 चलते हैं, अगला 12 है: 30 + 12 = 42 (पैटर्न n² + n है)।",
+    difficulty: "medium", sourceCitation: "PYQ, 70th BPSC Prelims", correctRate: 55,
+    responseId: "sr-4", yourVal: null, correctVal: 1, attempted: false, correct: false, awarded: 0, time: 0,
+  },
+];
+
 const mkAttempt = (i, title, score, max, acc) => ({
   id: "fx-att-" + i,
   testId: "fx-test-" + (i % 6),
@@ -57,7 +130,7 @@ const mkAttempt = (i, title, score, max, acc) => ({
     { name: "Economy", subject: "Economy", correct: 7, total: 15, acc: 47, band: "weak" },
     { name: "Environment & Ecology", subject: "Environment & Ecology", correct: 11, total: 14, acc: 79, band: "strong" },
   ],
-  review: [],
+  review: FX_REVIEW_ROWS,
   answers: {},
 });
 
@@ -69,6 +142,45 @@ export const FX_ATTEMPTS = [
   mkAttempt(4, "CSAT Full Mock 01 — Aptitude & Comprehension", 138, 200, 71),
   mkAttempt(5, "BPSC Prelims Mock 03 — All India Grand Test", 151, 200, 76),
 ];
+
+/* The result of the just-submitted dev paper (§7). submitAttempt returns this
+   in fixtures mode so the result screen — breakdowns, per-question review, trend
+   strip — renders without a backend. */
+export const FX_EXAM_RESULT = {
+  attemptId: "fx-att-live", testId: "fx-test-0",
+  title: "BPSC Prelims Mock 04 — All India Grand Test",
+  title_hi: "बीपीएससी प्रारंभिक मॉक 04 — अखिल भारतीय ग्रैंड टेस्ट",
+  seriesTitle: "BPSC Prelims Test Series 2026",
+  durationMin: 120, startedAt: iso(0),
+  score: 3.34, maxScore: 8, scorePct: 41.75, accuracy: 50,
+  attempted: 3, total: 4, unattempted: 1, correct: 1, wrong: 2, timeUsed: 147,
+  sections: [
+    { name: "General Studies", score: 0.68, max: 6, correct: 1, wrong: 2, unattempted: 0 },
+    { name: "CSAT (Aptitude)", score: 0, max: 2, correct: 0, wrong: 0, unattempted: 1 },
+  ],
+  topics: [
+    { name: "Polity", subject: "Polity", correct: 0, total: 1, acc: 0, band: "weak" },
+    { name: "Geography", subject: "Geography", correct: 1, total: 1, acc: 100, band: "strong" },
+    { name: "Ancient History", subject: "Ancient History", correct: 0, total: 1, acc: 0, band: "weak" },
+    { name: "Number Series", subject: "Reasoning", correct: 0, total: 1, acc: 0, band: "weak" },
+  ],
+  difficultyStats: [
+    { name: "easy", correct: 1, total: 1, acc: 100 },
+    { name: "medium", correct: 0, total: 2, acc: 0 },
+    { name: "hard", correct: 0, total: 1, acc: 0 },
+  ],
+  typeStats: [
+    { name: "mcq", correct: 1, total: 1, acc: 100 },
+    { name: "statement_based", correct: 0, total: 1, acc: 0 },
+    { name: "match_the_following", correct: 0, total: 1, acc: 0 },
+    { name: "reasoning_aptitude", correct: 0, total: 1, acc: 0 },
+  ],
+  review: FX_REVIEW_ROWS,
+  percentile: 47.5, rank: 512, totalStudents: 980, peerAvg: 44.2, peerBest: 92.5,
+};
+
+/* The My-Performance drill-down (§7): the questions the student got wrong. */
+export const FX_MY_REVIEW = FX_REVIEW_ROWS.filter((r) => r.attempted && !r.correct);
 
 export const FX_TESTS = [
   { id: "fx-test-0", title: "BPSC Prelims Mock 04 — All India Grand Test", seriesTitle: "BPSC Prelims Test Series 2026", durationMin: 120, totalQuestions: 100, totalMarks: 200, isFree: false, isPublished: true, scheduledFor: null, sections: [{ id: "s1", name: "GS", questionIds: ["q1", "q2"] }] },

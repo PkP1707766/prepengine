@@ -36,6 +36,10 @@ Deno.serve(async (req) => {
     timeSpent?: Record<string, number>;
     timeUsed?: number;
     startedAt?: string;
+    // The exact on-screen option order per question, so the review can show
+    // the paper as it was sat rather than in canonical order.
+    shownOrder?: Record<string, string[]>;
+    marked?: string[];
   };
   try {
     body = await req.json();
@@ -47,6 +51,8 @@ Deno.serve(async (req) => {
   if (!testId) return json(req, { error: "bad_request" }, 400);
   const answers = (body.answers ?? {}) as Record<string, unknown>;
   const timeSpent = (body.timeSpent ?? {}) as Record<string, number>;
+  const shownOrder = (body.shownOrder ?? {}) as Record<string, string[]>;
+  const markedSet = new Set(Array.isArray(body.marked) ? body.marked : []);
 
   const sb = adminClient();
 
@@ -74,7 +80,7 @@ Deno.serve(async (req) => {
 
   const { data: qRows } = await sb
     .from("questions")
-    .select("id, subject, topic, type, body, body_hi, question_data, options, numeric_answer, numeric_tolerance, marks_correct, marks_wrong, explanation, explanation_hi")
+    .select("id, subject, topic, type, difficulty, body, body_hi, question_data, options, numeric_answer, numeric_tolerance, marks_correct, marks_wrong, explanation, explanation_hi, source_citation, correct_rate")
     .in("id", allIds);
   const byId = new Map((qRows ?? []).map((q) => [q.id, q]));
 
@@ -84,6 +90,12 @@ Deno.serve(async (req) => {
     name: string; score: number; max: number; correct: number; wrong: number; unattempted: number;
   }> = {};
   const topicAgg: Record<string, { name: string; subject: string; correct: number; total: number }> = {};
+  // Difficulty- and question-type-wise accuracy (§7 result-page breakdowns).
+  const diffAgg: Record<string, { name: string; correct: number; total: number }> = {};
+  const typeAgg: Record<string, { name: string; correct: number; total: number }> = {};
+  // One normalized row per question, written to student_responses after the
+  // attempt is saved (needs its id).
+  const responseRows: Record<string, unknown>[] = [];
 
   let score = 0, maxScore = 0, attempted = 0, correctN = 0, wrongN = 0;
 
@@ -148,8 +160,44 @@ Deno.serve(async (req) => {
         }
       }
 
+      // Reconstruct the exact on-screen order the student saw, so the review
+      // shows the paper as sat. Falls back to canonical order when no order was
+      // sent (numerical, shuffle off, or an older client).
+      const canonicalIds = opts.map((o) => String(o.id));
+      const shown = Array.isArray(shownOrder[qid]) && shownOrder[qid].length === canonicalIds.length
+        ? shownOrder[qid].map(String)
+        : canonicalIds;
+      const toShownIdx = (canonIdx: number) => {
+        const pos = shown.indexOf(canonicalIds[canonIdx]);
+        return pos === -1 ? canonIdx : pos;
+      };
+      const shownOpts = shown.map((id) => opts[canonicalIds.indexOf(id)] ?? { body: "", body_hi: null });
+      // display_option_order: canonical letter (a/b/c/d) at each shown position.
+      const displayOrder = shown.map((id) => String.fromCharCode(97 + canonicalIds.indexOf(id)));
+
+      let correctShown: unknown = correctVal;
+      let yourShown: unknown = yourVal;
+      if (q.type === "multiple") {
+        correctShown = (correctVal as number[]).map(toShownIdx).sort((a, b) => a - b);
+        yourShown = isAttempted ? (yourVal as number[]).map(toShownIdx).sort((a, b) => a - b) : yourVal;
+      } else if (q.type !== "numerical") {
+        correctShown = toShownIdx(correctVal as number);
+        yourShown = isAttempted ? toShownIdx(yourVal as number) : yourVal;
+      }
+
+      // Canonical letter of the chosen option, for the normalized ledger.
+      const selectedOption = (q.type !== "numerical" && q.type !== "multiple" && isAttempted)
+        ? String.fromCharCode(97 + (yourVal as number))
+        : null;
+
       const awarded = !isAttempted ? 0 : isCorrect ? marks : -negative;
       const topic = q.topic || q.subject || "General";
+      const diff = q.difficulty || "medium";
+      const qtype = q.type || "mcq";
+      diffAgg[diff] ??= { name: diff, correct: 0, total: 0 };
+      typeAgg[qtype] ??= { name: qtype, correct: 0, total: 0 };
+      diffAgg[diff].total += 1;
+      typeAgg[qtype].total += 1;
 
       maxScore += marks;
       score += awarded;
@@ -161,8 +209,10 @@ Deno.serve(async (req) => {
 
       if (isAttempted) {
         attempted++;
-        if (isCorrect) { correctN++; sectionAgg[name].correct++; topicAgg[topic].correct++; }
-        else { wrongN++; sectionAgg[name].wrong++; }
+        if (isCorrect) {
+          correctN++; sectionAgg[name].correct++; topicAgg[topic].correct++;
+          diffAgg[diff].correct++; typeAgg[qtype].correct++;
+        } else { wrongN++; sectionAgg[name].wrong++; }
       } else {
         sectionAgg[name].unattempted++;
       }
@@ -179,15 +229,34 @@ Deno.serve(async (req) => {
         // Type-specific stem (statements / lists / assertion+reason), snapshotted
         // so the report renders the BPSC formats exactly as sat. Answer-free.
         data: q.question_data && typeof q.question_data === "object" ? q.question_data : {},
-        // Bodies only — the review screen renders these, and the answer is
-        // carried separately as an index now that the paper is over.
-        options: opts.map((o) => o.body ?? ""),
-        options_hi: opts.map((o) => o.body_hi ?? null),
+        // Bodies in the order the student saw them (see shownOpts above); the
+        // answer travels as an index into this same shown order.
+        options: shownOpts.map((o) => o.body ?? ""),
+        options_hi: shownOpts.map((o) => o.body_hi ?? null),
         explanation: q.explanation || "",
         explanation_hi: q.explanation_hi || null,
-        yourVal, correctVal,
+        // §7 additions: difficulty, the cited source, and the crowd success rate
+        // (prior attempts; refreshed just below to include this one).
+        difficulty: diff,
+        sourceCitation: q.source_citation || "",
+        correctRate: q.correct_rate != null ? Math.round(Number(q.correct_rate) * 100) : null,
+        yourVal: yourShown, correctVal: correctShown,
         attempted: isAttempted, correct: isCorrect, awarded,
         time: t, slow: t >= slowThreshold && t > 0,
+      });
+
+      responseRows.push({
+        test_id: test.id,
+        question_id: q.id,
+        subject: q.subject || null,
+        sub_topic: q.topic || null,
+        difficulty: diff,
+        question_type: qtype,
+        display_option_order: displayOrder,
+        selected_option: selectedOption,
+        is_correct: isAttempted ? isCorrect : null,
+        time_taken_seconds: t,
+        marked_for_review: markedSet.has(qid),
       });
     }
   }
@@ -201,6 +270,14 @@ Deno.serve(async (req) => {
     const acc = t.total > 0 ? (t.correct / t.total) * 100 : 0;
     return { name: t.name, subject: t.subject, correct: t.correct, total: t.total, acc, band: bandFor(acc) };
   });
+
+  const DIFF_ORDER: Record<string, number> = { easy: 0, medium: 1, hard: 2 };
+  const difficultyStats = Object.values(diffAgg)
+    .map((d) => ({ name: d.name, correct: d.correct, total: d.total, acc: d.total > 0 ? (d.correct / d.total) * 100 : 0 }))
+    .sort((a, b) => (DIFF_ORDER[a.name] ?? 9) - (DIFF_ORDER[b.name] ?? 9));
+  const typeStats = Object.values(typeAgg)
+    .map((ty) => ({ name: ty.name, correct: ty.correct, total: ty.total, acc: ty.total > 0 ? (ty.correct / ty.total) * 100 : 0 }))
+    .sort((a, b) => b.total - a.total);
 
   // ---- persist -----------------------------------------------------------
   const startedAt = body.startedAt || new Date().toISOString();
@@ -225,6 +302,8 @@ Deno.serve(async (req) => {
       answers,
       section_stats: Object.values(sectionAgg),
       topic_stats: topics,
+      difficulty_stats: difficultyStats,
+      type_stats: typeStats,
       review,
       status: "submitted",
       started_at: startedAt,
@@ -236,6 +315,22 @@ Deno.serve(async (req) => {
   if (insErr || !saved) {
     console.error("attempt insert failed", insErr);
     return json(req, { error: "save_failed" }, 500);
+  }
+
+  // The normalized response ledger (§7). One row per question, tagged with the
+  // shown option order — this is what the cross-attempt drill-down and the
+  // crowd correct_rate read. A failure here must not fail the submit: the
+  // student's score is already saved, and the ledger is a best-effort analytics
+  // layer, so it is logged and swallowed.
+  try {
+    const rows = responseRows.map((r) => ({ ...r, attempt_id: saved.id, student_id: user.id }));
+    const { error: srErr } = await sb.from("student_responses").insert(rows);
+    if (srErr) throw srErr;
+    // Refresh the crowd success rate for these questions now that this
+    // attempt's answers are counted.
+    await sb.rpc("refresh_correct_rate", { p_ids: allIds });
+  } catch (e) {
+    console.warn("student_responses write failed", e);
   }
 
   // Standing is computed and stored here too — the client used to write its
@@ -289,6 +384,7 @@ Deno.serve(async (req) => {
     timeUsed: Math.round(Number(body.timeUsed) || 0),
     sections: Object.values(sectionAgg),
     topics, review,
+    difficultyStats, typeStats,
     percentile, rank, totalStudents, peerAvg, peerBest,
   });
 });
