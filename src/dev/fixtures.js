@@ -33,7 +33,7 @@ export const FX_PROFILE = {
    and the My-Performance drill-down so all three render in dev. */
 export const FX_REVIEW_ROWS = [
   {
-    id: "frv-1", num: 1, section: "General Studies", type: "statement_based", topic: "Polity", subject: "Polity",
+    id: "frv-1", num: 1, section: "General Studies", type: "statement_based", topic: "Constitutional provisions", subject: "Polity",
     text: "Consider the following statements about the Fundamental Rights in the Indian Constitution:",
     text_hi: "भारतीय संविधान में मौलिक अधिकारों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:",
     data: {
@@ -58,7 +58,7 @@ export const FX_REVIEW_ROWS = [
     responseId: "sr-1", yourVal: 3, correctVal: 0, attempted: true, correct: false, awarded: -0.66, time: 52,
   },
   {
-    id: "frv-2", num: 2, section: "General Studies", type: "mcq", topic: "Geography", subject: "Geography",
+    id: "frv-2", num: 2, section: "General Studies", type: "mcq", topic: "Physical", subject: "Geography",
     text: "Which river is known as the 'Sorrow of Bihar'?",
     text_hi: "किस नदी को 'बिहार का शोक' कहा जाता है?",
     data: {},
@@ -70,7 +70,7 @@ export const FX_REVIEW_ROWS = [
     responseId: "sr-2", yourVal: 1, correctVal: 1, attempted: true, correct: true, awarded: 2, time: 24,
   },
   {
-    id: "frv-3", num: 3, section: "General Studies", type: "match_the_following", topic: "Ancient History", subject: "Ancient History",
+    id: "frv-3", num: 3, section: "General Studies", type: "match_the_following", topic: "Ancient", subject: "History",
     text: "Match List-I (Scholar) with List-II (Field) and select the correct answer using the code given below:",
     text_hi: "सूची-I (विद्वान) का सूची-II (क्षेत्र) से मिलान कीजिए और नीचे दिए गए कूट का प्रयोग कर सही उत्तर चुनिए:",
     data: {
@@ -87,7 +87,7 @@ export const FX_REVIEW_ROWS = [
     responseId: "sr-3", yourVal: 2, correctVal: 0, attempted: true, correct: false, awarded: -0.66, time: 71,
   },
   {
-    id: "frv-4", num: 4, section: "CSAT (Aptitude)", type: "reasoning_aptitude", topic: "Number Series", subject: "Reasoning",
+    id: "frv-4", num: 4, section: "CSAT (Aptitude)", type: "reasoning_aptitude", topic: "Quantitative/Numerical", subject: "Reasoning & Aptitude",
     text: "Find the missing term in the following number series:",
     text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",
     data: { series: "2, 6, 12, 20, 30, ?", series_hi: "2, 6, 12, 20, 30, ?" },
@@ -125,7 +125,7 @@ const mkAttempt = (i, title, score, max, acc) => ({
   ],
   topics: [
     { name: "Polity", subject: "Polity", correct: 12, total: 15, acc: 80, band: "strong" },
-    { name: "Modern History", subject: "Modern History", correct: 9, total: 15, acc: 60, band: "average" },
+    { name: "Modern History", subject: "History", correct: 9, total: 15, acc: 60, band: "average" },
     { name: "Geography", subject: "Geography", correct: 5, total: 15, acc: 33, band: "weak" },
     { name: "Economy", subject: "Economy", correct: 7, total: 15, acc: 47, band: "weak" },
     { name: "Environment & Ecology", subject: "Environment & Ecology", correct: 11, total: 14, acc: 79, band: "strong" },
@@ -161,8 +161,8 @@ export const FX_EXAM_RESULT = {
   topics: [
     { name: "Polity", subject: "Polity", correct: 0, total: 1, acc: 0, band: "weak" },
     { name: "Geography", subject: "Geography", correct: 1, total: 1, acc: 100, band: "strong" },
-    { name: "Ancient History", subject: "Ancient History", correct: 0, total: 1, acc: 0, band: "weak" },
-    { name: "Number Series", subject: "Reasoning", correct: 0, total: 1, acc: 0, band: "weak" },
+    { name: "Ancient History", subject: "History", correct: 0, total: 1, acc: 0, band: "weak" },
+    { name: "Number Series", subject: "Reasoning & Aptitude", correct: 0, total: 1, acc: 0, band: "weak" },
   ],
   difficultyStats: [
     { name: "easy", correct: 1, total: 1, acc: 100 },
@@ -193,10 +193,10 @@ export const FX_TESTS = [
 
 export const FX_MATERIALS = [
   { id: "fx-m1", title: "Polity NCERT — Quick Revision Notes (Class 9–12 consolidated)", subject: "Polity", type: "pdf", url: "https://example.com/a.pdf", isFree: true, isPublished: true },
-  { id: "fx-m2", title: "Modern History One-Liner Capsule", subject: "Modern History", type: "note", url: "https://example.com/b", isFree: true, isPublished: true },
+  { id: "fx-m2", title: "Modern History One-Liner Capsule", subject: "History", type: "note", url: "https://example.com/b", isFree: true, isPublished: true },
   { id: "fx-m3", title: "Geography Mapping — Video Series", subject: "Geography", type: "video", url: "https://example.com/c", isFree: false, isPublished: true },
   { id: "fx-m4", title: "Economic Survey 2026 — Key Highlights", subject: "Economy", type: "pdf", url: "https://example.com/d.pdf", isFree: false, isPublished: true },
-  { id: "fx-m5", title: "CSAT Reasoning — Shortcut Tricks", subject: "Reasoning", type: "video", url: "https://example.com/e", isFree: true, isPublished: true },
+  { id: "fx-m5", title: "CSAT Reasoning — Shortcut Tricks", subject: "Reasoning & Aptitude", type: "video", url: "https://example.com/e", isFree: true, isPublished: true },
 ];
 
 export const FX_ENROLLMENTS = [
@@ -226,8 +226,8 @@ export const FX_NOTIFICATIONS = [
 
 export const FX_QUESTIONS = Array.from({ length: 12 }, (_, i) => ({
   id: "fx-q" + i,
-  subject: ["Polity", "Modern History", "Geography", "Economy", "Environment"][i % 5],
-  topic: "Fundamental Rights and Directive Principles of State Policy",
+  subject: ["Polity", "History", "Geography", "Economy", "Environment & Ecology"][i % 5],
+  topic: ["Constitutional provisions", "Modern", "Physical", "Macroeconomic concepts", "Conservation & Policy"][i % 5],
   type: ["mcq", "multiple", "numerical"][i % 3],
   difficulty: ["easy", "medium", "hard"][i % 3],
   body: "Which Article of the Indian Constitution was described by Dr. B. R. Ambedkar as the 'heart and soul' of the Constitution, and why does that description matter for the enforcement of Fundamental Rights?",
@@ -289,8 +289,8 @@ export const FX_EXAM = {
       name: "General Studies",
       questions: Array.from({ length: 8 }, (_, i) => ({
         id: "fx-eq" + i,
-        topic: ["Polity", "Modern History", "Geography", "Economy"][i % 4],
-        subject: ["Polity", "Modern History", "Geography", "Economy"][i % 4],
+        topic: ["Constitutional provisions", "Modern", "Physical", "Macroeconomic concepts"][i % 4],
+        subject: ["Polity", "History", "Geography", "Economy"][i % 4],
         type: i === 3 ? "multiple" : "mcq",
         marks: 2,
         negative: 0.66,
@@ -308,8 +308,8 @@ export const FX_EXAM = {
       name: "CSAT (Aptitude)",
       questions: Array.from({ length: 4 }, (_, i) => ({
         id: "fx-ec" + i,
-        topic: "Quantitative Aptitude",
-        subject: "Quantitative Aptitude",
+        topic: "Quantitative/Numerical",
+        subject: "Reasoning & Aptitude",
         type: i === 1 ? "numerical" : "mcq",
         marks: 2.5,
         negative: i === 1 ? 0 : 0.83,
@@ -326,7 +326,7 @@ export const FX_EXAM = {
       name: "BPSC Formats",
       questions: [
         {
-          id: "fx-eb0", subject: "Polity", topic: "Fundamental Rights", type: "statement_based", marks: 2, negative: 0.66,
+          id: "fx-eb0", subject: "Polity", topic: "Constitutional provisions", type: "statement_based", marks: 2, negative: 0.66,
           text: "Consider the following statements about the Fundamental Rights in the Indian Constitution:",
           text_hi: "भारतीय संविधान में मौलिक अधिकारों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:",
           data: {
@@ -351,7 +351,7 @@ export const FX_EXAM = {
           ],
         },
         {
-          id: "fx-eb1", subject: "Ancient History", topic: "Science", type: "match_the_following", marks: 2, negative: 0.66,
+          id: "fx-eb1", subject: "History", topic: "Ancient", type: "match_the_following", marks: 2, negative: 0.66,
           text: "Match List-I (Scholar) with List-II (Field) and select the correct answer using the code given below:",
           text_hi: "सूची-I (विद्वान) का सूची-II (क्षेत्र) से मिलान कीजिए और नीचे दिए गए कूट का प्रयोग कर सही उत्तर चुनिए:",
           data: {
@@ -368,7 +368,7 @@ export const FX_EXAM = {
           ],
         },
         {
-          id: "fx-eb2", subject: "Geography", topic: "Rivers", type: "assertion_reason", marks: 2, negative: 0.66,
+          id: "fx-eb2", subject: "Geography", topic: "Physical", type: "assertion_reason", marks: 2, negative: 0.66,
           text: "Read the Assertion (A) and the Reason (R) below and choose the correct option:",
           text_hi: "नीचे दिए गए अभिकथन (A) और कारण (R) को पढ़िए और सही विकल्प चुनिए:",
           data: {
@@ -385,7 +385,7 @@ export const FX_EXAM = {
           ],
         },
         {
-          id: "fx-eb3", subject: "Reasoning", topic: "Number Series", type: "reasoning_aptitude", marks: 2, negative: 0.66,
+          id: "fx-eb3", subject: "Reasoning & Aptitude", topic: "Quantitative/Numerical", type: "reasoning_aptitude", marks: 2, negative: 0.66,
           text: "Find the missing term in the following number series:",
           text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",
           data: { series: "2, 6, 12, 20, 30, ?", series_hi: "2, 6, 12, 20, 30, ?" },

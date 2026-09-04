@@ -32,7 +32,22 @@ const TYPE_COLOR = {
 // shape (question_data) and rendering differ.
 const SINGLE_CORRECT = (ty) => ty !== "multiple" && ty !== "numerical";
 const DIFF_COLOR = { easy: { bg: "#e8f6ee", fg: "#1f8a4c" }, medium: { bg: "#fcf3df", fg: "#d4a64a" }, hard: { bg: "#fbeaea", fg: "#c0392b" } };
-const SUBJECTS = ["Polity", "Modern History", "Ancient History", "Medieval History", "Geography", "Economy", "Environment", "Science & Tech", "Current Affairs", "Number System", "Reasoning", "Reading Comprehension", "Quantitative Aptitude", "Data Interpretation"];
+// Matches the PYQ-derived distribution_config exactly (subject_weights /
+// sub_topic_weights keys) — see pyq-analysis/ANALYSIS_NOTES.md. Sub-topics are
+// nested under their subject (QuestionForm's Topic field), not top-level, so
+// era splits like Ancient/Medieval/Modern live inside History, not beside it.
+const SUBJECTS = ["History", "Geography", "Polity", "Economy", "Science & Technology", "Environment & Ecology", "Current Affairs", "Bihar-Specific", "Reasoning & Aptitude"];
+const SUBTOPICS_BY_SUBJECT = {
+  "History": ["Ancient", "Medieval", "Modern"],
+  "Geography": ["Physical", "World", "Economic", "Human"],
+  "Polity": ["Constitutional provisions", "Panchayati Raj & local governance"],
+  "Economy": ["Macroeconomic concepts", "Five-year plans & policy", "Banking & finance"],
+  "Science & Technology": ["Physics", "Chemistry", "Biology", "Tech & Innovation"],
+  "Environment & Ecology": ["Biodiversity", "Climate & Pollution", "Conservation & Policy"],
+  "Current Affairs": ["International", "National", "Sports", "Schemes & Indices", "Awards & Appointments"],
+  "Bihar-Specific": ["History & Culture", "Geography", "Economy", "Polity & Governance", "Recent Developments"],
+  "Reasoning & Aptitude": ["Quantitative/Numerical", "Logical/Verbal"],
+};
 
 /* ============================================================
    STARTER CONTENT — never written automatically.
@@ -41,41 +56,41 @@ const SUBJECTS = ["Polity", "Modern History", "Ancient History", "Medieval Histo
    ============================================================ */
 const SEED = {
   questions: [
-    { id: uid(), subject: "Polity", topic: "Fundamental Rights", type: "mcq", difficulty: "medium",
+    { id: uid(), subject: "Polity", topic: "Constitutional provisions", type: "mcq", difficulty: "medium",
       body: "Which Article of the Indian Constitution is described by Dr. B. R. Ambedkar as the 'heart and soul' of the Constitution?",
       options: [{ id: uid(), body: "Article 14", isCorrect: false }, { id: uid(), body: "Article 19", isCorrect: false }, { id: uid(), body: "Article 32", isCorrect: true }, { id: uid(), body: "Article 21", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66,
       explanation: "Article 32 (Right to Constitutional Remedies) lets citizens move the Supreme Court directly to enforce Fundamental Rights." },
-    { id: uid(), subject: "Modern History", topic: "National Movement", type: "mcq", difficulty: "easy",
+    { id: uid(), subject: "History", topic: "Modern", type: "mcq", difficulty: "easy",
       body: "The Non-Cooperation Movement was formally launched by Mahatma Gandhi in which year?",
       options: [{ id: uid(), body: "1919", isCorrect: false }, { id: uid(), body: "1920", isCorrect: true }, { id: uid(), body: "1922", isCorrect: false }, { id: uid(), body: "1930", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66,
       explanation: "Launched in 1920 (Nagpur session) and withdrawn in February 1922 after Chauri Chaura." },
-    { id: uid(), subject: "Geography", topic: "Drainage", type: "mcq", difficulty: "medium",
+    { id: uid(), subject: "Geography", topic: "Physical", type: "mcq", difficulty: "medium",
       body: "Which is the longest river of Peninsular India?",
       options: [{ id: uid(), body: "Krishna", isCorrect: false }, { id: uid(), body: "Godavari", isCorrect: true }, { id: uid(), body: "Cauvery", isCorrect: false }, { id: uid(), body: "Narmada", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66,
       explanation: "The Godavari (~1465 km) is the longest peninsular river, called 'Dakshina Ganga'." },
-    { id: uid(), subject: "Economy", topic: "Taxation", type: "multiple", difficulty: "medium",
+    { id: uid(), subject: "Economy", topic: "Macroeconomic concepts", type: "multiple", difficulty: "medium",
       body: "Which of the following are DIRECT taxes? (Select all that apply)",
       options: [{ id: uid(), body: "Income Tax", isCorrect: true }, { id: uid(), body: "GST", isCorrect: false }, { id: uid(), body: "Corporate Tax", isCorrect: true }, { id: uid(), body: "Customs Duty", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66,
       explanation: "Income Tax and Corporate Tax are direct taxes; GST and Customs are indirect." },
-    { id: uid(), subject: "Environment", topic: "Conservation", type: "mcq", difficulty: "easy",
+    { id: uid(), subject: "Environment & Ecology", topic: "Conservation & Policy", type: "mcq", difficulty: "easy",
       body: "In which year was 'Project Tiger' launched in India?",
       options: [{ id: uid(), body: "1972", isCorrect: false }, { id: uid(), body: "1973", isCorrect: true }, { id: uid(), body: "1985", isCorrect: false }, { id: uid(), body: "1991", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66,
       explanation: "Project Tiger was launched in 1973 from Jim Corbett National Park." },
-    { id: uid(), subject: "Number System", topic: "Unit Digit", type: "mcq", difficulty: "medium",
+    { id: uid(), subject: "Reasoning & Aptitude", topic: "Quantitative/Numerical", type: "mcq", difficulty: "medium",
       body: "What is the unit (last) digit of 7^105?",
       options: [{ id: uid(), body: "1", isCorrect: false }, { id: uid(), body: "3", isCorrect: false }, { id: uid(), body: "7", isCorrect: true }, { id: uid(), body: "9", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2.5, marksWrong: 0.83,
       explanation: "Unit digit of 7 cycles 7,9,3,1 (period 4). 105 mod 4 = 1 → 7." },
-    { id: uid(), subject: "Quantitative Aptitude", topic: "Speed Distance Time", type: "numerical", difficulty: "medium",
+    { id: uid(), subject: "Reasoning & Aptitude", topic: "Quantitative/Numerical", type: "numerical", difficulty: "medium",
       body: "A train 150 m long crosses a pole in 15 seconds. What is its speed in km/h?",
       options: [], numericAnswer: 36, numericTolerance: 0.01, marksCorrect: 2.5, marksWrong: 0,
       explanation: "150/15 = 10 m/s = 10 × 18/5 = 36 km/h." },
-    { id: uid(), subject: "Reading Comprehension", topic: "Inference", type: "mcq", difficulty: "hard",
+    { id: uid(), subject: "Reasoning & Aptitude", topic: "Logical/Verbal", type: "mcq", difficulty: "hard",
       body: "Passage: 'Economic growth without equitable distribution deepens social fault lines...' What does it most strongly imply?",
       options: [{ id: uid(), body: "GDP growth should be every nation's primary goal", isCorrect: false }, { id: uid(), body: "Development should be judged by how widely benefits are shared", isCorrect: true }, { id: uid(), body: "The poor cause slow growth", isCorrect: false }, { id: uid(), body: "Social fault lines are unrelated to economics", isCorrect: false }],
       numericAnswer: null, numericTolerance: 0.01, marksCorrect: 2.5, marksWrong: 0.83,
@@ -553,7 +568,11 @@ function QuestionForm({ initial, onSave, onClose }) {
             onChange={(e) => set("subject", e.target.value)} />
           <datalist id="subjects">{SUBJECTS.map((s) => <option key={s} value={s} />)}</datalist>
         </Field>
-        <Field label="Topic"><input className="inp" value={f.topic} placeholder="e.g. Fundamental Rights" onChange={(e) => set("topic", e.target.value)} /></Field>
+        <Field label="Topic">
+          <input className="inp" list="topics-for-subject" value={f.topic} placeholder="e.g. Constitutional provisions"
+            onChange={(e) => set("topic", e.target.value)} />
+          <datalist id="topics-for-subject">{(SUBTOPICS_BY_SUBJECT[f.subject] || []).map((t) => <option key={t} value={t} />)}</datalist>
+        </Field>
       </div>
 
       <Field label="Question type" req>
@@ -738,7 +757,8 @@ const IMPORT_EXAMPLE = `[
     "explanation": "The Vice-President is the ex-officio Chairman of the Rajya Sabha."
   },
   {
-    "subject": "Quantitative Aptitude",
+    "subject": "Reasoning & Aptitude",
+    "topic": "Quantitative/Numerical",
     "type": "numerical",
     "body": "12 × 12 = ?",
     "numericAnswer": 144,
