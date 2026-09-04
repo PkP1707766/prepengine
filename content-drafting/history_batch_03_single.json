@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "batch": "History Batch 03 (single question — rounds active bank to 150)",
+    "generated_at": "2026-09-02",
+    "generator": "Claude Code, human-drafted",
+    "total_questions": 1,
+    "target_cells": {
+      "History_Medieval_medium_mcq": 1
+    },
+    "status_all": "draft",
+    "notes_for_sme": [
+      "This single row replaces the plan to reactivate the old inactive seed question (id 61803038-..., 'Non-Cooperation Movement launch year') — that row stays soft-deleted (is_active=false) per explicit instruction; it is NOT part of the live 150 and was left untouched except for a harmless source_citation/concept_group_id backfill.",
+      "marks_correct=1, marks_wrong=0.33 from the start — the new normalized BPSC scale (Step 2 of this task), not the old 2/0.66 default the other 149 rows originally used.",
+      "concept_group_id checked against all 149 existing History concept_group_ids in the live bank (Ancient + Medieval survey run first) — no collision.",
+      "Sher Shah Suri (Sur dynasty) has no existing coverage anywhere in the 149-row bank — confirmed via a live query before drafting."
+    ],
+    "flagged_for_extra_review": [],
+    "skipped_topics_worth_considering_for_future_batches": [],
+    "instructions_for_bulk_import": [
+      "1. SME reviews this single row for factual accuracy (tomb location, architectural claims) before promoting from draft to published.",
+      "2. Insert fields map 1:1 to public.questions columns (subject, topic, type, difficulty, body, options, marks_correct, marks_wrong, explanation, concept_group_id, source_citation, status)."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "hb03-001",
+      "subject": "History",
+      "topic": "Medieval",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sher Shah Suri — credited with laying the foundation of the Grand Trunk Road and introducing the silver 'Rupiya' — built his mausoleum in which present-day Bihar town?",
+      "options": [
+        { "body": "Patna", "isCorrect": false },
+        { "body": "Sasaram", "isCorrect": true },
+        { "body": "Bodh Gaya", "isCorrect": false },
+        { "body": "Munger", "isCorrect": false }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sher Shah Suri's mausoleum stands at Sasaram (present-day Rohtas district, Bihar), built on a platform in the middle of an artificial lake. Constructed during his own lifetime, it is regarded as one of the finest examples of Indo-Afghan (Sur-era) architecture and is said to have influenced the later Mughal garden-tomb tradition.",
+      "concept_group_id": "hist-medieval-sher-shah-tomb-sasaram",
+      "source_citation": "NCERT Medieval India; Satish Chandra, Medieval India Part I",
+      "status": "draft"
+    }
+  ]
+}

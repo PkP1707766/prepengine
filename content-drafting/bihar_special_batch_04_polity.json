@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper I, Batch 04 (Polity & Governance topic, full 5-question allocation)",
+    "generated_at": "2026-09-03",
+    "generator": "Claude Code, human-drafted from Bihar Special Orange Book (Perfection IAS / Dhananjay IAS), pages 90-97, full read",
+    "total_questions": 5,
+    "target_cells": {
+      "Bihar_Polity & Governance_medium_mcq": 2,
+      "Bihar_Polity & Governance_hard_mcq": 2,
+      "Bihar_Polity & Governance_hard_match_the_following": 1
+    },
+    "status_all": "draft",
+    "quality_bar_notes": [
+      "The caste-survey/reservation-litigation saga (bs1-125) tests only the SETTLED history of that sequence (survey happened, Act passed, High Court ruling and the precedent it cited) -- deliberately not the live pending Supreme Court appeal, which is still moving and carries the same staleness risk as current affairs even though it's structurally a Polity topic."
+    ],
+    "flagged_for_extra_review": [],
+    "skipped_topics_worth_considering_for_future_batches": [],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy.",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Polity & Governance', type, difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs1-123",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar became the first state in India to reserve 50% of Panchayati Raj seats and leadership posts (Mukhiya, Pramukh, Adhyaksha) for women. In which year was this reservation introduced?",
+      "options": [
+        {
+          "body": "2001",
+          "isCorrect": false
+        },
+        {
+          "body": "2006",
+          "isCorrect": true
+        },
+        {
+          "body": "2011",
+          "isCorrect": false
+        },
+        {
+          "body": "2016",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar introduced 50% reservation for women in Panchayati Raj institutions in 2006 -- both for ordinary membership and for leadership posts at all three tiers -- becoming the first Indian state to do so, well ahead of the national norm of one-third reservation under the 73rd Amendment.",
+      "concept_group_id": "bs1-pol-pri-50pct-women-2006",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-124",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Patna High Court was formally established through Letters Patent issued by which authority, and inaugurated by which Viceroy, in 1916?",
+      "options": [
+        {
+          "body": "Issued by King George V; inaugurated by Viceroy Lord Curzon",
+          "isCorrect": false
+        },
+        {
+          "body": "Issued by the Governor-General in Council; inaugurated by Viceroy Lord Chelmsford",
+          "isCorrect": false
+        },
+        {
+          "body": "Issued by King George V; inaugurated by Viceroy Lord Hardinge",
+          "isCorrect": true
+        },
+        {
+          "body": "Issued by the British Parliament directly; inaugurated by Viceroy Lord Minto",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Patna High Court was formally established on 3 February 1916 through Letters Patent issued by King George V, and was inaugurated by the then Viceroy, Lord Hardinge -- Curzon's viceroyalty had already ended over a decade earlier, making that pairing a common confusion.",
+      "concept_group_id": "bs1-pol-patna-hc-1916-hardinge",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-125",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Following Bihar's 2023 caste-based survey, the state raised reservation for SC/ST/EBC/BC categories from 50% to 65% through a 2023 amendment. What happened to this increase in June 2024?",
+      "options": [
+        {
+          "body": "The Patna High Court struck it down, holding that it breached the 50% reservation ceiling set out in the Indira Sawhney judgment",
+          "isCorrect": true
+        },
+        {
+          "body": "The Supreme Court upheld it as a valid exception justified by the survey's demographic findings",
+          "isCorrect": false
+        },
+        {
+          "body": "Parliament amended the Constitution specifically to exempt Bihar from the 50% ceiling",
+          "isCorrect": false
+        },
+        {
+          "body": "The Bihar government voluntarily withdrew the amendment before any court could rule on it",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "In June 2024, the Patna High Court struck down Bihar's 2023 amendment raising reservation to 65%, holding that it breached the 50% ceiling on reservations established by the Supreme Court's Indira Sawhney judgment -- the state government subsequently pursued further legal recourse, though that later stage remains an evolving matter rather than a settled fact.",
+      "concept_group_id": "bs1-pol-caste-survey-hc-strikedown",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-126",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar's Vidhan Sabha and Vidhan Parishad differ in a fundamental structural way beyond just their size. Which statement correctly captures this?",
+      "options": [
+        {
+          "body": "Both houses are filled through direct popular election, differing mainly in the number of seats each holds",
+          "isCorrect": false
+        },
+        {
+          "body": "Vidhan Parishad members are directly elected, while Vidhan Sabha members are indirectly chosen by sitting MLAs",
+          "isCorrect": false
+        },
+        {
+          "body": "Both houses are appointed by the Governor, with no elected component in either",
+          "isCorrect": false
+        },
+        {
+          "body": "Vidhan Sabha members are directly elected by voters, while Vidhan Parishad members are chosen through indirect means such as local bodies, teacher and graduate constituencies, and nomination",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Vidhan Sabha (243 seats) is directly elected by the general electorate, while the Vidhan Parishad (75 seats) is filled through indirect means -- election by local bodies, by teacher and graduate constituencies, by sitting MLAs, and by gubernatorial nomination -- making it a fundamentally different composition, not simply a smaller version of the Assembly.",
+      "concept_group_id": "bs1-pol-assembly-vs-council-election-method",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-127",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the local self-government tier in List-I with the title given to its elected head in List-II.",
+      "options": [
+        {
+          "body": "a-2, b-3, c-4, d-1",
+          "isCorrect": true
+        },
+        {
+          "body": "a-1, b-4, c-3, d-2",
+          "isCorrect": false
+        },
+        {
+          "body": "a-2, b-4, c-1, d-3",
+          "isCorrect": false
+        },
+        {
+          "body": "a-3, b-2, c-4, d-1",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Gram Panchayat (a) is headed by a Mukhiya (matches 2). Panchayat Samiti (b) is headed by a Pramukh (matches 3). Zila Parishad (c) is headed by an Adhyaksha/Chairman (matches 4). Nagar Nigam (d) is headed by a Mahapaur/Mayor (matches 1) -- correctly a-2, b-3, c-4, d-1. This spans both the rural Panchayati Raj hierarchy and the separate urban local body structure, which is why swapping just one pair (as in the other options) is easy to do without checking every tier carefully.",
+      "concept_group_id": "bs1-pol-local-body-heads-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. Gram Panchayat",
+          "b. Panchayat Samiti",
+          "c. Zila Parishad",
+          "d. Nagar Nigam"
+        ],
+        "list_2": [
+          "1. Mahapaur (Mayor)",
+          "2. Mukhiya",
+          "3. Pramukh",
+          "4. Adhyaksha (Chairman)"
+        ]
+      }
+    }
+  ]
+}

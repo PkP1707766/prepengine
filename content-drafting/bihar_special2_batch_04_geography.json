@@ -1,0 +1,1630 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper II, Batch 04 (Geography topic) -- 48 questions, up from the Step 2 target of 44, since full-chapter mining (pages 59-77) turned up MORE durable, non-overlapping content than expected, unlike Economy/Recent Developments",
+    "generated_at": "2026-09-04",
+    "generator": "Claude Code, human-drafted from Bihar Special Orange Book (Perfection IAS / Dhananjay IAS), pages 59-77, full read (geology, physical divisions, rivers, canals, climate, soil, vegetation -- pages 78-89 covering agriculture/minerals/transport/district-wise were NOT re-read since Paper I's bs1-geo-* batch had already thoroughly mined those specific chapters)",
+    "total_questions": 48,
+    "target_cells": {
+      "Bihar_Geography_easy_mcq": 4,
+      "Bihar_Geography_medium_mcq": 29,
+      "Bihar_Geography_medium_match_the_following": 1,
+      "Bihar_Geography_hard_mcq": 11,
+      "Bihar_Geography_hard_match_the_following": 3
+    },
+    "status_all": "draft",
+    "dedup_note": [
+      "Cross-checked every fact below against all 46 live bs1-geo-* rows before drafting (concept, not just slug string). Several near-miss overlaps were found and deliberately EXCLUDED rather than reworded around: the book's 'Maize Belt' figure already matches bs1-geo-maize-belt-significance; 'Balsundari soil -> sugarcane/Sugar Belt' already matches bs1-geo-balsundari-sugarcane; 'Gaya = hottest AND coldest district' already matches bs1-geo-gaya-temperature-extremes; 'Kishanganj = highest rainfall' already matches bs1-geo-kishanganj-highest-rainfall; Karail-Kewal self-ploughing, Reh/Usar cause, moist-deciduous/Sal, Son Canal 1874, Ahar-Pyne, hot-springs mechanism/Brahmakund/Bhimbandh, Vikramshila Dolphin Sanctuary, Kanwar Jheel, Someshwar's 874m peak, and the Kaimur forest-COVER-PERCENTAGE figure are all likewise already live and were not re-tested from a different angle.",
+      "One internal book inconsistency was found and deliberately avoided rather than 'resolved': page 61 attributes Balsundari/diara soil to watermelon and maize, while pages 66/75-76 attribute Balsundari specifically to sugarcane (already the live Paper I fact). Rather than draft something that reads as contradicting the published bs1-geo-balsundari-sugarcane row, no new Balsundari-crop question was drafted at all."
+    ],
+    "flagged_for_extra_review": [
+      "bs2-527 (Indrapuri Barrage, 'among the world's longest at ~1,400m'): single-source superlative from the Orange Book's own summary box, not independently corroborated against an engineering/government source -- worth an SME check before publishing.",
+      "bs2-544 (Kaimur Wildlife Sanctuary, 'Bihar's largest by area'): this is a different specific claim from the already-live bs1-geo-kaimur-largest-forest-pct (which is about forest-cover PERCENTAGE, not sanctuary AREA), but both point at Kaimur being 'biggest' in some sense -- flagging so an SME can confirm the two claims are genuinely distinct facts and not a restatement."
+    ],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "Agro-climatic Zone III's own sub-division into IIIA/IIIB (Shekhpura/Munger/Jamui/Lakhisarai/Bhagalpur/Banka vs Rohtas/Bhojpur/Buxar/Kaimur/Arwal/Patna/Nalanda/Nawada/Jehanabad/Aurangabad/Gaya) was set aside as too fine-grained for a single question on top of the 3-zone comparison already drafted (bs2-536) -- worth a dedicated question for Paper III if more Geography volume is needed there.",
+      "Chapters 11-15 (agriculture, minerals, transport, district-wise) were not re-read in full for this batch since Paper I's own Geography batch already drew heavily from them -- worth a fresh targeted pass for Paper III rather than assuming they're exhausted."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy, with particular attention to bs2-427 and bs2-444 (flagged above).",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Geography', type, difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs2-501",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the rock system in List-I with its correct location/age in List-II.",
+      "options": [
+        {
+          "body": "a-2, b-4, c-1, d-3",
+          "isCorrect": true
+        },
+        {
+          "body": "a-1, b-2, c-3, d-4",
+          "isCorrect": false
+        },
+        {
+          "body": "a-2, b-3, c-4, d-1",
+          "isCorrect": false
+        },
+        {
+          "body": "a-4, b-2, c-1, d-5",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dharwar rocks (a), Bihar's oldest, sit in the south-east (Munger/Jamui/Gaya/Nawada) -- matches 2. Vindhyan rocks (b), sedimentary and lime/pyrite-rich, sit in the south-west, Kaimur-Rohtas -- matches 4. Tertiary rocks (c), Pliocene-Pleistocene, sit in the north-west, the Someshwar hills of West Champaran -- matches 1. Quaternary rocks (d), the youngest, form 95% of Bihar's plains -- matches 3. List-II's 5th entry (Munger's Kharagpur hills specifically) is a real Bihar location but is not the distinguishing answer for any of these four, making it a workable decoy.",
+      "concept_group_id": "bs2-geo-rock-systems-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. Dharwar Rocks",
+          "b. Vindhyan Rocks",
+          "c. Tertiary Rocks",
+          "d. Quaternary Rocks"
+        ],
+        "list_2": [
+          "1. North-west (Someshwar hills)",
+          "2. South-east (Munger, Jamui, Gaya, Nawada)",
+          "3. 95% of Bihar's plains, youngest",
+          "4. South-west (Kaimur, Rohtas)",
+          "5. Kharagpur hills, Munger"
+        ]
+      }
+    },
+    {
+      "batch_ref": "bs2-502",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's alluvial deposit is at its deepest -- reaching around 2,500 metres -- in which zone?",
+      "options": [
+        {
+          "body": "Near the Himalayan foothills in the north",
+          "isCorrect": true
+        },
+        {
+          "body": "Along the Ganga's exact riverbed",
+          "isCorrect": false
+        },
+        {
+          "body": "Near the southern plateau's edge",
+          "isCorrect": false
+        },
+        {
+          "body": "Spread in a fairly even band across most of the state's plains, north and south alike",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The alluvium filling Bihar's foredeep basin is thickest (about 2,500 m) near the Himalayan foothills and thins progressively toward the southern plateau's edge -- it is not uniform, and the riverbed itself is not where the deposit is deepest.",
+      "concept_group_id": "bs2-geo-alluvium-depth-foothills",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-503",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which of the following districts is NOT among Bihar's eight Seismic Zone V (very-high-risk) districts?",
+      "options": [
+        {
+          "body": "Madhubani",
+          "isCorrect": false
+        },
+        {
+          "body": "Patna",
+          "isCorrect": true
+        },
+        {
+          "body": "Supaul",
+          "isCorrect": false
+        },
+        {
+          "body": "Kishanganj",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's Zone V districts are Madhubani, Sitamarhi, Darbhanga, Araria, Saharsa, Supaul, Madhepura and Kishanganj -- all close to the Himalayan boundary fault. Patna instead falls in the lower-risk Zone IV, despite being the state capital.",
+      "concept_group_id": "bs2-geo-seismic-zone5-districts",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-504",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which statement about the slope direction of Bihar's three physiographic zones is correct?",
+      "options": [
+        {
+          "body": "Both plains are described as sloping toward the Ganga from the north side alone",
+          "isCorrect": false
+        },
+        {
+          "body": "North plain slopes S to N; south plain slopes NW to SE; the Ganga bed runs E to W",
+          "isCorrect": false
+        },
+        {
+          "body": "North plain slopes NW to SE; south plain slopes S to N; the Ganga bed itself runs W to E",
+          "isCorrect": true
+        },
+        {
+          "body": "The Ganga bed's own slope direction varies district to district with no consistent trend",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's drainage converges on the Ganga from both sides: the northern plain slopes north-west to south-east, the southern plain slopes south to north, and the Ganga's own bed -- the master drain dividing the two -- runs west to east. The other options invert or oversimplify this three-way pattern.",
+      "concept_group_id": "bs2-geo-drainage-slope-directions",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-505",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "Bihar's total area and its approximate north-south by east-west dimensions are:",
+      "options": [
+        {
+          "body": "1,02,000 sq km; 345 km x 445 km",
+          "isCorrect": false
+        },
+        {
+          "body": "88,750 sq km; 300 km x 400 km",
+          "isCorrect": false
+        },
+        {
+          "body": "94,163 sq km; 445 km x 345 km reversed (N-S is the longer axis)",
+          "isCorrect": false
+        },
+        {
+          "body": "94,163 sq km; 345 km x 445 km",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar covers 94,163 sq km (about 2.86% of India), measuring roughly 345 km from north to south and 445 km from east to west -- making the east-west axis the longer of the two, not the other way round.",
+      "concept_group_id": "bs2-geo-state-area-dimensions",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-506",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which of the following is NOT one of Bihar's seven Terai (Nepal-border) districts?",
+      "options": [
+        {
+          "body": "Muzaffarpur",
+          "isCorrect": true
+        },
+        {
+          "body": "Supaul",
+          "isCorrect": false
+        },
+        {
+          "body": "Araria",
+          "isCorrect": false
+        },
+        {
+          "body": "Madhubani",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's Terai belt comprises West Champaran, East Champaran, Sitamarhi, Madhubani, Supaul, Araria and Kishanganj -- all directly abutting Nepal. Muzaffarpur lies just south of this belt and does not itself share the Nepal border.",
+      "concept_group_id": "bs2-geo-terai-districts-list",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-507",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Among north Bihar's four Doabs, which one is both the easternmost and receives the highest rainfall?",
+      "options": [
+        {
+          "body": "Gandak-Kosi Doab",
+          "isCorrect": false
+        },
+        {
+          "body": "Kosi-Mahananda Doab",
+          "isCorrect": true
+        },
+        {
+          "body": "Gandak-Ghaghra Doab",
+          "isCorrect": false
+        },
+        {
+          "body": "Kamla-Bagmati Doab",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kosi-Mahananda Doab, containing Kishanganj, is both the easternmost of the four doabs and the highest-rainfall tract. Gandak-Kosi is instead the largest and most central; Gandak-Ghaghra is the westernmost (on the UP border); Kamla-Bagmati is the flash-flood-prone central 'heart' of north Bihar.",
+      "concept_group_id": "bs2-geo-kosi-mahananda-doab-easternmost",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-508",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "A Piedmont Swamp -- a mix of boulders, gravel and soil deposited at a hill's foot -- is found in Bihar chiefly in:",
+      "options": [
+        {
+          "body": "The Tal region between Patna and Lakhisarai",
+          "isCorrect": false
+        },
+        {
+          "body": "The Kaimur-Rohtas plateau's southern fringe, near the Son river gorge",
+          "isCorrect": false
+        },
+        {
+          "body": "North-west Champaran, at the foot of the Someshwar hills",
+          "isCorrect": true
+        },
+        {
+          "body": "The Kosi-Mahananda Doab near Kishanganj",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Piedmont Swamp forms at the foot of the Someshwar range in north-west (West) Champaran, where hill runoff deposits a mix of boulders, gravel and soil. Kaimur-Rohtas, the Tal region and the Kosi-Mahananda Doab are all real Bihar landform zones, just not this one.",
+      "concept_group_id": "bs2-geo-piedmont-swamp-champaran",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-509",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The isolated, scattered hills that interrupt the otherwise flat South Bihar plain are geomorphologically termed:",
+      "options": [
+        {
+          "body": "Cuestas",
+          "isCorrect": false
+        },
+        {
+          "body": "Moraines",
+          "isCorrect": false
+        },
+        {
+          "body": "Inselbergs of volcanic origin",
+          "isCorrect": false
+        },
+        {
+          "body": "Monadnocks",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "These scattered residual hills on South Bihar's older, more stable plain are termed Monadnocks. Moraines are glacial-deposit landforms (irrelevant to Bihar), and while inselbergs are a related general concept, these hills are not volcanic in origin; cuestas describe a specific asymmetric-ridge shape, not this scattered pattern.",
+      "concept_group_id": "bs2-geo-monadnocks-south-bihar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-510",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the river in List-I with its place of origin in List-II.",
+      "options": [
+        {
+          "body": "a-2, b-4, c-1, d-3",
+          "isCorrect": true
+        },
+        {
+          "body": "a-1, b-2, c-3, d-4",
+          "isCorrect": false
+        },
+        {
+          "body": "a-2, b-1, c-4, d-3",
+          "isCorrect": false
+        },
+        {
+          "body": "a-5, b-4, c-1, d-3",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Ghaghra (a) rises near Nampa, Nepal -- matches 2. The Son (b) rises at Amarkantak, Madhya Pradesh -- matches 4. The Kosi (c) rises at Gosainkunda/Goisainsthan in Tibet -- matches 1. The Mahananda (d) rises near Darjeeling, West Bengal -- matches 3. List-II's 5th entry, Palamu (Jharkhand), is the Punpun's real origin, not any of these four, making it a workable decoy.",
+      "concept_group_id": "bs2-geo-rivers-origin-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. Ghaghra",
+          "b. Son",
+          "c. Kosi",
+          "d. Mahananda"
+        ],
+        "list_2": [
+          "1. Tibet",
+          "2. Nepal",
+          "3. Darjeeling, West Bengal",
+          "4. Amarkantak, Madhya Pradesh",
+          "5. Palamu, Jharkhand"
+        ]
+      }
+    },
+    {
+      "batch_ref": "bs2-511",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the river in List-I with its confluence point with the Ganga in List-II.",
+      "options": [
+        {
+          "body": "a-3, b-1, c-4, d-2",
+          "isCorrect": true
+        },
+        {
+          "body": "a-1, b-2, c-3, d-4",
+          "isCorrect": false
+        },
+        {
+          "body": "a-3, b-4, c-1, d-2",
+          "isCorrect": false
+        },
+        {
+          "body": "a-3, b-1, c-5, d-2",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Gandak (a) meets the Ganga at Hariharkshetra, Sonpur -- matches 3. Burhi Gandak (b) meets it at Khagaria -- matches 1. Karmanasa (c) meets it at Chausa, Buxar -- matches 4. Kiul (d) meets it at Surajgarha, Lakhisarai -- matches 2. List-II's 5th entry, Kursela (Katihar), is where the Kosi meets the Ganga, not any of these four.",
+      "concept_group_id": "bs2-geo-rivers-confluence-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. Gandak",
+          "b. Burhi Gandak",
+          "c. Karmanasa",
+          "d. Kiul"
+        ],
+        "list_2": [
+          "1. Khagaria",
+          "2. Surajgarha, Lakhisarai",
+          "3. Hariharkshetra, Sonpur",
+          "4. Chausa, Buxar",
+          "5. Kursela, Katihar"
+        ]
+      }
+    },
+    {
+      "batch_ref": "bs2-512",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Ganga's stretch within Bihar runs approximately 445 km, entering and exiting at which two points respectively?",
+      "options": [
+        {
+          "body": "Entering at Chausa (Buxar); exiting near Katihar",
+          "isCorrect": true
+        },
+        {
+          "body": "Entering at Katihar in the east; exiting near Chausa in the west",
+          "isCorrect": false
+        },
+        {
+          "body": "Entering at Rohtas; exiting at Sonpur",
+          "isCorrect": false
+        },
+        {
+          "body": "Entering at Patna; exiting at Bhagalpur",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Ganga enters Bihar at Chausa in Buxar district (in the west) and exits near Katihar (in the east) after roughly 445 km within the state -- Rohtas and Sonpur are instead entry/confluence points for the Son and Gandak respectively.",
+      "concept_group_id": "bs2-geo-ganga-entry-chausa-exit-katihar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-513",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Ganga's tributary system in Bihar is described as structurally 'asymmetric' because:",
+      "options": [
+        {
+          "body": "Its tributaries, on both banks, are mostly seasonal and non-perennial",
+          "isCorrect": false
+        },
+        {
+          "body": "Himalayan (left-bank) tributaries are perennial; peninsular (right-bank) ones are seasonal",
+          "isCorrect": true
+        },
+        {
+          "body": "It receives tributaries mainly from the left (northern) bank, with very few from the right",
+          "isCorrect": false
+        },
+        {
+          "body": "Its right-bank tributaries carry a higher silt load than its left-bank ones",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Ganga's left-bank (northern) tributaries are snow-and-rain-fed Himalayan rivers that flow year-round, while its right-bank (southern) tributaries off the peninsular plateau are rain-fed and largely dry up outside the monsoon -- the reverse of the silt-load claim, since it is the Himalayan rivers that carry the heavier silt load.",
+      "concept_group_id": "bs2-geo-ganga-tributary-asymmetry",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-514",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Burhi Gandak is notable among Bihar's rivers as:",
+      "options": [
+        {
+          "body": "The river with India's highest recorded silt load",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar's largest southern (peninsular) tributary, known for high-quality sand",
+          "isCorrect": false
+        },
+        {
+          "body": "The longest tributary whose full course lies within Bihar",
+          "isCorrect": true
+        },
+        {
+          "body": "The river forming Bihar's border with Uttar Pradesh",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Burhi Gandak, rising in the Someshwar hills and known for its high meandering, is the longest river flowing entirely within Bihar's borders. The Son is instead the largest southern tributary, the Kosi carries the highest silt load, and the Ghaghra/Gandak/Karmanasa are Bihar's UP-border rivers.",
+      "concept_group_id": "bs2-geo-burhi-gandak-longest-within-bihar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-515",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Son river is traditionally associated with the word 'gold' (sona) chiefly because of:",
+      "options": [
+        {
+          "body": "A folk association with the Sone Bhandar caves of Rajgir",
+          "isCorrect": false
+        },
+        {
+          "body": "Historic gold mining along its banks near Rohtas",
+          "isCorrect": false
+        },
+        {
+          "body": "Gold ornaments recovered from Mauryan-era excavations near its course",
+          "isCorrect": false
+        },
+        {
+          "body": "The golden, mica-flecked colour of its sand",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Son's name comes from the golden, mica-flecked appearance of its sand -- not from any actual gold mining, excavated ornaments, or a link to the (unrelated, similarly-named) Sone Bhandar caves at Rajgir.",
+      "concept_group_id": "bs2-geo-son-river-golden-sand",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-516",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Kosi is often cited as carrying one of the highest silt loads of any river in the world. Its catchment-based silt yield is approximately:",
+      "options": [
+        {
+          "body": "19 million tonnes per year per sq km of catchment",
+          "isCorrect": true
+        },
+        {
+          "body": "1.9 million tonnes per year per sq km of catchment",
+          "isCorrect": false
+        },
+        {
+          "body": "190 million tonnes per year per sq km of catchment",
+          "isCorrect": false
+        },
+        {
+          "body": "It is comparable to the Son's, the state's lowest-silt river",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kosi's catchment yields roughly 19 million tonnes of silt per year per sq km, among the highest such rates recorded anywhere -- a scale utterly different from the Son (a comparatively clear, stable peninsular river), and not off by an order of magnitude in either direction.",
+      "concept_group_id": "bs2-geo-kosi-silt-yield-19-million",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-517",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which of the following rivers does NOT form part of Bihar's boundary with Uttar Pradesh?",
+      "options": [
+        {
+          "body": "Ghaghra",
+          "isCorrect": false
+        },
+        {
+          "body": "Bagmati",
+          "isCorrect": true
+        },
+        {
+          "body": "Gandak",
+          "isCorrect": false
+        },
+        {
+          "body": "Karmanasa",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Ghaghra, Gandak and Karmanasa all serve as administrative boundary markers between Bihar and Uttar Pradesh. The Bagmati, by contrast, flows entirely within Bihar's north-central plain after entering from Nepal at Sitamarhi, well east of the UP border.",
+      "concept_group_id": "bs2-geo-up-border-rivers",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-518",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Punpun river's tendency to flow parallel to the Ganga for a stretch before finally joining it at Fatuha is explained by:",
+      "options": [
+        {
+          "body": "The Punpun's unusually low seasonal water volume compared to the Ganga's",
+          "isCorrect": false
+        },
+        {
+          "body": "A canal built by the British colonial administration specifically to redirect the Punpun eastward toward Fatuha",
+          "isCorrect": false
+        },
+        {
+          "body": "The Ganga's own high natural levees blocking a direct, perpendicular confluence",
+          "isCorrect": true
+        },
+        {
+          "body": "A geological fault line running parallel to the Ganga near Fatuha",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Ganga's own natural levees, built up by its silt deposits, stand higher than the surrounding plain -- blocking south-bank tributaries like the Punpun from joining it directly and forcing them to run parallel to it for some distance first. This is a natural levee effect, not an artificial canal, a flow-volume issue, or a fault line.",
+      "concept_group_id": "bs2-geo-punpun-parallel-levee-effect",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-519",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which statement correctly distinguishes Bihar's Himalayan (north Bihar) rivers from its peninsular (south Bihar) rivers?",
+      "options": [
+        {
+          "body": "Himalayan rivers originate on stable, older terrain, unlike the geologically young peninsular rivers",
+          "isCorrect": false
+        },
+        {
+          "body": "Peninsular rivers are perennial and Himalayan rivers dry up in summer",
+          "isCorrect": false
+        },
+        {
+          "body": "Both sets of rivers carry a comparably high silt load, differing mainly in flood risk",
+          "isCorrect": false
+        },
+        {
+          "body": "Himalayan rivers are perennial, high-flood-risk; peninsular rivers are ephemeral, lower-risk",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "North Bihar's Himalayan-fed rivers are perennial, carry an extremely high silt load, and have very high flood potential from sudden Himalayan discharge; South Bihar's peninsular rivers are seasonal (ephemeral), carry comparatively little silt (flowing over harder rock), and pose a lower flood risk. It is the Himalayan rivers, not the peninsular ones, that originate on young, tectonically active terrain.",
+      "concept_group_id": "bs2-geo-himalayan-vs-peninsular-rivers",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-520",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Among South Bihar's seasonal Tal lakes, which specific one is recorded as the largest and the state's leading pulse-growing tract?",
+      "options": [
+        {
+          "body": "Mokama Tal",
+          "isCorrect": true
+        },
+        {
+          "body": "Kanwar Tal",
+          "isCorrect": false
+        },
+        {
+          "body": "Barila Tal",
+          "isCorrect": false
+        },
+        {
+          "body": "Hardiya Tal",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mokama Tal is both the largest of the Tal-region wetlands and the leading pulse (chana/masur)-growing tract in the state. Kanwar (a Chaur, actually) and Barila (a Maun) are north Bihar oxbow-type wetlands, and Hardiya Chaur is a Saran-district example of the (differently-formed) Chaur type.",
+      "concept_group_id": "bs2-geo-mokama-tal-largest-pulse",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-521",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Boro rice', grown in Bihar's shrinking wetlands as water recedes, is distinctive because it is:",
+      "options": [
+        {
+          "body": "A drought-resistant variety needing minimal irrigation",
+          "isCorrect": false
+        },
+        {
+          "body": "A summer-season rice crop, unlike the state's usual kharif-season paddy",
+          "isCorrect": true
+        },
+        {
+          "body": "A rabi-season wheat substitute grown mainly in the Tal region",
+          "isCorrect": false
+        },
+        {
+          "body": "A jute-rotation crop grown in the Kosi-Mahananda Doab specifically",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Boro rice is a distinct summer-season rice crop, grown as wetland water levels recede -- unlike Bihar's dominant kharif (monsoon-season) paddy. It still needs residual water (unlike a drought-resistant crop), is not a wheat substitute, and is not confined to the Kosi-Mahananda Doab.",
+      "concept_group_id": "bs2-geo-boro-rice-summer-wetland",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-522",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Kosi-Mechi river-linking project holds which specific distinction among India's interlinking-of-rivers (ILR) initiatives?",
+      "options": [
+        {
+          "body": "It is an ILR project funded mainly by a foreign development agency's grant",
+          "isCorrect": false
+        },
+        {
+          "body": "It is India's very first river-linking project of any kind",
+          "isCorrect": false
+        },
+        {
+          "body": "It is the second major ILR project in India to receive Green Clearance",
+          "isCorrect": true
+        },
+        {
+          "body": "It is India's largest ILR project by canal length",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Kosi-Mechi is the second major ILR project nationally to secure Green Clearance -- a notable milestone, but not the very first ILR project overall, not foreign-funded, and (at roughly 76.2 km) far from India's longest such canal.",
+      "concept_group_id": "bs2-geo-kosi-mechi-second-ilr-clearance",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-523",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "match_the_following",
+      "difficulty": "medium",
+      "body": "Match the river in List-I with the point where it enters Bihar in List-II.",
+      "options": [
+        {
+          "body": "a-3, b-4, c-1, d-2",
+          "isCorrect": true
+        },
+        {
+          "body": "a-1, b-2, c-3, d-4",
+          "isCorrect": false
+        },
+        {
+          "body": "a-3, b-1, c-4, d-2",
+          "isCorrect": false
+        },
+        {
+          "body": "a-3, b-4, c-5, d-2",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Ganga (a) enters at Chausa -- matches 3. The Son (b) enters in Rohtas district -- matches 4. The Gandak (c) enters at Valmikinagar -- matches 1. The Bagmati (d) enters at Sitamarhi -- matches 2. List-II's 5th entry, Birpur (Supaul), is instead the Kosi's barrage/entry point, not any of these four.",
+      "concept_group_id": "bs2-geo-river-entry-points-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. Ganga",
+          "b. Son",
+          "c. Gandak",
+          "d. Bagmati"
+        ],
+        "list_2": [
+          "1. Valmikinagar",
+          "2. Sitamarhi",
+          "3. Chausa",
+          "4. Rohtas district",
+          "5. Birpur, Supaul"
+        ]
+      }
+    },
+    {
+      "batch_ref": "bs2-524",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under the Gandak Project, which canal branch is the system's longest, and which districts does it primarily serve?",
+      "options": [
+        {
+          "body": "Tirhut Canal (East); Saran, Siwan and Gopalganj",
+          "isCorrect": false
+        },
+        {
+          "body": "Triveni Canal (West); Saran, Siwan and Gopalganj",
+          "isCorrect": false
+        },
+        {
+          "body": "Don Canal; a smaller stretch of north-western West Champaran district",
+          "isCorrect": false
+        },
+        {
+          "body": "Tirhut Canal (East); West/East Champaran, Muzaffarpur and Vaishali",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Tirhut Canal (East) is the Gandak Project's longest branch, irrigating West and East Champaran, Muzaffarpur and Vaishali. The Triveni Canal (West) instead serves Saran, Siwan and Gopalganj, and the Don Canal is a smaller branch confined to north-western West Champaran.",
+      "concept_group_id": "bs2-geo-gandak-tirhut-canal-longest",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-525",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Kosi Canal Project (1954) draws water from the Birpur Barrage and splits into which two branches?",
+      "options": [
+        {
+          "body": "Eastern Kosi Canal (Purnia, Katihar, Saharsa, Madhepura) and Western Kosi Canal (Darbhanga, Madhubani)",
+          "isCorrect": true
+        },
+        {
+          "body": "Eastern Kosi Canal irrigating Darbhanga and Madhubani, Western Kosi Canal irrigating Purnia and Katihar",
+          "isCorrect": false
+        },
+        {
+          "body": "Triveni Canal and Tirhut Canal, matching the Gandak Project's branches",
+          "isCorrect": false
+        },
+        {
+          "body": "A single undivided canal serving the north-eastern districts jointly",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kosi Project's Eastern Kosi Canal serves Purnia, Katihar, Saharsa and Madhepura, while its Western Kosi Canal serves Darbhanga and Madhubani -- the reverse pairing is incorrect, and 'Triveni/Tirhut' are the Gandak Project's own branch names, not the Kosi Project's.",
+      "concept_group_id": "bs2-geo-kosi-canal-eastern-western-districts",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-526",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Among Bihar's three major canal systems (Son, Gandak, Kosi), which has the lowest command-area efficiency, and why?",
+      "options": [
+        {
+          "body": "The Son system, hampered by an unstable, highly variable seasonal water flow throughout the year",
+          "isCorrect": false
+        },
+        {
+          "body": "The Kosi system, due to frequent silt-clogging and unpredictable course shifts",
+          "isCorrect": true
+        },
+        {
+          "body": "The Gandak system, due to poor cash-crop suitability in its command area",
+          "isCorrect": false
+        },
+        {
+          "body": "The three systems have roughly comparable efficiency today",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kosi system has the lowest command efficiency, hampered by frequent silt-clogging and the Kosi's own unpredictable channel shifts. The Son system is instead noted for high efficiency from its stable flow, and the Gandak system for high productivity supporting cash crops like sugarcane and tobacco.",
+      "concept_group_id": "bs2-geo-kosi-canal-lowest-efficiency",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-527",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Indrapuri Barrage on the Son river, at roughly 1,400 metres long, is notable as:",
+      "options": [
+        {
+          "body": "The sole source for Bihar's Kosi Canal system",
+          "isCorrect": false
+        },
+        {
+          "body": "An older barrage in the same river system, built without modern concrete construction",
+          "isCorrect": false
+        },
+        {
+          "body": "One of the longest barrages in the world",
+          "isCorrect": true
+        },
+        {
+          "body": "A structure completed after the Son Canal system itself",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "At about 1,400 m, the Indrapuri Barrage is cited as one of the world's longest. It is a modern concrete barrage (not a non-concrete structure), feeds the Son Canal system specifically (not the separate Kosi system), and was built later to modernise the older Son Canal network, not before it.",
+      "concept_group_id": "bs2-geo-indrapuri-barrage-worlds-longest",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-528",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The 'Kishanganj Paradox' in Bihar's irrigation geography refers to the fact that:",
+      "options": [
+        {
+          "body": "Kishanganj's canals operate at full capacity mainly in drought years",
+          "isCorrect": false
+        },
+        {
+          "body": "Despite the state's lowest rainfall, Kishanganj somehow retains the most extensive canal network",
+          "isCorrect": false
+        },
+        {
+          "body": "Kishanganj receives canal water from three different river systems simultaneously",
+          "isCorrect": false
+        },
+        {
+          "body": "Despite having the state's highest rainfall, Kishanganj has minimal canal irrigation",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Kishanganj receives Bihar's highest rainfall, yet has minimal canal irrigation -- precisely because its naturally abundant rain makes extensive canal infrastructure comparatively unnecessary there, unlike drier districts further south and west.",
+      "concept_group_id": "bs2-geo-kishanganj-paradox-least-canal",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-529",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The 'tail-end problem' in Bihar's canal network describes how:",
+      "options": [
+        {
+          "body": "Seepage and unauthorised diversions often leave furthest-end farmers short of water",
+          "isCorrect": true
+        },
+        {
+          "body": "Canals nearer a river's source structurally receive less water than those built closer to its mouth",
+          "isCorrect": false
+        },
+        {
+          "body": "Water is deliberately rationed to the network's furthest fields to prevent overuse",
+          "isCorrect": false
+        },
+        {
+          "body": "The furthest fields receive water first, before nearer ones, due to gravity flow",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The tail-end problem is that seepage losses and unauthorised diversions along a canal's length mean water often fails to reach farmers at the network's furthest end at all -- not a deliberate rationing policy, and not a source-versus-mouth distinction.",
+      "concept_group_id": "bs2-geo-canal-tail-end-problem",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-530",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Loo', a defining feature of Bihar's hot-weather season (March to mid-June), is best described as:",
+      "options": [
+        {
+          "body": "A cold, dry wind arriving from the Himalayas in this season",
+          "isCorrect": false
+        },
+        {
+          "body": "A hot, dust-laden wind from the west, a major heatstroke risk",
+          "isCorrect": true
+        },
+        {
+          "body": "A humid onshore breeze that brings early, light pre-monsoon showers",
+          "isCorrect": false
+        },
+        {
+          "body": "A localised whirlwind confined to the Kaimur plateau specifically, unrelated to the wider plains",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Loo is a scorching, dust-laden wind blowing from the west during Bihar's hot season, a leading cause of heatstroke -- it is hot rather than cold, dry rather than humid/rain-bearing, and affects the plains broadly rather than being confined to one plateau.",
+      "concept_group_id": "bs2-geo-loo-hot-wind",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-531",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Kal Baisakhi' (Nor'wester) thunderstorms, originating from the Chotanagpur plateau before the monsoon, are agriculturally valued in Bihar chiefly because their accompanying rain (Mango Showers) helps ripen:",
+      "options": [
+        {
+          "body": "Jute specifically in the Kosi-Mahananda Doab",
+          "isCorrect": false
+        },
+        {
+          "body": "Wheat across the whole state, replacing the need for irrigation",
+          "isCorrect": false
+        },
+        {
+          "body": "Litchi around Muzaffarpur, and mango around Darbhanga/Vaishali",
+          "isCorrect": true
+        },
+        {
+          "body": "Makhana in the Mithila chaur belt",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Despite being potentially destructive storms, Kal Baisakhi's accompanying rain is valued for helping ripen litchi around Muzaffarpur and mango around Darbhanga/Vaishali -- not for irrigating the state's wheat crop generally, nor for jute or Makhana specifically.",
+      "concept_group_id": "bs2-geo-kal-baisakhi-mango-showers",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-532",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "The south-west monsoon typically enters Bihar from which direction, and through which districts?",
+      "options": [
+        {
+          "body": "Simultaneously and evenly from multiple directions at once",
+          "isCorrect": false
+        },
+        {
+          "body": "From the south-west, arriving via Rohtas and Kaimur before the rest of the state",
+          "isCorrect": false
+        },
+        {
+          "body": "From the north-west, via West Champaran",
+          "isCorrect": false
+        },
+        {
+          "body": "From the north-east, via Kishanganj and Purnia (the Bay of Bengal branch)",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Despite being called the 'south-west' monsoon nationally, in Bihar it actually arrives from the north-east, carried by the Bay of Bengal branch through Kishanganj and Purnia -- not through the south-western or north-western districts, and not evenly from every direction.",
+      "concept_group_id": "bs2-geo-monsoon-entry-kishanganj-purnia",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-533",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Winter cold waves in Bihar, capable of dropping temperatures to 4°C-10°C, are driven by a combination of the Siberian High and:",
+      "options": [
+        {
+          "body": "Western Disturbances",
+          "isCorrect": true
+        },
+        {
+          "body": "The retreating south-west monsoon",
+          "isCorrect": false
+        },
+        {
+          "body": "The Bay of Bengal branch of the monsoon",
+          "isCorrect": false
+        },
+        {
+          "body": "Localised Loo-wind reversal",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's January cold waves result from the Siberian High combined with Western Disturbances -- weather systems distinct from the monsoon's retreat (an autumn phenomenon) or the (hot-season-only) Loo wind.",
+      "concept_group_id": "bs2-geo-cold-wave-siberian-western-disturbance",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-534",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Agro-Climatic Zone I (north-west, north of the Ganga and west of the Kosi) is chiefly known for which crops?",
+      "options": [
+        {
+          "body": "Jute, maize and pineapple, the same crops associated with Zone II further east",
+          "isCorrect": false
+        },
+        {
+          "body": "Sugarcane, tobacco, mango and litchi, alongside rice and wheat",
+          "isCorrect": true
+        },
+        {
+          "body": "Pulses, oilseeds and flowers, with wheat and vegetables",
+          "isCorrect": false
+        },
+        {
+          "body": "Exclusively rice, with no cash crops of note",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Zone I's 104-145 cm rainfall band supports rice and wheat alongside cash crops like sugarcane, tobacco, mango and litchi. Jute/maize/pineapple instead characterise Zone II (north-east), and pulses/oilseeds/flowers characterise Zone III (south of the Ganga).",
+      "concept_group_id": "bs2-geo-agro-zone1-sugarcane-litchi",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-535",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which of Bihar's three Agro-Climatic Zones records the state's highest rainfall band (120-170 cm), and what crop is distinctively associated with it?",
+      "options": [
+        {
+          "body": "Zone III (south); pulses",
+          "isCorrect": false
+        },
+        {
+          "body": "Zone I (north-west); sugarcane",
+          "isCorrect": false
+        },
+        {
+          "body": "Zone II (north-east); jute",
+          "isCorrect": true
+        },
+        {
+          "body": "Zone II (north-east); tobacco",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Zone II, covering Purnia, Katihar, Saharsa and neighbouring north-eastern districts, records Bihar's highest rainfall band (120-170 cm) and is distinctively associated with jute cultivation -- sugarcane and tobacco belong instead to Zone I, and pulses to Zone III.",
+      "concept_group_id": "bs2-geo-agro-zone2-highest-rainfall-jute",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-536",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar's Agro-Climatic Zone III, south of the Ganga, is distinguished from Zones I and II chiefly by:",
+      "options": [
+        {
+          "body": "Growing much the same crop mix as Zone I, differing mainly in soil colour",
+          "isCorrect": false
+        },
+        {
+          "body": "The highest rainfall band of the three and a jute-led cropping pattern",
+          "isCorrect": false
+        },
+        {
+          "body": "Lying north of the Ganga throughout, unlike Zones I and II",
+          "isCorrect": false
+        },
+        {
+          "body": "Its lowest rainfall band (99-124 cm) and pulses/oilseeds-led cropping",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Zone III (south of the Ganga) has the lowest of the three rainfall bands (99-124 cm) and a cropping pattern led by pulses, oilseeds, wheat and vegetables -- the highest rainfall/jute combination instead describes Zone II, and Zone III is by definition south, not north, of the Ganga.",
+      "concept_group_id": "bs2-geo-agro-zone3-south-lowest-rainfall",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-537",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Bihar district is recorded as receiving the state's lowest average rainfall?",
+      "options": [
+        {
+          "body": "Aurangabad",
+          "isCorrect": true
+        },
+        {
+          "body": "Kishanganj",
+          "isCorrect": false
+        },
+        {
+          "body": "Gaya",
+          "isCorrect": false
+        },
+        {
+          "body": "Kaimur",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Aurangabad, at around 95 cm annually, records Bihar's lowest average rainfall -- the opposite extreme from Kishanganj's roughly 180 cm high. Gaya and Kaimur are both drier southern districts too, but neither holds the state's specific lowest-rainfall record.",
+      "concept_group_id": "bs2-geo-aurangabad-lowest-rainfall",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-538",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "Which single soil type covers roughly 90% of Bihar's total area?",
+      "options": [
+        {
+          "body": "Red and yellow soil",
+          "isCorrect": false
+        },
+        {
+          "body": "Alluvial soil",
+          "isCorrect": true
+        },
+        {
+          "body": "Laterite soil",
+          "isCorrect": false
+        },
+        {
+          "body": "Black cotton soil",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Alluvial soil, deposited by both Himalayan and peninsular river systems, covers about 90% of Bihar. Red-and-yellow soil is confined to a few southern districts, and laterite/black-cotton soils are not significant soil types in Bihar at all.",
+      "concept_group_id": "bs2-geo-alluvial-soil-90pct",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-539",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Balthar soil, found in the Rohtas-Bhagalpur belt, is agriculturally significant chiefly for being:",
+      "options": [
+        {
+          "body": "A waterlogged clay soil, suited mainly to pulses in the winter season",
+          "isCorrect": false
+        },
+        {
+          "body": "Exceptionally fertile, ideal for sugarcane and wheat",
+          "isCorrect": false
+        },
+        {
+          "body": "Low fertility and poor water absorption, suited to coarse grains",
+          "isCorrect": true
+        },
+        {
+          "body": "A self-ploughing soil that develops deep cracks on drying",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Balthar soil has low fertility and poor water-absorption capacity, limiting it to hardier coarse grains (maize, jowar, bajra). High fertility/sugarcane-wheat describes Karail-Kewal soil in the same belt, waterlogged winter-pulse clay describes Tal (Kagari) soil, and the self-ploughing, deep-cracking behaviour is Karail-Kewal's, not Balthar's.",
+      "concept_group_id": "bs2-geo-balthar-soil-low-fertility",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-540",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Red and Yellow soils, found around Gaya, Munger and Aurangabad, are formed from igneous rock and are agriculturally best suited to:",
+      "options": [
+        {
+          "body": "Rice, given their heavy clay texture",
+          "isCorrect": false
+        },
+        {
+          "body": "Sugarcane, given their high lime content",
+          "isCorrect": false
+        },
+        {
+          "body": "Jute, given their acidic, moisture-retentive character",
+          "isCorrect": false
+        },
+        {
+          "body": "Coarse grains/millets, given their nitrogen deficiency",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Being nitrogen-deficient and formed from igneous rock, Red and Yellow soils best support hardy coarse grains/millets. High lime content instead describes Balsundari soil (sugarcane), acidic moisture-retentive soil describes Khadar (jute), and heavy clay describes Tal soil (pulses/rice).",
+      "concept_group_id": "bs2-geo-red-yellow-soil-millets",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-541",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Red sandy soil, found on the Kaimur-Rohtas plateau, is characterised by:",
+      "options": [
+        {
+          "body": "High sand content and low organic carbon, limiting it mainly to bajra and jowar",
+          "isCorrect": true
+        },
+        {
+          "body": "High organic carbon and clay content, making it well suited to paddy cultivation",
+          "isCorrect": false
+        },
+        {
+          "body": "High calcium carbonate content, ideal for sugarcane",
+          "isCorrect": false
+        },
+        {
+          "body": "Waterlogged conditions through most of the year",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Red sandy soil on the Kaimur-Rohtas plateau has high sand content and low organic carbon, supporting only hardy crops like bajra and jowar. High organic carbon/clay (paddy) describes Piedmont Swamp soil, high calcium carbonate (sugarcane) describes Balsundari soil, and this soil is not characteristically waterlogged.",
+      "concept_group_id": "bs2-geo-red-sandy-soil-kaimur-rohtas",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-542",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "North-east Bihar is identified as the state's most acidic soil zone primarily because:",
+      "options": [
+        {
+          "body": "Its soil is derived directly from a band of acidic igneous rock underlying the region",
+          "isCorrect": false
+        },
+        {
+          "body": "Its heavy rainfall leaches out base minerals like calcium and magnesium from the soil",
+          "isCorrect": true
+        },
+        {
+          "body": "Decades of excess chemical fertiliser use have altered its natural pH",
+          "isCorrect": false
+        },
+        {
+          "body": "Its proximity to the Kosi's high silt load lowers the soil's pH",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "North-east Bihar's exceptionally heavy rainfall leaches calcium and magnesium out of the soil, leaving it acidic -- this is a natural, rainfall-driven process, not a matter of igneous-rock origin, fertiliser overuse, or silt load specifically.",
+      "concept_group_id": "bs2-geo-ne-bihar-acidic-leaching",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-543",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Dry Deciduous forests, found along the southern hilly fringes (Kaimur, Rohtas, Gaya, Aurangabad, Munger), differ from its Moist Deciduous forests in that they:",
+      "options": [
+        {
+          "body": "Are dominated by Sal, the same primary species as the Moist Deciduous belt",
+          "isCorrect": false
+        },
+        {
+          "body": "Receive over 120 cm of rainfall and retain a dense, year-round canopy",
+          "isCorrect": false
+        },
+        {
+          "body": "Under 120 cm rainfall; more open, fully shedding leaves in the Loo season",
+          "isCorrect": true
+        },
+        {
+          "body": "Are found mainly on river islands within the Ganga's own course, not on the mainland",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dry Deciduous forest gets under 120 cm of rain and is more open and sparse, with species like amaltas, sheesham, mahua, khair and palash shedding their leaves fully during the Loo season -- the higher-rainfall, dense-canopy, Sal-dominated description instead fits Moist Deciduous forest, and neither type is confined to river islands.",
+      "concept_group_id": "bs2-geo-dry-deciduous-forest-southern-fringe",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-544",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's largest wildlife sanctuary by area is located in which district?",
+      "options": [
+        {
+          "body": "Nalanda",
+          "isCorrect": false
+        },
+        {
+          "body": "West Champaran",
+          "isCorrect": false
+        },
+        {
+          "body": "Munger",
+          "isCorrect": false
+        },
+        {
+          "body": "Kaimur",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kaimur Wildlife Sanctuary is Bihar's largest by area. West Champaran instead hosts Valmiki National Park (Bihar's only National Park/Tiger Reserve, a separate distinction from 'largest sanctuary'), Munger hosts Bhimbandh Sanctuary, and Nalanda hosts the smaller Pant (Rajgir) Sanctuary.",
+      "concept_group_id": "bs2-geo-kaimur-sanctuary-largest-area",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-545",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Gautam Buddha Wildlife Sanctuary, in Gaya district, is geographically notable for being located:",
+      "options": [
+        {
+          "body": "On Bihar's border with Jharkhand",
+          "isCorrect": true
+        },
+        {
+          "body": "Well within the Kosi-Mahananda Doab, in the state's north-east",
+          "isCorrect": false
+        },
+        {
+          "body": "On Bihar's border with Nepal",
+          "isCorrect": false
+        },
+        {
+          "body": "On an island within the Ganga's course",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Gautam Buddha Wildlife Sanctuary sits on Bihar's border with Jharkhand -- not near Nepal, not within the (distant, north-eastern) Kosi-Mahananda Doab, and not on a Ganga river island.",
+      "concept_group_id": "bs2-geo-gautam-buddha-sanctuary-jharkhand-border",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-546",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Pant (Rajgir) Wildlife Sanctuary in Nalanda district is chiefly valued for:",
+      "options": [
+        {
+          "body": "Serving as India's principal sanctuary for Gangetic Dolphin conservation efforts",
+          "isCorrect": false
+        },
+        {
+          "body": "Its high tourism value, centred on hilly flora",
+          "isCorrect": true
+        },
+        {
+          "body": "Combining hot springs with dense forest cover",
+          "isCorrect": false
+        },
+        {
+          "body": "Its status as a designated Ramsar wetland site",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Pant (Rajgir) Sanctuary is valued for its high tourism appeal built around hilly flora. The Gangetic Dolphin distinction belongs to Vikramshila (Bhagalpur), the hot-springs-plus-forest combination to Bhimbandh (Munger), and Ramsar status to Kanwar Jheel (Begusarai).",
+      "concept_group_id": "bs2-geo-pant-rajgir-sanctuary-tourism",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-547",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "Bihar's designated State Tree is:",
+      "options": [
+        {
+          "body": "Sal (Shorea robusta)",
+          "isCorrect": false
+        },
+        {
+          "body": "Banyan (Ficus benghalensis)",
+          "isCorrect": false
+        },
+        {
+          "body": "Peepal (Ficus religiosa)",
+          "isCorrect": true
+        },
+        {
+          "body": "Mango (Mangifera indica)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Peepal (Ficus religiosa) is Bihar's designated State Tree. Banyan is a different, commonly-confused fig species; Sal is instead the dominant species of Bihar's Moist Deciduous forests (not the state tree); and mango, while economically important, holds no such formal designation.",
+      "concept_group_id": "bs2-geo-state-tree-peepal",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-548",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Bihar district records the smallest forest area, the opposite extreme from Kaimur's largest?",
+      "options": [
+        {
+          "body": "Vaishali",
+          "isCorrect": false
+        },
+        {
+          "body": "Sheohar",
+          "isCorrect": false
+        },
+        {
+          "body": "Arwal",
+          "isCorrect": false
+        },
+        {
+          "body": "Sheikhpura",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sheikhpura records Bihar's smallest forest area, the opposite extreme from Kaimur's largest. Sheohar is instead Bihar's smallest district by area (a separate superlative), and Arwal and Vaishali, while both small/densely populated districts, do not hold this specific forest-area record.",
+      "concept_group_id": "bs2-geo-sheikhpura-smallest-forest",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

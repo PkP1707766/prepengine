@@ -1,0 +1,2068 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper II, Batch 05 (History & Culture topic) -- 63 questions, absorbing the full shortfall left by Economy (-6) and Recent Developments (-8) after Geography's own +4 surplus, so Paper II's grand total lands at exactly 150",
+    "generated_at": "2026-09-04",
+    "generator": "Claude Code, human-drafted from Bihar Special Orange Book (Perfection IAS / Dhananjay IAS), full read of Ancient (pages 4-21), and representative sampling of Medieval (22-30), Modern (31-47) and Art & Culture (48-58) chapters",
+    "total_questions": 63,
+    "target_cells": {
+      "Bihar_History & Culture_easy_mcq": 2,
+      "Bihar_History & Culture_hard_match_the_following": 1,
+      "Bihar_History & Culture_hard_mcq": 22,
+      "Bihar_History & Culture_medium_mcq": 38
+    },
+    "status_all": "draft",
+    "rebalance_note": [
+      "Unlike Economy and Recent Developments, History & Culture's source material turned out to be even richer than Paper I's own 62-question batch already suggested -- the Orange Book's Ancient-Bihar chapters alone (pre-Mauryan dynasties, the Buddhist/Jain religious movements, the Mauryan and Gupta empires) yielded well over 60 individually distinct, non-overlapping facts even after excluding everything Paper I already used, before Medieval/Modern/Culture were even touched.",
+      "Final split: 38 Ancient, 13 Medieval, 8 Modern, 4 Culture. This absorbs the -14 net shortfall from Economy/Recent Developments (partly offset by Geography's own +4) so Paper II's five-topic total is exactly 150, matching the master plan."
+    ],
+    "dedup_note": [
+      "Every fact below was checked against all 62 live bs1-hc-* rows (not just slug strings). Facts already covered from a different angle were deliberately EXCLUDED rather than reworded around, including: Videgha Madhava/Shatapatha Brahmana, Chetaka's dual family link, Udayin's capital shift, Digambar-Shwetambar famine split, Vikramshila/Dharmapala, Nalanda-Balaputradeva grant, Somapura-Dharmapala, Ashoka's Bherighosha-to-Dhammaghosha shift, Mauryan officers Samaharta/Sannidhata, Eran inscription/Sati, Aryabhata's Pi/eclipse work, Mehrauli Pillar's 'Chandra', Chandragupta II's silver coins, Dagh-Chehra revival, Sher Shah's Patta/Qabuliyat pairing, Maner Sharif's two dargahs, Patna Sahib/Guru Gobind Singh, Chhath's day-3 ritual, Bihar's name etymology, and the Beas-mutiny/Dhanananda-army-size story.",
+      "One cross-batch check specific to this session: Bhagalpur's Tussar-silk fact is already used in THIS paper's own Economy batch (bs2-206) -- deliberately not repeated here from a History angle; Munger's gun-making tradition and Mir Kasim's 18th-century capital move there were used instead, which is a genuinely different (political/military-history) fact about the same town.",
+      "Gaya's Pitru-Tarpana significance (Vayu Purana, Mangla Gauri temple) and the Barabar Caves both appear in two different chapters of the source book (Vedic-Bihar chapter and the Culture chapter respectively) -- each drafted as exactly ONE question here, not duplicated across both appearances."
+    ],
+    "flagged_for_extra_review": [
+      "bs2-639 (Sultanganj Buddha copper statue 'now in Birmingham'): the statue's present location is a modern-custody fact (Birmingham Museum, since the colonial era) layered onto an ancient artefact -- SME should confirm this framing is still accurate and uncontested."
+    ],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "The 24-Tirthankara table's remaining entries (beyond Rishabhadev/Mallinath/Parshvanath used here) and the full Saptanga/seven-limb theory as its own match_the_following were both set aside as lower-priority once the 63-question target was reached -- good material for Paper III.",
+      "Medieval Bihar's Sen dynasty (Vijay Sen, Lakshman Sen, Jayadeva's Geet Govind) and several Modern-era social reformers (Bihar Scientific Society, Aghore Kamini Devi, Patna College 1863) were identified as fresh and usable but held back once the 63-question target was met -- flagged for Paper III's History & Culture allocation."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy, with particular attention to bs2-601, bs2-621 and bs2-639 (flagged above).",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='History & Culture', type, difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs2-606",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "According to Megasthenes' Indika, Pataliputra's municipal administration was run by:",
+      "options": [
+        {
+          "body": "30 members divided into 6 committees of 5 each",
+          "isCorrect": true
+        },
+        {
+          "body": "A single governor appointed directly by the emperor",
+          "isCorrect": false
+        },
+        {
+          "body": "24 members divided into 4 committees of 6 each",
+          "isCorrect": false
+        },
+        {
+          "body": "An elected assembly of merchant guild heads only",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Megasthenes describes Pataliputra's civic administration as a council of 30 members organised into 6 committees of 5 each -- not a single imperial appointee, a different committee arithmetic, or a merchants-only body.",
+      "concept_group_id": "bs2-hc-megasthenes-pataliputra-30-council",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-613",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The transition from scattered tribal 'Jana' units to territorial 'Janapada' kingdoms around 1000 BCE is chiefly attributed to:",
+      "options": [
+        {
+          "body": "Iron tools from the Chotanagpur plateau enabling large-scale clearing of the Ganga plain's forests",
+          "isCorrect": true
+        },
+        {
+          "body": "A sudden climatic shift that made pastoralism impossible statewide",
+          "isCorrect": false
+        },
+        {
+          "body": "The arrival of Buddhist and Jain missionaries organising settled communities",
+          "isCorrect": false
+        },
+        {
+          "body": "A single unifying military conquest by an early Magadh king",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Iron tools sourced from the Chotanagpur plateau allowed large-scale forest-clearing on the Ganga plain, enabling the shift from pastoralism to intensive wet-rice agriculture and, with it, the Jana-to-Janapada political transition -- centuries before Buddhism or Jainism existed, and not the result of one climatic event or one king's conquest.",
+      "concept_group_id": "bs2-hc-iron-age-janapada-transition",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-616",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "In the Vajji Sangha's Santhagara (assembly hall), voting among the confederacy's chiefs was conducted using:",
+      "options": [
+        {
+          "body": "Wooden pieces called Salaka, collected by an official called the Salaka-Gahapaka",
+          "isCorrect": true
+        },
+        {
+          "body": "A simple show-of-hands counted by the presiding chief",
+          "isCorrect": false
+        },
+        {
+          "body": "Sealed clay tokens submitted to Licchavi priests",
+          "isCorrect": false
+        },
+        {
+          "body": "A hereditary council vote limited to the Licchavi clan alone",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Voting in the Santhagara used wooden Salaka pieces, gathered by an official titled Salaka-Gahapaka -- not a simple hand-count, sealed clay tokens, or a vote restricted to just one of the confederacy's eight member clans.",
+      "concept_group_id": "bs2-hc-vajji-salaka-voting",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-617",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Ajatshatru's minister Vassakara engineered the Vajji confederacy's downfall chiefly through which method, alongside two new siege weapons?",
+      "options": [
+        {
+          "body": "Sowing internal discord among the confederacy's constituent clans",
+          "isCorrect": true
+        },
+        {
+          "body": "Bribing the Licchavi king Chetaka directly to surrender",
+          "isCorrect": false
+        },
+        {
+          "body": "Negotiating a marriage alliance that split the Vajji leadership",
+          "isCorrect": false
+        },
+        {
+          "body": "Cutting off the confederacy's river-borne grain supply",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Vassakara's strategy was to sow discord among the Vajji confederacy's own clans, weakening it from within, backed by the new Rathamusala (scythed chariot) and Mahashilakantaka (stone-hurling catapult). Direct bribery, a marriage-alliance split, or a supply blockade are not what the sources describe.",
+      "concept_group_id": "bs2-hc-vassakara-vajji-discord",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-618",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Girivraja (Rajgir), Magadh's first capital, was naturally fortified as a 'Giri-durga' (hill fort) because it was:",
+      "options": [
+        {
+          "body": "Surrounded by five hills -- Vaibhar, Ratna, Shaila, Gadhra and Vipula",
+          "isCorrect": true
+        },
+        {
+          "body": "Built on an island formed by four converging rivers",
+          "isCorrect": false
+        },
+        {
+          "body": "Enclosed by a single continuous mountain range on all sides",
+          "isCorrect": false
+        },
+        {
+          "body": "Located atop a plateau accessible only by one narrow pass",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Girivraja was ringed by five named hills -- Vaibhar, Ratna, Shaila, Gadhra and Vipula -- making it a natural hill fort. The four-river-island description instead fits Pataliputra's 'Jal-Durga', and neither a single unbroken range nor a single-pass plateau matches the source's account.",
+      "concept_group_id": "bs2-hc-girivraja-five-hills",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-619",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Pataliputra's description as a 'Jal-Durga' (water fort) refers to its position at the confluence of which four rivers?",
+      "options": [
+        {
+          "body": "Ganga, Son, Gandak and Punpun",
+          "isCorrect": true
+        },
+        {
+          "body": "Ganga, Kosi, Gandak and Bagmati",
+          "isCorrect": false
+        },
+        {
+          "body": "Son, Punpun, Falgu and Karmanasa",
+          "isCorrect": false
+        },
+        {
+          "body": "Ganga, Son, Kosi and Mahananda",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Pataliputra sat at the meeting point of the Ganga, Son, Gandak and Punpun -- a genuine natural-defence advantage that led Udayin to shift Magadh's capital there permanently. The other river groupings mix in rivers (Kosi, Bagmati, Falgu, Karmanasa, Mahananda) that do not converge at this specific site.",
+      "concept_group_id": "bs2-hc-pataliputra-jal-durga-four-rivers",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-620",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Among the early Mahajanapadas, Magadh was distinctive for being the first kingdom to:",
+      "options": [
+        {
+          "body": "Deploy war elephants on a large scale",
+          "isCorrect": true
+        },
+        {
+          "body": "Mint gold coinage for general circulation",
+          "isCorrect": false
+        },
+        {
+          "body": "Maintain a standing navy on the Ganga",
+          "isCorrect": false
+        },
+        {
+          "body": "Codify a written law-book for its subjects",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Magadh drew on the dense forests to its east for large-scale war-elephant use, a genuine military innovation among the Mahajanapadas -- gold coinage, a standing river navy, and a codified law-book are not what distinguished Magadh at this early stage.",
+      "concept_group_id": "bs2-hc-magadh-first-war-elephants",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-622",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "Who became the first woman ordained into the Buddhist Sangha, at Vaishali?",
+      "options": [
+        {
+          "body": "Mahaprajapati Gautami",
+          "isCorrect": true
+        },
+        {
+          "body": "Amrapali",
+          "isCorrect": false
+        },
+        {
+          "body": "Yashodhara",
+          "isCorrect": false
+        },
+        {
+          "body": "Gargi Vachaknavi",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mahaprajapati Gautami, the Buddha's stepmother, became the first woman ordained into the Sangha, at Vaishali, after Ananda interceded on her behalf. Amrapali was Vaishali's famous courtesan-patron, Yashodhara was the Buddha's wife (who did not seek ordination in this episode), and Gargi Vachaknavi was a Vedic-era philosopher unconnected to Buddhism.",
+      "concept_group_id": "bs2-hc-gautami-first-buddhist-nun",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-623",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "Amrapali, Vaishali's celebrated courtesan, is remembered in Buddhist history chiefly for:",
+      "options": [
+        {
+          "body": "Donating her mango grove to the Buddhist Sangha",
+          "isCorrect": true
+        },
+        {
+          "body": "Funding the construction of the Vaishali Relic Stupa",
+          "isCorrect": false
+        },
+        {
+          "body": "Leading the Licchavi confederacy's resistance to Ajatshatru",
+          "isCorrect": false
+        },
+        {
+          "body": "Compiling the Vinaya Pitaka's monastic rules",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Amrapali is remembered for donating her mango grove to the Sangha -- she did not fund the Relic Stupa, lead the Vajji military resistance, or have any role in compiling monastic texts.",
+      "concept_group_id": "bs2-hc-amrapali-mango-grove-donation",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-625",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The original Bodhi Tree under which the Buddha attained enlightenment no longer stands. What happened to it, and what is notable about the current tree?",
+      "options": [
+        {
+          "body": "It was destroyed by King Shashanka of Gauda; today's tree is its fifth generation",
+          "isCorrect": true
+        },
+        {
+          "body": "It was destroyed by Bakhtiyar Khilji; today's tree was replanted by the British",
+          "isCorrect": false
+        },
+        {
+          "body": "It died of natural causes; today's tree is a direct, unbroken continuation",
+          "isCorrect": false
+        },
+        {
+          "body": "It was uprooted during the Kalinga War; today's tree was planted by Ashoka himself",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "King Shashanka of Gauda destroyed the original Bodhi Tree; the tree standing today is its fifth generation, grown from earlier saplings/regrowth -- not a Khilji-era or Kalinga-War-era destruction, and not an unbroken original specimen.",
+      "concept_group_id": "bs2-hc-bodhi-tree-shashanka-fifth-gen",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-626",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which words are recorded as the Buddha's last, spoken at his Mahaparinirvana in Kushinagar?",
+      "options": [
+        {
+          "body": "'Appo Deepo Bhava' (Be a light unto yourself)",
+          "isCorrect": true
+        },
+        {
+          "body": "'Sabbe Sankhara Anicca' (All conditioned things are impermanent)",
+          "isCorrect": false
+        },
+        {
+          "body": "'Buddham Sharanam Gacchami' (I take refuge in the Buddha)",
+          "isCorrect": false
+        },
+        {
+          "body": "'Ehi Passiko' (Come and see for yourself)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Appo Deepo Bhava' is recorded as the Buddha's final exhortation at Kushinagar. The other phrases are genuine Buddhist sayings/formulas from elsewhere in the tradition, not his specific last words.",
+      "concept_group_id": "bs2-hc-buddha-last-words-appo-deepo",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-627",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the Buddhist Council in List-I with the person who presided over it (chairperson) in List-II.",
+      "options": [
+        {
+          "body": "a-2, b-4, c-1, d-3",
+          "isCorrect": true
+        },
+        {
+          "body": "a-1, b-2, c-3, d-4",
+          "isCorrect": false
+        },
+        {
+          "body": "a-2, b-1, c-4, d-3",
+          "isCorrect": false
+        },
+        {
+          "body": "a-5, b-4, c-1, d-3",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The First Council (a, 483 BCE, Rajgir) was chaired by Mahakassapa -- matches 2. The Second Council (b, 383 BCE, Vaishali) was chaired by Sabbakami -- matches 4. The Third Council (c, 250 BCE, Pataliputra) was chaired by Moggaliputta Tissa -- matches 1. The Fourth Council (d, 72 CE, Kundalvan) was chaired by Vasumitra -- matches 3. List-II's 5th entry, Upali, was instead the monk who recited the Vinaya Pitaka AT the first council, not its presiding chair.",
+      "concept_group_id": "bs2-hc-buddhist-councils-chairperson-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. First Council (483 BCE)",
+          "b. Second Council (383 BCE)",
+          "c. Third Council (250 BCE)",
+          "d. Fourth Council (72 CE)"
+        ],
+        "list_2": [
+          "1. Moggaliputta Tissa",
+          "2. Mahakassapa",
+          "3. Vasumitra",
+          "4. Sabbakami",
+          "5. Upali"
+        ]
+      }
+    },
+    {
+      "batch_ref": "bs2-630",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Kesaria Stupa in East Champaran holds which distinction among the world's Buddhist stupas?",
+      "options": [
+        {
+          "body": "It is the world's tallest stupa, at 104 feet",
+          "isCorrect": true
+        },
+        {
+          "body": "It is the world's oldest surviving stupa",
+          "isCorrect": false
+        },
+        {
+          "body": "It is the only stupa built entirely of stone in Bihar",
+          "isCorrect": false
+        },
+        {
+          "body": "It is the only stupa confirmed to contain the Buddha's own ashes",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Kesaria Stupa, originally a Mauryan-era mud structure, is the world's tallest stupa at 104 feet -- 'oldest surviving', 'only stone stupa', and 'confirmed to hold the Buddha's ashes' are all different claims that belong to other stupas or are simply not established facts about Kesaria.",
+      "concept_group_id": "bs2-hc-kesaria-stupa-tallest",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-631",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Relic Stupa at Vaishali, excavated in 1958, is significant because it is:",
+      "options": [
+        {
+          "body": "One of only eight original stupas built to contain the Buddha's bodily relics",
+          "isCorrect": true
+        },
+        {
+          "body": "The only Bihar stupa built by Emperor Ashoka personally",
+          "isCorrect": false
+        },
+        {
+          "body": "The site where the Buddha's cremation itself took place",
+          "isCorrect": false
+        },
+        {
+          "body": "The largest stupa by volume ever built in ancient India",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Vaishali Relic Stupa is one of just eight original stupas built to hold the Buddha's bodily relics after his cremation (which took place at Kushinagar, not Vaishali) -- it is not specifically an Ashoka-built structure, nor the largest stupa by volume.",
+      "concept_group_id": "bs2-hc-vaishali-relic-stupa-one-of-eight",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-633",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Jamali holds an unusual double distinction in Mahavira's biography: he was Mahavira's:",
+      "options": [
+        {
+          "body": "First disciple, who later became his first schismatic opponent",
+          "isCorrect": true
+        },
+        {
+          "body": "First disciple, who later succeeded him as the 25th Tirthankara",
+          "isCorrect": false
+        },
+        {
+          "body": "Chief patron-king, who later banned Jainism from his kingdom",
+          "isCorrect": false
+        },
+        {
+          "body": "Childhood teacher, who later renounced teaching altogether",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Jamali -- Mahavira's son-in-law -- was his first disciple, and later became the first person to break away and dispute his teachings, a notable reversal. Jainism has no 25th Tirthankara (Mahavira is the 24th and last), and Jamali was neither a patron-king nor merely a childhood teacher.",
+      "concept_group_id": "bs2-hc-jamali-first-disciple-schismatic",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-635",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which statement correctly compares Parshvanath (23rd Tirthankara) and Mahavira (24th) on the Five Great Vows?",
+      "options": [
+        {
+          "body": "Parshvanath prescribed four vows; Mahavira added celibacy (Brahmacharya) as the fifth",
+          "isCorrect": true
+        },
+        {
+          "body": "Both prescribed the same five vows without any difference",
+          "isCorrect": false
+        },
+        {
+          "body": "Mahavira prescribed four vows; Parshvanath had already added a fifth, later dropped",
+          "isCorrect": false
+        },
+        {
+          "body": "Parshvanath prescribed the five vows; Mahavira reduced them to four",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Parshvanath's teachings comprised four vows; Mahavira specifically added Brahmacharya (celibacy) as the fifth, completing the Panch Mahavrata still followed today -- the other options invert or flatten this genuine historical progression.",
+      "concept_group_id": "bs2-hc-parshvanath-four-mahavira-fifth-vow",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-636",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Shwetambar tradition holds a distinctive, contested belief about which Tirthankara?",
+      "options": [
+        {
+          "body": "The 19th, Mallinath, whom Shwetambars believe was female",
+          "isCorrect": true
+        },
+        {
+          "body": "The 1st, Rishabhadev, whom Shwetambars date to the Gupta period",
+          "isCorrect": false
+        },
+        {
+          "body": "The 20th, Munisuvrat, whom Shwetambars link to Vaishali rather than Rajgir",
+          "isCorrect": false
+        },
+        {
+          "body": "The 24th, Mahavira, whom Shwetambars hold to be a mythical, non-historical figure",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Shwetambars hold the distinctive, debated belief that Mallinath, the 19th Tirthankara, was female -- a claim not shared by the Digambar tradition. Rishabhadev is instead traditionally dated far earlier than the Gupta period, Munisuvrat's birthplace is Rajgir (not Vaishali), and Mahavira's historicity is not in question in either tradition.",
+      "concept_group_id": "bs2-hc-mallinath-female-shwetambar-belief",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-637",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Haryanka dynasty of Magadh (c. 544-412 BCE) is sometimes referred to as the 'Parricide dynasty' because tradition suggests a recurring pattern in which:",
+      "options": [
+        {
+          "body": "Sons overthrew their own fathers to seize the throne",
+          "isCorrect": true
+        },
+        {
+          "body": "Each king executed his own brothers upon coronation",
+          "isCorrect": false
+        },
+        {
+          "body": "Succession always passed through the maternal line",
+          "isCorrect": false
+        },
+        {
+          "body": "Kings were required to abdicate once a son reached adulthood",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The 'Parricide dynasty' label reflects a recurring pattern of sons overthrowing their fathers (Ajatshatru against Bimbisara being the best-known instance) -- it is not about eliminating brothers, matrilineal succession, or a fixed abdication rule.",
+      "concept_group_id": "bs2-hc-haryanka-parricide-dynasty",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-640",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Hathigumpha inscription (in Odisha) is relevant to Magadh's Nanda dynasty because it:",
+      "options": [
+        {
+          "body": "Mentions a canal built by a Nanda king, confirming Nanda presence in the Kalinga region",
+          "isCorrect": true
+        },
+        {
+          "body": "Records the Nanda dynasty's founding charter in full",
+          "isCorrect": false
+        },
+        {
+          "body": "Lists all nine Nanda kings in dynastic order",
+          "isCorrect": false
+        },
+        {
+          "body": "Describes Chandragupta Maurya's overthrow of the last Nanda king",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Hathigumpha inscription mentions a canal built by a Nanda king, corroborating Nanda influence extending into the Kalinga region -- it is not itself a founding charter, a complete king-list, or a record of the Nanda-to-Maurya transition, which comes from different sources like the Puranas and Mudrarakshasa.",
+      "concept_group_id": "bs2-hc-hathigumpha-nanda-canal",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-642",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Ashoka's Major Rock Edict XIII, especially significant for BPSC purposes, is notable for naming:",
+      "options": [
+        {
+          "body": "Five contemporary Greek kings, including Antiochus and Ptolemy",
+          "isCorrect": true
+        },
+        {
+          "body": "The five hills surrounding Rajgir",
+          "isCorrect": false
+        },
+        {
+          "body": "Five Mauryan provincial governors by name",
+          "isCorrect": false
+        },
+        {
+          "body": "Five Buddhist missionary destinations in South-East Asia",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Major Rock Edict XIII names five contemporary Greek kings (Antiochus, Ptolemy, Antigonus, Magas and Alexander) alongside describing the Kalinga War -- it does not list Rajgir's hills, name provincial governors, or catalogue missionary destinations, which are documented elsewhere.",
+      "concept_group_id": "bs2-hc-major-rock-edict-13-greek-kings",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-643",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Rummindei Pillar at Lumbini, marking Ashoka's pilgrimage there, records which specific administrative concession to the village?",
+      "options": [
+        {
+          "body": "Exemption from Bali (religious tax) and a reduction of Bhag (land revenue) to one-eighth",
+          "isCorrect": true
+        },
+        {
+          "body": "Full exemption from all forms of taxation permanently",
+          "isCorrect": false
+        },
+        {
+          "body": "A grant making the village a self-governing republic",
+          "isCorrect": false
+        },
+        {
+          "body": "An order to relocate the village's population to Pataliputra",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Rummindei Pillar records Ashoka exempting Lumbini from Bali and cutting its Bhag (land-revenue share) to one-eighth -- a specific, partial concession, not a blanket tax exemption, a grant of self-governance, or a forced relocation.",
+      "concept_group_id": "bs2-hc-rummindei-pillar-bali-bhag-exemption",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-644",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Mauryan official was specifically empowered by Ashoka with judicial authority and responsibility for land surveys?",
+      "options": [
+        {
+          "body": "Rajjuka",
+          "isCorrect": true
+        },
+        {
+          "body": "Pradeshika",
+          "isCorrect": false
+        },
+        {
+          "body": "Sitadhyaksha",
+          "isCorrect": false
+        },
+        {
+          "body": "Akshapataladhyaksha",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Rajjuka combined judicial powers (granted specifically by Ashoka) with land-survey duties. The Pradeshika was a district-level administrator, the Sitadhyaksha supervised state (crown) agricultural land, and the Akshapataladhyaksha was the accountant-general -- each a distinct office.",
+      "concept_group_id": "bs2-hc-rajjuka-judicial-land-survey",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-645",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Following his victory over Seleucus Nicator, Chandragupta Maurya received 500 elephants as part of the peace settlement. These elephants are historically notable because they:",
+      "options": [
+        {
+          "body": "Later played a role in Seleucus's own Battle of Ipsus in the Hellenistic world",
+          "isCorrect": true
+        },
+        {
+          "body": "Were immediately returned to Chandragupta as a broken treaty term",
+          "isCorrect": false
+        },
+        {
+          "body": "Formed the core of a new Mauryan-Greek joint army stationed in Persia",
+          "isCorrect": false
+        },
+        {
+          "body": "Died during transport and were never actually deployed anywhere",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "These 500 elephants went on to serve Seleucus in the Battle of Ipsus, a major Hellenistic-world battle -- they were not returned, did not form a joint Mauryan-Greek army, and were very much used rather than lost in transit.",
+      "concept_group_id": "bs2-hc-chandragupta-elephants-battle-of-ipsus",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-646",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Chandragupta Maurya's life ended in which manner, following the influence of the Jain monk Bhadrabahu?",
+      "options": [
+        {
+          "body": "He abdicated and undertook Sallekhana (ritual fasting unto death) at Shravanabelagola",
+          "isCorrect": true
+        },
+        {
+          "body": "He was assassinated by a rival claimant during a royal hunt",
+          "isCorrect": false
+        },
+        {
+          "body": "He died in battle defending the empire's north-western frontier",
+          "isCorrect": false
+        },
+        {
+          "body": "He retired to Pataliputra and continued ruling as a Jain monk-king",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Under Bhadrabahu's influence, Chandragupta abdicated the throne and travelled to Shravanabelagola in Karnataka to undertake Sallekhana -- he was not assassinated, did not die in battle, and did not continue to rule after his abdication.",
+      "concept_group_id": "bs2-hc-chandragupta-bhadrabahu-sallekhana",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-647",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Barabar Caves, Bihar's oldest surviving rock-cut caves, were carved during the Mauryan period specifically as a gift to which sect?",
+      "options": [
+        {
+          "body": "The Ajivikas",
+          "isCorrect": true
+        },
+        {
+          "body": "The Buddhists",
+          "isCorrect": false
+        },
+        {
+          "body": "The Jains",
+          "isCorrect": false
+        },
+        {
+          "body": "The Brahmanical priesthood",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Barabar Caves were carved for the Ajivika sect (whose most prominent royal patron was Bindusara) -- not for Buddhists, Jains, or Brahmanical priests, each of which had its own separate architectural patronage elsewhere in Bihar.",
+      "concept_group_id": "bs2-hc-barabar-caves-ajivikas",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-648",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Excavations at Kumhrar, Patna, uncovered remains most associated with which Mauryan-era structure?",
+      "options": [
+        {
+          "body": "An 80-pillared wooden palace hall",
+          "isCorrect": true
+        },
+        {
+          "body": "A stone stupa with Ashokan inscriptions",
+          "isCorrect": false
+        },
+        {
+          "body": "A fortified granary complex",
+          "isCorrect": false
+        },
+        {
+          "body": "A Buddhist monastery with residential cells",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Kumhrar's Mauryan-era remains are of an 80-pillared wooden palace hall -- not a stone stupa, a granary, or a monastery, which are separately attested Mauryan-era structures elsewhere in Bihar.",
+      "concept_group_id": "bs2-hc-kumhrar-80-pillar-palace",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-651",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which statement correctly contrasts the official administrative languages of the Mauryan and Gupta empires?",
+      "options": [
+        {
+          "body": "Mauryan administration used Magadhi Prakrit; Gupta administration used Sanskrit",
+          "isCorrect": true
+        },
+        {
+          "body": "Both empires used Sanskrit as their sole official language throughout",
+          "isCorrect": false
+        },
+        {
+          "body": "Mauryan administration used Sanskrit; Gupta administration used Magadhi Prakrit",
+          "isCorrect": false
+        },
+        {
+          "body": "Both empires used Pali as their sole official administrative language",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mauryas administered primarily in Magadhi Prakrit, while the Guptas -- reflecting the era's Sanskrit literary revival -- used Sanskrit as their official language. Neither empire used Pali as its administrative language, and the Mauryan/Gupta language choices are not interchangeable with each other.",
+      "concept_group_id": "bs2-hc-mauryan-prakrit-gupta-sanskrit",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-652",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Chandragupta I, the real founder of the Gupta dynasty, strengthened his political legitimacy in Magadh chiefly through:",
+      "options": [
+        {
+          "body": "Marriage to the Licchavi princess Kumaradevi",
+          "isCorrect": true
+        },
+        {
+          "body": "A military conquest of the entire Licchavi confederacy",
+          "isCorrect": false
+        },
+        {
+          "body": "Formal adoption by the last Kushana emperor",
+          "isCorrect": false
+        },
+        {
+          "body": "A treaty of tribute paid annually to the Nagas",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Chandragupta I's marriage to the Licchavi princess Kumaradevi lent the new Gupta dynasty political legitimacy in Magadh -- commemorated on his 'King-Queen' type gold coins -- rather than a Licchavi conquest, Kushana adoption, or Naga tribute.",
+      "concept_group_id": "bs2-hc-chandragupta-i-kumaradevi-marriage",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-653",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Historian V.A. Smith gave Samudragupta which epithet, and on whose composition is this reputation chiefly based?",
+      "options": [
+        {
+          "body": "'Indian Napoleon', based on Harisena's Prayag Prashasti",
+          "isCorrect": true
+        },
+        {
+          "body": "'Indian Napoleon', based on Kalidasa's court poetry",
+          "isCorrect": false
+        },
+        {
+          "body": "'Indian Alexander', based on Harisena's Prayag Prashasti",
+          "isCorrect": false
+        },
+        {
+          "body": "'Indian Ashoka', based on Fa-Hien's travel account",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "V.A. Smith termed Samudragupta the 'Indian Napoleon', a reputation resting on his own minister Harisena's Prayag Prashasti inscription -- not Kalidasa's (a later court poet under Chandragupta II) work, and not the differently-worded 'Indian Alexander'/'Indian Ashoka' epithets or Fa-Hien's account (which is about Chandragupta II's reign).",
+      "concept_group_id": "bs2-hc-samudragupta-indian-napoleon-smith",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-656",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Sultanganj Buddha, a 7.5-foot copper statue found in Bhagalpur, is a notable example of Gupta-era metallurgy. Where is it now located?",
+      "options": [
+        {
+          "body": "In a museum in Birmingham, England",
+          "isCorrect": true
+        },
+        {
+          "body": "In the Bihar Museum, Patna",
+          "isCorrect": false
+        },
+        {
+          "body": "At its original find-site in Bhagalpur",
+          "isCorrect": false
+        },
+        {
+          "body": "In the National Museum, New Delhi",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Sultanganj Buddha now resides in a museum in Birmingham, England -- not in Patna's Bihar Museum, at its original Bhagalpur find-site, or in Delhi's National Museum.",
+      "concept_group_id": "bs2-hc-sultanganj-buddha-birmingham",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-657",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Kushana emperor Kanishka's invasion of Pataliputra had which notable cultural consequence?",
+      "options": [
+        {
+          "body": "He took the Buddhist scholar Ashvaghosha away with him",
+          "isCorrect": true
+        },
+        {
+          "body": "He ordered Nalanda's library burned in retaliation for a local revolt",
+          "isCorrect": false
+        },
+        {
+          "body": "He forcibly converted Pataliputra's population to Zoroastrianism",
+          "isCorrect": false
+        },
+        {
+          "body": "He relocated the Gupta capital to Kashmir permanently",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Kanishka's invasion of Pataliputra is chiefly remembered for his taking the celebrated Buddhist scholar Ashvaghosha back with him -- Nalanda's library burning is instead linked to Bakhtiyar Khilji centuries later, and there is no record of forced Zoroastrian conversion or a permanent capital shift to Kashmir.",
+      "concept_group_id": "bs2-hc-kanishka-pataliputra-ashvaghosha",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-660",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Karnat dynasty, credited with ushering in Mithila's cultural 'Golden Age', was established in 1097 CE by:",
+      "options": [
+        {
+          "body": "Nanyadeva, at Simraongarh",
+          "isCorrect": true
+        },
+        {
+          "body": "Harisimhadeva, at Darbhanga",
+          "isCorrect": false
+        },
+        {
+          "body": "Nanyadeva, at Darbhanga",
+          "isCorrect": false
+        },
+        {
+          "body": "Gopala, at Simraongarh",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Nanyadeva founded the Karnat dynasty in 1097 CE at Simraongarh in the Mithila region -- Gopala instead founded the earlier Pala dynasty, and Darbhanga is not the dynasty's founding seat.",
+      "concept_group_id": "bs2-hc-karnat-dynasty-nanyadeva-1097",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-662",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Kannauj Tripartite Struggle, which Dharmapala's Pala dynasty took part in, was a roughly 200-year contest among the Palas and which two other powers?",
+      "options": [
+        {
+          "body": "The Pratiharas and the Rashtrakutas",
+          "isCorrect": true
+        },
+        {
+          "body": "The Rashtrakutas and the Cholas",
+          "isCorrect": false
+        },
+        {
+          "body": "The Pratiharas and the Chalukyas",
+          "isCorrect": false
+        },
+        {
+          "body": "The Senas and the Karnats",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Tripartite Struggle for control of Kannauj was fought among the Palas, the Pratiharas and the Rashtrakutas over roughly two centuries -- the Cholas and Chalukyas were contemporaneous southern powers not party to this specific contest, and the Senas/Karnats belong to a later Bihar-Mithila context entirely.",
+      "concept_group_id": "bs2-hc-kannauj-tripartite-pala-pratihara-rashtrakuta",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-664",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bakhtiyar Khilji's capture of Odantapuri (c. 1197-1202) is described as a case of mistaken identity because he:",
+      "options": [
+        {
+          "body": "Mistook the walled monastic university for a fortified military garrison",
+          "isCorrect": true
+        },
+        {
+          "body": "Mistook Odantapuri for the more famous Nalanda university",
+          "isCorrect": false
+        },
+        {
+          "body": "Mistook the resident monks for an armed rebel militia",
+          "isCorrect": false
+        },
+        {
+          "body": "Mistook the site for the Sena dynasty's royal treasury",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bakhtiyar Khilji reportedly mistook Odantapuri's walled university complex for a military fort, prompting his attack -- he did not confuse it with Nalanda (a separate, later target), mistake monks for a militia, or mistake it for a treasury.",
+      "concept_group_id": "bs2-hc-bakhtiyar-odantapuri-mistaken-fort",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-665",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bakhtiyar Khilji's career and life ended in 1206 CE when he was:",
+      "options": [
+        {
+          "body": "Assassinated by his own commander, Ali Mardan Khilji, after a failed Tibet campaign",
+          "isCorrect": true
+        },
+        {
+          "body": "Killed in battle resisting a Mongol incursion into Bengal",
+          "isCorrect": false
+        },
+        {
+          "body": "Executed by Qutubuddin Aibak for insubordination",
+          "isCorrect": false
+        },
+        {
+          "body": "Died of natural causes while retired in Bihar Sharif",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bakhtiyar Khilji was assassinated by his own commander, Ali Mardan Khilji, following a disastrous campaign into Tibet -- not killed resisting a Mongol force, executed by Aibak, or dying of natural causes in retirement.",
+      "concept_group_id": "bs2-hc-bakhtiyar-death-ali-mardan-1206",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-666",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "In his later, separate conquest of Nadiya (Bengal), Bakhtiyar Khilji famously caught Raja Lakshman Sen off-guard by arriving with only:",
+      "options": [
+        {
+          "body": "18 horsemen",
+          "isCorrect": true
+        },
+        {
+          "body": "180 horsemen",
+          "isCorrect": false
+        },
+        {
+          "body": "18 infantry soldiers on foot",
+          "isCorrect": false
+        },
+        {
+          "body": "A single unarmed envoy",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bakhtiyar Khilji's 'blitzkrieg'-style reputation rests partly on reaching Nadiya with just 18 horsemen, catching Lakshman Sen by surprise -- not 180, not unmounted infantry, and not a single envoy.",
+      "concept_group_id": "bs2-hc-bakhtiyar-nadiya-18-horsemen",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-667",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sher Shah Suri's land-measurement system used two named tools. Which pairing is correct?",
+      "options": [
+        {
+          "body": "Sikandari Gaj (a 32-digit measuring unit) and Jarib (a measuring rope)",
+          "isCorrect": true
+        },
+        {
+          "body": "Sikandari Gaj (a measuring rope) and Jarib (a 32-digit measuring unit)",
+          "isCorrect": false
+        },
+        {
+          "body": "Patta (a 32-digit measuring unit) and Qabuliyat (a measuring rope)",
+          "isCorrect": false
+        },
+        {
+          "body": "Dagh (a measuring rope) and Chehra (a written land record)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Sikandari Gaj was a standard measuring unit of 32 digits, used alongside the Jarib (a measuring rope) for land surveys. Patta/Qabuliyat were instead legal land-revenue documents (not measuring tools), and Dagh/Chehra belonged to Sher Shah's separate horse/soldier military-record system.",
+      "concept_group_id": "bs2-hc-sikandari-gaj-jarib-measurement",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-668",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under Sher Shah Suri's 'Rai' revenue system, the state's standard share of average crop produce was fixed at:",
+      "options": [
+        {
+          "body": "One-third",
+          "isCorrect": true
+        },
+        {
+          "body": "One-sixth",
+          "isCorrect": false
+        },
+        {
+          "body": "One-quarter",
+          "isCorrect": false
+        },
+        {
+          "body": "One-half",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sher Shah's Rai system fixed the state's share at one-third of average produce, payable in cash or kind (cash preferred) -- a different, notably higher rate than the Mauryan or Gupta rates from earlier eras.",
+      "concept_group_id": "bs2-hc-sher-shah-rai-one-third-share",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-669",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Sher Shah Suri's silver Rupiya, ancestor of the modern Indian Rupee, was minted at a standard weight of:",
+      "options": [
+        {
+          "body": "178 grains",
+          "isCorrect": true
+        },
+        {
+          "body": "96 grains",
+          "isCorrect": false
+        },
+        {
+          "body": "220 grains",
+          "isCorrect": false
+        },
+        {
+          "body": "150 grains",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sher Shah's silver Rupiya was standardised at 178 grains -- a precise weight that stabilised the currency after a period of debased coinage, distinct from the other plausible-sounding weights.",
+      "concept_group_id": "bs2-hc-sher-shah-rupiya-178-grains",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-670",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sher Shah Suri's Sarais (rest houses), built roughly every 2 kos along his roads, served an additional function as:",
+      "options": [
+        {
+          "body": "Dawk Chowkis (postal relay stations), with separate lodging for Hindus and Muslims",
+          "isCorrect": true
+        },
+        {
+          "body": "Toll-collection points funding the Grand Trunk Road's upkeep",
+          "isCorrect": false
+        },
+        {
+          "body": "Garrisoned military checkpoints screening all travellers",
+          "isCorrect": false
+        },
+        {
+          "body": "Regional courts where local disputes were adjudicated",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sher Shah's roughly 1,700 Sarais doubled as Dawk Chowkis (postal relay stations), with separate accommodation for Hindu and Muslim travellers -- they were not primarily toll booths, military checkpoints, or courts.",
+      "concept_group_id": "bs2-hc-sarai-dawk-chowki-postal",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-671",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Sher Shah Suri divided his empire into 47 Sarkars (districts), each administered by a paired set of officials responsible for:",
+      "options": [
+        {
+          "body": "Military affairs (Shiqdar-i-Shiqdaran) and civil/judicial affairs (Munsif-i-Munsifan)",
+          "isCorrect": true
+        },
+        {
+          "body": "Revenue collection (Samaharta) and treasury custody (Sannidhata)",
+          "isCorrect": false
+        },
+        {
+          "body": "Land survey (Rajjuka) and district administration (Pradeshika)",
+          "isCorrect": false
+        },
+        {
+          "body": "Horse-branding (Dagh) and soldier description (Chehra) only",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Each Sarkar had a Shiqdar-i-Shiqdaran (military) and a Munsif-i-Munsifan (civil/judicial) official -- Samaharta/Sannidhata and Rajjuka/Pradeshika are Mauryan-era offices from a much earlier period, and Dagh/Chehra were military-record systems, not district administrative posts.",
+      "concept_group_id": "bs2-hc-sher-shah-47-sarkars-officials",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-672",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sher Shah Suri's tomb at Sasaram, often called 'India's second Taj Mahal', was designed by:",
+      "options": [
+        {
+          "body": "Mir Muhammad Aliwal Khan",
+          "isCorrect": true
+        },
+        {
+          "body": "Abbas Khan Sarwani",
+          "isCorrect": false
+        },
+        {
+          "body": "Ustad Ahmad Lahori",
+          "isCorrect": false
+        },
+        {
+          "body": "Mir Muhammad Kasim",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mir Muhammad Aliwal Khan designed Sher Shah's octagonal tomb at Sasaram. Abbas Khan Sarwani was instead the historian who wrote Tarikh-e-Sher Shahi, and Ustad Ahmad Lahori is (much later) associated with the actual Taj Mahal at Agra, not this one.",
+      "concept_group_id": "bs2-hc-sasaram-tomb-architect-aliwal-khan",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-673",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sher Shah Suri died in 1545 under which circumstances?",
+      "options": [
+        {
+          "body": "A gunpowder explosion during the siege of Kalinjar",
+          "isCorrect": true
+        },
+        {
+          "body": "An assassination plot at his Sasaram court",
+          "isCorrect": false
+        },
+        {
+          "body": "Illness contracted while inspecting the Grand Trunk Road",
+          "isCorrect": false
+        },
+        {
+          "body": "A fall from his horse during a military review",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sher Shah died from a gunpowder explosion during the siege of Kalinjar fort in 1545 -- not from an assassination, illness during a road inspection, or a riding accident.",
+      "concept_group_id": "bs2-hc-sher-shah-death-kalinjar-gunpowder",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-674",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Nawab Mir Qasim of Bengal relocated his capital to Munger in the 18th century primarily to take advantage of:",
+      "options": [
+        {
+          "body": "Munger's skilled gunsmiths, to set up his own arms/gun-making workshop",
+          "isCorrect": true
+        },
+        {
+          "body": "Munger's position as Bihar's largest river port for grain export",
+          "isCorrect": false
+        },
+        {
+          "body": "Munger's status as the seat of the Bihar Sharif Sufi order",
+          "isCorrect": false
+        },
+        {
+          "body": "Munger's proximity to the Barauni saltpetre trade",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mir Qasim moved his capital to Munger specifically for its skilled metalworkers, establishing a gun-making workshop there to modernise his army -- not for river-port grain trade, Sufi religious significance, or a saltpetre link (Barauni's industrial identity is a much later, 20th-century development).",
+      "concept_group_id": "bs2-hc-mir-qasim-munger-gunsmiths",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-675",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Battle of Buxar (1764) was fought by the British against a joint force of three rulers. Which pairing is correct?",
+      "options": [
+        {
+          "body": "Mir Kasim (Bengal), Shuja-ud-Daula (Awadh) and Shah Alam II (Mughal emperor)",
+          "isCorrect": true
+        },
+        {
+          "body": "Siraj-ud-Daula (Bengal), Shuja-ud-Daula (Awadh) and Mir Jafar (Mughal emperor)",
+          "isCorrect": false
+        },
+        {
+          "body": "Mir Kasim (Bengal), Tipu Sultan (Mysore) and Shah Alam II (Mughal emperor)",
+          "isCorrect": false
+        },
+        {
+          "body": "Mir Jafar (Bengal), Shuja-ud-Daula (Awadh) and Bahadur Shah (Mughal emperor)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Buxar pitted the British (under Major Hector Munro) against the joint forces of Mir Kasim, Shuja-ud-Daula and Shah Alam II. Siraj-ud-Daula had already been defeated at Plassey years earlier, Mir Jafar was Bengal's British-installed nawab (not a combatant here), Tipu Sultan belongs to a much later, separate southern conflict, and Bahadur Shah is not the relevant Mughal emperor of this period.",
+      "concept_group_id": "bs2-hc-buxar-triple-alliance-combatants",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-676",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under the Treaty of Allahabad (August 1765), the East India Company agreed to pay Mughal emperor Shah Alam II an annual sum, in exchange for which two districts?",
+      "options": [
+        {
+          "body": "Kora and Allahabad",
+          "isCorrect": true
+        },
+        {
+          "body": "Bihar and Odisha",
+          "isCorrect": false
+        },
+        {
+          "body": "Munger and Bhagalpur",
+          "isCorrect": false
+        },
+        {
+          "body": "Patna and Gaya",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Company paid Shah Alam II ₹26 lakh annually, receiving the districts of Kora and Allahabad in return -- Bihar and Odisha's Diwani rights were a separate part of the same treaty, and Munger/Bhagalpur/Patna/Gaya were not the specific districts exchanged here.",
+      "concept_group_id": "bs2-hc-allahabad-treaty-kora-allahabad-districts",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-677",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Patna's Golghar, built in 1786 by Captain John Garstin, was constructed in direct response to:",
+      "options": [
+        {
+          "body": "The devastating Bengal Famine of 1770",
+          "isCorrect": true
+        },
+        {
+          "body": "The 1764 Battle of Buxar's grain shortages",
+          "isCorrect": false
+        },
+        {
+          "body": "A 1786 flood that destroyed Patna's earlier granaries",
+          "isCorrect": false
+        },
+        {
+          "body": "A direct order from Warren Hastings after the Dual Government ended",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Golghar was built as a large grain-storage insurance measure following the devastating 1770 Bengal Famine -- not a direct Buxar-era grain shortage, a specific 1786 flood, or a direct Warren Hastings order (though its timing falls within his tenure).",
+      "concept_group_id": "bs2-hc-golghar-1770-famine-response",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-678",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Following the East India Company's monopoly over Bihar's opium trade, a dedicated administrative body was set up in Patna, known as the:",
+      "options": [
+        {
+          "body": "Opium Agency",
+          "isCorrect": true
+        },
+        {
+          "body": "Patna Revenue Council",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar Collectorate",
+          "isCorrect": false
+        },
+        {
+          "body": "Company Trading Board",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "A dedicated Opium Agency was established in Patna once the Company monopolised Bihar's opium trade -- the Patna Revenue Council (1770) and the Collectorate (1781) were separate, general revenue-administration bodies, and 'Company Trading Board' is not the actual name of any of these institutions.",
+      "concept_group_id": "bs2-hc-patna-opium-agency",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-679",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under the Government of India Act, 1935, Odisha was separated from Bihar in 1936 on the basis of:",
+      "options": [
+        {
+          "body": "Linguistic identity",
+          "isCorrect": true
+        },
+        {
+          "body": "A referendum among Odisha's princely states",
+          "isCorrect": false
+        },
+        {
+          "body": "A recommendation of the 1935 Act's Federal Court",
+          "isCorrect": false
+        },
+        {
+          "body": "Religious demographic separation",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Odisha's 1936 separation from Bihar was made on linguistic grounds -- a distinct process from the earlier 1912 separation of Bihar-and-Odisha together from the Bengal Presidency, and not the result of a princely referendum, a Federal Court ruling, or religious demography.",
+      "concept_group_id": "bs2-hc-odisha-separation-1936-linguistic",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-680",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "In Bihar's first provincial elections under the 1935 Act (1937), the Indian National Congress won which share of seats?",
+      "options": [
+        {
+          "body": "98 of 152 seats",
+          "isCorrect": true
+        },
+        {
+          "body": "152 of 152 seats",
+          "isCorrect": false
+        },
+        {
+          "body": "60 of 152 seats",
+          "isCorrect": false
+        },
+        {
+          "body": "98 of 243 seats",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Congress won a decisive 98 of 152 seats in Bihar's 1937 elections, forming the province's first Congress ministry under Sri Krishna Sinha -- not a clean sweep, a minority share, or the 243-seat figure (which is the modern Vidhan Sabha's size, not the 1937 assembly's).",
+      "concept_group_id": "bs2-hc-1937-elections-98-of-152",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-681",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "According to BPSC-relevant sources, the first Europeans to reach Bihar were:",
+      "options": [
+        {
+          "body": "The Portuguese, arriving via the Hooghly for the spice and textile trade",
+          "isCorrect": true
+        },
+        {
+          "body": "The Dutch, arriving to establish a saltpetre monopoly",
+          "isCorrect": false
+        },
+        {
+          "body": "The British, arriving directly after the Battle of Plassey",
+          "isCorrect": false
+        },
+        {
+          "body": "The French, arriving to compete with Mughal silk traders",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Portuguese were the first Europeans in Bihar, arriving via the Hooghly river for the spice and textile trade -- well before the Dutch/British saltpetre and Company-era presence, and before the French silk-trade competition of a later period.",
+      "concept_group_id": "bs2-hc-portuguese-first-europeans-bihar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-682",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Dr. Rajendra Prasad, India's first President, was born in which town, and by which unusual second nickname (besides 'Desh Ratna') was he also known?",
+      "options": [
+        {
+          "body": "Jiradei (Siwan); 'Ajatashatru'",
+          "isCorrect": true
+        },
+        {
+          "body": "Sitab Diara (Saran); 'Lok Nayak'",
+          "isCorrect": false
+        },
+        {
+          "body": "Maur (Shekhpura); 'Bihar Kesari'",
+          "isCorrect": false
+        },
+        {
+          "body": "Jiradei (Siwan); 'Bihar Vibhuti'",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Rajendra Prasad was born in Jiradei, Siwan, and was also known by the epithet 'Ajatashatru' (alongside 'Desh Ratna') -- Sitab Diara/'Lok Nayak' refers instead to Jayaprakash Narayan, Maur/'Bihar Kesari' to Sri Krishna Sinha, and 'Bihar Vibhuti' to Anugrah Narayan Sinha.",
+      "concept_group_id": "bs2-hc-rajendra-prasad-jiradei-ajatashatru",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-683",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Rajendra Prasad presided over the Constituent Assembly and later became President. Which of the following is genuinely among his written works?",
+      "options": [
+        {
+          "body": "'India Divided' and the autobiography 'Atmakatha'",
+          "isCorrect": true
+        },
+        {
+          "body": "'Bharat Chhodo' and 'Sampoorna Kranti'",
+          "isCorrect": false
+        },
+        {
+          "body": "'Maila Anchal' and 'Rashmirathi'",
+          "isCorrect": false
+        },
+        {
+          "body": "'Satyarth Prakash' and 'Kirtilata'",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Rajendra Prasad wrote 'India Divided' and the autobiography 'Atmakatha'. The other titles are genuine works, just by other Bihar figures: 'Sampoorna Kranti' is a JP Movement slogan/idea (not a Rajendra Prasad book), 'Maila Anchal' is Phanishwar Nath Renu's novel, 'Rashmirathi' is Ramdhari Singh Dinkar's, and 'Kirtilata' is Vidyapati's.",
+      "concept_group_id": "bs2-hc-rajendra-prasad-india-divided-atmakatha",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-684",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Anugrah Narayan Sinha, known as 'Bihar Vibhuti', held which distinction in Bihar's first post-independence government?",
+      "options": [
+        {
+          "body": "Bihar's first Deputy Chief Minister and Finance Minister",
+          "isCorrect": true
+        },
+        {
+          "body": "Bihar's first Chief Minister",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar's first Governor",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar's first Speaker of the Vidhan Sabha",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Anugrah Narayan Sinha served as Bihar's first Deputy Chief Minister and Finance Minister, working alongside Sri Krishna Sinha (Bihar's first Chief Minister) -- he did not hold the Chief Minister, Governor, or Speaker positions.",
+      "concept_group_id": "bs2-hc-anugrah-narayan-sinha-first-deputy-cm",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-685",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "In 1974, Jayaprakash Narayan returned to active politics to lead a movement against corruption and authoritarianism, which he termed:",
+      "options": [
+        {
+          "body": "'Sampoorna Kranti' (Total Revolution)",
+          "isCorrect": true
+        },
+        {
+          "body": "'Azad Dasta' (Free Corps)",
+          "isCorrect": false
+        },
+        {
+          "body": "'Bhoodan Andolan' (Land-Gift Movement)",
+          "isCorrect": false
+        },
+        {
+          "body": "'Quit India' (Bharat Chhodo)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "JP's 1974 call was 'Sampoorna Kranti' (Total Revolution) against corruption and authoritarian rule -- 'Azad Dasta' was his 1942 guerrilla unit, 'Bhoodan Andolan' was Vinoba Bhave's earlier land-gift movement (which JP briefly joined post-independence), and 'Quit India' was the 1942 movement itself, distinct from his own later 1974 call.",
+      "concept_group_id": "bs2-hc-jp-sampoorna-kranti-1974",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-686",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bidesia, the folk dance-drama tradition created by Bhikhari Thakur, used migration and social themes primarily to critique which 20th-century phenomenon?",
+      "options": [
+        {
+          "body": "Large-scale labour migration to Kolkata, and its impact on families left behind",
+          "isCorrect": true
+        },
+        {
+          "body": "The Champaran indigo planters' exploitation of tenant farmers",
+          "isCorrect": false
+        },
+        {
+          "body": "The 1970 Bihar drought's impact on rural livelihoods",
+          "isCorrect": false
+        },
+        {
+          "body": "Colonial-era railway construction displacing villages",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bhikhari Thakur used Bidesia specifically to critique large-scale labour migration to Kolkata and the resulting hardship for women left behind -- not the (earlier, geographically distinct) Champaran indigo system, a later drought, or railway-driven displacement.",
+      "concept_group_id": "bs2-hc-bidesia-kolkata-migration-critique",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-687",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "In the Jhijhiya folk dance of Mithila, performed during Navratri to seek rain, dancers balance a specific object on their heads. What is it, and what does it symbolise?",
+      "options": [
+        {
+          "body": "A perforated clay lantern, whose holes are said to ward off the 'evil eye'",
+          "isCorrect": true
+        },
+        {
+          "body": "A brass pot of Ganga water, symbolising ritual purity",
+          "isCorrect": false
+        },
+        {
+          "body": "A woven basket of rice grain, symbolising the coming harvest",
+          "isCorrect": false
+        },
+        {
+          "body": "An unlit oil lamp, symbolising patience during the dry season",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Jhijhiya dancers balance a perforated clay lantern, its holes specifically said to guard against the 'evil eye' -- not a water pot, a grain basket, or an unlit lamp, each a plausible-sounding but different ritual object.",
+      "concept_group_id": "bs2-hc-jhijhiya-clay-lantern-evil-eye",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-688",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Angika, spoken across Bhagalpur, Munger, Banka and Katihar, is notable for being described as:",
+      "options": [
+        {
+          "body": "One of the world's oldest languages, forming a bridge between Bengali and Bihari language families",
+          "isCorrect": true
+        },
+        {
+          "body": "A dialect of Maithili confined to the Vaishali region",
+          "isCorrect": false
+        },
+        {
+          "body": "A liturgical language used only in Buddhist monastic texts",
+          "isCorrect": false
+        },
+        {
+          "body": "A script rather than a spoken language",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Angika is described as one of the world's oldest languages, bridging the Bengali and Bihari language families -- it is a distinct language (not a Maithili dialect, which is instead how Vajjika is often classified), it is a living spoken language rather than a liturgical or purely written one, and it is not itself a script.",
+      "concept_group_id": "bs2-hc-angika-oldest-language-bridge",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-689",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Devkinandan Khatri, born in Muzaffarpur, is best known for authoring which pioneering Hindi work?",
+      "options": [
+        {
+          "body": "'Chandrakanta', a fantasy novel",
+          "isCorrect": true
+        },
+        {
+          "body": "'Maila Anchal', a regional-fiction novel",
+          "isCorrect": false
+        },
+        {
+          "body": "'Yugdhara', a poetry collection",
+          "isCorrect": false
+        },
+        {
+          "body": "'Maati Ki Moortein', a memoir",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Devkinandan Khatri wrote 'Chandrakanta', a celebrated Hindi fantasy novel -- 'Maila Anchal' is Phanishwar Nath Renu's, 'Yugdhara' is Baba Nagarjun's, and 'Maati Ki Moortein' is Ramvriksh Benipuri's, each a different Bihar-linked writer.",
+      "concept_group_id": "bs2-hc-devkinandan-khatri-chandrakanta",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-690",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Before Devanagari became Bihar's standard administrative script, which script was historically used across the state for administrative and legal work into the early 20th century?",
+      "options": [
+        {
+          "body": "Kaithi",
+          "isCorrect": true
+        },
+        {
+          "body": "Mithilakshar (Tirhuta)",
+          "isCorrect": false
+        },
+        {
+          "body": "Kharoshthi",
+          "isCorrect": false
+        },
+        {
+          "body": "Brahmi",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Kaithi served as Bihar's administrative/legal script into the early 20th century, before Devanagari standardised. Mithilakshar (Tirhuta) is instead Maithili's own dedicated literary script, and Kharoshthi/Brahmi are ancient scripts from the Ashokan era, many centuries earlier and unrelated to this later administrative usage.",
+      "concept_group_id": "bs2-hc-kaithi-administrative-script",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-691",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Jal Mandir at Pawapuri, marking Mahavira's site of Mahaparinirvana, is architecturally distinctive for being built:",
+      "options": [
+        {
+          "body": "In the middle of a lotus-filled pond",
+          "isCorrect": true
+        },
+        {
+          "body": "Entirely underground, within a natural cave system",
+          "isCorrect": false
+        },
+        {
+          "body": "Atop the highest peak of the Rajgir hills",
+          "isCorrect": false
+        },
+        {
+          "body": "As a floating structure that moves with the water level",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Jal Mandir sits in the middle of a lotus-filled pond at Pawapuri -- it is not an underground cave shrine, a hilltop structure (Pawapuri is not part of the Rajgir hills), or a literally floating building.",
+      "concept_group_id": "bs2-hc-jal-mandir-pawapuri-lotus-pond",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-692",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Mithila's cultural tradition of 'Panji Prabandh' refers specifically to:",
+      "options": [
+        {
+          "body": "A genealogical record-keeping system tracking family lineages",
+          "isCorrect": true
+        },
+        {
+          "body": "A style of Madhubani wall-painting depicting deities",
+          "isCorrect": false
+        },
+        {
+          "body": "A form of devotional music performed during Chhath Puja",
+          "isCorrect": false
+        },
+        {
+          "body": "A land-revenue ledger maintained by medieval Mithila kings",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Panji Prabandh is Mithila's distinctive genealogical record-keeping system, tracking family lineages (historically important for arranging marriages within social norms) -- it is not a painting style, a musical form, or a revenue ledger.",
+      "concept_group_id": "bs2-hc-panji-prabandh-genealogy",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-693",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The annual Shravani Mela pilgrimage involves devotees carrying Ganga water from Sultanganj to which destination?",
+      "options": [
+        {
+          "body": "Deoghar (now in Jharkhand)",
+          "isCorrect": true
+        },
+        {
+          "body": "Bodh Gaya",
+          "isCorrect": false
+        },
+        {
+          "body": "Pawapuri",
+          "isCorrect": false
+        },
+        {
+          "body": "Rajgir",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Shravani Mela pilgrims carry Ganga water from Sultanganj to Deoghar (in present-day Jharkhand) -- not to Bodh Gaya, Pawapuri, or Rajgir, which are separate pilgrimage sites tied to Buddhism and Jainism rather than this specific Shaiva tradition.",
+      "concept_group_id": "bs2-hc-shravani-mela-sultanganj-deoghar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

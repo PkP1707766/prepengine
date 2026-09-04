@@ -1,0 +1,613 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper II, Batch 01 (Economy topic) -- rebalanced from the master plan's provisional 26/24 down to 18 after full-source mining still fell short of a comfortably-durable 24",
+    "generated_at": "2026-09-04",
+    "generator": "Claude Code, human-drafted",
+    "total_questions": 18,
+    "target_cells": {
+      "Bihar_Economy_medium_mcq": 10,
+      "Bihar_Economy_hard_mcq": 8
+    },
+    "status_all": "draft",
+    "rebalance_note": [
+      "Step 1 (pre-drafting) found 15 candidate durable facts unused by Paper I in Orange Book pages 100-101/104-105 (Agriculture/Industry/Schemes chapters). At actual drafting time, 2 of those 15 turned out to be semantic duplicates of facts ALREADY used elsewhere in the live 300: the 'Maize Belt (Khagaria/Samastipur/Begusarai)' fact duplicates bs1-geo-maize-belt-significance (Geography), and the '4th Agriculture Road Map (2023-2028)' fact duplicates bs1-rd-4th-agri-roadmap-digital-climate (Recent Developments) almost exactly (same scheme, 'digital + climate-smart' focus already tested there). Both dropped entirely rather than reworded around the overlap.",
+      "That left ~13 clean book-sourced facts. Six more (COMFED/Sudha, BREDA, Barh/Nabinagar/Kanti thermal power stations, HURL fertilizer plant, Bihar Single Window Clearance Act 2006, Pristine Mega Food Park Khagaria) were added via targeted web verification of well-established, non-perishable Bihar economic institutions/PSUs not covered by the Orange Book's condensed chapter -- same practice Paper I used for 2 of its 13 (Ethanol Policy, Green Budget).",
+      "Final honest count: 18, not the 24 proposed at the Step 2 checkpoint. The shortfall (6) is reallocated: +3 History & Culture, +3 Geography (on top of the earlier +1/+1), matching the same overflow-topic precedent Paper I set. Updated Paper II grand total target: History & Culture 56, Geography 47, Economy 18, Recent Developments 24, Polity & Governance 5 = 150."
+    ],
+    "sourcing_note": [
+      "Book-sourced facts (Litchi/GI, Tal-pulses, landholding fragmentation, Sugar Bowl epithet, Bhagalpur Silk City, irrigation source-share, Bela leather cluster, AKIC/Gaya IMC, vegetable/fruit national rank) are drawn from the Bihar Special Orange Book's Agriculture (p100) and Industry (p101) chapters -- durable/static content, not the book's year-tagged Economic-Survey/budget tables.",
+      "Web-verified facts (COMFED/Sudha established 1983 on the Anand pattern; BREDA established 1987; Barh Super Thermal Power Station 3,300 MW; Nabinagar Super Thermal Power Project 1,980 MW in Aurangabad; Kanti Thermal Power Station commissioned 1985, became an NTPC wholly-owned subsidiary in 2018; HURL's Barauni urea plant; Bihar Single Window Clearance Act, 2006; Pristine Mega Food Park at Khagaria) were cross-checked against Wikipedia, NTPC/PIB press material, the Dairy Knowledge Portal, and India Code -- all long-established institutions/PSUs, not current-affairs figures.",
+      "The real 70th/71st BPSC papers were not re-consulted for this batch (none of their Bihar-Specific/Economy questions matched these specific facts closely enough to need angle-calibration beyond what Paper I already established)."
+    ],
+    "flagged_for_extra_review": [
+      "bs2-212 (Pristine Mega Food Park, Khagaria): sourced as 'Bihar's first Mega Food Park' from a single limited-corroboration source (a local news video) alongside standard project-detail sites (IIG, Caravan, Wikipedia's Mega Food Parks list) that confirm the project itself but not explicitly its 'first-in-Bihar' ranking. The project's existence, location (Khagaria), and MOFPI-scheme status are solid; the 'first' superlative specifically is the weaker part of the claim and should get an SME check against the MoFPI list of approved Mega Food Parks by state before publishing."
+    ],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "Munger's historical gun/lock manufacturing (established under Nawab Mir Qasim, 18th century) was considered and dropped -- it reads more naturally as a History & Culture fact (tied to a named Nawab/era) than Economy, and its modern-day association with the illicit arms trade makes it a poor fit for exam content regardless of topic.",
+      "Bihar State Financial Corporation / cooperative credit history was searched for but not found with enough specific, citable detail to draft a precise question -- flagged for Paper III if better source material turns up.",
+      "The Bihar Industrial Investment Promotion Act 2016's own 'which was NOT a component' framing was considered but dropped as too structurally similar to the already-used bs1-eco-startup-policy-yuva-not-component (Paper I) -- reused the same policy's *founding act* (Single Window Clearance Act, 2006) as a distinct year-identification question instead (bs2-213)."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy, with particular attention to bs2-212 (flagged above).",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Economy', type='mcq', difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs2-201",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's share of India's total litchi production, and the GI-tagged variety grown around Muzaffarpur, are respectively:",
+      "options": [
+        {
+          "body": "71%; Shahi litchi",
+          "isCorrect": true
+        },
+        {
+          "body": "90%; Shahi litchi",
+          "isCorrect": false
+        },
+        {
+          "body": "71%; Bombai litchi",
+          "isCorrect": false
+        },
+        {
+          "body": "54%; China litchi",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar accounts for 71% of India's litchi production, and Muzaffarpur's Shahi litchi carries the GI tag -- the 90% figure belongs to Makhana, not litchi, and 'Bombai' and 'China' are real litchi varietal names but not the GI-tagged Muzaffarpur one.",
+      "concept_group_id": "bs2-eco-litchi-71pct-shahi-gi",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-202",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which pair of national-ranking claims about Bihar's agricultural production is CORRECT?",
+      "options": [
+        {
+          "body": "8th in vegetables; 4th in fruits",
+          "isCorrect": false
+        },
+        {
+          "body": "4th in vegetables; 8th in fruits",
+          "isCorrect": true
+        },
+        {
+          "body": "4th in vegetables; 4th in fruits",
+          "isCorrect": false
+        },
+        {
+          "body": "2nd in vegetables; 8th in fruits",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar is India's 4th largest vegetable producer and its 8th largest fruit producer -- notable for Jardalu mango and Malbhog banana. The distractors swap or repeat these two ranks to test precise recall rather than a vague sense that Bihar ranks 'fairly high' in both.",
+      "concept_group_id": "bs2-eco-veg4th-fruit8th-rank",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-203",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's 'Tal' region, the seasonal-backwater belt between Patna and Lakhisarai, is agriculturally notable chiefly for its production of:",
+      "options": [
+        {
+          "body": "Litchi orchards",
+          "isCorrect": false
+        },
+        {
+          "body": "Jute, as in the Kosi belt",
+          "isCorrect": false
+        },
+        {
+          "body": "Pulses (chana, masur)",
+          "isCorrect": true
+        },
+        {
+          "body": "Tea plantations",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Tal region's residual moisture after seasonal flooding recedes makes it well suited to rabi pulses like chana and masur -- litchi, jute and tea are all genuine Bihar/eastern-India crops, but none is the Tal belt's defining produce.",
+      "concept_group_id": "bs2-eco-tal-region-pulses",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-204",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's landholding pattern is characterised chiefly by:",
+      "options": [
+        {
+          "body": "Roughly equal shares of marginal, small and large holdings",
+          "isCorrect": false
+        },
+        {
+          "body": "A majority of holdings between 2-4 hectares",
+          "isCorrect": false
+        },
+        {
+          "body": "Large consolidated holdings from post-Independence land reform",
+          "isCorrect": false
+        },
+        {
+          "body": "Over 90% marginal holdings, below 1 hectare",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Over 90% of Bihar's farmers are marginal landholders (under 1 hectare) -- a level of fragmentation that itself limits mechanised, large-scale farming, unlike the other three options which describe considerably less fragmented patterns.",
+      "concept_group_id": "bs2-eco-landholding-marginal-90pct",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-205",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar, historically referred to as India's 'Sugar Bowl', is seeing this legacy industry revived chiefly through which two mills?",
+      "options": [
+        {
+          "body": "Riga and Harinagar",
+          "isCorrect": true
+        },
+        {
+          "body": "Riga and Barauni",
+          "isCorrect": false
+        },
+        {
+          "body": "Madhaura and Harinagar",
+          "isCorrect": false
+        },
+        {
+          "body": "Sasaram and Riga",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Riga and Harinagar are the two historic north Bihar sugar mills specifically cited as being revived. Barauni, Madhaura and Sasaram are all real Bihar towns with their own industrial associations (oil refinery, Bihar's first sugar mill, and a Rohtas-district town respectively), which is what makes them plausible but incorrect pairings here.",
+      "concept_group_id": "bs2-eco-sugar-bowl-riga-harinagar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-206",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bhagalpur's reputation as India's 'Silk City' rests on its handloom production of:",
+      "options": [
+        {
+          "body": "Muga silk",
+          "isCorrect": false
+        },
+        {
+          "body": "Tussar silk",
+          "isCorrect": true
+        },
+        {
+          "body": "Eri silk",
+          "isCorrect": false
+        },
+        {
+          "body": "Mulberry silk",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bhagalpur's handloom industry is built on Tussar (tasar) silk. Muga and Eri are genuine Indian silk varieties but are chiefly associated with Assam/the Northeast, and mulberry silk is India's most common variety but is not Bhagalpur's speciality.",
+      "concept_group_id": "bs2-eco-bhagalpur-silk-city-tussar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-207",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "COMFED, Bihar's dairy cooperative marketed under the 'Sudha' brand and established in 1983, is organised on which model?",
+      "options": [
+        {
+          "body": "Rochdale cooperative principles",
+          "isCorrect": false
+        },
+        {
+          "body": "Producer-company model",
+          "isCorrect": false
+        },
+        {
+          "body": "Anand pattern (three-tier)",
+          "isCorrect": true
+        },
+        {
+          "body": "State-run procurement model",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "COMFED follows the Anand pattern -- the same village-society/district-union/state-federation three-tier dairy cooperative structure as Gujarat's Amul. A producer-company model and contract farming are real but distinct modern arrangements, and the Rochdale principles are the founding tenets of the British cooperative movement generally, not this specific dairy structure.",
+      "concept_group_id": "bs2-eco-comfed-1983-anand-pattern",
+      "source_citation": "Dairy Knowledge Portal; Bihar State Milk Co-operative Federation (Sudha) official records",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-208",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "BREDA (Bihar Renewable Energy Development Agency), established in 1987, functions as the state's nodal agency for:",
+      "options": [
+        {
+          "body": "Industrial land allotment for factories",
+          "isCorrect": false
+        },
+        {
+          "body": "Coal-based thermal power generation",
+          "isCorrect": false
+        },
+        {
+          "body": "Canal and irrigation-network upkeep",
+          "isCorrect": false
+        },
+        {
+          "body": "Renewable energy & rural electrification",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "BREDA is Bihar's nodal agency for non-conventional/renewable energy promotion and remote village electrification. Thermal generation sits with NTPC/state power companies, irrigation with the Water Resources Department, and industrial land allotment with BIADA -- each a genuine but distinct Bihar institution.",
+      "concept_group_id": "bs2-eco-breda-1987-renewable-nodal",
+      "source_citation": "Bihar Renewable Energy Development Agency (BREDA); Bihar Energy Department",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-209",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which statement about Bihar's irrigation sources is correct?",
+      "options": [
+        {
+          "body": "Tubewells lead, covering over 60% of irrigated area; canals are secondary",
+          "isCorrect": true
+        },
+        {
+          "body": "Canals lead, covering over 60% of irrigated area; tubewells are secondary",
+          "isCorrect": false
+        },
+        {
+          "body": "Tanks and ponds are the leading source statewide",
+          "isCorrect": false
+        },
+        {
+          "body": "River-lift irrigation leads, with tubewells a minor source",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Groundwater drawn through tubewells covers over 60% of Bihar's irrigated area, the primary source, with canal systems (mainly the Gandak, Kosi and Son networks) a secondary source. Tanks/ponds and river-lift schemes are real but minor contributors, not the leading source.",
+      "concept_group_id": "bs2-eco-irrigation-tubewell-primary",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-210",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Bela Industrial Area in Muzaffarpur has emerged chiefly as a hub for:",
+      "options": [
+        {
+          "body": "Handloom Tussar silk weaving",
+          "isCorrect": false
+        },
+        {
+          "body": "Leather footwear manufacturing",
+          "isCorrect": true
+        },
+        {
+          "body": "Cane sugar refining and milling",
+          "isCorrect": false
+        },
+        {
+          "body": "Makhana processing and export",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bela Industrial Area is developing as a leather-footwear export cluster. Tussar weaving is Bhagalpur's speciality, sugar refining is concentrated further west and north (Champaran/Saran belt), and Makhana processing centres on the Mithila region -- all genuine Bihar industries, just not Bela's.",
+      "concept_group_id": "bs2-eco-bela-muzaffarpur-leather-hub",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-211",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Gaya (Dobhi) is Bihar's designated Integrated Manufacturing Cluster node under which national industrial corridor?",
+      "options": [
+        {
+          "body": "Chennai-Bengaluru Industrial Corridor",
+          "isCorrect": false
+        },
+        {
+          "body": "Delhi-Mumbai Industrial Corridor",
+          "isCorrect": false
+        },
+        {
+          "body": "Amritsar-Kolkata Industrial Corridor",
+          "isCorrect": true
+        },
+        {
+          "body": "East Coast Economic Corridor",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Gaya (Dobhi) is Bihar's Integrated Manufacturing Cluster under the Amritsar-Kolkata Industrial Corridor (AKIC). The Delhi-Mumbai, Chennai-Bengaluru and East Coast corridors are all genuine national industrial corridors, just ones that do not run through Bihar.",
+      "concept_group_id": "bs2-eco-akic-gaya-dobhi-imc",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-212",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's first Mega Food Park, developed under the Union Ministry of Food Processing Industries' scheme, is located in:",
+      "options": [
+        {
+          "body": "Muzaffarpur",
+          "isCorrect": false
+        },
+        {
+          "body": "Begusarai",
+          "isCorrect": false
+        },
+        {
+          "body": "Samastipur",
+          "isCorrect": false
+        },
+        {
+          "body": "Khagaria",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Pristine Mega Food Park at Khagaria is Bihar's first project under the central Mega Food Park scheme. Begusarai, Samastipur and Muzaffarpur are all real districts within Bihar's maize/fruit-surplus belt, which is what makes them plausible alternatives.",
+      "concept_group_id": "bs2-eco-mega-food-park-khagaria",
+      "source_citation": "India Investment Grid; Ministry of Food Processing Industries approved Mega Food Park list",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-213",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which Bihar law specifically created a single-window mechanism for speedy industrial clearances, a decade before the state's Industrial Investment Promotion Policy?",
+      "options": [
+        {
+          "body": "Bihar Single Window Clearance Act, 2006",
+          "isCorrect": true
+        },
+        {
+          "body": "Bihar Industrial Area Development Authority Act, 1974",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar Startup Policy, 2022",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar Logistics Policy, 2023",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Bihar Single Window Clearance Act, 2006 established the state's single-window clearance mechanism, a decade ahead of the 2016 Industrial Investment Promotion Policy. The BIADA Act (1974) instead governs industrial land acquisition, and the Startup and Logistics policies are genuine but far more recent, differently-scoped measures.",
+      "concept_group_id": "bs2-eco-single-window-act-2006",
+      "source_citation": "India Code; Bihar Department of Industries",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-214",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Nabinagar Super Thermal Power Project (1,980 MW), a joint venture between NTPC and the Bihar State Power Holding Company, is located in which district?",
+      "options": [
+        {
+          "body": "Patna",
+          "isCorrect": false
+        },
+        {
+          "body": "Aurangabad",
+          "isCorrect": true
+        },
+        {
+          "body": "Muzaffarpur",
+          "isCorrect": false
+        },
+        {
+          "body": "Begusarai",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Nabinagar Super Thermal Power Project is in Aurangabad district. Patna hosts the Barh Super Thermal Power Station, Muzaffarpur hosts the Kanti Thermal Power Station, and Begusarai hosts the Barauni refinery/HURL complex -- each a real but different Bihar power/industrial site.",
+      "concept_group_id": "bs2-eco-nabinagar-aurangabad",
+      "source_citation": "NTPC; Wikipedia (Nabinagar Super Thermal Power Project)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-215",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Among Bihar's thermal power projects, the Barh Super Thermal Power Station stands out chiefly because it has:",
+      "options": [
+        {
+          "body": "A 50:50 joint-venture structure with the Bihar State Power Holding Company",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar's first thermal power station, commissioned in 1985",
+          "isCorrect": false
+        },
+        {
+          "body": "The largest installed capacity among them, at 3,300 MW",
+          "isCorrect": true
+        },
+        {
+          "body": "India's first gas-based thermal power station",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Barh's 3,300 MW (1,980 MW Stage-1 plus 1,320 MW Stage-2) makes it Bihar's largest thermal project, well ahead of Nabinagar (1,980 MW) and Kanti (610 MW). Being 'first' (1985) actually describes Kanti, the 50:50 joint-venture structure describes Nabinagar, and Barh is coal-based, not gas-based.",
+      "concept_group_id": "bs2-eco-barh-largest-thermal-capacity",
+      "source_citation": "NTPC; power-technology.com; Wikipedia (Barh Super Thermal Power Station)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-216",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Kanti Thermal Power Station, commissioned in 1985 near Muzaffarpur, became a wholly-owned NTPC subsidiary in 2018 after NTPC acquired the shares earlier held by:",
+      "options": [
+        {
+          "body": "the undivided Bihar State Electricity Board",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar State Hydroelectric Power Corporation",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar Industrial Area Development Authority (BIADA)",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar State Power (Generation) Holding Company",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "NTPC's 2018 acquisition was of the shares held by Bihar State Power (Generation) Holding Company, the entity operating Kanti as Kanti Bijlee Utpadan Nigam Ltd. The Hydroelectric Power Corporation is a separate 1992-established Bihar entity, BIADA handles industrial land, and the undivided Bihar State Electricity Board was itself unbundled into separate generation/transmission/distribution companies before 2018.",
+      "concept_group_id": "bs2-eco-kanti-ntpc-2018-acquisition",
+      "source_citation": "Wikipedia (Kanti Thermal Power Station); Bihar State Power Holding Company",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-217",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Besides the IOCL oil refinery, Barauni (Begusarai) is also home to which major central PSU plant?",
+      "options": [
+        {
+          "body": "Hindustan Urvarak & Rasayan Ltd. (HURL)",
+          "isCorrect": true
+        },
+        {
+          "body": "Bharat Heavy Electricals Ltd. (BHEL) unit",
+          "isCorrect": false
+        },
+        {
+          "body": "Steel Authority of India Ltd. (SAIL) plant",
+          "isCorrect": false
+        },
+        {
+          "body": "Hindustan Aeronautics Ltd. (HAL) aircraft-component unit",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "HURL's Barauni unit -- reviving a closed Fertilizer Corporation of India plant, with IOCL itself among HURL's joint-venture partners -- began urea production in 2022. BHEL, SAIL and HAL are all major, real central PSUs, just without a Barauni presence.",
+      "concept_group_id": "bs2-eco-hurl-barauni-fertilizer",
+      "source_citation": "PIB; Department of Fertilizers; HURL",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-218",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar's banking sector is often flagged for a persistently low Credit-Deposit (CD) ratio, meaning:",
+      "options": [
+        {
+          "body": "Deposits collected fall short of loans disbursed",
+          "isCorrect": false
+        },
+        {
+          "body": "Banks lend little locally relative to deposits collected",
+          "isCorrect": true
+        },
+        {
+          "body": "Loan interest rates run below the national average",
+          "isCorrect": false
+        },
+        {
+          "body": "Public-sector banks hold a distinctly smaller branch network than private banks statewide",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "A low CD ratio means banks disburse comparatively little of their locally-collected deposits back out as local loans -- a sign of cautious lending to Bihar-based borrowers. The second option inverts this definition, and the interest-rate and branch-share claims are unrelated to what a CD ratio actually measures.",
+      "concept_group_id": "bs2-eco-cd-ratio-low-lending",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

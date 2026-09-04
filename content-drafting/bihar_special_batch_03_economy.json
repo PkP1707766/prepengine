@@ -1,0 +1,443 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper I, Batch 03 (Economy topic, rebalanced 13-question allocation -- reduced from the originally-planned 27 after a confirmed source-depth shortfall)",
+    "generated_at": "2026-09-03",
+    "generator": "Claude Code, human-drafted",
+    "total_questions": 13,
+    "target_cells": {
+      "Bihar_Economy_medium_mcq": 6,
+      "Bihar_Economy_hard_mcq": 7
+    },
+    "status_all": "draft",
+    "sourcing_note": [
+      "Every fact here is drawn from the Bihar Special Orange Book's durable/static content (institutional-establishment years, named-policy structures, structural/analytical insights), filtered explicitly to exclude the book's own year-specific GSDP/budget/Economic-Survey tables per the Step-1 current-affairs exclusion rule.",
+      "The real 70th and 71st BPSC papers' own Bihar-Specific/Economy questions were read ONLY to calibrate the angle/depth BPSC actually tests this sub-topic from (e.g. 'NOT a component of named scheme X', 'when was institution Y established', multi-statement synthesis) -- confirming this batch's question STYLE is well-calibrated to the real exam. No stem, option wording, or distractor pattern from any real PYQ was copied, lightly reworded, or is recognisable in any question below; every question here is original, written from the underlying durable facts only.",
+      "This 13-question allocation is a deliberate reduction from the originally-planned 27 (see bihar_special_3paper_plan.json meta.known_gaps) -- the shortfall was reallocated to Geography (+5, drafted) and History & Culture (+9, drafted), not padded here with shallow or perishable content.",
+      "Cross-verification (2026-09-03): the two superlative first-in-India claims (bs1-112 Ethanol Policy, bs1-113 Green Budget) were independently checked via web search, since single-source superlative claims carry real risk. Both corroborated by multiple independent outlets beyond the Orange Book -- Ethanol Policy (launched 19 March 2021) confirmed by India Environment Portal, TaxGuru, and Mongabay/Earth Journalism Network; Green Budget (first tabled 15 March 2020, covering FY2020-21) confirmed by Mongabay, TERI Green Budgeting Portal, Down To Earth, and a CBGA India policy brief. Neither needed flagging -- both are genuinely corroborated, not resting on one compilation book."
+    ],
+    "flagged_for_extra_review": [],
+    "skipped_topics_worth_considering_for_future_batches": [],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy.",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Economy', type='mcq', difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs1-110",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's first sugar mill, historically the industry the state's economy was long built around, was established in 1904 in which town?",
+      "options": [
+        {
+          "body": "Sasaram, in Rohtas district",
+          "isCorrect": false
+        },
+        {
+          "body": "Bettiah, in West Champaran district",
+          "isCorrect": false
+        },
+        {
+          "body": "Madhaura, in Saran district",
+          "isCorrect": true
+        },
+        {
+          "body": "Motihari, in East Champaran district",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's first sugar mill was established in 1904 at Madhaura in Saran district, marking the start of an industry that would later come to define the state's northwest 'Sugar Belt' around West Champaran and Gopalganj.",
+      "concept_group_id": "bs1-eco-first-sugar-mill-1904",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-111",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Barauni Oil Refinery, Bihar's only oil refinery, was established in 1964 in Begusarai with assistance from which foreign partner?",
+      "options": [
+        {
+          "body": "The United States, under a Cold War-era industrial aid programme",
+          "isCorrect": false
+        },
+        {
+          "body": "West Germany, as part of post-war technical cooperation",
+          "isCorrect": false
+        },
+        {
+          "body": "Japan, through an early industrial-collaboration agreement",
+          "isCorrect": false
+        },
+        {
+          "body": "The Soviet Union (USSR)",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Barauni Oil Refinery at Begusarai, Bihar's only oil refinery, was established in 1964 with Soviet (USSR) assistance -- part of the broader wave of Soviet-aided heavy industrial projects built in India during that period.",
+      "concept_group_id": "bs1-eco-barauni-refinery-ussr",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-112",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Ethanol Production Promotion Policy (2021), aimed at using surplus maize and sugarcane for fuel blending, is significant chiefly because:",
+      "options": [
+        {
+          "body": "It was the first ethanol policy in India to mandate 100% ethanol blending by 2022",
+          "isCorrect": false
+        },
+        {
+          "body": "It was jointly issued by Bihar and Uttar Pradesh as India's first inter-state ethanol agreement",
+          "isCorrect": false
+        },
+        {
+          "body": "It applies mainly to rice-husk-based ethanol, leaving maize and sugarcane out of its scope",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar was the first Indian state to introduce a dedicated ethanol production policy",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's 2021 Ethanol Production Promotion Policy is notable as the first dedicated state-level ethanol policy in India, aimed at converting surplus maize and sugarcane -- both in ample supply in Bihar -- into fuel-grade ethanol rather than mandating any specific national blending target.",
+      "concept_group_id": "bs1-eco-ethanol-policy-2021-first-state",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-113",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar introduced a 'Green Budget' -- a budget statement specifically tracking climate and environment-linked expenditure -- for the first time in which financial year?",
+      "options": [
+        {
+          "body": "FY 2018-19",
+          "isCorrect": false
+        },
+        {
+          "body": "FY 2020-21",
+          "isCorrect": true
+        },
+        {
+          "body": "FY 2022-23",
+          "isCorrect": false
+        },
+        {
+          "body": "FY 2023-24",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar introduced its first Green Budget in FY 2020-21, a distinct statement tracking budgetary allocations with climate and environmental relevance separately from the state's main budget document.",
+      "concept_group_id": "bs1-eco-green-budget-2020-21",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-114",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "JEEViKA, Bihar's World Bank-supported rural livelihoods programme, has primarily driven the state's rural economy through which mechanism?",
+      "options": [
+        {
+          "body": "Direct cash transfers made to individual farmers, calculated mainly by landholding size",
+          "isCorrect": false
+        },
+        {
+          "body": "Organising rural women into Self-Help Groups (SHGs) that build savings and access credit collectively",
+          "isCorrect": true
+        },
+        {
+          "body": "Subsidised bulk purchase schemes for agricultural machinery aimed at large landholders",
+          "isCorrect": false
+        },
+        {
+          "body": "Government procurement of a large share of rural handicraft output at fixed prices",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "JEEViKA works primarily by organising rural women into Self-Help Groups (SHGs), which build collective savings and gain access to credit -- a microfinance-and-livelihoods model that has scaled to over 10 lakh SHGs across the state, rather than through direct individual cash transfers or procurement guarantees.",
+      "concept_group_id": "bs1-eco-jeevika-shg-mechanism",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-115",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "BIADA (Bihar Industrial Area Development Authority) functions primarily as:",
+      "options": [
+        {
+          "body": "The nodal agency responsible for developing land and infrastructure for industrial use",
+          "isCorrect": true
+        },
+        {
+          "body": "The state's export-licensing authority for agricultural commodities",
+          "isCorrect": false
+        },
+        {
+          "body": "A dedicated public-sector bank that specialises mainly in industrial loans",
+          "isCorrect": false
+        },
+        {
+          "body": "The regulatory body specifically overseeing Bihar's network of cooperative sugar mills",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "BIADA is Bihar's nodal agency for developing land and infrastructure for industrial use -- acquiring and preparing industrial plots -- rather than a financing, licensing, or sector-specific regulatory body.",
+      "concept_group_id": "bs1-eco-biada-nodal-agency",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-116",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Bihar State Hydroelectric Power Corporation, established in 1992, reflects which structural feature of Bihar's power sector?",
+      "options": [
+        {
+          "body": "That hydroelectric generation was significant enough, even before the 2000 Jharkhand split took most of undivided Bihar's hill terrain, to warrant its own dedicated state corporation",
+          "isCorrect": true
+        },
+        {
+          "body": "That Bihar's electricity generation has historically relied almost entirely on thermal power, with hydroelectric capacity rarely organised as a separate arm",
+          "isCorrect": false
+        },
+        {
+          "body": "That the corporation was created specifically to manage Bihar's own share of the Farakka Barrage project's hydroelectric power output",
+          "isCorrect": false
+        },
+        {
+          "body": "That it was formed specifically after 2000 to compensate for hydroelectric capacity lost to the newly created Jharkhand",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Bihar State Hydroelectric Power Corporation was established in 1992 -- eight years before Jharkhand's creation in 2000 stripped undivided Bihar of most of its hilly, hydroelectric-suitable terrain -- indicating that hydroelectric generation was significant enough at the time to warrant its own dedicated state corporation, not a post-split compensatory measure.",
+      "concept_group_id": "bs1-eco-hydroelectric-corp-1992",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-117",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Bihar Startup Policy 2022 is structured around a 'YUVA' framework. Which of the following was NOT one of its core components?",
+      "options": [
+        {
+          "body": "Seed funding support for early-stage startups",
+          "isCorrect": false
+        },
+        {
+          "body": "Incubation and mentorship infrastructure for young entrepreneurs",
+          "isCorrect": false
+        },
+        {
+          "body": "Skill-development and youth-entrepreneurship training components",
+          "isCorrect": false
+        },
+        {
+          "body": "Direct international market-expansion support for scaling startups abroad",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The YUVA framework under Bihar's Startup Policy 2022 is built around domestic seed funding, incubation/mentorship infrastructure, and youth skill-development components -- direct international market-expansion support for startups scaling abroad is not one of its defined pillars, which is why this option is the correct answer to a 'which was NOT included' question.",
+      "concept_group_id": "bs1-eco-startup-policy-yuva-not-component",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-118",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The central government's Freight Equalization Policy (1952-1993) is widely cited as a structural reason for Bihar's relative deindustrialization. How did the policy actually work against Bihar?",
+      "options": [
+        {
+          "body": "It subsidised the transport cost of raw materials nationally, erasing the cost advantage mineral-rich states like Bihar would otherwise have had for locating industry near the source",
+          "isCorrect": true
+        },
+        {
+          "body": "It imposed a formal, long-standing ban preventing Bihar-based factories from exporting their finished manufactured goods to markets outside the state",
+          "isCorrect": false
+        },
+        {
+          "body": "It imposed an additional freight surcharge specifically on goods manufactured within Bihar and the other eastern Indian states, raising their delivered cost elsewhere",
+          "isCorrect": false
+        },
+        {
+          "body": "It redirected the royalties from Bihar's coal and iron ore mining directly to the central government instead of the state government",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Freight Equalization Policy subsidised the transport cost of raw materials like coal and iron ore uniformly across India, which meant a mineral-rich state like Bihar lost the natural cost advantage it would otherwise have had in attracting industry to locate near the raw material source -- coastal states benefited instead, since transport cost was no longer a deciding factor. This is a genuine economic mechanism, distinct from any direct tax, export ban, or royalty-diversion measure.",
+      "concept_group_id": "bs1-eco-freight-equalization-mechanism",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-119",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar's economy is often described as 'consumption-driven' despite a comparatively thin industrial base. Which factor is most directly cited as sustaining this consumption?",
+      "options": [
+        {
+          "body": "Remittances sent home by Bihar's large out-migrant workforce employed elsewhere in India",
+          "isCorrect": true
+        },
+        {
+          "body": "Large-scale foreign direct investment inflows into the state's services sector",
+          "isCorrect": false
+        },
+        {
+          "body": "Sustained deficit financing by the state government to boost household spending directly",
+          "isCorrect": false
+        },
+        {
+          "body": "Export earnings from the state's saltpetre and indigo trade, which remain significant today",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Remittances sent home by Bihar's substantial out-migrant workforce -- working elsewhere in India in construction, manufacturing, and services -- are cited as a key driver sustaining household consumption in a state where the local industrial base remains comparatively thin. Saltpetre and indigo trade, by contrast, are historical exports with no meaningful role in today's economy.",
+      "concept_group_id": "bs1-eco-remittance-consumption-driver",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-120",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Mithila Makhana's 2022 GI (Geographical Indication) tag is economically significant beyond its cultural recognition chiefly because:",
+      "options": [
+        {
+          "body": "It made Makhana cultivation largely tax-exempt for registered farmers across the wider Mithila region, under a special state government scheme introduced alongside the GI tag",
+          "isCorrect": false
+        },
+        {
+          "body": "It transferred most Makhana processing rights to a newly formed set of government-run cooperatives established specifically for this purpose across Mithila",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar supplies the large majority of the world's Makhana output, making the GI tag a lever for protecting and building export/brand value in a market Bihar already dominates by volume",
+          "isCorrect": true
+        },
+        {
+          "body": "It was, notably, the first GI tag granted to an agricultural product specifically originating from the eastern Indian region as a whole, ahead of any other crop there",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar already supplies the large majority of the world's Makhana (fox nut) output by volume, so the 2022 GI tag functions economically as a lever to protect and build export/brand value in a market the state already dominates, rather than granting any tax exemption, processing monopoly, or being a historic regional 'first' of its kind.",
+      "concept_group_id": "bs1-eco-makhana-gi-export-value",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-121",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar's economy shows a persistent structural mismatch between its workforce and its output. What is this mismatch?",
+      "options": [
+        {
+          "body": "The industrial sector is often said to employ the largest share of the workforce, yet contributes the least of the three broad sectors to overall GSDP",
+          "isCorrect": false
+        },
+        {
+          "body": "Urban workers are now believed to outnumber rural workers statewide, despite rural areas still producing a clear majority of the state GSDP",
+          "isCorrect": false
+        },
+        {
+          "body": "A large majority of the workforce is employed in agriculture, yet agriculture contributes a disproportionately smaller share to the state's GSDP than services does",
+          "isCorrect": true
+        },
+        {
+          "body": "Government employment is generally believed to account for a larger overall share of the state GSDP than the private sector contributes in total",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "A large majority of Bihar's workforce remains employed in agriculture, yet the sector's contribution to GSDP is disproportionately smaller than that of the services sector -- reflecting agriculture's comparatively low productivity per worker relative to services, which employs far fewer people but generates a much larger share of output.",
+      "concept_group_id": "bs1-eco-agri-workforce-gsdp-mismatch",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-122",
+      "subject": "Bihar-Specific",
+      "topic": "Economy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Historically, which cash crop held primacy in Bihar's agricultural economy before tobacco and jute grew into significant secondary cash crops?",
+      "options": [
+        {
+          "body": "Cotton",
+          "isCorrect": false
+        },
+        {
+          "body": "Sugarcane",
+          "isCorrect": true
+        },
+        {
+          "body": "Indigo",
+          "isCorrect": false
+        },
+        {
+          "body": "Opium",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sugarcane has historically held primacy among Bihar's cash crops, with tobacco and jute developing into significant secondary cash crops afterward. Indigo and opium, while historically significant colonial-era export crops tied to British trade policy, are distinct from this ranking of Bihar's own enduring cash-crop economy and are not comparably significant today.",
+      "concept_group_id": "bs1-eco-sugarcane-primacy-cash-crop",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

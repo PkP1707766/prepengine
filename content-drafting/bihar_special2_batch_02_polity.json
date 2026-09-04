@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper II, Batch 02 (Polity & Governance topic, full 5-question allocation, unchanged from Step 2 target_cells)",
+    "generated_at": "2026-09-04",
+    "generator": "Claude Code, human-drafted from Bihar Special Orange Book (Perfection IAS / Dhananjay IAS), pages 90-97, full re-read",
+    "total_questions": 5,
+    "target_cells": {
+      "Bihar_Polity & Governance_medium_mcq": 2,
+      "Bihar_Polity & Governance_hard_mcq": 2,
+      "Bihar_Polity & Governance_hard_match_the_following": 1
+    },
+    "status_all": "draft",
+    "dedup_note": [
+      "Paper I's 5 Polity questions (bs1-pol-*) already used: PRI 50% women reservation (2006, first state), Patna HC's 1916 founding (Hardinge), the 2023 caste-survey/HC-strikedown sequence, the Vidhan Sabha-vs-Parishad DIRECT-vs-INDIRECT election-method distinction, and a local-body-heads match (Mukhiya/Pramukh/Adhyaksha/Mayor). All five new Paper II questions below were deliberately built around DIFFERENT facts from the same source pages (seat counts/reservation numbers, ULB founding date, the Governor's office, and Article-number-to-provision mappings) rather than re-angling the same five facts."
+    ],
+    "match_the_following_design_note": [
+      "bs2-405 uses a 4-into-5 List-II (one decoy entry, 'Reservation of seats for SC/ST in Panchayats', that is a real Bihar-polity fact but not the answer to any of the 4 listed Articles) specifically so that a genuine '3-correct-pairs-1-wrong-pair' distractor is combinatorially possible -- a strict 4-into-4 bijective match cannot produce a 3-right/1-wrong option (fixing any 3 pairs forces the 4th by elimination), which is what a check against Paper I's own bs1-pol-local-body-heads-match confirms (its closest distractor is a 2-right/2-wrong transposition, not 3/1)."
+    ],
+    "flagged_for_extra_review": [],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "Gram Sabha quorum (1/20th of total members) and the 73rd/74th Amendment schedule details (11th/12th Schedule item counts) were considered but held back for Paper III -- both are genuine, precise facts, just thinner on their own without a second fact to pair them with for synthesis."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy.",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Polity & Governance', type, difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs2-401",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar is one of six Indian states with a bicameral state legislature. Which of the following states does NOT currently have one?",
+      "options": [
+        { "body": "Uttar Pradesh", "isCorrect": false },
+        { "body": "Tamil Nadu", "isCorrect": true },
+        { "body": "Maharashtra", "isCorrect": false },
+        { "body": "Karnataka", "isCorrect": false }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's five bicameral counterparts are Uttar Pradesh, Maharashtra, Karnataka, Andhra Pradesh and Telangana. Tamil Nadu once had a Legislative Council too, but abolished it in 1986 -- making it a common trap for anyone assuming a large, prominent state must still have one.",
+      "concept_group_id": "bs2-pol-bicameral-states-tamil-nadu",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-402",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Patna Municipal Corporation -- Bihar's oldest and largest urban local body -- began functioning in 1952 under an Act passed in which year?",
+      "options": [
+        { "body": "1937", "isCorrect": false },
+        { "body": "1916", "isCorrect": false },
+        { "body": "1951", "isCorrect": true },
+        { "body": "2007", "isCorrect": false }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Patna Municipal Corporation Act was passed in 1951, with the Corporation beginning operations the following year. 1916 is instead the Patna High Court's founding year, and 2007 is the year of the later, state-wide Bihar Municipal Act -- both real Bihar-governance dates, just for different institutions.",
+      "concept_group_id": "bs2-pol-patna-municipal-corp-1951",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-403",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Of Bihar Vidhan Sabha's 243 seats, how many are reserved for SC and ST candidates respectively?",
+      "options": [
+        { "body": "32 SC, 6 ST", "isCorrect": false },
+        { "body": "38 SC, 6 ST", "isCorrect": false },
+        { "body": "42 SC, 2 ST", "isCorrect": false },
+        { "body": "38 SC, 2 ST", "isCorrect": true }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar's Vidhan Sabha reserves 38 of its 243 seats for Scheduled Castes and 2 for Scheduled Tribes -- the low ST count reflecting how little of Bihar's remaining tribal-majority area was left after Jharkhand's creation in 2000. The other combinations pair plausible-sounding but incorrect counts.",
+      "concept_group_id": "bs2-pol-vidhan-sabha-sc-st-seats",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-404",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Who was Bihar's first Governor after independence, serving from 15 August 1947 to January 1948?",
+      "options": [
+        { "body": "Sir James David Sifton", "isCorrect": false },
+        { "body": "Madhav Shrihari Aney", "isCorrect": false },
+        { "body": "Jairamdas Daulatram", "isCorrect": true },
+        { "body": "Ram Nath Kovind", "isCorrect": false }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Jairamdas Daulatram was Bihar's first Governor after independence, serving alongside Chief Minister Sri Krishna Sinha before Madhav Shrihari Aney succeeded him in January 1948. Sifton was instead Bihar's last Governor BEFORE independence, and Ram Nath Kovind served as Bihar's Governor decades later (2015-17), before becoming President of India.",
+      "concept_group_id": "bs2-pol-first-governor-daulatram-1947",
+      "source_citation": "Bihar Lok Bhavan (Raj Bhavan) official records; Wikipedia (List of Governors of Bihar)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-405",
+      "subject": "Bihar-Specific",
+      "topic": "Polity & Governance",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the Constitutional Article in List-I with the provision it deals with in List-II.",
+      "options": [
+        { "body": "a-1, b-2, c-3, d-4", "isCorrect": true },
+        { "body": "a-1, b-2, c-3, d-5", "isCorrect": false },
+        { "body": "a-5, b-2, c-3, d-4", "isCorrect": false },
+        { "body": "a-2, b-1, c-4, d-3", "isCorrect": false }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Article 169 (a) empowers Parliament to create or abolish a state's Legislative Council on that state's own special-majority resolution (matches 1). Article 198 (b) confines the introduction of Money Bills to the Vidhan Sabha alone (matches 2). Article 243-ZD (c) provides for the District Planning Committee (matches 3). Article 243-ZE (d) provides for the Metropolitan Planning Committee (matches 4) -- so a-1,b-2,c-3,d-4 is correct. List-II's 5th entry, SC/ST seat reservation in Panchayats, is a genuine Bihar-polity fact but is not what any of these four Articles deals with, which is what makes swapping a single pair onto it (as in two of the wrong options) a workable near-miss.",
+      "concept_group_id": "bs2-pol-articles-provisions-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. Article 169",
+          "b. Article 198",
+          "c. Article 243-ZD",
+          "d. Article 243-ZE"
+        ],
+        "list_2": [
+          "1. Parliament's power to create/abolish a state Legislative Council",
+          "2. Money Bills may be introduced only in the Vidhan Sabha",
+          "3. District Planning Committee",
+          "4. Metropolitan Planning Committee",
+          "5. Reservation of seats for SC/ST in Panchayats"
+        ]
+      }
+    }
+  ]
+}

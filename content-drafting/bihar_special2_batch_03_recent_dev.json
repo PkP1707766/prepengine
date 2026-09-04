@@ -1,0 +1,547 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper II, Batch 03 (Recent Developments topic) -- rebalanced down from 24 to 16 after Paper I's batch turned out to have already drained the Orange Book's own scheme/initiative pages (104-105) almost completely",
+    "generated_at": "2026-09-04",
+    "generator": "Claude Code, human-drafted",
+    "total_questions": 16,
+    "target_cells": {
+      "Bihar_Recent Developments_medium_mcq": 10,
+      "Bihar_Recent Developments_hard_mcq": 6
+    },
+    "status_all": "draft",
+    "rebalance_note": [
+      "Cross-checking against the live 300 (specifically Paper I's bs1-rd-* batch of 24) showed that batch had already used essentially every named DBT/welfare scheme and all 7 Saat Nischay 2.0 resolves from the Orange Book's own Chapter 7 (Schemes & Initiatives, p104-105) -- there was nothing left to mine from the same source without duplicating a fact already tested (e.g., Kanya Utthan, Student Credit Card, KYP, Vridhajan Pension, Har Ghar Bijli, Jal-Jeevan-Hariyali, Deshi Gau Kendra, 4th Agri Roadmap, Logistics Policy 2023, Mukhyamantri Udyami Yojana are all already live).",
+      "This batch instead draws on genuinely different, well-corroborated 'recent development' material the Orange Book doesn't cover in its condensed scheme list: a long-running but not-yet-tested DBT scheme (the cycle yojana), the modern (as opposed to ancient) Nalanda University, new transport/aviation infrastructure, GI tag announcements, the new Rajgir sports complex/university, 'Saat Nishchay-3' (a THIRD, distinct multi-year programme from the already-exhausted 'Saat Nischay 2.0'), and one investor summit. All facts are dated, settled events (an Act passed, a facility opened, an MoU signed) rather than open-ended ongoing situations.",
+      "One live news item was deliberately EXCLUDED: the Vikramshila Setu (Bhagalpur), while a genuine 'longest bridge' superlative fact, partially collapsed on 4 May 2026 -- a recent structural-failure incident, not appropriate content for exam trivia regardless of topic fit.",
+      "Final honest count: 16, not 24. Shortfall (8) folded into the same end-of-drafting rebalance as Economy's; see the final Step 4 report for the consolidated topic totals across all five batches."
+    ],
+    "sourcing_note": [
+      "Cycle Yojana, modern Nalanda University, Bihar Museum, and the GI-tag facts were cross-verified against multiple independent sources (government portals, Wikipedia, established news outlets), not a single blog.",
+      "Bihta/Darbhanga airport figures, the Rajgir Sports Complex/Cricket Stadium, Aunta-Simaria Bridge, and Bihar Business Connect 2023 are all PIB/government-announcement-grade facts (Cabinet approvals, inauguration dates, MoU totals) -- settled, dated events, not projections of what will happen."
+    ],
+    "flagged_for_extra_review": [
+      "bs2-306 (Rajgir Cricket Stadium '45,000 capacity, one of India's largest'): the capacity figure and superlative framing come from recent press coverage around its October 2025 inauguration rather than an official BCCI/stadium-authority capacity certification -- worth an SME check against the venue's own published seating figure before publishing."
+    ],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "Patna's Namami Gange riverfront project (5.7 km walkway, 16 ghats) and the Vaishali Relic Stupa's 2010 UNESCO tentative-list listing were both considered and set aside -- the riverfront fact felt thinner than the other entries here, and the Vaishali stupa's 'recent' framing (2010) reads more like ancient-history-adjacent content than a genuine recent development. Worth revisiting for Paper III if more RD volume is needed there."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy, with particular attention to bs2-306 (flagged above).",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Recent Developments', type='mcq', difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs2-301",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Balak-Balika Cycle Yojana, launched in 2006, provides Class 9 government-school students with:",
+      "options": [
+        {
+          "body": "₹3,000 to purchase a bicycle",
+          "isCorrect": true
+        },
+        {
+          "body": "A free bicycle manufactured by a state-run unit",
+          "isCorrect": false
+        },
+        {
+          "body": "₹3,000, restricted to girl students",
+          "isCorrect": false
+        },
+        {
+          "body": "A ₹3,000 interest-free loan, repayable after Class 12",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The scheme gives every Class 9 government-school student -- both boys and girls -- ₹3,000 in cash to buy their own bicycle, rather than distributing state-manufactured cycles, restricting it by gender, or structuring it as a loan.",
+      "concept_group_id": "bs2-rd-cycle-yojana-2006",
+      "source_citation": "Vivekananda International Foundation; Bihar Education Department scheme records",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-302",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The modern Nalanda University, revived on the same site as the ancient Mahavihara, began classes with its first batch of students in which year?",
+      "options": [
+        {
+          "body": "2010",
+          "isCorrect": false
+        },
+        {
+          "body": "2014",
+          "isCorrect": true
+        },
+        {
+          "body": "2017",
+          "isCorrect": false
+        },
+        {
+          "body": "2019",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Nalanda University Act was passed by Parliament in 2010, but classes for the first batch of students -- an exclusively postgraduate institution offering only Master's and PhD programmes -- began only in September 2014. 2019 is instead when the new purpose-built campus became operational, some years after teaching had already started from a makeshift location.",
+      "concept_group_id": "bs2-rd-modern-nalanda-2014",
+      "source_citation": "Nalanda University official history; The Diplomat; Wikipedia",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-303",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Union Cabinet's August 2024 approval for a new civil enclave at Bihta (Patna) was aimed at:",
+      "options": [
+        {
+          "body": "Building a satellite campus of Patna's existing airport for maintenance and repair",
+          "isCorrect": false
+        },
+        {
+          "body": "Expanding the Bihta Air Force base's runway for civilian cargo use",
+          "isCorrect": false
+        },
+        {
+          "body": "Developing a new passenger-terminal airport facility",
+          "isCorrect": true
+        },
+        {
+          "body": "Converting the site into a dedicated air-cargo hub with no passenger service",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The ₹1,413 crore Cabinet approval was for a new civil enclave with a full passenger terminal at Bihta -- planned to eventually serve as Patna's second commercial airport -- not a cargo-only or maintenance-only facility.",
+      "concept_group_id": "bs2-rd-bihta-airport-2024",
+      "source_citation": "PIB; Patna Press",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-304",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Cabinet's January 2025 approval for Darbhanga Airport was specifically to:",
+      "options": [
+        {
+          "body": "Hand over its operations from AAI to a private concessionaire",
+          "isCorrect": false
+        },
+        {
+          "body": "Shift its operations to a new site near Madhubani",
+          "isCorrect": false
+        },
+        {
+          "body": "Convert it into a dedicated helicopter/regional-connectivity hub",
+          "isCorrect": false
+        },
+        {
+          "body": "Acquire land to upgrade it into an international airport",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The January 2025 approval of ₹244.60 crore was for acquiring 89.75 acres of land specifically to upgrade Darbhanga Airport to international status -- not a relocation, a downgrade to helicopter-only use, or a privatisation move.",
+      "concept_group_id": "bs2-rd-darbhanga-airport-international",
+      "source_citation": "PIB; Patna Press",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-305",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Patna Metro's first operational stretch (Phase 1) runs between:",
+      "options": [
+        {
+          "body": "ISBT and Malahi Pakri",
+          "isCorrect": true
+        },
+        {
+          "body": "Danapur and Patna Junction",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihta Airport and AIIMS Patna",
+          "isCorrect": false
+        },
+        {
+          "body": "Patna Junction and Gandhi Maidan",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Patna Metro's Phase 1 stretch covers ISBT to Malahi Pakri, roughly 6.2 km. The Bihta Airport-AIIMS corridor is instead a planned Phase 2 extension, not part of the initial operational stretch.",
+      "concept_group_id": "bs2-rd-patna-metro-phase1",
+      "source_citation": "Patrika English News",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-306",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Rajgir International Cricket Stadium, inaugurated in October 2025 as part of the wider Rajgir Sports Complex, is notable chiefly for:",
+      "options": [
+        {
+          "body": "Being India's first stadium with a fully retractable roof",
+          "isCorrect": false
+        },
+        {
+          "body": "Seating capacity of around 45,000 -- among India's largest cricket grounds",
+          "isCorrect": true
+        },
+        {
+          "body": "Hosting India's first day-night Test match",
+          "isCorrect": false
+        },
+        {
+          "body": "Built as a public-private partnership, unlike most of Bihar's other stadiums",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The stadium's roughly 45,000 seating capacity places it among India's largest cricket venues. It does not have a retractable roof, did not host India's first day-night Test (that was at Kolkata's Eden Gardens in 2019), and was built as a state government project, not a privately-funded one.",
+      "concept_group_id": "bs2-rd-rajgir-cricket-stadium-capacity",
+      "source_citation": "Wikipedia (Rajgir International Cricket Stadium); Indian Masterminds",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-307",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's first sports university, established at Rajgir, is notable as:",
+      "options": [
+        {
+          "body": "A university focused mainly on postgraduate sports-science degrees",
+          "isCorrect": false
+        },
+        {
+          "body": "India's first sports university overall",
+          "isCorrect": false
+        },
+        {
+          "body": "India's sixth sports university overall",
+          "isCorrect": true
+        },
+        {
+          "body": "A privately-funded institution outside the state university system",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar Sports University is Bihar's first sports university, but India's sixth overall -- other states already had dedicated sports universities before Bihar's. It offers a range of physical-education, sports-science and management programmes (not postgraduate-only), and is a state institution, co-located with the Rajgir Sports Complex.",
+      "concept_group_id": "bs2-rd-bihar-sports-university-6th",
+      "source_citation": "Careers360; Newsonair (PIB)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-308",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Rajgir Sports Complex was inaugurated by Chief Minister Nitish Kumar on which occasion?",
+      "options": [
+        {
+          "body": "Republic Day (26 January)",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar Diwas (22 March)",
+          "isCorrect": false
+        },
+        {
+          "body": "International Olympic Day (23 June)",
+          "isCorrect": false
+        },
+        {
+          "body": "National Sports Day (29 August)",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The complex was inaugurated on 29 August 2024, National Sports Day (marking Major Dhyan Chand's birth anniversary) -- a deliberate date choice for a sports facility, distinct from Bihar's own state-formation day or other national observances.",
+      "concept_group_id": "bs2-rd-rajgir-sports-complex-inauguration",
+      "source_citation": "Oneindia; Indian Masterminds",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-309",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar Museum, Patna, primarily displays which combination of collections?",
+      "options": [
+        {
+          "body": "Art, archaeology and a dedicated children's museum section",
+          "isCorrect": true
+        },
+        {
+          "body": "Natural history and geological specimens",
+          "isCorrect": false
+        },
+        {
+          "body": "Exclusively colonial-era administrative records and documents",
+          "isCorrect": false
+        },
+        {
+          "body": "Contemporary Bihari art, without an archaeological collection",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar Museum combines art and archaeology galleries (including over 100 artefacts transferred from the older Patna Museum) with a dedicated children's museum -- not a narrower natural-history, archival, or contemporary-art-only collection.",
+      "concept_group_id": "bs2-rd-bihar-museum-collections",
+      "source_citation": "Wikipedia (Bihar Museum); Incredible India",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-310",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Zardalu mango and Magahi paan both received their GI tags on the same date. When?",
+      "options": [
+        {
+          "body": "15 August 2018",
+          "isCorrect": false
+        },
+        {
+          "body": "28 March 2018",
+          "isCorrect": true
+        },
+        {
+          "body": "28 March 2022",
+          "isCorrect": false
+        },
+        {
+          "body": "2 October 2016",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Both Zardalu mango (a Bhagalpur-area variety) and Magahi paan (from the Magadh region) were granted GI tags on 28 March 2018 -- the same registration date, a detail that makes them a natural pair to test together.",
+      "concept_group_id": "bs2-rd-zardalu-magahi-paan-gi-2018",
+      "source_citation": "S.S. Rana & Co.; Mondaq",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-311",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "In August 2024, Bihar received three fresh GI tags together. Which set is correct?",
+      "options": [
+        {
+          "body": "Bhagalpuri handloom silk sarees, Manjusha scroll art, Katarni aromatic rice",
+          "isCorrect": false
+        },
+        {
+          "body": "Madhubani wall/floor painting, Sikki grass craft, Sujini quilted embroidery",
+          "isCorrect": false
+        },
+        {
+          "body": "Bawan Booti saree, Patharkatti stonecraft, Pidhia painting (Nalanda, Gaya, Bhojpur)",
+          "isCorrect": true
+        },
+        {
+          "body": "Shahi litchi (Muzaffarpur), Mithila Makhana, Bhagalpur's Zardalu mango",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The August 2024 batch specifically covered Nalanda's Bawan Booti saree, Gaya's Patharkatti stonecraft and Bhojpur's Pidhia painting -- three crafts that had gone without GI protection despite Bihar's other products (Madhubani painting, Sikki craft, Sujini embroidery, Bhagalpuri silk, Manjusha art, Katarni rice, Shahi litchi, Makhana, Zardalu mango) having already been tagged in earlier rounds.",
+      "concept_group_id": "bs2-rd-gi-tags-aug-2024-trio",
+      "source_citation": "Drishti IAS (State PCS Current Affairs); X/Twitter (verified GI tag list)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-312",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Katarni rice, one of Bihar's GI-tagged agricultural products, is natively grown chiefly in which districts?",
+      "options": [
+        {
+          "body": "Nalanda and Gaya",
+          "isCorrect": false
+        },
+        {
+          "body": "Rohtas and Kaimur",
+          "isCorrect": false
+        },
+        {
+          "body": "Champaran (East and West)",
+          "isCorrect": false
+        },
+        {
+          "body": "Bhagalpur and Banka",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Katarni rice, a short-grain aromatic variety, is native to Bhagalpur and Banka districts. Rohtas-Kaimur, Champaran and Nalanda-Gaya are all real Bihar district pairings with their own distinct agricultural or craft associations, not this rice variety's home.",
+      "concept_group_id": "bs2-rd-katarni-rice-bhagalpur-banka",
+      "source_citation": "Wikipedia (Katarni rice)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-313",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "'Saat Nishchay-3 (Vikasit Bihar 2025-30)', announced in the 2026-27 budget, differs from 'Saat Nischay 2.0' chiefly in that it is:",
+      "options": [
+        {
+          "body": "A distinct, newly-allocated programme, not the same seven resolves continued",
+          "isCorrect": true
+        },
+        {
+          "body": "Identical to Saat Nischay 2.0, simply renewed under a new name for continuity",
+          "isCorrect": false
+        },
+        {
+          "body": "A rural-infrastructure-focused successor covering a narrower scope than the broader 2.0 phase",
+          "isCorrect": false
+        },
+        {
+          "body": "A central government scheme adopted by Bihar, not a state-originated one",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Saat Nishchay-3 is a separate, newly-allocated (₹14,800 crore) programme tied to the 'Vikasit Bihar 2025-30' vision, distinct from the 2020-2025 'Saat Nischay 2.0' phase's own seven resolves -- not a same-scheme renewal, a rural-only programme, or a centrally-originated one.",
+      "concept_group_id": "bs2-rd-saat-nishchay-3-distinct",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-314",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Aunta-Simaria bridge over the Ganga, inaugurated in August 2025, is significant chiefly as:",
+      "options": [
+        {
+          "body": "India's first cable-stayed bridge over the Ganga",
+          "isCorrect": false
+        },
+        {
+          "body": "India's widest extradosed bridge, linking Mokama to Begusarai",
+          "isCorrect": true
+        },
+        {
+          "body": "A rail bridge, without road traffic for vehicles",
+          "isCorrect": false
+        },
+        {
+          "body": "A replacement built on the exact alignment of the old Rajendra Setu",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Aunta-Simaria bridge is India's widest extradosed bridge (a single 34-metre-wide deck), linking Mokama (Patna district) to Begusarai as an alternative to the ageing, under-repair Rajendra Setu -- it is a six-lane ROAD bridge on a new alignment, not a rail-only structure or a cable-stayed design.",
+      "concept_group_id": "bs2-rd-aunta-simaria-bridge-2025",
+      "source_citation": "DD News; PIB",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-315",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Digha-Sonpur (JP Setu) bridge across the Ganga is distinctive in Bihar's bridge infrastructure because it:",
+      "options": [
+        {
+          "body": "Carries mainly pedestrian and two-wheeler traffic, not heavy vehicles",
+          "isCorrect": false
+        },
+        {
+          "body": "Was Bihar's first bridge built without central government funding of any kind",
+          "isCorrect": false
+        },
+        {
+          "body": "Is a double-deck structure carrying a rail line below and a road above",
+          "isCorrect": true
+        },
+        {
+          "body": "Connects two districts that do not otherwise share a Ganga crossing",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Digha-Sonpur bridge (JP Setu) is a double-deck steel truss structure, with a railway line on the lower deck and a roadway above -- connecting Digha Ghat (Patna) to Pahleja Ghat (Sonpur). It carries full road traffic (not just pedestrians/two-wheelers), and Patna-Saran already share other Ganga crossings nearby.",
+      "concept_group_id": "bs2-rd-digha-sonpur-jp-setu-double-deck",
+      "source_citation": "Wikipedia (Bridges in Bihar)",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-316",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The 'Bihar Business Connect' Global Investors' Summit held in Patna in December 2023 resulted in MoUs worth approximately:",
+      "options": [
+        {
+          "body": "₹9,512 crore",
+          "isCorrect": false
+        },
+        {
+          "body": "₹14,800 crore",
+          "isCorrect": false
+        },
+        {
+          "body": "₹1.62 lakh crore",
+          "isCorrect": false
+        },
+        {
+          "body": "₹50,530 crore",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar Business Connect-2023 (13-14 December 2023, Gyan Bhavan, Patna) drew MoUs worth roughly ₹50,530 crore from around 300 companies across 16 countries. The other figures are all genuine Bihar-related sums, just attached to different things -- ₹14,800 crore is Saat Nishchay-3's allocation, ₹1.62 lakh crore is the 4th Agriculture Road Map's budget, and ₹9,512 crore is HURL's Barauni-plant investment.",
+      "concept_group_id": "bs2-rd-bihar-business-connect-2023",
+      "source_citation": "Drishti IAS; Business Standard; The Federal",
+      "status": "draft"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "bs2-413g": [
+    "Its tributaries, on both banks, are mostly seasonal and non-perennial",
+    "Himalayan (left-bank) tributaries are perennial; peninsular (right-bank) ones are seasonal",
+    "It receives tributaries mainly from the left (northern) bank, with very few from the right",
+    "Its right-bank tributaries carry a higher silt load than its left-bank ones"
+  ],
+  "bs2-419g": [
+    "Himalayan rivers originate on stable, older terrain, unlike the geologically young peninsular rivers",
+    "Peninsular rivers are perennial and Himalayan rivers dry up in summer",
+    "Both sets of rivers carry a comparably high silt load, differing mainly in flood risk",
+    "Himalayan rivers are perennial, high-flood-risk; peninsular rivers are ephemeral, lower-risk"
+  ],
+  "bs2-421g": [
+    "A drought-resistant variety needing minimal irrigation",
+    "A summer-season rice crop, unlike the state's usual kharif-season paddy",
+    "A rabi-season wheat substitute grown mainly in the Tal region",
+    "A jute-rotation crop grown in the Kosi-Mahananda Doab specifically"
+  ],
+  "bs2-414g": [null, null, "The longest tributary whose full course lies within Bihar", null],
+  "bs2-425g": [null, null, null, "A single undivided canal serving the north-eastern districts jointly"],
+  "bs2-432g": ["Simultaneously and evenly from multiple directions at once", null, null, null],
+  "bs2-445g": [null, "Well within the Kosi-Mahananda Doab, in the state's north-east", null, null],
+  "bs2-426g": [
+    "The Son system, hampered by an unstable, highly variable seasonal water flow throughout the year",
+    "The Kosi system, due to frequent silt-clogging and unpredictable course shifts",
+    "The Gandak system, due to poor cash-crop suitability in its command area",
+    "The three systems have roughly comparable efficiency today"
+  ],
+  "bs2-429g": [
+    "Seepage and unauthorised diversions often leave furthest-end farmers short of water",
+    "Canals nearer a river's source structurally receive less water than those built closer to its mouth",
+    "Water is deliberately rationed to the network's furthest fields to prevent overuse",
+    "The furthest fields receive water first, before nearer ones, due to gravity flow"
+  ],
+  "bs2-436g": [
+    "Growing much the same crop mix as Zone I, differing mainly in soil colour",
+    "The highest rainfall band of the three and a jute-led cropping pattern",
+    "Lying north of the Ganga throughout, unlike Zones I and II",
+    "Its lowest rainfall band (99-124 cm) and pulses/oilseeds-led cropping"
+  ],
+  "bs2-439g": [
+    "A waterlogged clay soil, suited mainly to pulses in the winter season",
+    "Exceptionally fertile, ideal for sugarcane and wheat",
+    "Low fertility and poor water absorption, suited to coarse grains",
+    "A self-ploughing soil that develops deep cracks on drying"
+  ],
+  "bs2-443g": [
+    "Are dominated by Sal, the same primary species as the Moist Deciduous belt",
+    "Receive over 120 cm of rainfall and retain a dense, year-round canopy",
+    "Under 120 cm rainfall; more open, fully shedding leaves in the Loo season",
+    "Are found mainly on river islands within the Ganga's own course, not on the mainland"
+  ]
+}

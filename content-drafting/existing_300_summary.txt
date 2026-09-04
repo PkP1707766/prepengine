@@ -1,0 +1,317 @@
+=== history_batch_01.json (108 questions) ===
+[History/Modern/medium/mcq] hist-modern-bengal-partition-announcer :: The Partition of Bengal, which came into effect in October 1905, was announced by which Viceroy of India?
+[History/Modern/medium/mcq] hist-modern-inc-first-session-president :: Who presided over the first session of the Indian National Congress held in December 1885?
+[History/Modern/medium/mcq] hist-modern-lucknow-pact-parties :: The Lucknow Pact of 1916 was concluded between which two political organizations?
+[History/Modern/medium/mcq] hist-modern-rowlatt-act-nickname :: The Rowlatt Act of 1919 was popularly known as which of the following?
+[History/Modern/medium/mcq] hist-modern-jallianwala-bagh-dyer :: The Jallianwala Bagh massacre of 13 April 1919 was ordered by which British officer?
+[History/Modern/medium/mcq] hist-modern-khilafat-ali-brothers :: The Khilafat Movement in India (1919-24) was led by which pair of brothers?
+[History/Modern/medium/mcq] hist-modern-chauri-chaura-withdrawal :: The Non-Cooperation Movement was withdrawn by Mahatma Gandhi in February 1922 following the violent incident a
+[History/Modern/medium/mcq] hist-modern-swaraj-party-founders :: The Swaraj Party, formed in 1923 to contest the Legislative Council elections, was founded by which of the fol
+[History/Modern/medium/mcq] hist-modern-simon-commission-no-indians :: The Simon Commission was greeted with black-flag demonstrations across India in 1928 primarily because
+[History/Modern/medium/mcq] hist-modern-nehru-report-chair :: The Nehru Report of 1928, drafted as an Indian response to the challenge posed by the Secretary of State, was 
+[History/Modern/medium/mcq] hist-modern-purna-swaraj-lahore-1929 :: At which session of the Indian National Congress was the Purna Swaraj (complete independence) resolution passe
+[History/Modern/medium/mcq] hist-modern-dandi-march-sabarmati :: Gandhi began the Dandi Salt March on 12 March 1930 from which starting point?
+[History/Modern/medium/mcq] hist-modern-karachi-1931-fr-resolution :: At the 1931 Karachi Session of the INC, presided over by Sardar Patel, a landmark resolution was adopted on
+[History/Modern/medium/mcq] hist-modern-communal-award-macdonald :: The Communal Award of August 1932 was announced by which British Prime Minister?
+[History/Modern/medium/mcq] hist-modern-poona-pact-parties :: The Poona Pact of September 1932 was signed between
+[History/Modern/medium/mcq] hist-modern-first-rtc-congress-boycott :: The First Round Table Conference was held in London in 1930-31. Which major Indian political party boycotted i
+[History/Modern/medium/mcq] hist-modern-gandhi-irwin-outcome :: The Gandhi-Irwin Pact was signed in March 1931 and led directly to
+[History/Modern/medium/mcq] hist-modern-goi-1935-features :: The Government of India Act, 1935, introduced which of the following major features?
+[History/Modern/medium/mcq] hist-modern-august-offer-linlithgow :: The August Offer of 1940 was made by which Viceroy of India?
+[History/Modern/medium/mcq] hist-modern-cripps-mission-1942-proposals :: The Cripps Mission was sent to India in March 1942 with proposals that included
+[History/Modern/medium/mcq] hist-modern-quit-india-gowalia-tank :: The Quit India Resolution was passed by the AICC at its session held in
+[History/Modern/medium/mcq] hist-modern-ina-mohan-singh :: Who was the founder-leader of the Indian National Army (Azad Hind Fauj) before Subhas Chandra Bose took charge
+[History/Modern/medium/mcq] hist-modern-cabinet-mission-members :: The Cabinet Mission that came to India in March 1946 consisted of which three British ministers?
+[History/Modern/medium/mcq] hist-modern-direct-action-day-date :: 'Direct Action Day' was observed by the All-India Muslim League on which date?
+[History/Modern/medium/mcq] hist-modern-mountbatten-plan-date :: The Mountbatten Plan for partition of British India was announced on
+[History/Modern/medium/mcq] hist-modern-tilak-hrl-poona :: Bal Gangadhar Tilak founded his Home Rule League in April 1916 with its headquarters at
+[History/Modern/medium/mcq] hist-modern-ghadar-party-san-francisco :: The Ghadar Party, founded in 1913 to overthrow British rule in India by armed revolt, was headquartered in whi
+[History/Modern/medium/mcq] hist-modern-kakori-hra :: The Kakori Train Robbery of 9 August 1925 was organized by which revolutionary organization?
+[History/Modern/medium/mcq] hist-modern-assembly-bomb-bills :: On 8 April 1929, Bhagat Singh and Batukeshwar Dutt threw bombs in the Central Legislative Assembly primarily t
+[History/Modern/medium/mcq] hist-modern-hsra-ferozeshah-kotla :: The Hindustan Socialist Republican Association (HSRA) was formally founded in September 1928 at
+[History/Modern/medium/mcq] hist-modern-vernacular-press-lytton :: The Vernacular Press Act was enacted in 1878 by which Viceroy?
+[History/Modern/medium/mcq] hist-modern-ilbert-bill-subject :: The Ilbert Bill controversy of 1883-84 concerned
+[History/Modern/medium/mcq] hist-modern-age-of-consent-1891 :: The Age of Consent Act, 1891, raised the minimum age of marriage for girls in India from 10 years to
+[History/Modern/medium/mcq] hist-modern-sati-abolition-bentinck :: The abolition of Sati was enacted in 1829 by Regulation XVII under which Governor-General?
+[History/Modern/medium/mcq] hist-modern-widow-remarriage-dalhousie :: The Hindu Widow Remarriage Act, 1856, was passed during the Governor-Generalship of
+[History/Modern/medium/mcq] hist-modern-indigo-revolt-bengal :: The Indigo Revolt of 1859-60 primarily broke out in which region?
+[History/Modern/medium/mcq] hist-modern-santhal-hool-sidhu-kanhu :: The Santhal Rebellion (Hool) of 1855-56 against the British and local moneylenders was led primarily by
+[History/Modern/medium/mcq] hist-modern-birsa-ulgulan :: The Munda Uprising (Ulgulan) of 1899-1900 against British rule was led by
+[History/Modern/medium/mcq] hist-modern-tebhaga-bengal :: The Tebhaga peasant movement of 1946-47, which demanded that the sharecropper's share be raised to two-thirds 
+[History/Modern/medium/mcq] hist-modern-telangana-struggle-target :: The Telangana peasant armed struggle (1946-51) was primarily directed against
+[History/Modern/medium/mcq] hist-modern-woods-dispatch-1854 :: Wood's Educational Dispatch, considered the 'Magna Carta of English education in India', was issued in
+[History/Modern/medium/mcq] hist-modern-hunter-1882-education :: The Hunter Commission of 1882 was constituted to review
+[History/Modern/medium/mcq] hist-modern-charter-1813-monopoly :: The Charter Act of 1813 marked a turning point in British Indian policy because it
+[History/Modern/medium/mcq] hist-modern-regulating-act-1773-gg-bengal :: The Regulating Act of 1773 provided for the appointment of the first
+[History/Modern/medium/mcq] hist-modern-doctrine-of-lapse-dalhousie :: The Doctrine of Lapse, aggressively used to annex Indian princely states in the 1840s-50s, is chiefly associat
+[History/Modern/medium/mcq] hist-modern-1857-meerut-outbreak :: The Revolt of 1857 first broke out on 10 May 1857 at
+[History/Modern/medium/mcq] hist-modern-goi-1858-crown :: The Government of India Act, 1858, transferred the administration of India from the East India Company to
+[History/Modern/medium/mcq] hist-modern-morley-minto-1909 :: The Indian Councils Act, 1909, is popularly known as the
+[History/Modern/medium/mcq] hist-modern-dyarchy-provinces-1919 :: Dyarchy in the provinces was introduced in India by which Act?
+[History/Modern/medium/mcq] hist-modern-interim-govt-1946-nehru :: The Interim Government of India, formed on 2 September 1946, was headed by
+[History/Ancient/medium/mcq] hist-ancient-ivc-sites-india :: Which of the following is NOT a site of the Indus Valley Civilization located in present-day India?
+[History/Ancient/medium/mcq] hist-ancient-great-bath-mohenjodaro :: The Great Bath of the Indus Valley Civilization has been found at
+[History/Ancient/medium/mcq] hist-ancient-oldest-veda :: Which is the oldest and most sacred of the Vedas?
+[History/Ancient/medium/mcq] hist-ancient-mahajanapadas-count :: How many Mahajanapadas are mentioned in the early Buddhist text 'Anguttara Nikaya'?
+[History/Ancient/medium/mcq] hist-ancient-first-buddhist-council-rajgriha :: The First Buddhist Council was held immediately after the Buddha's death (Mahaparinirvana) at
+[History/Ancient/medium/mcq] hist-ancient-kalinga-war-date :: Ashoka's Kalinga War, after which he embraced Buddhism, is dated to approximately
+[History/Ancient/medium/mcq] hist-ancient-arthashastra-author :: The 'Arthashastra', a foundational text on statecraft and political economy, is attributed to
+[History/Ancient/medium/mcq] hist-ancient-sunga-founder :: The founder of the Sunga dynasty, who assassinated the last Maurya ruler Brihadratha around 185 BCE, was
+[History/Ancient/medium/mcq] hist-ancient-fourth-buddhist-council-kanishka :: The Kushana king who is credited with convening the Fourth Buddhist Council in Kashmir was
+[History/Ancient/medium/mcq] hist-ancient-sangam-language-region :: The Sangam literature was primarily composed in which language and region?
+[History/Ancient/medium/mcq] hist-ancient-aryabhata-gupta-age :: Aryabhata, the astronomer-mathematician who proposed the earth's rotation on its axis, lived during the reign 
+[History/Ancient/medium/mcq] hist-ancient-harsha-capital :: Harshavardhana ruled from his capital at
+[History/Ancient/medium/mcq] hist-ancient-hsuan-tsang-harsha :: The Chinese pilgrim Hsuan Tsang (Xuanzang), who spent about 13 years in India, visited during the reign of
+[History/Ancient/medium/mcq] hist-ancient-nanda-founder :: The founder of the Nanda dynasty of Magadha, who preceded the Mauryas, was
+[History/Ancient/medium/mcq] hist-ancient-rajendra-chola-srivijaya :: Which Chola king is credited with launching a successful naval expedition against Srivijaya (a maritime empire
+[History/Ancient/medium/mcq] hist-ancient-kailasa-ellora-rashtrakuta :: The Kailasa temple at Ellora, an architectural marvel carved out of a single rock, was constructed under the p
+[History/Ancient/medium/mcq] hist-ancient-chandragupta-ii-vikramaditya :: Which Gupta ruler assumed the title 'Vikramaditya' and is traditionally credited with defeating the Western Ks
+[History/Ancient/medium/mcq] hist-ancient-rock-edict-xiii-kalinga :: Which Ashokan edict describes the horrors of the Kalinga War and the emperor's remorse?
+[History/Ancient/medium/mcq] hist-ancient-nalanda-founder :: Nalanda Mahavihara, the celebrated ancient centre of learning in Bihar, was founded by
+[History/Modern/hard/mcq] hist-modern-drain-theory-book :: Dadabhai Naoroji's 'Drain of Wealth' theory was most systematically expounded in his book
+[History/Modern/hard/mcq] hist-modern-charter-1833-china-trade :: The Charter Act of 1833 abolished the East India Company's monopoly of which of the following trades?
+[History/Modern/hard/mcq] hist-modern-pitts-india-1784-board-of-control :: Pitt's India Act of 1784 established which body to exercise supervisory control over the East India Company's 
+[History/Modern/hard/mcq] hist-modern-third-anglo-maratha-outcome :: The Third Anglo-Maratha War (1817-18) resulted in
+[History/Modern/hard/mcq] hist-modern-buxar-participants :: The Battle of Buxar (1764) was fought between the British East India Company and a combined force of
+[History/Modern/hard/mcq] hist-modern-second-anglo-sikh-dalhousie :: The Second Anglo-Sikh War (1848-49) ended with the annexation of Punjab under which Governor-General?
+[History/Modern/hard/mcq] hist-modern-vellore-mutiny-cause :: The Vellore Mutiny of July 1806 by sepoys was triggered primarily by
+[History/Modern/hard/mcq] hist-modern-rampa-alluri :: The Rampa Rebellion of 1922-24 in the Godavari Agency of the Madras Presidency was led by
+[History/Modern/hard/mcq] hist-modern-deoband-founders :: The 'Deoband Movement', a revivalist Islamic educational movement, was founded in 1867 by
+[History/Modern/hard/mcq] hist-modern-muzaffarpur-bomb-1908 :: The Muzaffarpur bomb (30 April 1908) that killed Mrs and Miss Kennedy — intended for the judge Douglas Kingsfo
+[History/Modern/hard/mcq] hist-modern-cabinet-mission-features :: Which of the following was NOT part of the Cabinet Mission Plan (1946)?
+[History/Modern/hard/mcq] hist-modern-servants-of-india-gokhale :: The 'Servants of India Society', founded in 1905 for training national workers, was established by
+[History/Modern/hard/mcq] hist-modern-butler-committee-scope :: The Butler Committee (1927-28) was constituted to examine
+[History/Modern/hard/mcq] hist-modern-wahabi-region :: The Wahabi Movement in 19th-century India was politically active mainly in
+[History/Modern/hard/mcq] hist-modern-august-kranti-trigger :: The 'August Kranti' (August Revolution) of 1942 was directly triggered by which event?
+[History/Medieval/medium/mcq] hist-medieval-aibak-1206 :: The Delhi Sultanate began with the accession of which ruler as Sultan in 1206?
+[History/Medieval/medium/mcq] hist-medieval-iltutmish-founder :: Iltutmish is regarded as the 'real founder' of the Delhi Sultanate primarily because
+[History/Medieval/medium/mcq] hist-medieval-alauddin-market-scope :: Alauddin Khilji's market reforms fixed the prices of
+[History/Medieval/medium/mcq] hist-medieval-token-currency-failure :: Muhammad bin Tughlaq introduced token currency of copper and brass around 1329-30. It failed primarily because
+[History/Medieval/medium/mcq] hist-medieval-vijayanagara-founders :: The founder of the Vijayanagara Empire in 1336 CE were
+[History/Medieval/medium/mcq] hist-medieval-talikota-coalition :: The Battle of Talikota in 1565, which decisively weakened the Vijayanagara Empire, was fought against a coalit
+[History/Medieval/medium/mcq] hist-medieval-bahmani-founder :: The Bahmani Sultanate was founded in 1347 by
+[History/Medieval/medium/mcq] hist-medieval-shivaji-ashta-pradhan :: Shivaji's council of eight ministers is known as
+[History/Medieval/medium/mcq] hist-medieval-dahsala-todarmal :: Akbar's revenue system, known as the Dahsala or Zabti system (finalised c. 1580), was primarily designed by
+[History/Medieval/medium/mcq] hist-medieval-mansabdari-zat-sawar :: The Mughal mansabdari system introduced by Akbar assigned each noble two ranks. What did these two ranks repre
+[History/Medieval/medium/mcq] hist-medieval-khalsa-1699 :: Guru Gobind Singh established the Khalsa Panth in the year
+[History/Medieval/medium/mcq] hist-medieval-kabir-nirguna :: The Bhakti saint Kabir was primarily associated with which tradition?
+[History/Modern/easy/mcq] hist-modern-national-anthem-author :: Who wrote the national anthem 'Jana Gana Mana'?
+[History/Modern/easy/mcq] hist-modern-independence-date :: India gained independence from British rule on
+[History/Modern/easy/mcq] hist-modern-first-pm-india :: The first Prime Minister of independent India was
+[History/Modern/easy/mcq] hist-modern-iron-man-patel :: Vallabhbhai Patel is popularly known as the
+[History/Modern/easy/mcq] hist-modern-father-of-nation-title :: Mahatma Gandhi is known as the 'Father of the Nation' in India. Who is said to have first addressed him by thi
+[History/Modern/easy/mcq] hist-modern-inc-founding-year :: The Indian National Congress was founded in the year
+[History/Modern/easy/mcq] hist-modern-vande-mataram-author :: 'Vande Mataram', later adopted as the national song, was written by
+[History/Modern/easy/mcq] hist-modern-ramakrishna-mission-1897 :: The Ramakrishna Mission was founded in 1897 by
+[History/Modern/easy/mcq] hist-modern-cellular-jail-location :: The Cellular Jail, used by the British to imprison many Indian freedom fighters, is located in
+[History/Modern/easy/mcq] hist-modern-do-or-die-quit-india :: The slogan 'Do or Die' was given by Mahatma Gandhi at the launch of which movement?
+[History/Modern/easy/mcq] hist-modern-discovery-of-india-author :: The book 'The Discovery of India' was written by
+[History/Modern/easy/mcq] hist-modern-champaran-tinkathia :: The Champaran Satyagraha of 1917, Mahatma Gandhi's first major experiment with Satyagraha in India, was launch
+
+=== history_batch_02.json (41 questions) ===
+[History/Modern/medium/match_the_following] hist-modern-viceroys-acts-set-a :: Match List-I (Viceroy) with List-II (Act or measure introduced during their tenure) and select the correct ans
+[History/Modern/medium/match_the_following] hist-modern-newspapers-editors-set-a :: Match List-I (Newspaper or journal) with List-II (Founder or editor) and select the correct answer using the c
+[History/Modern/medium/match_the_following] hist-modern-reformers-orgs-set-a :: Match List-I (Social reformer) with List-II (Organisation founded) and select the correct answer using the cod
+[History/Modern/medium/match_the_following] hist-modern-revolutionaries-orgs-set-a :: Match List-I (Revolutionary) with List-II (Organisation with which they were principally associated) and selec
+[History/Modern/medium/match_the_following] hist-modern-inc-sessions-presidents-set-a :: Match List-I (INC session) with List-II (President of that session) and select the correct answer using the co
+[History/Modern/medium/match_the_following] hist-modern-books-authors-set-a :: Match List-I (Book) with List-II (Author) and select the correct answer using the code given below:
+[History/Ancient/hard/mcq] hist-ancient-kandahar-bilingual :: The only bilingual Ashokan inscription discovered in India's neighbourhood, written in both Greek and Aramaic,
+[History/Ancient/hard/mcq] hist-ancient-kanva-founder :: The Kanva dynasty, which briefly ruled Magadha after the fall of the Sungas around 75 BCE, was founded by
+[History/Ancient/hard/mcq] hist-ancient-kanishka-capital :: During the reign of Kanishka I, the Kushana capital was located at
+[History/Ancient/hard/mcq] hist-ancient-silappadikaram-author :: The Tamil epic 'Silappadikaram' is traditionally attributed to which author?
+[History/Ancient/hard/mcq] hist-ancient-narasimhavarman-vatapi :: The Pallava king who avenged the earlier defeat by Chalukyan Pulakesin II and captured the Chalukyan capital V
+[History/Ancient/hard/mcq] hist-ancient-kavirajamarga-amoghavarsha :: 'Kavirajamarga', the earliest extant literary work in Kannada, was composed under the patronage of which Rasht
+[History/Ancient/easy/mcq] hist-ancient-chanakya-teacher-of-chandragupta :: The teacher and chief adviser of Chandragupta Maurya, traditionally credited with helping him found the Maurya
+[History/Ancient/easy/mcq] hist-ancient-buddha-enlightenment-bodh-gaya :: Gautama Buddha is believed to have attained enlightenment (Bodhi) at
+[History/Ancient/easy/mcq] hist-ancient-national-emblem-sarnath :: India's National Emblem is adapted from the Lion Capital of Ashoka located at
+[History/Ancient/easy/mcq] hist-ancient-mahavira-24th-tirthankara :: The 24th and last Tirthankara of Jainism was
+[History/Ancient/easy/mcq] hist-ancient-ashoka-brahmi-script :: The script used in most of Ashoka's inscriptions across the Indian subcontinent is
+[History/Modern/medium/statement_based] hist-modern-bengal-partition-statements :: Consider the following statements about the Partition of Bengal (1905):
+[History/Modern/medium/statement_based] hist-modern-home-rule-leagues-statements :: Consider the following statements about the Home Rule Movement in India:
+[History/Modern/medium/statement_based] hist-modern-cripps-mission-statements :: Consider the following statements about the Cripps Mission (1942):
+[History/Modern/medium/statement_based] hist-modern-ina-statements :: Consider the following statements about the Indian National Army (Azad Hind Fauj):
+[History/Medieval/hard/mcq] hist-medieval-sayyid-founder-khizr :: The founder of the Sayyid dynasty of the Delhi Sultanate, who took over the throne of Delhi in 1414, was
+[History/Medieval/hard/mcq] hist-medieval-mahmud-gawan-bahmani-pm :: The Bahmani Prime Minister famous for wide-ranging administrative and revenue reforms in the late 15th century
+[History/Medieval/hard/mcq] hist-medieval-balban-zill-i-ilahi :: Which Delhi Sultan formally propounded the theory of kingship as 'Zill-i-Ilahi' (Shadow of God on earth) to el
+[History/Medieval/hard/mcq] hist-medieval-rana-kumbha-mewar :: Rana Kumbha, the 15th-century ruler who commissioned the Vijay Stambha (Tower of Victory) at Chittor to commem
+[History/Medieval/easy/mcq] hist-medieval-mughal-founder-babur :: The founder of the Mughal Empire in India, who defeated Ibrahim Lodi at the First Battle of Panipat in 1526, w
+[History/Medieval/easy/mcq] hist-medieval-taj-mahal-builder :: The Taj Mahal at Agra was commissioned by which Mughal emperor?
+[History/Medieval/easy/mcq] hist-medieval-guru-nanak-founder-sikhism :: The founder and first Guru of the Sikh religion was
+[History/Ancient/medium/statement_based] hist-ancient-ivc-statements :: Consider the following statements about the Indus Valley (Harappan) Civilization:
+[History/Ancient/medium/statement_based] hist-ancient-ashoka-dhamma-statements :: Consider the following statements about Ashoka's Dhamma:
+[History/Ancient/medium/match_the_following] hist-ancient-dynasty-founders-set-a :: Match List-I (Ancient Indian dynasty) with List-II (Founder) and select the correct answer using the code give
+[History/Ancient/medium/match_the_following] hist-ancient-texts-authors-set-a :: Match List-I (Ancient Indian text) with List-II (Author) and select the correct answer using the code given be
+[History/Modern/hard/match_the_following] hist-modern-tribal-revolts-leaders-set-a :: Match List-I (Tribal or peasant uprising against British rule) with List-II (Principal leader) and select the 
+[History/Modern/hard/match_the_following] hist-modern-viceroys-events-set-a :: Match List-I (Viceroy) with List-II (Event associated with the tenure) and select the correct answer using the
+[History/Medieval/medium/statement_based] hist-medieval-iqta-statements :: Consider the following statements about the iqta system of the Delhi Sultanate:
+[History/Medieval/medium/match_the_following] hist-medieval-mughal-emperors-architecture :: Match List-I (Mughal emperor) with List-II (Major architectural work commissioned or completed during his reig
+[History/Modern/easy/statement_based] hist-modern-gandhi-movements-statements :: Consider the following statements about Mahatma Gandhi's leadership of Indian mass movements:
+[History/Modern/easy/match_the_following] hist-modern-slogans-leaders-set-a :: Match List-I (Leader) with List-II (Slogan popularly associated with them) and select the correct answer using
+[History/Ancient/easy/match_the_following] hist-ancient-rivers-cities-set-a :: Match List-I (River) with List-II (Ancient city situated on it) and select the correct answer using the code g
+[History/Modern/hard/statement_based] hist-modern-goi-1935-statements :: Consider the following statements about the Government of India Act, 1935:
+[History/Ancient/hard/match_the_following] hist-ancient-sangam-corpus-set-a :: Match List-I (Sangam-period Tamil literary work or collection) with List-II (Description) and select the corre
+
+=== history_batch_03_single.json (1 questions) ===
+[History/Medieval/medium/mcq] hist-medieval-sher-shah-tomb-sasaram :: Sher Shah Suri — credited with laying the foundation of the Grand Trunk Road and introducing the silver 'Rupiy
+
+=== bihar_special_batch_01_history_culture.json (62 questions) ===
+[Bihar-Specific/History & Culture/easy/mcq] bs1-hc-bihar-name-etymology :: The name 'Bihar' is believed to derive from the Persian/Arabic word 'Vihara', on account of the region's dense
+[Bihar-Specific/History & Culture/easy/mcq] bs1-hc-patna-sahib-guru-gobind-singh :: Patna's 'Takht Sri Patna Sahib' is one of Sikhism's five Takhts (seats of religious authority) because it mark
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-videgha-madhava-shatapatha :: Which Vedic-era text is the fullest source on the Aryanization of Magadh, describing King Videgha Madhava's ea
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-videha-janaka-philosophical-court :: In the kingdom of Videha, under which ruler did the court become a philosophical hub hosting both the sage Yaj
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-mahavira-jnatrika-clan :: The Vajji confederacy that ruled from Vaishali was made up of several clans. Which clan did Mahavira, the 24th
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-chetaka-dual-family-link :: The Licchavi king Chetaka of Vaishali is linked by family to two of the era's most significant figures through
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-udayin-pataliputra-shift :: Magadh's capital shifted several times before settling permanently. Which ruler is credited with moving it fro
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-magadh-capital-sequence :: Magadh's capital moved more than once in the pre-Mauryan period. Which of the following correctly orders the c
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-buddhist-council-2-split :: Of the four Buddhist Councils, which one is associated with the FIRST formal split of the Sangha into the Stha
+[Bihar-Specific/History & Culture/hard/statement_based] bs1-hc-two-tallest-stupas :: Consider the following statements regarding two of Bihar's famous stupas:
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-digambar-shwetambar-famine-split :: The split of Jainism into the Digambar and Shwetambar sects is traditionally traced to a 12-year famine in Mag
+[Bihar-Specific/History & Culture/hard/match_the_following] bs1-hc-buddhist-councils-match :: Match the Buddhist Council in List-I with its correct venue and royal patron in List-II.
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-nanda-non-kshatriya :: The Nanda dynasty, which preceded the Mauryas in Magadh, is notable in Puranic and Buddhist tradition chiefly 
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-alexander-troops-beas-mutiny :: Greek accounts state that Alexander's invasion of India stopped at the Beas river. What does the Bihar-history
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-saptanga-swami :: In Kautilya's Saptanga (seven-limb) theory of the state, applied to Mauryan administration, which limb corresp
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-mauryan-officers-samaharta-sannidhata :: Mauryan administration included several similarly-named revenue and judicial officers. Which of the following 
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-ashoka-bherighosha-dhammaghosha :: Ashoka's transformation after the Kalinga War is often summarised in his own inscriptions as a shift from whic
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-megasthenes-slavery-claim :: Megasthenes' Indika, describing Mauryan Pataliputra, notably claims which of the following about Mauryan socie
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-sudarshan-lake-multi-dynasty :: The Sudarshan Lake at Junagadh, though outside Bihar, was built and maintained across several dynasties whose 
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-chandragupta-ii-silver-coins :: Which Gupta ruler was the first to issue silver coins, after defeating the Western Shakas and adopting the tit
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-samudragupta-two-policies :: Samudragupta's Allahabad Prashasti describes two distinct policies he applied to conquered kings depending on 
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-aryabhata-pi-eclipses :: Which Gupta-era Bihar-born mathematician-astronomer, working from Kusumpur (Pataliputra), is credited with cal
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-mehrauli-pillar-chandra :: The Mehrauli Iron Pillar inscription names a king called 'Chandra', whose remarkable rust-resistant metallurgy
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-eran-inscription-sati :: The Eran inscription of 510 CE, issued under the later Gupta ruler Bhanugupta, is historically significant as 
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-vikramshila-dharmapala :: Which Pala ruler is credited with founding the Vikramshila University at Antichak (Bhagalpur), a major centre 
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-gopala-elected-founder :: The Pala dynasty is unusual in Indian dynastic history for how its founder, Gopala, came to power. What was di
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-tabaqat-i-nasiri-source :: Bakhtiyar Khilji's raid that led to the destruction of Nalanda and Vikramshila in the late 12th/early 13th cen
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-tughlaq-karnat-end :: Ghiyasuddin Tughlaq's 1324 campaign into north Bihar had which specific political consequence for the region's
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-sher-khan-tiger-title :: Farid Khan earned the title 'Sher Khan' -- later 'Sher Shah' -- after which episode, before he rose to promine
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-dagh-chehra-alauddin-revived :: Which system of horse-branding and soldier-description records, often credited to Sher Shah Suri's military re
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-sher-shah-patta-qabuliyat :: Sher Shah Suri's revenue system introduced the 'Rai' schedule fixing the state's share of produce, alongside w
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-man-singh-mughal-governor :: Which Mughal governor is most closely associated with bringing administrative stability to Bihar following Akb
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-patna-saltpetre-shora :: By the 17th century, Patna had become an international trading hub. Which commodity gave the city its most dis
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-buxar-vs-plassey :: The Battle of Buxar (1764) differed from the earlier Battle of Plassey (1757) in a crucial respect. What was i
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-shitab-rai-naib-diwan :: Under the Dual Government system established after the Treaty of Allahabad (1765), who was appointed Naib Diwa
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-tinkathiya-fraction :: Under the Tinkathiya system that shaped Champaran's indigo economy, what fraction of a peasant's landholding w
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-1857-bihar-popular-revolt :: Bihar's 1857 revolt is often distinguished from the uprisings at Delhi and Meerut on which specific ground?
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-kunwar-singh-severed-hand :: During the 1857 revolt, Kunwar Singh became famous for an act of extraordinary self-sacrifice while crossing t
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-brahmo-samaj-sati-abolition :: Which reform movement, associated with Raja Ram Mohan Roy, achieved the abolition of Sati in 1829 under Lord W
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-bankipur-1912-mudholkar :: Bihar's first Indian National Congress session was held in 1912 at Bankipur (Patna). Who presided over this se
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-bihar-1912-announced-vs-effective :: The decision to separate Bihar and Odisha from the Bengal Presidency was formally announced on 22 March 1912. 
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-raj-kumar-shukla :: Which local Bihar farmer met Gandhi at the 1916 Lucknow Congress session and persuaded him to visit Champaran 
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-bihar-salt-chaukidari-boycott :: Since Bihar is landlocked, the 1930 Civil Disobedience Movement's Salt Satyagraha had to be adapted from Gandh
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-patna-secretariat-firing :: During the 1942 Quit India Movement, seven students were killed while trying to hoist the national flag at whi
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-jp-azad-dasta-nepal-border :: Jayaprakash Narayan's underground 'Azad Dasta' during the Quit India Movement operated primarily from which ba
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-phanindra-ghosh-approver :: Phanindra Nath Ghosh's role in the Bhagat Singh case, and its consequence in Bihar, illustrates which sequence
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-searchlight-sachchidananda-sinha :: Which Bihar newspaper, founded by Sachchidananda Sinha in 1918, became the state's most influential pro-Congre
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-sri-krishna-sinha-zamindari-abolition :: Sri Krishna Sinha, Bihar's first Chief Minister ('Bihar Kesari'), is particularly remembered for which distinc
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-santhal-four-brothers :: The Santhal Rebellion of 1855-56, one of the largest pre-1857 tribal uprisings, was led by four brothers. Whic
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-birsa-munda-khuntkatti :: Birsa Munda's 'Ulgulan' rebellion was fundamentally a reaction against the British replacing which traditional
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-madhubani-kachni-vs-bharni :: Madhubani painting's 'Kachni' style is distinguished from the 'Bharni' style chiefly by which feature?
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-chhath-sandhya-arghya-day3 :: During Chhath Puja's four-day ritual sequence, on which day do devotees offer Sandhya Arghya (evening prayers)
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-maithili-vs-bhojpuri-status :: Both Maithili and Bhojpuri are major languages of Bihar with deep literary traditions, yet they differ sharply
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-somapura-dharmapala :: Somapura Mahavihara, one of the great Buddhist monastic universities of the Pala era, was founded by which rul
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-bihari-students-conference :: The Bihari Students' Conference, founded in 1906, is significant in Bihar's freedom movement chiefly because i
+[Bihar-Specific/History & Culture/medium/mcq] bs1-hc-panjpariya-cult :: The 'Panjpariya' cult, a distinctive feature of Bihar's medieval religious landscape, is notable for which cha
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-vidyapati-nachari-bhakti :: Vidyapati, Mithila's most celebrated poet, is usually remembered for his secular court poetry, yet his body of
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-maner-sharif-two-dargahs :: Maner Sharif, Bihar's oldest major Sufi centre, is home to two distinct dargahs. Which pairing correctly ident
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-patna-qalam-vs-madhubani :: Patna Qalam, a distinct miniature-painting style that flourished under British patronage, differs from Madhuba
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-rohtasgarh-sher-shah-man-singh :: Rohtasgarh Fort, on the Kaimur plateau, illustrates a rare instance of strategic continuity across two very di
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-golghar-irony-never-used :: The Golghar in Patna, built in 1786 by Captain John Garstin after the 1770 famine, carries a notable irony alo
+[Bihar-Specific/History & Culture/hard/mcq] bs1-hc-nalanda-balaputradeva-grant :: Nalanda's continued upkeep under the Pala dynasty involved an unusual diplomatic gesture from outside the Indi
+
+=== bihar_special_batch_02_geography.json (46 questions) ===
+[Bihar-Specific/Geography/easy/mcq] bs1-geo-kosi-sorrow-of-bihar :: Which river is often called the 'Sorrow of Bihar' for its history of repeatedly changing course and causing de
+[Bihar-Specific/Geography/easy/mcq] bs1-geo-valmiki-national-park :: Bihar's only National Park and Tiger Reserve, home to an extension of Nepal's Chitwan forest ecosystem, is loc
+[Bihar-Specific/Geography/easy/mcq] bs1-geo-kanwar-jheel-ramsar :: Which is Bihar's only Ramsar-designated wetland site, also recognised as Asia's largest freshwater oxbow lake?
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-foredeep-theory :: According to Edward Suess's 'foredeep' theory, the Indo-Gangetic plain of north Bihar was formed as a depressi
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-bhangar-vs-khadar :: North Bihar's older alluvium (Bhangar) and newer alluvium (Khadar) differ in several ways. Which statement cor
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-north-bihar-seismic-zone :: Why does north Bihar fall into a high-intensity seismic zone despite being a flat alluvial plain far from any 
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-aggradation-avulsion :: North Bihar's rivers are prone to a specific pattern of channel behaviour: silt deposition raises a river's ow
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-gandak-kosi-doab :: Which north Bihar Doab (the tract between two rivers) is the largest and most centrally located, lying between
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-tal-region-mechanism :: South Bihar's 'Tal' region -- a belt of seasonal backwater lakes stretching roughly from Patna to Lakhisarai -
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-falgu-rubber-dam :: India's first rubber dam, built to ensure a year-round water supply for the Pind Daan ancestral rites at Gaya,
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-karmanasa-inauspicious :: The Karmanasa river, unlike most of Bihar's other rivers, is traditionally regarded very differently in local 
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-kosi-mechi-link :: The Kosi-Mechi river-linking project, one of India's major interlinking-of-rivers initiatives, is designed to 
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-antecedent-drainage :: Rivers like the Kosi, Gandak and Ghaghra are described in Bihar's geography as exhibiting 'antecedent drainage
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-son-canal-shahabad :: Bihar's oldest irrigation canal system, built in 1874 and drawing from the Indrapuri Barrage, helped make whic
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-ahar-pyne-south-bihar :: The traditional Ahar-Pyne irrigation system, now being revived under the 'Jal-Jeevan-Hariyali' mission, is mos
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-hot-springs-mechanism :: Bihar's hot springs at Rajgir and in the Kharagpur hills are best explained by which mechanism?
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-brahmakund-hottest-spring :: Which of Rajgir's hot springs is recorded as the hottest in Bihar, reaching approximately 87°C, and has long b
+[Bihar-Specific/Geography/medium/match_the_following] bs1-geo-landforms-crop-match :: Match the local landform in List-I with the crop or land-use it is best known for in List-II.
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-koppen-cwg :: Under the Koppen climate classification, Bihar falls mainly into the 'Cwg' category. What does this classifica
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-hathiya-nakshatra :: The 'Hathiya' nakshatra period, in Bihar's agricultural calendar, is critical for which reason?
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-gaya-temperature-extremes :: Which single district is officially recorded as having BOTH the highest and the lowest recorded temperatures i
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-wheat-vernalization-climate :: Warmer winters linked to climate change are creating a specific agronomic problem for Bihar's wheat crop. What
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-karail-kewal-self-ploughing :: Which soil type, found chiefly in the Rohtas-Bhagalpur belt, is notable for developing deep cracks on drying t
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-reh-usar-cause :: Western districts like Saran and Siwan face a soil-salinity problem locally called Reh or Usar. What is its pr
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-moist-deciduous-sal :: Which forest type dominates West Champaran and the Kishanganj-Purnia belt, where annual rainfall exceeds 120 c
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-vikramshila-dolphin-sanctuary :: India's first and only sanctuary dedicated to the Gangetic Dolphin is located in Bihar. In which district, and
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-maize-belt-significance :: Bihar's north-eastern 'Maize Belt', centred on Begusarai, Khagaria and Katihar, is nationally significant chie
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-mineral-belt-arc :: Bihar's mineral belt -- covering pyrite, limestone, bauxite, mica and gold -- follows which broad geographic p
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-pyrite-monopoly-amjhore :: Bihar holds a near-total national monopoly in one particular mineral, concentrated at Amjhore in Rohtas distri
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-jamui-gold-sono-project :: Recent geological surveys by the GSI have identified a potentially very large gold reserve in which Bihar dist
+[Bihar-Specific/Geography/hard/statement_based] bs1-geo-transport-statements :: Consider the following statements about Bihar's transport infrastructure:
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-nw1-ganga :: Which national waterway, India's longest and most important inland waterway, passes through Bihar along the Ga
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-first-railway-howrah-mughalsarai :: Bihar's first railway line, part of the East Indian Railway, connected which two points when established in 18
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-west-champaran-double-border :: Among Bihar's 38 districts, which one touches BOTH Nepal and Uttar Pradesh, and is also the state's largest di
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-sonpur-ganga-gandak-confluence :: Sonpur, in Saran district, is geographically significant chiefly as the confluence point of which two rivers -
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-patna-triple-confluence :: Patna is geographically distinctive among Bihar's major cities as a 'triple confluence' point. Which three riv
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-muzaffarpur-burhi-gandak :: Muzaffarpur, often called the 'Commercial Capital of North Bihar' and globally known as the 'Litchi Kingdom', 
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-gopalganj-highest-sex-ratio :: Which district records Bihar's highest sex ratio, ahead of the state average?
+[Bihar-Specific/Geography/hard/match_the_following] bs1-geo-district-superlatives-match :: Match the Bihar district in List-I with the geographic or economic superlative it holds in List-II.
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-kishanganj-highest-rainfall :: Which district is recorded as receiving Bihar's highest average rainfall, while Aurangabad records the lowest?
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-balsundari-sugarcane :: Which soil type is specifically associated with high-quality sugarcane cultivation in northwest Bihar district
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-nh31-north-bihar-lifeline :: Which highway is commonly referred to as the 'lifeline of North Bihar', specifically for connecting the region
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-katihar-kosi-mahananda :: Katihar district holds particular hydrological significance because it marks:
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-someshwar-highest-point :: The Someshwar Range, an extension of the Himalayan Shiwalik foothills located in West Champaran, is notable fo
+[Bihar-Specific/Geography/hard/mcq] bs1-geo-kaimur-largest-forest-pct :: Bihar's forest cover, at roughly 7.84% per the India State of Forest Report, falls well short of the 33% natio
+[Bihar-Specific/Geography/medium/mcq] bs1-geo-bhimbandh-forest-hotsprings :: Bihar's Bhimbandh Wildlife Sanctuary, located in the Kharagpur hills of Munger district, is notable for combin
+
+=== bihar_special_batch_03_economy.json (13 questions) ===
+[Bihar-Specific/Economy/medium/mcq] bs1-eco-first-sugar-mill-1904 :: Bihar's first sugar mill, historically the industry the state's economy was long built around, was established
+[Bihar-Specific/Economy/medium/mcq] bs1-eco-barauni-refinery-ussr :: The Barauni Oil Refinery, Bihar's only oil refinery, was established in 1964 in Begusarai with assistance from
+[Bihar-Specific/Economy/medium/mcq] bs1-eco-ethanol-policy-2021-first-state :: Bihar's Ethanol Production Promotion Policy (2021), aimed at using surplus maize and sugarcane for fuel blendi
+[Bihar-Specific/Economy/medium/mcq] bs1-eco-green-budget-2020-21 :: Bihar introduced a 'Green Budget' -- a budget statement specifically tracking climate and environment-linked e
+[Bihar-Specific/Economy/medium/mcq] bs1-eco-jeevika-shg-mechanism :: JEEViKA, Bihar's World Bank-supported rural livelihoods programme, has primarily driven the state's rural econ
+[Bihar-Specific/Economy/medium/mcq] bs1-eco-biada-nodal-agency :: BIADA (Bihar Industrial Area Development Authority) functions primarily as:
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-hydroelectric-corp-1992 :: The Bihar State Hydroelectric Power Corporation, established in 1992, reflects which structural feature of Bih
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-startup-policy-yuva-not-component :: The Bihar Startup Policy 2022 is structured around a 'YUVA' framework. Which of the following was NOT one of i
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-freight-equalization-mechanism :: The central government's Freight Equalization Policy (1952-1993) is widely cited as a structural reason for Bi
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-remittance-consumption-driver :: Bihar's economy is often described as 'consumption-driven' despite a comparatively thin industrial base. Which
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-makhana-gi-export-value :: Mithila Makhana's 2022 GI (Geographical Indication) tag is economically significant beyond its cultural recogn
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-agri-workforce-gsdp-mismatch :: Bihar's economy shows a persistent structural mismatch between its workforce and its output. What is this mism
+[Bihar-Specific/Economy/hard/mcq] bs1-eco-sugarcane-primacy-cash-crop :: Historically, which cash crop held primacy in Bihar's agricultural economy before tobacco and jute grew into s
+
+=== bihar_special_batch_04_polity.json (5 questions) ===
+[Bihar-Specific/Polity & Governance/medium/mcq] bs1-pol-pri-50pct-women-2006 :: Bihar became the first state in India to reserve 50% of Panchayati Raj seats and leadership posts (Mukhiya, Pr
+[Bihar-Specific/Polity & Governance/medium/mcq] bs1-pol-patna-hc-1916-hardinge :: The Patna High Court was formally established through Letters Patent issued by which authority, and inaugurate
+[Bihar-Specific/Polity & Governance/hard/mcq] bs1-pol-caste-survey-hc-strikedown :: Following Bihar's 2023 caste-based survey, the state raised reservation for SC/ST/EBC/BC categories from 50% t
+[Bihar-Specific/Polity & Governance/hard/mcq] bs1-pol-assembly-vs-council-election-method :: Bihar's Vidhan Sabha and Vidhan Parishad differ in a fundamental structural way beyond just their size. Which 
+[Bihar-Specific/Polity & Governance/hard/match_the_following] bs1-pol-local-body-heads-match :: Match the local self-government tier in List-I with the title given to its elected head in List-II.
+
+=== bihar_special_batch_05_recent_developments.json (24 questions) ===
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-yuva-shakti-skill-centres :: Under 'Saat Nischay 2.0' (2020-2025), the resolve 'Yuva Shakti, Bihar Ki Pragati' is centred on establishing w
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-sashakt-mahila-35pct-horizontal :: Bihar's 'Sashakt Mahila, Saksham Mahila' resolve (Saat Nischay 2.0) provides for what specific reservation in 
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-har-khet-sinchai :: Which Saat Nischay 2.0 resolve specifically targets bringing irrigation water to every cultivated field in the
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-swachh-gaon-solar-streetlight :: The 'Swachh Gaon, Samriddh Gaon' resolve under Saat Nischay 2.0 introduced which flagship initiative for rural
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-swachh-shahar-slum-housing :: The 'Swachh Shahar, Vikassit Shahar' resolve addresses urban development, with a specific commitment toward wh
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-sulabh-samparkta-roads :: 'Sulabh Samparkta', a resolve under Saat Nischay 2.0, primarily concerns which area of infrastructure?
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-atirikt-swasthya-telemedicine :: 'Atirikt Swasthya Suvidha', the healthcare-focused resolve under Saat Nischay 2.0, places specific emphasis on
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-kanya-utthan-birth-to-graduation :: The Mukhyamantri Kanya Utthan Yojana, launched in 2018, is distinctive among Bihar's girl-child welfare scheme
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-student-credit-card-girls-pwd-0pct :: Bihar's Student Credit Card scheme, launched on 2 October 2016, provides low-interest education loans, with a 
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-kyp-soft-skills-it :: The Kushal Yuva Karyakram (KYP), launched in 2016, mandates which kind of training for enrolled students?
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-vridhajan-pension-age-tiered :: The Mukhyamantri Vridhajan Pension Yojana, launched in 2019, structures its pension amount around which criter
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-balak-balika-protsahan-10th-first-division :: The Mukhyamantri Balak/Balika Protsahan Yojana, one of Bihar's older DBT schemes (2007), specifically targets 
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-jal-jeevan-hariyali-human-chain :: The Jal-Jeevan-Hariyali Abhiyan, launched 2 October 2019, drew international attention for which specific reco
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-har-ghar-bijli-smart-meters :: Bihar achieved 'Har Ghar Bijli' (electricity to every household) in October 2018, alongside which additional d
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-har-ghar-nal-ka-jal-coverage :: Bihar's 'Har Ghar Nal Ka Jal' initiative, part of the original Saat Nishchay programme, is notable for which a
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-kanya-vivah-bpl-families :: The Mukhyamantri Kanya Vivah Yojana provides financial assistance specifically to which category of families f
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-mahila-rozgar-entrepreneurship :: The Mukhyamantri Mahila Rozgar Yojana is designed to support women primarily through which mechanism?
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-deshi-gau-kendra-purnia-fatuha :: Bihar has established dedicated Deshi Gau Samrakshan Kendras (indigenous cattle conservation centres) in which
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-karpoori-thakur-kisan-nidhi-namesake :: The 'Jananayak Karpoori Thakur Kisan Samman Nidhi', a farmer-support scheme, is named in honour of which Bihar
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-4th-agri-roadmap-digital-climate :: Bihar's Fourth Agriculture Road Map, covering the period 2023-2028, places particular emphasis on which two th
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-logistics-policy-2023-dry-ports :: The Bihar Logistics Policy (2023) is centred on reducing the cost of trade primarily through which kind of inf
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-mukhyamantri-udyami-50-50-structure :: The Mukhyamantri Udyami Yojana supports new entrepreneurs, particularly youth and women, through which specifi
+[Bihar-Specific/Recent Developments/medium/mcq] bs1-rd-saat-nischay-2-continuation :: Bihar's 'Saat Nischay 2.0' (2020-2025) programme is best understood as:
+[Bihar-Specific/Recent Developments/hard/mcq] bs1-rd-jeevikoparjan-vs-swayam-sahayata :: Bihar runs two schemes that both provide transitional cash support to people navigating a change in economic c
+
+TOTAL = 300

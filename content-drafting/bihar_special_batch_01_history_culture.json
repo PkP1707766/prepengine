@@ -1,0 +1,2044 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper I, Batch 01 (History & Culture topic, rebalanced 62-question allocation -- 53 original + 9 added after the Economy-shortfall rebalance)",
+    "generated_at": "2026-09-02",
+    "generator": "Claude Code, human-drafted from Bihar Special Orange Book (Perfection IAS / Dhananjay IAS), pages 4-58, full read",
+    "total_questions": 62,
+    "target_cells": {
+      "Bihar_History & Culture_easy_mcq": 2,
+      "Bihar_History & Culture_medium_mcq": 33,
+      "Bihar_History & Culture_hard_mcq": 25,
+      "Bihar_History & Culture_hard_statement_based": 1,
+      "Bihar_History & Culture_hard_match_the_following": 1
+    },
+    "status_all": "draft",
+    "quality_bar_notes": [
+      "New standing bar (Priyadarshee, this batch onward): favor 2+-fact synthesis over single-fact recall; distractors must be genuinely plausible to a partial-knowledge reader, not obviously-wrong filler; lean into statement_based/match_the_following depth where the format is used; test commonly-confused pairs directly rather than avoiding them.",
+      "Option-craft audit applied while drafting, not as afterthought: correct-option length deliberately varied (not always longest/shortest), no absolutist distractor wording (always/never/only/none), grammatical fit checked across all 4 options per question, correct-answer position (a/b/c/d) tracked and balanced across the batch, match_the_following's wrong options include at least one '3-correct-pairs-1-wrong-pair' near-miss rather than only fully-clean vs fully-scrambled options.",
+      "Every fact traced to Bihar Special Orange Book (Perfection IAS/Dhananjay IAS) pages 4-58, read in full this session -- not assumed from general knowledge. Many facts additionally cross-checked against the book's own embedded PYQ tables (real BPSC cycle+year citations), which the notes preserve but no drafted question copies verbatim.",
+      "concept_group_id namespace 'bs1-hc-*' (Bihar Special Paper I, History & Culture) -- will not collide with the separate 'hist-*' namespace used by the standalone BPSC History Full Syllabus bank, since these are different subjects (Bihar-Specific vs History) in the schema."
+    ],
+    "flagged_for_extra_review": [
+      "bs1-023 (Mehrauli Iron Pillar's 'Chandra'): the pillar's king 'Chandra' is CONVENTIONALLY identified with Chandragupta II in most BPSC-prep material and in this source, but historians are not unanimous (Chandragupta I and Samudragupta are also proposed by some scholars). Question is framed around the conventional/textbook identification since that is what BPSC would test, but flagging the underlying scholarly uncertainty per the batch's zero-tolerance-for-unflagged-uncertainty rule.",
+      "bs1-048 (Sri Krishna Sinha's birthplace): the source names 'Shekhpura' in one place; other standard references commonly cite Khagaria district's Maur village. Question deliberately avoids testing birthplace specifically and tests his zamindari-abolition/industrial-vision achievements instead, to sidestep this unresolved discrepancy -- flagging so an SME knows why birthplace was avoided, not overlooked."
+    ],
+    "corrections_from_initial_meta_delivery": [
+      "bs1-041 was originally flagged for SME review because the source gives both '22 March 1912' and '1 April 1912' for the Bihar-Bengal separation. On review this is not a genuine discrepancy needing an SME call -- it is the same announced-vs-effective pattern as the Bengal Partition question in the History paper (Curzon announced the partition in July 1905; it took effect 16 October 1905). 22 March 1912 was the announcement date, 1 April 1912 the date the province actually came into being (and the date Bihar Diwas commemorates). The question was reframed to test this distinction directly, and the flag was removed since the ambiguity is resolved, not merely worked around."
+    ],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "JP Narayan's Bihar Congress Socialist Party founding year: source shows both '1931' and '1934' in different passages (likely national vs Bihar-unit founding, but not stated explicitly as such). Skipped a dedicated question on this exact date rather than guess; Batch 02 or later could cover this once clarified.",
+      "Individual Madhubani/Manjusha living artists (Jagdamba Devi, Mahasundari Devi, Bauwa Devi, Subhadra Devi) and their specific honors -- covered lightly via one question, but there is room for a dedicated 'match the artist to their craft/honor' question later given how much distinct material the source has on each."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy, especially the 3 flagged entries above.",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='History & Culture', type, difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs1-001",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "The name 'Bihar' is believed to derive from the Persian/Arabic word 'Vihara', on account of the region's dense concentration of what kind of structures at the time of the Turkish invasions?",
+      "options": [
+        {
+          "body": "Fortified royal palaces",
+          "isCorrect": false
+        },
+        {
+          "body": "Jain temple complexes",
+          "isCorrect": false
+        },
+        {
+          "body": "Buddhist monasteries",
+          "isCorrect": true
+        },
+        {
+          "body": "Sufi shrines (dargahs)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar was so thickly dotted with Buddhist monasteries (Viharas) -- Nalanda, Odantapuri, Vikramshila among them -- that Turkish invaders referred to the region as 'Ard-e-Vihara' (land of monasteries), which evolved into the name 'Bihar'.",
+      "concept_group_id": "bs1-hc-bihar-name-etymology",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-002",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "easy",
+      "body": "Patna's 'Takht Sri Patna Sahib' is one of Sikhism's five Takhts (seats of religious authority) because it marks the birthplace of which Sikh Guru?",
+      "options": [
+        {
+          "body": "Guru Nanak Dev, the first Guru",
+          "isCorrect": false
+        },
+        {
+          "body": "Guru Tegh Bahadur, the ninth Guru",
+          "isCorrect": false
+        },
+        {
+          "body": "Guru Har Rai, the seventh Guru",
+          "isCorrect": false
+        },
+        {
+          "body": "Guru Gobind Singh, the tenth Guru",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Guru Gobind Singh, the tenth and last human Sikh Guru, was born in Patna in 1666 during Aurangzeb's reign, making Patna Sahib one of Sikhism's five Takhts.",
+      "concept_group_id": "bs1-hc-patna-sahib-guru-gobind-singh",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-003",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Vedic-era text is the fullest source on the Aryanization of Magadh, describing King Videgha Madhava's eastward migration behind the god Agni Vaishvanara until he was stopped at the river Sadanira (modern Gandak)?",
+      "options": [
+        {
+          "body": "The Rigveda",
+          "isCorrect": false
+        },
+        {
+          "body": "The Shatapatha Brahmana",
+          "isCorrect": true
+        },
+        {
+          "body": "The Atharvaveda",
+          "isCorrect": false
+        },
+        {
+          "body": "The Panchavimsha Brahmana",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Videgha Madhava legend, describing Aryan expansion east of the Sadanira (Gandak) river into Videha, is recorded in the Shatapatha Brahmana -- the most complete Vedic-era account of this eastward Aryanization.",
+      "concept_group_id": "bs1-hc-videgha-madhava-shatapatha",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-004",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "In the kingdom of Videha, under which ruler did the court become a philosophical hub hosting both the sage Yajnavalkya (author of the Shatapatha Brahmana) and the female philosopher Gargi Vachaknavi?",
+      "options": [
+        {
+          "body": "Nimi, the kingdom's founder",
+          "isCorrect": false
+        },
+        {
+          "body": "Siradhwaja Janaka, father of Sita",
+          "isCorrect": true
+        },
+        {
+          "body": "Mithi Janaka, who founded the city of Mithila",
+          "isCorrect": false
+        },
+        {
+          "body": "Videgha Madhava, who first crossed the Sadanira",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Under Siradhwaja Janaka -- father of Sita in the Ramayana tradition -- Videha's court became a center of philosophical debate, hosting figures like Yajnavalkya and Gargi Vachaknavi.",
+      "concept_group_id": "bs1-hc-videha-janaka-philosophical-court",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-005",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Vajji confederacy that ruled from Vaishali was made up of several clans. Which clan did Mahavira, the 24th Jain Tirthankara, belong to?",
+      "options": [
+        {
+          "body": "Licchavi (of Vaishali)",
+          "isCorrect": false
+        },
+        {
+          "body": "Videha (of Mithila)",
+          "isCorrect": false
+        },
+        {
+          "body": "Malla (of Kushinagar)",
+          "isCorrect": false
+        },
+        {
+          "body": "Jnatrika (of Kundagrama)",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mahavira was born into the Jnatrika clan at Kundagrama, one of the constituent clans of the Vajji confederacy centred on Vaishali; his father Siddhartha headed this clan.",
+      "concept_group_id": "bs1-hc-mahavira-jnatrika-clan",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-006",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Licchavi king Chetaka of Vaishali is linked by family to two of the era's most significant figures through two different female relatives. Which pairing correctly identifies both links?",
+      "options": [
+        {
+          "body": "His sister Trishala was Bimbisara's mother, and his daughter Chellana was Mahavira's wife",
+          "isCorrect": false
+        },
+        {
+          "body": "His daughter Trishala married Ajatshatru, and his sister Chellana was Mahavira's mother",
+          "isCorrect": false
+        },
+        {
+          "body": "His sister Trishala was Mahavira's mother, and his daughter Chellana married Bimbisara",
+          "isCorrect": true
+        },
+        {
+          "body": "His sister Chellana was Mahavira's mother, and his daughter Trishala married the Magadha king",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Chetaka's sister Trishala was Mahavira's mother, while his own daughter Chellana was married to the Haryanka king Bimbisara -- linking the Vajji ruling house to both the Jain tradition and the Magadhan throne in a single generation.",
+      "concept_group_id": "bs1-hc-chetaka-dual-family-link",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-007",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Magadh's capital shifted several times before settling permanently. Which ruler is credited with moving it from Rajgir to Pataliputra for the first time, recognising the strategic value of its river confluence?",
+      "options": [
+        {
+          "body": "Udayin",
+          "isCorrect": true
+        },
+        {
+          "body": "Bimbisara",
+          "isCorrect": false
+        },
+        {
+          "body": "Ajatshatru, who built the outpost of Pataligrama",
+          "isCorrect": false
+        },
+        {
+          "body": "Kalashoka (Kakavarna)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Udayin shifted the Magadhan capital permanently from the hill-fort of Rajgir to Pataliputra, at the confluence of the Ganga, Son, Gandak and Punpun. Ajatshatru had earlier only built a military outpost, Pataligrama, at the site -- Udayin made it the actual capital.",
+      "concept_group_id": "bs1-hc-udayin-pataliputra-shift",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-008",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Magadh's capital moved more than once in the pre-Mauryan period. Which of the following correctly orders the capital's location changes?",
+      "options": [
+        {
+          "body": "Rajgir (Haryanka) -> Pataliputra (Udayin) -> Vaishali (Shishunaga) -> Pataliputra (Kalashoka)",
+          "isCorrect": true
+        },
+        {
+          "body": "Pataliputra (Udayin) -> Rajgir (Haryanka) -> Vaishali (Shishunaga) -> Pataliputra (Kalashoka)",
+          "isCorrect": false
+        },
+        {
+          "body": "Rajgir (Haryanka) -> Vaishali (Udayin) -> Pataliputra (Shishunaga) -> Rajgir (Kalashoka)",
+          "isCorrect": false
+        },
+        {
+          "body": "Vaishali (Haryanka) -> Rajgir (Udayin) -> Pataliputra (Shishunaga) -> Vaishali (Kalashoka)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The sequence runs: Rajgir under the Haryanka dynasty, shifted to Pataliputra by Udayin, then moved to Vaishali under Shishunaga (who had just defeated Avanti), and finally back to Pataliputra permanently under Kalashoka.",
+      "concept_group_id": "bs1-hc-magadh-capital-sequence",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-009",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Of the four Buddhist Councils, which one is associated with the FIRST formal split of the Sangha into the Sthaviravadi (orthodox) and Mahasanghika (liberal) factions?",
+      "options": [
+        {
+          "body": "The First Council at Rajgir, under Ajatshatru",
+          "isCorrect": false
+        },
+        {
+          "body": "The Second Council at Vaishali, under Kalashoka",
+          "isCorrect": true
+        },
+        {
+          "body": "The Third Council at Pataliputra, under Ashoka",
+          "isCorrect": false
+        },
+        {
+          "body": "The Fourth Council at Kundalvan, under Kanishka",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Second Buddhist Council, held at Vaishali under the patronage of Kalashoka, produced the Sangha's first major split into Sthaviravadi and Mahasanghika factions. The Fourth Council, much later, finalised the Hinayana-Mahayana division.",
+      "concept_group_id": "bs1-hc-buddhist-council-2-split",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-010",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "statement_based",
+      "difficulty": "hard",
+      "body": "Consider the following statements regarding two of Bihar's famous stupas:",
+      "options": [
+        {
+          "body": "Only statement 1 is correct",
+          "isCorrect": false
+        },
+        {
+          "body": "Both statements are correct",
+          "isCorrect": true
+        },
+        {
+          "body": "Only statement 2 is correct",
+          "isCorrect": false
+        },
+        {
+          "body": "Neither statement is correct",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kesariya Stupa (East Champaran), originally built by the Licchavis and later enlarged under both the Mauryas and the Guptas, is widely cited as among the world's tallest ancient (mud-brick) stupas. The Vishwa Shanti Stupa at Rajgir, by contrast, is a 20th-century Japanese-built peace pagoda symbolising the four stages of the Buddha's life, reachable by ropeway. Both claims are correct and refer to two genuinely different structures -- a frequent point of confusion.",
+      "concept_group_id": "bs1-hc-two-tallest-stupas",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "statements": [
+          "Statement 1: The Kesariya Stupa in East Champaran, originally built by the Licchavis and later enlarged under the Mauryas and Guptas, is regarded as one of the world's tallest ancient stupas.",
+          "Statement 2: The Vishwa Shanti Stupa (Peace Pagoda) at Rajgir is a modern, 20th-century structure built by Japanese Buddhists, distinct from the ancient Kesariya Stupa."
+        ],
+        "closing": "Which of the statements given above is/are correct?"
+      }
+    },
+    {
+      "batch_ref": "bs1-011",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The split of Jainism into the Digambar and Shwetambar sects is traditionally traced to a 12-year famine in Magadh. What triggered the split, according to this account?",
+      "options": [
+        {
+          "body": "Bhadrabahu's group migrated south and continued strict nudity, while those who stayed under Sthulabhadra permitted white robes during the famine, and the practices later hardened into separate sects",
+          "isCorrect": true
+        },
+        {
+          "body": "A doctrinal dispute between Bhadrabahu and Sthulabhadra over the correct interpretation of the Angas, a disagreement that predated the famine and remained unresolved even after Vallabhi",
+          "isCorrect": false
+        },
+        {
+          "body": "Chandragupta Maurya, after his own conversion to Jainism, formally ordered the Sangha split into two administratively separate wings to smooth his transition into asceticism",
+          "isCorrect": false
+        },
+        {
+          "body": "The Second Jain Council at Vallabhi formally created the two sects when Devarddhi Kshamashraman compiled two separate, incompatible sets of the Angas and Upangas for each",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The split originated from a practical famine-era migration, not an initial doctrinal quarrel: Bhadrabahu led a group (including Chandragupta Maurya, who had abdicated) to Karnataka, retaining strict nudity, while those who stayed on under Sthulabhadra permitted white clothing to survive the famine. These practices later solidified into the Digambar and Shwetambar sects. The Vallabhi council (512 CE) only compiled the Shwetambar scriptures in writing much later; it did not create the split.",
+      "concept_group_id": "bs1-hc-digambar-shwetambar-famine-split",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-012",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "match_the_following",
+      "difficulty": "hard",
+      "body": "Match the Buddhist Council in List-I with its correct venue and royal patron in List-II.",
+      "options": [
+        {
+          "body": "a-1, b-2, c-4, d-3",
+          "isCorrect": false
+        },
+        {
+          "body": "a-2, b-1, c-3, d-4",
+          "isCorrect": false
+        },
+        {
+          "body": "a-3, b-4, c-1, d-2",
+          "isCorrect": false
+        },
+        {
+          "body": "a-1, b-2, c-3, d-4",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The First Council (a) was held at Rajgir under Ajatshatru (1). The Second (b) was held at Vaishali under Kalashoka (2). The Third (c) was held at Pataliputra under Ashoka (3). The Fourth (d) was held at Kundalvan under Kanishka (4) -- correctly a-1, b-2, c-3, d-4. Two of the wrong options are deliberately close: swapping only the Third and Fourth Councils' venues (c-4, d-3) still gets the First and Second exactly right, and swapping only the First and Second (a-2, b-1) still gets the Third and Fourth exactly right -- in a 4-item match, getting 3 of 4 pairs right is mathematically impossible (the last pair is then forced correct too), so a single two-item swap, leaving the other two genuinely correct, is the closest a wrong option can get -- which is exactly why every pair needs checking, not just the first one or two.",
+      "concept_group_id": "bs1-hc-buddhist-councils-match",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft",
+      "question_data": {
+        "list_1": [
+          "a. First Buddhist Council",
+          "b. Second Buddhist Council",
+          "c. Third Buddhist Council",
+          "d. Fourth Buddhist Council"
+        ],
+        "list_2": [
+          "1. Rajgir, under Ajatshatru",
+          "2. Vaishali, under Kalashoka",
+          "3. Pataliputra, under Ashoka",
+          "4. Kundalvan, under Kanishka"
+        ]
+      }
+    },
+    {
+      "batch_ref": "bs1-013",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Nanda dynasty, which preceded the Mauryas in Magadh, is notable in Puranic and Buddhist tradition chiefly because it was:",
+      "options": [
+        {
+          "body": "The first Magadhan dynasty to shift its capital away from Pataliputra",
+          "isCorrect": false
+        },
+        {
+          "body": "The first pan-Indian empire to be ruled mainly by a council of ministers rather than a king",
+          "isCorrect": false
+        },
+        {
+          "body": "The first non-Kshatriya dynasty to rule Magadh, and was accordingly labelled 'low-born' in later texts",
+          "isCorrect": true
+        },
+        {
+          "body": "The first Magadhan dynasty to formally patronise Buddhism over Jainism",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Nandas, founded by Mahapadma Nanda, were the first non-Kshatriya dynasty to hold the Magadhan throne, which later Puranic and Buddhist texts used to brand them as low-born despite their considerable military success in building the first pan-Indian empire reaching south of the Vindhyas.",
+      "concept_group_id": "bs1-hc-nanda-non-kshatriya",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-014",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Greek accounts state that Alexander's invasion of India stopped at the Beas river. What does the Bihar-history evidence around Dhanananda's army suggest about why?",
+      "options": [
+        {
+          "body": "Alexander himself judged Dhanananda's forces unbeatable after intelligence reports on Nanda troop strength, and personally called off the campaign",
+          "isCorrect": false
+        },
+        {
+          "body": "A treaty was signed between Alexander and envoys sent by Dhanananda, averting any confrontation before the two armies could meet near the Beas",
+          "isCorrect": false
+        },
+        {
+          "body": "Alexander's own troops, not Alexander, mutinied and refused to advance further on hearing of Dhanananda's massive Nanda army",
+          "isCorrect": true
+        },
+        {
+          "body": "Dhanananda's forces launched a pre-emptive attack across the Beas that forced Alexander's army into a hasty retreat toward the Indus",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "It was Alexander's own war-weary troops who mutinied at the Beas river on learning of the sheer scale of Dhanananda's army (reportedly 200,000 infantry, 20,000 cavalry, 2,000 chariots and 6,000 elephants) -- not a personal judgement by Alexander, and not any direct engagement with Nanda forces.",
+      "concept_group_id": "bs1-hc-alexander-troops-beas-mutiny",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-015",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "In Kautilya's Saptanga (seven-limb) theory of the state, applied to Mauryan administration, which limb corresponds to the king himself?",
+      "options": [
+        {
+          "body": "Amatya",
+          "isCorrect": false
+        },
+        {
+          "body": "Kosha",
+          "isCorrect": false
+        },
+        {
+          "body": "Swami",
+          "isCorrect": true
+        },
+        {
+          "body": "Danda",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "In the Saptanga model, Swami (the king, likened to the 'head') is the first of the seven limbs; Amatya is the bureaucracy ('eyes'), Kosha the treasury ('mouth'), and Danda the army ('mind' or coercive force).",
+      "concept_group_id": "bs1-hc-saptanga-swami",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-016",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Mauryan administration included several similarly-named revenue and judicial officers. Which of the following correctly pairs an officer with their actual function?",
+      "options": [
+        {
+          "body": "Sannidhata handled land-survey and judicial matters, while Samaharta managed the treasury",
+          "isCorrect": false
+        },
+        {
+          "body": "Rajuka supervised crown agricultural land, while Sitadhyaksha handled judicial matters",
+          "isCorrect": false
+        },
+        {
+          "body": "Samaharta was the chief revenue collector, while Sannidhata headed the treasury",
+          "isCorrect": true
+        },
+        {
+          "body": "Pradeshika was the Accountant-General, while Akshapataladhyaksha administered a district",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Samaharta was the chief revenue-collecting officer, while Sannidhata headed the treasury -- these two are easily swapped. Rajuka handled judicial and land-survey duties (not Sitadhyaksha, who oversaw crown agricultural land), and Akshapataladhyaksha, not Pradeshika, was the Accountant-General; Pradeshika was a district-level administrator.",
+      "concept_group_id": "bs1-hc-mauryan-officers-samaharta-sannidhata",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-017",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Ashoka's transformation after the Kalinga War is often summarised in his own inscriptions as a shift from which pairing?",
+      "options": [
+        {
+          "body": "Digvijaya to Dharmavijaya",
+          "isCorrect": false
+        },
+        {
+          "body": "Bherighosha to Dhammaghosha",
+          "isCorrect": true
+        },
+        {
+          "body": "Devanampriya to Piyadassi",
+          "isCorrect": false
+        },
+        {
+          "body": "Chakravartin to Dhammaraja",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Ashoka's own edicts describe his post-Kalinga shift as one from Bherighosha (the sound of the war-drum) to Dhammaghosha (the sound of dhamma) -- a shift from military conquest to moral governance.",
+      "concept_group_id": "bs1-hc-ashoka-bherighosha-dhammaghosha",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-018",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Megasthenes' Indika, describing Mauryan Pataliputra, notably claims which of the following about Mauryan society -- a claim that sits in tension with other evidence from the period?",
+      "options": [
+        {
+          "body": "That the Mauryan army used war elephants extensively in battle, a practice Megasthenes considered distinctive to Indian warfare",
+          "isCorrect": false
+        },
+        {
+          "body": "That Pataliputra was administered by six committees of five members each, overseeing trade, foreigners and manufacturing separately",
+          "isCorrect": false
+        },
+        {
+          "body": "That the Mauryan state employed two categories of spies, stationary and wandering, both reporting directly to the king",
+          "isCorrect": false
+        },
+        {
+          "body": "That slavery did not exist in Mauryan India, a claim other Indian sources of the period do not fully support",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Megasthenes claimed the Mauryan empire had no slavery -- a striking assertion that other contemporaneous Indian sources, including references to various forms of unfree labour, do not fully corroborate, making it a genuine point of historiographical tension rather than settled fact. His other claims here (elephants, the Pataliputra committee system, and the two spy categories) are separately well attested.",
+      "concept_group_id": "bs1-hc-megasthenes-slavery-claim",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-019",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Sudarshan Lake at Junagadh, though outside Bihar, was built and maintained across several dynasties whose rulers had Bihar-based Magadhan roots. Who FIRST built its dam?",
+      "options": [
+        {
+          "body": "Rudradaman, the Western Satrap ruler",
+          "isCorrect": false
+        },
+        {
+          "body": "Skandagupta's governor Parnadatta",
+          "isCorrect": false
+        },
+        {
+          "body": "Pushyagupta, governor under Chandragupta Maurya",
+          "isCorrect": true
+        },
+        {
+          "body": "Ashoka, through a dedicated Rajuka appointment",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Sudarshan Lake dam was first built under Chandragupta Maurya's governor Pushyagupta. It was later separately maintained and inscribed upon by the Western Satrap ruler Rudradaman, and repaired again centuries afterward under Skandagupta's governor Parnadatta -- a rare structure with documented upkeep across three distinct ruling periods.",
+      "concept_group_id": "bs1-hc-sudarshan-lake-multi-dynasty",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-020",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Gupta ruler was the first to issue silver coins, after defeating the Western Shakas and adopting the title 'Shakari'?",
+      "options": [
+        {
+          "body": "Chandragupta I",
+          "isCorrect": false
+        },
+        {
+          "body": "Chandragupta II",
+          "isCorrect": true
+        },
+        {
+          "body": "Samudragupta",
+          "isCorrect": false
+        },
+        {
+          "body": "Kumaragupta I",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Chandragupta II ('Vikramaditya') defeated the Western Shakas and, to mark the victory, became the first Gupta ruler to issue silver coinage, alongside taking the title 'Shakari' (enemy of the Shakas).",
+      "concept_group_id": "bs1-hc-chandragupta-ii-silver-coins",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-021",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Samudragupta's Allahabad Prashasti describes two distinct policies he applied to conquered kings depending on the region. Which pairing is correct?",
+      "options": [
+        {
+          "body": "In Aryavarta he followed grahana-moksha-anugraha (capture-release-reinstate); in Dakshinapatha he followed digvijaya (full annexation)",
+          "isCorrect": false
+        },
+        {
+          "body": "In Aryavarta he followed digvijaya (full annexation); in Dakshinapatha he followed grahana-moksha-anugraha (capture-release-reinstate as feudatories)",
+          "isCorrect": true
+        },
+        {
+          "body": "Both regions were treated identically under a single digvijaya policy of full annexation",
+          "isCorrect": false
+        },
+        {
+          "body": "Both regions were treated under the same grahana-moksha-anugraha policy, though the tribute rate charged varied significantly by region",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "In Aryavarta (the north), Samudragupta pursued digvijaya -- outright annexation of nine defeated kings. In Dakshinapatha (the south), he instead followed grahana-moksha-anugraha, capturing, releasing, and reinstating twelve kings as tribute-paying feudatories rather than annexing their territory directly.",
+      "concept_group_id": "bs1-hc-samudragupta-two-policies",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-022",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Gupta-era Bihar-born mathematician-astronomer, working from Kusumpur (Pataliputra), is credited with calculating the value of Pi and correctly explaining the causes of solar and lunar eclipses?",
+      "options": [
+        {
+          "body": "Aryabhata",
+          "isCorrect": true
+        },
+        {
+          "body": "Varahamihira",
+          "isCorrect": false
+        },
+        {
+          "body": "Vagbhata",
+          "isCorrect": false
+        },
+        {
+          "body": "Brahmagupta",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Aryabhata, working at Kusumpur near Pataliputra, computed an accurate value of Pi, correctly explained eclipses as shadow phenomena rather than mythological events, and is also widely credited with a role in the concept of zero. Varahamihira was an astronomer at Chandragupta II's court but not from Pataliputra specifically; Vagbhata was a physician, not an astronomer.",
+      "concept_group_id": "bs1-hc-aryabhata-pi-eclipses",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-023",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Mehrauli Iron Pillar inscription names a king called 'Chandra', whose remarkable rust-resistant metallurgy is often cited alongside Bihar's own Sultanganj Buddha as evidence of advanced Gupta-era craftsmanship. Which Gupta ruler is this king conventionally identified with in most BPSC-preparation material?",
+      "options": [
+        {
+          "body": "Chandragupta I",
+          "isCorrect": false
+        },
+        {
+          "body": "Samudragupta",
+          "isCorrect": false
+        },
+        {
+          "body": "Skandagupta",
+          "isCorrect": false
+        },
+        {
+          "body": "Chandragupta II",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The 'Chandra' of the Mehrauli Iron Pillar is conventionally identified with Chandragupta II in most standard and exam-preparation material, though it should be noted that this identification is not universally settled among historians -- some scholarship proposes other Gupta rulers instead.",
+      "concept_group_id": "bs1-hc-mehrauli-pillar-chandra",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-024",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Eran inscription of 510 CE, issued under the later Gupta ruler Bhanugupta, is historically significant as the:",
+      "options": [
+        {
+          "body": "First inscription to mention the Gupta era (Samvat)",
+          "isCorrect": false
+        },
+        {
+          "body": "Earliest surviving reference to Aryabhata's astronomical work",
+          "isCorrect": false
+        },
+        {
+          "body": "First inscription recording a Huna invasion of Gupta territory",
+          "isCorrect": false
+        },
+        {
+          "body": "First epigraphic evidence of the practice of Sati",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The 510 CE Eran inscription, from Bhanugupta's reign, provides the earliest known epigraphic (inscriptional) evidence of Sati -- recording a wife's self-immolation following her husband's death in battle.",
+      "concept_group_id": "bs1-hc-eran-inscription-sati",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-025",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which Pala ruler is credited with founding the Vikramshila University at Antichak (Bhagalpur), a major centre of Vajrayana Buddhist and Tantric studies?",
+      "options": [
+        {
+          "body": "Dharmapala",
+          "isCorrect": true
+        },
+        {
+          "body": "Gopala, the dynasty's founder",
+          "isCorrect": false
+        },
+        {
+          "body": "Devapala",
+          "isCorrect": false
+        },
+        {
+          "body": "Ramapala",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dharmapala, the Pala dynasty's most expansionist ruler, founded Vikramshila University at Antichak in Bhagalpur, which became a leading centre of Vajrayana Buddhism. Gopala, his father, had instead founded the Odantapuri monastery at Bihar Sharif.",
+      "concept_group_id": "bs1-hc-vikramshila-dharmapala",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-026",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Pala dynasty is unusual in Indian dynastic history for how its founder, Gopala, came to power. What was distinctive about this?",
+      "options": [
+        {
+          "body": "He seized the throne through a palace coup against a Kanva-dynasty minister who had ruled Magadh through the anarchy's final years",
+          "isCorrect": false
+        },
+        {
+          "body": "He was appointed governor of the region by the Gupta court before declaring independence once Gupta central authority collapsed",
+          "isCorrect": false
+        },
+        {
+          "body": "He was chosen or elected by the people to end a period of anarchy (Matsyanyaya), rather than winning the throne by conquest or inheritance",
+          "isCorrect": true
+        },
+        {
+          "body": "He won the throne through a marriage alliance with the Licchavi royal family, echoing the earlier Gupta-Licchavi political marriages",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Gopala's accession followed a period of anarchy known as Matsyanyaya ('law of the fish', where the strong prey on the weak); he was reportedly chosen or elected by the people to restore order, a notably different route to power from conquest or hereditary succession.",
+      "concept_group_id": "bs1-hc-gopala-elected-founder",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-027",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bakhtiyar Khilji's raid that led to the destruction of Nalanda and Vikramshila in the late 12th/early 13th century is primarily documented in which contemporary source?",
+      "options": [
+        {
+          "body": "Taj-ul-Maasir by Hasan Nizami",
+          "isCorrect": false
+        },
+        {
+          "body": "Tabaqat-i-Nasiri by Minhaj-us-Siraj",
+          "isCorrect": true
+        },
+        {
+          "body": "Tarikh-i-Sher Shahi by Abbas Khan Sarwani",
+          "isCorrect": false
+        },
+        {
+          "body": "Malfuzat by Sharfuddin Yahya Maneri",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Tabaqat-i-Nasiri, written by Minhaj-us-Siraj, is the primary contemporary Persian source describing Bakhtiyar Khilji's raids, including the destruction associated with Nalanda's library. Taj-ul-Maasir concerns Qutbuddin Aibak's broader campaigns, Tarikh-i-Sher Shahi is a much later biography of Sher Shah Suri, and the Malfuzat are Sufi letters from a different era entirely.",
+      "concept_group_id": "bs1-hc-tabaqat-i-nasiri-source",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-028",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Ghiyasuddin Tughlaq's 1324 campaign into north Bihar had which specific political consequence for the region's local dynasty?",
+      "options": [
+        {
+          "body": "It ended the Karnat dynasty's semi-autonomous rule over Tirhut (Mithila), bringing the region under tighter Delhi control",
+          "isCorrect": true
+        },
+        {
+          "body": "It restored the Karnat dynasty to power in Tirhut after an earlier period of direct Delhi Sultanate administration",
+          "isCorrect": false
+        },
+        {
+          "body": "It established the Karnat dynasty for the first time, replacing an earlier Pala-appointed governor of the region",
+          "isCorrect": false
+        },
+        {
+          "body": "It had no lasting effect on Tirhut, which remained under the Karnat dynasty's control right through the Mughal period",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Ghiyasuddin Tughlaq's 1324 campaign against King Harisinghdev effectively ended the semi-autonomous Karnat dynasty's independent hold over Tirhut (Mithila), integrating the region more tightly into Delhi Sultanate control -- a sharp contrast to the earlier Sultanate period, when north Bihar had often been left to local dynasties under a looser Iqta-based arrangement.",
+      "concept_group_id": "bs1-hc-tughlaq-karnat-end",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-029",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Farid Khan earned the title 'Sher Khan' -- later 'Sher Shah' -- after which episode, before he rose to prominence in Bihar?",
+      "options": [
+        {
+          "body": "He killed a tiger single-handedly while working for Bahar Khan Lohani",
+          "isCorrect": true
+        },
+        {
+          "body": "He defeated a rival Afghan noble in single combat at Sasaram",
+          "isCorrect": false
+        },
+        {
+          "body": "He won a decisive victory against Bengal's Sultan at the Battle of Surajgarh",
+          "isCorrect": false
+        },
+        {
+          "body": "He successfully defended Rohtas Fort against a Mughal siege",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Farid Khan was given the title 'Sher Khan' by his employer Bahar Khan Lohani after he killed a tiger single-handed -- well before his later military and administrative achievements, including the Battle of Surajgarh and his eventual defeat of Humayun.",
+      "concept_group_id": "bs1-hc-sher-khan-tiger-title",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-030",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which system of horse-branding and soldier-description records, often credited to Sher Shah Suri's military reforms, was in fact originally introduced by an earlier Delhi Sultanate ruler and merely REVIVED by Sher Shah?",
+      "options": [
+        {
+          "body": "The Dagh (branding) and Chehra (descriptive roll) system, first introduced by Alauddin Khalji",
+          "isCorrect": true
+        },
+        {
+          "body": "The Mansabdari rank system, first introduced by Balban",
+          "isCorrect": false
+        },
+        {
+          "body": "The Iqta land-grant system, first introduced by Iltutmish",
+          "isCorrect": false
+        },
+        {
+          "body": "The Sarkar-Pargana administrative division, first introduced by Firoz Shah Tughlaq",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Dagh (horse-branding) and Chehra (soldier's descriptive roll) system was first introduced by Alauddin Khalji to curb fraud in army musters; Sher Shah Suri revived and strengthened this system rather than originating it. The Mansabdari system is a Mughal-era (Akbar's) innovation, not Balban's.",
+      "concept_group_id": "bs1-hc-dagh-chehra-alauddin-revived",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-031",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sher Shah Suri's revenue system introduced the 'Rai' schedule fixing the state's share of produce, alongside which pair of documents recording land measurement and the farmer's acceptance of terms?",
+      "options": [
+        {
+          "body": "Jarib (measuring rope) and Sanad (royal grant)",
+          "isCorrect": false
+        },
+        {
+          "body": "Farman (royal order) and Dastak (trade permit)",
+          "isCorrect": false
+        },
+        {
+          "body": "Zabt (assessment record) and Nasq (crop-sharing agreement)",
+          "isCorrect": false
+        },
+        {
+          "body": "Patta (land record) and Qabuliyat (farmer's signed acceptance)",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sher Shah Suri's land revenue documentation relied on the Patta (a record of the land and its assessed revenue given to the cultivator) and the Qabuliyat (the cultivator's signed written acceptance of those terms) -- together these formalised a direct state-peasant relationship.",
+      "concept_group_id": "bs1-hc-sher-shah-patta-qabuliyat",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-032",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which Mughal governor is most closely associated with bringing administrative stability to Bihar following Akbar's 1574 conquest, temporarily shifting the provincial capital to Rajmahal and strengthening Rohtasgarh?",
+      "options": [
+        {
+          "body": "Prince Azim-us-Shan",
+          "isCorrect": false
+        },
+        {
+          "body": "Mir Kasim",
+          "isCorrect": false
+        },
+        {
+          "body": "Daud Khan Karrani",
+          "isCorrect": false
+        },
+        {
+          "body": "Raja Man Singh",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Raja Man Singh, appointed governor from 1587-1594, is credited with stabilising Mughal Bihar, temporarily relocating the provincial capital to Rajmahal and reinforcing the strategic hill fort of Rohtasgarh. Daud Khan Karrani was the Afghan ruler Akbar defeated to gain Bihar in the first place, not a Mughal governor.",
+      "concept_group_id": "bs1-hc-man-singh-mughal-governor",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-033",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "By the 17th century, Patna had become an international trading hub. Which commodity gave the city its most distinctive strategic importance to European trading companies?",
+      "options": [
+        {
+          "body": "Fine Kashmiri wool",
+          "isCorrect": false
+        },
+        {
+          "body": "Indigo dye",
+          "isCorrect": false
+        },
+        {
+          "body": "Diamonds from the Golconda mines",
+          "isCorrect": false
+        },
+        {
+          "body": "Saltpetre (Shora), essential for gunpowder",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Patna's near-monopoly on Shora (saltpetre), the key ingredient in gunpowder, made it strategically vital to European trading companies, prompting the Portuguese, Dutch, English and French to all establish dedicated trading 'factories' there. Indigo became significant in Bihar's trade only later, mainly from the 18th-19th centuries.",
+      "concept_group_id": "bs1-hc-patna-saltpetre-shora",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-034",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Battle of Buxar (1764) differed from the earlier Battle of Plassey (1757) in a crucial respect. What was it?",
+      "options": [
+        {
+          "body": "Buxar was decided by betrayal, when a Company-aligned general defected mid-battle, while Plassey was a straightforward military victory without any such defection",
+          "isCorrect": false
+        },
+        {
+          "body": "Both battles were decided primarily through betrayal by an Indian commander switching sides on the losing party's payroll",
+          "isCorrect": false
+        },
+        {
+          "body": "Plassey was fought on Bihar's soil near Patna, while Buxar took place across the border inside Bengal territory",
+          "isCorrect": false
+        },
+        {
+          "body": "Plassey hinged on Mir Jafar's battlefield defection; Buxar was a genuine full-scale contest the British won outright against a three-way alliance including the Mughal Emperor",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Plassey's outcome hinged on Mir Jafar's defection from Siraj-ud-Daula's side rather than superior British arms. Buxar, fought on Bihar soil, was a genuine pitched battle in which the British under Major Hector Munro decisively defeated a triple alliance of Mir Kasim, Shuja-ud-Daula, and the Mughal Emperor Shah Alam II himself -- proving British military dominance outright rather than through political manoeuvre.",
+      "concept_group_id": "bs1-hc-buxar-vs-plassey",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-035",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under the Dual Government system established after the Treaty of Allahabad (1765), who was appointed Naib Diwan (deputy revenue governor) to manage Bihar specifically?",
+      "options": [
+        {
+          "body": "Warren Hastings",
+          "isCorrect": false
+        },
+        {
+          "body": "Mir Kasim",
+          "isCorrect": false
+        },
+        {
+          "body": "Robert Clive",
+          "isCorrect": false
+        },
+        {
+          "body": "Raja Shitab Rai",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Raja Shitab Rai was appointed Bihar's first Naib Diwan under the Dual Government system, managing Bihar's revenue collection on the Company's behalf while nominal administrative authority remained with the Nawab. Warren Hastings later ended this failed dual system in 1772.",
+      "concept_group_id": "bs1-hc-shitab-rai-naib-diwan",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-036",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under the Tinkathiya system that shaped Champaran's indigo economy, what fraction of a peasant's landholding was he legally required to devote to indigo cultivation?",
+      "options": [
+        {
+          "body": "1/4th",
+          "isCorrect": false
+        },
+        {
+          "body": "3/20th",
+          "isCorrect": true
+        },
+        {
+          "body": "1/3rd",
+          "isCorrect": false
+        },
+        {
+          "body": "1/2 of the total holding",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Tinkathiya system compelled peasants, especially in Champaran, to grow indigo on 3 kattha out of every 20 kattha of their land (3/20th) -- the exact ratio the system's name refers to.",
+      "concept_group_id": "bs1-hc-tinkathiya-fraction",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-037",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar's 1857 revolt is often distinguished from the uprisings at Delhi and Meerut on which specific ground?",
+      "options": [
+        {
+          "body": "Ordinary civilians actively joined the sepoys, making it a genuinely popular regional uprising rather than a garrison mutiny alone",
+          "isCorrect": true
+        },
+        {
+          "body": "It began earlier than either Delhi or Meerut, with isolated unrest reported in Bihar as early as 1855",
+          "isCorrect": false
+        },
+        {
+          "body": "It was led mainly by regular sepoy regiments, with local zamindars and peasants staying largely uninvolved",
+          "isCorrect": false
+        },
+        {
+          "body": "It was suppressed swiftly, with British forces reporting almost no casualties across the entire Bihar campaign",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Unlike Delhi and Meerut, where the revolt is often characterised as primarily a sepoy mutiny, Bihar saw broad civilian participation alongside the sepoys -- zamindars, peasants and townspeople actively joined the resistance, giving the Bihar theatre (especially under Kunwar Singh) the character of a genuinely popular revolt.",
+      "concept_group_id": "bs1-hc-1857-bihar-popular-revolt",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-038",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "During the 1857 revolt, Kunwar Singh became famous for an act of extraordinary self-sacrifice while crossing the Ganga under British fire. What did he do?",
+      "options": [
+        {
+          "body": "He surrendered his weapons on the riverbank to protect his remaining troops from further British bombardment",
+          "isCorrect": false
+        },
+        {
+          "body": "He cut off his own bullet-struck hand and offered it to the river to prevent gangrene from spreading",
+          "isCorrect": true
+        },
+        {
+          "body": "He ordered his own boat deliberately sunk mid-river to draw British cannon fire away from his soldiers' boats",
+          "isCorrect": false
+        },
+        {
+          "body": "He swam across the river alone at night to personally negotiate a ceasefire with the pursuing British officers",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "When a bullet struck Kunwar Singh's wrist while he was crossing the Ganga under heavy fire, he famously cut off his own hand himself and offered it to the river, to stop gangrene from spreading through his body -- a defining episode of his legend, occurring shortly before his death in April 1858.",
+      "concept_group_id": "bs1-hc-kunwar-singh-severed-hand",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-039",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which reform movement, associated with Raja Ram Mohan Roy, achieved the abolition of Sati in 1829 under Lord William Bentinck?",
+      "options": [
+        {
+          "body": "The Arya Samaj (Swami Dayanand Saraswati)",
+          "isCorrect": false
+        },
+        {
+          "body": "The Brahmo Samaj (originally Brahmo Sabha)",
+          "isCorrect": true
+        },
+        {
+          "body": "The Aligarh Movement (Sir Syed Ahmad Khan)",
+          "isCorrect": false
+        },
+        {
+          "body": "The Theosophical Society (a Gaya-based centre)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Raja Ram Mohan Roy's Brahmo Sabha (founded 1828, later Brahmo Samaj), through its sustained campaign against Sati, is credited with the passage of Regulation XVII in 1829 under Lord William Bentinck, abolishing Sati across the Bengal Presidency, which then included Bihar.",
+      "concept_group_id": "bs1-hc-brahmo-samaj-sati-abolition",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-040",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's first Indian National Congress session was held in 1912 at Bankipur (Patna). Who presided over this session?",
+      "options": [
+        {
+          "body": "Sachchidananda Sinha",
+          "isCorrect": false
+        },
+        {
+          "body": "R.N. Mudholkar",
+          "isCorrect": true
+        },
+        {
+          "body": "W.C. Bonnerjee",
+          "isCorrect": false
+        },
+        {
+          "body": "Mazharul Haque",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The 1912 Bankipur session, Bihar's first INC session (the 27th overall), was presided over by R.N. Mudholkar; Sachchidananda Sinha served as its secretary and was a driving force behind the separate-Bihar-province movement it helped advance.",
+      "concept_group_id": "bs1-hc-bankipur-1912-mudholkar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-041",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The decision to separate Bihar and Odisha from the Bengal Presidency was formally announced on 22 March 1912. On which later date did the new province actually come into administrative effect -- the date now commemorated as 'Bihar Diwas'?",
+      "options": [
+        {
+          "body": "1 April 1936",
+          "isCorrect": false
+        },
+        {
+          "body": "1 April 1937",
+          "isCorrect": false
+        },
+        {
+          "body": "1 April 1912",
+          "isCorrect": true
+        },
+        {
+          "body": "22 March 1912",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "As with the Partition of Bengal (announced by Curzon in July 1905, but effective only from 16 October 1905), the announcement and the actual administrative effect of Bihar and Odisha's separation fell on two different dates: the decision was announced on 22 March 1912, but the new province -- with Patna as capital -- only formally came into being on 1 April 1912, which is the date commemorated as Bihar Diwas. Odisha was itself later separated from Bihar on 1 April 1936, on linguistic grounds; Bihar's first elected Congress ministry under Sri Krishna Sinha took charge in 1937 -- both are genuinely different, later events easily confused with 1912 by the shared '1 April' date or nearby year.",
+      "concept_group_id": "bs1-hc-bihar-1912-announced-vs-effective",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-042",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which local Bihar farmer met Gandhi at the 1916 Lucknow Congress session and persuaded him to visit Champaran to witness the plight of indigo cultivators?",
+      "options": [
+        {
+          "body": "Mazharul Haque",
+          "isCorrect": false
+        },
+        {
+          "body": "Anugrah Narayan Sinha",
+          "isCorrect": false
+        },
+        {
+          "body": "Braj Kishore Prasad",
+          "isCorrect": false
+        },
+        {
+          "body": "Raj Kumar Shukla",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Raj Kumar Shukla, a local Champaran farmer, met Gandhi at the 1916 Lucknow session and persistently persuaded him to visit Champaran, leading directly to the 1917 Champaran Satyagraha -- Gandhi's first Satyagraha in India. Shukla died in 1929.",
+      "concept_group_id": "bs1-hc-raj-kumar-shukla",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-043",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Since Bihar is landlocked, the 1930 Civil Disobedience Movement's Salt Satyagraha had to be adapted from Gandhi's original Dandi model. How, and what distinctly Bihar-specific tactic accompanied it?",
+      "options": [
+        {
+          "body": "Salt was smuggled overland from coastal Bengal by rail, and Bihar's own contribution was a parallel boycott of British-made cloth",
+          "isCorrect": false
+        },
+        {
+          "body": "Bihar's participation in the Salt Satyagraha was minimal, with most local energy still directed at the Non-Cooperation Movement's unfinished goals",
+          "isCorrect": false
+        },
+        {
+          "body": "Symbolic salt was made from saline earth in districts like Saran and Champaran, and Bihar added its own Chaukidari Tax Boycott, refusing to pay the local watchman levy",
+          "isCorrect": true
+        },
+        {
+          "body": "Salt was manufactured industrially at the Golghar granary in Patna and distributed free to protestors across the district, avoiding direct confrontation with British authorities",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Since Bihar has no coastline, its Salt Satyagraha involved making symbolic salt from saline (Shora-rich) soil in districts such as Saran, Champaran and Patna. Bihar also contributed its own distinct addition to Civil Disobedience nationally: the Chaukidari Tax Boycott, in which villagers refused to pay the local watchman tax.",
+      "concept_group_id": "bs1-hc-bihar-salt-chaukidari-boycott",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-044",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "During the 1942 Quit India Movement, seven students were killed while trying to hoist the national flag at which Bihar location on 11 August 1942?",
+      "options": [
+        {
+          "body": "Bankipur Jail, Patna",
+          "isCorrect": false
+        },
+        {
+          "body": "The Patna Secretariat building",
+          "isCorrect": true
+        },
+        {
+          "body": "Sadaqat Ashram, Patna",
+          "isCorrect": false
+        },
+        {
+          "body": "Hazaribagh Central Jail",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Seven students were shot dead on 11 August 1942 while attempting to hoist the national flag over the Patna Secretariat building, one of the Quit India Movement's most notable martyrdom events -- Bihar is often called the movement's 'storm centre'.",
+      "concept_group_id": "bs1-hc-patna-secretariat-firing",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-045",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Jayaprakash Narayan's underground 'Azad Dasta' during the Quit India Movement operated primarily from which base, to sabotage British communication lines?",
+      "options": [
+        {
+          "body": "The Kaimur hills (Amar Singh's later resistance base)",
+          "isCorrect": false
+        },
+        {
+          "body": "Rohtasgarh Fort (the old Sher Shah-era stronghold)",
+          "isCorrect": false
+        },
+        {
+          "body": "The Nepal border jungles, after his escape from Hazaribagh jail",
+          "isCorrect": true
+        },
+        {
+          "body": "Munger district's underground parallel government, set up during the same 1942 uprising",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "After his celebrated 1942 escape from Hazaribagh jail, Jayaprakash Narayan organised the guerrilla 'Azad Dasta' from the jungle terrain along the Nepal border, from where his group sabotaged British communication infrastructure during the underground phase of Quit India.",
+      "concept_group_id": "bs1-hc-jp-azad-dasta-nepal-border",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-046",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Phanindra Nath Ghosh's role in the Bhagat Singh case, and its consequence in Bihar, illustrates which sequence of events?",
+      "options": [
+        {
+          "body": "Ghosh turned government approver (state witness), his testimony contributed to Bhagat Singh, Rajguru and Sukhdev's executions, and he was later killed at Bettiah in revenge by Baikunth Shukla",
+          "isCorrect": true
+        },
+        {
+          "body": "Ghosh was a Bihar-based HSRA member who personally helped Bhagat Singh escape custody during his 1929 Assembly-bombing trial, and was publicly honoured with a state pension afterward",
+          "isCorrect": false
+        },
+        {
+          "body": "Ghosh was arrested and executed alongside Bhagat Singh in 1931 after refusing repeated offers to testify against him",
+          "isCorrect": false
+        },
+        {
+          "body": "Ghosh led the unrelated Patna Conspiracy Case of 1930, a case with no real connection to the Bhagat Singh trial",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Phanindra Nath Ghosh turned approver (state witness) in the case against Bhagat Singh, and his testimony contributed to the executions of Bhagat Singh, Rajguru and Sukhdev. In revenge, fellow revolutionary Baikunth Shukla killed Ghosh at Bettiah in 1932 -- an episode that itself led to Baikunth Shukla's own execution via the later Patna Conspiracy Case.",
+      "concept_group_id": "bs1-hc-phanindra-ghosh-approver",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-047",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which Bihar newspaper, founded by Sachchidananda Sinha in 1918, became the state's most influential pro-Congress voice and was frequently targeted by British censorship?",
+      "options": [
+        {
+          "body": "The Searchlight",
+          "isCorrect": true
+        },
+        {
+          "body": "Bihar Bandhu",
+          "isCorrect": false
+        },
+        {
+          "body": "The Bihar Herald",
+          "isCorrect": false
+        },
+        {
+          "body": "Al-Hilal",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Searchlight, founded by Sachchidananda Sinha in 1918 and later edited by Murlimanohar Prasad, became Bihar's most powerful pro-Congress newspaper and regularly faced British censorship. Bihar Bandhu (1872) was Bihar's first Hindi paper, and The Bihar Herald (1875) its first English paper -- both earlier and distinct from The Searchlight.",
+      "concept_group_id": "bs1-hc-searchlight-sachchidananda-sinha",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-048",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Sri Krishna Sinha, Bihar's first Chief Minister ('Bihar Kesari'), is particularly remembered for which distinction among Indian states?",
+      "options": [
+        {
+          "body": "He led the first Indian state to formally abolish the zamindari system by law",
+          "isCorrect": true
+        },
+        {
+          "body": "He was the first Chief Minister in India to be directly elected by popular vote for the post",
+          "isCorrect": false
+        },
+        {
+          "body": "He was the first to introduce a bicameral state legislature anywhere in India",
+          "isCorrect": false
+        },
+        {
+          "body": "He was the first Chief Minister to serve simultaneously as a Union Cabinet minister",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sri Krishna Sinha, who led Bihar's first Congress ministry from 1937 and continued as Chief Minister after independence until 1961, is particularly noted for steering Bihar to become the first Indian state to pass legislation abolishing the zamindari system, alongside championing major industrial projects like the Barauni Refinery and HEC at Hatia.",
+      "concept_group_id": "bs1-hc-sri-krishna-sinha-zamindari-abolition",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-049",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Santhal Rebellion of 1855-56, one of the largest pre-1857 tribal uprisings, was led by four brothers. Which of the following was NOT one of them?",
+      "options": [
+        {
+          "body": "Sidhu",
+          "isCorrect": false
+        },
+        {
+          "body": "Kanhu",
+          "isCorrect": false
+        },
+        {
+          "body": "Birsa",
+          "isCorrect": true
+        },
+        {
+          "body": "Bhairav",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Santhal Rebellion (1855-56) was led by four brothers -- Sidhu, Kanhu, Chand and Bhairav. Birsa refers to Birsa Munda, who led a separate, later tribal uprising, the Munda Rebellion (Ulgulan) of 1899-1900 -- an easy pair to confuse given both are Bihar-region tribal leaders.",
+      "concept_group_id": "bs1-hc-santhal-four-brothers",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-050",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Birsa Munda's 'Ulgulan' rebellion was fundamentally a reaction against the British replacing which traditional tribal institution with a zamindari-style system?",
+      "options": [
+        {
+          "body": "The Panchayati Raj system of village self-governance",
+          "isCorrect": false
+        },
+        {
+          "body": "The Iqta system of military land grants",
+          "isCorrect": false
+        },
+        {
+          "body": "The Ryotwari system of individual land settlement",
+          "isCorrect": false
+        },
+        {
+          "body": "The Khuntkatti system of communal/joint tribal land ownership",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The British replaced the traditional Khuntkatti system -- under which tribal land was held communally/jointly -- with a zamindari-style arrangement, alongside imposing Begar (forced unpaid labour). This economic dispossession was central to Birsa Munda's Ulgulan, which forced the eventual passage of the Chotanagpur Tenancy Act (1908).",
+      "concept_group_id": "bs1-hc-birsa-munda-khuntkatti",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-051",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Madhubani painting's 'Kachni' style is distinguished from the 'Bharni' style chiefly by which feature?",
+      "options": [
+        {
+          "body": "Kachni relies on solid, vivid colour fills applied heavily across the canvas, while Bharni is instead built from fine, uncoloured line work throughout",
+          "isCorrect": false
+        },
+        {
+          "body": "Kachni is generally religious in theme, while Bharni tends to depict natural motifs like the sun, moon and lotus instead",
+          "isCorrect": false
+        },
+        {
+          "body": "Kachni is typically made using synthetic dyes, while Bharni sticks to the traditional natural pigments like turmeric and indigo",
+          "isCorrect": false
+        },
+        {
+          "body": "Kachni creates texture through intricate hatching and line work rather than solid colour fill, while Bharni is characterised by dense, solid pigment fills",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Bharni style relies on dense, solid pigment fills and was traditionally practised by upper castes, while the Kachni style instead builds texture through intricate hatching or stippling line work rather than solid colour -- the two are frequently confused as both are line-and-fill Madhubani techniques but achieve their effect in opposite ways.",
+      "concept_group_id": "bs1-hc-madhubani-kachni-vs-bharni",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-052",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "During Chhath Puja's four-day ritual sequence, on which day do devotees offer Sandhya Arghya (evening prayers) specifically to the setting sun?",
+      "options": [
+        {
+          "body": "Day 3",
+          "isCorrect": true
+        },
+        {
+          "body": "Day 1 (Nahay-Khay)",
+          "isCorrect": false
+        },
+        {
+          "body": "Day 2 (Kharna)",
+          "isCorrect": false
+        },
+        {
+          "body": "Day 4 (Usha Arghya)",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Day 3 of Chhath Puja is devoted to Sandhya Arghya, offering prayers to the setting sun at a water body along with thekua prasad. Day 4 (Usha Arghya) is instead devoted to prayers for the rising sun, breaking a 36-hour fast -- the two are easy to swap since both involve offerings to the sun on consecutive evenings/mornings.",
+      "concept_group_id": "bs1-hc-chhath-sandhya-arghya-day3",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-053",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Both Maithili and Bhojpuri are major languages of Bihar with deep literary traditions, yet they differ sharply in one respect. What is it?",
+      "options": [
+        {
+          "body": "Bhojpuri has its own traditional script called Kaithi, while Maithili's literary tradition has relied throughout on the Devanagari script instead",
+          "isCorrect": false
+        },
+        {
+          "body": "Maithili is in the Constitution's Eighth Schedule, while Bhojpuri -- despite far wider reach through migration and a large film industry -- has no such status",
+          "isCorrect": true
+        },
+        {
+          "body": "Maithili is spoken mainly through migrant diaspora communities abroad, while Bhojpuri has remained confined to its home districts within Bihar",
+          "isCorrect": false
+        },
+        {
+          "body": "Both languages were added to the Constitution's Eighth Schedule together, under the same 2003 constitutional amendment",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Maithili was added to the Constitution's Eighth Schedule via the 92nd Amendment (2003) and has its own traditional script, Mithilakshar/Tirhuta. Bhojpuri, despite being spoken far more widely worldwide through migration and diaspora communities, and despite having a substantial film and music industry, still lacks official Eighth Schedule status -- a commonly tested irony given its scale versus Maithili's smaller but constitutionally recognised base.",
+      "concept_group_id": "bs1-hc-maithili-vs-bhojpuri-status",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-101",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Somapura Mahavihara, one of the great Buddhist monastic universities of the Pala era, was founded by which ruler whose empire was centred on Bihar?",
+      "options": [
+        {
+          "body": "Dharmapala",
+          "isCorrect": true
+        },
+        {
+          "body": "Gopala",
+          "isCorrect": false
+        },
+        {
+          "body": "Devapala",
+          "isCorrect": false
+        },
+        {
+          "body": "Ramapala",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dharmapala, the most expansionist Pala ruler, founded Somapura Mahavihara (now in present-day Bangladesh) in addition to Vikramshila -- a reminder that the Pala empire, though centred on Bihar, extended its Buddhist patronage well beyond the region's present borders.",
+      "concept_group_id": "bs1-hc-somapura-dharmapala",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-102",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Bihari Students' Conference, founded in 1906, is significant in Bihar's freedom movement chiefly because it was:",
+      "options": [
+        {
+          "body": "The first Bihar organisation to formally demand full independence rather than mere dominion status",
+          "isCorrect": false
+        },
+        {
+          "body": "India's first such body to specifically mobilise students for political goals, later training many future freedom fighters",
+          "isCorrect": true
+        },
+        {
+          "body": "A literary and cultural society that mostly stayed clear of political activity until well into the 1940s",
+          "isCorrect": false
+        },
+        {
+          "body": "Founded by the British administration to channel student energy away from politics",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Founded by Dr. Rajendra Prasad in 1906 during the Swadeshi era, the Bihari Students' Conference was one of India's first bodies specifically organised to mobilise students for political goals, and became a training ground for a generation of Bihar's later freedom fighters across the Gandhian and revolutionary movements alike.",
+      "concept_group_id": "bs1-hc-bihari-students-conference",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-103",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The 'Panjpariya' cult, a distinctive feature of Bihar's medieval religious landscape, is notable for which characteristic?",
+      "options": [
+        {
+          "body": "It involved joint worship of '5 Pirs' by both Hindus and Muslims, a genuinely syncretic tradition",
+          "isCorrect": true
+        },
+        {
+          "body": "It was a Sufi practice mainly confined to Bihar Sharif's Firdausi order",
+          "isCorrect": false
+        },
+        {
+          "body": "It was a Vaishnavite reform movement that rejected the practice of image worship",
+          "isCorrect": false
+        },
+        {
+          "body": "It emerged well after independence as a state-sponsored communal-harmony initiative",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Panjpariya cult centred on the joint worship of '5 Pirs' by both Hindu and Muslim communities together, making it a genuinely syncretic tradition distinct from the more institutionally separate Sufi silsilas and Bhakti movements that otherwise shaped medieval Bihar's religious life.",
+      "concept_group_id": "bs1-hc-panjpariya-cult",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-104",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Vidyapati, Mithila's most celebrated poet, is usually remembered for his secular court poetry, yet his body of work also carries a genuine devotional dimension. What form did this take?",
+      "options": [
+        {
+          "body": "Nachari songs devoted to Shiva, which helped build a lasting Mithila bhakti tradition alongside his court poetry",
+          "isCorrect": true
+        },
+        {
+          "body": "A set of Sanskrit hymns composed specifically for the Karnat dynasty royal coronation ceremony",
+          "isCorrect": false
+        },
+        {
+          "body": "A lengthy prose commentary on the Bhagavad Gita that he composed under Oinwar dynasty patronage",
+          "isCorrect": false
+        },
+        {
+          "body": "A series of devotional paintings rather than poetry, created during his final years as a wandering monk",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Alongside his famous Radha-Krishna court poetry (Padavali) and secular works like Kirtilata, Vidyapati also composed Nachari songs devoted to Shiva -- a genuinely devotional strand of his output that helped establish a lasting bhakti culture in Mithila, distinct from, and often overlooked beside, his better-known secular and courtly reputation.",
+      "concept_group_id": "bs1-hc-vidyapati-nachari-bhakti",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-105",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Maner Sharif, Bihar's oldest major Sufi centre, is home to two distinct dargahs. Which pairing correctly identifies them?",
+      "options": [
+        {
+          "body": "'Firdausi Dargah' and 'Suhrawardi Dargah', named for the two rival Sufi orders based there",
+          "isCorrect": false
+        },
+        {
+          "body": "A single dargah known by two alternate names depending on the season of pilgrimage",
+          "isCorrect": false
+        },
+        {
+          "body": "'Sharfuddin Dargah' and 'Bihar Sharif Dargah', both dedicated to the same saint at different life stages",
+          "isCorrect": false
+        },
+        {
+          "body": "'Badi Dargah', the larger shrine, and 'Chhoti Dargah', the tomb of Makhdum Daulat",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Maner Sharif houses two genuinely distinct dargahs: the larger 'Badi Dargah', and the 'Chhoti Dargah' (Makhdum Daulat's tomb, built 1616 under Ibrahim Khan) -- a pairing frequently confused for a single shrine, when in fact both stand at the same site under different names and separate histories.",
+      "concept_group_id": "bs1-hc-maner-sharif-two-dargahs",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-106",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Patna Qalam, a distinct miniature-painting style that flourished under British patronage, differs from Madhubani painting in a fundamental way. What is it?",
+      "options": [
+        {
+          "body": "Patna Qalam artists relied mainly on natural pigments sourced locally, while Madhubani painters more commonly turned to synthetic dyes",
+          "isCorrect": false
+        },
+        {
+          "body": "Patna Qalam was practised mainly by women artists, while Madhubani was, by contrast, historically a male-dominated tradition",
+          "isCorrect": false
+        },
+        {
+          "body": "Patna Qalam focused on everyday scenes of common people, such as washermen and fish-sellers, rather than the religious and royal themes typical of Madhubani",
+          "isCorrect": true
+        },
+        {
+          "body": "Patna Qalam is generally believed to have originated centuries before Madhubani, directly inspiring its later stylistic development",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Patna Qalam (also called the 'Company School', flourishing under British patronage, associated with artists like Sewak Ram and Hulas Lal) broke from Madhubani's religious and royal themes to focus instead on everyday scenes -- washermen, fish-sellers, common trades -- making it a genuinely distinct painting tradition rather than a regional variant of Madhubani.",
+      "concept_group_id": "bs1-hc-patna-qalam-vs-madhubani",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-107",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Rohtasgarh Fort, on the Kaimur plateau, illustrates a rare instance of strategic continuity across two very different ruling periods. Which two figures both relied on it as a key stronghold?",
+      "options": [
+        {
+          "body": "Ashoka and Chandragupta II, as a Mauryan-Gupta frontier post",
+          "isCorrect": false
+        },
+        {
+          "body": "Bakhtiyar Khilji and Qutbuddin Aibak, as their first joint base in Bihar",
+          "isCorrect": false
+        },
+        {
+          "body": "Sher Shah Suri and, later, the Mughal governor Raja Man Singh",
+          "isCorrect": true
+        },
+        {
+          "body": "Kunwar Singh and Jayaprakash Narayan, as successive centres of anti-British resistance",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Rohtasgarh Fort was seized by Sher Shah Suri as his most secure stronghold in the 16th century, and was later separately reinforced and relied upon by Raja Man Singh, Akbar's governor of Bihar -- a genuine continuity of strategic use across the Sur and Mughal periods, despite the very different political contexts.",
+      "concept_group_id": "bs1-hc-rohtasgarh-sher-shah-man-singh",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-108",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Golghar in Patna, built in 1786 by Captain John Garstin after the 1770 famine, carries a notable irony alongside its distinctive twin spiral staircases. What is it?",
+      "options": [
+        {
+          "body": "It was built facing the wrong direction for effective grain loading, and had to be structurally modified within a decade",
+          "isCorrect": false
+        },
+        {
+          "body": "It was originally designed as a fort, and converted into a granary well after construction had already finished",
+          "isCorrect": false
+        },
+        {
+          "body": "Despite being purpose-built as an emergency grain store to prevent future famine, it ended up not being used for that emergency purpose at all",
+          "isCorrect": true
+        },
+        {
+          "body": "Its twin staircases were added much later, in the 20th century, as a tourist modification not part of the original design",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Golghar's beehive-shaped design, with its distinctive twin spiral staircases to the top, was purpose-built as an emergency grain store following the catastrophic 1770 Bengal famine -- yet it was, notably, never actually used for that intended emergency purpose, an irony often noted alongside its engineering.",
+      "concept_group_id": "bs1-hc-golghar-irony-never-used",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-109",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Nalanda's continued upkeep under the Pala dynasty involved an unusual diplomatic gesture from outside the Indian subcontinent. What was it?",
+      "options": [
+        {
+          "body": "The Tibetan king Songtsen Gampo funded a permanent Nalanda library wing",
+          "isCorrect": false
+        },
+        {
+          "body": "Sumatra's king Balaputradeva requested, and was granted, a 5-village land grant specifically to fund Nalanda's upkeep",
+          "isCorrect": true
+        },
+        {
+          "body": "The Chinese Tang court sent an annual shipment of silk to sustain Nalanda's monks",
+          "isCorrect": false
+        },
+        {
+          "body": "Sri Lanka's ruling dynasty sent a delegation of monks to help administer Nalanda on Dharmapala's behalf",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sumatra's king Balaputradeva (of the Srivijaya empire) requested a grant of five villages specifically to fund Nalanda's upkeep, and Dharmapala granted it -- a genuine Southeast Asian diplomatic link illustrating Nalanda's reach as an international Buddhist institution even while under Pala patronage.",
+      "concept_group_id": "bs1-hc-nalanda-balaputradeva-grant",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

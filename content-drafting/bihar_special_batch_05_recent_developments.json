@@ -1,0 +1,796 @@
+{
+  "meta": {
+    "batch": "Bihar Special Paper I, Batch 05 (Recent Developments topic, full 24-question allocation)",
+    "generated_at": "2026-09-03",
+    "generator": "Claude Code, human-drafted from Bihar Special Orange Book (Perfection IAS / Dhananjay IAS), pages 104-105, plus cross-referenced institutional/policy facts read earlier in the Industry and Economy chapters",
+    "total_questions": 24,
+    "target_cells": {
+      "Bihar_Recent Developments_medium_mcq": 23,
+      "Bihar_Recent Developments_hard_mcq": 1
+    },
+    "status_all": "draft",
+    "quality_bar_notes": [
+      "'Recent Developments' here means named, established government schemes/initiatives tested on their NAME, LAUNCH YEAR, and STRUCTURAL OBJECTIVE/ELIGIBILITY -- never on a scheme's current-year budget allocation, beneficiary count, or other annually-revised figure, which is exactly the current-affairs-shaped content Step 1 excluded from this paper. A scheme's existence, launch date, and defining purpose are durable; its yearly funding level is not.",
+      "None of these 24 facts overlap with what was already used under Economy (Ethanol Policy, JEEViKA, Bihar Startup Policy, Green Budget, BIADA, Hydroelectric Corp, Freight Equalization, Makhana GI, etc.) -- checked against that batch's concept_group_id list before drafting.",
+      "The single hard question (bs1-151) deliberately pairs two similarly-shaped 'transitional cash support' schemes that are easy to conflate (Satat Jeevikoparjan Yojana vs Swayam Sahayata Bhatta) -- distinguishing them by WHO they target and WHY, not just by name."
+    ],
+    "flagged_for_extra_review": [],
+    "skipped_topics_worth_considering_for_future_batches": [
+      "Several more DBT/welfare schemes exist in the source (e.g. Mukhyamantri Nishchay Swayam Sahayata Bhatta's exact eligibility bands, Saat Nischay's original 2015 phase-1 items beyond what's covered here) -- worth mining for Papers II/III without needing new source reading."
+    ],
+    "instructions_for_bulk_import": [
+      "1. SME reviews every row for factual accuracy, especially exact launch dates.",
+      "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='Recent Developments', type='mcq', difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
+    ]
+  },
+  "questions": [
+    {
+      "batch_ref": "bs1-128",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under 'Saat Nischay 2.0' (2020-2025), the resolve 'Yuva Shakti, Bihar Ki Pragati' is centred on establishing which infrastructure in all 38 districts?",
+      "options": [
+        {
+          "body": "Mega Skill Centres, alongside upgrades to ITIs and polytechnics",
+          "isCorrect": true
+        },
+        {
+          "body": "District-level cold storage chains for agricultural produce",
+          "isCorrect": false
+        },
+        {
+          "body": "Fully digitised land-record offices",
+          "isCorrect": false
+        },
+        {
+          "body": "District-level sports stadiums for youth talent development",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The 'Yuva Shakti, Bihar Ki Pragati' resolve under Saat Nischay 2.0 centres on establishing Mega Skill Centres in all 38 districts, alongside quality upgrades to ITIs and polytechnics, aimed at improving youth employability statewide.",
+      "concept_group_id": "bs1-rd-yuva-shakti-skill-centres",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-129",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's 'Sashakt Mahila, Saksham Mahila' resolve (Saat Nischay 2.0) provides for what specific reservation in state government jobs?",
+      "options": [
+        {
+          "body": "20% vertical reservation, restricted specifically to Class-I posts",
+          "isCorrect": false
+        },
+        {
+          "body": "33% reservation, matching the national Panchayati Raj norm",
+          "isCorrect": false
+        },
+        {
+          "body": "50% reservation, but restricted specifically to the police and judicial services",
+          "isCorrect": false
+        },
+        {
+          "body": "35% horizontal reservation across all state government jobs",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The 'Sashakt Mahila, Saksham Mahila' resolve provides 35% horizontal reservation for women across all Bihar state government jobs -- a horizontal reservation cuts across every category rather than being restricted to a specific post-level or department, distinguishing it from a narrower vertical quota.",
+      "concept_group_id": "bs1-rd-sashakt-mahila-35pct-horizontal",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-130",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which Saat Nischay 2.0 resolve specifically targets bringing irrigation water to every cultivated field in the state?",
+      "options": [
+        {
+          "body": "'Swachh Gaon, Samriddh Gaon'",
+          "isCorrect": false
+        },
+        {
+          "body": "'Sulabh Samparkta'",
+          "isCorrect": false
+        },
+        {
+          "body": "'Har Khet Tak Sinchai Ka Pani'",
+          "isCorrect": true
+        },
+        {
+          "body": "'Atirikt Swasthya Suvidha'",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Har Khet Tak Sinchai Ka Pani' ('Irrigation Water to Every Field') is the Saat Nischay 2.0 resolve specifically aimed at extending irrigation coverage to every cultivated field, with a particular focus on second water-storage infrastructure and micro-irrigation.",
+      "concept_group_id": "bs1-rd-har-khet-sinchai",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-131",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The 'Swachh Gaon, Samriddh Gaon' resolve under Saat Nischay 2.0 introduced which flagship initiative for rural areas?",
+      "options": [
+        {
+          "body": "A cashless ration-card digitisation drive aimed specifically at rural areas",
+          "isCorrect": false
+        },
+        {
+          "body": "A Solar Street Light Yojana, alongside waste-management infrastructure in gram panchayats",
+          "isCorrect": true
+        },
+        {
+          "body": "Free LPG connections for every rural household below the poverty line",
+          "isCorrect": false
+        },
+        {
+          "body": "A programme converting village ponds into fish-farming cooperatives, with no other stated purpose",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Swachh Gaon, Samriddh Gaon' introduced the Solar Street Light Yojana as its flagship initiative, alongside solid and liquid waste-management infrastructure being rolled out across thousands of gram panchayats.",
+      "concept_group_id": "bs1-rd-swachh-gaon-solar-streetlight",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-132",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The 'Swachh Shahar, Vikassit Shahar' resolve addresses urban development, with a specific commitment toward which group?",
+      "options": [
+        {
+          "body": "Multi-storey housing for slum dwellers, alongside storm-water drainage systems in urban local bodies",
+          "isCorrect": true
+        },
+        {
+          "body": "Free public transport passes issued to all registered urban voters in municipal areas",
+          "isCorrect": false
+        },
+        {
+          "body": "Rent subsidies made available specifically for migrant industrial workers in urban areas",
+          "isCorrect": false
+        },
+        {
+          "body": "Municipal bond financing made available specifically to Patna and Gaya",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Swachh Shahar, Vikassit Shahar' commits to multi-storey housing specifically for slum dwellers, alongside building storm-water drainage systems across urban local bodies -- distinguishing it from the rural-focused 'Swachh Gaon' resolve.",
+      "concept_group_id": "bs1-rd-swachh-shahar-slum-housing",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-133",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Sulabh Samparkta', a resolve under Saat Nischay 2.0, primarily concerns which area of infrastructure?",
+      "options": [
+        {
+          "body": "Bypasses and flyovers in major cities, alongside village-level road connectivity",
+          "isCorrect": true
+        },
+        {
+          "body": "Digital broadband connectivity to every gram panchayat office",
+          "isCorrect": false
+        },
+        {
+          "body": "Mobile-banking access points in unbanked rural blocks",
+          "isCorrect": false
+        },
+        {
+          "body": "River-ferry connectivity across the Ganga at every major crossing",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Sulabh Samparkta' ('Easy Connectivity') focuses on building bypasses and flyovers in Bihar's major cities, alongside ensuring every habitation has village-level road connectivity -- a road-and-traffic-infrastructure resolve, distinct from the state's separate digital or financial-inclusion initiatives.",
+      "concept_group_id": "bs1-rd-sulabh-samparkta-roads",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-134",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Atirikt Swasthya Suvidha', the healthcare-focused resolve under Saat Nischay 2.0, places specific emphasis on which service?",
+      "options": [
+        {
+          "body": "Free ambulance services made available specifically for maternity-related emergencies",
+          "isCorrect": false
+        },
+        {
+          "body": "Fully subsidised private hospital insurance for all state employees",
+          "isCorrect": false
+        },
+        {
+          "body": "District-level organ-transplant facilities established in every administrative division",
+          "isCorrect": false
+        },
+        {
+          "body": "Telemedicine connectivity for health and wellness centres, alongside animal-health clinics at the panchayat level",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Atirikt Swasthya Suvidha' emphasises telemedicine connectivity for health and wellness centres, alongside setting up animal-health (Pashu Swasthya) clinics at the panchayat level -- a resolve that notably bundles human and animal healthcare access together.",
+      "concept_group_id": "bs1-rd-atirikt-swasthya-telemedicine",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-135",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Kanya Utthan Yojana, launched in 2018, is distinctive among Bihar's girl-child welfare schemes for the span of support it provides. What is this span?",
+      "options": [
+        {
+          "body": "Support limited to the single year of a girl's birth",
+          "isCorrect": false
+        },
+        {
+          "body": "Support that begins specifically once a girl reaches Class 10",
+          "isCorrect": false
+        },
+        {
+          "body": "A one-time payment made specifically at the time of marriage",
+          "isCorrect": false
+        },
+        {
+          "body": "Continuous support from a girl's birth through to her graduation",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mukhyamantri Kanya Utthan Yojana (2018) is distinctive for providing continuous support spanning from a girl's birth through to graduation, explicitly aimed at countering child marriage and female foeticide across the entire span of a girl's early life and education.",
+      "concept_group_id": "bs1-rd-kanya-utthan-birth-to-graduation",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-136",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Student Credit Card scheme, launched on 2 October 2016, provides low-interest education loans, with a notably different interest rate for which group?",
+      "options": [
+        {
+          "body": "Girls and persons with disabilities, who are charged a 0% interest rate rather than the standard rate",
+          "isCorrect": true
+        },
+        {
+          "body": "Students pursuing engineering, medical, and other notified professional courses, with remaining streams not covered",
+          "isCorrect": false
+        },
+        {
+          "body": "Students from Patna district specifically, as a pilot-city concession",
+          "isCorrect": false
+        },
+        {
+          "body": "Students who are already employed part-time while studying, and no one else",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Student Credit Card scheme (launched 2 October 2016) charges a standard low interest rate to most borrowers, but offers a 0% interest rate specifically to girls and persons with disabilities -- a deliberate equity provision within an otherwise broad-based higher-education loan scheme.",
+      "concept_group_id": "bs1-rd-student-credit-card-girls-pwd-0pct",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-137",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Kushal Yuva Karyakram (KYP), launched in 2016, mandates which kind of training for enrolled students?",
+      "options": [
+        {
+          "body": "Compulsory foreign-language proficiency certification",
+          "isCorrect": false
+        },
+        {
+          "body": "Mandatory agricultural-apprenticeship placement",
+          "isCorrect": false
+        },
+        {
+          "body": "Compulsory soft-skills and basic IT training",
+          "isCorrect": true
+        },
+        {
+          "body": "Civil-services coaching support extended to graduates",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Kushal Yuva Karyakram (2016) mandates compulsory soft-skills and basic IT training for enrolled students, aimed at improving general employability rather than targeting any single specialised career track.",
+      "concept_group_id": "bs1-rd-kyp-soft-skills-it",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-138",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Vridhajan Pension Yojana, launched in 2019, structures its pension amount around which criterion?",
+      "options": [
+        {
+          "body": "The applicant's prior occupation, whether agricultural or non-agricultural",
+          "isCorrect": false
+        },
+        {
+          "body": "Whether the applicant resides within an urban or a rural local body area specifically",
+          "isCorrect": false
+        },
+        {
+          "body": "The applicant's caste category specifically, treated as independent of age altogether",
+          "isCorrect": false
+        },
+        {
+          "body": "The applicant's age band, with a higher amount paid to those above 80 than to those between 60 and 80",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mukhyamantri Vridhajan Pension Yojana (2019) is a universal old-age pension structured by age band, with those above 80 receiving a higher monthly amount than those in the 60-80 band -- a purely age-tiered structure, not conditioned on prior occupation, residence type, or caste.",
+      "concept_group_id": "bs1-rd-vridhajan-pension-age-tiered",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-139",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Balak/Balika Protsahan Yojana, one of Bihar's older DBT schemes (2007), specifically targets which group of students?",
+      "options": [
+        {
+          "body": "Students enrolled in government schools, regardless of academic performance",
+          "isCorrect": false
+        },
+        {
+          "body": "Students who subsequently enrol in a government-run ITI, and no one else",
+          "isCorrect": false
+        },
+        {
+          "body": "Students who top their district in the Class 12 board examination",
+          "isCorrect": false
+        },
+        {
+          "body": "Students who pass Class 10 in the first division",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mukhyamantri Balak/Balika Protsahan Yojana (2007) specifically targets students who pass their Class 10 board examination in the first division, distinguishing it from broader, performance-independent DBT schemes like Kanya Utthan.",
+      "concept_group_id": "bs1-rd-balak-balika-protsahan-10th-first-division",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-140",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Jal-Jeevan-Hariyali Abhiyan, launched 2 October 2019, drew international attention for which specific record-setting event?",
+      "options": [
+        {
+          "body": "A statewide human chain in January 2020, recorded in the Limca Book of Records",
+          "isCorrect": true
+        },
+        {
+          "body": "India's largest ever single-day tree-plantation drive, verified by the Guinness World Records",
+          "isCorrect": false
+        },
+        {
+          "body": "The world's first satellite-tracked river-rejuvenation programme",
+          "isCorrect": false
+        },
+        {
+          "body": "The largest crowd-funded solar-energy project ever attempted in South Asia",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Jal-Jeevan-Hariyali Abhiyan, an 11-point agenda launched 2 October 2019, drew attention for a statewide human chain formed in January 2020 to raise awareness of its goals -- an event recorded in the Limca Book of Records, and separately praised by the United Nations for its environmental scope.",
+      "concept_group_id": "bs1-rd-jal-jeevan-hariyali-human-chain",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-141",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar achieved 'Har Ghar Bijli' (electricity to every household) in October 2018, alongside which additional distinction?",
+      "options": [
+        {
+          "body": "It became the first Indian state to complete rural electrification using solar micro-grids as the primary technology",
+          "isCorrect": false
+        },
+        {
+          "body": "It became the first state to install smart prepaid meters as part of the same rollout",
+          "isCorrect": true
+        },
+        {
+          "body": "It became one of the few states to achieve this largely without central government funding support",
+          "isCorrect": false
+        },
+        {
+          "body": "It became the first state to offer free electricity to all households on a long-term basis",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Alongside achieving 'Har Ghar Bijli' in October 2018, Bihar was the first Indian state to install smart prepaid meters as part of the same electrification rollout -- a distinction about metering technology, not about funding source or ongoing tariff policy.",
+      "concept_group_id": "bs1-rd-har-ghar-bijli-smart-meters",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-142",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's 'Har Ghar Nal Ka Jal' initiative, part of the original Saat Nishchay programme, is notable for which achievement relative to the national picture?",
+      "options": [
+        {
+          "body": "Its coverage rate falls well below the national average due to the state's difficult terrain",
+          "isCorrect": false
+        },
+        {
+          "body": "Its coverage rate is well above the national average, reaching close to universal household coverage",
+          "isCorrect": true
+        },
+        {
+          "body": "It covers urban households specifically, with rural coverage handled by a separate later scheme",
+          "isCorrect": false
+        },
+        {
+          "body": "It has been fully superseded and discontinued in favour of the central Jal Jeevan Mission",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Har Ghar Nal Ka Jal' has achieved piped water coverage well above the national average, reaching close to universal household coverage across the state -- both urban and rural areas are covered under the same initiative, and it continues to run alongside, not in place of, central schemes.",
+      "concept_group_id": "bs1-rd-har-ghar-nal-ka-jal-coverage",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-143",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Kanya Vivah Yojana provides financial assistance specifically to which category of families for their daughter's marriage?",
+      "options": [
+        {
+          "body": "Families across income levels, as a broadly available marriage grant",
+          "isCorrect": false
+        },
+        {
+          "body": "Families in which the bride holds a postgraduate degree, and no others",
+          "isCorrect": false
+        },
+        {
+          "body": "BPL (Below Poverty Line) families specifically",
+          "isCorrect": true
+        },
+        {
+          "body": "Families residing specifically in officially notified urban slum areas",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mukhyamantri Kanya Vivah Yojana provides financial assistance specifically to BPL families for their daughter's marriage, distinguishing it from universal or education-linked welfare schemes elsewhere in Bihar's DBT portfolio.",
+      "concept_group_id": "bs1-rd-kanya-vivah-bpl-families",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-144",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Mahila Rozgar Yojana is designed to support women primarily through which mechanism?",
+      "options": [
+        {
+          "body": "Reserved government jobs allocated directly through this scheme",
+          "isCorrect": false
+        },
+        {
+          "body": "Financial assistance to support women's entrepreneurship and employment ventures",
+          "isCorrect": true
+        },
+        {
+          "body": "Free vocational-college seats reserved specifically for women applicants",
+          "isCorrect": false
+        },
+        {
+          "body": "Monthly unemployment stipends paid regardless of business activity",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mukhyamantri Mahila Rozgar Yojana provides financial assistance aimed at supporting women's entrepreneurship and employment ventures directly, rather than functioning as a government job-reservation scheme, a free-seat allocation, or an unconditional stipend.",
+      "concept_group_id": "bs1-rd-mahila-rozgar-entrepreneurship",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-145",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar has established dedicated Deshi Gau Samrakshan Kendras (indigenous cattle conservation centres) in which two locations?",
+      "options": [
+        {
+          "body": "Muzaffarpur and Darbhanga",
+          "isCorrect": false
+        },
+        {
+          "body": "Purnia and Patna (Fatuha)",
+          "isCorrect": true
+        },
+        {
+          "body": "Gaya and Nalanda",
+          "isCorrect": false
+        },
+        {
+          "body": "Bhagalpur and Munger",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bihar has set up Deshi Gau Samrakshan Kendras, dedicated to conserving indigenous cattle breeds, at Purnia and at Fatuha in Patna district -- part of the state's broader animal-husbandry and conservation initiatives.",
+      "concept_group_id": "bs1-rd-deshi-gau-kendra-purnia-fatuha",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-146",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The 'Jananayak Karpoori Thakur Kisan Samman Nidhi', a farmer-support scheme, is named in honour of which Bihar political figure?",
+      "options": [
+        {
+          "body": "Sri Krishna Sinha, remembered as Bihar's first Chief Minister after independence",
+          "isCorrect": false
+        },
+        {
+          "body": "Jayaprakash Narayan, the widely remembered leader of the 1970s JP Movement",
+          "isCorrect": false
+        },
+        {
+          "body": "Anugrah Narayan Sinha, remembered as Bihar's first Deputy Chief Minister",
+          "isCorrect": false
+        },
+        {
+          "body": "Karpoori Thakur, a former Chief Minister remembered for his socialist and backward-class welfare politics",
+          "isCorrect": true
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The scheme is named after Karpoori Thakur, a former Bihar Chief Minister closely associated with socialist politics and backward-class welfare measures -- the naming choice itself signals the scheme's intended constituency among Bihar's farming community.",
+      "concept_group_id": "bs1-rd-karpoori-thakur-kisan-nidhi-namesake",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-147",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's Fourth Agriculture Road Map, covering the period 2023-2028, places particular emphasis on which two themes?",
+      "options": [
+        {
+          "body": "Expanding sugarcane acreage and reviving colonial-era indigo cultivation",
+          "isCorrect": false
+        },
+        {
+          "body": "Land consolidation and abolishing remaining tenancy arrangements",
+          "isCorrect": false
+        },
+        {
+          "body": "Digital agriculture and climate-resilient farming practices",
+          "isCorrect": true
+        },
+        {
+          "body": "Converting irrigated land to organic Kharif cultivation",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Fourth Agriculture Road Map (2023-2028) places particular emphasis on digital agriculture and climate-resilient farming practices, reflecting a shift in policy focus toward technology adoption and adaptation to increasingly erratic monsoon patterns.",
+      "concept_group_id": "bs1-rd-4th-agri-roadmap-digital-climate",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-148",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Bihar Logistics Policy (2023) is centred on reducing the cost of trade primarily through which kind of infrastructure?",
+      "options": [
+        {
+          "body": "A dedicated fleet of state-owned cargo aircraft",
+          "isCorrect": false
+        },
+        {
+          "body": "New deep-water port construction along a hypothetical Bihar coastline",
+          "isCorrect": false
+        },
+        {
+          "body": "Dry ports and integrated cold-storage hubs",
+          "isCorrect": true
+        },
+        {
+          "body": "A statewide toll-free highway network built specifically for freight vehicles",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Bihar Logistics Policy (2023) focuses on building dry ports and integrated cold-storage hubs to reduce the cost of trade for a landlocked state -- Bihar has no coastline, so port infrastructure here specifically refers to inland dry ports linked to rail and road networks.",
+      "concept_group_id": "bs1-rd-logistics-policy-2023-dry-ports",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-149",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mukhyamantri Udyami Yojana supports new entrepreneurs, particularly youth and women, through which specific financial structure?",
+      "options": [
+        {
+          "body": "A fully repayable loan at standard commercial interest rates",
+          "isCorrect": false
+        },
+        {
+          "body": "A one-time cash grant with no loan component",
+          "isCorrect": false
+        },
+        {
+          "body": "Seed capital combining a 50% grant with a 50% interest-free loan",
+          "isCorrect": true
+        },
+        {
+          "body": "Equity investment by the state government in exchange for partial ownership",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Mukhyamantri Udyami Yojana structures its support as seed capital combining a 50% outright grant with a 50% interest-free loan -- a hybrid structure distinct from a pure loan, a pure grant, or an equity-stake arrangement.",
+      "concept_group_id": "bs1-rd-mukhyamantri-udyami-50-50-structure",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-150",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bihar's 'Saat Nischay 2.0' (2020-2025) programme is best understood as:",
+      "options": [
+        {
+          "body": "A continuation and second phase of the original 'Saat Nishchay' programme launched around 2015",
+          "isCorrect": true
+        },
+        {
+          "body": "A standalone programme, conceived independently, with no formal connection to an earlier Bihar development scheme",
+          "isCorrect": false
+        },
+        {
+          "body": "A central government scheme merely adopted and rebranded by the Bihar state government",
+          "isCorrect": false
+        },
+        {
+          "body": "A short-term emergency response programme created specifically for post-pandemic recovery",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Saat Nischay 2.0' is a continuation and second phase of the original 'Saat Nishchay' programme launched around 2015, carrying forward and expanding on its earlier development resolves rather than being an unrelated, centrally-driven, or purely pandemic-response initiative.",
+      "concept_group_id": "bs1-rd-saat-nischay-2-continuation",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs1-151",
+      "subject": "Bihar-Specific",
+      "topic": "Recent Developments",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bihar runs two schemes that both provide transitional cash support to people navigating a change in economic circumstance: the Satat Jeevikoparjan Yojana and the Swayam Sahayata Bhatta. How do they differ in who they target?",
+      "options": [
+        {
+          "body": "Both schemes are said to target exactly the same population of liquor-ban-affected families, differing merely in how frequently the payments happen to be disbursed",
+          "isCorrect": false
+        },
+        {
+          "body": "Satat Jeevikoparjan supports families economically affected by the 2016 liquor ban in finding alternative livelihoods, while Swayam Sahayata Bhatta is a general unemployment allowance for job-seeking youth aged 20-25",
+          "isCorrect": true
+        },
+        {
+          "body": "Satat Jeevikoparjan is designed to target unemployed graduates specifically, while Swayam Sahayata Bhatta is aimed instead at liquor-ban-affected families",
+          "isCorrect": false
+        },
+        {
+          "body": "Both schemes are general unemployment allowances with no connection to the liquor ban",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Satat Jeevikoparjan Yojana (launched 5 August 2018) specifically supports families whose livelihoods were affected by Bihar's 2016 liquor ban, helping them transition to alternative sources of income. The Swayam Sahayata Bhatta, by contrast, is a general unemployment allowance available to job-seeking youth aged 20-25 for up to two years, with no connection to the liquor ban -- two structurally similar 'transitional cash support' schemes that target entirely different populations for entirely different underlying reasons.",
+      "concept_group_id": "bs1-rd-jeevikoparjan-vs-swayam-sahayata",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

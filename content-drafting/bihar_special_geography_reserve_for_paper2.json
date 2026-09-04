@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "purpose": "6 validated, drafted-but-unused Geography questions from Batch 02's drafting pass, set aside because Paper I's target_cells only needed 41 -- reserved for Paper II/III's Geography allocation so this work isn't redrafted from scratch.",
+    "generated_at": "2026-09-03",
+    "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+    "note": "bs1-092 was removed from Paper I specifically because it duplicated a fact already covered inside bs1-094's match_the_following (Sheohar = smallest district) -- not just a volume trim, a real de-dup fix. The other 5 are volume trims only, no quality/dup issue. UPDATE 2026-09-03: the other 5 (bs1-097,100,087,096,099) were folded into Paper I directly after the Economy-shortfall rebalance -- only bs1-092 remains here, and it stays excluded from any paper due to the genuine duplicate-fact issue, not volume."
+  },
+  "questions": [
+    {
+      "batch_ref": "bs1-092",
+      "subject": "Bihar-Specific",
+      "topic": "Geography",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Which district holds Bihar's highest population density AND its smallest area, a striking combination given the two would usually be expected to trade off against each other only loosely?",
+      "options": [
+        {
+          "body": "Patna",
+          "isCorrect": false
+        },
+        {
+          "body": "Sheohar",
+          "isCorrect": true
+        },
+        {
+          "body": "Kaimur",
+          "isCorrect": false
+        },
+        {
+          "body": "Munger",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Sheohar is both Bihar's smallest district by area and its most densely populated (around 1,880 people per sq km) -- a notable combination, since Patna, despite being the state's most populous and urbanised district overall, does not hold the density record; Kaimur, by contrast, has the state's lowest population density.",
+      "concept_group_id": "bs1-geo-sheohar-smallest-densest",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}

@@ -1,0 +1,970 @@
+{
+  "meta": {
+    "purpose": "30 validated, drafted-but-unused History & Culture questions from Batch 05's drafting pass -- Orange Book source material for Ancient Bihar turned out far richer than the 63-question target needed, so these were set aside rather than discarded. Reserved for Paper III's History & Culture allocation so this work isn't redrafted from scratch.",
+    "generated_at": "2026-09-04",
+    "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+    "note": "All 30 are fully-formed, validated questions (same option-craft/absolutist/length-bias standard as the live 63) -- none were cut for quality reasons, purely for volume. Re-run validate_bihar_special_batch.py after merging into a future batch, since concept_group_id/batch_ref collisions against Paper III's own live content will need a fresh check at that time."
+  },
+  "questions": [
+    {
+      "batch_ref": "bs2-601",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Rigveda names 'Kikata', ruled by Pramaganda, as an early territory in the Magadh region. Vedic tradition viewed its people negatively chiefly because they:",
+      "options": [
+        {
+          "body": "Did not perform Vedic sacrifices or offer Soma",
+          "isCorrect": true
+        },
+        {
+          "body": "Spoke a wholly non-Aryan, unrelated language",
+          "isCorrect": false
+        },
+        {
+          "body": "Practised a rival, rival-scripture-based religion",
+          "isCorrect": false
+        },
+        {
+          "body": "Paid tribute to a rival Vedic kingdom instead",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Rigveda looks down on Kikata's people specifically for not performing the Vedic yajna or offering Soma -- a ritual failing, not a claim about their language, an organised rival scripture (no such text existed yet), or tribute politics.",
+      "concept_group_id": "bs2-hc-kikat-territory-no-yajna",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-602",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Atharvaveda and the Panchavimsha Brahmana describe Magadh's people as 'Vratyas'. This term denotes people who:",
+      "options": [
+        {
+          "body": "Spoke an Aryan language but did not follow Aryan ritual customs",
+          "isCorrect": true
+        },
+        {
+          "body": "Had converted from Vedic religion to Buddhism",
+          "isCorrect": false
+        },
+        {
+          "body": "Were exiled Vedic priests settled outside Aryavarta",
+          "isCorrect": false
+        },
+        {
+          "body": "Paid a special tax for exemption from Vedic sacrifice",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Vratya' describes a people who spoke an Aryan-family language but did not observe Aryan ritual customs -- centuries before Buddhism existed, so a 'conversion' framing is anachronistic, and the term is ethnographic, not about priestly exile or taxation.",
+      "concept_group_id": "bs2-hc-vratyas-magadh-atharvaveda",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-603",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Gaya's status as the most sacred site for Pitru-Tarpana (ancestral rites) is attested in which group of texts, alongside a specific temple named there?",
+      "options": [
+        {
+          "body": "The Padma, Vayu and Agni Puranas; Mangla Gauri Temple",
+          "isCorrect": true
+        },
+        {
+          "body": "The Rigveda and Atharvaveda; Vishnupad Temple",
+          "isCorrect": false
+        },
+        {
+          "body": "The Jataka tales; Bodhi Tree shrine",
+          "isCorrect": false
+        },
+        {
+          "body": "The Arthashastra; Barabar cave shrine",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Padma, Vayu and Agni Puranas specifically record Gaya's sanctity for Pitru-Tarpana, naming Mangla Gauri Temple in this context. The Rigveda/Atharvaveda are far older Vedic (not Puranic) texts, the Jataka tales are Buddhist narrative literature, and the Arthashastra is a treatise on statecraft -- none of these three is the source for this specific ritual claim.",
+      "concept_group_id": "bs2-hc-gaya-pitru-tarpana-puranas",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-604",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Which pair of Buddhist texts is the primary source describing Magadh's monarchy and the Vaishali republic side by side?",
+      "options": [
+        {
+          "body": "Vinaya Pitaka and Digha Nikaya",
+          "isCorrect": true
+        },
+        {
+          "body": "Ashokavadana and Divyavadana",
+          "isCorrect": false
+        },
+        {
+          "body": "Milinda Panho and Buddhacharita",
+          "isCorrect": false
+        },
+        {
+          "body": "Anguttara Nikaya and Jataka tales",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Vinaya Pitaka and Digha Nikaya together describe both Magadh's monarchical rule and Vaishali's republican set-up. Ashokavadana/Divyavadana instead focus on Ashoka's own life story, Milinda Panho/Buddhacharita are later texts about a Greek king's dialogue and Kanishka-era poetry respectively, and the Anguttara Nikaya/Jataka pairing is about the Mahajanapadas list and past-life legends.",
+      "concept_group_id": "bs2-hc-vinaya-digha-magadh-vaishali",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-605",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Tattvartha Sutra, authored by Umasvati, holds a distinctive place in Jain literature because it is:",
+      "options": [
+        {
+          "body": "The most authoritative Jain text accepted by both the Digambar and Shwetambar sects",
+          "isCorrect": true
+        },
+        {
+          "body": "Recognised only by the Digambar sect as canonical",
+          "isCorrect": false
+        },
+        {
+          "body": "A Sanskrit translation of the earlier Prakrit Agamas commissioned after the schism",
+          "isCorrect": false
+        },
+        {
+          "body": "The text whose interpretation directly triggered the Digambar-Shwetambar split",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Tattvartha Sutra's distinctive status is that BOTH the Digambar and Shwetambar sects accept it as authoritative, despite their split -- it is not sect-exclusive, is an original systematic treatise rather than a translation, and the split itself is traced to a 12-year famine, not a dispute over this text.",
+      "concept_group_id": "bs2-hc-tattvartha-sutra-both-sects",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-607",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "The Tibetan monk-scholar Dharmasvamin, who visited Bihar in 1234-1236, is historically valuable chiefly because his account:",
+      "options": [
+        {
+          "body": "Is a rare eyewitness description of Nalanda AFTER the Muslim invasion had already struck it",
+          "isCorrect": true
+        },
+        {
+          "body": "Is the earliest surviving description of Nalanda at the height of its glory",
+          "isCorrect": false
+        },
+        {
+          "body": "Is the only source confirming Nalanda's original founder",
+          "isCorrect": false
+        },
+        {
+          "body": "Describes Nalanda's founding ceremony in eyewitness detail",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dharmasvamin's account is prized as a rare eyewitness record of Nalanda's diminished state AFTER Bakhtiyar Khilji's raids -- not a description of its peak years, its founding ceremony, or its founder's identity, all of which come from earlier, different sources.",
+      "concept_group_id": "bs2-hc-dharmasvamin-post-destruction-nalanda",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-608",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Vishakhadatta's Sanskrit play 'Mudrarakshasa' is a key literary source for which historical episode?",
+      "options": [
+        {
+          "body": "The overthrow of the Nanda dynasty",
+          "isCorrect": true
+        },
+        {
+          "body": "Ashoka's conversion to Buddhism",
+          "isCorrect": false
+        },
+        {
+          "body": "Samudragupta's military campaigns",
+          "isCorrect": false
+        },
+        {
+          "body": "The founding of the Pala dynasty",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mudrarakshasa dramatises the overthrow of the Nanda dynasty and Chandragupta Maurya's rise -- Ashoka's conversion, Samudragupta's campaigns, and the Pala dynasty's founding are all separately documented episodes from different eras entirely.",
+      "concept_group_id": "bs2-hc-mudrarakshasa-nanda-overthrow",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-609",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Taj-ul-Maasir', by Hasan Nizami, is a key primary source specifically for:",
+      "options": [
+        {
+          "body": "The Turkic invasions of northern India",
+          "isCorrect": true
+        },
+        {
+          "body": "Sher Shah Suri's administrative reforms",
+          "isCorrect": false
+        },
+        {
+          "body": "The Pala dynasty's Buddhist patronage",
+          "isCorrect": false
+        },
+        {
+          "body": "The Mughal conquest of Bihar",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Taj-ul-Maasir focuses on the Turkic invasions of north India -- Sher Shah's reforms are instead documented in Tarikh-e-Sher Shahi, Pala patronage through inscriptions like the Munger copperplate, and the Mughal conquest through separate Mughal-era chronicles.",
+      "concept_group_id": "bs2-hc-taj-ul-maasir-turkic-invasions",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-610",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Malfuzat', the recorded sayings of the Sufi saint Sharfuddin Yahya Maneri, is historically significant as a source of insight into:",
+      "options": [
+        {
+          "body": "Bihar under Tughlaq-era rule",
+          "isCorrect": true
+        },
+        {
+          "body": "The Gupta empire's administrative structure",
+          "isCorrect": false
+        },
+        {
+          "body": "The Licchavi confederacy's governance",
+          "isCorrect": false
+        },
+        {
+          "body": "The Sena dynasty's Sanskrit court literature",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Malfuzat offers a window into Bihar specifically during Tughlaq rule -- centuries after the Gupta and Licchavi periods, and distinct from the Sena court's own separate Sanskrit literary tradition.",
+      "concept_group_id": "bs2-hc-malfuzat-tughlaq-era-bihar",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-611",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Chirand in Saran district, Bihar's most important Neolithic site, is chiefly known for yielding:",
+      "options": [
+        {
+          "body": "Over 400 bone tools made from red deer antlers",
+          "isCorrect": true
+        },
+        {
+          "body": "The earliest evidence of iron smelting in the region",
+          "isCorrect": false
+        },
+        {
+          "body": "A hoard of punch-marked silver coins",
+          "isCorrect": false
+        },
+        {
+          "body": "Black-and-Red Ware pottery with copper artefacts",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Chirand's defining find is over 400 bone tools crafted from red deer antlers, alongside circular mud huts and burnt grain. Iron smelting belongs to the later Iron Age, punch-marked coins to a much later monetised economy, and Black-and-Red Ware with copper items is instead Oriup (Bhagalpur)'s Chalcolithic signature.",
+      "concept_group_id": "bs2-hc-chirand-bone-tools-red-deer",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-612",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Paisra in Munger district holds a specific distinction in Bihar's Mesolithic record: it provides the earliest evidence in Bihar of:",
+      "options": [
+        {
+          "body": "Temporary shelters or huts, an unusually structured habitation pattern for the period",
+          "isCorrect": true
+        },
+        {
+          "body": "Organised wet-rice cultivation",
+          "isCorrect": false
+        },
+        {
+          "body": "Long-distance trade in Chalcolithic copper goods",
+          "isCorrect": false
+        },
+        {
+          "body": "Post-cremation burial practices",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Paisra provides Bihar's earliest evidence of temporary shelters/huts -- an unusually structured settlement pattern for the Mesolithic. Wet-rice cultivation evidence instead comes from Senuwar (Rohtas), Chalcolithic copper trade from Oriup (Bhagalpur), and post-cremation burial evidence from Sonpur (Gaya).",
+      "concept_group_id": "bs2-hc-paisra-earliest-shelters",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-614",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Anga's capital, Champa, was economically significant chiefly as:",
+      "options": [
+        {
+          "body": "A major river port trading with Suvarnabhumi (South-East Asia)",
+          "isCorrect": true
+        },
+        {
+          "body": "The Mauryan empire's primary mint for gold coinage",
+          "isCorrect": false
+        },
+        {
+          "body": "A landlocked centre of overland caravan trade with Central Asia only",
+          "isCorrect": false
+        },
+        {
+          "body": "The seat of the Vajji confederacy's assembly hall",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Champa, sited at the Ganga-Champa confluence and anciently named Malini, was a major river port linked to South-East Asian (Suvarnabhumi) maritime trade -- not a Mauryan mint, a purely landlocked caravan hub, or the Vajji Sangha's own assembly seat (that was Vaishali's Santhagara).",
+      "concept_group_id": "bs2-hc-champa-suvarnabhumi-port",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-615",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Before becoming Magadh's king, Ajatshatru held which position in the neighbouring kingdom of Anga?",
+      "options": [
+        {
+          "body": "Governor, based at Champa",
+          "isCorrect": true
+        },
+        {
+          "body": "Chief tax-collector (Gramani) of the capital",
+          "isCorrect": false
+        },
+        {
+          "body": "Commander of Anga's war-elephant corps",
+          "isCorrect": false
+        },
+        {
+          "body": "High priest overseeing Champa's river-port trade",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Ajatshatru served as Anga's governor, based at Champa, before ascending Magadh's throne -- not as a village-level tax official, a military commander specifically, or a religious/trade functionary.",
+      "concept_group_id": "bs2-hc-ajatshatru-anga-governor",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-621",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Orthodox Vedic tradition regarded Magadh as 'Mlechha' (impure/heterodox) territory. This social framing had which notable long-term effect?",
+      "options": [
+        {
+          "body": "It allowed Buddhism and Jainism, unbound by orthodox constraints, to spread rapidly there",
+          "isCorrect": true
+        },
+        {
+          "body": "It led to Magadh's political isolation and repeated invasion by Vedic-orthodox kingdoms",
+          "isCorrect": false
+        },
+        {
+          "body": "It forced Magadh's rulers to publicly adopt Vedic orthodoxy to gain legitimacy",
+          "isCorrect": false
+        },
+        {
+          "body": "It prevented Magadh from ever becoming a major trading centre",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Precisely because Magadh sat outside orthodox Vedic norms, Buddhism and Jainism found fertile ground to spread rapidly there, aided by merchant and royal patronage -- the region was not politically isolated or invaded for this reason, its rulers did not need to perform Vedic orthodoxy to hold power, and it became one of ancient India's major trading regions regardless.",
+      "concept_group_id": "bs2-hc-magadh-mlechha-social-fluidity",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-624",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Before his enlightenment, Siddhartha Gautama studied under two teachers in Bihar. Which pairing of teacher, location and teaching is correct?",
+      "options": [
+        {
+          "body": "Alara Kalama at Vaishali, taught Sankhya philosophy and 'nothingness'",
+          "isCorrect": true
+        },
+        {
+          "body": "Udraka Ramaputra at Vaishali, taught Sankhya philosophy and 'nothingness'",
+          "isCorrect": false
+        },
+        {
+          "body": "Alara Kalama at Rajgir, taught refined meditation techniques",
+          "isCorrect": false
+        },
+        {
+          "body": "Udraka Ramaputra at Bodh Gaya, taught the Middle Path",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Alara Kalama taught Siddhartha at Vaishali, introducing him to Sankhya philosophy and the state of 'nothingness'. Udraka Ramaputra, by contrast, taught him refined meditation technique at Rajgir -- swapping either teacher's name, location, or teaching mismatches the actual pairing.",
+      "concept_group_id": "bs2-hc-alara-kalama-vaishali-sankhya",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-628",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Milinda Panho', a text valued for understanding Indo-Greek cultural synthesis, records a dialogue between which two figures?",
+      "options": [
+        {
+          "body": "King Menander I and the monk Nagasena",
+          "isCorrect": true
+        },
+        {
+          "body": "King Kanishka and the poet Ashvaghosha",
+          "isCorrect": false
+        },
+        {
+          "body": "King Ashoka and the monk Upagupta",
+          "isCorrect": false
+        },
+        {
+          "body": "King Bindusara and a Greek envoy, Deimachus",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Milinda Panho records a philosophical dialogue between the Indo-Greek king Menander I and the Buddhist monk Nagasena -- the other three pairings are all genuine historical relationships, just not the one this specific text documents.",
+      "concept_group_id": "bs2-hc-milinda-panho-menander-nagasena",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-629",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "'Buddhacharita', an epic poem on the Buddha's life, was composed by Ashvaghosha under the patronage of:",
+      "options": [
+        {
+          "body": "Kanishka's court",
+          "isCorrect": true
+        },
+        {
+          "body": "Ashoka's court",
+          "isCorrect": false
+        },
+        {
+          "body": "Harshavardhan's court",
+          "isCorrect": false
+        },
+        {
+          "body": "Samudragupta's court",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Ashvaghosha, often called the first Sanskrit playwright, composed Buddhacharita at the Kushana emperor Kanishka's court -- not under Ashoka, Harsha, or Samudragupta, each from a different era.",
+      "concept_group_id": "bs2-hc-buddhacharita-ashvaghosha-kanishka",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-632",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Among Bihar's Buddhist university cluster, which pairing of institution and founder is correct?",
+      "options": [
+        {
+          "body": "Odantapuri, founded by Gopala",
+          "isCorrect": true
+        },
+        {
+          "body": "Odantapuri, founded by Dharmapala",
+          "isCorrect": false
+        },
+        {
+          "body": "Jagaddala, founded by Gopala",
+          "isCorrect": false
+        },
+        {
+          "body": "Vikramshila, founded by Ramapala",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Odantapuri (modern Bihar Sharif) was founded by Gopala, the Pala dynasty's founder. Dharmapala instead founded Vikramshila, and Ramapala founded Jagaddala (on the north Bengal-Bihar border) -- each Pala ruler is linked to a different, specific foundation.",
+      "concept_group_id": "bs2-hc-odantapuri-gopala-founder",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-634",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Before developing his own distinct philosophy, Mahavira spent 12 years wandering with which figure?",
+      "options": [
+        {
+          "body": "Makkhali Gosala, founder of the Ajivika sect",
+          "isCorrect": true
+        },
+        {
+          "body": "Alara Kalama, teacher of Sankhya philosophy",
+          "isCorrect": false
+        },
+        {
+          "body": "Parshvanath, the 23rd Tirthankara",
+          "isCorrect": false
+        },
+        {
+          "body": "Gautam Buddha, before their philosophies diverged",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Mahavira wandered for 12 years with Makkhali Gosala, founder of the Ajivika sect, before splitting off over philosophical differences. Alara Kalama was instead one of the Buddha's teachers, Parshvanath predates Mahavira by centuries, and Mahavira and the Buddha were contemporaries but did not travel together in this way.",
+      "concept_group_id": "bs2-hc-mahavira-gosala-12-years",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-638",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bimbisara's diplomatic goodwill toward Avanti is illustrated by which specific act?",
+      "options": [
+        {
+          "body": "Sending his royal physician Jivaka to treat King Pradyota's jaundice",
+          "isCorrect": true
+        },
+        {
+          "body": "Marrying his daughter to Avanti's crown prince",
+          "isCorrect": false
+        },
+        {
+          "body": "Gifting Avanti a herd of Magadh's war elephants",
+          "isCorrect": false
+        },
+        {
+          "body": "Ceding the Anga territory to Avanti as a peace offering",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Bimbisara sent his royal physician Jivaka to Ujjain to treat King Pradyota of Avanti's jaundice, a genuine act of diplomatic goodwill -- there is no record of a marriage alliance in this direction, an elephant gift, or ceding Anga (which Bimbisara had instead just conquered) to Avanti.",
+      "concept_group_id": "bs2-hc-bimbisara-jivaka-pradyota-jaundice",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-639",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Bimbisara earned the title 'Seniya', reflecting which administrative innovation?",
+      "options": [
+        {
+          "body": "Maintaining Magadh's first regular, standing army",
+          "isCorrect": true
+        },
+        {
+          "body": "Establishing the first fixed land-revenue rate in Magadh",
+          "isCorrect": false
+        },
+        {
+          "body": "Founding Magadh's first permanent trading guild system",
+          "isCorrect": false
+        },
+        {
+          "body": "Building Magadh's first network of paved roads",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "'Seniya' reflects Bimbisara's introduction of Magadh's first regular, standing army -- a genuine military-administrative first, distinct from any claims about land revenue, guilds, or road-building.",
+      "concept_group_id": "bs2-hc-bimbisara-seniya-standing-army",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-641",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Bindusara's request to the Seleucid king Antiochus I for a Greek 'sophist' (philosopher) was notable because:",
+      "options": [
+        {
+          "body": "It was refused, since Greek law did not permit philosophers to be 'sold' or sent this way",
+          "isCorrect": true
+        },
+        {
+          "body": "It was granted, and the philosopher settled permanently at Bindusara's court",
+          "isCorrect": false
+        },
+        {
+          "body": "It triggered a brief diplomatic war between the two empires",
+          "isCorrect": false
+        },
+        {
+          "body": "It was a coded request for military, not philosophical, assistance",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Antiochus I declined the request, on the grounds that Greek custom did not allow a philosopher to be sent/sold in this manner -- the request was not granted, did not trigger conflict, and (per the sources) was a literal, not coded, request.",
+      "concept_group_id": "bs2-hc-bindusara-sophist-request-refused",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-649",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Mauryan intelligence-gathering relied on spies known as 'Gudha Purushas', divided into two categories. What distinguished these two categories?",
+      "options": [
+        {
+          "body": "Sanstha (stationary spies) versus Sanchari (wandering/mobile spies)",
+          "isCorrect": true
+        },
+        {
+          "body": "Male spies versus female spies, deployed for different missions",
+          "isCorrect": false
+        },
+        {
+          "body": "Spies reporting to the King directly versus those reporting to the Samaharta",
+          "isCorrect": false
+        },
+        {
+          "body": "Military spies versus purely commercial/trade spies",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "The Gudha Purushas were divided into Sanstha (fixed, stationary agents) and Sanchari (wandering, mobile agents) -- not divided by gender, by reporting chain, or by a military-versus-commercial split.",
+      "concept_group_id": "bs2-hc-gudha-purushas-sanstha-sanchari",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-650",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Mauryan empire ended in 185 BCE when its last ruler, Brihadratha, was killed by:",
+      "options": [
+        {
+          "body": "His own commander-in-chief, Pushyamitra Shunga, during a military parade",
+          "isCorrect": true
+        },
+        {
+          "body": "An invading Bactrian Greek army",
+          "isCorrect": false
+        },
+        {
+          "body": "A palace conspiracy led by his own son",
+          "isCorrect": false
+        },
+        {
+          "body": "Kalinga rebels avenging Ashoka's earlier war",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Brihadratha was killed by his own commander-in-chief, Pushyamitra Shunga, during a military parade -- an internal coup, not a foreign Bactrian invasion, a son-led palace plot, or Kalinga-linked revenge.",
+      "concept_group_id": "bs2-hc-brihadratha-pushyamitra-parade",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-654",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "Among Samudragupta's six known types of gold coins, which pairing is genuine?",
+      "options": [
+        {
+          "body": "The Veena-playing type and the Ashwamedha type",
+          "isCorrect": true
+        },
+        {
+          "body": "The Elephant-rider type and the Lion-slayer type",
+          "isCorrect": false
+        },
+        {
+          "body": "The King-Queen type and the Archer type only",
+          "isCorrect": false
+        },
+        {
+          "body": "The Shakari type and the Garuda type",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Samudragupta's coinage genuinely includes a Veena-playing type (celebrating his musical accomplishment) and an Ashwamedha type (marking his horse-sacrifice). The King-Queen type belongs instead to Chandragupta I, and 'Shakari' is a title of Chandragupta II, not a coin type of Samudragupta's.",
+      "concept_group_id": "bs2-hc-samudragupta-veena-ashwamedha-coins",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-655",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "The Chinese pilgrim Fa-Hien, visiting during Chandragupta II's reign, described Pataliputra chiefly as a city of:",
+      "options": [
+        {
+          "body": "Hospitals and charitable institutions",
+          "isCorrect": true
+        },
+        {
+          "body": "Fortified military garrisons",
+          "isCorrect": false
+        },
+        {
+          "body": "International maritime trading warehouses",
+          "isCorrect": false
+        },
+        {
+          "body": "Ruined, largely abandoned Mauryan-era buildings only",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Fa-Hien specifically praised Pataliputra's hospitals and charitable institutions, though he was separately struck by the ruins of Ashoka's palace -- the city was not described primarily as a military garrison, a maritime trade hub (it lies far inland), or wholly abandoned.",
+      "concept_group_id": "bs2-hc-fahien-pataliputra-hospitals",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-658",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "body": "How did Gupta-era land revenue (Bhaga) differ structurally from the Mauryan-era rate?",
+      "options": [
+        {
+          "body": "Gupta revenue ranged 1/4 to 1/6 of produce, versus the Mauryas' fixed 1/6 share",
+          "isCorrect": true
+        },
+        {
+          "body": "Gupta revenue was a fixed 1/3 share, higher than the Mauryas' fixed 1/6",
+          "isCorrect": false
+        },
+        {
+          "body": "Both empires fixed the rate at exactly 1/6, with no variation across either era",
+          "isCorrect": false
+        },
+        {
+          "body": "Gupta revenue was collected only in gold, unlike the Mauryas' grain-based system",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Gupta-era land revenue varied between 1/4 and 1/6 of produce, a range rather than the Mauryas' fixed 1/6 -- it was not a flat 1/3, was not identical to the Mauryan rate in both eras, and payment form (gold versus grain) is a separate question from the rate itself.",
+      "concept_group_id": "bs2-hc-gupta-bhaga-vs-mauryan-fixed-rate",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-659",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Nalanda's famed library, 'Dharmaganj', consisted of three named buildings. Which of the following was NOT one of them?",
+      "options": [
+        {
+          "body": "Ratnamandira",
+          "isCorrect": true
+        },
+        {
+          "body": "Ratnasagara",
+          "isCorrect": false
+        },
+        {
+          "body": "Ratnodadhi",
+          "isCorrect": false
+        },
+        {
+          "body": "Ratnaranjaka",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dharmaganj comprised Ratnasagara, Ratnodadhi and Ratnaranjaka -- 'Ratnamandira' is a plausible-sounding name in the same style but is not one of the three actual buildings.",
+      "concept_group_id": "bs2-hc-nalanda-dharmaganj-three-buildings",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-661",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Under the Pala dynasty, the Bihar-based bronze-casting art movement was chiefly associated with which two named sculptors?",
+      "options": [
+        {
+          "body": "Dhiman and Vitapala",
+          "isCorrect": true
+        },
+        {
+          "body": "Dhiman and Bhadrabahu",
+          "isCorrect": false
+        },
+        {
+          "body": "Vitapala and Ashvaghosha",
+          "isCorrect": false
+        },
+        {
+          "body": "Mir Muhammad Aliwal Khan and Vitapala",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Dhiman and Vitapala, working under Dharmapala and Devapala respectively, were the Pala period's celebrated bronze-casting sculptors -- Bhadrabahu was instead a Jain monk, Ashvaghosha a Kushana-era poet, and Mir Muhammad Aliwal Khan the much-later architect of Sher Shah's tomb.",
+      "concept_group_id": "bs2-hc-dhiman-vitapala-pala-bronze",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    },
+    {
+      "batch_ref": "bs2-663",
+      "subject": "Bihar-Specific",
+      "topic": "History & Culture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "body": "Atisha Dipankara, a celebrated scholar associated with Vikramshila, is chiefly remembered for:",
+      "options": [
+        {
+          "body": "Travelling to Tibet to spread Buddhism",
+          "isCorrect": true
+        },
+        {
+          "body": "Founding the Odantapuri monastery",
+          "isCorrect": false
+        },
+        {
+          "body": "Serving as Devapala's chief revenue minister",
+          "isCorrect": false
+        },
+        {
+          "body": "Compiling the Tripitaka's final Pali edition",
+          "isCorrect": false
+        }
+      ],
+      "marks_correct": 1,
+      "marks_wrong": 0.33,
+      "explanation": "Atisha Dipankara is remembered for his mission spreading Buddhism to Tibet -- he did not found Odantapuri (Gopala did), serve as a Pala revenue official, or compile the Tripitaka, an earlier and separately-attributed textual project.",
+      "concept_group_id": "bs2-hc-atisha-dipankara-tibet-mission",
+      "source_citation": "Perfection IAS (Dhananjay IAS), Bihar Special Orange Book",
+      "status": "draft"
+    }
+  ]
+}
