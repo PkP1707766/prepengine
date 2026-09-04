@@ -1,0 +1,46 @@
+-- ============================================================================
+-- 0019 — drop the pre-existing tests_sync_counters trigger, now redundant
+-- with (and inconsistent with) trg_recompute_test_totals from 0018.
+--
+-- Both fire on the identical event (BEFORE INSERT OR UPDATE OF sections on
+-- public.tests) and both write total_questions/total_marks, but with
+-- different semantics: sync_test_counters() (from 0001) counts/sums every
+-- question id literally present in `sections`, with no is_active filter.
+-- recompute_test_totals() (0018) joins against public.questions with
+-- "and q.is_active", excluding any question that has since been
+-- deactivated while still embedded in a built test's sections.
+--
+-- Which one "wins" for the final stored row was never a deliberate choice —
+-- Postgres fires same-event triggers in alphabetical order by trigger name,
+-- and "tests_sync_counters" sorts before "trg_recompute_test_totals", so the
+-- is_active-aware one happened to run last and overwrite the other. That's
+-- an accident of naming, not a guarantee; a future rename of either trigger
+-- could silently flip which definition governs stored totals.
+--
+-- recompute_test_totals() is the one to keep: exam_paper() (0015) serves
+-- students via the exact same "join public.questions ... and q.is_active"
+-- pattern, so its is_active-aware counting is what actually matches what
+-- gets served, not sync_test_counters()'s inactive-inclusive count.
+--
+-- Checked before dropping:
+--   - updated_at: sync_test_counters() is the ONLY thing that currently
+--     refreshes tests.updated_at on a sections edit (no other trigger on
+--     `tests` touches it, and testToRow()/upsertTest() in src/lib/db.js
+--     never sets it explicitly). But testFromRow() never maps updated_at
+--     into the object the app actually uses -- grepping src/ turns up no
+--     read of a test's updated_at/updatedAt anywhere in the UI. Losing this
+--     side effect is inert from the app's point of view.
+--   - is_active-inclusive counting: no code or test anywhere in src/
+--     depends on total_questions/total_marks including inactive questions;
+--     the one place that filtering actually matters for real (exam_paper)
+--     already excludes them, so the old trigger's inclusive count was the
+--     latent inconsistency, not a relied-upon feature.
+--   - sync_test_counters() has no other callers -- only referenced by its
+--     own CREATE (0001) and by 0009's grant/search_path hardening, both of
+--     which become moot once the function itself is gone.
+-- Both checks came back clean, so this drops the function too, not just
+-- the trigger -- leaving one single, unambiguous source of truth.
+-- ============================================================================
+
+drop trigger if exists tests_sync_counters on public.tests;
+drop function if exists public.sync_test_counters();
