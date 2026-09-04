@@ -21,14 +21,14 @@
       "Gaya's Pitru-Tarpana significance (Vayu Purana, Mangla Gauri temple) and the Barabar Caves both appear in two different chapters of the source book (Vedic-Bihar chapter and the Culture chapter respectively) -- each drafted as exactly ONE question here, not duplicated across both appearances."
     ],
     "flagged_for_extra_review": [
-      "bs2-639 (Sultanganj Buddha copper statue 'now in Birmingham'): the statue's present location is a modern-custody fact (Birmingham Museum, since the colonial era) layered onto an ancient artefact -- SME should confirm this framing is still accurate and uncontested."
+      "bs2-656 (Sultanganj Buddha copper statue 'now in Birmingham'): the statue's present location is a modern-custody fact (Birmingham Museum, since the colonial era) layered onto an ancient artefact -- SME should confirm this framing is still accurate and uncontested."
     ],
     "skipped_topics_worth_considering_for_future_batches": [
       "The 24-Tirthankara table's remaining entries (beyond Rishabhadev/Mallinath/Parshvanath used here) and the full Saptanga/seven-limb theory as its own match_the_following were both set aside as lower-priority once the 63-question target was reached -- good material for Paper III.",
       "Medieval Bihar's Sen dynasty (Vijay Sen, Lakshman Sen, Jayadeva's Geet Govind) and several Modern-era social reformers (Bihar Scientific Society, Aghore Kamini Devi, Patna College 1863) were identified as fresh and usable but held back once the 63-question target was met -- flagged for Paper III's History & Culture allocation."
     ],
     "instructions_for_bulk_import": [
-      "1. SME reviews every row for factual accuracy, with particular attention to bs2-601, bs2-621 and bs2-639 (flagged above).",
+      "1. SME reviews every row for factual accuracy, with particular attention to bs2-656 (flagged above).",
       "2. Fields map 1:1 to public.questions columns (subject='Bihar-Specific', topic='History & Culture', type, difficulty, body, options, marks_correct=1, marks_wrong=0.33, explanation, concept_group_id, source_citation, status='draft')."
     ]
   },
@@ -54,7 +54,7 @@
           "isCorrect": false
         },
         {
-          "body": "An elected assembly of merchant guild heads only",
+          "body": "A merchant-guild assembly, elected independently of the council",
           "isCorrect": false
         }
       ],
@@ -74,15 +74,15 @@
       "body": "The transition from scattered tribal 'Jana' units to territorial 'Janapada' kingdoms around 1000 BCE is chiefly attributed to:",
       "options": [
         {
-          "body": "Iron tools from the Chotanagpur plateau enabling large-scale clearing of the Ganga plain's forests",
-          "isCorrect": true
-        },
-        {
           "body": "A sudden climatic shift that made pastoralism impossible statewide",
           "isCorrect": false
         },
         {
-          "body": "The arrival of Buddhist and Jain missionaries organising settled communities",
+          "body": "Iron tools from the Chotanagpur plateau enabling large-scale clearing of the Ganga plain's forests",
+          "isCorrect": true
+        },
+        {
+          "body": "The arrival of Buddhist and Jain missionaries, who organised the region's first settled agricultural communities",
           "isCorrect": false
         },
         {
@@ -106,16 +106,16 @@
       "body": "In the Vajji Sangha's Santhagara (assembly hall), voting among the confederacy's chiefs was conducted using:",
       "options": [
         {
-          "body": "Wooden pieces called Salaka, collected by an official called the Salaka-Gahapaka",
-          "isCorrect": true
+          "body": "Sealed clay tokens submitted confidentially to the Licchavi clan's own senior priests",
+          "isCorrect": false
         },
         {
           "body": "A simple show-of-hands counted by the presiding chief",
           "isCorrect": false
         },
         {
-          "body": "Sealed clay tokens submitted to Licchavi priests",
-          "isCorrect": false
+          "body": "Wooden pieces called Salaka, collected by an official called the Salaka-Gahapaka",
+          "isCorrect": true
         },
         {
           "body": "A hereditary council vote limited to the Licchavi clan alone",
@@ -138,20 +138,20 @@
       "body": "Ajatshatru's minister Vassakara engineered the Vajji confederacy's downfall chiefly through which method, alongside two new siege weapons?",
       "options": [
         {
-          "body": "Sowing internal discord among the confederacy's constituent clans",
-          "isCorrect": true
+          "body": "Cutting off the confederacy's river-borne grain supply",
+          "isCorrect": false
         },
         {
           "body": "Bribing the Licchavi king Chetaka directly to surrender",
           "isCorrect": false
         },
         {
-          "body": "Negotiating a marriage alliance that split the Vajji leadership",
+          "body": "Negotiating a marriage alliance that permanently split the Vajji confederacy's leadership",
           "isCorrect": false
         },
         {
-          "body": "Cutting off the confederacy's river-borne grain supply",
-          "isCorrect": false
+          "body": "Sowing internal discord among the confederacy's constituent clans",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -178,11 +178,11 @@
           "isCorrect": false
         },
         {
-          "body": "Enclosed by a single continuous mountain range on all sides",
+          "body": "Enclosed by a single continuous mountain range",
           "isCorrect": false
         },
         {
-          "body": "Located atop a plateau accessible only by one narrow pass",
+          "body": "Located atop a high plateau, reachable through a single narrow mountain pass road",
           "isCorrect": false
         }
       ],
@@ -202,12 +202,12 @@
       "body": "Pataliputra's description as a 'Jal-Durga' (water fort) refers to its position at the confluence of which four rivers?",
       "options": [
         {
-          "body": "Ganga, Son, Gandak and Punpun",
-          "isCorrect": true
-        },
-        {
           "body": "Ganga, Kosi, Gandak and Bagmati",
           "isCorrect": false
+        },
+        {
+          "body": "Ganga, Son, Gandak and Punpun",
+          "isCorrect": true
         },
         {
           "body": "Son, Punpun, Falgu and Karmanasa",
@@ -234,16 +234,16 @@
       "body": "Among the early Mahajanapadas, Magadh was distinctive for being the first kingdom to:",
       "options": [
         {
-          "body": "Deploy war elephants on a large scale",
-          "isCorrect": true
+          "body": "Maintain a standing navy on the Ganga",
+          "isCorrect": false
         },
         {
           "body": "Mint gold coinage for general circulation",
           "isCorrect": false
         },
         {
-          "body": "Maintain a standing navy on the Ganga",
-          "isCorrect": false
+          "body": "Deploy war elephants on a large scale",
+          "isCorrect": true
         },
         {
           "body": "Codify a written law-book for its subjects",
@@ -266,8 +266,8 @@
       "body": "Who became the first woman ordained into the Buddhist Sangha, at Vaishali?",
       "options": [
         {
-          "body": "Mahaprajapati Gautami",
-          "isCorrect": true
+          "body": "Gargi Vachaknavi",
+          "isCorrect": false
         },
         {
           "body": "Amrapali",
@@ -278,8 +278,8 @@
           "isCorrect": false
         },
         {
-          "body": "Gargi Vachaknavi",
-          "isCorrect": false
+          "body": "Mahaprajapati Gautami",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -330,12 +330,12 @@
       "body": "The original Bodhi Tree under which the Buddha attained enlightenment no longer stands. What happened to it, and what is notable about the current tree?",
       "options": [
         {
-          "body": "It was destroyed by King Shashanka of Gauda; today's tree is its fifth generation",
-          "isCorrect": true
-        },
-        {
           "body": "It was destroyed by Bakhtiyar Khilji; today's tree was replanted by the British",
           "isCorrect": false
+        },
+        {
+          "body": "It was destroyed by King Shashanka of Gauda; today's tree is its fifth generation",
+          "isCorrect": true
         },
         {
           "body": "It died of natural causes; today's tree is a direct, unbroken continuation",
@@ -362,16 +362,16 @@
       "body": "Which words are recorded as the Buddha's last, spoken at his Mahaparinirvana in Kushinagar?",
       "options": [
         {
-          "body": "'Appo Deepo Bhava' (Be a light unto yourself)",
-          "isCorrect": true
+          "body": "'Buddham Sharanam Gacchami' (I take refuge in the Buddha)",
+          "isCorrect": false
         },
         {
           "body": "'Sabbe Sankhara Anicca' (All conditioned things are impermanent)",
           "isCorrect": false
         },
         {
-          "body": "'Buddham Sharanam Gacchami' (I take refuge in the Buddha)",
-          "isCorrect": false
+          "body": "'Appo Deepo Bhava' (Be a light unto yourself)",
+          "isCorrect": true
         },
         {
           "body": "'Ehi Passiko' (Come and see for yourself)",
@@ -441,20 +441,20 @@
       "body": "The Kesaria Stupa in East Champaran holds which distinction among the world's Buddhist stupas?",
       "options": [
         {
-          "body": "It is the world's tallest stupa, at 104 feet",
-          "isCorrect": true
+          "body": "It is a stupa believed to contain a portion of the Buddha's own ashes",
+          "isCorrect": false
         },
         {
           "body": "It is the world's oldest surviving stupa",
           "isCorrect": false
         },
         {
-          "body": "It is the only stupa built entirely of stone in Bihar",
+          "body": "It is a stupa built mainly of dressed stone in Bihar",
           "isCorrect": false
         },
         {
-          "body": "It is the only stupa confirmed to contain the Buddha's own ashes",
-          "isCorrect": false
+          "body": "It is the world's tallest stupa, at 104 feet",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -473,19 +473,19 @@
       "body": "The Relic Stupa at Vaishali, excavated in 1958, is significant because it is:",
       "options": [
         {
-          "body": "One of only eight original stupas built to contain the Buddha's bodily relics",
+          "body": "One of eight original stupas built to contain the Buddha's bodily relics",
           "isCorrect": true
         },
         {
-          "body": "The only Bihar stupa built by Emperor Ashoka personally",
+          "body": "A Bihar stupa said to be built by Emperor Ashoka personally",
           "isCorrect": false
         },
         {
-          "body": "The site where the Buddha's cremation itself took place",
+          "body": "The site where the Buddha's cremation ceremony itself actually took place",
           "isCorrect": false
         },
         {
-          "body": "The largest stupa by volume ever built in ancient India",
+          "body": "The largest stupa by volume built anywhere in ancient India",
           "isCorrect": false
         }
       ],
@@ -505,12 +505,12 @@
       "body": "Jamali holds an unusual double distinction in Mahavira's biography: he was Mahavira's:",
       "options": [
         {
-          "body": "First disciple, who later became his first schismatic opponent",
-          "isCorrect": true
-        },
-        {
           "body": "First disciple, who later succeeded him as the 25th Tirthankara",
           "isCorrect": false
+        },
+        {
+          "body": "First disciple, who later became his first schismatic opponent",
+          "isCorrect": true
         },
         {
           "body": "Chief patron-king, who later banned Jainism from his kingdom",
@@ -537,19 +537,19 @@
       "body": "Which statement correctly compares Parshvanath (23rd Tirthankara) and Mahavira (24th) on the Five Great Vows?",
       "options": [
         {
-          "body": "Parshvanath prescribed four vows; Mahavira added celibacy (Brahmacharya) as the fifth",
-          "isCorrect": true
+          "body": "Mahavira prescribed four vows; Parshvanath had already added a fifth, later dropped",
+          "isCorrect": false
         },
         {
           "body": "Both prescribed the same five vows without any difference",
           "isCorrect": false
         },
         {
-          "body": "Mahavira prescribed four vows; Parshvanath had already added a fifth, later dropped",
-          "isCorrect": false
+          "body": "Parshvanath prescribed four vows; Mahavira added celibacy (Brahmacharya) as the fifth",
+          "isCorrect": true
         },
         {
-          "body": "Parshvanath prescribed the five vows; Mahavira reduced them to four",
+          "body": "Parshvanath prescribed the full five vows already; Mahavira reduced the count to four",
           "isCorrect": false
         }
       ],
@@ -569,8 +569,8 @@
       "body": "The Shwetambar tradition holds a distinctive, contested belief about which Tirthankara?",
       "options": [
         {
-          "body": "The 19th, Mallinath, whom Shwetambars believe was female",
-          "isCorrect": true
+          "body": "The 24th, Mahavira, whom Shwetambars hold to be a mythical, non-historical figure",
+          "isCorrect": false
         },
         {
           "body": "The 1st, Rishabhadev, whom Shwetambars date to the Gupta period",
@@ -581,8 +581,8 @@
           "isCorrect": false
         },
         {
-          "body": "The 24th, Mahavira, whom Shwetambars hold to be a mythical, non-historical figure",
-          "isCorrect": false
+          "body": "The 19th, Mallinath, whom Shwetambars believe was female",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -609,7 +609,7 @@
           "isCorrect": false
         },
         {
-          "body": "Succession always passed through the maternal line",
+          "body": "Succession passed through the maternal line",
           "isCorrect": false
         },
         {
@@ -633,15 +633,15 @@
       "body": "The Hathigumpha inscription (in Odisha) is relevant to Magadh's Nanda dynasty because it:",
       "options": [
         {
+          "body": "Records the Nanda dynasty's complete founding charter and full royal genealogy in detail",
+          "isCorrect": false
+        },
+        {
           "body": "Mentions a canal built by a Nanda king, confirming Nanda presence in the Kalinga region",
           "isCorrect": true
         },
         {
-          "body": "Records the Nanda dynasty's founding charter in full",
-          "isCorrect": false
-        },
-        {
-          "body": "Lists all nine Nanda kings in dynastic order",
+          "body": "Lists the nine Nanda kings in dynastic order",
           "isCorrect": false
         },
         {
@@ -665,19 +665,19 @@
       "body": "Ashoka's Major Rock Edict XIII, especially significant for BPSC purposes, is notable for naming:",
       "options": [
         {
-          "body": "Five contemporary Greek kings, including Antiochus and Ptolemy",
-          "isCorrect": true
+          "body": "Five Mauryan provincial governors by name",
+          "isCorrect": false
         },
         {
           "body": "The five hills surrounding Rajgir",
           "isCorrect": false
         },
         {
-          "body": "Five Mauryan provincial governors by name",
-          "isCorrect": false
+          "body": "Five contemporary Greek kings, including Antiochus and Ptolemy",
+          "isCorrect": true
         },
         {
-          "body": "Five Buddhist missionary destinations in South-East Asia",
+          "body": "Five distinct Buddhist missionary destinations across South-East Asia and Sri Lanka",
           "isCorrect": false
         }
       ],
@@ -697,11 +697,11 @@
       "body": "The Rummindei Pillar at Lumbini, marking Ashoka's pilgrimage there, records which specific administrative concession to the village?",
       "options": [
         {
-          "body": "Exemption from Bali (religious tax) and a reduction of Bhag (land revenue) to one-eighth",
-          "isCorrect": true
+          "body": "An imperial order requiring the village's whole population to resettle permanently near Pataliputra",
+          "isCorrect": false
         },
         {
-          "body": "Full exemption from all forms of taxation permanently",
+          "body": "A full, permanent exemption from taxation",
           "isCorrect": false
         },
         {
@@ -709,8 +709,8 @@
           "isCorrect": false
         },
         {
-          "body": "An order to relocate the village's population to Pataliputra",
-          "isCorrect": false
+          "body": "Exemption from Bali (religious tax) and a reduction of Bhag (land revenue) to one-eighth",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -761,19 +761,19 @@
       "body": "Following his victory over Seleucus Nicator, Chandragupta Maurya received 500 elephants as part of the peace settlement. These elephants are historically notable because they:",
       "options": [
         {
-          "body": "Later played a role in Seleucus's own Battle of Ipsus in the Hellenistic world",
-          "isCorrect": true
-        },
-        {
           "body": "Were immediately returned to Chandragupta as a broken treaty term",
           "isCorrect": false
+        },
+        {
+          "body": "Later played a role in Seleucus's own Battle of Ipsus in the Hellenistic world",
+          "isCorrect": true
         },
         {
           "body": "Formed the core of a new Mauryan-Greek joint army stationed in Persia",
           "isCorrect": false
         },
         {
-          "body": "Died during transport and were never actually deployed anywhere",
+          "body": "Died during the long, difficult overland transport journey before reaching any battlefield",
           "isCorrect": false
         }
       ],
@@ -793,19 +793,19 @@
       "body": "Chandragupta Maurya's life ended in which manner, following the influence of the Jain monk Bhadrabahu?",
       "options": [
         {
-          "body": "He abdicated and undertook Sallekhana (ritual fasting unto death) at Shravanabelagola",
-          "isCorrect": true
+          "body": "He died in battle defending the empire's north-western frontier",
+          "isCorrect": false
         },
         {
           "body": "He was assassinated by a rival claimant during a royal hunt",
           "isCorrect": false
         },
         {
-          "body": "He died in battle defending the empire's north-western frontier",
-          "isCorrect": false
+          "body": "He abdicated and undertook Sallekhana (ritual fasting unto death) at Shravanabelagola",
+          "isCorrect": true
         },
         {
-          "body": "He retired to Pataliputra and continued ruling as a Jain monk-king",
+          "body": "He retired to Pataliputra's royal court and continued ruling there as a Jain monk-king afterward",
           "isCorrect": false
         }
       ],
@@ -825,8 +825,8 @@
       "body": "The Barabar Caves, Bihar's oldest surviving rock-cut caves, were carved during the Mauryan period specifically as a gift to which sect?",
       "options": [
         {
-          "body": "The Ajivikas",
-          "isCorrect": true
+          "body": "The Brahmanical priesthood",
+          "isCorrect": false
         },
         {
           "body": "The Buddhists",
@@ -837,8 +837,8 @@
           "isCorrect": false
         },
         {
-          "body": "The Brahmanical priesthood",
-          "isCorrect": false
+          "body": "The Ajivikas",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -889,12 +889,12 @@
       "body": "Which statement correctly contrasts the official administrative languages of the Mauryan and Gupta empires?",
       "options": [
         {
-          "body": "Mauryan administration used Magadhi Prakrit; Gupta administration used Sanskrit",
-          "isCorrect": true
-        },
-        {
           "body": "Both empires used Sanskrit as their sole official language throughout",
           "isCorrect": false
+        },
+        {
+          "body": "Mauryan administration used Magadhi Prakrit; Gupta administration used Sanskrit",
+          "isCorrect": true
         },
         {
           "body": "Mauryan administration used Sanskrit; Gupta administration used Magadhi Prakrit",
@@ -921,16 +921,16 @@
       "body": "Chandragupta I, the real founder of the Gupta dynasty, strengthened his political legitimacy in Magadh chiefly through:",
       "options": [
         {
-          "body": "Marriage to the Licchavi princess Kumaradevi",
-          "isCorrect": true
+          "body": "Formal adoption by the last Kushana emperor",
+          "isCorrect": false
         },
         {
           "body": "A military conquest of the entire Licchavi confederacy",
           "isCorrect": false
         },
         {
-          "body": "Formal adoption by the last Kushana emperor",
-          "isCorrect": false
+          "body": "Marriage to the Licchavi princess Kumaradevi",
+          "isCorrect": true
         },
         {
           "body": "A treaty of tribute paid annually to the Nagas",
@@ -953,8 +953,8 @@
       "body": "Historian V.A. Smith gave Samudragupta which epithet, and on whose composition is this reputation chiefly based?",
       "options": [
         {
-          "body": "'Indian Napoleon', based on Harisena's Prayag Prashasti",
-          "isCorrect": true
+          "body": "'Indian Ashoka', based on Fa-Hien's travel account",
+          "isCorrect": false
         },
         {
           "body": "'Indian Napoleon', based on Kalidasa's court poetry",
@@ -965,8 +965,8 @@
           "isCorrect": false
         },
         {
-          "body": "'Indian Ashoka', based on Fa-Hien's travel account",
-          "isCorrect": false
+          "body": "'Indian Napoleon', based on Harisena's Prayag Prashasti",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1017,12 +1017,12 @@
       "body": "The Kushana emperor Kanishka's invasion of Pataliputra had which notable cultural consequence?",
       "options": [
         {
-          "body": "He took the Buddhist scholar Ashvaghosha away with him",
-          "isCorrect": true
-        },
-        {
           "body": "He ordered Nalanda's library burned in retaliation for a local revolt",
           "isCorrect": false
+        },
+        {
+          "body": "He took the Buddhist scholar Ashvaghosha away with him",
+          "isCorrect": true
         },
         {
           "body": "He forcibly converted Pataliputra's population to Zoroastrianism",
@@ -1049,16 +1049,16 @@
       "body": "The Karnat dynasty, credited with ushering in Mithila's cultural 'Golden Age', was established in 1097 CE by:",
       "options": [
         {
-          "body": "Nanyadeva, at Simraongarh",
-          "isCorrect": true
+          "body": "Nanyadeva, at Darbhanga",
+          "isCorrect": false
         },
         {
           "body": "Harisimhadeva, at Darbhanga",
           "isCorrect": false
         },
         {
-          "body": "Nanyadeva, at Darbhanga",
-          "isCorrect": false
+          "body": "Nanyadeva, at Simraongarh",
+          "isCorrect": true
         },
         {
           "body": "Gopala, at Simraongarh",
@@ -1081,8 +1081,8 @@
       "body": "The Kannauj Tripartite Struggle, which Dharmapala's Pala dynasty took part in, was a roughly 200-year contest among the Palas and which two other powers?",
       "options": [
         {
-          "body": "The Pratiharas and the Rashtrakutas",
-          "isCorrect": true
+          "body": "The Sena dynasty and the Karnat dynasty of Mithila",
+          "isCorrect": false
         },
         {
           "body": "The Rashtrakutas and the Cholas",
@@ -1093,8 +1093,8 @@
           "isCorrect": false
         },
         {
-          "body": "The Senas and the Karnats",
-          "isCorrect": false
+          "body": "The Pratiharas and the Rashtrakutas",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1121,7 +1121,7 @@
           "isCorrect": false
         },
         {
-          "body": "Mistook the resident monks for an armed rebel militia",
+          "body": "Mistook the resident monks and scholars for an organised armed rebel militia",
           "isCorrect": false
         },
         {
@@ -1145,15 +1145,15 @@
       "body": "Bakhtiyar Khilji's career and life ended in 1206 CE when he was:",
       "options": [
         {
-          "body": "Assassinated by his own commander, Ali Mardan Khilji, after a failed Tibet campaign",
-          "isCorrect": true
-        },
-        {
           "body": "Killed in battle resisting a Mongol incursion into Bengal",
           "isCorrect": false
         },
         {
-          "body": "Executed by Qutubuddin Aibak for insubordination",
+          "body": "Assassinated by his own commander, Ali Mardan Khilji, after a failed Tibet campaign",
+          "isCorrect": true
+        },
+        {
+          "body": "Formally tried and executed by Qutubuddin Aibak himself on charges of insubordination",
           "isCorrect": false
         },
         {
@@ -1177,16 +1177,16 @@
       "body": "In his later, separate conquest of Nadiya (Bengal), Bakhtiyar Khilji famously caught Raja Lakshman Sen off-guard by arriving with only:",
       "options": [
         {
-          "body": "18 horsemen",
-          "isCorrect": true
+          "body": "18 infantry soldiers on foot",
+          "isCorrect": false
         },
         {
           "body": "180 horsemen",
           "isCorrect": false
         },
         {
-          "body": "18 infantry soldiers on foot",
-          "isCorrect": false
+          "body": "18 horsemen",
+          "isCorrect": true
         },
         {
           "body": "A single unarmed envoy",
@@ -1209,8 +1209,8 @@
       "body": "Sher Shah Suri's land-measurement system used two named tools. Which pairing is correct?",
       "options": [
         {
-          "body": "Sikandari Gaj (a 32-digit measuring unit) and Jarib (a measuring rope)",
-          "isCorrect": true
+          "body": "Dagh (a measuring rope) and Chehra (a written land record)",
+          "isCorrect": false
         },
         {
           "body": "Sikandari Gaj (a measuring rope) and Jarib (a 32-digit measuring unit)",
@@ -1221,8 +1221,8 @@
           "isCorrect": false
         },
         {
-          "body": "Dagh (a measuring rope) and Chehra (a written land record)",
-          "isCorrect": false
+          "body": "Sikandari Gaj (a 32-digit measuring unit) and Jarib (a measuring rope)",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1273,12 +1273,12 @@
       "body": "Sher Shah Suri's silver Rupiya, ancestor of the modern Indian Rupee, was minted at a standard weight of:",
       "options": [
         {
-          "body": "178 grains",
-          "isCorrect": true
-        },
-        {
           "body": "96 grains",
           "isCorrect": false
+        },
+        {
+          "body": "178 grains",
+          "isCorrect": true
         },
         {
           "body": "220 grains",
@@ -1305,16 +1305,16 @@
       "body": "Sher Shah Suri's Sarais (rest houses), built roughly every 2 kos along his roads, served an additional function as:",
       "options": [
         {
+          "body": "Garrisoned military checkpoints screening incoming travellers",
+          "isCorrect": false
+        },
+        {
+          "body": "Toll-collection points whose revenue funded the Grand Trunk Road's continued upkeep",
+          "isCorrect": false
+        },
+        {
           "body": "Dawk Chowkis (postal relay stations), with separate lodging for Hindus and Muslims",
           "isCorrect": true
-        },
-        {
-          "body": "Toll-collection points funding the Grand Trunk Road's upkeep",
-          "isCorrect": false
-        },
-        {
-          "body": "Garrisoned military checkpoints screening all travellers",
-          "isCorrect": false
         },
         {
           "body": "Regional courts where local disputes were adjudicated",
@@ -1337,8 +1337,8 @@
       "body": "Sher Shah Suri divided his empire into 47 Sarkars (districts), each administered by a paired set of officials responsible for:",
       "options": [
         {
-          "body": "Military affairs (Shiqdar-i-Shiqdaran) and civil/judicial affairs (Munsif-i-Munsifan)",
-          "isCorrect": true
+          "body": "The Dagh (horse-branding) and Chehra (soldier-description) military-record verification systems",
+          "isCorrect": false
         },
         {
           "body": "Revenue collection (Samaharta) and treasury custody (Sannidhata)",
@@ -1349,8 +1349,8 @@
           "isCorrect": false
         },
         {
-          "body": "Horse-branding (Dagh) and soldier description (Chehra) only",
-          "isCorrect": false
+          "body": "Military affairs (Shiqdar-i-Shiqdaran) and civil/judicial affairs (Munsif-i-Munsifan)",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1401,12 +1401,12 @@
       "body": "Sher Shah Suri died in 1545 under which circumstances?",
       "options": [
         {
-          "body": "A gunpowder explosion during the siege of Kalinjar",
-          "isCorrect": true
-        },
-        {
           "body": "An assassination plot at his Sasaram court",
           "isCorrect": false
+        },
+        {
+          "body": "A gunpowder explosion during the siege of Kalinjar",
+          "isCorrect": true
         },
         {
           "body": "Illness contracted while inspecting the Grand Trunk Road",
@@ -1433,16 +1433,16 @@
       "body": "Nawab Mir Qasim of Bengal relocated his capital to Munger in the 18th century primarily to take advantage of:",
       "options": [
         {
-          "body": "Munger's skilled gunsmiths, to set up his own arms/gun-making workshop",
-          "isCorrect": true
-        },
-        {
-          "body": "Munger's position as Bihar's largest river port for grain export",
-          "isCorrect": false
-        },
-        {
           "body": "Munger's status as the seat of the Bihar Sharif Sufi order",
           "isCorrect": false
+        },
+        {
+          "body": "Munger's position as one of Bihar's largest river ports for grain export trade",
+          "isCorrect": false
+        },
+        {
+          "body": "Munger's skilled gunsmiths, to set up his own arms/gun-making workshop",
+          "isCorrect": true
         },
         {
           "body": "Munger's proximity to the Barauni saltpetre trade",
@@ -1465,8 +1465,8 @@
       "body": "The Battle of Buxar (1764) was fought by the British against a joint force of three rulers. Which pairing is correct?",
       "options": [
         {
-          "body": "Mir Kasim (Bengal), Shuja-ud-Daula (Awadh) and Shah Alam II (Mughal emperor)",
-          "isCorrect": true
+          "body": "Mir Jafar (Bengal), Shuja-ud-Daula (Awadh) and Bahadur Shah (Mughal emperor)",
+          "isCorrect": false
         },
         {
           "body": "Siraj-ud-Daula (Bengal), Shuja-ud-Daula (Awadh) and Mir Jafar (Mughal emperor)",
@@ -1477,8 +1477,8 @@
           "isCorrect": false
         },
         {
-          "body": "Mir Jafar (Bengal), Shuja-ud-Daula (Awadh) and Bahadur Shah (Mughal emperor)",
-          "isCorrect": false
+          "body": "Mir Kasim (Bengal), Shuja-ud-Daula (Awadh) and Shah Alam II (Mughal emperor)",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1529,12 +1529,12 @@
       "body": "Patna's Golghar, built in 1786 by Captain John Garstin, was constructed in direct response to:",
       "options": [
         {
-          "body": "The devastating Bengal Famine of 1770",
-          "isCorrect": true
-        },
-        {
           "body": "The 1764 Battle of Buxar's grain shortages",
           "isCorrect": false
+        },
+        {
+          "body": "The devastating Bengal Famine of 1770",
+          "isCorrect": true
         },
         {
           "body": "A 1786 flood that destroyed Patna's earlier granaries",
@@ -1561,16 +1561,16 @@
       "body": "Following the East India Company's monopoly over Bihar's opium trade, a dedicated administrative body was set up in Patna, known as the:",
       "options": [
         {
-          "body": "Opium Agency",
-          "isCorrect": true
+          "body": "Bihar Collectorate",
+          "isCorrect": false
         },
         {
           "body": "Patna Revenue Council",
           "isCorrect": false
         },
         {
-          "body": "Bihar Collectorate",
-          "isCorrect": false
+          "body": "Opium Agency",
+          "isCorrect": true
         },
         {
           "body": "Company Trading Board",
@@ -1593,8 +1593,8 @@
       "body": "Under the Government of India Act, 1935, Odisha was separated from Bihar in 1936 on the basis of:",
       "options": [
         {
-          "body": "Linguistic identity",
-          "isCorrect": true
+          "body": "Religious demographic separation",
+          "isCorrect": false
         },
         {
           "body": "A referendum among Odisha's princely states",
@@ -1605,8 +1605,8 @@
           "isCorrect": false
         },
         {
-          "body": "Religious demographic separation",
-          "isCorrect": false
+          "body": "Linguistic identity",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1657,15 +1657,15 @@
       "body": "According to BPSC-relevant sources, the first Europeans to reach Bihar were:",
       "options": [
         {
-          "body": "The Portuguese, arriving via the Hooghly for the spice and textile trade",
-          "isCorrect": true
-        },
-        {
           "body": "The Dutch, arriving to establish a saltpetre monopoly",
           "isCorrect": false
         },
         {
-          "body": "The British, arriving directly after the Battle of Plassey",
+          "body": "The Portuguese, arriving via the Hooghly for the spice and textile trade",
+          "isCorrect": true
+        },
+        {
+          "body": "The British, arriving directly in Bihar after their 1757 Battle of Plassey victory",
           "isCorrect": false
         },
         {
@@ -1689,16 +1689,16 @@
       "body": "Dr. Rajendra Prasad, India's first President, was born in which town, and by which unusual second nickname (besides 'Desh Ratna') was he also known?",
       "options": [
         {
-          "body": "Jiradei (Siwan); 'Ajatashatru'",
-          "isCorrect": true
+          "body": "Maur (Shekhpura); 'Bihar Kesari'",
+          "isCorrect": false
         },
         {
           "body": "Sitab Diara (Saran); 'Lok Nayak'",
           "isCorrect": false
         },
         {
-          "body": "Maur (Shekhpura); 'Bihar Kesari'",
-          "isCorrect": false
+          "body": "Jiradei (Siwan); 'Ajatashatru'",
+          "isCorrect": true
         },
         {
           "body": "Jiradei (Siwan); 'Bihar Vibhuti'",
@@ -1721,11 +1721,11 @@
       "body": "Rajendra Prasad presided over the Constituent Assembly and later became President. Which of the following is genuinely among his written works?",
       "options": [
         {
-          "body": "'India Divided' and the autobiography 'Atmakatha'",
-          "isCorrect": true
+          "body": "'Satyarth Prakash' and 'Kirtilata'",
+          "isCorrect": false
         },
         {
-          "body": "'Bharat Chhodo' and 'Sampoorna Kranti'",
+          "body": "'Bharat Chhodo' (Quit India) and the idea of 'Sampoorna Kranti'",
           "isCorrect": false
         },
         {
@@ -1733,8 +1733,8 @@
           "isCorrect": false
         },
         {
-          "body": "'Satyarth Prakash' and 'Kirtilata'",
-          "isCorrect": false
+          "body": "'India Divided' and the autobiography 'Atmakatha'",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1765,7 +1765,7 @@
           "isCorrect": false
         },
         {
-          "body": "Bihar's first Speaker of the Vidhan Sabha",
+          "body": "Bihar's first Speaker of the newly-formed state Vidhan Sabha",
           "isCorrect": false
         }
       ],
@@ -1785,12 +1785,12 @@
       "body": "In 1974, Jayaprakash Narayan returned to active politics to lead a movement against corruption and authoritarianism, which he termed:",
       "options": [
         {
-          "body": "'Sampoorna Kranti' (Total Revolution)",
-          "isCorrect": true
-        },
-        {
           "body": "'Azad Dasta' (Free Corps)",
           "isCorrect": false
+        },
+        {
+          "body": "'Sampoorna Kranti' (Total Revolution)",
+          "isCorrect": true
         },
         {
           "body": "'Bhoodan Andolan' (Land-Gift Movement)",
@@ -1817,16 +1817,16 @@
       "body": "Bidesia, the folk dance-drama tradition created by Bhikhari Thakur, used migration and social themes primarily to critique which 20th-century phenomenon?",
       "options": [
         {
-          "body": "Large-scale labour migration to Kolkata, and its impact on families left behind",
-          "isCorrect": true
-        },
-        {
-          "body": "The Champaran indigo planters' exploitation of tenant farmers",
-          "isCorrect": false
-        },
-        {
           "body": "The 1970 Bihar drought's impact on rural livelihoods",
           "isCorrect": false
+        },
+        {
+          "body": "The Champaran indigo planters' historical exploitation of local tenant farmers there",
+          "isCorrect": false
+        },
+        {
+          "body": "Large-scale labour migration to Kolkata, and its impact on families left behind",
+          "isCorrect": true
         },
         {
           "body": "Colonial-era railway construction displacing villages",
@@ -1849,11 +1849,11 @@
       "body": "In the Jhijhiya folk dance of Mithila, performed during Navratri to seek rain, dancers balance a specific object on their heads. What is it, and what does it symbolise?",
       "options": [
         {
-          "body": "A perforated clay lantern, whose holes are said to ward off the 'evil eye'",
-          "isCorrect": true
+          "body": "An unlit oil lamp, symbolising patience during the dry season",
+          "isCorrect": false
         },
         {
-          "body": "A brass pot of Ganga water, symbolising ritual purity",
+          "body": "A brass pot filled with sacred Ganga water, symbolising ritual purity and devotion",
           "isCorrect": false
         },
         {
@@ -1861,8 +1861,8 @@
           "isCorrect": false
         },
         {
-          "body": "An unlit oil lamp, symbolising patience during the dry season",
-          "isCorrect": false
+          "body": "A perforated clay lantern, whose holes are said to ward off the 'evil eye'",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -1889,7 +1889,7 @@
           "isCorrect": false
         },
         {
-          "body": "A liturgical language used only in Buddhist monastic texts",
+          "body": "A liturgical language used mainly in Buddhist monastic texts, formal chants and old temple ceremonies",
           "isCorrect": false
         },
         {
@@ -1913,12 +1913,12 @@
       "body": "Devkinandan Khatri, born in Muzaffarpur, is best known for authoring which pioneering Hindi work?",
       "options": [
         {
-          "body": "'Chandrakanta', a fantasy novel",
-          "isCorrect": true
-        },
-        {
           "body": "'Maila Anchal', a regional-fiction novel",
           "isCorrect": false
+        },
+        {
+          "body": "'Chandrakanta', a fantasy novel",
+          "isCorrect": true
         },
         {
           "body": "'Yugdhara', a poetry collection",
@@ -1945,16 +1945,16 @@
       "body": "Before Devanagari became Bihar's standard administrative script, which script was historically used across the state for administrative and legal work into the early 20th century?",
       "options": [
         {
-          "body": "Kaithi",
-          "isCorrect": true
+          "body": "Kharoshthi",
+          "isCorrect": false
         },
         {
           "body": "Mithilakshar (Tirhuta)",
           "isCorrect": false
         },
         {
-          "body": "Kharoshthi",
-          "isCorrect": false
+          "body": "Kaithi",
+          "isCorrect": true
         },
         {
           "body": "Brahmi",
@@ -1977,11 +1977,11 @@
       "body": "The Jal Mandir at Pawapuri, marking Mahavira's site of Mahaparinirvana, is architecturally distinctive for being built:",
       "options": [
         {
-          "body": "In the middle of a lotus-filled pond",
-          "isCorrect": true
+          "body": "As a floating structure that moves with the water level",
+          "isCorrect": false
         },
         {
-          "body": "Entirely underground, within a natural cave system",
+          "body": "Built underground, within a natural cave system",
           "isCorrect": false
         },
         {
@@ -1989,8 +1989,8 @@
           "isCorrect": false
         },
         {
-          "body": "As a floating structure that moves with the water level",
-          "isCorrect": false
+          "body": "In the middle of a lotus-filled pond",
+          "isCorrect": true
         }
       ],
       "marks_correct": 1,
@@ -2021,7 +2021,7 @@
           "isCorrect": false
         },
         {
-          "body": "A land-revenue ledger maintained by medieval Mithila kings",
+          "body": "A land-revenue ledger maintained by medieval Mithila kings and their officials",
           "isCorrect": false
         }
       ],
@@ -2041,12 +2041,12 @@
       "body": "The annual Shravani Mela pilgrimage involves devotees carrying Ganga water from Sultanganj to which destination?",
       "options": [
         {
-          "body": "Deoghar (now in Jharkhand)",
-          "isCorrect": true
-        },
-        {
           "body": "Bodh Gaya",
           "isCorrect": false
+        },
+        {
+          "body": "Deoghar (now in Jharkhand)",
+          "isCorrect": true
         },
         {
           "body": "Pawapuri",
