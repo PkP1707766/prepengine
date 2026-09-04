@@ -1,0 +1,111 @@
+{
+  "name": "BPSC Full Length — PYQ-derived (67th-re–71st, SME-pending excl.)",
+  "subject_weights": {
+    "History": 0.1813,
+    "Geography": 0.0923,
+    "Polity": 0.0777,
+    "Economy": 0.0619,
+    "Science & Technology": 0.1959,
+    "Environment & Ecology": 0.027,
+    "Current Affairs": 0.1408,
+    "Bihar-Specific": 0.1423,
+    "Reasoning & Aptitude": 0.0667
+  },
+  "difficulty_weights": {
+    "medium": 0.652,
+    "easy": 0.1543,
+    "hard": 0.1937
+  },
+  "question_type_weights": {
+    "History": {
+      "simple_mcq": 0.8409,
+      "statement_based": 0.0682,
+      "match_the_following": 0.0909
+    },
+    "Geography": {
+      "simple_mcq": 0.9848,
+      "statement_based": 0.0152
+    },
+    "Polity": {
+      "simple_mcq": 0.875,
+      "statement_based": 0.125
+    },
+    "Economy": {
+      "simple_mcq": 0.8605,
+      "statement_based": 0.1163,
+      "match_the_following": 0.0233
+    },
+    "Science & Technology": {
+      "simple_mcq": 0.9726,
+      "statement_based": 0.0274
+    },
+    "Environment & Ecology": {
+      "simple_mcq": 0.8333,
+      "statement_based": 0.1111,
+      "match_the_following": 0.0556
+    },
+    "Current Affairs": {
+      "simple_mcq": 0.9808,
+      "statement_based": 0.0192
+    },
+    "Bihar-Specific": {
+      "simple_mcq": 0.9597,
+      "statement_based": 0.0161,
+      "match_the_following": 0.0242
+    },
+    "Reasoning & Aptitude": {
+      "reasoning_aptitude": 1.0
+    }
+  },
+  "sub_topic_weights": {
+    "History": {
+      "Modern": 0.6211,
+      "Ancient": 0.236,
+      "Medieval": 0.1429
+    },
+    "Geography": {
+      "Physical": 0.5,
+      "World": 0.2195,
+      "Economic": 0.2195,
+      "Human": 0.061
+    },
+    "Polity": {
+      "Panchayati Raj & local governance": 0.1449,
+      "Constitutional provisions": 0.8551
+    },
+    "Economy": {
+      "Macroeconomic concepts": 0.4727,
+      "Five-year plans & policy": 0.2545,
+      "Banking & finance": 0.2727
+    },
+    "Science & Technology": {
+      "Biology": 0.3276,
+      "Physics": 0.3103,
+      "Chemistry": 0.2586,
+      "Tech & Innovation": 0.1034
+    },
+    "Environment & Ecology": {
+      "Conservation & Policy": 0.4583,
+      "Climate & Pollution": 0.25,
+      "Biodiversity": 0.2917
+    },
+    "Current Affairs": {
+      "International": 0.352,
+      "National": 0.248,
+      "Sports": 0.128,
+      "Schemes & Indices": 0.136,
+      "Awards & Appointments": 0.136
+    },
+    "Bihar-Specific": {
+      "History & Culture": 0.3525,
+      "Polity & Governance": 0.036,
+      "Recent Developments": 0.1583,
+      "Economy": 0.1799,
+      "Geography": 0.2734
+    },
+    "Reasoning & Aptitude": {
+      "Quantitative/Numerical": 0.5593,
+      "Logical/Verbal": 0.4407
+    }
+  }
+}

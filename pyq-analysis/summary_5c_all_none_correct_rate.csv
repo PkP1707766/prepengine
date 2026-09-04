@@ -1,0 +1,4 @@
+metric,n,pct_of_all_900
+"is_all_or_none_correct (functional -- incl. coded combos like '1,2 and 3' meaning ALL)",37,4.1%
+all_none_literal_phrasing (literal 'All/None of the above' text only),31,3.4%
+denominator,900,100.0%

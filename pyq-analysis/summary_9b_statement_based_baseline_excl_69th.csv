@@ -1,0 +1,4 @@
+metric,n,denominator,pct
+"baseline (5 cycles, 69th excluded)",32,750,4.3%
+"69th only (outlier, excluded from baseline)",35,150,23.3%
+all 6 cycles pooled (for reference only -- do not use as target),67,900,7.4%

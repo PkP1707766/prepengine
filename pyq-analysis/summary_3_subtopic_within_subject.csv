@@ -1,0 +1,41 @@
+subject,sub_topic,count,pct_of_subject
+History,Modern,101,62.0%
+History,Ancient,38,23.3%
+History,Medieval,24,14.7%
+History,— TOTAL —,163,100.0%
+Geography,Physical,41,49.4%
+Geography,Economic,19,22.9%
+Geography,World,18,21.7%
+Geography,Human,5,6.0%
+Geography,— TOTAL —,83,100.0%
+Polity,Constitutional provisions,60,85.7%
+Polity,Panchayati Raj & local governance,10,14.3%
+Polity,— TOTAL —,70,100.0%
+Economy,Macroeconomic concepts,27,47.4%
+Economy,Banking & finance,16,28.1%
+Economy,Five-year plans & policy,14,24.6%
+Economy,— TOTAL —,57,100.0%
+Science & Technology,Biology,57,32.6%
+Science & Technology,Physics,54,30.9%
+Science & Technology,Chemistry,46,26.3%
+Science & Technology,Tech & Innovation,18,10.3%
+Science & Technology,— TOTAL —,175,100.0%
+Environment & Ecology,Conservation & Policy,11,44.0%
+Environment & Ecology,Climate & Pollution,7,28.0%
+Environment & Ecology,Biodiversity,7,28.0%
+Environment & Ecology,— TOTAL —,25,100.0%
+Current Affairs,International,44,34.6%
+Current Affairs,National,32,25.2%
+Current Affairs,Awards & Appointments,18,14.2%
+Current Affairs,Schemes & Indices,17,13.4%
+Current Affairs,Sports,16,12.6%
+Current Affairs,— TOTAL —,127,100.0%
+Bihar-Specific,History & Culture,49,34.8%
+Bihar-Specific,Geography,39,27.7%
+Bihar-Specific,Economy,25,17.7%
+Bihar-Specific,Recent Developments,23,16.3%
+Bihar-Specific,Polity & Governance,5,3.5%
+Bihar-Specific,— TOTAL —,141,100.0%
+Reasoning & Aptitude,Quantitative/Numerical,33,55.9%
+Reasoning & Aptitude,Logical/Verbal,26,44.1%
+Reasoning & Aptitude,— TOTAL —,59,100.0%

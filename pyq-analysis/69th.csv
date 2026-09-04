@@ -1,0 +1,151 @@
+year,exam_date,paper_variant,booklet_series,question_number,subject,sub_topic,question_type,option_count,statement_count,list_item_count,option_combination_pattern,is_all_or_none_correct,all_none_literal_phrasing,correct_option,key_status,difficulty_guess,ambiguous_subject,ambiguous_note,ca_recency_months,source_type_guess,question_text_en
+69th,2023-09-30,main,A,1,Science & Technology,Tech & Innovation,statement_based,4,3,,"1, 2 and 3",TRUE,FALSE,D,provisional,medium,FALSE,,,current_affairs,"Which technologies enabled by 5G (IoT, Edge Computing, Network Slicing)"
+69th,2023-09-30,main,A,2,Science & Technology,Tech & Innovation,match_the_following,4,,4,,FALSE,FALSE,A,provisional,hard,FALSE,,,current_affairs,"Match space missions with exploration (Cassini-Huygens, Juno, Artemis, VERITAS)"
+69th,2023-09-30,main,A,3,Geography,Economic,match_the_following,4,,4,,FALSE,FALSE,C,provisional,medium,TRUE,natural fibres — could be General Science/GK,,specialized reference,"Match cloth with origin (Linen, Coir, Mohair, Down)"
+69th,2023-09-30,main,A,4,Science & Technology,Biology,statement_based,4,2,,Both 1 and 2,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Taeniasis / neurocysticercosis — statements correct
+69th,2023-09-30,main,A,5,Science & Technology,Tech & Innovation,statement_based,4,4,,All of the above,TRUE,TRUE,D,provisional,medium,FALSE,,,specialized reference,"Which are computer languages (Cobra, Python, Squirrel, Java)"
+69th,2023-09-30,main,A,6,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,D,provisional,easy,FALSE,,8,current_affairs,Full form of GPT in ChatGPT
+69th,2023-09-30,main,A,7,Science & Technology,Biology,statement_based,4,7,,4 and 7,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Which are NOT tastes of the tongue (7 items)
+69th,2023-09-30,main,A,8,Science & Technology,Biology,statement_based,4,4,,Only 3 and 4,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,"Correctly matched pairs (Anorexia, Insomnia, Dyspnoea, Anosmia)"
+69th,2023-09-30,main,A,9,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,NCERT-level,What are pulsars
+69th,2023-09-30,main,A,10,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,current_affairs,Lab-grown diamonds — diamond seed used
+69th,2023-09-30,main,A,11,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,D,provisional,easy,FALSE,,,NCERT-level,Fibre used to make bulletproof jackets (Kevlar)
+69th,2023-09-30,main,A,12,Science & Technology,Chemistry,statement_based,4,4,,Only 1,FALSE,FALSE,C,provisional,hard,FALSE,,,specialized reference,Full form(s) of HMX
+69th,2023-09-30,main,A,13,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,11,current_affairs,Tesla humanoid robot launched Oct 2022 (Optimus)
+69th,2023-09-30,main,A,14,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,WWII history — could be History/Modern,,specialized reference,What is the Manhattan Project
+69th,2023-09-30,main,A,15,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,NCERT-level,Concave mirror image real/inverted/same-size — object position
+69th,2023-09-30,main,A,16,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,A,provisional,easy,FALSE,,,NCERT-level,A photoelectric cell converts
+69th,2023-09-30,main,A,17,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,,NCERT-level,Solute per unit volume/mass = ___ (concentration)
+69th,2023-09-30,main,A,18,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,current_affairs,How do COVID vaccines stimulate an immune response
+69th,2023-09-30,main,A,19,Science & Technology,Chemistry,simple_mcq,4,,,,TRUE,TRUE,D,provisional,medium,FALSE,,,NCERT-level,Which liquid is a bad conductor of electricity (None of the above)
+69th,2023-09-30,main,A,20,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,A,provisional,easy,FALSE,,,NCERT-level,DNA double helix discovered by (Watson & Crick)
+69th,2023-09-30,main,A,21,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Two masses free-falling near Moon's surface
+69th,2023-09-30,main,A,22,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,How do vector vaccines work
+69th,2023-09-30,main,A,23,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Process that continually adds new crust (seafloor spreading)
+69th,2023-09-30,main,A,24,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,C,provisional,easy,FALSE,,,NCERT-level,Theory: crust pieces in constant slow motion (plate tectonics)
+69th,2023-09-30,main,A,25,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,A,provisional,easy,FALSE,,,current_affairs,Expanded form of mRNA
+69th,2023-09-30,main,A,26,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,provisional,easy,FALSE,,,NCERT-level,AC current can be produced by (dynamo)
+69th,2023-09-30,main,A,27,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,NCERT-level,Current density is scalar/vector
+69th,2023-09-30,main,A,28,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,B,provisional,hard,FALSE,,,specialized reference,Basis of classification of medications
+69th,2023-09-30,main,A,29,Science & Technology,Chemistry,simple_mcq,4,,,,TRUE,TRUE,D,provisional,medium,FALSE,,,NCERT-level,Which slows the reaction rate (None of the above)
+69th,2023-09-30,main,A,30,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,NCERT-level,Input and output nerves meet at (CNS)
+69th,2023-09-30,main,A,31,Current Affairs,National,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,location — could be Geography,,current_affairs,Shipwreck Tourism — Sunchi Reef/Amee Shoals/Grande Island location (Goa)
+69th,2023-09-30,main,A,32,Current Affairs,International,statement_based,4,3,,Only 1 and 3,FALSE,FALSE,B,provisional,medium,TRUE,could be Economy,1,current_affairs,G20 members represent — which statistics correct
+69th,2023-09-30,main,A,33,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,Deleted,provisional,medium,FALSE,,2,current_affairs,Head of Russia's Wagner Mercenary Group
+69th,2023-09-30,main,A,34,Current Affairs,Schemes & Indices,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,current_affairs,Global Gender Gap Report released by (WEF)
+69th,2023-09-30,main,A,35,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,12,current_affairs,Queen Elizabeth II — correct statement
+69th,2023-09-30,main,A,36,Current Affairs,National,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,11,current_affairs,Theme of DefExpo-2022 (Path to Pride)
+69th,2023-09-30,main,A,37,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,D,provisional,medium,TRUE,static GK/culture — could be Geography/World,,specialized reference,Thadingyut Festival celebrated in which country (Myanmar)
+69th,2023-09-30,main,A,38,Current Affairs,International,statement_based,4,4,,"2, 3 and 4",FALSE,FALSE,D,provisional,medium,TRUE,static GK,,specialized reference,White House statements — which correct
+69th,2023-09-30,main,A,39,Environment & Ecology,Conservation & Policy,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,TRUE,could be Economy/S&T,,current_affairs,'Net Metering' seen in news in context of (solar billing)
+69th,2023-09-30,main,A,40,Science & Technology,Physics,match_the_following,4,,4,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,"Match colour with combination (Magenta, Teal, Mauve, Cyan)"
+69th,2023-09-30,main,A,41,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,3,current_affairs,Deep-sea submersible imploded near Titanic (Titan)
+69th,2023-09-30,main,A,42,Current Affairs,National,match_the_following,4,,5,,FALSE,FALSE,B,provisional,hard,TRUE,static general-knowledge (fashion) — no clean subject fit,,specialized reference,"Match footwear/fashion accessory with description (Beret, Stilettos, Aviators, Chignon, Brogue)"
+69th,2023-09-30,main,A,43,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,current_affairs,Where former US President gave interview recently (Athens)
+69th,2023-09-30,main,A,44,Current Affairs,Sports,statement_based,4,4,,2 and 4,FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,"Sports pairs correctly matched (Flushing Meadows, Venus Rosewater Dish, Roland Garros, Australian Open)"
+69th,2023-09-30,main,A,45,Current Affairs,Schemes & Indices,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,10,current_affairs,MHA Mother Tongue Survey (MTSI) Nov 2022 — number of languages (576)
+69th,2023-09-30,main,A,46,Environment & Ecology,Conservation & Policy,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,could be Current Affairs,,current_affairs,State that launched SLCVC vulture-conservation committee (Tamil Nadu)
+69th,2023-09-30,main,A,47,Environment & Ecology,Biodiversity,simple_mcq,4,,,,FALSE,FALSE,A,provisional,hard,FALSE,,,current_affairs,Asian Giant Tortoises released into which National Park (Ntangki)
+69th,2023-09-30,main,A,48,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,current_affairs,Country that reaffirmed Arunachal as part of India (USA)
+69th,2023-09-30,main,A,49,Current Affairs,Sports,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,12,current_affairs,Rudrankksh Patil's medal at ISSF World C'ship Cairo (Gold)
+69th,2023-09-30,main,A,50,Current Affairs,Schemes & Indices,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,education policy — could be Polity,,specialized reference,NEP 2020 — vocational education integrated from which grade (Grade 6)
+69th,2023-09-30,main,A,51,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,TRUE,could be Economy/trade,15,current_affairs,India signed ECTA with which country (Australia)
+69th,2023-09-30,main,A,52,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,current_affairs,Plain Language Act passed by which country (New Zealand)
+69th,2023-09-30,main,A,53,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,TRUE,could be Sci & Tech discovery,,current_affairs,Tillyardembiids (first plant pollinators) fossils discovered in (China)
+69th,2023-09-30,main,A,54,Environment & Ecology,Conservation & Policy,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,current_affairs,'Lisbon Declaration' — conservation of what (Oceans)
+69th,2023-09-30,main,A,55,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,NCERT-level,Animal NOT known to Indus Valley people (Horse)
+69th,2023-09-30,main,A,56,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,TRUE,Art & Culture / static GK,,NCERT-level,Which is NOT a UNESCO World Heritage Site (India Gate)
+69th,2023-09-30,main,A,57,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,provisional,easy,FALSE,,,NCERT-level,DPSP borrowed from Constitution of (Ireland)
+69th,2023-09-30,main,A,58,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,TRUE,could be Modern History,,NCERT-level,Sikkim became a full-fledged State in (1975)
+69th,2023-09-30,main,A,59,Economy,Banking & finance,simple_mcq,4,,,,FALSE,FALSE,B,provisional,easy,FALSE,,,NCERT-level,Which currency is the costliest (Pound Sterling)
+69th,2023-09-30,main,A,60,Bihar-Specific,Recent Developments,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,TRUE,Bihar + Environment,,current_affairs,Bihar Govt target year to be pollution-free by cutting carbon (2024)
+69th,2023-09-30,main,A,61,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,C,provisional,easy,FALSE,,,NCERT-level,Stupa/Chaitya/Vihara related to (Buddhism)
+69th,2023-09-30,main,A,62,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,'Sujini' in Bihar handicrafts (embroidery)
+69th,2023-09-30,main,A,63,Bihar-Specific,History & Culture,statement_based,4,4,,1 and 2,FALSE,FALSE,C,provisional,hard,TRUE,could be History/Ancient,,specialized reference,Vikramshila University statements — which INCORRECT
+69th,2023-09-30,main,A,64,History,Medieval,statement_based,4,4,,3 and 4,FALSE,FALSE,C,provisional,hard,FALSE,,,NCERT-level,"Babur's arrival led to — which correct (gunpowder, arch/dome, Timurid, cannons)"
+69th,2023-09-30,main,A,65,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,Port called Babul Makka in Mughal period (Surat)
+69th,2023-09-30,main,A,66,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,C,provisional,easy,FALSE,,,NCERT-level,'Ashta Pradhan' Council of Ministers (Maratha)
+69th,2023-09-30,main,A,67,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,'Bodhisattva Padmapani' painting located at (Ajanta)
+69th,2023-09-30,main,A,68,History,Ancient,statement_based,4,2,,None of the above,TRUE,TRUE,D,provisional,medium,FALSE,,,NCERT-level,Fa-Hien / Hiuen Tsang statements — which correct
+69th,2023-09-30,main,A,69,History,Ancient,match_the_following,4,,4,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,Match Charaka/Brahmagupta/Varahamihira/Vishakhadatta with field
+69th,2023-09-30,main,A,70,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Who introduced Persian festival Nowruz in India (Balban)
+69th,2023-09-30,main,A,71,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,Nathpanthis/Siddhas/Yogis made devotional religion popular in (Northern India)
+69th,2023-09-30,main,A,72,History,Modern,statement_based,4,2,,Both 1 and 2,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Wood's Dispatch 1854 statements — which correct
+69th,2023-09-30,main,A,73,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,specialized reference,Maithili language developed during which dynasty (Karnat)
+69th,2023-09-30,main,A,74,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,Bihar (Magadha) history,,NCERT-level,Capital of ancient Magadha in early Vedic period (Rajagriha)
+69th,2023-09-30,main,A,75,History,Modern,statement_based,4,3,,"1, 2 and 3",TRUE,FALSE,D,provisional,medium,FALSE,,,NCERT-level,Vernacular Press Act statements — which correct
+69th,2023-09-30,main,A,76,History,Modern,statement_based,4,4,,"1, 2, 3 and 4",TRUE,FALSE,D,provisional,hard,FALSE,,,specialized reference,Lord Mayo's Resolution 1870 statements — which correct
+69th,2023-09-30,main,A,77,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,B,provisional,hard,FALSE,,,specialized reference,Nitisara (early book of politics) written by (Kamandaka)
+69th,2023-09-30,main,A,78,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,A,provisional,hard,FALSE,,,specialized reference,Futuhat-i-Alamgiri written by (Ishwardas Nagar)
+69th,2023-09-30,main,A,79,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,B,provisional,hard,FALSE,,,specialized reference,Meghavarman sent missionary to which Gupta king (Samudragupta)
+69th,2023-09-30,main,A,80,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,could be Modern History,,NCERT-level,When Bihar first separated from Bengal Presidency (1912)
+69th,2023-09-30,main,A,81,Geography,World,statement_based,4,4,,1 and 3,FALSE,FALSE,D,provisional,hard,FALSE,,,specialized reference,Lake Victoria statements — which INCORRECT
+69th,2023-09-30,main,A,82,Geography,Physical,statement_based,4,2,,Neither 1 nor 2,TRUE,FALSE,D,provisional,medium,FALSE,,,NCERT-level,Heat wave criteria statements — which correct (Neither)
+69th,2023-09-30,main,A,83,Geography,World,match_the_following,4,,4,,FALSE,FALSE,A,provisional,hard,TRUE,explorers — could be History,,specialized reference,"Match explorer with birthplace (Columbus, Cartier, Drake, Magellan)"
+69th,2023-09-30,main,A,84,Geography,World,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,specialized reference,The emirates of UAE are
+69th,2023-09-30,main,A,85,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,D,provisional,hard,FALSE,,,specialized reference,Subarnarekha river originates near which village (Nagri)
+69th,2023-09-30,main,A,86,Bihar-Specific,Geography,statement_based,4,4,,1 and 4,FALSE,FALSE,A,provisional,medium,FALSE,,,specialized reference,"Which National Parks/WLS are in Bihar (Valmiki, Bhimbandh)"
+69th,2023-09-30,main,A,87,Environment & Ecology,Biodiversity,statement_based,4,4,,"1, 3 and 4",FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,Gangetic Dolphin statements — which correct
+69th,2023-09-30,main,A,88,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,TRUE,Bihar river,,NCERT-level,Other name of river Gandak (Narayani)
+69th,2023-09-30,main,A,89,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,Gold found in which district of Bihar (Jamui)
+69th,2023-09-30,main,A,90,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Triveni Canal constructed on which river (Gandak)
+69th,2023-09-30,main,A,91,Geography,Physical,assertion_reason,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,A-R: placer gold Ghana/Brazil; continents joined along Atlantic (continental drift)
+69th,2023-09-30,main,A,92,Bihar-Specific,Geography,match_the_following,4,,4,,FALSE,FALSE,A,provisional,hard,FALSE,,,specialized reference,"Match Bihar rock systems with descriptions (Dharwar, Vindhyan, Quaternary, Tertiary)"
+69th,2023-09-30,main,A,93,Environment & Ecology,Biodiversity,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,specialized reference,World's richest marine biodiversity region — 21 islands (Gulf of Mannar)
+69th,2023-09-30,main,A,94,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,TRUE,longitude time calculation — Reasoning element,,NCERT-level,Local time of Thimphu (90E) when Greenwich is noon
+69th,2023-09-30,main,A,95,Geography,Economic,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,Which statement is correct (minerals: Mica in Kodarma)
+69th,2023-09-30,main,A,96,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,How many latitudes at 1-degree interval on globe (179)
+69th,2023-09-30,main,A,97,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,specialized reference,Average height of Kosi plain from MSL (30 m)
+69th,2023-09-30,main,A,98,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,B,provisional,hard,FALSE,,,specialized reference,On which plateau do Tropic of Cancer & IST line intersect (Baghelkhand)
+69th,2023-09-30,main,A,99,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,specialized reference,Which Uttarakhand district NOT along Tibet boundary (Almora)
+69th,2023-09-30,main,A,100,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,Where does the El Nino current flow (Pacific Ocean)
+69th,2023-09-30,main,A,101,Polity,Constitutional provisions,statement_based,4,4,,1 and 3,FALSE,FALSE,D,provisional,medium,FALSE,,,NCERT-level,Collegium system statements — which correct
+69th,2023-09-30,main,A,102,Polity,Constitutional provisions,statement_based,4,4,,2 and 3,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,42nd Amendment statements — which INCORRECT
+69th,2023-09-30,main,A,103,Polity,Constitutional provisions,statement_based,4,4,,All of the above,TRUE,TRUE,D,provisional,medium,FALSE,,,NCERT-level,Specifications to declare a Scheduled Tribe — which correct
+69th,2023-09-30,main,A,104,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,B,provisional,easy,FALSE,,,NCERT-level,Fundamental Rights idea taken from which country (USA)
+69th,2023-09-30,main,A,105,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,provisional,easy,FALSE,,,NCERT-level,Untouchability abolished by which Article (17)
+69th,2023-09-30,main,A,106,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,Authority to determine number of High Court Judges (Parliament)
+69th,2023-09-30,main,A,107,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Fifth Schedule deals with governance of (Scheduled Tribes)
+69th,2023-09-30,main,A,108,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,NCERT-level,Which case first gave 'basic structure' doctrine (Kesavananda Bharati)
+69th,2023-09-30,main,A,109,Polity,Constitutional provisions,match_the_following,4,,4,,FALSE,FALSE,A,provisional,medium,TRUE,political-party GK,,specialized reference,"Match political parties with year of establishment (CPI-M, CPI, BSP, AITC)"
+69th,2023-09-30,main,A,110,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,specialized reference,Article allowing Speaker to permit a member to speak in mother tongue
+69th,2023-09-30,main,A,111,Economy,Banking & finance,statement_based,4,4,,"1, 2 and 3",FALSE,FALSE,D,provisional,medium,FALSE,,,NCERT-level,"RBI Forex Reserves include — which (FCA, Gold, SDR, RTP)"
+69th,2023-09-30,main,A,112,Economy,Banking & finance,statement_based,4,4,,All of the above,TRUE,TRUE,D,provisional,medium,FALSE,,,specialized reference,'Rules of Origin' statements — which correct
+69th,2023-09-30,main,A,113,Economy,Macroeconomic concepts,statement_based,4,4,,Only 2 and 3,FALSE,FALSE,C,provisional,hard,TRUE,demography — could be Current Affairs/health,,specialized reference,Infant Mortality Rate statements — which correct
+69th,2023-09-30,main,A,114,Economy,Macroeconomic concepts,statement_based,4,4,,Only 4,FALSE,FALSE,D,provisional,medium,FALSE,,,NCERT-level,Human capital formation — what it enables
+69th,2023-09-30,main,A,115,Economy,Banking & finance,statement_based,4,4,,Only 4,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Insolvency and bankruptcy statements — which correct
+69th,2023-09-30,main,A,116,Economy,Five-year plans & policy,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,In which year was the Industrial Policy Resolution adopted (1956)
+69th,2023-09-30,main,A,117,Current Affairs,Schemes & Indices,statement_based,4,4,,2 and 3,FALSE,FALSE,D,provisional,hard,TRUE,scheme — could be Economy,,current_affairs,PLI scheme statements — which INCORRECT
+69th,2023-09-30,main,A,118,Current Affairs,Schemes & Indices,statement_based,4,4,,1 and 3,FALSE,FALSE,B,provisional,hard,TRUE,scheme — could be Polity/Panchayati Raj,,current_affairs,SVAMITVA scheme statements — which INCORRECT
+69th,2023-09-30,main,A,119,Polity,Constitutional provisions,statement_based,4,4,,"Only 1, 3 and 4",FALSE,FALSE,A,provisional,hard,FALSE,,,specialized reference,Consequences of invoking Article 360 (financial emergency)
+69th,2023-09-30,main,A,120,Economy,Macroeconomic concepts,statement_based,4,4,,"1, 2, 3 and 4",TRUE,FALSE,D,provisional,hard,FALSE,,,specialized reference,Factors contributing to stagflation in Indian economy
+69th,2023-09-30,main,A,121,Economy,Macroeconomic concepts,statement_based,4,4,,Only 4,FALSE,FALSE,D,provisional,hard,FALSE,,,current_affairs,Economic Survey 2023 — FDI trend statements
+69th,2023-09-30,main,A,122,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,Deleted,provisional,medium,TRUE,demography,,specialized reference,Current population of Gaya district of Bihar
+69th,2023-09-30,main,A,123,Economy,Macroeconomic concepts,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,Non-plan expenditure of Central Govt — which correct (interest payments)
+69th,2023-09-30,main,A,124,Economy,Macroeconomic concepts,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Which is NOT true about globalization & its impact on India
+69th,2023-09-30,main,A,125,Economy,Macroeconomic concepts,statement_based,4,3,,Only 1,FALSE,FALSE,A,provisional,hard,FALSE,,,current_affairs,Union Govt finances statements (fiscal deficit FY21/FY22)
+69th,2023-09-30,main,A,126,History,Modern,statement_based,4,3,,All of the above,TRUE,TRUE,C,provisional,medium,FALSE,,,NCERT-level,Reasons for failure of the Revolt of 1857
+69th,2023-09-30,main,A,127,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,Cook from Bihar who saved Gandhi's life in 1917 (Batak Mian)
+69th,2023-09-30,main,A,128,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Bakasht Movement in Bihar 1937-38 organized by (Sahajanand Saraswati)
+69th,2023-09-30,main,A,129,History,Modern,statement_based,4,4,,2-4-1-3,FALSE,FALSE,B,provisional,hard,FALSE,,,NCERT-level,"Chronological order: Home Rule, Surat Split, Kheda Satyagraha, Minto-Morley"
+69th,2023-09-30,main,A,130,History,Modern,simple_mcq,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,Lord Lytton NOT associated with which (Ilbert Bill)
+69th,2023-09-30,main,A,131,History,Modern,simple_mcq,4,,,,FALSE,FALSE,A,provisional,medium,FALSE,,,NCERT-level,Treaty signed after the Battle of Buxar (Allahabad)
+69th,2023-09-30,main,A,132,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,B,provisional,hard,FALSE,,,specialized reference,Dutch East India Company factory at Patna in which year (1632)
+69th,2023-09-30,main,A,133,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Gandhi's first use of hunger strike as a weapon (Ahmedabad Strike)
+69th,2023-09-30,main,A,134,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,Bihar leader known as 'Bihar Kesari' in Quit India (Shri Krishna Singh)
+69th,2023-09-30,main,A,135,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,TRUE,Champaran — Bihar-linked,,NCERT-level,British response to Champaran Movement (Agrarian Committee)
+69th,2023-09-30,main,A,136,History,Modern,match_the_following,4,,3,,FALSE,FALSE,A,provisional,medium,FALSE,,,specialized reference,"Match reform societies with founders (Servants of India, Tattwabodhini, Atmiya Sabha)"
+69th,2023-09-30,main,A,137,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,provisional,hard,FALSE,,,specialized reference,"Ambabai, woman freedom fighter, from which State (Karnataka)"
+69th,2023-09-30,main,A,138,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,NCERT-level,Who was NOT a member of the Cabinet Mission (J. Andrew)
+69th,2023-09-30,main,A,139,History,Modern,simple_mcq,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,'INC founded on safety-valve theory' — which leader said (Lala Lajpat Rai)
+69th,2023-09-30,main,A,140,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,INC session where Fundamental Rights resolutions first passed (Karachi 1931)
+69th,2023-09-30,main,A,141,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Code language: GAME/BEAD -> MADE
+69th,2023-09-30,main,A,142,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,"Direction reasoning (Q, M, S, T travel directions)"
+69th,2023-09-30,main,A,143,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,Land plot percentage math (Ramesh vs Suresh)
+69th,2023-09-30,main,A,144,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,"Find the odd pair (Millinery, Brewery, Stationery, Snobbery)"
+69th,2023-09-30,main,A,145,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,Number series: 132 156 ? 210 240 272
+69th,2023-09-30,main,A,146,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,B,provisional,medium,FALSE,,,specialized reference,"Missing number in 3x3 matrix (44,49,37 / 52,?,41 / 58,35,53)"
+69th,2023-09-30,main,A,147,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,D,provisional,medium,FALSE,,,specialized reference,Statement-conclusion: cricket runs by spinners
+69th,2023-09-30,main,A,148,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,A,provisional,hard,FALSE,,,specialized reference,Code language: GREAT/MONK -> VIGOROUS
+69th,2023-09-30,main,A,149,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,C,provisional,medium,FALSE,,,specialized reference,Find the odd one in letter groups
+69th,2023-09-30,main,A,150,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,A,provisional,hard,FALSE,,,specialized reference,"Direction-distance: company branches M,N,O,P"

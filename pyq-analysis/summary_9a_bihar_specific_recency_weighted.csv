@@ -1,0 +1,9 @@
+year,recency_weight,pct_of_paper,raw_count
+67th-reexam,1,20.7%,31
+68th,2,22.0%,33
+69th,3,10.0%,15
+70th,4,16.0%,24
+70th-reexam,5,10.7%,16
+71st,6,14.7%,22
+FLAT AVERAGE,-,15.7%,-
+"RECENCY-WEIGHTED AVERAGE (linear, oldest=1..newest=6)",-,14.3%,-

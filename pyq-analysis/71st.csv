@@ -1,0 +1,151 @@
+year,exam_date,paper_variant,booklet_series,question_number,subject,sub_topic,question_type,option_count,statement_count,list_item_count,option_combination_pattern,is_all_or_none_correct,all_none_literal_phrasing,correct_option,key_status,difficulty_guess,ambiguous_subject,ambiguous_note,ca_recency_months,source_type_guess,question_text_en
+71st,2025-09-13,main,E,1,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,C,final,easy,FALSE,,,specialized reference,Odd one out (Microscope/Telescope/Stethoscope/Periscope)
+71st,2025-09-13,main,E,2,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,specialized reference,Code: SPRING=UNUFRC -> MOBILE
+71st,2025-09-13,main,E,3,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,specialized reference,Blood relation: Mukesh & Rita (Father-in-law)
+71st,2025-09-13,main,E,4,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,specialized reference,"Direction: Ram goes North, right, right, left (East)"
+71st,2025-09-13,main,E,5,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Alphabetical order — which name appears last
+71st,2025-09-13,main,E,6,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,specialized reference,Ranking: Nitin's rank from the beginning (16th)
+71st,2025-09-13,main,E,7,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,specialized reference,Symbol-substitution arithmetic (77)
+71st,2025-09-13,main,E,8,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,specialized reference,"Ages of Seema and Laxmi (9, 50)"
+71st,2025-09-13,main,E,9,Reasoning & Aptitude,Quantitative/Numerical,reasoning_aptitude,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Missing number in 3x3 matrix (35)
+71st,2025-09-13,main,E,10,Reasoning & Aptitude,Logical/Verbal,reasoning_aptitude,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,specialized reference,"Code: RAIN=8$%6, MORE=7#8@ -> REMAIN"
+71st,2025-09-13,main,E,11,Bihar-Specific,Recent Developments,simple_mcq,4,,,,FALSE,FALSE,Deleted,final,medium,TRUE,Bihar sports — could be Current Affairs/Sports,,current_affairs,Bronze medals by Bihar in 38th Nat'l Junior Athletics C'ship 2025 (Deleted)
+71st,2025-09-13,main,E,12,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,current_affairs,"Districts benefiting from Kosi-Mechi Link Project (Araria, Purnea, Kishanganj, Katihar)"
+71st,2025-09-13,main,E,13,Current Affairs,National,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,current_affairs,Indian languages accorded Classical Language status (More than one)
+71st,2025-09-13,main,E,14,Environment & Ecology,Biodiversity,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,TRUE,Nagi is in Bihar,,current_affairs,Org that recognized Nagi Bird Sanctuary as IBA (Bird Life International)
+71st,2025-09-13,main,E,15,Bihar-Specific,Recent Developments,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,5,current_affairs,Where National Panchayati Raj Day 2025 event was organised (Madhubani)
+71st,2025-09-13,main,E,16,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,TRUE,could be Current Affairs,,current_affairs,Primary objective of Lunar Trailblazer mission (map water on Moon)
+71st,2025-09-13,main,E,17,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,C,final,easy,TRUE,static GK,,current_affairs,Afrikaners indicate which people (white minority in South Africa)
+71st,2025-09-13,main,E,18,Current Affairs,National,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,TRUE,could be History/Art & Culture,,current_affairs,16th-century stepwell conserved by ASI + World Monuments Fund (Rajon ki Baoli)
+71st,2025-09-13,main,E,19,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,5,current_affairs,NYC mayor who proclaimed Apr 14 2025 Ambedkar Day (Eric Adams)
+71st,2025-09-13,main,E,20,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,current_affairs,Permanent slogan of Eurovision Song Contest (United By Music)
+71st,2025-09-13,main,E,21,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,TRUE,could be Current Affairs,7,current_affairs,What is true of ISRO's GSLV-F15 mission (More than one)
+71st,2025-09-13,main,E,22,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,current_affairs,What is true of the 18th G20 Summit (More than one)
+71st,2025-09-13,main,E,23,Environment & Ecology,Climate & Pollution,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,TRUE,could be Current Affairs,10,current_affairs,COP29 (Baku 2024) climate finance agreement ($300bn by 2035)
+71st,2025-09-13,main,E,24,Current Affairs,Awards & Appointments,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,current_affairs,Han Kang's 'The Vegetarian' won which award (International Booker)
+71st,2025-09-13,main,E,25,Environment & Ecology,Climate & Pollution,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,4,current_affairs,Nepal glacier declared 'dead' May 2025 (Yala Glacier)
+71st,2025-09-13,main,E,26,Current Affairs,Schemes & Indices,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,current_affairs,UNDP HDI 2025 — India life expectancy in 2023 (72 years)
+71st,2025-09-13,main,E,27,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,7,current_affairs,AI Action Summit Feb 2025 city (Paris)
+71st,2025-09-13,main,E,28,Current Affairs,Awards & Appointments,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,18,current_affairs,96th Academy Awards — Emma Stone Best Actress film (Poor Things)
+71st,2025-09-13,main,E,29,Current Affairs,Awards & Appointments,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,current_affairs,Gujarati film that won 70th National Film Award Best Feature (Kutch Express)
+71st,2025-09-13,main,E,30,Current Affairs,Awards & Appointments,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,current_affairs,Ramon Magsaysay Award 2024 recipient (More than one)
+71st,2025-09-13,main,E,31,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,TRUE,defence — could be Current Affairs,,current_affairs,Statements about Akashteer (Army Air Defence) (More than one)
+71st,2025-09-13,main,E,32,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,TRUE,could be Current Affairs,,current_affairs,Make-in-India indigenous defence platforms (More than one)
+71st,2025-09-13,main,E,33,Current Affairs,International,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,,specialized reference,Holocaust Memorial Day observed on (January 27)
+71st,2025-09-13,main,E,34,Current Affairs,Awards & Appointments,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,4,current_affairs,Banu Mushtaq's book that won 2025 International Booker (Heart Lamp)
+71st,2025-09-13,main,E,35,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,Indus Waters Treaty eastern rivers — which is NOT one (Jhelum)
+71st,2025-09-13,main,E,36,Economy,Macroeconomic concepts,statement_based,4,4,,1 and 2,FALSE,FALSE,A,final,hard,TRUE,could be Current Affairs/Indices,,specialized reference,Capability Poverty Measure (CPM/UNDP) statements — which correct
+71st,2025-09-13,main,E,37,Economy,Macroeconomic concepts,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,FALSE,,,current_affairs,NOT among top-ten export commodities Apr-Sep 2024-25 (Basmati Rice)
+71st,2025-09-13,main,E,38,Environment & Ecology,Conservation & Policy,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,FALSE,,,current_affairs,India State of Forest Report 2023 — which statement is correct
+71st,2025-09-13,main,E,39,Economy,Macroeconomic concepts,simple_mcq,4,,,,FALSE,FALSE,B,final,hard,FALSE,,,current_affairs,Country with greater share than India in global services export 2023 (Ireland)
+71st,2025-09-13,main,E,40,Current Affairs,Schemes & Indices,simple_mcq,4,,,,TRUE,TRUE,D,final,medium,FALSE,,,current_affairs,U-WIN portal statements — which NOT correct (None of the above)
+71st,2025-09-13,main,E,41,Current Affairs,Schemes & Indices,simple_mcq,4,,,,FALSE,FALSE,B,final,hard,FALSE,,,current_affairs,Org that jointly developed NUIS Digital Blueprint with MoHUA (NIUA)
+71st,2025-09-13,main,E,42,Economy,Five-year plans & policy,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,TRUE,could be Current Affairs,,current_affairs,State with highest road length under Bharatmala (31 Oct 2024) (Rajasthan)
+71st,2025-09-13,main,E,43,Economy,Banking & finance,simple_mcq,4,,,,FALSE,FALSE,B,final,hard,FALSE,,,current_affairs,Institution for Interest Subvention claims before Kisan Rin Portal (RBI & NABARD)
+71st,2025-09-13,main,E,44,Economy,Banking & finance,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,current_affairs,India's forex reserves (increased to ~USD 640 bn end Dec 2024)
+71st,2025-09-13,main,E,45,Current Affairs,Schemes & Indices,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,TRUE,could be Economy,,current_affairs,NFHS-5 — state with <6% multidimensionally poor 2019-20 (Himachal Pradesh)
+71st,2025-09-13,main,E,46,Environment & Ecology,Conservation & Policy,match_the_following,4,,4,,FALSE,FALSE,C,final,hard,FALSE,,,current_affairs,"Match schemes with descriptions (PAT, MISHTI, LiFE, NCAP)"
+71st,2025-09-13,main,E,47,Economy,Macroeconomic concepts,simple_mcq,4,,,,FALSE,FALSE,A,final,hard,FALSE,,,current_affairs,PLFS 2023-24 report — which statement correct (rural female LFPR)
+71st,2025-09-13,main,E,48,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,TRUE,could be Economy/policy,,current_affairs,NOT an outcome of STI Policy 2020 (Atal Innovation Mission)
+71st,2025-09-13,main,E,49,Economy,Macroeconomic concepts,simple_mcq,4,,,,FALSE,FALSE,B,final,hard,FALSE,,,current_affairs,MSME share in GVA 2020-21 to 2022-23 (27.3% to 30.1%)
+71st,2025-09-13,main,E,50,Economy,Macroeconomic concepts,statement_based,4,3,,Only 1,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,Indian cement industry statements — which correct
+71st,2025-09-13,main,E,51,Bihar-Specific,Recent Developments,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,current_affairs,Primary objective of Bihar's Mission Daksh (personalised mentoring)
+71st,2025-09-13,main,E,52,Bihar-Specific,Economy,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,FALSE,,,specialized reference,NOT a YUVA-framework component of Bihar Startup Policy 2022 (Intl market expansion)
+71st,2025-09-13,main,E,53,Bihar-Specific,Economy,simple_mcq,4,,,,FALSE,FALSE,D,final,hard,FALSE,,,specialized reference,Bihar economic performance 2023-24 — which correct (More than one)
+71st,2025-09-13,main,E,54,Bihar-Specific,Economy,statement_based,4,3,,1 and 2,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,Bihar demographic statements — which correct
+71st,2025-09-13,main,E,55,Bihar-Specific,Economy,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,PLFS 2023-24 — nature of women's employment in Bihar (self-employed helpers)
+71st,2025-09-13,main,E,56,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Power to recruit Secretarial staff of the House of the People (President + Speaker)
+71st,2025-09-13,main,E,57,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,NCERT-level,Attorney General of India — which is true
+71st,2025-09-13,main,E,58,Polity,Constitutional provisions,statement_based,4,4,,1 and 4,FALSE,FALSE,A,final,hard,FALSE,,,NCERT-level,Which subjects belong to the Concurrent List
+71st,2025-09-13,main,E,59,Polity,Constitutional provisions,statement_based,4,4,,2 and 4,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Which DPSP do NOT follow Gandhian Principles
+71st,2025-09-13,main,E,60,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Which schedule-pair is NOT correctly matched
+71st,2025-09-13,main,E,61,Polity,Constitutional provisions,statement_based,4,2,,Only 2,FALSE,FALSE,B,final,medium,FALSE,,,NCERT-level,Central Government statements — which correct
+71st,2025-09-13,main,E,62,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,Proceedings of the State Legislature — what is true
+71st,2025-09-13,main,E,63,Polity,Constitutional provisions,statement_based,4,4,,1 and 2,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,Reasonable restrictions on Fundamental Rights statements — which correct
+71st,2025-09-13,main,E,64,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Who determines qualification for Finance Commission member (Parliament by act)
+71st,2025-09-13,main,E,65,Polity,Constitutional provisions,statement_based,4,4,,Only 4,FALSE,FALSE,D,final,hard,FALSE,,,NCERT-level,Summoning/Prorogation/Dissolution statements — which NOT true
+71st,2025-09-13,main,E,66,Polity,Panchayati Raj & local governance,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Who reviews financial position of Panchayats (Finance Commission by Governor)
+71st,2025-09-13,main,E,67,Economy,Five-year plans & policy,statement_based,4,2,,Both 1 and 2,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Atmanirbhar Bharat Scheme helps in — statements
+71st,2025-09-13,main,E,68,Polity,Panchayati Raj & local governance,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Main purpose of Panchayati Raj (participate in development admin)
+71st,2025-09-13,main,E,69,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,Deleted,final,medium,FALSE,,,NCERT-level,What is true about Censure Motion (Deleted)
+71st,2025-09-13,main,E,70,Polity,Constitutional provisions,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Subject in jurisdiction of both HC and SC (protection of FRs)
+71st,2025-09-13,main,E,71,History,Modern,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Leader who first used 'safety-valve theory' vs Moderates (Lala Lajpat Rai)
+71st,2025-09-13,main,E,72,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,specialized reference,Viceroy at whose Delhi state entry a bomb was thrown (Lord Hardinge)
+71st,2025-09-13,main,E,73,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,FALSE,,,specialized reference,Professor of Indian Philosophy at Univ of California 1911 (Har Dayal)
+71st,2025-09-13,main,E,74,History,Modern,simple_mcq,4,,,,FALSE,FALSE,D,final,hard,FALSE,,,specialized reference,MAO College Aligarh Principal who encouraged Muslim communalism (Theodore Beck)
+71st,2025-09-13,main,E,75,History,Modern,simple_mcq,4,,,,FALSE,FALSE,Deleted,final,medium,FALSE,,,specialized reference,'The Young India' Nationalist paper started by (Deleted)
+71st,2025-09-13,main,E,76,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Commission that accentuated discontent (no Indian member) (Simon Commission)
+71st,2025-09-13,main,E,77,History,Modern,simple_mcq,4,,,,FALSE,FALSE,D,final,easy,FALSE,,,NCERT-level,Who assumed INA command and gave 'Chalo Delhi' (Subhash Chandra Bose)
+71st,2025-09-13,main,E,78,History,Modern,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,'We shall either free India or die...' who said it (Mahatma Gandhi)
+71st,2025-09-13,main,E,79,History,Modern,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Who raised the cry 'Divide and Quit' (M.A. Jinnah)
+71st,2025-09-13,main,E,80,History,Modern,simple_mcq,4,,,,FALSE,FALSE,C,final,easy,FALSE,,,NCERT-level,Act that provided for partition into India and Pakistan (Indian Independence Act 1947)
+71st,2025-09-13,main,E,81,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Congress leader who visited Bihar 1918 for Home Rule League (Annie Besant)
+71st,2025-09-13,main,E,82,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,Champaran Agrarian Committee — agreement between (Govt and Gandhiji)
+71st,2025-09-13,main,E,83,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Prominent leader of Kisan Sabha movement in Bihar (Sahajanand Saraswati)
+71st,2025-09-13,main,E,84,Bihar-Specific,History & Culture,simple_mcq,4,,,,TRUE,TRUE,D,final,hard,FALSE,,,specialized reference,Who was murdered hoisting flag near Bikram Police Station (None of the above)
+71st,2025-09-13,main,E,85,Bihar-Specific,History & Culture,simple_mcq,4,,,,TRUE,TRUE,D,final,hard,FALSE,,,specialized reference,Who became CM of Bihar in March 1939 (None of the above)
+71st,2025-09-13,main,E,86,History,Ancient,match_the_following,4,,4,,FALSE,FALSE,B,final,hard,FALSE,,,specialized reference,"Match ancient India places with present state (Karnasuvarna, Pragjyotish, Girnar, Pratishthan)"
+71st,2025-09-13,main,E,87,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Which is NOT related to the Rigvedic period (Gargi)
+71st,2025-09-13,main,E,88,History,Ancient,match_the_following,4,,4,,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,"Match event/place with person (Chola Gangam Lake, Dharma Mahamatra, Prayag, Sudarshan Lake)"
+71st,2025-09-13,main,E,89,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,specialized reference,Which ruler ruled for the maximum period (Bahlol Lodi)
+71st,2025-09-13,main,E,90,History,Ancient,statement_based,4,4,,2-1-4-3,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,"Chronological order of dynasties (Shunga, Maurya, Kushana, Kanva)"
+71st,2025-09-13,main,E,91,History,Medieval,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,specialized reference,Which is NOT written by Tulsidas (Sahitya Lahari)
+71st,2025-09-13,main,E,92,History,Medieval,match_the_following,4,,4,,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,"Match building with builder (Kabuli Bagh Mosque, Adhai Din Ka Jhopra, Allahabad Fort, Itmad-ud-Daulah)"
+71st,2025-09-13,main,E,93,History,Modern,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,specialized reference,Which is NOT correctly matched (person-associated) (James A. Hicky-Calcutta Chronicle)
+71st,2025-09-13,main,E,94,History,Medieval,match_the_following,4,,4,,FALSE,FALSE,B,final,hard,FALSE,,,specialized reference,"Match Mughal father with son (Babar, Akbar, Shah Jahan, Jahangir)"
+71st,2025-09-13,main,E,95,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,TRUE,Bihar-linked,,NCERT-level,Which Buddhist council was NOT held in Bihar (Fourth)
+71st,2025-09-13,main,E,96,History,Modern,statement_based,4,3,,,FALSE,FALSE,Deleted,final,medium,FALSE,,,specialized reference,Subhas Chandra Bose statements — which correct (Deleted)
+71st,2025-09-13,main,E,97,History,Ancient,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,TRUE,Nalanda is in Bihar,,specialized reference,Who was NOT an Acharya at Nalanda (Kautilya)
+71st,2025-09-13,main,E,98,History,Modern,statement_based,4,4,,3-1-2-4,FALSE,FALSE,B,final,hard,FALSE,,,specialized reference,"Chronological order (Nand Kumar, Salbai, Wandiwash, Tipu death)"
+71st,2025-09-13,main,E,99,Bihar-Specific,History & Culture,simple_mcq,4,,,,FALSE,FALSE,B,final,hard,FALSE,,,specialized reference,First-published newspaper of Bihar (Patna Harkara)
+71st,2025-09-13,main,E,100,Bihar-Specific,History & Culture,match_the_following,4,,4,,FALSE,FALSE,D,final,hard,FALSE,,,specialized reference,"Match Bihar event/org with person (Champaran, Azad Dasta, Individual Satyagraha, Kisan Sabha)"
+71st,2025-09-13,main,E,101,Geography,World,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,,NCERT-level,Maginot Line exists between which countries (France & Germany)
+71st,2025-09-13,main,E,102,Geography,World,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,Strait of Hormuz connects (Persian Gulf to Gulf of Oman)
+71st,2025-09-13,main,E,103,Geography,World,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,,NCERT-level,Where is 'Ground Zero' (New York)
+71st,2025-09-13,main,E,104,Geography,World,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Isthmus known as 'Devil's Neck' (Isthmus of Panama)
+71st,2025-09-13,main,E,105,Geography,Human,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,Ladang refers to (Shifting Agriculture)
+71st,2025-09-13,main,E,106,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,,NCERT-level,Largest river island in the world (Majuli)
+71st,2025-09-13,main,E,107,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Second largest river basin of India (final key: Narmada)
+71st,2025-09-13,main,E,108,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Confluence of Alaknanda and Bhagirathi (Devprayag)
+71st,2025-09-13,main,E,109,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Two volcanic islands in Indian Territory (Narcondam and Barren)
+71st,2025-09-13,main,E,110,Current Affairs,National,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,TRUE,GI tag — could be Geography/Economic,,current_affairs,Meerut GI-tag item (Scissors)
+71st,2025-09-13,main,E,111,Environment & Ecology,Conservation & Policy,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,specialized reference,Temperate Forest Research Centre city (Shimla)
+71st,2025-09-13,main,E,112,Environment & Ecology,Biodiversity,simple_mcq,4,,,,FALSE,FALSE,C,final,easy,FALSE,,,NCERT-level,Kanha National Park is in (Madhya Pradesh)
+71st,2025-09-13,main,E,113,Geography,Physical,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,,NCERT-level,'Loktak' is a (Lake)
+71st,2025-09-13,main,E,114,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,TRUE,could be Environment,,specialized reference,Parks under Project Tiger in Bihar (Valmiki National Park)
+71st,2025-09-13,main,E,115,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,State animal of Bihar (Bull/Ox)
+71st,2025-09-13,main,E,116,Bihar-Specific,Recent Developments,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,specialized reference,Year Nalanda University re-established in Bihar (2014)
+71st,2025-09-13,main,E,117,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,specialized reference,Karmanasa river originates in (Kaimur District)
+71st,2025-09-13,main,E,118,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,Deleted,final,medium,FALSE,,,specialized reference,Bihar produces __% of India's pyrite (Deleted)
+71st,2025-09-13,main,E,119,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Gold found in which district of Bihar (Jamui)
+71st,2025-09-13,main,E,120,Bihar-Specific,Geography,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,specialized reference,Climate type of most of Bihar (Subtropical Monsoon)
+71st,2025-09-13,main,E,121,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,NCERT-level,Marginal friction force on box at constant velocity (200 N)
+71st,2025-09-13,main,E,122,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,D,final,hard,FALSE,,,specialized reference,Force on truck (final key: 13000 N)
+71st,2025-09-13,main,E,123,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,250 units of energy in Joule (9x10^8)
+71st,2025-09-13,main,E,124,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,Medium with maximum speed of sound (Steel)
+71st,2025-09-13,main,E,125,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,NCERT-level,Freely falling body PE decreases — energy conservation not violated
+71st,2025-09-13,main,E,126,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,C,final,easy,FALSE,,,NCERT-level,Work done by oxen ploughing (2100 Joule)
+71st,2025-09-13,main,E,127,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,D,final,easy,FALSE,,,NCERT-level,Focal distance of a plane mirror (Infinity)
+71st,2025-09-13,main,E,128,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,NCERT-level,Which term does NOT denote electric power (IR^2)
+71st,2025-09-13,main,E,129,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,C,final,easy,FALSE,,,NCERT-level,"In short circuit, electric current (increases very high)"
+71st,2025-09-13,main,E,130,Science & Technology,Physics,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,Device to protect equipment from electric shock (Fuse)
+71st,2025-09-13,main,E,131,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,pH of 0.1 N HCl solution (1.0)
+71st,2025-09-13,main,E,132,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,Compound known as night-glowing pigment (Europium doped strontium aluminate)
+71st,2025-09-13,main,E,133,Science & Technology,Tech & Innovation,simple_mcq,4,,,,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,Material used for smart film (Indium tin oxide)
+71st,2025-09-13,main,E,134,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,A,final,hard,FALSE,,,specialized reference,Metal compound used for carcinoma treatment (Platinum)
+71st,2025-09-13,main,E,135,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,B,final,medium,FALSE,,,specialized reference,Compound used in contraceptive pills (Levonorgestrel)
+71st,2025-09-13,main,E,136,Science & Technology,Chemistry,simple_mcq,4,,,,TRUE,TRUE,D,final,medium,FALSE,,,NCERT-level,Why oil is not stored in galvanized iron pot (All of above)
+71st,2025-09-13,main,E,137,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,NCERT-level,Compound used to increase octane rating (Tetraethyllead)
+71st,2025-09-13,main,E,138,Science & Technology,Chemistry,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,FALSE,,,specialized reference,Full form of PHBV biodegradable polymer
+71st,2025-09-13,main,E,139,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,D,final,easy,FALSE,,,NCERT-level,Hormones are secreted by (Endocrine glands)
+71st,2025-09-13,main,E,140,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Herpes simplex virus-human interaction (Parasitism)
+71st,2025-09-13,main,E,141,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,C,final,medium,FALSE,,,specialized reference,First immunoglobulin produced in response to infection (IgM)
+71st,2025-09-13,main,E,142,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,Biological membranes composed of (lipids and proteins)
+71st,2025-09-13,main,E,143,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,A,final,medium,FALSE,,,NCERT-level,Which is a non-sense codon (UAA)
+71st,2025-09-13,main,E,144,Environment & Ecology,Biodiversity,simple_mcq,4,,,,FALSE,FALSE,C,final,easy,FALSE,,,NCERT-level,Species in danger of extinction known as (Endangered)
+71st,2025-09-13,main,E,145,Geography,Economic,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,Which is a Kharif crop (Sugarcane)
+71st,2025-09-13,main,E,146,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,Xylem in plants is responsible for (transport of water/minerals)
+71st,2025-09-13,main,E,147,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,C,final,hard,FALSE,,,specialized reference,Who first used vascular tissue in plant classification (A.P. de Candolle)
+71st,2025-09-13,main,E,148,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,B,final,easy,FALSE,,,NCERT-level,Part we eat in Mango (Mesocarp)
+71st,2025-09-13,main,E,149,Environment & Ecology,Climate & Pollution,simple_mcq,4,,,,FALSE,FALSE,A,final,easy,FALSE,,,NCERT-level,Ozone Day celebrated on (16 September)
+71st,2025-09-13,main,E,150,Science & Technology,Biology,simple_mcq,4,,,,FALSE,FALSE,D,final,medium,FALSE,,,NCERT-level,Advantage of plant in mycorrhizal association (increased mineral absorption)
