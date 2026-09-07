@@ -925,7 +925,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
               </div>
               <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} Qs</span><span><Clock size={14} />{t.durationMin} min</span></div>
               <button className={"btn btn-sm " + (reminders.has(t.id) ? "btn-primary" : "btn-ghost")} onClick={() => toggleReminder(t)}>
-                {reminders.has(t.id) ? <><Check size={16} />{t("sd_rem_set")}</> : <><Bell size={16} />{t("sd_set_rem")}</>}
+                {reminders.has(t.id) ? <><Check size={16} />{tr("sd_rem_set")}</> : <><Bell size={16} />{tr("sd_set_rem")}</>}
               </button>
             </div>
           ))}

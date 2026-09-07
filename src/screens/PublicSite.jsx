@@ -2024,17 +2024,17 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
                 Tests for this series are being finalised. Enrolling now locks in the current price and
                 gives you every test as it is released.
               </p>
-            ) : tests.map((t, i) => (
-              <div className="pb-trow" key={t.id}>
+            ) : tests.map((tt, i) => (
+              <div className="pb-trow" key={tt.id}>
                 <span className="pb-tnum">{i + 1}</span>
                 <div className="pb-tname">
-                  {t.title}
+                  {tt.title}
                   <div className="pb-tmeta">
-                    {t.totalQuestions} questions · {t.durationMin} min
-                    {t.totalMarks > 0 ? ` · ${t.totalMarks} marks` : ""}
+                    {tt.totalQuestions} questions · {tt.durationMin} min
+                    {tt.totalMarks > 0 ? ` · ${tt.totalMarks} marks` : ""}
                   </div>
                 </div>
-                {t.isFree
+                {tt.isFree
                   ? <span className="pb-off">{t("card_free_sample")}</span>
                   : <Lock size={15} style={{ color: "var(--ink-400)", flex: "0 0 auto" }} />}
               </div>
