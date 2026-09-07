@@ -55,6 +55,25 @@ intact) rather than left active. Confirmed afterward: zero active enrollments
 for either account, and `can_access_test()` grants both of them all 5 live
 tests through `is_tester` alone.
 
+**Then a second bug surfaced the moment those testers actually tried to sign
+in and take a test.** The `is_tester` bypass sat inside `can_access_test()`
+— which controls whether a paper OPENS and can be submitted — but the
+gate that decides "should this login go to the student dashboard or the
+paywall" (`hasActiveAccess()` in the client, and `myPlanCodes()` for the
+storefront's "owned" state) still asked the raw `enrollments` table, so
+after cancelling the two enrollments the testers were bounced to the
+JoinScreen on every sign-in and never reached the test-taking UI the flag
+was supposed to unlock. Materials RLS had the same shape — testers saw
+only free materials, not paid ones the QA account is supposed to cover.
+Fixed both client helpers (they now honour `is_tester` in parallel with
+the enrollment lookup) and added migration `0021_tester_materials_access.sql`
+which extends the materials policy with an `is_tester()` branch alongside
+the existing enrollment branch. Verified end-to-end in the DB: both testers
+now resolve to the student dashboard, see every bundle as "owned" on the
+storefront, and pass `can_access_test()`/`exam_paper()` for every live
+paper; non-tester regression cases (admin/paying/non-payer/anonymous) are
+byte-identical to before this change.
+
 Wiring this up surfaced a real, unrelated bug: `submit-attempt` checked
 entitlement by calling `can_access_test` on its service-role client, which
 carries no user JWT — so `auth.uid()` was `NULL` inside that one call, and the

@@ -114,11 +114,21 @@ export async function hasActiveAccess(userId) {
   if (import.meta.env.DEV && FIXTURES_ON()) return true;
   if (!userId) return false;
   const sb = await getSupabase();
-  const { data, error } = await sb
-    .from("enrollments")
-    .select("id, expires_at, status")
-    .eq("student_id", userId)
-    .eq("status", "active");
+  // Both queries fired in parallel: cost of the second query is dwarfed by
+  // the roundtrip we'd add if the profile check went first-then-fetch.
+  //
+  // Tester accounts (internal QA) must pass this check even with zero
+  // enrollment rows -- the whole point of is_tester is that they can attempt
+  // any test without buying one. Without this branch, a tester with no live
+  // enrollment (which is the SUPPORTED shape for testers per migration 0020)
+  // was routed to the paywall on every sign-in and never reached the dashboard,
+  // making the QA bypass unreachable through the UI.
+  const [{ data: prof }, { data, error }] = await Promise.all([
+    sb.from("profiles").select("is_tester").eq("id", userId).maybeSingle(),
+    sb.from("enrollments").select("id, expires_at, status")
+      .eq("student_id", userId).eq("status", "active"),
+  ]);
+  if (prof?.is_tester) return true;
   if (error) {
     console.error("access check failed", error);
     return false;
@@ -256,15 +266,26 @@ export async function bundleTests(code) {
     }));
 }
 
-/** Which bundles does this student hold right now? */
+/** Which bundles does this student hold right now?
+ *
+ *  Testers "own" every active plan virtually -- so the storefront shows every
+ *  bundle as owned (no Enroll button leading to a paywall), and JoinScreen
+ *  short-circuits its bootstrap to send them straight through to the dashboard
+ *  if they ever land on it via a pending-plan deep link. Otherwise a tester
+ *  clicking Enroll on a bundle would hit Razorpay for something they already
+ *  had free access to. */
 export async function myPlanCodes(userId) {
   if (!userId) return new Set();
   const sb = await getSupabase();
-  const { data, error } = await sb
-    .from("enrollments")
-    .select("plan_code, status, expires_at")
-    .eq("student_id", userId)
-    .eq("status", "active");
+  const [{ data: prof }, { data, error }] = await Promise.all([
+    sb.from("profiles").select("is_tester").eq("id", userId).maybeSingle(),
+    sb.from("enrollments").select("plan_code, status, expires_at")
+      .eq("student_id", userId).eq("status", "active"),
+  ]);
+  if (prof?.is_tester) {
+    const { data: plans } = await sb.from("plans").select("code").eq("is_active", true);
+    return new Set((plans ?? []).map((p) => p.code).filter(Boolean));
+  }
   if (error) return new Set();
   const now = Date.now();
   return new Set(
