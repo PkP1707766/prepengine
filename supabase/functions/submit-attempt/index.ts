@@ -58,7 +58,12 @@ Deno.serve(async (req) => {
 
   // Entitlement is re-checked server-side. A student who never had access
   // cannot submit an attempt for a paper they were not entitled to open.
-  const { data: allowed, error: accErr } = await sb.rpc("can_access_test", { p_test: testId });
+  //
+  // `sb` is a service-role client with no user JWT attached, so auth.uid()
+  // is NULL inside can_access_test() unless the caller's id is passed
+  // explicitly — p_user exists on the function precisely for this call site.
+  const { data: allowed, error: accErr } =
+    await sb.rpc("can_access_test", { p_test: testId, p_user: user.id });
   if (accErr) {
     console.error("can_access_test failed", accErr);
     return json(req, { error: "server_error" }, 500);

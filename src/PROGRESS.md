@@ -1,6 +1,6 @@
 # JUNOONIAS — Market-Launch Readiness Tracker
 
-Last updated: 22 Aug 2026
+Last updated: 7 Sep 2026
 
 Status key: 🔴 Not started · 🟡 In progress · 🟢 Done & verified
 
@@ -30,6 +30,60 @@ made it "demo mode", and all three are fixed:
    data yet.
 
 ---
+
+## 7 Sep 2026 — QA tester accounts, and a submission bug they exposed
+
+Two internal accounts (`rjpranav201297@gmail.com`, `eranupam2000@gmail.com`)
+can now attempt any test, in any bundle, with no purchase and no enrollment
+row — `profiles.is_tester`, checked by `can_access_test()` alongside `is_admin()`
+and the enrollment lookup. One short-circuit, so it covers `exam_paper()`,
+`submit-attempt`, and the exam-integrity/paper-generation functions with
+nothing bundle-specific to wire up. `role` stays `'student'`; no `enrollments`
+row is written, so referral/withdrawal eligibility (which reads `enrollments`
+directly) never counts a tester as a paying customer. Toggling the flag is
+SQL-editor-only — layered exactly like the `role` escalation fix (0011): the
+column is absent from `authenticated`'s update grant, and the profile-update
+trigger independently refuses it too. An admin list now shows a "Tester" badge.
+Migration `0020_qa_tester_access.sql`.
+
+Both accounts turned out to already hold a real, Razorpay-verified
+`prelims-2026` enrollment from before this feature existed — so they were
+still counting as paying customers for referral/withdrawal eligibility even
+after getting `is_tester`. On explicit instruction, those two enrollment rows
+were set to `status = 'cancelled'` (not deleted — the payment record stays
+intact) rather than left active. Confirmed afterward: zero active enrollments
+for either account, and `can_access_test()` grants both of them all 5 live
+tests through `is_tester` alone.
+
+Wiring this up surfaced a real, unrelated bug: `submit-attempt` checked
+entitlement by calling `can_access_test` on its service-role client, which
+carries no user JWT — so `auth.uid()` was `NULL` inside that one call, and the
+admin/enrollment branches were silently unreachable from submission. Only a
+*free* test could ever be submitted, for anyone, including a real paying
+student. (The `attempts` table had zero rows in production, consistent with
+this never having been exercised against paid content.) Fixed by giving
+`can_access_test` an explicit `p_user` parameter, defaulting to `auth.uid()` so
+every existing 1-argument call site — `exam_paper()` included — is unaffected,
+and passing the caller's verified id from `submit-attempt` explicitly.
+
+Verified directly against the database: admin / a temporarily-granted paying
+student / a signed-in non-payer / anonymous all resolve exactly as before
+(the non-payer and anonymous cases confirmed identical through both the new
+explicit-`p_user` path and the original default-`auth.uid()` path); both
+testers fetch a real paid paper's 150 questions via `exam_paper()` with zero
+`enrollments` rows; and a live attempt (impersonated as a non-tester,
+`SET ROLE authenticated`) to self-grant `is_tester` is refused at the column
+grant, then again by the trigger with that grant forced open — both privilege
+layers independently confirmed, not just present. All scratch data (a
+temporary enrollment, a temporarily-widened grant) was rolled back or deleted;
+nothing was left behind.
+
+Known, deliberate gap: `is_admin()` itself stays zero-argument (it's inlined
+into ~30 live RLS policies; changing its signature risks a mass policy
+rewrite for no real payoff here), so the one case this migration does *not*
+fix is an admin account specifically hitting `submit-attempt` for a non-free
+test — admins are staff, not the QA accounts this feature is for, and can be
+given `is_tester` too if that ever matters.
 
 ## 23 Aug 2026 — Language switch inside the live exam
 

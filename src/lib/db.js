@@ -1563,7 +1563,7 @@ export async function adminStudents() {
   const sb = await getSupabase();
   const { data: profiles, error } = await sb
     .from("profiles")
-    .select("id, full_name, email, phone, created_at, target_exam")
+    .select("id, full_name, email, phone, created_at, target_exam, is_tester")
     .eq("role", "student")
     .order("created_at", { ascending: false })
     .limit(500);
@@ -1603,6 +1603,7 @@ export async function adminStudents() {
       attempts: s?.n ?? 0,
       avg: s && s.n ? Math.round(s.sum / s.n) : 0,
       enrolled: active.has(p.id),
+      tester: !!p.is_tester,
     };
   });
 }

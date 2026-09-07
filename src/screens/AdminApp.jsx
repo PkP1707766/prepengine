@@ -3536,7 +3536,14 @@ function Students({ toast }) {
                   <td><div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <span style={{ width: 32, height: 32, borderRadius: 8, background: "#b8923a", color: "#fff", display: "grid", placeItems: "center", fontSize: 12, fontWeight: 800, flex: "0 0 auto" }}>{initials(s.name)}</span>
                     <div style={{ minWidth: 0 }}>
-                      <div style={{ fontWeight: 700, color: "var(--ink)" }}>{s.name}</div>
+                      <div style={{ fontWeight: 700, color: "var(--ink)", display: "flex", alignItems: "center", gap: 6 }}>
+                        {s.name}
+                        {s.tester && (
+                          <span title="Standing QA bypass — full test access, no purchase, excluded from paying-customer counts">
+                            <Badge color={{ bg: "#eef2fb", fg: "#3a5ba0" }}>Tester</Badge>
+                          </span>
+                        )}
+                      </div>
                       <div className="q-sub">{s.target}</div>
                     </div>
                   </div></td>
