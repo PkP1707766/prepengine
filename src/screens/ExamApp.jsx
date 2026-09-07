@@ -166,16 +166,29 @@ const CSS = `
 /* ---------- EXAM SHELL ---------- */
 .exam-head{background:linear-gradient(110deg,#c39d44,#8a6a14);color:#ffffff;position:sticky;top:0;z-index:20}
 .exam-head-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;max-width:1280px;margin:0 auto}
-.cand{display:flex;align-items:center;gap:12px;min-width:0}
+.cand{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto}
 .cand-av{width:38px;height:38px;border-radius:8px;background:#8a6a14;display:grid;place-items:center;font-weight:800;font-size:15px;flex:0 0 auto}
 .cand-name{font-weight:700;font-size:14.5px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cand-sub{font-size:11.5px;color:#f1e4c4}
-.timer-box{display:flex;align-items:center;gap:10px;background:#5b1414;border:1px solid #8a6a14;padding:7px 14px;border-radius:10px}
+.timer-box{display:flex;align-items:center;gap:10px;background:#5b1414;border:1px solid #8a6a14;padding:7px 14px;border-radius:10px;flex:0 0 auto}
 .timer-box.danger{background:#7a1f1f;border-color:#a32f24;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.72}}
-.timer-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#fffaef}
+.timer-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#fffaef;white-space:nowrap}
 .timer-box.danger .timer-label{color:#f3c9c9}
-.timer-val{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.timer-val{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em;white-space:nowrap}
+/* Narrow screens: the label wraps letter-by-letter once the row is squeezed
+   (Hindi "शेष समय" was the trigger). Hide the label and let the value stand
+   on its own -- a red pulsing chip in the last minute is enough context. */
+@media(max-width:640px){
+  .exam-head-in{padding:8px 12px;gap:8px}
+  .cand{gap:9px}
+  .cand-av{width:32px;height:32px;font-size:13px}
+  .cand-name{font-size:13px;max-width:130px}
+  .cand-sub{display:none}
+  .timer-box{padding:6px 11px;gap:0}
+  .timer-label{display:none}
+  .timer-val{font-size:16px}
+}
 
 .sec-tabs{background:#5b1414;border-top:1px solid #8a6a14}
 .sec-tabs-in{display:flex;gap:0;max-width:1280px;margin:0 auto;padding:0 10px;overflow-x:auto}
@@ -234,23 +247,52 @@ const CSS = `
 .btn-save:hover{background:#1a7a42}
 @media(max-width:520px){.btn-save{margin-left:0;width:100%}}
 
-/* ---------- PALETTE ---------- */
-.palette{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 3px rgba(20,120,140,.05);overflow:hidden;position:sticky;top:118px}
-.pal-user{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;background:#fffaef}
-.pal-av{width:34px;height:34px;border-radius:7px;background:var(--navy);color:#ffffff;display:grid;place-items:center;font-weight:800;font-size:13px}
-.pal-legend{padding:14px 16px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:9px 10px}
-.lg{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#5c4636}
-.lg-box{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:800;color:#ffffff;flex:0 0 auto;position:relative}
-.pal-sec{padding:12px 16px}
-.pal-sec-name{font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.pal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.pal-btn{aspect-ratio:1;border-radius:7px;font-size:13px;font-weight:800;color:#ffffff;display:grid;place-items:center;position:relative;border:2px solid transparent;transition:.12s}
+/* ---------- PALETTE ----------
+   Self-contained flex column. Its height is capped to the viewport (minus the
+   sticky exam header at the top), so the question grid overflows INSIDE the
+   palette while the header block and the Submit button stay pinned. Before
+   this, the whole page had to scroll to reach Submit on a long paper.
+
+   .pal-summary shows "23 / 150 answered" up front, so the student can decide
+   to submit without counting cells; on a 150-Q paper that used to require
+   scrolling to the far end of the palette. */
+.palette{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 3px rgba(20,120,140,.05);overflow:hidden;position:sticky;top:118px;
+  display:flex;flex-direction:column;max-height:calc(100vh - 138px)}
+.pal-user{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;background:#fffaef;flex:0 0 auto}
+.pal-av{width:30px;height:30px;border-radius:7px;background:var(--navy);color:#ffffff;display:grid;place-items:center;font-weight:800;font-size:12.5px;flex:0 0 auto}
+.pal-user-body{min-width:0;flex:1 1 auto}
+.pal-summary{margin-left:auto;font-size:11px;font-weight:800;color:var(--navy);background:#fffaef;border:1px solid #ecdda6;padding:4px 9px;border-radius:20px;white-space:nowrap;flex:0 0 auto}
+.pal-legend{padding:9px 14px 10px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:6px 8px;flex:0 0 auto}
+.lg{display:flex;align-items:center;gap:7px;font-size:11px;color:#5c4636}
+.lg-box{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#ffffff;flex:0 0 auto;position:relative}
+.pal-scroll{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:#c8a24a transparent}
+.pal-scroll::-webkit-scrollbar{width:6px}
+.pal-scroll::-webkit-scrollbar-thumb{background:#c8a24a;border-radius:3px}
+.pal-scroll::-webkit-scrollbar-track{background:transparent}
+.pal-sec{padding:11px 14px 13px}
+.pal-sec+.pal-sec{border-top:1px dashed var(--line);padding-top:12px}
+.pal-sec-name{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pal-sec-count{font-weight:700;color:var(--navy);letter-spacing:0;text-transform:none;font-size:11px}
+.pal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.pal-btn{aspect-ratio:1;border-radius:6px;font-size:12px;font-weight:800;color:#ffffff;display:grid;place-items:center;position:relative;border:2px solid transparent;transition:.12s;line-height:1}
 .pal-btn:hover{transform:translateY(-1px)}
 .pal-btn.cur{outline:2px solid var(--navy);outline-offset:2px}
-.dot{position:absolute;bottom:2px;right:2px;width:8px;height:8px;border-radius:50%;background:var(--green);border:1.5px solid #ffffff}
-.pal-foot{padding:14px 16px;border-top:1px solid var(--line);background:#fffaef}
-.submit-btn{width:100%;background:var(--navy);color:#ffffff;font-weight:800;font-size:15px;padding:13px;border-radius:10px;transition:.15s}
+.dot{position:absolute;bottom:2px;right:2px;width:7px;height:7px;border-radius:50%;background:var(--green);border:1.5px solid #ffffff}
+.pal-foot{padding:12px 14px;border-top:1px solid var(--line);background:#fffaef;flex:0 0 auto}
+.submit-btn{width:100%;background:var(--navy);color:#ffffff;font-weight:800;font-size:14.5px;padding:12px;border-radius:10px;transition:.15s}
 .submit-btn:hover{background:var(--navy-2)}
+/* Stacked mobile: the palette no longer needs to be viewport-bound because it
+   flows below the question card. Submit sits naturally at the bottom of the
+   card, always in a thumb's reach when it appears. */
+@media(max-width:900px){
+  .palette{position:static;max-height:none;top:auto}
+  .pal-scroll{overflow:visible}
+  .pal-grid{grid-template-columns:repeat(8,1fr)}
+}
+@media(max-width:520px){
+  .pal-grid{grid-template-columns:repeat(6,1fr)}
+}
 
 /* ---------- MODAL ---------- */
 .overlay{position:fixed;inset:0;background:rgba(13,27,42,.55);display:grid;place-items:center;z-index:50;padding:18px;backdrop-filter:blur(2px)}
@@ -499,6 +541,18 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
     return "notAnswered";
   };
 
+  // Small local counts for the palette summary chip. Independent of the
+  // parent's SubmitModal counts -- computed here so ExamScreen stays a leaf
+  // with no extra prop wiring.
+  const counts = useMemo(() => {
+    let total = 0, answered = 0;
+    EXAM.sections.forEach((s) => s.questions.forEach((qq) => {
+      total++;
+      if (hasAnswer(answers[qq.id])) answered++;
+    }));
+    return { total, answered };
+  }, [EXAM.sections, answers]);
+
   const optLetter = (i) => String.fromCharCode(65 + i);
 
   return (
@@ -592,10 +646,11 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
         <div className="palette">
           <div className="pal-user">
             <div className="pal-av">{initials}</div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: 13.5 }}>{candidate}</div>
-              <div style={{ fontSize: 11.5, color: "var(--muted)" }}>{t("ex_in_progress")}</div>
+            <div className="pal-user-body">
+              <div style={{ fontWeight: 700, fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{candidate}</div>
+              <div style={{ fontSize: 11, color: "var(--muted)" }}>{t("ex_in_progress")}</div>
             </div>
+            <div className="pal-summary" title={t("ex_answered")}>{counts.answered}/{counts.total}</div>
           </div>
           <div className="pal-legend">
             <div className="lg"><span className="lg-box" style={{ background: STATUS.answered.bg }} /> {t("ex_answered")}</div>
@@ -605,26 +660,34 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
             <div className="lg" style={{ gridColumn: "1/-1" }}><span className="lg-box" style={{ background: STATUS.ansMarked.bg }}><span className="dot" /></span> {t("ex_ansmarked_l")}</div>
           </div>
 
-          {EXAM.sections.map((s, si) => (
-            <div className="pal-sec" key={s.name}>
-              <div className="pal-sec-name">{s.name}</div>
-              <div className="pal-grid">
-                {s.questions.map((qq, qi) => {
-                  const st = getStatus(qq.id);
-                  const c = STATUS[st];
-                  const isCur = si === secIdx && qi === qIdx;
-                  return (
-                    <button key={qq.id} className={"pal-btn" + (isCur ? " cur" : "")}
-                      style={{ background: c.bg, color: c.fg, border: "2px solid " + c.bd }}
-                      onClick={() => actions.goTo(si, qi)}>
-                      {qi + 1}
-                      {st === "ansMarked" && <span className="dot" />}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+          <div className="pal-scroll">
+            {EXAM.sections.map((s, si) => {
+              const done = s.questions.reduce((n, qq) => n + (getStatus(qq.id) === "answered" || getStatus(qq.id) === "ansMarked" ? 1 : 0), 0);
+              return (
+                <div className="pal-sec" key={s.name}>
+                  <div className="pal-sec-name">
+                    <span>{s.name}</span>
+                    <span className="pal-sec-count">{done}/{s.questions.length}</span>
+                  </div>
+                  <div className="pal-grid">
+                    {s.questions.map((qq, qi) => {
+                      const st = getStatus(qq.id);
+                      const c = STATUS[st];
+                      const isCur = si === secIdx && qi === qIdx;
+                      return (
+                        <button key={qq.id} className={"pal-btn" + (isCur ? " cur" : "")}
+                          style={{ background: c.bg, color: c.fg, border: "2px solid " + c.bd }}
+                          onClick={() => actions.goTo(si, qi)}>
+                          {qi + 1}
+                          {st === "ansMarked" && <span className="dot" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
           <div className="pal-foot">
             <button className="submit-btn" onClick={actions.openSubmit}>{t("ex_submit_test")}</button>
