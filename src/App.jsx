@@ -227,7 +227,16 @@ function Root() {
       const { data: { session: s } } = await sb.auth.getSession();
       setSession(s ?? null);
       const dest = await resolveDestination(sb);
-      if (pendingPlan && dest === "join") go("join");
+      // resolveDestination only asks "does this account own *something*" --
+      // true for anyone with an existing plan, e.g. a UPSC subscriber. Gating
+      // on dest === "join" here made that existing subscriber's BPSC "Enroll
+      // now" click land them straight on the dashboard instead of BPSC's
+      // checkout the moment they had to log in first, with the purchase they
+      // came to make just silently dropped. JoinScreen itself already checks
+      // ownership of the SPECIFIC plan (myPlanCodes) and skips its own paywall
+      // if this exact bundle is already owned, so it is safe to always honour
+      // a pending plan once we know a real session exists (dest !== "public").
+      if (pendingPlan && dest !== "public") go("join");
       else go(dest);
     } catch {
       go("join");
