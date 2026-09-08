@@ -751,12 +751,18 @@ const CSS = `
   background:color-mix(in srgb,var(--gold-300) 14%,transparent);transition:.16s}
 .pb-chip-link:hover{border-color:var(--gold-500);background:color-mix(in srgb,var(--gold-300) 28%,transparent)}
 .pb-lang{font-size:10.5px;font-weight:800;color:var(--gold-600)}
-.pb-news{border-bottom:1px solid var(--line)}
-.pb-news:last-child{border-bottom:0}
-.pb-news-head{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:none;
+/* Accordion rows (FAQ, Current Affairs). Named .pb-acc-* on purpose --
+   this used to share the .pb-news prefix with the footer newsletter widget
+   below, and its dark-background paragraph colour (on-dark-soft at 78%
+   opacity) matched every accordion answer too, rendering near-invisible
+   light beige text on this light cream background. Kept fully separate
+   now so the two can never collide again. */
+.pb-acc{border-bottom:1px solid var(--line)}
+.pb-acc:last-child{border-bottom:0}
+.pb-acc-head{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:none;
   border:0;font:inherit;cursor:pointer;padding:16px 0;color:var(--ink-900)}
-.pb-news-body{padding:0 0 18px;font-size:14.5px;color:var(--ink-600);line-height:1.75}
-.pb-news-body p{margin:0 0 12px;white-space:pre-wrap}
+.pb-acc-body{padding:0 0 18px;font-size:14.5px;color:var(--ink-600);line-height:1.75}
+.pb-acc-body p{margin:0 0 12px;white-space:pre-wrap}
 .pb-tagrow{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
 .pb-tag{font-size:10.5px;font-weight:800;letter-spacing:.08em;padding:4px 10px;border-radius:100px;
   background:color-mix(in srgb,var(--brand-600) 13%,transparent);color:var(--brand-700)}

@@ -31,6 +31,46 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 8 Sep 2026 — FAQ answers were unreadable, and the whole content hub was English-only in Hindi mode
+
+The FAQ page's expanded answer text rendered almost invisible: light beige
+on cream, at 78% opacity. Root cause was a class-name collision, not a
+one-off style mistake — the accordion in `FaqPage`/`NewsPage` reused
+`.pb-news` / `.pb-news-head` / `.pb-news-body`, the same classes as the
+footer's dark-background newsletter widget. `.pb-news p{color:var(--on-dark-soft);opacity:.78}`
+was written for that dark card and matched every accordion answer too,
+since `.pb-news p` selects any `<p>` descendant regardless of nesting.
+Renamed the accordion's classes to `.pb-acc` / `.pb-acc-head` / `.pb-acc-body`
+so the two components can never collide again; the newsletter widget is
+untouched.
+
+Second, bigger bug found while checking "does Hindi work here at all":
+`ContentPages.jsx` (Syllabus, PYQ, Free Resources, NCERT, Current Affairs,
+FAQ) imported `useLang` in six page components and never once called it.
+Every kicker, empty state, tab label, search placeholder and the FAQ
+category headers were hardcoded English — switching the site to Hindi
+translated the header around these pages but left every content page
+sitting in English underneath. Added ~35 new `cp_*` dictionary entries
+(natural spoken register, matching the tone of the existing dictionary)
+and wired all six pages through `t()`, including pluralised counts
+(paper/papers, question/questions, book/books) and the FAQ footer's
+"Email us" sentence split around the mailto link the same way the exam
+instructions already split sentences around inline elements.
+
+Deliberately NOT touched: the actual FAQ questions/answers, syllabus
+topics, PYQ titles and current-affairs body text are admin-authored
+content from the database, and neither the `faqs` nor `current_affairs`
+tables have `*_hi` columns — there is nothing to translate without
+inventing Hindi copy on the user's behalf, which nobody asked for. If
+bilingual admin content becomes a real requirement, that's a schema +
+admin-UI feature of its own, not a bug fix.
+
+Verified in-browser, EN and HI, desktop and 375px: FAQ answer text reads
+at full ink-600 contrast; every content page's chrome (category labels,
+empty states, "no match" search state, pluralised counts) reads in
+natural Hindi when toggled; switching back to English regresses to
+exactly the prior copy; no horizontal overflow at either width.
+
 ## 8 Sep 2026 — Programme brochures per plan
 
 Each plan can now carry a downloadable PDF flyer. The trigger is a small

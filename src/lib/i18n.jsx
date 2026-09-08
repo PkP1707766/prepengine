@@ -1528,6 +1528,58 @@ Object.assign(STR, {
 });
 
 
+/* Content hub: Syllabus, PYQ, Free Resources, NCERT, Current Affairs, FAQ.
+   None of this had a single t() call before -- every page here imported
+   useLang and never used it, so switching the site to Hindi left every one
+   of these pages sitting in English while the header around them switched. */
+Object.assign(STR, {
+  cp_load_err:        { en: "Couldn't load this page.", hi: "यह पेज लोड नहीं हो सका।" },
+
+  cp_syl_note:         { en: "Always cross-check against the official notification before you plan your preparation around it — commissions revise the syllabus from time to time.",
+                          hi: "इसके आधार पर तैयारी शुरू करने से पहले आधिकारिक अधिसूचना से जरूर मिला लीजिए — आयोग समय-समय पर सिलेबस बदलते रहते हैं।" },
+  cp_syl_empty_suffix: { en: "syllabus not published yet", hi: "का सिलेबस अभी प्रकाशित नहीं हुआ है" },
+  cp_syl_empty_text:   { en: "This exam's syllabus hasn't been added yet. It'll appear here as soon as it's published.",
+                          hi: "इस परीक्षा का सिलेबस अभी जोड़ा नहीं गया है। प्रकाशित होते ही यहाँ दिख जाएगा।" },
+  cp_paper_label:      { en: "Paper", hi: "पेपर" },
+
+  cp_pyq_empty_title: { en: "No papers published yet", hi: "अभी कोई पेपर प्रकाशित नहीं हुआ" },
+  cp_pyq_empty_text:  { en: "Previous-year question papers and their solutions will appear here as they're uploaded.",
+                         hi: "पिछले वर्षों के प्रश्नपत्र और उनके हल अपलोड होते ही यहाँ दिखेंगे।" },
+  cp_paper_one:       { en: "paper", hi: "पेपर" },
+  cp_paper_many:      { en: "papers", hi: "पेपर" },
+  cp_question_one:    { en: "question", hi: "सवाल" },
+  cp_question_many:   { en: "questions", hi: "सवाल" },
+  cp_view_solutions:  { en: "Solutions", hi: "हल" },
+
+  cp_mat_empty_title: { en: "No free material published yet", hi: "अभी कोई मुफ़्त सामग्री प्रकाशित नहीं हुई" },
+  cp_mat_empty_text:  { en: "Free notes, PDFs and videos will appear here. Paid material lives inside your dashboard once you enrol.",
+                         hi: "मुफ़्त नोट्स, PDF और वीडियो यहाँ दिखेंगे। भुगतान वाली सामग्री जुड़ने के बाद आपके डैशबोर्ड में मिलेगी।" },
+  cp_mat_search_ph:   { en: "Search notes and subjects…", hi: "नोट्स और विषय खोजिए…" },
+  cp_no_match:        { en: 'Nothing matches "{x}".', hi: '"{x}" से कुछ मेल नहीं खाता।' },
+
+  cp_ncert_empty_title: { en: "No books listed yet", hi: "अभी कोई किताब सूचीबद्ध नहीं है" },
+  cp_ncert_empty_text:  { en: "NCERT titles will appear here organised by class and subject.",
+                           hi: "NCERT की किताबें यहाँ कक्षा और विषय के अनुसार दिखेंगी।" },
+  cp_all_classes:       { en: "All classes", hi: "सभी कक्षाएँ" },
+  cp_class_label:       { en: "Class", hi: "कक्षा" },
+  cp_book_one:          { en: "book", hi: "किताब" },
+  cp_book_many:         { en: "books", hi: "किताबें" },
+
+  cp_news_empty_title: { en: "No current affairs posted yet", hi: "अभी कोई करेंट अफेयर्स पोस्ट नहीं हुआ" },
+  cp_news_empty_text:  { en: "A daily feed of exam-relevant news will appear here once it starts publishing.",
+                          hi: "परीक्षा से जुड़ी रोज़ की खबरें छपना शुरू होते ही यहाँ दिखने लगेंगी।" },
+
+  cp_faq_cat_tests:    { en: "Tests & attempts", hi: "टेस्ट और प्रयास" },
+  cp_faq_cat_payments: { en: "Payments & pricing", hi: "भुगतान और कीमत" },
+  cp_faq_cat_access:   { en: "Access & account", hi: "एक्सेस और खाता" },
+  cp_faq_cat_general:  { en: "General", hi: "सामान्य" },
+  cp_faq_empty_title:  { en: "No questions published yet", hi: "अभी कोई प्रश्न प्रकाशित नहीं हुआ" },
+  cp_faq_empty_text:   { en: "Answers to common questions will appear here.", hi: "सामान्य सवालों के जवाब यहाँ दिखेंगे।" },
+  cp_faq_footer_pre:   { en: "Didn't find your answer? Email ", hi: "अपना जवाब नहीं मिला? ईमेल कीजिए " },
+  cp_faq_footer_post:  { en: " — we usually reply within a few hours.", hi: " — हम आमतौर पर कुछ घंटों में जवाब दे देते हैं।" },
+});
+
+
 export function AppProviders({ children }) {
   useBrandChrome();
   const [lang, setLangRaw] = useState(() => loadKey("lang", "en"));

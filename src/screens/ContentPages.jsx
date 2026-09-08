@@ -20,6 +20,7 @@ import * as DB from "../lib/db.js";
 
 /* Shared loading hook — every page here is "fetch once, render". */
 function useContent(loader, deps = []) {
+  const { t } = useLang();
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
   const [key, setKey] = useState(0);
@@ -34,7 +35,7 @@ function useContent(loader, deps = []) {
         setData(d);
       } catch (e) {
         console.error(e);
-        if (alive) { setErr(e?.message || "Couldn't load this page."); setData([]); }
+        if (alive) { setErr(e?.message || t("cp_load_err")); setData([]); }
       }
     })();
     return () => { alive = false; };
@@ -67,6 +68,7 @@ function Empty({ icon, title, text }) {
 
 /* ------------------------------------------------------------- syllabus -- */
 function SyllabusPage() {
+  const { t } = useLang();
   const [exam, setExam] = useState("upsc");
   const { data: exams } = useContent(() => DB.syllabusExams());
   const { data, err, retry } = useContent(() => DB.syllabus(exam), [exam]);
@@ -87,19 +89,16 @@ function SyllabusPage() {
 
       {/* A syllabus is not something to take on trust from any coaching site,
           including this one. */}
-      <div className="pb-note">
-        Always cross-check against the official notification before you plan your
-        preparation around it — commissions revise the syllabus from time to time.
-      </div>
+      <div className="pb-note">{t("cp_syl_note")}</div>
 
       {err ? <div className="pb-panel"><ErrorState message={err} onRetry={retry} /></div>
         : data === null ? <Loading />
         : data.length === 0 ? (
-          <Empty icon={<BookOpen size={25} />} title={`${exam.toUpperCase()} syllabus not published yet`}
-                 text="This exam's syllabus hasn't been added yet. It'll appear here as soon as it's published." />
+          <Empty icon={<BookOpen size={25} />} title={`${exam.toUpperCase()} ${t("cp_syl_empty_suffix")}`}
+                 text={t("cp_syl_empty_text")} />
         ) : data.map((paper) => (
           <div className="pb-panel" key={paper.paper} style={{ marginBottom: 18 }}>
-            <div className="pb-kicker">Paper</div>
+            <div className="pb-kicker">{t("cp_paper_label")}</div>
             <h3 className="pb-h3">{paper.paper}</h3>
             <ol className="pb-syl">
               {paper.topics.map((t) => (
@@ -118,14 +117,14 @@ function SyllabusPage() {
 
 /* ------------------------------------------------------------------ pyq -- */
 function PyqPage() {
+  const { t } = useLang();
   const { data, err, retry } = useContent(() => DB.pyqPapers());
   const [exam, setExam] = useState("all");
 
   if (err) return <div className="pb-panel"><ErrorState message={err} onRetry={retry} /></div>;
   if (data === null) return <Loading />;
   if (data.length === 0) {
-    return <Empty icon={<FileText size={25} />} title="No papers published yet"
-      text="Previous-year question papers and their solutions will appear here as they're uploaded." />;
+    return <Empty icon={<FileText size={25} />} title={t("cp_pyq_empty_title")} text={t("cp_pyq_empty_text")} />;
   }
 
   const exams = ["all", ...new Set(data.map((p) => p.exam))];
@@ -139,7 +138,7 @@ function PyqPage() {
         <div className="pb-tabs">
           {exams.map((e) => (
             <button key={e} className={"pb-tab" + (exam === e ? " on" : "")} onClick={() => setExam(e)}>
-              {e === "all" ? "All exams" : e.toUpperCase()}
+              {e === "all" ? t("tab_all") : e.toUpperCase()}
             </button>
           ))}
         </div>
@@ -147,24 +146,25 @@ function PyqPage() {
       {Object.keys(byYear).sort((a, b) => b - a).map((year) => (
         <div className="pb-panel" key={year} style={{ marginBottom: 18 }}>
           <div className="pb-kicker">{year}</div>
-          <h3 className="pb-h3">{byYear[year].length} paper{byYear[year].length === 1 ? "" : "s"}</h3>
+          <h3 className="pb-h3">{byYear[year].length} {byYear[year].length === 1 ? t("cp_paper_one") : t("cp_paper_many")}</h3>
           {byYear[year].map((p) => (
             <div className="pb-listrow" key={p.id}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="pb-listrow-t">{p.title}</div>
                 <div className="pb-listrow-s">
-                  {p.exam.toUpperCase()} · {p.paper}{p.questionCount ? ` · ${p.questionCount} questions` : ""}
+                  {p.exam.toUpperCase()} · {p.paper}
+                  {p.questionCount ? <> · {p.questionCount} {p.questionCount === 1 ? t("cp_question_one") : t("cp_question_many")}</> : null}
                 </div>
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {p.paperUrl && (
                   <a className="pb-b-ghost pb-b-tight" href={p.paperUrl} target="_blank" rel="noreferrer">
-                    <Download size={14} />Paper
+                    <Download size={14} />{t("cp_paper_label")}
                   </a>
                 )}
                 {p.solutionUrl && (
                   <a className="pb-b-primary pb-b-tight" href={p.solutionUrl} target="_blank" rel="noreferrer">
-                    <Eye size={14} />Solutions
+                    <Eye size={14} />{t("cp_view_solutions")}
                   </a>
                 )}
               </div>
@@ -180,14 +180,14 @@ function PyqPage() {
 const MAT_ICON = { pdf: FileText, note: BookOpen, video: Play, link: ExternalLink };
 
 function MaterialsPage() {
+  const { t } = useLang();
   const { data, err, retry } = useContent(() => DB.freeMaterials());
   const [q, setQ] = useState("");
 
   if (err) return <div className="pb-panel"><ErrorState message={err} onRetry={retry} /></div>;
   if (data === null) return <Loading />;
   if (data.length === 0) {
-    return <Empty icon={<FolderOpen size={25} />} title="No free material published yet"
-      text="Free notes, PDFs and videos will appear here. Paid material lives inside your dashboard once you enrol." />;
+    return <Empty icon={<FolderOpen size={25} />} title={t("cp_mat_empty_title")} text={t("cp_mat_empty_text")} />;
   }
 
   const needle = q.trim().toLowerCase();
@@ -197,11 +197,11 @@ function MaterialsPage() {
     <>
       <div className="pb-search-wrap">
         <div className="pb-search"><Search size={15} />
-          <input placeholder="Search notes and subjects…" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input placeholder={t("cp_mat_search_ph")} value={q} onChange={(e) => setQ(e.target.value)} />
         </div>
       </div>
       {shown.length === 0 ? (
-        <div className="pb-panel" style={{ textAlign: "center", color: "var(--sub)" }}>Nothing matches "{q}".</div>
+        <div className="pb-panel" style={{ textAlign: "center", color: "var(--sub)" }}>{t("cp_no_match").replace("{x}", q)}</div>
       ) : (
         <div className="pb-grid">
           {shown.map((m) => {
@@ -212,7 +212,7 @@ function MaterialsPage() {
                 <div className="pb-card-title" style={{ fontSize: 16 }}>{m.title}</div>
                 {m.subject && <div className="pb-card-tag" style={{ minHeight: 0 }}>{m.subject}</div>}
                 {m.description && <p className="pb-card-tag">{m.description}</p>}
-                <span className="pb-openlink">Open <ArrowRight size={14} /></span>
+                <span className="pb-openlink">{t("sd_open")} <ArrowRight size={14} /></span>
               </a>
             );
           })}
@@ -224,14 +224,14 @@ function MaterialsPage() {
 
 /* ---------------------------------------------------------------- ncert -- */
 function NcertPage() {
+  const { t } = useLang();
   const { data, err, retry } = useContent(() => DB.ncertBooks());
   const [cls, setCls] = useState("all");
 
   if (err) return <div className="pb-panel"><ErrorState message={err} onRetry={retry} /></div>;
   if (data === null) return <Loading />;
   if (data.length === 0) {
-    return <Empty icon={<GraduationCap size={25} />} title="No books listed yet"
-      text="NCERT titles will appear here organised by class and subject." />;
+    return <Empty icon={<GraduationCap size={25} />} title={t("cp_ncert_empty_title")} text={t("cp_ncert_empty_text")} />;
   }
 
   const classes = ["all", ...new Set(data.map((b) => b.classLevel))];
@@ -244,14 +244,14 @@ function NcertPage() {
       <div className="pb-tabs">
         {classes.map((c) => (
           <button key={c} className={"pb-tab" + (cls === c ? " on" : "")} onClick={() => setCls(c)}>
-            {c === "all" ? "All classes" : "Class " + c}
+            {c === "all" ? t("cp_all_classes") : `${t("cp_class_label")} ${c}`}
           </button>
         ))}
       </div>
       {Object.keys(byClass).sort((a, b) => a - b).map((c) => (
         <div className="pb-panel" key={c} style={{ marginBottom: 18 }}>
-          <div className="pb-kicker">Class {c}</div>
-          <h3 className="pb-h3">{byClass[c].length} book{byClass[c].length === 1 ? "" : "s"}</h3>
+          <div className="pb-kicker">{t("cp_class_label")} {c}</div>
+          <h3 className="pb-h3">{byClass[c].length} {byClass[c].length === 1 ? t("cp_book_one") : t("cp_book_many")}</h3>
           <div className="pb-chipwrap">
             {byClass[c].map((b) => (
               <a className="pb-chip-link" key={b.id} href={b.url} target="_blank" rel="noreferrer">
@@ -268,14 +268,14 @@ function NcertPage() {
 
 /* ----------------------------------------------------------------- news -- */
 function NewsPage() {
+  const { t } = useLang();
   const { data, err, retry } = useContent(() => DB.currentAffairs());
   const [open, setOpen] = useState(null);
 
   if (err) return <div className="pb-panel"><ErrorState message={err} onRetry={retry} /></div>;
   if (data === null) return <Loading />;
   if (data.length === 0) {
-    return <Empty icon={<Newspaper size={25} />} title="No current affairs posted yet"
-      text="A daily feed of exam-relevant news will appear here once it starts publishing." />;
+    return <Empty icon={<Newspaper size={25} />} title={t("cp_news_empty_title")} text={t("cp_news_empty_text")} />;
   }
 
   const byDate = {};
@@ -291,8 +291,8 @@ function NewsPage() {
           {byDate[d].map((n) => {
             const isOpen = open === n.id;
             return (
-              <div className="pb-news" key={n.id}>
-                <button className="pb-news-head" onClick={() => setOpen(isOpen ? null : n.id)} aria-expanded={isOpen}>
+              <div className="pb-acc" key={n.id}>
+                <button className="pb-acc-head" onClick={() => setOpen(isOpen ? null : n.id)} aria-expanded={isOpen}>
                   <span style={{ flex: 1, minWidth: 0 }}>
                     <span className="pb-listrow-t">{n.title}</span>
                     {n.summary && <span className="pb-listrow-s">{n.summary}</span>}
@@ -300,7 +300,7 @@ function NewsPage() {
                   <ChevronDown size={17} style={{ flex: "0 0 auto", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .18s" }} />
                 </button>
                 {isOpen && (
-                  <div className="pb-news-body">
+                  <div className="pb-acc-body">
                     {n.body && <p>{n.body}</p>}
                     <div className="pb-tagrow">
                       {n.examTags.map((t) => <span className="pb-tag" key={t}>{t.toUpperCase()}</span>)}
@@ -308,7 +308,7 @@ function NewsPage() {
                     </div>
                     {n.sourceUrl && (
                       <a className="pb-openlink" href={n.sourceUrl} target="_blank" rel="noreferrer">
-                        {n.sourceName || "Source"} <ExternalLink size={13} />
+                        {n.sourceName || t("ex_source")} <ExternalLink size={13} />
                       </a>
                     )}
                   </div>
@@ -324,16 +324,21 @@ function NewsPage() {
 
 /* ------------------------------------------------------------------ faq -- */
 function FaqPage() {
+  const { t } = useLang();
   const { data, err, retry } = useContent(() => DB.faqs());
   const [open, setOpen] = useState(null);
 
   if (err) return <div className="pb-panel"><ErrorState message={err} onRetry={retry} /></div>;
   if (data === null) return <Loading />;
   if (data.length === 0) {
-    return <Empty icon={<HelpCircle size={25} />} title="No questions published yet" text="Answers to common questions will appear here." />;
+    return <Empty icon={<HelpCircle size={25} />} title={t("cp_faq_empty_title")} text={t("cp_faq_empty_text")} />;
   }
 
-  const CAT = { tests: "Tests & attempts", payments: "Payments & pricing", access: "Access & account", general: "General" };
+  // Categories are fixed and code-defined (not admin-authored text), so they
+  // route through the dictionary like any other UI chrome rather than
+  // travelling with each FAQ row from the database.
+  const CAT = { tests: t("cp_faq_cat_tests"), payments: t("cp_faq_cat_payments"),
+                access: t("cp_faq_cat_access"), general: t("cp_faq_cat_general") };
   const byCat = {};
   data.forEach((f) => { (byCat[f.category] ||= []).push(f); });
 
@@ -345,19 +350,19 @@ function FaqPage() {
           {byCat[cat].map((f) => {
             const isOpen = open === f.id;
             return (
-              <div className="pb-news" key={f.id}>
-                <button className="pb-news-head" onClick={() => setOpen(isOpen ? null : f.id)} aria-expanded={isOpen}>
+              <div className="pb-acc" key={f.id}>
+                <button className="pb-acc-head" onClick={() => setOpen(isOpen ? null : f.id)} aria-expanded={isOpen}>
                   <span className="pb-listrow-t" style={{ flex: 1, minWidth: 0 }}>{f.question}</span>
                   <ChevronDown size={17} style={{ flex: "0 0 auto", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .18s" }} />
                 </button>
-                {isOpen && <div className="pb-news-body"><p>{f.answer}</p></div>}
+                {isOpen && <div className="pb-acc-body"><p>{f.answer}</p></div>}
               </div>
             );
           })}
         </div>
       ))}
       <div className="pb-note" style={{ textAlign: "center" }}>
-        Didn't find your answer? Email <a href="mailto:junoonias123@gmail.com">junoonias123@gmail.com</a> — we usually reply within a few hours.
+        {t("cp_faq_footer_pre")}<a href="mailto:junoonias123@gmail.com">junoonias123@gmail.com</a>{t("cp_faq_footer_post")}
       </div>
     </>
   );
