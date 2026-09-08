@@ -562,9 +562,13 @@ function SubjectDrilldown({ subject, onClose }) {
       try {
         const r = await DB.myReview(subject, { wrongOnly: true });
         if (alive) setRows(r);
-      } catch (e) { if (alive) setErr(e?.message || "Could not load your review."); }
+      } catch (e) { if (alive) setErr(e?.message || t("sd_review_load_failed")); }
     })();
     return () => { alive = false; };
+    // t is deliberately excluded: it only names a fallback error string, and
+    // including it would refetch this subject's review every time the
+    // reader switches language while the modal happens to be open.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subject]);
 
   return (
@@ -599,15 +603,15 @@ function AnalysisModal({ a, onClose, onRetake }) {
           <div style={{ display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap", marginBottom: 20 }}>
             <Ring value={pct / 100} size={128} color={grade.c}>
               <div style={{ fontSize: 26, fontWeight: 800 }}>{a.score}</div>
-              <div style={{ fontSize: 12, color: "var(--muted)" }}>of {a.maxScore}</div>
-              <div style={{ fontSize: 12, fontWeight: 800, color: grade.c }}>Grade {grade.g}</div>
+              <div style={{ fontSize: 12, color: "var(--muted)" }}>/{a.maxScore}</div>
+              <div style={{ fontSize: 12, fontWeight: 800, color: grade.c }}>{t("sd_grade").replace("{x}", grade.g)}</div>
             </Ring>
             <div style={{ flex: 1, minWidth: 200 }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                <Mini n={a.percentile != null ? a.percentile : "—"} l="Percentile" c="var(--gold-2)" />
-                <Mini n={a.rank != null ? "#" + a.rank : "—"} l={a.totalStudents ? "of " + a.totalStudents : "not ranked yet"} c="var(--navy)" />
-                <Mini n={a.accuracy.toFixed(0) + "%"} l="Accuracy" c="var(--green)" />
-                <Mini n={fmtDuration(a.timeSec)} l="Time taken" c="var(--blue)" />
+                <Mini n={a.percentile != null ? a.percentile : "—"} l={t("ex_percentile")} c="var(--gold-2)" />
+                <Mini n={a.rank != null ? "#" + a.rank : "—"} l={a.totalStudents ? t("sd_of_total").replace("{x}", a.totalStudents) : t("sd_not_ranked")} c="var(--navy)" />
+                <Mini n={a.accuracy.toFixed(0) + "%"} l={t("sd_accuracy")} c="var(--green)" />
+                <Mini n={fmtDuration(a.timeSec)} l={t("sd_time_taken")} c="var(--blue)" />
               </div>
             </div>
           </div>
@@ -665,6 +669,10 @@ function SmallStat({ n, l, c, bg }) { return <div style={{ flex: 1, background: 
    ============================================================ */
 function HomeView({ go, setAnalysis, onStart }) {
   const { t } = useLang();
+  // The available-tests row below maps with (t) => (...) for each test
+  // record, which shadows this t (the translator) for its whole body. tr is
+  // the same function under a name nothing else in this view reuses.
+  const tr = t;
   const { profile, attempts, tests, subjects, activity, derived, enrollments } = useData();
   const hr = new Date().getHours();
   const greet = t(hr < 12 ? "sd_morning" : hr < 17 ? "sd_afternoon" : "sd_evening");
@@ -706,16 +714,28 @@ function HomeView({ go, setAnalysis, onStart }) {
           </div>
           <div style={{ fontFamily: "var(--font-display)", fontSize: 21, color: "var(--ink)" }}>{t("sd_first_mock")}</div>
           <p style={{ fontSize: 14, color: "var(--muted)", maxWidth: 440, margin: "10px auto 20px", lineHeight: 1.7 }}>
-            Everything on this dashboard — your trend line, subject map, rank and streak — is built from real attempts.
-            Take one test and it all comes alive.
+            {t("sd_first_mock_sub")}
           </p>
           {available.length > 0 ? (
-            <button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => onStart(available[0].id)}>
-              <Play size={16} />Start "{available[0].title}"
-            </button>
+            <>
+              {/* The title used to sit inside the button's own quote marks --
+                  "Start "{title}"" -- which any translator (the site's own,
+                  or a phone's browser-level one) reorders around the
+                  embedded proper noun. It broke into a literal "{title}"
+                  शुरू करें with the closing quote stranded alone. The title
+                  is its own line now, free to truncate; the button carries
+                  only a short, unconditional verb. */}
+              <div style={{ fontSize: 13.5, fontWeight: 700, color: "var(--ink)", marginBottom: 12,
+                            maxWidth: 380, marginInline: "auto", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {available[0].title}
+              </div>
+              <button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => onStart(available[0].id)}>
+                <Play size={16} />{t("sd_start_first")}
+              </button>
+            </>
           ) : (
             <div style={{ fontSize: 13.5, color: "var(--muted)" }}>
-              No tests have been published yet. They'll appear here the moment your mentor adds one.
+              {t("sd_no_tests_published")}
             </div>
           )}
         </div>
@@ -784,9 +804,11 @@ function HomeView({ go, setAnalysis, onStart }) {
               <div style={{ width: 40, height: 40, borderRadius: 10, background: "#faf2dc", color: "#b8923a", display: "grid", placeItems: "center", flex: "0 0 auto" }}><FileText size={19} /></div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</div>
-                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>{t.totalQuestions} Qs · {t.durationMin} min · {t.isFree ? "Free" : "Included"}</div>
+                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>
+                  {t.totalQuestions} {tr("sd_qs")} · {t.durationMin} {tr("ex_min")} · {t.isFree ? tr("sd_free") : tr("sd_included")}
+                </div>
               </div>
-              <button className="btn btn-gold btn-sm" onClick={() => onStart(t.id)}><Play size={14} />Start</button>
+              <button className="btn btn-gold btn-sm" onClick={() => onStart(t.id)}><Play size={14} />{tr("sd_start")}</button>
             </div>
           ))}
         </div>
@@ -795,7 +817,7 @@ function HomeView({ go, setAnalysis, onStart }) {
           <div className="sec-head"><div><div className="eyebrow">{t("sd_str_focus")}</div><div className="panel-title">{t("sd_where_stand")}</div></div></div>
           {subjects.length === 0 ? (
             <div style={{ padding: "26px 0", textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>
-              Attempt a test and your subject-wise strengths appear here.
+              {t("sd_subj_empty")}
             </div>
           ) : (
             <div className="sw-grid">
@@ -880,11 +902,11 @@ function TestsView({ setAnalysis, onStart, toast }) {
     setReminders(next);
     try {
       await DB.toggleReminder(profile.id, t.id, on);
-      toast(on ? "🔔 We'll remind you before " + t.title : "Reminder removed");
+      toast(on ? "🔔 " + tr("sd_reminder_set_for").replace("{x}", t.title) : tr("sd_reminder_removed"));
     } catch (e) {
       console.error(e);
       setReminders(reminders); // roll back to what the server still believes
-      toast("Couldn't save that reminder — try again");
+      toast(tr("sd_reminder_save_failed"));
     }
   };
 
@@ -913,8 +935,8 @@ function TestsView({ setAnalysis, onStart, toast }) {
           {availableFiltered.length === 0 && (
             <div className="card card-pad" style={{ gridColumn: "1/-1", textAlign: "center", color: "var(--muted)", padding: "40px 20px" }}>
               {available.length === 0
-                ? "No tests have been published yet. They will appear here as soon as your mentor adds one."
-                : `No test matches "${q}".`}
+                ? tr("sd_no_tests_published")
+                : tr("sd_no_match").replace("{q}", q)}
             </div>
           )}
           {availableFiltered.map((t) => (
@@ -925,7 +947,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
                   {t.attemptedByMe ? tr("sd_done") : t.isFree ? tr("sd_free") : tr("sd_included")}
                 </Badge>
               </div>
-              <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} Qs</span><span><Clock size={14} />{t.durationMin} min</span></div>
+              <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} {tr("sd_qs")}</span><span><Clock size={14} />{t.durationMin} {tr("ex_min")}</span></div>
               <button className={"btn " + (t.attemptedByMe ? "btn-ghost" : "btn-primary")} onClick={() => onStart(t.id)}>
                 {t.attemptedByMe ? <><RotateCcw size={16} />{tr("sd_reattempt")}</> : <><Play size={16} />{tr("sd_start_test")}</>}
               </button>
@@ -938,7 +960,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
         <div className="test-grid">
           {upcomingFiltered.length === 0 && (
             <div className="card card-pad" style={{ gridColumn: "1/-1", textAlign: "center", color: "var(--muted)", padding: "40px 20px" }}>
-              {upcoming.length === 0 ? "Nothing scheduled right now." : `No test matches "${q}".`}
+              {upcoming.length === 0 ? tr("sd_none_scheduled") : tr("sd_no_match").replace("{q}", q)}
             </div>
           )}
           {upcomingFiltered.map((t) => (
@@ -947,7 +969,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
                 <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || tr("sd_standalone")}</div></div>
                 <Badge color={{ bg: "#faf2dc", fg: "#b8923a" }}><Calendar size={11} />{fmtDate(t.scheduledFor)}</Badge>
               </div>
-              <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} Qs</span><span><Clock size={14} />{t.durationMin} min</span></div>
+              <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} {tr("sd_qs")}</span><span><Clock size={14} />{t.durationMin} {tr("ex_min")}</span></div>
               <button className={"btn btn-sm " + (reminders.has(t.id) ? "btn-primary" : "btn-ghost")} onClick={() => toggleReminder(t)}>
                 {reminders.has(t.id) ? <><Check size={16} />{tr("sd_rem_set")}</> : <><Bell size={16} />{tr("sd_set_rem")}</>}
               </button>
@@ -960,7 +982,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
         <div className="test-grid">
           {sortedAttempted.length === 0 && (
             <div className="card card-pad" style={{ gridColumn: "1/-1", textAlign: "center", color: "var(--muted)", padding: "40px 20px" }}>
-              You haven't attempted a test yet. Your reports will collect here.
+              {tr("sd_none_attempted")}
             </div>
           )}
           {sortedAttempted.map((a) => {
@@ -969,14 +991,14 @@ function TestsView({ setAnalysis, onStart, toast }) {
               <div className="test-card" key={a.id}>
                 <div className="test-top">
                   <div><div className="test-title">{a.title}</div><div className="test-series">{fmtDate(a.date)}{a.series ? " · " + a.series : ""}</div></div>
-                  <Badge color={{ bg: "#fdf6e3", fg: grade.c }}>Grade {grade.g}</Badge>
+                  <Badge color={{ bg: "#fdf6e3", fg: grade.c }}>{tr("sd_grade").replace("{x}", grade.g)}</Badge>
                 </div>
                 <div className="test-score">
-                  <div><div className="test-score-n" style={{ color: grade.c }}>{a.score}<span style={{ fontSize: 14, color: "var(--muted)" }}>/{a.maxScore}</span></div><div className="test-score-l">Score</div></div>
+                  <div><div className="test-score-n" style={{ color: grade.c }}>{a.score}<span style={{ fontSize: 14, color: "var(--muted)" }}>/{a.maxScore}</span></div><div className="test-score-l">{tr("sd_score")}</div></div>
                   <div style={{ width: 1, alignSelf: "stretch", background: "var(--line)" }} />
-                  <div><div className="test-score-n" style={{ color: "var(--gold-2)" }}>{a.accuracy.toFixed(0)}%</div><div className="test-score-l">Accuracy</div></div>
+                  <div><div className="test-score-n" style={{ color: "var(--gold-2)" }}>{a.accuracy.toFixed(0)}%</div><div className="test-score-l">{tr("sd_accuracy")}</div></div>
                   <div style={{ width: 1, alignSelf: "stretch", background: "var(--line)" }} />
-                  <div><div className="test-score-n">{a.rank ? "#" + a.rank : "—"}</div><div className="test-score-l">Rank</div></div>
+                  <div><div className="test-score-n">{a.rank ? "#" + a.rank : "—"}</div><div className="test-score-l">{tr("sd_rank")}</div></div>
                 </div>
                 <button className="btn btn-ghost" onClick={() => setAnalysis(a)}><Eye size={16} />{t("sd_view_anal")}</button>
               </div>
@@ -1002,8 +1024,8 @@ function PerformanceView({ go }) {
         <EmptyState
           icon={<BarChart3 size={26} />}
           title={t("sd_no_anal")}
-          text="Analytics are built entirely from your own attempts — nothing here is simulated. Take a test and this page fills in."
-          action={<button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => go("tests")}><Play size={16} />Browse tests</button>}
+          text={t("sd_analytics_empty")}
+          action={<button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => go("tests")}><Play size={16} />{t("sd_browse_tests")}</button>}
         />
       </div>
     );
@@ -1064,7 +1086,7 @@ function PerformanceView({ go }) {
           <p className="panel-note">{t("sd_subj_sub")}</p>
           {subjects.length < 3 ? (
             <EmptyState compact icon={<Target size={24} />} title={t("sd_not_enough")}
-                        text="Attempt a full-length test covering several subjects to see this map." />
+                        text={t("sd_radar_empty")} />
           ) : (
             <div style={{ height: 270 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -1114,7 +1136,7 @@ function PerformanceView({ go }) {
           <div className="panel-title">{t("sd_bands")}</div>
           <p className="panel-note" style={{ marginBottom: 18 }}>{t("sd_bands_sub")} {t("sd_tap_subject")}</p>
           {subjects.length === 0 ? (
-            <EmptyState compact icon={<Layers size={24} />} title={t("sd_no_subj")} text="It appears after your first attempt." />
+            <EmptyState compact icon={<Layers size={24} />} title={t("sd_no_subj")} text={t("sd_appears_after_first")} />
           ) : subjects.map((s) => {
             const col = SEM[s.band], bg = s.band === "strong" ? "var(--grn-bg)" : s.band === "average" ? "var(--amb-bg)" : "var(--red-bg)";
             return (
@@ -1190,7 +1212,7 @@ function BatchesView({ go, onStart, toast }) {
         <EmptyState
           icon={<GraduationCap size={26} />}
           title={t("sd_no_batch")}
-          text="When you join a course or batch, it shows up here with its validity and how far through the test plan you are."
+          text={t("sd_batch_empty_sub")}
           action={<button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => go("tests")}><FileText size={16} />{t("sd_see_avail")}</button>}
         />
       </div>
@@ -1202,7 +1224,7 @@ function BatchesView({ go, onStart, toast }) {
   return (
     <div className="test-grid">
       {enrollments.map((e, i) => {
-        const name = e.batches?.name || (e.plan_code ? e.plan_code.replace(/-/g, " ") : "Full access");
+        const name = e.batches?.name || (e.plan_code ? e.plan_code.replace(/-/g, " ") : t("sd_full_access"));
         const exam = e.batches?.courses?.exam_target || e.batches?.courses?.title || t("sd_all_exams");
         const validTill = e.expires_at || e.batches?.end_date || null;
         const daysLeft = validTill ? Math.ceil((new Date(validTill) - now) / 86400000) : null;
@@ -1267,7 +1289,7 @@ function MaterialsView({ toast }) {
     && (!needle || m.title.toLowerCase().includes(needle) || (m.subject || "").toLowerCase().includes(needle)));
 
   const openItem = (m) => {
-    if (!m.url) { toast("This item has no file attached yet — we've told your mentor"); return; }
+    if (!m.url) { toast(t("sd_no_file_yet")); return; }
     // Row-level security already decides what a student can see; anything that
     // reaches this list is genuinely theirs to open.
     window.open(m.url, "_blank", "noopener,noreferrer");
@@ -1285,7 +1307,7 @@ function MaterialsView({ toast }) {
       {materials.length === 0 ? (
         <div className="card card-pad">
           <EmptyState icon={<FolderOpen size={26} />} title={t("sd_no_mat")}
-                      text="PDFs, notes and video links your mentor uploads will appear here." />
+                      text={t("sd_mat_empty_sub")} />
         </div>
       ) : filtered.length === 0 ? (
         <div className="card card-pad" style={{ textAlign: "center", color: "var(--muted)", fontSize: 13.5, padding: "40px 20px" }}>
@@ -1337,7 +1359,7 @@ function LeaderboardView({ toast }) {
     const text = `I'm ranked #${me.rank} of ${rows.length} on JUNOONIAS, preparing for ${profile.target}. 🪔`;
     try {
       if (navigator.share) await navigator.share({ text, title: "My JUNOONIAS rank" });
-      else { await navigator.clipboard.writeText(text); toast("Rank copied — share it!"); }
+      else { await navigator.clipboard.writeText(text); toast(t("sd_rank_copied")); }
     } catch { /* the user dismissed the share sheet */ }
   };
 
@@ -1345,7 +1367,7 @@ function LeaderboardView({ toast }) {
     return (
       <div className="card card-pad">
         <EmptyState icon={<Trophy size={26} />} title={t("sd_board_empty")}
-                    text="Rankings are computed from real attempts across all aspirants. Take a test and you'll be the first name on it." />
+                    text={t("sd_leaderboard_empty")} />
       </div>
     );
   }
@@ -1374,7 +1396,7 @@ function LeaderboardView({ toast }) {
         </div>
       ) : (
         <div className="card card-pad mb" style={{ textAlign: "center", color: "var(--muted)", fontSize: 13.5 }}>
-          You're not on the board yet — attempt a test to be ranked. {derived.n > 0 ? "Your first result is still being scored." : ""}
+          {t("sd_not_on_board")} {derived.n > 0 ? t("sd_first_scoring") : ""}
         </div>
       )}
 
@@ -1632,7 +1654,7 @@ function ReferView({ toast }) {
         document.body.removeChild(el);
         toast(t("sd_ref_copied"));
       } catch {
-        toast("Couldn't copy — long-press the link to copy it manually");
+        toast(t("sd_copy_failed"));
       }
     }
   };
@@ -1649,7 +1671,7 @@ function ReferView({ toast }) {
 
   if (loading) return <div className="card card-pad" style={{ textAlign: "center", color: "var(--muted)" }}>{t("sd_ref_loading")}</div>;
   if (err) return <ErrorState message={err} onRetry={() => window.location.reload()} />;
-  if (!stats) return <ErrorState message="Your referral code hasn't been generated yet. Reload the page." onRetry={() => window.location.reload()} />;
+  if (!stats) return <ErrorState message={t("sd_ref_not_generated")} onRetry={() => window.location.reload()} />;
 
   return (
     <div>
@@ -1978,7 +2000,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
     setLoadError("");
     try {
       const user = await DB.currentUser();
-      if (!user) { setLoadError("Your session has expired. Please sign in again."); setLoading(false); return; }
+      if (!user) { setLoadError(t("sd_session_expired")); setLoading(false); return; }
       const prof = await DB.ensureProfile(user);
 
       const [att, allTests, mats, enr, act, lb, nts, rem] = await Promise.all([
@@ -2034,9 +2056,14 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
       }
     } catch (e) {
       console.error("dashboard load failed", e);
-      setLoadError(e?.message || "We couldn't reach the server.");
+      setLoadError(e?.message || t("sd_server_unreachable"));
     }
     setLoading(false);
+    // t is deliberately excluded: load must stay referentially stable, since
+    // its own identity is the effect trigger below (useEffect(() => { load();
+    // }, [load])). Reacting to t would refetch the entire dashboard -- every
+    // table, every count -- on nothing more than a language toggle.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { load(); }, [load]);
@@ -2132,9 +2159,9 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
                 </button>
                 {bellOpen && (
                   <div className="notif">
-                    <div className="notif-head">Notifications</div>
+                    <div className="notif-head">{t("sd_notifications")}</div>
                     {notifs.length === 0 ? (
-                      <div style={{ padding: "22px 16px", fontSize: 13, color: "var(--muted)", textAlign: "center" }}>Nothing new right now.</div>
+                      <div style={{ padding: "22px 16px", fontSize: 13, color: "var(--muted)", textAlign: "center" }}>{t("sd_nothing_new")}</div>
                     ) : notifs.map((n) => {
                       const ic = NOTIF_ICON[n.kind] || NOTIF_ICON.info;
                       return (
@@ -2148,7 +2175,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
                 )}
               </div>
               <span className="tb-chrome"><ChromeControls /></span>
-              <button className="bell tb-logout" title="Log out" aria-label="Log out" onClick={onLogout} style={{ marginRight: 2 }}><LogOut size={19} /></button>
+              <button className="bell tb-logout" title={t("sd_logout")} aria-label={t("sd_logout")} onClick={onLogout} style={{ marginRight: 2 }}><LogOut size={19} /></button>
               <button className="tb-av" onClick={() => go("profile")} aria-label={t("sd_open_profile")}
                       style={profile.avatarUrl ? { backgroundImage: `url(${profile.avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                 {!profile.avatarUrl && initials(profile.name)}

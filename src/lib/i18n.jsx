@@ -1291,6 +1291,64 @@ Object.assign(STR, {
   sd_open_menu:    { en: "Open menu", hi: "मेन्यू खोलिए" },
   sd_open_profile: { en: "Open profile", hi: "प्रोफ़ाइल खोलिए" },
 
+  /* --- dashboard, second pass: paragraphs, errors and toasts the first
+     sweep missed. Found by grepping the file for quoted English rather than
+     by re-reading it -- the same method that caught these should catch the
+     next round too, so run it again before assuming this list is final. */
+  sd_first_mock_sub: { en: "Everything on this dashboard — your trend, subject map, rank and streak — is built from real attempts. Take one test and it all comes alive.",
+                        hi: "इस डैशबोर्ड की हर चीज़ — आपकी स्कोर-चाल, विषय-नक़्शा, रैंक और लगातार पढ़ाई — असली प्रयासों से बनती है। एक टेस्ट दीजिए, और सब कुछ जीवंत हो उठेगा।" },
+  /* The button used to read Start "{title}" -- a proper noun sitting inside
+     quote marks, mid-sentence. In Hindi word order the verb moves to the end
+     and the quoted phrase moves to the front, and a browser's own page
+     translator does the same thing less carefully: it produced literal
+     "{title}" शुरू करें with the closing quote stranded on its own line. The
+     title now sits above the button as its own line (it can wrap or
+     truncate freely there), and the button carries only this short,
+     unconditional verb -- immune to that whole class of bug in any
+     language. */
+  sd_start_first:    { en: "Start this test", hi: "यह टेस्ट शुरू कीजिए" },
+  sd_no_tests_published: { en: "No tests have been published yet. They'll appear here the moment your mentor adds one.",
+                            hi: "अभी कोई टेस्ट प्रकाशित नहीं हुआ है। आपके मेंटॉर के जोड़ते ही यह यहाँ दिखेगा।" },
+  sd_no_match:       { en: 'No test matches "{q}".', hi: '"{q}" से मिलता-जुलता कोई टेस्ट नहीं मिला।' },
+  sd_none_scheduled: { en: "Nothing scheduled right now.", hi: "फ़िलहाल कुछ भी तय नहीं है।" },
+  sd_none_attempted: { en: "You haven't attempted a test yet. Your reports will collect here.",
+                        hi: "आपने अभी कोई टेस्ट नहीं दिया है। आपकी रिपोर्ट यहाँ जमा होंगी।" },
+  sd_subj_empty:     { en: "Attempt a test and your subject-wise strengths appear here.",
+                        hi: "एक टेस्ट दीजिए, और आपकी विषय-वार मज़बूती यहाँ दिखेगी।" },
+  sd_qs:             { en: "Qs", hi: "प्रश्न" },
+  sd_analytics_empty: { en: "Analytics are built entirely from your own attempts — nothing here is simulated. Take a test and this page fills in.",
+                         hi: "विश्लेषण पूरी तरह आपके अपने प्रयासों से बनता है — यहाँ कुछ भी बनावटी नहीं है। एक टेस्ट दीजिए, यह पन्ना भर जाएगा।" },
+  sd_radar_empty:    { en: "Attempt a full-length test covering several subjects to see this map.",
+                        hi: "कई विषयों वाला एक पूरा टेस्ट दीजिए, तब यह नक़्शा दिखेगा।" },
+  sd_appears_after_first: { en: "It appears after your first attempt.", hi: "यह आपके पहले प्रयास के बाद दिखेगा।" },
+  sd_batch_empty_sub: { en: "When you join a course or batch, it shows up here with its validity and how far through the test plan you are.",
+                         hi: "किसी कोर्स या बैच में जुड़ते ही, वह यहाँ अपनी वैधता और आपकी प्रगति के साथ दिखेगा।" },
+  sd_leaderboard_empty: { en: "Rankings are computed from real attempts across all aspirants. Take a test and you'll be the first name on it.",
+                           hi: "रैंकिंग सभी अभ्यर्थियों के असली प्रयासों से बनती है। एक टेस्ट दीजिए, आप उस पर पहला नाम होंगे।" },
+  sd_not_on_board:   { en: "You're not on the board yet — attempt a test to be ranked.",
+                        hi: "आप अभी बोर्ड पर नहीं हैं — रैंक पाने के लिए एक टेस्ट दीजिए।" },
+  sd_first_scoring:  { en: "Your first result is still being scored.", hi: "आपका पहला नतीजा अभी बन रहा है।" },
+  sd_session_expired:{ en: "Your session has expired. Please sign in again.", hi: "आपका सत्र समाप्त हो गया है। कृपया दोबारा साइन इन कीजिए।" },
+  sd_server_unreachable: { en: "We couldn't reach the server.", hi: "हम सर्वर तक नहीं पहुँच सके।" },
+  sd_review_load_failed: { en: "Could not load your review.", hi: "आपकी समीक्षा लोड नहीं हो सकी।" },
+  sd_grade:          { en: "Grade {x}", hi: "ग्रेड {x}" },
+  sd_time_taken:     { en: "Time taken", hi: "लिया गया समय" },
+  sd_of_total:       { en: "of {x}", hi: "{x} में से" },
+  sd_not_ranked:     { en: "not ranked yet", hi: "अभी रैंक नहीं" },
+  sd_mat_empty_sub:  { en: "PDFs, notes and video links your mentor uploads will appear here.",
+                        hi: "आपके मेंटॉर द्वारा डाले गए PDF, नोट्स और वीडियो लिंक यहाँ दिखेंगे।" },
+  sd_full_access:    { en: "Full access", hi: "पूरा एक्सेस" },
+  sd_ref_not_generated: { en: "Your referral code hasn't been generated yet. Reload the page.",
+                           hi: "आपका रेफ़रल कोड अभी नहीं बना है। पेज रीलोड कीजिए।" },
+  sd_reminder_set_for: { en: "We'll remind you before {x}", hi: "{x} से पहले हम आपको याद दिलाएँगे" },
+  sd_reminder_removed: { en: "Reminder removed", hi: "रिमाइंडर हटा दिया गया" },
+  sd_reminder_save_failed: { en: "Couldn't save that reminder — try again", hi: "रिमाइंडर सेव नहीं हो सका — दोबारा कोशिश कीजिए" },
+  sd_rank_copied:    { en: "Rank copied — share it!", hi: "रैंक कॉपी हो गई — शेयर कीजिए!" },
+  sd_copy_failed:    { en: "Couldn't copy — long-press the link to copy it manually",
+                        hi: "कॉपी नहीं हो सका — लिंक को दबाकर रखें और मैन्युअली कॉपी करें" },
+  sd_no_file_yet:    { en: "This item has no file attached yet — we've told your mentor",
+                        hi: "इस आइटम में अभी कोई फ़ाइल नहीं है — हमने आपके मेंटॉर को बता दिया है" },
+
   /* --- exam report: panels and the improvement plan ---
      Most of the report already had keys and the component simply never used
      them -- "Wrong" and "Skipped" sat hardcoded next to a translated
