@@ -1895,12 +1895,12 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
   // pay for. It is shown, so the exam still appears in the catalogue and the
   // interest is visible, but it cannot be bought until a paper exists in it.
   const empty = !b.testCount;
+  // Icon-only brochure trigger, sits at the head of the action row alongside
+  // the primary CTA. Renders null if this plan has no PDF yet, so a card
+  // without a flyer shows the same button row as before.
+  const brochure = <BrochureButton url={b.brochureUrl} planName={b.name} examLabel={b.examLabel} />;
   return (
     <div className={`pb-card reveal reveal-d${delay}${empty ? " pb-card-soon" : ""}`}>
-      {/* Top-right corner; deliberately absolute so it never fights the
-          card's button row for space, and shows in "Coming soon" states too
-          if the flyer exists (a visitor can decide to enrol later). */}
-      <BrochureButton url={b.brochureUrl} planName={b.name} examLabel={b.examLabel} variant="card" />
       <span className="pb-card-exam" title={b.examFullName || undefined}>{b.examLabel}</span>
       <h3 className="pb-card-title">{b.name}</h3>
       <div className="pb-card-meta">
@@ -1916,6 +1916,7 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
         {off > 0 && <><span className="pb-price-mrp">{money(b.mrp)}</span><span className="pb-off">{off}% off</span></>}
       </div>
       <div className="pb-card-btns">
+        {brochure}
         {owned ? (
           <button className="pb-btn pb-btn-block pb-owned" onClick={onView}>
             <CheckCircle2 size={16} />{t("card_owned")}
@@ -2058,15 +2059,17 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
               ? `One-time payment · valid for ${Math.round(bundle.durationDays / 30)} months`
               : "One-time payment · lifetime access"}
           </p>
-          <button className={"pb-btn pb-btn-block " + (owned ? "pb-owned" : "pb-btn-gold")} onClick={onEnroll}>
-            {owned ? <><CheckCircle2 size={16} />{t("card_goto_dash")}</> : <>Enroll now<ArrowRight size={15} /></>}
-          </button>
-          {/* Detail-variant of the same brochure trigger the catalogue card
-              shows — full width, sits directly under the primary CTA so a
-              visitor who wants details before paying finds it without
-              scanning the sidebar. */}
-          <BrochureButton url={bundle.brochureUrl} planName={bundle.name}
-                          examLabel={bundle.examLabel} variant="detail" />
+          {/* Same in-row placement as the catalogue card: brochure icon
+              alongside the primary CTA, near the pricing. Icon renders as
+              null when this plan has no PDF, so the row collapses to just
+              Enroll with no width change. */}
+          <div className="pb-buy-cta-row">
+            <BrochureButton url={bundle.brochureUrl} planName={bundle.name}
+                            examLabel={bundle.examLabel} />
+            <button className={"pb-btn pb-buy-cta " + (owned ? "pb-owned" : "pb-btn-gold")} onClick={onEnroll}>
+              {owned ? <><CheckCircle2 size={16} />{t("card_goto_dash")}</> : <>Enroll now<ArrowRight size={15} /></>}
+            </button>
+          </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: 18 }}>
             <span style={{ fontSize: 12.5, color: "var(--ink-400)", display: "flex", alignItems: "center", gap: 7 }}>
               <Lock size={12} />Secure payment via Razorpay

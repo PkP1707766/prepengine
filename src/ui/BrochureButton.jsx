@@ -2,69 +2,77 @@ import { FileText } from "lucide-react";
 import { useLang } from "../lib/contexts.js";
 
 /* ============================================================================
- * BrochureButton — one component, used on every catalogue card AND on the
- * bundle detail page. Zero surface when no PDF is uploaded yet.
+ * BrochureButton -- icon-only pill that sits in the action row of both the
+ * catalogue card AND the bundle detail page's buy panel. Returns null when
+ * the plan has no PDF uploaded yet, so the row layout is byte-identical to
+ * before for every plan without a flyer.
  *
- * Anchor tag, not a button + window.open — mobile browsers (particularly iOS
- * Safari) are far more reliable at handing the tab to the native PDF viewer
- * when the trigger is a real <a target="_blank"> with a real href. window.open
- * mid-click gets popup-blocked in more places than the raw link does.
+ * Anchor tag, not a button + window.open -- mobile browsers (particularly
+ * iOS Safari) hand a real <a target="_blank"> to the native PDF viewer far
+ * more reliably than a scripted window.open, which gets popup-blocked in
+ * more places than the raw link does.
  *
- * `variant`:
- *   - "card"   : compact top-right pill sitting on the card (default).
- *   - "detail" : full-width block on the buy panel of the detail page.
- * Both share the same colours and the same pulsing halo, so a visitor sees
- * the same visual across catalogue → detail without re-learning.
+ * Icon-only, deliberately: the exam label ("BPSC", "UPSC", etc.) already
+ * sits in a pill at the top of the card and inside the h1 on the detail
+ * page, so repeating "BPSC Brochure" here would be noise. The exam name
+ * travels only through the aria-label + title, where a screen reader can
+ * still find it. That also lets the trigger stay compact enough to share
+ * the action row with the primary CTA on a phone.
  * ==========================================================================*/
-export default function BrochureButton({ url, planName = "", examLabel = "", variant = "card" }) {
+export default function BrochureButton({ url, planName = "", examLabel = "" }) {
   const { t } = useLang();
   if (!url) return null;
-  const label = examLabel ? `${examLabel} ${t("card_brochure")}` : t("card_brochure");
   const aria = t("card_brochure_aria").replace("{name}", planName || examLabel || t("card_brochure"));
-  const cls = variant === "detail" ? "pb-brochure pb-brochure--detail" : "pb-brochure pb-brochure--card";
   return (
     <a
-      className={cls}
+      className="pb-brochure"
       href={url}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={aria}
       title={aria}
     >
-      <FileText size={variant === "detail" ? 16 : 14} aria-hidden="true" />
-      <span>{label}</span>
+      <FileText size={16} aria-hidden="true" />
+      <span className="pb-brochure-sr">{aria}</span>
     </a>
   );
 }
 
-/* CSS — exported so PublicSite can splice it into its own <style> block
+/* CSS -- exported so PublicSite can splice it into its own <style> block
  * alongside the rest of the storefront CSS. Kept together with the component
  * so the JSX and its styles stay in lock-step. */
 export const BROCHURE_CSS = `
-/* ---------- BROCHURE BUTTON (shared) ---------- */
-.pb-brochure{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:6px;
-  font-size:11.5px;font-weight:800;letter-spacing:.02em;text-decoration:none;cursor:pointer;
-  padding:7px 12px;border-radius:100px;
+/* ---------- BROCHURE BUTTON ----------
+ * Icon-only pill matching the .pb-btn-ghost outline treatment so it visually
+ * groups with Details / Enroll on the same row. Fixed square-ish footprint
+ * (~36 px desktop, 40 px+ on touch) so it never bloats the row layout.
+ *
+ * Text-content span is visually hidden but reachable by screen readers -- the
+ * FileText icon carries the meaning, and the aria-label carries the exam
+ * name. Clip-based hide, not display:none, keeps the accessible name intact. */
+.pb-brochure{position:relative;isolation:isolate;
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  width:36px;height:36px;padding:0;border-radius:100px;text-decoration:none;
   color:var(--brand-700);
-  background:color-mix(in srgb,var(--gold-300) 22%,var(--cream-50));
-  border:1.5px solid color-mix(in srgb,var(--gold-500) 55%,transparent);
+  background:var(--cream-50);
+  border:1.5px solid color-mix(in srgb,var(--gold-500) 45%,transparent);
   transition:transform .18s ease, background .18s ease, border-color .18s ease}
 .pb-brochure:hover{transform:translateY(-1px);
-  background:color-mix(in srgb,var(--gold-300) 34%,var(--cream-50));
+  background:color-mix(in srgb,var(--gold-300) 26%,var(--cream-50));
   border-color:var(--gold-500)}
 .pb-brochure:focus-visible{outline:2.5px solid var(--gold-500);outline-offset:2px}
-.pb-brochure svg{color:var(--brand-700);flex:0 0 auto}
+.pb-brochure svg{color:var(--brand-700)}
+.pb-brochure-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* A slow warm halo -- brand palette, low opacity, three-second loop, resets
  * to zero glow between pulses so it doesn't read as "broken" or "loading".
- * The keyframe uses two shadows layered: a tight inner gold and an outer
- * translucent maroon, so the pulse feels like part of the card colour, not
- * a stuck notification badge. */
+ * Deliberately gentler than the earlier text-pill treatment: this button is
+ * smaller, and the pulse must not out-shout Enroll now. */
 @keyframes pb-brochure-halo{
-  0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-500) 0%,transparent),
-                    0 0 0 0 color-mix(in srgb,var(--brand-700) 0%,transparent)}
-  50%    {box-shadow:0 0 0 3px color-mix(in srgb,var(--gold-500) 32%,transparent),
-                    0 0 18px 6px color-mix(in srgb,var(--brand-700) 18%,transparent)}
+  0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-500) 0%,transparent)}
+  50%    {box-shadow:0 0 0 3px color-mix(in srgb,var(--gold-500) 24%,transparent),
+                    0 0 12px 4px color-mix(in srgb,var(--brand-700) 14%,transparent)}
 }
 .pb-brochure{animation:pb-brochure-halo 3s ease-in-out infinite}
 .pb-brochure:hover,.pb-brochure:focus-visible{animation:none}
@@ -72,29 +80,23 @@ export const BROCHURE_CSS = `
   .pb-brochure{animation:none}
 }
 
-/* ---------- Variant: card (top-right corner of a BundleCard) ----------
- * Absolute so the existing card grid doesn't have to reflow around it.
- * z-index over the ::before top ribbon (which is z:0/1). Meets a 40px
- * tap target on coarse pointers via extra padding, without visually
- * inflating on desktop. */
-.pb-card{position:relative}
-.pb-brochure--card{position:absolute;top:12px;right:12px;z-index:2}
-
-/* Coarse pointers (touch): raise the entire tap zone to WCAG 44px. The site
+/* Coarse pointers (touch): raise the tap target to WCAG 44 px. The site
  * ships a global coarse-pointer rule that sets padding-block:4px on every
- * .pb-root anchor -- that rule beats a plain .pb-brochure--card class selector
- * on specificity. The .pb-root a.pb-brochure--card selector below matches
- * that same specificity so this padding wins. Using the padding shorthand
- * (all four sides) means the padding-block rule loses regardless. */
+ * .pb-root anchor; a plain .pb-brochure class selector loses on
+ * specificity, so this matches .pb-root a on specificity. Setting explicit
+ * width + min-height wins even against that padding-block rule. */
 @media (pointer:coarse){
-  .pb-root a.pb-brochure--card{padding:10px 14px;font-size:12px;top:10px;right:10px;min-height:44px}
-  .pb-root a.pb-brochure--card svg{width:15px;height:15px}
+  .pb-root a.pb-brochure{width:44px;height:44px;min-height:44px}
+  .pb-root a.pb-brochure svg{width:18px;height:18px}
 }
 
-/* ---------- Variant: detail (inside the buy panel) ---------- */
-.pb-brochure--detail{width:100%;justify-content:center;padding:11px 16px;font-size:13px;
-  margin-top:12px}
-@media (pointer:coarse){
-  .pb-root a.pb-brochure--detail{padding:13px 16px;min-height:44px}
-}
+/* ---------- Details-page action row -----------------------------------
+ * Same layout idea as the catalogue card's button row: brochure icon on
+ * the left, primary CTA takes the remaining width. Enroll here is no
+ * longer .pb-btn-block (that was 100% width, breaks the flex-row); a
+ * scoped .pb-buy-cta class puts it on flex:1 with the same visual as
+ * before (padding matches the site's pb-btn-block for pb-buy). */
+.pb-buy-cta-row{display:flex;gap:10px;align-items:stretch}
+.pb-buy-cta{flex:1 1 auto;width:auto;text-align:center;justify-content:center;
+  display:inline-flex;align-items:center;gap:8px}
 `;
