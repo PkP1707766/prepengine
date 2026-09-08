@@ -163,7 +163,10 @@ const CSS = `
    first, which is the right thing to give up. */
 .tb-chrome{display:inline-flex;align-items:center}
 .tb-chrome-mobile{display:none}
-.hamburger{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center}
+/* color is explicit rather than inherited -- .bell and .tb-av both state
+   their own colour already; this was the one control in the row relying on
+   .sd-root's --ink to reach it unchanged through every ancestor. */
+.hamburger{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center;color:var(--ink)}
 .content{padding:26px;max-width:1240px;width:100%;margin:0 auto}
 .sd-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   padding:20px 26px 26px;max-width:1240px;margin:0 auto;width:100%;
@@ -810,15 +813,42 @@ function HomeView({ go, setAnalysis, onStart }) {
               {t(tests.length === 0 ? "sd_no_tests_yet" : "sd_all_attempted")}
             </div>
           ) : available.slice(0, 3).map((t) => (
-            <div key={t.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 0", borderBottom: "1px solid var(--line)" }}>
+            /* alignItems:flex-start, not center -- the title below can run to
+               two lines, and centering pinned the icon and button to a
+               vertical midpoint that moved every time a title next to it
+               wrapped, so the row never looked settled. */
+            <div key={t.id} style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "12px 0", borderBottom: "1px solid var(--line)" }}>
               <div style={{ width: 40, height: 40, borderRadius: 10, background: "#faf2dc", color: "#b8923a", display: "grid", placeItems: "center", flex: "0 0 auto" }}><FileText size={19} /></div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</div>
-                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>
-                  {t.totalQuestions} {tr("sd_qs")} · {t.durationMin} {tr("ex_min")} · {t.isFree ? tr("sd_free") : tr("sd_included")}
+                {/* Single-line ellipsis truncated "BPSC Bihar Special II" and
+                    "BPSC Bihar Special III" to the same "BPSC Bihar..." --
+                    two different tests, indistinguishable in the one place a
+                    student picks which to start. Two lines gives roughly
+                    double the characters before it has to cut anything, and
+                    -webkit-line-clamp is the standard way to ellipsize after
+                    a fixed number of lines rather than a fixed height. */}
+                <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", lineHeight: 1.3,
+                              display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                  {t.title}
+                </div>
+                {/* Qs/min and the Free/Included status used to be one run-on
+                    line -- "150 Qs · 120 min · Included in your plan" -- with
+                    no protection against wrapping, so a narrow card broke it
+                    after "min" and left a bare "· Included in your plan" as
+                    its own line, a separator stranded at the front. The count
+                    and the status are now two flex children with their own
+                    nowrap: the status wraps to a new line as a whole pill
+                    when it doesn't fit, never mid-phrase. */}
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px 8px", marginTop: 4 }}>
+                  <span style={{ fontSize: 12, color: "var(--muted)", whiteSpace: "nowrap" }}>
+                    {t.totalQuestions} {tr("sd_qs")} · {t.durationMin} {tr("ex_min")}
+                  </span>
+                  <Badge color={t.isFree ? { bg: "#e8f6ee", fg: "#1f8a4c" } : { bg: "#fcf3df", fg: "#d4a64a" }}>
+                    {t.isFree ? tr("sd_free") : tr("sd_included")}
+                  </Badge>
                 </div>
               </div>
-              <button className="btn btn-gold btn-sm" onClick={() => onStart(t.id)}><Play size={14} />{tr("sd_start")}</button>
+              <button className="btn btn-gold btn-sm" onClick={() => onStart(t.id)} style={{ flex: "0 0 auto" }}><Play size={14} />{tr("sd_start")}</button>
             </div>
           ))}
         </div>
