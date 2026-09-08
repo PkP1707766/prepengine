@@ -174,6 +174,17 @@ const CSS = `
 .sd-foot a,.sd-foot button.flink{color:var(--navy);text-decoration:none;font-weight:600;
   background:none;border:0;font-family:inherit;font-size:inherit;cursor:pointer;padding:0}
 .sd-foot a:hover,.sd-foot button.flink:hover{text-decoration:underline}
+/* i18n.jsx's shared touch-target rule forces every button to 44px tall on a
+   coarse pointer -- fine for a full-width footer link sitting alone in its
+   own row (PublicSite's footer), but "All test series" here sits inline
+   between two lines of plain 12.5px text. Measured: that turned a 16px text
+   row into a 44px one, while the copyright row above stayed 16px -- exactly
+   the lopsided, over-spaced footer being reported. ".sd-root .main .sd-foot
+   button.flink" out-specifies that shared rule (4 classes vs. 3), so the
+   line itself stays text-sized; the ::after restores the real 44px tap
+   target without anyone seeing it. */
+.sd-root .main .sd-foot button.flink{min-height:0;position:relative}
+.sd-foot button.flink::after{content:"";position:absolute;left:0;right:0;top:-14px;bottom:-14px}
 
 /* CARDS */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(20,120,140,.05)}
