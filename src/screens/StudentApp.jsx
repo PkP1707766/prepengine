@@ -188,10 +188,16 @@ const CSS = `
 @media(max-width:680px){.hero{grid-template-columns:1fr}}
 .hero-greet{font-size:23px;font-weight:800;letter-spacing:-.01em;text-shadow:0 1px 12px rgba(8,70,84,.30)}
 .hero-quote{font-size:13.5px;color:#fffaef;margin-top:6px;display:flex;align-items:center;gap:8px;text-shadow:0 1px 9px rgba(8,70,84,.34)}
-.hero-cd{background:rgba(247,107,107,.16);border:1px solid rgba(247,107,107,.36);border-radius:14px;padding:16px 22px;text-align:center;min-width:150px}
+/* A light rgba(247,107,107,.16) tint over the hero's own dark-red-to-gold
+   gradient barely darkens anything -- wherever the box happened to land on
+   the gold end, cream/gold text on it dropped to a ~1.4-2.1 contrast ratio,
+   nowhere near the 4.5 WCAG floor its neighbouring greeting text (which gets
+   its own text-shadow) already meets. A near-black backdrop at 42% gives a
+   contrast floor of ~4.2+ against BOTH ends of the gradient, measured. */
+.hero-cd{background:rgba(20,8,8,.42);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 22px;text-align:center;min-width:150px}
 .hero-cd-n{font-size:34px;font-weight:800;color:#f2dcae;line-height:1}
 .hero-cd-l{font-size:11.5px;color:#f1e4c4;margin-top:5px;font-weight:600}
-.hero-cd-d{font-size:11px;color:#cbb98e;margin-top:2px}
+.hero-cd-d{font-size:11px;color:#e9dcc0;margin-top:2px}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:22px}
@@ -326,6 +332,14 @@ const CSS = `
 .prof-av-edit{position:absolute;bottom:-6px;right:-6px;width:28px;height:28px;border-radius:50%;background:#5b1414;color:#fff;
   display:grid;place-items:center;box-shadow:0 3px 10px rgba(58,14,14,.35);border:2px solid #fff;transition:.15s}
 .prof-av-edit:hover{background:#8a2222;transform:scale(1.08)}
+/* Same coarse-pointer clash as the toggle switch: this is a <button>, the
+   44px floor further down wins over a bare ".prof-av-edit{min-height:0}",
+   and a 28-wide/44-tall box with border-radius:50% renders as a stretched
+   oval bulging up over the avatar photo instead of a small round badge.
+   ".sd-root .prof-av-wrap .prof-av-edit" has enough specificity to win;
+   the ::after keeps the real 44px tap target invisibly. */
+.sd-root .prof-av-wrap .prof-av-edit{min-height:0}
+.prof-av-edit::after{content:"";position:absolute;left:-8px;right:-8px;top:-8px;bottom:-8px}
 .prof-av-remove{background:none;border:none;padding:0;font-size:12px;font-weight:700;color:#c0392b;margin-top:6px;cursor:pointer;text-decoration:underline}
 .prof-name{font-size:22px;font-weight:800;letter-spacing:-.01em}
 .prof-meta{font-size:13px;color:var(--muted);margin-top:4px}
@@ -346,13 +360,30 @@ textarea.inp{resize:vertical;min-height:88px}
 .switch.on{background:var(--green)}
 .switch::after{content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:#ffffff;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .switch.on::after{left:22px}
+/* .switch is a <button>, so the coarse-pointer 44px floor further down this
+   file also targets it -- but ".sd-root button" (class+element) outranks a
+   bare ".switch" (class only), so a plain min-height:0 here loses the fight
+   and the switch silently renders 44x44 on a real phone: a near-circle with
+   the 19px knob stranded near the top instead of a 44x25 pill. Matching
+   ".sd-root .toggle-row" one level up wins the specificity back; width is
+   already 44px so only the vertical reach needs the invisible ::before to
+   keep a 44px-tall tap target without the visible track growing. */
+.sd-root .toggle-row .switch{min-height:0}
+.switch::before{content:"";position:absolute;left:0;right:0;top:-9.5px;bottom:-9.5px}
 
 /* MODAL */
 .overlay{position:fixed;inset:0;background:rgba(13,27,42,.55);display:flex;align-items:flex-start;justify-content:center;z-index:60;padding:30px 18px;overflow-y:auto;backdrop-filter:blur(2px)}
 .modal{background:#ffffff;border-radius:16px;width:100%;max-width:640px;box-shadow:0 24px 60px rgba(0,0,0,.3);margin:auto}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
 .modal-head h3{margin:0;font-size:17px;font-weight:800}
-.modal-head .x{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;color:#9c8c70}
+/* Same coarse-pointer clash as the switch and avatar-edit badge above: this
+   is a <button> with no min-height stated at all, so it silently inherits
+   the 44px floor and renders 34 wide x 44 tall -- a stretched rounded
+   rectangle instead of a small square. ".modal-head .x" is already two
+   classes deep (0,2,0), which beats the floor rule on its own, so min-height
+   just needs stating here; the ::after keeps the real tap target at 44px. */
+.modal-head .x{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;color:#9c8c70;position:relative;min-height:0}
+.modal-head .x::after{content:"";position:absolute;inset:-5px}
 .modal-head .x:hover{background:#f7efdd;color:var(--ink)}
 .modal-body{padding:22px 24px}
 .modal-foot{padding:16px 24px;display:flex;gap:11px;justify-content:flex-end;border-top:1px solid var(--line);background:#fffaef;border-radius:0 0 16px 16px}
@@ -456,7 +487,14 @@ textarea.inp{resize:vertical;min-height:88px}
      sized circles. */
   .tb-chrome{display:none}
   .tb-chrome-mobile{display:inline-flex}
-  .hamburger,.bell,.tb-av{width:34px;height:34px;min-height:0;position:relative}
+  /* These are <button>s, so ".sd-root button{min-height:44px}" (class+
+     element, further down this file under @media(pointer:coarse)) outranks
+     a bare ".hamburger,.bell,.tb-av{min-height:0}" here -- confirmed by
+     measuring getBoundingClientRect() under real touch emulation, which
+     still showed 44px tall despite this rule. Prefixing with .sd-root wins
+     the specificity fight so the intended 34px actually reaches a real
+     phone, matching the 34px segmented control beside them. */
+  .sd-root .hamburger,.sd-root .bell,.sd-root .tb-av{width:34px;height:34px;min-height:0;position:relative}
   /* Hit area only, matching .jn-seg-btn's own pattern: taller than the
      visible box so a coarse pointer still gets 44px, narrower on the sides
      than a full 44px would need so two adjacent buttons 6px apart (bell and
@@ -1603,7 +1641,7 @@ function ProfileView({ toast }) {
         </div>
       </div>
 
-      <div className="card card-pad">
+      <div className="card card-pad mb">
         <div className="sec-head"><div><div className="eyebrow">{t("sd_ach_eyebrow")}</div><div className="panel-title">{t("sd_ach_h")}</div></div>
           <span style={{ fontSize: 13, fontWeight: 700, color: "var(--gold-2)" }}>{t("sd_ach_count").replace("{a}", earned).replace("{b}", achievements.length)}</span></div>
         <div className="ach-grid">
