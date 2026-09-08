@@ -154,15 +154,16 @@ const CSS = `
 .notif-d{font-size:12px;color:var(--muted);margin-top:2px}
 .tb-av{width:38px;height:38px;border-radius:10px;background:var(--navy);color:#ffffff;display:grid;place-items:center;font-weight:800;font-size:14px;border:0;cursor:pointer;padding:0;font-family:inherit;transition:transform .16s ease,box-shadow .16s ease}
 .tb-av:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(90,40,10,.22)}
+/* Two renderings of the same controls: the desktop pill pair in .tb-chrome,
+   and PublicSite's segmented capsule (import { ChromeControls } already
+   pulls this in) in .tb-chrome-mobile. Measured on the live segmented
+   control before choosing this over a drawer: 56px at "हि", 61px at "EN",
+   34px tall -- small enough that bell + segment + logout + avatar hold one
+   row on a 320px phone without any of them shrinking; the title truncates
+   first, which is the right thing to give up. */
 .tb-chrome{display:inline-flex;align-items:center}
+.tb-chrome-mobile{display:none}
 .hamburger{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center}
-/* Language, theme and logout live in the topbar on desktop. On a phone the
-   sidebar is a drawer, so they move into its foot instead of crowding the
-   topbar into five circles beside a squeezed title -- shown only there. */
-.sb-mobile-settings{display:none}
-.sb-logout{display:inline-flex;align-items:center;gap:8px;color:#f0dcae;font-size:13px;font-weight:600;
-  padding:9px 12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
-.sb-logout:hover{background:rgba(255,255,255,.13);color:#fff}
 .content{padding:26px;max-width:1240px;width:100%;margin:0 auto}
 .sd-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   padding:20px 26px 26px;max-width:1240px;margin:0 auto;width:100%;
@@ -446,16 +447,25 @@ textarea.inp{resize:vertical;min-height:88px}
   .sb.open{transform:translateX(0)}
   .hamburger{display:flex}
   .content{padding:18px}
-  /* Settings leave the topbar for the drawer here, so the topbar keeps only
-     the bell and the avatar beside the title. */
-  .tb-chrome,.tb-logout{display:none}
-  .sb-mobile-settings{display:flex;align-items:center;gap:10px;padding:14px 16px;
-    border-top:1px solid rgba(255,255,255,.08)}
+  /* The full pill pair is desktop-width; the segmented capsule replaces it
+     here, at the same 34px height as the compacted hamburger/bell/avatar
+     below, so the whole row reads as one family instead of four different
+     sized circles. */
+  .tb-chrome{display:none}
+  .tb-chrome-mobile{display:inline-flex}
+  .hamburger,.bell,.tb-av{width:34px;height:34px;min-height:0;position:relative}
+  /* Hit area only, matching .jn-seg-btn's own pattern: taller than the
+     visible box so a coarse pointer still gets 44px, narrower on the sides
+     than a full 44px would need so two adjacent buttons 6px apart (bell and
+     the segment, logout and the avatar) never claim the same pixel. */
+  .hamburger::after,.bell::after,.tb-av::after{
+    content:"";position:absolute;left:-3px;right:-3px;top:-5px;bottom:-5px}
+  .bell-dot{top:5px;right:5px}
   /* The bell's dropdown was anchored right:0 to a wrapper sitting mid-row, so
      a 320px panel ran off the left edge of a phone. Pinned to the viewport
      with a margin each side instead -- always on screen, whatever is beside
      the bell. */
-  .notif{position:fixed;top:68px;left:12px;right:12px;width:auto;max-height:72vh;overflow-y:auto}
+  .notif{position:fixed;top:64px;left:12px;right:12px;width:auto;max-height:72vh;overflow-y:auto}
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:39}
   .rf-steps{grid-template-columns:1fr}
   .rf-wallet{grid-template-columns:1fr}
@@ -2140,10 +2150,6 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
               {t("sd_days_to").replace("{n}", daysUntil(profile.targetDate)).replace("{x}", profile.target)}
             </div>
           )}
-          <div className="sb-mobile-settings">
-            <ChromeControls light />
-            <button className="sb-logout" onClick={onLogout}><LogOut size={17} />{t("sd_signout")}</button>
-          </div>
         </aside>
 
         <div className="main">
@@ -2175,7 +2181,8 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
                 )}
               </div>
               <span className="tb-chrome"><ChromeControls /></span>
-              <button className="bell tb-logout" title={t("sd_logout")} aria-label={t("sd_logout")} onClick={onLogout} style={{ marginRight: 2 }}><LogOut size={19} /></button>
+              <span className="tb-chrome-mobile"><ChromeControls segmented /></span>
+              <button className="bell" title={t("sd_logout")} aria-label={t("sd_logout")} onClick={onLogout}><LogOut size={19} /></button>
               <button className="tb-av" onClick={() => go("profile")} aria-label={t("sd_open_profile")}
                       style={profile.avatarUrl ? { backgroundImage: `url(${profile.avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                 {!profile.avatarUrl && initials(profile.name)}
