@@ -1,4 +1,4 @@
-import { FileText } from "lucide-react";
+import { Download } from "lucide-react";
 import { useLang } from "../lib/contexts.js";
 
 /* ============================================================================
@@ -11,9 +11,11 @@ import { useLang } from "../lib/contexts.js";
  * already tells the reader which exam this is.
  *
  * variant="detail" is a full-width labelled pill placed directly UNDER the
- * Enroll button on the bundle detail page. There the exam name has room to
- * appear on the button itself, so a visitor scanning the buy panel sees
- * "BPSC Brochure" without also having to read the h1.
+ * Enroll button on the bundle detail page. There the label just reads
+ * "View test brochure" -- the exam name is already in the h1 immediately
+ * above the buy panel, so repeating it here would be redundant and it
+ * lets the same label sit on every plan's detail page without a per-plan
+ * i18n entry.
  *
  * Returns null when the plan has no PDF uploaded yet. Zero surface, zero
  * disabled button, no dead link.
@@ -36,9 +38,9 @@ export default function BrochureButton({ url, planName = "", examLabel = "", var
       aria-label={aria}
       title={aria}
     >
-      <FileText size={variant === "detail" ? 16 : 16} aria-hidden="true" />
+      <Download size={16} aria-hidden="true" />
       {variant === "detail" ? (
-        <span>{examLabel ? `${examLabel} ${t("card_brochure")}` : t("card_brochure")}</span>
+        <span>{t("card_brochure_view")}</span>
       ) : (
         <span className="pb-brochure-sr">{aria}</span>
       )}

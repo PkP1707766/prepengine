@@ -826,6 +826,7 @@ Object.assign(STR, {
   card_soon:       { en: "Coming soon", hi: "जल्द आ रहा है" },
   card_papers_soon:{ en: "Papers being finalised", hi: "पेपर तैयार हो रहे हैं" },
   card_brochure:      { en: "Brochure", hi: "ब्रोशर" },
+  card_brochure_view: { en: "View test brochure", hi: "टेस्ट ब्रोशर देखें" },
   card_brochure_aria: { en: "Open the brochure for {name} in a new tab", hi: "{name} का ब्रोशर नए टैब में खोलें" },
   card_brochure_err:  { en: "Couldn't open the brochure. Please try again.", hi: "ब्रोशर नहीं खुल सका। दोबारा कोशिश कीजिए।" },
   card_mock_one:   { en: "mock test", hi: "मॉक टेस्ट" },
