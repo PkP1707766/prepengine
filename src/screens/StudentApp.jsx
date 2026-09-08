@@ -936,11 +936,12 @@ function HomeView({ go, setAnalysis, onStart }) {
       </div>
 
       {enrollments.length > 0 && (
-        <div className="card card-pad">
+        <div className="card card-pad mb">
           <div className="eyebrow">{t("sd_your_access")}</div>
           <div className="panel-title" style={{ marginBottom: 10 }}>{t("sd_active_enrol")}</div>
-          {enrollments.map((e) => (
-            <div key={e.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid var(--line)", flexWrap: "wrap", gap: 8 }}>
+          {enrollments.map((e, i) => (
+            <div key={e.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0",
+                                      borderBottom: i === enrollments.length - 1 ? "none" : "1px solid var(--line)", flexWrap: "wrap", gap: 8 }}>
               <div>
                 <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: 14 }}>{e.batches?.name || e.plan_code || "Full access"}</div>
                 <div style={{ fontSize: 12.5, color: "var(--muted)" }}>{t("sd_since").replace("{d}", fmtDate(e.enrolled_at))}</div>
