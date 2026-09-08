@@ -54,14 +54,23 @@ export default function BrochureButton({ url, planName = "", examLabel = "", var
 export const BROCHURE_CSS = `
 /* ---------- BROCHURE BUTTON (shared) ----------
  * Both variants share the outline + halo treatment so a visitor learns the
- * button once and recognises it on either surface. */
+ * button once and recognises it on either surface.
+ *
+ * Background was plain var(--cream-50) -- identical to the card/panel it
+ * sits on -- so on a real phone screen the button had no fill of its own,
+ * just a thin, half-transparent border floating on the page. It read as a
+ * stray icon, not a button, next to Details (which carries a solid gold-100
+ * tint). Matched to .pb-btn-ghost's own treatment now: a warm gold tint plus
+ * an inset top highlight, so it has real presence next to its neighbours
+ * instead of blending into whatever it's placed on. */
 .pb-brochure{position:relative;isolation:isolate;text-decoration:none;cursor:pointer;
   color:var(--brand-700);
-  background:var(--cream-50);
-  border:1.5px solid color-mix(in srgb,var(--gold-500) 45%,transparent);
+  background:color-mix(in srgb,var(--gold-100) 55%,transparent);
+  border:1.5px solid color-mix(in srgb,var(--gold-600) 55%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
   transition:transform .18s ease, background .18s ease, border-color .18s ease}
 .pb-brochure:hover{transform:translateY(-1px);
-  background:color-mix(in srgb,var(--gold-300) 26%,var(--cream-50));
+  background:color-mix(in srgb,var(--gold-300) 40%,transparent);
   border-color:var(--gold-500)}
 .pb-brochure:focus-visible{outline:2.5px solid var(--gold-500);outline-offset:2px}
 .pb-brochure svg{color:var(--brand-700);flex:0 0 auto}

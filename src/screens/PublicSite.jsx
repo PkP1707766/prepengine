@@ -392,7 +392,12 @@ const CSS = `
 .pb-price-mrp{font-size:14.5px;color:var(--ink-400);text-decoration:line-through}
 .pb-off{font-size:11px;font-weight:800;color:var(--ok-600);
   background:color-mix(in srgb,var(--ok-600) 14%,transparent);padding:3px 9px;border-radius:100px}
-.pb-card-btns{margin-top:auto;display:flex;gap:9px}
+/* align-items:center matters once the brochure icon sits in this row: it has
+   a fixed 44px height on touch, while Enroll/Details size off padding and can
+   end up a hair taller -- without centering, flex's default stretch pins the
+   fixed-height icon to the top of the row instead of the middle, reading as
+   misaligned next to the pill buttons beside it. */
+.pb-card-btns{margin-top:auto;display:flex;align-items:center;gap:9px}
 .pb-owned{background:color-mix(in srgb,var(--ok-600) 12%,transparent) !important;color:var(--ok-600) !important;
   border:1.5px solid color-mix(in srgb,var(--ok-600) 34%,transparent) !important;box-shadow:none !important}
 
