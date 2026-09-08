@@ -154,7 +154,15 @@ const CSS = `
 .notif-d{font-size:12px;color:var(--muted);margin-top:2px}
 .tb-av{width:38px;height:38px;border-radius:10px;background:var(--navy);color:#ffffff;display:grid;place-items:center;font-weight:800;font-size:14px;border:0;cursor:pointer;padding:0;font-family:inherit;transition:transform .16s ease,box-shadow .16s ease}
 .tb-av:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(90,40,10,.22)}
+.tb-chrome{display:inline-flex;align-items:center}
 .hamburger{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center}
+/* Language, theme and logout live in the topbar on desktop. On a phone the
+   sidebar is a drawer, so they move into its foot instead of crowding the
+   topbar into five circles beside a squeezed title -- shown only there. */
+.sb-mobile-settings{display:none}
+.sb-logout{display:inline-flex;align-items:center;gap:8px;color:#f0dcae;font-size:13px;font-weight:600;
+  padding:9px 12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.sb-logout:hover{background:rgba(255,255,255,.13);color:#fff}
 .content{padding:26px;max-width:1240px;width:100%;margin:0 auto}
 .sd-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   padding:20px 26px 26px;max-width:1240px;margin:0 auto;width:100%;
@@ -438,6 +446,16 @@ textarea.inp{resize:vertical;min-height:88px}
   .sb.open{transform:translateX(0)}
   .hamburger{display:flex}
   .content{padding:18px}
+  /* Settings leave the topbar for the drawer here, so the topbar keeps only
+     the bell and the avatar beside the title. */
+  .tb-chrome,.tb-logout{display:none}
+  .sb-mobile-settings{display:flex;align-items:center;gap:10px;padding:14px 16px;
+    border-top:1px solid rgba(255,255,255,.08)}
+  /* The bell's dropdown was anchored right:0 to a wrapper sitting mid-row, so
+     a 320px panel ran off the left edge of a phone. Pinned to the viewport
+     with a margin each side instead -- always on screen, whatever is beside
+     the bell. */
+  .notif{position:fixed;top:68px;left:12px;right:12px;width:auto;max-height:72vh;overflow-y:auto}
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:39}
   .rf-steps{grid-template-columns:1fr}
   .rf-wallet{grid-template-columns:1fr}
@@ -460,7 +478,13 @@ textarea.inp{resize:vertical;min-height:88px}
   .card-pad{padding:17px}
   .sec-head{margin-bottom:13px}
   .sec-head h2{font-size:15px}
-}
+  /* The plan/status badge was a nowrap pill sharing the card's top row with
+     the title, and in Hindi "आपकी योजना में शामिल है" is wide enough to squeeze
+     the title into a two-line sliver beside it. Stacked instead: the badge
+     becomes a small tag above a full-width title. column-reverse because the
+     title comes first in the DOM. All three card kinds share this two-child
+     top, so the reverse is safe. */
+  .test-top{flex-direction:column-reverse;align-items:flex-start;gap:8px}
 `;
 
 /* ============================================================
@@ -2089,6 +2113,10 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
               {t("sd_days_to").replace("{n}", daysUntil(profile.targetDate)).replace("{x}", profile.target)}
             </div>
           )}
+          <div className="sb-mobile-settings">
+            <ChromeControls light />
+            <button className="sb-logout" onClick={onLogout}><LogOut size={17} />{t("sd_signout")}</button>
+          </div>
         </aside>
 
         <div className="main">
@@ -2119,8 +2147,8 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
                   </div>
                 )}
               </div>
-              <ChromeControls />
-              <button className="bell" title="Log out" aria-label="Log out" onClick={onLogout} style={{ marginRight: 2 }}><LogOut size={19} /></button>
+              <span className="tb-chrome"><ChromeControls /></span>
+              <button className="bell tb-logout" title="Log out" aria-label="Log out" onClick={onLogout} style={{ marginRight: 2 }}><LogOut size={19} /></button>
               <button className="tb-av" onClick={() => go("profile")} aria-label={t("sd_open_profile")}
                       style={profile.avatarUrl ? { backgroundImage: `url(${profile.avatarUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                 {!profile.avatarUrl && initials(profile.name)}
