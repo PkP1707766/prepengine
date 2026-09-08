@@ -324,7 +324,7 @@ function NewsPage() {
 
 /* ------------------------------------------------------------------ faq -- */
 function FaqPage() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { data, err, retry } = useContent(() => DB.faqs());
   const [open, setOpen] = useState(null);
 
@@ -349,13 +349,19 @@ function FaqPage() {
           <div className="pb-kicker">{CAT[cat] || cat}</div>
           {byCat[cat].map((f) => {
             const isOpen = open === f.id;
+            // Falls back to English when a row has no Hindi translation yet,
+            // the same opt-in shape as every other bilingual field in the
+            // schema -- publishing a new FAQ is never blocked on writing
+            // the Hindi first.
+            const question = lang === "hi" && f.questionHi ? f.questionHi : f.question;
+            const answer = lang === "hi" && f.answerHi ? f.answerHi : f.answer;
             return (
               <div className="pb-acc" key={f.id}>
                 <button className="pb-acc-head" onClick={() => setOpen(isOpen ? null : f.id)} aria-expanded={isOpen}>
-                  <span className="pb-listrow-t" style={{ flex: 1, minWidth: 0 }}>{f.question}</span>
+                  <span className="pb-listrow-t" style={{ flex: 1, minWidth: 0 }}>{question}</span>
                   <ChevronDown size={17} style={{ flex: "0 0 auto", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .18s" }} />
                 </button>
-                {isOpen && <div className="pb-acc-body"><p>{f.answer}</p></div>}
+                {isOpen && <div className="pb-acc-body"><p>{answer}</p></div>}
               </div>
             );
           })}

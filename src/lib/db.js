@@ -1207,6 +1207,9 @@ export async function faqs() {
   if (error) throw error;
   return (data ?? []).map((r) => ({
     id: r.id, category: r.category, question: r.question, answer: r.answer,
+    // Nullable, same opt-in shape as every other bilingual field in this
+    // schema -- a row with no translation yet just falls back to English.
+    questionHi: r.question_hi || "", answerHi: r.answer_hi || "",
   }));
 }
 

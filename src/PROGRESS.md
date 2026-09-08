@@ -31,6 +31,34 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 8 Sep 2026 — FAQ questions and answers themselves, now bilingual
+
+Follow-up to the fix below: the content-hub *chrome* (categories, empty
+states) was wired for Hindi, but the actual FAQ questions/answers were
+still English-only admin content with no Hindi columns at all. Added
+`faqs.question_hi` / `answer_hi` (nullable text, same opt-in shape as
+`plans.name_hi` and every other bilingual field in this schema — a row
+with no translation just falls back to English rather than showing
+blank). `DB.faqs()` now returns both languages; `FaqPage` picks
+`question_hi`/`answer_hi` when the reader is in Hindi mode and the row
+has one, English otherwise. The admin FAQ form (schema-driven, shared
+with Syllabus/PYQ/NCERT/Current-Affairs) gained two more fields —
+"Question (Hindi)" and "Answer (Hindi)", both optional with a hint
+explaining the fallback — with zero extra plumbing, since that form
+already renders whatever fields a content type declares.
+
+All eleven FAQ rows that exist today were backfilled with real Hindi
+translations (natural spoken register, not stiff literal Hindi — matching
+the tone of the rest of the dictionary), not left blank for someone to
+fill in later. One gender-neutral touch: "Can I re-attempt a test?" is
+asked in first person, so its Hindi carries both verb forms
+("दे सकता/सकती हूँ") the same way the exam consent checkbox already does,
+rather than defaulting to one gender.
+
+Verified in-browser: all 11 questions and answers read in natural Hindi
+when toggled, revert cleanly to the original English on toggle-back, and
+the admin form's new fields render correctly with their fallback hints.
+
 ## 8 Sep 2026 — FAQ answers were unreadable, and the whole content hub was English-only in Hindi mode
 
 The FAQ page's expanded answer text rendered almost invisible: light beige

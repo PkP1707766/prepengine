@@ -2873,11 +2873,15 @@ const CONTENT_TYPES = [
   {
     key: "faq", label: "FAQ", api: () => DB.adminFaqs,
     columns: [["category", "Category"], ["question", "Question"]],
-    blank: { category: "general", question: "", answer: "", sort_order: 0, is_published: true },
+    blank: { category: "general", question: "", answer: "", question_hi: "", answer_hi: "", sort_order: 0, is_published: true },
     fields: [
       { k: "category", label: "Category", type: "select", options: ["tests", "payments", "access", "general"] },
-      { k: "question", label: "Question", req: true, type: "textarea" },
-      { k: "answer", label: "Answer", req: true, type: "textarea", rows: 5 },
+      { k: "question", label: "Question (English)", req: true, type: "textarea" },
+      { k: "answer", label: "Answer (English)", req: true, type: "textarea", rows: 5 },
+      { k: "question_hi", label: "Question (Hindi)", type: "textarea",
+        hint: "Optional — shown to a reader in Hindi mode. Falls back to the English question if left blank." },
+      { k: "answer_hi", label: "Answer (Hindi)", type: "textarea", rows: 5,
+        hint: "Optional — shown to a reader in Hindi mode. Falls back to the English answer if left blank." },
       { k: "sort_order", label: "Order", type: "number" },
     ],
   },
