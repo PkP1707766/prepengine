@@ -181,6 +181,10 @@ const bundleFromRow = (r) => ({
   testCount: r.test_count ?? 0,
   freeTestCount: r.free_test_count ?? 0,
   sortOrder: r.sort_order ?? 0,
+  // Null when no PDF has been uploaded yet -- the UI reads this as "don't
+  // render the brochure button at all", so a plan without a flyer is silent
+  // rather than showing a broken/disabled control.
+  brochureUrl: r.brochure_url || null,
 });
 
 /**
@@ -315,6 +319,7 @@ export async function adminListBundles() {
     features: Array.isArray(r.features) ? r.features : [],
     isActive: r.is_active !== false,
     sortOrder: r.sort_order ?? 0,
+    brochureUrl: r.brochure_url || null,
   }));
 }
 
@@ -334,11 +339,43 @@ export async function upsertBundle(b) {
     features: b.features || [],
     is_active: b.isActive !== false,
     sort_order: Number(b.sortOrder || 0),
+    // Undefined means "don't touch"; explicit null clears an old upload
+    // (the form uses an explicit removal button for that). An empty string
+    // is normalised to null so the DB stays clean.
+    ...(b.brochureUrl === undefined ? {} : { brochure_url: b.brochureUrl || null }),
     updated_at: new Date().toISOString(),
   };
   const { data, error } = await sb.from("plans").upsert(row).select().single();
   if (error) throw error;
   return data;
+}
+
+const MAX_BROCHURE = 20 * 1024 * 1024;
+
+/**
+ * Upload a programme brochure PDF for one plan and return its public URL.
+ * Admin-only -- the `brochures` bucket policy enforces that server-side.
+ *
+ * Each upload lives under `{plan_code}/{timestamp}.pdf`, so replacing a
+ * brochure is a fresh URL (no browser caching the old PDF at the same path)
+ * and old files are simply orphaned in the bucket -- cheap, and an admin can
+ * clean them up manually if disk ever matters. The `plans.brochure_url`
+ * column always points at the LATEST upload.
+ */
+export async function uploadBrochure(planCode, file) {
+  if (!file) throw new Error("No file selected.");
+  if (file.type !== "application/pdf") throw new Error("Brochure must be a PDF file.");
+  if (file.size > MAX_BROCHURE) throw new Error("Brochure must be under 20 MB.");
+  const sb = await getSupabase();
+  const path = `${planCode}/${Date.now()}.pdf`;
+  const { error } = await sb.storage.from("brochures").upload(path, file, {
+    cacheControl: "31536000",
+    upsert: false,
+    contentType: "application/pdf",
+  });
+  if (error) throw error;
+  const { data } = sb.storage.from("brochures").getPublicUrl(path);
+  return { url: data.publicUrl, path };
 }
 
 /** Which tests are currently assigned to a bundle. */

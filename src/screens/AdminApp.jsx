@@ -2322,11 +2322,37 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
   const [f, setF] = useState(initial || {
     code: "", name: "", exam: "upsc", tagline: "", description: "",
     price: "", mrp: "", durationDays: 365, features: [], isActive: true, sortOrder: 0,
+    brochureUrl: null,
   });
   const [featureText, setFeatureText] = useState((initial?.features || []).join("\n"));
   const [err, setErr] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const brochureRef = useRef(null);
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   const isNew = !initial;
+
+  const onBrochureFile = async (e) => {
+    const file = e.target.files?.[0];
+    // Reset the input so re-selecting the same file after a failure still fires.
+    if (brochureRef.current) brochureRef.current.value = "";
+    if (!file) return;
+    // For a brand-new bundle the code doesn't exist yet -- the upload path
+    // needs a plan_code to file the PDF under, so the admin has to save the
+    // bundle once first. Cheap check, clear message.
+    const code = String(f.code || "").trim().toLowerCase();
+    if (!code) { setErr("Save the bundle once (with its code) before uploading a brochure."); return; }
+    setErr("");
+    setUploading(true);
+    try {
+      const { url } = await DB.uploadBrochure(code, file);
+      set("brochureUrl", url);
+    } catch (ex) {
+      console.error(ex);
+      setErr(ex?.message || "Couldn't upload the brochure. Try again.");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const submit = () => {
     const code = String(f.code || "").trim().toLowerCase();
@@ -2417,6 +2443,32 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
       <Field label="What's included" hint="One benefit per line — these become the ticks on the sales page.">
         <textarea className="inp" rows={5} value={featureText} onChange={(e) => setFeatureText(e.target.value)}
                   placeholder={"20 full-length mock tests\nDetailed solutions for every question\nAll-India rank and percentile"} />
+      </Field>
+
+      <Field label="Programme brochure (PDF)"
+             hint={isNew
+               ? "Save the bundle once first — the code is needed as the file's folder inside the brochures bucket."
+               : "PDF only, up to 20 MB. Replaces any previously uploaded brochure. Leave empty to hide the brochure button on the storefront."}>
+        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+          <button type="button" className="btn btn-ghost btn-sm" style={{ width: "auto" }}
+                  onClick={() => brochureRef.current?.click()} disabled={uploading || isNew}>
+            <Upload size={15} />{uploading ? "Uploading…" : f.brochureUrl ? "Replace PDF" : "Choose PDF"}
+          </button>
+          <input ref={brochureRef} type="file" accept="application/pdf,.pdf"
+                 style={{ display: "none" }} onChange={onBrochureFile} />
+          {f.brochureUrl && !uploading && (
+            <>
+              <a href={f.brochureUrl} target="_blank" rel="noreferrer"
+                 style={{ fontSize: 12.5, color: "var(--navy)", fontWeight: 600, wordBreak: "break-all" }}>
+                Brochure attached ↗
+              </a>
+              <button type="button" className="btn btn-ghost btn-sm" style={{ width: "auto" }}
+                      onClick={() => set("brochureUrl", null)}>
+                <X size={14} />Remove
+              </button>
+            </>
+          )}
+        </div>
       </Field>
 
       <Field label="Visibility">

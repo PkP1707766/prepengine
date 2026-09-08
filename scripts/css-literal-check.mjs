@@ -17,6 +17,7 @@ const files = [
   "src/screens/AdminApp.jsx",
   "src/screens/ExamApp.jsx",
   "src/lib/i18n.jsx",
+  "src/ui/BrochureButton.jsx",
 ];
 
 let bad = 0;

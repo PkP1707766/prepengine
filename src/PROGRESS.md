@@ -1,6 +1,6 @@
 # JUNOONIAS — Market-Launch Readiness Tracker
 
-Last updated: 7 Sep 2026
+Last updated: 8 Sep 2026
 
 Status key: 🔴 Not started · 🟡 In progress · 🟢 Done & verified
 
@@ -30,6 +30,57 @@ made it "demo mode", and all three are fixed:
    data yet.
 
 ---
+
+## 8 Sep 2026 — Programme brochures per plan
+
+Each plan can now carry a downloadable PDF flyer. The trigger is a small
+warm-glow pill in the top-right of every catalogue card, and again as an
+outlined block under the primary Enroll CTA on the bundle detail page —
+both driven by the same `<BrochureButton />` and its `BROCHURE_CSS`, so a
+change to shape/colour/hover lands in both places at once. When the plan
+has no PDF uploaded yet the component returns `null`, so the storefront
+stays byte-identical to before for every plan without a flyer (UPSC /
+UPPCS / JPSC today) — no disabled button, no dead link, no layout shift.
+
+Storage is a new public `brochures` bucket (20 MB cap, PDF-only MIME
+whitelist, admin-write RLS) and a nullable `plans.brochure_url` column.
+The `catalog_v` view had to be dropped-and-recreated (not `create or
+replace`) because Postgres refuses to add a column into the middle of an
+existing view's column list — the comment in `0022_plans_brochure.sql`
+records that trap in case anyone else tries `create or replace` on this
+view later.
+
+Admin panel's bundle form gets a "Programme brochure (PDF)" field with
+Choose PDF / Replace PDF / Remove buttons; uploads go through a new
+`uploadBrochure(planCode, file)` helper that stores each upload under
+`{plan_code}/{timestamp}.pdf`, so replacing a flyer produces a fresh URL
+(no browser cache serving the old file). The plan row always points at
+the latest upload.
+
+Trigger opens the PDF in a new tab via a real `<a target="_blank" rel="noopener noreferrer">`
+— no `window.open`, no iframe embed. That was a deliberate choice for
+mobile: iOS Safari and Chrome Android both hand a real anchor to the
+native PDF viewer reliably, while a scripted `window.open` on the click
+handler gets popup-blocked in more places than the raw link, and iframed
+PDF viewers fail outright on iOS Safari for anything over a couple of
+pages. The button is a `<a>`, so the site-wide coarse-pointer rule
+`.pb-root a { padding-block: 4px }` had to be overridden with a matching
+specificity (`.pb-root a.pb-brochure--card`) — otherwise the tap target
+came out at 25 px on a phone instead of the 44 px WCAG floor.
+
+Caught one embarrassing bug in-flight: my new CSS comment quoted a CSS
+snippet inside backticks (\`@media …\`) which terminated the JS template
+literal early. `npm run css:check` already exists to catch exactly this
+class of mistake, so the file was added to its scan list and the comment
+rewritten to use no backticks.
+
+Verified in-browser at 1280 px and 375 px, EN and HI: BPSC (URL set for
+testing, then cleared) → button appears on the card and detail page, opens
+the PDF in a new tab, aria-label reads correctly in both languages;
+UPSC / UPPCS / JPSC (URL null) → zero brochure UI on their cards, zero
+console errors, zero layout shift compared to the before state. Tap
+target on mobile confirmed at 44 × 144 px, no horizontal overflow at any
+width. Migration `0022_plans_brochure.sql`.
 
 ## 7 Sep 2026 — QA tester accounts, and a submission bug they exposed
 

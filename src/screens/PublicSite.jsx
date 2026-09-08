@@ -12,6 +12,7 @@ import ContentPage from "./ContentPages.jsx";
 import { RESOURCES, RESOURCE_TITLES } from "../lib/resources.js";
 import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
 import { Instagram, YouTube, Telegram, WhatsApp, LinkedIn, XMark } from "../ui/SocialIcons.jsx";
+import BrochureButton, { BROCHURE_CSS } from "../ui/BrochureButton.jsx";
 import * as DB from "../lib/db.js";
 
 /* ============================================================
@@ -1896,6 +1897,10 @@ function BundleCard({ b, owned, onView, onEnroll, delay = 1 }) {
   const empty = !b.testCount;
   return (
     <div className={`pb-card reveal reveal-d${delay}${empty ? " pb-card-soon" : ""}`}>
+      {/* Top-right corner; deliberately absolute so it never fights the
+          card's button row for space, and shows in "Coming soon" states too
+          if the flyer exists (a visitor can decide to enrol later). */}
+      <BrochureButton url={b.brochureUrl} planName={b.name} examLabel={b.examLabel} variant="card" />
       <span className="pb-card-exam" title={b.examFullName || undefined}>{b.examLabel}</span>
       <h3 className="pb-card-title">{b.name}</h3>
       <div className="pb-card-meta">
@@ -2056,6 +2061,12 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
           <button className={"pb-btn pb-btn-block " + (owned ? "pb-owned" : "pb-btn-gold")} onClick={onEnroll}>
             {owned ? <><CheckCircle2 size={16} />{t("card_goto_dash")}</> : <>Enroll now<ArrowRight size={15} /></>}
           </button>
+          {/* Detail-variant of the same brochure trigger the catalogue card
+              shows — full width, sits directly under the primary CTA so a
+              visitor who wants details before paying finds it without
+              scanning the sidebar. */}
+          <BrochureButton url={bundle.brochureUrl} planName={bundle.name}
+                          examLabel={bundle.examLabel} variant="detail" />
           <div style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: 18 }}>
             <span style={{ fontSize: 12.5, color: "var(--ink-400)", display: "flex", alignItems: "center", gap: 7 }}>
               <Lock size={12} />Secure payment via Razorpay
@@ -2191,7 +2202,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
 
   return (
     <div className="pb-root" ref={revealRoot}>
-      <style>{CSS}</style>
+      <style>{CSS + BROCHURE_CSS}</style>
 
       <header className={"pb-head" + (scrolled ? " pb-head-on" : "")}>
         <div className="pb-head-in">
