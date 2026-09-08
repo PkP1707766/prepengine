@@ -2059,17 +2059,16 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
               ? `One-time payment · valid for ${Math.round(bundle.durationDays / 30)} months`
               : "One-time payment · lifetime access"}
           </p>
-          {/* Same in-row placement as the catalogue card: brochure icon
-              alongside the primary CTA, near the pricing. Icon renders as
-              null when this plan has no PDF, so the row collapses to just
-              Enroll with no width change. */}
-          <div className="pb-buy-cta-row">
-            <BrochureButton url={bundle.brochureUrl} planName={bundle.name}
-                            examLabel={bundle.examLabel} />
-            <button className={"pb-btn pb-buy-cta " + (owned ? "pb-owned" : "pb-btn-gold")} onClick={onEnroll}>
-              {owned ? <><CheckCircle2 size={16} />{t("card_goto_dash")}</> : <>Enroll now<ArrowRight size={15} /></>}
-            </button>
-          </div>
+          <button className={"pb-btn pb-btn-block " + (owned ? "pb-owned" : "pb-btn-gold")} onClick={onEnroll}>
+            {owned ? <><CheckCircle2 size={16} />{t("card_goto_dash")}</> : <>Enroll now<ArrowRight size={15} /></>}
+          </button>
+          {/* Detail-variant: full-width labelled pill directly under the
+              primary CTA, "<Exam> Brochure". Same outline + halo as the
+              card icon so a visitor recognises it, and enough label room
+              here to spell the exam out. Renders null when this plan has
+              no PDF, so the buy panel is byte-identical to before. */}
+          <BrochureButton url={bundle.brochureUrl} planName={bundle.name}
+                          examLabel={bundle.examLabel} variant="detail" />
           <div style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: 18 }}>
             <span style={{ fontSize: 12.5, color: "var(--ink-400)", display: "flex", alignItems: "center", gap: 7 }}>
               <Lock size={12} />Secure payment via Razorpay

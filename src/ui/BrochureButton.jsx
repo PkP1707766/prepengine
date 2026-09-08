@@ -2,38 +2,46 @@ import { FileText } from "lucide-react";
 import { useLang } from "../lib/contexts.js";
 
 /* ============================================================================
- * BrochureButton -- icon-only pill that sits in the action row of both the
- * catalogue card AND the bundle detail page's buy panel. Returns null when
- * the plan has no PDF uploaded yet, so the row layout is byte-identical to
- * before for every plan without a flyer.
+ * BrochureButton -- one component, two visual variants for the two places
+ * it lives.
  *
- * Anchor tag, not a button + window.open -- mobile browsers (particularly
- * iOS Safari) hand a real <a target="_blank"> to the native PDF viewer far
- * more reliably than a scripted window.open, which gets popup-blocked in
- * more places than the raw link does.
+ * variant="card" (default) is icon-only, ~36 px desktop / 44 px on touch,
+ * sits in the card's action row alongside the primary CTA. Text label
+ * omitted because the exam pill (BPSC / UPSC / ...) at the top of the card
+ * already tells the reader which exam this is.
  *
- * Icon-only, deliberately: the exam label ("BPSC", "UPSC", etc.) already
- * sits in a pill at the top of the card and inside the h1 on the detail
- * page, so repeating "BPSC Brochure" here would be noise. The exam name
- * travels only through the aria-label + title, where a screen reader can
- * still find it. That also lets the trigger stay compact enough to share
- * the action row with the primary CTA on a phone.
+ * variant="detail" is a full-width labelled pill placed directly UNDER the
+ * Enroll button on the bundle detail page. There the exam name has room to
+ * appear on the button itself, so a visitor scanning the buy panel sees
+ * "BPSC Brochure" without also having to read the h1.
+ *
+ * Returns null when the plan has no PDF uploaded yet. Zero surface, zero
+ * disabled button, no dead link.
+ *
+ * Anchor tag, not a button + window.open -- mobile browsers hand a real
+ * <a target="_blank"> to the native PDF viewer far more reliably than a
+ * scripted popup, and popup blockers hit fewer real anchors.
  * ==========================================================================*/
-export default function BrochureButton({ url, planName = "", examLabel = "" }) {
+export default function BrochureButton({ url, planName = "", examLabel = "", variant = "card" }) {
   const { t } = useLang();
   if (!url) return null;
   const aria = t("card_brochure_aria").replace("{name}", planName || examLabel || t("card_brochure"));
+  const cls = variant === "detail" ? "pb-brochure pb-brochure--detail" : "pb-brochure pb-brochure--card";
   return (
     <a
-      className="pb-brochure"
+      className={cls}
       href={url}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={aria}
       title={aria}
     >
-      <FileText size={16} aria-hidden="true" />
-      <span className="pb-brochure-sr">{aria}</span>
+      <FileText size={variant === "detail" ? 16 : 16} aria-hidden="true" />
+      {variant === "detail" ? (
+        <span>{examLabel ? `${examLabel} ${t("card_brochure")}` : t("card_brochure")}</span>
+      ) : (
+        <span className="pb-brochure-sr">{aria}</span>
+      )}
     </a>
   );
 }
@@ -42,17 +50,10 @@ export default function BrochureButton({ url, planName = "", examLabel = "" }) {
  * alongside the rest of the storefront CSS. Kept together with the component
  * so the JSX and its styles stay in lock-step. */
 export const BROCHURE_CSS = `
-/* ---------- BROCHURE BUTTON ----------
- * Icon-only pill matching the .pb-btn-ghost outline treatment so it visually
- * groups with Details / Enroll on the same row. Fixed square-ish footprint
- * (~36 px desktop, 40 px+ on touch) so it never bloats the row layout.
- *
- * Text-content span is visually hidden but reachable by screen readers -- the
- * FileText icon carries the meaning, and the aria-label carries the exam
- * name. Clip-based hide, not display:none, keeps the accessible name intact. */
-.pb-brochure{position:relative;isolation:isolate;
-  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
-  width:36px;height:36px;padding:0;border-radius:100px;text-decoration:none;
+/* ---------- BROCHURE BUTTON (shared) ----------
+ * Both variants share the outline + halo treatment so a visitor learns the
+ * button once and recognises it on either surface. */
+.pb-brochure{position:relative;isolation:isolate;text-decoration:none;cursor:pointer;
   color:var(--brand-700);
   background:var(--cream-50);
   border:1.5px solid color-mix(in srgb,var(--gold-500) 45%,transparent);
@@ -61,14 +62,10 @@ export const BROCHURE_CSS = `
   background:color-mix(in srgb,var(--gold-300) 26%,var(--cream-50));
   border-color:var(--gold-500)}
 .pb-brochure:focus-visible{outline:2.5px solid var(--gold-500);outline-offset:2px}
-.pb-brochure svg{color:var(--brand-700)}
-.pb-brochure-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.pb-brochure svg{color:var(--brand-700);flex:0 0 auto}
 
 /* A slow warm halo -- brand palette, low opacity, three-second loop, resets
- * to zero glow between pulses so it doesn't read as "broken" or "loading".
- * Deliberately gentler than the earlier text-pill treatment: this button is
- * smaller, and the pulse must not out-shout Enroll now. */
+ * to zero glow between pulses so it doesn't read as "broken" or "loading". */
 @keyframes pb-brochure-halo{
   0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold-500) 0%,transparent)}
   50%    {box-shadow:0 0 0 3px color-mix(in srgb,var(--gold-500) 24%,transparent),
@@ -80,23 +77,29 @@ export const BROCHURE_CSS = `
   .pb-brochure{animation:none}
 }
 
-/* Coarse pointers (touch): raise the tap target to WCAG 44 px. The site
- * ships a global coarse-pointer rule that sets padding-block:4px on every
- * .pb-root anchor; a plain .pb-brochure class selector loses on
- * specificity, so this matches .pb-root a on specificity. Setting explicit
- * width + min-height wins even against that padding-block rule. */
+/* ---------- Variant: card (icon-only pill in the action row) ---------- */
+.pb-brochure--card{display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 auto;width:36px;height:36px;padding:0;border-radius:100px}
+.pb-brochure-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Touch: raise to the WCAG 44 px floor. The site's global coarse-pointer
+ * rule .pb-root a { padding-block:4px } would beat a plain .pb-brochure
+ * class selector on specificity; the .pb-root a.pb-brochure selector below
+ * matches that same specificity, and explicit width + min-height wins
+ * regardless of any padding rule. */
 @media (pointer:coarse){
-  .pb-root a.pb-brochure{width:44px;height:44px;min-height:44px}
-  .pb-root a.pb-brochure svg{width:18px;height:18px}
+  .pb-root a.pb-brochure--card{width:44px;height:44px;min-height:44px}
+  .pb-root a.pb-brochure--card svg{width:18px;height:18px}
 }
 
-/* ---------- Details-page action row -----------------------------------
- * Same layout idea as the catalogue card's button row: brochure icon on
- * the left, primary CTA takes the remaining width. Enroll here is no
- * longer .pb-btn-block (that was 100% width, breaks the flex-row); a
- * scoped .pb-buy-cta class puts it on flex:1 with the same visual as
- * before (padding matches the site's pb-btn-block for pb-buy). */
-.pb-buy-cta-row{display:flex;gap:10px;align-items:stretch}
-.pb-buy-cta{flex:1 1 auto;width:auto;text-align:center;justify-content:center;
-  display:inline-flex;align-items:center;gap:8px}
+/* ---------- Variant: detail (full-width labelled pill under Enroll) ----------
+ * Same outline treatment as pb-btn-ghost so it visually pairs with the
+ * gold Enroll now button directly above it. Sits inside the buy panel;
+ * the margin-top separates it from Enroll without needing a wrapper. */
+.pb-brochure--detail{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:11px 16px;font-size:13px;font-weight:800;letter-spacing:.02em;
+  border-radius:100px;margin-top:12px}
+@media (pointer:coarse){
+  .pb-root a.pb-brochure--detail{padding:13px 16px;min-height:44px}
+}
 `;
