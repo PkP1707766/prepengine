@@ -7,7 +7,7 @@ import { useLang } from "../lib/contexts.js";
 import { EmptyState, ErrorState } from "../ui/Feedback.jsx";
 
 import * as DB from "../lib/db.js";
-import { fmtDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
+import { fmtDate, fmtLongDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
 import Pattern from "../ui/Pattern.jsx";
 import { ReviewCard, ReviewStyles } from "../ui/Review.jsx";
 
@@ -935,24 +935,39 @@ function HomeView({ go, setAnalysis, onStart }) {
         <div className="heat-legend">{t("sd_less")} {[0, 1, 2, 3, 4].map((c) => <span key={c} className="heat-cell" style={{ background: heatColor(c) }} />)} {t("sd_more")}</div>
       </div>
 
-      {enrollments.length > 0 && (
-        <div className="card card-pad mb">
-          <div className="eyebrow">{t("sd_your_access")}</div>
-          <div className="panel-title" style={{ marginBottom: 10 }}>{t("sd_active_enrol")}</div>
-          {enrollments.map((e, i) => (
-            <div key={e.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0",
-                                      borderBottom: i === enrollments.length - 1 ? "none" : "1px solid var(--line)", flexWrap: "wrap", gap: 8 }}>
-              <div>
-                <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: 14 }}>{e.batches?.name || e.plan_code || "Full access"}</div>
-                <div style={{ fontSize: 12.5, color: "var(--muted)" }}>{t("sd_since").replace("{d}", fmtDate(e.enrolled_at))}</div>
+      {/* "status" isn't just bookkeeping -- a cancelled or refunded row still
+          carries whatever expires_at was written the day it was granted
+          (often a year out), so without this filter a student who cancelled
+          would see their old plan here looking perfectly valid. This mirrors
+          the same status==="active" check the DB layer already uses to decide
+          real access (hasActiveEnrollment, myPlanCodes in lib/db.js) -- the
+          card should never claim more than what actually gates a test. */}
+      {(() => {
+        const active = enrollments.filter((e) => e.status === "active");
+        return active.length > 0 && (
+          <div className="card card-pad mb">
+            <div className="eyebrow">{t("sd_your_access")}</div>
+            <div className="panel-title" style={{ marginBottom: 10 }}>{t("sd_active_enrol")}</div>
+            {active.map((e, i) => (
+              <div key={e.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0",
+                                        borderBottom: i === active.length - 1 ? "none" : "1px solid var(--line)", flexWrap: "wrap", gap: 8 }}>
+                <div>
+                  <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: 14 }}>{e.batches?.name || e.plan_code || "Full access"}</div>
+                  {/* fmtDate drops the year, which is fine for near-term dates
+                      elsewhere in this file but not here: a normal plan runs
+                      enrolled_at to enrolled_at+365 days, so "Since 20 Aug" /
+                      "Valid till 20 Aug" printed the identical string for two
+                      dates a year apart, reading as if it expired same-day. */}
+                  <div style={{ fontSize: 12.5, color: "var(--muted)" }}>{t("sd_since").replace("{d}", fmtLongDate(e.enrolled_at))}</div>
+                </div>
+                <Badge color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}>
+                  {e.expires_at ? t("sd_valid_till").replace("{d}", fmtLongDate(e.expires_at)) : t("sd_lifetime")}
+                </Badge>
               </div>
-              <Badge color={{ bg: "#e8f6ee", fg: "#1f8a4c" }}>
-                {e.expires_at ? t("sd_valid_till").replace("{d}", fmtDate(e.expires_at)) : t("sd_lifetime")}
-              </Badge>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        );
+      })()}
     </div>
   );
 }
@@ -1292,7 +1307,13 @@ function PerformanceView({ go }) {
    ============================================================ */
 function BatchesView({ go, onStart, toast }) {
   const { t } = useLang();
-  const { enrollments, tests, attempts } = useData();
+  const { enrollments: allEnrollments, tests, attempts } = useData();
+  // A cancelled or refunded row still carries whatever expires_at was written
+  // at grant time, often a year out -- date math alone would show it as a
+  // perfectly normal, non-expired batch. status==="active" is the same
+  // definition the DB layer already uses to decide real access
+  // (hasActiveEnrollment, myPlanCodes in lib/db.js).
+  const enrollments = allEnrollments.filter((e) => e.status === "active");
   const now = new Date();
   const palette = ["#b8923a", "#7a1f1f", "#1a6b3c", "#a07c2a"];
 
@@ -1340,7 +1361,10 @@ function BatchesView({ go, onStart, toast }) {
                 {expired ? <span className="batch-tag expired">{t("sd_expired")}</span>
                   : urgent ? <span className="batch-tag urgent">{t("sd_days_left").replace("{n}", daysLeft)}</span> : null}
               </div>
-              <div className="batch-exam">{exam} · {validTill ? t("sd_valid_till_l").replace("{d}", fmtDate(validTill)) : t("sd_lifetime_l")}</div>
+              {/* fmtLongDate, not fmtDate -- a batch commonly runs a full
+                  year, and the year-less form would print the same "20 Aug"
+                  for both the grant date and a same-day-next-year expiry. */}
+              <div className="batch-exam">{exam} · {validTill ? t("sd_valid_till_l").replace("{d}", fmtLongDate(validTill)) : t("sd_lifetime_l")}</div>
               <div className="progress"><div className="progress-fill" style={{ width: p + "%", background: expired ? "#b0a596" : color }} /></div>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, color: "var(--muted)", fontWeight: 600 }}>
                 <span>{t("sd_tests_done").replace("{a}", done).replace("{b}", total)}</span><span>{p.toFixed(0)}%</span>
