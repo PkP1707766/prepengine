@@ -472,16 +472,78 @@ export function questionToRow(q) {
   };
 }
 
+// PostgREST caps any single response at this many rows (its own server-side
+// default), silently -- no error, just a truncated result. Below 1000 total
+// rows any of the paginated list-fetches below only ever loop once, so this
+// was invisible for months; once the questions bank crossed that line, the
+// oldest rows in whatever page didn't fit (History, in practice) simply
+// stopped coming back. Every unbounded table-list fetch in this file loops
+// past the cap using this same page size, rather than tripping over it.
+const DB_PAGE_SIZE = 1000;
+
 export async function listQuestions() {
   if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_QUESTIONS;
   const sb = await getSupabase();
-  const { data, error } = await sb
+  const rows = [];
+  for (let from = 0; ; from += DB_PAGE_SIZE) {
+    const { data, error } = await sb
+      .from("questions")
+      .select("*")
+      .eq("is_active", true)
+      .order("created_at", { ascending: false })
+      // Bulk imports insert many rows in one statement, so they share one
+      // created_at down to the microsecond -- range() pagination needs a
+      // unique tiebreaker or it can skip/repeat rows across page boundaries.
+      .order("id", { ascending: true })
+      .range(from, from + DB_PAGE_SIZE - 1);
+    if (error) throw error;
+    rows.push(...(data ?? []));
+    if (!data || data.length < DB_PAGE_SIZE) break;
+  }
+  return rows.map(questionFromRow);
+}
+
+/**
+ * Cheap totals for the dashboard -- total active count plus a per-subject
+ * breakdown -- without pulling every question's full body/options/explanation
+ * over the wire just to display a handful of numbers (that's what
+ * listQuestions() is for, when the actual rows are needed).
+ *
+ * The total is a true server-side count (zero rows transferred). The
+ * per-subject breakdown still has to page through `subject` values one
+ * column wide, since PostgREST's select() has no GROUP BY -- but it pages
+ * past the same 1000-row cap above rather than being capped by it, which is
+ * the actual bug this replaces.
+ */
+export async function getQuestionStats() {
+  if (import.meta.env.DEV && FIXTURES_ON()) {
+    const qs = fx().FX_QUESTIONS;
+    const bySubject = {};
+    qs.forEach((q) => { bySubject[q.subject] = (bySubject[q.subject] || 0) + 1; });
+    return { total: qs.length, bySubject };
+  }
+  const sb = await getSupabase();
+
+  const { count, error: countErr } = await sb
     .from("questions")
-    .select("*")
-    .eq("is_active", true)
-    .order("created_at", { ascending: false });
-  if (error) throw error;
-  return (data ?? []).map(questionFromRow);
+    .select("*", { count: "exact", head: true })
+    .eq("is_active", true);
+  if (countErr) throw countErr;
+
+  const bySubject = {};
+  for (let from = 0; ; from += DB_PAGE_SIZE) {
+    const { data, error } = await sb
+      .from("questions")
+      .select("subject")
+      .eq("is_active", true)
+      .order("id", { ascending: true })
+      .range(from, from + DB_PAGE_SIZE - 1);
+    if (error) throw error;
+    (data ?? []).forEach((r) => { bySubject[r.subject] = (bySubject[r.subject] || 0) + 1; });
+    if (!data || data.length < DB_PAGE_SIZE) break;
+  }
+
+  return { total: count ?? 0, bySubject };
 }
 
 export async function upsertQuestion(q) {
@@ -520,9 +582,19 @@ const crud = (table, mapRow = (r) => r, mapApp = (o) => o) => ({
       return [];
     }
     const sb = await getSupabase();
-    const { data, error } = await sb.from(table).select("*").order(order, { ascending: false });
-    if (error) throw error;
-    return (data ?? []).map(mapRow);
+    const rows = [];
+    for (let from = 0; ; from += DB_PAGE_SIZE) {
+      const { data, error } = await sb
+        .from(table)
+        .select("*")
+        .order(order, { ascending: false })
+        .order("id", { ascending: true }) // tiebreaker so range() pagination can't skip/repeat rows that share an order value
+        .range(from, from + DB_PAGE_SIZE - 1);
+      if (error) throw error;
+      rows.push(...(data ?? []));
+      if (!data || data.length < DB_PAGE_SIZE) break;
+    }
+    return rows.map(mapRow);
   },
   async upsert(obj) {
     const sb = await getSupabase();
@@ -602,11 +674,21 @@ function testToRow(t) {
 export async function listTests({ publishedOnly = false } = {}) {
   if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_TESTS.filter((t) => !publishedOnly || t.isPublished);
   const sb = await getSupabase();
-  let q = sb.from("tests").select("*, test_series(title)").order("created_at", { ascending: false });
-  if (publishedOnly) q = q.eq("is_published", true);
-  const { data, error } = await q;
-  if (error) throw error;
-  return (data ?? []).map(testFromRow);
+  const rows = [];
+  for (let from = 0; ; from += DB_PAGE_SIZE) {
+    let q = sb
+      .from("tests")
+      .select("*, test_series(title)")
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: true }) // tiebreaker so range() pagination can't skip/repeat rows that share an order value
+      .range(from, from + DB_PAGE_SIZE - 1);
+    if (publishedOnly) q = q.eq("is_published", true);
+    const { data, error } = await q;
+    if (error) throw error;
+    rows.push(...(data ?? []));
+    if (!data || data.length < DB_PAGE_SIZE) break;
+  }
+  return rows.map(testFromRow);
 }
 
 export async function upsertTest(t) {

@@ -1507,6 +1507,7 @@ function App({ onLogout }) {
   const [admin, setAdmin] = useState({ name: "Administrator", email: "" });
 
   const [questions, setQuestions] = useState([]);
+  const [questionStats, setQuestionStats] = useState({ total: 0, bySubject: {} });
   const [courses, setCourses] = useState([]);
   const [batches, setBatches] = useState([]);
   const [tests, setTests] = useState([]);
@@ -1527,15 +1528,16 @@ function App({ onLogout }) {
   const loadAll = useCallback(async () => {
     setLoadError("");
     try {
-      const [q, c, b, t, m, sr] = await Promise.all([
+      const [q, stats, c, b, t, m, sr] = await Promise.all([
         DB.listQuestions(),
+        DB.getQuestionStats(),
         DB.courses.list(),
         DB.batches.list(),
         DB.listTests(),
         DB.materials.list(),
         DB.series.list(),
       ]);
-      setQuestions(q); setCourses(c); setBatches(b);
+      setQuestions(q); setQuestionStats(stats); setCourses(c); setBatches(b);
       setTests(t); setMaterials(m); setSeriesList(sr);
     } catch (e) {
       console.error("admin load failed", e);
@@ -1766,7 +1768,7 @@ function App({ onLogout }) {
         </header>
 
         <main className="content">
-          {view === "overview" && <Overview {...{ questions, tests, courses, batches, go, loadStarterPack }} />}
+          {view === "overview" && <Overview {...{ questions, questionStats, tests, courses, batches, go, loadStarterPack }} />}
           {view === "questions" && <QuestionBank {...{ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete }} />}
           {view === "tests" && <Tests {...{ tests, saveTest, removeTest, questions, seriesList, toast, askDelete }} />}
           {view === "blueprints" && <Blueprints {...{ questions, seriesList, toast, askDelete }} />}
@@ -1799,7 +1801,7 @@ function App({ onLogout }) {
 /* ============================================================
    VIEW: OVERVIEW
    ============================================================ */
-function Overview({ questions, tests, courses, batches, go, loadStarterPack }) {
+function Overview({ questions, questionStats, tests, courses, batches, go, loadStarterPack }) {
   const [live, setLive] = useState(null);
   useEffect(() => {
     (async () => {
@@ -1815,14 +1817,13 @@ function Overview({ questions, tests, courses, batches, go, loadStarterPack }) {
   }, []);
 
   const published = tests.filter((t) => t.isPublished).length;
-  const bySubject = useMemo(() => {
-    const m = {};
-    questions.forEach((q) => { m[q.subject] = (m[q.subject] || 0) + 1; });
-    return Object.entries(m).sort((a, b) => b[1] - a[1]);
-  }, [questions]);
+  const bySubject = useMemo(
+    () => Object.entries(questionStats.bySubject || {}).sort((a, b) => b[1] - a[1]),
+    [questionStats],
+  );
   const maxSub = bySubject.length ? bySubject[0][1] : 1;
   const recent = questions.slice(0, 5);
-  const emptyBank = questions.length === 0;
+  const emptyBank = questionStats.total === 0;
 
   return (
     <div>
@@ -1842,7 +1843,7 @@ function Overview({ questions, tests, courses, batches, go, loadStarterPack }) {
       )}
 
       <div className="stats">
-        <StatCard icon={<ListChecks size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={questions.length} label="Questions" sub="in your bank" />
+        <StatCard icon={<ListChecks size={20} />} color={{ bg: "#faf2dc", fg: "#b8923a" }} n={questionStats.total} label="Questions" sub="in your bank" />
         <StatCard icon={<FileText size={20} />} color={{ bg: "#f6ecd2", fg: "#7a1f1f" }} n={tests.length} label="Tests" sub={`${published} published`} />
         <StatCard icon={<GraduationCap size={20} />} color={{ bg: "#f4ecd6", fg: "#1a6b3c" }} n={courses.length} label="Courses" sub={`${batches.length} batches`} />
         <StatCard icon={<Users size={20} />} color={{ bg: "#fcf3df", fg: "#d4a64a" }}
