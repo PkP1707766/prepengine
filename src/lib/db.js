@@ -404,6 +404,7 @@ export async function setBundleTests(code, testIds) {
 export function questionFromRow(r) {
   return {
     id: r.id,
+    examCategory: r.exam_category,
     subject: r.subject,
     topic: r.topic || "",
     type: r.type,
@@ -441,8 +442,13 @@ export function questionFromRow(r) {
 }
 
 export function questionToRow(q) {
+  // Mandatory, never inferred: every write states which exam this question
+  // belongs to explicitly. questionToRow is the single choke point every
+  // caller (QuestionForm, bulk import, starter pack) goes through.
+  if (!q.examCategory) throw new Error("A question must have an exam (BPSC/UPSC) before it can be saved.");
   return {
     id: q.id,
+    exam_category: q.examCategory,
     subject: q.subject,
     topic: q.topic || null,
     type: q.type,
@@ -481,8 +487,15 @@ export function questionToRow(q) {
 // past the cap using this same page size, rather than tripping over it.
 const DB_PAGE_SIZE = 1000;
 
-export async function listQuestions() {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_QUESTIONS;
+// `examCategory` is REQUIRED, not optional and never inferred from context —
+// BPSC and UPSC share several subject names (History, Geography, Economy...)
+// as plain strings, so a fetch that forgot to scope by exam would silently
+// hand the caller a mixed bank. Every consumer (admin bank browser, manual
+// test builder, the auto-generator) inherits this filter by going through
+// here; there is deliberately no "give me everything" fallback.
+export async function listQuestions(examCategory) {
+  if (!examCategory) throw new Error("listQuestions requires an examCategory");
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_QUESTIONS.filter((q) => q.examCategory === examCategory);
   const sb = await getSupabase();
   const rows = [];
   for (let from = 0; ; from += DB_PAGE_SIZE) {
@@ -490,6 +503,7 @@ export async function listQuestions() {
       .from("questions")
       .select("*")
       .eq("is_active", true)
+      .eq("exam_category", examCategory)
       .order("created_at", { ascending: false })
       // Bulk imports insert many rows in one statement, so they share one
       // created_at down to the microsecond -- range() pagination needs a
@@ -515,9 +529,10 @@ export async function listQuestions() {
  * past the same 1000-row cap above rather than being capped by it, which is
  * the actual bug this replaces.
  */
-export async function getQuestionStats() {
+export async function getQuestionStats(examCategory) {
+  if (!examCategory) throw new Error("getQuestionStats requires an examCategory");
   if (import.meta.env.DEV && FIXTURES_ON()) {
-    const qs = fx().FX_QUESTIONS;
+    const qs = fx().FX_QUESTIONS.filter((q) => q.examCategory === examCategory);
     const bySubject = {};
     qs.forEach((q) => { bySubject[q.subject] = (bySubject[q.subject] || 0) + 1; });
     return { total: qs.length, bySubject };
@@ -527,7 +542,8 @@ export async function getQuestionStats() {
   const { count, error: countErr } = await sb
     .from("questions")
     .select("*", { count: "exact", head: true })
-    .eq("is_active", true);
+    .eq("is_active", true)
+    .eq("exam_category", examCategory);
   if (countErr) throw countErr;
 
   const bySubject = {};
@@ -536,6 +552,7 @@ export async function getQuestionStats() {
       .from("questions")
       .select("subject")
       .eq("is_active", true)
+      .eq("exam_category", examCategory)
       .order("id", { ascending: true })
       .range(from, from + DB_PAGE_SIZE - 1);
     if (error) throw error;
@@ -715,6 +732,7 @@ export const distributionConfigs = crud(
   "distribution_config",
   (r) => ({
     id: r.id,
+    examCategory: r.exam_category,
     name: r.name,
     subjectWeights: r.subject_weights || {},
     difficultyWeights: r.difficulty_weights || {},
@@ -724,6 +742,7 @@ export const distributionConfigs = crud(
   }),
   (c) => ({
     id: c.id || undefined,
+    exam_category: c.examCategory,
     name: c.name,
     subject_weights: c.subjectWeights || {},
     difficulty_weights: c.difficultyWeights || {},
@@ -735,6 +754,7 @@ export const distributionConfigs = crud(
 
 const blueprintFromRow = (r) => ({
   id: r.id,
+  examCategory: r.exam_category,
   seriesId: r.series_id,
   sequencePosition: r.sequence_position ?? 1,
   title: r.title,
@@ -750,6 +770,7 @@ const blueprintFromRow = (r) => ({
 
 const blueprintToRow = (b) => ({
   id: b.id || undefined,
+  exam_category: b.examCategory,
   series_id: b.seriesId || null,
   sequence_position: Number(b.sequencePosition || 1),
   title: b.title,

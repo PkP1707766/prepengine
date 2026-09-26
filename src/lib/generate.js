@@ -110,6 +110,18 @@ function inSubjectScope(q, blueprint) {
   return true;
 }
 
+// Defense in depth: `listQuestions(examCategory)` already scopes the bank at
+// the DB layer, so in the normal path this filter never actually removes
+// anything. It exists so that if some future caller ever hands generateTest()
+// an unscoped or wrongly-scoped bank, the generator itself still refuses to
+// mix BPSC and UPSC questions into one paper rather than silently trusting
+// the caller. blueprint.examCategory is required, matching the same
+// "mandatory, never inferred" rule listQuestions() enforces.
+function inExamScope(q, blueprint) {
+  if (!blueprint.examCategory) throw new Error("generateTest: blueprint.examCategory is required");
+  return q.examCategory === blueprint.examCategory;
+}
+
 function caInWindow(q, blueprint, now) {
   // Expired current-affairs questions are always out (spec §2).
   if (q.caValidUntil && new Date(q.caValidUntil) < now) return false;
@@ -140,6 +152,7 @@ function eligiblePool({ blueprint, bank, usages, cooldownTestIds, now }) {
   return (bank || []).filter((q) => {
     if (q.status && q.status !== "published") return false;
     if (q.isActive === false) return false;
+    if (!inExamScope(q, blueprint)) return false;
     if (!inSubjectScope(q, blueprint)) return false;
     if (!caInWindow(q, blueprint, now)) return false;
     if (onCooldown.has(q.id)) return false;
@@ -161,7 +174,18 @@ function byLeastUsed(a, b) {
 
 /* ----------------------------------------------------------------- targeting -- */
 
-function buildCells({ blueprint, config, pool }) {
+// Exported (in addition to being used internally by generateTest) so the
+// target apportionment can be inspected on its own -- this matters because
+// generateTest() short-circuits to a single generic warning when the
+// eligible pool is completely empty (see the early-return in generateTest
+// below), skipping the per-cell gap breakdown entirely. That's invisible for
+// an established bank (BPSC's pool has never been literally zero), but it's
+// exactly the situation every brand-new UPSC subject starts from, where the
+// row-by-row target *is* the thing a drafter needs to see. buildCells()
+// itself needs no pool content for a sectional blueprint (subject comes from
+// blueprint.subjectScope.subject, not from the pool), so it works standalone
+// against an empty bank. Pure function, no behavior change to generateTest().
+export function buildCells({ blueprint, config, pool }) {
   const count = blueprint.questionCount || 150;
   const scope = blueprint.subjectScope || {};
 
@@ -364,7 +388,7 @@ function answerBalance(questions) {
 
 /**
  * @param {object}   args
- * @param {object}   args.blueprint    — { patternType, questionCount, subjectScope, themeGroupId, title }
+ * @param {object}   args.blueprint    — { examCategory, patternType, questionCount, subjectScope, themeGroupId, title }
  * @param {object}   args.config       — distribution_config (subjectWeights, difficultyWeights, questionTypeWeights, subTopicWeights)
  * @param {object[]} args.bank         — app-shaped questions from listQuestions()
  * @param {object[]} [args.usages]     — question_usages rows { questionId, testId, themeGroupId, conceptGroupId }

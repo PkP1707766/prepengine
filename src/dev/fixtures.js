@@ -226,6 +226,7 @@ export const FX_NOTIFICATIONS = [
 
 export const FX_QUESTIONS = Array.from({ length: 12 }, (_, i) => ({
   id: "fx-q" + i,
+  examCategory: "bpsc",
   subject: ["Polity", "History", "Geography", "Economy", "Environment & Ecology"][i % 5],
   topic: ["Constitutional provisions", "Modern", "Physical", "Macroeconomic concepts", "Conservation & Policy"][i % 5],
   type: ["mcq", "multiple", "numerical"][i % 3],

@@ -22,32 +22,90 @@ const TYPE_LABEL = {
   mcq: "Single Correct", multiple: "Multiple Correct", numerical: "Numerical",
   statement_based: "Statement-based", match_the_following: "Match the Following",
   assertion_reason: "Assertion–Reason", reasoning_aptitude: "Reasoning / Aptitude",
+  reading_comprehension: "Reading Comprehension", data_sufficiency: "Data Sufficiency",
+  puzzle_hybrid: "Puzzle Hybrid",
 };
 const TYPE_COLOR = {
   mcq: { bg: "#f2e9d4", fg: "#a07c2a" }, multiple: { bg: "#f6ecd2", fg: "#7a1f1f" }, numerical: { bg: "#f4ecd6", fg: "#1a6b3c" },
   statement_based: { bg: "#e9eff6", fg: "#3a5a7a" }, match_the_following: { bg: "#eeeee4", fg: "#5a5a34" },
   assertion_reason: { bg: "#f2e9f2", fg: "#6a3a6a" }, reasoning_aptitude: { bg: "#e7f2ec", fg: "#2a6a52" },
+  reading_comprehension: { bg: "#eaf1f6", fg: "#2a5a7a" }, data_sufficiency: { bg: "#f6f0e2", fg: "#8a6a1a" },
+  puzzle_hybrid: { bg: "#f2ece2", fg: "#7a4a2a" },
 };
-// The four BPSC formats all score as a single correct option — only their stem
-// shape (question_data) and rendering differ.
+// The BPSC + CSAT formats all score as a single correct option — only their
+// stem shape (question_data) and rendering differ.
 const SINGLE_CORRECT = (ty) => ty !== "multiple" && ty !== "numerical";
 const DIFF_COLOR = { easy: { bg: "#e8f6ee", fg: "#1f8a4c" }, medium: { bg: "#fcf3df", fg: "#d4a64a" }, hard: { bg: "#fbeaea", fg: "#c0392b" } };
-// Matches the PYQ-derived distribution_config exactly (subject_weights /
-// sub_topic_weights keys) — see pyq-analysis/ANALYSIS_NOTES.md. Sub-topics are
-// nested under their subject (QuestionForm's Topic field), not top-level, so
-// era splits like Ancient/Medieval/Modern live inside History, not beside it.
-const SUBJECTS = ["History", "Geography", "Polity", "Economy", "Science & Technology", "Environment & Ecology", "Current Affairs", "Bihar-Specific", "Reasoning & Aptitude"];
-const SUBTOPICS_BY_SUBJECT = {
-  "History": ["Ancient", "Medieval", "Modern"],
-  "Geography": ["Physical", "World", "Economic", "Human"],
-  "Polity": ["Constitutional provisions", "Panchayati Raj & local governance"],
-  "Economy": ["Macroeconomic concepts", "Five-year plans & policy", "Banking & finance"],
-  "Science & Technology": ["Physics", "Chemistry", "Biology", "Tech & Innovation"],
-  "Environment & Ecology": ["Biodiversity", "Climate & Pollution", "Conservation & Policy"],
-  "Current Affairs": ["International", "National", "Sports", "Schemes & Indices", "Awards & Appointments"],
-  "Bihar-Specific": ["History & Culture", "Geography", "Economy", "Polity & Governance", "Recent Developments"],
-  "Reasoning & Aptitude": ["Quantitative/Numerical", "Logical/Verbal"],
+
+// ------------------------------------------------------------------------
+// TAXONOMY — keyed by exam_category FIRST, subject second.
+//
+// BPSC and UPSC share several subject NAMES (History, Geography, Economy,
+// Science & Technology, Environment & Ecology) but must never share the same
+// taxonomy entry: every `questions` row also carries its own exam_category
+// column now (see migration 0024), so a UPSC "History" and a BPSC "History"
+// are two independent entries here, picked by whichever exam is active in
+// the admin's current context — never merged into one dropdown. This is
+// what actually prevents an admin from tagging a UPSC question with a BPSC
+// sub-topic (or vice versa) at authoring time.
+//
+// BPSC's list is unchanged from before this migration. UPSC's subjects are
+// the 7 GS1 ones plus the 3 PYQ-verified CSAT categories (Decision Making
+// and General Mental Ability are deliberately excluded — the 13-year
+// analysis found them effectively absent from real papers; see the
+// migration instructions §2). Sub-topics implement the playbook's Part L.2
+// taxonomy-sufficiency proposals verbatim (upsc-question-pattern-playbook-
+// 2023-2026.md).
+// ------------------------------------------------------------------------
+const SUBJECTS_BY_EXAM = {
+  bpsc: ["History", "Geography", "Polity", "Economy", "Science & Technology", "Environment & Ecology", "Current Affairs", "Bihar-Specific", "Reasoning & Aptitude"],
+  upsc: ["History", "Polity", "Geography", "Economy", "Environment & Ecology", "Science & Technology", "Current Affairs", "Quantitative Aptitude", "Logical Reasoning", "Reading Comprehension"],
 };
+const SUBTOPICS_BY_SUBJECT = {
+  bpsc: {
+    "History": ["Ancient", "Medieval", "Modern"],
+    "Geography": ["Physical", "World", "Economic", "Human"],
+    "Polity": ["Constitutional provisions", "Panchayati Raj & local governance"],
+    "Economy": ["Macroeconomic concepts", "Five-year plans & policy", "Banking & finance"],
+    "Science & Technology": ["Physics", "Chemistry", "Biology", "Tech & Innovation"],
+    "Environment & Ecology": ["Biodiversity", "Climate & Pollution", "Conservation & Policy"],
+    "Current Affairs": ["International", "National", "Sports", "Schemes & Indices", "Awards & Appointments"],
+    "Bihar-Specific": ["History & Culture", "Geography", "Economy", "Polity & Governance", "Recent Developments"],
+    "Reasoning & Aptitude": ["Quantitative/Numerical", "Logical/Verbal"],
+  },
+  upsc: {
+    // Era split (matches the playbook's own convention) + Part L.2 #1: the
+    // former single "Art & Culture" bucket split into four, plus a residual.
+    "History": ["Ancient", "Medieval", "Modern", "Architecture", "Painting", "Music & Dance", "Iconography", "Culture-Other"],
+    // "Governance" dominates the 4-year corpus (playbook §D); L.2 #2 adds the
+    // two verdict/statute buckets that previously folded into it.
+    "Polity": ["Constitutional Provisions", "Governance", "Statutory-Laws", "Judicial-Verdicts", "Panchayati Raj & Local Governance"],
+    "Geography": ["Physical", "World", "Economic", "Human"],
+    // L.2 #3 (Fintech-Digital-Finance) and #4 (Critical-Minerals-Energy-Transition).
+    "Economy": ["Macroeconomics", "Financial Markets", "Banking", "Fintech-Digital-Finance", "Critical-Minerals-Energy-Transition", "Five-Year Plans & Policy"],
+    // L.2 #5: "keep as-is" — this is the playbook's own stated baseline verbatim.
+    "Environment & Ecology": ["Biodiversity", "Climate & Pollution", "Conservation & Policy", "Global Environmental Agreements"],
+    // L.2 #6: Space-Missions and Defence-Technology added.
+    "Science & Technology": ["Physics", "Chemistry", "Biology", "Tech & Innovation", "Space-Missions", "Defence-Technology"],
+    // L.2 #7: Defence and Awards & Appointments added as first-class sub-topics.
+    "Current Affairs": ["International", "National", "Sports", "Schemes & Indices", "Awards & Appointments", "Defence"],
+    // CSAT sub-tags per L.2's CSAT section, verbatim where the playbook names
+    // them explicitly (Data Sufficiency / Puzzle Hybrid for Quant; the LR1–12
+    // templates; the 6 RC question-types from Part K).
+    "Quantitative Aptitude": ["Number Theory", "Speed-Distance-Time", "Percentage & Profit-Loss", "Ratio, Mixtures & Alligation", "Time & Work", "Permutation & Combination", "Geometry & Mensuration", "Sequences & Series", "Data Sufficiency", "Puzzle Hybrid"],
+    "Logical Reasoning": ["Statement-Conclusion/Assumption", "Seating Arrangement", "Blood Relation", "Direction & Distance", "Coding-Decoding", "Cube Painting", "Data Sufficiency", "Syllogism", "Truth-Liar"],
+    "Reading Comprehension": ["Main Idea", "Inference", "Assumption", "Author's Tone", "Specific Detail", "Best Summary"],
+  },
+};
+// CSAT categories score at a different marking scheme than GS1 subjects
+// (decided per prior conversation, wired here as the QuestionForm default —
+// see migration instructions §3). Decision Making's zero-negative-marking
+// exception is deliberately not modelled: it has no content plan.
+const CSAT_SUBJECTS = new Set(["Quantitative Aptitude", "Logical Reasoning", "Reading Comprehension"]);
+const marksDefaultFor = (examCategory, subject) =>
+  (examCategory === "upsc" && CSAT_SUBJECTS.has(subject))
+    ? { marksCorrect: 2.5, marksWrong: 0.83 }
+    : { marksCorrect: 2, marksWrong: 0.66 };
 
 /* ============================================================
    STARTER CONTENT — never written automatically.
@@ -448,16 +506,41 @@ function buildCleanData(type, d) {
   return {};
 }
 
-function QuestionForm({ initial, onSave, onClose }) {
+function QuestionForm({ initial, examCategory, onSave, onClose }) {
+  // The exam is a visible, editable field on the question itself. A new
+  // question starts in the workspace's exam; an existing one shows its OWN
+  // stored exam_category (read from the row, not from the workspace), so the
+  // admin can confirm it at a glance and correct it if it was tagged wrong.
   const blank = {
     id: null, subject: "", topic: "", type: "mcq", difficulty: "medium", body: "",
     options: [{ id: uid(), body: "", isCorrect: true }, { id: uid(), body: "", isCorrect: false }, { id: uid(), body: "", isCorrect: false }, { id: uid(), body: "", isCorrect: false }],
     numericAnswer: "", numericTolerance: 0.01, marksCorrect: 2, marksWrong: 0.66, explanation: "",
     questionData: {}, conceptGroupId: "", sourceType: "", sourceCitation: "", status: "published",
+    examCategory,
   };
   const [f, setF] = useState(() => initial ? JSON.parse(JSON.stringify(initial)) : blank);
   const [err, setErr] = useState("");
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
+  const effectiveExam = f.examCategory;
+  const storedExam = initial?.examCategory || null;
+  const examMoved = !!storedExam && effectiveExam !== storedExam;
+  const subjectKnown = !f.subject || (SUBJECTS_BY_EXAM[effectiveExam] || []).includes(f.subject);
+  const topicKnown = !f.topic || ((SUBTOPICS_BY_SUBJECT[effectiveExam] || {})[f.subject] || []).includes(f.topic);
+  // Switching exam on a NEW question re-applies that exam's marking default;
+  // an existing question's marks are never rewritten behind the author's back.
+  const setExam = (code) => setF((p) => ({
+    ...p, examCategory: code,
+    ...(!initial && p.subject ? marksDefaultFor(code, p.subject) : {}),
+  }));
+  // New questions only: picking a subject also applies that exam's marking
+  // default (GS1 vs CSAT — see marksDefaultFor), so an author doesn't have to
+  // remember to hand-type 2.5/0.83 for every CSAT question. An edit never has
+  // its marks silently rewritten by this — only the subject picker does it,
+  // and only while authoring fresh.
+  const setSubject = (subject) => setF((p) => ({
+    ...p, subject,
+    ...(initial ? {} : marksDefaultFor(effectiveExam, subject)),
+  }));
 
   const AR_OPTIONS = [
     "Both A and R are true and R is the correct explanation of A",
@@ -515,6 +598,7 @@ function QuestionForm({ initial, onSave, onClose }) {
   const rmOpt = (id) => { if (f.options.length <= 2) return; set("options", f.options.filter((o) => o.id !== id)); };
 
   const submit = () => {
+    if (!SUBJECTS_BY_EXAM[f.examCategory]) return setErr("Choose which exam this question belongs to.");
     if (!f.body.trim()) return setErr("Question text is required.");
 
     // Format-specific stem checks.
@@ -555,23 +639,40 @@ function QuestionForm({ initial, onSave, onClose }) {
   };
 
   return (
-    <Modal wide title={initial ? "Edit question" : "Add question"} onClose={onClose}
+    <Modal wide title={(initial ? "Edit question" : "Add question") + (effectiveExam ? " — " + effectiveExam.toUpperCase() : "")} onClose={onClose}
       footer={<>
         <button className="btn btn-ghost" onClick={onClose}>Cancel</button>
         <button className="btn btn-primary" onClick={submit}><Save size={16} />Save question</button>
       </>}>
       {err && <div className="form-err"><AlertCircle size={17} />{err}</div>}
 
+      <Field label="Exam" req hint={storedExam ? `Stored in the database as ${storedExam.toUpperCase()}.` : "New questions start in the exam you are working in."}>
+        <select className="inp" value={f.examCategory || ""} onChange={(e) => setExam(e.target.value)}>
+          {!f.examCategory && <option value="">Choose exam…</option>}
+          {Object.keys(SUBJECTS_BY_EXAM).map((code) => <option key={code} value={code}>{code.toUpperCase()}</option>)}
+        </select>
+      </Field>
+      {(examMoved || !subjectKnown || !topicKnown) && (
+        <div className="banner sample" style={{ marginBottom: 14 }}>
+          <AlertCircle size={17} />
+          <div>
+            {examMoved && <div>Saving will move this question from <b>{storedExam.toUpperCase()}</b> to <b>{effectiveExam.toUpperCase()}</b>. It will then appear only in the {effectiveExam.toUpperCase()} question bank.</div>}
+            {!subjectKnown && <div>“{f.subject}” is not a {effectiveExam.toUpperCase()} subject. Pick one from the Subject list.</div>}
+            {subjectKnown && !topicKnown && <div>“{f.topic}” is not a {effectiveExam.toUpperCase()} {f.subject} topic, so blueprints won’t count it. Pick one from the Topic list.</div>}
+          </div>
+        </div>
+      )}
+
       <div className="field-row">
         <Field label="Subject" req>
           <input className="inp" list="subjects" value={f.subject} placeholder="e.g. Polity"
-            onChange={(e) => set("subject", e.target.value)} />
-          <datalist id="subjects">{SUBJECTS.map((s) => <option key={s} value={s} />)}</datalist>
+            onChange={(e) => setSubject(e.target.value)} />
+          <datalist id="subjects">{(SUBJECTS_BY_EXAM[effectiveExam] || []).map((s) => <option key={s} value={s} />)}</datalist>
         </Field>
         <Field label="Topic">
           <input className="inp" list="topics-for-subject" value={f.topic} placeholder="e.g. Constitutional provisions"
             onChange={(e) => set("topic", e.target.value)} />
-          <datalist id="topics-for-subject">{(SUBTOPICS_BY_SUBJECT[f.subject] || []).map((t) => <option key={t} value={t} />)}</datalist>
+          <datalist id="topics-for-subject">{((SUBTOPICS_BY_SUBJECT[effectiveExam] || {})[f.subject] || []).map((t) => <option key={t} value={t} />)}</datalist>
         </Field>
       </div>
 
@@ -1176,7 +1277,7 @@ function jsonParseOr(text) {
   catch { return null; }
 }
 
-function ConfigForm({ initial, onSave, onClose }) {
+function ConfigForm({ initial, examCategory, onSave, onClose }) {
   const src = initial || { name: "", subjectWeights: {}, difficultyWeights: { easy: 0.3, medium: 0.5, hard: 0.2 }, questionTypeWeights: {}, subTopicWeights: {} };
   const [name, setName] = useState(src.name || "");
   const [subj, setSubj] = useState(JSON.stringify(src.subjectWeights || {}, null, 2));
@@ -1193,7 +1294,7 @@ function ConfigForm({ initial, onSave, onClose }) {
   };
 
   return (
-    <Modal wide title={initial ? "Edit distribution config" : "New distribution config"} onClose={onClose}
+    <Modal wide title={(initial ? "Edit distribution config" : "New distribution config") + " — " + (examCategory || "bpsc").toUpperCase()} onClose={onClose}
       footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className="btn btn-primary" onClick={submit}><Save size={16} />Save</button></>}>
       {err && <div className="form-err"><AlertCircle size={17} />{err}</div>}
       <Field label="Name" req><input className="inp" value={name} placeholder="e.g. BPSC Prelims — full mix" onChange={(e) => setName(e.target.value)} /></Field>
@@ -1215,7 +1316,7 @@ function ConfigForm({ initial, onSave, onClose }) {
   );
 }
 
-function BlueprintForm({ initial, seriesList, configs, onSave, onClose }) {
+function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onClose }) {
   const blank = { id: null, seriesId: "", sequencePosition: 1, title: "", patternType: "full_length", questionCount: 150, subjectScope: {}, distributionConfigId: "", themeGroupId: "", themePartIndex: "" };
   const [b, setB] = useState(() => ({ ...blank, ...(initial || {}) }));
   const [scope, setScope] = useState(JSON.stringify((initial || blank).subjectScope || {}, null, 2));
@@ -1230,7 +1331,7 @@ function BlueprintForm({ initial, seriesList, configs, onSave, onClose }) {
   };
 
   return (
-    <Modal wide title={initial ? "Edit blueprint" : "New blueprint"} onClose={onClose}
+    <Modal wide title={(initial ? "Edit blueprint" : "New blueprint") + " — " + (examCategory || "bpsc").toUpperCase()} onClose={onClose}
       footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className="btn btn-primary" onClick={submit}><Save size={16} />Save</button></>}>
       {err && <div className="form-err"><AlertCircle size={17} />{err}</div>}
       <div className="field-row">
@@ -1325,7 +1426,7 @@ function GenReport({ blueprint, result, committing, onCommit, onClose }) {
   );
 }
 
-function Blueprints({ questions, seriesList, toast, askDelete }) {
+function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
   const [configs, setConfigs] = useState([]);
   const [blueprints, setBlueprints] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1335,24 +1436,31 @@ function Blueprints({ questions, seriesList, toast, askDelete }) {
   const [gen, setGen] = useState(null);               // { blueprint, result }
   const [committing, setCommitting] = useState(false);
 
+  // distribution_config and test_blueprints are small tables (a handful of
+  // rows even at scale), so listing everything and filtering here is simpler
+  // and just as safe as adding a server-side filter param to the generic
+  // crud() helper those two share with every other admin table. What matters
+  // is that nothing downstream (runGenerate, the editors, the Generate
+  // button) ever sees a config or blueprint from a different exam.
   const load = useCallback(async () => {
     setError("");
     try {
       const [c, b] = await Promise.all([DB.distributionConfigs.list(), DB.listBlueprints()]);
-      setConfigs(c); setBlueprints(b);
+      setConfigs(c.filter((x) => x.examCategory === examCategory));
+      setBlueprints(b.filter((x) => x.examCategory === examCategory));
     } catch (e) {
       setError(e?.message || "Could not load blueprints. Has migration 0016 been applied?");
     }
     setLoading(false);
-  }, []);
+  }, [examCategory]);
   useEffect(() => { load(); }, [load]);
 
   const saveConfig = async (c) => {
-    try { await DB.distributionConfigs.upsert(c); toast("Config saved"); setCfgEditor(null); load(); }
+    try { await DB.distributionConfigs.upsert({ ...c, examCategory }); toast("Config saved"); setCfgEditor(null); load(); }
     catch (e) { toast(e?.message || "Save failed", "err"); }
   };
   const saveBlueprint = async (b) => {
-    try { await DB.upsertBlueprint(b); toast("Blueprint saved"); setBpEditor(null); load(); }
+    try { await DB.upsertBlueprint({ ...b, examCategory }); toast("Blueprint saved"); setBpEditor(null); load(); }
     catch (e) { toast(e?.message || "Save failed", "err"); }
   };
   const removeBlueprint = (id) => askDelete("Delete this blueprint? Generated tests are not affected.", async () => {
@@ -1364,6 +1472,10 @@ function Blueprints({ questions, seriesList, toast, askDelete }) {
     try {
       const cfg = configs.find((c) => c.id === bp.distributionConfigId) || {};
       const [usages, recent] = await Promise.all([DB.questionUsages(), DB.recentTestIds(5)]);
+      // `questions` (bank) is already scoped to `examCategory` by the parent's
+      // loadAll(); `bp.examCategory` matches it because `blueprints` above is
+      // filtered the same way. generate.js's eligiblePool() re-checks this
+      // pairing defensively regardless.
       const result = generateTest({ blueprint: bp, config: cfg, bank: questions, usages, options: { cooldownTestIds: recent } });
       setGen({ blueprint: bp, result });
     } catch (e) {
@@ -1452,8 +1564,8 @@ function Blueprints({ questions, seriesList, toast, askDelete }) {
         ))}
       </div>
 
-      {cfgEditor && <ConfigForm initial={cfgEditor.id ? cfgEditor : null} onSave={saveConfig} onClose={() => setCfgEditor(null)} />}
-      {bpEditor && <BlueprintForm initial={bpEditor.id ? bpEditor : null} seriesList={seriesList} configs={configs} onSave={saveBlueprint} onClose={() => setBpEditor(null)} />}
+      {cfgEditor && <ConfigForm initial={cfgEditor.id ? cfgEditor : null} examCategory={examCategory} onSave={saveConfig} onClose={() => setCfgEditor(null)} />}
+      {bpEditor && <BlueprintForm initial={bpEditor.id ? bpEditor : null} examCategory={examCategory} seriesList={seriesList} configs={configs} onSave={saveBlueprint} onClose={() => setBpEditor(null)} />}
       {gen && <GenReport blueprint={gen.blueprint} result={gen.result} committing={committing} onCommit={commit} onClose={() => setGen(null)} />}
     </div>
   );
@@ -1506,6 +1618,20 @@ function App({ onLogout }) {
   const [sbOpen, setSbOpen] = useState(false);
   const [admin, setAdmin] = useState({ name: "Administrator", email: "" });
 
+  // Which exam's content the admin is currently working in. Defaults to 'bpsc'
+  // so every existing screen behaves exactly as it did before this migration
+  // until an admin deliberately switches. This is the single source of truth
+  // that scopes questions/stats/configs/blueprints — never inferred from the
+  // view, the URL, or which questions happen to be on screen.
+  const [examCategory, setExamCategory] = useState("bpsc");
+  const [examCategoryList, setExamCategoryList] = useState([]);
+  const switchExam = (code) => {
+    if (!code || code === examCategory) return;
+    setLoading(true);
+    setExamCategory(code);
+  };
+  const examOptions = examCategoryList.length ? examCategoryList : [{ code: "bpsc", label: "BPSC" }];
+
   const [questions, setQuestions] = useState([]);
   const [questionStats, setQuestionStats] = useState({ total: 0, bySubject: {} });
   const [courses, setCourses] = useState([]);
@@ -1524,27 +1650,34 @@ function App({ onLogout }) {
   }, []);
   const askDelete = (message, onYes) => setConfirm({ message, onYes });
 
-  /* ---- Load everything from the database. No seeding, no local shadow copy. */
+  /* ---- Load everything from the database. No seeding, no local shadow copy.
+     Re-runs whenever examCategory changes, so switching the workspace switch
+     re-scopes the question bank and stats rather than filtering a stale,
+     already-mixed fetch client-side. */
   const loadAll = useCallback(async () => {
     setLoadError("");
     try {
-      const [q, stats, c, b, t, m, sr] = await Promise.all([
-        DB.listQuestions(),
-        DB.getQuestionStats(),
+      const [q, stats, c, b, t, m, sr, ec] = await Promise.all([
+        DB.listQuestions(examCategory),
+        DB.getQuestionStats(examCategory),
         DB.courses.list(),
         DB.batches.list(),
         DB.listTests(),
         DB.materials.list(),
         DB.series.list(),
+        DB.examCategories(),
       ]);
       setQuestions(q); setQuestionStats(stats); setCourses(c); setBatches(b);
       setTests(t); setMaterials(m); setSeriesList(sr);
+      // Only offer exams the taxonomy actually knows how to author for —
+      // showing e.g. JPSC here would open a question form with no subjects.
+      setExamCategoryList(ec.filter((x) => SUBJECTS_BY_EXAM[x.code]));
     } catch (e) {
       console.error("admin load failed", e);
       setLoadError(e?.message || "Could not reach the database.");
     }
     setLoading(false);
-  }, []);
+  }, [examCategory]);
 
   useEffect(() => { loadAll(); }, [loadAll]);
 
@@ -1569,6 +1702,13 @@ function App({ onLogout }) {
     try {
       const isNew = !questions.some((x) => x.id === item.id);
       const saved = await DB.upsertQuestion(item);
+      // The list only ever holds the current workspace's exam, so a question
+      // saved under the other exam leaves it rather than lingering here.
+      if (saved.examCategory !== examCategory) {
+        setQuestions((prev) => prev.filter((x) => x.id !== saved.id));
+        toast(`Question saved to ${saved.examCategory.toUpperCase()}. It now appears in the ${saved.examCategory.toUpperCase()} question bank.`);
+        return true;
+      }
       setQuestions((prev) => prev.some((x) => x.id === saved.id)
         ? prev.map((x) => (x.id === saved.id ? saved : x))
         : [saved, ...prev]);
@@ -1608,10 +1748,14 @@ function App({ onLogout }) {
 
   /* Opt-in starter pack. Deliberate, one-click, and clearly labelled — never
      something that writes itself into a live database on first load. */
+  // SEED is BPSC-flavored (its subject vocabulary is "Reasoning & Aptitude"
+  // etc.), so it only ever inserts as BPSC content and only offers itself
+  // while the admin is actually working in the BPSC workspace — the button
+  // that calls this is hidden otherwise (see Overview/QuestionBank below).
   const loadStarterPack = async () => {
-    if (questions.length > 0) return;
+    if (examCategory !== "bpsc" || questions.length > 0) return;
     try {
-      const saved = await DB.insertQuestions(SEED.questions.map((q) => ({ ...q, id: undefined })));
+      const saved = await DB.insertQuestions(SEED.questions.map((q) => ({ ...q, id: undefined, examCategory: "bpsc" })));
       setQuestions(saved);
       toast(`${saved.length} starter questions added — edit or delete them freely`);
     } catch (e) {
@@ -1722,6 +1866,27 @@ function App({ onLogout }) {
             </div>
           </div>
         </div>
+        {/* Workspace switcher — everything below (question bank, stats,
+            distribution configs, blueprints) is scoped to whichever exam is
+            picked here. Never a merged view across exams, by design: BPSC
+            and UPSC share several subject names as plain strings, and this
+            selector is what keeps every fetch below explicitly scoped rather
+            than accidentally showing both. */}
+        <div style={{ padding: "0 16px 14px" }}>
+          <label style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: ".04em", color: "#bdae8e", textTransform: "uppercase", marginBottom: 5 }}>
+            Working in
+          </label>
+          <select
+            className="inp"
+            value={examCategory}
+            onChange={(e) => switchExam(e.target.value)}
+            style={{ width: "100%" }}
+          >
+            {examOptions.map((ec) => (
+              <option key={ec.code} value={ec.code}>{ec.label}</option>
+            ))}
+          </select>
+        </div>
         <nav className="sb-nav">
           {NAV.map((grp) => (
             <div key={grp.group}>
@@ -1768,10 +1933,10 @@ function App({ onLogout }) {
         </header>
 
         <main className="content">
-          {view === "overview" && <Overview {...{ questions, questionStats, tests, courses, batches, go, loadStarterPack }} />}
-          {view === "questions" && <QuestionBank {...{ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete }} />}
+          {view === "overview" && <Overview {...{ questions, questionStats, tests, courses, batches, go, loadStarterPack, examCategory }} />}
+          {view === "questions" && <QuestionBank {...{ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete, examCategory, examOptions, switchExam }} />}
           {view === "tests" && <Tests {...{ tests, saveTest, removeTest, questions, seriesList, toast, askDelete }} />}
-          {view === "blueprints" && <Blueprints {...{ questions, seriesList, toast, askDelete }} />}
+          {view === "blueprints" && <Blueprints {...{ questions, seriesList, toast, askDelete, examCategory }} />}
           {view === "bundles" && <Bundles {...{ tests, toast }} />}
           {view === "courses" && <Courses {...{ courses, saveCourse, removeCourse, batches, saveBatch, removeBatch, askDelete }} />}
           {view === "materials" && <Materials {...{ materials, saveMaterial, removeMaterial, batches, askDelete }} />}
@@ -1801,7 +1966,7 @@ function App({ onLogout }) {
 /* ============================================================
    VIEW: OVERVIEW
    ============================================================ */
-function Overview({ questions, questionStats, tests, courses, batches, go, loadStarterPack }) {
+function Overview({ questions, questionStats, tests, courses, batches, go, loadStarterPack, examCategory }) {
   const [live, setLive] = useState(null);
   useEffect(() => {
     (async () => {
@@ -1830,11 +1995,13 @@ function Overview({ questions, questionStats, tests, courses, batches, go, loadS
       {emptyBank && (
         <div className="banner banner-warn">
           <AlertCircle size={17} />
-          Your question bank is empty. Tests are assembled from it, so start here.
+          Your {examCategory.toUpperCase()} question bank is empty. Tests are assembled from it, so start here.
           <span style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
-            <button className="btn btn-ghost btn-sm" style={{ width: "auto" }} onClick={loadStarterPack}>
-              <Sparkles size={15} />Load 8 starter questions
-            </button>
+            {examCategory === "bpsc" && (
+              <button className="btn btn-ghost btn-sm" style={{ width: "auto" }} onClick={loadStarterPack}>
+                <Sparkles size={15} />Load 8 starter questions
+              </button>
+            )}
             <button className="btn btn-primary btn-sm" style={{ width: "auto" }} onClick={() => go("questions")}>
               <Plus size={15} />Add my own
             </button>
@@ -1888,12 +2055,16 @@ function Overview({ questions, questionStats, tests, courses, batches, go, loadS
 /* ============================================================
    VIEW: QUESTION BANK
    ============================================================ */
-function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete }) {
+function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete, examCategory, examOptions, switchExam }) {
   const [q, setQ] = useState("");
   const [subj, setSubj] = useState("all");
   const [type, setType] = useState("all");
   const [editing, setEditing] = useState(null); // question or {} for new
   const [bulk, setBulk] = useState(false);
+  // A subject filter from the other exam (e.g. "Bihar-Specific") would match
+  // nothing after a switch, so the filters start fresh per exam.
+  useEffect(() => { setSubj("all"); setType("all"); }, [examCategory]);
+  const examLabel = (examOptions.find((x) => x.code === examCategory)?.label) || examCategory.toUpperCase();
 
   const subjects = useMemo(() => ["all", ...Array.from(new Set(questions.map((x) => x.subject)))], [questions]);
   const filtered = questions.filter((x) =>
@@ -1905,12 +2076,18 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
     const ok = await saveQuestion(item);
     if (ok) setEditing(null);
   };
-  const importQs = (arr) => { importQuestions(arr); setBulk(false); };
+  // Bulk-imported rows are stamped with whichever exam is currently active —
+  // never left to whatever (if anything) the pasted/uploaded data claims, so
+  // an import can't land in the wrong bank by carrying a stray field.
+  const importQs = (arr) => { importQuestions(arr.map((q) => ({ ...q, examCategory }))); setBulk(false); };
   const del = (item) => askDelete(`Delete this question? "${item.body.slice(0, 60)}…" This cannot be undone.`, () => deleteQuestion(item.id));
 
   return (
     <div>
       <div className="toolbar">
+        <select className="sel" aria-label="Exam" value={examCategory} onChange={(e) => switchExam(e.target.value)} style={{ fontWeight: 700 }}>
+          {examOptions.map((ec) => <option key={ec.code} value={ec.code}>{ec.label} questions</option>)}
+        </select>
         <div className="search"><Search size={17} /><input value={q} placeholder="Search by question or topic…" onChange={(e) => setQ(e.target.value)} /></div>
         <select className="sel" value={subj} onChange={(e) => setSubj(e.target.value)}>{subjects.map((s) => <option key={s} value={s}>{s === "all" ? "All subjects" : s}</option>)}</select>
         <select className="sel" value={type} onChange={(e) => setType(e.target.value)}>
@@ -1920,6 +2097,9 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
         <button className="btn btn-ghost" onClick={() => setBulk(true)}><Upload size={16} />Bulk import</button>
         <button className="btn btn-primary" onClick={() => setEditing({})}><Plus size={16} />Add question</button>
       </div>
+      <div style={{ margin: "-6px 0 12px", fontSize: 12.5, color: "var(--muted)" }}>
+        Showing <b>{examLabel}</b> questions only ({questions.length}). The other exam’s questions are never mixed into this list. Switch exams with the selector above.
+      </div>
 
       {filtered.length === 0 ? (
         <div className="panel"><Empty icon={<ListChecks size={26} />} title={questions.length === 0 ? "No questions yet" : "No matches"}
@@ -1928,20 +2108,23 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
             <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               <button className="btn btn-primary" style={{ width: "auto" }} onClick={() => setEditing({})}><Plus size={16} />Add question</button>
               <button className="btn btn-ghost" style={{ width: "auto" }} onClick={() => setBulk(true)}><Upload size={16} />Bulk import</button>
-              <button className="btn btn-ghost" style={{ width: "auto" }} onClick={loadStarterPack}><Sparkles size={16} />Load 8 samples</button>
+              {examCategory === "bpsc" && <button className="btn btn-ghost" style={{ width: "auto" }} onClick={loadStarterPack}><Sparkles size={16} />Load 8 samples</button>}
             </div>
           ) : null} />
         </div>
       ) : (
         <div className="tbl-wrap">
           <table className="tbl">
-            <thead><tr><th style={{ width: 40 }}>#</th><th>Question</th><th>Subject</th><th>Type</th><th>Level</th><th>Marks</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
+            <thead><tr><th style={{ width: 40 }}>#</th><th>Question</th><th>Exam · Subject</th><th>Type</th><th>Level</th><th>Marks</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
             <tbody>
               {filtered.map((x, i) => (
                 <tr key={x.id}>
                   <td style={{ color: "var(--muted)", fontWeight: 700 }}>{i + 1}</td>
                   <td className="q-cell"><div className="q-body">{x.body}</div>{x.topic && <div className="q-sub">{x.topic}</div>}</td>
-                  <td><Badge color={{ bg: "#fdf6e3", fg: "#7a6450" }}>{x.subject}</Badge></td>
+                  <td>
+                    <Badge color={x.examCategory === examCategory ? { bg: "#eaf1fb", fg: "#1f4f8a" } : { bg: "#fbeaea", fg: "#c0392b" }}>{(x.examCategory || "no exam").toUpperCase()}</Badge>{" "}
+                    <Badge color={{ bg: "#fdf6e3", fg: "#7a6450" }}>{x.subject}</Badge>
+                  </td>
                   <td><Badge color={TYPE_COLOR[x.type]}>{TYPE_LABEL[x.type]}</Badge></td>
                   <td><Badge color={DIFF_COLOR[x.difficulty]}>{x.difficulty}</Badge></td>
                   <td><span className="marks"><span className="pos">+{x.marksCorrect}</span>{x.marksWrong > 0 && <span className="neg"> / −{x.marksWrong}</span>}</span></td>
@@ -1956,7 +2139,7 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
         </div>
       )}
 
-      {editing && <QuestionForm initial={editing.id ? editing : null} onSave={save} onClose={() => setEditing(null)} />}
+      {editing && <QuestionForm initial={editing.id ? editing : null} examCategory={examCategory} onSave={save} onClose={() => setEditing(null)} />}
       {bulk && <BulkImport onImport={importQs} onClose={() => setBulk(false)} />}
     </div>
   );
