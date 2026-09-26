@@ -907,7 +907,11 @@ export async function loadExamTest(testId) {
         name: sec.name || "Section",
         questions: qs.map((q) => ({
           ...q,
-          options: paper.shuffleOptions && Array.isArray(q.options) ? shuffle(q.options) : (q.options || []),
+          // Answer ladders ("Only one / Only two / All three / None", the A-R
+          // verdicts) read in a fixed order on the real paper; a question opts
+          // out of option shuffling with question_data.fixed_option_order.
+          options: paper.shuffleOptions && Array.isArray(q.options) && !q.data?.fixed_option_order
+            ? shuffle(q.options) : (q.options || []),
         })),
       };
     })

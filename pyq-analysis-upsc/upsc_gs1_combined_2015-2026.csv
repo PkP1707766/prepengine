@@ -1,0 +1,1001 @@
+exam,year,paper,question_number,title,subject,sub_topic,raw_decoder_subject,ambiguous_subject,difficulty_guess,correct_option,key_status,dropped
+upsc,2015,GS1,1,PMJDY,Current Affairs,Schemes & Indices,Schemes,False,EASY,C,official-verified,False
+upsc,2015,GS1,2,14th Finance Commission,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2015,GS1,3,Fortaleza Declaration,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2015,GS1,4,Tax/GDP Ratio,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2015,GS1,5,No Cyclone Zones,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2015,GS1,6,Easternmost + Westernmost State,Geography,Physical/Human,Geo,False,EASY,D,official-verified,False
+upsc,2015,GS1,7,DPSP,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2015,GS1,8,Index of 8 Core Industries,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2015,GS1,9,Floating NP,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2015,GS1,10,NIF,Current Affairs,Schemes & Indices,Schemes,False,MED,A,official-verified,False
+upsc,2015,GS1,11,N-Fertilizer Impact,Economy,Agriculture,Agri,False,MED,C,official-verified,False
+upsc,2015,GS1,12,IUCN + CITES,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2015,GS1,13,FRP Sugarcane,Economy,Agriculture,Agri,False,MED,A,official-verified,False
+upsc,2015,GS1,14,Equatorial Counter-Current,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2015,GS1,15,Pilgrimage-Hills,Geography,Physical/Human,Geo,False,HARD,A,official-verified,False
+upsc,2015,GS1,16,Rowlatt Satyagraha,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2015,GS1,17,Ebola,Current Affairs,General,CA,False,EASY,B,official-verified,False
+upsc,2015,GS1,18,Fly Ash,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2015,GS1,19,Dugong,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2015,GS1,20,Economic Critics of Colonialism,History,Modern,Modern,False,MED,D,official-verified,False
+upsc,2015,GS1,21,Global Economic Prospects,Current Affairs,International,IR,False,EASY,D,official-verified,False
+upsc,2015,GS1,22,SLR Cut,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2015,GS1,23,Nanotech Health,Science & Technology,Tech & Innovation,Tech,False,EASY,C,official-verified,False
+upsc,2015,GS1,24,Agri Market Regulation,Economy,Agriculture,Agri,False,MED,B,official-verified,False
+upsc,2015,GS1,25,National Aquatic Animal,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,C,official-verified,False
+upsc,2015,GS1,26,Congress Socialist Party,History,Modern,Modern,False,HARD,D,official-verified,False
+upsc,2015,GS1,27,RS Money Bill,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2015,GS1,28,GoI Act 1919,History,Modern,Modern,False,EASY,B,official-verified,False
+upsc,2015,GS1,29,CPI-IW,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2015,GS1,30,IceCube,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2015,GS1,31,WTO Terms,Current Affairs,International,IR,False,EASY,C,official-verified,False
+upsc,2015,GS1,32,NFC Technology,Science & Technology,Tech & Innovation,Tech,False,MED,C,official-verified,False
+upsc,2015,GS1,33,Golan Heights,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2015,GS1,34,Rupee Convertibility,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2015,GS1,35,Janapadas,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2015,GS1,36,Godavari Tributaries,Geography,Physical/Human,Geo,False,MED,D,official-verified,False
+upsc,2015,GS1,37,Joint Sitting,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2015,GS1,38,Forest Combo,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2015,GS1,39,Buddha Kingdoms,History,Ancient,Ancient,False,MED,D,official-verified,False
+upsc,2015,GS1,40,Ozone Protocol,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2015,GS1,41,Babur Contributions,History,Medieval,Medieval,False,MED,B,official-verified,False
+upsc,2015,GS1,42,NITI Aayog,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2015,GS1,43,Rio+20,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2015,GS1,44,Executive Power,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2015,GS1,45,Goldilocks Zone,Science & Technology,Tech & Innovation,Tech,False,EASY,C,official-verified,False
+upsc,2015,GS1,46,Tanjore Salt March,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2015,GS1,47,Vijayanagara Founder,History,Medieval,Medieval,False,MED,C,official-verified,False
+upsc,2015,GS1,48,INC Presidents,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2015,GS1,49,Green Climate Fund,Current Affairs,International,IR,False,MED,A,official-verified,False
+upsc,2015,GS1,50,Indira Gandhi Prize 2014,Current Affairs,General,CA,False,EASY,C,official-verified,False
+upsc,2015,GS1,51,Cabinet Mission,History,Modern,Modern,False,MED,A,official-verified,False
+upsc,2015,GS1,52,Khangchendzonga NP,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2015,GS1,53,Amnesty International,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2015,GS1,54,Earliest Art Made,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2015,GS1,55,Feudal System,History,Medieval,Medieval,False,MED,B,official-verified,False
+upsc,2015,GS1,56,BioCarbon Fund,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2015,GS1,57,India Memberships,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2015,GS1,58,Steel Imports,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2015,GS1,59,5+6 Schedule,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2015,GS1,60,Union Govt Statements,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2015,GS1,61,Constitution Custodian,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2015,GS1,62,AIBP + CADP,Economy,Agriculture,Agri,False,MED,B,official-verified,False
+upsc,2015,GS1,63,GEAC,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2015,GS1,64,Mekong-Ganga Cooperation,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2015,GS1,65,Basel III,Economy,Macroeconomics,Economy,False,EASY,B,official-verified,False
+upsc,2015,GS1,66,Westerlies,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2015,GS1,67,IORA,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2015,GS1,68,INC Split Movement,History,Modern,Modern,False,EASY,A,official-verified,False
+upsc,2015,GS1,69,Living Root Bridges,Geography,Physical/Human,Geo,False,EASY,A,official-verified,False
+upsc,2015,GS1,70,Tides Causes,Geography,Physical/Human,Geo,False,EASY,D,official-verified,False
+upsc,2015,GS1,71,IRS Satellites,Science & Technology,Tech & Innovation,Tech,False,MED,A,official-verified,False
+upsc,2015,GS1,72,Tropical Wet Evergreen,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2015,GS1,73,IndARC,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2015,GS1,74,FCPF,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2015,GS1,75,Classical Language,History,Art & Culture,Culture,False,EASY,A,official-verified,False
+upsc,2015,GS1,76,BirdLife International,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2015,GS1,77,SW Asia Mediterranean,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2015,GS1,78,Teak Forest,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2015,GS1,79,Beijing Declaration,Current Affairs,International,IR,False,EASY,C,official-verified,False
+upsc,2015,GS1,80,Equatorial Climate,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2015,GS1,81,GDP Growth,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2015,GS1,82,Legislative Council,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2015,GS1,83,Unity+Integrity,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2015,GS1,84,Ecosystem,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,C,official-verified,False
+upsc,2015,GS1,85,Panchayati Raj,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2015,GS1,86,Monetary Policy Tools,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2015,GS1,87,Inflation Control,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2015,GS1,88,NPT Nuclear Weapon States,Current Affairs,International,IR,False,MED,A,official-verified,False
+upsc,2015,GS1,89,Welfare State,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2015,GS1,90,Capital-Augmenting Tech,Economy,Macroeconomics,Economy,False,HARD,B,official-verified,False
+upsc,2015,GS1,91,Parliamentary System Reason,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2015,GS1,92,H1N1,Environment & Ecology,Biodiversity,Bio,False,EASY,D,official-verified,False
+upsc,2015,GS1,93,Bio-toilets,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2015,GS1,94,International Liquidity,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2015,GS1,95,Fuel Cells,Science & Technology,Tech & Innovation,Tech,False,MED,A,official-verified,False
+upsc,2015,GS1,96,Kalamkari,History,Art & Culture,Culture,False,EASY,A,official-verified,False
+upsc,2015,GS1,97,Seed Village,Economy,Agriculture,Agri,False,MED,B,official-verified,False
+upsc,2015,GS1,98,Reduce Deficit,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2015,GS1,99,GI Status,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2015,GS1,100,IREDA,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2016,GS1,1,Bill Lapse Rules,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2016,GS1,2,Global Hunger Index,Current Affairs,General,CA,False,MED,C,official-verified,False
+upsc,2016,GS1,3,Fiscal Deficit Reduction,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2016,GS1,4,Payment Banks,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2016,GS1,5,LiFi,Science & Technology,Tech & Innovation,Tech,False,EASY,C,official-verified,False
+upsc,2016,GS1,6,INDCs,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2016,GS1,7,UDAY,Current Affairs,Schemes & Indices,Schemes,False,EASY,D,official-verified,False
+upsc,2016,GS1,8,IFC Masala Bonds,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2016,GS1,9,Krishnadeva Taxation,History,Medieval,Medieval,False,MED,C,official-verified,False
+upsc,2016,GS1,10,Sunga Founder Son Love Story,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2016,GS1,11,"Amber, Blue, Green Box",Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2016,GS1,12,Capital Budget,Economy,Macroeconomics,Economy,False,EASY,D,official-verified,False
+upsc,2016,GS1,13,UNCCD,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2016,GS1,14,IMF SDR Basket,Current Affairs,International,IR,False,EASY,D,official-verified,False
+upsc,2016,GS1,15,IMFC,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2016,GS1,16,Rashtriya Garima Abhiyan,Current Affairs,Schemes & Indices,Schemes,False,EASY,C,official-verified,False
+upsc,2016,GS1,17,Siddhas + Lingayats,History,Medieval,Medieval,False,MED,C,official-verified,False
+upsc,2016,GS1,18,Import Cover,Economy,Macroeconomics,Economy,False,EASY,D,official-verified,False
+upsc,2016,GS1,19,Ethnic Groups,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2016,GS1,20,OPCW,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2016,GS1,21,PMFBY,Current Affairs,Schemes & Indices,Schemes,False,MED,B,official-verified,False
+upsc,2016,GS1,22,Great Indian Hornbill,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,D,official-verified,False
+upsc,2016,GS1,23,NGRBA,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2016,GS1,24,Neem-coated Urea,Economy,Agriculture,Agri,False,MED,B,official-verified,False
+upsc,2016,GS1,25,Chief Secretary,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2016,GS1,26,Stand Up India,Current Affairs,Schemes & Indices,Schemes,False,EASY,C,official-verified,False
+upsc,2016,GS1,27,GIAHS FAO,Current Affairs,International,IR,False,HARD,B,official-verified,False
+upsc,2016,GS1,28,Brahmaputra Tributaries,Geography,Physical/Human,Geo,False,EASY,D,official-verified,False
+upsc,2016,GS1,29,Core Banking Solutions,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2016,GS1,30,Kyoto Protocol Terms,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2016,GS1,31,Transcriptome,Environment & Ecology,Biodiversity,Bio,False,MED,B,official-verified,False
+upsc,2016,GS1,32,Mission Indradhanush,Current Affairs,Schemes & Indices,Schemes,False,EASY,A,official-verified,False
+upsc,2016,GS1,33,Green India Mission,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2016,GS1,34,FSSAI Labelling,Current Affairs,Schemes & Indices,Schemes,False,MED,C,official-verified,False
+upsc,2016,GS1,35,Project Loon,Science & Technology,Tech & Innovation,Tech,False,EASY,B,official-verified,False
+upsc,2016,GS1,36,Net Metering,Science & Technology,Energy Tech,Energy,False,EASY,A,official-verified,False
+upsc,2016,GS1,37,Ease of Doing Business,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2016,GS1,38,Banjaras,History,Medieval,Medieval,False,EASY,D,official-verified,False
+upsc,2016,GS1,39,Ashoka Edicts Decipher,History,Ancient,Ancient,False,EASY,B,official-verified,False
+upsc,2016,GS1,40,Gram Nyayalaya Act,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2016,GS1,41,Trans-Pacific Partnership,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2016,GS1,42,India-Africa Summit,Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2016,GS1,43,MCLR,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2016,GS1,44,Kharai Camel,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2016,GS1,45,New Banana Species,Environment & Ecology,Biodiversity,Bio,False,EASY,A,official-verified,False
+upsc,2016,GS1,46,INS Astradharini,Current Affairs,Defence,Defence,False,MED,C,official-verified,False
+upsc,2016,GS1,47,Greased Lightning-10,Science & Technology,Tech & Innovation,Tech,False,EASY,A,official-verified,False
+upsc,2016,GS1,48,INSIMP Millets,Current Affairs,Schemes & Indices,Schemes,False,MED,C,official-verified,False
+upsc,2016,GS1,49,Swadeshi + Boycott First Time,History,Modern,Modern,False,EASY,A,official-verified,False
+upsc,2016,GS1,50,Bodhisattva,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2016,GS1,51,Doctors Without Borders,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2016,GS1,52,TEEB,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2016,GS1,53,Red Sanders,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2016,GS1,54,UN-REDD+,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2016,GS1,55,GHG Protocol,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2016,GS1,56,FSDC,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2016,GS1,57,Agenda 21,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2016,GS1,58,Satya Shodhak Samaj,History,Modern,Modern,False,EASY,C,official-verified,False
+upsc,2016,GS1,59,Viruses Infection,Environment & Ecology,Biodiversity,Bio,False,EASY,D,official-verified,False
+upsc,2016,GS1,60,BEPS,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2016,GS1,61,1st NIMZ,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2016,GS1,62,District Mineral Foundation,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2016,GS1,63,SWAYAM,Current Affairs,Schemes & Indices,Schemes,False,EASY,D,official-verified,False
+upsc,2016,GS1,64,Montague-Chelmsford,History,Modern,Modern,False,EASY,D,official-verified,False
+upsc,2016,GS1,65,Ajanta + Mahabalipuram,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2016,GS1,66,Bitcoins,Science & Technology,Tech & Innovation,Tech,False,MED,B,official-verified,False
+upsc,2016,GS1,67,New Development Bank,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2016,GS1,68,Gadgil-Kasturirangan,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,D,official-verified,False
+upsc,2016,GS1,69,Keshab Chandra Sen,History,Modern,Modern,False,HARD,B,official-verified,False
+upsc,2016,GS1,70,GCC NOT Member,Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2016,GS1,71,SGB + GMS,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2016,GS1,72,Belt and Road Initiative,Current Affairs,International,IR,False,EASY,D,official-verified,False
+upsc,2016,GS1,73,MUDRA Yojana,Current Affairs,Schemes & Indices,Schemes,False,EASY,A,official-verified,False
+upsc,2016,GS1,74,Shale Gas Regions,Geography,Physical/Human,Geo,False,EASY,D,official-verified,False
+upsc,2016,GS1,75,Global Financial Stability Report,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2016,GS1,76,Atal Pension Yojana,Current Affairs,Schemes & Indices,Schemes,False,MED,C,official-verified,False
+upsc,2016,GS1,77,RCEP,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2016,GS1,78,BEE Star Label,Science & Technology,Energy Tech,Energy,False,EASY,D,official-verified,False
+upsc,2016,GS1,79,ITER,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2016,GS1,80,Eripatti/Taniyurs/Ghatikas,History,Medieval,Medieval,False,HARD,D,official-verified,False
+upsc,2016,GS1,81,International Solar Alliance,Current Affairs,International,IR,False,MED,A,official-verified,False
+upsc,2016,GS1,82,European Stability Mechanism,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2016,GS1,83,Drip Irrigation,Economy,Agriculture,Agri,False,MED,C,official-verified,False
+upsc,2016,GS1,84,DigiLocker,Science & Technology,Tech & Innovation,Tech,False,EASY,C,official-verified,False
+upsc,2016,GS1,85,River Linking,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2016,GS1,86,AQI Gases,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2016,GS1,87,ASTROSAT,Science & Technology,Tech & Innovation,Tech,False,HARD,D,official-verified,False
+upsc,2016,GS1,88,Araghatta,History,Medieval,Medieval,False,EASY,C,official-verified,False
+upsc,2016,GS1,89,Maagadha,History,Ancient,Ancient,False,MED,D,official-verified,False
+upsc,2016,GS1,90,State Butterfly,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,D,official-verified,False
+upsc,2016,GS1,91,Mangalyaan,Science & Technology,Tech & Innovation,Tech,False,MED,C,official-verified,False
+upsc,2016,GS1,92,Surat Split 1907,History,Modern,Modern,False,EASY,B,official-verified,False
+upsc,2016,GS1,93,Cripps Mission,History,Modern,Modern,False,EASY,D,official-verified,False
+upsc,2016,GS1,94,Famous Places Match,Geography,Physical/Human,Geo,False,HARD,C,official-verified,False
+upsc,2016,GS1,95,Art 249,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2016,GS1,96,Inland Port,Geography,Physical/Human,Geo,False,HARD,D,official-verified,False
+upsc,2016,GS1,97,Paris Agreement 2015,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2016,GS1,98,SDGs,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2016,GS1,99,The Man Who Knew Infinity,Current Affairs,General,CA,False,EASY,A,official-verified,False
+upsc,2016,GS1,100,Panchayat Member Age,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2017,GS1,1,Private Member's Bill,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2017,GS1,2,Vedic vs Indus,History,Ancient,Ancient,False,MED,C,official-verified,False
+upsc,2017,GS1,3,RPL,Current Affairs,Schemes & Indices,Schemes,False,EASY,A,official-verified,False
+upsc,2017,GS1,4,Sathyamangalam TR,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2017,GS1,5,Equality,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2017,GS1,6,TRAFFIC,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2017,GS1,7,42nd CA DPSP,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2017,GS1,8,Rights Definition,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2017,GS1,9,GGGI,Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2017,GS1,10,Smart India Hackathon,Current Affairs,Schemes & Indices,Schemes,False,MED,B,official-verified,False
+upsc,2017,GS1,11,MPC,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2017,GS1,12,Manipuri Sankirtana,History,Art & Culture,Culture,False,MED,B,official-verified,False
+upsc,2017,GS1,13,Ryotwari,History,Modern,Modern,False,MED,C,official-verified,False
+upsc,2017,GS1,14,Bioremediation,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2017,GS1,15,Trade Disputes Act 1929,History,Modern,Modern,False,MED,D,official-verified,False
+upsc,2017,GS1,16,Local Self-Govt,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2017,GS1,17,DPSP Limits,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2017,GS1,18,Digital Single Market,Current Affairs,International,IR,False,EASY,C,official-verified,False
+upsc,2017,GS1,19,Chandipur,Geography,Physical/Human,Geo,False,EASY,C,official-verified,False
+upsc,2017,GS1,20,PBPT Act 1988,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2017,GS1,21,Butterflies Decline,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2017,GS1,22,Algae Biofuels,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2017,GS1,23,National Nutrition Mission,Current Affairs,Schemes & Indices,Schemes,False,MED,A,official-verified,False
+upsc,2017,GS1,24,Factories Act 1881,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2017,GS1,25,CO2 Sequestration Sites,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2017,GS1,26,Butler Committee 1927,History,Modern,Modern,False,MED,D,official-verified,False
+upsc,2017,GS1,27,Domestic Content Requirement,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2017,GS1,28,Nuclear Security Summits,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2017,GS1,29,NPS Members,Current Affairs,Schemes & Indices,Schemes,False,MED,C,official-verified,False
+upsc,2017,GS1,30,Teesta River,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2017,GS1,31,Zika Virus,Environment & Ecology,Biodiversity,Bio,False,EASY,C,official-verified,False
+upsc,2017,GS1,32,BIS vs AGMARK,Current Affairs,Schemes & Indices,Schemes,False,MED,A,official-verified,False
+upsc,2017,GS1,33,e-NAM,Economy,Agriculture,Agri,False,EASY,C,official-verified,False
+upsc,2017,GS1,34,National IPR Policy,Current Affairs,Schemes & Indices,Schemes,False,EASY,C,official-verified,False
+upsc,2017,GS1,35,WPA Sch I Species,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2017,GS1,36,Fundamental Duties,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2017,GS1,37,INC Founders,History,Modern,Modern,False,HARD,B,official-verified,False
+upsc,2017,GS1,38,Preamble NOT Objective,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2017,GS1,39,QCI,Current Affairs,Schemes & Indices,Schemes,False,MED,C,official-verified,False
+upsc,2017,GS1,40,Small Finance Banks,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2017,GS1,41,APMCHUD,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2017,GS1,42,Democracy Virtue,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2017,GS1,43,UPI Consequence,Science & Technology,Tech & Innovation,Tech,False,EASY,A,official-verified,False
+upsc,2017,GS1,44,Universe Physics,Science & Technology,Tech & Innovation,Tech,False,EASY,A,official-verified,False
+upsc,2017,GS1,45,Genome Sequencing Agri,Environment & Ecology,Biodiversity,Bio,False,MED,D,official-verified,False
+upsc,2017,GS1,46,Parliamentary Form Advantage,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2017,GS1,47,Rights+Duties,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2017,GS1,48,Mind of Constitution Makers,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2017,GS1,49,Mumbai-Kottayam States,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2017,GS1,50,Parl Control CoM,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2017,GS1,51,Kakatiya Seaport,History,Medieval,Medieval,False,MED,B,official-verified,False
+upsc,2017,GS1,52,GCCA,Current Affairs,International,IR,False,MED,A,official-verified,False
+upsc,2017,GS1,53,Buddhism Sects,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2017,GS1,54,Mediterranean Sea,Geography,Physical/Human,Geo,False,EASY,C,official-verified,False
+upsc,2017,GS1,55,NIIF,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2017,GS1,56,Global Infrastructure Facility,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2017,GS1,57,LS Nomination,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2017,GS1,58,Himalayas/W Ghats/Pulicat,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2017,GS1,59,BOD,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,C,official-verified,False
+upsc,2017,GS1,60,UN-Habitat,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2017,GS1,61,NSQF,Current Affairs,Schemes & Indices,Schemes,False,MED,B,official-verified,False
+upsc,2017,GS1,62,Dyarchy,History,Modern,Modern,False,EASY,D,official-verified,False
+upsc,2017,GS1,63,National Career Service,Current Affairs,Schemes & Indices,Schemes,False,MED,D,official-verified,False
+upsc,2017,GS1,64,S4A,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2017,GS1,65,CCAC,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2017,GS1,66,Indian Ocean Dipole,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2017,GS1,67,Gharials Habitat,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2017,GS1,68,IONS,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2017,GS1,69,Padmapani,History,Art & Culture,Culture,False,EASY,A,official-verified,False
+upsc,2017,GS1,70,Festivals-Communities,History,Art & Culture,Culture,False,HARD,A,official-verified,False
+upsc,2017,GS1,71,Water Conservation Agri,Economy,Agriculture,Agri,False,MED,C,official-verified,False
+upsc,2017,GS1,72,Soil Health Card,Current Affairs,Schemes & Indices,Schemes,False,MED,B,official-verified,False
+upsc,2017,GS1,73,Materials-Chemicals,Science & Technology,Tech & Innovation,Tech,False,EASY,D,official-verified,False
+upsc,2017,GS1,74,OLED vs LCD,Science & Technology,Tech & Innovation,Tech,False,MED,C,official-verified,False
+upsc,2017,GS1,75,Sun Temples,History,Art & Culture,Culture,False,MED,A,official-verified,False
+upsc,2017,GS1,76,LS Election Speaker,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2017,GS1,77,Post-1991 Liberalisation,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2017,GS1,78,SCNT,Environment & Ecology,Biodiversity,Bio,False,MED,C,official-verified,False
+upsc,2017,GS1,79,NPCI,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2017,GS1,80,M-STrIPES,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2017,GS1,81,GST Advantages,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2017,GS1,82,BTIA,Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2017,GS1,83,TFA,Current Affairs,International,IR,False,MED,A,official-verified,False
+upsc,2017,GS1,84,Chabahar,Current Affairs,International,IR,False,EASY,C,official-verified,False
+upsc,2017,GS1,85,Cyber Security Reporting,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2017,GS1,86,Right to Vote,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2017,GS1,87,eLISA,Science & Technology,Tech & Innovation,Tech,False,EASY,B,official-verified,False
+upsc,2017,GS1,88,Vidyanjali,Current Affairs,Schemes & Indices,Schemes,False,MED,A,official-verified,False
+upsc,2017,GS1,89,Unnat Bharat Abhiyan,Current Affairs,Schemes & Indices,Schemes,False,MED,B,official-verified,False
+upsc,2017,GS1,90,ECI,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2017,GS1,91,WPA Sch I Tortoise,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2017,GS1,92,Judicial Review,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2017,GS1,93,Freedom Struggle Chronology,History,Modern,Modern,False,EASY,C,official-verified,False
+upsc,2017,GS1,94,Tax/Deficit Trends,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2017,GS1,95,Lion Translocation,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2017,GS1,96,President's Rule Consequences,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2017,GS1,97,Right Against Exploitation,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2017,GS1,98,Great Nicobar Nearest,Geography,Physical/Human,Geo,False,EASY,A,official-verified,False
+upsc,2017,GS1,99,Cabinet Form Principle,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2017,GS1,100,Indian Federation NOT feature,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2020,GS1,1,Aadhaar,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2020,GS1,2,RS Equal Powers,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2020,GS1,3,MPLADS,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2020,GS1,4,Untouchability Right,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2020,GS1,5,Judiciary-Executive Separation,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2020,GS1,6,Macro Economic Framework,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2020,GS1,7,Constitutional Government,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2020,GS1,8,UDHR Influence,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2020,GS1,9,Legal Services Authorities,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2020,GS1,10,International Agreements,Current Affairs,International,IR,False,HARD,C,official-verified,False
+upsc,2020,GS1,11,Parliamentary System,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2020,GS1,12,Welfare State Ideal,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2020,GS1,13,Basic Structure,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2020,GS1,14,Gandhi-Marx Agreement,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2020,GS1,15,Bureaucracy in India,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2020,GS1,16,Preamble Legal Effect,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2020,GS1,17,Gold Tranche,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2020,GS1,18,DPSP Part IV,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2020,GS1,19,Minister Without Membership,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2020,GS1,20,Parliament Sessions,Polity,Governance,Polity,False,HARD,C,official-verified,False
+upsc,2020,GS1,21,Aurang/Banian/Mirasidar,History,Modern,Modern,False,HARD,B,official-verified,False
+upsc,2020,GS1,22,Sthaviravadins-Mahasanghika,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2020,GS1,23,Industrial Revolution Impact,History,Modern,Modern,False,EASY,A,official-verified,False
+upsc,2020,GS1,24,Chronology,History,Medieval,Medieval,False,HARD,C,official-verified,False
+upsc,2020,GS1,25,Hundi,History,Medieval,Medieval,False,EASY,C,official-verified,False
+upsc,2020,GS1,26,Deshar Katha,History,Modern,Modern,False,HARD,A,official-verified,False
+upsc,2020,GS1,27,Gandhi-Irwin Pact,History,Modern,Modern,False,MED,,official-dropped,True
+upsc,2020,GS1,28,Vital-Vidhvansak,History,Modern,Modern,False,HARD,A,official-verified,False
+upsc,2020,GS1,29,"Kulyavapa, Dronavapa",History,Ancient,Ancient,False,HARD,A,official-verified,False
+upsc,2020,GS1,30,Ashoka Edict on Sectarianism,History,Ancient,Ancient,False,MED,A,official-verified,False
+upsc,2020,GS1,31,Paramitas,History,Ancient,Ancient,False,MED,C,official-verified,False
+upsc,2020,GS1,32,Rakhmabai Case,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2020,GS1,33,Indigo Decline,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2020,GS1,34,Fort William College,History,Modern,Modern,False,MED,D,official-verified,False
+upsc,2020,GS1,35,Ulgulan,History,Modern,Modern,False,MED,D,official-verified,False
+upsc,2020,GS1,36,Ancient Scholars,History,Ancient,Ancient,False,HARD,C,official-verified,False
+upsc,2020,GS1,37,Pronuclear Transfer,Environment & Ecology,Biodiversity,Bio,False,HARD,D,official-verified,False
+upsc,2020,GS1,38,AI Capabilities,Science & Technology,Tech & Innovation,Tech,False,MED,B,official-verified,False
+upsc,2020,GS1,39,VLC Tech,Science & Technology,Tech & Innovation,Tech,False,HARD,C,official-verified,False
+upsc,2020,GS1,40,Blockchain,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2020,GS1,41,Carbon Nanotubes,Science & Technology,Tech & Innovation,Tech,False,HARD,C,official-verified,False
+upsc,2020,GS1,42,Drones Apps,Science & Technology,Tech & Innovation,Tech,False,EASY,D,official-verified,False
+upsc,2020,GS1,43,LISA Experiment,Science & Technology,Tech & Innovation,Tech,False,HARD,D,official-verified,False
+upsc,2020,GS1,44,Genetic Modifications,Environment & Ecology,Biodiversity,Bio,False,HARD,D,official-verified,False
+upsc,2020,GS1,45,Pneumococcal Conjugate Vaccine,Environment & Ecology,Biodiversity,Bio,False,MED,B,official-verified,False
+upsc,2020,GS1,46,PKI,Science & Technology,Tech & Innovation,Tech,False,EASY,A,official-verified,False
+upsc,2020,GS1,47,Plant vs Animal Cells,Environment & Ecology,Biodiversity,Bio,False,EASY,C,official-verified,False
+upsc,2020,GS1,48,Benzene Pollution,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,A,official-verified,False
+upsc,2020,GS1,49,Financial Crisis Immunity,Economy,Macroeconomics,Economy,False,HARD,A,official-verified,False
+upsc,2020,GS1,50,Cash Withdrawal Effect,Economy,Macroeconomics,Economy,False,HARD,D,official-verified,False
+upsc,2020,GS1,51,FDI Major Characteristic,Economy,Macroeconomics,Economy,False,EASY,B,official-verified,False
+upsc,2020,GS1,52,India International Trade,Economy,Macroeconomics,Economy,False,MED,,official-dropped,True
+upsc,2020,GS1,53,WTI,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2020,GS1,54,Non-Financial Debt,Economy,Macroeconomics,Economy,False,HARD,D,official-verified,False
+upsc,2020,GS1,55,IAEA Safeguards,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2020,GS1,56,TRIMS,Economy,Macroeconomics,Economy,False,HARD,C,official-verified,False
+upsc,2020,GS1,57,Expansionist Policy,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2020,GS1,58,Post-1991 Economy,Economy,Macroeconomics,Economy,False,HARD,B,official-verified,False
+upsc,2020,GS1,59,DCCBs,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2020,GS1,60,Cyber Insurance,Economy,Macroeconomics,Economy,False,HARD,B,official-verified,False
+upsc,2020,GS1,61,Public Investment in Agri,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2020,GS1,62,Interest Coverage Ratio,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2020,GS1,63,Rice Price Factors,Economy,Agriculture,Agri,False,EASY,D,official-verified,False
+upsc,2020,GS1,64,Indo-SL Trade,Current Affairs,International,IR,False,HARD,B,official-verified,False
+upsc,2020,GS1,65,G20 Members,Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2020,GS1,66,KCC Short-Term Credit,Economy,Agriculture,Agri,False,MED,B,official-verified,False
+upsc,2020,GS1,67,CPI vs WPI,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2020,GS1,68,River Mouths,Geography,Physical/Human,Geo,False,MED,C,official-verified,False
+upsc,2020,GS1,69,MSP Procurement,Economy,Agriculture,Agri,False,EASY,D,official-verified,False
+upsc,2020,GS1,70,Money Market Instruments,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2020,GS1,71,"Parivrajaka, Shramana, Upasaka",History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2020,GS1,72,Indian Elephants,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2020,GS1,73,Cauvery Basin PAs,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,C,official-verified,False
+upsc,2020,GS1,74,"Coppersmith, Frogmouth",Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2020,GS1,75,Hard-ground Barasingha,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2020,GS1,76,Steel Slag,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,D,official-verified,False
+upsc,2020,GS1,77,Musk Deer Habitat,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,A,official-verified,False
+upsc,2020,GS1,78,Rural Roads Eco-Friendly,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,A,official-verified,False
+upsc,2020,GS1,79,Coal Ash + Coal Power Plants,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,D,official-verified,False
+upsc,2020,GS1,80,Biochar in Farming,Economy,Agriculture,Agri,False,HARD,D,official-verified,False
+upsc,2020,GS1,81,WPA Schedule VI,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2020,GS1,82,Gupta Era Ports,History,Ancient,Ancient,False,HARD,A,official-verified,False
+upsc,2020,GS1,83,Zero Tillage Benefits,Economy,Agriculture,Agri,False,EASY,D,official-verified,False
+upsc,2020,GS1,84,Biofuel Raw Materials,Economy,Agriculture,Agri,False,HARD,A,official-verified,False
+upsc,2020,GS1,85,Social Cost of Carbon,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2020,GS1,86,Pulses Production,Economy,Agriculture,Agri,False,HARD,A,official-verified,False
+upsc,2020,GS1,87,Crop Description,Economy,Agriculture,Agri,False,MED,A,official-verified,False
+upsc,2020,GS1,88,Solar Water Pumps,Science & Technology,Tech & Innovation,Tech,False,EASY,D,official-verified,False
+upsc,2020,GS1,89,Sugarcane Cultivation,Economy,Agriculture,Agri,False,HARD,C,official-verified,False
+upsc,2020,GS1,90,Eco-Friendly Agri,Economy,Agriculture,Agri,False,MED,A,official-verified,False
+upsc,2020,GS1,91,Fertigation,Economy,Agriculture,Agri,False,MED,C,official-verified,False
+upsc,2020,GS1,92,Major Minerals,Geography,Physical/Human,Geo,False,HARD,D,official-verified,False
+upsc,2020,GS1,93,OMT (Ocean Mean Temperature),Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2020,GS1,94,Chemical Fertilizers,Economy,Agriculture,Agri,False,MED,B,official-verified,False
+upsc,2020,GS1,95,Desert National Park,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2020,GS1,96,Siachen Location,Geography,Physical/Human,Geo,False,EASY,D,official-verified,False
+upsc,2020,GS1,97,Historical Places,History,Ancient,Ancient,False,HARD,A,official-verified,False
+upsc,2020,GS1,98,Groundwater,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2020,GS1,99,Jet Streams + Cyclones,Geography,Physical/Human,Geo,False,MED,C,official-verified,False
+upsc,2020,GS1,100,Largest Critical Tiger Habitat,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,C,official-verified,False
+upsc,2021,GS1,1,RBI Governor,Polity,Governance,Polity-Eco,True,MED,C,official-verified,False
+upsc,2021,GS1,2,Casual Workers,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2021,GS1,3,Economic Recession Response,Economy,Macroeconomics,Economy,False,EASY,B,official-verified,False
+upsc,2021,GS1,4,Market Demand,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2021,GS1,5,Urban Cooperative Banks,Economy,Macroeconomics,Economy,False,HARD,B,official-verified,False
+upsc,2021,GS1,6,Bond Yields,Economy,Macroeconomics,Economy,False,EASY,D,official-verified,False
+upsc,2021,GS1,7,FDI Inclusions,Economy,Macroeconomics,Economy,False,HARD,A,official-verified,False
+upsc,2021,GS1,8,Devaluation,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2021,GS1,9,Black Money Worry,Economy,Macroeconomics,Economy,False,EASY,D,official-verified,False
+upsc,2021,GS1,10,Most Inflationary,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2021,GS1,11,Money Multiplier,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2021,GS1,12,Demand-Pull Inflation,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2021,GS1,13,Demat/Bonds,Economy,Macroeconomics,Economy,False,HARD,B,official-verified,False
+upsc,2021,GS1,14,WaterCredit,Current Affairs,International,IR-Eco,True,MED,C,official-verified,False
+upsc,2021,GS1,15,Lender of Last Resort,Economy,Macroeconomics,Economy,False,EASY,B,official-verified,False
+upsc,2021,GS1,16,R2 Code,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,A,official-verified,False
+upsc,2021,GS1,17,Copper Smelting,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2021,GS1,18,Furnace Oil,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,D,official-verified,False
+upsc,2021,GS1,19,Blue Carbon,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2021,GS1,20,Soil-less Surface Survivors,Environment & Ecology,Biodiversity,Bio,False,MED,C,official-verified,False
+upsc,2021,GS1,21,Lemongrass Mosquito,Environment & Ecology,Biodiversity,Bio,False,EASY,C,official-verified,False
+upsc,2021,GS1,22,Ocean Primary Producers,Environment & Ecology,Biodiversity,Bio,False,MED,B,official-verified,False
+upsc,2021,GS1,23,Rolling Animals,Environment & Ecology,Biodiversity,Bio,False,EASY,D,official-verified,False
+upsc,2021,GS1,24,NY Forests Declaration,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,A,official-verified,False
+upsc,2021,GS1,25,Magnetite Sources,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,B,official-verified,False
+upsc,2021,GS1,26,Filter Feeder,Environment & Ecology,Biodiversity,Bio,False,EASY,C,official-verified,False
+upsc,2021,GS1,27,Biogeochemical Rock Weathering,Environment & Ecology,Biodiversity,Bio,False,MED,C,official-verified,False
+upsc,2021,GS1,28,Detritivores,Environment & Ecology,Biodiversity,Bio,False,HARD,C,official-verified,False
+upsc,2021,GS1,29,Common Carbon Metric,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,A,official-verified,False
+upsc,2021,GS1,30,Symbiotic Relationships,Environment & Ecology,Biodiversity,Bio,False,EASY,D,official-verified,False
+upsc,2021,GS1,31,Chausath Yogini Temple,History,Ancient,Ancient,False,HARD,C,official-verified,False
+upsc,2021,GS1,32,Dholavira,History,Ancient,Ancient,False,MED,A,official-verified,False
+upsc,2021,GS1,33,Early EEIC Factories,History,Medieval,Medieval,False,HARD,A,official-verified,False
+upsc,2021,GS1,34,Post-Gupta Powers,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2021,GS1,35,Vijayanagara Women Skills,History,Medieval,Medieval,False,HARD,D,official-verified,False
+upsc,2021,GS1,36,Madanapalle,History,Modern,Modern,False,MED,C,official-verified,False
+upsc,2021,GS1,37,Burzahom Match,History,Ancient,Ancient,False,HARD,D,official-verified,False
+upsc,2021,GS1,38,Foreign Invasions Timing,History,Medieval,Medieval,False,HARD,A,official-verified,False
+upsc,2021,GS1,39,St Francis Xavier,History,Medieval,Medieval,False,MED,C,official-verified,False
+upsc,2021,GS1,40,Mitakshara vs Dayabhaga,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2021,GS1,41,Bhavabhuti,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2021,GS1,42,1919 Women Voting,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2021,GS1,43,8 Aug 1942,History,Modern,Modern,False,EASY,A,official-verified,False
+upsc,2021,GS1,44,Songs from Prison,History,Modern,Modern,False,EASY,C,official-verified,False
+upsc,2021,GS1,45,Medieval Admin Units,History,Medieval,Medieval,False,EASY,A,official-verified,False
+upsc,2021,GS1,46,Bethune School,History,Modern,Modern,False,MED,C,official-verified,False
+upsc,2021,GS1,47,INA Officers,History,Modern,Modern,False,EASY,D,official-verified,False
+upsc,2021,GS1,48,Nizamat of Arcot,History,Modern,Modern,False,HARD,B,official-verified,False
+upsc,2021,GS1,49,Ajanta River,History,Ancient,Ancient,False,EASY,A,official-verified,False
+upsc,2021,GS1,50,Mother Language Day,Current Affairs,General,CA,False,MED,B,official-verified,False
+upsc,2021,GS1,51,Permaculture,Economy,Agriculture,Agri,False,HARD,B,official-verified,False
+upsc,2021,GS1,52,Palm Oil,Economy,Agriculture,Agri,False,EASY,B,official-verified,False
+upsc,2021,GS1,53,Indus Direct Tributary,Geography,Physical/Human,Geo,False,HARD,D,official-verified,False
+upsc,2021,GS1,54,Saline Lakes,Geography,Physical/Human,Geo,False,MED,D,official-verified,False
+upsc,2021,GS1,55,Eastern Ghats Rivers,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2021,GS1,56,Ocean Mining,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2021,GS1,57,Least Water-Efficient,Economy,Agriculture,Agri,False,EASY,A,official-verified,False
+upsc,2021,GS1,58,Trade Winds + Westerlies,Geography,Physical/Human,Geo,False,MED,C,official-verified,False
+upsc,2021,GS1,59,Climate-Smart Village,Economy,Agriculture,Agri,False,MED,D,official-verified,False
+upsc,2021,GS1,60,Tropical Rainforest,Geography,Physical/Human,Geo,False,EASY,D,official-verified,False
+upsc,2021,GS1,61,Savannah Factors,Geography,Physical/Human,Geo,False,MED,C,official-verified,False
+upsc,2021,GS1,62,Water Distribution,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2021,GS1,63,Moringa + Tamarind,Economy,Agriculture,Agri,False,HARD,B,official-verified,False
+upsc,2021,GS1,64,Black Cotton Soil,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2021,GS1,65,Recombinant Vector Vaccines,Environment & Ecology,Biodiversity,Bio,False,MED,C,official-verified,False
+upsc,2021,GS1,66,Mitochondrial Disease,Environment & Ecology,Biodiversity,Bio,False,HARD,C,official-verified,False
+upsc,2021,GS1,67,Bollgard Tech,Environment & Ecology,Biodiversity,Bio,False,EASY,B,official-verified,False
+upsc,2021,GS1,68,Pressure Cooker,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2021,GS1,69,Synthetic Media Cultivation,Environment & Ecology,Biodiversity,Bio,False,EASY,A,official-verified,False
+upsc,2021,GS1,70,Adenovirus vs Retrovirus,Environment & Ecology,Biodiversity,Bio,False,MED,B,official-verified,False
+upsc,2021,GS1,71,Water Solvent,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,A,official-verified,False
+upsc,2021,GS1,72,Sodium vs LED,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2021,GS1,73,ACE2,Environment & Ecology,Biodiversity,Bio,False,MED,D,official-verified,False
+upsc,2021,GS1,74,BPA Plastic,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,B,official-verified,False
+upsc,2021,GS1,75,Triclosan,Environment & Ecology,Biodiversity,Bio,False,MED,D,official-verified,False
+upsc,2021,GS1,76,Light-Years,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,D,official-verified,False
+upsc,2021,GS1,77,UK vs India Parliament,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2021,GS1,78,Gopalaswamy Iyengar + ARC,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2021,GS1,79,Right to Privacy Article,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2021,GS1,80,LS Multi-Constituency,Polity,Governance,Polity,False,HARD,,official-dropped,True
+upsc,2021,GS1,81,Right to City,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2021,GS1,82,Judicial Custody,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2021,GS1,83,Parole,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2021,GS1,84,FRA Nodal Ministry,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2021,GS1,85,Unguided Discretion,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2021,GS1,86,Federal Feature,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2021,GS1,87,State Definition,Polity,Governance,Polity,False,EASY,A,official-verified,False
+upsc,2021,GS1,88,Retired Judge Recall,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2021,GS1,89,Citizenship,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2021,GS1,90,Liberty Safeguard,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2021,GS1,91,Wealth Concentration,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2021,GS1,92,Right to Property,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2021,GS1,93,26 Jan 1950 Status,Polity,Governance,Polity,False,EASY,B,official-verified,False
+upsc,2021,GS1,94,Constitutional Govt,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2021,GS1,95,"Halbi, Ho, Kui",History,Art & Culture,Culture,False,EASY,D,official-verified,False
+upsc,2021,GS1,96,Bharat Ratna & Padma,Current Affairs,General,CA,False,HARD,D,official-verified,False
+upsc,2021,GS1,97,Hyderabad Tree City,Current Affairs,General,CA,False,EASY,D,official-verified,False
+upsc,2021,GS1,98,Laureus World Sports Award,Current Affairs,General,CA,False,HARD,C,official-verified,False
+upsc,2021,GS1,99,Tokyo Olympics 2020,Current Affairs,General,CA,False,MED,B,official-verified,False
+upsc,2021,GS1,100,ICC World Test Championship,Current Affairs,General,CA,False,MED,D,official-verified,False
+upsc,2022,GS1,1,IMF Lending Instruments,Economy,Macroeconomics,Economy,False,EASY,B,official-verified,False
+upsc,2022,GS1,2,NEER/REER,Economy,Macroeconomics,Economy,False,HARD,C,official-verified,False
+upsc,2022,GS1,3,RBI Inflation Response,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2022,GS1,4,G20 Common Framework,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2022,GS1,5,Inflation-Indexed Bonds,Economy,Macroeconomics,Economy,False,HARD,A,official-verified,False
+upsc,2022,GS1,6,E-Commerce Platforms,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2022,GS1,7,Real Sector,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2022,GS1,8,Indirect Transfers,Economy,Macroeconomics,Economy,False,HARD,D,official-verified,False
+upsc,2022,GS1,9,Capital Expenditure,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2022,GS1,10,Household Savings + G-Secs,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2022,GS1,11,Contempt of Court,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2022,GS1,12,Bar Council,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2022,GS1,13,CA Bill,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2022,GS1,14,Ministers Rank,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2022,GS1,15,LS Exclusive Powers,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2022,GS1,16,Anti-Defection,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2022,GS1,17,AG & SG,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2022,GS1,18,Writs,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2022,GS1,19,Ayushman Bharat Digital Mission,Current Affairs,Schemes & Indices,Schemes,False,EASY,B,official-verified,False
+upsc,2022,GS1,20,Deputy Speaker LS,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2022,GS1,21,GHG from Crops,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2022,GS1,22,SRI Rice Intensification,Economy,Agriculture,Agri,False,MED,D,official-verified,False
+upsc,2022,GS1,23,Lake Faguibine,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2022,GS1,24,Gandikota Canyon,Geography,Physical/Human,Geo,False,MED,C,official-verified,False
+upsc,2022,GS1,25,Peak-Mountain Match,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2022,GS1,26,Levant,Geography,Physical/Human,Geo,False,MED,A,official-verified,False
+upsc,2022,GS1,27,Afghanistan Borders,Geography,Physical/Human,Geo,False,MED,C,official-verified,False
+upsc,2022,GS1,28,Monazite,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2022,GS1,29,Longest Day,Geography,Physical/Human,Geo,False,EASY,B,official-verified,False
+upsc,2022,GS1,30,Wetland-State Match,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2022,GS1,31,Open-Source Apps,Science & Technology,Tech & Innovation,Tech,False,EASY,D,official-verified,False
+upsc,2022,GS1,32,Web 3.0,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2022,GS1,33,SaaS,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2022,GS1,34,FOBS,Current Affairs,Defence,Defence,False,HARD,C,official-verified,False
+upsc,2022,GS1,35,Qubit,Science & Technology,Tech & Innovation,Tech,False,EASY,B,official-verified,False
+upsc,2022,GS1,36,Short-Range Tech,Science & Technology,Tech & Innovation,Tech,False,MED,D,official-verified,False
+upsc,2022,GS1,37,Biofilms,Environment & Ecology,Biodiversity,Bio,False,MED,D,official-verified,False
+upsc,2022,GS1,38,Probiotics,Environment & Ecology,Biodiversity,Bio,False,MED,C,official-verified,False
+upsc,2022,GS1,39,COVID Vaccines,Environment & Ecology,Biodiversity,Bio,False,HARD,B,official-verified,False
+upsc,2022,GS1,40,Solar Storm Effects,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2022,GS1,41,Climate Action Tracker,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2022,GS1,42,EP100/Climate Group,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,B,official-verified,False
+upsc,2022,GS1,43,Wetlands as Kidneys,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,D,official-verified,False
+upsc,2022,GS1,44,WHO Air Quality,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,B,official-verified,False
+upsc,2022,GS1,45,Gucchi,Environment & Ecology,Biodiversity,Bio,False,MED,C,official-verified,False
+upsc,2022,GS1,46,PET Plastic,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,A,official-verified,False
+upsc,2022,GS1,47,Not a Bird,Environment & Ecology,Biodiversity,Bio,False,EASY,A,official-verified,False
+upsc,2022,GS1,48,Nitrogen-Fixing Plants,Environment & Ecology,Biodiversity,Bio,False,MED,A,official-verified,False
+upsc,2022,GS1,49,Biorock,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2022,GS1,50,Miyawaki,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,C,official-verified,False
+upsc,2022,GS1,51,GoI 1919 Reserved,History,Modern,Modern,False,HARD,C,official-verified,False
+upsc,2022,GS1,52,Fanam,History,Medieval,Medieval,False,EASY,B,official-verified,False
+upsc,2022,GS1,53,Ghadar Party,History,Modern,Modern,False,MED,D,official-verified,False
+upsc,2022,GS1,54,Cripps Mission,History,Modern,Modern,False,MED,B,official-verified,False
+upsc,2022,GS1,55,Jaina Texts,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2022,GS1,56,Scholar Match,History,Ancient,Ancient,False,HARD,C,official-verified,False
+upsc,2022,GS1,57,Mongol Invasions,History,Medieval,Medieval,False,HARD,B,official-verified,False
+upsc,2022,GS1,58,Kulah-Daran,History,Medieval,Medieval,False,HARD,D,official-verified,False
+upsc,2022,GS1,59,European Trade,History,Medieval,Medieval,False,HARD,B,official-verified,False
+upsc,2022,GS1,60,Arthashastra Slavery,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2022,GS1,61,Fed Tightening,Economy,Macroeconomics,Economy,False,HARD,,official-dropped,True
+upsc,2022,GS1,62,Tea-Producing States,Economy,Agriculture,Agri,False,MED,D,official-verified,False
+upsc,2022,GS1,63,Credit Rating Agencies,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2022,GS1,64,Banks Board Bureau,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2022,GS1,65,Convertible Bonds,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2022,GS1,66,AIIB-MTCR-SCO,Current Affairs,International,IR,False,EASY,D,official-verified,False
+upsc,2022,GS1,67,Vietnam Economy,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2022,GS1,68,Price Stability,Economy,Macroeconomics,Economy,False,EASY,D,official-verified,False
+upsc,2022,GS1,69,NFTs,Science & Technology,Tech & Innovation,Tech,False,EASY,A,official-verified,False
+upsc,2022,GS1,70,Reservoir-State Match,Geography,Physical/Human,Geo,False,HARD,C,official-verified,False
+upsc,2022,GS1,71,Labour Bureau,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2022,GS1,72,Coal Controller Organisation,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2022,GS1,73,5th Schedule Consequence,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2022,GS1,74,India Sanitation Coalition + NIUA,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2022,GS1,75,EPA 1986 Body,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2022,GS1,76,UN Credentials Committee,Current Affairs,International,IR,False,HARD,A,official-verified,False
+upsc,2022,GS1,77,Polar Code,Current Affairs,International,IR,False,EASY,A,official-verified,False
+upsc,2022,GS1,78,UNGA Observer,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2022,GS1,79,Tea Board,Economy,Macroeconomics,Economy,False,HARD,D,official-verified,False
+upsc,2022,GS1,80,Greenwashing,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,A,official-verified,False
+upsc,2022,GS1,81,Clouds,Geography,Physical/Human,Geo,False,HARD,D,official-verified,False
+upsc,2022,GS1,82,Bidibidi Refugees,Current Affairs,International,IR,False,HARD,C,official-verified,False
+upsc,2022,GS1,83,Organization of Turkic States,Current Affairs,International,IR,False,HARD,C,official-verified,False
+upsc,2022,GS1,84,Solar Projects India,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,B,official-verified,False
+upsc,2022,GS1,85,UNCLOS,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2022,GS1,86,Senkaku Islands,Current Affairs,International,IR,False,EASY,B,official-verified,False
+upsc,2022,GS1,87,Crisis Match,Current Affairs,International,IR,False,HARD,C,official-verified,False
+upsc,2022,GS1,88,Region-Country,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2022,GS1,89,Wildlife Laws,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,B,official-verified,False
+upsc,2022,GS1,90,Fungi Cultivators,Environment & Ecology,Biodiversity,Bio,False,EASY,A,official-verified,False
+upsc,2022,GS1,91,Ashoka Rock Edicts,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2022,GS1,92,King-Dynasty,History,Medieval,Medieval,False,HARD,B,official-verified,False
+upsc,2022,GS1,93,Sangam Literature,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2022,GS1,94,Yogavasistha,History,Medieval,Medieval,False,HARD,A,official-verified,False
+upsc,2022,GS1,95,Ramanuja,History,Art & Culture,Religion,False,MED,A,official-verified,False
+upsc,2022,GS1,96,Somnath Temple,History,Art & Culture,Religion,False,MED,A,official-verified,False
+upsc,2022,GS1,97,B & T Cells,Environment & Ecology,Biodiversity,Bio,False,EASY,D,official-verified,False
+upsc,2022,GS1,98,Plastic Nanoparticles,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,D,official-verified,False
+upsc,2022,GS1,99,DNA Barcoding,Environment & Ecology,Biodiversity,Bio,False,MED,D,official-verified,False
+upsc,2022,GS1,100,Acid Rain,Environment & Ecology,Ecology/Biodiversity,Env,False,EASY,B,official-verified,False
+upsc,2023,GS1,1,Lakes-Rivers,Geography,Physical/Human,Geography,False,MED,A,official-verified,False
+upsc,2023,GS1,2,Ports Match,Geography,Physical/Human,Geography,False,MED,B,official-verified,False
+upsc,2023,GS1,3,Deciduous Trees,Environment & Ecology,Biodiversity,Botany,False,MED,B,official-verified,False
+upsc,2023,GS1,4,India vs China Agriculture,Geography,Economic Geography,Geography-Eco,True,HARD,A,official-verified,False
+upsc,2023,GS1,5,Marshland from Sea Falls,Geography,Physical/Human,Geography,False,EASY,D,official-verified,False
+upsc,2023,GS1,6,Ilmenite & Rutile,Geography,Physical/Human,Geography,False,EASY,D,official-verified,False
+upsc,2023,GS1,7,Cobalt Producer,Geography,Physical/Human,Geography,False,EASY,C,official-verified,False
+upsc,2023,GS1,8,Congo Basin,Geography,World,World Geo,False,MED,A,official-verified,False
+upsc,2023,GS1,9,Indian Hills,Geography,Physical/Human,Geography,False,HARD,D,official-verified,False
+upsc,2023,GS1,10,Connectivity Projects,Geography,Physical/Human,Geography,False,HARD,D,official-verified,False
+upsc,2023,GS1,11,Uranium,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2023,GS1,12,Marsupials,Environment & Ecology,Biodiversity,Biology,False,EASY,C,official-verified,False
+upsc,2023,GS1,13,ISSG / IUCN,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,A,official-verified,False
+upsc,2023,GS1,14,Nocturnal Fauna,Environment & Ecology,Biodiversity,Biology,False,MED,A,official-verified,False
+upsc,2023,GS1,15,Waggle Dance,Environment & Ecology,Biodiversity,Biology,False,EASY,C,official-verified,False
+upsc,2023,GS1,16,Mushrooms,Environment & Ecology,Biodiversity,Biology,False,EASY,D,official-verified,False
+upsc,2023,GS1,17,Indian Squirrels,Environment & Ecology,Biodiversity,Biology,False,MED,B,official-verified,False
+upsc,2023,GS1,18,Extremophiles,Environment & Ecology,Biodiversity,Biology,False,EASY,C,official-verified,False
+upsc,2023,GS1,19,Tool Use Animal,Environment & Ecology,Biodiversity,Biology,False,EASY,B,official-verified,False
+upsc,2023,GS1,20,HFC Uses,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,C,official-verified,False
+upsc,2023,GS1,21,InvITs,Economy,Macroeconomics,Economy,False,HARD,D,official-verified,False
+upsc,2023,GS1,22,Central Bank Rate Hikes,Economy,Macroeconomics,Economy,False,EASY,A,official-verified,False
+upsc,2023,GS1,23,Carbon Markets,Economy,Macroeconomics,Eco-Env,True,MED,B,official-verified,False
+upsc,2023,GS1,24,Sterilization RBI,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2023,GS1,25,Capital Markets,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2023,GS1,26,Small Farmer Large Field,Economy,Agriculture,Agri,False,EASY,B,official-verified,False
+upsc,2023,GS1,27,Niger Seeds,Economy,Agriculture,Agri,False,MED,C,official-verified,False
+upsc,2023,GS1,28,Intangible Assets,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2023,GS1,29,15th FC Criteria,Polity,Governance,Polity-Eco,True,MED,B,official-verified,False
+upsc,2023,GS1,30,UNOPS S3i,Current Affairs,International,IR-Eco,True,HARD,C,official-verified,False
+upsc,2023,GS1,31,Due Process of Law,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2023,GS1,32,Prisons,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2023,GS1,33,Constitution Purpose,Polity,Governance,Polity,False,EASY,C,official-verified,False
+upsc,2023,GS1,34,1st Amendment,Polity,Governance,Polity,False,MED,,official-dropped,True
+upsc,2023,GS1,35,Constitutional Bodies,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2023,GS1,36,President Election,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2023,GS1,37,Finance vs Money Bill,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2023,GS1,38,Community Reserve,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,B,official-verified,False
+upsc,2023,GS1,39,Scheduled Areas,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2023,GS1,40,Art 16(4) & 335,Polity,Governance,Polity,False,HARD,C,official-verified,False
+upsc,2023,GS1,41,Dhanyakataka,History,Ancient,Ancient,False,MED,A,official-verified,False
+upsc,2023,GS1,42,Stupa,History,Ancient,Ancient,False,EASY,B,official-verified,False
+upsc,2023,GS1,43,Sangam Ports,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2023,GS1,44,Vattakirutal,History,Ancient,Ancient,False,HARD,D,official-verified,False
+upsc,2023,GS1,45,Dynasties 8th CE,History,Medieval,Medieval,False,HARD,D,official-verified,False
+upsc,2023,GS1,46,Literary Works,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2023,GS1,47,Souls in Rocks,History,Ancient,Ancient,False,EASY,B,official-verified,False
+upsc,2023,GS1,48,Tungabhadra Dam Vijayanagara,History,Medieval,Medieval,False,MED,A,official-verified,False
+upsc,2023,GS1,49,Diu Surrender,History,Medieval,Medieval,False,EASY,C,official-verified,False
+upsc,2023,GS1,50,GG India Designation,History,Modern,Modern,False,EASY,D,official-verified,False
+upsc,2023,GS1,51,JSY,Current Affairs,Schemes & Indices,Schemes,False,EASY,B,official-verified,False
+upsc,2023,GS1,52,Anaemia Mukt Bharat,Current Affairs,Schemes & Indices,Schemes,False,MED,C,official-verified,False
+upsc,2023,GS1,53,Carbon Fibres,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,A,official-verified,False
+upsc,2023,GS1,54,Accelerometer,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,C,official-verified,False
+upsc,2023,GS1,55,Biofilters RAS,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,B,official-verified,False
+upsc,2023,GS1,56,Cepheids-Nebulae-Pulsars,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,A,official-verified,False
+upsc,2023,GS1,57,Satellite Navigation,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,D,official-verified,False
+upsc,2023,GS1,58,Ballistic vs Cruise,Current Affairs,Defence,Defense,False,HARD,D,official-verified,False
+upsc,2023,GS1,59,Mercury Pollution,Environment & Ecology,Ecology/Biodiversity,Environment,False,EASY,B,official-verified,False
+upsc,2023,GS1,60,Green Hydrogen Uses,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,C,official-verified,False
+upsc,2023,GS1,61,Ukraine Borders,Geography,World,World Geo,False,HARD,A,official-verified,False
+upsc,2023,GS1,62,Atmosphere Insolation,Geography,Physical/Human,Geography,False,MED,C,official-verified,False
+upsc,2023,GS1,63,Rainforest Soil,Geography,Physical/Human,Geography,False,MED,D,official-verified,False
+upsc,2023,GS1,64,Continent-Ocean Temp,Geography,Physical/Human,Geography,False,MED,D,official-verified,False
+upsc,2023,GS1,65,P & S Waves,Geography,Physical/Human,Geography,False,EASY,C,official-verified,False
+upsc,2023,GS1,66,Coal Thermal Plants,Economy,Macroeconomics,Eco-Env,True,EASY,D,official-verified,False
+upsc,2023,GS1,67,Wolbachia Method,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,A,official-verified,False
+upsc,2023,GS1,68,Carbon Sequestration,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,C,official-verified,False
+upsc,2023,GS1,69,Aerial Metagenomics,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,A,official-verified,False
+upsc,2023,GS1,70,Microsatellite DNA,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,A,official-verified,False
+upsc,2023,GS1,71,MSMED Act,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2023,GS1,72,CBDC,Economy,Macroeconomics,Economy,False,EASY,C,official-verified,False
+upsc,2023,GS1,73,Beta,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2023,GS1,74,SHGs,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2023,GS1,75,India Healthcare,Polity,Governance,Polity-Health,True,MED,B,official-verified,False
+upsc,2023,GS1,76,Groundwater,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,C,official-verified,False
+upsc,2023,GS1,77,Internal Security Law,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2023,GS1,78,Somalia,Current Affairs,International,IR-Geo,True,EASY,D,official-verified,False
+upsc,2023,GS1,79,BMC Nagoya,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,C,official-verified,False
+upsc,2023,GS1,80,President Election Math,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2023,GS1,81,Archaeologists,History,Modern,Modern History,False,MED,A,official-verified,False
+upsc,2023,GS1,82,Cave Shrines,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2023,GS1,83,Handloom Day,Current Affairs,General,CA,False,EASY,A,official-verified,False
+upsc,2023,GS1,84,Flag Code,Current Affairs,General,CA,False,MED,D,official-verified,False
+upsc,2023,GS1,85,Constitution Day,Current Affairs,National,CA-Polity,True,MED,C,official-verified,False
+upsc,2023,GS1,86,Switzerland Gold,Current Affairs,International,IR-Eco,True,MED,C,official-verified,False
+upsc,2023,GS1,87,US-EU TTC,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2023,GS1,88,India PLI Export,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2023,GS1,89,EU Stability Pact,Current Affairs,International,IR-Eco,True,MED,A,official-verified,False
+upsc,2023,GS1,90,GCM Migration,Current Affairs,International,IR,False,HARD,D,official-verified,False
+upsc,2023,GS1,91,Home Guards,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2023,GS1,92,Act Match,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2023,GS1,93,Conflict Regions,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2023,GS1,94,Israel-Arab,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2023,GS1,95,Sports Awards,Current Affairs,General,CA,False,MED,B,official-verified,False
+upsc,2023,GS1,96,Chess Olympiad 44th,Current Affairs,General,CA,False,HARD,B,official-verified,False
+upsc,2023,GS1,97,Donbas-Kachin-Tigray,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2023,GS1,98,Chad-Guinea-Mali-Sudan,Current Affairs,International,IR,False,EASY,D,official-verified,False
+upsc,2023,GS1,99,Green Hydrogen Industries,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,C,official-verified,False
+upsc,2023,GS1,100,G-20,Current Affairs,International,IR,False,EASY,C,official-verified,False
+upsc,2024,GS1,1,Atmosphere Heating,Geography,Physical/Human,Geography,False,MED,D,official-verified,False
+upsc,2024,GS1,2,Troposphere Thickness,Geography,Physical/Human,Geography,False,MED,A,official-verified,False
+upsc,2024,GS1,3,Volcanic Eruption Products,Geography,Physical/Human,Geography,False,EASY,D,official-verified,False
+upsc,2024,GS1,4,January Isotherms,Geography,Physical/Human,Geography,False,HARD,A,official-verified,False
+upsc,2024,GS1,5,Cocoa Producers,Geography,Physical/Human,Geography,False,EASY,C,official-verified,False
+upsc,2024,GS1,6,Himalayan Rivers Sequence,Geography,Physical/Human,Geography,False,MED,B,official-verified,False
+upsc,2024,GS1,7,Rainfall Weathering,Geography,Physical/Human,Geography,False,MED,A,official-verified,False
+upsc,2024,GS1,8,North Sea Countries,Geography,Physical/Human,Geography,False,MED,B,official-verified,False
+upsc,2024,GS1,9,Waterfall-Region-River Match,Geography,Physical/Human,Geography,False,HARD,A,official-verified,False
+upsc,2024,GS1,10,Mountain Range Types,Geography,Physical/Human,Geography,False,MED,B,official-verified,False
+upsc,2024,GS1,11,Greenfield Airports,Current Affairs,Schemes & Indices,Schemes,False,EASY,A,official-verified,False
+upsc,2024,GS1,12,Water Vapour,Geography,Physical/Human,Geography,False,MED,A,official-verified,False
+upsc,2024,GS1,13,Climate Type Identification,Geography,Physical/Human,Geography,False,MED,D,official-verified,False
+upsc,2024,GS1,14,Coriolis Force,Geography,Physical/Human,Geography,False,MED,C,official-verified,False
+upsc,2024,GS1,15,June 21 Sunlight,Geography,Physical/Human,Geography,False,MED,D,official-verified,False
+upsc,2024,GS1,16,Largest Tropical Peatland,Environment & Ecology,Ecology/Biodiversity,Environment,False,HARD,B,official-verified,False
+upsc,2024,GS1,17,PFAS,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,D,official-verified,False
+upsc,2024,GS1,18,Parasitoid Species,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,B,official-verified,False
+upsc,2024,GS1,19,Pea Family,Environment & Ecology,Biodiversity,Botany,False,EASY,C,official-verified,False
+upsc,2024,GS1,20,Indian Flying Fox,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,,official-dropped,True
+upsc,2024,GS1,21,Cicada/Froghopper/Pond Skater,Environment & Ecology,Ecology/Biodiversity,Environment,False,EASY,C,official-verified,False
+upsc,2024,GS1,22,Chewing Gum Pollution,Environment & Ecology,Ecology/Biodiversity,Environment,False,MED,A,official-verified,False
+upsc,2024,GS1,23,Country-Animal Pairs,Environment & Ecology,Ecology/Biodiversity,Environment,False,HARD,D,official-verified,False
+upsc,2024,GS1,24,World Toilet Organization,Current Affairs,International,IR-CA,True,MED,A,official-verified,False
+upsc,2024,GS1,25,Big Cats,Environment & Ecology,Ecology/Biodiversity,Environment,False,HARD,A,official-verified,False
+upsc,2024,GS1,26,100 Million Farmers,Current Affairs,Schemes & Indices,CA-Agri,True,HARD,A,official-verified,False
+upsc,2024,GS1,27,Distributed Energy Resources,Economy,Macroeconomics,Sci-Eco,True,EASY,D,official-verified,False
+upsc,2024,GS1,28,Fig-Wasp,Environment & Ecology,Biodiversity,Botany,False,MED,A,official-verified,False
+upsc,2024,GS1,29,Poisonous Species,Environment & Ecology,Biodiversity,Biology,False,MED,C,official-verified,False
+upsc,2024,GS1,30,Native Trees,Environment & Ecology,Biodiversity,Botany,False,HARD,A,official-verified,False
+upsc,2024,GS1,31,RTGs,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,B,official-verified,False
+upsc,2024,GS1,32,Giant Stars,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,D,official-verified,False
+upsc,2024,GS1,33,Blood Vessel Dilator,Environment & Ecology,Biodiversity,Biology,False,MED,A,official-verified,False
+upsc,2024,GS1,34,Radar Uses,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,B,official-verified,False
+upsc,2024,GS1,35,Fifth Gen Fighters,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,D,official-verified,False
+upsc,2024,GS1,36,Hydrogels,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,A,official-verified,False
+upsc,2024,GS1,37,Fuel Cell EV Exhaust,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,D,official-verified,False
+upsc,2024,GS1,38,Pumped Storage Hydro,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,C,official-verified,False
+upsc,2024,GS1,39,Membrane Bioreactor,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,D,official-verified,False
+upsc,2024,GS1,40,CBLO,Economy,Macroeconomics,Economy,False,HARD,C,official-verified,False
+upsc,2024,GS1,41,Total Fertility Rate,Economy,Demography,Eco-Demog,True,EASY,D,official-verified,False
+upsc,2024,GS1,42,NBFC/FII/SE,Economy,Macroeconomics,Economy,False,MED,C,official-verified,False
+upsc,2024,GS1,43,Bond Trading Participants,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2024,GS1,44,Financial Instruments,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2024,GS1,45,Economic Sectors,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2024,GS1,46,SAF Feedstock,Economy,Macroeconomics,Eco-Sci,True,MED,C,official-verified,False
+upsc,2024,GS1,47,Physical Capital,Economy,Macroeconomics,Economy,False,MED,B,official-verified,False
+upsc,2024,GS1,48,Metaverse,Science & Technology,Tech & Innovation,Sci-Tech,False,EASY,C,official-verified,False
+upsc,2024,GS1,49,RBI Foreign Banks Rules,Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2024,GS1,50,CSR Rules,Economy,Macroeconomics,Economy,False,MED,A,official-verified,False
+upsc,2024,GS1,51,US Debt Default,Economy,Macroeconomics,Economy-IR,True,HARD,A,official-verified,False
+upsc,2024,GS1,52,Syndicated Lending,Economy,Macroeconomics,Economy,False,MED,,official-dropped,True
+upsc,2024,GS1,53,Digital Rupee (CBDC),Economy,Macroeconomics,Economy,False,MED,D,official-verified,False
+upsc,2024,GS1,54,Buddha Epithets,History,Ancient,Ancient History,False,MED,B,official-verified,False
+upsc,2024,GS1,55,Archaeological Sites,History,Ancient,Ancient History,False,HARD,B,official-verified,False
+upsc,2024,GS1,56,Bhatkal Fort,History,Medieval,Medieval History,False,HARD,A,official-verified,False
+upsc,2024,GS1,57,Cornwallis Revenue,History,Modern,Modern History,False,MED,,official-dropped,True
+upsc,2024,GS1,58,Upanishads,History,Ancient,Ancient History,False,MED,B,official-verified,False
+upsc,2024,GS1,59,Int'l Grains Council,Current Affairs,International,IR-Agri,True,MED,A,official-verified,False
+upsc,2024,GS1,60,UNESCO ICH Latest,Current Affairs,Awards & Appointments,Culture-CA,True,EASY,C,official-verified,False
+upsc,2024,GS1,61,CA Provisional President,History,Modern,Modern History,False,MED,D,official-verified,False
+upsc,2024,GS1,62,Government of India Act 1935,History,Modern,Modern History,False,MED,A,official-verified,False
+upsc,2024,GS1,63,Bhasa Work,History,Ancient,Ancient History,False,HARD,C,official-verified,False
+upsc,2024,GS1,64,Sanghabhuti,History,Ancient,Ancient History,False,HARD,C,official-verified,False
+upsc,2024,GS1,65,UNESCO WH 2023,Current Affairs,Awards & Appointments,Culture-CA,True,EASY,B,official-verified,False
+upsc,2024,GS1,66,Article 368,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2024,GS1,67,Low Birth Rate Countries,Economy,Demography,Demography,False,MED,A,official-verified,False
+upsc,2024,GS1,68,Money Bill,Polity,Governance,Polity,False,HARD,C,official-verified,False
+upsc,2024,GS1,69,Military Ranks,Current Affairs,Defence,Defense,False,MED,D,official-verified,False
+upsc,2024,GS1,70,NEC Composition,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2024,GS1,71,Delimitation Commissions,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2024,GS1,72,71st CA Languages,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2024,GS1,73,Party-Leader Match,History,Modern,Modern History,False,HARD,B,official-verified,False
+upsc,2024,GS1,74,Constitution Parts,Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2024,GS1,75,Lists 7th Schedule,Polity,Governance,Polity,False,HARD,C,official-verified,False
+upsc,2024,GS1,76,Right to Privacy,Polity,Governance,Polity,False,EASY,D,official-verified,False
+upsc,2024,GS1,77,CDS Duties,Current Affairs,Defence,Defense,False,MED,D,official-verified,False
+upsc,2024,GS1,78,Op Sadbhavana,Current Affairs,Defence,Defense,False,MED,C,official-verified,False
+upsc,2024,GS1,79,Longest Border,Geography,Physical/Human,Geography,False,EASY,A,official-verified,False
+upsc,2024,GS1,80,Ethics Committee,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2024,GS1,81,Nari Shakti Vandan,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2024,GS1,82,Ex Mitra Shakti,Current Affairs,Defence,Defense,False,MED,D,official-verified,False
+upsc,2024,GS1,83,Writ of Prohibition,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2024,GS1,84,ST Recognition,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2024,GS1,85,Union Budget,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2024,GS1,86,India Way / Why Bharat Matters,Current Affairs,International,CA-IR,True,EASY,D,official-verified,False
+upsc,2024,GS1,87,Country News,Current Affairs,International,IR-CA,True,MED,B,official-verified,False
+upsc,2024,GS1,88,Sumed Pipeline,Current Affairs,International,IR-Eco,True,HARD,A,official-verified,False
+upsc,2024,GS1,89,Red Sea,Geography,Physical/Human,Geography,False,MED,C,official-verified,False
+upsc,2024,GS1,90,SO₂ Emissions,Environment & Ecology,Ecology/Biodiversity,Environment,False,EASY,D,official-verified,False
+upsc,2024,GS1,91,Sahel Region,Current Affairs,International,IR-Geo,True,HARD,A,official-verified,False
+upsc,2024,GS1,92,Apples Import,Economy,Macroeconomics,Eco-IR,True,MED,D,official-verified,False
+upsc,2024,GS1,93,Speaker Removal,Polity,Governance,Polity,False,MED,A,official-verified,False
+upsc,2024,GS1,94,Bills Lapse,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2024,GS1,95,Prorogation,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2024,GS1,96,Net-Zero Industry Act,Environment & Ecology,Global Environmental Agreements,IR-Env,True,MED,C,official-verified,False
+upsc,2024,GS1,97,Venezuela,Current Affairs,International,IR,False,MED,D,official-verified,False
+upsc,2024,GS1,98,Digital India Land Records,Current Affairs,Schemes & Indices,Schemes,False,MED,D,official-verified,False
+upsc,2024,GS1,99,PM Surakshit Matritva,Current Affairs,Schemes & Indices,Schemes,False,EASY,B,official-verified,False
+upsc,2024,GS1,100,PM-SYM Yojana,Current Affairs,Schemes & Indices,Schemes,False,MED,B,official-verified,False
+upsc,2025,GS1,1,With reference to investments... Alternative Investment Funds,Economy,Financial Markets,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,2,Sources of income for the Reserve Bank of India,Economy,Banking & Finance,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,3,Directorate of Enforcement / Revenue Intelligence table match,Polity,Governance,manual_tag_no_decoder,False,medium-hard,A,official-verified,False
+upsc,2025,GS1,4,RBSR / Business Responsibility and Sustainability Report,Economy,Corporate Regulation,manual_tag_no_decoder,False,easy-medium,B,official-verified,False
+upsc,2025,GS1,5,Agricultural income tax exemption statements,Economy,Taxation,manual_tag_no_decoder,False,easy-medium,D,official-verified,False
+upsc,2025,GS1,6,Minerals Security Partnership / Mines Act 2023 amendment,Current Affairs,Schemes & Indices,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,7,Bondholders vs stockholders risk,Economy,Financial Markets,manual_tag_no_decoder,False,easy-medium,A,official-verified,False
+upsc,2025,GS1,8,India equity options trading statements,Economy,Financial Markets,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,9,Circular economy statements,Environment & Ecology,Climate & Pollution,manual_tag_no_decoder,False,easy-medium,A,official-verified,False
+upsc,2025,GS1,10,Capital receipts statements,Economy,Fiscal Policy,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,11,Raja Ram Mohan Roy statements,History,Modern,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,12,Non-Cooperation Programme subjects,History,Modern,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,13,Araghatta irrigation device,History,Medieval,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,14,Pallava king titles Mattavilasa/Vichitrachitta/Gunabhara,History,Ancient,manual_tag_no_decoder,False,hard,A,official-verified,False
+upsc,2025,GS1,15,Fa-hien Chinese pilgrim / Gupta king,History,Ancient,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,16,Srivijaya military campaign,History,Ancient,manual_tag_no_decoder,False,hard,C,official-verified,False
+upsc,2025,GS1,17,Territorial region-river pairs 600-322 BC,History,Ancient,manual_tag_no_decoder,False,hard,B,official-verified,False
+upsc,2025,GS1,18,Gandharva Mahavidyalaya founder,History,Modern,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,19,Ashokan inscriptions Pradeshika/Rajuka/Yukta,History,Ancient,manual_tag_no_decoder,False,hard,B,official-verified,False
+upsc,2025,GS1,20,Non-Cooperation Movement statements,History,Modern,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,21,NATO member countries count,Current Affairs,International,manual_tag_no_decoder,False,easy-medium,B,official-verified,False
+upsc,2025,GS1,22,Andes mountains countries,Geography,World,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,23,Equator-crossing water bodies,Geography,Physical,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,24,Turmeric production statements 2022-23,Economy,Agriculture,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,25,Continental drift evidences,Geography,Physical,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,26,Dust particles subtropical vs equatorial regions,Geography,Climatology,manual_tag_no_decoder,False,medium-hard,C,official-verified,False
+upsc,2025,GS1,27,January isotherms statements,Geography,Climatology,manual_tag_no_decoder,False,medium-hard,A,official-verified,False
+upsc,2025,GS1,28,Rock permeability chalk vs clay,Geography,Physical,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,29,Atmosphere/greenhouse gas statements,Environment & Ecology,Climate & Pollution,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,30,Rashtriya Gokul Mission,Current Affairs,Schemes & Indices,manual_tag_no_decoder,False,easy,C,official-verified,False
+upsc,2025,GS1,31,Cement industry carbon emissions,Environment & Ecology,Climate & Pollution,manual_tag_no_decoder,False,medium-hard,B,official-verified,False
+upsc,2025,GS1,32,COP28 Declaration on Climate and Health,Current Affairs,International,manual_tag_no_decoder,False,medium-hard,C,official-verified,False
+upsc,2025,GS1,33,"Earth's rotation/axis shift, solar flares",Science & Technology,Earth Science,manual_tag_no_decoder,False,medium-hard,B,official-verified,False
+upsc,2025,GS1,34,Paris Agreement Article 6,Current Affairs,International,manual_tag_no_decoder,False,medium-hard,A,official-verified,False
+upsc,2025,GS1,35,Nature Solutions Finance Hub for Asia-Pacific (ADB),Current Affairs,International,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,36,Direct Air Capture technology,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,37,Peacock/Gooty tarantula,Environment & Ecology,Biodiversity,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,38,CO2 emissions India statements,Environment & Ecology,Climate & Pollution,manual_tag_no_decoder,False,medium-hard,C,official-verified,False
+upsc,2025,GS1,39,Plant descriptions match (Cassava/Ginger/Malabar spinach/Mint/Papaya),Environment & Ecology,Biodiversity,manual_tag_no_decoder,False,hard,B,official-verified,False
+upsc,2025,GS1,40,Oxygen production rainforest vs ocean phytoplankton,Environment & Ecology,Biodiversity,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,41,Alternative powertrain vehicles,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,easy-medium,C,official-verified,False
+upsc,2025,GS1,42,UAV statements,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,43,EV battery cathode elements,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,44,Plastic-containing items,Environment & Ecology,Pollution,manual_tag_no_decoder,False,easy,C,official-verified,False
+upsc,2025,GS1,45,Coal gasification technology substances,Science & Technology,Chemistry,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,46,CL-20/HMX/LLM-105 explosives,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,hard,B,official-verified,False
+upsc,2025,GS1,47,Majorana 1 chip quantum computing,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,medium-hard,C,official-verified,False
+upsc,2025,GS1,48,Monoclonal antibodies statements,Science & Technology,Biology,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,49,Virus capability statements,Science & Technology,Biology,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,50,Activated carbon statements,Science & Technology,Chemistry,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,51,Ordinance-making power statements,Polity,Constitutional Provisions,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,52,State formation pairs Arunachal/Nagaland/Tripura,History,Modern,manual_tag_no_decoder,False,hard,C,official-verified,False
+upsc,2025,GS1,53,Inter-State Council/National Security Council/Zonal Councils,Polity,Governance,manual_tag_no_decoder,False,medium-hard,A,official-verified,False
+upsc,2025,GS1,54,Governor discretion / President reserving State bills,Polity,Constitutional Provisions,manual_tag_no_decoder,False,medium-hard,A,official-verified,False
+upsc,2025,GS1,55,DPSP/Fundamental Duties/Fundamental Rights pairs,Polity,Constitutional Provisions,manual_tag_no_decoder,False,hard,C,official-verified,False
+upsc,2025,GS1,56,Fifth Schedule Scheduled Area statements,Polity,Constitutional Provisions,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,57,National Automotive Board/Coir Board ministries,Current Affairs,National,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,58,Constitutional amendment ratification requirement,Polity,Constitutional Provisions,manual_tag_no_decoder,False,hard,A,official-verified,False
+upsc,2025,GS1,59,Governor court immunity / MLA privileges,Polity,Constitutional Provisions,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,60,Petroleum and Natural Gas Regulatory Board activities,Economy,Energy,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,61,Revenue/fiscal/primary deficit numerical,Economy,Fiscal Policy,manual_tag_no_decoder,False,hard,D,official-verified,False
+upsc,2025,GS1,62,International North-South Transport Corridor,Current Affairs,International,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,63,Ethanol producers Brazil vs USA,Economy,Financial Markets,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,64,Wet-bulb temperature World Bank report,Environment & Ecology,Climate & Pollution,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,65,Fiscal deficit / gross primary deficit numerical,Economy,Fiscal Policy,manual_tag_no_decoder,False,hard,A,official-verified,False
+upsc,2025,GS1,66,15th Finance Commission recommendations,Economy,Public Finance,manual_tag_no_decoder,False,medium-hard,C,official-verified,False
+upsc,2025,GS1,67,IBRD statements,Economy,Banking & Finance,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,68,RTGS vs NEFT statements,Economy,Banking & Finance,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,69,UPI international merchant payment countries,Current Affairs,Schemes & Indices,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,70,PM Surya Ghar Muft Bijli Yojana,Current Affairs,Schemes & Indices,manual_tag_no_decoder,False,easy-medium,D,official-verified,False
+upsc,2025,GS1,71,Gandhiji 'Sedition has become my religion',History,Modern,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,72,Dancing Girl Mohenjo-daro material,History,Ancient,manual_tag_no_decoder,False,easy,C,official-verified,False
+upsc,2025,GS1,73,Chauri Chaura incident legal defence,History,Modern,manual_tag_no_decoder,False,medium-hard,B,official-verified,False
+upsc,2025,GS1,74,Gandhiji and Harijan upliftment / Poona Pact,History,Modern,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,75,Fruits introduced by Portuguese,History,Modern,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,76,Countries with more than 4 time zones,Current Affairs,International,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,77,International Date Line Anadyr/Nome,Current Affairs,International,manual_tag_no_decoder,False,medium-hard,A,official-verified,False
+upsc,2025,GS1,78,Self-Respect Movement founder,History,Modern,manual_tag_no_decoder,False,easy,A,official-verified,False
+upsc,2025,GS1,79,Resource-rich country pairs,Current Affairs,International,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,80,Europe region-country pairs,Current Affairs,International,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,81,Rare earth elements TV screens,Science & Technology,Materials Science,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,82,"Indian Railways National Rail Plan, Kavach system",Current Affairs,National,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,83,Space missions Axiom-4/SpaDeX/Gaganyaan,Current Affairs,Schemes & Indices,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2025,GS1,84,India defence aircraft pairs,Current Affairs,Defence,manual_tag_no_decoder,False,medium-hard,B,official-verified,False
+upsc,2025,GS1,85,Artificial rainfall silver iodide,Science & Technology,Chemistry,manual_tag_no_decoder,False,easy-medium,A,official-verified,False
+upsc,2025,GS1,86,President's pardoning power,Polity,Constitutional Provisions,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,87,Speaker dissolution/removal statements,Polity,Constitutional Provisions,manual_tag_no_decoder,False,hard,C,official-verified,False
+upsc,2025,GS1,88,MP disqualification 10th Schedule,Polity,Constitutional Provisions,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,89,Minor minerals rules Centre vs State,Economy,Mining,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,90,Nature Restoration Law EU,Environment & Ecology,Conservation & Policy,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,91,Panchayats at intermediate level statements,Polity,Governance,manual_tag_no_decoder,False,medium-hard,D,official-verified,False
+upsc,2025,GS1,92,BIMSTEC statements,Current Affairs,International,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,93,Gandhi Peace Prize jury,Current Affairs,National,manual_tag_no_decoder,False,medium,C,official-verified,False
+upsc,2025,GS1,94,GAGAN system,Science & Technology,Tech & Innovation,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,95,AI Action Summit Paris 2025,Current Affairs,International,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,96,International Year designations 2026-2029,Current Affairs,International,manual_tag_no_decoder,False,medium,D,official-verified,False
+upsc,2025,GS1,97,BRICS Summit Kazan,Current Affairs,International,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,98,Lokpal statements,Polity,Constitutional Provisions,manual_tag_no_decoder,False,hard,A,official-verified,False
+upsc,2025,GS1,99,Kho Kho World Cup,Current Affairs,Sports,manual_tag_no_decoder,False,medium,A,official-verified,False
+upsc,2025,GS1,100,Chess Olympiad Gukesh Dommaraju,Current Affairs,Sports,manual_tag_no_decoder,False,medium,B,official-verified,False
+upsc,2026,GS1,1,Carnatic Raga ≈ Bilawal,History,Art & Culture,Culture,False,HARD,D,official-verified,False
+upsc,2026,GS1,2,Hilton-Young Commission 1926,History,Modern,Modern,False,MED,A,official-verified,False
+upsc,2026,GS1,3,Pali Texts & Coins,History,Ancient,Ancient,False,MED,C,official-verified,False
+upsc,2026,GS1,4,Nagara Shikhara Temples,History,Art & Culture,Culture,False,HARD,B,official-verified,False
+upsc,2026,GS1,5,Jainism — Four Gatis,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2026,GS1,6,Hallisalasya · Bagh Caves,History,Art & Culture,Culture,False,MED,A,official-verified,False
+upsc,2026,GS1,7,Place-Value System,History,Ancient,Ancient,False,HARD,D,official-verified,False
+upsc,2026,GS1,8,Harappan Inference,History,Ancient,Ancient,False,HARD,A,official-verified,False
+upsc,2026,GS1,9,Eka Movement & Bardoli,History,Modern,Modern,False,MED,C,official-verified,False
+upsc,2026,GS1,10,Rigvedic Wells/Irrigation,History,Ancient,Ancient,False,HARD,C,official-verified,False
+upsc,2026,GS1,11,Pleistocene Drainage Assertion,History,Ancient,Ancient/Geo,True,HARD,D,official-verified,False
+upsc,2026,GS1,12,Empty Seat Iconography,History,Art & Culture,Culture,False,MED,A,official-verified,False
+upsc,2026,GS1,13,Ancient River Names,History,Ancient,Ancient,False,HARD,C,official-verified,False
+upsc,2026,GS1,14,Amaravati Stupa,History,Ancient,Ancient,False,MED,B,official-verified,False
+upsc,2026,GS1,15,Tamilakam Kings NOT Matched,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2026,GS1,16,Forward Bloc 1939,History,Modern,Modern,False,HARD,B,official-verified,False
+upsc,2026,GS1,17,Awadh after 1856,History,Modern,Modern,False,HARD,A,official-verified,False
+upsc,2026,GS1,18,Mont-Chelmsford / Electorates ⚠️,History,Modern,Modern,False,HARD,D,official-verified,False
+upsc,2026,GS1,19,Mallikarjun Mansur,History,Art & Culture,Culture,False,MED,D,official-verified,False
+upsc,2026,GS1,20,kshetra-patni Origin,History,Ancient,Ancient,False,HARD,B,official-verified,False
+upsc,2026,GS1,21,India Climate / LT-LEDS ⚡NEW FORMAT,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,B,official-verified,False
+upsc,2026,GS1,22,Western Hoolock Gibbons,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2026,GS1,23,Mangrove Climate Resilience ⚡META,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,D,official-verified,False
+upsc,2026,GS1,24,Vizhinjam Seaport,Geography,Economic Geography,Geo/Eco,True,MED,D,official-verified,False
+upsc,2026,GS1,25,Identify the River,Geography,Physical/Human,Geo,False,HARD,C,official-verified,False
+upsc,2026,GS1,26,State Boundaries NOT Correct,Geography,Physical/Human,Geo,False,HARD,C,official-verified,False
+upsc,2026,GS1,27,Amur Falcons,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,A,official-verified,False
+upsc,2026,GS1,28,RAD under NMSA,Economy,Agriculture,Agri,False,MED,D,official-verified,False
+upsc,2026,GS1,29,Oeko-Tex · Eri Silk,Economy,Macroeconomics,Eco,False,MED,C,official-verified,False
+upsc,2026,GS1,30,Strait of Hormuz,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2026,GS1,31,Tungurahua Geopark 2025,Geography,Physical/Human,Geo,False,EASY,A,official-verified,False
+upsc,2026,GS1,32,Madhav National Park,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2026,GS1,33,Andaman & Nicobar Climate,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2026,GS1,34,Peninsular Block,Geography,Physical/Human,Geo,False,HARD,B,official-verified,False
+upsc,2026,GS1,35,Sagarmala ⚡META,Economy,Economic Geography,Eco/Geo,True,HARD,B,official-verified,False
+upsc,2026,GS1,36,Foxtail Orchid,Environment & Ecology,Ecology/Biodiversity,Env,False,MED,B,official-verified,False
+upsc,2026,GS1,37,Moidams,History,Art & Culture,Culture,False,MED,C,official-verified,False
+upsc,2026,GS1,38,UNOC FAO Four Betters,Environment & Ecology,Global Environmental Agreements,IR/Env,True,MED,B,official-verified,False
+upsc,2026,GS1,39,Lake Turkana,Geography,Physical/Human,Geo,False,MED,B,official-verified,False
+upsc,2026,GS1,40,First Plan Vivo REDD+ India,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,C,official-verified,False
+upsc,2026,GS1,41,Genetic Medicine,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2026,GS1,42,Large Language Models,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,B,official-verified,False
+upsc,2026,GS1,43,Stealth Technology,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,C,official-verified,False
+upsc,2026,GS1,44,Black Boxes,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,B,official-verified,False
+upsc,2026,GS1,45,Green Hydrogen,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,B,official-verified,False
+upsc,2026,GS1,46,Private Space Entities,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2026,GS1,47,Drone Swarms,Science & Technology,Tech & Innovation,Sci-Tech,False,HARD,B,official-verified,False
+upsc,2026,GS1,48,GenomeIndia Project,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,B,official-verified,False
+upsc,2026,GS1,49,National Quantum Mission,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2026,GS1,50,Deep Ocean Mission,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,B,official-verified,False
+upsc,2026,GS1,51,Ethics — Vaccination Scenario,Polity,Governance/Ethics,Ethics,True,MED,C,official-verified,False
+upsc,2026,GS1,52,Ethics — Waste Conflict,Polity,Governance/Ethics,Ethics,True,MED,A,official-verified,False
+upsc,2026,GS1,53,Ethics — Confidential Info,Polity,Governance/Ethics,Ethics,True,MED,B,official-verified,False
+upsc,2026,GS1,54,"Article 13 — Meaning of ""Law""",Polity,Governance,Polity,False,MED,D,official-verified,False
+upsc,2026,GS1,55,Constitution Articles,Polity,Governance,Polity,False,HARD,B,official-verified,False
+upsc,2026,GS1,56,Persons with Disabilities,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2026,GS1,57,SC/ST Provisions,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2026,GS1,58,Parliament Questions,Polity,Governance,Polity,False,MED,C,official-verified,False
+upsc,2026,GS1,59,Welfare of SC/ST Committee,Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2026,GS1,60,Mission Sudarshan Chakra,Current Affairs,Defence,Defence,False,MED,A,official-verified,False
+upsc,2026,GS1,61,River Bridges to Neighbours,Geography,Physical/Human,Geo,False,HARD,D,official-verified,False
+upsc,2026,GS1,62,Zero FIR (BNSS 2023),Polity,Governance,Polity,False,HARD,D,official-verified,False
+upsc,2026,GS1,63,CEIB / SFIO / CBI Match,Polity,Governance,Polity,False,HARD,A,official-verified,False
+upsc,2026,GS1,64,Conventions NOT Ratified 🔴DROPPED,Current Affairs,International,IR,False,DROPPED,,official-dropped,True
+upsc,2026,GS1,65,AI Impact Summit 2026,Science & Technology,Tech & Innovation,IR/Tech,True,HARD,D,official-verified,False
+upsc,2026,GS1,66,India-ASEAN Connectivity,Current Affairs,International,IR,False,MED,A,official-verified,False
+upsc,2026,GS1,67,India-Supported Projects Match,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2026,GS1,68,Made-in-India Defence,Current Affairs,Defence,Defence,False,MED,A,official-verified,False
+upsc,2026,GS1,69,Multilateral Cooperation Platforms,Current Affairs,International,IR,False,HARD,C,official-verified,False
+upsc,2026,GS1,70,UN Agencies — Nobel Twice,Current Affairs,International,IR,False,HARD,A,official-verified,False
+upsc,2026,GS1,71,UN Peacekeeping Match,Current Affairs,International,IR,False,HARD,B,official-verified,False
+upsc,2026,GS1,72,BIMSTEC Centres Match,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2026,GS1,73,Army Corps HQ NOT Matched,Current Affairs,Defence,Defence,False,HARD,D,official-verified,False
+upsc,2026,GS1,74,Revamped RGSA,Polity,Governance,Polity,False,MED,B,official-verified,False
+upsc,2026,GS1,75,European Union Members,Current Affairs,International,IR,False,EASY,C,official-verified,False
+upsc,2026,GS1,76,INTERPOL Notices Match,Current Affairs,International,IR,False,MED,C,official-verified,False
+upsc,2026,GS1,77,NIRANTAR Platform,Environment & Ecology,Ecology/Biodiversity,Env,False,HARD,B,official-verified,False
+upsc,2026,GS1,78,German Chancellor Visit Jan 2026,Current Affairs,International,IR,False,MED,B,official-verified,False
+upsc,2026,GS1,79,DHRUV64 Microprocessor,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2026,GS1,80,BIS Bomb-Disposal Standard,Science & Technology,Tech & Innovation,Sci-Tech,False,MED,C,official-verified,False
+upsc,2026,GS1,81,Nobel 2025 UK-born,Science & Technology,Tech & Innovation,S&T,False,MED,C,official-verified,False
+upsc,2026,GS1,82,Grand Slam Tennis,Current Affairs,Sports,Sports,False,MED,A,official-verified,False
+upsc,2026,GS1,83,Semiconductor Plants NOT Matched,Economy,Macroeconomics,S&T/Econ,True,HARD,C,official-verified,False
+upsc,2026,GS1,84,Bharat Forecast System,Science & Technology,Tech & Innovation,S&T,False,MED,A,official-verified,False
+upsc,2026,GS1,85,Film 'Boong',History,Art & Culture,Culture,False,MED,A,official-verified,False
+upsc,2026,GS1,86,Blockchain Features,Economy,Macroeconomics,S&T/Econ,True,HARD,C,official-verified,False
+upsc,2026,GS1,87,E-commerce Model,Economy,Macroeconomics,Econ,False,EASY,A,official-verified,False
+upsc,2026,GS1,88,RBI FI-Index Sub-indices,Economy,Macroeconomics,Econ,False,MED,C,official-verified,False
+upsc,2026,GS1,89,ONDC Objective,Economy,Macroeconomics,Econ,False,MED,C,official-verified,False
+upsc,2026,GS1,90,UPI vs CBDC NOT Correct,Economy,Macroeconomics,Econ,False,HARD,D,official-verified,False
+upsc,2026,GS1,91,RWA Tokenization,Economy,Macroeconomics,Econ,False,MED,A,official-verified,False
+upsc,2026,GS1,92,Sustainability Bond,Economy,Macroeconomics,Econ,False,EASY,C,official-verified,False
+upsc,2026,GS1,93,M1xchange MSME,Economy,Macroeconomics,Econ,False,MED,B,official-verified,False
+upsc,2026,GS1,94,Crowding Out Effect,Economy,Macroeconomics,Econ,False,MED,B,official-verified,False
+upsc,2026,GS1,95,REE & Critical Minerals,Economy,Macroeconomics,Econ/S&T,True,HARD,A,official-verified,False
+upsc,2026,GS1,96,Aviation Insurance,Economy,Macroeconomics,Econ,False,MED,C,official-verified,False
+upsc,2026,GS1,97,Crowdfunding,Economy,Macroeconomics,Econ,False,EASY,C,official-verified,False
+upsc,2026,GS1,98,Committees Matching,Economy,Macroeconomics,Econ,False,HARD,D,official-verified,False
+upsc,2026,GS1,99,NBFCs,Economy,Macroeconomics,Econ,False,HARD,A,official-verified,False
+upsc,2026,GS1,100,Multidimensional Poverty Index,Economy,Macroeconomics,Econ,False,HARD,A,official-verified,False

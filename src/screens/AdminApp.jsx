@@ -77,9 +77,12 @@ const SUBTOPICS_BY_SUBJECT = {
     // Era split (matches the playbook's own convention) + Part L.2 #1: the
     // former single "Art & Culture" bucket split into four, plus a residual.
     "History": ["Ancient", "Medieval", "Modern", "Architecture", "Painting", "Music & Dance", "Iconography", "Culture-Other"],
-    // "Governance" dominates the 4-year corpus (playbook §D); L.2 #2 adds the
-    // two verdict/statute buckets that previously folded into it.
-    "Polity": ["Constitutional Provisions", "Governance", "Statutory-Laws", "Judicial-Verdicts", "Panchayati Raj & Local Governance"],
+    // Content re-tag of all 148 Polity PYQs (pyq-analysis-upsc/scratch/
+    // retag_polity_subtopics.py): the decoder's "Governance" was a catch-all, so
+    // it now means non-constitutional administration only.
+    "Polity": ["Parliament & State Legislature", "Constitutional Framework", "Governance", "Federalism & Special Provisions", "Statutory-Laws",
+      "Fundamental Rights, DPSP & Duties", "Union & State Executive", "Constitutional & Statutory Bodies", "Panchayati Raj & Local Governance",
+      "Judicial-Verdicts", "Elections", "Judiciary"],
     "Geography": ["Physical", "World", "Economic", "Human"],
     // L.2 #3 (Fintech-Digital-Finance) and #4 (Critical-Minerals-Energy-Transition).
     "Economy": ["Macroeconomics", "Financial Markets", "Banking", "Fintech-Digital-Finance", "Critical-Minerals-Energy-Transition", "Five-Year Plans & Policy"],
@@ -474,6 +477,12 @@ function Empty({ icon, title, text, action }) {
    never carries a stray statements array and a match question never keeps an
    empty assertion. Parallel *_hi lists are kept only when they hold something. */
 function buildCleanData(type, d) {
+  const out = buildTypeData(type, d);
+  if (d.fixed_option_order) out.fixed_option_order = true;
+  return out;
+}
+
+function buildTypeData(type, d) {
   const arr = (a) => (Array.isArray(a) ? a.map((x) => String(x ?? "")) : []);
   const nonEmpty = (a) => arr(a).filter((x) => x.trim());
   if (type === "statement_based") {
@@ -489,6 +498,8 @@ function buildCleanData(type, d) {
     const out = { list_1, list_2 };
     if (arr(d.list_1_hi).some((x) => x.trim())) out.list_1_hi = arr(d.list_1_hi).slice(0, list_1.length);
     if (arr(d.list_2_hi).some((x) => x.trim())) out.list_2_hi = arr(d.list_2_hi).slice(0, list_2.length);
+    if (String(d.closing || "").trim()) out.closing = d.closing.trim();
+    if (String(d.closing_hi || "").trim()) out.closing_hi = d.closing_hi.trim();
     return out;
   }
   if (type === "assertion_reason") {
@@ -721,9 +732,9 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
         </Field>
       )}
 
-      {f.type === "statement_based" && (
-        <Field label="Closing line" hint="Renders AFTER the statements (not before) — the line that turns them into a question.">
-          <input className="inp" value={d.closing || ""} placeholder="Which of the statements given above is/are correct?" onChange={(e) => setData({ closing: e.target.value })} />
+      {(f.type === "statement_based" || f.type === "match_the_following") && (
+        <Field label="Closing line" hint={f.type === "statement_based" ? "Renders AFTER the statements (not before) — the line that turns them into a question." : "Renders after the two lists, e.g. “How many of the pairs given above are correctly matched?”"}>
+          <input className="inp" value={d.closing || ""} placeholder={f.type === "statement_based" ? "Which of the statements given above is/are correct?" : "How many of the pairs given above are correctly matched?"} onChange={(e) => setData({ closing: e.target.value })} />
           {showHi && (
             <input className="inp" lang="hi" style={{ marginTop: 8 }} value={d.closing_hi || ""}
                    placeholder="उपर्युक्त कथनों में से कौन-सा/से सही है/हैं? (वैकल्पिक)"
@@ -803,6 +814,10 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
             </div>
           ))}
           <button className="add-opt" onClick={addOpt}><Plus size={15} />Add option</button>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10, fontSize: 13, color: "var(--muted)", cursor: "pointer" }}>
+            <input type="checkbox" checked={!!d.fixed_option_order} onChange={(e) => setData({ fixed_option_order: e.target.checked })} />
+            Keep options in this order (don&rsquo;t shuffle) — for fixed answer ladders like &ldquo;Only one / Only two / All three / None&rdquo;
+          </label>
         </Field>
       )}
 
@@ -1302,7 +1317,7 @@ function ConfigForm({ initial, examCategory, onSave, onClose }) {
         <textarea className="inp" style={JSON_STYLE} rows={5} value={subj} onChange={(e) => setSubj(e.target.value)} />
       </Field>
       <div className="field-row">
-        <Field label="Difficulty weights" hint='e.g. {"easy":0.3,"medium":0.5,"hard":0.2}'>
+        <Field label="Difficulty weights" hint='Global {"easy":0.3,"medium":0.5,"hard":0.2}, optionally plus per-subject overrides {"Polity":{"easy":0.05,…}}'>
           <textarea className="inp" style={JSON_STYLE} rows={4} value={diff} onChange={(e) => setDiff(e.target.value)} />
         </Field>
         <Field label="Question-type weights" hint='Per-subject {"Polity":{"statement_based":0.3,…}} or flat {"statement_based":0.3}'>

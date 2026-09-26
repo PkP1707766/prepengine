@@ -1,0 +1,14 @@
+PASS  History 120Q cells unchanged by a Polity override  {"easy":33,"medium":62,"hard":25}
+PASS  identical to previous generate.js: live config, History sectional  34 cells
+PASS  identical to previous generate.js: live config, Polity sectional (no override)  23 cells
+PASS  identical to previous generate.js: flat BPSC-shape config, History sectional  36 cells
+PASS  identical to previous generate.js: live config, full-length 100Q  31 cells
+PASS  identical to previous generate.js: empty difficulty config  36 cells
+PASS  identical to previous generate.js: missing difficulty config  36 cells
+PASS  Polity 120Q uses its override (~6 easy / ~73 medium / ~41 hard)  {"easy":6,"medium":73,"hard":41}
+PASS  Polity 120Q totals 120
+PASS  full-length: every subject keeps its question count  {"Polity":14,"Economy":18,"History":16,"Geography":10,"Current Affairs":16,"Science & Technology":11,"Environment & Ecology":15}
+PASS  full-length: non-Polity difficulty splits shift by at most rounding (<=2 total)  drift=0
+PASS  full-length: Polity slice gets harder  before {"easy":4,"medium":8,"hard":2} after {"easy":1,"medium":8,"hard":5}
+
+ALL PASS

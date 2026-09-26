@@ -1,0 +1,213 @@
+{
+  "name": "UPSC GS Paper I — PYQ-derived (2015-2026, recency-weighted, 2015 answers unverified)",
+  "scope": "UPSC GS Paper I only. Additive to BPSC config; does not modify it.",
+  "years_included": [
+    "2015",
+    "2016",
+    "2017",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "recency_weighting": "linear 1..9, oldest(2015)->newest(2026)",
+  "total_questions_analyzed": 1000,
+  "official_key_verified_questions": 991,
+  "unverified_year_note": "2015 (100 Qs) has no official UPSC answer key found on upsc.gov.in — tagged for subject/topic only, correct_option is blank, excluded from any scoring-accuracy claim but INCLUDED in subject-weight computation (subject tagging doesn't depend on the key).",
+  "subject_weights": {
+    "History": 0.1635,
+    "Geography": 0.0976,
+    "Polity": 0.1482,
+    "Economy": 0.1731,
+    "Environment & Ecology": 0.1473,
+    "Science & Technology": 0.1058,
+    "Current Affairs": 0.1645
+  },
+  "sub_topic_weights": {
+    "History": {
+      "Modern": 0.3765,
+      "Ancient": 0.358,
+      "Medieval": 0.1667,
+      "Art & Culture": 0.0988
+    },
+    "Geography": {
+      "Physical/Human": 0.8901,
+      "World": 0.033,
+      "Physical": 0.033,
+      "Economic Geography": 0.022,
+      "Climatology": 0.022
+    },
+    "Polity": {
+      "Governance": 0.9122,
+      "Constitutional Provisions": 0.0676,
+      "Governance/Ethics": 0.0203
+    },
+    "Economy": {
+      "Macroeconomics": 0.7159,
+      "Agriculture": 0.1818,
+      "Financial Markets": 0.0227,
+      "Banking & Finance": 0.017,
+      "Fiscal Policy": 0.017,
+      "Demography": 0.0114,
+      "Corporate Regulation": 0.0057,
+      "Taxation": 0.0057,
+      "Energy": 0.0057,
+      "Public Finance": 0.0057,
+      "Mining": 0.0057,
+      "Economic Geography": 0.0057
+    },
+    "Environment & Ecology": {
+      "Ecology/Biodiversity": 0.6273,
+      "Biodiversity": 0.3168,
+      "Climate & Pollution": 0.0311,
+      "Global Environmental Agreements": 0.0124,
+      "Pollution": 0.0062,
+      "Conservation & Policy": 0.0062
+    },
+    "Science & Technology": {
+      "Tech & Innovation": 0.9053,
+      "Chemistry": 0.0316,
+      "Energy Tech": 0.0211,
+      "Biology": 0.0211,
+      "Earth Science": 0.0105,
+      "Materials Science": 0.0105
+    },
+    "Current Affairs": {
+      "International": 0.5749,
+      "Schemes & Indices": 0.2216,
+      "General": 0.0838,
+      "Defence": 0.0659,
+      "National": 0.024,
+      "Sports": 0.018,
+      "Awards & Appointments": 0.012
+    }
+  },
+  "sub_topic_weights_original_decoder_labels_DEPRECATED": "The sub_topic_weights block above uses decoder/PYQ-analysis-era labels that do not match the live admin taxonomy (src/screens/AdminApp.jsx SUBTOPICS_BY_SUBJECT.upsc) 1:1 -- e.g. Geography's combined 'Physical/Human' vs the taxonomy's separate 'Physical'/'Human'; History's single 'Art & Culture' vs the taxonomy's 4-way split. Kept here verbatim for provenance/audit trail. The database's distribution_config.sub_topic_weights row (and sub_topic_weights_reconciled below) is what generate.js actually reads -- it has been UPDATED to the reconciled version, not this block.",
+  "sub_topic_weights_reconciled": {
+    "_method": "Every decoder-era label was mapped to its nearest admin-taxonomy label; where the taxonomy is MORE granular than the decoder data (e.g. History's Art & Culture -> 4 sub-labels, S&T/Economy's new PYQ-named sub-topics), the parent bucket's weight was carved down using named Q# evidence from the playbook (never fabricated). Where the taxonomy added a label with ZERO PYQ evidence anywhere in the 4-year corpus (Statutory-Laws, Panchayati Raj & Local Governance, Physics), a small deliberate floor (0.018-0.02) was assigned and is flagged '_floor_not_pyq_evidenced' below rather than presented as a real PYQ percentage. Every subject's key set was verified to exactly match SUBTOPICS_BY_SUBJECT.upsc before being pushed to distribution_config.",
+    "History": {
+      "Ancient": 0.358,
+      "Medieval": 0.1667,
+      "Modern": 0.3765,
+      "_note": "Art & Culture (0.0988 orig) split by the only granular evidence available: playbook L.2 cites 5 named 2026 examples -- 2 music (Q1, Q19), 1 architecture (Q4), 1 painting (Q6), 1 iconography (Q12), 0 named for a residual 'other' bucket. Split proportionally 2:1:1:1 off 0.0888, with Culture-Other given a 0.01 floor (_floor_not_pyq_evidenced) since no example was found for it.",
+      "Music & Dance": 0.0355,
+      "Architecture": 0.0178,
+      "Painting": 0.0178,
+      "Iconography": 0.0178,
+      "Culture-Other": 0.01
+    },
+    "Polity": {
+      "Parliament & State Legislature": 0.1679,
+      "Constitutional Framework": 0.1485,
+      "Governance": 0.121,
+      "Federalism & Special Provisions": 0.1058,
+      "Statutory-Laws": 0.0964,
+      "Fundamental Rights, DPSP & Duties": 0.0925,
+      "Union & State Executive": 0.0806,
+      "Constitutional & Statutory Bodies": 0.0604,
+      "Panchayati Raj & Local Governance": 0.0434,
+      "Judicial-Verdicts": 0.0347,
+      "Elections": 0.0326,
+      "Judiciary": 0.0162,
+      "_method": "Content re-tag of all 148 Polity PYQs 2015-2026 from their actual stems (scratch/retag_polity_subtopics.py -> scratch/polity_subtopic_retag.csv), weighted with the same linear 1..10 recency weights as subject_weights. The decoder had labelled 135/148 'Governance'; 'Governance' now means non-constitutional administration only."
+    },
+    "Geography": {
+      "World": 0.033,
+      "Economic": 0.022,
+      "_note": "Decoder's 'Physical/Human' (0.8901) is a combined bucket with no finer breakdown anywhere in the playbook. Split 50/50 (_estimate_not_pyq_evidenced, no basis found to weight one side over the other) after folding decoder's separate 'Physical' (0.033) and 'Climatology' (0.022, a physical-geography topic) entirely into Physical.",
+      "Physical": 0.5,
+      "Human": 0.445
+    },
+    "Economy": {
+      "Financial Markets": 0.0227,
+      "Banking": 0.017,
+      "_note": "Agriculture (0.1818) mapped to Five-Year Plans & Policy (closest fit -- MSP/PM-KISAN/land-reform content is policy-heavy). Fiscal Policy/Demography/Corporate Regulation/Taxation/Public Finance/Economic Geography (no dedicated taxonomy bucket for any) folded into Macroeconomics. Fintech-Digital-Finance carved from Macroeconomics using 5 named 2026 examples (Q86 blockchain, Q89 ONDC, Q91 RWA, Q93 M1xchange, Q97 crowdfunding) / 65-Q corpus = ~0.0769. Critical-Minerals-Energy-Transition = decoder's Mining+Energy (0.0114) plus a further Macro carve using 2 named examples (2025-Q6 MSP for minerals, 2026-Q95 REE) / 65 = ~0.0308, totaling 0.0422.",
+      "Macroeconomics": 0.6594,
+      "Five-Year Plans & Policy": 0.1818,
+      "Fintech-Digital-Finance": 0.0769,
+      "Critical-Minerals-Energy-Transition": 0.0422
+    },
+    "Environment & Ecology": {
+      "_note": "Clean reconciliation, no estimation needed -- decoder's 'Ecology/Biodiversity' + 'Biodiversity' were the same concept under two labels (merged); 'Pollution' folded into 'Climate & Pollution'. Matches L.2's 'keep as-is' instruction exactly.",
+      "Biodiversity": 0.9441,
+      "Climate & Pollution": 0.0373,
+      "Global Environmental Agreements": 0.0124,
+      "Conservation & Policy": 0.0062
+    },
+    "Science & Technology": {
+      "Chemistry": 0.0316,
+      "Biology": 0.0211,
+      "_note": "Decoder's 'Energy Tech'/'Earth Science'/'Materials Science' (no dedicated taxonomy buckets) folded into Tech & Innovation. Space-Missions and Defence-Technology each carved from Tech & Innovation using 2 named examples apiece (Space: 2025-Q83 Axiom-4/SpaDeX/Gaganyaan, 2026-Q46 private space; Defence: 2026-Q43 stealth, Q47 drone swarms) / 49-Q corpus = ~0.0408 each. Physics has ZERO named PYQ examples in the 4-year corpus -- 0.02 floor (_floor_not_pyq_evidenced).",
+      "Tech & Innovation": 0.8458,
+      "Space-Missions": 0.0408,
+      "Defence-Technology": 0.0408,
+      "Physics": 0.02
+    },
+    "Current Affairs": {
+      "_note": "Only 'General' (0.0838, an ambiguous decoder catch-all with no taxonomy equivalent) needed redistribution -- spread proportionally across the other 6 categories (_estimate, proportional redistribution, not itself new evidence) rather than assigned to one arbitrarily. Defence and Awards & Appointments already had real decoder-era weights (0.0659, 0.012) before this reconciliation -- L.2's 'add as first-class sub-topic' was about the admin taxonomy not yet having these as pickable entries, not about missing PYQ evidence.",
+      "International": 0.6272,
+      "Schemes & Indices": 0.2419,
+      "Defence": 0.0719,
+      "National": 0.0262,
+      "Sports": 0.0197,
+      "Awards & Appointments": 0.0131
+    },
+    "Polity_superseded_decoder_mapping": {
+      "Constitutional Provisions": 0.0676,
+      "_note": "Governance (0.9122) + Governance/Ethics (0.0203, folded in, no separate taxonomy bucket) = 0.9325 combined mass. Judicial-Verdicts carved out using playbook's 2 named examples (2024-Q76 Puttaswamy/privacy, 2024-Q83 Writ of Prohibition) / 56-Q 4-year Polity corpus = ~0.0357. Statutory-Laws and Panchayati Raj & Local Governance have ZERO named PYQ examples anywhere in the playbook -- both are 0.018 floors (_floor_not_pyq_evidenced), not PYQ-derived.",
+      "Governance": 0.8608,
+      "Judicial-Verdicts": 0.0357,
+      "Statutory-Laws": 0.018,
+      "Panchayati Raj & Local Governance": 0.018
+    }
+  },
+  "difficulty_weights": {
+    "History": {
+      "medium": 0.4383,
+      "hard": 0.3765,
+      "easy": 0.1852
+    },
+    "Geography": {
+      "medium": 0.4615,
+      "easy": 0.2747,
+      "hard": 0.2637
+    },
+    "Polity": {
+      "medium": 0.527,
+      "easy": 0.2635,
+      "hard": 0.2095
+    },
+    "Economy": {
+      "medium": 0.5739,
+      "easy": 0.233,
+      "hard": 0.1932
+    },
+    "Environment & Ecology": {
+      "medium": 0.5217,
+      "easy": 0.3168,
+      "hard": 0.1615
+    },
+    "Science & Technology": {
+      "medium": 0.5684,
+      "easy": 0.2947,
+      "hard": 0.1368
+    },
+    "Current Affairs": {
+      "medium": 0.5749,
+      "easy": 0.2994,
+      "hard": 0.1257
+    }
+  },
+  "difficulty_weights_live_override": {
+    "Polity": {
+      "easy": 0.0536,
+      "medium": 0.6071,
+      "hard": 0.3393,
+      "_method": "2023-2026 pooled (n=56: 3 easy / 34 medium / 19 hard), the playbook's own evidence window. The playbook's '42-53% hard' quotes only 2023 and 2026; 2024 was 12% and 2025 31%. Recency 1..10 over 2015-26 would give 13/58/29.",
+      "_note": "The live distribution_config keeps the global flat mix (easy 0.2636/medium 0.5257/hard 0.2107) as the default for every subject without an override."
+    }
+  }
+}

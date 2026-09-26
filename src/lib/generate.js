@@ -101,6 +101,16 @@ function typeWeightsForSubject(config, subject) {
   return tw; // flat/global
 }
 
+// difficulty_weights holds the global mix as flat keys ({easy,medium,hard}) and may
+// also carry per-subject overrides ({..., "Polity": {easy,medium,hard}}). A subject
+// without an override falls back to the flat keys, so flat-only configs are unchanged.
+function difficultyWeightsForSubject(config, subject) {
+  const dw = config.difficultyWeights || DEFAULT_DIFFICULTY;
+  const own = dw[subject];
+  if (own && typeof own === "object") return own;
+  return Object.fromEntries(Object.entries(dw).filter(([, v]) => typeof v !== "object"));
+}
+
 /* ---------------------------------------------------------------- eligibility -- */
 
 function inSubjectScope(q, blueprint) {
@@ -199,10 +209,9 @@ export function buildCells({ blueprint, config, pool }) {
     subjectEntries = [[scope.subject || pool[0]?.subject || "General", 1]];
   }
 
-  const diffEntries = normWeights(config.difficultyWeights || DEFAULT_DIFFICULTY, ["easy", "medium", "hard"]);
-
   const cells = [];
   for (const [subject, ws] of subjectEntries) {
+    const diffEntries = normWeights(difficultyWeightsForSubject(config, subject), ["easy", "medium", "hard"]);
     const typeEntries = normWeights(typeWeightsForSubject(config, subject), null);
     // sub_topic only splits sectional papers; the weights come off the blueprint
     // scope first, then the config, else a single wildcard.
