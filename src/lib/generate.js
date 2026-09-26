@@ -45,36 +45,109 @@ function shuffleInPlace(arr, rng) {
 /* ------------------------------------------------------------ apportionment -- */
 
 /**
- * Largest-remainder apportionment: turn fractional targets into integers that
- * sum to exactly `total`. Floor everything, then hand the leftover seats to the
- * cells with the biggest remainders. Without this, rounding each cell
- * independently drifts a 150-question paper to 147 or 153.
+ * Largest-remainder split of `total` across weighted keys: floor each share,
+ * then give the leftover units to the biggest fractional remainders.
+ */
+function largestRemainder(entries, total) {
+  const sum = entries.reduce((s, [, v]) => s + v, 0);
+  const rows = entries.map(([k, v], i) => {
+    const exact = sum > 0 ? (total * v) / sum : 0;
+    return { k, i, n: Math.floor(exact), rem: exact - Math.floor(exact) };
+  });
+  let left = total - rows.reduce((s, r) => s + r.n, 0);
+  // Remainders within float noise are a genuine tie (e.g. 28 x 0.8409 and 28 x 0.0909
+  // both leave .5452); break it by config order so the result is deterministic.
+  const byRem = (a, b) => (Math.abs(b.rem - a.rem) > 1e-9 ? b.rem - a.rem : a.i - b.i);
+  [...rows].sort(byRem).forEach((r) => { if (left > 0) { r.n += 1; left -= 1; } });
+  return new Map(rows.map((r) => [r.k, r.n]));
+}
+
+// The totals every paper must honour: per subject, and within each subject its
+// difficulty, question-type and sub-topic splits.
+const MARGINS = [
+  (c) => `s|${c.subject}`,
+  (c) => `d|${c.subject}|${c.difficulty}`,
+  (c) => `t|${c.subject}|${c.questionType}`,
+  (c) => `st|${c.subject}|${c.subTopic}`,
+];
+
+/**
+ * Turn fractional cell targets into integers that sum to exactly `total` AND
+ * keep every marginal (subject; subject×difficulty, ×type, ×sub-topic) at its
+ * own largest-remainder total. Plain largest-remainder over the flat cell list
+ * only guarantees the grand total: with many sub-1 cells the leftover seats all
+ * go to the heavily weighted buckets, so a 5% difficulty share of 120 came out
+ * at 3 instead of 6. Cells are floored, leftover seats go to the largest
+ * remainder whose margins still have room, and a repair pass moves single seats
+ * between cells until no margin is off (or no move helps).
  */
 function apportion(cells, total) {
-  const withFloor = cells.map((c) => {
-    const floor = Math.floor(c.raw);
-    return { ...c, n: floor, rem: c.raw - floor };
+  const rawSum = cells.reduce((s, c) => s + c.raw, 0);
+  const scale = rawSum > 0 ? total / rawSum : 0;
+  const work = cells.map((c, i) => {
+    const raw = c.raw * scale;
+    return { ...c, i, x: raw, n: Math.floor(raw), keys: MARGINS.map((f) => f(c)) };
   });
-  let used = withFloor.reduce((s, c) => s + c.n, 0);
-  const order = [...withFloor].sort((a, b) => b.rem - a.rem);
-  let i = 0;
-  while (used < total && order.length) {
-    order[i % order.length].n += 1;
-    used += 1;
-    i += 1;
-  }
-  // If weights over-shot (rare with sane configs), trim smallest remainders.
-  if (used > total) {
-    const trim = [...withFloor].sort((a, b) => a.rem - b.rem);
-    let k = 0;
-    while (used > total) {
-      const cell = trim[k % trim.length];
-      if (cell.n > 0) { cell.n -= 1; used -= 1; }
-      k += 1;
-      if (k > trim.length * 4) break;
+
+  // Integer target for every margin: subjects split the total, then each
+  // subject's own difficulty / type / sub-topic shares split that subject's seats.
+  const target = new Map();
+  const bySubject = new Map();
+  for (const c of work) bySubject.set(c.subject, (bySubject.get(c.subject) || 0) + c.x);
+  const subjSeats = largestRemainder([...bySubject], total);
+  for (const [s, n] of subjSeats) target.set(`s|${s}`, n);
+  for (const dim of [1, 2, 3]) {
+    const groups = new Map();
+    for (const c of work) {
+      const g = groups.get(c.subject) || new Map();
+      g.set(c.keys[dim], (g.get(c.keys[dim]) || 0) + c.x);
+      groups.set(c.subject, g);
     }
+    for (const [s, g] of groups) for (const [k, n] of largestRemainder([...g], subjSeats.get(s))) target.set(k, n);
   }
-  return withFloor.filter((c) => c.n > 0);
+
+  const tally = new Map();
+  const bump = (c, d) => { c.n += d; for (const k of c.keys) tally.set(k, (tally.get(k) || 0) + d); };
+  for (const c of work) for (const k of c.keys) tally.set(k, (tally.get(k) || 0) + c.n);
+  const room = (c) => c.keys.filter((k) => (tally.get(k) || 0) < target.get(k)).length;
+
+  // Leftover seats: prefer cells with room in all four margins, then the most room,
+  // then the largest remainder.
+  let left = total - work.reduce((s, c) => s + c.n, 0);
+  while (left > 0 && work.length) {
+    let best = null, bestRoom = -1, bestRem = -Infinity;
+    for (const c of work) {
+      const r = room(c), rem = c.x - c.n;
+      if (r > bestRoom || (r === bestRoom && rem > bestRem)) { best = c; bestRoom = r; bestRem = rem; }
+    }
+    bump(best, 1); left -= 1;
+  }
+
+  // Repair: move one seat between two cells whenever it reduces total margin error.
+  const err = (k, t = tally.get(k) || 0) => Math.abs(t - target.get(k));
+  for (let iter = 0; iter < total * 4; iter++) {
+    let bestGain = 0, move = null;
+    for (const a of work) {
+      if (a.n === 0) continue;
+      for (const b of work) {
+        if (a === b) continue;
+        let gain = 0;
+        for (let d = 0; d < MARGINS.length; d++) {
+          const ka = a.keys[d], kb = b.keys[d];
+          if (ka === kb) continue;
+          gain += err(ka) - err(ka, tally.get(ka) - 1) + err(kb) - err(kb, tally.get(kb) + 1);
+        }
+        // Tie-break toward keeping cells close to their exact share.
+        const drift = Math.abs(a.n - 1 - a.x) + Math.abs(b.n + 1 - b.x) - Math.abs(a.n - a.x) - Math.abs(b.n - b.x);
+        const score = gain - drift * 1e-6;
+        if (gain > 0 && score > bestGain) { bestGain = score; move = [a, b]; }
+      }
+    }
+    if (!move) break;
+    bump(move[0], -1); bump(move[1], 1);
+  }
+
+  return work.filter((c) => c.n > 0).map(({ i, x, keys, ...c }) => c);
 }
 
 /* ------------------------------------------------------------------ weights -- */

@@ -1,0 +1,10 @@
+PASS  UPSC Polity sectional 120: 70 cells, total 120; every margin matches its target  (previous generate.js was off by 18 seats across margins)
+        difficulty now {"easy":6,"hard":41,"medium":73}  was {"easy":3,"hard":42,"medium":75}  target {"easy":6,"hard":41,"medium":73}
+PASS  UPSC History sectional 120: 39 cells, total 120; every margin matches its target  (previous generate.js was off by 14 seats across margins)
+        difficulty now {"easy":32,"hard":25,"medium":63}  was {"easy":33,"hard":25,"medium":62}  target {"easy":32,"hard":25,"medium":63}
+PASS  UPSC full-length 100: 31 cells, total 100; every margin matches its target  (previous generate.js was off by 4 seats across margins)
+PASS  BPSC History sectional 150: 22 cells, total 150; every margin matches its target  (previous generate.js was off by 4 seats across margins)
+        difficulty now {"easy":23,"hard":29,"medium":98}  was {"easy":23,"hard":29,"medium":98}  target {"easy":23,"hard":29,"medium":98}
+PASS  BPSC full-length 150: 34 cells, total 150; every margin matches its target  (previous generate.js was off by 10 seats across margins)
+
+ALL PASS

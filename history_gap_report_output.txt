@@ -1,0 +1,53 @@
+=== History sectional (120Q) -- real drafting targets from the live config ===
+config: UPSC GS Paper I — PYQ-derived (2015-2026, recency-weighted, 2015 answers unverified)
+type weights used:     {"mcq":0.3016,"statement_based":0.5714,"match_the_following":0.127}
+difficulty weights:    {"easy":0.2636,"hard":0.2107,"medium":0.5257}  (global)
+sub-topic weights:     {"Modern":0.3765,"Ancient":0.358,"Medieval":0.1667,"Painting":0.0178,"Iconography":0.0178,"Architecture":0.0178,"Culture-Other":0.01,"Music & Dance":0.0355}
+
+row |   n | difficulty | type                 | sub-topic
+----------------------------------------------------------------------
+  1 |  14 | medium     | statement_based      | Modern
+  2 |  13 | medium     | statement_based      | Ancient
+  3 |   7 | easy       | statement_based      | Modern
+  4 |   7 | easy       | statement_based      | Ancient
+  5 |   7 | medium     | mcq                  | Modern
+  6 |   7 | medium     | mcq                  | Ancient
+  7 |   6 | medium     | statement_based      | Medieval
+  8 |   5 | hard       | statement_based      | Modern
+  9 |   5 | hard       | statement_based      | Ancient
+ 10 |   4 | easy       | mcq                  | Modern
+ 11 |   3 | easy       | mcq                  | Ancient
+ 12 |   3 | easy       | statement_based      | Medieval
+ 13 |   3 | hard       | mcq                  | Modern
+ 14 |   3 | hard       | mcq                  | Ancient
+ 15 |   3 | medium     | mcq                  | Medieval
+ 16 |   3 | medium     | match_the_following  | Modern
+ 17 |   3 | medium     | match_the_following  | Ancient
+ 18 |   2 | easy       | mcq                  | Medieval
+ 19 |   2 | hard       | statement_based      | Medieval
+ 20 |   1 | easy       | mcq                  | Painting
+ 21 |   1 | easy       | mcq                  | Music & Dance
+ 22 |   1 | easy       | statement_based      | Music & Dance
+ 23 |   1 | easy       | match_the_following  | Modern
+ 24 |   1 | easy       | match_the_following  | Ancient
+ 25 |   1 | easy       | match_the_following  | Medieval
+ 26 |   1 | hard       | mcq                  | Medieval
+ 27 |   1 | hard       | statement_based      | Music & Dance
+ 28 |   1 | hard       | match_the_following  | Modern
+ 29 |   1 | hard       | match_the_following  | Ancient
+ 30 |   1 | hard       | match_the_following  | Medieval
+ 31 |   1 | hard       | match_the_following  | Iconography
+ 32 |   1 | hard       | match_the_following  | Architecture
+ 33 |   1 | medium     | mcq                  | Music & Dance
+ 34 |   1 | medium     | statement_based      | Painting
+ 35 |   1 | medium     | statement_based      | Iconography
+ 36 |   1 | medium     | statement_based      | Architecture
+ 37 |   1 | medium     | statement_based      | Culture-Other
+ 38 |   1 | medium     | statement_based      | Music & Dance
+ 39 |   1 | medium     | match_the_following  | Medieval
+----------------------------------------------------------------------
+cells: 39   TOTAL: 120 (blueprint target 120)
+
+by sub-topic:  45 Modern  |  43 Ancient  |  20 Medieval  |  5 Music & Dance  |  2 Painting  |  2 Iconography  |  2 Architecture  |  1 Culture-Other
+by type:       69 statement_based  |  36 mcq  |  15 match_the_following
+by difficulty: 63 medium  |  32 easy  |  25 hard

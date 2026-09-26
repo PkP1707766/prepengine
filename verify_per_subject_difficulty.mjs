@@ -3,7 +3,9 @@
 import { readFileSync } from "node:fs";
 import { buildCells } from "./src/lib/generate.js";
 
-const base = JSON.parse(readFileSync(new URL("./live_upsc_config.json", import.meta.url), "utf8"));
+const live = JSON.parse(readFileSync(new URL("./live_upsc_config.json", import.meta.url), "utf8"));
+// Baseline = the live config minus any per-subject difficulty override.
+const base = { ...live, difficultyWeights: Object.fromEntries(Object.entries(live.difficultyWeights || {}).filter(([, v]) => typeof v !== "object")) };
 const POLITY_DIFF = { easy: 0.0536, medium: 0.6071, hard: 0.3393 };
 const withOverride = { ...base, difficultyWeights: { ...base.difficultyWeights, Polity: POLITY_DIFF } };
 
@@ -18,24 +20,20 @@ const hBefore = buildCells({ blueprint: sectional("History", 120), config: base,
 const hAfter = buildCells({ blueprint: sectional("History", 120), config: withOverride, pool: [] });
 check("History 120Q cells unchanged by a Polity override", key(hBefore) === key(hAfter), JSON.stringify(byDiff(hAfter)));
 
-// 2. Configs WITHOUT an override produce byte-identical cells to the previous
-//    generate.js (git HEAD, extracted to src/lib/_generate_prev.tmp.js).
-const { buildCells: prevBuildCells } = await import("./src/lib/_generate_prev.tmp.js");
-const flat = { ...base, difficultyWeights: { easy: 0.3, medium: 0.5, hard: 0.2 } };
+// 2. Isolation: adding a Polity override leaves every other subject's cells byte-identical.
+//    (Byte-identity against the code before the override existed is recorded in the
+//    committed verify_per_subject_difficulty_output.txt from b48eca5; the later
+//    margin-preserving apportionment intentionally changed cells for every subject.)
 const fullLen = { examCategory: "upsc", patternType: "full_length", questionCount: 100, subjectScope: {} };
 const pool0 = Object.keys(base.subjectWeights).map((s) => ({ subject: s }));
-for (const [label, cfg, bp, pl] of [
-  ["live config, History sectional", base, sectional("History", 120), []],
-  ["live config, Polity sectional (no override)", base, sectional("Polity", 120), []],
-  ["flat BPSC-shape config, History sectional", flat, sectional("History", 120), []],
-  ["live config, full-length 100Q", base, fullLen, pool0],
-  ["empty difficulty config", { ...base, difficultyWeights: {} }, sectional("History", 120), []],
-  ["missing difficulty config", { ...base, difficultyWeights: undefined }, sectional("History", 120), []],
-]) {
-  const now = buildCells({ blueprint: bp, config: cfg, pool: pl });
-  const prev = prevBuildCells({ blueprint: bp, config: cfg, pool: pl });
-  check(`identical to previous generate.js: ${label}`, key(now) === key(prev), `${now.length} cells`);
+for (const s of Object.keys(base.subjectWeights).filter((x) => x !== "Polity")) {
+  const a = buildCells({ blueprint: sectional(s, 120), config: base, pool: [] });
+  const b = buildCells({ blueprint: sectional(s, 120), config: withOverride, pool: [] });
+  check(`${s} sectional unchanged by a Polity override`, key(a) === key(b), `${b.length} cells`);
 }
+const flA = buildCells({ blueprint: fullLen, config: base, pool: pool0 }).filter((c) => c.subject !== "Polity");
+const flB = buildCells({ blueprint: fullLen, config: withOverride, pool: pool0 }).filter((c) => c.subject !== "Polity");
+check("full-length: non-Polity cells unchanged by a Polity override", key(flA) === key(flB));
 
 // 3. Polity sectional uses its own mix.
 const p = buildCells({ blueprint: sectional("Polity", 120), config: withOverride, pool: [] });
