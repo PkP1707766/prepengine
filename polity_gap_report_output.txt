@@ -4,80 +4,82 @@ type weights used:     {"mcq":0.1607,"statement_based":0.6071,"assertion_reason"
 difficulty weights:    {"easy":0.0536,"hard":0.3393,"medium":0.6071}  (per-subject override)
 sub-topic weights:     {"Elections":0.0326,"Judiciary":0.0162,"Governance":0.121,"Statutory-Laws":0.0964,"Judicial-Verdicts":0.0347,"Union & State Executive":0.0806,"Constitutional Framework":0.1485,"Parliament & State Legislature":0.1679,"Federalism & Special Provisions":0.1058,"Constitutional & Statutory Bodies":0.0604,"Fundamental Rights, DPSP & Duties":0.0925,"Panchayati Raj & Local Governance":0.0434}
 
-row |   n | difficulty | type                 | sub-topic
-----------------------------------------------------------------------
-  1 |   7 | medium     | statement_based      | Constitutional Framework
-  2 |   7 | medium     | statement_based      | Parliament & State Legislature
-  3 |   5 | medium     | statement_based      | Governance
-  4 |   5 | medium     | statement_based      | Federalism & Special Provisions
-  5 |   4 | hard       | statement_based      | Constitutional Framework
-  6 |   4 | hard       | statement_based      | Parliament & State Legislature
-  7 |   4 | medium     | statement_based      | Statutory-Laws
-  8 |   4 | medium     | statement_based      | Union & State Executive
-  9 |   4 | medium     | statement_based      | Fundamental Rights, DPSP & Duties
- 10 |   3 | hard       | statement_based      | Governance
- 11 |   3 | hard       | statement_based      | Federalism & Special Provisions
- 12 |   3 | medium     | statement_based      | Constitutional & Statutory Bodies
- 13 |   2 | hard       | statement_based      | Statutory-Laws
- 14 |   2 | hard       | statement_based      | Union & State Executive
- 15 |   2 | hard       | statement_based      | Constitutional & Statutory Bodies
- 16 |   2 | hard       | statement_based      | Fundamental Rights, DPSP & Duties
- 17 |   2 | medium     | mcq                  | Constitutional Framework
- 18 |   2 | medium     | mcq                  | Parliament & State Legislature
- 19 |   2 | medium     | statement_based      | Judicial-Verdicts
- 20 |   2 | medium     | statement_based      | Panchayati Raj & Local Governance
- 21 |   2 | medium     | assertion_reason     | Parliament & State Legislature
- 22 |   1 | easy       | statement_based      | Governance
- 23 |   1 | easy       | statement_based      | Constitutional Framework
- 24 |   1 | easy       | statement_based      | Parliament & State Legislature
- 25 |   1 | easy       | assertion_reason     | Elections
- 26 |   1 | easy       | match_the_following  | Elections
- 27 |   1 | easy       | match_the_following  | Judiciary
- 28 |   1 | hard       | mcq                  | Governance
- 29 |   1 | hard       | mcq                  | Statutory-Laws
- 30 |   1 | hard       | mcq                  | Judicial-Verdicts
- 31 |   1 | hard       | mcq                  | Union & State Executive
- 32 |   1 | hard       | mcq                  | Constitutional Framework
- 33 |   1 | hard       | mcq                  | Parliament & State Legislature
- 34 |   1 | hard       | mcq                  | Federalism & Special Provisions
- 35 |   1 | hard       | mcq                  | Fundamental Rights, DPSP & Duties
- 36 |   1 | hard       | statement_based      | Elections
- 37 |   1 | hard       | statement_based      | Judicial-Verdicts
- 38 |   1 | hard       | statement_based      | Panchayati Raj & Local Governance
- 39 |   1 | hard       | assertion_reason     | Governance
- 40 |   1 | hard       | assertion_reason     | Statutory-Laws
- 41 |   1 | hard       | assertion_reason     | Constitutional Framework
- 42 |   1 | hard       | assertion_reason     | Parliament & State Legislature
- 43 |   1 | hard       | assertion_reason     | Federalism & Special Provisions
- 44 |   1 | hard       | assertion_reason     | Fundamental Rights, DPSP & Duties
- 45 |   1 | hard       | match_the_following  | Statutory-Laws
- 46 |   1 | hard       | match_the_following  | Parliament & State Legislature
- 47 |   1 | medium     | mcq                  | Governance
- 48 |   1 | medium     | mcq                  | Statutory-Laws
- 49 |   1 | medium     | mcq                  | Union & State Executive
- 50 |   1 | medium     | mcq                  | Federalism & Special Provisions
- 51 |   1 | medium     | mcq                  | Constitutional & Statutory Bodies
- 52 |   1 | medium     | mcq                  | Fundamental Rights, DPSP & Duties
- 53 |   1 | medium     | mcq                  | Panchayati Raj & Local Governance
- 54 |   1 | medium     | statement_based      | Elections
- 55 |   1 | medium     | statement_based      | Judiciary
- 56 |   1 | medium     | assertion_reason     | Governance
- 57 |   1 | medium     | assertion_reason     | Statutory-Laws
- 58 |   1 | medium     | assertion_reason     | Union & State Executive
- 59 |   1 | medium     | assertion_reason     | Constitutional Framework
- 60 |   1 | medium     | assertion_reason     | Federalism & Special Provisions
- 61 |   1 | medium     | assertion_reason     | Constitutional & Statutory Bodies
- 62 |   1 | medium     | assertion_reason     | Fundamental Rights, DPSP & Duties
- 63 |   1 | medium     | assertion_reason     | Panchayati Raj & Local Governance
- 64 |   1 | medium     | match_the_following  | Governance
- 65 |   1 | medium     | match_the_following  | Statutory-Laws
- 66 |   1 | medium     | match_the_following  | Union & State Executive
- 67 |   1 | medium     | match_the_following  | Constitutional Framework
- 68 |   1 | medium     | match_the_following  | Parliament & State Legislature
- 69 |   1 | medium     | match_the_following  | Federalism & Special Provisions
- 70 |   1 | medium     | match_the_following  | Fundamental Rights, DPSP & Duties
-----------------------------------------------------------------------
+row |   n | have | gap | difficulty | type                 | sub-topic
+-----------------------------------------------------------------------------------
+  1 |   7 |    7 |   0 | medium     | statement_based      | Constitutional Framework
+  2 |   7 |    7 |   0 | medium     | statement_based      | Parliament & State Legislature
+  3 |   5 |    5 |   0 | medium     | statement_based      | Governance
+  4 |   5 |    5 |   0 | medium     | statement_based      | Federalism & Special Provisions
+  5 |   4 |    4 |   0 | hard       | statement_based      | Constitutional Framework
+  6 |   4 |    4 |   0 | hard       | statement_based      | Parliament & State Legislature
+  7 |   4 |    4 |   0 | medium     | statement_based      | Statutory-Laws
+  8 |   4 |    4 |   0 | medium     | statement_based      | Union & State Executive
+  9 |   4 |    4 |   0 | medium     | statement_based      | Fundamental Rights, DPSP & Duties
+ 10 |   3 |    3 |   0 | hard       | statement_based      | Governance
+ 11 |   3 |    3 |   0 | hard       | statement_based      | Federalism & Special Provisions
+ 12 |   3 |    3 |   0 | medium     | statement_based      | Constitutional & Statutory Bodies
+ 13 |   2 |    2 |   0 | hard       | statement_based      | Statutory-Laws
+ 14 |   2 |    2 |   0 | hard       | statement_based      | Union & State Executive
+ 15 |   2 |    2 |   0 | hard       | statement_based      | Constitutional & Statutory Bodies
+ 16 |   2 |    2 |   0 | hard       | statement_based      | Fundamental Rights, DPSP & Duties
+ 17 |   2 |    2 |   0 | medium     | mcq                  | Constitutional Framework
+ 18 |   2 |    2 |   0 | medium     | mcq                  | Parliament & State Legislature
+ 19 |   2 |    2 |   0 | medium     | statement_based      | Judicial-Verdicts
+ 20 |   2 |    2 |   0 | medium     | statement_based      | Panchayati Raj & Local Governance
+ 21 |   2 |    2 |   0 | medium     | assertion_reason     | Parliament & State Legislature
+ 22 |   1 |    1 |   0 | easy       | statement_based      | Governance
+ 23 |   1 |    1 |   0 | easy       | statement_based      | Constitutional Framework
+ 24 |   1 |    1 |   0 | easy       | statement_based      | Parliament & State Legislature
+ 25 |   1 |    1 |   0 | easy       | assertion_reason     | Elections
+ 26 |   1 |    1 |   0 | easy       | match_the_following  | Elections
+ 27 |   1 |    1 |   0 | easy       | match_the_following  | Judiciary
+ 28 |   1 |    1 |   0 | hard       | mcq                  | Governance
+ 29 |   1 |    1 |   0 | hard       | mcq                  | Statutory-Laws
+ 30 |   1 |    1 |   0 | hard       | mcq                  | Judicial-Verdicts
+ 31 |   1 |    1 |   0 | hard       | mcq                  | Union & State Executive
+ 32 |   1 |    1 |   0 | hard       | mcq                  | Constitutional Framework
+ 33 |   1 |    1 |   0 | hard       | mcq                  | Parliament & State Legislature
+ 34 |   1 |    1 |   0 | hard       | mcq                  | Federalism & Special Provisions
+ 35 |   1 |    1 |   0 | hard       | mcq                  | Fundamental Rights, DPSP & Duties
+ 36 |   1 |    1 |   0 | hard       | statement_based      | Elections
+ 37 |   1 |    1 |   0 | hard       | statement_based      | Judicial-Verdicts
+ 38 |   1 |    1 |   0 | hard       | statement_based      | Panchayati Raj & Local Governance
+ 39 |   1 |    1 |   0 | hard       | assertion_reason     | Governance
+ 40 |   1 |    1 |   0 | hard       | assertion_reason     | Statutory-Laws
+ 41 |   1 |    1 |   0 | hard       | assertion_reason     | Constitutional Framework
+ 42 |   1 |    1 |   0 | hard       | assertion_reason     | Parliament & State Legislature
+ 43 |   1 |    1 |   0 | hard       | assertion_reason     | Federalism & Special Provisions
+ 44 |   1 |    1 |   0 | hard       | assertion_reason     | Fundamental Rights, DPSP & Duties
+ 45 |   1 |    1 |   0 | hard       | match_the_following  | Statutory-Laws
+ 46 |   1 |    1 |   0 | hard       | match_the_following  | Parliament & State Legislature
+ 47 |   1 |    1 |   0 | medium     | mcq                  | Governance
+ 48 |   1 |    1 |   0 | medium     | mcq                  | Statutory-Laws
+ 49 |   1 |    1 |   0 | medium     | mcq                  | Union & State Executive
+ 50 |   1 |    1 |   0 | medium     | mcq                  | Federalism & Special Provisions
+ 51 |   1 |    1 |   0 | medium     | mcq                  | Constitutional & Statutory Bodies
+ 52 |   1 |    1 |   0 | medium     | mcq                  | Fundamental Rights, DPSP & Duties
+ 53 |   1 |    1 |   0 | medium     | mcq                  | Panchayati Raj & Local Governance
+ 54 |   1 |    1 |   0 | medium     | statement_based      | Elections
+ 55 |   1 |    1 |   0 | medium     | statement_based      | Judiciary
+ 56 |   1 |    1 |   0 | medium     | assertion_reason     | Governance
+ 57 |   1 |    1 |   0 | medium     | assertion_reason     | Statutory-Laws
+ 58 |   1 |    1 |   0 | medium     | assertion_reason     | Union & State Executive
+ 59 |   1 |    1 |   0 | medium     | assertion_reason     | Constitutional Framework
+ 60 |   1 |    1 |   0 | medium     | assertion_reason     | Federalism & Special Provisions
+ 61 |   1 |    1 |   0 | medium     | assertion_reason     | Constitutional & Statutory Bodies
+ 62 |   1 |    1 |   0 | medium     | assertion_reason     | Fundamental Rights, DPSP & Duties
+ 63 |   1 |    1 |   0 | medium     | assertion_reason     | Panchayati Raj & Local Governance
+ 64 |   1 |    1 |   0 | medium     | match_the_following  | Governance
+ 65 |   1 |    1 |   0 | medium     | match_the_following  | Statutory-Laws
+ 66 |   1 |    1 |   0 | medium     | match_the_following  | Union & State Executive
+ 67 |   1 |    1 |   0 | medium     | match_the_following  | Constitutional Framework
+ 68 |   1 |    1 |   0 | medium     | match_the_following  | Parliament & State Legislature
+ 69 |   1 |    1 |   0 | medium     | match_the_following  | Federalism & Special Provisions
+ 70 |   1 |    1 |   0 | medium     | match_the_following  | Fundamental Rights, DPSP & Duties
+-----------------------------------------------------------------------------------
 cells: 70   TOTAL: 120 (blueprint target 120)
+bank: 121 rows   cells filled: 70/70   questions still to draft: 0
+spare rows: 0 above target in a cell + 1 in no cell  (1 easy/statement_based/Elections)
 
 by sub-topic:  20 Parliament & State Legislature  |  18 Constitutional Framework  |  14 Governance  |  13 Federalism & Special Provisions  |  12 Statutory-Laws  |  11 Fundamental Rights, DPSP & Duties  |  10 Union & State Executive  |  7 Constitutional & Statutory Bodies  |  5 Panchayati Raj & Local Governance  |  4 Elections  |  4 Judicial-Verdicts  |  2 Judiciary
 by type:       73 statement_based  |  19 mcq  |  17 assertion_reason  |  11 match_the_following

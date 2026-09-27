@@ -386,6 +386,24 @@ export const FX_EXAM = {
           ],
         },
         {
+          // UPSC wording of the same format (question_data.ar_labels = "statement").
+          id: "fx-eb2u", subject: "Polity", topic: "Parliament & State Legislature", type: "assertion_reason", marks: 2, negative: 0.66,
+          text: "Consider the following statements:",
+          data: {
+            assertion: "The Rajya Sabha is not subject to dissolution.",
+            reason: "One-third of the members of the Rajya Sabha retire every second year.",
+            ar_labels: "statement",
+            closing: "Which one of the following is correct in respect of the above statements?",
+            fixed_option_order: true,
+          },
+          options: [
+            { id: "fx-eb2u-a", body: "Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I" },
+            { id: "fx-eb2u-b", body: "Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I" },
+            { id: "fx-eb2u-c", body: "Statement-I is correct but Statement-II is incorrect" },
+            { id: "fx-eb2u-d", body: "Statement-I is incorrect but Statement-II is correct" },
+          ],
+        },
+        {
           id: "fx-eb3", subject: "Reasoning & Aptitude", topic: "Quantitative/Numerical", type: "reasoning_aptitude", marks: 2, negative: 0.66,
           text: "Find the missing term in the following number series:",
           text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",

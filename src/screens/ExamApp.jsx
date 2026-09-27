@@ -223,7 +223,7 @@ const CSS = `
 .series-line{font-size:16px;letter-spacing:.4px;font-weight:600}
 .stem-closing{font-size:15.5px;line-height:1.55;color:var(--ink);font-weight:600}
 .opts{padding:6px 20px 20px;display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1.5px solid #ece2cc;border-radius:10px;transition:.12s;background:#ffffff}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1.5px solid #ece2cc;border-radius:10px;transition:.12s;background:#ffffff;text-align:left}
 .opt:hover{border-color:#d8c79c;background:#fbf5e7}
 .opt.sel{border-color:var(--navy);background:#faf2dc;box-shadow:inset 0 0 0 1px var(--navy)}
 .opt-mark{width:22px;height:22px;border-radius:50%;border:2px solid #cfc3a4;flex:0 0 auto;display:grid;place-items:center;margin-top:1px;font-size:12px;font-weight:800;color:#ffffff}

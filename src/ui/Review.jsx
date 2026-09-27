@@ -34,6 +34,8 @@ export function StemData({ data }) {
   const list2 = Array.isArray(data.list_2) ? data.list_2 : null;
   const hasMatch = list1 && list2 && (list1.length > 0 || list2.length > 0);
   const hasAR = data.assertion || data.reason;
+  // UPSC now sets this format as "Statement-I / Statement-II"; BPSC rows keep Assertion (A) / Reason (R).
+  const siStyle = data.ar_labels === "statement";
   const series = data.series;
   const closing = data.closing;
   if (!statements && !hasMatch && !hasAR && !series && !closing) return null;
@@ -61,8 +63,8 @@ export function StemData({ data }) {
       )}
       {hasAR && (
         <div className="ar-block">
-          {data.assertion && <div className="ar-row"><span className="ar-key">{t("ex_assertion")}:</span> {inLang(lang, data.assertion, data.assertion_hi)}</div>}
-          {data.reason && <div className="ar-row"><span className="ar-key">{t("ex_reason")}:</span> {inLang(lang, data.reason, data.reason_hi)}</div>}
+          {data.assertion && <div className="ar-row"><span className="ar-key">{t(siStyle ? "ex_statement_1" : "ex_assertion")}:</span> {inLang(lang, data.assertion, data.assertion_hi)}</div>}
+          {data.reason && <div className="ar-row"><span className="ar-key">{t(siStyle ? "ex_statement_2" : "ex_reason")}:</span> {inLang(lang, data.reason, data.reason_hi)}</div>}
         </div>
       )}
       {series && <div className="series-line">{inLang(lang, series, data.series_hi)}</div>}

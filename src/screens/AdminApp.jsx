@@ -506,6 +506,9 @@ function buildTypeData(type, d) {
     const out = { assertion: String(d.assertion || "").trim(), reason: String(d.reason || "").trim() };
     if (String(d.assertion_hi || "").trim()) out.assertion_hi = d.assertion_hi.trim();
     if (String(d.reason_hi || "").trim()) out.reason_hi = d.reason_hi.trim();
+    if (d.ar_labels === "statement") out.ar_labels = "statement";
+    if (String(d.closing || "").trim()) out.closing = d.closing.trim();
+    if (String(d.closing_hi || "").trim()) out.closing_hi = d.closing_hi.trim();
     return out;
   }
   if (type === "reasoning_aptitude") {
@@ -559,6 +562,24 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
     "A is true but R is false",
     "A is false but R is true",
   ];
+  // UPSC's verbatim Statement-I / Statement-II key (same order, so the correct index carries over).
+  const SI_OPTIONS = [
+    "Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I",
+    "Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I",
+    "Statement-I is correct but Statement-II is incorrect",
+    "Statement-I is incorrect but Statement-II is correct",
+  ];
+  const SI_CLOSING = "Which one of the following is correct in respect of the above statements?";
+  // Switch an A-R question between the two wordings. Option text is swapped only
+  // while it is still one of the standard keys, so hand-written options survive.
+  const setArStyle = (si) => setF((p) => {
+    const from = si ? AR_OPTIONS : SI_OPTIONS, to = si ? SI_OPTIONS : AR_OPTIONS;
+    const std = p.options.length === 4 && p.options.every((o, i) => !o.body.trim() || o.body.trim() === from[i]);
+    const qd = { ...(p.questionData || {}) };
+    if (si) { qd.ar_labels = "statement"; if (!String(qd.closing || "").trim()) qd.closing = SI_CLOSING; }
+    else { delete qd.ar_labels; if (qd.closing === SI_CLOSING) delete qd.closing; }
+    return { ...p, questionData: qd, options: std ? p.options.map((o, i) => ({ ...o, body: to[i] })) : p.options };
+  });
 
   const setType = (ty) => {
     setF((p) => {
@@ -575,7 +596,10 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
       // Assertion–Reason has a fixed 4-option key — seed it when the options are
       // still blank, so the author only picks which one is right.
       if (ty === "assertion_reason" && opts.every((o) => !o.body.trim())) {
-        opts = AR_OPTIONS.map((body, i) => ({ id: uid(), body, isCorrect: i === 0 }));
+        // UPSC questions start in UPSC's own Statement-I / Statement-II wording.
+        const si = p.examCategory === "upsc";
+        opts = (si ? SI_OPTIONS : AR_OPTIONS).map((body, i) => ({ id: uid(), body, isCorrect: i === 0 }));
+        if (si) return { ...p, type: ty, options: opts, questionData: { ...(p.questionData || {}), ar_labels: "statement", closing: SI_CLOSING } };
       }
       return { ...p, type: ty, options: opts };
     });
@@ -768,12 +792,18 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
       )}
 
       {f.type === "assertion_reason" && (
+        <label style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, margin: "4px 0 8px" }}>
+          <input type="checkbox" checked={d.ar_labels === "statement"} onChange={(e) => setArStyle(e.target.checked)} />
+          Word it as Statement-I / Statement-II (UPSC style) instead of Assertion (A) / Reason (R)
+        </label>
+      )}
+      {f.type === "assertion_reason" && (
         <div className="field-row">
-          <Field label="Assertion (A)" req>
+          <Field label={d.ar_labels === "statement" ? "Statement-I" : "Assertion (A)"} req>
             <textarea className="inp" rows={2} value={d.assertion || ""} onChange={(e) => setData({ assertion: e.target.value })} />
             {showHi && <textarea className="inp" rows={2} lang="hi" style={{ marginTop: 8 }} value={d.assertion_hi || ""} placeholder="अभिकथन (वैकल्पिक)" onChange={(e) => setData({ assertion_hi: e.target.value })} />}
           </Field>
-          <Field label="Reason (R)" req>
+          <Field label={d.ar_labels === "statement" ? "Statement-II" : "Reason (R)"} req>
             <textarea className="inp" rows={2} value={d.reason || ""} onChange={(e) => setData({ reason: e.target.value })} />
             {showHi && <textarea className="inp" rows={2} lang="hi" style={{ marginTop: 8 }} value={d.reason_hi || ""} placeholder="कारण (वैकल्पिक)" onChange={(e) => setData({ reason_hi: e.target.value })} />}
           </Field>
