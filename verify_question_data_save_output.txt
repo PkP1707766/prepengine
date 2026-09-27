@@ -1,0 +1,12 @@
+PASS  Statement-I/II row keeps ar_labels
+PASS  Statement-I/II row keeps its closing line
+PASS  Statement-I/II row keeps fixed_option_order
+PASS  BPSC-style A/R row gains no new keys
+PASS  match row still keeps its closing line (earlier fix)
+PASS  statement row keeps closing + fixed order
+PASS  Arabic-numbered statement row gains no numbering key
+PASS  Roman-numbered statement row keeps numbering
+PASS  unticking Roman numbering drops the key
+PASS  an MCQ never carries a stray numbering key
+
+ALL PASS

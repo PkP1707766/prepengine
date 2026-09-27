@@ -214,6 +214,7 @@ const CSS = `
 .stem-data{padding:2px 20px 8px;display:flex;flex-direction:column;gap:12px}
 .stmt-list{margin:0;padding-left:24px;display:flex;flex-direction:column;gap:7px;font-size:15px;line-height:1.55}
 .stmt-list li{padding-left:4px}
+.stmt-list.roman{list-style-type:upper-roman;padding-left:36px}
 .match-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:9px;overflow:hidden;font-size:14.5px}
 .match-col{display:flex;flex-direction:column}
 .match-col+.match-col{border-left:1px solid var(--line)}

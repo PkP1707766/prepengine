@@ -16,4 +16,11 @@ const outMatch = buildCleanData("match_the_following", { list_1: ["1. x"], list_
 check("match row still keeps its closing line (earlier fix)", !!outMatch.closing && outMatch.fixed_option_order === true, outMatch);
 const outStmt = buildCleanData("statement_based", { statements: ["a", "b"], closing: "Which of the statements given above is/are correct?", fixed_option_order: true });
 check("statement row keeps closing + fixed order", !!outStmt.closing && outStmt.fixed_option_order === true, outStmt);
+check("Arabic-numbered statement row gains no numbering key", !("numbering" in outStmt), outStmt);
+const outRoman = buildCleanData("statement_based", { statements: ["a", "b", "c"], numbering: "roman", fixed_option_order: true });
+check("Roman-numbered statement row keeps numbering", outRoman.numbering === "roman" && outRoman.fixed_option_order === true, outRoman);
+const outUnticked = buildCleanData("statement_based", { statements: ["a", "b"], numbering: undefined });
+check("unticking Roman numbering drops the key", !("numbering" in outUnticked), outUnticked);
+const outMcqStray = buildCleanData("mcq", { statements: ["a"], numbering: "roman" });
+check("an MCQ never carries a stray numbering key", !("numbering" in outMcqStray), outMcqStray);
 console.log(fail ? `\n${fail} FAILED` : "\nALL PASS"); process.exit(fail ? 1 : 0);

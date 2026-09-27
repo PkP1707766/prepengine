@@ -404,6 +404,27 @@ export const FX_EXAM = {
           ],
         },
         {
+          // UPSC 2025-style Roman-numbered statements (question_data.numbering = "roman").
+          id: "fx-eb0r", subject: "Environment & Ecology", topic: "Climate Science & Mitigation", type: "statement_based", marks: 2, negative: 0.66,
+          text: "With reference to the planet Earth, consider the following statements:",
+          data: {
+            statements: [
+              "Marine phytoplankton and photosynthetic bacteria produce a large share of the world's oxygen.",
+              "Methane has a higher 100-year global warming potential than nitrous oxide.",
+              "Ground-level ozone forms from nitrogen oxides and volatile organic compounds in sunlight.",
+            ],
+            closing: "Which of the statements given above is/are correct?",
+            numbering: "roman",
+            fixed_option_order: true,
+          },
+          options: [
+            { id: "fx-eb0r-a", body: "I and II only" },
+            { id: "fx-eb0r-b", body: "I and III only" },
+            { id: "fx-eb0r-c", body: "II and III only" },
+            { id: "fx-eb0r-d", body: "I, II and III" },
+          ],
+        },
+        {
           id: "fx-eb3", subject: "Reasoning & Aptitude", topic: "Quantitative/Numerical", type: "reasoning_aptitude", marks: 2, negative: 0.66,
           text: "Find the missing term in the following number series:",
           text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",

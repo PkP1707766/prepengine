@@ -43,7 +43,9 @@ export function StemData({ data }) {
   return (
     <div className="stem-data">
       {statements && statements.length > 0 && (
-        <ol className="stmt-list">
+        // UPSC's 2025-26 papers number statements I, II, III (options then read
+        // "I and III only"); a row opts in with question_data.numbering "roman".
+        <ol className={"stmt-list" + (data.numbering === "roman" ? " roman" : "")} type={data.numbering === "roman" ? "I" : undefined}>
           {statements.map((s, i) => (
             <li key={i}>{inLang(lang, s, (data.statements_hi || [])[i])}</li>
           ))}
@@ -176,6 +178,7 @@ export const REVIEW_CSS = `
 .rev-crowd{color:var(--navy)}
 .stem-data{display:flex;flex-direction:column;gap:12px;padding:2px 0 10px}
 .stmt-list{margin:0;padding-left:24px;display:flex;flex-direction:column;gap:7px;font-size:14.5px;line-height:1.55;color:var(--ink)}
+.stmt-list.roman{list-style-type:upper-roman;padding-left:36px}
 .match-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:9px;overflow:hidden;font-size:14px;color:var(--ink)}
 .match-col{display:flex;flex-direction:column}
 .match-col+.match-col{border-left:1px solid var(--line)}

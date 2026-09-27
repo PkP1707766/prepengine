@@ -499,6 +499,14 @@ function Empty({ icon, title, text, action }) {
 /* Trim question_data down to just what the chosen format uses, so a plain MCQ
    never carries a stray statements array and a match question never keeps an
    empty assertion. Parallel *_hi lists are kept only when they hold something. */
+// Statement number as shown in the form and the list preview: 1, 2, 3 -- or
+// I, II, III for a question flagged numbering "roman" (StemData renders those
+// with an upper-roman list).
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+function stmtLabel(i, roman) {
+  return roman && ROMAN[i] ? ROMAN[i] : String(i + 1);
+}
+
 function buildCleanData(type, d) {
   const out = buildTypeData(type, d);
   if (d.fixed_option_order) out.fixed_option_order = true;
@@ -514,6 +522,7 @@ function buildTypeData(type, d) {
     if (arr(d.statements_hi).some((x) => x.trim())) out.statements_hi = arr(d.statements_hi).slice(0, statements.length);
     if (String(d.closing || "").trim()) out.closing = d.closing.trim();
     if (String(d.closing_hi || "").trim()) out.closing_hi = d.closing_hi.trim();
+    if (d.numbering === "roman") out.numbering = "roman";
     return out;
   }
   if (type === "match_the_following") {
@@ -763,7 +772,7 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
           {listOf("statements").map((s, i) => (
             <div key={i}>
               <div className="opt-edit">
-                <span className="stmt-num">{i + 1}</span>
+                <span className="stmt-num">{stmtLabel(i, d.numbering === "roman")}</span>
                 <input className="inp" value={s} placeholder={"Statement " + (i + 1)} onChange={(e) => setListItem("statements", i, e.target.value)} />
                 <button className="rm" onClick={() => rmListItem("statements", i)} title="Remove"><Trash2 size={16} /></button>
               </div>
@@ -776,6 +785,10 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
             </div>
           ))}
           <button className="add-opt" onClick={() => addListItem("statements")}><Plus size={15} />Add statement</button>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10, fontSize: 13, color: "var(--muted)", cursor: "pointer" }}>
+            <input type="checkbox" checked={d.numbering === "roman"} onChange={(e) => setData({ numbering: e.target.checked ? "roman" : undefined })} />
+            Number the statements I, II, III (UPSC 2025 style) — then write the options as &ldquo;I only&rdquo;, &ldquo;I and II only&rdquo;&hellip;
+          </label>
         </Field>
       )}
 
@@ -2177,7 +2190,7 @@ function Overview({ questions, questionStats, tests, courses, batches, go, loadS
 // pair), so list rows that share a generic stem can still be told apart.
 function questionPeek(x) {
   const d = x.questionData || {};
-  if (Array.isArray(d.statements) && d.statements[0]) return "1. " + d.statements[0];
+  if (Array.isArray(d.statements) && d.statements[0]) return stmtLabel(0, d.numbering === "roman") + ". " + d.statements[0];
   if (d.assertion) return (d.ar_labels === "statement" ? "Statement-I: " : "A: ") + d.assertion;
   if (Array.isArray(d.list_1) && d.list_1[0]) return d.list_1[0] + (Array.isArray(d.list_2) && d.list_2[0] ? " — " + d.list_2[0] : "");
   return "";
