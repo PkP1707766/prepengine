@@ -1,0 +1,34 @@
+Environment rows: 161   not Environment (XS): 22   kept: 139
+old decoder sub-topics: {'Ecology/Biodiversity': 101, 'Biodiversity': 51, 'Climate & Pollution': 5, 'Global Environmental Agreements': 2, 'Pollution': 1, 'Conservation & Policy': 1}
+
+sub-topic                                    count  pooled%  recency%  2023-26%
+Fauna & Animal Behaviour                        24    17.3%     19.0%     25.0%
+Pollution, Waste & Resources                    23    16.5%     16.4%     14.6%
+Climate Science & Mitigation                    12     8.6%     13.4%     16.7%
+Protected Areas & Wildlife Protection           19    13.7%     11.5%      6.2%
+Flora, Fungi & Forests                          15    10.8%     10.8%     12.5%
+Climate Agreements & Carbon Markets             17    12.2%     10.6%      6.2%
+Ecosystems & Ecological Processes               11     7.9%      8.1%      8.3%
+International Conventions & Organisations       11     7.9%      6.0%      6.2%
+Indian Environmental Laws & Bodies               7     5.0%      4.1%      4.2%
+TOTAL                                          139
+
+Level-2 roll-up (recency-weighted):
+  Ecology & Biodiversity                    37.9%   (Fauna & Animal Behaviour, Flora, Fungi & Forests, Ecosystems & Ecological Processes)
+  Climate Change & Disaster Management      40.4%   (Climate Science & Mitigation, Climate Agreements & Carbon Markets, Pollution, Waste & Resources)
+  Policies & Conservation                   21.7%   (Protected Areas & Wildlife Protection, Indian Environmental Laws & Bodies, International Conventions & Organisations)
+
+sub_topic_weights (recency, rounded, sum=1):
+{'Fauna & Animal Behaviour': 0.19, 'Flora, Fungi & Forests': 0.1079, 'Ecosystems & Ecological Processes': 0.081, 'Climate Science & Mitigation': 0.1344, 'Climate Agreements & Carbon Markets': 0.1063, 'Pollution, Waste & Resources': 0.1635, 'Protected Areas & Wildlife Protection': 0.1153, 'Indian Environmental Laws & Bodies': 0.0414, 'International Conventions & Organisations': 0.0602} sum = 1.0
+
+2023-26 corpus: 49 questions, 1 not Environment -> 48
+question types: {'statement_based': 32, 'assertion_reason': 5, 'mcq': 9, 'match_the_following': 2} (assertion_reason includes 2 Statement-I/II/III)
+difficulty:     {'medium': 28, 'easy': 11, 'hard': 9}
+question_type_weights[Environment & Ecology] = {'statement_based': 0.6666, 'assertion_reason': 0.1042, 'mcq': 0.1875, 'match_the_following': 0.0417} sum = 1.0
+difficulty_weights[Environment & Ecology]    = {'medium': 0.5833, 'easy': 0.2292, 'hard': 0.1875} sum = 1.0
+
+per year (type):
+  2023 {'statement_based': 10, 'assertion_reason': 2, 'mcq': 3}
+  2024 {'mcq': 3, 'statement_based': 9, 'assertion_reason': 1, 'match_the_following': 1}
+  2025 {'assertion_reason': 2, 'statement_based': 6, 'match_the_following': 1, 'mcq': 1}
+  2026 {'statement_based': 7, 'mcq': 2}

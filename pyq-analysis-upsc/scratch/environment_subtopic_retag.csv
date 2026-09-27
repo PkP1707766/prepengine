@@ -1,0 +1,162 @@
+year,question_number,title,old_sub_topic,new_sub_topic
+2015,9,Floating NP,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2015,12,IUCN + CITES,Ecology/Biodiversity,International Conventions & Organisations
+2015,18,Fly Ash,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2015,19,Dugong,Ecology/Biodiversity,Fauna & Animal Behaviour
+2015,25,National Aquatic Animal,Ecology/Biodiversity,Fauna & Animal Behaviour
+2015,38,Forest Combo,Ecology/Biodiversity,"Flora, Fungi & Forests"
+2015,40,Ozone Protocol,Ecology/Biodiversity,International Conventions & Organisations
+2015,43,Rio+20,Ecology/Biodiversity,International Conventions & Organisations
+2015,52,Khangchendzonga NP,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2015,56,BioCarbon Fund,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2015,63,GEAC,Ecology/Biodiversity,Indian Environmental Laws & Bodies
+2015,72,Tropical Wet Evergreen,Ecology/Biodiversity,"Flora, Fungi & Forests"
+2015,74,FCPF,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2015,76,BirdLife International,Ecology/Biodiversity,International Conventions & Organisations
+2015,78,Teak Forest,Ecology/Biodiversity,"Flora, Fungi & Forests"
+2015,84,Ecosystem,Ecology/Biodiversity,Ecosystems & Ecological Processes
+2015,92,H1N1,Biodiversity,XS: not Environment (S&T biotech/health)
+2016,6,INDCs,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2016,13,UNCCD,Ecology/Biodiversity,International Conventions & Organisations
+2016,22,Great Indian Hornbill,Ecology/Biodiversity,Fauna & Animal Behaviour
+2016,23,NGRBA,Ecology/Biodiversity,Indian Environmental Laws & Bodies
+2016,30,Kyoto Protocol Terms,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2016,31,Transcriptome,Biodiversity,XS: not Environment (S&T biotech/health)
+2016,33,Green India Mission,Ecology/Biodiversity,Indian Environmental Laws & Bodies
+2016,44,Kharai Camel,Ecology/Biodiversity,Fauna & Animal Behaviour
+2016,45,New Banana Species,Biodiversity,"Flora, Fungi & Forests"
+2016,52,TEEB,Ecology/Biodiversity,International Conventions & Organisations
+2016,53,Red Sanders,Ecology/Biodiversity,"Flora, Fungi & Forests"
+2016,54,UN-REDD+,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2016,55,GHG Protocol,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2016,57,Agenda 21,Ecology/Biodiversity,International Conventions & Organisations
+2016,59,Viruses Infection,Biodiversity,XS: not Environment (S&T biotech/health)
+2016,68,Gadgil-Kasturirangan,Ecology/Biodiversity,Indian Environmental Laws & Bodies
+2016,86,AQI Gases,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2016,90,State Butterfly,Ecology/Biodiversity,Fauna & Animal Behaviour
+2016,97,Paris Agreement 2015,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2017,4,Sathyamangalam TR,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2017,6,TRAFFIC,Ecology/Biodiversity,International Conventions & Organisations
+2017,14,Bioremediation,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2017,21,Butterflies Decline,Ecology/Biodiversity,Ecosystems & Ecological Processes
+2017,22,Algae Biofuels,Ecology/Biodiversity,Climate Science & Mitigation
+2017,25,CO2 Sequestration Sites,Ecology/Biodiversity,Climate Science & Mitigation
+2017,31,Zika Virus,Biodiversity,XS: not Environment (S&T biotech/health)
+2017,35,WPA Sch I Species,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2017,45,Genome Sequencing Agri,Biodiversity,XS: not Environment (S&T biotech/health)
+2017,59,BOD,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2017,65,CCAC,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2017,67,Gharials Habitat,Ecology/Biodiversity,Fauna & Animal Behaviour
+2017,78,SCNT,Biodiversity,XS: not Environment (S&T biotech/health)
+2017,80,M-STrIPES,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2017,91,WPA Sch I Tortoise,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2017,95,Lion Translocation,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2020,37,Pronuclear Transfer,Biodiversity,XS: not Environment (S&T biotech/health)
+2020,44,Genetic Modifications,Biodiversity,XS: not Environment (S&T biotech/health)
+2020,45,Pneumococcal Conjugate Vaccine,Biodiversity,XS: not Environment (S&T biotech/health)
+2020,47,Plant vs Animal Cells,Biodiversity,XS: not Environment (S&T biotech/health)
+2020,48,Benzene Pollution,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2020,72,Indian Elephants,Ecology/Biodiversity,Fauna & Animal Behaviour
+2020,73,Cauvery Basin PAs,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2020,74,"Coppersmith, Frogmouth",Ecology/Biodiversity,Fauna & Animal Behaviour
+2020,75,Hard-ground Barasingha,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2020,76,Steel Slag,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2020,77,Musk Deer Habitat,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2020,78,Rural Roads Eco-Friendly,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2020,79,Coal Ash + Coal Power Plants,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2020,81,WPA Schedule VI,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2020,85,Social Cost of Carbon,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2020,95,Desert National Park,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2020,98,Groundwater,Ecology/Biodiversity,Indian Environmental Laws & Bodies
+2020,100,Largest Critical Tiger Habitat,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2021,16,R2 Code,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2021,17,Copper Smelting,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2021,18,Furnace Oil,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2021,19,Blue Carbon,Ecology/Biodiversity,Climate Science & Mitigation
+2021,20,Soil-less Surface Survivors,Biodiversity,"Flora, Fungi & Forests"
+2021,21,Lemongrass Mosquito,Biodiversity,"Flora, Fungi & Forests"
+2021,22,Ocean Primary Producers,Biodiversity,Ecosystems & Ecological Processes
+2021,23,Rolling Animals,Biodiversity,Fauna & Animal Behaviour
+2021,24,NY Forests Declaration,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2021,25,Magnetite Sources,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2021,26,Filter Feeder,Biodiversity,Fauna & Animal Behaviour
+2021,27,Biogeochemical Rock Weathering,Biodiversity,Ecosystems & Ecological Processes
+2021,28,Detritivores,Biodiversity,Ecosystems & Ecological Processes
+2021,29,Common Carbon Metric,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2021,30,Symbiotic Relationships,Biodiversity,Ecosystems & Ecological Processes
+2021,65,Recombinant Vector Vaccines,Biodiversity,XS: not Environment (S&T biotech/health)
+2021,66,Mitochondrial Disease,Biodiversity,XS: not Environment (S&T biotech/health)
+2021,67,Bollgard Tech,Biodiversity,XS: not Environment (S&T biotech/health)
+2021,69,Synthetic Media Cultivation,Biodiversity,XS: not Environment (S&T biotech/health)
+2021,70,Adenovirus vs Retrovirus,Biodiversity,XS: not Environment (S&T biotech/health)
+2021,73,ACE2,Biodiversity,XS: not Environment (S&T biotech/health)
+2021,75,Triclosan,Biodiversity,"Pollution, Waste & Resources"
+2022,21,GHG from Crops,Ecology/Biodiversity,Climate Science & Mitigation
+2022,37,Biofilms,Biodiversity,XS: not Environment (S&T biotech/health)
+2022,38,Probiotics,Biodiversity,XS: not Environment (S&T biotech/health)
+2022,39,COVID Vaccines,Biodiversity,XS: not Environment (S&T biotech/health)
+2022,41,Climate Action Tracker,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2022,42,EP100/Climate Group,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2022,43,Wetlands as Kidneys,Ecology/Biodiversity,Ecosystems & Ecological Processes
+2022,44,WHO Air Quality,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2022,45,Gucchi,Biodiversity,"Flora, Fungi & Forests"
+2022,47,Not a Bird,Biodiversity,Fauna & Animal Behaviour
+2022,48,Nitrogen-Fixing Plants,Biodiversity,"Flora, Fungi & Forests"
+2022,49,Biorock,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2022,50,Miyawaki,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2022,80,Greenwashing,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2022,89,Wildlife Laws,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2022,90,Fungi Cultivators,Biodiversity,Fauna & Animal Behaviour
+2022,97,B & T Cells,Biodiversity,XS: not Environment (S&T biotech/health)
+2022,98,Plastic Nanoparticles,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2022,99,DNA Barcoding,Biodiversity,XS: not Environment (S&T biotech/health)
+2022,100,Acid Rain,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2023,3,Deciduous Trees,Biodiversity,"Flora, Fungi & Forests"
+2023,12,Marsupials,Biodiversity,Fauna & Animal Behaviour
+2023,13,ISSG / IUCN,Ecology/Biodiversity,International Conventions & Organisations
+2023,14,Nocturnal Fauna,Biodiversity,Fauna & Animal Behaviour
+2023,15,Waggle Dance,Biodiversity,Fauna & Animal Behaviour
+2023,16,Mushrooms,Biodiversity,"Flora, Fungi & Forests"
+2023,17,Indian Squirrels,Biodiversity,Fauna & Animal Behaviour
+2023,18,Extremophiles,Biodiversity,Ecosystems & Ecological Processes
+2023,19,Tool Use Animal,Biodiversity,Fauna & Animal Behaviour
+2023,20,HFC Uses,Ecology/Biodiversity,Climate Science & Mitigation
+2023,38,Community Reserve,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2023,59,Mercury Pollution,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2023,68,Carbon Sequestration,Ecology/Biodiversity,Climate Science & Mitigation
+2023,76,Groundwater,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2023,79,BMC Nagoya,Ecology/Biodiversity,Indian Environmental Laws & Bodies
+2024,16,Largest Tropical Peatland,Ecology/Biodiversity,Climate Science & Mitigation
+2024,17,PFAS,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2024,18,Parasitoid Species,Ecology/Biodiversity,Ecosystems & Ecological Processes
+2024,19,Pea Family,Biodiversity,"Flora, Fungi & Forests"
+2024,20,Indian Flying Fox,Ecology/Biodiversity,Fauna & Animal Behaviour
+2024,21,Cicada/Froghopper/Pond Skater,Ecology/Biodiversity,Fauna & Animal Behaviour
+2024,22,Chewing Gum Pollution,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2024,23,Country-Animal Pairs,Ecology/Biodiversity,Fauna & Animal Behaviour
+2024,25,Big Cats,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2024,28,Fig-Wasp,Biodiversity,Ecosystems & Ecological Processes
+2024,29,Poisonous Species,Biodiversity,Fauna & Animal Behaviour
+2024,30,Native Trees,Biodiversity,"Flora, Fungi & Forests"
+2024,33,Blood Vessel Dilator,Biodiversity,XS: not Environment (S&T biotech/health)
+2024,90,SO₂ Emissions,Ecology/Biodiversity,"Pollution, Waste & Resources"
+2024,96,Net-Zero Industry Act,Global Environmental Agreements,Climate Agreements & Carbon Markets
+2025,9,Circular economy statements,Climate & Pollution,"Pollution, Waste & Resources"
+2025,29,Atmosphere/greenhouse gas statements,Climate & Pollution,Climate Science & Mitigation
+2025,31,Cement industry carbon emissions,Climate & Pollution,Climate Science & Mitigation
+2025,37,Peacock/Gooty tarantula,Biodiversity,Fauna & Animal Behaviour
+2025,38,CO2 emissions India statements,Climate & Pollution,Climate Science & Mitigation
+2025,39,Plant descriptions match (Cassava/Ginger/Malabar spinach/Mint/Papaya),Biodiversity,"Flora, Fungi & Forests"
+2025,40,Oxygen production rainforest vs ocean phytoplankton,Biodiversity,Ecosystems & Ecological Processes
+2025,44,Plastic-containing items,Pollution,"Pollution, Waste & Resources"
+2025,64,Wet-bulb temperature World Bank report,Climate & Pollution,Climate Science & Mitigation
+2025,90,Nature Restoration Law EU,Conservation & Policy,International Conventions & Organisations
+2026,21,India Climate / LT-LEDS ⚡NEW FORMAT,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2026,22,Western Hoolock Gibbons,Ecology/Biodiversity,Fauna & Animal Behaviour
+2026,23,Mangrove Climate Resilience ⚡META,Ecology/Biodiversity,Climate Science & Mitigation
+2026,27,Amur Falcons,Ecology/Biodiversity,Fauna & Animal Behaviour
+2026,32,Madhav National Park,Ecology/Biodiversity,Protected Areas & Wildlife Protection
+2026,36,Foxtail Orchid,Ecology/Biodiversity,"Flora, Fungi & Forests"
+2026,38,UNOC FAO Four Betters,Global Environmental Agreements,International Conventions & Organisations
+2026,40,First Plan Vivo REDD+ India,Ecology/Biodiversity,Climate Agreements & Carbon Markets
+2026,77,NIRANTAR Platform,Ecology/Biodiversity,Indian Environmental Laws & Bodies

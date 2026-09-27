@@ -86,8 +86,13 @@ const SUBTOPICS_BY_SUBJECT = {
     "Geography": ["Physical", "World", "Economic", "Human"],
     // L.2 #3 (Fintech-Digital-Finance) and #4 (Critical-Minerals-Energy-Transition).
     "Economy": ["Macroeconomics", "Financial Markets", "Banking", "Fintech-Digital-Finance", "Critical-Minerals-Energy-Transition", "Five-Year Plans & Policy"],
-    // L.2 #5: "keep as-is" — this is the playbook's own stated baseline verbatim.
-    "Environment & Ecology": ["Biodiversity", "Climate & Pollution", "Conservation & Policy", "Global Environmental Agreements"],
+    // Content re-tag of all 161 Environment PYQs (pyq-analysis-upsc/scratch/
+    // retag_environment_subtopics.py): the decoder's "Biodiversity" held 94% of
+    // them. Grouped by the three Level-2 tests: Ecology & Biodiversity; Climate
+    // Change & Disaster Management; Policies & Conservation.
+    "Environment & Ecology": ["Fauna & Animal Behaviour", "Flora, Fungi & Forests", "Ecosystems & Ecological Processes",
+      "Climate Science & Mitigation", "Climate Agreements & Carbon Markets", "Pollution, Waste & Resources",
+      "Protected Areas & Wildlife Protection", "Indian Environmental Laws & Bodies", "International Conventions & Organisations"],
     // L.2 #6: Space-Missions and Defence-Technology added.
     "Science & Technology": ["Physics", "Chemistry", "Biology", "Tech & Innovation", "Space-Missions", "Defence-Technology"],
     // L.2 #7: Defence and Awards & Appointments added as first-class sub-topics.

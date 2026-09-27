@@ -131,11 +131,16 @@
       "Critical-Minerals-Energy-Transition": 0.0422
     },
     "Environment & Ecology": {
-      "_note": "Clean reconciliation, no estimation needed -- decoder's 'Ecology/Biodiversity' + 'Biodiversity' were the same concept under two labels (merged); 'Pollution' folded into 'Climate & Pollution'. Matches L.2's 'keep as-is' instruction exactly.",
-      "Biodiversity": 0.9441,
-      "Climate & Pollution": 0.0373,
-      "Global Environmental Agreements": 0.0124,
-      "Conservation & Policy": 0.0062
+      "Fauna & Animal Behaviour": 0.19,
+      "Pollution, Waste & Resources": 0.1635,
+      "Climate Science & Mitigation": 0.1344,
+      "Protected Areas & Wildlife Protection": 0.1153,
+      "Flora, Fungi & Forests": 0.1079,
+      "Climate Agreements & Carbon Markets": 0.1063,
+      "Ecosystems & Ecological Processes": 0.081,
+      "International Conventions & Organisations": 0.0602,
+      "Indian Environmental Laws & Bodies": 0.0414,
+      "_method": "Content re-tag of all 161 Environment PYQs 2015-2026 from their actual stems (scratch/retag_environment_subtopics.py -> scratch/environment_subtopic_retag.csv, output in scratch/environment_retag_output.txt), weighted with the same linear recency weights as subject_weights. The decoder had labelled 152/161 'Biodiversity'/'Ecology/Biodiversity'. 22 rows are not Environment at all (vaccines, genetics, cell biology, microbiology, physiology) and are left out of these weights; they still count in subject_weights until the S&T re-tag decides where they go. The nine buckets roll up into the blueprint's three Level-2 tests: Ecology & Biodiversity (Fauna, Flora, Ecosystems) 37.9%, Climate Change & Disaster Management (Climate Science, Climate Agreements, Pollution) 40.4%, Policies & Conservation (Protected Areas, Indian Laws, International Conventions) 21.7%. Supersedes playbook L.2 #5 'keep as-is' per the v2 build-out instruction (2026-09-28)."
     },
     "Science & Technology": {
       "Chemistry": 0.0316,
@@ -162,6 +167,13 @@
       "Judicial-Verdicts": 0.0357,
       "Statutory-Laws": 0.018,
       "Panchayati Raj & Local Governance": 0.018
+    },
+    "Environment & Ecology_superseded_decoder_mapping": {
+      "_note": "Clean reconciliation, no estimation needed -- decoder's 'Ecology/Biodiversity' + 'Biodiversity' were the same concept under two labels (merged); 'Pollution' folded into 'Climate & Pollution'. Matches L.2's 'keep as-is' instruction exactly.",
+      "Biodiversity": 0.9441,
+      "Climate & Pollution": 0.0373,
+      "Global Environmental Agreements": 0.0124,
+      "Conservation & Policy": 0.0062
     }
   },
   "difficulty_weights": {
@@ -208,6 +220,21 @@
       "hard": 0.3393,
       "_method": "2023-2026 pooled (n=56: 3 easy / 34 medium / 19 hard), the playbook's own evidence window. The playbook's '42-53% hard' quotes only 2023 and 2026; 2024 was 12% and 2025 31%. Recency 1..10 over 2015-26 would give 13/58/29.",
       "_note": "The live distribution_config keeps the global flat mix (easy 0.2636/medium 0.5257/hard 0.2107) as the default for every subject without an override."
+    },
+    "Environment & Ecology": {
+      "easy": 0.2292,
+      "medium": 0.5833,
+      "hard": 0.1875,
+      "_method": "2023-2026 pooled, the playbook's own evidence window (n=48 after removing 2024-Q33, a physiology question: 11 easy / 28 medium / 9 hard). A hyphenated 2025 label takes the lower band -- the rule that reproduces Polity's live 3/34/19; it affects one question (2025-Q9 'easy-medium' -> easy). Matches the playbook's G.3 2024 count (8 medium / 4 hard / 3 easy, incl. Q33)."
+    }
+  },
+  "question_type_weights_live_override": {
+    "Environment & Ecology": {
+      "statement_based": 0.6666,
+      "mcq": 0.1875,
+      "assertion_reason": 0.1042,
+      "match_the_following": 0.0417,
+      "_method": "Read from each 2023-26 question's option set (n=48): 32 statement (2-statement, 'how many', and 'which of the statements' combinations), 9 single-answer MCQ, 5 Statement-I/II (2023-Q12, 2023-Q76, 2024-Q20, plus 2025-Q9 and Q31 in the Statement-I/II/III variant), 2 pairs (2024-Q23, 2025-Q39). The playbook's G.1 template table (T1 16 / T2 9 / T3 18 / T4 6 / T5 0) disagrees: it counts no Statement-I/II question although its own ED1 note describes 2023-Q12 as one, and it files 'how many of these species...' item lists under T1."
     }
   }
 }

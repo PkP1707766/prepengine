@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Shared row builders for the Polity drafting batches (batch 3 onward).
+"""Shared row builders for the UPSC GS1 drafting batches (Polity batch 3 onward;
+Environment from its batch 1).
 
 Every row: exam_category 'upsc', marks 2 / 0.66, status 'draft', source_type
-'original_pattern_matched', a Constitution/Laxmikanth/statute citation. Ladder
-rows (count, T2, pairs, Statement-I/II) carry fixed_option_order so the exam
-screen never shuffles an ordered answer ladder.
+'original_pattern_matched', a primary-source citation. Ladder rows (count, T2,
+pairs, Statement-I/II) carry fixed_option_order so the exam screen never shuffles
+an ordered answer ladder. A batch for another subject sets
+`polity_common.SUBJECT` before adding rows (Polity batches leave the default).
 """
 import json, os
+
+SUBJECT = "Polity"
 
 def q(s):
     return "'" + s.replace("'", "''") + "'"
@@ -34,6 +38,7 @@ LAX = "M. Laxmikanth, Indian Polity"
 LADDER_NAME = {id(C3): "C3", id(C4): "C4", id(T2): "T2", id(P4): "P4", id(P3): "P3", id(SI): "SI"}
 
 rows, tally, cells, records = [], {}, {}, []
+letters = {"a": 0, "b": 0, "c": 0, "d": 0}  # correct-option letter, across every row type
 
 def pg_jsonb_text(v):
     """Render a value exactly as Postgres prints jsonb::text (keys ordered by length, then bytes)."""
@@ -45,7 +50,8 @@ def pg_jsonb_text(v):
     return json.dumps(v, ensure_ascii=False)
 
 def _row(topic, typ, diff, body, qdata, bodies, ans, expl, cg, cite, ladder=None):
-    rows.append("('upsc','Polity'," + q(topic) + "," + q(typ) + "," + q(diff) + "," + q(body) + "," + q(json.dumps(qdata, ensure_ascii=False)) + "::jsonb,"
+    letters["abcd"[ans]] += 1
+    rows.append("('upsc'," + q(SUBJECT) + "," + q(topic) + "," + q(typ) + "," + q(diff) + "," + q(body) + "," + q(json.dumps(qdata, ensure_ascii=False)) + "::jsonb,"
                 + q(opts(bodies, ans)) + "::jsonb,2,0.66," + q(expl) + "," + q(cg) + ",'original_pattern_matched'," + q(cite) + ",'draft')")
     records.append({"cg": cg, "topic": topic, "type": typ, "difficulty": diff, "body": body, "question_data": qdata,
                     "options": json.loads(opts(bodies, ans)), "explanation": expl, "citation": cite})
@@ -59,6 +65,13 @@ def stmt(topic, diff, body, statements, ladder, ans, expl, cg, cite):
     closing = WHICH if ladder is T2 else HOW_MANY
     _row(topic, "statement_based", diff, body, {"statements": statements, "closing": closing, "fixed_option_order": True},
          ladder, ans, expl, cg, cite, ladder)
+
+def stmt_opts(topic, diff, body, statements, options, ans, expl, cg, cite):
+    """A statement question with its own combination options ("1 and 2 only", or the 2026-style
+    "1 only / 1 and 2 / 2 and 3 / 3 only"). Kept in the printed order, as on the paper."""
+    assert len(options) == 4 and len(statements) in (2, 3, 4)
+    _row(topic, "statement_based", diff, body, {"statements": statements, "closing": WHICH, "fixed_option_order": True},
+         options, ans, expl, cg, cite)
 
 def mcq(topic, diff, body, options, ans, expl, cg, cite):
     _row(topic, "mcq", diff, body, {}, options, ans, expl, cg, cite)
@@ -83,6 +96,7 @@ def write_sql(here, name):
     print(f"wrote {name}: {len(rows)} rows, {len(sql)} chars")
     print("cells:", {f"{d}/{t}/{s}": n for (d, t, s), n in sorted(cells.items())})
     print("answer tally:", dict(sorted(tally.items())))
+    print("correct letter:", letters)
     # Checksum manifest: md5 of each row as the DB will print it, for a read-back comparison.
     import hashlib
     man = {r["cg"]: hashlib.md5("|".join([r["body"], pg_jsonb_text(r["question_data"]), pg_jsonb_text(r["options"]), r["explanation"],
