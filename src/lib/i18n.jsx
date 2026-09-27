@@ -1029,6 +1029,7 @@ Object.assign(STR, {
   ex_statements:  { en: "Statements", hi: "कथन" },
   ex_match:       { en: "Match", hi: "सुमेल" },
   ex_assertion_reason: { en: "Assertion–Reason", hi: "अभिकथन–कारण" },
+  ex_statement_i_ii: { en: "Statement-I/II", hi: "कथन-I/II" },
   ex_reasoning:   { en: "Reasoning", hi: "तर्कशक्ति" },
   ex_list_i:      { en: "List I", hi: "सूची I" },
   ex_list_ii:     { en: "List II", hi: "सूची II" },

@@ -62,14 +62,16 @@ const inLang = (lang, en, hi) => (lang === "hi" && hi ? hi : en);
 
 // The tag on each question card. The four BPSC formats all score as a single
 // correct option, so their difference is only what the reader sees.
-const typeLabel = (type, t) => {
+// `siStyle`: UPSC words the assertion-reason format as Statement-I / Statement-II
+// (question_data.ar_labels "statement"), so its tag says so too.
+const typeLabel = (type, t, siStyle = false) => {
   switch (type) {
     case "mcq": return t("ex_single");
     case "multiple": return t("ex_multiple");
     case "numerical": return t("ex_numerical");
     case "statement_based": return t("ex_statements");
     case "match_the_following": return t("ex_match");
-    case "assertion_reason": return t("ex_assertion_reason");
+    case "assertion_reason": return t(siStyle ? "ex_statement_i_ii" : "ex_assertion_reason");
     case "reasoning_aptitude": return t("ex_reasoning");
     default: return type;
   }
@@ -603,7 +605,7 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
             <span className="q-no">{t("ex_question_n")} {qIdx + 1}</span>
             <div className="q-tags">
               <span className="tag tag-topic">{q.topic}</span>
-              <span className="tag tag-type">{typeLabel(q.type, t)}</span>
+              <span className="tag tag-type">{typeLabel(q.type, t, q.data?.ar_labels === "statement")}</span>
               <span className="tag tag-pos">+{q.marks}</span>
               {q.negative > 0 && <span className="tag tag-neg">−{q.negative}</span>}
             </div>
@@ -984,7 +986,7 @@ function Results({ data, onRetake, onExit }) {
                     const col = acc >= 75 ? SEM.strong : acc >= 50 ? SEM.average : SEM.weak;
                     return (
                       <div className="topic-row" key={ty.name}>
-                        <span className="topic-name">{typeLabel(ty.name, tr)}</span>
+                        <span className="topic-name">{typeLabel(ty.name, tr, (data.review || []).some((r) => r.type === "assertion_reason" && r.data?.ar_labels === "statement"))}</span>
                         <div className="topic-track"><div className="topic-fill" style={{ width: acc + "%", background: col }} /></div>
                         <span className="brk-pct">{acc}% <span className="brk-n">({ty.correct}/{ty.total})</span></span>
                       </div>
