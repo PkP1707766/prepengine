@@ -1488,8 +1488,22 @@ function GenReport({ blueprint, result, committing, onCommit, onClose }) {
           </div>
         </Field>
       )}
+      {r.backfills && r.backfills.length > 0 && (
+        <Field label={"Backfilled (" + r.backfills.reduce((s, b) => s + b.backfilled, 0) + ")"} hint="The bank could not fill these cells exactly, so near-matches from the same subject and scope were used: an adjacent difficulty first, then another type.">
+          <div className="gen-gaps">
+            {r.backfills.map((b, i) => (
+              <div key={i} className="gen-gap">{b.subject} · {b.difficulty} · {b.type}{b.subTopic && b.subTopic !== "*" ? " · " + b.subTopic : ""} — {b.backfilled} of {b.requested} from outside the cell</div>
+            ))}
+          </div>
+        </Field>
+      )}
       {(!r.gaps || r.gaps.length === 0) && (
-        <p style={{ fontSize: 13, color: "var(--muted)", margin: "6px 2px 0" }}>Every target cell was filled from the bank. Saves as an unpublished draft you can review and publish under Tests &amp; Series.</p>
+        <p style={{ fontSize: 13, color: "var(--muted)", margin: "6px 2px 0" }}>
+          {r.backfills && r.backfills.length > 0
+            ? "Every question slot was filled; the backfilled cells above used near-matches rather than exact ones."
+            : "Every target cell was filled exactly from the bank."}{" "}
+          Saves as an unpublished draft you can review and publish under Tests &amp; Series.
+        </p>
       )}
     </Modal>
   );
