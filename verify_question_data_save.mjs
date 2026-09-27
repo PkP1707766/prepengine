@@ -23,4 +23,12 @@ const outUnticked = buildCleanData("statement_based", { statements: ["a", "b"], 
 check("unticking Roman numbering drops the key", !("numbering" in outUnticked), outUnticked);
 const outMcqStray = buildCleanData("mcq", { statements: ["a"], numbering: "roman" });
 check("an MCQ never carries a stray numbering key", !("numbering" in outMcqStray), outMcqStray);
+const si3 = { assertion: "S1", reason: "S2", reason_2: " S3 ", reason_2_hi: "कथन 3", ar_labels: "statement", closing: "Which one of the following is correct in respect of the above statements?", fixed_option_order: true };
+const outSi3 = buildCleanData("assertion_reason", si3);
+check("Statement-I/II/III row keeps Statement-III (trimmed) and its Hindi", outSi3.reason_2 === "S3" && outSi3.reason_2_hi === "कथन 3" && outSi3.ar_labels === "statement", outSi3);
+const outSi3Blank = buildCleanData("assertion_reason", { ...si3, reason_2: "   ", reason_2_hi: "" });
+check("a blank Statement-III is not saved", !("reason_2" in outSi3Blank) && !("reason_2_hi" in outSi3Blank), outSi3Blank);
+const outArWithThird = buildCleanData("assertion_reason", { assertion: "A", reason: "R", reason_2: "stray" });
+check("Assertion/Reason wording never carries a Statement-III", !("reason_2" in outArWithThird), outArWithThird);
+check("two-statement Statement-I/II row gains no reason_2 key", !("reason_2" in outAr), outAr);
 console.log(fail ? `\n${fail} FAILED` : "\nALL PASS"); process.exit(fail ? 1 : 0);

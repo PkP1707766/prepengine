@@ -67,6 +67,8 @@ export function StemData({ data }) {
         <div className="ar-block">
           {data.assertion && <div className="ar-row"><span className="ar-key">{t(siStyle ? "ex_statement_1" : "ex_assertion")}:</span> {inLang(lang, data.assertion, data.assertion_hi)}</div>}
           {data.reason && <div className="ar-row"><span className="ar-key">{t(siStyle ? "ex_statement_2" : "ex_reason")}:</span> {inLang(lang, data.reason, data.reason_hi)}</div>}
+          {/* UPSC 2025's three-statement form: II and III both offered as explanations of I. */}
+          {siStyle && data.reason_2 && <div className="ar-row"><span className="ar-key">{t("ex_statement_3")}:</span> {inLang(lang, data.reason_2, data.reason_2_hi)}</div>}
         </div>
       )}
       {series && <div className="series-line">{inLang(lang, series, data.series_hi)}</div>}

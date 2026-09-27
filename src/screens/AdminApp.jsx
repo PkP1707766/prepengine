@@ -544,6 +544,11 @@ function buildTypeData(type, d) {
     if (String(d.assertion_hi || "").trim()) out.assertion_hi = d.assertion_hi.trim();
     if (String(d.reason_hi || "").trim()) out.reason_hi = d.reason_hi.trim();
     if (d.ar_labels === "statement") out.ar_labels = "statement";
+    // Statement-III (UPSC 2025 three-statement form) is kept only in the Statement wording.
+    if (d.ar_labels === "statement" && String(d.reason_2 || "").trim()) {
+      out.reason_2 = d.reason_2.trim();
+      if (String(d.reason_2_hi || "").trim()) out.reason_2_hi = d.reason_2_hi.trim();
+    }
     if (String(d.closing || "").trim()) out.closing = d.closing.trim();
     if (String(d.closing_hi || "").trim()) out.closing_hi = d.closing_hi.trim();
     return out;
@@ -606,15 +611,35 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
     "Statement-I is correct but Statement-II is incorrect",
     "Statement-I is incorrect but Statement-II is correct",
   ];
+  // UPSC 2025's three-statement form, verbatim: Statements II and III are the
+  // candidate explanations of Statement I.
+  const SI3_OPTIONS = [
+    "Both Statement II and Statement III are correct and both of them explain Statement I",
+    "Both Statement II and Statement III are correct but only one of them explains Statement I",
+    "Only one of the Statements II and III is correct and that explains Statement I",
+    "Neither Statement II nor Statement III is correct",
+  ];
   const SI_CLOSING = "Which one of the following is correct in respect of the above statements?";
+  // Add or drop Statement-III. The four options switch between the two UPSC keys
+  // only while they are still the standard text, as in setArStyle below.
+  const setStatement3 = (on) => setF((p) => {
+    const from = on ? SI_OPTIONS : SI3_OPTIONS, to = on ? SI3_OPTIONS : SI_OPTIONS;
+    const std = p.options.length === 4 && p.options.every((o, i) => !o.body.trim() || o.body.trim() === from[i]);
+    const qd = { ...(p.questionData || {}) };
+    if (on) qd.reason_2 = qd.reason_2 || "";
+    else { delete qd.reason_2; delete qd.reason_2_hi; }
+    return { ...p, questionData: qd, options: std ? p.options.map((o, i) => ({ ...o, body: to[i] })) : p.options };
+  });
   // Switch an A-R question between the two wordings. Option text is swapped only
   // while it is still one of the standard keys, so hand-written options survive.
   const setArStyle = (si) => setF((p) => {
-    const from = si ? AR_OPTIONS : SI_OPTIONS, to = si ? SI_OPTIONS : AR_OPTIONS;
+    // Statement-III exists only in the Statement wording, so it goes when that does.
+    const three = !si && (p.questionData || {}).reason_2 !== undefined;
+    const from = si ? AR_OPTIONS : (three ? SI3_OPTIONS : SI_OPTIONS), to = si ? SI_OPTIONS : AR_OPTIONS;
     const std = p.options.length === 4 && p.options.every((o, i) => !o.body.trim() || o.body.trim() === from[i]);
     const qd = { ...(p.questionData || {}) };
     if (si) { qd.ar_labels = "statement"; if (!String(qd.closing || "").trim()) qd.closing = SI_CLOSING; }
-    else { delete qd.ar_labels; if (qd.closing === SI_CLOSING) delete qd.closing; }
+    else { delete qd.ar_labels; delete qd.reason_2; delete qd.reason_2_hi; if (qd.closing === SI_CLOSING) delete qd.closing; }
     return { ...p, questionData: qd, options: std ? p.options.map((o, i) => ({ ...o, body: to[i] })) : p.options };
   });
 
@@ -682,6 +707,8 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
       return setErr("Match the Following needs at least two items in each list.");
     if (f.type === "assertion_reason" && (!(d.assertion || "").trim() || !(d.reason || "").trim()))
       return setErr("Both the Assertion and the Reason are required.");
+    if (f.type === "assertion_reason" && d.reason_2 !== undefined && !String(d.reason_2).trim())
+      return setErr("Statement-III is ticked but empty — fill it in or untick it.");
 
     if (f.type === "numerical") {
       if (f.numericAnswer === "" || isNaN(parseFloat(f.numericAnswer))) return setErr("Enter a valid numerical answer.");
@@ -838,6 +865,12 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
           Word it as Statement-I / Statement-II (UPSC style) instead of Assertion (A) / Reason (R)
         </label>
       )}
+      {f.type === "assertion_reason" && d.ar_labels === "statement" && (
+        <label style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, margin: "0 0 8px" }}>
+          <input type="checkbox" checked={d.reason_2 !== undefined} onChange={(e) => setStatement3(e.target.checked)} />
+          Add Statement-III (UPSC 2025 three-statement form: do II and III explain I?)
+        </label>
+      )}
       {f.type === "assertion_reason" && (
         <div className="field-row">
           <Field label={d.ar_labels === "statement" ? "Statement-I" : "Assertion (A)"} req>
@@ -849,6 +882,12 @@ function QuestionForm({ initial, examCategory, onSave, onClose }) {
             {showHi && <textarea className="inp" rows={2} lang="hi" style={{ marginTop: 8 }} value={d.reason_hi || ""} placeholder="कारण (वैकल्पिक)" onChange={(e) => setData({ reason_hi: e.target.value })} />}
           </Field>
         </div>
+      )}
+      {f.type === "assertion_reason" && d.reason_2 !== undefined && (
+        <Field label="Statement-III" req>
+          <textarea className="inp" rows={2} value={d.reason_2 || ""} onChange={(e) => setData({ reason_2: e.target.value })} />
+          {showHi && <textarea className="inp" rows={2} lang="hi" style={{ marginTop: 8 }} value={d.reason_2_hi || ""} placeholder="कथन-III (वैकल्पिक)" onChange={(e) => setData({ reason_2_hi: e.target.value })} />}
+        </Field>
       )}
 
       {f.type === "reasoning_aptitude" && (

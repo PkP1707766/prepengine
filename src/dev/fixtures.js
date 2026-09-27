@@ -404,6 +404,25 @@ export const FX_EXAM = {
           ],
         },
         {
+          // UPSC 2025 three-statement form (question_data.reason_2 = Statement-III).
+          id: "fx-eb2u3", subject: "Environment & Ecology", topic: "Pollution, Waste & Resources", type: "assertion_reason", marks: 2, negative: 0.66,
+          text: "Consider the following statements:",
+          data: {
+            assertion: "A circular economy reduces the emission of greenhouse gases.",
+            reason: "A circular economy reduces the use of raw materials as inputs.",
+            reason_2: "A circular economy reduces wastage in the production process.",
+            ar_labels: "statement",
+            closing: "Which one of the following is correct in respect of the above statements?",
+            fixed_option_order: true,
+          },
+          options: [
+            { id: "fx-eb2u3-a", body: "Both Statement II and Statement III are correct and both of them explain Statement I" },
+            { id: "fx-eb2u3-b", body: "Both Statement II and Statement III are correct but only one of them explains Statement I" },
+            { id: "fx-eb2u3-c", body: "Only one of the Statements II and III is correct and that explains Statement I" },
+            { id: "fx-eb2u3-d", body: "Neither Statement II nor Statement III is correct" },
+          ],
+        },
+        {
           // UPSC 2025-style Roman-numbered statements (question_data.numbering = "roman").
           id: "fx-eb0r", subject: "Environment & Ecology", topic: "Climate Science & Mitigation", type: "statement_based", marks: 2, negative: 0.66,
           text: "With reference to the planet Earth, consider the following statements:",

@@ -29,13 +29,18 @@ SI = ["Both Statement-I and Statement-II are correct and Statement-II is the cor
       "Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I",
       "Statement-I is correct but Statement-II is incorrect",
       "Statement-I is incorrect but Statement-II is correct"]
+# Verbatim UPSC 2025 three-statement key: Statements II and III as explanations of I.
+SI3 = ["Both Statement II and Statement III are correct and both of them explain Statement I",
+       "Both Statement II and Statement III are correct but only one of them explains Statement I",
+       "Only one of the Statements II and III is correct and that explains Statement I",
+       "Neither Statement II nor Statement III is correct"]
 HOW_MANY = "How many of the above statements are correct?"
 WHICH = "Which of the statements given above is/are correct?"
 PAIRS = "How many of the pairs given above are correctly matched?"
 SI_CLOSING = "Which one of the following is correct in respect of the above statements?"
 LAX = "M. Laxmikanth, Indian Polity"
 
-LADDER_NAME = {id(C3): "C3", id(C4): "C4", id(T2): "T2", id(P4): "P4", id(P3): "P3", id(SI): "SI"}
+LADDER_NAME = {id(C3): "C3", id(C4): "C4", id(T2): "T2", id(P4): "P4", id(P3): "P3", id(SI): "SI", id(SI3): "SI3"}
 
 rows, tally, cells, records = [], {}, {}, []
 letters = {"a": 0, "b": 0, "c": 0, "d": 0}  # correct-option letter, across every row type
@@ -80,6 +85,12 @@ def ar(topic, diff, s1, s2, ans, expl, cg, cite):
     _row(topic, "assertion_reason", diff, "Consider the following statements:",
          {"assertion": s1, "reason": s2, "ar_labels": "statement", "closing": SI_CLOSING, "fixed_option_order": True},
          SI, ans, expl, cg, cite, SI)
+
+def ar3(topic, diff, s1, s2, s3, ans, expl, cg, cite):
+    """UPSC 2025's three-statement form; renders as Statement-I/II/III (question_data.reason_2)."""
+    _row(topic, "assertion_reason", diff, "Consider the following statements:",
+         {"assertion": s1, "reason": s2, "reason_2": s3, "ar_labels": "statement", "closing": SI_CLOSING, "fixed_option_order": True},
+         SI3, ans, expl, cg, cite, SI3)
 
 def pairs(topic, diff, body, list_1, list_2, ans, expl, cg, cite):
     ladder = P4 if len(list_1) == 4 else P3

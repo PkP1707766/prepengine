@@ -1036,6 +1036,7 @@ Object.assign(STR, {
   ex_reason:      { en: "Reason (R)", hi: "कारण (R)" },
   ex_statement_1: { en: "Statement-I", hi: "कथन-I" },
   ex_statement_2: { en: "Statement-II", hi: "कथन-II" },
+  ex_statement_3: { en: "Statement-III", hi: "कथन-III" },
   ex_source:      { en: "Source", hi: "स्रोत" },
   ex_got_correct: { en: "got this right", hi: "ने सही किया" },
   ex_not_attempted: { en: "Not attempted", hi: "प्रयास नहीं किया" },

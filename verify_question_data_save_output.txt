@@ -8,5 +8,9 @@ PASS  Arabic-numbered statement row gains no numbering key
 PASS  Roman-numbered statement row keeps numbering
 PASS  unticking Roman numbering drops the key
 PASS  an MCQ never carries a stray numbering key
+PASS  Statement-I/II/III row keeps Statement-III (trimmed) and its Hindi
+PASS  a blank Statement-III is not saved
+PASS  Assertion/Reason wording never carries a Statement-III
+PASS  two-statement Statement-I/II row gains no reason_2 key
 
 ALL PASS
