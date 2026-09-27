@@ -22,7 +22,11 @@ export function getSupabaseSync() {
       // invalidate the stored token of every user who is already signed in and
       // silently log them all out on the next deploy.
     },
-    global: { headers: { "x-application-name": "junoonias-web" } },
+    // No custom global headers: supabase-js sends them on edge-function calls
+    // too, and a header missing from the functions' CORS allow-list
+    // (_shared/cors.ts) makes the browser refuse the preflight. An
+    // "x-application-name" header here blocked submit-attempt, coupon-check,
+    // join-order and verify-payment for every browser from 02ec704 onwards.
   });
   return client;
 }
