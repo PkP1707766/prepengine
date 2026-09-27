@@ -644,17 +644,29 @@ export const materials = crud(
   (m) => ({ id: m.id, title: m.title, description: m.description || null, subject: m.subject || null, type: m.type, url: m.url || null, batch_id: m.batchId || null, is_free: !!m.isFree, is_published: m.isPublished !== false }),
 );
 
+const seriesFromRow = (r) => ({ id: r.id, title: r.title, description: r.description || "", batchId: r.batch_id, price: Number(r.price || 0), isFree: !!r.is_free, examCategory: r.exam_category, createdAt: r.created_at });
 export const series = crud(
   "test_series",
-  (r) => ({ id: r.id, title: r.title, description: r.description || "", batchId: r.batch_id, price: Number(r.price || 0), isFree: !!r.is_free, createdAt: r.created_at }),
-  (s) => ({ id: s.id, title: s.title, description: s.description || null, batch_id: s.batchId || null, price: Number(s.price || 0), is_free: !!s.isFree }),
+  seriesFromRow,
+  (s) => ({ id: s.id, title: s.title, description: s.description || null, batch_id: s.batchId || null, price: Number(s.price || 0), is_free: !!s.isFree, exam_category: s.examCategory }),
 );
+
+/** Series of one exam only (migration 0025) -- the admin's pickers never offer another exam's series. */
+export async function listSeries(examCategory) {
+  if (!examCategory) throw new Error("listSeries requires an examCategory");
+  if (import.meta.env.DEV && FIXTURES_ON()) return [];
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("test_series").select("*").eq("exam_category", examCategory).order("created_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []).map(seriesFromRow);
+}
 
 /* ------------------------------------------------------------------ tests -- */
 
 function testFromRow(r) {
   return {
     id: r.id,
+    examCategory: r.exam_category,
     title: r.title,
     description: r.description || "",
     seriesId: r.series_id,
@@ -675,6 +687,9 @@ function testFromRow(r) {
 function testToRow(t) {
   return {
     id: t.id,
+    // A test belongs to one exam (migration 0025). The DB guard fills it from
+    // the blueprint/series/questions when absent and refuses any mixing.
+    exam_category: t.examCategory || null,
     title: t.title,
     description: t.description || null,
     series_id: t.seriesId || null,
@@ -688,8 +703,10 @@ function testToRow(t) {
   };
 }
 
-export async function listTests({ publishedOnly = false } = {}) {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_TESTS.filter((t) => !publishedOnly || t.isPublished);
+// examCategory scopes the list to one exam (the admin workspace always passes
+// it); the student catalogue omits it and stays gated by bundles.
+export async function listTests({ publishedOnly = false, examCategory = null } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_TESTS.filter((t) => (!publishedOnly || t.isPublished) && (!examCategory || (t.examCategory || "bpsc") === examCategory));
   const sb = await getSupabase();
   const rows = [];
   for (let from = 0; ; from += DB_PAGE_SIZE) {
@@ -700,6 +717,7 @@ export async function listTests({ publishedOnly = false } = {}) {
       .order("id", { ascending: true }) // tiebreaker so range() pagination can't skip/repeat rows that share an order value
       .range(from, from + DB_PAGE_SIZE - 1);
     if (publishedOnly) q = q.eq("is_published", true);
+    if (examCategory) q = q.eq("exam_category", examCategory);
     const { data, error } = await q;
     if (error) throw error;
     rows.push(...(data ?? []));

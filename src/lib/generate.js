@@ -150,6 +150,16 @@ function apportion(cells, total) {
   return work.filter((c) => c.n > 0).map(({ i, x, keys, ...c }) => c);
 }
 
+/* ------------------------------------------------------------------- pacing -- */
+
+// Minutes per question for a generated paper, by exam. BPSC Prelims: 150 Q in
+// 120 min. UPSC GS Paper I: 100 Q in 120 min. Other exams default to BPSC's pace.
+export const MINUTES_PER_QUESTION = { bpsc: 0.8, upsc: 1.2 };
+export function testDurationFor(examCategory, questionCount) {
+  const pace = MINUTES_PER_QUESTION[examCategory] ?? MINUTES_PER_QUESTION.bpsc;
+  return Math.max(1, Math.round(questionCount * pace));
+}
+
 /* ------------------------------------------------------------------ weights -- */
 
 const DEFAULT_DIFFICULTY = { easy: 0.3, medium: 0.5, hard: 0.2 };

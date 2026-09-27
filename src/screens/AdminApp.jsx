@@ -5,7 +5,7 @@ import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 
 import * as DB from "../lib/db.js";
-import { generateTest } from "../lib/generate.js";
+import { generateTest, testDurationFor } from "../lib/generate.js";
 import { fmtINR, fmtLongDate, initials, uid } from "../lib/format.js";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
@@ -205,6 +205,8 @@ const CSS = `
 [data-theme="dark"] .scrim{ background:rgba(0,0,0,.62); }
 [data-theme="dark"] .tbl thead th{ background:var(--hair); color:var(--muted); }
 [data-theme="dark"] .tbl tbody tr:hover{ background:var(--hair); }
+[data-theme="dark"] .tbl tbody tr:hover td:has(> .row-actions){ background:var(--hair); }
+[data-theme="dark"] .q-peek{ color:var(--muted); }
 *{box-sizing:border-box}
 .ad-root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);
   font-variant-numeric:tabular-nums;line-height:1.5;background:var(--bg);min-height:100vh;display:flex}
@@ -232,7 +234,13 @@ const CSS = `
 .topbar{background:#ffffff;border-bottom:1px solid var(--line);padding:14px 26px;display:flex;align-items:center;justify-content:space-between;gap:14px;position:sticky;top:0;z-index:30}
 .topbar h1{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
 .topbar .sub{font-size:12.5px;color:var(--muted);margin-top:1px}
-.tb-right{display:flex;align-items:center;gap:12px}
+.tb-title{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto}
+.topbar h1,.topbar .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-right{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.tb-admin-text{min-width:0;max-width:200px}
+.tb-admin-name,.tb-admin-role{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:1100px){.tb-admin-text{display:none}.pub-label{display:none}.hide-narrow{display:none}.tbl .show-narrow{display:block}.tbl .q-meta.show-narrow{display:flex}
+  .tbl-wrap .tbl thead th,.tbl-wrap .tbl tbody td{padding-left:11px;padding-right:11px}.tbl-wrap .tbl .t-cell{min-width:160px}.tbl-wrap table.tbl{min-width:0}}
 .tb-admin{display:flex;align-items:center;gap:10px}
 .tb-av{width:36px;height:36px;border-radius:9px;background:var(--navy);color:#ffffff;display:grid;place-items:center;font-weight:800;font-size:13px}
 .tb-admin-name{font-size:13.5px;font-weight:700;line-height:1.1}
@@ -302,9 +310,24 @@ table.tbl{width:100%;border-collapse:collapse;min-width:640px}
 .tbl tbody td{padding:14px 16px;border-bottom:1px solid #fdf6e3;font-size:13.5px;vertical-align:middle}
 .tbl tbody tr:last-child td{border-bottom:none}
 .tbl tbody tr:hover{background:#fbf5e7}
-.q-cell{max-width:440px}
+/* The global mobile guard sets overflow-wrap:anywhere on every cell; inside an
+   auto-layout table that lets a column shrink to one letter ("Draf t",
+   "Liv e", "₹1,49 9"). break-word still wraps an over-long word but never
+   lets it define the column's minimum width. */
+.tbl th,.tbl td,.tbl td *{overflow-wrap:break-word}
+.tbl td.nowrap,.tbl td.nowrap *{white-space:nowrap}
+.show-narrow{display:none}
+.q-meta{margin-top:6px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.q-cell{min-width:260px;max-width:460px}
+.t-cell{min-width:220px}
 .q-body{font-weight:600;color:#2e1c12;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.q-peek{font-size:12.5px;color:#5a4636;margin-top:3px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .q-sub{font-size:11.5px;color:var(--muted);margin-top:4px}
+/* Row actions stay reachable when a wide table scrolls sideways. */
+.tbl td:has(> .row-actions),.tbl:has(td > .row-actions) thead th:last-child{position:sticky;right:0;z-index:1}
+.tbl td:has(> .row-actions){background:var(--card);box-shadow:-10px 0 10px -10px rgba(60,40,20,.22)}
+.tbl:has(td > .row-actions) thead th:last-child{box-shadow:-10px 0 10px -10px rgba(60,40,20,.22)}
+.tbl tbody tr:hover td:has(> .row-actions){background:#fbf5e7}
 .row-actions{display:flex;gap:8px;justify-content:flex-end}
 
 /* BADGES */
@@ -1068,7 +1091,7 @@ function TestEditor({ initial, bank, seriesList = [], onSave, onCancel, toast, s
       <div className="panel panel-pad" style={{ marginBottom: 18 }}>
         <div className="field-row">
           <Field label="Test title" req><input className="inp" value={t.title} placeholder="e.g. BPSC Full Mock 02" onChange={(e) => set("title", e.target.value)} /></Field>
-          <Field label="Test series" hint={seriesList.length === 0 ? "Create a series under Courses & Batches to group tests." : undefined}>
+          <Field label="Test series" hint={seriesList.length === 0 ? "No series exists for this exam yet, so this test is standalone." : "Only this exam's series are listed."}>
             <select className="inp" value={t.seriesId || ""} onChange={(e) => set("seriesId", e.target.value)}>
               <option value="">Standalone test (no series)</option>
               {seriesList.map((sr) => <option key={sr.id} value={sr.id}>{sr.title}</option>)}
@@ -1300,10 +1323,10 @@ function MaterialForm({ initial, batches, onSave, onClose }) {
 /* ============================================================
    CONFIRM
    ============================================================ */
-function Confirm({ message, onYes, onClose }) {
+function Confirm({ message, onYes, onClose, label = "Delete", danger = true }) {
   return (
     <Modal title="Please confirm" onClose={onClose}
-      footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className="btn btn-danger" onClick={() => { onYes(); onClose(); }}><Trash2 size={16} />Delete</button></>}>
+      footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className={danger ? "btn btn-danger" : "btn btn-primary"} onClick={() => { onYes(); onClose(); }}>{danger && <Trash2 size={16} />}{label}</button></>}>
       <p style={{ margin: 0, fontSize: 14.5, color: "var(--ink)" }}>{message}</p>
     </Modal>
   );
@@ -1509,7 +1532,7 @@ function GenReport({ blueprint, result, committing, onCommit, onClose }) {
   );
 }
 
-function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
+function Blueprints({ questions, tests = [], seriesList, toast, askDelete, examCategory }) {
   const [configs, setConfigs] = useState([]);
   const [blueprints, setBlueprints] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1574,10 +1597,16 @@ function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
       const count = result.questionIds.length;
       const test = {
         id: uid(),
-        title: bp.title + " — " + new Date().toLocaleDateString(),
+        // The blueprint title is what students see; a regeneration gets "(2)", "(3)"
+        // instead of the old US-format date suffix.
+        title: (() => {
+          const taken = new Set(tests.map((x) => x.title));
+          let n = 1, title = bp.title;
+          while (taken.has(title)) title = `${bp.title} (${++n})`;
+          return title;
+        })(),
         seriesId: bp.seriesId || null,
-        // Exam pace: BPSC 150 Q in 120 min (0.8 min/Q); UPSC GS Paper I 100 Q in 120 min (1.2 min/Q).
-        durationMin: Math.max(1, Math.round(count * (examCategory === "upsc" ? 1.2 : 0.8))),
+        durationMin: testDurationFor(examCategory, count), // BPSC 0.8 min/Q, UPSC GS1 1.2 min/Q
         sections: result.sections,
         isFree: false, isPublished: false, shuffleQuestions: true, shuffleOptions: true,
       };
@@ -1629,7 +1658,8 @@ function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
         </div>
         {blueprints.length === 0 ? (
           <Empty icon={<Sparkles size={24} />} title="No blueprints yet" text="Define the pattern, question count and scope for each test in your series." />
-        ) : blueprints.map((b) => (
+        ) : [...blueprints].sort((a, b) => (a.themeGroupId || "").localeCompare(b.themeGroupId || "")
+            || (a.sequencePosition || 0) - (b.sequencePosition || 0) || a.title.localeCompare(b.title)).map((b) => (
           <div key={b.id} className="row-item">
             <div style={{ minWidth: 0 }}>
               <div style={{ fontWeight: 700, fontSize: 14, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
@@ -1637,7 +1667,7 @@ function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
                 <Badge color={{ bg: "#eef3f8", fg: "#3a5a7a" }}>{PATTERN_LABEL[b.patternType] || b.patternType}</Badge>
                 {b.themeGroupId && <Badge color={{ bg: "#f2e9f2", fg: "#6a3a6a" }}>{b.themeGroupId}{b.themePartIndex ? " · " + b.themePartIndex : ""}</Badge>}
                 {Array.isArray(b.subjectScope?.sub_topics) && b.subjectScope.sub_topics.length > 0 && (
-                  <Badge color={{ bg: "#e7f2ec", fg: "#2a6a52" }}>{b.subjectScope.subject}: {b.subjectScope.sub_topics.join(", ")}</Badge>
+                  <span className="badge" style={{ background: "#e7f2ec", color: "#2a6a52", whiteSpace: "normal" }}>{b.subjectScope.subject}: {b.subjectScope.sub_topics.join(", ")}</span>
                 )}
               </div>
               <div style={{ fontSize: 12.5, color: "var(--muted)", marginTop: 3 }}>{b.questionCount} questions{b.distributionConfigId ? " · " + (configs.find((c) => c.id === b.distributionConfigId)?.name || "config") : " · no config"}</div>
@@ -1736,6 +1766,7 @@ function App({ onLogout }) {
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 3000);
   }, []);
   const askDelete = (message, onYes) => setConfirm({ message, onYes });
+  const askConfirm = (message, onYes, label, danger = false) => setConfirm({ message, onYes, label, danger });
 
   /* ---- Load everything from the database. No seeding, no local shadow copy.
      Re-runs whenever examCategory changes, so switching the workspace switch
@@ -1749,9 +1780,9 @@ function App({ onLogout }) {
         DB.getQuestionStats(examCategory),
         DB.courses.list(),
         DB.batches.list(),
-        DB.listTests(),
+        DB.listTests({ examCategory }),
         DB.materials.list(),
-        DB.series.list(),
+        DB.listSeries(examCategory),
         DB.examCategories(),
       ]);
       setQuestions(q); setQuestionStats(stats); setCourses(c); setBatches(b);
@@ -1887,7 +1918,7 @@ function App({ onLogout }) {
 
   const saveTest = async (item) => {
     try {
-      const saved = await DB.upsertTest(item);
+      const saved = await DB.upsertTest({ ...item, examCategory: item.examCategory || examCategory });
       setTests((prev) => prev.some((x) => x.id === saved.id)
         ? prev.map((x) => (x.id === saved.id ? saved : x))
         : [saved, ...prev]);
@@ -1999,9 +2030,9 @@ function App({ onLogout }) {
       {/* MAIN */}
       <div className="main">
         <header className="topbar">
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="tb-title">
             <button className="hamburger" onClick={() => setSbOpen(true)}><Menu size={20} /></button>
-            <div>
+            <div style={{ minWidth: 0 }}>
               <h1>{PAGE_META[view].title}</h1>
               <div className="sub">{PAGE_META[view].sub}</div>
             </div>
@@ -2011,7 +2042,7 @@ function App({ onLogout }) {
             <div className="tb-admin">
               <button className="btn-icon" title="Log out" onClick={onLogout} style={{ width: 40, height: 40, marginRight: 4 }}><LogOut size={18} /></button>
               <div className="tb-av">{initials(admin.name)}</div>
-              <div>
+              <div className="tb-admin-text" title={admin.name}>
                 <div className="tb-admin-name">{admin.name}</div>
                 <div className="tb-admin-role">Administrator</div>
               </div>
@@ -2022,8 +2053,8 @@ function App({ onLogout }) {
         <main className="content">
           {view === "overview" && <Overview {...{ questions, questionStats, tests, courses, batches, go, loadStarterPack, examCategory }} />}
           {view === "questions" && <QuestionBank {...{ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete, examCategory, examOptions, switchExam }} />}
-          {view === "tests" && <Tests {...{ tests, saveTest, removeTest, questions, seriesList, toast, askDelete }} />}
-          {view === "blueprints" && <Blueprints {...{ questions, seriesList, toast, askDelete, examCategory }} />}
+          {view === "tests" && <Tests {...{ tests, saveTest, removeTest, questions, seriesList, toast, askDelete, askConfirm, examCategory }} />}
+          {view === "blueprints" && <Blueprints {...{ questions, tests, seriesList, toast, askDelete, examCategory }} />}
           {view === "bundles" && <Bundles {...{ tests, toast }} />}
           {view === "courses" && <Courses {...{ courses, saveCourse, removeCourse, batches, saveBatch, removeBatch, askDelete }} />}
           {view === "materials" && <Materials {...{ materials, saveMaterial, removeMaterial, batches, askDelete }} />}
@@ -2045,7 +2076,7 @@ function App({ onLogout }) {
           </div>
         ))}
       </div>
-      {confirm && <Confirm message={confirm.message} onYes={confirm.onYes} onClose={() => setConfirm(null)} />}
+      {confirm && <Confirm message={confirm.message} onYes={confirm.onYes} label={confirm.label} danger={confirm.danger !== false} onClose={() => setConfirm(null)} />}
     </div>
   );
 }
@@ -2142,6 +2173,16 @@ function Overview({ questions, questionStats, tests, courses, batches, go, loadS
 /* ============================================================
    VIEW: QUESTION BANK
    ============================================================ */
+// First line of the question's own content (statement 1, Statement-I, the first
+// pair), so list rows that share a generic stem can still be told apart.
+function questionPeek(x) {
+  const d = x.questionData || {};
+  if (Array.isArray(d.statements) && d.statements[0]) return "1. " + d.statements[0];
+  if (d.assertion) return (d.ar_labels === "statement" ? "Statement-I: " : "A: ") + d.assertion;
+  if (Array.isArray(d.list_1) && d.list_1[0]) return d.list_1[0] + (Array.isArray(d.list_2) && d.list_2[0] ? " — " + d.list_2[0] : "");
+  return "";
+}
+
 function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete, examCategory, examOptions, switchExam }) {
   const [q, setQ] = useState("");
   const [subj, setSubj] = useState("all");
@@ -2202,19 +2243,23 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
       ) : (
         <div className="tbl-wrap">
           <table className="tbl">
-            <thead><tr><th style={{ width: 40 }}>#</th><th>Question</th><th>Exam · Subject</th><th>Type</th><th>Level</th><th>Marks</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
+            <thead><tr><th style={{ width: 40 }}>#</th><th>Question</th><th className="hide-narrow">Exam · Subject</th><th className="hide-narrow">Type</th><th className="hide-narrow">Level</th><th className="hide-narrow">Marks</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
             <tbody>
               {filtered.map((x, i) => (
                 <tr key={x.id}>
                   <td style={{ color: "var(--muted)", fontWeight: 700 }}>{i + 1}</td>
-                  <td className="q-cell"><div className="q-body">{x.body}</div>{x.topic && <div className="q-sub">{x.topic}</div>}</td>
-                  <td>
+                  <td className="q-cell"><div className="q-body" title={x.body}>{x.body}</div>{questionPeek(x) && <div className="q-peek" title={questionPeek(x)}>{questionPeek(x)}</div>}{x.topic && <div className="q-sub">{x.topic}</div>}
+                    <div className="q-meta show-narrow">
+                      <Badge color={{ bg: "#fdf6e3", fg: "#7a6450" }}>{x.subject}</Badge> <Badge color={TYPE_COLOR[x.type]}>{TYPE_LABEL[x.type]}</Badge> <Badge color={DIFF_COLOR[x.difficulty]}>{x.difficulty}</Badge>{" "}
+                      <span className="marks"><span className="pos">+{x.marksCorrect}</span>{x.marksWrong > 0 && <span className="neg"> / −{x.marksWrong}</span>}</span>
+                    </div></td>
+                  <td className="hide-narrow">
                     <Badge color={x.examCategory === examCategory ? { bg: "#eaf1fb", fg: "#1f4f8a" } : { bg: "#fbeaea", fg: "#c0392b" }}>{(x.examCategory || "no exam").toUpperCase()}</Badge>{" "}
                     <Badge color={{ bg: "#fdf6e3", fg: "#7a6450" }}>{x.subject}</Badge>
                   </td>
-                  <td><Badge color={TYPE_COLOR[x.type]}>{TYPE_LABEL[x.type]}</Badge></td>
-                  <td><Badge color={DIFF_COLOR[x.difficulty]}>{x.difficulty}</Badge></td>
-                  <td><span className="marks"><span className="pos">+{x.marksCorrect}</span>{x.marksWrong > 0 && <span className="neg"> / −{x.marksWrong}</span>}</span></td>
+                  <td className="hide-narrow"><Badge color={TYPE_COLOR[x.type]}>{TYPE_LABEL[x.type]}</Badge></td>
+                  <td className="hide-narrow"><Badge color={DIFF_COLOR[x.difficulty]}>{x.difficulty}</Badge></td>
+                  <td className="hide-narrow"><span className="marks"><span className="pos">+{x.marksCorrect}</span>{x.marksWrong > 0 && <span className="neg"> / −{x.marksWrong}</span>}</span></td>
                   <td><div className="row-actions">
                     <button className="btn-icon" onClick={() => setEditing(x)} title="Edit"><Pencil size={15} /></button>
                     <button className="btn-icon danger" onClick={() => del(x)} title="Delete"><Trash2 size={15} /></button>
@@ -2235,7 +2280,7 @@ function QuestionBank({ questions, saveQuestion, deleteQuestion, importQuestions
 /* ============================================================
    VIEW: TESTS
    ============================================================ */
-function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askDelete }) {
+function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askDelete, askConfirm, examCategory }) {
   const [editor, setEditor] = useState(null); // null=list, {}=new, test=edit
   const [busy, setBusy] = useState(null);
 
@@ -2249,11 +2294,19 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
     `Delete the test "${t.title}"? Students who already attempted it keep their reports, but the test disappears from the catalogue.`,
     () => removeTest(t.id),
   );
-  const togglePublish = async (t) => {
-    setBusy(t.id);
-    await saveTest({ ...t, isPublished: !t.isPublished });
-    setBusy(null);
-  };
+  // Publishing puts a test in front of students, so it always asks first --
+  // it used to flip on a single click of the status text or the eye icon.
+  const togglePublish = (t) => askConfirm(
+    t.isPublished
+      ? `Unpublish "${t.title}"? Students will no longer see it in the catalogue; past attempts keep their reports.`
+      : `Publish "${t.title}"? It becomes visible to students who have access to it.`,
+    async () => {
+      setBusy(t.id);
+      await saveTest({ ...t, isPublished: !t.isPublished });
+      setBusy(null);
+    },
+    t.isPublished ? "Unpublish" : "Publish",
+  );
 
   if (editor !== null) {
     return <TestEditor initial={editor.id ? editor : null} bank={questions} seriesList={seriesList} onSave={save} onCancel={() => setEditor(null)} toast={toast} saving={busy === "save"} />;
@@ -2264,7 +2317,7 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
   return (
     <div>
       <div className="sec-head">
-        <div><h2>{tests.length} test{tests.length !== 1 ? "s" : ""}</h2><div className="note">Assemble tests from your question bank</div></div>
+        <div><h2>{tests.length} {(examCategory || "").toUpperCase()} test{tests.length !== 1 ? "s" : ""}</h2><div className="note">Only this exam's tests are listed; switch exams in the sidebar.</div></div>
         <button className="btn btn-primary" onClick={() => setEditor({})} disabled={questions.length === 0}><Plus size={16} />Create test</button>
       </div>
 
@@ -2275,22 +2328,23 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
       ) : (
         <div className="tbl-wrap">
           <table className="tbl">
-            <thead><tr><th>Test</th><th>Sections</th><th>Questions</th><th>Duration</th><th>Status</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
+            <thead><tr><th>Test</th><th className="hide-narrow">Sections</th><th>Questions</th><th>Duration</th><th className="hide-narrow">Status</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
             <tbody>
               {tests.map((t) => (
                 <tr key={t.id}>
-                  <td><div style={{ fontWeight: 700, color: "var(--ink)" }}>{t.title}</div>{t.seriesTitle && <div className="q-sub">{t.seriesTitle}</div>}</td>
-                  <td>{(t.sections || []).length}</td>
+                  <td className="t-cell"><div style={{ fontWeight: 700, color: "var(--ink)" }}>{t.title}</div>{t.seriesTitle && <div className="q-sub">{t.seriesTitle}</div>}
+                    <div className="q-sub show-narrow" style={{ color: t.isPublished ? "var(--green)" : "var(--muted)", fontWeight: 700 }}>● {t.isPublished ? "Published" : "Draft"}</div></td>
+                  <td className="hide-narrow">{(t.sections || []).length}</td>
                   <td>{qCount(t)}</td>
-                  <td><Clock size={13} style={{ verticalAlign: -2, marginRight: 4, color: "var(--muted)" }} />{t.durationMin} min</td>
-                  <td>
-                    <button className="dot-pub" onClick={() => togglePublish(t)} disabled={busy === t.id} title="Click to toggle">
+                  <td className="nowrap"><Clock size={13} style={{ verticalAlign: -2, marginRight: 4, color: "var(--muted)" }} />{t.durationMin} min</td>
+                  <td className="nowrap hide-narrow">
+                    <span className="dot-pub" style={{ cursor: "default" }}>
                       <span className="dot" style={{ background: t.isPublished ? "var(--green)" : "#d2c6a8" }} />
                       <span style={{ color: t.isPublished ? "var(--green)" : "var(--muted)" }}>{t.isPublished ? "Published" : "Draft"}</span>
-                    </button>
+                    </span>
                   </td>
                   <td><div className="row-actions">
-                    <button className="btn-icon" onClick={() => togglePublish(t)} title={t.isPublished ? "Unpublish" : "Publish"}>{t.isPublished ? <EyeOff size={15} /> : <Eye size={15} />}</button>
+                    <button className="btn btn-ghost btn-sm" style={{ width: "auto", whiteSpace: "nowrap" }} onClick={() => togglePublish(t)} disabled={busy === t.id} title={t.isPublished ? "Hide from students" : "Show to students"}>{t.isPublished ? <EyeOff size={14} /> : <Eye size={14} />}<span className="pub-label">{t.isPublished ? "Unpublish" : "Publish"}</span></button>
                     <button className="btn-icon" onClick={() => setEditor(t)} title="Edit"><Pencil size={15} /></button>
                     <button className="btn-icon danger" onClick={() => del(t)} title="Delete"><Trash2 size={15} /></button>
                   </div></td>
@@ -2503,7 +2557,6 @@ function Bundles({ tests, toast }) {
     return (
       <BundleTests
         bundle={b}
-        tests={tests}
         onDone={() => { setAssigning(null); reload(); }}
         toast={toast}
       />
@@ -2754,8 +2807,16 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
 
 /* Assign which tests a bundle unlocks. This is what keeps bundles isolated —
    a test not listed here stays locked for that bundle's subscribers. */
-function BundleTests({ bundle, tests, onDone, toast }) {
+function BundleTests({ bundle, onDone, toast }) {
   const [selected, setSelected] = useState(null);
+  // Only this bundle's exam's tests can be assigned (the DB refuses the rest
+  // since migration 0025); it used to offer every exam's tests.
+  const [tests, setTests] = useState([]);
+  useEffect(() => {
+    let alive = true;
+    DB.listTests({ examCategory: bundle.exam }).then((t) => { if (alive) setTests(t); }).catch((e) => { console.error(e); toast(e?.message || "Couldn't load tests", "err"); });
+    return () => { alive = false; };
+  }, [bundle.exam]);
   const [q, setQ] = useState("");
   const [saving, setSaving] = useState(false);
 

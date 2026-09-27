@@ -1,0 +1,10 @@
+PASS  BPSC full-length 150 Q: bpsc 150 Q -> 120 min (expected 120)
+PASS  BPSC 75 Q: bpsc 75 Q -> 60 min (expected 60)
+PASS  UPSC GS1 100 Q: upsc 100 Q -> 120 min (expected 120)
+PASS  History L2 Ancient: upsc 43 Q -> 52 min (expected 52)
+PASS  History L2 Medieval: upsc 20 Q -> 24 min (expected 24)
+PASS  History L2 Modern: upsc 45 Q -> 54 min (expected 54)
+PASS  History L2 Art & Culture: upsc 12 Q -> 14 min (expected 14)
+PASS  exam without its own pace falls back to BPSC's: jpsc 100 Q -> 80 min (expected 80)
+
+ALL PASS
