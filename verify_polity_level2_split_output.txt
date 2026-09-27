@@ -1,0 +1,31 @@
+sub-topics covered: 12/12   missing: none   duplicated: none
+
+Polity L2 · 1 — Constitutional Framework & Rights
+  target 29  cells 15 (sum 29)  pool 29
+  by difficulty: 1 easy, 10 hard, 18 medium
+  by type:       18 statement_based, 5 mcq, 4 assertion_reason, 2 match_the_following
+  by sub-topic:  18 Constitutional Framework, 11 Fundamental Rights, DPSP & Duties
+  cells short of an exact match: none
+
+Polity L2 · 2 — Parliament & Executive
+  target 30  cells 15 (sum 30)  pool 30
+  by difficulty: 2 easy, 10 hard, 18 medium
+  by type:       18 statement_based, 3 match_the_following, 5 mcq, 4 assertion_reason
+  by sub-topic:  20 Parliament & State Legislature, 10 Union & State Executive
+  cells short of an exact match: easy/match_the_following/Union & State Executive need 1 have 0
+
+Polity L2 · 3 — Judiciary, Bodies, Elections & Laws
+  target 29  cells 20 (sum 29)  pool 30
+  by difficulty: 1 easy, 10 hard, 18 medium
+  by type:       4 assertion_reason, 5 mcq, 18 statement_based, 2 match_the_following
+  by sub-topic:  2 Judiciary, 4 Elections, 12 Statutory-Laws, 4 Judicial-Verdicts, 7 Constitutional & Statutory Bodies
+  cells short of an exact match: easy/assertion_reason/Judiciary need 1 have 0; hard/mcq/Elections need 1 have 0; medium/mcq/Judicial-Verdicts need 1 have 0; medium/statement_based/Elections need 2 have 1
+
+Polity L2 · 4 — Federalism, Local Government & Governance
+  target 32  cells 19 (sum 32)  pool 32
+  by difficulty: 2 easy, 11 hard, 19 medium
+  by type:       5 assertion_reason, 3 match_the_following, 5 mcq, 19 statement_based
+  by sub-topic:  14 Governance, 5 Panchayati Raj & Local Governance, 13 Federalism & Special Provisions
+  cells short of an exact match: easy/assertion_reason/Governance need 1 have 0; easy/match_the_following/Panchayati Raj & Local Governance need 1 have 0
+
+split total 120 (sectional 120)   bank 121   left out of every test: 1   cells short: 7
