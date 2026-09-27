@@ -1367,6 +1367,18 @@ function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onC
   const [scope, setScope] = useState(JSON.stringify((initial || blank).subjectScope || {}, null, 2));
   const [err, setErr] = useState("");
   const set = (k, v) => setB((p) => ({ ...p, [k]: v }));
+  // Sub-topic limit for a sectional/half paper (e.g. the four Level-2 History
+  // tests): a checklist that edits subject_scope.sub_topics inside the JSON below.
+  const parsedScope = jsonParseOr(scope);
+  const knownSubTopics = parsedScope && parsedScope.subject && b.patternType !== "full_length"
+    ? ((SUBTOPICS_BY_SUBJECT[examCategory] || {})[parsedScope.subject] || []) : [];
+  const chosenSubTopics = Array.isArray(parsedScope?.sub_topics) ? parsedScope.sub_topics : [];
+  const toggleSubTopic = (t) => {
+    const next = chosenSubTopics.includes(t) ? chosenSubTopics.filter((x) => x !== t) : [...chosenSubTopics, t];
+    const sc = { ...parsedScope };
+    if (next.length) sc.sub_topics = knownSubTopics.filter((x) => next.includes(x)); else delete sc.sub_topics;
+    setScope(JSON.stringify(sc, null, 2));
+  };
 
   const submit = () => {
     if (!b.title.trim()) return setErr("Title is required.");
@@ -1409,9 +1421,20 @@ function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onC
         </Field>
         <Field label="Theme part #"><input className="inp" type="number" value={b.themePartIndex} onChange={(e) => set("themePartIndex", e.target.value)} /></Field>
       </div>
-      <Field label="Subject scope" hint='Sectional: {"subject":"History","sub_topic_weights":{…}} · Half: {"subject":"Current Affairs","ca_date_range":{"from":"2026-01-01","to":"2026-02-28"}} · Full: {} uses the config'>
+      <Field label="Subject scope" hint='Sectional: {"subject":"History","sub_topics":["Ancient"]} · Half: {"subject":"Current Affairs","ca_date_range":{"from":"2026-01-01","to":"2026-02-28"}} · Full: {} uses the config'>
         <textarea className="inp" style={JSON_STYLE} rows={5} value={scope} onChange={(e) => setScope(e.target.value)} />
       </Field>
+      {knownSubTopics.length > 0 && (
+        <Field label="Limit to sub-topics" hint={chosenSubTopics.length ? "Only these sub-topics are drawn, backfill included; their config weights are renormalised." : "None ticked = the whole subject."}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 16px" }}>
+            {knownSubTopics.map((t) => (
+              <label key={t} style={{ display: "flex", gap: 6, alignItems: "center", fontSize: 13 }}>
+                <input type="checkbox" checked={chosenSubTopics.includes(t)} onChange={() => toggleSubTopic(t)} />{t}
+              </label>
+            ))}
+          </div>
+        </Field>
+      )}
     </Modal>
   );
 }
@@ -1451,6 +1474,7 @@ function GenReport({ blueprint, result, committing, onCommit, onClose }) {
       )}
 
       <CountRow label="By subject" map={r.distribution?.subject} />
+      <CountRow label="By sub-topic" map={r.distribution?.subTopic} />
       <CountRow label="By difficulty" map={r.distribution?.difficulty} />
       <CountRow label="By type" map={r.distribution?.type} />
       <CountRow label="Answer letter (as authored)" map={r.answerBalance} />
@@ -1538,7 +1562,8 @@ function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
         id: uid(),
         title: bp.title + " — " + new Date().toLocaleDateString(),
         seriesId: bp.seriesId || null,
-        durationMin: Math.max(1, Math.round(count * 0.8)),
+        // Exam pace: BPSC 150 Q in 120 min (0.8 min/Q); UPSC GS Paper I 100 Q in 120 min (1.2 min/Q).
+        durationMin: Math.max(1, Math.round(count * (examCategory === "upsc" ? 1.2 : 0.8))),
         sections: result.sections,
         isFree: false, isPublished: false, shuffleQuestions: true, shuffleOptions: true,
       };
@@ -1597,6 +1622,9 @@ function Blueprints({ questions, seriesList, toast, askDelete, examCategory }) {
                 <span>{b.sequencePosition}. {b.title}</span>
                 <Badge color={{ bg: "#eef3f8", fg: "#3a5a7a" }}>{PATTERN_LABEL[b.patternType] || b.patternType}</Badge>
                 {b.themeGroupId && <Badge color={{ bg: "#f2e9f2", fg: "#6a3a6a" }}>{b.themeGroupId}{b.themePartIndex ? " · " + b.themePartIndex : ""}</Badge>}
+                {Array.isArray(b.subjectScope?.sub_topics) && b.subjectScope.sub_topics.length > 0 && (
+                  <Badge color={{ bg: "#e7f2ec", fg: "#2a6a52" }}>{b.subjectScope.subject}: {b.subjectScope.sub_topics.join(", ")}</Badge>
+                )}
               </div>
               <div style={{ fontSize: 12.5, color: "var(--muted)", marginTop: 3 }}>{b.questionCount} questions{b.distributionConfigId ? " · " + (configs.find((c) => c.id === b.distributionConfigId)?.name || "config") : " · no config"}</div>
             </div>

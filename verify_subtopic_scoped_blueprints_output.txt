@@ -1,0 +1,15 @@
+PASS  unchanged without sub_topics: UPSC Polity sectional 120
+PASS  unchanged without sub_topics: UPSC History sectional 120
+PASS  unchanged without sub_topics: UPSC full-length 100
+PASS  unchanged without sub_topics: BPSC History sectional 150
+PASS  unchanged without sub_topics: BPSC full-length 150
+PASS  unchanged without sub_topics: UPSC History with empty sub_topics []
+PASS  History Ancient (43Q): only its sub-topics, every margin exact  9 cells | difficulty {"easy":11,"hard":9,"medium":23} | type {"mcq":13,"statement_based":25,"match_the_following":5} | sub-topic {"Ancient":43}
+PASS  History Medieval (20Q): only its sub-topics, every margin exact  9 cells | difficulty {"easy":5,"hard":4,"medium":11} | type {"mcq":6,"statement_based":11,"match_the_following":3} | sub-topic {"Medieval":20}
+PASS  History Modern (45Q): only its sub-topics, every margin exact  9 cells | difficulty {"easy":12,"hard":9,"medium":24} | type {"mcq":13,"statement_based":26,"match_the_following":6} | sub-topic {"Modern":45}
+PASS  History Art & Culture (12Q): only its sub-topics, every margin exact  12 cells | difficulty {"easy":3,"hard":3,"medium":6} | type {"mcq":4,"statement_based":7,"match_the_following":1} | sub-topic {"Painting":2,"Music & Dance":5,"Iconography":2,"Architecture":2,"Culture-Other":1}
+PASS  scoped pool excludes other sub-topics (backfill included)  pool 2, selected 2 ({"Ancient":2}), gaps reported 8
+PASS  unscoped History paper still backfills across sub-topics as before  selected 10
+PASS  unweighted sub-topics split evenly  {"Numismatics":5,"Epigraphy":5}
+
+ALL PASS

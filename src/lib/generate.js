@@ -189,8 +189,20 @@ function difficultyWeightsForSubject(config, subject) {
 function inSubjectScope(q, blueprint) {
   if (blueprint.patternType === "full_length") return true;
   const scope = blueprint.subjectScope || {};
-  if (scope.subject) return q.subject === scope.subject;
+  if (scope.subject && q.subject !== scope.subject) return false;
+  // A sub-topic-scoped paper (e.g. one of the four Level-2 History tests) draws
+  // only from its own sub-topics -- backfill included, since it reads this pool.
+  const subTopics = subTopicScope(blueprint);
+  if (subTopics && !subTopics.has(q.topic || "")) return false;
   return true;
+}
+
+// subjectScope.sub_topics: the question.topic values a sectional/half paper is
+// limited to. Absent or empty means the whole subject, exactly as before.
+function subTopicScope(blueprint) {
+  if (blueprint.patternType === "full_length") return null;
+  const list = (blueprint.subjectScope || {}).sub_topics;
+  return Array.isArray(list) && list.length > 0 ? new Set(list.map(String)) : null;
 }
 
 // Defense in depth: `listQuestions(examCategory)` already scopes the bank at
@@ -287,11 +299,15 @@ export function buildCells({ blueprint, config, pool }) {
     const diffEntries = normWeights(difficultyWeightsForSubject(config, subject), ["easy", "medium", "hard"]);
     const typeEntries = normWeights(typeWeightsForSubject(config, subject), null);
     // sub_topic only splits sectional papers; the weights come off the blueprint
-    // scope first, then the config, else a single wildcard.
-    const subTopicSrc = blueprint.patternType === "sectional"
+    // scope first, then the config, else a single wildcard. A sub-topic-scoped
+    // paper keeps only its own sub-topics' weights (renormalised), or splits
+    // evenly across them if none of them carries a weight.
+    let subTopicSrc = blueprint.patternType === "sectional"
       ? (scope.sub_topic_weights || (config.subTopicWeights || {})[subject] || {})
       : {};
-    const subTopicEntries = normWeights(subTopicSrc, null);
+    const subTopics = blueprint.patternType === "sectional" ? subTopicScope(blueprint) : null;
+    if (subTopics) subTopicSrc = Object.fromEntries(Object.entries(subTopicSrc).filter(([k]) => subTopics.has(k)));
+    const subTopicEntries = normWeights(subTopicSrc, subTopics ? [...subTopics] : null);
 
     for (const [difficulty, wd] of diffEntries) {
       for (const [questionType, wt] of typeEntries) {
@@ -496,8 +512,9 @@ export function generateTest({ blueprint, config = {}, bank = [], usages = [], o
   // to compare against the target before publishing.
   for (const q of selected) {
     const bucket = report.distribution;
-    bucket.subject ??= {}; bucket.difficulty ??= {}; bucket.type ??= {};
+    bucket.subject ??= {}; bucket.difficulty ??= {}; bucket.type ??= {}; bucket.subTopic ??= {};
     bucket.subject[q.subject] = (bucket.subject[q.subject] || 0) + 1;
+    bucket.subTopic[q.topic || "(none)"] = (bucket.subTopic[q.topic || "(none)"] || 0) + 1;
     bucket.difficulty[q.difficulty] = (bucket.difficulty[q.difficulty] || 0) + 1;
     bucket.type[q.type] = (bucket.type[q.type] || 0) + 1;
   }
