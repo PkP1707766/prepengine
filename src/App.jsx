@@ -108,6 +108,7 @@ function Root() {
   const [route, setRoute] = useState("public");
   const [contentPage, setContentPage] = useState(null); // syllabus | pyq | … | faq
   const [examTestId, setExamTestId] = useState(null);
+  const [examReturn, setExamReturn] = useState("student"); // where "back" leads from a paper
   const [pendingPlan, setPendingPlan] = useState(null); // bundle the visitor chose before signing in
   const [session, setSession] = useState(null);
   const [booting, setBooting] = useState(true);
@@ -171,7 +172,10 @@ function Root() {
         if (s) {
           const dest = await resolveDestination(sb);
           const m = hash.match(/^#\/exam\/([\w-]+)$/);
-          if (dest === "student" && m) { setExamTestId(m[1]); setRoute("exam"); }
+          // An admin reaches a paper through "Preview" in the Tests list, which
+          // opens #/exam/<id> in a new tab; exam_paper() serves staff drafts too
+          // (migration 0026), and leaving the paper returns them to the admin.
+          if ((dest === "student" || dest === "admin") && m) { setExamTestId(m[1]); setExamReturn(dest); setRoute("exam"); }
           // A signed-in visitor who deep-linked to the storefront stays there —
           // browsing the catalogue while logged in is perfectly normal.
           else if (hash === "#/" || hash === "" || PAGE_KEYS.includes(contentKey)) setRoute("public");
@@ -317,7 +321,7 @@ function Root() {
     case "exam":
       return (
         <ErrorBoundary label="exam">
-          <ExamApp testId={examTestId} onExit={() => go("student")} />
+          <ExamApp testId={examTestId} onExit={() => go(examReturn)} />
         </ErrorBoundary>
       );
     case "admin":

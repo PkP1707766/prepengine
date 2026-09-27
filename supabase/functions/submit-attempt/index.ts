@@ -70,13 +70,21 @@ Deno.serve(async (req) => {
   }
   if (!allowed) return json(req, { error: "no_access" }, 403);
 
-  const { data: test } = await sb
+  // Staff (admins and QA testers) always sit a paper as a preview: it can be a
+  // draft, and the attempt is flagged so it never feeds the leaderboard, the
+  // per-test standing or a question's correct_rate (migration 0026). Everyone
+  // else can only submit a published test, exactly as before.
+  const { data: prof } = await sb.from("profiles").select("role, is_tester").eq("id", user.id).maybeSingle();
+  const isStaff = !!prof && (prof.role === "admin" || prof.is_tester === true);
+
+  let testQuery = sb
     .from("tests")
     .select("id, title, title_hi, duration_min, sections, series_id, is_published, test_series(title, title_hi)")
-    .eq("id", testId)
-    .eq("is_published", true)
-    .single();
+    .eq("id", testId);
+  if (!isStaff) testQuery = testQuery.eq("is_published", true);
+  const { data: test } = await testQuery.single();
   if (!test) return json(req, { error: "test_not_found" }, 404);
+  const isPreview = isStaff;
 
   const sections: { name?: string; questionIds?: string[] }[] =
     Array.isArray(test.sections) ? test.sections : [];
@@ -311,6 +319,7 @@ Deno.serve(async (req) => {
       type_stats: typeStats,
       review,
       status: "submitted",
+      is_preview: isPreview,
       started_at: startedAt,
       submitted_at: new Date().toISOString(),
     })
@@ -363,7 +372,8 @@ Deno.serve(async (req) => {
       .from("attempts")
       .select("score, max_score")
       .eq("test_id", test.id)
-      .eq("status", "submitted");
+      .eq("status", "submitted")
+      .eq("is_preview", false);
     const pcts = (peers ?? [])
       .filter((p) => Number(p.max_score) > 0)
       .map((p) => (Math.max(0, Number(p.score)) / Number(p.max_score)) * 100);
@@ -391,5 +401,6 @@ Deno.serve(async (req) => {
     topics, review,
     difficultyStats, typeStats,
     percentile, rank, totalStudents, peerAvg, peerBest,
+    isPreview,
   });
 });

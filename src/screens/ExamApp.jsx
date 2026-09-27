@@ -159,6 +159,8 @@ const CSS = `
   display:flex;flex-direction:column;gap:7px;text-align:center;align-items:center;
   box-shadow:0 20px 60px rgba(0,0,0,.3);font-size:13.5px;line-height:1.55}
 .ee-blocker-card b{font-size:16px}
+.ee-preview{background:#5b1414;color:#fbeede;font-size:12.5px;font-weight:600;text-align:center;padding:7px 16px;line-height:1.45}
+.ee-preview b{letter-spacing:.1em;margin-right:8px;color:#ffffff}
 .ee-spin{width:30px;height:30px;border-radius:50%;border:3px solid #e8d9b8;border-top-color:#8a2222;
   animation:ee-rot .8s linear infinite;margin-bottom:6px}
 @keyframes ee-rot{to{transform:rotate(360deg)}}
@@ -1247,6 +1249,11 @@ function ExamRunner({ onExit, candidateName, candidateId, onSubmitted }) {
   return (
     <div className="ee-root">
       <style>{CSS}</style>
+      {/* A draft paper only ever reaches staff; the server also flags any staff
+          attempt as a preview, which the result reports back. */}
+      {(EXAM.isPreview || results?.isPreview) && (
+        <div className="ee-preview" role="status"><b>{t("ex_preview")}</b>{t(EXAM.isPreview ? "ex_preview_draft" : "ex_preview_staff")}</div>
+      )}
       {screen === "instructions" && <Instructions onStart={start} onExit={onExit} />}
       {screen === "exam" && <ExamScreen state={{ secIdx, qIdx, answers, visited, marked, timeLeft }} actions={actions} candidateName={candidateName} candidateId={candidateId} />}
       {screen === "result" && results && <Results data={results} onRetake={retake} onExit={onExit} />}

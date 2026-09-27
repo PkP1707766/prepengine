@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { LayoutDashboard, ListChecks, FileText, GraduationCap, FolderOpen, Users, IndianRupee, Plus, Search, Pencil, Trash2, X, Upload, Check, ChevronRight, Menu, AlertCircle, CheckCircle2, Clock, Layers, Eye, EyeOff, Save, ArrowLeft, TrendingUp, Sparkles, Newspaper, Tag, LogOut, Download, Gift, MessageSquare, Star } from "lucide-react";
+import { LayoutDashboard, ListChecks, FileText, GraduationCap, FolderOpen, Users, IndianRupee, Plus, Search, Pencil, Trash2, X, Upload, Check, ChevronRight, Menu, AlertCircle, CheckCircle2, Clock, Layers, Eye, EyeOff, Save, ArrowLeft, TrendingUp, Sparkles, Newspaper, Tag, LogOut, Download, Gift, MessageSquare, Star, MonitorPlay } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
@@ -2055,7 +2055,7 @@ function App({ onLogout }) {
           {view === "questions" && <QuestionBank {...{ questions, saveQuestion, deleteQuestion, importQuestions, loadStarterPack, askDelete, examCategory, examOptions, switchExam }} />}
           {view === "tests" && <Tests {...{ tests, saveTest, removeTest, questions, seriesList, toast, askDelete, askConfirm, examCategory }} />}
           {view === "blueprints" && <Blueprints {...{ questions, tests, seriesList, toast, askDelete, examCategory }} />}
-          {view === "bundles" && <Bundles {...{ tests, toast }} />}
+          {view === "bundles" && <Bundles {...{ toast }} />}
           {view === "courses" && <Courses {...{ courses, saveCourse, removeCourse, batches, saveBatch, removeBatch, askDelete }} />}
           {view === "materials" && <Materials {...{ materials, saveMaterial, removeMaterial, batches, askDelete }} />}
           {view === "exams" && <Exams {...{ toast, askDelete }} />}
@@ -2307,6 +2307,10 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
     },
     t.isPublished ? "Unpublish" : "Publish",
   );
+  // The real exam screen in a new tab, as a student would sit it. Staff are
+  // served drafts too and their attempt is flagged a preview (migration 0026),
+  // so a paper can be tried end to end before it is published.
+  const previewTest = (t) => window.open(`${window.location.origin}${window.location.pathname}#/exam/${t.id}`, "_blank", "noopener");
 
   if (editor !== null) {
     return <TestEditor initial={editor.id ? editor : null} bank={questions} seriesList={seriesList} onSave={save} onCancel={() => setEditor(null)} toast={toast} saving={busy === "save"} />;
@@ -2345,6 +2349,7 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
                   </td>
                   <td><div className="row-actions">
                     <button className="btn btn-ghost btn-sm" style={{ width: "auto", whiteSpace: "nowrap" }} onClick={() => togglePublish(t)} disabled={busy === t.id} title={t.isPublished ? "Hide from students" : "Show to students"}>{t.isPublished ? <EyeOff size={14} /> : <Eye size={14} />}<span className="pub-label">{t.isPublished ? "Unpublish" : "Publish"}</span></button>
+                    <button className="btn-icon" onClick={() => previewTest(t)} disabled={qCount(t) === 0} title="Preview as a student (new tab, not counted)"><MonitorPlay size={15} /></button>
                     <button className="btn-icon" onClick={() => setEditor(t)} title="Edit"><Pencil size={15} /></button>
                     <button className="btn-icon danger" onClick={() => del(t)} title="Delete"><Trash2 size={15} /></button>
                   </div></td>
@@ -2494,7 +2499,7 @@ function Materials({ materials, saveMaterial, removeMaterial, batches, askDelete
    price on this screen changes what the next buyer is charged,
    with no redeploy.
    ============================================================ */
-function Bundles({ tests, toast }) {
+function Bundles({ toast }) {
   const [rows, setRows] = useState(null);
   const [exams, setExams] = useState([]);
   const [err, setErr] = useState("");

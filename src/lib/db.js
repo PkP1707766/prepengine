@@ -945,6 +945,8 @@ export async function loadExamTest(testId) {
     durationMin: paper.durationMin ?? 60,
     shuffleQuestions: !!paper.shuffleQuestions,
     shuffleOptions: !!paper.shuffleOptions,
+    // Only staff can open an unpublished paper (migration 0026).
+    isPreview: !!paper.isPreview,
     sections,
   };
 }
