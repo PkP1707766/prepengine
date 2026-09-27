@@ -56,26 +56,31 @@ Deno.serve(async (req) => {
 
   const sb = adminClient();
 
-  // Entitlement is re-checked server-side. A student who never had access
-  // cannot submit an attempt for a paper they were not entitled to open.
-  //
-  // `sb` is a service-role client with no user JWT attached, so auth.uid()
-  // is NULL inside can_access_test() unless the caller's id is passed
-  // explicitly — p_user exists on the function precisely for this call site.
-  const { data: allowed, error: accErr } =
-    await sb.rpc("can_access_test", { p_test: testId, p_user: user.id });
-  if (accErr) {
-    console.error("can_access_test failed", accErr);
-    return json(req, { error: "server_error" }, 500);
-  }
-  if (!allowed) return json(req, { error: "no_access" }, 403);
-
   // Staff (admins and QA testers) always sit a paper as a preview: it can be a
   // draft, and the attempt is flagged so it never feeds the leaderboard, the
   // per-test standing or a question's correct_rate (migration 0026). Everyone
   // else can only submit a published test, exactly as before.
   const { data: prof } = await sb.from("profiles").select("role, is_tester").eq("id", user.id).maybeSingle();
   const isStaff = !!prof && (prof.role === "admin" || prof.is_tester === true);
+
+  // Entitlement is re-checked server-side. A student who never had access
+  // cannot submit an attempt for a paper they were not entitled to open.
+  //
+  // `sb` is a service-role client with no user JWT attached, so auth.uid()
+  // is NULL inside can_access_test() unless the caller's id is passed
+  // explicitly — p_user exists on the function precisely for this call site.
+  // Its admin branch is is_admin(), which only reads auth.uid(), so it can
+  // never pass here; staff are recognised from the profile row above instead
+  // (the admin gap noted in PROGRESS.md, 7 Sep 2026).
+  if (!isStaff) {
+    const { data: allowed, error: accErr } =
+      await sb.rpc("can_access_test", { p_test: testId, p_user: user.id });
+    if (accErr) {
+      console.error("can_access_test failed", accErr);
+      return json(req, { error: "server_error" }, 500);
+    }
+    if (!allowed) return json(req, { error: "no_access" }, 403);
+  }
 
   let testQuery = sb
     .from("tests")
@@ -268,7 +273,9 @@ Deno.serve(async (req) => {
         display_option_order: displayOrder,
         selected_option: selectedOption,
         is_correct: isAttempted ? isCorrect : null,
-        time_taken_seconds: t,
+        // An integer column: the browser's per-question time is fractional,
+        // and one "0.253" used to fail this whole insert (logged, swallowed).
+        time_taken_seconds: Math.round(t),
         marked_for_review: markedSet.has(qid),
       });
     }

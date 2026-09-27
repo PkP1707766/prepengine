@@ -223,6 +223,10 @@ fix is an admin account specifically hitting `submit-attempt` for a non-free
 test — admins are staff, not the QA accounts this feature is for, and can be
 given `is_tester` too if that ever matters.
 
+*Closed 28 Sep 2026:* staff preview (migration 0026) needs an admin to submit
+a draft, so `submit-attempt` now reads the caller's profile first and skips
+`can_access_test` for admins and testers; `is_admin()` is unchanged.
+
 ## 23 Aug 2026 — Language switch inside the live exam
 
 The toggle existed on the instructions page and nowhere after it. A student who
