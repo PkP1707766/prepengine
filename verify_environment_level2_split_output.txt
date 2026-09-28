@@ -1,0 +1,24 @@
+sub-topics covered: 9/9   missing: none   duplicated: none
+
+Environment L2 · 1 — Ecology & Biodiversity
+  target 46  cells 23 (sum 46)  pool 46
+  by difficulty: 10 easy, 9 hard, 27 medium
+  by type:       8 mcq, 31 statement_based, 5 assertion_reason, 2 match_the_following
+  by sub-topic:  13 Flora, Fungi & Forests, 23 Fauna & Animal Behaviour, 10 Ecosystems & Ecological Processes
+  cells short of an exact match: easy/statement_based/Fauna & Animal Behaviour need 4 have 3; hard/mcq/Flora, Fungi & Forests need 1 have 0; hard/assertion_reason/Ecosystems & Ecological Processes need 1 have 0; medium/match_the_following/Ecosystems & Ecological Processes need 1 have 0
+
+Environment L2 · 2 — Climate Change & Pollution
+  target 48  cells 23 (sum 48)  pool 48
+  by difficulty: 11 easy, 9 hard, 28 medium
+  by type:       9 mcq, 32 statement_based, 5 assertion_reason, 2 match_the_following
+  by sub-topic:  16 Climate Science & Mitigation, 19 Pollution, Waste & Resources, 13 Climate Agreements & Carbon Markets
+  cells short of an exact match: easy/assertion_reason/Climate Agreements & Carbon Markets need 1 have 0; hard/match_the_following/Climate Agreements & Carbon Markets need 1 have 0
+
+Environment L2 · 3 — Policies & Conservation
+  target 26  cells 16 (sum 26)  pool 26
+  by difficulty: 6 easy, 5 hard, 15 medium
+  by type:       5 mcq, 17 statement_based, 3 assertion_reason, 1 match_the_following
+  by sub-topic:  14 Protected Areas & Wildlife Protection, 5 Indian Environmental Laws & Bodies, 7 International Conventions & Organisations
+  cells short of an exact match: hard/assertion_reason/International Conventions & Organisations need 1 have 0; hard/match_the_following/Indian Environmental Laws & Bodies need 1 have 0
+
+split total 120 (sectional 120)   bank 120   left out of every test: 0   cells short: 8
