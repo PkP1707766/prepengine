@@ -1,0 +1,83 @@
+=== Geography sectional (120Q) -- real drafting targets from the live config ===
+config: UPSC GS Paper I — PYQ-derived (2015-2026, recency-weighted, 2015 answers unverified)
+type weights used:     {"mcq":0.2444,"statement_based":0.5111,"assertion_reason":0.1778,"match_the_following":0.0667}
+difficulty weights:    {"easy":0.1778,"hard":0.2222,"medium":0.6}  (per-subject override)
+sub-topic weights:     {"Climatology & Biomes":0.2004,"Oceanography & Hydrosphere":0.0373,"Indian Rivers, Lakes & Wetlands":0.1401,"Geomorphology & Earth's Interior":0.1099,"Transport, Ports & Human Geography":0.0677,"World Regions, Water Bodies & Places":0.2099,"Indian Physiography, Climate & Regions":0.1666,"Resources: Minerals, Energy & Agriculture":0.0681}
+
+row |   n | have | gap | difficulty | type                 | sub-topic
+-----------------------------------------------------------------------------------
+  1 |   8 |    1 |   7 | medium     | statement_based      | World Regions, Water Bodies & Places
+  2 |   7 |    1 |   6 | medium     | statement_based      | Climatology & Biomes
+  3 |   6 |    1 |   5 | medium     | statement_based      | Indian Physiography, Climate & Regions
+  4 |   5 |    1 |   4 | medium     | statement_based      | Indian Rivers, Lakes & Wetlands
+  5 |   4 |    1 |   3 | medium     | mcq                  | Climatology & Biomes
+  6 |   4 |    0 |   4 | medium     | mcq                  | World Regions, Water Bodies & Places
+  7 |   4 |    0 |   4 | medium     | statement_based      | Geomorphology & Earth's Interior
+  8 |   3 |    0 |   3 | hard       | statement_based      | Climatology & Biomes
+  9 |   3 |    0 |   3 | hard       | statement_based      | World Regions, Water Bodies & Places
+ 10 |   3 |    0 |   3 | medium     | mcq                  | Indian Physiography, Climate & Regions
+ 11 |   3 |    0 |   3 | medium     | statement_based      | Resources: Minerals, Energy & Agriculture
+ 12 |   3 |    0 |   3 | medium     | assertion_reason     | Climatology & Biomes
+ 13 |   3 |    0 |   3 | medium     | assertion_reason     | World Regions, Water Bodies & Places
+ 14 |   2 |    0 |   2 | easy       | statement_based      | Climatology & Biomes
+ 15 |   2 |    0 |   2 | easy       | statement_based      | World Regions, Water Bodies & Places
+ 16 |   2 |    0 |   2 | easy       | statement_based      | Indian Physiography, Climate & Regions
+ 17 |   2 |    0 |   2 | hard       | statement_based      | Indian Rivers, Lakes & Wetlands
+ 18 |   2 |    0 |   2 | hard       | statement_based      | Indian Physiography, Climate & Regions
+ 19 |   2 |    0 |   2 | medium     | mcq                  | Indian Rivers, Lakes & Wetlands
+ 20 |   2 |    0 |   2 | medium     | mcq                  | Geomorphology & Earth's Interior
+ 21 |   2 |    0 |   2 | medium     | statement_based      | Transport, Ports & Human Geography
+ 22 |   2 |    0 |   2 | medium     | assertion_reason     | Indian Rivers, Lakes & Wetlands
+ 23 |   2 |    0 |   2 | medium     | assertion_reason     | Indian Physiography, Climate & Regions
+ 24 |   1 |    0 |   1 | easy       | mcq                  | Climatology & Biomes
+ 25 |   1 |    0 |   1 | easy       | mcq                  | Indian Rivers, Lakes & Wetlands
+ 26 |   1 |    0 |   1 | easy       | mcq                  | Geomorphology & Earth's Interior
+ 27 |   1 |    0 |   1 | easy       | mcq                  | World Regions, Water Bodies & Places
+ 28 |   1 |    0 |   1 | easy       | mcq                  | Indian Physiography, Climate & Regions
+ 29 |   1 |    0 |   1 | easy       | statement_based      | Oceanography & Hydrosphere
+ 30 |   1 |    0 |   1 | easy       | statement_based      | Indian Rivers, Lakes & Wetlands
+ 31 |   1 |    0 |   1 | easy       | statement_based      | Geomorphology & Earth's Interior
+ 32 |   1 |    0 |   1 | easy       | statement_based      | Transport, Ports & Human Geography
+ 33 |   1 |    0 |   1 | easy       | statement_based      | Resources: Minerals, Energy & Agriculture
+ 34 |   1 |    0 |   1 | easy       | assertion_reason     | Climatology & Biomes
+ 35 |   1 |    0 |   1 | easy       | assertion_reason     | Indian Rivers, Lakes & Wetlands
+ 36 |   1 |    0 |   1 | easy       | assertion_reason     | World Regions, Water Bodies & Places
+ 37 |   1 |    0 |   1 | easy       | assertion_reason     | Indian Physiography, Climate & Regions
+ 38 |   1 |    0 |   1 | easy       | match_the_following  | Transport, Ports & Human Geography
+ 39 |   1 |    0 |   1 | hard       | mcq                  | Climatology & Biomes
+ 40 |   1 |    0 |   1 | hard       | mcq                  | Indian Rivers, Lakes & Wetlands
+ 41 |   1 |    0 |   1 | hard       | mcq                  | Geomorphology & Earth's Interior
+ 42 |   1 |    0 |   1 | hard       | mcq                  | World Regions, Water Bodies & Places
+ 43 |   1 |    0 |   1 | hard       | mcq                  | Indian Physiography, Climate & Regions
+ 44 |   1 |    0 |   1 | hard       | mcq                  | Resources: Minerals, Energy & Agriculture
+ 45 |   1 |    0 |   1 | hard       | statement_based      | Oceanography & Hydrosphere
+ 46 |   1 |    0 |   1 | hard       | statement_based      | Geomorphology & Earth's Interior
+ 47 |   1 |    0 |   1 | hard       | statement_based      | Transport, Ports & Human Geography
+ 48 |   1 |    0 |   1 | hard       | statement_based      | Resources: Minerals, Energy & Agriculture
+ 49 |   1 |    0 |   1 | hard       | assertion_reason     | Climatology & Biomes
+ 50 |   1 |    0 |   1 | hard       | assertion_reason     | Indian Rivers, Lakes & Wetlands
+ 51 |   1 |    0 |   1 | hard       | assertion_reason     | Geomorphology & Earth's Interior
+ 52 |   1 |    0 |   1 | hard       | assertion_reason     | World Regions, Water Bodies & Places
+ 53 |   1 |    0 |   1 | hard       | assertion_reason     | Indian Physiography, Climate & Regions
+ 54 |   1 |    0 |   1 | hard       | match_the_following  | Oceanography & Hydrosphere
+ 55 |   1 |    0 |   1 | hard       | match_the_following  | Transport, Ports & Human Geography
+ 56 |   1 |    0 |   1 | medium     | mcq                  | Oceanography & Hydrosphere
+ 57 |   1 |    0 |   1 | medium     | mcq                  | Transport, Ports & Human Geography
+ 58 |   1 |    0 |   1 | medium     | mcq                  | Resources: Minerals, Energy & Agriculture
+ 59 |   1 |    0 |   1 | medium     | statement_based      | Oceanography & Hydrosphere
+ 60 |   1 |    0 |   1 | medium     | assertion_reason     | Geomorphology & Earth's Interior
+ 61 |   1 |    0 |   1 | medium     | assertion_reason     | Transport, Ports & Human Geography
+ 62 |   1 |    0 |   1 | medium     | assertion_reason     | Resources: Minerals, Energy & Agriculture
+ 63 |   1 |    0 |   1 | medium     | match_the_following  | Climatology & Biomes
+ 64 |   1 |    0 |   1 | medium     | match_the_following  | Indian Rivers, Lakes & Wetlands
+ 65 |   1 |    0 |   1 | medium     | match_the_following  | Geomorphology & Earth's Interior
+ 66 |   1 |    0 |   1 | medium     | match_the_following  | World Regions, Water Bodies & Places
+ 67 |   1 |    0 |   1 | medium     | match_the_following  | Indian Physiography, Climate & Regions
+-----------------------------------------------------------------------------------
+cells: 67   TOTAL: 120 (blueprint target 120)
+bank: 5 rows   cells filled: 0/67   questions still to draft: 115
+spare rows: 0 above target in a cell + 0 in no cell
+
+by sub-topic:  25 World Regions, Water Bodies & Places  |  24 Climatology & Biomes  |  20 Indian Physiography, Climate & Regions  |  17 Indian Rivers, Lakes & Wetlands  |  13 Geomorphology & Earth's Interior  |  8 Transport, Ports & Human Geography  |  8 Resources: Minerals, Energy & Agriculture  |  5 Oceanography & Hydrosphere
+by type:       61 statement_based  |  29 mcq  |  22 assertion_reason  |  8 match_the_following
+by difficulty: 72 medium  |  27 hard  |  21 easy

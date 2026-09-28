@@ -71,10 +71,13 @@ def _stmt_data(statements, closing, roman):
         qd["numbering"] = "roman"  # UPSC 2025 style: statements I, II, III
     return qd
 
-def stmt(topic, diff, body, statements, ladder, ans, expl, cg, cite, roman=False):
+def stmt(topic, diff, body, statements, ladder, ans, expl, cg, cite, roman=False, closing=None):
+    """closing overrides the default line, for list items that are not statements
+    ("How many of the above countries border ...?", as in Geography 2023-Q61 and 2024-Q8)."""
     assert ladder in (C3, C4, T2) and len(statements) == {id(C3): 3, id(C4): 4, id(T2): 2}[id(ladder)]
     assert not (roman and ladder is T2), "T2 options name statements 1 and 2; write a stmt_opts row for Roman"
-    closing = WHICH if ladder is T2 else HOW_MANY
+    assert closing is None or (ladder is not T2 and closing.startswith("How many")), "a custom closing must be a count"
+    closing = closing or (WHICH if ladder is T2 else HOW_MANY)
     _row(topic, "statement_based", diff, body, _stmt_data(statements, closing, roman),
          ladder, ans, expl, cg, cite, ladder)
 
