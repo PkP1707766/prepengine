@@ -668,6 +668,7 @@ function testFromRow(r) {
     id: r.id,
     examCategory: r.exam_category,
     title: r.title,
+    titleHi: r.title_hi || "",
     description: r.description || "",
     seriesId: r.series_id,
     seriesTitle: r.test_series?.title || "",
@@ -691,6 +692,7 @@ function testToRow(t) {
     // the blueprint/series/questions when absent and refuses any mixing.
     exam_category: t.examCategory || null,
     title: t.title,
+    title_hi: (t.titleHi || "").trim() || null,
     description: t.description || null,
     series_id: t.seriesId || null,
     duration_min: Number(t.durationMin || 60),
@@ -923,6 +925,7 @@ export async function loadExamTest(testId) {
       if (paper.shuffleQuestions) qs = shuffle(qs);
       return {
         name: sec.name || "Section",
+        name_hi: sec.name_hi || "",
         questions: qs.map((q) => ({
           ...q,
           // Answer ladders ("Only one / Only two / All three / None", the A-R
@@ -940,7 +943,14 @@ export async function loadExamTest(testId) {
   return {
     id: paper.id,
     title: paper.title,
+    // The exam screen renders inLang(lang, EXAM.title, EXAM.title_hi); these two
+    // were dropped here, so a Hindi-mode paper always showed its English title.
+    title_hi: paper.title_hi || "",
     seriesTitle: paper.seriesTitle || "",
+    seriesTitle_hi: paper.seriesTitle_hi || "",
+    // Which exam the paper belongs to (migration 0027) -- the exam screen hides
+    // the sub-topic tag on UPSC papers, as the real paper carries none.
+    examCategory: paper.examCategory || "",
     durationSec: (paper.durationMin ?? 60) * 60,
     durationMin: paper.durationMin ?? 60,
     shuffleQuestions: !!paper.shuffleQuestions,

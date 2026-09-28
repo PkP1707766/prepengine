@@ -1154,6 +1154,11 @@ function TestEditor({ initial, bank, seriesList = [], onSave, onCancel, toast, s
       <div className="panel panel-pad" style={{ marginBottom: 18 }}>
         <div className="field-row">
           <Field label="Test title" req><input className="inp" value={t.title} placeholder="e.g. BPSC Full Mock 02" onChange={(e) => set("title", e.target.value)} /></Field>
+          <Field label="Test title (Hindi)" hint="Shown on the exam screen in Hindi mode.">
+            <input className="inp" lang="hi" value={t.titleHi || ""} placeholder="(वैकल्पिक)" onChange={(e) => set("titleHi", e.target.value)} />
+          </Field>
+        </div>
+        <div className="field-row">
           <Field label="Test series" hint={seriesList.length === 0 ? "No series exists for this exam yet, so this test is standalone." : "Only this exam's series are listed."}>
             <select className="inp" value={t.seriesId || ""} onChange={(e) => set("seriesId", e.target.value)}>
               <option value="">Standalone test (no series)</option>
@@ -1483,6 +1488,11 @@ function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onC
       {err && <div className="form-err"><AlertCircle size={17} />{err}</div>}
       <div className="field-row">
         <Field label="Title" req><input className="inp" value={b.title} placeholder="e.g. Bihar Special – I" onChange={(e) => set("title", e.target.value)} /></Field>
+        <Field label="Title (Hindi)" hint="Shown to students who read in Hindi; generated tests inherit it.">
+          <input className="inp" lang="hi" value={b.titleHi || ""} placeholder="(वैकल्पिक)" onChange={(e) => set("titleHi", e.target.value)} />
+        </Field>
+      </div>
+      <div className="field-row">
         <Field label="Series">
           <select className="inp" value={b.seriesId || ""} onChange={(e) => set("seriesId", e.target.value)}>
             <option value="">— none —</option>
@@ -1681,18 +1691,18 @@ function Blueprints({ questions, tests = [], seriesList, toast, askDelete, examC
     try {
       const { blueprint: bp, result } = gen;
       const count = result.questionIds.length;
+      // The blueprint title is what students see; a regeneration gets "(2)", "(3)"
+      // instead of the old US-format date suffix, in both languages.
+      const taken = new Set(tests.map((x) => x.title));
+      let n = 1;
+      while (taken.has(n === 1 ? bp.title : `${bp.title} (${n})`)) n++;
+      const suffix = n === 1 ? "" : ` (${n})`;
       const test = {
         id: uid(),
-        // The blueprint title is what students see; a regeneration gets "(2)", "(3)"
-        // instead of the old US-format date suffix.
-        title: (() => {
-          const taken = new Set(tests.map((x) => x.title));
-          let n = 1, title = bp.title;
-          while (taken.has(title)) title = `${bp.title} (${++n})`;
-          return title;
-        })(),
+        title: bp.title + suffix,
+        titleHi: bp.titleHi ? bp.titleHi + suffix : "",
         seriesId: bp.seriesId || null,
-        durationMin: testDurationFor(examCategory, count), // BPSC 0.8 min/Q, UPSC GS1 1.2 min/Q
+        durationMin: testDurationFor(examCategory, count), // BPSC 0.8 min/Q; UPSC its standard paper time (2 h, or 1 h for a half paper)
         sections: result.sections,
         isFree: false, isPublished: false, shuffleQuestions: true, shuffleOptions: true,
       };

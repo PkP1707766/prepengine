@@ -527,7 +527,7 @@ export function generateTest({ blueprint, config = {}, bank = [], usages = [], o
   report.poolSize = pool.length;
   if (pool.length === 0) {
     report.warnings.push("No eligible questions for this blueprint (check scope, cooldown and theme dedup).");
-    return { sections: [{ id: cryptoId(), name: blueprint.title || "Paper", questionIds: [] }], questionIds: [], report };
+    return { sections: [{ id: cryptoId(), name: blueprint.title || "Paper", ...(blueprint.titleHi ? { name_hi: blueprint.titleHi } : {}), questionIds: [] }], questionIds: [], report };
   }
 
   const cells = buildCells({ blueprint, config, pool });
@@ -551,7 +551,7 @@ export function generateTest({ blueprint, config = {}, bank = [], usages = [], o
 
   const questionIds = ordered.map((q) => q.id);
   return {
-    sections: [{ id: cryptoId(), name: blueprint.title || "Paper", questionIds }],
+    sections: [{ id: cryptoId(), name: blueprint.title || "Paper", ...(blueprint.titleHi ? { name_hi: blueprint.titleHi } : {}), questionIds }],
     questionIds,
     report,
   };

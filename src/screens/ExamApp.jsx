@@ -591,7 +591,7 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
           <div className="sec-tabs-in">
             {EXAM.sections.map((s, i) => (
               <button key={s.name} className={"sec-tab" + (i === secIdx ? " active" : "")}
-                onClick={() => actions.goTo(i, 0)}>{s.name}</button>
+                onClick={() => actions.goTo(i, 0)}>{inLang(lang, s.name, s.name_hi)}</button>
             ))}
           </div>
         </div>
@@ -604,7 +604,10 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
           <div className="q-top">
             <span className="q-no">{t("ex_question_n")} {qIdx + 1}</span>
             <div className="q-tags">
-              <span className="tag tag-topic">{q.topic}</span>
+              {/* The UPSC paper labels no question with its topic, and a sub-topic
+                  tag ("Pollution, Waste & Resources") narrows the answer before
+                  the candidate has read the stem. The review still shows it. */}
+              {EXAM.examCategory !== "upsc" && <span className="tag tag-topic">{q.topic}</span>}
               <span className="tag tag-type">{typeLabel(q.type, t, q.data?.ar_labels === "statement")}</span>
               <span className="tag tag-pos">+{q.marks}</span>
               {q.negative > 0 && <span className="tag tag-neg">−{q.negative}</span>}
@@ -671,7 +674,7 @@ function ExamScreen({ state, actions, candidateName, candidateId }) {
               return (
                 <div className="pal-sec" key={s.name}>
                   <div className="pal-sec-name">
-                    <span>{s.name}</span>
+                    <span>{inLang(lang, s.name, s.name_hi)}</span>
                     <span className="pal-sec-count">{done}/{s.questions.length}</span>
                   </div>
                   <div className="pal-grid">
