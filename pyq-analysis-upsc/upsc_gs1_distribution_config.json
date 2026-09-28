@@ -115,11 +115,15 @@
       "_method": "Content re-tag of all 148 Polity PYQs 2015-2026 from their actual stems (scratch/retag_polity_subtopics.py -> scratch/polity_subtopic_retag.csv), weighted with the same linear 1..10 recency weights as subject_weights. The decoder had labelled 135/148 'Governance'; 'Governance' now means non-constitutional administration only."
     },
     "Geography": {
-      "World": 0.033,
-      "Economic": 0.022,
-      "_note": "Decoder's 'Physical/Human' (0.8901) is a combined bucket with no finer breakdown anywhere in the playbook. Split 50/50 (_estimate_not_pyq_evidenced, no basis found to weight one side over the other) after folding decoder's separate 'Physical' (0.033) and 'Climatology' (0.022, a physical-geography topic) entirely into Physical.",
-      "Physical": 0.5,
-      "Human": 0.445
+      "World Regions, Water Bodies & Places": 0.2099,
+      "Climatology & Biomes": 0.2004,
+      "Indian Physiography, Climate & Regions": 0.1666,
+      "Indian Rivers, Lakes & Wetlands": 0.1401,
+      "Geomorphology & Earth's Interior": 0.1099,
+      "Resources: Minerals, Energy & Agriculture": 0.0681,
+      "Transport, Ports & Human Geography": 0.0677,
+      "Oceanography & Hydrosphere": 0.0373,
+      "_method": "Content re-tag of all 91 Geography PYQs 2015-2026 from their actual stems (scratch/retag_geography_subtopics.py -> scratch/geography_subtopic_retag.csv, output in scratch/geography_retag_output.txt). The decoder filed 81 of 91 under one catch-all 'Physical/Human', which the earlier reconciliation split 50/50 as an estimate. Recency-weighted with the same linear year weights as build_config.py. Level-2 roll-up: World Physical (GM+CL+OC+WR) 55.8%, Indian Physical (IR+IP) 30.7%, Human & Economic (EM+HT) 13.6%. No GS1 PYQ 2015-26 tests disaster management; the four hazard questions (2015-Q5, 2020-Q99, 2023-Q65, 2024-Q3) are physical processes tagged CL/GM."
     },
     "Economy": {
       "Financial Markets": 0.0227,
@@ -174,6 +178,13 @@
       "Climate & Pollution": 0.0373,
       "Global Environmental Agreements": 0.0124,
       "Conservation & Policy": 0.0062
+    },
+    "Geography_superseded_decoder_mapping": {
+      "World": 0.033,
+      "Economic": 0.022,
+      "_note": "Decoder's 'Physical/Human' (0.8901) is a combined bucket with no finer breakdown anywhere in the playbook. Split 50/50 (_estimate_not_pyq_evidenced, no basis found to weight one side over the other) after folding decoder's separate 'Physical' (0.033) and 'Climatology' (0.022, a physical-geography topic) entirely into Physical.",
+      "Physical": 0.5,
+      "Human": 0.445
     }
   },
   "difficulty_weights": {
@@ -226,6 +237,12 @@
       "medium": 0.5833,
       "hard": 0.1875,
       "_method": "2023-2026 pooled, the playbook's own evidence window (n=48 after removing 2024-Q33, a physiology question: 11 easy / 28 medium / 9 hard). A hyphenated 2025 label takes the lower band -- the rule that reproduces Polity's live 3/34/19; it affects one question (2025-Q9 'easy-medium' -> easy). Matches the playbook's G.3 2024 count (8 medium / 4 hard / 3 easy, incl. Q33)."
+    },
+    "Geography": {
+      "easy": 0.1778,
+      "medium": 0.6,
+      "hard": 0.2222,
+      "_method": "2023-26 pooled, the playbook's own evidence window (n=45: 8 easy / 27 medium / 10 hard). A hyphenated 2025 label takes the lower band (the Polity/Environment rule); it affects 2025-Q26 and Q27 ('medium-hard' -> medium). The playbook's E.3 prose rounds the same corpus to about 20/55/25."
     }
   },
   "question_type_weights_live_override": {
@@ -235,6 +252,13 @@
       "assertion_reason": 0.1042,
       "match_the_following": 0.0417,
       "_method": "Read from each 2023-26 question's option set (n=48): 32 statement (2-statement, 'how many', and 'which of the statements' combinations), 9 single-answer MCQ, 5 Statement-I/II (2023-Q12, 2023-Q76, 2024-Q20, plus 2025-Q9 and Q31 in the Statement-I/II/III variant), 2 pairs (2024-Q23, 2025-Q39). The playbook's G.1 template table (T1 16 / T2 9 / T3 18 / T4 6 / T5 0) disagrees: it counts no Statement-I/II question although its own ED1 note describes 2023-Q12 as one, and it files 'how many of these species...' item lists under T1."
+    },
+    "Geography": {
+      "statement_based": 0.5111,
+      "mcq": 0.2444,
+      "assertion_reason": 0.1778,
+      "match_the_following": 0.0667,
+      "_method": "Read from each 2023-26 question's option set (n=45): 23 statement (2-statement, 'how many' counts, combination codes), 11 single-answer MCQ (incl. 2024-Q6 sequence and 2026-Q25 identify-the-river), 8 Statement-I/II (2023-Q63, Q64; 2024-Q1, Q2, Q7; 2025-Q26, Q27, Q28 -- 2024-Q7, 2025-Q27 and Q28 in the Statement-I/II/III form), 3 pairs (2023-Q2, 2024-Q9, Q10). The playbook's Part E table (T1 14 / T2 9 / T3 13 / T4 5 / T5 3 / T6 1) counts Statement-I/II only in 2024 and files 2025's three as direct factual; the 2025 formats were confirmed against published papers. Direct count used, discrepancy flagged."
     }
   }
 }

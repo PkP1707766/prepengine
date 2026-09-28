@@ -1,0 +1,41 @@
+Geography rows: 91
+old decoder sub-topics: {'Physical/Human': 81, 'World': 3, 'Physical': 3, 'Economic Geography': 2, 'Climatology': 2}
+
+sub-topic                                    count  pooled%  recency%  2023-26%
+World Regions, Water Bodies & Places            16    17.6%     21.0%     22.2%
+Climatology & Biomes                            19    20.9%     20.0%     24.4%
+Indian Physiography, Climate & Regions          16    17.6%     16.7%     11.1%
+Indian Rivers, Lakes & Wetlands                 14    15.4%     14.0%      8.9%
+Geomorphology & Earth's Interior                 8     8.8%     11.0%     15.6%
+Resources: Minerals, Energy & Agriculture        7     7.7%      6.8%      8.9%
+Transport, Ports & Human Geography               6     6.6%      6.8%      8.9%
+Oceanography & Hydrosphere                       5     5.5%      3.7%      0.0%
+TOTAL                                           91
+
+Level-2 roll-up (recency-weighted):
+  World Physical        55.8%   (Geomorphology & Earth's Interior, Climatology & Biomes, Oceanography & Hydrosphere, World Regions, Water Bodies & Places)
+  Indian Physical       30.7%   (Indian Rivers, Lakes & Wetlands, Indian Physiography, Climate & Regions)
+  Human & Economic      13.6%   (Resources: Minerals, Energy & Agriculture, Transport, Ports & Human Geography)
+
+sub_topic_weights (recency, rounded, sum=1):
+{"Geomorphology & Earth's Interior": 0.1099, 'Climatology & Biomes': 0.2004, 'Oceanography & Hydrosphere': 0.0373, 'World Regions, Water Bodies & Places': 0.2099, 'Indian Rivers, Lakes & Wetlands': 0.1401, 'Indian Physiography, Climate & Regions': 0.1666, 'Resources: Minerals, Energy & Agriculture': 0.0681, 'Transport, Ports & Human Geography': 0.0677} sum = 1.0
+
+Hazard / disaster titles across all GS1 PYQs 2015-26:
+  2015-Q  5 [Geography] No Cyclone Zones  -> Climatology & Biomes
+  2020-Q 99 [Geography] Jet Streams + Cyclones  -> Climatology & Biomes
+  2023-Q 65 [Geography] P & S Waves  -> Geomorphology & Earth's Interior
+  2024-Q  3 [Geography] Volcanic Eruption Products  -> Geomorphology & Earth's Interior
+
+2023-26 corpus: 45 questions
+question types: {'statement_based': 23, 'match_the_following': 3, 'mcq': 11, 'assertion_reason': 8} (assertion_reason includes 3 Statement-I/II/III)
+difficulty:     {'medium': 27, 'hard': 10, 'easy': 8}
+question_type_weights[Geography] = {'statement_based': 0.5111, 'match_the_following': 0.0667, 'mcq': 0.2444, 'assertion_reason': 0.1778} sum = 1.0
+difficulty_weights[Geography]    = {'medium': 0.6, 'hard': 0.2222, 'easy': 0.1778} sum = 1.0
+
+per year (type):
+  2023 {'statement_based': 6, 'match_the_following': 1, 'mcq': 5, 'assertion_reason': 2}
+  2024 {'assertion_reason': 3, 'statement_based': 7, 'mcq': 4, 'match_the_following': 2}
+  2025 {'statement_based': 3, 'assertion_reason': 3}
+  2026 {'statement_based': 7, 'mcq': 2}
+
+Statement-I/II per year (playbook Part E says 2024 only): {'2023': 2, '2024': 3, '2025': 3}

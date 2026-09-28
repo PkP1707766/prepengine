@@ -83,7 +83,13 @@ const SUBTOPICS_BY_SUBJECT = {
     "Polity": ["Parliament & State Legislature", "Constitutional Framework", "Governance", "Federalism & Special Provisions", "Statutory-Laws",
       "Fundamental Rights, DPSP & Duties", "Union & State Executive", "Constitutional & Statutory Bodies", "Panchayati Raj & Local Governance",
       "Judicial-Verdicts", "Elections", "Judiciary"],
-    "Geography": ["Physical", "World", "Economic", "Human"],
+    // Content re-tag of all 91 Geography PYQs (pyq-analysis-upsc/scratch/
+    // retag_geography_subtopics.py): the decoder's "Physical/Human" held 81 of
+    // them. Grouped by the three Level-2 tests: World Physical; Indian Physical;
+    // Human & Economic.
+    "Geography": ["Geomorphology & Earth's Interior", "Climatology & Biomes", "Oceanography & Hydrosphere", "World Regions, Water Bodies & Places",
+      "Indian Rivers, Lakes & Wetlands", "Indian Physiography, Climate & Regions",
+      "Resources: Minerals, Energy & Agriculture", "Transport, Ports & Human Geography"],
     // L.2 #3 (Fintech-Digital-Finance) and #4 (Critical-Minerals-Energy-Transition).
     "Economy": ["Macroeconomics", "Financial Markets", "Banking", "Fintech-Digital-Finance", "Critical-Minerals-Energy-Transition", "Five-Year Plans & Policy"],
     // Content re-tag of all 161 Environment PYQs (pyq-analysis-upsc/scratch/
