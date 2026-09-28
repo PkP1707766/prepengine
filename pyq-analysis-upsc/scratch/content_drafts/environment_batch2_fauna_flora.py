@@ -73,7 +73,7 @@ stmt_opts(FA, "medium", "Consider the following statements:",
   "Statements 1 and 3 are correct. Aestivation is summer dormancy in response to heat and drought; the African lungfish is the "
   "classic example, sealing itself in a mucus cocoon when its pool dries up. Statement 2 is wrong: many reptiles and amphibians "
   "(frogs, turtles, snakes) pass the winter in a dormant state, so hibernation is not confined to mammals.",
-  "env-aestivation-hibernation", f"{NCERT_BIO12}, ch. 13 'Organisms and Populations' (responses to abiotic factors).")
+  "env-aestivation-hibernation", f"{NCERT_BIO12}, ch. 'Organisms and Populations' (responses to abiotic factors).")
 FALSE_AT["env-aestivation-hibernation"] = 2
 
 stmt(FA, "medium", "Consider the following statements about horseshoe crabs:",
@@ -142,7 +142,7 @@ stmt(FA, "easy", "Consider the following statements about echolocation:",
   "Only statement 1 is correct. Echolocating animals emit sounds and interpret the returning echoes; bats and toothed whales "
   "such as dolphins are the best-known examples. It is not limited to night-active animals -- dolphins hunt by echolocation by "
   "day as well, in murky water.",
-  "env-echolocation", f"{NCERT_BIO12}, ch. 13 'Organisms and Populations'.")
+  "env-echolocation", f"{NCERT_BIO12}, ch. 'Organisms and Populations'.")
 FALSE_AT["env-echolocation"] = 2
 
 stmt_opts(FA, "easy", "Consider the following statements about the blackbuck:",
@@ -203,7 +203,7 @@ mcq(FA, "medium", "Which one of the following birds lays its eggs in the nests o
   ["Asian koel", "House sparrow", "Indian robin", "Common myna"], 0,
   "The Asian koel is a brood parasite: the female lays her eggs in crows' nests and the crows rear the chicks. Brood "
   "parasitism is an interaction in which one species exploits another's parental care.",
-  "env-koel-brood-parasite", f"{NCERT_BIO12}, ch. 13 'Organisms and Populations' (population interactions: brood parasitism).")
+  "env-koel-brood-parasite", f"{NCERT_BIO12}, ch. 'Organisms and Populations' (population interactions: brood parasitism).")
 
 mcq(FA, "easy", "Which animal was declared India's 'National Heritage Animal' in 2010?",
   ["Tiger", "Elephant", "Asiatic lion", "Gaur"], 1,
@@ -222,14 +222,14 @@ ar(FA, "easy", "Camels can survive long periods without drinking water.",
   "Camels store water in their humps.", 2,
   "Statement-I is correct: camels tolerate long periods without drinking, thanks to efficient kidneys, very dry dung and "
   "tolerance of dehydration. Statement-II is the popular misconception: the hump stores fat, not water.",
-  "env-camel-hump-fat", f"{NCERT_BIO12}, ch. 13 'Organisms and Populations' (adaptations to desert conditions).")
+  "env-camel-hump-fat", f"{NCERT_BIO12}, ch. 'Organisms and Populations' (adaptations to desert conditions).")
 
 ar(FA, "medium", "Arctic foxes have short ears and a short muzzle.",
   "Arctic foxes change the colour of their coat with the seasons.", 1,
   "Both statements are correct, but Statement-II does not explain Statement-I. Short ears and muzzle cut heat loss in the cold "
   "(Allen's rule: mammals of cold climates have shorter extremities). The seasonal coat change -- white in winter, brown or grey "
   "in summer -- is camouflage, a separate adaptation.",
-  "env-arctic-fox-allens-rule", f"{NCERT_BIO12}, ch. 13 'Organisms and Populations' (Allen's rule).")
+  "env-arctic-fox-allens-rule", f"{NCERT_BIO12}, ch. 'Organisms and Populations' (Allen's rule).")
 
 ar(FA, "hard", "Bar-headed geese can fly over the Himalaya during their migration.",
   "The haemoglobin of bar-headed geese has a higher affinity for oxygen than that of lowland geese, helping them take up oxygen in thin air.", 0,
@@ -266,7 +266,7 @@ stmt_opts(FL, "medium", "Consider the following statements about insectivorous p
   "Statements 1 and 2 are correct. Insectivorous plants grow in nitrogen-poor soils and bogs and trap insects to make up the "
   "shortfall in nitrogen. India's only native pitcher plant, Nepenthes khasiana, is endemic to Meghalaya. Statement 3 is wrong: "
   "they are green and photosynthesise; insects supply nutrients, not their main food.",
-  "env-insectivorous-plants", "Botanical Survey of India, Nepenthes khasiana; NCERT Science Class VII, ch. 1 'Nutrition in Plants'.")
+  "env-insectivorous-plants", "Botanical Survey of India, Nepenthes khasiana; NCERT Science Class VII (pre-2024 edition), ch. 'Nutrition in Plants'.")
 FALSE_AT["env-insectivorous-plants"] = 3
 
 stmt(FL, "medium", "Consider the following statements:",
@@ -276,7 +276,7 @@ stmt(FL, "medium", "Consider the following statements:",
   "Only statement 2 is correct. Most tree-dwelling orchids are epiphytes: they use the tree only for support and make their "
   "own food, taking moisture from the air. Cuscuta, by contrast, has no chlorophyll and draws its food from the host through "
   "suckers (haustoria). Confusing epiphytes with parasites is the planted trap.",
-  "env-epiphyte-vs-parasite", "NCERT Science Class VII, ch. 1 'Nutrition in Plants'; NCERT Biology Class XI, ch. 'Morphology of Flowering Plants'.")
+  "env-epiphyte-vs-parasite", "NCERT Science Class VII (pre-2024 edition), ch. 'Nutrition in Plants'; NCERT Biology Class XI, ch. 'Morphology of Flowering Plants'.")
 FALSE_AT["env-epiphyte-vs-parasite"] = 1
 
 stmt(FL, "medium", "Consider the following statements about bamboo:",
@@ -299,7 +299,7 @@ stmt_opts(FL, "easy", "Consider the following statements about plants of dry reg
   CLASSIC, 0,
   "Statements 1 and 2 are correct. Xerophytes save water: succulent stems store it, leaves are reduced to spines, and cuticles "
   "are thick. Statement 3 describes the opposite -- large, thin leaves with many open stomata would lose water quickly.",
-  "env-xerophyte-adaptations", f"{NCERT_BIO12}, ch. 13 'Organisms and Populations' (adaptations of plants to deserts).")
+  "env-xerophyte-adaptations", f"{NCERT_BIO12}, ch. 'Organisms and Populations' (adaptations of plants to deserts).")
 FALSE_AT["env-xerophyte-adaptations"] = 3
 
 stmt(FL, "easy", "Consider the following statements about the Khejri tree (Prosopis cineraria):",
@@ -352,7 +352,7 @@ ar(FL, "easy", "Lichens are often the first organisms to colonise bare rock.",
   "Lichens secrete acids that help break the rock down into the beginnings of soil.", 0,
   "Both statements are correct and Statement-II explains Statement-I. As pioneer species in primary succession on rock, lichens "
   "secrete acids that dissolve the rock and start soil formation, preparing the ground for mosses and later plants.",
-  "env-lichen-pioneer", f"{NCERT_BIO12}, ch. 14 'Ecosystem' (ecological succession).")
+  "env-lichen-pioneer", f"{NCERT_BIO12}, ch. 'Ecosystem' (ecological succession).")
 
 ar(FL, "medium", "The Venus flytrap is native to the forests of India.",
   "The Venus flytrap is an insectivorous plant.", 3,
