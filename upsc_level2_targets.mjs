@@ -38,9 +38,11 @@ export const LEVEL2 = [
   { no: 21, title: "GS Comprehensive Revision (full syllabus)", subject: null, subs: null },
 ];
 
+const isMain = import.meta.url === new URL(process.argv[1], "file://").href || process.argv[1]?.endsWith("upsc_level2_targets.mjs");
 const cfg = JSON.parse(readFileSync(new URL("./live_upsc_config.json", import.meta.url), "utf8"));
-const bank = JSON.parse(readFileSync(process.argv[2], "utf8"));
+const bank = isMain ? JSON.parse(readFileSync(process.argv[2], "utf8")) : null;
 
+if (isMain) {
 let need = 0, have = 0;
 console.log(`Level 2 -- ${LEVEL2.length} GS sectional tests, ${PAPER} questions each (live config: ${cfg.name})\n`);
 for (const t of LEVEL2) {
@@ -60,3 +62,4 @@ for (const t of LEVEL2) {
   need += PAPER - got; have += got;
 }
 console.log(`\nLevel 2 GS total: ${LEVEL2.length * PAPER} questions -- usable in the bank now ${have}, still to draft ${need}`);
+}
