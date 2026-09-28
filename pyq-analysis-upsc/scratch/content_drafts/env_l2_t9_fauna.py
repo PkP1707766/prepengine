@@ -303,35 +303,37 @@ S(F, "hard", "Consider the following statements about how animals are adapted to
   "जीवों के जलवायु के प्रति अनुकूलन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["Bergmann's rule states that among related warm-blooded animals, those in colder climates tend to have smaller bodies.",
    "The kangaroo rat of North American deserts can meet its water needs from the internal oxidation of fat, without drinking water.",
-   "Allen's rule states that animals of colder climates tend to have longer ears and limbs."],
+   "Polar mammals such as seals have only a thin layer of fat under the skin, which helps them shed body heat."],
   ["बर्गमान का नियम कहता है कि संबंधित नियततापी जीवों में ठंडी जलवायु वालों का शरीर छोटा होता है।",
    "उत्तरी अमेरिका के मरुस्थलों का कंगारू चूहा पानी पिए बिना, वसा के आंतरिक ऑक्सीकरण से अपनी पानी की ज़रूरत पूरी कर सकता है।",
-   "एलन का नियम कहता है कि ठंडी जलवायु के जीवों के कान और अंग लंबे होते हैं।"],
+   "सील जैसे ध्रुवीय स्तनधारियों की त्वचा के नीचे वसा की केवल पतली परत होती है, जो उन्हें शरीर की गर्मी बाहर निकालने में मदद करती है।"],
   C3, 0,
   "Only statement 2 is correct: NCERT's example of a desert mammal that gets its water from metabolism and concentrates its urine to save it. "
-  "Statements 1 and 3 reverse the two rules. By Bergmann's rule, related warm-blooded animals are larger in colder climates, since a larger body has less surface per unit volume and so loses heat more slowly. "
-  "By Allen's rule, cold-climate animals have shorter extremities -- ears, limbs, muzzles -- for the same reason, as in the short-eared Arctic fox compared with the long-eared fennec of the desert.",
+  "Statement 1 reverses Bergmann's rule: related warm-blooded animals are larger in colder climates, since a larger body has less surface per unit volume and so loses heat more slowly. "
+  "Statement 3 is wrong: seals, whales and walruses have a thick layer of blubber under the skin, which insulates them in icy water and also stores energy; shedding heat is the last thing a polar mammal needs.",
   "केवल कथन 2 सही है: यह NCERT का उस मरुस्थलीय स्तनधारी का उदाहरण है जो चयापचय से पानी पाता है और पानी बचाने के लिए अपने मूत्र को गाढ़ा करता है। "
-  "कथन 1 और 3 दोनों नियमों को उलट देते हैं। बर्गमान के नियम के अनुसार संबंधित नियततापी जीव ठंडी जलवायु में बड़े होते हैं, क्योंकि बड़े शरीर में प्रति इकाई आयतन सतह कम होती है और इसलिए गर्मी धीरे-धीरे खोती है। "
-  "एलन के नियम के अनुसार ठंडी जलवायु के जीवों के सिरे, यानी कान, अंग और थूथन, इसी कारण छोटे होते हैं; जैसे मरुस्थल की लंबे कानों वाली फ़ेनेक लोमड़ी की तुलना में छोटे कानों वाली आर्कटिक लोमड़ी।",
+  "कथन 1 बर्गमान के नियम को उलट देता है: संबंधित नियततापी जीव ठंडी जलवायु में बड़े होते हैं, क्योंकि बड़े शरीर में प्रति इकाई आयतन सतह कम होती है और इसलिए गर्मी धीरे-धीरे खोती है। "
+  "कथन 3 गलत है: सील, व्हेल और वॉलरस की त्वचा के नीचे वसा (blubber) की मोटी परत होती है, जो बर्फ़ीले पानी में उन्हें ऊष्मारोधन देती है और ऊर्जा भी संचित करती है; ध्रुवीय स्तनधारी को गर्मी बाहर निकालने की सबसे कम ज़रूरत होती है।",
   f"{BIO12} (adaptations).",
-  "env-bergmann-allen-rules")
+  "env-bergmann-rule-adaptations")
 
 S(F, "hard", "Consider the following statements about fruit bats (flying foxes) in India:",
   "भारत में फल-चमगादड़ों (flying foxes) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["They are important pollinators and seed dispersers of many tropical trees.",
-   "Under the Wildlife (Protection) Act as it stands after the 2022 amendment, they are listed in a Schedule of vermin.",
-   "Most of them rely mainly on sight and smell, rather than echolocation, to find food."],
+   "Fruit bats of the genus Pteropus are natural reservoirs of the Nipah virus.",
+   "Bats and flying squirrels are the only mammals capable of true, powered flight."],
   ["ये कई उष्णकटिबंधीय पेड़ों के महत्त्वपूर्ण परागणकर्ता और बीज-प्रसारक हैं।",
-   "2022 के संशोधन के बाद के वन्यजीव (संरक्षण) अधिनियम के अनुसार, ये पीड़क जंतुओं (vermin) की एक अनुसूची में सूचीबद्ध हैं।",
-   "इनमें से अधिकांश भोजन खोजने के लिए प्रतिध्वनि-निर्धारण के बजाय मुख्य रूप से दृष्टि और गंध पर निर्भर करते हैं।"],
+   "Pteropus वंश के फल-चमगादड़ निपाह वायरस के प्राकृतिक भंडार (reservoir) हैं।",
+   "चमगादड़ और उड़न गिलहरियाँ ही वास्तविक, संचालित उड़ान (powered flight) में सक्षम एकमात्र स्तनधारी हैं।"],
   C3, 1,
-  "Statements 1 and 3 are correct. Fruit bats pollinate and spread the seeds of trees such as the silk cotton and wild banana, and, with large eyes and a keen sense of smell, most of them find fruit and flowers without the echolocation used by insect-eating bats (Rousettus, which clicks its tongue, is an exception). "
-  "Statement 2 is a currency trap: until 2022, fruit bats were among the four entries of Schedule V (vermin), with the common crow, mice and rats. The 2022 amendment abolished the vermin Schedule; the Centre can still declare a species vermin for an area and period by notification under section 62.",
-  "कथन 1 और 3 सही हैं। फल-चमगादड़ सेमल और जंगली केले जैसे पेड़ों का परागण करते हैं और उनके बीज फैलाते हैं, और बड़ी आँखों तथा तेज़ गंध-शक्ति के कारण इनमें से अधिकांश कीट खाने वाले चमगादड़ों के प्रतिध्वनि-निर्धारण के बिना ही फल और फूल ढूँढ़ लेते हैं (जीभ से क्लिक करने वाला Rousettus इसका अपवाद है)। "
-  "कथन 2 समय बदलने का जाल है: 2022 तक फल-चमगादड़ अनुसूची V (पीड़क जंतु) की चार प्रविष्टियों में थे, साथ में आम कौआ, चूहे और मूषक। 2022 के संशोधन ने पीड़क जंतुओं की अनुसूची समाप्त कर दी; केंद्र अब भी धारा 62 के तहत अधिसूचना द्वारा किसी प्रजाति को किसी क्षेत्र और अवधि के लिए पीड़क घोषित कर सकता है।",
-  f"{WPA} and section 62; Wild Life (Protection) Amendment Act, 2022; Zoological Survey of India -- bats of India.",
-  "env-fruit-bats-vermin")
+  "Statements 1 and 2 are correct. Fruit bats pollinate and spread the seeds of trees such as the silk cotton, wild banana and durian, often over long distances, which makes them important for forest regeneration. "
+  "The Indian flying fox (Pteropus medius) is a natural host of the Nipah virus, which has caused outbreaks in Kerala and West Bengal; the virus spreads to people through fruit or palm sap contaminated by bats, which is why the answer to Nipah is surveillance and safe food, not culling bats. "
+  "Statement 3 is wrong: bats are the only mammals capable of true, powered flight; flying squirrels (and the flying lemur) only glide, using a membrane of skin stretched between their limbs.",
+  "कथन 1 और 2 सही हैं। फल-चमगादड़ सेमल, जंगली केले और ड्यूरियन जैसे पेड़ों का परागण करते हैं और उनके बीज प्रायः दूर-दूर तक फैलाते हैं, जिससे वे वनों के पुनर्जनन के लिए महत्त्वपूर्ण हैं। "
+  "भारतीय फल-चमगादड़ (Pteropus medius) निपाह वायरस का प्राकृतिक मेज़बान है, जिसने केरल और पश्चिम बंगाल में प्रकोप फैलाए हैं; वायरस चमगादड़ों से दूषित फल या ताड़ के रस के ज़रिए लोगों तक पहुँचता है, इसलिए निपाह का उत्तर निगरानी और सुरक्षित भोजन है, चमगादड़ों को मारना नहीं। "
+  "कथन 3 गलत है: चमगादड़ ही वास्तविक, संचालित उड़ान में सक्षम एकमात्र स्तनधारी हैं; उड़न गिलहरियाँ (और उड़न लीमर) अपने अंगों के बीच फैली त्वचा की झिल्ली के सहारे केवल सरकती (glide) हैं।",
+  "Zoological Survey of India -- bats of India; National Centre for Disease Control / ICMR-NIV -- Nipah virus in Pteropus bats; WHO -- Nipah virus fact sheet.",
+  "env-fruit-bats-nipah")
 
 # ---------------------------------------------------------------- MCQs (5)
 M(F, "medium", "Which one of the following is NOT one of the 'big four' snakes responsible for most snakebite deaths in India?",
