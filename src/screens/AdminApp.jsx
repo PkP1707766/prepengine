@@ -5,7 +5,7 @@ import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 
 import * as DB from "../lib/db.js";
-import { generateTest, testDurationFor } from "../lib/generate.js";
+import { generateTest, testDurationFor, UPSC_PAPER_FORMATS, upscPaperFormat } from "../lib/generate.js";
 import { fmtINR, fmtLongDate, initials, uid } from "../lib/format.js";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
@@ -1448,7 +1448,8 @@ function ConfigForm({ initial, examCategory, onSave, onClose }) {
 }
 
 function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onClose }) {
-  const blank = { id: null, seriesId: "", sequencePosition: 1, title: "", patternType: "full_length", questionCount: 150, subjectScope: {}, distributionConfigId: "", themeGroupId: "", themePartIndex: "" };
+  const upsc = examCategory === "upsc";
+  const blank = { id: null, seriesId: "", sequencePosition: 1, title: "", patternType: "full_length", questionCount: upsc ? 100 : 150, subjectScope: {}, distributionConfigId: "", themeGroupId: "", themePartIndex: "" };
   const [b, setB] = useState(() => ({ ...blank, ...(initial || {}) }));
   const [scope, setScope] = useState(JSON.stringify((initial || blank).subjectScope || {}, null, 2));
   const [err, setErr] = useState("");
@@ -1470,7 +1471,10 @@ function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onC
     if (!b.title.trim()) return setErr("Title is required.");
     const sc = jsonParseOr(scope);
     if (!sc) return setErr("Subject scope is not valid JSON.");
-    onSave({ ...b, id: b.id || undefined, title: b.title.trim(), questionCount: Number(b.questionCount) || 150, sequencePosition: Number(b.sequencePosition) || 1, subjectScope: sc });
+    if (upsc && !upscPaperFormat(b.questionCount)) {
+      return setErr("A UPSC paper must be a standard length: " + UPSC_PAPER_FORMATS.map((f) => f.label).join("; ") + ".");
+    }
+    onSave({ ...b, id: b.id || undefined, title: b.title.trim(), questionCount: Number(b.questionCount) || (upsc ? 100 : 150), sequencePosition: Number(b.sequencePosition) || 1, subjectScope: sc });
   };
 
   return (
@@ -1492,7 +1496,9 @@ function BlueprintForm({ initial, examCategory, seriesList, configs, onSave, onC
             {Object.keys(PATTERN_LABEL).map((p) => <option key={p} value={p}>{PATTERN_LABEL[p]}</option>)}
           </select>
         </Field>
-        <Field label="Question count"><input className="inp" type="number" value={b.questionCount} onChange={(e) => set("questionCount", e.target.value)} /></Field>
+        <Field label="Question count" hint={upsc ? "UPSC: 100 (GS Paper I) or 80 (CSAT), or a 50 / 40 half paper" : undefined}>
+          <input className="inp" type="number" value={b.questionCount} onChange={(e) => set("questionCount", e.target.value)} />
+        </Field>
         <Field label="Sequence #"><input className="inp" type="number" value={b.sequencePosition} onChange={(e) => set("sequencePosition", e.target.value)} /></Field>
       </div>
       <div className="field-row">
@@ -1538,17 +1544,27 @@ function CountRow({ label, map }) {
   );
 }
 
-function GenReport({ blueprint, result, committing, onCommit, onClose }) {
+function GenReport({ blueprint, result, committing, onCommit, onClose, examCategory }) {
   const r = result.report;
   const seqOk = r.sequence && r.sequence.ok;
+  // A UPSC mock is saved only as a complete, standard-length paper: a short one
+  // would reach students as, say, a 46-question "test" (docs/upsc-test-series-plan.md).
+  const upscShort = examCategory === "upsc" && r.selected < r.target;
+  const upscOffStandard = examCategory === "upsc" && !upscPaperFormat(r.target);
   return (
     <Modal wide title={"Generated: " + blueprint.title} onClose={onClose}
       footer={<>
         <button className="btn btn-ghost" onClick={onClose}>Discard</button>
-        <button className="btn btn-primary" onClick={onCommit} disabled={committing || result.questionIds.length === 0}>
+        <button className="btn btn-primary" onClick={onCommit} disabled={committing || result.questionIds.length === 0 || upscShort || upscOffStandard}>
           <Save size={16} />{committing ? "Saving…" : "Save as draft test"}
         </button>
       </>}>
+      {upscShort && (
+        <div className="form-err"><AlertCircle size={17} />Short by {r.target - r.selected}: only {r.selected} of {r.target} questions are in the bank for this scope. A UPSC paper is saved only when it is complete, so draft the cells under Bank gaps, then generate again.</div>
+      )}
+      {upscOffStandard && (
+        <div className="form-err"><AlertCircle size={17} />{r.target} questions is not a UPSC paper length. Edit the blueprint to 100 (GS Paper I), 80 (CSAT), or a 50 / 40 half paper.</div>
+      )}
       <div className="gen-stats">
         <div className="gen-stat"><span>{r.selected} / {r.target}</span><label>questions</label></div>
         <div className="gen-stat"><span>{r.poolSize}</span><label>eligible pool</label></div>
@@ -1641,11 +1657,18 @@ function Blueprints({ questions, tests = [], seriesList, toast, askDelete, examC
     try {
       const cfg = configs.find((c) => c.id === bp.distributionConfigId) || {};
       const [usages, recent] = await Promise.all([DB.questionUsages(), DB.recentTestIds(5)]);
+      // UPSC runs one structured series, so the rule is stricter and simpler than
+      // BPSC's last-five-papers cooldown: a question already in any published UPSC
+      // test is never drawn again, and unpublished drafts block nothing (sibling
+      // tests of one theme group still share no concept -- eligiblePool's rule).
+      const cooldownTestIds = examCategory === "upsc"
+        ? tests.filter((t) => t.examCategory === "upsc" && t.isPublished).map((t) => t.id)
+        : recent;
       // `questions` (bank) is already scoped to `examCategory` by the parent's
       // loadAll(); `bp.examCategory` matches it because `blueprints` above is
       // filtered the same way. generate.js's eligiblePool() re-checks this
       // pairing defensively regardless.
-      const result = generateTest({ blueprint: bp, config: cfg, bank: questions, usages, options: { cooldownTestIds: recent } });
+      const result = generateTest({ blueprint: bp, config: cfg, bank: questions, usages, options: { cooldownTestIds } });
       setGen({ blueprint: bp, result });
     } catch (e) {
       toast(e?.message || "Generation failed", "err");
@@ -1746,7 +1769,7 @@ function Blueprints({ questions, tests = [], seriesList, toast, askDelete, examC
 
       {cfgEditor && <ConfigForm initial={cfgEditor.id ? cfgEditor : null} examCategory={examCategory} onSave={saveConfig} onClose={() => setCfgEditor(null)} />}
       {bpEditor && <BlueprintForm initial={bpEditor.id ? bpEditor : null} examCategory={examCategory} seriesList={seriesList} configs={configs} onSave={saveBlueprint} onClose={() => setBpEditor(null)} />}
-      {gen && <GenReport blueprint={gen.blueprint} result={gen.result} committing={committing} onCommit={commit} onClose={() => setGen(null)} />}
+      {gen && <GenReport blueprint={gen.blueprint} result={gen.result} committing={committing} onCommit={commit} onClose={() => setGen(null)} examCategory={examCategory} />}
     </div>
   );
 }
@@ -2357,9 +2380,26 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
     `Delete the test "${t.title}"? Students who already attempted it keep their reports, but the test disappears from the catalogue.`,
     () => removeTest(t.id),
   );
+  // A UPSC test goes in front of students only as a standard-length paper whose
+  // questions appear in no other published UPSC test -- the two rules that keep
+  // the series credible (docs/upsc-test-series-plan.md). BPSC is unaffected.
+  const upscPublishProblem = (t) => {
+    if (examCategory !== "upsc" || t.isPublished) return "";
+    const ids = (t.sections || []).flatMap((s) => s.questionIds || []);
+    if (!upscPaperFormat(ids.length)) {
+      return `"${t.title}" has ${ids.length} questions. A UPSC mock must be a standard paper: 100 (GS Paper I), 80 (CSAT), or a 50 / 40 half paper.`;
+    }
+    const mine = new Set(ids);
+    for (const o of tests) {
+      if (o.id === t.id || !o.isPublished || o.examCategory !== "upsc") continue;
+      const shared = (o.sections || []).flatMap((s) => s.questionIds || []).filter((id) => mine.has(id)).length;
+      if (shared) return `${shared} of its questions are already in the published test "${o.title}". A question can appear in only one published UPSC test.`;
+    }
+    return "";
+  };
   // Publishing puts a test in front of students, so it always asks first --
   // it used to flip on a single click of the status text or the eye icon.
-  const togglePublish = (t) => askConfirm(
+  const togglePublish = (t) => upscPublishProblem(t) ? toast(upscPublishProblem(t), "err") : askConfirm(
     t.isPublished
       ? `Unpublish "${t.title}"? Students will no longer see it in the catalogue; past attempts keep their reports.`
       : `Publish "${t.title}"? It becomes visible to students who have access to it.`,

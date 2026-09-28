@@ -155,7 +155,22 @@ function apportion(cells, total) {
 // Minutes per question for a generated paper, by exam. BPSC Prelims: 150 Q in
 // 120 min. UPSC GS Paper I: 100 Q in 120 min. Other exams default to BPSC's pace.
 export const MINUTES_PER_QUESTION = { bpsc: 0.8, upsc: 1.2 };
+
+// The only shapes a UPSC mock may take: a full GS Paper I or CSAT Paper II (two
+// hours each, as in the exam), or a one-hour half paper. A UPSC paper of any
+// other length is not a credible mock (docs/upsc-test-series-plan.md).
+export const UPSC_PAPER_FORMATS = [
+  { questions: 100, minutes: 120, label: "GS Paper I — 100 questions, 2 hours" },
+  { questions: 80, minutes: 120, label: "CSAT Paper II — 80 questions, 2 hours" },
+  { questions: 50, minutes: 60, label: "GS half paper — 50 questions, 1 hour" },
+  { questions: 40, minutes: 60, label: "CSAT half paper — 40 questions, 1 hour" },
+];
+export const upscPaperFormat = (n) => UPSC_PAPER_FORMATS.find((f) => f.questions === Number(n)) || null;
+
 export function testDurationFor(examCategory, questionCount) {
+  // CSAT's 80 questions get the full two hours, not 80 x 1.2 = 96 minutes.
+  const format = examCategory === "upsc" ? upscPaperFormat(questionCount) : null;
+  if (format) return format.minutes;
   const pace = MINUTES_PER_QUESTION[examCategory] ?? MINUTES_PER_QUESTION.bpsc;
   return Math.max(1, Math.round(questionCount * pace));
 }

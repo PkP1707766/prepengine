@@ -1,0 +1,39 @@
+Level 2 -- 21 GS sectional tests, 100 questions each (live config: UPSC GS Paper I — PYQ-derived (2015-2026, recency-weighted, 2015 answers unverified))
+
+Test  1  Polity 1: Constitutional Framework & Rights              have  29 / 100   to draft  71
+         Constitutional Framework 18/62  |  Fundamental Rights, DPSP & Duties 11/38
+Test  2  Polity 2: Parliament & Executive                         have  30 / 100   to draft  70
+         Parliament & State Legislature 20/68  |  Union & State Executive 10/32
+Test  3  Polity 3: Judiciary, Bodies, Elections & Laws            have  30 / 100   to draft  70
+         Judiciary 2/7  |  Judicial-Verdicts 4/14  |  Constitutional & Statutory Bodies 7/25  |  Elections 5/14  |  Statutory-Laws 12/40
+Test  4  Polity 4: Federalism, Local Government & Governance      have  32 / 100   to draft  68
+         Federalism & Special Provisions 13/39  |  Panchayati Raj & Local Governance 5/16  |  Governance 14/45
+Test  5  History 1: Modern India                                  have  47 / 100   to draft  53
+         Modern 47/100
+Test  6  History 2: Ancient India                                 have  45 / 100   to draft  55
+         Ancient 45/100
+Test  7  History 3: Medieval India                                have  21 / 100   to draft  79
+         Medieval 21/100
+Test  8  History 4: Art & Culture                                 have  19 / 100   to draft  81
+         Architecture 5/18  |  Painting 4/18  |  Music & Dance 5/36  |  Iconography 4/18  |  Culture-Other 1/10
+Test  9  Environment 1: Ecology & Biodiversity                    have  46 / 100   to draft  54
+         Fauna & Animal Behaviour 23/50  |  Flora, Fungi & Forests 13/29  |  Ecosystems & Ecological Processes 10/21
+Test 10  Environment 2: Climate Change & Pollution                have  48 / 100   to draft  52
+         Climate Science & Mitigation 16/33  |  Climate Agreements & Carbon Markets 13/26  |  Pollution, Waste & Resources 19/41
+Test 11  Environment 3: Policies & Conservation                   have  26 / 100   to draft  74
+         Protected Areas & Wildlife Protection 14/53  |  International Conventions & Organisations 7/28  |  Indian Environmental Laws & Bodies 5/19
+Test 12  Geography 1: World Physical Geography                    have   3 / 100   to draft  97
+         Geomorphology & Earth's Interior 0/20  |  Climatology & Biomes 2/36  |  Oceanography & Hydrosphere 0/7  |  World Regions, Water Bodies & Places 1/37
+Test 13  Geography 2: Indian Physical Geography                   have   2 / 100   to draft  98
+         Indian Rivers, Lakes & Wetlands 1/46  |  Indian Physiography, Climate & Regions 1/54
+Test 14  Geography 3: Human & Economic Geography                  have   0 / 100   to draft 100
+         Resources: Minerals, Energy & Agriculture 0/50  |  Transport, Ports & Human Geography 0/50
+Test 15  Economy 1: Basic Concepts, Money & Banking               have   0 / 100   to draft 100   (sub-topics not yet re-tagged from PYQ content)
+Test 16  Economy 2: Growth, Development & External Sector         have   0 / 100   to draft 100   (sub-topics not yet re-tagged from PYQ content)
+Test 17  Economy 3: Fiscal Policy, Budget & Economic Survey       have   0 / 100   to draft 100   (sub-topics not yet re-tagged from PYQ content)
+Test 18  Economy 4: Sectors of the Economy & Inclusive Growth     have   0 / 100   to draft 100   (sub-topics not yet re-tagged from PYQ content)
+Test 19  Science & Technology 1: General Science                  have   0 / 100   to draft 100   (sub-topics not yet re-tagged from PYQ content)
+Test 20  Science & Technology 2: Applied S&T & Agriculture        have   0 / 100   to draft 100   (sub-topics not yet re-tagged from PYQ content)
+Test 21  GS Comprehensive Revision (full syllabus)                have   0 / 100   to draft 100   (draws on every subject once Level 2 is written; needs its own 100)
+
+Level 2 GS total: 2100 questions -- usable in the bank now 378, still to draft 1722

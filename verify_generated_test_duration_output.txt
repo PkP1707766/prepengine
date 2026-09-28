@@ -1,10 +1,12 @@
+PASS  upscPaperFormat accepts only 100 / 80 / 50 / 40
 PASS  BPSC full-length 150 Q: bpsc 150 Q -> 120 min (expected 120)
 PASS  BPSC 75 Q: bpsc 75 Q -> 60 min (expected 60)
-PASS  UPSC GS1 100 Q: upsc 100 Q -> 120 min (expected 120)
-PASS  History L2 Ancient: upsc 43 Q -> 52 min (expected 52)
-PASS  History L2 Medieval: upsc 20 Q -> 24 min (expected 24)
-PASS  History L2 Modern: upsc 45 Q -> 54 min (expected 54)
-PASS  History L2 Art & Culture: upsc 12 Q -> 14 min (expected 14)
+PASS  BPSC 80 Q keeps BPSC's pace (the CSAT rule is UPSC-only): bpsc 80 Q -> 64 min (expected 64)
+PASS  UPSC GS Paper I, 100 Q: upsc 100 Q -> 120 min (expected 120)
+PASS  UPSC CSAT Paper II, 80 Q -- two hours, not 96 minutes: upsc 80 Q -> 120 min (expected 120)
+PASS  UPSC GS half paper, 50 Q: upsc 50 Q -> 60 min (expected 60)
+PASS  UPSC CSAT half paper, 40 Q: upsc 40 Q -> 60 min (expected 60)
+PASS  a non-standard length (the old History L2 Ancient draft) falls back to 1.2 min/Q: upsc 43 Q -> 52 min (expected 52)
 PASS  exam without its own pace falls back to BPSC's: jpsc 100 Q -> 80 min (expected 80)
 
 ALL PASS

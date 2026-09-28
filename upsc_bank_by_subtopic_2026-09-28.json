@@ -1,0 +1,7 @@
+{
+  "_source": "select subject, topic, status, count(*) from questions where exam_category='upsc' group by 1,2,3 -- live, 2026-09-28 (all rows published except Geography's 5 drafts)",
+  "Environment & Ecology": {"Climate Agreements & Carbon Markets": 13, "Climate Science & Mitigation": 16, "Ecosystems & Ecological Processes": 10, "Fauna & Animal Behaviour": 23, "Flora, Fungi & Forests": 13, "Indian Environmental Laws & Bodies": 5, "International Conventions & Organisations": 7, "Pollution, Waste & Resources": 19, "Protected Areas & Wildlife Protection": 14},
+  "Geography": {"Climatology & Biomes": 2, "Indian Physiography, Climate & Regions": 1, "Indian Rivers, Lakes & Wetlands": 1, "World Regions, Water Bodies & Places": 1},
+  "History": {"Ancient": 45, "Architecture": 5, "Culture-Other": 1, "Iconography": 4, "Medieval": 21, "Modern": 47, "Music & Dance": 5, "Painting": 4},
+  "Polity": {"Constitutional & Statutory Bodies": 7, "Constitutional Framework": 18, "Elections": 5, "Federalism & Special Provisions": 13, "Fundamental Rights, DPSP & Duties": 11, "Governance": 14, "Judicial-Verdicts": 4, "Judiciary": 2, "Panchayati Raj & Local Governance": 5, "Parliament & State Legislature": 20, "Statutory-Laws": 12, "Union & State Executive": 10}
+}
