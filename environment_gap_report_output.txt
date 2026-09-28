@@ -6,34 +6,34 @@ sub-topic weights:     {"Flora, Fungi & Forests":0.1079,"Fauna & Animal Behaviou
 
 row |   n | have | gap | difficulty | type                 | sub-topic
 -----------------------------------------------------------------------------------
-  1 |   9 |    1 |   8 | medium     | statement_based      | Fauna & Animal Behaviour
+  1 |   9 |    9 |   0 | medium     | statement_based      | Fauna & Animal Behaviour
   2 |   8 |    1 |   7 | medium     | statement_based      | Pollution, Waste & Resources
   3 |   6 |    1 |   5 | medium     | statement_based      | Climate Science & Mitigation
-  4 |   5 |    1 |   4 | medium     | statement_based      | Flora, Fungi & Forests
+  4 |   5 |    5 |   0 | medium     | statement_based      | Flora, Fungi & Forests
   5 |   5 |    1 |   4 | medium     | statement_based      | Climate Agreements & Carbon Markets
   6 |   5 |    0 |   5 | medium     | statement_based      | Protected Areas & Wildlife Protection
   7 |   4 |    0 |   4 | medium     | statement_based      | Ecosystems & Ecological Processes
-  8 |   3 |    0 |   3 | easy       | statement_based      | Fauna & Animal Behaviour
+  8 |   3 |    3 |   0 | easy       | statement_based      | Fauna & Animal Behaviour
   9 |   3 |    0 |   3 | easy       | statement_based      | Pollution, Waste & Resources
- 10 |   3 |    0 |   3 | hard       | statement_based      | Fauna & Animal Behaviour
+ 10 |   3 |    3 |   0 | hard       | statement_based      | Fauna & Animal Behaviour
  11 |   3 |    0 |   3 | medium     | statement_based      | International Conventions & Organisations
- 12 |   2 |    0 |   2 | easy       | statement_based      | Flora, Fungi & Forests
+ 12 |   2 |    2 |   0 | easy       | statement_based      | Flora, Fungi & Forests
  13 |   2 |    0 |   2 | easy       | statement_based      | Climate Science & Mitigation
  14 |   2 |    0 |   2 | easy       | statement_based      | Climate Agreements & Carbon Markets
  15 |   2 |    0 |   2 | easy       | statement_based      | Protected Areas & Wildlife Protection
- 16 |   2 |    0 |   2 | hard       | statement_based      | Flora, Fungi & Forests
+ 16 |   2 |    2 |   0 | hard       | statement_based      | Flora, Fungi & Forests
  17 |   2 |    0 |   2 | hard       | statement_based      | Climate Science & Mitigation
  18 |   2 |    0 |   2 | hard       | statement_based      | Pollution, Waste & Resources
  19 |   2 |    0 |   2 | hard       | statement_based      | Climate Agreements & Carbon Markets
  20 |   2 |    0 |   2 | hard       | statement_based      | Protected Areas & Wildlife Protection
  21 |   2 |    0 |   2 | hard       | match_the_following  | Ecosystems & Ecological Processes
- 22 |   2 |    0 |   2 | medium     | mcq                  | Fauna & Animal Behaviour
+ 22 |   2 |    2 |   0 | medium     | mcq                  | Fauna & Animal Behaviour
  23 |   2 |    0 |   2 | medium     | mcq                  | Climate Science & Mitigation
  24 |   2 |    0 |   2 | medium     | mcq                  | Pollution, Waste & Resources
  25 |   2 |    0 |   2 | medium     | mcq                  | Protected Areas & Wildlife Protection
  26 |   2 |    0 |   2 | medium     | statement_based      | Indian Environmental Laws & Bodies
- 27 |   1 |    0 |   1 | easy       | mcq                  | Flora, Fungi & Forests
- 28 |   1 |    0 |   1 | easy       | mcq                  | Fauna & Animal Behaviour
+ 27 |   1 |    1 |   0 | easy       | mcq                  | Flora, Fungi & Forests
+ 28 |   1 |    1 |   0 | easy       | mcq                  | Fauna & Animal Behaviour
  29 |   1 |    0 |   1 | easy       | mcq                  | Climate Science & Mitigation
  30 |   1 |    0 |   1 | easy       | mcq                  | Pollution, Waste & Resources
  31 |   1 |    0 |   1 | easy       | mcq                  | Climate Agreements & Carbon Markets
@@ -41,36 +41,36 @@ row |   n | have | gap | difficulty | type                 | sub-topic
  33 |   1 |    0 |   1 | easy       | statement_based      | Ecosystems & Ecological Processes
  34 |   1 |    0 |   1 | easy       | statement_based      | Indian Environmental Laws & Bodies
  35 |   1 |    0 |   1 | easy       | statement_based      | International Conventions & Organisations
- 36 |   1 |    0 |   1 | easy       | assertion_reason     | Flora, Fungi & Forests
- 37 |   1 |    0 |   1 | easy       | assertion_reason     | Fauna & Animal Behaviour
+ 36 |   1 |    1 |   0 | easy       | assertion_reason     | Flora, Fungi & Forests
+ 37 |   1 |    1 |   0 | easy       | assertion_reason     | Fauna & Animal Behaviour
  38 |   1 |    0 |   1 | easy       | assertion_reason     | Climate Science & Mitigation
  39 |   1 |    0 |   1 | easy       | assertion_reason     | Protected Areas & Wildlife Protection
  40 |   1 |    0 |   1 | easy       | match_the_following  | Climate Agreements & Carbon Markets
- 41 |   1 |    0 |   1 | hard       | mcq                  | Fauna & Animal Behaviour
+ 41 |   1 |    1 |   0 | hard       | mcq                  | Fauna & Animal Behaviour
  42 |   1 |    0 |   1 | hard       | mcq                  | Climate Science & Mitigation
  43 |   1 |    0 |   1 | hard       | mcq                  | Pollution, Waste & Resources
  44 |   1 |    0 |   1 | hard       | statement_based      | Ecosystems & Ecological Processes
  45 |   1 |    0 |   1 | hard       | statement_based      | Indian Environmental Laws & Bodies
  46 |   1 |    0 |   1 | hard       | statement_based      | International Conventions & Organisations
- 47 |   1 |    0 |   1 | hard       | assertion_reason     | Fauna & Animal Behaviour
- 48 |   1 |    0 |   1 | medium     | mcq                  | Flora, Fungi & Forests
+ 47 |   1 |    1 |   0 | hard       | assertion_reason     | Fauna & Animal Behaviour
+ 48 |   1 |    1 |   0 | medium     | mcq                  | Flora, Fungi & Forests
  49 |   1 |    0 |   1 | medium     | mcq                  | Ecosystems & Ecological Processes
  50 |   1 |    0 |   1 | medium     | mcq                  | Indian Environmental Laws & Bodies
  51 |   1 |    0 |   1 | medium     | mcq                  | Climate Agreements & Carbon Markets
  52 |   1 |    0 |   1 | medium     | mcq                  | International Conventions & Organisations
- 53 |   1 |    0 |   1 | medium     | assertion_reason     | Flora, Fungi & Forests
- 54 |   1 |    0 |   1 | medium     | assertion_reason     | Fauna & Animal Behaviour
+ 53 |   1 |    1 |   0 | medium     | assertion_reason     | Flora, Fungi & Forests
+ 54 |   1 |    1 |   0 | medium     | assertion_reason     | Fauna & Animal Behaviour
  55 |   1 |    0 |   1 | medium     | assertion_reason     | Climate Science & Mitigation
  56 |   1 |    0 |   1 | medium     | assertion_reason     | Pollution, Waste & Resources
  57 |   1 |    0 |   1 | medium     | assertion_reason     | Ecosystems & Ecological Processes
  58 |   1 |    0 |   1 | medium     | assertion_reason     | Climate Agreements & Carbon Markets
  59 |   1 |    0 |   1 | medium     | assertion_reason     | Protected Areas & Wildlife Protection
  60 |   1 |    0 |   1 | medium     | assertion_reason     | International Conventions & Organisations
- 61 |   1 |    0 |   1 | medium     | match_the_following  | Fauna & Animal Behaviour
+ 61 |   1 |    1 |   0 | medium     | match_the_following  | Fauna & Animal Behaviour
  62 |   1 |    0 |   1 | medium     | match_the_following  | Pollution, Waste & Resources
 -----------------------------------------------------------------------------------
 cells: 62   TOTAL: 120 (blueprint target 120)
-bank: 5 rows   cells filled: 0/62   questions still to draft: 115
+bank: 39 rows   cells filled: 17/62   questions still to draft: 81
 spare rows: 0 above target in a cell + 0 in no cell
 
 by sub-topic:  23 Fauna & Animal Behaviour  |  19 Pollution, Waste & Resources  |  16 Climate Science & Mitigation  |  14 Protected Areas & Wildlife Protection  |  13 Flora, Fungi & Forests  |  13 Climate Agreements & Carbon Markets  |  10 Ecosystems & Ecological Processes  |  7 International Conventions & Organisations  |  5 Indian Environmental Laws & Bodies

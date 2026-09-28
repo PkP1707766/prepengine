@@ -65,17 +65,27 @@ def _row(topic, typ, diff, body, qdata, bodies, ans, expl, cg, cite, ladder=None
     ck = (diff, typ, topic)
     cells[ck] = cells.get(ck, 0) + 1
 
-def stmt(topic, diff, body, statements, ladder, ans, expl, cg, cite):
+def _stmt_data(statements, closing, roman):
+    qd = {"statements": statements, "closing": closing, "fixed_option_order": True}
+    if roman:
+        qd["numbering"] = "roman"  # UPSC 2025 style: statements I, II, III
+    return qd
+
+def stmt(topic, diff, body, statements, ladder, ans, expl, cg, cite, roman=False):
     assert ladder in (C3, C4, T2) and len(statements) == {id(C3): 3, id(C4): 4, id(T2): 2}[id(ladder)]
+    assert not (roman and ladder is T2), "T2 options name statements 1 and 2; write a stmt_opts row for Roman"
     closing = WHICH if ladder is T2 else HOW_MANY
-    _row(topic, "statement_based", diff, body, {"statements": statements, "closing": closing, "fixed_option_order": True},
+    _row(topic, "statement_based", diff, body, _stmt_data(statements, closing, roman),
          ladder, ans, expl, cg, cite, ladder)
 
-def stmt_opts(topic, diff, body, statements, options, ans, expl, cg, cite):
+def stmt_opts(topic, diff, body, statements, options, ans, expl, cg, cite, roman=False):
     """A statement question with its own combination options ("1 and 2 only", or the 2026-style
-    "1 only / 1 and 2 / 2 and 3 / 3 only"). Kept in the printed order, as on the paper."""
+    "1 only / 1 and 2 / 2 and 3 / 3 only"). Kept in the printed order, as on the paper. With
+    roman=True the options must name the statements I, II, III."""
     assert len(options) == 4 and len(statements) in (2, 3, 4)
-    _row(topic, "statement_based", diff, body, {"statements": statements, "closing": WHICH, "fixed_option_order": True},
+    names_roman = any(" I" in f" {o}" or o.startswith("I") for o in options)
+    assert roman == names_roman or not any(ch.isdigit() for o in options for ch in o), "numbering and option labels disagree"
+    _row(topic, "statement_based", diff, body, _stmt_data(statements, WHICH, roman),
          options, ans, expl, cg, cite)
 
 def mcq(topic, diff, body, options, ans, expl, cg, cite):
