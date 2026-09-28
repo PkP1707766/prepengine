@@ -1,0 +1,233 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 11 (Environment 3: Policies & Conservation) -- Indian Environmental Laws &
+Bodies, 14 new bilingual rows against the live gap report: medium statement 5, easy statement 2,
+hard statement 2, medium MCQ 1, easy MCQ 1, hard MCQ 1, medium Statement-I/II 1, easy pairs 1.
+Concepts already in the bank (Biological Diversity Act and 2023 amendment, Eco-Sensitive Zones,
+forest law amendment of 2023, NGT, NTCA) are not repeated or cued."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Environment & Ecology"
+L = "Indian Environmental Laws & Bodies"
+EPA = "Environment (Protection) Act, 1986"
+
+# ---------------------------------------------------------------- medium statements (5)
+S(L, "medium", "Consider the following statements about the Environment (Protection) Act, 1986:",
+  "पर्यावरण (संरक्षण) अधिनियम, 1986 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was enacted after the Bhopal gas tragedy.",
+   "It was enacted under Article 253 of the Constitution, to implement decisions of the 1972 Stockholm Conference.",
+   "It does not allow a citizen to file a complaint in court about an offence under it."],
+  ["यह भोपाल गैस त्रासदी के बाद बनाया गया।",
+   "यह 1972 के स्टॉकहोम सम्मेलन के निर्णयों को लागू करने के लिए संविधान के अनुच्छेद 253 के तहत बनाया गया।",
+   "यह किसी नागरिक को इसके तहत किसी अपराध के बारे में न्यायालय में शिकायत करने की अनुमति नहीं देता।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Passed in 1986, after the 1984 Bhopal disaster exposed the gaps in the older laws, the EPA is an 'umbrella' law: section 3 gives the Centre wide powers to set standards, restrict industries and areas, and create authorities, and section 5 lets it issue binding directions, including closure. Many rules -- on hazardous waste, the coastal zone, EIA, wetlands and plastic -- are made under it. Parliament used Article 253, which lets it legislate to implement international agreements, even on State subjects. "
+  "Statement 3 is wrong: section 19 lets any person complain to a court after giving the authorities 60 days' notice of the offence and of the intention to complain.",
+  "कथन 1 और 2 सही हैं। 1984 की भोपाल त्रासदी ने पुराने कानूनों की कमियाँ उजागर कीं, जिसके बाद 1986 में पारित EPA एक 'छत्र' (umbrella) कानून है: धारा 3 केंद्र को मानक तय करने, उद्योगों और क्षेत्रों पर प्रतिबंध लगाने और प्राधिकरण बनाने की व्यापक शक्तियाँ देती है, और धारा 5 उसे बंद करने सहित बाध्यकारी निर्देश देने देती है। खतरनाक अपशिष्ट, तटीय क्षेत्र, EIA, आर्द्रभूमि और प्लास्टिक पर कई नियम इसी के तहत बने हैं। संसद ने अनुच्छेद 253 का उपयोग किया, जो उसे अंतरराष्ट्रीय समझौते लागू करने के लिए, राज्य-विषयों पर भी, कानून बनाने देता है। "
+  "कथन 3 गलत है: धारा 19 कोई भी व्यक्ति प्राधिकारियों को अपराध और शिकायत करने के इरादे की 60 दिन की सूचना देने के बाद न्यायालय में शिकायत कर सकता है।",
+  f"{EPA}, preamble and sections 3, 5 and 19; Constitution of India, Article 253.",
+  "env-epa-1986-basics")
+
+S(L, "medium", "Consider the following statements about the Water (Prevention and Control of Pollution) Act, 1974:",
+  "जल (प्रदूषण निवारण और नियंत्रण) अधिनियम, 1974 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was India's first major law aimed specifically at controlling pollution.",
+   "Parliament enacted it under Article 253 of the Constitution.",
+   "Its 2024 amendment applies automatically to every State."],
+  ["यह प्रदूषण नियंत्रण के लिए विशेष रूप से बना भारत का पहला प्रमुख कानून था।",
+   "संसद ने इसे संविधान के अनुच्छेद 253 के तहत बनाया।",
+   "इसका 2024 का संशोधन हर राज्य पर अपने-आप लागू होता है।"],
+  C3, 0,
+  "Only statement 1 is correct: the Central and State Boards were first set up under this Act, then for water pollution, and were later given functions under the Air Act of 1981 as well. "
+  "Statement 2 is wrong: water is a State subject, and Parliament passed the Act under Article 252, after the legislatures of several States passed resolutions asking it to; other States adopted it later. "
+  "Statement 3 is wrong for the same reason: the Water (Prevention and Control of Pollution) Amendment Act, 2024, which decriminalised many minor violations by replacing imprisonment with penalties, applied at first only to Himachal Pradesh, Rajasthan and the Union Territories; other States have to adopt it by resolutions of their legislatures, because the parent Act rests on Article 252.",
+  "केवल कथन 1 सही है: केंद्रीय और राज्य बोर्ड पहली बार इसी अधिनियम के तहत, तब जल प्रदूषण के लिए, बने, और बाद में उन्हें 1981 के वायु अधिनियम के तहत भी काम दिए गए। "
+  "कथन 2 गलत है: जल राज्य-विषय है, और संसद ने यह अधिनियम अनुच्छेद 252 के तहत पारित किया, जब कई राज्यों की विधानसभाओं ने संकल्प पारित करके उससे ऐसा करने का अनुरोध किया; दूसरे राज्यों ने इसे बाद में अपनाया। "
+  "कथन 3 इसी कारण से गलत है: जल (प्रदूषण निवारण और नियंत्रण) संशोधन अधिनियम, 2024, जिसने कारावास की जगह दंड रखकर कई छोटे उल्लंघनों को अपराध की श्रेणी से बाहर किया, पहले केवल हिमाचल प्रदेश, राजस्थान और केंद्रशासित प्रदेशों पर लागू हुआ; दूसरे राज्यों को इसे अपनी विधानसभाओं के संकल्पों से अपनाना होता है, क्योंकि मूल अधिनियम अनुच्छेद 252 पर आधारित है।",
+  "Water (Prevention and Control of Pollution) Act, 1974, preamble and section 3; Water (Prevention and Control of Pollution) Amendment Act, 2024; Constitution of India, Article 252.",
+  "env-water-act-1974")
+
+S(L, "medium", "Consider the following statements about the Forest Rights Act, 2006:",
+  "वन अधिकार अधिनियम, 2006 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It recognises both individual and community forest rights of forest-dwelling Scheduled Tribes and other traditional forest dwellers.",
+   "The Gram Sabha is the authority that initiates the process of determining forest rights.",
+   "The Ministry of Tribal Affairs is the nodal ministry for its implementation."],
+  ["यह वनवासी अनुसूचित जनजातियों और दूसरे पारंपरिक वनवासियों के व्यक्तिगत और सामुदायिक, दोनों प्रकार के वन अधिकारों को मान्यता देता है।",
+   "ग्राम सभा वह प्राधिकारी है जो वन अधिकार निर्धारित करने की प्रक्रिया शुरू करती है।",
+   "जनजातीय कार्य मंत्रालय इसके कार्यान्वयन का नोडल मंत्रालय है।"],
+  C3, 2,
+  "All three statements are correct. The Act was meant to undo a 'historical injustice': when forests were notified, the rights of people who had lived in them for generations were often never recorded. It recognises rights to land under cultivation, to minor forest produce such as bamboo and tendu, and to protect and manage 'community forest resources'. "
+  "Claims start in the Gram Sabha and pass through sub-divisional and district-level committees. The nodal ministry is Tribal Affairs, not Environment -- a common trap -- which reflects that the Act is about rights, while the forest department manages the forests.",
+  "तीनों कथन सही हैं। इस अधिनियम का उद्देश्य एक 'ऐतिहासिक अन्याय' को दूर करना था: जब वन अधिसूचित हुए, तो पीढ़ियों से उनमें रहने वाले लोगों के अधिकार प्रायः कभी दर्ज ही नहीं हुए। यह खेती की जा रही भूमि पर, बाँस और तेंदू जैसी लघु वनोपज पर, और 'सामुदायिक वन संसाधनों' की रक्षा और प्रबंधन के अधिकारों को मान्यता देता है। "
+  "दावे ग्राम सभा से शुरू होकर उपमंडल और ज़िला स्तर की समितियों से गुज़रते हैं। नोडल मंत्रालय पर्यावरण नहीं, जनजातीय कार्य है, जो एक आम जाल है; यह दिखाता है कि अधिनियम अधिकारों के बारे में है, जबकि वनों का प्रबंधन वन विभाग करता है।",
+  "Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006, sections 3 and 6; Ministry of Tribal Affairs -- FRA implementation.",
+  "env-forest-rights-act-2006")
+
+S(L, "medium", "Consider the following statements about the Coastal Regulation Zone (CRZ) Notification, 2019:",
+  "तटीय विनियमन क्षेत्र (CRZ) अधिसूचना, 2019 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The first Coastal Regulation Zone notification was issued in 1991.",
+   "CRZ-I covers ecologically sensitive areas such as mangroves and coral reefs.",
+   "It lays down a uniform no-development zone of 500 metres from the high tide line for all coastal areas."],
+  ["पहली तटीय विनियमन क्षेत्र अधिसूचना 1991 में जारी की गई थी।",
+   "CRZ-I में मैंग्रोव और प्रवाल भित्तियों जैसे पारिस्थितिक रूप से संवेदनशील क्षेत्र आते हैं।",
+   "यह सभी तटीय क्षेत्रों के लिए उच्च ज्वार रेखा से 500 मीटर का एक समान निर्माण-निषेध क्षेत्र (no-development zone) तय करती है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. CRZ notifications, first issued in 1991, are made under the EPA; the 2019 notification divides the coast into CRZ-I (ecologically sensitive areas, where almost nothing may be built), CRZ-II (developed urban areas), CRZ-III (relatively undisturbed rural areas) and CRZ-IV (the water area up to 12 nautical miles). "
+  "Statement 3 is wrong: the no-development zone depends on the category -- in densely populated rural areas (CRZ-IIIA) it was cut to 50 metres from the high tide line, while other rural areas (CRZ-IIIB) keep 200 metres. Easing these limits to allow tourism and housing is the notification's most debated change.",
+  "कथन 1 और 2 सही हैं। 1991 में पहली बार जारी CRZ अधिसूचनाएँ EPA के तहत बनती हैं; 2019 की अधिसूचना तट को CRZ-I (पारिस्थितिक रूप से संवेदनशील क्षेत्र, जहाँ लगभग कुछ भी नहीं बनाया जा सकता), CRZ-II (विकसित शहरी क्षेत्र), CRZ-III (अपेक्षाकृत अबाधित ग्रामीण क्षेत्र) और CRZ-IV (12 समुद्री मील तक का जल-क्षेत्र) में बाँटती है। "
+  "कथन 3 गलत है: निर्माण-निषेध क्षेत्र श्रेणी पर निर्भर है; घनी आबादी वाले ग्रामीण क्षेत्रों (CRZ-IIIA) में इसे घटाकर उच्च ज्वार रेखा से 50 मीटर किया गया, जबकि दूसरे ग्रामीण क्षेत्रों (CRZ-IIIB) में 200 मीटर बना रहा। पर्यटन और आवास के लिए इन सीमाओं में ढील अधिसूचना का सबसे अधिक बहस वाला बदलाव है।",
+  "Ministry of Environment, Forest and Climate Change -- Coastal Regulation Zone Notification, 2019.",
+  "env-crz-2019")
+
+S(L, "medium", "Consider the following statements about the Environmental Impact Assessment (EIA) Notification, 2006:",
+  "पर्यावरणीय प्रभाव आकलन (EIA) अधिसूचना, 2006 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Category A projects are appraised by State-level authorities.",
+   "Public consultation is required for every project that needs prior environmental clearance.",
+   "The EIA Notification was issued under the Forest (Conservation) Act, 1980."],
+  ["श्रेणी A की परियोजनाओं का मूल्यांकन राज्य-स्तरीय प्राधिकरण करते हैं।",
+   "पूर्व पर्यावरणीय स्वीकृति की ज़रूरत वाली हर परियोजना के लिए जन-परामर्श अनिवार्य है।",
+   "EIA अधिसूचना वन (संरक्षण) अधिनियम, 1980 के तहत जारी की गई।"],
+  C3, 3,
+  "None of the statements is correct. Category A projects -- those with the largest potential impacts -- are appraised at the Centre, by the Ministry of Environment's Expert Appraisal Committees; Category B projects go to the State Environment Impact Assessment Authorities (SEIAAs). "
+  "Public consultation is required for most projects but not all: category B2 projects, expansions within notified industrial estates, and some others are exempt, which is one of the most criticised features of the system. "
+  "The notification was issued under the Environment (Protection) Act, 1986; forest clearance for the use of forest land is a separate process under the forest law.",
+  "कोई भी कथन सही नहीं है। श्रेणी A की परियोजनाओं, यानी सबसे अधिक संभावित प्रभाव वालों, का मूल्यांकन केंद्र में पर्यावरण मंत्रालय की विशेषज्ञ मूल्यांकन समितियाँ करती हैं; श्रेणी B की परियोजनाएँ राज्य पर्यावरण प्रभाव आकलन प्राधिकरणों (SEIAA) के पास जाती हैं। "
+  "जन-परामर्श अधिकांश परियोजनाओं के लिए ज़रूरी है, पर सबके लिए नहीं: B2 श्रेणी की परियोजनाएँ, अधिसूचित औद्योगिक क्षेत्रों के भीतर विस्तार और कुछ दूसरी परियोजनाएँ मुक्त हैं, जो इस प्रणाली की सबसे अधिक आलोचित विशेषताओं में है। "
+  "अधिसूचना पर्यावरण (संरक्षण) अधिनियम, 1986 के तहत जारी हुई; वन भूमि के उपयोग के लिए वन-स्वीकृति वन कानून के तहत एक अलग प्रक्रिया है।",
+  "Ministry of Environment, Forest and Climate Change -- EIA Notification, 2006 (S.O. 1533(E)), paragraphs 2, 4 and 7.",
+  "env-eia-notification-2006")
+
+# ---------------------------------------------------------------- easy statements (2)
+S(L, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Central Pollution Control Board is a constitutional body.",
+   "The Central Pollution Control Board coordinates the activities of the State Pollution Control Boards."],
+  ["केंद्रीय प्रदूषण नियंत्रण बोर्ड एक संवैधानिक निकाय है।",
+   "केंद्रीय प्रदूषण नियंत्रण बोर्ड राज्य प्रदूषण नियंत्रण बोर्डों की गतिविधियों का समन्वय करता है।"],
+  T2, 1,
+  "Only statement 2 is correct. The CPCB is a statutory body, created by an Act of Parliament rather than by the Constitution; it advises the Centre, lays down standards, runs the national air and water quality monitoring programmes and coordinates and guides the State Boards, and can settle disputes among them.",
+  "केवल कथन 2 सही है। CPCB एक वैधानिक निकाय है, जो संविधान से नहीं, संसद के एक अधिनियम से बना है; यह केंद्र को सलाह देता है, मानक तय करता है, राष्ट्रीय वायु और जल गुणवत्ता निगरानी कार्यक्रम चलाता है, राज्य बोर्डों का समन्वय और मार्गदर्शन करता है, और उनके बीच विवाद सुलझा सकता है।",
+  "Water (Prevention and Control of Pollution) Act, 1974, section 16; Central Pollution Control Board -- functions.",
+  "env-cpcb-status-functions")
+
+S(L, "easy", "Consider the following statements about the Wildlife Crime Control Bureau:",
+  "वन्यजीव अपराध नियंत्रण ब्यूरो के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is a statutory body set up under the Wild Life (Protection) Act, 1972.",
+   "It works under the Ministry of Environment, Forest and Climate Change."],
+  ["यह वन्यजीव (संरक्षण) अधिनियम, 1972 के तहत बना एक वैधानिक निकाय है।",
+   "यह पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय के अधीन काम करता है।"],
+  T2, 2,
+  "Both statements are correct. The Bureau was created by the 2006 amendment to the Act to fight organised wildlife crime, which crosses State and national borders; it collects intelligence, assists State agencies and customs, and coordinates with Interpol and CITES. Its operations, such as those against the trade in turtles and tortoises, have been recognised internationally.",
+  "दोनों कथन सही हैं। राज्य और राष्ट्रीय सीमाएँ पार करने वाले संगठित वन्यजीव अपराधों से लड़ने के लिए यह ब्यूरो अधिनियम के 2006 के संशोधन से बना; यह खुफ़िया जानकारी जुटाता है, राज्य एजेंसियों और सीमा-शुल्क विभाग की सहायता करता है, और इंटरपोल तथा CITES के साथ समन्वय करता है। कछुओं के व्यापार के विरुद्ध चलाए गए इसके अभियानों जैसे कई अभियानों को अंतरराष्ट्रीय मान्यता मिली है।",
+  "Wild Life (Protection) Act, 1972, section 38Y (inserted in 2006); Wildlife Crime Control Bureau, MoEFCC.",
+  "env-wildlife-crime-control-bureau")
+
+# ---------------------------------------------------------------- hard statements (2)
+S(L, "hard", "Consider the following statements about the Compensatory Afforestation Fund Act, 2016:",
+  "प्रतिपूरक वनीकरण निधि अधिनियम, 2016 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It set up a National Fund and State Funds for compensatory afforestation under the public accounts of the Centre and the States.",
+   "The money comes mainly from agencies that divert forest land for non-forest purposes.",
+   "Unspent money in these funds lapses at the end of each financial year.",
+   "Ninety per cent of the money paid into the National Fund is transferred to the State Funds."],
+  ["इसने केंद्र और राज्यों के लोक लेखों (public accounts) के अंतर्गत प्रतिपूरक वनीकरण के लिए एक राष्ट्रीय निधि और राज्य निधियाँ बनाईं।",
+   "यह धन मुख्य रूप से उन एजेंसियों से आता है जो वन भूमि को गैर-वन उद्देश्यों के लिए उपयोग करती हैं।",
+   "इन निधियों में बिना खर्च हुआ धन हर वित्तीय वर्ष के अंत में व्यपगत (lapse) हो जाता है।",
+   "राष्ट्रीय निधि में जमा धन का नब्बे प्रतिशत राज्य निधियों को हस्तांतरित किया जाता है।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. When forest land is diverted for a mine, dam or road, the user agency pays for compensatory afforestation and the net present value of the forest lost; for years this money piled up unspent in an ad hoc fund, until the 2016 Act put it into public-account funds managed by National and State CAMPAs. The States receive 90 per cent, for afforestation, regeneration and forest and wildlife management. "
+  "Statement 3 is wrong: the funds are non-lapsable and interest-bearing, precisely so that money for long-term afforestation is not lost at the year's end.",
+  "कथन 1, 2 और 4 सही हैं। जब वन भूमि किसी खदान, बाँध या सड़क के लिए दी जाती है, तो उपयोगकर्ता एजेंसी प्रतिपूरक वनीकरण और खोए वन के शुद्ध वर्तमान मूल्य (NPV) का भुगतान करती है; वर्षों तक यह धन एक तदर्थ निधि में बिना खर्च हुए जमा होता रहा, जब तक 2016 के अधिनियम ने इसे राष्ट्रीय और राज्य CAMPA द्वारा प्रबंधित लोक-लेखा निधियों में नहीं डाला। राज्यों को 90 प्रतिशत मिलता है, वनीकरण, पुनर्जनन और वन तथा वन्यजीव प्रबंधन के लिए। "
+  "कथन 3 गलत है: ये निधियाँ अव्यपगत (non-lapsable) और ब्याज वाली हैं, ठीक इसलिए कि दीर्घकालिक वनीकरण का धन वर्ष के अंत में खो न जाए।",
+  "Compensatory Afforestation Fund Act, 2016, sections 3 and 4; Compensatory Afforestation Fund Rules, 2018.",
+  "env-compensatory-afforestation-fund")
+
+S(L, "hard", "With reference to the Jan Vishwas (Amendment of Provisions) Act, 2023, consider the following statements:",
+  "जन विश्वास (प्रावधानों का संशोधन) अधिनियम, 2023 के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It amended the Environment (Protection) Act to replace imprisonment with monetary penalties for several contraventions.",
+   "It provided for adjudicating officers to decide such penalties.",
+   "It provided for an Environment Protection Fund, into which such penalties are credited."],
+  ["इसने कई उल्लंघनों के लिए कारावास की जगह आर्थिक दंड रखने के लिए पर्यावरण (संरक्षण) अधिनियम में संशोधन किया।",
+   "इसने ऐसे दंड तय करने के लिए न्यायनिर्णायक अधिकारियों का प्रावधान किया।",
+   "इसने एक पर्यावरण संरक्षण निधि का प्रावधान किया, जिसमें ऐसे दंड जमा किए जाते हैं।"],
+  C3, 2,
+  "All three statements are correct. The Jan Vishwas Act amended 42 laws to reduce criminal penalties for minor, largely procedural offences; for the EPA and the Air Act it replaced imprisonment with penalties that an adjudicating officer imposes, with appeals to the National Green Tribunal, and it created an Environment Protection Fund to receive them. "
+  "Supporters say it makes enforcement quicker and cuts litigation; critics fear that fines alone may not deter serious polluters. A student who assumes a reform must have left imprisonment untouched somewhere will reject statement 1.",
+  "तीनों कथन सही हैं। जन विश्वास अधिनियम ने छोटे, मुख्यतः प्रक्रियात्मक अपराधों के लिए आपराधिक दंड घटाने हेतु 42 कानूनों में संशोधन किया; EPA और वायु अधिनियम के लिए इसने कारावास की जगह ऐसे दंड रखे जो न्यायनिर्णायक अधिकारी लगाता है, जिसके विरुद्ध राष्ट्रीय हरित अधिकरण में अपील होती है, और इन्हें प्राप्त करने के लिए एक पर्यावरण संरक्षण निधि बनाई। "
+  "समर्थकों का कहना है कि इससे प्रवर्तन तेज़ होता है और मुकदमे घटते हैं; आलोचकों को डर है कि केवल जुर्माने गंभीर प्रदूषकों को नहीं रोकेंगे। जो विद्यार्थी मानता है कि सुधार ने कहीं न कहीं कारावास को बचाए रखा होगा, वह कथन 1 को खारिज कर देगा।",
+  f"Jan Vishwas (Amendment of Provisions) Act, 2023, Schedule (amendments to the {EPA} and the Air (Prevention and Control of Pollution) Act, 1981).",
+  "env-jan-vishwas-environment")
+
+# ---------------------------------------------------------------- MCQs (3)
+M(L, "medium", "In which one of the following cases did the Supreme Court hold that the 'precautionary principle' and the 'polluter pays' principle are part of the environmental law of India?",
+  "निम्नलिखित में से किस मामले में उच्चतम न्यायालय ने माना कि 'एहतियाती सिद्धांत' और 'प्रदूषक भुगतान करे' सिद्धांत भारत के पर्यावरण कानून का भाग हैं?",
+  ["Vellore Citizens' Welfare Forum v. Union of India", "M.C. Mehta v. Union of India (oleum gas leak)",
+   "Rural Litigation and Entitlement Kendra v. State of Uttar Pradesh", "Subhash Kumar v. State of Bihar"],
+  ["वेल्लोर सिटिज़न्स वेलफ़ेयर फ़ोरम बनाम भारत संघ", "एम.सी. मेहता बनाम भारत संघ (ओलियम गैस रिसाव)",
+   "रूरल लिटिगेशन एंड एनटाइटलमेंट केंद्र बनाम उत्तर प्रदेश राज्य", "सुभाष कुमार बनाम बिहार राज्य"],
+  0,
+  "In Vellore Citizens' Welfare Forum (1996), about tanneries polluting the Palar river in Tamil Nadu, the Court held that sustainable development, the precautionary principle and the polluter pays principle are part of Indian law. "
+  "The distractors are landmark cases on other principles: the oleum gas leak case (1986-87) laid down 'absolute liability' for hazardous industries; the Dehradun limestone quarries case (Rural Litigation and Entitlement Kendra, 1985) was among the first environmental PILs; and Subhash Kumar (1991) read the right to pollution-free water and air into Article 21.",
+  "तमिलनाडु में पालार नदी को प्रदूषित करने वाले चर्मशोधन कारखानों से जुड़े वेल्लोर सिटिज़न्स वेलफ़ेयर फ़ोरम मामले (1996) में न्यायालय ने माना कि सतत विकास, एहतियाती सिद्धांत और प्रदूषक भुगतान सिद्धांत भारतीय कानून का भाग हैं। "
+  "गलत विकल्प दूसरे सिद्धांतों के ऐतिहासिक मामले हैं: ओलियम गैस रिसाव मामले (1986-87) ने खतरनाक उद्योगों के लिए 'पूर्ण दायित्व' (absolute liability) तय किया; देहरादून चूना-पत्थर खदान मामला (रूरल लिटिगेशन एंड एनटाइटलमेंट केंद्र, 1985) पहली पर्यावरणीय जनहित याचिकाओं में था; और सुभाष कुमार (1991) ने प्रदूषण-मुक्त जल और वायु के अधिकार को अनुच्छेद 21 में पढ़ा।",
+  "Supreme Court of India -- Vellore Citizens' Welfare Forum v. Union of India (1996) 5 SCC 647; M.C. Mehta v. Union of India (1987) 1 SCC 395; Subhash Kumar v. State of Bihar (1991) 1 SCC 598.",
+  "env-vellore-precautionary-polluter-pays")
+
+M(L, "easy", "The Wildlife Institute of India is located in:",
+  "भारतीय वन्यजीव संस्थान (Wildlife Institute of India) कहाँ स्थित है?",
+  ["Dehradun", "Bhopal", "Coimbatore", "Kolkata"],
+  ["देहरादून", "भोपाल", "कोयंबटूर", "कोलकाता"],
+  0,
+  "The Wildlife Institute of India, an autonomous institute of the Ministry of Environment, is at Chandrabani, Dehradun; it trains wildlife managers and carries out research such as the All India Tiger Estimation with the NTCA. "
+  "Each distractor houses another body: the Indian Institute of Forest Management is in Bhopal, the Salim Ali Centre for Ornithology and Natural History (SACON) near Coimbatore, and the Zoological Survey and Botanical Survey of India in Kolkata.",
+  "पर्यावरण मंत्रालय का एक स्वायत्त संस्थान भारतीय वन्यजीव संस्थान देहरादून के चंद्रबनी में है; यह वन्यजीव प्रबंधकों को प्रशिक्षित करता है और NTCA के साथ अखिल भारतीय बाघ आकलन जैसा शोध करता है। "
+  "हर गलत विकल्प किसी दूसरे निकाय का स्थान है: भारतीय वन प्रबंध संस्थान भोपाल में, सलीम अली पक्षी-विज्ञान और प्राकृतिक इतिहास केंद्र (SACON) कोयंबटूर के पास, और भारतीय प्राणी सर्वेक्षण तथा भारतीय वनस्पति सर्वेक्षण कोलकाता में हैं।",
+  "Wildlife Institute of India, Dehradun; Ministry of Environment, Forest and Climate Change -- autonomous institutions.",
+  "env-wildlife-institute-dehradun")
+
+M(L, "hard", "In M.K. Ranjitsinh v. Union of India (2024), the Supreme Court recognised:",
+  "एम.के. रणजीतसिंह बनाम भारत संघ (2024) में उच्चतम न्यायालय ने किसे मान्यता दी?",
+  ["A right to be free from the adverse effects of climate change", "Rivers as legal persons with rights of their own",
+   "A complete ban on overhead power lines across Rajasthan and Gujarat", "Ownership of all minor forest produce by Gram Sabhas"],
+  ["जलवायु परिवर्तन के प्रतिकूल प्रभावों से मुक्त रहने का अधिकार", "नदियों को अपने अधिकारों वाले विधिक व्यक्ति के रूप में",
+   "राजस्थान और गुजरात में ऊपर से जाने वाली बिजली लाइनों पर पूर्ण प्रतिबंध", "सभी लघु वनोपज पर ग्राम सभाओं का स्वामित्व"],
+  0,
+  "The case began as a plea to save the Great Indian Bustard from collisions with power lines. In 2024 the Court modified its earlier blanket order to lay power lines underground, noting the needs of renewable energy, and set up an expert committee to decide where lines should go underground -- so a total ban is exactly what it did not order. In doing so it recognised a right to be free from the adverse effects of climate change, drawn from Articles 14 and 21. "
+  "Rivers were declared legal persons by the Uttarakhand High Court in 2017, an order the Supreme Court later stayed.",
+  "यह मामला सोन चिरैया (Great Indian Bustard) को बिजली लाइनों से टकराने से बचाने की याचिका के रूप में शुरू हुआ। 2024 में न्यायालय ने नवीकरणीय ऊर्जा की ज़रूरतों को देखते हुए बिजली लाइनें भूमिगत करने के अपने पहले के व्यापक आदेश में बदलाव किया और यह तय करने के लिए एक विशेषज्ञ समिति बनाई कि लाइनें कहाँ भूमिगत हों; यानी पूर्ण प्रतिबंध ठीक वही है जो उसने आदेशित नहीं किया। ऐसा करते हुए उसने अनुच्छेद 14 और 21 से निकला जलवायु परिवर्तन के प्रतिकूल प्रभावों से मुक्त रहने का अधिकार माना। "
+  "नदियों को 2017 में उत्तराखंड उच्च न्यायालय ने विधिक व्यक्ति घोषित किया था, जिस आदेश पर बाद में उच्चतम न्यायालय ने रोक लगा दी।",
+  "Supreme Court of India -- M.K. Ranjitsinh v. Union of India, judgment of 21 March 2024 (reasons released April 2024).",
+  "env-ranjitsinh-climate-right")
+
+# ---------------------------------------------------------------- Statement-I/II (medium)
+A(L, "medium",
+  "The Supreme Court has held that the right to a clean and healthy environment is part of the right to life.",
+  "उच्चतम न्यायालय ने माना है कि स्वच्छ और स्वस्थ पर्यावरण का अधिकार जीवन के अधिकार का भाग है।",
+  "Article 48A, a Directive Principle, makes it the duty of the State to protect and improve the environment.",
+  "नीति-निदेशक तत्व अनुच्छेद 48A राज्य पर पर्यावरण की रक्षा और सुधार का कर्तव्य डालता है।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. The right to a healthy environment was read into Article 21 (the right to life and personal liberty), a justiciable fundamental right, in cases such as Subhash Kumar (1991) -- which is why a person can go to court to enforce it. "
+  "Article 48A, added by the 42nd Amendment in 1976 along with the citizen's duty in Article 51A(g), is a Directive Principle and cannot be enforced in court on its own; courts use it to interpret laws and Article 21, but it is not the source of the right.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। स्वस्थ पर्यावरण के अधिकार को सुभाष कुमार (1991) जैसे मामलों में अनुच्छेद 21 (जीवन और व्यक्तिगत स्वतंत्रता का अधिकार), जो न्यायालय में प्रवर्तनीय मौलिक अधिकार है, में पढ़ा गया; इसीलिए कोई व्यक्ति इसे लागू करवाने न्यायालय जा सकता है। "
+  "1976 में 42वें संशोधन द्वारा अनुच्छेद 51A(g) के नागरिक कर्तव्य के साथ जोड़ा गया अनुच्छेद 48A एक नीति-निदेशक तत्व है और अपने-आप में न्यायालय में लागू नहीं कराया जा सकता; न्यायालय इसका उपयोग कानूनों और अनुच्छेद 21 की व्याख्या में करते हैं, पर यह उस अधिकार का स्रोत नहीं है।",
+  "Constitution of India, Articles 21, 48A and 51A(g); Subhash Kumar v. State of Bihar (1991) 1 SCC 598.",
+  "env-right-to-environment-art21-48a")
+
+# ---------------------------------------------------------------- pairs (1, easy)
+P(L, "easy", "Consider the following pairs of laws and the years in which they were enacted:",
+  "कानूनों और उनके बनने के वर्षों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Wild Life (Protection) Act : 1972", "Water (Prevention and Control of Pollution) Act : 1974",
+   "Air (Prevention and Control of Pollution) Act : 1986", "Biological Diversity Act : 1986"],
+  ["वन्यजीव (संरक्षण) अधिनियम : 1972", "जल (प्रदूषण निवारण और नियंत्रण) अधिनियम : 1974",
+   "वायु (प्रदूषण निवारण और नियंत्रण) अधिनियम : 1986", "जैविक विविधता अधिनियम : 1986"],
+  1,
+  "Only pairs 1 and 2 are correct. The Air Act was passed in 1981, after the Stockholm Conference, under Article 253; 1986 is the year of the Environment (Protection) Act. The Biological Diversity Act dates from 2002, passed to implement the Convention on Biological Diversity, and was amended in 2023. "
+  "Putting 1986 against two laws is the trap: a student who remembers that one environmental law was passed in 1986 may accept either pair.",
+  "केवल युग्म 1 और 2 सही हैं। वायु अधिनियम स्टॉकहोम सम्मेलन के बाद अनुच्छेद 253 के तहत 1981 में पारित हुआ; 1986 पर्यावरण (संरक्षण) अधिनियम का वर्ष है। जैविक विविधता अधिनियम 2002 का है, जो जैव विविधता पर अभिसमय लागू करने के लिए पारित हुआ और 2023 में संशोधित हुआ। "
+  "दो कानूनों के सामने 1986 रखना जाल है: जिस विद्यार्थी को याद है कि एक पर्यावरण कानून 1986 में बना था, वह इनमें से कोई भी युग्म स्वीकार कर सकता है।",
+  "Wild Life (Protection) Act, 1972; Water (Prevention and Control of Pollution) Act, 1974; Air (Prevention and Control of Pollution) Act, 1981; Biological Diversity Act, 2002.",
+  "env-environment-laws-years-pairs")
+
+if __name__ == "__main__":
+    write("env_l2_t11_laws.sql")
