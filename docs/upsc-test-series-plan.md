@@ -78,12 +78,23 @@ Economy and S&T still need the content re-tag Geography had, because their decod
 - **Current Affairs:** quarterly (Jan–Mar, Apr–Jun, Jul–Sep, Oct–Dec 2026, Jan–Mar 2027 windows).
 - **Level 1** would have to run in October–November alongside Level 2's drafting. For the 2027 cycle it may be better offered self-paced, or folded into Level 2's first weeks (a decision below).
 
-## Decisions for the owner
+## The owner's decisions (28 September 2026)
 
-1. **Scope for Prelims 2027.** All four levels (≈6,600 questions) is the brochure's scale. Level 2 + Level 4 + Current Affairs first (≈4,900) is the minimum credible product. Level 2 alone (2,660) is the first milestone either way.
-2. **Hindi.** The reference series publishes bilingual papers. Every question has Hindi fields that are empty today. Adding Hindi is best done per batch while drafting, not afterwards.
-3. **Current affairs inside sectionals.** The reference adds that month's current affairs to each sectional paper. Recommended: about 10–15 of the 100 questions, which keeps each paper closer to the real exam's static/current mix.
-4. **Old drafts.** The eleven superseded draft tests and the two old 120-question "Full Syllabus" blueprints can be deleted from the admin; nothing depends on them.
+1. **Scope: all four levels** (about 6,600 questions), built in order: static core first (Level 2, then Levels 1, 3 and 4), CSAT alongside, current affairs after the static core.
+2. **Hindi: every question, bilingual,** in correct, plain Hindi that a Hindi-medium student reads naturally (`docs/upsc-hindi-style.md`). All 378 existing questions were done on 28 September; every new question is drafted in both languages.
+3. **Current affairs inside sectionals: yes,** but after the static core is complete; the quarterly current-affairs tests follow.
+4. **Old drafts:** the eleven superseded drafts can be deleted or left; their questions are all reusable and the drafts block nothing (and cannot be published).
+5. **Build to the real paper's depth** (`docs/upsc-question-design-standard.md`): questions that test reasoning and precise knowledge, with UPSC's option and trap design, not surface recall.
+
+## Sources and syllabus
+
+Each test's syllabus follows the standard books' coverage of its part of the UPSC syllabus: the NCERTs (old and new), Laxmikanth for Polity, Bipan Chandra and Spectrum for Modern India, R.S. Sharma and Satish Chandra for Ancient and Medieval, Nitin Singhania and the NCERT *Introduction to Indian Art* for Art & Culture, G.C. Leong and the NCERT geography books, Ramesh Singh and the Economic Survey and Budget for Economy, the NCERT science and biology books for Science, and primary sources (the Constitution, Acts, IPCC, UNFCCC, RBI, PIB) wherever a fact can be anchored to one. As the blueprint requires, the reference series' own branded books, its magazine, its chapter numbering and its syllabus wording are not used. Magazines such as *Yojana*, *Kurukshetra* and *Down To Earth* inform the current-affairs tests.
+
+The reference splits History into 7 of its 23 subject tests (Modern 3, Art & Culture 2). By 2015–26 PYQ weight, History is about 20 per cent of the static paper, which this plan's 4 History tests (of 20) already match; the extra tests would come at the cost of Economy and Science, which the recent papers weight more. This can be revisited if the owner prefers the reference's split.
+
+## Bank audit and Hindi (28 September 2026)
+
+All 378 questions were audited (`docs/upsc-bank-audit-2026-09-28.md`): 80 History rows rewritten, 16 Environment rows re-seeded, 15 option sets balanced, one stale fact (MGNREGA) replaced, and every row made bilingual.
 
 ## What changed on 2026-09-28
 
