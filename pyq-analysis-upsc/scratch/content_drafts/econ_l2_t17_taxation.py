@@ -1,0 +1,624 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 17 (Economy 3: Fiscal Policy, Budget & Economic Survey) -- Taxation & Fiscal Federalism (42).
+  medium statement 16, easy statement 5, hard statement 5, medium MCQ 5, medium Statement-I/II 4,
+  easy MCQ 2, hard MCQ 2, easy Statement-I/II 1, hard Statement-I/II 1, medium pairs 1.
+The GST Council, the Finance Commission as an institution (Article 280, its 41 per cent share), the divisible pool,
+cesses and surcharges, Articles 268-293 and the 101st Amendment are Polity Test 4 facts; this file keeps to the
+economics of taxes and of Centre-State finance. The Budget, deficits and debt are in econ_l2_t17_budget_debt.py."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+FT = "Taxation & Fiscal Federalism"
+NCB = "NCERT Class XII, Introductory Macroeconomics -- Government Budget and the Economy"
+CBDT = "Central Board of Direct Taxes"
+CBIC = "Central Board of Indirect Taxes and Customs"
+ITA = "Income-tax Act, 2025"
+
+# ================================================================ MEDIUM STATEMENTS (16)
+S(FT, "medium", "Consider the following statements about taxes:",
+  "करों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The incidence of a tax falls on the person who finally bears its burden.",
+   "GST is a direct tax, because the seller pays it directly to the government.",
+   "Corporation tax is a direct tax."],
+  ["किसी कर का आपतन (incidence) उस व्यक्ति पर पड़ता है जो अंततः उसका भार वहन करता है।",
+   "GST एक प्रत्यक्ष कर है, क्योंकि विक्रेता इसे सीधे सरकार को चुकाता है।",
+   "निगम कर एक प्रत्यक्ष कर है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: a direct tax is one whose burden cannot be shifted to someone else -- income and corporation tax are borne by those who pay them. "
+  "Statement 2 is wrong: the seller deposits GST but recovers it from the buyer in the price, so the burden is passed on to the consumer -- which is exactly what makes it an indirect tax. Who hands over the money to the government is the 'impact' of a tax, not its incidence.",
+  "कथन 1 और 3 सही हैं: प्रत्यक्ष कर वह है जिसका भार किसी और पर नहीं डाला जा सकता; आयकर और निगम कर उन्हीं पर पड़ते हैं जो इन्हें चुकाते हैं। "
+  "कथन 2 गलत है: विक्रेता GST जमा करता है, पर क़ीमत में इसे ख़रीदार से वसूल लेता है, इसलिए भार उपभोक्ता पर चला जाता है; यही इसे अप्रत्यक्ष कर बनाता है। सरकार को पैसा कौन सौंपता है, यह कर का 'प्रभाव' (impact) है, उसका आपतन नहीं।",
+  f"{NCB}.",
+  "ft-incidence-direct-indirect")
+
+S(FT, "medium", "Consider the following statements about the Income-tax Act, 2025:",
+  "आयकर अधिनियम, 2025 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It came into force on 1 April 2025.",
+   "It replaces the terms 'previous year' and 'assessment year' with a single 'tax year'.",
+   "It raised the basic rate of corporate tax to 35 per cent."],
+  ["यह 1 अप्रैल 2025 को लागू हुआ।",
+   "यह 'पिछला वर्ष' और 'कर-निर्धारण वर्ष' शब्दों के स्थान पर एक 'कर वर्ष' (tax year) लाता है।",
+   "इसने निगम कर की मूल दर बढ़ाकर 35 प्रतिशत कर दी।"],
+  C3, 0,
+  "Only statement 2 is correct: income earned in a year is now taxed in that same 'tax year', ending a long-standing source of confusion. "
+  "Statement 1 is wrong: Parliament passed the Act in August 2025, and it replaces the Income-tax Act, 1961 from 1 April 2026. "
+  "Statement 3 is wrong: the new law was meant to simplify the language and structure of the old one -- cutting its size roughly in half -- and largely kept the existing rates.",
+  "केवल कथन 2 सही है: किसी वर्ष में अर्जित आय पर अब उसी 'कर वर्ष' में कर लगता है, जिससे लंबे समय से चला आ रहा भ्रम समाप्त होता है। "
+  "कथन 1 गलत है: संसद ने अगस्त 2025 में यह अधिनियम पारित किया, और यह 1 अप्रैल 2026 से आयकर अधिनियम, 1961 का स्थान लेता है। "
+  "कथन 3 गलत है: नया क़ानून पुराने की भाषा और ढाँचे को सरल बनाने के लिए था, जिससे उसका आकार लगभग आधा हो गया, और इसने मौजूदा दरें बड़े पैमाने पर वही रखीं।",
+  f"{ITA}; {CBDT}.",
+  "ft-income-tax-act-2025")
+
+S(FT, "medium", "Consider the following statements about the new income tax regime for individuals in 2025-26:",
+  "2025-26 में व्यक्तियों के लिए नई आयकर व्यवस्था के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A resident individual with normal income of up to ₹12 lakh pays no income tax, because of a rebate.",
+   "It is the default regime unless the taxpayer opts for the old one.",
+   "Salaried taxpayers get a standard deduction of ₹75,000 under it."],
+  ["₹12 लाख तक की सामान्य आय वाला निवासी व्यक्ति छूट (rebate) के कारण कोई आयकर नहीं देता।",
+   "जब तक करदाता पुरानी व्यवस्था न चुने, यही डिफ़ॉल्ट व्यवस्था है।",
+   "वेतनभोगी करदाताओं को इसके तहत ₹75,000 की मानक कटौती (standard deduction) मिलती है।"],
+  C3, 2,
+  "All three statements are correct. The Budget 2025-26 raised the rebate so that there is no tax on income up to ₹12 lakh -- ₹12.75 lakh for the salaried, after the standard deduction -- although income above that is taxed from the ₹4 lakh slab upwards. The new regime has lower rates but few deductions, and has been the default since 2023-24.",
+  "तीनों कथन सही हैं। बजट 2025-26 ने छूट बढ़ाई, ताकि ₹12 लाख तक की आय पर, और मानक कटौती के बाद वेतनभोगियों के लिए ₹12.75 लाख तक, कोई कर न लगे; यद्यपि इससे ऊपर की आय पर ₹4 लाख वाले स्लैब से ऊपर कर लगता है। नई व्यवस्था में दरें कम हैं पर कटौतियाँ बहुत कम, और यह 2023-24 से डिफ़ॉल्ट है।",
+  "Ministry of Finance -- Union Budget 2025-26, Budget Speech; Finance Act, 2025.",
+  "ft-new-regime-2025-26")
+
+S(FT, "medium", "Consider the following statements about the corporate tax changes of 2019:",
+  "2019 के निगम कर परिवर्तनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Existing domestic companies that give up exemptions can pay tax at a base rate of 22 per cent.",
+   "A base rate of 15 per cent was offered to new manufacturing companies that began production by March 2024.",
+   "Companies that choose these concessional rates do not have to pay Minimum Alternate Tax."],
+  ["छूटें छोड़ने वाली मौजूदा घरेलू कंपनियाँ 22 प्रतिशत की मूल दर से कर दे सकती हैं।",
+   "मार्च 2024 तक उत्पादन शुरू करने वाली नई विनिर्माण कंपनियों को 15 प्रतिशत की मूल दर दी गई।",
+   "इन रियायती दरों को चुनने वाली कंपनियों को न्यूनतम वैकल्पिक कर (MAT) नहीं देना पड़ता।"],
+  C3, 2,
+  "All three statements are correct. The cut, announced in September 2019 from a base of about 30 per cent, was meant to revive investment and match rates in competing Asian economies; it cost well over a lakh crore rupees a year at first, but corporation tax receipts have since grown past their earlier level.",
+  "तीनों कथन सही हैं। सितंबर 2019 में लगभग 30 प्रतिशत की मूल दर से घोषित यह कटौती निवेश को फिर से गति देने और प्रतिस्पर्धी एशियाई अर्थव्यवस्थाओं की दरों की बराबरी के लिए थी; शुरू में इसकी लागत एक लाख करोड़ रुपये प्रति वर्ष से काफ़ी अधिक रही, पर तब से निगम कर की प्राप्तियाँ अपने पहले के स्तर से आगे बढ़ चुकी हैं।",
+  f"Taxation Laws (Amendment) Act, 2019; {CBDT}.",
+  "ft-corporate-tax-2019")
+
+S(FT, "medium", "Consider the following statements about the taxation of capital gains after the Budget of July 2024:",
+  "जुलाई 2024 के बजट के बाद पूँजीगत लाभ पर कराधान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Long-term capital gains on listed equity shares are taxed at 15 per cent.",
+   "Short-term capital gains on listed equity shares are taxed at 20 per cent.",
+   "The benefit of indexation was extended to all assets."],
+  ["सूचीबद्ध इक्विटी शेयरों पर दीर्घकालिक पूँजीगत लाभ पर 15 प्रतिशत कर लगता है।",
+   "सूचीबद्ध इक्विटी शेयरों पर अल्पकालिक पूँजीगत लाभ पर 20 प्रतिशत कर लगता है।",
+   "सूचीकरण (indexation) का लाभ सभी परिसंपत्तियों तक बढ़ा दिया गया।"],
+  C3, 0,
+  "Only statement 2 is correct: the short-term rate on listed equity went up from 15 to 20 per cent. "
+  "Statement 1 is wrong: the long-term rate rose from 10 to 12.5 per cent, with the exempt amount raised to ₹1.25 lakh. "
+  "Statement 3 is wrong: indexation was withdrawn for most assets in return for a lower 12.5 per cent rate, with an option kept for land and buildings bought before 23 July 2024.",
+  "केवल कथन 2 सही है: सूचीबद्ध इक्विटी पर अल्पकालिक दर 15 से बढ़कर 20 प्रतिशत हुई। "
+  "कथन 1 गलत है: दीर्घकालिक दर 10 से बढ़कर 12.5 प्रतिशत हुई, और छूट की राशि बढ़ाकर ₹1.25 लाख की गई। "
+  "कथन 3 गलत है: कम 12.5 प्रतिशत दर के बदले अधिकांश परिसंपत्तियों से सूचीकरण हटा लिया गया, और 23 जुलाई 2024 से पहले ख़रीदी गई भूमि और भवनों के लिए एक विकल्प रखा गया।",
+  "Ministry of Finance -- Union Budget 2024-25 (July 2024); Finance (No. 2) Act, 2024.",
+  "ft-capital-gains-2024")
+
+S(FT, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 6 per cent equalisation levy on online advertising services was abolished from April 2025.",
+   "The so-called 'angel tax' on the share premium received by start-ups was abolished for all classes of investors.",
+   "The 2 per cent equalisation levy on e-commerce supplies was abolished from August 2024."],
+  ["ऑनलाइन विज्ञापन सेवाओं पर 6 प्रतिशत का समकारी लेवी (equalisation levy) अप्रैल 2025 से समाप्त कर दिया गया।",
+   "स्टार्ट-अप को मिले शेयर प्रीमियम पर तथाकथित 'एंजेल टैक्स' सभी श्रेणियों के निवेशकों के लिए समाप्त कर दिया गया।",
+   "ई-कॉमर्स आपूर्तियों पर 2 प्रतिशत का समकारी लेवी अगस्त 2024 से समाप्त कर दिया गया।"],
+  C3, 2,
+  "All three statements are correct. The two equalisation levies, introduced in 2016 and 2020 to tax foreign digital companies without a physical presence in India, drew objections from the United States as discriminatory; their removal eased trade talks and fitted the global move towards a multilateral deal on taxing digital business. The angel tax, which treated investment above 'fair value' as income, was scrapped from 2024-25 to help start-up funding.",
+  "तीनों कथन सही हैं। भारत में भौतिक उपस्थिति के बिना विदेशी डिजिटल कंपनियों पर कर लगाने के लिए 2016 और 2020 में लाए गए दोनों समकारी लेवी पर संयुक्त राज्य अमेरिका ने भेदभावपूर्ण होने की आपत्ति की; इन्हें हटाने से व्यापार वार्ताएँ आसान हुईं और यह डिजिटल व्यवसाय पर कर के बहुपक्षीय समझौते की वैश्विक दिशा से मेल खाता था। एंजेल टैक्स, जो 'उचित मूल्य' से ऊपर के निवेश को आय मानता था, स्टार्ट-अप के वित्तपोषण में मदद के लिए 2024-25 से हटा दिया गया।",
+  "Finance (No. 2) Act, 2024; Finance Act, 2025.",
+  "ft-equalisation-levy-angel-tax")
+
+S(FT, "medium", "Consider the following statements about the Goods and Services Tax (GST):",
+  "वस्तु एवं सेवा कर (GST) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["GST is an origin-based tax, collected by the State where goods are produced.",
+   "Alcoholic liquor for human consumption is taxed under GST.",
+   "Petrol and diesel are taxed under GST."],
+  ["GST एक उद्गम-आधारित (origin-based) कर है, जिसे वह राज्य वसूलता है जहाँ वस्तुएँ बनती हैं।",
+   "मानव उपभोग के लिए मादक शराब पर GST लगता है।",
+   "पेट्रोल और डीज़ल पर GST लगता है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: GST is destination-based -- the tax on a sale goes to the State where the goods or services are consumed, which is why producing States worried about losing revenue. "
+  "Statement 2 is wrong: alcohol for human consumption is kept out of GST altogether and taxed by the States. "
+  "Statement 3 is wrong: petrol, diesel, aviation turbine fuel, crude oil and natural gas are within GST in law, but GST will apply to them only from a date the GST Council recommends; until then they bear Central excise and State VAT.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: GST गंतव्य-आधारित (destination-based) है; बिक्री पर कर उस राज्य को जाता है जहाँ वस्तुओं या सेवाओं का उपभोग होता है, इसीलिए उत्पादक राज्यों को राजस्व खोने की चिंता थी। "
+  "कथन 2 गलत है: मानव उपभोग के लिए शराब GST से पूरी तरह बाहर है और उस पर राज्य कर लगाते हैं। "
+  "कथन 3 गलत है: पेट्रोल, डीज़ल, विमानन टरबाइन ईंधन, कच्चा तेल और प्राकृतिक गैस क़ानूनन GST के दायरे में हैं, पर उन पर GST केवल उस तिथि से लागू होगा जिसकी सिफ़ारिश GST परिषद करे; तब तक उन पर केंद्रीय उत्पाद शुल्क और राज्य VAT लगता है।",
+  f"{CBIC} -- GST concept and status.",
+  "ft-gst-scope-none")
+
+S(FT, "medium", "Consider the following statements about the GST changes of September 2025:",
+  "सितंबर 2025 के GST परिवर्तनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Most goods and services moved to two main rates of 5 and 18 per cent.",
+   "A special rate of 40 per cent applies to a small set of luxury and 'sin' goods.",
+   "Individual life and health insurance policies were moved to the 18 per cent rate."],
+  ["अधिकांश वस्तुएँ और सेवाएँ 5 और 18 प्रतिशत की दो मुख्य दरों पर आ गईं।",
+   "विलासिता और 'हानिकारक' (sin) वस्तुओं के एक छोटे समूह पर 40 प्रतिशत की विशेष दर लगती है।",
+   "व्यक्तिगत जीवन और स्वास्थ्य बीमा पॉलिसियों को 18 प्रतिशत की दर पर ले जाया गया।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: from 22 September 2025 the 12 and 28 per cent slabs were largely folded into 5 and 18 per cent, with 40 per cent for items such as sugary aerated drinks and large cars. "
+  "Statement 3 is wrong: individual life and health insurance premiums were exempted from GST altogether, having earlier borne 18 per cent.",
+  "कथन 1 और 2 सही हैं: 22 सितंबर 2025 से 12 और 28 प्रतिशत के स्लैब को बड़े पैमाने पर 5 और 18 प्रतिशत में मिला दिया गया, और मीठे वातित पेयों तथा बड़ी कारों जैसी मदों पर 40 प्रतिशत रखा गया। "
+  "कथन 3 गलत है: व्यक्तिगत जीवन और स्वास्थ्य बीमा के प्रीमियम को GST से पूरी तरह मुक्त कर दिया गया, जिन पर पहले 18 प्रतिशत लगता था।",
+  f"{CBIC} -- Notifications on GST rates (September 2025); Press Information Bureau.",
+  "ft-gst-rate-rationalisation-2025")
+
+S(FT, "medium", "Consider the following statements about GST compensation to the States:",
+  "राज्यों को GST क्षतिपूर्ति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The States were guaranteed compensation for GST revenue shortfalls for ten years.",
+   "The compensation cess was extended to March 2026 to repay loans taken to pay compensation during the pandemic.",
+   "Compensation was calculated on the assumption that the States' protected revenue would grow by 8 per cent a year."],
+  ["राज्यों को GST राजस्व की कमी के लिए दस वर्ष तक क्षतिपूर्ति की गारंटी दी गई।",
+   "महामारी के दौरान क्षतिपूर्ति देने के लिए लिए गए ऋण चुकाने हेतु क्षतिपूर्ति उपकर (cess) को मार्च 2026 तक बढ़ाया गया।",
+   "क्षतिपूर्ति इस मान्यता पर आँकी गई कि राज्यों का संरक्षित राजस्व 8 प्रतिशत प्रति वर्ष बढ़ेगा।"],
+  C3, 0,
+  "Only statement 2 is correct: when the cess fell short in 2020-21 and 2021-22, the Centre borrowed about 2.7 lakh crore rupees and passed it on to the States as back-to-back loans, to be repaid from the cess. "
+  "Statement 1 is wrong: the guarantee ran for five years, from July 2017 to June 2022. "
+  "Statement 3 is wrong: the base-year revenue of each State was assumed to grow at 14 per cent a year -- a generous figure that made the guarantee costly.",
+  "केवल कथन 2 सही है: जब 2020-21 और 2021-22 में उपकर कम पड़ा, तो केंद्र ने लगभग 2.7 लाख करोड़ रुपये उधार लेकर राज्यों को 'बैक-टू-बैक' ऋण के रूप में दिए, जिन्हें उपकर से चुकाया जाना था। "
+  "कथन 1 गलत है: गारंटी पाँच वर्ष, जुलाई 2017 से जून 2022 तक, चली। "
+  "कथन 3 गलत है: हर राज्य के आधार-वर्ष राजस्व के 14 प्रतिशत प्रति वर्ष बढ़ने की मान्यता रखी गई; यह उदार आँकड़ा था जिसने गारंटी को महँगा बना दिया।",
+  "Goods and Services Tax (Compensation to States) Act, 2017; Ministry of Finance.",
+  "ft-gst-compensation")
+
+S(FT, "medium", "Consider the following statements about the OECD/G20 two-pillar solution on international taxation:",
+  "अंतरराष्ट्रीय कराधान पर OECD/G20 के दो-स्तंभ समाधान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Pillar Two sets a global minimum effective corporate tax rate of 21 per cent for large multinational groups.",
+   "Pillar One deals with giving market countries a share of the right to tax the profits of the largest multinationals.",
+   "India brought a domestic law on the Pillar Two global minimum tax into force in 2020."],
+  ["स्तंभ दो (Pillar Two) बड़े बहुराष्ट्रीय समूहों के लिए 21 प्रतिशत की वैश्विक न्यूनतम प्रभावी निगम कर दर तय करता है।",
+   "स्तंभ एक (Pillar One) बाज़ार वाले देशों को सबसे बड़ी बहुराष्ट्रीय कंपनियों के लाभ पर कर लगाने के अधिकार में हिस्सा देने से संबंधित है।",
+   "भारत ने स्तंभ दो के वैश्विक न्यूनतम कर पर एक घरेलू क़ानून 2020 में लागू किया।"],
+  C3, 0,
+  "Only statement 2 is correct: Pillar One would let countries where users and customers are located tax a slice of the profits of the biggest, most profitable firms, even without a physical presence. "
+  "Statement 1 is wrong: the minimum rate is 15 per cent, for groups with annual revenue of at least 750 million euros; 21 per cent is the US corporate rate. "
+  "Statement 3 is wrong: the two-pillar deal was agreed only in October 2021, so no country could have applied it in 2020.",
+  "केवल कथन 2 सही है: स्तंभ एक उन देशों को, जहाँ उपयोगकर्ता और ग्राहक हैं, सबसे बड़ी और सबसे लाभदायक कंपनियों के लाभ के एक हिस्से पर कर लगाने देगा, भले ही उनकी भौतिक उपस्थिति न हो। "
+  "कथन 1 गलत है: न्यूनतम दर 15 प्रतिशत है, कम से कम 75 करोड़ यूरो वार्षिक राजस्व वाले समूहों के लिए; 21 प्रतिशत अमेरिकी निगम कर दर है। "
+  "कथन 3 गलत है: दो-स्तंभ समझौते पर सहमति अक्टूबर 2021 में ही हुई, इसलिए कोई देश इसे 2020 में लागू नहीं कर सकता था।",
+  "OECD/G20 Inclusive Framework on BEPS -- Statement on a Two-Pillar Solution (October 2021).",
+  "ft-oecd-two-pillars")
+
+S(FT, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Tax buoyancy excludes the effect of changes in tax rates.",
+   "Tax elasticity includes the effect of discretionary changes in tax rates and the tax base.",
+   "A tax buoyancy greater than one means that tax revenue is growing more slowly than GDP."],
+  ["कर उत्प्लावकता (tax buoyancy) कर दरों में परिवर्तन के प्रभाव को शामिल नहीं करती।",
+   "कर लोच (tax elasticity) कर दरों और कर आधार में विवेकाधीन परिवर्तनों के प्रभाव को शामिल करती है।",
+   "एक से अधिक कर उत्प्लावकता का अर्थ है कि कर राजस्व GDP से धीमी गति से बढ़ रहा है।"],
+  C3, 3,
+  "None of the statements is correct -- the first two swap the definitions. Tax buoyancy compares the actual growth of tax revenue with GDP growth, including the effect of rate changes and new taxes; tax elasticity strips out such discretionary changes to show how the existing tax system responds to growth. "
+  "Statement 3 is wrong: a buoyancy above one means revenue is growing faster than GDP, so the tax-to-GDP ratio rises.",
+  "कोई भी कथन सही नहीं है; पहले दो कथन परिभाषाओं की अदला-बदली करते हैं। कर उत्प्लावकता कर राजस्व की वास्तविक वृद्धि की तुलना GDP वृद्धि से करती है, जिसमें दर परिवर्तनों और नए करों का प्रभाव शामिल है; कर लोच ऐसे विवेकाधीन परिवर्तनों को हटाकर दिखाती है कि मौजूदा कर प्रणाली वृद्धि पर कैसे प्रतिक्रिया देती है। "
+  "कथन 3 गलत है: एक से अधिक उत्प्लावकता का अर्थ है कि राजस्व GDP से तेज़ी से बढ़ रहा है, इसलिए कर-GDP अनुपात बढ़ता है।",
+  "Economic Survey; Ministry of Finance -- Receipt Budget.",
+  "ft-buoyancy-elasticity-none")
+
+S(FT, "medium", "Consider the following statements about 'tax expenditure':",
+  "'कर व्यय' (tax expenditure) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Budget includes a statement estimating the revenue forgone because of tax exemptions, deductions and incentives.",
+   "Tax expenditure means the spending of the Income Tax Department on its own staff and offices.",
+   "Exemptions and deductions can bring the effective tax rate paid by companies below the statutory rate."],
+  ["बजट में एक विवरण होता है जो कर छूटों, कटौतियों और प्रोत्साहनों के कारण छोड़े गए राजस्व का अनुमान लगाता है।",
+   "कर व्यय का अर्थ आयकर विभाग का अपने कर्मचारियों और कार्यालयों पर ख़र्च है।",
+   "छूटें और कटौतियाँ कंपनियों द्वारा दी जाने वाली प्रभावी कर दर को वैधानिक दर से नीचे ला सकती हैं।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: a tax break has the same fiscal effect as spending the money, so it is called tax expenditure, and the Budget's statement of the revenue impact of tax incentives estimates its cost; it also shows effective corporate tax rates well below the headline rate for many firms. "
+  "Statement 2 is wrong: the term has nothing to do with administrative costs.",
+  "कथन 1 और 3 सही हैं: कर छूट का राजकोषीय प्रभाव वही है जो वह धन ख़र्च करने का, इसलिए इसे कर व्यय कहते हैं, और बजट का कर प्रोत्साहनों के राजस्व प्रभाव का विवरण इसकी लागत का अनुमान देता है; यह कई कंपनियों के लिए मुख्य दर से काफ़ी नीचे प्रभावी निगम कर दरें भी दिखाता है। "
+  "कथन 2 गलत है: इस शब्द का प्रशासनिक लागत से कोई संबंध नहीं है।",
+  "Ministry of Finance -- Receipt Budget, Statement of Revenue Impact of Tax Incentives.",
+  "ft-tax-expenditure")
+
+S(FT, "medium", "Consider the following statements about fiscal federalism in India:",
+  "भारत में राजकोषीय संघवाद के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Vertical fiscal imbalance arises because the Centre has larger revenue-raising powers, relative to its spending responsibilities, than the States.",
+   "Horizontal fiscal imbalance refers to the gap between the Centre's own revenue and its own spending.",
+   "The States together account for a smaller share of general government expenditure than the Centre."],
+  ["ऊर्ध्वाधर (vertical) राजकोषीय असंतुलन इसलिए पैदा होता है कि अपने व्यय दायित्वों की तुलना में केंद्र के पास राज्यों से अधिक राजस्व जुटाने की शक्तियाँ हैं।",
+   "क्षैतिज (horizontal) राजकोषीय असंतुलन केंद्र के अपने राजस्व और अपने व्यय के बीच के अंतर को कहते हैं।",
+   "सामान्य सरकारी व्यय में राज्यों का मिलाकर हिस्सा केंद्र से कम है।"],
+  C3, 0,
+  "Only statement 1 is correct: the most buoyant taxes -- income, corporation and customs -- are with the Centre, while States carry most of the spending on health, education, police and agriculture, and transfers bridge the gap. "
+  "Statement 2 is wrong: horizontal imbalance refers to differences in revenue capacity and needs among the States themselves, which the Finance Commission's formula tries to even out. "
+  "Statement 3 is wrong: the States account for about 60 per cent of general government spending.",
+  "केवल कथन 1 सही है: सबसे उत्प्लावक कर, यानी आयकर, निगम कर और सीमा शुल्क, केंद्र के पास हैं, जबकि स्वास्थ्य, शिक्षा, पुलिस और कृषि पर अधिकांश व्यय राज्य उठाते हैं, और हस्तांतरण इस अंतर को पाटते हैं। "
+  "कथन 2 गलत है: क्षैतिज असंतुलन राज्यों के बीच आपस में राजस्व क्षमता और आवश्यकताओं के अंतर को कहते हैं, जिसे वित्त आयोग का सूत्र बराबर करने का प्रयास करता है। "
+  "कथन 3 गलत है: सामान्य सरकारी व्यय में राज्यों का हिस्सा लगभग 60 प्रतिशत है।",
+  "Reserve Bank of India -- State Finances: A Study of Budgets; Economic Survey.",
+  "ft-vertical-horizontal-imbalance")
+
+S(FT, "medium", "Consider the following statements about schemes funded by the Centre:",
+  "केंद्र द्वारा वित्तपोषित योजनाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Centrally sponsored schemes are carried out by the States, with the cost shared between the Centre and the States.",
+   "Central sector schemes are fully funded by the Centre.",
+   "For most centrally sponsored schemes, the Centre and the North-Eastern and Himalayan States share the cost in the ratio 90:10."],
+  ["केंद्र प्रायोजित योजनाएँ राज्य चलाते हैं, और उनकी लागत केंद्र और राज्यों के बीच बँटती है।",
+   "केंद्रीय क्षेत्र की योजनाएँ पूरी तरह केंद्र द्वारा वित्तपोषित होती हैं।",
+   "अधिकांश केंद्र प्रायोजित योजनाओं में केंद्र और पूर्वोत्तर तथा हिमालयी राज्य लागत को 90:10 के अनुपात में बाँटते हैं।"],
+  C3, 2,
+  "All three statements are correct. For other States the usual sharing of 'core' schemes is 60:40, and Union Territories without a legislature get full funding. Because States must put up matching funds to receive the Centre's share, these schemes shape how States spend their own money -- a long-standing grievance about the autonomy of the States.",
+  "तीनों कथन सही हैं। अन्य राज्यों के लिए 'मुख्य' योजनाओं में सामान्य बँटवारा 60:40 है, और विधानमंडल रहित केंद्र शासित प्रदेशों को पूरा वित्तपोषण मिलता है। चूँकि केंद्र का हिस्सा पाने के लिए राज्यों को बराबर धन लगाना पड़ता है, ये योजनाएँ तय करती हैं कि राज्य अपना धन कैसे ख़र्च करें; यह राज्यों की स्वायत्तता पर एक पुरानी शिकायत है।",
+  "NITI Aayog -- Report of the Sub-Group of Chief Ministers on Rationalisation of Centrally Sponsored Schemes (2015); Ministry of Finance -- Department of Expenditure.",
+  "ft-css-funding-pattern")
+
+S(FT, "medium", "Consider the following taxes:",
+  "निम्नलिखित करों पर विचार कीजिए:",
+  ["Stamp duty on the sale of property",
+   "Electricity duty",
+   "Professional tax",
+   "Motor vehicle tax"],
+  ["संपत्ति की बिक्री पर स्टांप शुल्क",
+   "बिजली शुल्क (electricity duty)",
+   "व्यवसाय कर (professional tax)",
+   "मोटर वाहन कर"],
+  C4, 3,
+  "All four are levied by the States. Along with State GST, the taxes on liquor and on petroleum products, and stamp duty and registration fees, they make up the States' own tax revenue. Professional tax is capped by the Constitution at ₹2,500 a year per person. "
+  "A student who expects at least one to be a Central tax will be drawn to 'Only three'.",
+  "चारों कर राज्य लगाते हैं। राज्य GST, शराब और पेट्रोलियम उत्पादों पर करों, तथा स्टांप शुल्क और पंजीकरण शुल्क के साथ ये राज्यों के अपने कर राजस्व का भाग हैं। व्यवसाय कर की सीमा संविधान ने प्रति व्यक्ति ₹2,500 प्रति वर्ष तय की है। "
+  "जो विद्यार्थी कम से कम एक को केंद्रीय कर मानकर चलता है, वह 'केवल तीन' की ओर खिंचेगा।",
+  "Reserve Bank of India -- State Finances: A Study of Budgets.",
+  "ft-state-taxes-count",
+  closing="How many of the above are levied by the States?",
+  closing_hi="उपर्युक्त में से कितने कर राज्य लगाते हैं?")
+
+S(FT, "medium", "Consider the following statements about the Centre's tax collections:",
+  "केंद्र के कर संग्रह के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Direct taxes now bring in more revenue than indirect taxes.",
+   "Personal income tax has brought in more revenue than corporation tax in recent years.",
+   "The number of income tax returns filed has been falling since 2020.",
+   "Corporation tax collections fell after the rate cut of 2019 and have not recovered since."],
+  ["प्रत्यक्ष कर अब अप्रत्यक्ष करों से अधिक राजस्व लाते हैं।",
+   "हाल के वर्षों में व्यक्तिगत आयकर से निगम कर की तुलना में अधिक राजस्व आया है।",
+   "2020 से दाख़िल आयकर रिटर्नों की संख्या घटती रही है।",
+   "2019 की दर कटौती के बाद निगम कर संग्रह घटा और तब से उबर नहीं पाया है।"],
+  C4, 1,
+  "Only two -- statements 1 and 2 -- are correct: direct taxes are close to three-fifths of the Centre's gross tax revenue, and personal income tax overtook corporation tax after the corporate rate cut. "
+  "Statement 3 is wrong: returns have risen to about nine crore a year, helped by easier online filing. "
+  "Statement 4 is wrong: corporation tax dipped in 2019-20 and 2020-21 but has since risen well above its level before the cut.",
+  "केवल दो, यानी कथन 1 और 2, सही हैं: प्रत्यक्ष कर केंद्र के सकल कर राजस्व का लगभग तीन-पाँचवाँ भाग हैं, और निगम कर की दर कटौती के बाद व्यक्तिगत आयकर निगम कर से आगे निकल गया। "
+  "कथन 3 गलत है: आसान ऑनलाइन फ़ाइलिंग की मदद से रिटर्न बढ़कर लगभग नौ करोड़ प्रति वर्ष हो गए हैं। "
+  "कथन 4 गलत है: निगम कर 2019-20 और 2020-21 में घटा, पर तब से कटौती से पहले के स्तर से काफ़ी ऊपर चला गया है।",
+  f"{CBDT} -- Time-series data; Ministry of Finance -- Budget at a Glance.",
+  "ft-direct-tax-trends")
+
+# ================================================================ EASY STATEMENTS (5)
+S(FT, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Customs duty is levied on goods imported into India.",
+   "Central excise duty is levied on goods manufactured in India."],
+  ["सीमा शुल्क भारत में आयात की गई वस्तुओं पर लगता है।",
+   "केंद्रीय उत्पाद शुल्क भारत में निर्मित वस्तुओं पर लगता है।"],
+  T2, 2,
+  "Both statements are correct. Customs duty can also be levied on some exports, but it is mainly a tax on imports. Since GST, Central excise survives mainly on petroleum products and tobacco.",
+  "दोनों कथन सही हैं। सीमा शुल्क कुछ निर्यातों पर भी लगाया जा सकता है, पर यह मुख्य रूप से आयात पर कर है। GST के बाद केंद्रीय उत्पाद शुल्क मुख्य रूप से पेट्रोलियम उत्पादों और तंबाकू पर बचा है।",
+  f"{NCB}.",
+  "ft-customs-excise-easy")
+
+S(FT, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A progressive tax takes a larger share of income from people with higher incomes.",
+   "A tax on cigarettes is a direct tax."],
+  ["प्रगतिशील कर ऊँची आय वाले लोगों से उनकी आय का बड़ा हिस्सा लेता है।",
+   "सिगरेट पर कर एक प्रत्यक्ष कर है।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: a tax on cigarettes is collected from sellers and passed on to smokers in the price, so it is an indirect tax.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: सिगरेट पर कर विक्रेताओं से वसूला जाता है और क़ीमत में धूम्रपान करने वालों पर डाल दिया जाता है, इसलिए यह अप्रत्यक्ष कर है।",
+  f"{NCB}.",
+  "ft-progressive-cigarette-easy")
+
+S(FT, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Property tax on houses in cities is collected by the Centre.",
+   "GST is levied on the supply of goods and services."],
+  ["शहरों में मकानों पर संपत्ति कर केंद्र वसूलता है।",
+   "GST वस्तुओं और सेवाओं की आपूर्ति पर लगता है।"],
+  T2, 1,
+  "Only statement 2 is correct. Statement 1 is wrong: property tax is collected by municipal bodies and is their main source of their own revenue.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: संपत्ति कर नगर निकाय वसूलते हैं और यह उनके अपने राजस्व का मुख्य स्रोत है।",
+  "Ministry of Housing and Urban Affairs; Reserve Bank of India -- Report on Municipal Finances.",
+  "ft-property-tax-gst-easy")
+
+S(FT, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Centre has no share in GST revenue.",
+   "Income tax is collected by the States."],
+  ["GST राजस्व में केंद्र का कोई हिस्सा नहीं है।",
+   "आयकर राज्य वसूलते हैं।"],
+  T2, 3,
+  "Neither statement is correct. GST is a dual tax: on each sale within a State, half the tax is Central GST and half State GST. Income tax is levied and collected by the Centre, which shares part of it with the States.",
+  "कोई भी कथन सही नहीं है। GST एक दोहरा कर है: किसी राज्य के भीतर हर बिक्री पर आधा कर केंद्रीय GST और आधा राज्य GST होता है। आयकर केंद्र लगाता और वसूलता है, जो इसका एक भाग राज्यों के साथ बाँटता है।",
+  f"{CBIC}; {CBDT}.",
+  "ft-gst-income-tax-sharing-easy")
+
+S(FT, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["People whose incomes are below the taxable limit must still pay some income tax.",
+   "Taxes are compulsory payments to the government."],
+  ["जिन लोगों की आय कर-योग्य सीमा से कम है, उन्हें भी कुछ आयकर देना पड़ता है।",
+   "कर सरकार को किए जाने वाले अनिवार्य भुगतान हैं।"],
+  T2, 1,
+  "Only statement 2 is correct. Statement 1 is wrong: income below the exemption limit is not taxed at all; that is the point of the limit.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: छूट सीमा से कम आय पर बिल्कुल कर नहीं लगता; सीमा का उद्देश्य ही यही है।",
+  f"{NCB}.",
+  "ft-tax-basics-easy")
+
+# ================================================================ HARD STATEMENTS (5)
+S(FT, "hard", "Consider the following statements about who bears the burden of a tax:",
+  "कर का भार कौन वहन करता है, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The burden of an indirect tax falls more on buyers when demand for the good is inelastic.",
+   "When supply of a good is perfectly elastic, a tax on it is borne entirely by buyers.",
+   "The person legally liable to pay a tax is the one who ultimately bears it."],
+  ["जब किसी वस्तु की माँग बेलोचदार हो, तो अप्रत्यक्ष कर का भार ख़रीदारों पर अधिक पड़ता है।",
+   "जब किसी वस्तु की आपूर्ति पूर्णतः लोचदार हो, तो उस पर कर का पूरा भार ख़रीदार वहन करते हैं।",
+   "जो व्यक्ति कर चुकाने के लिए क़ानूनी रूप से उत्तरदायी है, वही अंततः उसका भार वहन करता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the side of the market that is less able to walk away bears more of the tax. Buyers who cannot cut back -- on fuel or medicines, say -- absorb most of it; if sellers will supply any amount only at a fixed price, the whole tax shows up in the price. "
+  "Statement 3 is wrong: legal liability decides who writes the cheque, not who bears the burden, which depends on the elasticities of demand and supply.",
+  "कथन 1 और 2 सही हैं: बाज़ार का वह पक्ष जिसके लिए पीछे हटना कठिन है, कर का अधिक भार उठाता है। जो ख़रीदार, जैसे ईंधन या दवाओं के, कम नहीं कर सकते, वे इसका अधिकांश भार उठाते हैं; यदि विक्रेता केवल एक निश्चित क़ीमत पर ही कोई भी मात्रा देने को तैयार हों, तो पूरा कर क़ीमत में दिखता है। "
+  "कथन 3 गलत है: क़ानूनी दायित्व यह तय करता है कि चेक कौन काटता है, भार कौन उठाता है यह नहीं; वह माँग और आपूर्ति की लोच पर निर्भर करता है।",
+  "NCERT Class XII, Introductory Microeconomics; Economic Survey.",
+  "ft-tax-incidence-elasticity")
+
+S(FT, "hard", "Consider the following statements about GST:",
+  "GST के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Registration under GST is compulsory for businesses whose aggregate turnover exceeds a threshold.",
+   "An 'inverted duty structure' arises when a business's inputs are taxed at a higher rate than its output.",
+   "A business can claim a refund of input tax credit that piles up because of an inverted duty structure."],
+  ["GST के तहत पंजीकरण उन व्यवसायों के लिए अनिवार्य है जिनका कुल कारोबार एक सीमा से अधिक है।",
+   "'उलटा शुल्क ढाँचा' (inverted duty structure) तब बनता है जब किसी व्यवसाय के आदानों पर उसके उत्पाद से ऊँची दर से कर लगता है।",
+   "उलटे शुल्क ढाँचे के कारण जमा होने वाले इनपुट टैक्स क्रेडिट का धन-वापसी (refund) व्यवसाय माँग सकता है।"],
+  C3, 2,
+  "All three statements are correct. The general threshold is ₹40 lakh for goods and ₹20 lakh for services, lower in some special category States. When inputs carry more tax than the final product -- as in textiles or fertilisers -- credit accumulates that cannot be used, so the law allows a refund, although it ties up working capital; the 2025 rate changes aimed partly at fixing such inversions.",
+  "तीनों कथन सही हैं। सामान्य सीमा वस्तुओं के लिए ₹40 लाख और सेवाओं के लिए ₹20 लाख है, और कुछ विशेष श्रेणी के राज्यों में कम। जब आदानों पर अंतिम उत्पाद से अधिक कर हो, जैसे वस्त्र या उर्वरकों में, तो ऐसा क्रेडिट जमा होता है जिसका उपयोग नहीं हो पाता, इसलिए क़ानून धन-वापसी की अनुमति देता है, यद्यपि इसमें कार्यशील पूँजी फँसती है; 2025 के दर परिवर्तनों का एक उद्देश्य ऐसे उलटे ढाँचों को ठीक करना था।",
+  f"Central Goods and Services Tax Act, 2017, sections 22 and 54; {CBIC}.",
+  "ft-gst-registration-inverted-duty")
+
+S(FT, "hard", "Consider the following statements about tax administration:",
+  "कर प्रशासन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Central Board of Direct Taxes and the Central Board of Indirect Taxes and Customs function under the Department of Revenue.",
+   "The GST Network (GSTN) is a department of the Ministry of Finance.",
+   "Integrated GST collected on inter-State supplies is retained entirely by the Centre."],
+  ["केंद्रीय प्रत्यक्ष कर बोर्ड (CBDT) और केंद्रीय अप्रत्यक्ष कर और सीमा शुल्क बोर्ड (CBIC) राजस्व विभाग के अंतर्गत काम करते हैं।",
+   "GST नेटवर्क (GSTN) वित्त मंत्रालय का एक विभाग है।",
+   "अंतर-राज्य आपूर्ति पर वसूला गया एकीकृत GST पूरी तरह केंद्र के पास रहता है।"],
+  C3, 0,
+  "Only statement 1 is correct: both boards were set up under the Central Boards of Revenue Act, 1963 and report to the Revenue Secretary. "
+  "Statement 2 is wrong: GSTN, which runs the IT backbone of GST -- registration, returns and payments -- is a not-for-profit company, fully owned by the Centre and the States together since 2022. "
+  "Statement 3 is wrong: the Centre collects IGST on inter-State sales only as a clearing agent; the part that stands for State tax is settled with the State where the goods are consumed.",
+  "केवल कथन 1 सही है: दोनों बोर्ड केंद्रीय राजस्व बोर्ड अधिनियम, 1963 के तहत बने और राजस्व सचिव को रिपोर्ट करते हैं। "
+  "कथन 2 गलत है: GST की IT व्यवस्था, यानी पंजीकरण, रिटर्न और भुगतान, चलाने वाला GSTN एक लाभ-निरपेक्ष कंपनी है, जिसका 2022 से पूरा स्वामित्व केंद्र और राज्यों के पास मिलकर है। "
+  "कथन 3 गलत है: केंद्र अंतर-राज्य बिक्री पर IGST केवल एक समाशोधन एजेंट (clearing agent) के रूप में वसूलता है; राज्य कर वाला भाग उस राज्य के साथ निपटाया जाता है जहाँ वस्तुओं का उपभोग होता है।",
+  f"Central Boards of Revenue Act, 1963; GST Network; {CBIC}.",
+  "ft-tax-administration")
+
+S(FT, "hard", "Consider the following statements about international taxation in India:",
+  "भारत में अंतरराष्ट्रीय कराधान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The General Anti-Avoidance Rule (GAAR) came into force in 2010.",
+   "India's tax treaty with Mauritius still exempts from Indian tax all capital gains on the sale of shares of Indian companies.",
+   "Under the 'place of effective management' rule, a company's residence is decided by the country in which it was incorporated."],
+  ["सामान्य कर-परिहार रोधी नियम (GAAR) 2010 में लागू हुआ।",
+   "मॉरीशस के साथ भारत की कर संधि अब भी भारतीय कंपनियों के शेयरों की बिक्री पर सभी पूँजीगत लाभों को भारतीय कर से मुक्त रखती है।",
+   "'प्रभावी प्रबंधन के स्थान' (place of effective management) के नियम के तहत किसी कंपनी का निवास उस देश से तय होता है जहाँ उसका निगमन (incorporation) हुआ।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: GAAR, which lets the tax authorities disregard arrangements whose main purpose is to avoid tax, was deferred several times and took effect from April 2017. "
+  "Statement 2 is wrong: the protocol of 2016 lets India tax gains on shares acquired from April 2017, ending the route that made Mauritius a leading source of investment into India. "
+  "Statement 3 is wrong: the POEM rule, applied from 2016-17, looks at where the key management and commercial decisions are in substance made, so that a company incorporated abroad but run from India can be treated as resident.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: GAAR, जो कर अधिकारियों को उन व्यवस्थाओं की अनदेखी करने देता है जिनका मुख्य उद्देश्य कर से बचना है, कई बार टला और अप्रैल 2017 से लागू हुआ। "
+  "कथन 2 गलत है: 2016 का प्रोटोकॉल भारत को अप्रैल 2017 से ख़रीदे गए शेयरों पर लाभ पर कर लगाने देता है, जिससे वह रास्ता बंद हुआ जिसने मॉरीशस को भारत में निवेश का प्रमुख स्रोत बनाया था। "
+  "कथन 3 गलत है: 2016-17 से लागू POEM नियम यह देखता है कि प्रमुख प्रबंधकीय और वाणिज्यिक निर्णय वास्तव में कहाँ लिए जाते हैं, ताकि विदेश में निगमित पर भारत से चलाई जाने वाली कंपनी को निवासी माना जा सके।",
+  f"{CBDT} -- GAAR; India-Mauritius DTAA Protocol (2016); Guidelines on Place of Effective Management (2017).",
+  "ft-international-tax-none")
+
+S(FT, "hard", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India's general government tax-to-GDP ratio is below 20 per cent.",
+   "The Centre's gross tax revenue is about 11 to 12 per cent of GDP.",
+   "India's tax-to-GDP ratio is higher than the average of OECD countries."],
+  ["भारत का सामान्य सरकारी कर-GDP अनुपात 20 प्रतिशत से कम है।",
+   "केंद्र का सकल कर राजस्व GDP का लगभग 11 से 12 प्रतिशत है।",
+   "भारत का कर-GDP अनुपात OECD देशों के औसत से अधिक है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the Centre and the States together collect about 17-18 per cent of GDP in taxes, of which the Centre's gross collections are roughly 11-12 per cent before the States' share is passed on. "
+  "Statement 3 is wrong: the OECD average is about 34 per cent; India's low ratio reflects a large informal sector, a narrow income tax base and agricultural income being outside the Centre's income tax.",
+  "कथन 1 और 2 सही हैं: केंद्र और राज्य मिलकर GDP का लगभग 17-18 प्रतिशत कर के रूप में वसूलते हैं, जिसमें राज्यों का हिस्सा देने से पहले केंद्र का सकल संग्रह लगभग 11-12 प्रतिशत है। "
+  "कथन 3 गलत है: OECD औसत लगभग 34 प्रतिशत है; भारत का कम अनुपात बड़े अनौपचारिक क्षेत्र, आयकर के संकीर्ण आधार और कृषि आय के केंद्र के आयकर से बाहर होने को दर्शाता है।",
+  "Ministry of Finance -- Budget at a Glance; OECD -- Revenue Statistics.",
+  "ft-tax-gdp-ratio")
+
+# ================================================================ MEDIUM MCQs (5)
+M(FT, "medium", "Which one of the following taxes was NOT subsumed in the Goods and Services Tax?",
+  "निम्नलिखित में से कौन-सा कर वस्तु एवं सेवा कर (GST) में शामिल (subsume) नहीं किया गया?",
+  ["Basic customs duty", "Service tax", "Central excise duty on most goods", "Value added tax levied by the States"],
+  ["मूल सीमा शुल्क (basic customs duty)", "सेवा कर", "अधिकांश वस्तुओं पर केंद्रीय उत्पाद शुल्क", "राज्यों द्वारा लगाया जाने वाला मूल्य वर्धित कर (VAT)"],
+  0,
+  "GST replaced Central excise on most goods, service tax, additional customs duties (countervailing and special additional duty), State VAT, entry tax, luxury and entertainment taxes and several others. Basic customs duty on imports remains a separate Central levy; imports bear integrated GST on top of it.",
+  "GST ने अधिकांश वस्तुओं पर केंद्रीय उत्पाद शुल्क, सेवा कर, अतिरिक्त सीमा शुल्क (प्रतिकारी और विशेष अतिरिक्त शुल्क), राज्य VAT, प्रवेश कर, विलासिता और मनोरंजन कर तथा कई अन्य करों का स्थान लिया। आयात पर मूल सीमा शुल्क एक अलग केंद्रीय कर बना हुआ है; आयात पर इसके ऊपर एकीकृत GST लगता है।",
+  f"{CBIC} -- GST concept and status.",
+  "ft-gst-subsumed-customs")
+
+M(FT, "medium", "The 'Revenue Neutral Rate' in the context of GST refers to:",
+  "GST के संदर्भ में 'राजस्व तटस्थ दर' (Revenue Neutral Rate) का अर्थ है:",
+  ["the single rate at which GST would yield the same revenue as the taxes it replaced",
+   "the ratio in which the Centre and the States divide the GST collected between themselves",
+   "the GST rate on essential goods that is set so that their retail prices do not change at all",
+   "the rate of GST that treats imported goods and domestically produced goods in the same way"],
+  ["वह एकल दर जिस पर GST उतना ही राजस्व देगा जितना उसके द्वारा प्रतिस्थापित कर देते थे",
+   "वह अनुपात जिसमें केंद्र और राज्य एकत्र GST को आपस में बाँटते हैं",
+   "आवश्यक वस्तुओं पर वह GST दर जो इस तरह तय हो कि उनकी खुदरा क़ीमतें बिल्कुल न बदलें",
+   "GST की वह दर जो आयातित और घरेलू रूप से उत्पादित वस्तुओं के साथ समान व्यवहार करे"],
+  0,
+  "The revenue neutral rate is the rate that would keep total revenue unchanged when the old taxes are replaced -- the committee under Arvind Subramanian (2015) put it at about 15-15.5 per cent. The actual multi-rate structure was built around that benchmark.",
+  "राजस्व तटस्थ दर वह दर है जो पुराने करों के स्थान पर आने पर कुल राजस्व को अपरिवर्तित रखे; अरविंद सुब्रमण्यन के अधीन समिति (2015) ने इसे लगभग 15-15.5 प्रतिशत आँका। वास्तविक बहु-दर ढाँचा इसी मानक के आसपास बनाया गया।",
+  "Ministry of Finance -- Report on the Revenue Neutral Rate and Structure of Rates for the GST (2015).",
+  "ft-revenue-neutral-rate")
+
+M(FT, "medium", "Which one of the following is levied on the purchase and sale of shares on a recognised stock exchange?",
+  "निम्नलिखित में से कौन-सा किसी मान्यता प्राप्त स्टॉक एक्सचेंज पर शेयरों की ख़रीद और बिक्री पर लगाया जाता है?",
+  ["Securities transaction tax", "Commodities transaction tax", "Minimum alternate tax", "Dividend distribution tax"],
+  ["प्रतिभूति लेन-देन कर (STT)", "वस्तु लेन-देन कर (CTT)", "न्यूनतम वैकल्पिक कर (MAT)", "लाभांश वितरण कर (DDT)"],
+  0,
+  "Securities transaction tax, introduced in 2004, is charged on the value of trades in shares, equity mutual funds and derivatives. Commodities transaction tax applies to commodity derivatives, Minimum Alternate Tax is a floor on the tax paid by companies with large book profits, and Dividend Distribution Tax was abolished in 2020, with dividends now taxed in the hands of shareholders.",
+  "2004 में शुरू हुआ प्रतिभूति लेन-देन कर शेयरों, इक्विटी म्यूचुअल फ़ंड और डेरिवेटिव में सौदों के मूल्य पर लगता है। वस्तु लेन-देन कर कमोडिटी डेरिवेटिव पर लगता है, न्यूनतम वैकल्पिक कर बड़े बही-लाभ वाली कंपनियों द्वारा दिए जाने वाले कर की न्यूनतम सीमा है, और लाभांश वितरण कर 2020 में समाप्त हुआ, जिसके बाद लाभांश पर शेयरधारकों के हाथ में कर लगता है।",
+  f"Finance (No. 2) Act, 2004, Chapter VII; {CBDT}.",
+  "ft-securities-transaction-tax")
+
+M(FT, "medium", "'Faceless assessment' in income tax refers to:",
+  "आयकर में 'फ़ेसलेस मूल्यांकन' (faceless assessment) का अर्थ है:",
+  ["assessment done online, with no physical meeting between the taxpayer and the tax officer",
+   "assessment of the anonymous donations received by charitable trusts and religious institutions in a year",
+   "self-assessment of tax by companies, which the department then accepts without any further scrutiny",
+   "assessment of tax on the basis of estimated income when a person has not filed any return at all"],
+  ["करदाता और कर अधिकारी के बीच किसी भौतिक मुलाक़ात के बिना, ऑनलाइन किया गया मूल्यांकन",
+   "धर्मार्थ न्यासों और धार्मिक संस्थाओं को एक वर्ष में मिले गुमनाम दान का मूल्यांकन",
+   "कंपनियों द्वारा कर का स्व-मूल्यांकन, जिसे विभाग बिना किसी और जाँच के स्वीकार कर लेता है",
+   "जब किसी व्यक्ति ने कोई रिटर्न नहीं भरा हो, तो अनुमानित आय के आधार पर कर का मूल्यांकन"],
+  0,
+  "Under the faceless scheme, begun in 2020, cases are allotted by computer to officers anywhere in the country, and all communication happens online, so the taxpayer never knows or meets the officer -- a step meant to reduce discretion, harassment and corruption.",
+  "2020 में शुरू हुई फ़ेसलेस योजना में मामले कंप्यूटर से देश में कहीं भी बैठे अधिकारियों को आवंटित होते हैं और सारा संवाद ऑनलाइन होता है, इसलिए करदाता न तो अधिकारी को जानता है न उससे मिलता है; यह क़दम विवेकाधिकार, उत्पीड़न और भ्रष्टाचार घटाने के लिए है।",
+  f"{CBDT} -- Faceless Assessment Scheme.",
+  "ft-faceless-assessment")
+
+M(FT, "medium", "A 'specific' tax, as distinct from an 'ad valorem' tax, is:",
+  "'विशिष्ट' (specific) कर, 'मूल्यानुसार' (ad valorem) कर से भिन्न, क्या है?",
+  ["a fixed amount per unit, whatever the price of the good", "a fixed percentage of the value of the good being taxed",
+   "a tax that is levied only on goods imported into the country", "a tax that is charged only on luxury goods and services"],
+  ["प्रति इकाई एक निश्चित राशि, वस्तु की क़ीमत चाहे जो हो", "कर लगाई जा रही वस्तु के मूल्य का एक निश्चित प्रतिशत",
+   "केवल देश में आयात की गई वस्तुओं पर लगाया जाने वाला कर", "केवल विलासिता वाली वस्तुओं और सेवाओं पर लगाया जाने वाला कर"],
+  0,
+  "A specific tax is so many rupees per litre, kilogram or unit -- as with Central excise on petrol and diesel -- so its yield does not rise when prices rise. An ad valorem tax, like GST, is a percentage of value and grows with prices.",
+  "विशिष्ट कर प्रति लीटर, किलोग्राम या इकाई इतने रुपये होता है, जैसे पेट्रोल और डीज़ल पर केंद्रीय उत्पाद शुल्क, इसलिए क़ीमतें बढ़ने पर इसकी आय नहीं बढ़ती। मूल्यानुसार कर, जैसे GST, मूल्य का एक प्रतिशत होता है और क़ीमतों के साथ बढ़ता है।",
+  f"{NCB}.",
+  "ft-specific-ad-valorem")
+
+# ================================================================ EASY MCQs (2)
+M(FT, "easy", "Which one of the following is a direct tax?",
+  "निम्नलिखित में से कौन-सा प्रत्यक्ष कर है?",
+  ["Income tax", "Goods and Services Tax", "Value added tax on petrol", "Entertainment tax on cinema tickets"],
+  ["आयकर", "वस्तु एवं सेवा कर", "पेट्रोल पर मूल्य वर्धित कर (VAT)", "सिनेमा टिकटों पर मनोरंजन कर"],
+  0,
+  "Income tax is paid by the person who earns the income and cannot be passed on to someone else. GST, VAT on petrol and entertainment tax are collected from sellers and recovered from buyers in the price.",
+  "आयकर वह व्यक्ति देता है जो आय अर्जित करता है, और इसे किसी और पर नहीं डाला जा सकता। GST, पेट्रोल पर VAT और मनोरंजन कर विक्रेताओं से वसूले जाते हैं और क़ीमत में ख़रीदारों से वापस लिए जाते हैं।",
+  f"{NCB}.",
+  "ft-direct-tax-easy")
+
+M(FT, "easy", "The Goods and Services Tax was introduced in India in:",
+  "भारत में वस्तु एवं सेवा कर कब लागू किया गया?",
+  ["July 2017", "April 2015", "January 2020", "April 2010"],
+  ["जुलाई 2017", "अप्रैल 2015", "जनवरी 2020", "अप्रैल 2010"],
+  0,
+  "GST came into force on 1 July 2017, replacing a web of Central and State indirect taxes with a single tax on the supply of goods and services.",
+  "GST 1 जुलाई 2017 को लागू हुआ, जिसने केंद्र और राज्यों के अप्रत्यक्ष करों के जाल के स्थान पर वस्तुओं और सेवाओं की आपूर्ति पर एक ही कर रखा।",
+  f"{CBIC}.",
+  "ft-gst-launch-easy")
+
+# ================================================================ HARD MCQs (2)
+M(FT, "hard", "Which one of the following was NOT a criterion used by the Fifteenth Finance Commission to share Central taxes among the States?",
+  "निम्नलिखित में से कौन-सा पंद्रहवें वित्त आयोग द्वारा राज्यों के बीच केंद्रीय करों के बँटवारे का मानदंड नहीं था?",
+  ["Share in the country's exports", "Income distance from the State with the highest per capita income", "Forest and ecology", "Demographic performance"],
+  ["देश के निर्यात में हिस्सा", "सबसे अधिक प्रति व्यक्ति आय वाले राज्य से आय की दूरी", "वन और पारिस्थितिकी", "जनसांख्यिकीय प्रदर्शन"],
+  0,
+  "The Fifteenth Commission's weights were income distance 45 per cent, population (2011) 15, area 15, forest and ecology 10, demographic performance 12.5 and tax and fiscal effort 2.5 per cent. Demographic performance rewarded States that had brought down fertility, to offset the shift to the 2011 population. Exports were not used.",
+  "पंद्रहवें आयोग के भार थे: आय की दूरी 45 प्रतिशत, जनसंख्या (2011) 15, क्षेत्रफल 15, वन और पारिस्थितिकी 10, जनसांख्यिकीय प्रदर्शन 12.5, और कर तथा राजकोषीय प्रयास 2.5 प्रतिशत। जनसांख्यिकीय प्रदर्शन ने उन राज्यों को पुरस्कृत किया जिन्होंने प्रजनन दर घटाई थी, ताकि 2011 की जनसंख्या अपनाने के प्रभाव की भरपाई हो। निर्यात का उपयोग नहीं हुआ।",
+  "Report of the Fifteenth Finance Commission for 2021-26.",
+  "ft-15th-fc-criteria")
+
+M(FT, "hard", "A trader buys goods for ₹1,000 plus 18 per cent GST (₹180) and sells them for ₹1,500 plus 18 per cent GST. After taking input tax credit, the GST the trader must pay to the government on this sale is:",
+  "एक व्यापारी ₹1,000 और 18 प्रतिशत GST (₹180) पर वस्तुएँ ख़रीदता है और उन्हें ₹1,500 और 18 प्रतिशत GST पर बेचता है। इनपुट टैक्स क्रेडिट लेने के बाद, इस बिक्री पर व्यापारी को सरकार को कितना GST देना होगा?",
+  ["₹90", "₹270", "₹180", "₹450"],
+  ["₹90", "₹270", "₹180", "₹450"],
+  0,
+  "Tax on the sale is 18 per cent of ₹1,500 = ₹270; the trader deducts the ₹180 already paid on the purchase and pays ₹90 -- exactly 18 per cent of the ₹500 value added. ₹270 ignores the credit, and ₹450 wrongly adds the input tax instead of deducting it.",
+  "बिक्री पर कर ₹1,500 का 18 प्रतिशत = ₹270 है; व्यापारी ख़रीद पर पहले से चुकाए गए ₹180 घटाकर ₹90 देता है, जो ठीक ₹500 के मूल्य वर्धन का 18 प्रतिशत है। ₹270 क्रेडिट की अनदेखी करता है, और ₹450 इनपुट कर घटाने के बजाय गलत तरीक़े से जोड़ता है।",
+  "Central Goods and Services Tax Act, 2017, section 16.",
+  "ft-input-tax-credit-numerical")
+
+# ================================================================ STATEMENT-I/II (medium 4, easy 1, hard 1)
+A(FT, "medium",
+  "GST reduced the cascading of taxes, that is, tax being charged on tax.",
+  "GST ने करों के सोपानी प्रभाव (cascading), यानी कर पर कर लगने, को घटाया।",
+  "GST allows credit for tax paid on inputs across goods and services.",
+  "GST वस्तुओं और सेवाओं में आदानों पर चुकाए गए कर का क्रेडिट देता है।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Under the old system a manufacturer could not set off service tax or the State VAT paid on inputs against Central excise, so taxes piled up along the chain; seamless input tax credit means that, in principle, only the value added at each stage is taxed.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। पुरानी व्यवस्था में निर्माता आदानों पर चुकाए गए सेवा कर या राज्य VAT को केंद्रीय उत्पाद शुल्क के विरुद्ध समायोजित नहीं कर सकता था, इसलिए शृंखला में कर जमा होते जाते थे; निर्बाध इनपुट टैक्स क्रेडिट का अर्थ है कि सिद्धांततः हर चरण पर केवल मूल्य वर्धन पर कर लगता है।",
+  f"{CBIC} -- GST concept and status.",
+  "ft-gst-cascading-itc")
+
+A(FT, "medium",
+  "The new income tax regime offers far fewer deductions and exemptions than the old regime.",
+  "नई आयकर व्यवस्था पुरानी व्यवस्था की तुलना में बहुत कम कटौतियाँ और छूटें देती है।",
+  "Almost all income tax returns in India are now filed electronically.",
+  "भारत में अब लगभग सभी आयकर रिटर्न इलेक्ट्रॉनिक रूप से दाख़िल किए जाते हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. The new regime trades deductions for lower rates as a matter of design, to make the tax simpler; online filing is a change in how returns are submitted and has nothing to do with which deductions are allowed.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। नई व्यवस्था सोच-समझकर कम दरों के बदले कटौतियाँ छोड़ती है, ताकि कर सरल हो; ऑनलाइन फ़ाइलिंग रिटर्न जमा करने के तरीक़े में बदलाव है और इसका इससे कोई संबंध नहीं कि कौन-सी कटौतियाँ मिलती हैं।",
+  f"{CBDT}; Finance Act, 2025.",
+  "ft-new-regime-deductions-efiling")
+
+A(FT, "medium",
+  "Customs duty on imports can protect domestic producers from foreign competition.",
+  "आयात पर सीमा शुल्क घरेलू उत्पादकों को विदेशी प्रतिस्पर्धा से बचा सकता है।",
+  "Customs duty is collected by the States at their borders.",
+  "सीमा शुल्क राज्य अपनी सीमाओं पर वसूलते हैं।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Customs is a Union subject: duties are levied by Parliament and collected by the Centre at ports, airports and land customs stations on the international border; the States have no power to tax goods coming from abroad.",
+  "कथन-I सही है पर कथन-II गलत है। सीमा शुल्क संघ का विषय है: शुल्क संसद लगाती है और केंद्र बंदरगाहों, हवाई अड्डों और अंतरराष्ट्रीय सीमा पर स्थल सीमा शुल्क केंद्रों पर वसूलता है; राज्यों को विदेश से आने वाली वस्तुओं पर कर लगाने की कोई शक्ति नहीं है।",
+  f"Customs Act, 1962; {CBIC}.",
+  "ft-customs-protection-centre")
+
+A(FT, "medium",
+  "Agricultural income is taxed by the Centre under the Income-tax Act.",
+  "कृषि आय पर केंद्र आयकर अधिनियम के तहत कर लगाता है।",
+  "Under the new tax regime for 2025-26, income up to ₹4 lakh falls in the nil-rate slab.",
+  "2025-26 के लिए नई कर व्यवस्था में ₹4 लाख तक की आय शून्य-दर वाले स्लैब में आती है।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. Agricultural income is exempt from the Centre's income tax, since only the States can tax it, and few do; it is, however, added to other income to decide the rate on that other income. The new regime's slabs start with nil up to ₹4 lakh and rise in steps of ₹4 lakh.",
+  "कथन-I गलत है पर कथन-II सही है। कृषि आय केंद्र के आयकर से मुक्त है, क्योंकि उस पर केवल राज्य कर लगा सकते हैं, और बहुत कम लगाते हैं; फिर भी अन्य आय पर दर तय करने के लिए इसे उस आय में जोड़ा जाता है। नई व्यवस्था के स्लैब ₹4 लाख तक शून्य से शुरू होकर ₹4 लाख के चरणों में बढ़ते हैं।",
+  f"{ITA}; Finance Act, 2025.",
+  "ft-agricultural-income-slabs")
+
+A(FT, "easy",
+  "Taxes on cigarettes are kept high.",
+  "सिगरेट पर कर ऊँचे रखे जाते हैं।",
+  "High taxes discourage the consumption of harmful goods.",
+  "ऊँचे कर हानिकारक वस्तुओं के उपभोग को हतोत्साहित करते हैं।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I: higher prices make people buy less of goods that harm their health, and the tax also raises revenue.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है: ऊँची क़ीमतें लोगों को स्वास्थ्य के लिए हानिकारक वस्तुएँ कम ख़रीदने को प्रेरित करती हैं, और कर से राजस्व भी मिलता है।",
+  f"{NCB}; World Health Organization -- tobacco taxation.",
+  "ft-sin-tax-easy")
+
+A(FT, "hard",
+  "E-invoicing has helped to curb fake invoices and improve compliance under GST.",
+  "ई-इनवॉइसिंग ने फ़र्ज़ी बिलों पर रोक लगाने और GST के अनुपालन को बेहतर करने में मदद की है।",
+  "E-invoicing under GST is mandatory for businesses with an annual turnover above ₹1 lakh.",
+  "₹1 लाख से अधिक वार्षिक कारोबार वाले व्यवसायों के लिए GST के तहत ई-इनवॉइसिंग अनिवार्य है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Each B2B invoice is registered on a government portal in real time, so it can be matched with the buyer's credit claim, which makes it harder to claim credit on invoices for goods that never moved. The requirement was extended in stages from large firms and now applies to businesses with a turnover above ₹5 crore -- not to every small trader.",
+  "कथन-I सही है पर कथन-II गलत है। हर B2B बिल वास्तविक समय में एक सरकारी पोर्टल पर पंजीकृत होता है, ताकि ख़रीदार के क्रेडिट दावे से उसका मिलान हो सके; इससे ऐसी वस्तुओं के बिलों पर क्रेडिट लेना कठिन हो जाता है जो कभी भेजी ही नहीं गईं। यह आवश्यकता बड़ी कंपनियों से चरणों में बढ़ाई गई और अब ₹5 करोड़ से अधिक कारोबार वाले व्यवसायों पर लागू है, हर छोटे व्यापारी पर नहीं।",
+  f"{CBIC} -- Notifications on e-invoicing; GST Network.",
+  "ft-e-invoicing")
+
+# ================================================================ PAIRS (medium 1)
+P(FT, "medium", "Consider the following pairs of taxes and the authorities that levy or administer them:",
+  "करों और उन्हें लगाने या प्रशासित करने वाले प्राधिकरणों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Corporation tax : Central Board of Direct Taxes", "Securities transaction tax : Central Board of Direct Taxes",
+   "Central excise duty : Central Board of Indirect Taxes and Customs", "Land revenue : State Governments"],
+  ["निगम कर : केंद्रीय प्रत्यक्ष कर बोर्ड", "प्रतिभूति लेन-देन कर : केंद्रीय प्रत्यक्ष कर बोर्ड",
+   "केंद्रीय उत्पाद शुल्क : केंद्रीय अप्रत्यक्ष कर और सीमा शुल्क बोर्ड", "भू-राजस्व : राज्य सरकारें"],
+  3,
+  "All four pairs are correct. STT, though collected by stock exchanges on each trade, is a direct tax administered by the CBDT. Central excise, now mainly on petroleum products and tobacco, is administered by the CBIC along with customs and GST. Land revenue is one of the oldest State taxes. "
+  "A student who assumes a tax on market transactions must be indirect will wrongly reject pair 2.",
+  "चारों युग्म सही हैं। STT, यद्यपि हर सौदे पर स्टॉक एक्सचेंज वसूलते हैं, एक प्रत्यक्ष कर है जिसे CBDT प्रशासित करता है। केंद्रीय उत्पाद शुल्क, जो अब मुख्य रूप से पेट्रोलियम उत्पादों और तंबाकू पर है, CBIC सीमा शुल्क और GST के साथ प्रशासित करता है। भू-राजस्व सबसे पुराने राज्य करों में से एक है। "
+  "जो विद्यार्थी मानता है कि बाज़ार के लेन-देन पर कर अप्रत्यक्ष ही होगा, वह युग्म 2 को गलत ढंग से ख़ारिज करेगा।",
+  f"{CBDT}; {CBIC}.",
+  "ft-tax-authorities-pairs")
+
+if __name__ == "__main__":
+    write("econ_l2_t17_taxation.sql")

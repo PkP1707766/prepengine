@@ -1,0 +1,865 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 17 (Economy 3: Fiscal Policy, Budget & Economic Survey) -- Budget, Deficits & Public Debt (58).
+  medium statement 21, hard statement 8, easy statement 7, medium MCQ 7, medium Statement-I/II 5,
+  easy Statement-I/II 2, easy MCQ 2, hard Statement-I/II 2, hard MCQ 2, easy pairs 1, medium pairs 1.
+Parliament's budget procedure (funds, money bills, appropriation, cut motions, financial committees, CAG) and the
+constitutional side of Union-State finance are in Polity Tests 2-4, and bonds, SDLs and Treasury bills in Test 15;
+this file stays on the economics of the Budget. Taxation and fiscal federalism are in econ_l2_t17_taxation.py."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+FB = "Budget, Deficits & Public Debt"
+NCB = "NCERT Class XII, Introductory Macroeconomics -- Government Budget and the Economy"
+UB = "Ministry of Finance -- Union Budget 2025-26"
+FRBM = "Fiscal Responsibility and Budget Management Act, 2003"
+RBI = "Reserve Bank of India"
+
+# ================================================================ MEDIUM STATEMENTS (21)
+S(FB, "medium", "Consider the following receipts of the Union Government:",
+  "केंद्र सरकार की निम्नलिखित प्राप्तियों पर विचार कीजिए:",
+  ["Interest received on loans given to State Governments",
+   "Recovery of loans given to State Governments",
+   "Money received from the auction of telecom spectrum",
+   "Money received from the sale of government land"],
+  ["राज्य सरकारों को दिए गए ऋणों पर प्राप्त ब्याज",
+   "राज्य सरकारों को दिए गए ऋणों की वसूली",
+   "दूरसंचार स्पेक्ट्रम की नीलामी से प्राप्त धन",
+   "सरकारी भूमि की बिक्री से प्राप्त धन"],
+  C4, 1,
+  "Only two -- items 2 and 4 -- are capital receipts. A capital receipt either creates a liability (borrowing) or reduces the government's assets: getting back the principal of a loan and selling land both run down assets. "
+  "Interest on those same loans is non-tax revenue, since the loan itself is still owed. Spectrum auction money, although it comes from licensing a national resource for many years, is booked as non-tax revenue under communication services -- a frequent trap.",
+  "केवल दो, यानी मद 2 और 4, पूँजीगत प्राप्तियाँ हैं। पूँजीगत प्राप्ति या तो देनदारी पैदा करती है (उधार) या सरकार की परिसंपत्तियाँ घटाती है: ऋण का मूलधन वापस पाना और भूमि बेचना, दोनों परिसंपत्तियाँ घटाते हैं। "
+  "उन्हीं ऋणों पर ब्याज गैर-कर राजस्व है, क्योंकि ऋण अभी भी बकाया है। स्पेक्ट्रम नीलामी का धन, यद्यपि वह कई वर्षों के लिए एक राष्ट्रीय संसाधन के लाइसेंस से आता है, संचार सेवाओं के अंतर्गत गैर-कर राजस्व में दर्ज होता है; यह एक आम जाल है।",
+  f"{NCB}; {UB} -- Receipt Budget.",
+  "fb-capital-receipts-count",
+  closing="How many of the above are capital receipts of the Union Government?",
+  closing_hi="उपर्युक्त में से कितनी केंद्र सरकार की पूँजीगत प्राप्तियाँ हैं?")
+
+S(FB, "medium", "Consider the following items of expenditure of the Union Government:",
+  "केंद्र सरकार के व्यय की निम्नलिखित मदों पर विचार कीजिए:",
+  ["Interest paid on past borrowing",
+   "Purchase of fighter aircraft for the Air Force",
+   "Repayment of the principal of a loan taken by the government",
+   "Purchase of land for a new government office"],
+  ["पिछले उधार पर चुकाया गया ब्याज",
+   "वायु सेना के लिए लड़ाकू विमानों की ख़रीद",
+   "सरकार द्वारा लिए गए ऋण के मूलधन की चुकौती",
+   "एक नए सरकारी कार्यालय के लिए भूमि की ख़रीद"],
+  C4, 0,
+  "Only one -- interest -- is revenue expenditure: it creates no asset and reduces no liability. Capital expenditure creates assets or reduces liabilities: military equipment is shown as capital outlay on defence, repaying the principal of a loan reduces a liability, and land is a physical asset. Interest and repayment of principal are paid to the same lenders, yet one is revenue and the other capital -- the trap. "
+  "The distinction matters because a revenue deficit means borrowing for spending that leaves nothing behind.",
+  "केवल एक, यानी ब्याज, राजस्व व्यय है: यह न कोई परिसंपत्ति बनाता है, न कोई देनदारी घटाता है। पूँजीगत व्यय परिसंपत्तियाँ बनाता है या देनदारियाँ घटाता है: सैन्य उपकरण रक्षा पर पूँजीगत परिव्यय के रूप में दिखाए जाते हैं, ऋण के मूलधन की चुकौती एक देनदारी घटाती है, और भूमि एक भौतिक परिसंपत्ति है। ब्याज और मूलधन की चुकौती एक ही ऋणदाताओं को जाती हैं, फिर भी एक राजस्व है और दूसरी पूँजीगत; यही जाल है। "
+  "यह भेद इसलिए महत्त्वपूर्ण है कि राजस्व घाटे का अर्थ है ऐसे व्यय के लिए उधार लेना जो पीछे कुछ नहीं छोड़ता।",
+  f"{NCB}; {UB} -- Expenditure Budget.",
+  "fb-revenue-expenditure-count",
+  closing="How many of the above are revenue expenditure?",
+  closing_hi="उपर्युक्त में से कितनी मदें राजस्व व्यय हैं?")
+
+S(FB, "medium", "Consider the following statements about budget deficits:",
+  "बजट घाटों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The fiscal deficit shows the total borrowing requirement of the government for the year.",
+   "A revenue deficit means that the government is using borrowed money to meet part of its current expenditure.",
+   "A government can have a fiscal deficit even when it has a revenue surplus."],
+  ["राजकोषीय घाटा वर्ष के लिए सरकार की कुल उधार आवश्यकता को दर्शाता है।",
+   "राजस्व घाटे का अर्थ है कि सरकार अपने चालू व्यय के एक भाग को पूरा करने के लिए उधार के धन का उपयोग कर रही है।",
+   "किसी सरकार का राजस्व अधिशेष होने पर भी राजकोषीय घाटा हो सकता है।"],
+  C3, 2,
+  "All three statements are correct. Fiscal deficit = total expenditure minus total receipts other than borrowings, so it equals what must be borrowed. When revenue receipts fall short of revenue expenditure, the gap is covered by borrowing, which is why a revenue deficit is the more worrying measure. "
+  "A revenue surplus can still leave a fiscal deficit if capital expenditure exceeds that surplus plus non-debt capital receipts -- borrowing, in effect, only to invest.",
+  "तीनों कथन सही हैं। राजकोषीय घाटा = कुल व्यय में से उधार को छोड़कर कुल प्राप्तियाँ घटाने पर, इसलिए यह उतना ही है जितना उधार लेना पड़ता है। जब राजस्व प्राप्तियाँ राजस्व व्यय से कम पड़ती हैं, तो यह अंतर उधार से पूरा होता है; इसीलिए राजस्व घाटा अधिक चिंताजनक माप है। "
+  "यदि पूँजीगत व्यय उस अधिशेष और गैर-ऋण पूँजीगत प्राप्तियों के योग से अधिक हो, तो राजस्व अधिशेष के बावजूद राजकोषीय घाटा बना रह सकता है; यानी केवल निवेश के लिए उधार।",
+  f"{NCB}.",
+  "fb-deficit-measures-concepts")
+
+S(FB, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Budget documents report the effective revenue deficit alongside the revenue deficit.",
+   "A primary deficit of zero means that the government is not borrowing at all.",
+   "Under the FRBM framework as it stands today, the effective revenue deficit is the Centre's operational fiscal target."],
+  ["बजट दस्तावेज़ राजस्व घाटे के साथ प्रभावी राजस्व घाटा भी दर्शाते हैं।",
+   "शून्य प्राथमिक घाटे का अर्थ है कि सरकार बिल्कुल भी उधार नहीं ले रही है।",
+   "आज के FRBM ढाँचे के तहत प्रभावी राजस्व घाटा केंद्र का परिचालन राजकोषीय लक्ष्य है।"],
+  C3, 0,
+  "Only statement 1 is correct: the effective revenue deficit takes out of the revenue deficit the grants given for building assets such as rural roads or houses, which are revenue expenditure in the Centre's books, to show the part that truly finances consumption. "
+  "Statement 2 is wrong: primary deficit is the fiscal deficit minus interest payments, so a zero primary deficit means the government is borrowing just enough to pay interest on past debt. "
+  "Statement 3 is wrong: the 2018 amendment dropped the revenue and effective revenue deficit targets; the fiscal deficit is the operational target and debt the anchor.",
+  "केवल कथन 1 सही है: प्रभावी राजस्व घाटा, राजस्व घाटे में से ग्रामीण सड़कों या आवास जैसी परिसंपत्तियाँ बनाने के लिए दिए गए अनुदान घटाता है, जो केंद्र के खातों में राजस्व व्यय हैं, ताकि वह भाग दिखे जो वास्तव में उपभोग का वित्तपोषण करता है। "
+  "कथन 2 गलत है: प्राथमिक घाटा राजकोषीय घाटे में से ब्याज भुगतान घटाने पर मिलता है, इसलिए शून्य प्राथमिक घाटे का अर्थ है कि सरकार केवल पिछले ऋण पर ब्याज चुकाने भर का उधार ले रही है। "
+  "कथन 3 गलत है: 2018 के संशोधन ने राजस्व और प्रभावी राजस्व घाटे के लक्ष्य हटा दिए; राजकोषीय घाटा परिचालन लक्ष्य है और ऋण आधार (anchor)।",
+  f"{NCB}; {FRBM} (as amended in 2018).",
+  "fb-erd-primary-deficit")
+
+S(FB, "medium", "Consider the following statements about the Fiscal Responsibility and Budget Management (FRBM) Act:",
+  "राजकोषीय उत्तरदायित्व और बजट प्रबंधन (FRBM) अधिनियम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was enacted in 2003.",
+   "Its amendment of 2018 made the government's debt-to-GDP ratio a target alongside the fiscal deficit.",
+   "It allows the Centre to exceed its fiscal deficit target on specified grounds such as war or a national calamity.",
+   "It binds the States as well as the Centre."],
+  ["इसे 2003 में अधिनियमित किया गया।",
+   "2018 के इसके संशोधन ने राजकोषीय घाटे के साथ सरकार के ऋण-GDP अनुपात को भी लक्ष्य बनाया।",
+   "यह केंद्र को युद्ध या राष्ट्रीय आपदा जैसे निर्दिष्ट आधारों पर अपने राजकोषीय घाटे के लक्ष्य से आगे जाने की अनुमति देता है।",
+   "यह केंद्र के साथ-साथ राज्यों पर भी बाध्यकारी है।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct. The 'escape clause' also covers events such as a collapse of farm output or a sharp fall in growth, and allows a deviation of up to half a percentage point of GDP. "
+  "Statement 4 is wrong: the FRBM Act applies to the Centre; each State has passed its own fiscal responsibility law, with limits usually set with reference to the Finance Commission's advice.",
+  "कथन 1, 2 और 3 सही हैं। 'बचाव खंड' (escape clause) कृषि उत्पादन के ध्वस्त होने या वृद्धि में तेज़ गिरावट जैसी घटनाओं को भी शामिल करता है, और GDP के आधे प्रतिशत अंक तक के विचलन की अनुमति देता है। "
+  "कथन 4 गलत है: FRBM अधिनियम केंद्र पर लागू होता है; हर राज्य ने अपना राजकोषीय उत्तरदायित्व क़ानून पारित किया है, जिसकी सीमाएँ प्रायः वित्त आयोग की सलाह के संदर्भ में तय होती हैं।",
+  f"{FRBM}.",
+  "fb-frbm-act")
+
+S(FB, "medium", "Consider the following statements about the FRBM Review Committee (2017) headed by N.K. Singh:",
+  "एन.के. सिंह की अध्यक्षता वाली FRBM समीक्षा समिति (2017) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It recommended a debt-to-GDP ratio of 40 per cent for the general government, that is, the Centre and the States together.",
+   "It recommended setting up a fiscal council to advise on fiscal matters.",
+   "It recommended doing away with a fiscal deficit target."],
+  ["इसने सामान्य सरकार, यानी केंद्र और राज्यों को मिलाकर, के लिए 40 प्रतिशत के ऋण-GDP अनुपात की सिफ़ारिश की।",
+   "इसने राजकोषीय मामलों पर सलाह के लिए एक राजकोषीय परिषद (fiscal council) बनाने की सिफ़ारिश की।",
+   "इसने राजकोषीय घाटे का लक्ष्य समाप्त करने की सिफ़ारिश की।"],
+  C3, 0,
+  "Only statement 2 is correct: an independent fiscal council would give its own forecasts and judge whether the escape clause was being used properly; it has not been set up. "
+  "Statement 1 is wrong: the committee proposed 60 per cent for the general government -- 40 per cent for the Centre and 20 per cent for the States -- and the 40 per cent figure is the trap. "
+  "Statement 3 is wrong: it kept the fiscal deficit as the operational target, with a path down to 2.5 per cent of GDP, and made debt the anchor.",
+  "केवल कथन 2 सही है: एक स्वतंत्र राजकोषीय परिषद अपने पूर्वानुमान देती और आकलन करती कि बचाव खंड का ठीक उपयोग हो रहा है या नहीं; यह अभी तक नहीं बनी है। "
+  "कथन 1 गलत है: समिति ने सामान्य सरकार के लिए 60 प्रतिशत, यानी केंद्र के लिए 40 और राज्यों के लिए 20 प्रतिशत, का प्रस्ताव किया; 40 प्रतिशत का आँकड़ा ही जाल है। "
+  "कथन 3 गलत है: इसने राजकोषीय घाटे को परिचालन लक्ष्य बनाए रखा, जिसे GDP के 2.5 प्रतिशत तक लाने का मार्ग था, और ऋण को आधार बनाया।",
+  "Ministry of Finance -- Report of the FRBM Review Committee (2017).",
+  "fb-nk-singh-frbm-review")
+
+S(FB, "medium", "Consider the following statements about the Centre's fiscal path:",
+  "केंद्र के राजकोषीय मार्ग के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Union Budget 2025-26 set a fiscal deficit target of 3 per cent of GDP for that year.",
+   "From 2026-27 the Centre aims to keep its fiscal deficit on a path that brings its debt to about 50 per cent of GDP by March 2031.",
+   "The Centre's debt is currently below 40 per cent of GDP."],
+  ["केंद्रीय बजट 2025-26 ने उस वर्ष के लिए GDP के 3 प्रतिशत का राजकोषीय घाटा लक्ष्य रखा।",
+   "2026-27 से केंद्र का लक्ष्य अपने राजकोषीय घाटे को ऐसे मार्ग पर रखना है जिससे मार्च 2031 तक उसका ऋण GDP के लगभग 50 प्रतिशत पर आ जाए।",
+   "केंद्र का ऋण इस समय GDP के 40 प्रतिशत से कम है।"],
+  C3, 0,
+  "Only statement 2 is correct: the Budget 2025-26 announced the shift from a fixed annual deficit target to a debt anchor of 50 plus or minus 1 per cent of GDP by 31 March 2031. "
+  "Statement 1 is wrong: the target for 2025-26 was 4.4 per cent of GDP, after 4.8 per cent in 2024-25; 3 per cent is the old FRBM goal. "
+  "Statement 3 is wrong: the Centre's debt is in the mid-50s as a share of GDP, well above the 40 per cent the FRBM Act set in 2018.",
+  "केवल कथन 2 सही है: बजट 2025-26 ने निश्चित वार्षिक घाटे के लक्ष्य से हटकर 31 मार्च 2031 तक GDP के 50 (±1) प्रतिशत के ऋण आधार की घोषणा की। "
+  "कथन 1 गलत है: 2025-26 का लक्ष्य GDP का 4.4 प्रतिशत था, जो 2024-25 के 4.8 प्रतिशत के बाद आया; 3 प्रतिशत FRBM का पुराना लक्ष्य है। "
+  "कथन 3 गलत है: केंद्र का ऋण GDP के 55-57 प्रतिशत के आसपास है, जो 2018 में FRBM अधिनियम द्वारा तय 40 प्रतिशत से काफ़ी ऊपर है।",
+  f"{UB} -- Budget Speech; Medium-term Fiscal Policy cum Fiscal Policy Strategy Statement.",
+  "fb-fiscal-path-debt-anchor")
+
+S(FB, "medium", "Consider the following statements about the Economic Survey:",
+  "आर्थिक सर्वेक्षण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is prepared by the Economic Division of the Department of Economic Affairs under the guidance of the Chief Economic Adviser.",
+   "The Constitution requires it to be laid before Parliament every year.",
+   "It was presented along with the Union Budget until 1964, when it was separated from the Budget."],
+  ["इसे मुख्य आर्थिक सलाहकार के मार्गदर्शन में आर्थिक कार्य विभाग का आर्थिक प्रभाग तैयार करता है।",
+   "संविधान इसे हर वर्ष संसद के समक्ष रखना अनिवार्य करता है।",
+   "1964 तक इसे केंद्रीय बजट के साथ प्रस्तुत किया जाता था, जब इसे बजट से अलग कर दिया गया।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. The first Survey, for 1950-51, was part of the Budget papers; it is now laid a day or so before the Budget and reviews the economy of the past year, often with a theme of its own. "
+  "Statement 2 is wrong: the Survey has no constitutional or statutory basis -- it is a convention; the Constitution requires only the annual financial statement.",
+  "कथन 1 और 3 सही हैं। 1950-51 का पहला सर्वेक्षण बजट पत्रों का भाग था; अब इसे बजट से एक-दो दिन पहले रखा जाता है और यह पिछले वर्ष की अर्थव्यवस्था की समीक्षा करता है, प्रायः अपने एक विषय के साथ। "
+  "कथन 2 गलत है: सर्वेक्षण का कोई संवैधानिक या वैधानिक आधार नहीं है; यह एक परंपरा है; संविधान केवल वार्षिक वित्तीय विवरण अनिवार्य करता है।",
+  "Ministry of Finance -- Department of Economic Affairs, Economic Survey.",
+  "fb-economic-survey")
+
+S(FB, "medium", "Consider the following statements about budgeting practices:",
+  "बजट निर्माण की पद्धतियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Zero-based budgeting requires every item of expenditure to be justified afresh rather than on the basis of the previous year's allocation.",
+   "The Outcome Budget links allocations to measurable outputs and outcomes.",
+   "A Gender Budget Statement has been part of the Union Budget since 2005-06."],
+  ["शून्य-आधारित बजट (zero-based budgeting) में व्यय की हर मद को पिछले वर्ष के आवंटन के आधार पर नहीं, बल्कि नए सिरे से उचित ठहराना होता है।",
+   "परिणाम बजट (Outcome Budget) आवंटनों को मापे जा सकने वाले उत्पादों (outputs) और परिणामों (outcomes) से जोड़ता है।",
+   "जेंडर बजट विवरण 2005-06 से केंद्रीय बजट का भाग रहा है।"],
+  C3, 2,
+  "All three statements are correct. Zero-based budgeting starts each head from nothing, unlike incremental budgeting, which adds to last year's figure. The Outcome Budget, introduced in 2005, is now an Output-Outcome Monitoring Framework with targets for each major scheme. "
+  "The Gender Budget Statement lists allocations meant wholly or partly for women.",
+  "तीनों कथन सही हैं। शून्य-आधारित बजट हर मद को शून्य से शुरू करता है, जबकि वृद्धिशील बजट पिछले वर्ष के आँकड़े में जोड़ता है। 2005 में शुरू हुआ परिणाम बजट अब आउटपुट-आउटकम निगरानी ढाँचा है, जिसमें हर बड़ी योजना के लक्ष्य होते हैं। "
+  "जेंडर बजट विवरण उन आवंटनों को सूचीबद्ध करता है जो पूरी तरह या आंशिक रूप से महिलाओं के लिए हैं।",
+  f"{UB} -- Gender Budget Statement; Output-Outcome Monitoring Framework.",
+  "fb-budgeting-practices")
+
+S(FB, "medium", "Consider the following statements about fiscal policy:",
+  "राजकोषीय नीति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A progressive income tax acts as an automatic stabiliser, because tax collections fall faster than incomes in a downturn.",
+   "A counter-cyclical fiscal policy would reduce the deficit during a boom.",
+   "Unemployment benefits are an example of an automatic stabiliser."],
+  ["प्रगतिशील आयकर एक स्वचालित स्थिरक (automatic stabiliser) का काम करता है, क्योंकि मंदी में कर संग्रह आय से अधिक तेज़ी से घटता है।",
+   "एक प्रति-चक्रीय (counter-cyclical) राजकोषीय नीति तेज़ी (boom) के दौरान घाटा घटाएगी।",
+   "बेरोज़गारी भत्ते स्वचालित स्थिरक का एक उदाहरण हैं।"],
+  C3, 2,
+  "All three statements are correct. Automatic stabilisers cushion the cycle without any new decision: as incomes fall, taxes fall more than proportionately and benefit payments rise, supporting demand; in a boom the reverse happens. "
+  "Counter-cyclical policy means leaning against the cycle -- spending more or taxing less in a slump, and saving in good times -- whereas pro-cyclical policy amplifies booms and busts.",
+  "तीनों कथन सही हैं। स्वचालित स्थिरक बिना किसी नए निर्णय के चक्र को नरम करते हैं: आय घटने पर कर अनुपात से अधिक घटते हैं और भत्तों के भुगतान बढ़ते हैं, जिससे माँग को सहारा मिलता है; तेज़ी में उलटा होता है। "
+  "प्रति-चक्रीय नीति का अर्थ है चक्र के विपरीत चलना, यानी मंदी में अधिक ख़र्च या कम कर, और अच्छे समय में बचत; जबकि चक्रानुगामी (pro-cyclical) नीति तेज़ी और मंदी को बढ़ाती है।",
+  f"{NCB}.",
+  "fb-automatic-stabilisers")
+
+S(FB, "medium", "Consider the following statements about the debt of the Central Government:",
+  "केंद्र सरकार के ऋण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Most of it is owed to domestic lenders.",
+   "Dated government securities form the largest part of its internal debt.",
+   "Commercial banks are among the largest holders of Central Government securities."],
+  ["इसका अधिकांश भाग घरेलू ऋणदाताओं का बकाया है।",
+   "दिनांकित सरकारी प्रतिभूतियाँ इसके आंतरिक ऋण का सबसे बड़ा भाग हैं।",
+   "वाणिज्यिक बैंक केंद्र सरकार की प्रतिभूतियों के सबसे बड़े धारकों में से हैं।"],
+  C3, 2,
+  "All three statements are correct. External debt is only about 5 per cent of the Centre's liabilities, which shields it from exchange-rate shocks. Dated securities, sold through RBI auctions, make up the bulk of internal debt; banks -- which must hold government securities under the SLR -- and insurance companies are the largest holders, followed by the RBI and provident funds.",
+  "तीनों कथन सही हैं। बाहरी ऋण केंद्र की देनदारियों का केवल लगभग 5 प्रतिशत है, जो उसे विनिमय-दर के झटकों से बचाता है। RBI की नीलामियों से बेची जाने वाली दिनांकित प्रतिभूतियाँ आंतरिक ऋण का बड़ा भाग हैं; बैंक, जिन्हें SLR के तहत सरकारी प्रतिभूतियाँ रखनी होती हैं, और बीमा कंपनियाँ सबसे बड़े धारक हैं, जिनके बाद RBI और भविष्य निधियाँ आती हैं।",
+  "Ministry of Finance -- Status Paper on Government Debt; RBI Bulletin.",
+  "fb-central-debt-composition")
+
+S(FB, "medium", "Consider the following statements about off-budget financing:",
+  "बजट से बाहर (off-budget) वित्तपोषण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Loans taken by the Food Corporation of India from the National Small Savings Fund to meet food subsidy bills were a form of off-budget financing.",
+   "From 2020-21 the Centre brought the food subsidy fully into the Budget and stopped such loans to the Food Corporation.",
+   "Off-budget borrowings are counted in the Centre's fiscal deficit as shown in the Budget."],
+  ["खाद्य सब्सिडी के बिल चुकाने के लिए भारतीय खाद्य निगम द्वारा राष्ट्रीय लघु बचत कोष (NSSF) से लिए गए ऋण बजट से बाहर वित्तपोषण का एक रूप थे।",
+   "2020-21 से केंद्र ने खाद्य सब्सिडी को पूरी तरह बजट में ला दिया और खाद्य निगम को ऐसे ऋण बंद कर दिए।",
+   "बजट से बाहर लिए गए उधार बजट में दिखाए गए केंद्र के राजकोषीय घाटे में गिने जाते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: by making the Food Corporation borrow instead of paying it in full, the Centre kept part of the subsidy -- and the matching borrowing -- out of its own accounts; ending the practice raised the reported deficit but made the numbers honest. "
+  "Statement 3 is wrong: that is the whole point of off-budget borrowing -- it does not appear in the fiscal deficit, although the government is ultimately responsible for it; the Budget now discloses such extra-budgetary resources separately.",
+  "कथन 1 और 2 सही हैं: खाद्य निगम को पूरा भुगतान करने के बजाय उससे उधार लिवाकर केंद्र ने सब्सिडी का एक भाग, और उसके बराबर उधार, अपने खातों से बाहर रखा; इस प्रथा को बंद करने से दर्ज घाटा बढ़ा, पर आँकड़े ईमानदार हुए। "
+  "कथन 3 गलत है: बजट से बाहर उधार का पूरा मतलब ही यही है कि यह राजकोषीय घाटे में नहीं दिखता, यद्यपि अंततः इसकी ज़िम्मेदारी सरकार की होती है; बजट अब ऐसे अतिरिक्त-बजटीय संसाधनों को अलग से दर्शाता है।",
+  "Ministry of Finance -- Union Budget 2021-22, Budget Speech; Comptroller and Auditor General -- reports on compliance with the FRBM Act.",
+  "fb-off-budget-fci-nssf")
+
+S(FB, "medium", "Consider the following statements about government guarantees:",
+  "सरकारी गारंटियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Guarantees given by the Centre on the borrowings of public sector enterprises are contingent liabilities.",
+   "A guarantee becomes a charge on the Budget only if the borrower fails to repay.",
+   "The Budget documents include a statement of the guarantees given by the Centre.",
+   "The FRBM Rules cap the guarantees the Centre can give in a year as a share of GDP."],
+  ["सार्वजनिक क्षेत्र के उद्यमों के उधार पर केंद्र द्वारा दी गई गारंटियाँ आकस्मिक देनदारियाँ (contingent liabilities) हैं।",
+   "गारंटी बजट पर भार तभी बनती है जब उधारकर्ता चुकाने में विफल हो।",
+   "बजट दस्तावेज़ों में केंद्र द्वारा दी गई गारंटियों का विवरण शामिल होता है।",
+   "FRBM नियम एक वर्ष में केंद्र द्वारा दी जा सकने वाली गारंटियों को GDP के एक हिस्से तक सीमित करते हैं।"],
+  C4, 3,
+  "All four statements are correct. Guarantees let public bodies borrow more cheaply without adding to the deficit, which is why they are watched as a hidden fiscal risk; the FRBM Rules limit fresh guarantees in a year to 0.5 per cent of GDP, and the Receipt Budget lists guarantees outstanding. "
+  "A student who expects one of four to be wrong will be drawn to 'Only three'.",
+  "चारों कथन सही हैं। गारंटियाँ सार्वजनिक निकायों को घाटा बढ़ाए बिना सस्ते में उधार लेने देती हैं, इसीलिए उन पर एक छिपे राजकोषीय जोखिम के रूप में नज़र रखी जाती है; FRBM नियम एक वर्ष में नई गारंटियों को GDP के 0.5 प्रतिशत तक सीमित करते हैं, और प्राप्ति बजट बकाया गारंटियों को सूचीबद्ध करता है। "
+  "जो विद्यार्थी चार में से एक को गलत मानकर चलता है, वह 'केवल तीन' की ओर खिंचेगा।",
+  f"{FRBM}; FRBM Rules, 2004; {UB} -- Receipt Budget.",
+  "fb-guarantees-contingent")
+
+S(FB, "medium", "Consider the following statements about the Union Budget:",
+  "केंद्रीय बजट के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Since 2017 the Union Budget has been presented on the last working day of February.",
+   "The Budget Division that prepares the Union Budget is part of the Department of Revenue.",
+   "Budget Estimates are audited by the Comptroller and Auditor General before they are presented to Parliament."],
+  ["2017 से केंद्रीय बजट फ़रवरी के अंतिम कार्य दिवस पर प्रस्तुत किया जाता है।",
+   "केंद्रीय बजट तैयार करने वाला बजट प्रभाग राजस्व विभाग का भाग है।",
+   "बजट अनुमानों को संसद में प्रस्तुत करने से पहले नियंत्रक-महालेखापरीक्षक उनकी लेखापरीक्षा करता है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: from 2017 the Budget was moved forward to 1 February, so that Parliament could pass it before the financial year began. "
+  "Statement 2 is wrong: the Budget Division is in the Department of Economic Affairs. "
+  "Statement 3 is wrong: estimates are forecasts; the CAG audits the government's accounts after the year is over.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: 2017 से बजट को आगे बढ़ाकर 1 फ़रवरी कर दिया गया, ताकि संसद वित्तीय वर्ष शुरू होने से पहले उसे पारित कर सके। "
+  "कथन 2 गलत है: बजट प्रभाग आर्थिक कार्य विभाग में है। "
+  "कथन 3 गलत है: अनुमान पूर्वानुमान होते हैं; CAG वर्ष समाप्त होने के बाद सरकार के खातों की लेखापरीक्षा करता है।",
+  "Ministry of Finance -- Department of Economic Affairs, Budget Division.",
+  "fb-budget-date-division-none")
+
+S(FB, "medium", "Consider the following statements about disinvestment:",
+  "विनिवेश के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Department of Investment and Public Asset Management (DIPAM) handles the Centre's disinvestment.",
+   "The strategic sale of Air India was made to a consortium of public sector banks.",
+   "The New Public Sector Enterprise Policy of 2021 aims to keep a bare minimum presence of the government in strategic sectors."],
+  ["निवेश और लोक परिसंपत्ति प्रबंधन विभाग (DIPAM) केंद्र का विनिवेश देखता है।",
+   "एयर इंडिया की रणनीतिक बिक्री सार्वजनिक क्षेत्र के बैंकों के एक संघ (consortium) को की गई।",
+   "2021 की नई सार्वजनिक क्षेत्र उद्यम नीति का लक्ष्य रणनीतिक क्षेत्रों में सरकार की न्यूनतम उपस्थिति रखना है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: the policy groups four broad strategic sectors -- such as atomic energy, space and defence; transport and telecom; power, petroleum and minerals; and banking and insurance -- and plans to privatise, merge or close enterprises elsewhere. "
+  "Statement 2 is wrong: Air India was sold in January 2022 to Talace, a company of the Tata group, which had founded the airline in 1932.",
+  "कथन 1 और 3 सही हैं: नीति चार व्यापक रणनीतिक क्षेत्रों, जैसे परमाणु ऊर्जा, अंतरिक्ष और रक्षा; परिवहन और दूरसंचार; बिजली, पेट्रोलियम और खनिज; तथा बैंकिंग और बीमा, को चिह्नित करती है और अन्य क्षेत्रों में उद्यमों के निजीकरण, विलय या बंद करने की योजना रखती है। "
+  "कथन 2 गलत है: एयर इंडिया जनवरी 2022 में टाटा समूह की कंपनी टैलेस को बेची गई, जिसने 1932 में इस एयरलाइन की स्थापना की थी।",
+  "Department of Investment and Public Asset Management; Union Budget 2021-22.",
+  "fb-disinvestment-dipam")
+
+S(FB, "medium", "Consider the following statements about the Special Assistance to States for Capital Investment scheme:",
+  "पूँजीगत निवेश के लिए राज्यों को विशेष सहायता (SASCI) योजना के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It gives States interest-free loans for capital projects.",
+   "The loans are repayable within five years.",
+   "The scheme is open only to the North-Eastern and Himalayan States."],
+  ["यह राज्यों को पूँजीगत परियोजनाओं के लिए ब्याज-मुक्त ऋण देती है।",
+   "ये ऋण पाँच वर्ष के भीतर चुकाने होते हैं।",
+   "यह योजना केवल पूर्वोत्तर और हिमालयी राज्यों के लिए है।"],
+  C3, 0,
+  "Only statement 1 is correct: begun in 2020-21 to revive investment after the pandemic, the scheme has grown to about 1.5 lakh crore rupees a year, with part of the money tied to reforms by the States. "
+  "Statement 2 is wrong: the loans are for 50 years and interest-free, which makes them close to grants in value while still counting as loans. Statement 3 is wrong: the scheme is open to all States.",
+  "केवल कथन 1 सही है: महामारी के बाद निवेश को फिर से गति देने के लिए 2020-21 में शुरू हुई यह योजना बढ़कर लगभग 1.5 लाख करोड़ रुपये प्रति वर्ष हो गई है, जिसका एक भाग राज्यों के सुधारों से जुड़ा है। "
+  "कथन 2 गलत है: ये ऋण 50 वर्ष के लिए और ब्याज-मुक्त हैं, जिससे मूल्य में ये अनुदान के क़रीब हैं, पर फिर भी ऋण गिने जाते हैं। कथन 3 गलत है: यह योजना सभी राज्यों के लिए खुली है।",
+  "Ministry of Finance -- Department of Expenditure, Scheme for Special Assistance to States for Capital Investment.",
+  "fb-sasci-loans")
+
+S(FB, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Before 1997, the Centre's deficits were automatically financed by the RBI through ad hoc Treasury bills.",
+   "The limits of Ways and Means Advances for the Centre are fixed by the RBI in consultation with the Government.",
+   "Ways and Means Advances are long-term loans from the RBI to finance the fiscal deficit."],
+  ["1997 से पहले केंद्र के घाटों का वित्तपोषण RBI तदर्थ (ad hoc) ट्रेज़री बिलों के ज़रिए अपने-आप करता था।",
+   "केंद्र के लिए अर्थोपाय अग्रिम (WMA) की सीमाएँ RBI सरकार के परामर्श से तय करता है।",
+   "अर्थोपाय अग्रिम राजकोषीय घाटे के वित्तपोषण के लिए RBI से लिए गए दीर्घकालिक ऋण हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: ad hoc bills let the government create money at will; agreements of 1994 and 1997 ended them and put Ways and Means Advances in their place. "
+  "Statement 3 is wrong: WMA are short-term advances to cover temporary gaps between receipts and payments; if the government stays beyond its limit, it moves into overdraft, which carries a higher rate and must be cleared quickly.",
+  "कथन 1 और 2 सही हैं: तदर्थ बिलों से सरकार मनचाहा धन सृजित कर सकती थी; 1994 और 1997 के समझौतों ने इन्हें समाप्त कर इनकी जगह अर्थोपाय अग्रिम रखे। "
+  "कथन 3 गलत है: WMA प्राप्तियों और भुगतानों के बीच अस्थायी अंतर पाटने के लिए अल्पकालिक अग्रिम हैं; सीमा से आगे जाने पर सरकार ओवरड्राफ़्ट में चली जाती है, जिस पर ऊँची दर लगती है और जिसे जल्दी चुकाना होता है।",
+  f"{RBI} -- Ways and Means Advances; Report on Currency and Finance.",
+  "fb-adhoc-bills-wma")
+
+S(FB, "medium", "Consider the following statements about the financing of the Centre's fiscal deficit:",
+  "केंद्र के राजकोषीय घाटे के वित्तपोषण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Market borrowings through dated securities finance most of it.",
+   "Borrowing from the National Small Savings Fund is another source.",
+   "A drawdown of the government's cash balances can also finance part of it in a year."],
+  ["इसका अधिकांश भाग दिनांकित प्रतिभूतियों के ज़रिए बाज़ार उधार से पूरा होता है।",
+   "राष्ट्रीय लघु बचत कोष से उधार एक अन्य स्रोत है।",
+   "किसी वर्ष में सरकार के नकद शेष में कमी भी इसके एक भाग का वित्तपोषण कर सकती है।"],
+  C3, 2,
+  "All three statements are correct. Net market borrowing covers well over half the deficit; the NSSF, which pools post-office savings, Public Provident Fund and similar deposits, lends its surplus to the Centre; and running down cash balances, or other items such as provident funds and reserve funds, fills the rest.",
+  "तीनों कथन सही हैं। शुद्ध बाज़ार उधार घाटे के आधे से काफ़ी अधिक को पूरा करता है; डाकघर बचत, लोक भविष्य निधि और ऐसी ही जमाओं को एकत्र करने वाला NSSF अपना अधिशेष केंद्र को उधार देता है; और नकद शेष घटाना, या भविष्य निधि और आरक्षित निधियाँ जैसी अन्य मदें, शेष भाग पूरा करती हैं।",
+  f"{UB} -- Budget at a Glance, sources of financing the fiscal deficit.",
+  "fb-financing-fiscal-deficit")
+
+S(FB, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India's general government debt is above 75 per cent of GDP.",
+   "S&P Global Ratings upgraded India's sovereign rating to 'BBB' in 2025.",
+   "India's sovereign rating from the major agencies is below investment grade."],
+  ["भारत का सामान्य सरकारी ऋण GDP के 75 प्रतिशत से अधिक है।",
+   "S&P ग्लोबल रेटिंग्स ने 2025 में भारत की सॉवरेन रेटिंग बढ़ाकर 'BBB' कर दी।",
+   "प्रमुख एजेंसियों से भारत की सॉवरेन रेटिंग निवेश श्रेणी (investment grade) से नीचे है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the debt of the Centre and the States together is around 80 per cent of GDP, high for an emerging economy, and S&P's upgrade in August 2025 -- its first for India in 18 years -- cited strong growth, better spending quality and fiscal consolidation. "
+  "Statement 3 is wrong: India has long been rated investment grade -- at the lowest rung, BBB-, before the upgrade.",
+  "कथन 1 और 2 सही हैं: केंद्र और राज्यों का मिलाकर ऋण GDP के लगभग 80 प्रतिशत के आसपास है, जो एक उभरती अर्थव्यवस्था के लिए ऊँचा है, और अगस्त 2025 में S&P के सुधार ने, जो भारत के लिए 18 वर्षों में उसका पहला था, मज़बूत वृद्धि, व्यय की बेहतर गुणवत्ता और राजकोषीय समेकन का हवाला दिया। "
+  "कथन 3 गलत है: भारत लंबे समय से निवेश श्रेणी में रहा है; सुधार से पहले सबसे निचले पायदान, BBB-, पर।",
+  "S&P Global Ratings (August 2025); Ministry of Finance -- Status Paper on Government Debt.",
+  "fb-general-debt-ratings")
+
+S(FB, "medium", "Consider the following statements about the Centre's spending:",
+  "केंद्र के व्यय के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Defence pensions are paid out of the Ministry of Defence's allocation.",
+   "Subsidies are treated as capital expenditure.",
+   "Capital expenditure makes up more than half of the Centre's total expenditure."],
+  ["रक्षा पेंशन रक्षा मंत्रालय के आवंटन से दी जाती है।",
+   "सब्सिडी को पूँजीगत व्यय माना जाता है।",
+   "पूँजीगत व्यय केंद्र के कुल व्यय का आधे से अधिक है।"],
+  C3, 0,
+  "Only statement 1 is correct: pensions of about 1.6 lakh crore rupees make up a large part of the defence budget, which is one reason defence capital outlay is squeezed. "
+  "Statement 2 is wrong: subsidies on food, fertiliser and fuel create no asset for the government and are revenue expenditure. "
+  "Statement 3 is wrong: capital expenditure, although it has risen sharply, is only a little over a fifth of total spending.",
+  "केवल कथन 1 सही है: लगभग 1.6 लाख करोड़ रुपये की पेंशन रक्षा बजट का बड़ा भाग है, और यह रक्षा पूँजीगत परिव्यय के दबाव में रहने का एक कारण है। "
+  "कथन 2 गलत है: खाद्य, उर्वरक और ईंधन पर सब्सिडी सरकार के लिए कोई परिसंपत्ति नहीं बनाती और राजस्व व्यय है। "
+  "कथन 3 गलत है: पूँजीगत व्यय, यद्यपि तेज़ी से बढ़ा है, कुल व्यय के पाँचवें भाग से थोड़ा ही अधिक है।",
+  f"{UB} -- Expenditure Budget, Ministry of Defence.",
+  "fb-spending-composition")
+
+S(FB, "medium", "Consider the following statements about Budget documents and terms:",
+  "बजट दस्तावेज़ों और शब्दों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The distinction between Plan and Non-Plan expenditure is still used in the Union Budget.",
+   "'Revised Estimates' in the Budget are the final audited figures for the previous year.",
+   "The revenue receipts shown in the Union Budget include the States' share of Central taxes."],
+  ["योजना और गैर-योजना व्यय का भेद केंद्रीय बजट में अब भी प्रयुक्त होता है।",
+   "बजट में 'संशोधित अनुमान' पिछले वर्ष के अंतिम लेखापरीक्षित आँकड़े हैं।",
+   "केंद्रीय बजट में दिखाई गई राजस्व प्राप्तियों में केंद्रीय करों में राज्यों का हिस्सा शामिल होता है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: the Plan/Non-Plan split was abolished from 2017-18; spending is now classified as revenue or capital, and by schemes. "
+  "Statement 2 is wrong: Revised Estimates update the current year's Budget Estimates midway; the figures for the year before are the Actuals. "
+  "Statement 3 is wrong: the Budget shows gross tax revenue, deducts the States' share, and counts only the net tax revenue of the Centre in revenue receipts.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: योजना/गैर-योजना का विभाजन 2017-18 से समाप्त कर दिया गया; व्यय अब राजस्व या पूँजीगत के रूप में, और योजनाओं के अनुसार, वर्गीकृत होता है। "
+  "कथन 2 गलत है: संशोधित अनुमान चालू वर्ष के बजट अनुमानों को बीच में अद्यतन करते हैं; उससे पिछले वर्ष के आँकड़े वास्तविक (Actuals) होते हैं। "
+  "कथन 3 गलत है: बजट सकल कर राजस्व दिखाता है, राज्यों का हिस्सा घटाता है, और राजस्व प्राप्तियों में केवल केंद्र का शुद्ध कर राजस्व गिनता है।",
+  f"{UB} -- Budget at a Glance.",
+  "fb-budget-terms-none")
+
+# ================================================================ EASY STATEMENTS (7)
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Union Budget is presented by the Finance Minister.",
+   "The Union Budget shows the government's estimated receipts and expenditure for the coming year."],
+  ["केंद्रीय बजट वित्त मंत्री प्रस्तुत करते हैं।",
+   "केंद्रीय बजट आगामी वर्ष के लिए सरकार की अनुमानित प्राप्तियाँ और व्यय दिखाता है।"],
+  T2, 2,
+  "Both statements are correct. The Budget sets out what the government expects to earn and spend in the financial year ahead, and the Finance Minister presents it in the Lok Sabha.",
+  "दोनों कथन सही हैं। बजट यह बताता है कि सरकार आगामी वित्तीय वर्ष में कितना कमाने और ख़र्च करने की अपेक्षा रखती है, और वित्त मंत्री इसे लोकसभा में प्रस्तुत करते हैं।",
+  f"{NCB}.",
+  "fb-budget-basics-easy")
+
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Taxes are the main source of the Centre's revenue receipts.",
+   "Borrowing by the government is a revenue receipt."],
+  ["कर केंद्र की राजस्व प्राप्तियों का मुख्य स्रोत हैं।",
+   "सरकार द्वारा लिया गया उधार एक राजस्व प्राप्ति है।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: borrowing creates a liability that must be repaid, so it is a capital receipt.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: उधार एक देनदारी पैदा करता है जिसे चुकाना होता है, इसलिए यह पूँजीगत प्राप्ति है।",
+  f"{NCB}.",
+  "fb-revenue-receipts-easy")
+
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A budget deficit means that the government's spending exceeds its receipts.",
+   "Governments often borrow to cover a budget deficit."],
+  ["बजट घाटे का अर्थ है कि सरकार का व्यय उसकी प्राप्तियों से अधिक है।",
+   "सरकारें प्रायः बजट घाटे को पूरा करने के लिए उधार लेती हैं।"],
+  T2, 2,
+  "Both statements are correct: when spending runs ahead of what the government earns, it must borrow the difference.",
+  "दोनों कथन सही हैं: जब व्यय सरकार की कमाई से आगे निकल जाता है, तो उसे अंतर के बराबर उधार लेना पड़ता है।",
+  f"{NCB}.",
+  "fb-deficit-borrowing-easy")
+
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Money spent on government scholarships for students is capital expenditure.",
+   "Paying the salaries of government employees is revenue expenditure."],
+  ["विद्यार्थियों के लिए सरकारी छात्रवृत्तियों पर ख़र्च पूँजीगत व्यय है।",
+   "सरकारी कर्मचारियों के वेतन का भुगतान राजस्व व्यय है।"],
+  T2, 1,
+  "Only statement 2 is correct. Statement 1 is wrong: scholarships, like salaries, create no physical or financial asset for the government, so they are revenue expenditure, however useful they are.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: वेतन की तरह छात्रवृत्तियाँ भी सरकार के लिए कोई भौतिक या वित्तीय परिसंपत्ति नहीं बनातीं, इसलिए वे राजस्व व्यय हैं, चाहे वे कितनी भी उपयोगी हों।",
+  f"{NCB}.",
+  "fb-revenue-capital-spending-easy")
+
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The fiscal deficit is the same as the Centre's total debt.",
+   "Grants given by the Centre to the States are a capital receipt of the Centre."],
+  ["राजकोषीय घाटा केंद्र के कुल ऋण के समान है।",
+   "केंद्र द्वारा राज्यों को दिए गए अनुदान केंद्र की पूँजीगत प्राप्ति हैं।"],
+  T2, 3,
+  "Neither statement is correct. The fiscal deficit is one year's borrowing -- a flow -- while debt is the total built up over the years -- a stock. Grants to States are money the Centre pays out, so they are expenditure (revenue expenditure), not a receipt of any kind.",
+  "कोई भी कथन सही नहीं है। राजकोषीय घाटा एक वर्ष का उधार है, यानी प्रवाह (flow), जबकि ऋण वर्षों में जमा हुआ कुल योग है, यानी स्टॉक। राज्यों को अनुदान वह धन है जो केंद्र देता है, इसलिए यह व्यय (राजस्व व्यय) है, किसी भी प्रकार की प्राप्ति नहीं।",
+  f"{NCB}.",
+  "fb-deficit-debt-grants-easy")
+
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Government borrowing does not add to public debt if the money is spent on building roads.",
+   "Pensions paid to retired Central Government employees are part of the Centre's expenditure."],
+  ["यदि धन सड़कें बनाने पर ख़र्च किया जाए, तो सरकारी उधार लोक ऋण में नहीं जुड़ता।",
+   "सेवानिवृत्त केंद्रीय सरकारी कर्मचारियों को दी जाने वाली पेंशन केंद्र के व्यय का भाग है।"],
+  T2, 1,
+  "Only statement 2 is correct. Statement 1 is wrong: every rupee borrowed adds to debt, whatever it is spent on; spending on roads is better because it creates an asset that can raise future growth, but the debt still has to be serviced.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: उधार लिया गया हर रुपया ऋण में जुड़ता है, चाहे वह किसी पर भी ख़र्च हो; सड़कों पर व्यय इसलिए बेहतर है कि यह ऐसी परिसंपत्ति बनाता है जो भविष्य की वृद्धि बढ़ा सकती है, पर ऋण का भुगतान फिर भी करना पड़ता है।",
+  f"{NCB}.",
+  "fb-borrowing-debt-easy")
+
+S(FB, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Defence is one of the largest items of the Centre's spending.",
+   "Defence spending in India is financed mainly by the States."],
+  ["रक्षा केंद्र के व्यय की सबसे बड़ी मदों में से एक है।",
+   "भारत में रक्षा व्यय का वित्तपोषण मुख्य रूप से राज्य करते हैं।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: defence is a Union subject and is paid for entirely out of the Union Budget.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: रक्षा संघ का विषय है और इसका पूरा भुगतान केंद्रीय बजट से होता है।",
+  f"{UB} -- Expenditure Budget.",
+  "fb-defence-spending-easy")
+
+# ================================================================ HARD STATEMENTS (8)
+S(FB, "hard", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Ricardian equivalence suggests that a tax cut financed by borrowing may not raise consumption, because people expect higher taxes later.",
+   "Fiscal policy is more effective in raising output when monetary policy keeps interest rates from rising.",
+   "Fiscal multipliers tend to be larger when the economy has a lot of spare capacity."],
+  ["रिकार्डियन तुल्यता (Ricardian equivalence) संकेत देती है कि उधार से वित्तपोषित कर-कटौती उपभोग नहीं बढ़ा सकती, क्योंकि लोग बाद में ऊँचे करों की अपेक्षा करते हैं।",
+   "जब मौद्रिक नीति ब्याज दरों को बढ़ने से रोकती है, तो राजकोषीय नीति उत्पादन बढ़ाने में अधिक प्रभावी होती है।",
+   "जब अर्थव्यवस्था में बहुत अधिक अप्रयुक्त क्षमता हो, तो राजकोषीय गुणक प्रायः बड़े होते हैं।"],
+  C3, 2,
+  "All three statements are correct. If households see through the deficit and save the tax cut to pay future taxes, demand does not rise. When the central bank accommodates, higher government spending does not push up interest rates and crowd out private investment. "
+  "With idle workers and machines, extra demand raises output rather than prices, so each rupee of spending goes further than it does at full employment.",
+  "तीनों कथन सही हैं। यदि परिवार घाटे को समझकर भविष्य के करों के लिए कर-कटौती की राशि बचा लें, तो माँग नहीं बढ़ती। जब केंद्रीय बैंक सहयोग करता है, तो ऊँचा सरकारी व्यय ब्याज दरें नहीं बढ़ाता और निजी निवेश को बाहर नहीं धकेलता। "
+  "बेकार पड़े कामगारों और मशीनों के रहते अतिरिक्त माँग क़ीमतों के बजाय उत्पादन बढ़ाती है, इसलिए व्यय का हर रुपया पूर्ण रोज़गार की तुलना में अधिक असर करता है।",
+  f"{NCB}; International Monetary Fund -- Fiscal Monitor.",
+  "fb-ricardian-multipliers")
+
+S(FB, "hard", "Consider the following statements about the dynamics of public debt:",
+  "लोक ऋण की गतिकी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["If the interest rate on government debt is lower than the growth rate of nominal GDP, the debt-to-GDP ratio can fall even with a small primary deficit.",
+   "Higher inflation, other things being equal, tends to lower the debt-to-GDP ratio.",
+   "A rise in the interest rate on new borrowing lowers the future debt-to-GDP ratio, other things being equal."],
+  ["यदि सरकारी ऋण पर ब्याज दर नाममात्र GDP की वृद्धि दर से कम हो, तो छोटे प्राथमिक घाटे के साथ भी ऋण-GDP अनुपात घट सकता है।",
+   "अन्य बातें समान रहने पर, ऊँची मुद्रास्फीति ऋण-GDP अनुपात को घटाने की प्रवृत्ति रखती है।",
+   "अन्य बातें समान रहने पर, नए उधार पर ब्याज दर में वृद्धि भविष्य के ऋण-GDP अनुपात को घटाती है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The change in the debt ratio depends on the primary deficit plus the gap between the interest rate and growth applied to existing debt: when growth exceeds the interest rate, the denominator grows faster than the debt, leaving room for a small primary deficit. Inflation raises nominal GDP and so erodes the real value of existing debt. "
+  "Statement 3 is wrong: a higher interest rate raises the interest bill and makes the ratio rise faster.",
+  "कथन 1 और 2 सही हैं। ऋण अनुपात में परिवर्तन प्राथमिक घाटे और मौजूदा ऋण पर लागू ब्याज दर तथा वृद्धि के अंतर पर निर्भर करता है: जब वृद्धि ब्याज दर से अधिक होती है, तो हर (denominator) ऋण से तेज़ बढ़ता है, जिससे छोटे प्राथमिक घाटे की गुंजाइश बनती है। मुद्रास्फीति नाममात्र GDP बढ़ाती है और इस तरह मौजूदा ऋण के वास्तविक मूल्य को घटाती है। "
+  "कथन 3 गलत है: ऊँची ब्याज दर ब्याज का बोझ बढ़ाती है और अनुपात को तेज़ी से बढ़ाती है।",
+  "Ministry of Finance -- Status Paper on Government Debt; Economic Survey -- chapter on debt sustainability.",
+  "fb-debt-dynamics-r-g")
+
+S(FB, "hard", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["'Fiscal dominance' refers to a situation in which monetary policy is constrained by the need to finance government deficits.",
+   "'Fiscal drag' occurs when rising incomes push taxpayers into higher tax brackets, raising the tax burden without any change in rates.",
+   "'Twin deficits' refers to a fiscal deficit alongside a current account deficit."],
+  ["'राजकोषीय प्रभुत्व' (fiscal dominance) उस स्थिति को कहते हैं जिसमें सरकारी घाटों के वित्तपोषण की आवश्यकता से मौद्रिक नीति बँध जाती है।",
+   "'राजकोषीय खिंचाव' (fiscal drag) तब होता है जब बढ़ती आय करदाताओं को ऊँचे कर स्लैब में धकेल देती है, जिससे दरें बदले बिना कर का बोझ बढ़ता है।",
+   "'दोहरे घाटे' (twin deficits) का अर्थ चालू खाता घाटे के साथ राजकोषीय घाटा है।"],
+  C3, 2,
+  "All three statements are correct. Under fiscal dominance a central bank may keep rates low or buy government debt to ease the government's borrowing, even at the cost of inflation -- the risk that India's ad hoc Treasury bills once posed. Fiscal drag is why tax slabs are revised as incomes grow. "
+  "The twin-deficit idea holds that a larger fiscal deficit, by lowering national saving, tends to widen the current account deficit.",
+  "तीनों कथन सही हैं। राजकोषीय प्रभुत्व में केंद्रीय बैंक सरकार का उधार आसान करने के लिए दरें कम रख सकता है या सरकारी ऋण ख़रीद सकता है, भले ही मुद्रास्फीति की क़ीमत पर; भारत के तदर्थ ट्रेज़री बिल कभी यही जोखिम थे। आय बढ़ने के साथ कर स्लैब इसीलिए संशोधित किए जाते हैं कि राजकोषीय खिंचाव न हो। "
+  "दोहरे घाटे का विचार कहता है कि बड़ा राजकोषीय घाटा राष्ट्रीय बचत घटाकर चालू खाते के घाटे को बढ़ाने की प्रवृत्ति रखता है।",
+  f"{RBI} -- Report on Currency and Finance; {NCB}.",
+  "fb-fiscal-dominance-drag-twin")
+
+S(FB, "hard", "Consider the following statements about government accounting:",
+  "सरकारी लेखांकन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Union Budget has been prepared fully on an accrual basis since 2017.",
+   "Under accrual accounting, an expense is recorded when it is incurred, even if it is paid later.",
+   "The Government Accounting Standards Advisory Board works under the RBI."],
+  ["केंद्रीय बजट 2017 से पूरी तरह उपार्जन (accrual) आधार पर तैयार किया जाता है।",
+   "उपार्जन लेखांकन में व्यय तब दर्ज होता है जब वह उपगत (incurred) होता है, भले ही उसका भुगतान बाद में हो।",
+   "सरकारी लेखा मानक सलाहकार बोर्ड (GASAB) RBI के अंतर्गत काम करता है।"],
+  C3, 0,
+  "Only statement 2 is correct. Statement 1 is wrong: the Budget and government accounts are still kept largely on a cash basis, recording money when it is actually received or paid -- which is why deferring bills, as with fertiliser or food subsidies, could flatter the deficit. "
+  "Statement 3 is wrong: GASAB was set up in 2002 under the Comptroller and Auditor General to frame accounting standards for governments and to prepare the move to accrual accounting.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: बजट और सरकारी खाते अब भी मुख्य रूप से नकद आधार पर रखे जाते हैं, जिसमें धन तभी दर्ज होता है जब वह वास्तव में मिलता या दिया जाता है; इसीलिए उर्वरक या खाद्य सब्सिडी की तरह बिलों को टालने से घाटा कम दिख सकता था। "
+  "कथन 3 गलत है: GASAB 2002 में नियंत्रक-महालेखापरीक्षक के अंतर्गत बना, ताकि सरकारों के लिए लेखा मानक बनाए और उपार्जन लेखांकन की ओर बढ़ने की तैयारी करे।",
+  "Comptroller and Auditor General -- Government Accounting Standards Advisory Board.",
+  "fb-accrual-cash-gasab")
+
+S(FB, "hard", "In a year, the Centre's fiscal deficit is ₹16 lakh crore, its interest payments are ₹12 lakh crore, its revenue deficit is ₹5 lakh crore and its grants to States for the creation of capital assets are ₹4 lakh crore. Consider the following statements:",
+  "किसी वर्ष में केंद्र का राजकोषीय घाटा ₹16 लाख करोड़, ब्याज भुगतान ₹12 लाख करोड़, राजस्व घाटा ₹5 लाख करोड़, और पूँजीगत परिसंपत्तियों के सृजन के लिए राज्यों को अनुदान ₹4 लाख करोड़ है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The primary deficit is ₹4 lakh crore.",
+   "The effective revenue deficit is ₹9 lakh crore.",
+   "Less than a third of the year's borrowing is used to meet revenue expenditure."],
+  ["प्राथमिक घाटा ₹4 लाख करोड़ है।",
+   "प्रभावी राजस्व घाटा ₹9 लाख करोड़ है।",
+   "वर्ष के उधार का एक-तिहाई से कम भाग राजस्व व्यय को पूरा करने में लगता है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: primary deficit = 16 - 12 = ₹4 lakh crore, and the revenue deficit of ₹5 lakh crore is 5/16, just under a third, of the ₹16 lakh crore borrowed; the rest finances capital spending. "
+  "Statement 2 is wrong: the effective revenue deficit subtracts the grants for capital assets, 5 - 4 = ₹1 lakh crore; adding them, to get 9, is the trap.",
+  "कथन 1 और 3 सही हैं: प्राथमिक घाटा = 16 - 12 = ₹4 लाख करोड़, और ₹5 लाख करोड़ का राजस्व घाटा उधार लिए गए ₹16 लाख करोड़ का 5/16, यानी एक-तिहाई से थोड़ा कम, है; शेष पूँजीगत व्यय का वित्तपोषण करता है। "
+  "कथन 2 गलत है: प्रभावी राजस्व घाटा पूँजीगत परिसंपत्तियों के अनुदान घटाता है, 5 - 4 = ₹1 लाख करोड़; उन्हें जोड़कर 9 निकालना जाल है।",
+  f"{NCB}.",
+  "fb-deficits-numerical")
+
+S(FB, "hard", "Consider the following statements about government spending in the national accounts:",
+  "राष्ट्रीय लेखों में सरकारी व्यय के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Government final consumption expenditure is a part of GDP measured by the expenditure method.",
+   "Interest paid on public debt is included in GDP as government final consumption expenditure.",
+   "The salaries of teachers in government schools are part of government final consumption expenditure."],
+  ["सरकारी अंतिम उपभोग व्यय (GFCE) व्यय विधि से मापे गए GDP का भाग है।",
+   "लोक ऋण पर चुकाया गया ब्याज GDP में सरकारी अंतिम उपभोग व्यय के रूप में शामिल होता है।",
+   "सरकारी विद्यालयों के शिक्षकों का वेतन सरकारी अंतिम उपभोग व्यय का भाग है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: GFCE measures the services the government provides -- teaching, policing, administration -- valued mainly at what it pays its employees and spends on goods. "
+  "Statement 2 is wrong: interest, like pensions and subsidies, is a transfer that pays for no current output, so it is left out of GFCE and GDP -- which is why a Budget's total spending is much larger than the government's contribution to GDP.",
+  "कथन 1 और 3 सही हैं: GFCE सरकार द्वारा दी जाने वाली सेवाओं, जैसे शिक्षण, पुलिस और प्रशासन, को मापता है, जिनका मूल्य मुख्य रूप से कर्मचारियों को दिए गए भुगतान और वस्तुओं पर ख़र्च से आँका जाता है। "
+  "कथन 2 गलत है: पेंशन और सब्सिडी की तरह ब्याज भी एक हस्तांतरण है जो किसी चालू उत्पादन का भुगतान नहीं करता, इसलिए इसे GFCE और GDP से बाहर रखा जाता है; इसीलिए बजट का कुल व्यय GDP में सरकार के योगदान से कहीं बड़ा होता है।",
+  "NCERT Class XII, Introductory Macroeconomics -- National Income Accounting; MoSPI -- National Accounts Statistics.",
+  "fb-gfce-national-accounts")
+
+S(FB, "hard", "Consider the following statements about the Centre's market borrowing:",
+  "केंद्र के बाज़ार उधार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The calendar of the Centre's market borrowings is fixed once for the whole five-year period of a Finance Commission.",
+   "Interest earned on Central Government securities is exempt from income tax for all investors.",
+   "The weighted average maturity of the Centre's outstanding market debt is less than two years."],
+  ["केंद्र के बाज़ार उधार का कैलेंडर किसी वित्त आयोग की पूरी पाँच-वर्षीय अवधि के लिए एक बार तय होता है।",
+   "केंद्र सरकार की प्रतिभूतियों पर अर्जित ब्याज सभी निवेशकों के लिए आयकर से मुक्त है।",
+   "केंद्र के बकाया बाज़ार ऋण की भारित औसत परिपक्वता दो वर्ष से कम है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: the Centre and the RBI announce an indicative borrowing calendar for each half of the financial year. "
+  "Statement 2 is wrong: interest on government securities is taxable in the hands of the investor. "
+  "Statement 3 is wrong: the average maturity is about 12 years -- one of the longest among large economies -- which lowers the risk of having to refinance large amounts at high rates.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: केंद्र और RBI वित्तीय वर्ष के हर अर्धभाग के लिए एक सांकेतिक उधार कैलेंडर घोषित करते हैं। "
+  "कथन 2 गलत है: सरकारी प्रतिभूतियों पर ब्याज निवेशक के हाथ में कर-योग्य है। "
+  "कथन 3 गलत है: औसत परिपक्वता लगभग 12 वर्ष है, जो बड़ी अर्थव्यवस्थाओं में सबसे लंबी में से है; इससे ऊँची दरों पर बड़ी राशि का पुनर्वित्त करने का जोखिम कम होता है।",
+  f"{RBI} -- Issuance calendar for marketable dated securities; Ministry of Finance -- Status Paper on Government Debt.",
+  "fb-market-borrowing-none")
+
+S(FB, "hard", "Consider the following statements about the Centre's capital expenditure:",
+  "केंद्र के पूँजीगत व्यय के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is smaller than the Centre's interest payments.",
+   "Railways and roads account for a large share of it.",
+   "Interest-free loans to States for capital investment are counted in it."],
+  ["यह केंद्र के ब्याज भुगतानों से कम है।",
+   "रेलवे और सड़कें इसका बड़ा भाग हैं।",
+   "पूँजीगत निवेश के लिए राज्यों को दिए गए ब्याज-मुक्त ऋण इसमें गिने जाते हैं।"],
+  C3, 2,
+  "All three statements are correct. Capital expenditure has risen to about 11 lakh crore rupees, but interest payments, at close to 13 lakh crore, are still larger. Roads and railways together take roughly half of it. "
+  "Loans to States are capital expenditure of the Centre, since they are assets to be repaid; the 50-year interest-free loans alone are about 1.5 lakh crore rupees a year.",
+  "तीनों कथन सही हैं। पूँजीगत व्यय बढ़कर लगभग 11 लाख करोड़ रुपये हो गया है, पर लगभग 13 लाख करोड़ के ब्याज भुगतान अब भी बड़े हैं। सड़कें और रेलवे मिलकर इसका लगभग आधा भाग लेते हैं। "
+  "राज्यों को ऋण केंद्र का पूँजीगत व्यय हैं, क्योंकि वे चुकाई जाने वाली परिसंपत्तियाँ हैं; केवल 50-वर्षीय ब्याज-मुक्त ऋण ही लगभग 1.5 लाख करोड़ रुपये प्रति वर्ष हैं।",
+  f"{UB} -- Budget at a Glance; Expenditure Budget.",
+  "fb-capex-composition")
+
+# ================================================================ MEDIUM MCQs (7)
+M(FB, "medium", "Which one of the following, other things remaining the same, will reduce the fiscal deficit but leave the revenue deficit unchanged?",
+  "अन्य बातें समान रहने पर, निम्नलिखित में से कौन-सा राजकोषीय घाटे को घटाएगा पर राजस्व घाटे को अपरिवर्तित छोड़ देगा?",
+  ["Higher proceeds from disinvestment", "Higher collections of income tax", "A cut in interest payments on past debt", "A rise in dividends received from public sector enterprises"],
+  ["विनिवेश से अधिक आय", "आयकर का अधिक संग्रह", "पिछले ऋण पर ब्याज भुगतान में कमी", "सार्वजनिक क्षेत्र के उद्यमों से प्राप्त लाभांश में वृद्धि"],
+  0,
+  "Disinvestment proceeds are a non-debt capital receipt: they reduce what has to be borrowed, but they do not enter the revenue account. Income tax and dividends are revenue receipts and interest is revenue expenditure, so each of the others would change both deficits.",
+  "विनिवेश से आय एक गैर-ऋण पूँजीगत प्राप्ति है: यह उधार की ज़रूरत घटाती है, पर राजस्व खाते में नहीं आती। आयकर और लाभांश राजस्व प्राप्तियाँ हैं और ब्याज राजस्व व्यय है, इसलिए अन्य हर विकल्प दोनों घाटों को बदलेगा।",
+  f"{NCB}.",
+  "fb-disinvestment-fd-not-rd")
+
+M(FB, "medium", "In the 'rupee comes from' breakdown of the Union Budget 2025-26, which one of the following was the largest source of the Centre's receipts?",
+  "केंद्रीय बजट 2025-26 के 'रुपया कहाँ से आता है' विवरण में निम्नलिखित में से कौन केंद्र की प्राप्तियों का सबसे बड़ा स्रोत था?",
+  ["Borrowings and other liabilities", "Income tax paid by individuals and other non-corporate taxpayers",
+   "Goods and Services Tax collected by the Centre", "Corporation tax paid by companies on their profits"],
+  ["उधार और अन्य देनदारियाँ", "व्यक्तियों और अन्य गैर-कॉरपोरेट करदाताओं द्वारा दिया गया आयकर",
+   "केंद्र द्वारा एकत्र वस्तु एवं सेवा कर", "कंपनियों द्वारा अपने लाभ पर दिया गया निगम कर"],
+  0,
+  "Borrowings and other liabilities supplied about 24 paise of every rupee, ahead of income tax (22 paise), GST (18) and corporation tax (17) -- a measure of how large the fiscal deficit still is. Tax revenues are the largest source of revenue receipts, but not of total receipts.",
+  "उधार और अन्य देनदारियों से हर रुपये के लगभग 24 पैसे आए, जो आयकर (22 पैसे), GST (18) और निगम कर (17) से आगे थे; यह दिखाता है कि राजकोषीय घाटा अब भी कितना बड़ा है। कर राजस्व, राजस्व प्राप्तियों का सबसे बड़ा स्रोत है, पर कुल प्राप्तियों का नहीं।",
+  f"{UB} -- Budget at a Glance.",
+  "fb-rupee-comes-from")
+
+M(FB, "medium", "Which one of the following changes, other things remaining the same, will raise the revenue deficit but leave the primary deficit unchanged?",
+  "अन्य बातें समान रहने पर, निम्नलिखित में से कौन-सा परिवर्तन राजस्व घाटे को बढ़ाएगा पर प्राथमिक घाटे को अपरिवर्तित छोड़ देगा?",
+  ["A rise in interest payments on past borrowing", "A rise in spending on food and fertiliser subsidies",
+   "A rise in capital expenditure on railways", "A fall in the surplus transferred by the RBI"],
+  ["पिछले उधार पर ब्याज भुगतान में वृद्धि", "खाद्य और उर्वरक सब्सिडी पर व्यय में वृद्धि",
+   "रेलवे पर पूँजीगत व्यय में वृद्धि", "RBI द्वारा अंतरित अधिशेष में कमी"],
+  0,
+  "Interest is revenue expenditure, so more of it raises the revenue deficit; the primary deficit is the fiscal deficit minus interest, so it is unaffected. Higher subsidies or a smaller RBI transfer raise both deficits, and higher capital expenditure raises the primary deficit but not the revenue deficit.",
+  "ब्याज राजस्व व्यय है, इसलिए इसके बढ़ने से राजस्व घाटा बढ़ता है; प्राथमिक घाटा राजकोषीय घाटे में से ब्याज घटाने पर मिलता है, इसलिए वह अप्रभावित रहता है। अधिक सब्सिडी या RBI से कम अंतरण दोनों घाटे बढ़ाते हैं, और अधिक पूँजीगत व्यय प्राथमिक घाटा बढ़ाता है, राजस्व घाटा नहीं।",
+  f"{NCB}.",
+  "fb-interest-rd-not-pd")
+
+M(FB, "medium", "'Fiscal consolidation' refers to:",
+  "'राजकोषीय समेकन' (fiscal consolidation) का अर्थ है:",
+  ["reducing the fiscal deficit and debt over time through higher revenue or restrained spending",
+   "merging the Budgets of the Centre and all the States into one consolidated national budget",
+   "combining many separate indirect taxes into a single tax, as was done with the Goods and Services Tax",
+   "bringing all the off-budget borrowings of public sector bodies together into a single fund"],
+  ["उच्च राजस्व या संयमित व्यय से समय के साथ राजकोषीय घाटा और ऋण घटाना",
+   "केंद्र और सभी राज्यों के बजटों को मिलाकर एक समेकित राष्ट्रीय बजट बनाना",
+   "कई अलग अप्रत्यक्ष करों को एक कर में मिलाना, जैसा वस्तु एवं सेवा कर के साथ किया गया",
+   "सार्वजनिक क्षेत्र के निकायों के बजट से बाहर के सभी उधारों को एक ही कोष में लाना"],
+  0,
+  "Fiscal consolidation is the process of bringing deficits and debt down to sustainable levels -- as India has done since the pandemic peak of 2020-21. The other options play on the everyday meaning of 'consolidate' (merge), which is the trap.",
+  "राजकोषीय समेकन घाटों और ऋण को टिकाऊ स्तरों तक लाने की प्रक्रिया है, जैसा भारत ने 2020-21 के महामारी वाले शिखर के बाद से किया है। अन्य विकल्प 'समेकन' के रोज़मर्रा के अर्थ (मिलाना) पर खेलते हैं; यही जाल है।",
+  f"{NCB}; Economic Survey.",
+  "fb-fiscal-consolidation-meaning")
+
+M(FB, "medium", "The 'golden rule' of public finance says that a government should:",
+  "लोक वित्त का 'स्वर्णिम नियम' (golden rule) कहता है कि सरकार को:",
+  ["borrow only to invest, and not to pay for current spending",
+   "keep its total public debt below the level of its foreign exchange reserves",
+   "never change tax rates during a recession, so as to keep policy predictable",
+   "spend at least one-third of its Budget on capital projects every single year"],
+  ["केवल निवेश के लिए उधार लेना चाहिए, चालू व्यय के भुगतान के लिए नहीं",
+   "अपने कुल लोक ऋण को अपने विदेशी मुद्रा भंडार के स्तर से नीचे रखना चाहिए",
+   "मंदी के दौरान कर दरें कभी नहीं बदलनी चाहिए, ताकि नीति पूर्वानुमेय रहे",
+   "हर वर्ष अपने बजट का कम से कम एक-तिहाई पूँजीगत परियोजनाओं पर ख़र्च करना चाहिए"],
+  0,
+  "The golden rule allows borrowing for investment, which adds to future output and can pay for itself, but requires current spending to be met from current revenue -- in effect, a zero revenue deficit over the cycle. It is the logic behind the FRBM Act's original goal of eliminating the revenue deficit.",
+  "स्वर्णिम नियम निवेश के लिए उधार की अनुमति देता है, जो भविष्य का उत्पादन बढ़ाता है और अपनी लागत स्वयं निकाल सकता है, पर चालू व्यय को चालू राजस्व से पूरा करने की अपेक्षा करता है; यानी चक्र भर में शून्य राजस्व घाटा। FRBM अधिनियम के राजस्व घाटा समाप्त करने के मूल लक्ष्य के पीछे यही तर्क था।",
+  f"{NCB}; {FRBM}.",
+  "fb-golden-rule")
+
+M(FB, "medium", "Which one of the following is an example of 'extra-budgetary resources' used to fund public investment?",
+  "निम्नलिखित में से कौन-सा सार्वजनिक निवेश के वित्तपोषण में प्रयुक्त 'अतिरिक्त-बजटीय संसाधनों' का उदाहरण है?",
+  ["Bonds issued by a public sector enterprise to fund its own projects", "Gross budgetary support given by the Centre to a ministry for its schemes",
+   "The share of Central taxes that is devolved to the States each year", "The surplus that the RBI transfers to the Centre after its annual accounts"],
+  ["सार्वजनिक क्षेत्र के किसी उद्यम द्वारा अपनी परियोजनाओं के लिए जारी बॉन्ड", "किसी मंत्रालय को उसकी योजनाओं के लिए केंद्र द्वारा दी गई सकल बजटीय सहायता",
+   "केंद्रीय करों का वह हिस्सा जो हर वर्ष राज्यों को हस्तांतरित होता है", "वार्षिक खातों के बाद RBI द्वारा केंद्र को अंतरित अधिशेष"],
+  0,
+  "Internal and extra-budgetary resources are the funds public enterprises raise themselves -- retained profits, bonds and loans -- to invest alongside budget support. They do not appear in the Centre's deficit, which is why heavy reliance on them can hide the true scale of public borrowing.",
+  "आंतरिक और अतिरिक्त-बजटीय संसाधन (IEBR) वे धन हैं जो सार्वजनिक उद्यम स्वयं जुटाते हैं, जैसे बचाए गए लाभ, बॉन्ड और ऋण, ताकि बजटीय सहायता के साथ निवेश करें। ये केंद्र के घाटे में नहीं दिखते, इसीलिए इन पर भारी निर्भरता सार्वजनिक उधार के वास्तविक आकार को छिपा सकती है।",
+  f"{UB} -- Expenditure Budget, Resources of Public Enterprises.",
+  "fb-iebr-example")
+
+M(FB, "medium", "'Fiscal space' means:",
+  "'राजकोषीय गुंजाइश' (fiscal space) का अर्थ है:",
+  ["the room a government has to raise spending or cut taxes without endangering its finances",
+   "the share of GDP that is spent by the Centre and the States together in any given financial year",
+   "the gap between the Budget Estimates and the Revised Estimates of expenditure in a financial year",
+   "the length of time between the presentation of the Budget and the start of the financial year"],
+  ["वह गुंजाइश जो सरकार के पास अपने वित्त को ख़तरे में डाले बिना व्यय बढ़ाने या कर घटाने के लिए है",
+   "GDP का वह हिस्सा जो किसी वित्तीय वर्ष में केंद्र और राज्य मिलकर ख़र्च करते हैं",
+   "किसी वित्तीय वर्ष में व्यय के बजट अनुमानों और संशोधित अनुमानों के बीच का अंतर",
+   "बजट प्रस्तुत करने और वित्तीय वर्ष शुरू होने के बीच का समय"],
+  0,
+  "Fiscal space depends on how much a government can borrow or tax without pushing its debt onto an unsustainable path; high interest payments and debt shrink it, which is why countries with low debt could spend more freely in the pandemic.",
+  "राजकोषीय गुंजाइश इस पर निर्भर करती है कि सरकार अपने ऋण को अस्थिर मार्ग पर धकेले बिना कितना उधार या कर ले सकती है; ऊँचे ब्याज भुगतान और ऋण इसे घटाते हैं, इसीलिए कम ऋण वाले देश महामारी में अधिक खुलकर ख़र्च कर सके।",
+  "International Monetary Fund -- Fiscal Monitor; Economic Survey.",
+  "fb-fiscal-space")
+
+# ================================================================ EASY MCQs (2)
+M(FB, "easy", "The financial year of the Government of India runs from:",
+  "भारत सरकार का वित्तीय वर्ष कब से कब तक चलता है?",
+  ["1 April to 31 March", "1 January to 31 December", "1 July to 30 June", "1 October to 30 September"],
+  ["1 अप्रैल से 31 मार्च", "1 जनवरी से 31 दिसंबर", "1 जुलाई से 30 जून", "1 अक्टूबर से 30 सितंबर"],
+  0,
+  "India's financial year runs from April to March, and the Budget presented on 1 February covers the year that begins on 1 April.",
+  "भारत का वित्तीय वर्ष अप्रैल से मार्च तक चलता है, और 1 फ़रवरी को प्रस्तुत बजट 1 अप्रैल से शुरू होने वाले वर्ष के लिए होता है।",
+  f"{NCB}.",
+  "fb-financial-year-easy")
+
+M(FB, "easy", "When a government's receipts are larger than its expenditure, its budget is said to be in:",
+  "जब किसी सरकार की प्राप्तियाँ उसके व्यय से अधिक हों, तो उसका बजट किस स्थिति में कहा जाता है?",
+  ["surplus", "deficit", "default", "recession"],
+  ["अधिशेष (surplus)", "घाटा (deficit)", "चूक (default)", "मंदी (recession)"],
+  0,
+  "A budget surplus means receipts exceed spending; a deficit is the opposite. A default is a failure to repay debt, and a recession is a fall in economic activity.",
+  "बजट अधिशेष का अर्थ है कि प्राप्तियाँ व्यय से अधिक हैं; घाटा इसका उलटा है। चूक (default) ऋण न चुका पाना है, और मंदी आर्थिक गतिविधि में गिरावट है।",
+  f"{NCB}.",
+  "fb-surplus-easy")
+
+# ================================================================ HARD MCQs (2)
+M(FB, "hard", "A government's debt is 60 per cent of GDP. In the next year nominal GDP grows by 10 per cent and the government runs a fiscal deficit of 4 per cent of the new year's GDP. Its debt-to-GDP ratio at the end of that year will be about:",
+  "किसी सरकार का ऋण GDP का 60 प्रतिशत है। अगले वर्ष नाममात्र GDP 10 प्रतिशत बढ़ता है और सरकार नए वर्ष के GDP के 4 प्रतिशत का राजकोषीय घाटा उठाती है। उस वर्ष के अंत में उसका ऋण-GDP अनुपात लगभग कितना होगा?",
+  ["58.5 per cent", "64.0 per cent", "54.0 per cent", "50.0 per cent"],
+  ["58.5 प्रतिशत", "64.0 प्रतिशत", "54.0 प्रतिशत", "50.0 प्रतिशत"],
+  0,
+  "Take GDP as 100, so debt is 60. Next year GDP is 110 and the deficit is 4.4, so debt becomes 64.4; 64.4 / 110 = 58.5 per cent. Adding 4 to 60 ignores growth in the denominator, 54 ignores the new deficit, and 50 wrongly subtracts the growth rate in percentage points.",
+  "GDP को 100 मानें, तो ऋण 60 है। अगले वर्ष GDP 110 और घाटा 4.4 है, इसलिए ऋण 64.4 हो जाता है; 64.4 / 110 = 58.5 प्रतिशत। 60 में 4 जोड़ना हर (denominator) की वृद्धि की अनदेखी है, 54 नए घाटे की अनदेखी करता है, और 50 वृद्धि दर को प्रतिशत अंकों में गलत तरीक़े से घटाता है।",
+  "Ministry of Finance -- Status Paper on Government Debt.",
+  "fb-debt-ratio-numerical")
+
+M(FB, "hard", "In the Union Budget, 'effective capital expenditure' is:",
+  "केंद्रीय बजट में 'प्रभावी पूँजीगत व्यय' (effective capital expenditure) क्या है?",
+  ["capital expenditure plus grants-in-aid for the creation of capital assets", "capital expenditure minus the loans and advances given to the States",
+   "capital expenditure plus the proceeds of disinvestment received in the year", "capital expenditure of the Centre and the States taken together as one"],
+  ["पूँजीगत व्यय और पूँजीगत परिसंपत्तियों के सृजन के लिए सहायता अनुदान का योग", "पूँजीगत व्यय में से राज्यों को दिए गए ऋण और अग्रिम घटाकर",
+   "पूँजीगत व्यय और वर्ष में प्राप्त विनिवेश आय का योग", "केंद्र और राज्यों का पूँजीगत व्यय एक साथ मिलाकर"],
+  0,
+  "Because grants to States and other bodies for building assets are booked as revenue expenditure, the Budget adds them back to capital expenditure to show the Centre's full effort at creating assets. It is the counterpart of the effective revenue deficit.",
+  "चूँकि परिसंपत्तियाँ बनाने के लिए राज्यों और अन्य निकायों को दिए गए अनुदान राजस्व व्यय में दर्ज होते हैं, बजट उन्हें पूँजीगत व्यय में वापस जोड़कर परिसंपत्ति-सृजन के लिए केंद्र का पूरा प्रयास दिखाता है। यह प्रभावी राजस्व घाटे का प्रतिरूप है।",
+  f"{UB} -- Budget at a Glance.",
+  "fb-effective-capex")
+
+# ================================================================ STATEMENT-I/II (medium 5, easy 2, hard 2)
+A(FB, "medium",
+  "A large fiscal deficit can push up interest rates in the economy.",
+  "बड़ा राजकोषीय घाटा अर्थव्यवस्था में ब्याज दरों को ऊपर धकेल सकता है।",
+  "Government borrowing competes with private borrowers for the same pool of savings.",
+  "सरकारी उधार उसी बचत-भंडार के लिए निजी उधारकर्ताओं से प्रतिस्पर्धा करता है।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. When the government absorbs a large part of household savings, lenders can demand more, and the resulting higher rates can 'crowd out' private investment -- one reason fiscal consolidation is said to help lower borrowing costs.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। जब सरकार परिवारों की बचत का बड़ा भाग ले लेती है, तो ऋणदाता अधिक माँग सकते हैं, और परिणामी ऊँची दरें निजी निवेश को 'बाहर धकेल' (crowd out) सकती हैं; इसीलिए कहा जाता है कि राजकोषीय समेकन उधार की लागत घटाने में मदद करता है।",
+  f"{NCB}.",
+  "fb-crowding-out")
+
+A(FB, "medium",
+  "The Centre's interest payments have risen steadily in rupee terms over the past decade.",
+  "पिछले एक दशक में केंद्र के ब्याज भुगतान रुपये में लगातार बढ़े हैं।",
+  "Interest payments are the largest item of the Centre's revenue expenditure.",
+  "ब्याज भुगतान केंद्र के राजस्व व्यय की सबसे बड़ी मद हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. Interest payments have risen because the stock of debt has grown, especially after the pandemic borrowing. Being the largest item describes their size; it is not the reason they have grown.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। ब्याज भुगतान इसलिए बढ़े हैं कि ऋण का स्टॉक बढ़ा है, विशेषकर महामारी के दौरान उधार के बाद। सबसे बड़ी मद होना उनका आकार बताता है; यह उनके बढ़ने का कारण नहीं है।",
+  f"{UB} -- Budget at a Glance.",
+  "fb-interest-rising-largest")
+
+A(FB, "medium",
+  "The Centre has reduced its fiscal deficit as a share of GDP every year since 2020-21.",
+  "2020-21 के बाद से केंद्र ने हर वर्ष GDP के अनुपात के रूप में अपना राजकोषीय घाटा घटाया है।",
+  "This was achieved mainly by cutting capital expenditure.",
+  "यह मुख्य रूप से पूँजीगत व्यय में कटौती से हासिल किया गया।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. The deficit fell from 9.2 per cent of GDP in 2020-21 to 4.8 per cent in 2024-25 while capital expenditure more than doubled; buoyant tax revenue, strong nominal growth and the unwinding of pandemic-era spending did the work.",
+  "कथन-I सही है पर कथन-II गलत है। घाटा 2020-21 में GDP के 9.2 प्रतिशत से घटकर 2024-25 में 4.8 प्रतिशत रह गया, जबकि पूँजीगत व्यय दोगुने से अधिक हो गया; यह काम कर राजस्व में उछाल, मज़बूत नाममात्र वृद्धि और महामारी के दौर के व्यय के सिमटने ने किया।",
+  f"{UB} -- Budget at a Glance; Economic Survey.",
+  "fb-consolidation-not-capex-cut")
+
+A(FB, "medium",
+  "The Centre has had a revenue surplus in most years since 2000.",
+  "2000 के बाद से अधिकांश वर्षों में केंद्र का राजस्व अधिशेष रहा है।",
+  "The Union Budget is presented in two parts, the revenue budget and the capital budget.",
+  "केंद्रीय बजट दो भागों, राजस्व बजट और पूँजीगत बजट, में प्रस्तुत किया जाता है।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. The Centre has run a revenue deficit every year for decades -- the FRBM Act's aim of eliminating it was never met. The revenue budget covers revenue receipts and the expenditure met from them; the capital budget covers capital receipts and payments.",
+  "कथन-I गलत है पर कथन-II सही है। केंद्र दशकों से हर वर्ष राजस्व घाटे में रहा है; FRBM अधिनियम का इसे समाप्त करने का लक्ष्य कभी पूरा नहीं हुआ। राजस्व बजट में राजस्व प्राप्तियाँ और उनसे पूरा होने वाला व्यय आता है; पूँजीगत बजट में पूँजीगत प्राप्तियाँ और भुगतान आते हैं।",
+  f"{NCB}; {UB}.",
+  "fb-revenue-deficit-two-budgets")
+
+A(FB, "medium",
+  "Rising interest payments squeeze the Centre's spending on other priorities such as capital investment.",
+  "बढ़ते ब्याज भुगतान पूँजीगत निवेश जैसी अन्य प्राथमिकताओं पर केंद्र के व्यय को दबाते हैं।",
+  "Interest on past debt is a committed expenditure that the government cannot cut at will.",
+  "पिछले ऋण पर ब्याज एक प्रतिबद्ध व्यय है जिसे सरकार मनचाहे ढंग से नहीं घटा सकती।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Interest must be paid in full and on time to keep the government's credit, so when it takes a larger share of revenue, the adjustment falls on spending that can be cut or postponed.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। सरकार की साख बनाए रखने के लिए ब्याज पूरा और समय पर चुकाना पड़ता है, इसलिए जब यह राजस्व का बड़ा हिस्सा लेता है, तो समायोजन उस व्यय पर पड़ता है जिसे घटाया या टाला जा सकता है।",
+  f"{NCB}; Economic Survey.",
+  "fb-interest-committed")
+
+A(FB, "easy",
+  "Building roads and bridges is treated as capital expenditure.",
+  "सड़कें और पुल बनाना पूँजीगत व्यय माना जाता है।",
+  "Such spending creates assets that last for many years.",
+  "ऐसा व्यय कई वर्षों तक चलने वाली परिसंपत्तियाँ बनाता है।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I: capital expenditure is spending that creates lasting assets.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है: पूँजीगत व्यय वह व्यय है जो स्थायी परिसंपत्तियाँ बनाता है।",
+  f"{NCB}.",
+  "fb-roads-capex-easy")
+
+A(FB, "easy",
+  "The Economic Survey reviews the performance of the economy over the past year.",
+  "आर्थिक सर्वेक्षण पिछले वर्ष में अर्थव्यवस्था के प्रदर्शन की समीक्षा करता है।",
+  "The Economic Survey announces the new tax rates for the coming year.",
+  "आर्थिक सर्वेक्षण आगामी वर्ष के लिए नई कर दरों की घोषणा करता है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect: tax changes are proposed in the Budget and made law through the Finance Bill; the Survey reviews the economy and discusses policy ideas.",
+  "कथन-I सही है पर कथन-II गलत है: कर परिवर्तन बजट में प्रस्तावित होते हैं और वित्त विधेयक के ज़रिए क़ानून बनते हैं; सर्वेक्षण अर्थव्यवस्था की समीक्षा करता है और नीतिगत विचारों पर चर्चा करता है।",
+  "Ministry of Finance -- Economic Survey.",
+  "fb-economic-survey-role-easy")
+
+A(FB, "hard",
+  "The Centre's fiscal deficit widened sharply in 2020-21.",
+  "2020-21 में केंद्र का राजकोषीय घाटा तेज़ी से बढ़ा।",
+  "Tax revenues fell as economic activity contracted during the pandemic.",
+  "महामारी के दौरान आर्थिक गतिविधि सिकुड़ने से कर राजस्व घटा।",
+  0,
+  "Both Statements II and III are correct, and both explain Statement I. The deficit jumped from 4.6 per cent of GDP in 2019-20 to 9.2 per cent: revenue fell with output, while spending rose on free food grains, relief to the poor and support to businesses -- the two sides of the Budget moving against each other.",
+  "कथन II और III दोनों सही हैं, और दोनों कथन I की व्याख्या करते हैं। घाटा 2019-20 में GDP के 4.6 प्रतिशत से उछलकर 9.2 प्रतिशत हो गया: उत्पादन के साथ राजस्व घटा, जबकि मुफ़्त अनाज, ग़रीबों को राहत और व्यवसायों को सहायता पर व्यय बढ़ा; यानी बजट के दोनों पक्ष एक-दूसरे के विपरीत चले।",
+  f"{UB} -- Budget at a Glance (2020-21 Actuals); Economic Survey 2020-21.",
+  "fb-pandemic-deficit",
+  s3="The government raised spending on relief measures such as free food grains.",
+  s3_hi="सरकार ने मुफ़्त अनाज जैसे राहत उपायों पर व्यय बढ़ाया।")
+
+A(FB, "hard",
+  "When the RBI buys newly issued government securities directly from the government, the money supply is unaffected.",
+  "जब RBI नई जारी सरकारी प्रतिभूतियाँ सीधे सरकार से ख़रीदता है, तो मुद्रा आपूर्ति अप्रभावित रहती है।",
+  "Since 2006 the FRBM Act has barred the RBI from subscribing to primary issues of Central Government securities, except in specified circumstances.",
+  "2006 से FRBM अधिनियम ने, निर्दिष्ट परिस्थितियों को छोड़कर, RBI को केंद्र सरकार की प्रतिभूतियों के प्राथमिक निर्गमों में अंशदान से रोक रखा है।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. When the RBI buys new bonds from the government, it pays by creating reserve money, which expands the money supply -- this is monetisation of the deficit. That is why the FRBM Act ended such purchases, allowing them only in the circumstances covered by the escape clause.",
+  "कथन-I गलत है पर कथन-II सही है। जब RBI सरकार से नए बॉन्ड ख़रीदता है, तो वह आरक्षित मुद्रा सृजित करके भुगतान करता है, जिससे मुद्रा आपूर्ति बढ़ती है; यही घाटे का मुद्रीकरण (monetisation) है। इसीलिए FRBM अधिनियम ने ऐसी ख़रीद बंद की और इसकी अनुमति केवल बचाव खंड में शामिल परिस्थितियों में दी।",
+  f"{FRBM}, section 5; {RBI} -- Report on Currency and Finance.",
+  "fb-monetisation-frbm")
+
+# ================================================================ PAIRS (easy 1, medium 1)
+P(FB, "easy", "Consider the following pairs of items and their classification in the Budget:",
+  "मदों और बजट में उनके वर्गीकरण के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Dividends from public sector enterprises : Non-tax revenue", "Old-age pensions paid by the government : Transfer payment",
+   "Profits transferred by the RBI to the Centre : Capital receipt", "Fines and penalties collected by the government : Non-tax revenue"],
+  ["सार्वजनिक क्षेत्र के उद्यमों से लाभांश : गैर-कर राजस्व", "सरकार द्वारा दी गई वृद्धावस्था पेंशन : हस्तांतरण भुगतान",
+   "RBI द्वारा केंद्र को अंतरित लाभ : पूँजीगत प्राप्ति", "सरकार द्वारा वसूले गए जुर्माने और दंड : गैर-कर राजस्व"],
+  2,
+  "Pairs 1, 2 and 4 are correct. "
+  "Pair 3 is wrong: the RBI's surplus transfer, like dividends from public enterprises, is non-tax revenue -- a record of about 2.7 lakh crore rupees for 2024-25 gave the Centre a large cushion in 2025-26.",
+  "युग्म 1, 2 और 4 सही हैं। "
+  "युग्म 3 गलत है: RBI का अधिशेष अंतरण, सार्वजनिक उद्यमों के लाभांश की तरह, गैर-कर राजस्व है; 2024-25 के लिए लगभग 2.7 लाख करोड़ रुपये के रिकॉर्ड अंतरण ने 2025-26 में केंद्र को बड़ा सहारा दिया।",
+  f"{NCB}; {UB} -- Receipt Budget.",
+  "fb-receipt-classification-pairs-easy")
+
+P(FB, "medium", "Consider the following pairs of committees and the subjects they examined:",
+  "समितियों और उनके द्वारा जाँचे गए विषयों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Bimal Jalan Committee : Economic capital framework of the RBI", "Vijay Kelkar Task Force (2004) : Implementation of the FRBM Act",
+   "Bibek Debroy Committee : Fiscal deficit targets for the States", "Y.V. Reddy Committee : Revenue neutral rate of GST"],
+  ["बिमल जालान समिति : RBI का आर्थिक पूँजी ढाँचा", "विजय केलकर कार्य बल (2004) : FRBM अधिनियम का कार्यान्वयन",
+   "बिबेक देबरॉय समिति : राज्यों के राजकोषीय घाटे के लक्ष्य", "वाई.वी. रेड्डी समिति : GST की राजस्व तटस्थ दर"],
+  1,
+  "Pairs 1 and 2 are correct: the Jalan committee (2019) set how much of its reserves the RBI should keep as a buffer and how much it can transfer to the government, and the Kelkar task force laid out how the new FRBM targets could be met, including a GST. "
+  "Pair 3 is wrong: Bibek Debroy's committee (2015) was on restructuring the Railways. Pair 4 is wrong: the revenue neutral rate of GST was worked out by a committee under Arvind Subramanian (2015); Y.V. Reddy chaired the Fourteenth Finance Commission.",
+  "युग्म 1 और 2 सही हैं: जालान समिति (2019) ने तय किया कि RBI को अपने भंडार का कितना भाग बफ़र के रूप में रखना चाहिए और कितना सरकार को अंतरित कर सकता है, और केलकर कार्य बल ने बताया कि FRBM के नए लक्ष्य कैसे पूरे हो सकते हैं, जिसमें GST भी शामिल था। "
+  "युग्म 3 गलत है: बिबेक देबरॉय की समिति (2015) रेलवे के पुनर्गठन पर थी। युग्म 4 गलत है: GST की राजस्व तटस्थ दर अरविंद सुब्रमण्यन के अधीन एक समिति (2015) ने निकाली; वाई.वी. रेड्डी ने चौदहवें वित्त आयोग की अध्यक्षता की।",
+  f"{RBI} -- Report of the Expert Committee to Review the Extant Economic Capital Framework (2019); Ministry of Finance -- Report of the Task Force on Implementation of the FRBM Act (2004).",
+  "fb-fiscal-committees-pairs")
+
+if __name__ == "__main__":
+    write("econ_l2_t17_budget_debt.sql")
