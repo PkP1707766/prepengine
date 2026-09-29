@@ -1,0 +1,492 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 12 (Geography 1: World Physical Geography) -- Climatology & Biomes: 34 new bilingual
+rows against the live gap report: medium statement 10, medium MCQ 4, hard statement 4, medium
+Statement-I/II 4, easy statement 3, easy MCQ 2, hard MCQ 2, easy Statement-I/II 1, easy pairs 1,
+hard I/II/III 1, hard pairs 1, medium pairs 1.
+The bank already tests local winds (Chinook, Mistral, Harmattan, Sirocco) and the taiga's annual range,
+so both are left alone; ozone and greenhouse gases are left to the Environment tests, the Indian
+monsoon to Test 13. Continentality is kept out because it would point to the taiga row."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Geography"
+CL = "Climatology & Biomes"
+NC11 = "NCERT Class XI, Fundamentals of Physical Geography"
+NC7 = "NCERT Class VII, Our Environment"
+NC6 = "NCERT Class VI, The Earth: Our Habitat"
+
+# ================================================================ MEDIUM STATEMENTS (10)
+S(CL, "medium", "Consider the following statements about the layers of the atmosphere:",
+  "वायुमंडल की परतों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The tropopause is higher over the Equator than over the poles.",
+   "Temperature increases with height in the stratosphere.",
+   "Most meteors burn up in the troposphere."],
+  ["क्षोभसीमा (tropopause) ध्रुवों की तुलना में विषुवत रेखा के ऊपर अधिक ऊँचाई पर है।",
+   "समतापमंडल (stratosphere) में ऊँचाई के साथ तापमान बढ़ता है।",
+   "अधिकांश उल्काएँ क्षोभमंडल (troposphere) में जलकर नष्ट हो जाती हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The troposphere is about 18 km thick at the Equator, where strong heating and convection lift the tropopause, but only about 8 km thick at the poles. In the stratosphere temperature rises with height because the ozone there absorbs ultraviolet radiation. "
+  "Statement 3 is wrong: meteors burn up mainly in the mesosphere, which extends from about 50 to 80 km, heated by friction with the thin air; the troposphere, where almost all weather occurs, lies far below.",
+  "कथन 1 और 2 सही हैं। विषुवत रेखा पर क्षोभमंडल लगभग 18 किमी मोटा है, क्योंकि वहाँ तेज़ गर्मी और संवहन क्षोभसीमा को ऊपर उठा देते हैं, जबकि ध्रुवों पर यह केवल लगभग 8 किमी मोटा है। समतापमंडल में ऊँचाई के साथ तापमान इसलिए बढ़ता है कि वहाँ की ओज़ोन पराबैंगनी विकिरण को सोख लेती है। "
+  "कथन 3 गलत है: उल्काएँ मुख्य रूप से मध्यमंडल (mesosphere) में, जो लगभग 50 से 80 किमी तक फैला है, विरल वायु के घर्षण से गर्म होकर जलती हैं; क्षोभमंडल, जहाँ लगभग सारी मौसमी घटनाएँ होती हैं, उससे बहुत नीचे है।",
+  f"{NC11} -- Composition and Structure of Atmosphere.",
+  "geo-atmosphere-layers-tropopause")
+
+S(CL, "medium", "Consider the following statements about the world's pressure belts:",
+  "विश्व की वायुदाब पेटियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The equatorial low-pressure belt is dynamic in origin.",
+   "The subpolar low-pressure belts are thermal in origin.",
+   "The polar high-pressure belts are dynamic in origin."],
+  ["विषुवतीय निम्न वायुदाब पेटी की उत्पत्ति गतिक (dynamic) है।",
+   "उपध्रुवीय निम्न वायुदाब पेटियों की उत्पत्ति तापीय (thermal) है।",
+   "ध्रुवीय उच्च वायुदाब पेटियों की उत्पत्ति गतिक है।"],
+  C3, 3,
+  "None of the statements is correct. The equatorial low and the polar highs are thermal: intense heating makes air expand and rise at the Equator, while extreme cold makes air contract and sink over the poles. The subpolar lows and the subtropical highs are dynamic -- they result from the movement of air and the Earth's rotation rather than from local temperature: the subpolar lows form where the westerlies and the polar easterlies converge and air is forced up, and the subtropical highs where air that rose at the Equator descends. "
+  "A student who knows only that 'lows are hot and highs are cold' will mark the subpolar lows as thermal.",
+  "कोई भी कथन सही नहीं है। विषुवतीय निम्न और ध्रुवीय उच्च वायुदाब तापीय हैं: विषुवत रेखा पर तीव्र गर्मी से वायु फैलकर ऊपर उठती है, जबकि ध्रुवों पर अत्यधिक ठंड से वायु सिकुड़कर नीचे बैठती है। उपध्रुवीय निम्न और उपोष्ण उच्च वायुदाब गतिक हैं, यानी ये स्थानीय तापमान से नहीं, बल्कि वायु की गति और पृथ्वी के घूर्णन से बनते हैं: उपध्रुवीय निम्न वहाँ बनते हैं जहाँ पछुआ पवनें और ध्रुवीय पूर्वी पवनें मिलती हैं और वायु ऊपर धकेली जाती है, और उपोष्ण उच्च वहाँ जहाँ विषुवत रेखा पर उठी वायु नीचे उतरती है। "
+  "जो विद्यार्थी केवल यह जानता है कि 'निम्न दाब गर्म और उच्च दाब ठंडे होते हैं', वह उपध्रुवीय निम्न को तापीय मान लेगा।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-pressure-belts-thermal-dynamic")
+
+S(CL, "medium", "Consider the following statements about the planetary winds:",
+  "ग्रहीय पवनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In the Northern Hemisphere, the trade winds blow from the south-east.",
+   "The westerlies blow from the subpolar low-pressure belts towards the subtropical high-pressure belts.",
+   "The polar easterlies blow from the polar highs towards the subpolar lows."],
+  ["उत्तरी गोलार्ध में व्यापारिक पवनें दक्षिण-पूर्व से चलती हैं।",
+   "पछुआ पवनें उपध्रुवीय निम्न वायुदाब पेटियों से उपोष्ण उच्च वायुदाब पेटियों की ओर चलती हैं।",
+   "ध्रुवीय पूर्वी पवनें ध्रुवीय उच्च वायुदाब से उपध्रुवीय निम्न वायुदाब की ओर चलती हैं।"],
+  C3, 0,
+  "Only statement 3 is correct. "
+  "Statement 1 is wrong: the trade winds blow from the subtropical highs towards the equatorial low and are deflected to the right in the Northern Hemisphere, so they are the north-east trades there and the south-east trades south of the Equator. "
+  "Statement 2 is wrong: like all winds, the westerlies blow from high to low pressure -- from the subtropical highs towards the subpolar lows -- as south-westerlies in the Northern Hemisphere and north-westerlies in the Southern.",
+  "केवल कथन 3 सही है। "
+  "कथन 1 गलत है: व्यापारिक पवनें उपोष्ण उच्च वायुदाब से विषुवतीय निम्न वायुदाब की ओर चलती हैं और उत्तरी गोलार्ध में दाईं ओर मुड़ जाती हैं, इसलिए वहाँ ये उत्तर-पूर्वी व्यापारिक पवनें हैं और विषुवत रेखा के दक्षिण में दक्षिण-पूर्वी व्यापारिक पवनें। "
+  "कथन 2 गलत है: सभी पवनों की तरह पछुआ पवनें भी उच्च से निम्न वायुदाब की ओर, यानी उपोष्ण उच्च से उपध्रुवीय निम्न की ओर चलती हैं; उत्तरी गोलार्ध में दक्षिण-पश्चिमी और दक्षिणी गोलार्ध में उत्तर-पश्चिमी पवनों के रूप में।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-planetary-winds-direction")
+
+S(CL, "medium", "Consider the following statements about the Coriolis force:",
+  "कोरिऑलिस बल के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is absent at the Equator.",
+   "It changes the direction of moving air but not its speed.",
+   "Its strength increases with the speed of the moving air."],
+  ["यह विषुवत रेखा पर अनुपस्थित होता है।",
+   "यह गतिमान वायु की दिशा बदलता है, पर उसकी गति नहीं।",
+   "गतिमान वायु की गति बढ़ने के साथ इसकी शक्ति बढ़ती है।"],
+  C3, 2,
+  "All three statements are correct. The Coriolis force is an effect of the Earth's rotation: it is proportional to the sine of the latitude -- zero at the Equator and greatest at the poles -- and to the speed of the wind. It always acts at right angles to the direction of motion, so it turns the wind (to the right in the Northern Hemisphere, to the left in the Southern) without speeding it up or slowing it down. "
+  "Statements 2 and 3 look contradictory but are not: a faster wind is deflected more strongly, yet the deflection changes only its direction.",
+  "तीनों कथन सही हैं। कोरिऑलिस बल पृथ्वी के घूर्णन का प्रभाव है: यह अक्षांश की ज्या (sine) के अनुपात में होता है, यानी विषुवत रेखा पर शून्य और ध्रुवों पर सबसे अधिक, और पवन की गति के भी अनुपात में होता है। यह सदा गति की दिशा से समकोण पर कार्य करता है, इसलिए यह पवन को मोड़ता है (उत्तरी गोलार्ध में दाईं ओर, दक्षिणी में बाईं ओर), पर उसे तेज़ या धीमा नहीं करता। "
+  "कथन 2 और 3 परस्पर विरोधी लगते हैं, पर हैं नहीं: तेज़ पवन अधिक प्रबलता से मुड़ती है, फिर भी यह मोड़ केवल उसकी दिशा बदलता है।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-coriolis-force-properties")
+
+S(CL, "medium", "Consider the following statements comparing temperate (extra-tropical) cyclones with tropical cyclones:",
+  "शीतोष्ण (बाह्य-उष्णकटिबंधीय) चक्रवातों की उष्णकटिबंधीय चक्रवातों से तुलना करने वाले निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Temperate cyclones form over the oceans and die out soon after reaching land.",
+   "Temperate cyclones generally move from east to west.",
+   "Tropical cyclones usually cover a larger area than temperate cyclones."],
+  ["शीतोष्ण चक्रवात महासागरों के ऊपर बनते हैं और स्थल पर पहुँचने के कुछ ही समय बाद समाप्त हो जाते हैं।",
+   "शीतोष्ण चक्रवात सामान्यतः पूर्व से पश्चिम की ओर चलते हैं।",
+   "उष्णकटिबंधीय चक्रवात सामान्यतः शीतोष्ण चक्रवातों से अधिक बड़े क्षेत्र में फैले होते हैं।"],
+  C3, 3,
+  "None of the statements is correct. "
+  "Statement 1 is wrong: temperate cyclones form along fronts, where warm and cold air masses meet, over land as well as sea, and can cross whole continents; it is tropical cyclones that depend on warm water and weaken over land. "
+  "Statement 2 is wrong: temperate cyclones are carried from west to east by the westerlies -- which is why weather in western Europe usually arrives from the Atlantic. "
+  "Statement 3 is wrong: temperate cyclones are far larger, often 1,000-2,000 km across, while tropical cyclones are compact (a few hundred kilometres) but much more intense, with steeper pressure gradients and stronger winds.",
+  "कोई भी कथन सही नहीं है। "
+  "कथन 1 गलत है: शीतोष्ण चक्रवात वाताग्रों (fronts) पर बनते हैं, जहाँ गर्म और ठंडी वायुराशियाँ मिलती हैं, और ये समुद्र के साथ-साथ स्थल पर भी बनते हैं तथा पूरे महाद्वीप पार कर सकते हैं; गर्म जल पर निर्भर रहने वाले और स्थल पर कमज़ोर पड़ने वाले चक्रवात उष्णकटिबंधीय होते हैं। "
+  "कथन 2 गलत है: पछुआ पवनें शीतोष्ण चक्रवातों को पश्चिम से पूर्व की ओर ले जाती हैं; इसीलिए पश्चिमी यूरोप का मौसम प्रायः अटलांटिक की ओर से आता है। "
+  "कथन 3 गलत है: शीतोष्ण चक्रवात कहीं बड़े होते हैं, प्रायः 1,000-2,000 किमी व्यास के, जबकि उष्णकटिबंधीय चक्रवात छोटे (कुछ सौ किलोमीटर) पर कहीं अधिक तीव्र होते हैं, जिनमें वायुदाब प्रवणता अधिक तीखी और पवनें अधिक तेज़ होती हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-temperate-vs-tropical-cyclones")
+
+S(CL, "medium", "Consider the following statements about tropical cyclones:",
+  "उष्णकटिबंधीय चक्रवातों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They draw their energy mainly from the latent heat released when water vapour condenses.",
+   "They form over seas with a surface temperature of about 27 °C or more.",
+   "The eye of a tropical cyclone has the strongest winds and the heaviest rain.",
+   "Off north-western Australia, they have traditionally been called willy-willies."],
+  ["ये अपनी ऊर्जा मुख्य रूप से जलवाष्प के संघनन से मुक्त होने वाली गुप्त ऊष्मा से प्राप्त करते हैं।",
+   "ये लगभग 27 °C या उससे अधिक सतही तापमान वाले समुद्रों के ऊपर बनते हैं।",
+   "उष्णकटिबंधीय चक्रवात की आँख (eye) में सबसे तेज़ हवाएँ और सबसे भारी वर्षा होती है।",
+   "उत्तर-पश्चिमी ऑस्ट्रेलिया के पास इन्हें पारंपरिक रूप से विली-विली कहा जाता है।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. Warm, moist air rising over the sea condenses and releases latent heat, which warms the core, lowers the pressure further and draws in more moist air; cut off from that supply after landfall, a cyclone weakens. They need a sea surface of about 27 °C or warmer, enough Coriolis force to start the spin, and little change of wind with height. They are called hurricanes in the Atlantic, typhoons in the western Pacific and willy-willies off north-western Australia. "
+  "Statement 3 is wrong: the eye is calm and nearly cloudless, with sinking air and the lowest pressure; the strongest winds and heaviest rain are in the eye wall that surrounds it.",
+  "कथन 1, 2 और 4 सही हैं। समुद्र के ऊपर उठती गर्म, नम वायु संघनित होकर गुप्त ऊष्मा छोड़ती है, जो चक्रवात के केंद्र को गर्म करती है, वायुदाब और घटाती है और और अधिक नम वायु खींचती है; स्थल पर पहुँचने के बाद यह आपूर्ति कट जाती है और चक्रवात कमज़ोर पड़ जाता है। इन्हें लगभग 27 °C या अधिक गर्म समुद्री सतह, घूर्णन शुरू करने लायक कोरिऑलिस बल और ऊँचाई के साथ पवन में कम बदलाव चाहिए। इन्हें अटलांटिक में हरिकेन, पश्चिमी प्रशांत में टाइफ़ून और उत्तर-पश्चिमी ऑस्ट्रेलिया के पास विली-विली कहते हैं। "
+  "कथन 3 गलत है: आँख शांत और लगभग मेघरहित होती है, जहाँ वायु नीचे उतरती है और वायुदाब सबसे कम होता है; सबसे तेज़ हवाएँ और सबसे भारी वर्षा उसे घेरने वाली 'आँख की दीवार' (eye wall) में होती हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems; India Meteorological Department -- Frequently Asked Questions on Tropical Cyclones.",
+  "geo-tropical-cyclones-energy-eye")
+
+S(CL, "medium", "Consider the following statements about jet streams:",
+  "जेट धाराओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are narrow bands of fast-moving air in the upper troposphere.",
+   "They are strongest in summer.",
+   "The polar front jet stream influences the path of temperate cyclones."],
+  ["ये ऊपरी क्षोभमंडल में तेज़ गति से बहने वाली वायु की संकरी पट्टियाँ हैं।",
+   "ये ग्रीष्म ऋतु में सबसे प्रबल होती हैं।",
+   "ध्रुवीय वाताग्र जेट धारा शीतोष्ण चक्रवातों के मार्ग को प्रभावित करती है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. Jet streams blow at about 9-14 km, near the tropopause, often faster than 200 km/h; the polar front jet meanders in great waves and steers the cyclones and anticyclones of the middle latitudes. "
+  "Statement 2 is wrong: they are strongest in winter, when the temperature contrast between the tropics and the poles -- which drives them -- is greatest; in summer they weaken and shift towards the poles.",
+  "कथन 1 और 3 सही हैं। जेट धाराएँ लगभग 9-14 किमी की ऊँचाई पर, क्षोभसीमा के पास, प्रायः 200 किमी/घंटा से अधिक गति से बहती हैं; ध्रुवीय वाताग्र जेट बड़ी-बड़ी तरंगों में बल खाती हुई मध्य अक्षांशों के चक्रवातों और प्रतिचक्रवातों को दिशा देती है। "
+  "कथन 2 गलत है: ये शीत ऋतु में सबसे प्रबल होती हैं, जब उष्णकटिबंध और ध्रुवों के बीच तापमान का अंतर, जो इन्हें चलाता है, सबसे अधिक होता है; ग्रीष्म में ये कमज़ोर होकर ध्रुवों की ओर खिसक जाती हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-jet-streams-season")
+
+S(CL, "medium", "Consider the following statements about clouds:",
+  "बादलों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Cirrus clouds form at high altitudes and are made mostly of ice crystals.",
+   "Cumulonimbus clouds can extend from near the ground to the upper troposphere.",
+   "Nimbostratus clouds bring steady, continuous rain or snow."],
+  ["पक्षाभ (cirrus) बादल अधिक ऊँचाई पर बनते हैं और मुख्यतः हिम-क्रिस्टलों से बने होते हैं।",
+   "कपासी-वर्षी (cumulonimbus) बादल भूमि के पास से ऊपरी क्षोभमंडल तक फैल सकते हैं।",
+   "वर्षा-स्तरी (nimbostratus) बादल लगातार, स्थिर वर्षा या हिमपात लाते हैं।"],
+  C3, 2,
+  "All three statements are correct. Cirrus are thin, feathery clouds at about 8-12 km, too cold for liquid water; cumulonimbus are towering thunderclouds whose tops can reach the tropopause and spread into an anvil, bringing lightning, hail and heavy showers; nimbostratus are thick, dark-grey layer clouds that give prolonged, steady rain or snow.",
+  "तीनों कथन सही हैं। पक्षाभ लगभग 8-12 किमी की ऊँचाई पर बने पतले, पंख जैसे बादल हैं, जहाँ द्रव जल के लिए बहुत ठंड होती है; कपासी-वर्षी ऊँचे उठे गरज वाले बादल हैं, जिनके शिखर क्षोभसीमा तक पहुँचकर निहाई (anvil) जैसे फैल सकते हैं और जो बिजली, ओले और भारी बौछारें लाते हैं; वर्षा-स्तरी मोटे, गहरे-धूसर परतदार बादल हैं जो लंबे समय तक स्थिर वर्षा या हिमपात देते हैं।",
+  f"{NC11} -- Water in the Atmosphere.",
+  "geo-cloud-types")
+
+S(CL, "medium", "Consider the following statements about humidity and condensation:",
+  "आर्द्रता और संघनन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["When air cools without any change in its moisture content, its relative humidity rises.",
+   "Absolute humidity is expressed as a percentage.",
+   "When air is cooled below its dew point, evaporation begins."],
+  ["जब वायु में नमी की मात्रा बदले बिना वह ठंडी होती है, तो उसकी सापेक्ष आर्द्रता बढ़ जाती है।",
+   "निरपेक्ष आर्द्रता को प्रतिशत में व्यक्त किया जाता है।",
+   "जब वायु को उसके ओसांक (dew point) से नीचे ठंडा किया जाता है, तो वाष्पीकरण शुरू हो जाता है।"],
+  C3, 0,
+  "Only statement 1 is correct: cooler air can hold less water vapour, so the same moisture forms a larger share of its capacity -- which is why relative humidity is usually highest around dawn. "
+  "Statement 2 is wrong: absolute humidity is the actual mass of water vapour in a given volume of air, in grams per cubic metre; it is relative humidity that is expressed as a percentage. "
+  "Statement 3 is wrong: at the dew point the air becomes saturated, and further cooling causes condensation -- forming dew, fog or clouds.",
+  "केवल कथन 1 सही है: ठंडी वायु कम जलवाष्प धारण कर सकती है, इसलिए उतनी ही नमी उसकी क्षमता का बड़ा भाग बन जाती है; इसीलिए सापेक्ष आर्द्रता प्रायः भोर के आसपास सबसे अधिक होती है। "
+  "कथन 2 गलत है: निरपेक्ष आर्द्रता वायु के किसी निश्चित आयतन में जलवाष्प का वास्तविक द्रव्यमान है, जिसे ग्राम प्रति घन मीटर में मापा जाता है; प्रतिशत में सापेक्ष आर्द्रता व्यक्त की जाती है। "
+  "कथन 3 गलत है: ओसांक पर वायु संतृप्त हो जाती है, और आगे ठंडा होने पर संघनन होता है, जिससे ओस, कोहरा या बादल बनते हैं।",
+  f"{NC11} -- Water in the Atmosphere.",
+  "geo-humidity-dew-point")
+
+S(CL, "medium", "Consider the following statements about the world's natural vegetation:",
+  "विश्व की प्राकृतिक वनस्पति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The soils of tropical rainforests are generally poor in nutrients despite the dense forest.",
+   "Temperate grasslands have deep, fertile soils, and many have become major wheat-growing regions.",
+   "Temperate deciduous forests shed their leaves in the dry season to conserve water."],
+  ["घने वन के बावजूद उष्णकटिबंधीय वर्षावनों की मिट्टियाँ सामान्यतः पोषक तत्वों में कम होती हैं।",
+   "शीतोष्ण घास के मैदानों की मिट्टियाँ गहरी और उपजाऊ हैं, और इनमें से कई प्रमुख गेहूँ उत्पादक क्षेत्र बन गए हैं।",
+   "शीतोष्ण पर्णपाती वन जल बचाने के लिए शुष्क ऋतु में अपनी पत्तियाँ गिराते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. In rainforests most nutrients are held in the living vegetation and recycled quickly, while heavy rain leaches the soil -- so cleared land loses its fertility within a few years. The prairies, steppes and pampas have deep, humus-rich soils and are now among the world's granaries. "
+  "Statement 3 is wrong: temperate deciduous trees such as oak, beech and maple shed their leaves in the cold winter; it is the tropical deciduous (monsoon) forests that shed them in the dry season.",
+  "कथन 1 और 2 सही हैं। वर्षावनों में अधिकांश पोषक तत्व जीवित वनस्पति में रहते हैं और जल्दी-जल्दी पुनर्चक्रित होते हैं, जबकि भारी वर्षा मिट्टी से पोषक तत्व बहा ले जाती है (निक्षालन); इसलिए साफ़ की गई भूमि कुछ ही वर्षों में उर्वरता खो देती है। प्रेयरी, स्टेपी और पम्पास की मिट्टियाँ गहरी और ह्यूमस-समृद्ध हैं और आज ये विश्व के अन्न-भंडार हैं। "
+  "कथन 3 गलत है: ओक, बीच और मेपल जैसे शीतोष्ण पर्णपाती वृक्ष ठंडी शीत ऋतु में पत्तियाँ गिराते हैं; शुष्क ऋतु में पत्तियाँ उष्णकटिबंधीय पर्णपाती (मानसूनी) वन गिराते हैं।",
+  f"{NC7} -- Natural Vegetation and Wildlife; Life in the Temperate Grasslands.",
+  "geo-biomes-soils-leaf-fall")
+
+# ================================================================ HARD STATEMENTS (4)
+S(CL, "hard", "Consider the following statements about the general circulation of the atmosphere:",
+  "वायुमंडल के सामान्य परिसंचरण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Ferrel cell is a thermally indirect cell.",
+   "The Ferrel cell lies between the Equator and about 30° latitude.",
+   "The polar cell is a thermally direct cell."],
+  ["फ़ेरल कोष्ठ (Ferrel cell) तापीय रूप से अप्रत्यक्ष कोष्ठ है।",
+   "फ़ेरल कोष्ठ विषुवत रेखा और लगभग 30° अक्षांश के बीच स्थित है।",
+   "ध्रुवीय कोष्ठ तापीय रूप से प्रत्यक्ष कोष्ठ है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. In a thermally direct cell warm air rises and cold air sinks, turning heat into motion: the Hadley cell (warm air rising at the Equator, sinking near 30 degrees) and the polar cell (cold air sinking over the poles, flowing out as the polar easterlies and rising near 60 degrees) are both direct. The Ferrel cell is indirect -- driven by the two cells on either side of it, with air sinking at the warmer latitude and rising at the cooler one. "
+  "Statement 2 is wrong: the Ferrel cell lies between about 30 and 60 degrees, beneath the westerlies; the zone from the Equator to about 30 degrees is the Hadley cell's.",
+  "कथन 1 और 3 सही हैं। तापीय रूप से प्रत्यक्ष कोष्ठ में गर्म वायु ऊपर उठती है और ठंडी वायु नीचे बैठती है, यानी ऊष्मा गति में बदलती है: हैडली कोष्ठ (विषुवत रेखा पर उठती और लगभग 30 अंश पर उतरती गर्म वायु) और ध्रुवीय कोष्ठ (ध्रुवों पर उतरती, ध्रुवीय पूर्वी पवनों के रूप में बाहर बहती और लगभग 60 अंश पर उठती ठंडी वायु) दोनों प्रत्यक्ष हैं। फ़ेरल कोष्ठ अप्रत्यक्ष है; यह अपने दोनों ओर के कोष्ठों से चलता है, और इसमें वायु गर्म अक्षांश पर उतरती और ठंडे अक्षांश पर उठती है। "
+  "कथन 2 गलत है: फ़ेरल कोष्ठ लगभग 30 और 60 अंश के बीच, पछुआ पवनों के ऊपर है; विषुवत रेखा से लगभग 30 अंश तक का क्षेत्र हैडली कोष्ठ का है।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-tricellular-circulation")
+
+S(CL, "hard", "Consider the following statements about fronts:",
+  "वाताग्रों (fronts) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Fronts are rarely found in the tropics.",
+   "An occluded front forms when a warm front overtakes a cold front.",
+   "Along a stationary front, the cold air mass advances steadily and lifts the warm air."],
+  ["उष्णकटिबंध में वाताग्र शायद ही कभी पाए जाते हैं।",
+   "अधिविष्ट वाताग्र (occluded front) तब बनता है जब कोई उष्ण वाताग्र किसी शीत वाताग्र से आगे निकल जाता है।",
+   "स्थायी वाताग्र (stationary front) के साथ ठंडी वायुराशि लगातार आगे बढ़ती है और गर्म वायु को ऊपर उठाती है।"],
+  C3, 0,
+  "Only statement 1 is correct: a front needs air masses of sharply different temperature and density, which meet mainly in the middle latitudes; air over the tropics is broadly uniform. "
+  "Statement 2 is wrong: the cold front, which moves faster, overtakes the warm front and lifts the warm air off the ground -- that is an occlusion, and it marks the last stage of a temperate cyclone. "
+  "Statement 3 is wrong: at a stationary front neither air mass is able to push the other, so the front barely moves; a cold front is the one along which cold air advances and wedges the warm air up.",
+  "केवल कथन 1 सही है: वाताग्र के लिए तापमान और घनत्व में स्पष्ट रूप से भिन्न वायुराशियाँ चाहिए, जो मुख्य रूप से मध्य अक्षांशों में मिलती हैं; उष्णकटिबंध की वायु मोटे तौर पर एक-सी होती है। "
+  "कथन 2 गलत है: अधिक तेज़ चलने वाला शीत वाताग्र उष्ण वाताग्र से आगे निकलकर गर्म वायु को भूमि से ऊपर उठा देता है; यही अधिविष्टन (occlusion) है, और यह शीतोष्ण चक्रवात की अंतिम अवस्था है। "
+  "कथन 3 गलत है: स्थायी वाताग्र पर कोई भी वायुराशि दूसरी को धकेल नहीं पाती, इसलिए वाताग्र लगभग स्थिर रहता है; जिस वाताग्र के साथ ठंडी वायु आगे बढ़कर गर्म वायु को ऊपर धकेलती है, वह शीत वाताग्र है।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-fronts-types")
+
+S(CL, "hard", "Consider the following statements about temperature inversion:",
+  "तापमान व्युत्क्रमण (temperature inversion) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It develops most readily on long, clear, calm winter nights.",
+   "It can trap smoke and dust near the ground and worsen air pollution.",
+   "It is common over the polar regions for much of the year."],
+  ["यह सबसे आसानी से लंबी, साफ़ और शांत शीतकालीन रातों में विकसित होता है।",
+   "यह धुएँ और धूल को भूमि के पास रोककर वायु प्रदूषण को बढ़ा सकता है।",
+   "यह वर्ष के अधिकांश समय ध्रुवीय क्षेत्रों के ऊपर आम है।"],
+  C3, 2,
+  "All three statements are correct. Normally temperature falls with height, but when the ground loses heat quickly by radiation -- through clear skies, in still air, over long nights -- it chills the air in contact with it, leaving warmer air above cooler air. This stable layer stops air from rising, so smoke, dust and fog stay trapped near the ground. Over the snow and ice of the polar regions, where the surface radiates heat away for months, surface inversions are almost permanent in winter.",
+  "तीनों कथन सही हैं। सामान्यतः ऊँचाई के साथ तापमान घटता है, पर जब भूमि विकिरण से तेज़ी से ऊष्मा खोती है, यानी साफ़ आकाश, शांत वायु और लंबी रातों में, तो वह अपने संपर्क वाली वायु को ठंडा कर देती है और ठंडी वायु के ऊपर गर्म वायु रह जाती है। यह स्थिर परत वायु को ऊपर उठने नहीं देती, इसलिए धुआँ, धूल और कोहरा भूमि के पास फँसे रहते हैं। ध्रुवीय क्षेत्रों की बर्फ़ और हिम पर, जहाँ सतह महीनों तक ऊष्मा विकिरित करती रहती है, शीत ऋतु में सतही व्युत्क्रमण लगभग स्थायी रहता है।",
+  f"{NC11} -- Solar Radiation, Heat Balance and Temperature.",
+  "geo-temperature-inversion")
+
+S(CL, "hard", "Consider the following statements about the Earth's heat budget:",
+  "पृथ्वी के ऊष्मा बजट के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Roughly a third of the incoming solar radiation is reflected back to space without heating the Earth.",
+   "The Earth radiates energy back to space mainly as short-wave radiation.",
+   "Among natural surfaces, the open ocean has one of the highest albedos."],
+  ["आने वाले सौर विकिरण का लगभग एक-तिहाई भाग पृथ्वी को गर्म किए बिना अंतरिक्ष में वापस परावर्तित हो जाता है।",
+   "पृथ्वी मुख्य रूप से लघु तरंगों (short-wave) के रूप में ऊर्जा को वापस अंतरिक्ष में विकिरित करती है।",
+   "प्राकृतिक सतहों में खुले महासागर का ऐल्बिडो (albedo) सबसे अधिक में से एक है।"],
+  C3, 0,
+  "Only statement 1 is correct: clouds, the atmosphere and bright surfaces reflect roughly a third of the insolation -- the Earth's albedo, about 0.3 (older textbooks put it at 35 units out of 100). "
+  "Statement 2 is wrong: the Sun, being very hot, radiates short waves, but the much cooler Earth radiates long-wave (infrared) radiation, most of which is absorbed by water vapour and carbon dioxide before it escapes. "
+  "Statement 3 is wrong: open water is one of the darkest natural surfaces, reflecting less than a tenth of the sunlight when the Sun is high; fresh snow, which reflects up to about 90 per cent, has the highest albedo.",
+  "केवल कथन 1 सही है: बादल, वायुमंडल और चमकीली सतहें सूर्यातप का लगभग एक-तिहाई भाग परावर्तित कर देती हैं; यही पृथ्वी का ऐल्बिडो है, लगभग 0.3 (पुरानी पाठ्यपुस्तकें इसे 100 में से 35 इकाई बताती हैं)। "
+  "कथन 2 गलत है: बहुत गर्म सूर्य लघु तरंगें विकिरित करता है, पर कहीं ठंडी पृथ्वी दीर्घ तरंग (अवरक्त) विकिरण छोड़ती है, जिसका अधिकांश भाग अंतरिक्ष में जाने से पहले जलवाष्प और कार्बन डाइऑक्साइड सोख लेते हैं। "
+  "कथन 3 गलत है: खुला जल सबसे गहरी प्राकृतिक सतहों में से एक है, जो सूर्य ऊँचा होने पर प्रकाश का दसवें भाग से भी कम परावर्तित करता है; सबसे अधिक ऐल्बिडो ताज़ा हिम का है, जो लगभग 90 प्रतिशत तक प्रकाश लौटा देता है।",
+  f"{NC11} -- Solar Radiation, Heat Balance and Temperature.",
+  "geo-heat-budget-albedo")
+
+# ================================================================ EASY STATEMENTS (3)
+S(CL, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Weather refers to the average condition of the atmosphere over a period of about 30 years.",
+   "The energy the Earth receives from the Sun is called insolation."],
+  ["मौसम (weather) लगभग 30 वर्षों की अवधि में वायुमंडल की औसत दशा को कहते हैं।",
+   "पृथ्वी को सूर्य से प्राप्त होने वाली ऊर्जा को सूर्यातप (insolation) कहते हैं।"],
+  T2, 1,
+  "Only statement 2 is correct: insolation is short for 'incoming solar radiation'. Statement 1 describes climate, the long-term average of weather; weather is the state of the atmosphere at a particular time and place -- today's temperature, rain or wind.",
+  "केवल कथन 2 सही है: सूर्यातप 'आने वाले सौर विकिरण' (incoming solar radiation) का संक्षिप्त रूप है। कथन 1 जलवायु की परिभाषा है, जो मौसम का दीर्घकालीन औसत है; मौसम किसी निश्चित समय और स्थान पर वायुमंडल की दशा है, जैसे आज का तापमान, वर्षा या पवन।",
+  f"{NC11} -- Solar Radiation, Heat Balance and Temperature; {NC7} -- Air.",
+  "geo-weather-insolation-easy")
+
+S(CL, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Air pressure decreases as altitude increases.",
+   "Isotherms are lines on a map joining places of equal air pressure."],
+  ["ऊँचाई बढ़ने के साथ वायुदाब घटता है।",
+   "समताप रेखाएँ (isotherms) मानचित्र पर समान वायुदाब वाले स्थानों को मिलाने वाली रेखाएँ हैं।"],
+  T2, 0,
+  "Only statement 1 is correct: with height there is less air above pressing down, so pressure falls -- which is why climbers on high mountains feel breathless. Statement 2 is wrong: isotherms join places of equal temperature; lines joining places of equal pressure are isobars.",
+  "केवल कथन 1 सही है: ऊँचाई पर ऊपर से दबाव डालने वाली वायु कम होती है, इसलिए वायुदाब घटता है; इसीलिए ऊँचे पर्वतों पर चढ़ने वालों की साँस फूलती है। कथन 2 गलत है: समताप रेखाएँ समान तापमान वाले स्थानों को मिलाती हैं; समान वायुदाब वाले स्थानों को मिलाने वाली रेखाएँ समदाब रेखाएँ (isobars) हैं।",
+  f"{NC7} -- Air; {NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-pressure-altitude-isotherm-easy")
+
+S(CL, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Hot deserts generally receive less than 25 cm of rain a year.",
+   "The tundra has a very short growing season."],
+  ["गर्म मरुस्थलों में सामान्यतः वर्ष में 25 सेमी से कम वर्षा होती है।",
+   "टुंड्रा में पौधों के उगने की ऋतु बहुत छोटी होती है।"],
+  T2, 2,
+  "Both statements are correct. Hot deserts such as the Sahara, the Kalahari and the Thar get very little and unreliable rain. In the tundra the ground stays frozen for most of the year and thaws only at the surface for a brief summer of about two months, so only mosses, lichens and small shrubs can grow.",
+  "दोनों कथन सही हैं। सहारा, कालाहारी और थार जैसे गर्म मरुस्थलों में बहुत कम और अनिश्चित वर्षा होती है। टुंड्रा में भूमि वर्ष के अधिकांश समय जमी रहती है और लगभग दो महीने की छोटी ग्रीष्म ऋतु में केवल ऊपर से पिघलती है, इसलिए वहाँ केवल मॉस, लाइकेन और छोटी झाड़ियाँ उग पाती हैं।",
+  f"{NC7} -- Natural Vegetation and Wildlife; Life in the Deserts.",
+  "geo-deserts-tundra-easy")
+
+# ================================================================ MCQs (medium 4, easy 2, hard 2)
+M(CL, "medium", "Which one of the following is the third most abundant gas in dry air?",
+  "शुष्क वायु में निम्नलिखित में से कौन-सी गैस तीसरी सबसे प्रचुर है?",
+  ["Argon", "Carbon dioxide", "Neon", "Helium"],
+  ["आर्गन", "कार्बन डाइऑक्साइड", "नियॉन", "हीलियम"],
+  0,
+  "By volume, dry air is about 78 per cent nitrogen, 21 per cent oxygen and 0.93 per cent argon; carbon dioxide, despite its importance for the greenhouse effect, is only about 0.04 per cent, and neon and helium are far scarcer. Water vapour, which can reach 4 per cent in humid tropical air, is left out of 'dry air' because it varies so much.",
+  "आयतन के अनुसार शुष्क वायु में लगभग 78 प्रतिशत नाइट्रोजन, 21 प्रतिशत ऑक्सीजन और 0.93 प्रतिशत आर्गन है; हरितगृह प्रभाव में महत्त्वपूर्ण होने के बावजूद कार्बन डाइऑक्साइड केवल लगभग 0.04 प्रतिशत है, और नियॉन तथा हीलियम तो और भी कम हैं। जलवाष्प, जो आर्द्र उष्णकटिबंधीय वायु में 4 प्रतिशत तक हो सकती है, बहुत घटती-बढ़ती है, इसलिए उसे 'शुष्क वायु' में नहीं गिना जाता।",
+  f"{NC11} -- Composition and Structure of Atmosphere.",
+  "geo-atmosphere-argon")
+
+M(CL, "medium", "The 'horse latitudes' refer to:",
+  "'अश्व अक्षांश' (horse latitudes) किसे कहते हैं?",
+  ["the subtropical high-pressure belts", "the equatorial low-pressure belt", "the subpolar low-pressure belts", "the belts of steady, strong westerly winds"],
+  ["उपोष्ण उच्च वायुदाब पेटियाँ", "विषुवतीय निम्न वायुदाब पेटी", "उपध्रुवीय निम्न वायुदाब पेटियाँ", "स्थिर और तेज़ पछुआ पवनों की पेटियाँ"],
+  0,
+  "Around 30-35 degrees north and south, air that rose at the Equator descends, bringing calm, dry weather; sailing ships were often becalmed there, and by tradition horses aboard were thrown overboard to save water -- hence the name. The equatorial belt of calms is the doldrums; the westerlies blow on the poleward side of the horse latitudes.",
+  "लगभग 30-35 अंश उत्तर और दक्षिण में विषुवत रेखा पर उठी वायु नीचे उतरती है, जिससे शांत और शुष्क मौसम रहता है; पाल वाले जहाज़ वहाँ प्रायः हवा न मिलने से अटक जाते थे, और परंपरा के अनुसार पानी बचाने के लिए जहाज़ पर लदे घोड़ों को समुद्र में फेंक दिया जाता था; इसी से यह नाम पड़ा। विषुवत रेखा की शांत पेटी डोलड्रम कहलाती है; पछुआ पवनें अश्व अक्षांशों के ध्रुव की ओर वाले भाग में चलती हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-horse-latitudes")
+
+M(CL, "medium", "Tornadoes are most frequent in:",
+  "बवंडर (टॉरनेडो) सबसे अधिक कहाँ आते हैं?",
+  ["the Great Plains of the United States", "the western Pacific around the Philippines", "the islands of the Caribbean Sea", "the interior of the Sahara"],
+  ["संयुक्त राज्य अमेरिका के विशाल मैदान (Great Plains)", "फ़िलीपींस के आसपास का पश्चिमी प्रशांत", "कैरिबियन सागर के द्वीप", "सहारा का आंतरिक भाग"],
+  0,
+  "More than a thousand tornadoes strike the United States each year, most of them in 'Tornado Alley' on the Great Plains, where warm, moist air from the Gulf of Mexico meets cold, dry air from Canada under strong wind shear. The western Pacific and the Caribbean are known for typhoons and hurricanes -- storms hundreds of kilometres wide that a student may confuse with tornadoes, which are usually a few hundred metres across.",
+  "संयुक्त राज्य अमेरिका में हर वर्ष एक हज़ार से अधिक बवंडर आते हैं, जिनमें से अधिकांश विशाल मैदानों के 'टॉरनेडो ऐली' में, जहाँ तेज़ पवन-अपरूपण (wind shear) के बीच मेक्सिको की खाड़ी की गर्म, नम वायु कनाडा की ठंडी, शुष्क वायु से मिलती है। पश्चिमी प्रशांत और कैरिबियन टाइफ़ून और हरिकेन के लिए जाने जाते हैं; ये सैकड़ों किलोमीटर चौड़े तूफ़ान हैं, जिन्हें विद्यार्थी बवंडर से भ्रमित कर सकता है, जबकि बवंडर प्रायः कुछ सौ मीटर चौड़े होते हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-tornadoes-great-plains")
+
+M(CL, "medium", "In the classification of air masses, the air mass that originates over the Gulf of Mexico is designated as:",
+  "वायुराशियों के वर्गीकरण में, मेक्सिको की खाड़ी के ऊपर उत्पन्न होने वाली वायुराशि को किस रूप में दर्शाया जाता है?",
+  ["mT", "cT", "mP", "cP"],
+  ["mT", "cT", "mP", "cP"],
+  0,
+  "Air masses are named after their source regions: 'm' (maritime) for oceans and 'c' (continental) for land, followed by 'T' (tropical) or 'P' (polar). Air over the warm Gulf of Mexico is warm and moist -- maritime tropical (mT) -- and feeds summer thunderstorms over the central United States. The Sahara is a source of cT air, the northern oceans of mP air, and northern Canada and Siberia of cP air in winter.",
+  "वायुराशियों के नाम उनके उद्गम क्षेत्र पर रखे जाते हैं: महासागरों के लिए 'm' (महासागरीय) और स्थल के लिए 'c' (महाद्वीपीय), जिसके बाद 'T' (उष्णकटिबंधीय) या 'P' (ध्रुवीय) आता है। मेक्सिको की गर्म खाड़ी के ऊपर की वायु गर्म और नम होती है, यानी महासागरीय उष्णकटिबंधीय (mT), और यह मध्य संयुक्त राज्य अमेरिका में ग्रीष्मकालीन तड़ित-झंझाओं को ऊर्जा देती है। सहारा cT वायु का, उत्तरी महासागर mP वायु का, और शीत ऋतु में उत्तरी कनाडा तथा साइबेरिया cP वायु के स्रोत हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-air-mass-mt")
+
+M(CL, "easy", "Which one of the following instruments is used to measure the speed of the wind?",
+  "हवा की गति मापने के लिए निम्नलिखित में से किस उपकरण का प्रयोग किया जाता है?",
+  ["Anemometer", "Barometer", "Hygrometer", "Wind vane"],
+  ["पवनवेगमापी (एनीमोमीटर)", "वायुदाबमापी (बैरोमीटर)", "आर्द्रतामापी (हाइग्रोमीटर)", "वातदिग्दर्शी (विंड वेन)"],
+  0,
+  "An anemometer, usually a set of rotating cups, measures wind speed; a wind vane shows only the direction from which the wind blows -- the usual trap. A barometer measures air pressure and a hygrometer measures humidity.",
+  "पवनवेगमापी, जिसमें प्रायः घूमने वाले प्याले होते हैं, पवन की गति मापता है; वातदिग्दर्शी केवल वह दिशा बताता है जिधर से पवन चल रही है, और यही सामान्य जाल है। बैरोमीटर वायुदाब मापता है और हाइग्रोमीटर आर्द्रता।",
+  f"{NC7} -- Air.",
+  "geo-anemometer-easy")
+
+M(CL, "easy", "Which one of the following is NOT a form of precipitation?",
+  "निम्नलिखित में से कौन-सा वर्षण (precipitation) का रूप नहीं है?",
+  ["Fog", "Hail", "Sleet", "Snow"],
+  ["कोहरा", "ओले", "सहिम वृष्टि (स्लीट)", "हिमपात"],
+  0,
+  "Precipitation is water that falls from clouds to the ground -- rain, snow, sleet and hail. Fog is a cloud at ground level, formed when water vapour in the air near the surface condenses; it cuts visibility but does not fall.",
+  "वर्षण वह जल है जो बादलों से भूमि पर गिरता है, जैसे वर्षा, हिमपात, सहिम वृष्टि और ओले। कोहरा भूमि के स्तर पर बना बादल है, जो सतह के पास की वायु की जलवाष्प के संघनन से बनता है; यह दृश्यता घटाता है, पर गिरता नहीं।",
+  f"{NC11} -- Water in the Atmosphere.",
+  "geo-precipitation-fog-easy")
+
+M(CL, "hard", "In Köppen's scheme of climate classification, the tropical wet-and-dry (savanna) climate is denoted by:",
+  "कोपेन की जलवायु वर्गीकरण योजना में उष्णकटिबंधीय आर्द्र-शुष्क (सवाना) जलवायु को किस संकेत से दर्शाया जाता है?",
+  ["Aw", "Am", "Af", "BSh"],
+  ["Aw", "Am", "Af", "BSh"],
+  0,
+  "In Köppen's code, 'A' marks tropical climates in which every month averages above 18 °C; the second letter describes the rainfall -- 'f' for no dry season (the rainforest, Af), 'm' for monsoon rain with a short dry season (Am), and 'w' for a distinct dry winter (the savanna, Aw). 'BSh' is the hot semi-arid steppe climate found on the drier margins of the savannas.",
+  "कोपेन के संकेतों में 'A' उन उष्णकटिबंधीय जलवायुओं को दर्शाता है जिनमें हर महीने का औसत तापमान 18 °C से अधिक रहता है; दूसरा अक्षर वर्षा बताता है: शुष्क ऋतु न होने पर 'f' (वर्षावन, Af), छोटी शुष्क ऋतु वाली मानसूनी वर्षा के लिए 'm' (Am), और स्पष्ट शुष्क शीत ऋतु के लिए 'w' (सवाना, Aw)। 'BSh' गर्म अर्ध-शुष्क स्टेपी जलवायु है, जो सवाना के अधिक शुष्क किनारों पर मिलती है।",
+  f"{NC11} -- World Climate and Climate Change.",
+  "geo-koppen-aw-savanna")
+
+M(CL, "hard", "The highest temperatures on the Earth's surface are recorded not at the Equator but in the subtropical hot deserts. Which one of the following best explains this?",
+  "पृथ्वी की सतह पर सबसे ऊँचे तापमान विषुवत रेखा पर नहीं, बल्कि उपोष्ण गर्म मरुस्थलों में दर्ज किए जाते हैं। निम्नलिखित में से कौन-सा इसकी सबसे अच्छी व्याख्या करता है?",
+  ["Clear skies and dry air let most of the Sun's energy reach the ground",
+   "The Sun's rays fall vertically on these deserts for most of the year",
+   "The trade winds carry hot air from the Equator and pile it up over the deserts",
+   "The deserts stand at higher elevations, which brings them closer to the Sun"],
+  ["साफ़ आकाश और शुष्क वायु सूर्य की अधिकांश ऊर्जा को भूमि तक पहुँचने देते हैं",
+   "इन मरुस्थलों पर वर्ष के अधिकांश समय सूर्य की किरणें लंबवत पड़ती हैं",
+   "व्यापारिक पवनें विषुवत रेखा से गर्म वायु लाकर मरुस्थलों के ऊपर जमा कर देती हैं",
+   "मरुस्थल अधिक ऊँचाई पर हैं, जिससे वे सूर्य के अधिक निकट हो जाते हैं"],
+  0,
+  "Under the subtropical high-pressure belts, sinking air keeps skies clear and humidity low, so little insolation is lost to clouds and little energy goes into evaporation; bare ground heats up fast. Near the Equator, daily cloud cover and heavy rain reflect sunlight and use up energy in evaporation, so temperatures rarely exceed about 35 °C. "
+  "The other options fail: the Sun is overhead only between the tropics, and at most twice a year at any place; the trade winds blow towards the Equator, not away from it; and height makes places cooler, not hotter.",
+  "उपोष्ण उच्च वायुदाब पेटियों के नीचे उतरती वायु आकाश को साफ़ और आर्द्रता को कम रखती है, इसलिए सूर्यातप का थोड़ा ही भाग बादलों से लौटता है और थोड़ी ही ऊर्जा वाष्पीकरण में खर्च होती है; नंगी भूमि जल्दी गर्म हो जाती है। विषुवत रेखा के पास रोज़ के बादल और भारी वर्षा धूप को परावर्तित करते हैं और ऊर्जा वाष्पीकरण में खपा देते हैं, इसलिए वहाँ तापमान शायद ही लगभग 35 °C से ऊपर जाता है। "
+  "अन्य विकल्प गलत हैं: सूर्य केवल कर्क और मकर रेखाओं के बीच सिर के ठीक ऊपर होता है, और किसी भी स्थान पर वर्ष में अधिकतम दो बार; व्यापारिक पवनें विषुवत रेखा की ओर चलती हैं, उससे दूर नहीं; और ऊँचाई स्थानों को ठंडा बनाती है, गर्म नहीं।",
+  f"{NC11} -- Solar Radiation, Heat Balance and Temperature; World Climate and Climate Change.",
+  "geo-hottest-deserts-not-equator")
+
+# ================================================================ STATEMENT-I/II (medium 4, easy 1, hard I/II/III 1)
+A(CL, "medium",
+  "The westerlies of the Southern Hemisphere are stronger and more constant than those of the Northern Hemisphere.",
+  "दक्षिणी गोलार्ध की पछुआ पवनें उत्तरी गोलार्ध की पछुआ पवनों की तुलना में अधिक प्रबल और स्थिर हैं।",
+  "Between about 40° and 60° south there is very little land to obstruct the winds.",
+  "लगभग 40° और 60° दक्षिण के बीच पवनों को रोकने के लिए बहुत कम स्थल है।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Over the almost unbroken Southern Ocean the westerlies blow with little friction and no landmasses to deflect them, earning the sailors' names 'Roaring Forties', 'Furious Fifties' and 'Shrieking Sixties'. In the Northern Hemisphere the large continents of North America and Eurasia break up the flow and make it variable.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। लगभग अविच्छिन्न दक्षिणी महासागर के ऊपर पछुआ पवनें बहुत कम घर्षण के साथ और बिना किसी भूभाग के मोड़े चलती हैं; इसी से नाविकों ने इन्हें 'गरजती चालीसा', 'प्रचंड पचासा' और 'चीखती साठा' नाम दिए। उत्तरी गोलार्ध में उत्तरी अमेरिका और यूरेशिया के बड़े महाद्वीप इनके प्रवाह को तोड़कर अस्थिर बना देते हैं।",
+  f"{NC11} -- Atmospheric Circulation and Weather Systems.",
+  "geo-roaring-forties")
+
+A(CL, "medium",
+  "The sky appears blue on a clear day because of the scattering of sunlight by the gases of the atmosphere.",
+  "साफ़ दिन में आकाश वायुमंडल की गैसों द्वारा सूर्य के प्रकाश के प्रकीर्णन (scattering) के कारण नीला दिखाई देता है।",
+  "Light of longer wavelengths is scattered more strongly than light of shorter wavelengths.",
+  "लंबी तरंगदैर्ध्य वाले प्रकाश का प्रकीर्णन छोटी तरंगदैर्ध्य वाले प्रकाश की तुलना में अधिक प्रबलता से होता है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Gas molecules, far smaller than the wavelength of light, scatter short wavelengths much more strongly than long ones, so blue light is scattered across the whole sky. At sunrise and sunset sunlight crosses a much longer path through the air; most of the blue is scattered out along the way and the Sun looks red or orange.",
+  "कथन-I सही है पर कथन-II गलत है। प्रकाश की तरंगदैर्ध्य से कहीं छोटे गैस के अणु छोटी तरंगदैर्ध्य को लंबी तरंगदैर्ध्य की तुलना में कहीं अधिक प्रबलता से बिखेरते हैं, इसलिए नीला प्रकाश पूरे आकाश में बिखर जाता है। सूर्योदय और सूर्यास्त के समय सूर्य का प्रकाश वायु में कहीं लंबा रास्ता तय करता है; रास्ते में अधिकांश नीला प्रकाश बिखर जाता है और सूर्य लाल या नारंगी दिखता है।",
+  f"{NC11} -- Solar Radiation, Heat Balance and Temperature.",
+  "geo-blue-sky-scattering")
+
+A(CL, "medium",
+  "High mountain tops are generally warmer than the plains below them.",
+  "ऊँचे पर्वत-शिखर सामान्यतः अपने नीचे के मैदानों से अधिक गर्म होते हैं।",
+  "The troposphere is heated mainly from below, by the Earth's surface, rather than directly by incoming sunlight.",
+  "क्षोभमंडल मुख्य रूप से नीचे से, यानी पृथ्वी की सतह द्वारा गर्म होता है, न कि सीधे आने वाले सूर्य के प्रकाश से।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. Most sunlight passes through the air and warms the ground, which then heats the air above it by radiation, conduction and convection; so temperature normally falls with height -- by roughly 6-6.5 °C per kilometre -- and snow can lie on high peaks even near the Equator. Being a few kilometres nearer the Sun makes no difference, and the thinner air at height holds less heat.",
+  "कथन-I गलत है पर कथन-II सही है। सूर्य का अधिकांश प्रकाश वायु से होकर भूमि को गर्म करता है, और भूमि फिर विकिरण, चालन और संवहन से अपने ऊपर की वायु को गर्म करती है; इसलिए सामान्यतः ऊँचाई के साथ तापमान लगभग 6-6.5 °C प्रति किलोमीटर घटता है, और विषुवत रेखा के पास भी ऊँची चोटियों पर हिम टिका रह सकता है। कुछ किलोमीटर सूर्य के निकट होने से कोई अंतर नहीं पड़ता, और ऊँचाई की विरल वायु कम ऊष्मा धारण करती है।",
+  f"{NC11} -- Solar Radiation, Heat Balance and Temperature.",
+  "geo-mountains-colder-heated-below")
+
+A(CL, "medium",
+  "The Northern Hemisphere has its summer during June and July.",
+  "उत्तरी गोलार्ध में जून और जुलाई के दौरान ग्रीष्म ऋतु होती है।",
+  "The Earth's orbit around the Sun is elliptical, so its distance from the Sun changes during the year.",
+  "सूर्य के चारों ओर पृथ्वी की कक्षा दीर्घवृत्ताकार है, इसलिए वर्ष भर सूर्य से उसकी दूरी बदलती रहती है।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. Seasons come from the tilt of the Earth's axis (about 23.5 degrees): in June the Northern Hemisphere leans towards the Sun and gets more direct rays and longer days. In fact the Earth is farthest from the Sun (aphelion) in early July, in the middle of the northern summer, and nearest (perihelion) in early January -- proof that distance is not the cause.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। ऋतुएँ पृथ्वी की धुरी के झुकाव (लगभग 23.5 अंश) से बनती हैं: जून में उत्तरी गोलार्ध सूर्य की ओर झुका होता है और उसे अधिक सीधी किरणें तथा लंबे दिन मिलते हैं। वास्तव में पृथ्वी जुलाई के आरंभ में, यानी उत्तरी ग्रीष्म के बीच, सूर्य से सबसे दूर (अपसौर) और जनवरी के आरंभ में सबसे निकट (उपसौर) होती है; यही प्रमाण है कि दूरी ऋतुओं का कारण नहीं है।",
+  f"{NC6} -- Motions of the Earth; {NC11} -- Solar Radiation, Heat Balance and Temperature.",
+  "geo-seasons-tilt-not-distance")
+
+A(CL, "easy",
+  "Tropical rainforests remain green throughout the year.",
+  "उष्णकटिबंधीय वर्षावन पूरे वर्ष हरे-भरे रहते हैं।",
+  "Because there is no marked dry season, the trees there do not shed all their leaves at the same time.",
+  "वहाँ कोई स्पष्ट शुष्क ऋतु नहीं होती, इसलिए वहाँ के पेड़ एक साथ अपनी सारी पत्तियाँ नहीं गिराते।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. With heat and rain all year, each tree sheds and renews its leaves on its own schedule, so the forest as a whole is never bare -- which is why these are also called tropical evergreen forests.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। पूरे वर्ष गर्मी और वर्षा रहने से हर पेड़ अपने-अपने समय पर पत्तियाँ गिराता और नई उगाता है, इसलिए पूरा वन कभी पत्रहीन नहीं होता; इसीलिए इन्हें उष्णकटिबंधीय सदाबहार वन भी कहते हैं।",
+  f"{NC7} -- Natural Vegetation and Wildlife.",
+  "geo-rainforest-evergreen-easy")
+
+A(CL, "hard",
+  "Regions with a Mediterranean climate receive most of their rainfall in winter.",
+  "भूमध्यसागरीय जलवायु वाले क्षेत्रों में अधिकांश वर्षा शीत ऋतु में होती है।",
+  "In winter the wind and pressure belts shift towards the Equator, bringing these regions under the rain-bearing westerlies.",
+  "शीत ऋतु में पवन और वायुदाब पेटियाँ विषुवत रेखा की ओर खिसक जाती हैं, जिससे ये क्षेत्र वर्षा लाने वाली पछुआ पवनों के प्रभाव में आ जाते हैं।",
+  1,
+  "Both Statements II and III are correct, but only Statement II explains Statement I. Lying at about 30-45 degrees on the western sides of continents, these regions come under the subtropical high in summer, which brings dry, sunny weather, and under the westerlies and their cyclones in winter, which bring rain. "
+  "Statement III is true -- the long, sunny summers suit citrus and vines, which is why California, central Chile and the Western Cape are known for fruit and wine -- but it is a result of the climate, not a cause of the winter rain.",
+  "कथन II और III दोनों सही हैं, पर केवल कथन II कथन I की व्याख्या करता है। महाद्वीपों के पश्चिमी भागों में लगभग 30-45 अंश पर स्थित ये क्षेत्र ग्रीष्म में उपोष्ण उच्च वायुदाब के नीचे रहते हैं, जिससे शुष्क और धूप वाला मौसम रहता है, और शीत में पछुआ पवनों तथा उनके चक्रवातों के प्रभाव में आते हैं, जो वर्षा लाते हैं। "
+  "कथन III सही है, लंबी धूप वाली ग्रीष्म ऋतु खट्टे फलों और अंगूर की बेलों के अनुकूल है, इसीलिए कैलिफ़ोर्निया, मध्य चिली और वेस्टर्न केप फलों और वाइन के लिए प्रसिद्ध हैं, पर यह जलवायु का परिणाम है, शीतकालीन वर्षा का कारण नहीं।",
+  f"{NC11} -- World Climate and Climate Change.",
+  "geo-mediterranean-winter-rain",
+  s3="Citrus fruits and grapes are widely grown in these regions.",
+  s3_hi="इन क्षेत्रों में खट्टे फल (सिट्रस) और अंगूर बड़े पैमाने पर उगाए जाते हैं।")
+
+# ================================================================ PAIRS (easy 1, medium 1, hard 1)
+P(CL, "easy", "Consider the following pairs of temperate grasslands and the regions where they are found:",
+  "शीतोष्ण घास के मैदानों और उनके क्षेत्रों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Prairies : North America", "Pampas : Argentina", "Steppes : Eurasia", "Downs : Australia"],
+  ["प्रेयरी : उत्तरी अमेरिका", "पम्पास : अर्जेंटीना", "स्टेपी : यूरेशिया", "डाउन्स : ऑस्ट्रेलिया"],
+  3,
+  "All four pairs are correct. The other temperate grasslands usually asked about are the Veld of South Africa and the Canterbury grasslands of New Zealand. "
+  "A student who expects at least one pair to be wrong will fall for 'Only three pairs'.",
+  "चारों युग्म सही हैं। प्रायः पूछे जाने वाले अन्य शीतोष्ण घास के मैदान दक्षिण अफ़्रीका का वेल्ड और न्यूज़ीलैंड का कैंटरबरी घास का मैदान हैं। "
+  "जो विद्यार्थी मानकर चलता है कि कम से कम एक युग्म गलत होगा, वह 'केवल तीन युग्म' के जाल में फँसेगा।",
+  f"{NC7} -- Life in the Temperate Grasslands.",
+  "geo-temperate-grasslands-pairs-easy")
+
+P(CL, "medium", "Consider the following pairs of climate types and places where they occur:",
+  "जलवायु प्रकारों और उनके पाए जाने के स्थानों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["China type : South-eastern United States", "British type : Southern Chile", "Laurentian type : North-western Europe"],
+  ["चीन तुल्य जलवायु : दक्षिण-पूर्वी संयुक्त राज्य अमेरिका", "ब्रिटिश तुल्य जलवायु : दक्षिणी चिली", "लॉरेंशियन तुल्य जलवायु : उत्तर-पश्चिमी यूरोप"],
+  1,
+  "Pairs 1 and 2 are correct. The China type (warm temperate eastern margin) covers central and southern China, southern Japan, the south-eastern United States, south-eastern Brazil and eastern Australia, with hot, wet summers. The British type (cool temperate western margin) extends well beyond north-western Europe -- to British Columbia, southern Chile, Tasmania and New Zealand -- with rain in every season; the name is only a label. "
+  "Pair 3 is wrong: the Laurentian type is the cool temperate eastern margin climate of north-eastern North America (around the St Lawrence) and north-eastern Asia; north-western Europe has the British type.",
+  "युग्म 1 और 2 सही हैं। चीन तुल्य (उष्ण शीतोष्ण पूर्वी सीमांत) जलवायु मध्य और दक्षिणी चीन, दक्षिणी जापान, दक्षिण-पूर्वी संयुक्त राज्य अमेरिका, दक्षिण-पूर्वी ब्राज़ील और पूर्वी ऑस्ट्रेलिया में है, जहाँ ग्रीष्म गर्म और नम होती है। ब्रिटिश तुल्य (शीत शीतोष्ण पश्चिमी सीमांत) जलवायु उत्तर-पश्चिमी यूरोप से बहुत आगे, ब्रिटिश कोलंबिया, दक्षिणी चिली, तस्मानिया और न्यूज़ीलैंड तक फैली है, जहाँ हर ऋतु में वर्षा होती है; नाम केवल एक पहचान है। "
+  "युग्म 3 गलत है: लॉरेंशियन तुल्य जलवायु उत्तर-पूर्वी उत्तरी अमेरिका (सेंट लॉरेंस के आसपास) और उत्तर-पूर्वी एशिया की शीत शीतोष्ण पूर्वी सीमांत जलवायु है; उत्तर-पश्चिमी यूरोप में ब्रिटिश तुल्य जलवायु है।",
+  f"{NC11} -- World Climate and Climate Change.",
+  "geo-climate-types-regions-pairs")
+
+P(CL, "hard", "Consider the following pairs of natural vegetation zones and trees typical of them:",
+  "प्राकृतिक वनस्पति क्षेत्रों और उनके विशिष्ट वृक्षों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Tropical rainforest : Mahogany and ebony", "Tropical savanna : Acacia and baobab", "Taiga : Spruce and fir", "Temperate deciduous forest : Cork oak and olive"],
+  ["उष्णकटिबंधीय वर्षावन : महोगनी और आबनूस", "उष्णकटिबंधीय सवाना : बबूल (अकेशिया) और बाओबाब", "टैगा : स्प्रूस और फ़र", "शीतोष्ण पर्णपाती वन : कॉर्क ओक और जैतून"],
+  2,
+  "Pairs 1, 2 and 3 are correct: hardwoods such as mahogany and ebony grow in the rainforests; the umbrella-shaped acacia and the water-storing baobab stand out on the African savanna; and conifers such as spruce, fir, pine and larch make up the taiga. "
+  "Pair 4 is wrong, and the word 'oak' is the trap: oak, beech and maple are typical of temperate deciduous forests, but the cork oak and the olive are evergreen, hard-leaved trees of the Mediterranean lands.",
+  "युग्म 1, 2 और 3 सही हैं: वर्षावनों में महोगनी और आबनूस जैसी कठोर लकड़ी वाले वृक्ष उगते हैं; अफ़्रीकी सवाना में छतरी जैसा बबूल और जल संचित करने वाला बाओबाब अलग दिखते हैं; और टैगा स्प्रूस, फ़र, पाइन और लार्च जैसे शंकुधारी वृक्षों से बना है। "
+  "युग्म 4 गलत है, और 'ओक' शब्द ही जाल है: ओक, बीच और मेपल शीतोष्ण पर्णपाती वनों के विशिष्ट वृक्ष हैं, पर कॉर्क ओक और जैतून भूमध्यसागरीय प्रदेशों के सदाबहार, कठोर पत्तियों वाले वृक्ष हैं।",
+  f"{NC7} -- Natural Vegetation and Wildlife; {NC11} -- World Climate and Climate Change.",
+  "geo-vegetation-trees-pairs")
+
+if __name__ == "__main__":
+    write("geo_l2_t12_climatology.sql")
