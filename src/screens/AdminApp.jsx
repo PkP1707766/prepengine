@@ -106,8 +106,13 @@ const SUBTOPICS_BY_SUBJECT = {
     "Environment & Ecology": ["Fauna & Animal Behaviour", "Flora, Fungi & Forests", "Ecosystems & Ecological Processes",
       "Climate Science & Mitigation", "Climate Agreements & Carbon Markets", "Pollution, Waste & Resources",
       "Protected Areas & Wildlife Protection", "Indian Environmental Laws & Bodies", "International Conventions & Organisations"],
-    // L.2 #6: Space-Missions and Defence-Technology added.
-    "Science & Technology": ["Physics", "Chemistry", "Biology", "Tech & Innovation", "Space-Missions", "Defence-Technology"],
+    // Content re-tag of all 95 S&T PYQs (pyq-analysis-upsc/scratch/
+    // retag_science_technology_subtopics.py): the decoder's "Tech & Innovation"
+    // held 86 of them. Grouped by the two Level-2 tests: General Science;
+    // Applied S&T & Agriculture.
+    "Science & Technology": ["Physics & Everyday Science", "Chemistry & Materials", "Biology, Health & Biotechnology", "Astronomy & Earth Science",
+      "Space Technology & Missions", "IT, Communication & Emerging Technologies", "Energy & Environmental Technology",
+      "Defence, Aerospace & Security Technology"],
     // L.2 #7: Defence and Awards & Appointments added as first-class sub-topics.
     "Current Affairs": ["International", "National", "Sports", "Schemes & Indices", "Awards & Appointments", "Defence"],
     // CSAT sub-tags per L.2's CSAT section, verbatim where the playbook names

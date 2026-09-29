@@ -1,0 +1,96 @@
+year,question_number,title,old_sub_topic,new_sub_topic
+2015,23,Nanotech Health,Tech & Innovation,"Biology, Health & Biotechnology"
+2015,30,IceCube,Tech & Innovation,Astronomy & Earth Science
+2015,32,NFC Technology,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2015,45,Goldilocks Zone,Tech & Innovation,Astronomy & Earth Science
+2015,71,IRS Satellites,Tech & Innovation,Space Technology & Missions
+2015,73,IndARC,Tech & Innovation,Astronomy & Earth Science
+2015,93,Bio-toilets,Tech & Innovation,Energy & Environmental Technology
+2015,95,Fuel Cells,Tech & Innovation,Energy & Environmental Technology
+2016,5,LiFi,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2016,35,Project Loon,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2016,36,Net Metering,Energy Tech,Energy & Environmental Technology
+2016,47,Greased Lightning-10,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2016,66,Bitcoins,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2016,78,BEE Star Label,Energy Tech,Energy & Environmental Technology
+2016,79,ITER,Tech & Innovation,Energy & Environmental Technology
+2016,84,DigiLocker,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2016,87,ASTROSAT,Tech & Innovation,Space Technology & Missions
+2016,91,Mangalyaan,Tech & Innovation,Space Technology & Missions
+2017,43,UPI Consequence,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2017,44,Universe Physics,Tech & Innovation,Astronomy & Earth Science
+2017,73,Materials-Chemicals,Tech & Innovation,Chemistry & Materials
+2017,74,OLED vs LCD,Tech & Innovation,Physics & Everyday Science
+2017,85,Cyber Security Reporting,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2017,87,eLISA,Tech & Innovation,Astronomy & Earth Science
+2020,38,AI Capabilities,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2020,39,VLC Tech,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2020,40,Blockchain,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2020,41,Carbon Nanotubes,Tech & Innovation,Chemistry & Materials
+2020,42,Drones Apps,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2020,43,LISA Experiment,Tech & Innovation,Astronomy & Earth Science
+2020,46,PKI,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2020,88,Solar Water Pumps,Tech & Innovation,Energy & Environmental Technology
+2021,68,Pressure Cooker,Tech & Innovation,Physics & Everyday Science
+2021,71,Water Solvent,Tech & Innovation,Chemistry & Materials
+2021,72,Sodium vs LED,Tech & Innovation,Physics & Everyday Science
+2021,74,BPA Plastic,Tech & Innovation,Chemistry & Materials
+2021,76,Light-Years,Tech & Innovation,Astronomy & Earth Science
+2022,31,Open-Source Apps,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2022,32,Web 3.0,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2022,33,SaaS,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2022,35,Qubit,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2022,36,Short-Range Tech,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2022,40,Solar Storm Effects,Tech & Innovation,Astronomy & Earth Science
+2022,46,PET Plastic,Tech & Innovation,Chemistry & Materials
+2022,69,NFTs,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2022,84,Solar Projects India,Tech & Innovation,Energy & Environmental Technology
+2023,11,Uranium,Tech & Innovation,Energy & Environmental Technology
+2023,53,Carbon Fibres,Tech & Innovation,Chemistry & Materials
+2023,54,Accelerometer,Tech & Innovation,Physics & Everyday Science
+2023,55,Biofilters RAS,Tech & Innovation,Energy & Environmental Technology
+2023,56,Cepheids-Nebulae-Pulsars,Tech & Innovation,Astronomy & Earth Science
+2023,57,Satellite Navigation,Tech & Innovation,Space Technology & Missions
+2023,60,Green Hydrogen Uses,Tech & Innovation,Energy & Environmental Technology
+2023,67,Wolbachia Method,Tech & Innovation,"Biology, Health & Biotechnology"
+2023,69,Aerial Metagenomics,Tech & Innovation,"Biology, Health & Biotechnology"
+2023,70,Microsatellite DNA,Tech & Innovation,"Biology, Health & Biotechnology"
+2023,99,Green Hydrogen Industries,Tech & Innovation,Energy & Environmental Technology
+2024,31,RTGs,Tech & Innovation,Space Technology & Missions
+2024,32,Giant Stars,Tech & Innovation,Astronomy & Earth Science
+2024,34,Radar Uses,Tech & Innovation,Physics & Everyday Science
+2024,35,Fifth Gen Fighters,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2024,36,Hydrogels,Tech & Innovation,Chemistry & Materials
+2024,37,Fuel Cell EV Exhaust,Tech & Innovation,Energy & Environmental Technology
+2024,38,Pumped Storage Hydro,Tech & Innovation,Energy & Environmental Technology
+2024,39,Membrane Bioreactor,Tech & Innovation,Energy & Environmental Technology
+2024,48,Metaverse,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2025,33,"Earth's rotation/axis shift, solar flares",Earth Science,Astronomy & Earth Science
+2025,36,Direct Air Capture technology,Tech & Innovation,Energy & Environmental Technology
+2025,41,Alternative powertrain vehicles,Tech & Innovation,Energy & Environmental Technology
+2025,42,UAV statements,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2025,43,EV battery cathode elements,Tech & Innovation,Energy & Environmental Technology
+2025,45,Coal gasification technology substances,Chemistry,Chemistry & Materials
+2025,46,CL-20/HMX/LLM-105 explosives,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2025,47,Majorana 1 chip quantum computing,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2025,48,Monoclonal antibodies statements,Biology,"Biology, Health & Biotechnology"
+2025,49,Virus capability statements,Biology,"Biology, Health & Biotechnology"
+2025,50,Activated carbon statements,Chemistry,Chemistry & Materials
+2025,81,Rare earth elements TV screens,Materials Science,Chemistry & Materials
+2025,85,Artificial rainfall silver iodide,Chemistry,Chemistry & Materials
+2025,94,GAGAN system,Tech & Innovation,Space Technology & Missions
+2026,41,Genetic Medicine,Tech & Innovation,"Biology, Health & Biotechnology"
+2026,42,Large Language Models,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2026,43,Stealth Technology,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2026,44,Black Boxes,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2026,45,Green Hydrogen,Tech & Innovation,Energy & Environmental Technology
+2026,46,Private Space Entities,Tech & Innovation,Space Technology & Missions
+2026,47,Drone Swarms,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2026,48,GenomeIndia Project,Tech & Innovation,"Biology, Health & Biotechnology"
+2026,49,National Quantum Mission,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2026,50,Deep Ocean Mission,Tech & Innovation,Astronomy & Earth Science
+2026,65,AI Impact Summit 2026,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2026,79,DHRUV64 Microprocessor,Tech & Innovation,"IT, Communication & Emerging Technologies"
+2026,80,BIS Bomb-Disposal Standard,Tech & Innovation,"Defence, Aerospace & Security Technology"
+2026,81,Nobel 2025 UK-born,Tech & Innovation,Physics & Everyday Science
+2026,84,Bharat Forecast System,Tech & Innovation,Astronomy & Earth Science

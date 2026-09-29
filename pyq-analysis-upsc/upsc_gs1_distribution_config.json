@@ -151,13 +151,15 @@
       "_method": "Content re-tag of all 161 Environment PYQs 2015-2026 from their actual stems (scratch/retag_environment_subtopics.py -> scratch/environment_subtopic_retag.csv, output in scratch/environment_retag_output.txt), weighted with the same linear recency weights as subject_weights. The decoder had labelled 152/161 'Biodiversity'/'Ecology/Biodiversity'. 22 rows are not Environment at all (vaccines, genetics, cell biology, microbiology, physiology) and are left out of these weights; they still count in subject_weights until the S&T re-tag decides where they go. The nine buckets roll up into the blueprint's three Level-2 tests: Ecology & Biodiversity (Fauna, Flora, Ecosystems) 37.9%, Climate Change & Disaster Management (Climate Science, Climate Agreements, Pollution) 40.4%, Policies & Conservation (Protected Areas, Indian Laws, International Conventions) 21.7%. Supersedes playbook L.2 #5 'keep as-is' per the v2 build-out instruction (2026-09-28)."
     },
     "Science & Technology": {
-      "Chemistry": 0.0316,
-      "Biology": 0.0211,
-      "_note": "Decoder's 'Energy Tech'/'Earth Science'/'Materials Science' (no dedicated taxonomy buckets) folded into Tech & Innovation. Space-Missions and Defence-Technology each carved from Tech & Innovation using 2 named examples apiece (Space: 2025-Q83 Axiom-4/SpaDeX/Gaganyaan, 2026-Q46 private space; Defence: 2026-Q43 stealth, Q47 drone swarms) / 49-Q corpus = ~0.0408 each. Physics has ZERO named PYQ examples in the 4-year corpus -- 0.02 floor (_floor_not_pyq_evidenced).",
-      "Tech & Innovation": 0.8458,
-      "Space-Missions": 0.0408,
-      "Defence-Technology": 0.0408,
-      "Physics": 0.02
+      "IT, Communication & Emerging Technologies": 0.2203,
+      "Energy & Environmental Technology": 0.1786,
+      "Chemistry & Materials": 0.1412,
+      "Astronomy & Earth Science": 0.1281,
+      "Defence, Aerospace & Security Technology": 0.1008,
+      "Physics & Everyday Science": 0.0853,
+      "Biology, Health & Biotechnology": 0.0846,
+      "Space Technology & Missions": 0.0611,
+      "_method": "Content re-tag of all 95 S&T PYQs 2015-2026 from their actual stems (scratch/retag_science_technology_subtopics.py -> scratch/science_technology_subtopic_retag.csv, output in scratch/science_technology_retag_output.txt). The decoder filed 86 of 95 under one catch-all 'Tech & Innovation'; the earlier reconciliation left it at 0.85 and carved Space-Missions and Defence-Technology from named examples. Recency-weighted with the same linear year weights as build_config.py. Level-2 roll-up: Test 19 General Science (PH+CH+BI+AS) 43.9%, Test 20 Applied S&T & Agriculture (ST+IT+EN+DF) 56.1%. No S&T PYQ is primarily about farming, so Test 20's agriculture content is drafted inside the applied buckets."
     },
     "Current Affairs": {
       "_note": "Only 'General' (0.0838, an ambiguous decoder catch-all with no taxonomy equivalent) needed redistribution -- spread proportionally across the other 6 categories (_estimate, proportional redistribution, not itself new evidence) rather than assigned to one arbitrarily. Defence and Awards & Appointments already had real decoder-era weights (0.0659, 0.012) before this reconciliation -- L.2's 'add as first-class sub-topic' was about the admin taxonomy not yet having these as pickable entries, not about missing PYQ evidence.",
@@ -198,6 +200,15 @@
       "Five-Year Plans & Policy": 0.1818,
       "Fintech-Digital-Finance": 0.0769,
       "Critical-Minerals-Energy-Transition": 0.0422
+    },
+    "Science & Technology_superseded_reconciled_mapping": {
+      "Chemistry": 0.0316,
+      "Biology": 0.0211,
+      "_note": "Decoder's 'Energy Tech'/'Earth Science'/'Materials Science' (no dedicated taxonomy buckets) folded into Tech & Innovation. Space-Missions and Defence-Technology each carved from Tech & Innovation using 2 named examples apiece (Space: 2025-Q83 Axiom-4/SpaDeX/Gaganyaan, 2026-Q46 private space; Defence: 2026-Q43 stealth, Q47 drone swarms) / 49-Q corpus = ~0.0408 each. Physics has ZERO named PYQ examples in the 4-year corpus -- 0.02 floor (_floor_not_pyq_evidenced).",
+      "Tech & Innovation": 0.8458,
+      "Space-Missions": 0.0408,
+      "Defence-Technology": 0.0408,
+      "Physics": 0.02
     }
   },
   "difficulty_weights": {
@@ -262,6 +273,12 @@
       "medium": 0.6,
       "hard": 0.2,
       "_method": "2023-26 pooled (n=65: 13 easy / 39 medium / 13 hard). A hyphenated 2025 label takes the lower band (the Polity/Environment/Geography rule); it affects 2025-Q4, Q5, Q7 ('easy-medium' -> easy) and Q63, Q66, Q89 ('medium-hard' -> medium). 2026 is the hardest year (8 of 19 hard)."
+    },
+    "Science & Technology": {
+      "easy": 0.2041,
+      "medium": 0.6122,
+      "hard": 0.1837,
+      "_method": "2023-26 pooled (n=49: 10 easy / 30 medium / 9 hard). A hyphenated 2025 label takes the lower band (the rule used for every subject so far); it affects 2025-Q41, Q85 ('easy-medium' -> easy) and Q33, Q47 ('medium-hard' -> medium). 2026 has no easy S&T question."
     }
   },
   "question_type_weights_live_override": {
@@ -285,6 +302,12 @@
       "assertion_reason": 0.1538,
       "match_the_following": 0.0308,
       "_method": "Read from each 2023-26 question's option set (n=65): 40 statement (2-statement, 'how many' counts, combination codes), 13 single-answer MCQ (incl. 2024-Q47 classification and 2025-Q65 numerical), 10 Statement-I/II (2023-Q21, Q22, Q23, Q88; 2024-Q51, Q52; 2025-Q5, Q7, Q63, Q89), 2 pairs (2026-Q83, Q98). The 2025 text is two-column OCR in which option blocks of neighbouring questions run together; each 2025 format was read question by question against the published paper."
+    },
+    "Science & Technology": {
+      "statement_based": 0.6735,
+      "mcq": 0.2245,
+      "assertion_reason": 0.102,
+      "_method": "Read from each 2023-26 question's option set (n=49): 33 statement (2-statement, 'how many' counts, combination codes), 11 single-answer MCQ, 5 Statement-I/II (2023-Q11, 2024-Q32, 2025-Q81; 2025-Q33 and Q50 in the Statement-I/II/III form). No pairs question in 2023-26, so no match_the_following weight. The 2025 text is two-column OCR; each 2025 format was read question by question."
     }
   }
 }

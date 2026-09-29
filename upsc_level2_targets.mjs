@@ -12,8 +12,8 @@ import { buildCells } from "./src/lib/generate.js";
 
 export const PAPER = 100;
 // Test numbers follow the order the series runs in; subjects whose banks are furthest
-// along come first. Economy was re-tagged from PYQ content on 2026-09-29; S&T still needs
-// its sub-topics re-tagged (the same catch-all problem Geography had), so its scopes are pending.
+// along come first. Economy and S&T were re-tagged from PYQ content on 2026-09-29 (the same
+// catch-all problem Geography had), so every GS subject now has content-derived scopes.
 export const LEVEL2 = [
   { no: 1, title: "Polity 1: Constitutional Framework & Rights", subject: "Polity", subs: ["Constitutional Framework", "Fundamental Rights, DPSP & Duties"] },
   { no: 2, title: "Polity 2: Parliament & Executive", subject: "Polity", subs: ["Parliament & State Legislature", "Union & State Executive"] },
@@ -33,8 +33,8 @@ export const LEVEL2 = [
   { no: 16, title: "Economy 2: Growth, Development & External Sector", subject: "Economy", subs: ["External Sector & International Institutions", "Growth, Development, Poverty & Planning"] },
   { no: 17, title: "Economy 3: Fiscal Policy, Budget & Economic Survey", subject: "Economy", subs: ["Budget, Deficits & Public Debt", "Taxation & Fiscal Federalism"] },
   { no: 18, title: "Economy 4: Sectors of the Economy & Inclusive Growth", subject: "Economy", subs: ["Agriculture & Food Economy", "Industry, Infrastructure, Energy & Services", "Inclusive Growth, Welfare & Demography"] },
-  { no: 19, title: "Science & Technology 1: General Science", subject: "Science & Technology", subs: null },
-  { no: 20, title: "Science & Technology 2: Applied S&T & Agriculture", subject: "Science & Technology", subs: null },
+  { no: 19, title: "Science & Technology 1: General Science", subject: "Science & Technology", subs: ["Physics & Everyday Science", "Chemistry & Materials", "Biology, Health & Biotechnology", "Astronomy & Earth Science"] },
+  { no: 20, title: "Science & Technology 2: Applied S&T & Agriculture", subject: "Science & Technology", subs: ["Space Technology & Missions", "IT, Communication & Emerging Technologies", "Energy & Environmental Technology", "Defence, Aerospace & Security Technology"] },
   { no: 21, title: "GS Comprehensive Revision (full syllabus)", subject: null, subs: null },
 ];
 

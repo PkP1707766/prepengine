@@ -1,0 +1,37 @@
+Science & Technology rows: 95
+old decoder sub-topics: {'Tech & Innovation': 86, 'Chemistry': 3, 'Energy Tech': 2, 'Biology': 2, 'Earth Science': 1, 'Materials Science': 1}
+
+sub-topic                                      count  pooled%  recency%  2023-26%
+IT, Communication & Emerging Technologies         23    24.2%     22.0%     12.2%
+Energy & Environmental Technology                 18    18.9%     17.9%     22.4%
+Chemistry & Materials                             11    11.6%     14.1%     12.2%
+Astronomy & Earth Science                         13    13.7%     12.8%     10.2%
+Defence, Aerospace & Security Technology           9     9.5%     10.1%     14.3%
+Physics & Everyday Science                         6     6.3%      8.5%      6.1%
+Biology, Health & Biotechnology                    8     8.4%      8.5%     14.3%
+Space Technology & Missions                        7     7.4%      6.1%      8.2%
+TOTAL                                             95
+
+Level-2 roll-up (recency-weighted):
+  Test 19 General Science                   43.9%
+  Test 20 Applied S&T & Agriculture         56.1%
+
+sub_topic_weights (recency, rounded, sum=1):
+{'Physics & Everyday Science': 0.0853, 'Chemistry & Materials': 0.1412, 'Biology, Health & Biotechnology': 0.0846, 'Astronomy & Earth Science': 0.1281, 'Space Technology & Missions': 0.0611, 'IT, Communication & Emerging Technologies': 0.2203, 'Energy & Environmental Technology': 0.1786, 'Defence, Aerospace & Security Technology': 0.1008} sum = 1.0
+
+2023-26 corpus: 49 questions
+question types: {'assertion_reason': 5, 'statement_based': 33, 'mcq': 11} (assertion_reason includes 2 Statement-I/II/III)
+difficulty:     {'medium': 30, 'easy': 10, 'hard': 9}
+question_type_weights[Science & Technology] = {'assertion_reason': 0.102, 'statement_based': 0.6735, 'mcq': 0.2245} sum = 1.0
+difficulty_weights[Science & Technology]    = {'medium': 0.6122, 'easy': 0.2041, 'hard': 0.1837} sum = 1.0
+
+per year (type):
+  2023 {'assertion_reason': 1, 'statement_based': 6, 'mcq': 4}
+  2024 {'statement_based': 4, 'assertion_reason': 1, 'mcq': 4}
+  2025 {'assertion_reason': 3, 'statement_based': 9, 'mcq': 2}
+  2026 {'statement_based': 14, 'mcq': 1}
+per year (difficulty):
+  2023 {'medium': 5, 'easy': 4, 'hard': 2}
+  2024 {'hard': 2, 'medium': 3, 'easy': 4}
+  2025 {'medium': 11, 'easy': 2, 'hard': 1}
+  2026 {'medium': 11, 'hard': 4}
