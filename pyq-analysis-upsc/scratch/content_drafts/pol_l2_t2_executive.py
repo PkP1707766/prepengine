@@ -1,0 +1,357 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 2 (Polity 2: Parliament & Executive) -- Union & State Executive, 22 new
+bilingual rows against the live gap report: medium statement 8, hard statement 5, medium MCQ 2,
+medium Statement-I/II 2, hard MCQ 1, medium pairs 1, easy statement 1, hard Statement-I/II/III 1,
+hard pairs 1. The 10 existing rows are not repeated: no new row says who appoints the Chief
+Minister, how long a non-member may stay a minister, how small a State ministry can be, whether a
+Governor's removal grounds are written down, whether the President can dismiss a Prime Minister who
+has the House's confidence, who acts when both the President and Vice-President are away, what
+the Court said on Article 200 timelines in 2025, which vetoes exist, how the Prime Minister or
+Vice-President is chosen, or what Articles 74/75/78/164/166 contain."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Polity"
+EX = "Union & State Executive"
+COI = "Constitution of India"
+NC = "NCERT Class XI, Political Science -- Indian Constitution at Work"
+SC = "Supreme Court of India"
+
+# ---------------------------------------------------------------- medium statements (8)
+S(EX, "medium", "In the election of the President of India:",
+  "भारत के राष्ट्रपति के चुनाव में:",
+  ["Nominated members of both Houses of Parliament do not vote.",
+   "Members of the State Legislative Councils do not vote.",
+   "Elected members of the Legislative Assemblies of Delhi and Puducherry vote."],
+  ["संसद के दोनों सदनों के मनोनीत सदस्य मत नहीं देते।",
+   "राज्य विधान परिषदों के सदस्य मत नहीं देते।",
+   "दिल्ली और पुदुचेरी की विधानसभाओं के निर्वाचित सदस्य मत देते हैं।"],
+  C3, 2,
+  "All three statements are correct. Under Article 54 the electoral college consists only of elected members -- of both Houses of Parliament and of the Legislative Assemblies of the States, including, since the 70th Amendment (1992), the National Capital Territory of Delhi and Puducherry. Nominated members and members of Legislative Councils have no vote, which keeps the choice with those who owe their seats directly or indirectly to the voters.",
+  "तीनों कथन सही हैं। अनुच्छेद 54 के तहत निर्वाचक-मंडल में केवल निर्वाचित सदस्य होते हैं: संसद के दोनों सदनों के, और राज्यों की विधानसभाओं के, जिनमें 70वें संशोधन (1992) से राष्ट्रीय राजधानी क्षेत्र दिल्ली और पुदुचेरी भी शामिल हैं। मनोनीत सदस्यों और विधान परिषदों के सदस्यों को मत नहीं मिलता, जिससे चुनाव उन्हीं के हाथ में रहता है जिनका स्थान प्रत्यक्ष या अप्रत्यक्ष रूप से मतदाताओं की देन है।",
+  f"{COI}, Article 54; Constitution (Seventieth Amendment) Act, 1992.",
+  "exec-president-electoral-college")
+
+S(EX, "medium", "Consider the following statements about the impeachment of the President:",
+  "राष्ट्रपति पर महाभियोग के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The only ground for impeachment is 'violation of the Constitution'.",
+   "The resolution containing the charge must be signed by at least one-fourth of the total members of the House and moved after at least fourteen days' notice.",
+   "Nominated members of Parliament take part in the impeachment.",
+   "Elected members of the State Legislative Assemblies take part in the impeachment."],
+  ["महाभियोग का एकमात्र आधार 'संविधान का अतिक्रमण' है।",
+   "आरोप वाले संकल्प पर सदन के कुल सदस्यों के कम से कम एक-चौथाई के हस्ताक्षर होने चाहिए और उसे कम से कम चौदह दिन की सूचना के बाद लाया जाना चाहिए।",
+   "संसद के मनोनीत सदस्य महाभियोग में भाग लेते हैं।",
+   "राज्य विधानसभाओं के निर्वाचित सदस्य महाभियोग में भाग लेते हैं।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct (Article 61). The contrast with the election is the trap: nominated members of Parliament, who cannot vote to elect the President, do take part in impeaching him, while the elected members of the State Assemblies, who help elect him, have no part in the impeachment, which is a matter for Parliament alone.",
+  "कथन 1, 2 और 3 सही हैं (अनुच्छेद 61)। चुनाव से तुलना ही जाल है: संसद के मनोनीत सदस्य, जो राष्ट्रपति को चुनने में मत नहीं दे सकते, उन पर महाभियोग में भाग लेते हैं, जबकि राज्य विधानसभाओं के निर्वाचित सदस्य, जो उन्हें चुनने में मदद करते हैं, महाभियोग में कोई भूमिका नहीं रखते, क्योंकि यह केवल संसद का विषय है।",
+  f"{COI}, Articles 54 and 61.",
+  "exec-president-impeachment")
+
+S(EX, "medium", "Consider the following statements about the ordinance-making power of the President:",
+  "राष्ट्रपति की अध्यादेश जारी करने की शक्ति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["An ordinance can be promulgated only when both Houses of Parliament are not in session.",
+   "An ordinance ceases to operate six months after Parliament reassembles, unless it is approved earlier.",
+   "In Krishna Kumar Singh (2017), the Supreme Court held that re-promulgating ordinances without placing them before the legislature is a fraud on the Constitution."],
+  ["अध्यादेश केवल तब जारी किया जा सकता है जब संसद के दोनों सदन सत्र में न हों।",
+   "अध्यादेश संसद के फिर से समवेत होने के छह महीने बाद निष्प्रभावी हो जाता है, जब तक उसे पहले अनुमोदित न कर दिया जाए।",
+   "कृष्ण कुमार सिंह (2017) में उच्चतम न्यायालय ने माना कि विधानमंडल के सामने रखे बिना अध्यादेशों को बार-बार जारी करना संविधान के साथ धोखा है।"],
+  C3, 0,
+  "Only statement 3 is correct: a seven-judge bench, examining ordinances re-issued in Bihar for years, held re-promulgation a fraud on the Constitution and a subversion of the legislature's role. "
+  "Statement 1 is wrong: Article 123 allows an ordinance 'except when both Houses ... are in session', so it can be issued when even one House is not sitting. "
+  "Statement 2 is wrong: an ordinance lapses six weeks after Parliament reassembles; with sessions at most six months apart, an ordinance can therefore last at most about six months and six weeks.",
+  "केवल कथन 3 सही है: बिहार में वर्षों तक बार-बार जारी अध्यादेशों की जाँच करते हुए सात न्यायाधीशों की पीठ ने पुनः जारी करने को संविधान के साथ धोखा और विधानमंडल की भूमिका को निष्फल करना माना। "
+  "कथन 1 गलत है: अनुच्छेद 123 अध्यादेश की अनुमति 'उस समय के सिवाय जब दोनों सदन सत्र में हों' देता है, इसलिए वह तब भी जारी हो सकता है जब केवल एक सदन की बैठक न चल रही हो। "
+  "कथन 2 गलत है: अध्यादेश संसद के फिर से समवेत होने के छह सप्ताह बाद व्यपगत हो जाता है; सत्रों के बीच अधिकतम छह महीने के अंतर के साथ कोई अध्यादेश इसलिए अधिकतम लगभग छह महीने और छह सप्ताह चल सकता है।",
+  f"{COI}, Article 123; {SC} -- Krishna Kumar Singh v. State of Bihar (2017).",
+  "exec-ordinance-conditions-repromulgation")
+
+S(EX, "medium", "Consider the following statements about the pardoning powers of the President and the Governor:",
+  "राष्ट्रपति और राज्यपाल की क्षमादान शक्तियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The President can pardon a sentence passed by a court martial, but a Governor cannot.",
+   "A Governor can suspend, remit or commute a sentence of death.",
+   "A decision of the President on a mercy petition is wholly beyond judicial review."],
+  ["राष्ट्रपति सेना न्यायालय (court martial) द्वारा दिए गए दंड को क्षमा कर सकते हैं, पर राज्यपाल नहीं।",
+   "राज्यपाल मृत्युदंड को निलंबित, परिहार या लघुकरण कर सकते हैं।",
+   "दया याचिका पर राष्ट्रपति का निर्णय पूरी तरह न्यायिक समीक्षा से बाहर है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: Article 72 alone reaches court-martial sentences, and while only the President can pardon a death sentence outright, Article 161 lets a Governor suspend, remit or commute it. "
+  "Statement 3 is wrong: in Epuru Sudhakar (2006) the Supreme Court held that the exercise of the power can be reviewed on limited grounds -- non-application of mind, mala fides, or reliance on irrelevant or extraneous considerations.",
+  "कथन 1 और 2 सही हैं: केवल अनुच्छेद 72 सेना न्यायालय के दंड तक पहुँचता है, और जहाँ मृत्युदंड को पूरी तरह क्षमा केवल राष्ट्रपति कर सकते हैं, वहीं अनुच्छेद 161 राज्यपाल को उसे निलंबित, परिहार या लघुकरण करने देता है। "
+  "कथन 3 गलत है: एपुरु सुधाकर (2006) में उच्चतम न्यायालय ने माना कि इस शक्ति के प्रयोग की सीमित आधारों पर समीक्षा हो सकती है: विवेक का प्रयोग न करना, दुर्भावना, या असंगत अथवा बाहरी बातों पर निर्भरता।",
+  f"{COI}, Articles 72 and 161; {SC} -- Epuru Sudhakar v. Government of Andhra Pradesh (2006).",
+  "exec-pardon-court-martial-death-review")
+
+S(EX, "medium", "Consider the following statements about the Union Council of Ministers:",
+  "केंद्रीय मंत्रिपरिषद के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 91st Amendment Act limited the size of the Council of Ministers to 10 per cent of the total strength of the Lok Sabha.",
+   "Deputy Ministers are members of the Cabinet.",
+   "The word 'Cabinet' was used in the Constitution as originally adopted."],
+  ["91वें संशोधन अधिनियम ने मंत्रिपरिषद का आकार लोकसभा की कुल सदस्य-संख्या के 10 प्रतिशत तक सीमित किया।",
+   "उपमंत्री मंत्रिमंडल (Cabinet) के सदस्य होते हैं।",
+   "'मंत्रिमंडल' (Cabinet) शब्द मूल रूप से अपनाए गए संविधान में प्रयुक्त था।"],
+  C3, 3,
+  "None of the statements is correct. The 91st Amendment (2003) set the limit at 15 per cent (Article 75(1A)) and the same ceiling for States (Article 164(1A)). "
+  "The Council of Ministers has three ranks -- Cabinet ministers, ministers of state and deputy ministers -- and only the first form the Cabinet, the smaller body that actually takes decisions. "
+  "The word 'Cabinet' appears only once in the Constitution, in Article 352, inserted by the 44th Amendment (1978) to require the Cabinet's written advice for a proclamation of emergency.",
+  "कोई भी कथन सही नहीं है। 91वें संशोधन (2003) ने सीमा 15 प्रतिशत तय की (अनुच्छेद 75(1A)), और राज्यों के लिए भी यही सीमा (अनुच्छेद 164(1A))। "
+  "मंत्रिपरिषद में तीन श्रेणियाँ हैं: कैबिनेट मंत्री, राज्य मंत्री और उपमंत्री; और केवल पहली श्रेणी मंत्रिमंडल बनाती है, वह छोटा निकाय जो वास्तव में निर्णय लेता है। "
+  "'मंत्रिमंडल' शब्द संविधान में केवल एक बार आता है, अनुच्छेद 352 में, जिसे 44वें संशोधन (1978) ने आपात की घोषणा के लिए मंत्रिमंडल की लिखित सलाह ज़रूरी करने के लिए जोड़ा।",
+  f"{COI}, Articles 75(1A), 164(1A) and 352(3); Constitution (Ninety-first Amendment) Act, 2003.",
+  "exec-council-of-ministers-size-cabinet")
+
+S(EX, "medium", "Consider the following statements about the discretion of the Governor:",
+  "राज्यपाल के विवेकाधिकार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Constitution expressly envisages functions that the Governor exercises in his discretion, which it does not do for the President.",
+   "If a question arises whether a matter falls within the Governor's discretion, the Governor's decision is final.",
+   "In Nabam Rebia (2016), the Supreme Court held that the Governor could, in his discretion, advance a session of the Assembly without the advice of the Council of Ministers."],
+  ["संविधान स्पष्ट रूप से ऐसे कार्यों की कल्पना करता है जिन्हें राज्यपाल अपने विवेक से करता है, जबकि राष्ट्रपति के लिए ऐसा नहीं करता।",
+   "यदि यह प्रश्न उठे कि कोई विषय राज्यपाल के विवेकाधिकार में है या नहीं, तो राज्यपाल का निर्णय अंतिम होता है।",
+   "नबाम रेबिया (2016) में उच्चतम न्यायालय ने माना कि राज्यपाल मंत्रिपरिषद की सलाह के बिना अपने विवेक से विधानसभा का सत्र पहले बुला सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: Article 163(1) makes the Governor act on the advice of the Council of Ministers 'except in so far as he is ... required ... to exercise his functions ... in his discretion', and Article 163(2) makes his view on that question final -- there is no similar provision for the President. "
+  "Statement 3 reverses Nabam Rebia: the Constitution Bench held the Governor's decision to advance the Arunachal Pradesh Assembly's session on his own unconstitutional, and read the Governor's discretion narrowly, confined to what the Constitution expressly allows.",
+  "कथन 1 और 2 सही हैं: अनुच्छेद 163(1) राज्यपाल को मंत्रिपरिषद की सलाह पर काम करने को कहता है, 'सिवाय उसके जहाँ उससे अपने कार्य अपने विवेक से करने की अपेक्षा हो', और अनुच्छेद 163(2) इस प्रश्न पर उसके मत को अंतिम बनाता है; राष्ट्रपति के लिए ऐसा कोई प्रावधान नहीं है। "
+  "कथन 3 नबाम रेबिया को उलट देता है: संविधान पीठ ने अरुणाचल प्रदेश विधानसभा का सत्र अपने आप पहले बुलाने के राज्यपाल के निर्णय को असंवैधानिक माना, और राज्यपाल के विवेकाधिकार को संकीर्ण रूप से पढ़ा, केवल उसी तक जिसकी संविधान स्पष्ट अनुमति देता है।",
+  f"{COI}, Article 163; {SC} -- Nabam Rebia and Bamang Felix v. Deputy Speaker (2016).",
+  "exec-governor-discretion-163-nabam-rebia")
+
+S(EX, "medium", "Consider the following statements about the Attorney General of India:",
+  "भारत के महान्यायवादी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["He is appointed by the President and must be qualified to be appointed a judge of the Supreme Court.",
+   "He is a full-time counsel of the Government and is barred from private legal practice.",
+   "He is a member of the Union Cabinet."],
+  ["उनकी नियुक्ति राष्ट्रपति करते हैं और उनमें उच्चतम न्यायालय का न्यायाधीश नियुक्त होने की योग्यता होनी चाहिए।",
+   "वे सरकार के पूर्णकालिक वकील हैं और निजी विधिक व्यवसाय से वंचित हैं।",
+   "वे केंद्रीय मंत्रिमंडल के सदस्य हैं।"],
+  C3, 0,
+  "Only statement 1 is correct (Article 76). "
+  "Statement 2 is wrong: the Attorney General is not a full-time counsel and may take private briefs, subject to not advising or appearing against the Government of India. "
+  "Statement 3 is wrong: he is not a member of the Cabinet; legal matters at the political level are handled by the Law Minister.",
+  "केवल कथन 1 सही है (अनुच्छेद 76)। "
+  "कथन 2 गलत है: महान्यायवादी पूर्णकालिक वकील नहीं हैं और निजी मामले ले सकते हैं, इस शर्त के साथ कि वे भारत सरकार के विरुद्ध सलाह न दें या पेश न हों। "
+  "कथन 3 गलत है: वे मंत्रिमंडल के सदस्य नहीं हैं; राजनीतिक स्तर पर विधिक मामले विधि मंत्री देखते हैं।",
+  f"{COI}, Article 76; Law Officers (Conditions of Service) Rules, 1987.",
+  "exec-attorney-general-status")
+
+S(EX, "medium", "Consider the following statements about the President and the Council of Ministers:",
+  "राष्ट्रपति और मंत्रिपरिषद के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The President can send the advice of the Council of Ministers back for reconsideration any number of times.",
+   "When no party has a clear majority in the Lok Sabha, the Constitution requires the President to invite the leader of the single largest party to form the government.",
+   "The President can dissolve the Lok Sabha if the Council of Ministers has lost its majority."],
+  ["राष्ट्रपति मंत्रिपरिषद की सलाह को जितनी बार चाहें पुनर्विचार के लिए लौटा सकते हैं।",
+   "जब लोकसभा में किसी दल के पास स्पष्ट बहुमत न हो, तब संविधान राष्ट्रपति से अपेक्षा करता है कि वे सबसे बड़े दल के नेता को सरकार बनाने के लिए आमंत्रित करें।",
+   "यदि मंत्रिपरिषद अपना बहुमत खो चुकी हो, तो राष्ट्रपति लोकसभा का विघटन कर सकते हैं।"],
+  C3, 0,
+  "Only statement 3 is correct: it is one of the 'situational' discretions that arise when the ordinary rule -- acting on the advice of a Council of Ministers with a majority -- cannot operate. "
+  "Statement 2 is wrong: choosing a Prime Minister in a hung House is another such discretion, and the Constitution lays down no rule for it; inviting the single largest party first is only a practice, and the President may instead call the leader of a coalition that can show majority support. "
+  "Statement 1 is wrong: the proviso to Article 74(1), added by the 44th Amendment, lets the President ask for reconsideration only once, and he must then act on the advice tendered after it.",
+  "केवल कथन 3 सही है: यह उन 'स्थितिजन्य' विवेकाधिकारों में से एक है, जो तब उत्पन्न होते हैं जब सामान्य नियम, यानी बहुमत वाली मंत्रिपरिषद की सलाह पर काम करना, लागू नहीं हो पाता। "
+  "कथन 2 गलत है: त्रिशंकु सदन में प्रधानमंत्री चुनना भी ऐसा ही विवेकाधिकार है, और संविधान इसके लिए कोई नियम नहीं बनाता; सबसे बड़े दल को पहले बुलाना केवल एक प्रथा है, और राष्ट्रपति उसके बजाय ऐसे गठबंधन के नेता को बुला सकते हैं जो बहुमत का समर्थन दिखा सके। "
+  "कथन 1 गलत है: 44वें संशोधन द्वारा जोड़ा गया अनुच्छेद 74(1) का परंतुक राष्ट्रपति को केवल एक बार पुनर्विचार के लिए कहने देता है, और उसके बाद दी गई सलाह पर उन्हें काम करना होता है।",
+  f"{COI}, Article 74(1); {NC} -- Executive.",
+  "exec-president-reconsideration-situational-discretion")
+
+# ---------------------------------------------------------------- hard statements (5)
+S(EX, "hard", "Consider the following statements about the Governor and State Bills:",
+  "राज्यपाल और राज्य विधेयकों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Governor must reserve for the President's consideration a Bill that would derogate from the powers of the High Court.",
+   "If the President returns a reserved Bill and the State Legislature passes it again, the President is bound to give assent.",
+   "The Governor must give assent to a Bill that the Legislature passes again after he has returned it for reconsideration."],
+  ["राज्यपाल को ऐसा विधेयक राष्ट्रपति के विचार के लिए आरक्षित करना ही होगा जो उच्च न्यायालय की शक्तियों को कम करे।",
+   "यदि राष्ट्रपति किसी आरक्षित विधेयक को लौटा दें और राज्य विधानमंडल उसे फिर से पारित कर दे, तो राष्ट्रपति अनुमति देने के लिए बाध्य हैं।",
+   "राज्यपाल को वह विधेयक अनुमत करना ही होगा जिसे उनके द्वारा पुनर्विचार के लिए लौटाए जाने के बाद विधानमंडल फिर से पारित कर दे।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: the second proviso to Article 200 makes reservation compulsory for such a Bill, to protect the High Court as part of the Union-level judicial system, and the first proviso says that once a returned Bill (other than a Money Bill) is passed again, the Governor 'shall not withhold assent'. "
+  "Statement 2 is wrong: under Article 201 a reserved Bill that is re-passed goes back to the President, who is not bound to assent -- the Governor's obligation does not extend to the President.",
+  "कथन 1 और 3 सही हैं: अनुच्छेद 200 का दूसरा परंतुक ऐसे विधेयक के लिए आरक्षण को अनिवार्य बनाता है, ताकि संघ-स्तरीय न्यायिक व्यवस्था के भाग के रूप में उच्च न्यायालय की रक्षा हो, और पहला परंतुक कहता है कि लौटाया गया विधेयक (धन विधेयक के अलावा) फिर से पारित होने पर राज्यपाल 'अनुमति नहीं रोकेंगे'। "
+  "कथन 2 गलत है: अनुच्छेद 201 के तहत फिर से पारित आरक्षित विधेयक दोबारा राष्ट्रपति के पास जाता है, जो अनुमति देने के लिए बाध्य नहीं हैं; राज्यपाल का दायित्व राष्ट्रपति पर लागू नहीं होता।",
+  f"{COI}, Articles 200 and 201.",
+  "exec-governor-bills-reservation-repassed")
+
+S(EX, "hard", "Consider the following statements about the election of the President:",
+  "राष्ट्रपति के चुनाव के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Doubts and disputes about the election are inquired into and decided by the Supreme Court.",
+   "The election cannot be challenged on the ground that the electoral college was incomplete because of vacancies.",
+   "If the election is declared void, acts done by the President before that declaration are not invalidated."],
+  ["चुनाव से संबंधित शंकाओं और विवादों की जाँच और निर्णय उच्चतम न्यायालय करता है।",
+   "चुनाव को इस आधार पर चुनौती नहीं दी जा सकती कि रिक्तियों के कारण निर्वाचक-मंडल अधूरा था।",
+   "यदि चुनाव शून्य घोषित हो जाए, तो उस घोषणा से पहले राष्ट्रपति द्वारा किए गए कार्य अमान्य नहीं होते।"],
+  C3, 2,
+  "All three statements are correct (Article 71). Original jurisdiction lies with the Supreme Court alone, whose decision is final. Clause (4), added by the 11th Amendment (1961), prevents vacancies -- for instance, dissolved State Assemblies -- from being used to stall the election. Clause (2) protects the continuity of government by saving acts done while in office.",
+  "तीनों कथन सही हैं (अनुच्छेद 71)। मूल क्षेत्राधिकार केवल उच्चतम न्यायालय के पास है, जिसका निर्णय अंतिम है। 11वें संशोधन (1961) द्वारा जोड़ा गया खंड (4) रिक्तियों, उदाहरण के लिए विघटित राज्य विधानसभाओं, का उपयोग चुनाव रोकने के लिए नहीं होने देता। खंड (2) पद पर रहते हुए किए गए कार्यों को बचाकर शासन की निरंतरता की रक्षा करता है।",
+  f"{COI}, Article 71; Constitution (Eleventh Amendment) Act, 1961; Presidential and Vice-Presidential Elections Act, 1952.",
+  "exec-president-election-disputes-71")
+
+S(EX, "hard", "Consider the following statements about the working of the Union executive:",
+  "केंद्रीय कार्यपालिका के कामकाज के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Cabinet Secretariat functions directly under the Prime Minister.",
+   "The 'kitchen cabinet', an informal body of the Prime Minister's confidants, has no constitutional or legal status.",
+   "Every order of the President must, by law, be countersigned by a minister.",
+   "The Cabinet Committee on Security is chaired by the Prime Minister."],
+  ["मंत्रिमंडल सचिवालय सीधे प्रधानमंत्री के अधीन काम करता है।",
+   "'किचन कैबिनेट', प्रधानमंत्री के विश्वासपात्रों का एक अनौपचारिक समूह, कोई संवैधानिक या विधिक दर्जा नहीं रखता।",
+   "राष्ट्रपति के हर आदेश पर कानूनन किसी मंत्री का प्रतिहस्ताक्षर होना चाहिए।",
+   "सुरक्षा संबंधी मंत्रिमंडल समिति की अध्यक्षता प्रधानमंत्री करते हैं।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. Cabinet committees and the kitchen cabinet are extra-constitutional -- the committees are set up under the Transaction of Business Rules, while the kitchen cabinet is purely informal. "
+  "Statement 3 is the trap: in Britain the legal responsibility of ministers is enforced by requiring a minister to countersign the Crown's acts, but the Indian Constitution has no such rule, and courts are barred by Article 74(2) from asking what advice was given.",
+  "कथन 1, 2 और 4 सही हैं। मंत्रिमंडल समितियाँ और किचन कैबिनेट संविधानेतर हैं: समितियाँ कार्य-संचालन नियमों के तहत बनती हैं, जबकि किचन कैबिनेट पूरी तरह अनौपचारिक है। "
+  "कथन 3 जाल है: ब्रिटेन में मंत्रियों का विधिक उत्तरदायित्व क्राउन के कार्यों पर मंत्री के प्रतिहस्ताक्षर की अपेक्षा से लागू होता है, पर भारतीय संविधान में ऐसा कोई नियम नहीं है, और अनुच्छेद 74(2) न्यायालयों को यह पूछने से रोकता है कि क्या सलाह दी गई थी।",
+  f"Government of India (Allocation of Business) Rules, 1961; Government of India (Transaction of Business) Rules, 1961; {COI}, Article 74(2).",
+  "exec-cabinet-secretariat-committees-countersign")
+
+S(EX, "hard", "Consider the following statements about the Governor of a State:",
+  "किसी राज्य के राज्यपाल के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["No civil proceedings in respect of his personal acts can be instituted against the Governor during the term of office.",
+   "The Constitution requires that a Governor should not belong to the State to which he is appointed.",
+   "The President can appoint the Governor of a State as the administrator of an adjoining Union Territory."],
+  ["राज्यपाल के कार्यकाल के दौरान उनके व्यक्तिगत कार्यों के संबंध में उनके विरुद्ध कोई सिविल कार्यवाही शुरू नहीं की जा सकती।",
+   "संविधान अपेक्षा करता है कि राज्यपाल उस राज्य का न हो जिसमें उसकी नियुक्ति होती है।",
+   "राष्ट्रपति किसी राज्य के राज्यपाल को निकटवर्ती केंद्रशासित प्रदेश का प्रशासक नियुक्त कर सकते हैं।"],
+  C3, 0,
+  "Only statement 3 is correct: Article 239(2) allows a Governor to administer an adjoining UT independently of his Council of Ministers -- as the Governor of Punjab does for Chandigarh. "
+  "Statement 1 confuses two immunities: Article 361(2) bars criminal proceedings during the term, but under Article 361(4) civil proceedings for personal acts can be instituted after two months' written notice. "
+  "Statement 2 is wrong: appointing an outsider is only a convention, supported by the Sarkaria Commission; the Constitution's only qualifications (Article 157) are Indian citizenship and a minimum age of 35.",
+  "केवल कथन 3 सही है: अनुच्छेद 239(2) राज्यपाल को अपनी मंत्रिपरिषद से स्वतंत्र रूप से निकटवर्ती केंद्रशासित प्रदेश का प्रशासन करने देता है, जैसे पंजाब के राज्यपाल चंडीगढ़ के लिए करते हैं। "
+  "कथन 1 दो उन्मुक्तियों को मिला देता है: अनुच्छेद 361(2) कार्यकाल के दौरान दांडिक कार्यवाही रोकता है, पर अनुच्छेद 361(4) के तहत व्यक्तिगत कार्यों के लिए सिविल कार्यवाही दो महीने की लिखित सूचना के बाद शुरू की जा सकती है। "
+  "कथन 2 गलत है: बाहरी व्यक्ति की नियुक्ति केवल एक परिपाटी है, जिसका समर्थन सरकारिया आयोग ने किया; संविधान की एकमात्र योग्यताएँ (अनुच्छेद 157) भारतीय नागरिकता और न्यूनतम 35 वर्ष की आयु हैं।",
+  f"{COI}, Articles 157, 239(2), 361(2) and 361(4); Sarkaria Commission Report (1988).",
+  "exec-governor-immunity-outsider-ut")
+
+S(EX, "hard", "Consider the following statements about ordinances issued by the President:",
+  "राष्ट्रपति द्वारा जारी अध्यादेशों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In R.C. Cooper (1970), the Supreme Court held that the President's satisfaction in issuing an ordinance could be questioned on the ground of mala fides.",
+   "An ordinance can amend the Constitution.",
+   "The ordinance-making power is co-extensive with the legislative power of Parliament."],
+  ["आर.सी. कूपर (1970) में उच्चतम न्यायालय ने माना कि अध्यादेश जारी करने में राष्ट्रपति की संतुष्टि पर दुर्भावना के आधार पर प्रश्न उठाया जा सकता है।",
+   "अध्यादेश संविधान में संशोधन कर सकता है।",
+   "अध्यादेश जारी करने की शक्ति संसद की विधायी शक्ति के समान विस्तार वाली है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: an ordinance can be issued only on subjects on which Parliament can legislate and is subject to the same limits, including the Fundamental Rights; the 38th Amendment tried to make the President's satisfaction final, but the 44th Amendment removed that clause. "
+  "Statement 2 is wrong: an ordinance has the force of an Act of Parliament, and an ordinary Act cannot amend the Constitution, which needs the procedure of Article 368.",
+  "कथन 1 और 3 सही हैं: अध्यादेश केवल उन विषयों पर जारी हो सकता है जिन पर संसद कानून बना सकती है और उस पर वही सीमाएँ लागू हैं, मौलिक अधिकारों सहित; 38वें संशोधन ने राष्ट्रपति की संतुष्टि को अंतिम बनाने का प्रयास किया, पर 44वें संशोधन ने वह खंड हटा दिया। "
+  "कथन 2 गलत है: अध्यादेश को संसद के अधिनियम का बल होता है, और सामान्य अधिनियम संविधान में संशोधन नहीं कर सकता, जिसके लिए अनुच्छेद 368 की प्रक्रिया चाहिए।",
+  f"{COI}, Articles 123 and 368; {SC} -- R.C. Cooper v. Union of India (1970).",
+  "exec-ordinance-review-limits")
+
+# ---------------------------------------------------------------- MCQs (medium 2, hard 1)
+M(EX, "medium", "Which one of the following is NOT a qualification for election as President of India?",
+  "निम्नलिखित में से कौन-सी भारत के राष्ट्रपति के रूप में चुनाव की योग्यता नहीं है?",
+  ["Must be a member of either House of Parliament", "Must have completed 35 years of age",
+   "Must be qualified for election as a member of the Lok Sabha", "Must not hold any office of profit under the Government"],
+  ["संसद के किसी भी सदन का सदस्य होना चाहिए", "35 वर्ष की आयु पूरी कर चुका होना चाहिए",
+   "लोकसभा का सदस्य चुने जाने की योग्यता होनी चाहिए", "सरकार के अधीन कोई लाभ का पद धारण नहीं करना चाहिए"],
+  0,
+  "Article 58 lays down citizenship, the age of 35, qualification for election to the Lok Sabha, and not holding an office of profit. Far from requiring membership of Parliament, Article 59 says the President cannot be a member of either House or of a State Legislature -- a member who is elected President vacates his seat.",
+  "अनुच्छेद 58 नागरिकता, 35 वर्ष की आयु, लोकसभा के चुनाव की योग्यता, और लाभ का पद धारण न करना निर्धारित करता है। संसद की सदस्यता की अपेक्षा तो दूर, अनुच्छेद 59 कहता है कि राष्ट्रपति किसी भी सदन या राज्य विधानमंडल का सदस्य नहीं हो सकता; राष्ट्रपति चुना गया सदस्य अपना स्थान रिक्त कर देता है।",
+  f"{COI}, Articles 58 and 59.",
+  "exec-president-qualifications-not")
+
+M(EX, "medium", "Which one of the following is NOT a discretionary function of the Governor?",
+  "निम्नलिखित में से कौन-सा राज्यपाल का विवेकाधीन कार्य नहीं है?",
+  ["Proroguing the Assembly on ministerial advice", "Reserving a Bill for the consideration of the President",
+   "Reporting to the President on a breakdown of constitutional machinery", "Seeking information from the Chief Minister on administrative matters"],
+  ["मंत्रिपरिषद की सलाह पर विधानसभा का सत्रावसान करना", "किसी विधेयक को राष्ट्रपति के विचार के लिए आरक्षित करना",
+   "संवैधानिक तंत्र के विफल होने पर राष्ट्रपति को रिपोर्ट देना", "प्रशासनिक मामलों पर मुख्यमंत्री से जानकारी माँगना"],
+  0,
+  "Reservation of Bills (Article 200), the report under Article 356 and seeking information from the Chief Minister (Article 167) are the Governor's constitutional discretions. Proroguing the House on the Council of Ministers' advice is an ordinary function performed on advice -- the very phrase 'on ministerial advice' is the giveaway that no discretion is involved.",
+  "विधेयकों का आरक्षण (अनुच्छेद 200), अनुच्छेद 356 के तहत रिपोर्ट, और मुख्यमंत्री से जानकारी माँगना (अनुच्छेद 167) राज्यपाल के संवैधानिक विवेकाधिकार हैं। मंत्रिपरिषद की सलाह पर सदन का सत्रावसान सलाह पर किया जाने वाला सामान्य कार्य है; 'मंत्रिपरिषद की सलाह पर' वाक्यांश ही बताता है कि इसमें कोई विवेक शामिल नहीं है।",
+  f"{COI}, Articles 163, 167, 174, 200 and 356.",
+  "exec-governor-not-discretionary")
+
+M(EX, "hard", "The Supreme Court held that the power of pardon under Articles 72 and 161 is exercised on the advice of the Council of Ministers, and not by the President or Governor personally, in:",
+  "उच्चतम न्यायालय ने किस मामले में माना कि अनुच्छेद 72 और 161 के तहत क्षमादान की शक्ति का प्रयोग मंत्रिपरिषद की सलाह पर होता है, राष्ट्रपति या राज्यपाल द्वारा व्यक्तिगत रूप से नहीं?",
+  ["Maru Ram v. Union of India", "Kehar Singh v. Union of India", "Shatrughan Chauhan v. Union of India", "Epuru Sudhakar v. Government of Andhra Pradesh"],
+  ["मारू राम बनाम भारत संघ", "केहर सिंह बनाम भारत संघ", "शत्रुघ्न चौहान बनाम भारत संघ", "एपुरु सुधाकर बनाम आंध्र प्रदेश सरकार"],
+  0,
+  "In Maru Ram (1980), a Constitution Bench held that the pardoning power is exercised on the advice of the government, like other executive powers. The distractors are all real pardon cases: Kehar Singh (1989) held there is no right to an oral hearing before the President; Shatrughan Chauhan (2014) allowed commutation of death sentences for unexplained delay in deciding mercy petitions; and Epuru Sudhakar (2006) set out the grounds of judicial review.",
+  "मारू राम (1980) में संविधान पीठ ने माना कि दूसरी कार्यकारी शक्तियों की तरह क्षमादान की शक्ति का प्रयोग सरकार की सलाह पर होता है। सभी गलत विकल्प वास्तविक क्षमादान मामले हैं: केहर सिंह (1989) ने माना कि राष्ट्रपति के सामने मौखिक सुनवाई का अधिकार नहीं है; शत्रुघ्न चौहान (2014) ने दया याचिकाओं पर निर्णय में अस्पष्ट देरी के कारण मृत्युदंड के लघुकरण की अनुमति दी; और एपुरु सुधाकर (2006) ने न्यायिक समीक्षा के आधार तय किए।",
+  f"{SC} -- Maru Ram v. Union of India (1980); Kehar Singh v. Union of India (1989); Shatrughan Chauhan v. Union of India (2014); Epuru Sudhakar (2006).",
+  "exec-maru-ram-pardon-advice")
+
+# ---------------------------------------------------------------- Statement-I/II (medium 2) and I/II/III (hard 1)
+A(EX, "medium",
+  "The President of India is the nominal executive.",
+  "भारत के राष्ट्रपति नाममात्र की कार्यपालिका हैं।",
+  "The President is elected indirectly, by an electoral college.",
+  "राष्ट्रपति अप्रत्यक्ष रूप से, एक निर्वाचक-मंडल द्वारा, चुने जाते हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. The President is a nominal executive because India follows the parliamentary system, in which real power lies with a Council of Ministers responsible to the Lok Sabha. How the President is elected does not decide this -- an indirectly elected head could still be powerful, and a directly elected one could be a figurehead.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। राष्ट्रपति नाममात्र की कार्यपालिका इसलिए हैं कि भारत संसदीय व्यवस्था अपनाता है, जिसमें वास्तविक शक्ति लोकसभा के प्रति उत्तरदायी मंत्रिपरिषद के पास है। राष्ट्रपति के चुने जाने का तरीका यह तय नहीं करता: अप्रत्यक्ष रूप से चुना गया प्रमुख भी शक्तिशाली हो सकता है, और प्रत्यक्ष रूप से चुना गया प्रमुख भी नाममात्र का।",
+  f"{COI}, Articles 54 and 74; {NC} -- Executive.",
+  "exec-nominal-executive-indirect-election")
+
+A(EX, "medium",
+  "The Council of Ministers does not cease to hold office when the Lok Sabha is dissolved.",
+  "लोकसभा के विघटन पर मंत्रिपरिषद पद से हट नहीं जाती।",
+  "Article 74(1) requires that there shall always be a Council of Ministers to aid and advise the President.",
+  "अनुच्छेद 74(1) अपेक्षा करता है कि राष्ट्रपति को सहायता और सलाह देने के लिए हमेशा एक मंत्रिपरिषद होगी।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. In U.N.R. Rao (1971), the Supreme Court held that the word 'shall' in Article 74(1) is mandatory, so the President can never act without a Council of Ministers; the outgoing ministry therefore continues, as a caretaker, until a new one is sworn in.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। यू.एन.आर. राव (1971) में उच्चतम न्यायालय ने माना कि अनुच्छेद 74(1) में 'होगी' शब्द आज्ञापक है, इसलिए राष्ट्रपति कभी मंत्रिपरिषद के बिना काम नहीं कर सकते; इसलिए निवर्तमान मंत्रिपरिषद नई मंत्रिपरिषद के शपथ लेने तक कार्यवाहक के रूप में बनी रहती है।",
+  f"{COI}, Article 74(1); {SC} -- U.N.R. Rao v. Indira Gandhi (1971).",
+  "exec-council-continues-after-dissolution")
+
+A(EX, "hard",
+  "The courts cannot examine whether, in a particular matter, the President acted on the advice of the Council of Ministers.",
+  "न्यायालय यह जाँच नहीं कर सकते कि किसी विशेष मामले में राष्ट्रपति ने मंत्रिपरिषद की सलाह पर काम किया या नहीं।",
+  "Article 74(2) bars the courts from inquiring whether any, and if so what, advice was tendered by the ministers to the President.",
+  "अनुच्छेद 74(2) न्यायालयों को यह जाँचने से रोकता है कि मंत्रियों ने राष्ट्रपति को कोई सलाह दी थी या नहीं, और दी थी तो क्या।",
+  1,
+  "Both Statements II and III are correct, but only one of them -- Statement II -- explains Statement I. Article 74(2) is the direct bar on inquiring into ministerial advice. "
+  "Statement III, Article 361(1), protects the President personally from being answerable to any court for the exercise of his powers; it is a separate immunity and says nothing about examining the advice behind a decision -- which is why government action can still be challenged, with the Union as the party.",
+  "कथन II और III दोनों सही हैं, पर उनमें से केवल एक, कथन II, कथन I की व्याख्या करता है। अनुच्छेद 74(2) मंत्रियों की सलाह की जाँच पर सीधी रोक है। "
+  "कथन III, अनुच्छेद 361(1), राष्ट्रपति को व्यक्तिगत रूप से अपनी शक्तियों के प्रयोग के लिए किसी न्यायालय के प्रति उत्तरदायी होने से बचाता है; यह एक अलग उन्मुक्ति है और किसी निर्णय के पीछे की सलाह की जाँच के बारे में कुछ नहीं कहता; इसीलिए सरकारी कार्रवाई को फिर भी चुनौती दी जा सकती है, संघ को पक्षकार बनाकर।",
+  f"{COI}, Articles 74(2) and 361(1).",
+  "exec-advice-nonjusticiable-74-2-361",
+  s3="The President is not answerable to any court for the exercise and performance of the powers and duties of his office.",
+  s3_hi="राष्ट्रपति अपने पद की शक्तियों और कर्तव्यों के प्रयोग और पालन के लिए किसी न्यायालय के प्रति उत्तरदायी नहीं हैं।")
+
+# ---------------------------------------------------------------- pairs (medium 1, hard 1)
+P(EX, "medium", "Consider the following pairs of offices and the authority before whom the oath of office is made:",
+  "पदों और जिनके सामने पद की शपथ ली जाती है, उन प्राधिकारियों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["President : The Chief Justice of India", "Vice-President : The President",
+   "Governor of a State : The Chief Justice of India", "Union Minister : The Prime Minister"],
+  ["राष्ट्रपति : भारत के मुख्य न्यायाधीश", "उपराष्ट्रपति : राष्ट्रपति",
+   "किसी राज्य का राज्यपाल : भारत के मुख्य न्यायाधीश", "केंद्रीय मंत्री : प्रधानमंत्री"],
+  1,
+  "Only pairs 1 and 2 are correct (Articles 60 and 69). "
+  "Pair 3 is wrong: a Governor takes the oath before the Chief Justice of the High Court of the State, or in his absence its senior-most judge (Article 159). Pair 4 is wrong: Union ministers take the oath before the President (Article 75(4)); the Prime Minister advises on their appointment but does not administer the oath.",
+  "केवल युग्म 1 और 2 सही हैं (अनुच्छेद 60 और 69)। "
+  "युग्म 3 गलत है: राज्यपाल राज्य के उच्च न्यायालय के मुख्य न्यायाधीश, या उनकी अनुपस्थिति में वरिष्ठतम न्यायाधीश, के सामने शपथ लेते हैं (अनुच्छेद 159)। युग्म 4 गलत है: केंद्रीय मंत्री राष्ट्रपति के सामने शपथ लेते हैं (अनुच्छेद 75(4)); प्रधानमंत्री उनकी नियुक्ति पर सलाह देते हैं, पर शपथ नहीं दिलाते।",
+  f"{COI}, Articles 60, 69, 75(4) and 159.",
+  "exec-oath-authorities-pairs")
+
+P(EX, "hard", "Consider the following pairs of Presidents of India and the distinction associated with them:",
+  "भारत के राष्ट्रपतियों और उनसे जुड़ी विशेषता के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Rajendra Prasad : The only President elected twice", "Zakir Husain : The first President to die in office",
+   "V.V. Giri : Elected in the only presidential election decided by counting second-preference votes", "Fakhruddin Ali Ahmed : The only President elected unopposed"],
+  ["राजेंद्र प्रसाद : दो बार चुने गए एकमात्र राष्ट्रपति", "ज़ाकिर हुसैन : पद पर रहते हुए मृत्यु को प्राप्त पहले राष्ट्रपति",
+   "वी.वी. गिरि : एकमात्र ऐसे राष्ट्रपति चुनाव में चुने गए जिसका निर्णय द्वितीय वरीयता मतों की गिनती से हुआ", "फ़ख़रुद्दीन अली अहमद : निर्विरोध चुने गए एकमात्र राष्ट्रपति"],
+  2,
+  "Three pairs are correct. Rajendra Prasad was elected in 1952 and 1957; Zakir Husain died in office in May 1969; and in the 1969 election no candidate crossed the quota on first preferences, so V.V. Giri won only after second preferences were transferred -- a live illustration of the single transferable vote. "
+  "Pair 4 is wrong: the only President elected unopposed was Neelam Sanjiva Reddy in 1977. Fakhruddin Ali Ahmed, elected in 1974 after a contest, was the second President to die in office.",
+  "तीन युग्म सही हैं। राजेंद्र प्रसाद 1952 और 1957 में चुने गए; ज़ाकिर हुसैन की मई 1969 में पद पर रहते हुए मृत्यु हुई; और 1969 के चुनाव में कोई उम्मीदवार प्रथम वरीयता मतों से कोटा पार नहीं कर पाया, इसलिए वी.वी. गिरि द्वितीय वरीयताओं के हस्तांतरण के बाद ही जीते; यह एकल संक्रमणीय मत का जीवंत उदाहरण है। "
+  "युग्म 4 गलत है: निर्विरोध चुने गए एकमात्र राष्ट्रपति 1977 में नीलम संजीव रेड्डी थे। 1974 में मुक़ाबले के बाद चुने गए फ़ख़रुद्दीन अली अहमद पद पर रहते हुए मृत्यु को प्राप्त दूसरे राष्ट्रपति थे।",
+  "Election Commission of India -- Statistical reports on Presidential elections; Rashtrapati Bhavan -- Former Presidents.",
+  "exec-presidents-distinctions-pairs")
+
+# ---------------------------------------------------------------- easy statement (1)
+S(EX, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The President is the head of the Indian State.",
+   "The Prime Minister is elected directly by the people."],
+  ["राष्ट्रपति भारतीय राज्य के प्रमुख हैं।",
+   "प्रधानमंत्री जनता द्वारा प्रत्यक्ष रूप से चुने जाते हैं।"],
+  T2, 0,
+  "Only statement 1 is correct: the executive power of the Union is vested in the President (Article 53), who is the head of State. Statement 2 is wrong: voters elect members of the Lok Sabha, and the President appoints as Prime Minister the leader who can command a majority in it.",
+  "केवल कथन 1 सही है: संघ की कार्यपालिका शक्ति राष्ट्रपति में निहित है (अनुच्छेद 53), जो राज्य के प्रमुख हैं। कथन 2 गलत है: मतदाता लोकसभा के सदस्य चुनते हैं, और राष्ट्रपति उस नेता को प्रधानमंत्री नियुक्त करते हैं जो उसमें बहुमत का समर्थन रखता हो।",
+  f"{COI}, Articles 53 and 75(1); {NC} -- Executive.",
+  "exec-president-head-pm-not-direct-easy")
+
+if __name__ == "__main__":
+    write("pol_l2_t2_executive.sql")
