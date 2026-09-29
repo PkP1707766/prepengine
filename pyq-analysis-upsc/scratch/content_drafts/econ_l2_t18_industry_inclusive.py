@@ -1,0 +1,911 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 18 (Economy 4: Sectors of the Economy & Inclusive Growth) -- Industry, Infrastructure, Energy &
+Services (51) and Inclusive Growth, Welfare & Demography (11).
+  Industry: medium statement 19, easy statement 6, hard statement 6, medium MCQ 6, medium Statement-I/II 5,
+    easy Statement-I/II 2, easy MCQ 2, hard Statement-I/II 2, hard MCQ 2, medium pairs 1.
+  Inclusive growth: medium statement 4, hard statement 2, easy MCQ 1, easy statement 1, hard pairs 1,
+    medium Statement-I/II 1, medium MCQ 1.
+The electricity capacity mix, power plants, ports, pipelines, UDAN and Sagarmala are Geography Test 14; clean-energy
+schemes and technologies are Environment; the 1956 policy, licensing and 1991 reforms Test 16; PSE policy and capex
+Test 17. Welfare schemes already in Polity (NFSA, labour codes, DBT, NRLM, POSHAN, PM-JAY, Aspirational Districts,
+VB-G RAM G) and Test 16 (MPI, poverty lines, PLFS basics, e-Shram) are avoided."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+IN = "Industry, Infrastructure, Energy & Services"
+IG = "Inclusive Growth, Welfare & Demography"
+IED = "NCERT Class XI, Indian Economic Development"
+DPIIT = "Department for Promotion of Industry and Internal Trade"
+MOSPI = "Ministry of Statistics and Programme Implementation"
+ES = "Economic Survey 2024-25"
+
+# ================================================================ INDUSTRY: MEDIUM STATEMENTS (19)
+S(IN, "medium", "Consider the following statements about the Index of Industrial Production (IIP):",
+  "औद्योगिक उत्पादन सूचकांक (IIP) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is released every month by the National Statistics Office.",
+   "It measures changes in the volume of industrial production.",
+   "Manufacturing has the largest weight in it."],
+  ["इसे राष्ट्रीय सांख्यिकी कार्यालय हर महीने जारी करता है।",
+   "यह औद्योगिक उत्पादन की मात्रा में परिवर्तन को मापता है।",
+   "इसमें विनिर्माण का भार सबसे अधिक है।"],
+  C3, 2,
+  "All three statements are correct. The IIP tracks the quantity of output, not its value, across mining, manufacturing and electricity; manufacturing carries more than three-quarters of the weight, so it drives the headline number.",
+  "तीनों कथन सही हैं। IIP खनन, विनिर्माण और बिजली में उत्पादन की मात्रा पर नज़र रखता है, उसके मूल्य पर नहीं; विनिर्माण का भार तीन-चौथाई से अधिक है, इसलिए मुख्य आँकड़ा वही तय करता है।",
+  f"{MOSPI} -- Index of Industrial Production.",
+  "in-iip")
+
+S(IN, "medium", "Consider the following statements about the Index of Eight Core Industries:",
+  "आठ प्रमुख उद्योगों के सूचकांक के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is compiled by the Office of the Economic Adviser in the DPIIT.",
+   "The eight core industries make up about 40 per cent of the weight of the IIP.",
+   "It is released once every quarter."],
+  ["इसे DPIIT में आर्थिक सलाहकार का कार्यालय संकलित करता है।",
+   "आठ प्रमुख उद्योग IIP के भार का लगभग 40 प्रतिशत हैं।",
+   "यह हर तिमाही में एक बार जारी होता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: because the core industries -- coal, crude oil, natural gas, refinery products, fertilisers, steel, cement and electricity -- supply inputs to the rest of industry, their index is read as an early signal of the IIP. "
+  "Statement 3 is wrong: it is released every month, about a fortnight before the IIP for the same month.",
+  "कथन 1 और 2 सही हैं: चूँकि प्रमुख उद्योग, यानी कोयला, कच्चा तेल, प्राकृतिक गैस, रिफ़ाइनरी उत्पाद, उर्वरक, इस्पात, सीमेंट और बिजली, शेष उद्योग को आदान देते हैं, इनके सूचकांक को IIP के प्रारंभिक संकेत के रूप में पढ़ा जाता है। "
+  "कथन 3 गलत है: यह हर महीने जारी होता है, उसी महीने के IIP से लगभग एक पखवाड़ा पहले।",
+  f"{DPIIT} -- Office of the Economic Adviser, Index of Eight Core Industries.",
+  "in-core-industries-index")
+
+S(IN, "medium", "Consider the following statements about the Purchasing Managers' Index (PMI):",
+  "क्रय प्रबंधक सूचकांक (PMI) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A PMI reading above 50 indicates expansion compared with the previous month.",
+   "India's PMI is compiled by the National Statistics Office.",
+   "The PMI is based on actual output data collected from factories."],
+  ["50 से ऊपर का PMI पिछले महीने की तुलना में विस्तार दर्शाता है।",
+   "भारत का PMI राष्ट्रीय सांख्यिकी कार्यालय संकलित करता है।",
+   "PMI कारख़ानों से एकत्र वास्तविक उत्पादन आँकड़ों पर आधारित है।"],
+  C3, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: India's manufacturing and services PMIs are compiled by a private firm, S&P Global, and sponsored by HSBC. "
+  "Statement 3 is wrong: the PMI is a survey of purchasing managers, who report whether output, new orders, employment, prices and stocks rose or fell -- which is why it comes out early, at the start of the next month, but is only a diffusion index, not a measure of output.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: भारत के विनिर्माण और सेवा PMI एक निजी कंपनी, S&P ग्लोबल, संकलित करती है और HSBC प्रायोजित करता है। "
+  "कथन 3 गलत है: PMI क्रय प्रबंधकों का एक सर्वेक्षण है, जो बताते हैं कि उत्पादन, नए ऑर्डर, रोज़गार, क़ीमतें और भंडार बढ़े या घटे; इसीलिए यह जल्दी, अगले महीने की शुरुआत में, आता है, पर यह केवल एक प्रसार सूचकांक (diffusion index) है, उत्पादन का माप नहीं।",
+  "S&P Global -- HSBC India PMI.",
+  "in-pmi")
+
+S(IN, "medium", "Consider the following statements about the Production Linked Incentive (PLI) schemes:",
+  "उत्पादन से जुड़ी प्रोत्साहन (PLI) योजनाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They were launched in 2020.",
+   "They cover 14 sectors.",
+   "Incentives are paid on incremental sales over a base year."],
+  ["इन्हें 2020 में शुरू किया गया।",
+   "ये 14 क्षेत्रों को शामिल करती हैं।",
+   "प्रोत्साहन आधार वर्ष की तुलना में वृद्धिशील बिक्री पर दिए जाते हैं।"],
+  C3, 2,
+  "All three statements are correct. Beginning with mobile phones and electronics, the schemes -- with an outlay of about ₹1.97 lakh crore -- extend to pharmaceuticals, automobiles, textiles, solar modules, advanced batteries, food processing and others. Linking the reward to extra output made in India, rather than to investment alone, was meant to attract large manufacturers.",
+  "तीनों कथन सही हैं। मोबाइल फ़ोन और इलेक्ट्रॉनिक्स से शुरू होकर ये योजनाएँ, लगभग ₹1.97 लाख करोड़ के परिव्यय के साथ, फ़ार्मास्यूटिकल्स, ऑटोमोबाइल, वस्त्र, सौर मॉड्यूल, उन्नत बैटरी, खाद्य प्रसंस्करण आदि तक फैली हैं। पुरस्कार को केवल निवेश से नहीं, बल्कि भारत में बने अतिरिक्त उत्पादन से जोड़ने का उद्देश्य बड़े निर्माताओं को आकर्षित करना था।",
+  f"{DPIIT} -- Production Linked Incentive schemes.",
+  "in-pli")
+
+S(IN, "medium", "Consider the following statements about the classification of micro, small and medium enterprises (MSMEs):",
+  "सूक्ष्म, लघु और मध्यम उद्यमों (MSME) के वर्गीकरण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Enterprises are classified on a composite basis of investment in plant and machinery and turnover.",
+   "From April 2025, a micro enterprise is one with investment of up to ₹2.5 crore and turnover of up to ₹10 crore.",
+   "Export turnover is counted when classifying an enterprise."],
+  ["उद्यमों का वर्गीकरण संयंत्र और मशीनरी में निवेश तथा कारोबार के मिले-जुले आधार पर होता है।",
+   "अप्रैल 2025 से सूक्ष्म उद्यम वह है जिसका निवेश ₹2.5 करोड़ तक और कारोबार ₹10 करोड़ तक है।",
+   "किसी उद्यम के वर्गीकरण में निर्यात कारोबार गिना जाता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the limits were raised in the Budget 2025-26 -- to ₹25 crore and ₹100 crore for small, and ₹125 crore and ₹500 crore for medium enterprises -- so that firms do not stay small to keep MSME benefits. "
+  "Statement 3 is wrong: exports are left out of turnover, so that exporting does not push a firm out of the MSME category.",
+  "कथन 1 और 2 सही हैं: बजट 2025-26 में सीमाएँ बढ़ाई गईं, लघु के लिए ₹25 करोड़ और ₹100 करोड़, और मध्यम उद्यमों के लिए ₹125 करोड़ और ₹500 करोड़, ताकि कंपनियाँ MSME लाभ बनाए रखने के लिए छोटी ही न बनी रहें। "
+  "कथन 3 गलत है: निर्यात को कारोबार से बाहर रखा जाता है, ताकि निर्यात करने से कोई कंपनी MSME श्रेणी से बाहर न हो।",
+  "Ministry of MSME -- Notification on classification (2025); Union Budget 2025-26.",
+  "in-msme-classification")
+
+S(IN, "medium", "Consider the following statements about semiconductors in India:",
+  "भारत में सेमीकंडक्टर के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The India Semiconductor Mission was set up in 2021.",
+   "No chip fabrication plant has yet been approved in India.",
+   "Micron's facility at Sanand in Gujarat is a wafer fabrication plant."],
+  ["भारत सेमीकंडक्टर मिशन 2021 में स्थापित किया गया।",
+   "भारत में अभी तक किसी चिप निर्माण संयंत्र (fab) को स्वीकृति नहीं मिली है।",
+   "गुजरात के साणंद में माइक्रॉन की सुविधा एक वेफ़र निर्माण संयंत्र है।"],
+  C3, 0,
+  "Only statement 1 is correct: the mission, under the Ministry of Electronics and IT, offers fiscal support of up to half the project cost for fabs and packaging units. "
+  "Statement 2 is wrong: a fab by Tata Electronics with Taiwan's PSMC at Dholera was approved in 2024. "
+  "Statement 3 is wrong: Micron's Sanand plant does assembly, testing, marking and packaging (ATMP) -- the back end of chip-making -- not wafer fabrication.",
+  "केवल कथन 1 सही है: इलेक्ट्रॉनिक्स और IT मंत्रालय के अंतर्गत यह मिशन फ़ैब और पैकेजिंग इकाइयों के लिए परियोजना लागत के आधे तक की राजकोषीय सहायता देता है। "
+  "कथन 2 गलत है: धोलेरा में ताइवान की PSMC के साथ टाटा इलेक्ट्रॉनिक्स के एक फ़ैब को 2024 में स्वीकृति मिली। "
+  "कथन 3 गलत है: माइक्रॉन का साणंद संयंत्र असेंबली, परीक्षण, चिह्नांकन और पैकेजिंग (ATMP) करता है, जो चिप निर्माण का पिछला चरण है, वेफ़र निर्माण नहीं।",
+  "Ministry of Electronics and Information Technology -- India Semiconductor Mission.",
+  "in-semiconductors")
+
+S(IN, "medium", "Consider the following statements about start-ups:",
+  "स्टार्ट-अप के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Start-ups are recognised by the DPIIT.",
+   "An entity counts as a start-up for up to ten years from incorporation if its turnover has not exceeded ₹100 crore in any year.",
+   "The Startup India initiative was launched in 2016."],
+  ["स्टार्ट-अप को DPIIT मान्यता देता है।",
+   "कोई इकाई निगमन से दस वर्ष तक स्टार्ट-अप मानी जाती है, यदि किसी भी वर्ष उसका कारोबार ₹100 करोड़ से अधिक न हुआ हो।",
+   "स्टार्टअप इंडिया पहल 2016 में शुरू की गई।"],
+  C3, 2,
+  "All three statements are correct. Recognition opens access to tax holidays, easier compliance and the Fund of Funds for Startups run through SIDBI. India has well over a lakh and a half recognised start-ups, one of the largest start-up ecosystems in the world.",
+  "तीनों कथन सही हैं। मान्यता से कर अवकाश, आसान अनुपालन और SIDBI के ज़रिए चलने वाले स्टार्ट-अप फ़ंड ऑफ़ फ़ंड्स तक पहुँच मिलती है। भारत में डेढ़ लाख से कहीं अधिक मान्यता प्राप्त स्टार्ट-अप हैं, जो विश्व के सबसे बड़े स्टार्ट-अप तंत्रों में से एक है।",
+  f"{DPIIT} -- Startup India.",
+  "in-startups")
+
+S(IN, "medium", "Consider the following statements about logistics:",
+  "लॉजिस्टिक्स के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India adopted a National Logistics Policy in 2022.",
+   "India ranked among the top ten countries in the World Bank's Logistics Performance Index 2023.",
+   "PM Gati Shakti is a digital platform that brings together the infrastructure plans of different ministries."],
+  ["भारत ने 2022 में एक राष्ट्रीय लॉजिस्टिक्स नीति अपनाई।",
+   "विश्व बैंक के लॉजिस्टिक्स प्रदर्शन सूचकांक 2023 में भारत शीर्ष दस देशों में था।",
+   "PM गति शक्ति एक डिजिटल मंच है जो विभिन्न मंत्रालयों की अवसंरचना योजनाओं को एक साथ लाता है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: the policy aims to bring logistics costs down to global benchmarks, and Gati Shakti's GIS-based master plan lets roads, railways, pipelines and power lines be planned together instead of piecemeal. "
+  "Statement 2 is wrong: India was ranked 38th of 139 countries in 2023 -- an improvement from 44th in 2018, but well outside the top ten.",
+  "कथन 1 और 3 सही हैं: नीति का लक्ष्य लॉजिस्टिक्स लागत को वैश्विक मानकों तक लाना है, और गति शक्ति की GIS-आधारित मास्टर योजना सड़कों, रेलवे, पाइपलाइनों और बिजली लाइनों की योजना टुकड़ों में नहीं, बल्कि एक साथ बनाने देती है। "
+  "कथन 2 गलत है: 2023 में भारत 139 देशों में 38वें स्थान पर था; 2018 के 44वें स्थान से सुधार, पर शीर्ष दस से काफ़ी बाहर।",
+  f"{DPIIT} -- National Logistics Policy (2022); World Bank -- Logistics Performance Index 2023.",
+  "in-logistics")
+
+S(IN, "medium", "Consider the following statements about the financing of infrastructure:",
+  "अवसंरचना के वित्तपोषण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The National Bank for Financing Infrastructure and Development (NaBFID) is a department of the RBI.",
+   "The National Monetisation Pipeline transfers the ownership of public assets to private investors.",
+   "Most of the projects under the National Infrastructure Pipeline were in the telecom sector."],
+  ["राष्ट्रीय अवसंरचना वित्तपोषण और विकास बैंक (NaBFID) RBI का एक विभाग है।",
+   "राष्ट्रीय मुद्रीकरण पाइपलाइन सार्वजनिक परिसंपत्तियों का स्वामित्व निजी निवेशकों को हस्तांतरित करती है।",
+   "राष्ट्रीय अवसंरचना पाइपलाइन के अधिकांश परियोजनाएँ दूरसंचार क्षेत्र में थीं।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: NaBFID is a statutory development finance institution set up under its own Act of 2021 to lend long-term to infrastructure. "
+  "Statement 2 is wrong: under the Monetisation Pipeline of 2021 the government leases operating rights in brownfield assets -- roads, transmission lines, pipelines -- for a period and keeps ownership; the assets return at the end. "
+  "Statement 3 is wrong: the ₹111 lakh crore NIP for 2020-25 was led by energy, roads, urban infrastructure and railways.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: NaBFID अवसंरचना को दीर्घकालिक ऋण देने के लिए 2021 के अपने अधिनियम के तहत बनी एक वैधानिक विकास वित्त संस्था है। "
+  "कथन 2 गलत है: 2021 की मुद्रीकरण पाइपलाइन में सरकार ब्राउनफ़ील्ड परिसंपत्तियों, जैसे सड़कों, पारेषण लाइनों और पाइपलाइनों, के संचालन अधिकार एक अवधि के लिए पट्टे पर देती है और स्वामित्व अपने पास रखती है; अवधि के अंत में परिसंपत्तियाँ लौट आती हैं। "
+  "कथन 3 गलत है: 2020-25 की ₹111 लाख करोड़ की NIP में ऊर्जा, सड़कें, शहरी अवसंरचना और रेलवे आगे थे।",
+  "Department of Economic Affairs -- National Infrastructure Pipeline; NITI Aayog -- National Monetisation Pipeline; NaBFID Act, 2021.",
+  "in-infra-finance-none")
+
+S(IN, "medium", "Consider the following statements about road projects built with private participation:",
+  "निजी भागीदारी से बनी सड़क परियोजनाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the Hybrid Annuity Model, the government pays 60 per cent of the project cost during construction.",
+   "Under the Hybrid Annuity Model, the private developer bears the full traffic risk.",
+   "Under the Build-Operate-Transfer (Toll) model, the concessionaire collects tolls from users."],
+  ["हाइब्रिड एन्युटी मॉडल (HAM) में सरकार निर्माण के दौरान परियोजना लागत का 60 प्रतिशत देती है।",
+   "हाइब्रिड एन्युटी मॉडल में निजी विकासकर्ता पूरा यातायात जोखिम उठाता है।",
+   "निर्माण-संचालन-हस्तांतरण (टोल) मॉडल में रियायतग्राही (concessionaire) उपयोगकर्ताओं से टोल वसूलता है।"],
+  C3, 0,
+  "Only statement 3 is correct: under BOT-Toll the developer recovers its investment from tolls, and so carries the risk that traffic falls short. "
+  "Statement 1 is wrong: under HAM the government pays 40 per cent during construction and the rest, with interest, as annuities over the operating period. "
+  "Statement 2 is wrong: under HAM the government collects the tolls and bears the traffic risk -- which is why the model revived private interest in highways after 2016, when BOT projects had stalled.",
+  "केवल कथन 3 सही है: BOT-टोल में विकासकर्ता टोल से अपना निवेश वसूलता है, और इसलिए यातायात कम रहने का जोखिम उठाता है। "
+  "कथन 1 गलत है: HAM में सरकार निर्माण के दौरान 40 प्रतिशत देती है और शेष, ब्याज के साथ, संचालन अवधि में वार्षिकियों (annuities) के रूप में। "
+  "कथन 2 गलत है: HAM में टोल सरकार वसूलती है और यातायात जोखिम उठाती है; इसीलिए इस मॉडल ने 2016 के बाद, जब BOT परियोजनाएँ अटक गई थीं, राजमार्गों में निजी रुचि फिर जगाई।",
+  "Ministry of Road Transport and Highways -- Hybrid Annuity Model; National Highways Authority of India.",
+  "in-ppp-ham-bot")
+
+S(IN, "medium", "Consider the following statements about electricity distribution:",
+  "बिजली वितरण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Aggregate technical and commercial (AT&C) losses of distribution companies fell to about 16 per cent in 2023-24.",
+   "The Revamped Distribution Sector Scheme was launched in 2021.",
+   "More than half of India's electricity distribution is in private hands."],
+  ["वितरण कंपनियों की कुल तकनीकी और वाणिज्यिक (AT&C) हानियाँ 2023-24 में घटकर लगभग 16 प्रतिशत रह गईं।",
+   "संशोधित वितरण क्षेत्र योजना (RDSS) 2021 में शुरू की गई।",
+   "भारत के बिजली वितरण का आधे से अधिक भाग निजी हाथों में है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: AT&C losses -- power lost in the wires, stolen or not billed and collected -- came down from over 22 per cent in 2020-21, with the RDSS tying funds to smart prepaid meters and loss-reduction targets. "
+  "Statement 3 is wrong: most consumers are served by State-owned distribution companies; private distribution is limited to cities such as Delhi, Mumbai, Kolkata and Ahmedabad and to Odisha.",
+  "कथन 1 और 2 सही हैं: AT&C हानियाँ, यानी तारों में नष्ट, चोरी या बिना बिल और वसूली वाली बिजली, 2020-21 के 22 प्रतिशत से अधिक से नीचे आईं, और RDSS ने धन को स्मार्ट प्रीपेड मीटरों तथा हानि घटाने के लक्ष्यों से जोड़ा। "
+  "कथन 3 गलत है: अधिकांश उपभोक्ताओं को राज्य-स्वामित्व वाली वितरण कंपनियाँ सेवा देती हैं; निजी वितरण दिल्ली, मुंबई, कोलकाता और अहमदाबाद जैसे शहरों और ओडिशा तक सीमित है।",
+  "Ministry of Power -- Revamped Distribution Sector Scheme; Power Finance Corporation -- Report on Performance of Power Utilities.",
+  "in-discoms-atc")
+
+S(IN, "medium", "Consider the following statements about coal:",
+  "कोयले के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Private companies have been allowed to mine coal for sale in the market since 2020.",
+   "Coal India Limited produces most of India's coal.",
+   "India is the world's second-largest producer of coal."],
+  ["2020 से निजी कंपनियों को बाज़ार में बिक्री के लिए कोयला खनन की अनुमति है।",
+   "कोल इंडिया लिमिटेड भारत के अधिकांश कोयले का उत्पादन करती है।",
+   "भारत विश्व का दूसरा सबसे बड़ा कोयला उत्पादक है।"],
+  C3, 2,
+  "All three statements are correct. Commercial mining ended Coal India's near-monopoly on coal for sale, although it still produces about three-quarters of the total. India, second only to China, crossed one billion tonnes of output in 2024-25, but still imports coking coal for steel and high-grade coal for some plants.",
+  "तीनों कथन सही हैं। वाणिज्यिक खनन ने बिक्री के कोयले पर कोल इंडिया के लगभग एकाधिकार को समाप्त किया, यद्यपि वह अब भी कुल का लगभग तीन-चौथाई उत्पादन करती है। चीन के बाद दूसरे स्थान पर भारत ने 2024-25 में एक अरब टन का उत्पादन पार किया, पर इस्पात के लिए कोकिंग कोयला और कुछ संयंत्रों के लिए उच्च श्रेणी का कोयला अब भी आयात करता है।",
+  "Ministry of Coal -- Annual Report; Commercial coal mine auctions.",
+  "in-coal")
+
+S(IN, "medium", "Consider the following statements about oil:",
+  "तेल के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India's strategic petroleum reserves are built and managed by Indian Strategic Petroleum Reserves Limited, a special purpose vehicle under the Oil Industry Development Board.",
+   "Russia has been India's largest supplier of crude oil since 2022-23.",
+   "India's domestic crude oil production has been rising steadily over the past decade."],
+  ["भारत के सामरिक पेट्रोलियम भंडार तेल उद्योग विकास बोर्ड के अंतर्गत एक विशेष प्रयोजन वाहन, इंडियन स्ट्रैटेजिक पेट्रोलियम रिज़र्व्स लिमिटेड, बनाती और प्रबंधित करती है।",
+   "2022-23 से रूस भारत का सबसे बड़ा कच्चा तेल आपूर्तिकर्ता रहा है।",
+   "पिछले एक दशक में भारत का घरेलू कच्चे तेल का उत्पादन लगातार बढ़ा है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the underground caverns at Visakhapatnam, Mangaluru and Padur hold about 5.3 million tonnes -- roughly nine or ten days of imports -- and discounted Russian crude rose from a small share to over a third of India's imports after 2022. "
+  "Statement 3 is wrong: output from ageing fields has drifted down to under 30 million tonnes a year, which keeps import dependence at close to 90 per cent.",
+  "कथन 1 और 2 सही हैं: विशाखापत्तनम, मंगलुरु और पादुर की भूमिगत गुफाएँ लगभग 53 लाख टन, यानी लगभग नौ-दस दिन के आयात के बराबर, तेल रखती हैं, और 2022 के बाद रियायती रूसी कच्चा तेल एक छोटे हिस्से से बढ़कर भारत के आयात के एक-तिहाई से अधिक हो गया। "
+  "कथन 3 गलत है: पुराने क्षेत्रों से उत्पादन घटकर 3 करोड़ टन प्रति वर्ष से नीचे आ गया है, जिससे आयात निर्भरता लगभग 90 प्रतिशत बनी हुई है।",
+  "Ministry of Petroleum and Natural Gas -- Petroleum Planning and Analysis Cell; ISPRL.",
+  "in-oil-spr-imports")
+
+S(IN, "medium", "Consider the following statements about the services sector in India:",
+  "भारत में सेवा क्षेत्र के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Services account for less than a third of India's gross value added.",
+   "The services sector employs more workers than agriculture.",
+   "The share of services in India's gross value added has risen since 1991."],
+  ["सेवाएँ भारत के सकल मूल्य वर्धन का एक-तिहाई से भी कम हैं।",
+   "सेवा क्षेत्र कृषि से अधिक श्रमिकों को रोज़गार देता है।",
+   "1991 के बाद से भारत के सकल मूल्य वर्धन में सेवाओं का हिस्सा बढ़ा है।"],
+  C3, 0,
+  "Only statement 3 is correct: services have grown from about two-fifths of output in 1990-91 to about 55 per cent. "
+  "Statement 1 is wrong: services are the largest sector, well over half of GVA. "
+  "Statement 2 is wrong: services employ about 30 per cent of workers against about 46 per cent in agriculture -- India's growth has moved output out of farming much faster than it has moved people.",
+  "केवल कथन 3 सही है: सेवाएँ 1990-91 में उत्पादन के लगभग दो-पाँचवें भाग से बढ़कर लगभग 55 प्रतिशत हो गई हैं। "
+  "कथन 1 गलत है: सेवाएँ सबसे बड़ा क्षेत्र हैं, GVA के आधे से काफ़ी अधिक। "
+  "कथन 2 गलत है: सेवाएँ लगभग 30 प्रतिशत श्रमिकों को रोज़गार देती हैं, जबकि कृषि लगभग 46 प्रतिशत को; भारत की वृद्धि ने उत्पादन को खेती से बाहर लोगों की तुलना में कहीं तेज़ी से निकाला है।",
+  f"{ES}; {MOSPI} -- National Accounts; Periodic Labour Force Survey.",
+  "in-services-share")
+
+S(IN, "medium", "Consider the following statements about manufacturing policy:",
+  "विनिर्माण नीति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["PM MITRA parks are meant for the textile industry.",
+   "The National Industrial Corridor Development Corporation develops industrial corridors.",
+   "The National Manufacturing Policy of 2011 aimed to raise manufacturing's share of GDP to 25 per cent.",
+   "The Make in India initiative was launched in 2020."],
+  ["PM MITRA पार्क वस्त्र उद्योग के लिए हैं।",
+   "राष्ट्रीय औद्योगिक गलियारा विकास निगम (NICDC) औद्योगिक गलियारे विकसित करता है।",
+   "2011 की राष्ट्रीय विनिर्माण नीति का लक्ष्य GDP में विनिर्माण का हिस्सा 25 प्रतिशत तक बढ़ाना था।",
+   "मेक इन इंडिया पहल 2020 में शुरू की गई।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct: seven PM MITRA parks aim to bring spinning, weaving, dyeing, garmenting and export under one roof, and the NICDC is building corridors such as Delhi-Mumbai and Amritsar-Kolkata with planned industrial cities. "
+  "Statement 4 is wrong: Make in India was launched in September 2014; 2020 is the year of Atmanirbhar Bharat and the PLI schemes.",
+  "कथन 1, 2 और 3 सही हैं: सात PM MITRA पार्क कताई, बुनाई, रंगाई, परिधान निर्माण और निर्यात को एक छत के नीचे लाना चाहते हैं, और NICDC दिल्ली-मुंबई और अमृतसर-कोलकाता जैसे गलियारे नियोजित औद्योगिक शहरों के साथ बना रहा है। "
+  "कथन 4 गलत है: मेक इन इंडिया सितंबर 2014 में शुरू हुआ; 2020 आत्मनिर्भर भारत और PLI योजनाओं का वर्ष है।",
+  f"Ministry of Textiles -- PM MITRA; {DPIIT} -- National Manufacturing Policy (2011), Make in India.",
+  "in-manufacturing-policy",
+  closing="How many of the above statements are correct?",
+  closing_hi="उपर्युक्त में से कितने कथन सही हैं?")
+
+S(IN, "medium", "Consider the following industries:",
+  "निम्नलिखित उद्योगों पर विचार कीजिए:",
+  ["Cement", "Steel", "Fertilisers", "Electricity"],
+  ["सीमेंट", "इस्पात", "उर्वरक", "बिजली"],
+  C4, 3,
+  "All four are among the eight core industries, together with coal, crude oil, natural gas and refinery products. Fertilisers, with a weight of under 3 per cent, and electricity, a utility rather than a factory industry, are the ones students most often leave out -- so 'Only three' is the trap.",
+  "चारों आठ प्रमुख उद्योगों में शामिल हैं, कोयला, कच्चा तेल, प्राकृतिक गैस और रिफ़ाइनरी उत्पादों के साथ। 3 प्रतिशत से कम भार वाला उर्वरक, और कारख़ाना उद्योग के बजाय एक उपयोगिता सेवा, बिजली, वे हैं जिन्हें विद्यार्थी प्रायः छोड़ देते हैं; इसलिए 'केवल तीन' जाल है।",
+  f"{DPIIT} -- Office of the Economic Adviser, Index of Eight Core Industries.",
+  "in-core-industries-count",
+  closing="How many of the above are among the eight core industries?",
+  closing_hi="उपर्युक्त में से कितने आठ प्रमुख उद्योगों में शामिल हैं?")
+
+S(IN, "medium", "Consider the following statements about digital infrastructure:",
+  "डिजिटल अवसंरचना के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["BharatNet aims to connect all gram panchayats with optical fibre broadband.",
+   "5G mobile services were launched in India in 2020.",
+   "Most of India's telecom subscribers use fixed-line connections.",
+   "PM-WANI is a scheme for laying undersea cables to India's islands."],
+  ["भारतनेट का लक्ष्य सभी ग्राम पंचायतों को ऑप्टिकल फ़ाइबर ब्रॉडबैंड से जोड़ना है।",
+   "भारत में 5G मोबाइल सेवाएँ 2020 में शुरू हुईं।",
+   "भारत के अधिकांश दूरसंचार उपभोक्ता फ़िक्स्ड-लाइन कनेक्शन का उपयोग करते हैं।",
+   "PM-WANI भारत के द्वीपों तक समुद्र के नीचे केबल बिछाने की योजना है।"],
+  C4, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: 5G was launched in October 2022, after the spectrum auction of that year, and reached most districts within about two years. "
+  "Statement 3 is wrong: over 95 per cent of connections are wireless. "
+  "Statement 4 is wrong: PM-WANI (2020) builds public Wi-Fi through small public data offices, such as local shops; the islands were linked by separate submarine cable projects to the Andamans and Lakshadweep.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: 5G उस वर्ष की स्पेक्ट्रम नीलामी के बाद अक्टूबर 2022 में शुरू हुआ और लगभग दो वर्षों में अधिकांश ज़िलों तक पहुँच गया। "
+  "कथन 3 गलत है: 95 प्रतिशत से अधिक कनेक्शन वायरलेस हैं। "
+  "कथन 4 गलत है: PM-WANI (2020) स्थानीय दुकानों जैसे छोटे सार्वजनिक डेटा कार्यालयों के ज़रिए सार्वजनिक Wi-Fi बनाती है; द्वीपों को अंडमान और लक्षद्वीप तक अलग पनडुब्बी केबल परियोजनाओं से जोड़ा गया।",
+  "Department of Telecommunications -- BharatNet, PM-WANI; TRAI -- Telecom Subscription Data.",
+  "in-digital-infrastructure",
+  closing="How many of the above statements are correct?",
+  closing_hi="उपर्युक्त में से कितने कथन सही हैं?")
+
+S(IN, "medium", "Consider the following statements about roads:",
+  "सड़कों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["National highways make up about 2 per cent of India's road length but carry about 40 per cent of road traffic.",
+   "The length of national highways has fallen since 2014.",
+   "FASTag is optional for vehicles using toll plazas on national highways."],
+  ["राष्ट्रीय राजमार्ग भारत की सड़क लंबाई का लगभग 2 प्रतिशत हैं पर सड़क यातायात का लगभग 40 प्रतिशत ढोते हैं।",
+   "2014 के बाद से राष्ट्रीय राजमार्गों की लंबाई घटी है।",
+   "राष्ट्रीय राजमार्गों के टोल प्लाज़ा का उपयोग करने वाले वाहनों के लिए FASTag वैकल्पिक है।"],
+  C3, 0,
+  "Only statement 1 is correct: this concentration of traffic is why highway widening yields large returns. "
+  "Statement 2 is wrong: the network grew from about 91,000 km in 2014 to over 1.4 lakh km, with the pace of building rising to over 30 km a day in some years. "
+  "Statement 3 is wrong: FASTag has been mandatory since February 2021, with double the toll charged on vehicles without it; satellite-based tolling is being introduced next.",
+  "केवल कथन 1 सही है: यातायात का यही संकेंद्रण कारण है कि राजमार्गों के चौड़ीकरण से बड़े लाभ मिलते हैं। "
+  "कथन 2 गलत है: नेटवर्क 2014 के लगभग 91,000 किमी से बढ़कर 1.4 लाख किमी से अधिक हो गया, और कुछ वर्षों में निर्माण की गति 30 किमी प्रति दिन से ऊपर पहुँची। "
+  "कथन 3 गलत है: फ़रवरी 2021 से FASTag अनिवार्य है, और इसके बिना वाहनों से दोगुना टोल लिया जाता है; आगे उपग्रह-आधारित टोल प्रणाली लाई जा रही है।",
+  "Ministry of Road Transport and Highways -- Annual Report; Basic Road Statistics.",
+  "in-roads-nh-fastag")
+
+S(IN, "medium", "Consider the following statements about electricity in India:",
+  "भारत में बिजली के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Coal-based plants generate less than half of India's electricity.",
+   "India's electricity grid consists of five regional grids that are not connected to one another.",
+   "India's per capita electricity consumption is higher than the world average."],
+  ["कोयला-आधारित संयंत्र भारत की आधी से कम बिजली पैदा करते हैं।",
+   "भारत का बिजली ग्रिड पाँच क्षेत्रीय ग्रिडों से बना है जो एक-दूसरे से जुड़े नहीं हैं।",
+   "भारत में प्रति व्यक्ति बिजली की खपत विश्व औसत से अधिक है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: although non-fossil sources now make up about half of installed capacity, coal still generates about three-quarters of the electricity, because solar and wind plants run for far fewer hours -- capacity and generation are different measures. "
+  "Statement 2 is wrong: the five regional grids were synchronised into one national grid in 2013. "
+  "Statement 3 is wrong: at about 1,400 kWh a year, India's per capita use is well under half the world average.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: यद्यपि गैर-जीवाश्म स्रोत अब स्थापित क्षमता का लगभग आधा हैं, कोयला अब भी लगभग तीन-चौथाई बिजली पैदा करता है, क्योंकि सौर और पवन संयंत्र कहीं कम घंटे चलते हैं; क्षमता और उत्पादन अलग माप हैं। "
+  "कथन 2 गलत है: पाँचों क्षेत्रीय ग्रिड 2013 में एक राष्ट्रीय ग्रिड में समकालिक (synchronised) कर दिए गए। "
+  "कथन 3 गलत है: लगभग 1,400 kWh प्रति वर्ष के साथ भारत की प्रति व्यक्ति खपत विश्व औसत के आधे से भी काफ़ी कम है।",
+  "Central Electricity Authority -- General Review; Ministry of Power.",
+  "in-electricity-none")
+
+# ================================================================ INDUSTRY: EASY STATEMENTS (6)
+S(IN, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Manufacturing is part of the secondary sector.",
+   "Banking is a service."],
+  ["विनिर्माण द्वितीयक क्षेत्र का भाग है।",
+   "बैंकिंग एक सेवा है।"],
+  T2, 2,
+  "Both statements are correct. The secondary sector turns raw materials into goods, and the tertiary sector provides services such as banking, transport and trade.",
+  "दोनों कथन सही हैं। द्वितीयक क्षेत्र कच्चे माल को वस्तुओं में बदलता है, और तृतीयक क्षेत्र बैंकिंग, परिवहन और व्यापार जैसी सेवाएँ देता है।",
+  "NCERT Class X, Understanding Economic Development -- Sectors of the Indian Economy.",
+  "in-sectors-easy")
+
+S(IN, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Micro, small and medium enterprises employ a large number of people in India.",
+   "India produces no steel of its own."],
+  ["सूक्ष्म, लघु और मध्यम उद्यम भारत में बड़ी संख्या में लोगों को रोज़गार देते हैं।",
+   "भारत अपना कोई इस्पात नहीं बनाता।"],
+  T2, 0,
+  "Only statement 1 is correct: MSMEs employ over 20 crore people, second only to agriculture. Statement 2 is wrong: India is the world's second-largest producer of crude steel.",
+  "केवल कथन 1 सही है: MSME 20 करोड़ से अधिक लोगों को रोज़गार देते हैं, जो कृषि के बाद दूसरे स्थान पर है। कथन 2 गलत है: भारत विश्व का दूसरा सबसे बड़ा कच्चा इस्पात उत्पादक है।",
+  "Ministry of MSME -- Annual Report; Ministry of Steel.",
+  "in-msme-steel-easy")
+
+S(IN, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The railways in India are run by the Ministry of Road Transport and Highways.",
+   "Roads carry most of India's passenger traffic."],
+  ["भारत में रेलवे सड़क परिवहन और राजमार्ग मंत्रालय चलाता है।",
+   "भारत के अधिकांश यात्री यातायात को सड़कें ढोती हैं।"],
+  T2, 1,
+  "Only statement 2 is correct: roads carry about 85 per cent of passenger traffic. Statement 1 is wrong: the railways have their own Ministry of Railways and the Railway Board.",
+  "केवल कथन 2 सही है: सड़कें लगभग 85 प्रतिशत यात्री यातायात ढोती हैं। कथन 1 गलत है: रेलवे का अपना रेल मंत्रालय और रेलवे बोर्ड है।",
+  "Ministry of Road Transport and Highways; Ministry of Railways.",
+  "in-railways-roads-easy")
+
+S(IN, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Hydroelectricity is produced by burning coal.",
+   "Petrol is a renewable source of energy."],
+  ["जलविद्युत कोयला जलाकर पैदा की जाती है।",
+   "पेट्रोल ऊर्जा का एक नवीकरणीय स्रोत है।"],
+  T2, 3,
+  "Neither statement is correct. Hydroelectricity comes from the energy of falling or flowing water turning turbines; coal is burnt in thermal plants. Petrol is refined from crude oil, a fossil fuel formed over millions of years, so it cannot be renewed.",
+  "कोई भी कथन सही नहीं है। जलविद्युत गिरते या बहते पानी की ऊर्जा से टरबाइन घुमाकर बनती है; कोयला ताप संयंत्रों में जलाया जाता है। पेट्रोल कच्चे तेल से परिष्कृत होता है, जो लाखों वर्षों में बना एक जीवाश्म ईंधन है, इसलिए इसे नवीकृत नहीं किया जा सकता।",
+  "Ministry of Power; Ministry of Road Transport and Highways.",
+  "in-hydro-petrol-easy")
+
+S(IN, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A start-up is a newly established business.",
+   "Industries in the public sector are owned by private individuals."],
+  ["स्टार्ट-अप एक नया स्थापित व्यवसाय है।",
+   "सार्वजनिक क्षेत्र के उद्योगों का स्वामित्व निजी व्यक्तियों के पास होता है।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: public sector enterprises are owned by the government; private sector firms are owned by individuals or companies.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: सार्वजनिक क्षेत्र के उद्यमों का स्वामित्व सरकार के पास होता है; निजी क्षेत्र की कंपनियों का स्वामित्व व्यक्तियों या कंपनियों के पास होता है।",
+  "NCERT Class X, Understanding Economic Development -- Sectors of the Indian Economy.",
+  "in-startup-public-sector-easy")
+
+S(IN, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Fishing is part of the tertiary sector.",
+   "Information technology services are an important export of India."],
+  ["मछली पकड़ना तृतीयक क्षेत्र का भाग है।",
+   "सूचना प्रौद्योगिकी सेवाएँ भारत का एक महत्त्वपूर्ण निर्यात हैं।"],
+  T2, 1,
+  "Only statement 2 is correct. Statement 1 is wrong: fishing, like farming, forestry and mining, draws directly on natural resources and belongs to the primary sector.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: खेती, वानिकी और खनन की तरह मछली पकड़ना सीधे प्राकृतिक संसाधनों पर निर्भर है और प्राथमिक क्षेत्र में आता है।",
+  "NCERT Class X, Understanding Economic Development -- Sectors of the Indian Economy.",
+  "in-fishing-it-easy")
+
+# ================================================================ INDUSTRY: HARD STATEMENTS (6)
+S(IN, "hard", "Consider the following statements about manufacturing and jobs:",
+  "विनिर्माण और रोज़गार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["'Premature deindustrialisation' refers to countries reaching their peak share of manufacturing at lower incomes than the early industrialisers did.",
+   "Manufacturing's share of employment in India is lower than its share of gross value added.",
+   "The share of manufacturing in total employment is higher in India than in China."],
+  ["'असमय वि-औद्योगीकरण' (premature deindustrialisation) का अर्थ है कि देश विनिर्माण के अपने अधिकतम हिस्से पर पहले औद्योगिक देशों की तुलना में कम आय पर पहुँचते हैं।",
+   "भारत में रोज़गार में विनिर्माण का हिस्सा सकल मूल्य वर्धन में उसके हिस्से से कम है।",
+   "कुल रोज़गार में विनिर्माण का हिस्सा भारत में चीन से अधिक है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the economist Dani Rodrik showed that manufacturing now peaks earlier and lower as automation and global competition spread; in India manufacturing gives about 11-12 per cent of jobs against about 17 per cent of output, because much of it is capital-intensive. "
+  "Statement 3 is wrong: in China manufacturing employs over a quarter of the workforce.",
+  "कथन 1 और 2 सही हैं: अर्थशास्त्री दानी रॉड्रिक ने दिखाया कि स्वचालन और वैश्विक प्रतिस्पर्धा फैलने से विनिर्माण अब पहले और कम ऊँचाई पर चरम पर पहुँचता है; भारत में विनिर्माण लगभग 17 प्रतिशत उत्पादन के मुक़ाबले लगभग 11-12 प्रतिशत रोज़गार देता है, क्योंकि इसका बड़ा भाग पूँजी-प्रधान है। "
+  "कथन 3 गलत है: चीन में विनिर्माण एक-चौथाई से अधिक कार्यबल को रोज़गार देता है।",
+  "Dani Rodrik, 'Premature Deindustrialization' (2016); Periodic Labour Force Survey; Economic Survey.",
+  "in-premature-deindustrialisation")
+
+S(IN, "hard", "Consider the following statements about the electricity market:",
+  "बिजली बाज़ार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Electricity is traded on power exchanges such as the Indian Energy Exchange.",
+   "Most of India's electricity is bought and sold on power exchanges.",
+   "Under cross-subsidy, industrial consumers pay less than the cost of supply so that households can pay more."],
+  ["बिजली का व्यापार इंडियन एनर्जी एक्सचेंज जैसे पावर एक्सचेंजों पर होता है।",
+   "भारत की अधिकांश बिजली पावर एक्सचेंजों पर ख़रीदी और बेची जाती है।",
+   "क्रॉस-सब्सिडी के तहत औद्योगिक उपभोक्ता आपूर्ति लागत से कम देते हैं ताकि परिवार अधिक दे सकें।"],
+  C3, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: most power is sold under long-term agreements between generators and distribution companies; exchanges handle well under a tenth. "
+  "Statement 3 is wrong: it works the other way -- industrial and commercial users pay above cost so that farmers and small households can pay less, which raises costs for Indian manufacturers and pushes some to build their own captive plants.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: अधिकांश बिजली उत्पादकों और वितरण कंपनियों के बीच दीर्घकालिक समझौतों के तहत बिकती है; एक्सचेंज दसवें भाग से काफ़ी कम संभालते हैं। "
+  "कथन 3 गलत है: यह उलटा काम करता है; औद्योगिक और वाणिज्यिक उपयोगकर्ता लागत से ऊपर देते हैं ताकि किसान और छोटे परिवार कम दें, जिससे भारतीय निर्माताओं की लागत बढ़ती है और कुछ अपने कैप्टिव संयंत्र बनाने को प्रेरित होते हैं।",
+  "Central Electricity Regulatory Commission -- Market Monitoring Report; Ministry of Power.",
+  "in-power-market-cross-subsidy")
+
+S(IN, "hard", "Consider the following statements about industrial surveys:",
+  "औद्योगिक सर्वेक्षणों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Annual Survey of Industries covers factories registered under the Factories Act.",
+   "The Annual Survey of Industries is conducted by the National Statistics Office.",
+   "The Annual Survey of Unincorporated Sector Enterprises covers unincorporated non-agricultural enterprises."],
+  ["उद्योगों का वार्षिक सर्वेक्षण (ASI) कारख़ाना अधिनियम के तहत पंजीकृत कारख़ानों को शामिल करता है।",
+   "उद्योगों का वार्षिक सर्वेक्षण राष्ट्रीय सांख्यिकी कार्यालय करता है।",
+   "अनिगमित क्षेत्र उद्यमों का वार्षिक सर्वेक्षण (ASUSE) अनिगमित ग़ैर-कृषि उद्यमों को शामिल करता है।"],
+  C3, 2,
+  "All three statements are correct. Together the two surveys map the formal and informal sides of Indian enterprise: the ASI measures output, employment and capital in organised manufacturing, while ASUSE covers the small, mostly household enterprises in manufacturing, trade and services that employ most non-farm workers.",
+  "तीनों कथन सही हैं। दोनों सर्वेक्षण मिलकर भारतीय उद्यम के औपचारिक और अनौपचारिक पक्षों का चित्र बनाते हैं: ASI संगठित विनिर्माण में उत्पादन, रोज़गार और पूँजी मापता है, जबकि ASUSE विनिर्माण, व्यापार और सेवाओं के छोटे, अधिकतर घरेलू उद्यमों को शामिल करता है जो अधिकांश ग़ैर-कृषि श्रमिकों को रोज़गार देते हैं।",
+  f"{MOSPI} -- Annual Survey of Industries; Annual Survey of Unincorporated Sector Enterprises.",
+  "in-asi-asuse")
+
+S(IN, "hard", "Consider the following statements about the pricing of petroleum products:",
+  "पेट्रोलियम उत्पादों के मूल्य निर्धारण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Petrol and diesel prices are fixed by the Ministry of Petroleum every fortnight.",
+   "Kerosene is sold at market prices in all fair price shops.",
+   "The subsidy on domestic LPG is paid through fair price shops."],
+  ["पेट्रोल और डीज़ल की क़ीमतें पेट्रोलियम मंत्रालय हर पखवाड़े तय करता है।",
+   "सभी उचित मूल्य की दुकानों में केरोसिन बाज़ार भाव पर बिकता है।",
+   "घरेलू LPG पर सब्सिडी उचित मूल्य की दुकानों के ज़रिए दी जाती है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: petrol was freed from price control in 2010 and diesel in 2014, and oil marketing companies set prices, which have been revised daily since 2017, though in practice changes have been infrequent. "
+  "Statement 2 is wrong: PDS kerosene has been sold at a subsidised price, and its allocation has been cut as LPG and electricity spread. "
+  "Statement 3 is wrong: consumers buy LPG cylinders at market price and the subsidy, where given, goes directly to their bank accounts under the PAHAL scheme.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: पेट्रोल 2010 में और डीज़ल 2014 में मूल्य नियंत्रण से मुक्त हुए, और तेल विपणन कंपनियाँ क़ीमतें तय करती हैं, जिन्हें 2017 से हर दिन संशोधित किया जा सकता है, यद्यपि व्यवहार में बदलाव कम ही हुए हैं। "
+  "कथन 2 गलत है: PDS केरोसिन रियायती क़ीमत पर बिकता रहा है, और LPG तथा बिजली के फैलने के साथ इसका आवंटन घटाया गया है। "
+  "कथन 3 गलत है: उपभोक्ता LPG सिलेंडर बाज़ार भाव पर ख़रीदते हैं और सब्सिडी, जहाँ दी जाती है, PAHAL योजना के तहत सीधे उनके बैंक खातों में जाती है।",
+  "Ministry of Petroleum and Natural Gas -- Petroleum Planning and Analysis Cell; PAHAL (DBTL).",
+  "in-petroleum-pricing-none")
+
+S(IN, "hard", "Consider the following statements about electronics manufacturing:",
+  "इलेक्ट्रॉनिक्स विनिर्माण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The PLI scheme helped India become a net exporter of mobile phones.",
+   "Apple's iPhones are assembled in India through contract manufacturers.",
+   "Electronics has overtaken petroleum products as India's largest export item."],
+  ["PLI योजना ने भारत को मोबाइल फ़ोन का शुद्ध निर्यातक बनने में मदद की।",
+   "एप्पल के iPhone भारत में अनुबंध निर्माताओं के ज़रिए असेंबल किए जाते हैं।",
+   "इलेक्ट्रॉनिक्स पेट्रोलियम उत्पादों को पीछे छोड़कर भारत की सबसे बड़ी निर्यात मद बन गया है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: from importing most of its phones a decade ago, India now exports well over 20 billion dollars' worth a year, largely iPhones made by firms such as Foxconn and Tata Electronics. "
+  "Statement 3 is wrong: electronics has become one of the top export items, but engineering goods and petroleum products are still larger -- and much of the value of a phone lies in imported chips and components.",
+  "कथन 1 और 2 सही हैं: एक दशक पहले अपने अधिकांश फ़ोन आयात करने से आगे बढ़कर भारत अब हर वर्ष 20 अरब डॉलर से काफ़ी अधिक के फ़ोन निर्यात करता है, जो मुख्यतः फ़ॉक्सकॉन और टाटा इलेक्ट्रॉनिक्स जैसी कंपनियों द्वारा बने iPhone हैं। "
+  "कथन 3 गलत है: इलेक्ट्रॉनिक्स शीर्ष निर्यात मदों में आ गया है, पर इंजीनियरिंग वस्तुएँ और पेट्रोलियम उत्पाद अब भी बड़े हैं; और फ़ोन के मूल्य का बड़ा भाग आयातित चिप्स और पुर्ज़ों में है।",
+  "Ministry of Electronics and Information Technology; Department of Commerce -- export data.",
+  "in-electronics-pli-exports")
+
+S(IN, "hard", "Consider the following statements about infrastructure finance:",
+  "अवसंरचना वित्त के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Take-out financing lets the banks that fund a project's construction pass the loan on to long-term lenders after the project is completed.",
+   "Asset monetisation recycles capital locked in completed public assets into new projects.",
+   "Credit enhancement helps infrastructure projects raise money through bonds by improving their credit rating."],
+  ["टेक-आउट वित्तपोषण परियोजना के निर्माण का वित्तपोषण करने वाले बैंकों को परियोजना पूरी होने के बाद ऋण को दीर्घकालिक ऋणदाताओं को सौंपने देता है।",
+   "परिसंपत्ति मुद्रीकरण पूरी हो चुकी सार्वजनिक परिसंपत्तियों में फँसी पूँजी को नई परियोजनाओं में लगाता है।",
+   "साख संवर्धन (credit enhancement) अवसंरचना परियोजनाओं की साख रेटिंग सुधारकर उन्हें बॉन्ड के ज़रिए धन जुटाने में मदद करता है।"],
+  C3, 2,
+  "All three statements are correct. Each tackles the same problem: banks raise short-term deposits and cannot hold 20-year project loans without an asset-liability mismatch. Take-out finance, monetisation and partial credit guarantees -- such as those offered by IIFCL -- shift long-term project risk to investors better able to carry it, such as insurance and pension funds.",
+  "तीनों कथन सही हैं। हर उपाय एक ही समस्या से जूझता है: बैंक अल्पकालिक जमाएँ जुटाते हैं और परिसंपत्ति-देनदारी असंतुलन के बिना 20-वर्षीय परियोजना ऋण नहीं रख सकते। टेक-आउट वित्त, मुद्रीकरण और आंशिक साख गारंटियाँ, जैसे IIFCL द्वारा दी जाने वाली, दीर्घकालिक परियोजना जोखिम को बीमा और पेंशन कोषों जैसे उन निवेशकों तक पहुँचाती हैं जो इसे बेहतर ढंग से उठा सकते हैं।",
+  "Reserve Bank of India; India Infrastructure Finance Company Limited; Economic Survey.",
+  "in-infra-finance-tools")
+
+# ================================================================ INDUSTRY: MEDIUM MCQs (6)
+M(IN, "medium", "'Industry 4.0' refers to:",
+  "'उद्योग 4.0' (Industry 4.0) का अर्थ है:",
+  ["the use of automation, connected machines and data analytics in manufacturing", "the fourth Industrial Policy Resolution adopted by the Government of India",
+   "the plan to raise manufacturing's share of GDP to 40 per cent by 2047", "the classification of industries into four groups by their investment and turnover"],
+  ["विनिर्माण में स्वचालन, जुड़ी हुई मशीनों और डेटा विश्लेषण का उपयोग", "भारत सरकार द्वारा अपनाया गया चौथा औद्योगिक नीति प्रस्ताव",
+   "2047 तक GDP में विनिर्माण का हिस्सा 40 प्रतिशत तक बढ़ाने की योजना", "निवेश और कारोबार के आधार पर उद्योगों का चार समूहों में वर्गीकरण"],
+  0,
+  "The term describes a 'fourth industrial revolution' after steam, electricity and computers: factories where sensors, robots, the internet of things and artificial intelligence link machines and supply chains. It raises productivity but also the skill level needed from workers.",
+  "यह शब्द भाप, बिजली और कंप्यूटर के बाद की 'चौथी औद्योगिक क्रांति' को बताता है: ऐसे कारख़ाने जहाँ सेंसर, रोबोट, इंटरनेट ऑफ़ थिंग्स और कृत्रिम बुद्धि मशीनों और आपूर्ति शृंखलाओं को जोड़ते हैं। यह उत्पादकता बढ़ाता है, पर श्रमिकों से अपेक्षित कौशल स्तर भी।",
+  f"{DPIIT}; World Economic Forum.",
+  "in-industry-4-0")
+
+M(IN, "medium", "Viability gap funding for public-private partnership projects is meant to:",
+  "सार्वजनिक-निजी भागीदारी परियोजनाओं के लिए व्यवहार्यता अंतर वित्तपोषण (viability gap funding) का उद्देश्य है:",
+  ["make economically justified but loss-making projects attractive to private investors", "provide loans to State Governments for meeting the gap in their revenue budgets every year",
+   "compensate private developers for losses caused by delays in land acquisition", "fund the difference between the Budget and Revised Estimates of a ministry"],
+  ["आर्थिक रूप से उचित पर घाटे वाली परियोजनाओं को निजी निवेशकों के लिए आकर्षक बनाना", "राज्य सरकारों को हर वर्ष उनके राजस्व बजट के अंतर को पूरा करने के लिए ऋण देना",
+   "भूमि अधिग्रहण में देरी से हुई हानि के लिए निजी विकासकर्ताओं को मुआवज़ा देना", "किसी मंत्रालय के बजट और संशोधित अनुमानों के अंतर का वित्तपोषण करना"],
+  0,
+  "Some projects, such as rural roads, water supply or hospitals, bring large benefits to society but cannot charge users enough to repay private capital. A one-time capital grant -- typically up to 20 per cent of project cost from the Centre, and more for social infrastructure -- closes that gap.",
+  "कुछ परियोजनाएँ, जैसे ग्रामीण सड़कें, जलापूर्ति या अस्पताल, समाज को बड़े लाभ देती हैं पर उपयोगकर्ताओं से इतना शुल्क नहीं ले सकतीं कि निजी पूँजी लौटा सकें। एकबारगी पूँजीगत अनुदान, सामान्यतः केंद्र से परियोजना लागत का 20 प्रतिशत तक और सामाजिक अवसंरचना के लिए अधिक, यह अंतर पाटता है।",
+  "Department of Economic Affairs -- Viability Gap Funding scheme.",
+  "in-viability-gap-funding")
+
+M(IN, "medium", "'Open access' in the electricity sector means:",
+  "बिजली क्षेत्र में 'खुली पहुँच' (open access) का अर्थ है:",
+  ["letting large consumers buy power from a supplier of their choice, not only the local distributor",
+   "supplying free electricity to all households for a fixed number of units every month under State schemes",
+   "allowing anyone to set up a power plant without a licence from the regulator",
+   "connecting every village in the country to the national grid by a fixed deadline"],
+  ["बड़े उपभोक्ताओं को केवल स्थानीय वितरक के बजाय अपनी पसंद के आपूर्तिकर्ता से बिजली ख़रीदने देना",
+   "राज्य योजनाओं के तहत हर महीने एक निश्चित संख्या में यूनिट तक सभी परिवारों को मुफ़्त बिजली देना",
+   "किसी को भी नियामक के लाइसेंस के बिना बिजली संयंत्र लगाने देना",
+   "एक निश्चित समय-सीमा तक देश के हर गाँव को राष्ट्रीय ग्रिड से जोड़ना"],
+  0,
+  "Under the Electricity Act, 2003, consumers above a size limit can use the distribution network to buy from other suppliers -- including renewable generators under the 'green energy open access' rules -- paying charges to the local utility. Distribution companies often resist, since they lose paying industrial customers who cross-subsidise others.",
+  "विद्युत अधिनियम, 2003 के तहत एक सीमा से बड़े उपभोक्ता अन्य आपूर्तिकर्ताओं से, जिनमें 'हरित ऊर्जा खुली पहुँच' नियमों के तहत नवीकरणीय उत्पादक भी शामिल हैं, ख़रीदने के लिए वितरण नेटवर्क का उपयोग कर सकते हैं और स्थानीय कंपनी को शुल्क देते हैं। वितरण कंपनियाँ प्रायः विरोध करती हैं, क्योंकि वे भुगतान करने वाले औद्योगिक ग्राहक खो देती हैं जो दूसरों को क्रॉस-सब्सिडी देते हैं।",
+  "Electricity Act, 2003; Ministry of Power -- Green Energy Open Access Rules, 2022.",
+  "in-open-access")
+
+M(IN, "medium", "The 'China plus one' strategy refers to:",
+  "'चीन प्लस वन' रणनीति का अर्थ है:",
+  ["global firms spreading production to at least one other country besides China", "China's plan to set up one new special economic zone in each of its neighbouring countries",
+   "a trade agreement between China and one South Asian partner at a time", "India's policy of allowing one Chinese investor in each strategic sector"],
+  ["वैश्विक कंपनियों का चीन के अलावा कम से कम एक अन्य देश में उत्पादन फैलाना", "चीन की अपने हर पड़ोसी देश में एक नया विशेष आर्थिक क्षेत्र बनाने की योजना",
+   "चीन और एक समय में एक दक्षिण एशियाई साझेदार के बीच व्यापार समझौता", "हर रणनीतिक क्षेत्र में एक चीनी निवेशक की अनुमति देने की भारत की नीति"],
+  0,
+  "After trade tensions and pandemic disruptions exposed the risk of depending on one country, many companies began adding plants in India, Vietnam, Mexico and elsewhere. India's PLI schemes and trade deals aim to capture part of this shift, though competitors such as Vietnam moved faster.",
+  "व्यापार तनाव और महामारी से आई बाधाओं ने एक देश पर निर्भर रहने का जोखिम उजागर किया, तो कई कंपनियों ने भारत, वियतनाम, मेक्सिको और अन्य देशों में संयंत्र जोड़ने शुरू किए। भारत की PLI योजनाओं और व्यापार समझौतों का लक्ष्य इस बदलाव का एक भाग पाना है, यद्यपि वियतनाम जैसे प्रतिस्पर्धी तेज़ी से आगे बढ़े।",
+  f"{ES}.",
+  "in-china-plus-one")
+
+M(IN, "medium", "A 'brownfield' project is one that:",
+  "'ब्राउनफ़ील्ड' परियोजना वह है जो:",
+  ["expands or upgrades an existing facility or site", "is built from scratch on land not used before",
+   "uses only renewable energy for all its power needs", "is located in a special economic zone near a port"],
+  ["किसी मौजूदा सुविधा या स्थल का विस्तार या उन्नयन करती है", "पहले अप्रयुक्त भूमि पर शुरू से बनाई जाती है",
+   "अपनी सारी बिजली की ज़रूरत केवल नवीकरणीय ऊर्जा से पूरी करती है", "किसी बंदरगाह के पास विशेष आर्थिक क्षेत्र में स्थित है"],
+  0,
+  "A greenfield project starts on fresh land; a brownfield one builds on an existing asset -- which is why the National Monetisation Pipeline covered only brownfield assets whose risks were already known. The same terms are used for foreign investment: new plants versus buying or expanding existing firms.",
+  "ग्रीनफ़ील्ड परियोजना नई भूमि पर शुरू होती है; ब्राउनफ़ील्ड किसी मौजूदा परिसंपत्ति पर बनती है; इसीलिए राष्ट्रीय मुद्रीकरण पाइपलाइन ने केवल ऐसी ब्राउनफ़ील्ड परिसंपत्तियाँ शामिल कीं जिनके जोखिम पहले से ज्ञात थे। विदेशी निवेश के लिए भी यही शब्द प्रयुक्त होते हैं: नए संयंत्र बनाम मौजूदा कंपनियों को ख़रीदना या बढ़ाना।",
+  f"{DPIIT}; NITI Aayog -- National Monetisation Pipeline.",
+  "in-brownfield")
+
+M(IN, "medium", "'Capacity utilisation' in manufacturing refers to:",
+  "विनिर्माण में 'क्षमता उपयोग' (capacity utilisation) का अर्थ है:",
+  ["actual output as a share of the output that installed capacity allows", "the number of workers employed per unit of machinery in a factory",
+   "the share of a firm's profits that it reinvests in new machinery", "the share of a country's factories that are owned by the public sector"],
+  ["स्थापित क्षमता से संभव उत्पादन के हिस्से के रूप में वास्तविक उत्पादन", "किसी कारख़ाने में मशीनरी की प्रति इकाई नियोजित श्रमिकों की संख्या",
+   "किसी कंपनी के लाभ का वह हिस्सा जो वह नई मशीनरी में दोबारा लगाती है", "किसी देश के कारख़ानों का वह हिस्सा जिनका स्वामित्व सार्वजनिक क्षेत्र के पास है"],
+  0,
+  "The RBI tracks it through its quarterly OBICUS survey. When utilisation rises into the mid-70s per cent and above, firms tend to invest in new capacity, so it is watched as a lead indicator of private investment; low utilisation means demand, not capacity, is the constraint.",
+  "RBI इसे अपने तिमाही OBICUS सर्वेक्षण से मापता है। जब उपयोग 75 प्रतिशत के आसपास या उससे ऊपर जाता है, तो कंपनियाँ नई क्षमता में निवेश करने लगती हैं, इसलिए इसे निजी निवेश के अग्रिम संकेतक के रूप में देखा जाता है; कम उपयोग का अर्थ है कि बाधा क्षमता नहीं, माँग है।",
+  "Reserve Bank of India -- Order Books, Inventories and Capacity Utilisation Survey (OBICUS).",
+  "in-capacity-utilisation")
+
+# ================================================================ INDUSTRY: EASY MCQs (2)
+M(IN, "easy", "Which one of the following is a non-renewable source of energy?",
+  "निम्नलिखित में से कौन-सा ऊर्जा का अनवीकरणीय स्रोत है?",
+  ["Coal", "Wind", "Solar", "Tidal"],
+  ["कोयला", "पवन", "सौर", "ज्वारीय"],
+  0,
+  "Coal, like oil and natural gas, took millions of years to form and is used up when burnt; wind, sunlight and tides are renewed naturally.",
+  "कोयला, तेल और प्राकृतिक गैस की तरह, लाखों वर्षों में बना है और जलाने पर समाप्त हो जाता है; हवा, धूप और ज्वार प्राकृतिक रूप से नवीकृत होते रहते हैं।",
+  "NCERT Class X, Contemporary India II -- Minerals and Energy Resources.",
+  "in-non-renewable-easy")
+
+M(IN, "easy", "Which one of the following is an example of infrastructure?",
+  "निम्नलिखित में से कौन-सा अवसंरचना का उदाहरण है?",
+  ["Roads and power supply", "Wheat and rice grown by farmers", "Films and music", "Clothes and shoes"],
+  ["सड़कें और बिजली आपूर्ति", "किसानों द्वारा उगाए गए गेहूँ और चावल", "फ़िल्में और संगीत", "कपड़े और जूते"],
+  0,
+  "Infrastructure is the basic network -- roads, railways, ports, power, water, telecom -- on which all other economic activity depends.",
+  "अवसंरचना वह बुनियादी तंत्र है, यानी सड़कें, रेलवे, बंदरगाह, बिजली, पानी, दूरसंचार, जिस पर अन्य सभी आर्थिक गतिविधियाँ निर्भर करती हैं।",
+  f"{IED} -- Infrastructure.",
+  "in-infrastructure-easy")
+
+# ================================================================ INDUSTRY: HARD MCQs (2)
+M(IN, "hard", "Which one of the following has the largest weight in the Index of Eight Core Industries?",
+  "आठ प्रमुख उद्योगों के सूचकांक में निम्नलिखित में से किसका भार सबसे अधिक है?",
+  ["Refinery products", "Electricity generation", "Steel production", "Coal production"],
+  ["रिफ़ाइनरी उत्पाद", "बिजली उत्पादन", "इस्पात उत्पादन", "कोयला उत्पादन"],
+  0,
+  "Refinery products carry about 28 per cent of the weight, followed by electricity (about 20), steel (about 18) and coal (about 10); fertilisers have the smallest weight, under 3 per cent. So a slowdown at refineries can drag down the whole index even when steel and cement are growing.",
+  "रिफ़ाइनरी उत्पादों का भार लगभग 28 प्रतिशत है, जिसके बाद बिजली (लगभग 20), इस्पात (लगभग 18) और कोयला (लगभग 10) आते हैं; उर्वरकों का भार सबसे कम, 3 प्रतिशत से नीचे, है। इसलिए रिफ़ाइनरियों में सुस्ती पूरे सूचकांक को नीचे खींच सकती है, भले ही इस्पात और सीमेंट बढ़ रहे हों।",
+  f"{DPIIT} -- Office of the Economic Adviser, Index of Eight Core Industries.",
+  "in-core-industries-weights")
+
+M(IN, "hard", "Which one of the following groups has the largest share in the gross value added of India's services sector?",
+  "भारत के सेवा क्षेत्र के सकल मूल्य वर्धन में निम्नलिखित में से किस समूह का हिस्सा सबसे बड़ा है?",
+  ["Financial, real estate and professional services", "Trade, repair, hotel and restaurant services taken together",
+   "Public administration, defence and other government services", "Transport, storage, communication and broadcasting services"],
+  ["वित्तीय, स्थावर संपदा और व्यावसायिक सेवाएँ", "व्यापार, मरम्मत, होटल और रेस्तराँ सेवाएँ एक साथ",
+   "लोक प्रशासन, रक्षा और अन्य सरकारी सेवाएँ", "परिवहन, भंडारण, संचार और प्रसारण सेवाएँ"],
+  0,
+  "Financial, real estate and professional services -- which include banking, insurance, the imputed rent of owner-occupied housing, and IT and business services -- make up over a fifth of total GVA, ahead of trade, hotels, transport and communication taken together. Students often guess trade because it employs more people.",
+  "वित्तीय, स्थावर संपदा और व्यावसायिक सेवाएँ, जिनमें बैंकिंग, बीमा, अपने मकान का आरोपित किराया, और IT तथा व्यावसायिक सेवाएँ शामिल हैं, कुल GVA का पाँचवें भाग से अधिक हैं, जो व्यापार, होटल, परिवहन और संचार को मिलाकर भी आगे है। विद्यार्थी प्रायः व्यापार का अनुमान लगाते हैं क्योंकि उसमें अधिक लोग काम करते हैं।",
+  f"{MOSPI} -- National Accounts Statistics.",
+  "in-services-gva-composition")
+
+# ================================================================ INDUSTRY: STATEMENT-I/II (medium 5, easy 2, hard 2)
+A(IN, "medium",
+  "Manufacturing can absorb more low-skilled workers than modern services such as information technology.",
+  "विनिर्माण सूचना प्रौद्योगिकी जैसी आधुनिक सेवाओं की तुलना में अधिक कम-कुशल श्रमिकों को खपा सकता है।",
+  "Many manufacturing jobs, such as garment making and electronics assembly, need only basic skills.",
+  "कई विनिर्माण नौकरियों, जैसे परिधान बनाना और इलेक्ट्रॉनिक्स असेंबली, के लिए केवल बुनियादी कौशल चाहिए।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Software and finance need educated workers, so they cannot absorb the millions leaving farms with little schooling; labour-intensive manufacturing did that in East Asia -- which is why India's jobs strategy stresses textiles, footwear, toys and assembly.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। सॉफ़्टवेयर और वित्त को शिक्षित श्रमिक चाहिए, इसलिए वे खेती छोड़ने वाले कम पढ़े-लिखे लाखों लोगों को नहीं खपा सकते; पूर्वी एशिया में यह काम श्रम-प्रधान विनिर्माण ने किया; इसीलिए भारत की रोज़गार रणनीति वस्त्र, जूते, खिलौनों और असेंबली पर ज़ोर देती है।",
+  f"{ES}.",
+  "in-manufacturing-jobs")
+
+A(IN, "medium",
+  "India is the world's second-largest producer of mobile phones.",
+  "भारत विश्व का दूसरा सबसे बड़ा मोबाइल फ़ोन उत्पादक है।",
+  "Most of the semiconductor chips used in India are imported.",
+  "भारत में प्रयुक्त अधिकांश सेमीकंडक्टर चिप्स आयात की जाती हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. India's rise in phone making came from assembling phones at scale, helped by incentives and global firms diversifying away from China; its dependence on imported chips is a separate weakness that limits how much value is added at home.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। फ़ोन निर्माण में भारत की बढ़त बड़े पैमाने पर फ़ोन असेंबल करने से आई, जिसमें प्रोत्साहनों और चीन से हटकर विविधीकरण करने वाली वैश्विक कंपनियों ने मदद की; आयातित चिप्स पर निर्भरता एक अलग कमज़ोरी है, जो सीमित करती है कि देश में कितना मूल्य जुड़ता है।",
+  "Ministry of Electronics and Information Technology; India Cellular and Electronics Association.",
+  "in-mobile-phones-chips")
+
+A(IN, "medium",
+  "Electricity distribution companies in many States run large losses.",
+  "कई राज्यों में बिजली वितरण कंपनियाँ भारी घाटे में चलती हैं।",
+  "Electricity tariffs for farmers are usually set above the cost of supply.",
+  "किसानों के लिए बिजली की दरें प्रायः आपूर्ति लागत से ऊपर तय की जाती हैं।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Farm power is often free or heavily subsidised, and State governments do not always pay the promised subsidy on time; together with theft and line losses, this has left distribution companies with accumulated losses of several lakh crore rupees.",
+  "कथन-I सही है पर कथन-II गलत है। कृषि बिजली प्रायः मुफ़्त या भारी सब्सिडी वाली होती है, और राज्य सरकारें वादा की गई सब्सिडी हमेशा समय पर नहीं चुकातीं; चोरी और लाइन हानियों के साथ इससे वितरण कंपनियों पर कई लाख करोड़ रुपये का संचित घाटा हो गया है।",
+  "Power Finance Corporation -- Report on Performance of Power Utilities.",
+  "in-discom-losses-farm-tariffs")
+
+A(IN, "medium",
+  "The public sector accounts for most of India's industrial output today.",
+  "आज भारत के औद्योगिक उत्पादन का अधिकांश भाग सार्वजनिक क्षेत्र से आता है।",
+  "Coal India is a public sector enterprise.",
+  "कोल इंडिया एक सार्वजनिक क्षेत्र का उद्यम है।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. Public enterprises still dominate a few areas such as coal, oil and gas and power generation, but the private sector produces most of India's manufactured goods -- the reverse of the position before 1991.",
+  "कथन-I गलत है पर कथन-II सही है। सार्वजनिक उद्यम कोयला, तेल और गैस तथा बिजली उत्पादन जैसे कुछ क्षेत्रों में अब भी प्रमुख हैं, पर भारत की अधिकांश विनिर्मित वस्तुएँ निजी क्षेत्र बनाता है; यह 1991 से पहले की स्थिति का उलटा है।",
+  "Department of Public Enterprises -- Public Enterprises Survey; Annual Survey of Industries.",
+  "in-public-sector-share")
+
+A(IN, "medium",
+  "Better roads and ports can make Indian exports more competitive.",
+  "बेहतर सड़कें और बंदरगाह भारतीय निर्यात को अधिक प्रतिस्पर्धी बना सकते हैं।",
+  "They cut the time and cost of moving goods from factories to foreign buyers.",
+  "वे कारख़ानों से विदेशी ख़रीदारों तक वस्तुएँ पहुँचाने का समय और लागत घटाते हैं।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Transport and handling costs are part of the price a foreign buyer pays, and delays matter as much as money for goods in global supply chains.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। परिवहन और माल-संचालन की लागत उस क़ीमत का भाग है जो विदेशी ख़रीदार चुकाता है, और वैश्विक आपूर्ति शृंखलाओं की वस्तुओं के लिए देरी उतनी ही मायने रखती है जितना पैसा।",
+  f"{DPIIT} -- National Logistics Policy.",
+  "in-infrastructure-exports")
+
+A(IN, "easy",
+  "Electricity is essential for running factories.",
+  "कारख़ाने चलाने के लिए बिजली आवश्यक है।",
+  "Some factories generate their own electricity in captive power plants.",
+  "कुछ कारख़ाने कैप्टिव बिजली संयंत्रों में अपनी बिजली स्वयं पैदा करते हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. Factories need power because their machines run on it; that some of them produce their own, often to avoid unreliable or costly grid supply, describes where the power comes from, not why it is essential.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। कारख़ानों को बिजली इसलिए चाहिए कि उनकी मशीनें उसी से चलती हैं; उनमें से कुछ का अपनी बिजली स्वयं बनाना, प्रायः अविश्वसनीय या महँगी ग्रिड आपूर्ति से बचने के लिए, यह बताता है कि बिजली कहाँ से आती है, यह नहीं कि वह आवश्यक क्यों है।",
+  f"{IED} -- Infrastructure.",
+  "in-electricity-factories-easy")
+
+A(IN, "easy",
+  "Tourism creates jobs in hotels, transport and handicrafts.",
+  "पर्यटन होटलों, परिवहन और हस्तशिल्प में रोज़गार पैदा करता है।",
+  "Spending by foreign tourists in India is counted as an import of services.",
+  "भारत में विदेशी पर्यटकों का ख़र्च सेवाओं के आयात के रूप में गिना जाता है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect: when foreigners spend money in India, India earns foreign exchange, so their spending is an export of services.",
+  "कथन-I सही है पर कथन-II गलत है: जब विदेशी भारत में पैसा ख़र्च करते हैं, तो भारत विदेशी मुद्रा कमाता है, इसलिए उनका ख़र्च सेवाओं का निर्यात है।",
+  "Ministry of Tourism; Reserve Bank of India -- Balance of Payments.",
+  "in-tourism-exports-easy")
+
+A(IN, "hard",
+  "Solar power is cheapest during the day, but the grid still needs other sources in the evening.",
+  "सौर ऊर्जा दिन में सबसे सस्ती होती है, पर शाम को ग्रिड को अब भी अन्य स्रोतों की आवश्यकता होती है।",
+  "The cost of battery storage has risen sharply over the past decade.",
+  "पिछले एक दशक में बैटरी भंडारण की लागत तेज़ी से बढ़ी है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Demand peaks after sunset, just as solar output falls to zero, so coal, hydro, gas or storage must fill the evening. Battery costs have in fact fallen by roughly 90 per cent since 2010, which is why India now tenders solar-plus-storage projects and viability gap funding for battery storage.",
+  "कथन-I सही है पर कथन-II गलत है। माँग सूर्यास्त के बाद चरम पर होती है, ठीक जब सौर उत्पादन शून्य हो जाता है, इसलिए शाम की ज़रूरत कोयला, जलविद्युत, गैस या भंडारण से पूरी करनी पड़ती है। बैटरी की लागत वास्तव में 2010 के बाद लगभग 90 प्रतिशत घटी है, इसीलिए भारत अब सौर-सह-भंडारण परियोजनाओं और बैटरी भंडारण के लिए व्यवहार्यता अंतर वित्तपोषण की निविदाएँ निकालता है।",
+  "Central Electricity Authority; Ministry of Power -- Viability Gap Funding for Battery Energy Storage Systems; International Energy Agency.",
+  "in-solar-evening-storage")
+
+A(IN, "hard",
+  "Manufacturing's share of India's GDP has stayed largely flat for decades despite repeated policy pushes.",
+  "बार-बार नीतिगत प्रयासों के बावजूद भारत के GDP में विनिर्माण का हिस्सा दशकों से लगभग स्थिर रहा है।",
+  "Small average firm size and difficulties in acquiring land and complying with regulation have been cited as constraints on scaling up.",
+  "फ़र्मों का छोटा औसत आकार, और भूमि अधिग्रहण तथा नियमों के पालन में कठिनाइयाँ, विस्तार की बाधाओं के रूप में बताई गई हैं।",
+  1,
+  "Both Statements II and III are correct, but only Statement II explains Statement I. Most Indian manufacturers are tiny and stay small, which keeps productivity low, and land, labour and compliance costs discourage expansion -- so manufacturing has hovered around 15-17 per cent of GDP. "
+  "Statement III is true but explains nothing: output has grown in absolute terms at roughly the pace of the economy, which is exactly why its share has not risen.",
+  "कथन II और III दोनों सही हैं, पर केवल कथन II कथन I की व्याख्या करता है। अधिकांश भारतीय निर्माता बहुत छोटे हैं और छोटे ही रहते हैं, जिससे उत्पादकता कम रहती है, और भूमि, श्रम तथा अनुपालन की लागत विस्तार को हतोत्साहित करती है; इसलिए विनिर्माण GDP के 15-17 प्रतिशत के आसपास रहा है। "
+  "कथन III सही है पर कुछ नहीं समझाता: उत्पादन निरपेक्ष रूप से लगभग अर्थव्यवस्था की गति से बढ़ा है, और ठीक इसी कारण उसका हिस्सा नहीं बढ़ा।",
+  f"{ES}; Reserve Bank of India.",
+  "in-manufacturing-share-flat",
+  s3="India's manufacturing output has grown in absolute terms over these decades.",
+  s3_hi="इन दशकों में भारत का विनिर्माण उत्पादन निरपेक्ष रूप से बढ़ा है।")
+
+# ================================================================ INDUSTRY: PAIRS (medium 1)
+P(IN, "medium", "Consider the following pairs of regulators and matters they regulate:",
+  "नियामकों और उनके द्वारा नियंत्रित विषयों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Petroleum and Natural Gas Regulatory Board : City gas distribution networks and gas pipelines", "Airports Economic Regulatory Authority : Charges at major airports",
+   "Telecom Regulatory Authority of India : Telecom tariffs", "Central Electricity Regulatory Commission : Tariffs for inter-State transmission of power"],
+  ["पेट्रोलियम और प्राकृतिक गैस नियामक बोर्ड : शहरी गैस वितरण नेटवर्क और गैस पाइपलाइनें", "भारतीय विमानपत्तन आर्थिक विनियामक प्राधिकरण : बड़े हवाई अड्डों पर शुल्क",
+   "भारतीय दूरसंचार नियामक प्राधिकरण : दूरसंचार शुल्क", "केंद्रीय विद्युत विनियामक आयोग : बिजली के अंतर-राज्य पारेषण के शुल्क"],
+  3,
+  "All four pairs are correct. Independent regulators set prices and terms where a network is a natural monopoly. Tariffs for power sold to consumers within a State, however, are set by that State's Electricity Regulatory Commission -- a common confusion. "
+  "A student who expects one mismatch will be drawn to 'Only three pairs'.",
+  "चारों युग्म सही हैं। जहाँ कोई नेटवर्क प्राकृतिक एकाधिकार हो, वहाँ स्वतंत्र नियामक क़ीमतें और शर्तें तय करते हैं। पर किसी राज्य के भीतर उपभोक्ताओं को बेची जाने वाली बिजली की दरें उस राज्य का विद्युत विनियामक आयोग तय करता है; यह एक आम भ्रम है। "
+  "जो विद्यार्थी एक बेमेल की अपेक्षा करता है, वह 'केवल तीन युग्म' की ओर खिंचेगा।",
+  "PNGRB Act, 2006; AERA Act, 2008; TRAI Act, 1997; Electricity Act, 2003.",
+  "in-regulators-pairs")
+
+# ================================================================ INCLUSIVE GROWTH: MEDIUM STATEMENTS (4)
+S(IG, "medium", "Consider the following statements about the Pradhan Mantri Jan Dhan Yojana:",
+  "प्रधानमंत्री जन धन योजना के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Accounts under it require a minimum balance of ₹1,000.",
+   "More than 55 crore accounts have been opened under it.",
+   "More than half of the accounts are held by women."],
+  ["इसके तहत खातों में ₹1,000 का न्यूनतम शेष आवश्यक है।",
+   "इसके तहत 55 करोड़ से अधिक खाते खोले गए हैं।",
+   "आधे से अधिक खाते महिलाओं के हैं।"],
+  C3, 1,
+  "Statements 2 and 3 are correct: launched in 2014, the scheme brought most unbanked households into the system and became the channel for direct transfers such as pandemic cash support for women account holders. "
+  "Statement 1 is wrong: Jan Dhan accounts are basic savings accounts with no minimum balance, and come with a RuPay debit card with accident insurance and an overdraft facility.",
+  "कथन 2 और 3 सही हैं: 2014 में शुरू हुई योजना ने बैंक सेवाओं से वंचित अधिकांश परिवारों को व्यवस्था में जोड़ा और महिला खाताधारकों को महामारी के दौरान नकद सहायता जैसे प्रत्यक्ष हस्तांतरणों का माध्यम बनी। "
+  "कथन 1 गलत है: जन धन खाते बिना न्यूनतम शेष वाले बुनियादी बचत खाते हैं, और इनके साथ दुर्घटना बीमा वाला RuPay डेबिट कार्ड और ओवरड्राफ़्ट सुविधा मिलती है।",
+  "Department of Financial Services -- Pradhan Mantri Jan Dhan Yojana.",
+  "ig-jan-dhan")
+
+S(IG, "medium", "Consider the following statements about housing schemes:",
+  "आवास योजनाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["PMAY-Urban 2.0, approved in 2024, aims to build one crore houses for the urban poor and middle class.",
+   "PMAY-Gramin was extended in 2024 to build two crore more rural houses by 2029.",
+   "Houses under PMAY are to be registered in the name of a woman of the household, alone or jointly."],
+  ["2024 में स्वीकृत PMAY-शहरी 2.0 का लक्ष्य शहरी ग़रीबों और मध्यम वर्ग के लिए एक करोड़ मकान बनाना है।",
+   "PMAY-ग्रामीण को 2024 में 2029 तक दो करोड़ और ग्रामीण मकान बनाने के लिए बढ़ाया गया।",
+   "PMAY के तहत मकान परिवार की किसी महिला के नाम पर, अकेले या संयुक्त रूप से, पंजीकृत होने चाहिए।"],
+  C3, 2,
+  "All three statements are correct. The condition on women's ownership, where the household has a woman member, is meant to give women an asset in their own right and a stronger say in the household.",
+  "तीनों कथन सही हैं। जहाँ परिवार में कोई महिला सदस्य हो, वहाँ महिलाओं के स्वामित्व की शर्त का उद्देश्य महिलाओं को अपने अधिकार में एक परिसंपत्ति और परिवार में अधिक मज़बूत आवाज़ देना है।",
+  "Ministry of Housing and Urban Affairs -- PMAY-U 2.0; Ministry of Rural Development -- PMAY-G.",
+  "ig-pmay")
+
+S(IG, "medium", "Consider the following statements about credit for small entrepreneurs:",
+  "छोटे उद्यमियों के लिए ऋण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the PM Mudra Yojana, the largest 'Tarun' category covers loans only up to ₹50,000.",
+   "Stand-Up India supports loans of ₹10 lakh to ₹1 crore to Scheduled Caste, Scheduled Tribe and women entrepreneurs for new enterprises.",
+   "PM Vishwakarma, launched in 2023, supports traditional artisans and craftspeople with credit and skill training."],
+  ["PM मुद्रा योजना के तहत सबसे बड़ी 'तरुण' श्रेणी केवल ₹50,000 तक के ऋण शामिल करती है।",
+   "स्टैंड-अप इंडिया नए उद्यमों के लिए अनुसूचित जाति, अनुसूचित जनजाति और महिला उद्यमियों को ₹10 लाख से ₹1 करोड़ तक के ऋणों का समर्थन करती है।",
+   "2023 में शुरू हुई PM विश्वकर्मा पारंपरिक कारीगरों और शिल्पकारों को ऋण और कौशल प्रशिक्षण से सहायता देती है।"],
+  C3, 1,
+  "Statements 2 and 3 are correct: PM Vishwakarma covers 18 trades, such as carpenters, potters, blacksmiths and tailors, with collateral-free loans at a concessional rate. "
+  "Statement 1 is wrong: loans up to ₹50,000 are the 'Shishu' category; 'Kishore' goes up to ₹5 lakh, 'Tarun' up to ₹10 lakh, and 'Tarun Plus', added in 2024, up to ₹20 lakh.",
+  "कथन 2 और 3 सही हैं: PM विश्वकर्मा बढ़ई, कुम्हार, लोहार और दर्ज़ी जैसे 18 व्यवसायों को रियायती दर पर बिना ज़मानत के ऋण देती है। "
+  "कथन 1 गलत है: ₹50,000 तक के ऋण 'शिशु' श्रेणी में हैं; 'किशोर' ₹5 लाख तक, 'तरुण' ₹10 लाख तक, और 2024 में जोड़ी गई 'तरुण प्लस' ₹20 लाख तक जाती है।",
+  "Department of Financial Services -- PMMY, Stand-Up India; Ministry of MSME -- PM Vishwakarma.",
+  "ig-mudra-standup-vishwakarma")
+
+S(IG, "medium", "Consider the following statements about India's population:",
+  "भारत की जनसंख्या के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India's total fertility rate is above 3.",
+   "India's population is now growing at less than 1 per cent a year.",
+   "India's old-age dependency ratio is falling."],
+  ["भारत की कुल प्रजनन दर 3 से अधिक है।",
+   "भारत की जनसंख्या अब 1 प्रतिशत प्रति वर्ष से कम की दर से बढ़ रही है।",
+   "भारत का वृद्धावस्था निर्भरता अनुपात घट रहा है।"],
+  C3, 0,
+  "Only statement 2 is correct: growth is now under 1 per cent a year and slowing, and the population is expected to peak in the 2060s. "
+  "Statement 1 is wrong: the TFR fell to about 2.0 by 2019-21, below the replacement level of 2.1, with many southern and western States well below it. "
+  "Statement 3 is wrong: as people live longer and fewer children are born, the share of the elderly -- and so the old-age dependency ratio -- is rising, which will strain pensions and health care.",
+  "केवल कथन 2 सही है: वृद्धि अब 1 प्रतिशत प्रति वर्ष से कम है और धीमी हो रही है, और जनसंख्या के 2060 के दशक में चरम पर पहुँचने की अपेक्षा है। "
+  "कथन 1 गलत है: 2019-21 तक TFR घटकर लगभग 2.0 रह गई, जो 2.1 के प्रतिस्थापन स्तर से नीचे है, और कई दक्षिणी तथा पश्चिमी राज्य इससे काफ़ी नीचे हैं। "
+  "कथन 3 गलत है: लोगों के अधिक समय तक जीने और कम बच्चे पैदा होने से बुज़ुर्गों का हिस्सा, और इसलिए वृद्धावस्था निर्भरता अनुपात, बढ़ रहा है, जो पेंशन और स्वास्थ्य सेवाओं पर दबाव डालेगा।",
+  "National Family Health Survey (NFHS-5); United Nations -- World Population Prospects.",
+  "ig-demography-tfr")
+
+# ================================================================ INCLUSIVE GROWTH: HARD STATEMENTS (2)
+S(IG, "hard", "Consider the following statements based on the Household Consumption Expenditure Survey 2023-24:",
+  "घरेलू उपभोग व्यय सर्वेक्षण 2023-24 के आधार पर निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Average monthly per capita consumption expenditure was about ₹4,100 in rural areas and about ₹7,000 in urban areas.",
+   "Food made up less than half of household consumption in both rural and urban areas.",
+   "The gap between urban and rural consumption has widened since 2011-12."],
+  ["औसत मासिक प्रति व्यक्ति उपभोग व्यय ग्रामीण क्षेत्रों में लगभग ₹4,100 और शहरी क्षेत्रों में लगभग ₹7,000 था।",
+   "ग्रामीण और शहरी, दोनों क्षेत्रों में भोजन घरेलू उपभोग का आधे से कम था।",
+   "2011-12 के बाद से शहरी और ग्रामीण उपभोग के बीच का अंतर बढ़ा है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the share of food fell to about 47 per cent in villages and under 40 per cent in towns, as Engel's law predicts with rising incomes, while spending on beverages, processed food, transport and durables rose. "
+  "Statement 3 is wrong: the urban-rural gap narrowed, from urban spending being about 84 per cent higher in 2011-12 to about 70 per cent higher in 2023-24.",
+  "कथन 1 और 2 सही हैं: बढ़ती आय के साथ, जैसा एंगेल का नियम बताता है, भोजन का हिस्सा गाँवों में घटकर लगभग 47 प्रतिशत और शहरों में 40 प्रतिशत से नीचे आ गया, जबकि पेय, प्रसंस्कृत भोजन, परिवहन और टिकाऊ वस्तुओं पर व्यय बढ़ा। "
+  "कथन 3 गलत है: शहरी-ग्रामीण अंतर घटा, 2011-12 में शहरी व्यय लगभग 84 प्रतिशत अधिक होने से 2023-24 में लगभग 70 प्रतिशत अधिक पर।",
+  f"{MOSPI} -- Household Consumption Expenditure Survey 2023-24.",
+  "ig-hces-2023-24")
+
+S(IG, "hard", "Consider the following statements about women's participation in the labour force:",
+  "श्रम बल में महिलाओं की भागीदारी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The female labour force participation rate rose from about 23 per cent in 2017-18 to over 40 per cent in 2023-24.",
+   "Much of the rise has been in self-employment, including unpaid work in household enterprises.",
+   "The female labour force participation rate is higher in rural areas than in urban areas."],
+  ["महिला श्रम बल भागीदारी दर 2017-18 में लगभग 23 प्रतिशत से बढ़कर 2023-24 में 40 प्रतिशत से अधिक हो गई।",
+   "इस वृद्धि का बड़ा भाग स्व-रोज़गार में रहा है, जिसमें घरेलू उद्यमों में अवैतनिक काम भी शामिल है।",
+   "महिला श्रम बल भागीदारी दर ग्रामीण क्षेत्रों में शहरी क्षेत्रों से अधिक है।"],
+  C3, 2,
+  "All three statements are correct. The rise, measured by the usual status for women aged 15 and above, has been led by rural women working on family farms and in household enterprises, many as unpaid helpers -- so economists debate how far it reflects better opportunities and how far distress or better measurement. Urban women's participation remains around a quarter.",
+  "तीनों कथन सही हैं। 15 वर्ष और अधिक आयु की महिलाओं के लिए सामान्य स्थिति से मापी गई यह वृद्धि पारिवारिक खेतों और घरेलू उद्यमों में काम करने वाली ग्रामीण महिलाओं के नेतृत्व में हुई है, जिनमें से कई अवैतनिक सहायक हैं; इसलिए अर्थशास्त्री बहस करते हैं कि यह कितना बेहतर अवसरों को और कितना संकट या बेहतर मापन को दर्शाती है। शहरी महिलाओं की भागीदारी लगभग एक-चौथाई के आसपास बनी हुई है।",
+  f"{MOSPI} -- Periodic Labour Force Survey Annual Reports; {ES}.",
+  "ig-female-lfpr")
+
+# ================================================================ INCLUSIVE GROWTH: EASY STATEMENT (1)
+S(IG, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["An old-age pension is a social security measure.",
+   "Social security schemes protect people against risks such as illness, old age and accidents."],
+  ["वृद्धावस्था पेंशन एक सामाजिक सुरक्षा उपाय है।",
+   "सामाजिक सुरक्षा योजनाएँ लोगों को बीमारी, बुढ़ापे और दुर्घटनाओं जैसे जोखिमों से बचाती हैं।"],
+  T2, 2,
+  "Both statements are correct: social security gives people an income or care when they cannot earn -- in old age, sickness, disability or after an accident.",
+  "दोनों कथन सही हैं: सामाजिक सुरक्षा लोगों को तब आय या देखभाल देती है जब वे कमा नहीं सकते, जैसे बुढ़ापे, बीमारी, विकलांगता में या किसी दुर्घटना के बाद।",
+  f"{IED}.",
+  "ig-social-security-easy")
+
+# ================================================================ INCLUSIVE GROWTH: MCQs (medium 1, easy 1)
+M(IG, "medium", "The 'Lakhpati Didi' initiative aims to:",
+  "'लखपति दीदी' पहल का उद्देश्य है:",
+  ["help women in self-help groups earn at least ₹1 lakh a year", "give every woman over 60 a one-time grant of ₹1 lakh",
+   "provide loans of ₹1 lakh to women for buying houses in cities", "train one lakh women as pilots and air traffic controllers"],
+  ["स्वयं सहायता समूहों की महिलाओं को कम से कम ₹1 लाख प्रति वर्ष कमाने में मदद करना", "60 वर्ष से अधिक की हर महिला को ₹1 लाख का एकबारगी अनुदान देना",
+   "शहरों में मकान ख़रीदने के लिए महिलाओं को ₹1 लाख के ऋण देना", "एक लाख महिलाओं को पायलट और हवाई यातायात नियंत्रक के रूप में प्रशिक्षित करना"],
+  0,
+  "The initiative, with a target of three crore women, works through self-help groups under the rural livelihoods mission to raise household income to at least ₹1 lakh a year on a sustained basis -- through farm and non-farm enterprises, skills and market links.",
+  "तीन करोड़ महिलाओं के लक्ष्य वाली यह पहल ग्रामीण आजीविका मिशन के स्वयं सहायता समूहों के ज़रिए काम करती है, ताकि कृषि और ग़ैर-कृषि उद्यमों, कौशल और बाज़ार संपर्कों से परिवार की आय स्थायी रूप से कम से कम ₹1 लाख प्रति वर्ष हो।",
+  "Ministry of Rural Development -- Lakhpati Didi.",
+  "ig-lakhpati-didi")
+
+M(IG, "easy", "The ratio of the number of children and elderly people to the number of people of working age is called the:",
+  "बच्चों और बुज़ुर्गों की संख्या का कार्यशील आयु के लोगों की संख्या से अनुपात क्या कहलाता है?",
+  ["dependency ratio", "sex ratio", "work participation rate", "birth rate"],
+  ["निर्भरता अनुपात", "लिंग अनुपात", "कार्य सहभागिता दर", "जन्म दर"],
+  0,
+  "The dependency ratio compares those usually too young or too old to work -- under 15 and over 64 -- with those aged 15-64 who support them. A falling ratio frees resources for saving and investment.",
+  "निर्भरता अनुपात उन लोगों की, जो प्रायः काम करने के लिए बहुत छोटे या बहुत बूढ़े होते हैं, यानी 15 से कम और 64 से अधिक आयु के, तुलना उन्हें सहारा देने वाले 15-64 आयु वर्ग से करता है। घटता अनुपात बचत और निवेश के लिए संसाधन मुक्त करता है।",
+  "NCERT Class XII, India: People and Economy -- Population.",
+  "ig-dependency-ratio-easy")
+
+# ================================================================ INCLUSIVE GROWTH: STATEMENT-I/II (medium 1)
+A(IG, "medium",
+  "Access to clean cooking fuel improves the health of women and children.",
+  "स्वच्छ खाना पकाने के ईंधन तक पहुँच महिलाओं और बच्चों का स्वास्थ्य सुधारती है।",
+  "Burning firewood and dung for cooking causes heavy air pollution inside the home.",
+  "खाना पकाने के लिए लकड़ी और गोबर जलाने से घर के भीतर भारी वायु प्रदूषण होता है।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Smoke from solid fuels, breathed in daily by those who cook and the children near them, causes lung and heart disease; clean fuel also saves women the hours spent collecting wood.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। ठोस ईंधन का धुआँ, जिसे खाना पकाने वाले और उनके पास के बच्चे रोज़ साँस में लेते हैं, फेफड़ों और हृदय के रोग पैदा करता है; स्वच्छ ईंधन महिलाओं के लकड़ी इकट्ठा करने में लगने वाले घंटे भी बचाता है।",
+  "World Health Organization -- Household air pollution; Ministry of Petroleum and Natural Gas.",
+  "ig-clean-cooking-health")
+
+# ================================================================ INCLUSIVE GROWTH: PAIRS (hard 1)
+P(IG, "hard", "Consider the following pairs of schemes and what they provide:",
+  "योजनाओं और उनके द्वारा दी जाने वाली सुविधाओं के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["PM Shram Yogi Maan-dhan : Pension for unorganised workers", "PM Jeevan Jyoti Bima Yojana : Accident insurance cover",
+   "PM Suraksha Bima Yojana : Accident insurance cover", "National Social Assistance Programme : Pensions for retired government employees"],
+  ["PM श्रम योगी मान-धन : असंगठित श्रमिकों के लिए पेंशन", "PM जीवन ज्योति बीमा योजना : दुर्घटना बीमा कवर",
+   "PM सुरक्षा बीमा योजना : दुर्घटना बीमा कवर", "राष्ट्रीय सामाजिक सहायता कार्यक्रम : सेवानिवृत्त सरकारी कर्मचारियों के लिए पेंशन"],
+  1,
+  "Pairs 1 and 3 are correct: PM-SYM (2019) is a contributory scheme giving unorganised workers ₹3,000 a month after 60, with the Centre matching their contributions, and PMSBY gives accident cover of ₹2 lakh for a premium of ₹20 a year. "
+  "Pair 2 is wrong: PMJJBY is life insurance -- ₹2 lakh on death from any cause -- and the similar names are the trap. "
+  "Pair 4 is wrong: the NSAP gives old-age, widow and disability pensions and family benefit to poor households; government employees have their own pension systems.",
+  "युग्म 1 और 3 सही हैं: PM-SYM (2019) एक अंशदायी योजना है जो असंगठित श्रमिकों को 60 वर्ष के बाद ₹3,000 प्रति माह देती है, और केंद्र उनके अंशदान के बराबर योगदान देता है; PMSBY ₹20 प्रति वर्ष के प्रीमियम पर ₹2 लाख का दुर्घटना कवर देती है। "
+  "युग्म 2 गलत है: PMJJBY जीवन बीमा है, यानी किसी भी कारण से मृत्यु पर ₹2 लाख, और मिलते-जुलते नाम ही जाल हैं। "
+  "युग्म 4 गलत है: NSAP ग़रीब परिवारों को वृद्धावस्था, विधवा और विकलांगता पेंशन तथा पारिवारिक लाभ देता है; सरकारी कर्मचारियों की अपनी पेंशन व्यवस्थाएँ हैं।",
+  "Ministry of Labour and Employment -- PM-SYM; Department of Financial Services -- PMJJBY, PMSBY; Ministry of Rural Development -- NSAP.",
+  "ig-social-security-pairs")
+
+if __name__ == "__main__":
+    write("econ_l2_t18_industry_inclusive.sql")
