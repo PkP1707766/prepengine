@@ -1,0 +1,545 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 4 (Polity 4: Federalism, Local Government & Governance) -- Federalism & Special
+Provisions (26) and Panchayati Raj & Local Governance (11): 37 new bilingual rows against the live
+gap report.
+  Federalism: medium statement 9, hard statement 5, medium MCQ 3, medium Statement-I/II 2, hard MCQ 1,
+    hard Statement-I/II/III 1, hard pairs 2, medium pairs 1, easy statement 1, easy Statement-I/II 1.
+  Panchayati Raj: medium statement 4, hard statement 2, medium MCQ 1, easy statement 1, hard MCQ 1,
+    hard Statement-I/II/III 1, medium pairs 1.
+The existing rows are not repeated: nothing here names what Articles 248-258, 262, 268 or 352-360
+contain, where the residuary power lies, that police is a State subject, what Articles 243G/H/K
+contain, anything about the GST Council's voting or the Sixth Schedule's district councils, or
+the Articles for Goa, Sikkim, Mizoram or Arunachal Pradesh; and no row states whether OBC seats
+or a District Planning Committee's plans are mandatory."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Polity"
+FE = "Federalism & Special Provisions"
+PR = "Panchayati Raj & Local Governance"
+COI = "Constitution of India"
+SC = "Supreme Court of India"
+NC = "NCERT Class XI, Political Science -- Indian Constitution at Work"
+
+# ================================================================ FEDERALISM (26)
+S(FE, "medium", "Consider the following statements about the Fifth Schedule:",
+  "पाँचवीं अनुसूची के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Governor may direct that an Act of Parliament or of the State Legislature shall not apply to a Scheduled Area, or shall apply with modifications.",
+   "Regulations made by the Governor for the peace and good government of a Scheduled Area take effect without the assent of the President.",
+   "Scheduled Areas can be declared only by an Act of Parliament."],
+  ["राज्यपाल निर्देश दे सकते हैं कि संसद या राज्य विधानमंडल का कोई अधिनियम किसी अनुसूचित क्षेत्र पर लागू नहीं होगा, या संशोधनों के साथ लागू होगा।",
+   "किसी अनुसूचित क्षेत्र की शांति और सुशासन के लिए राज्यपाल द्वारा बनाए गए विनियम राष्ट्रपति की अनुमति के बिना प्रभावी हो जाते हैं।",
+   "अनुसूचित क्षेत्र केवल संसद के अधिनियम द्वारा घोषित किए जा सकते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct (paragraph 5(1)). "
+  "Statement 2 is wrong: regulations -- which can bar or restrict the transfer of land by or among tribals and regulate money-lending -- must be submitted to the President and take effect only on his assent (paragraph 5(4)). "
+  "Statement 3 is wrong: under paragraph 6 the President declares, and can alter, Scheduled Areas by order after consulting the Governor; ten States now have them.",
+  "केवल कथन 1 सही है (अनुच्छेद 5(1))। "
+  "कथन 2 गलत है: विनियम, जो जनजातियों द्वारा या उनके बीच भूमि-हस्तांतरण पर रोक या प्रतिबंध लगा सकते हैं और साहूकारी का नियमन कर सकते हैं, राष्ट्रपति को भेजे जाने चाहिए और उनकी अनुमति के बाद ही प्रभावी होते हैं (अनुच्छेद 5(4))। "
+  "कथन 3 गलत है: अनुच्छेद 6 के तहत राष्ट्रपति राज्यपाल से परामर्श करके आदेश द्वारा अनुसूचित क्षेत्र घोषित करते हैं और बदल सकते हैं; अब दस राज्यों में ऐसे क्षेत्र हैं।",
+  f"{COI}, Fifth Schedule, paragraphs 5 and 6.",
+  "fed-fifth-schedule-governor-president")
+
+S(FE, "medium", "Consider the following statements about special provisions for certain States:",
+  "कुछ राज्यों के लिए विशेष प्रावधानों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under Article 371A, Acts of Parliament on Naga customary law and procedure apply to Nagaland automatically.",
+   "Under Article 371(2), the Governor of Maharashtra has a special responsibility for separate development boards for Vidarbha, Marathwada and the rest of the State.",
+   "Article 371B provides for a committee of the Assam Legislative Assembly consisting of members elected from the tribal areas."],
+  ["अनुच्छेद 371A के तहत नगा प्रथागत कानून और प्रक्रिया पर संसद के अधिनियम नगालैंड पर अपने आप लागू होते हैं।",
+   "अनुच्छेद 371(2) के तहत महाराष्ट्र के राज्यपाल पर विदर्भ, मराठवाड़ा और शेष राज्य के लिए अलग विकास बोर्डों की विशेष ज़िम्मेदारी है।",
+   "अनुच्छेद 371B जनजातीय क्षेत्रों से चुने गए सदस्यों वाली असम विधानसभा की एक समिति का प्रावधान करता है।"],
+  C3, 1,
+  "Statements 2 and 3 are correct: Article 371(2) also covers Saurashtra and Kutch in Gujarat, and Article 371B was added in 1969, before Meghalaya was carved out of Assam. "
+  "Statement 1 reverses Article 371A: no Act of Parliament on Naga religious or social practices, customary law and procedure, civil and criminal justice under customary law, or the ownership and transfer of land applies to Nagaland unless its Legislative Assembly so decides by resolution.",
+  "कथन 2 और 3 सही हैं: अनुच्छेद 371(2) गुजरात के सौराष्ट्र और कच्छ को भी शामिल करता है, और अनुच्छेद 371B 1969 में, असम से मेघालय अलग होने से पहले, जोड़ा गया। "
+  "कथन 1 अनुच्छेद 371A को उलट देता है: नगा धार्मिक या सामाजिक प्रथाओं, प्रथागत कानून और प्रक्रिया, प्रथागत कानून के अनुसार दीवानी और फ़ौजदारी न्याय, या भूमि के स्वामित्व और हस्तांतरण पर संसद का कोई अधिनियम नगालैंड पर तब तक लागू नहीं होता जब तक उसकी विधानसभा संकल्प द्वारा ऐसा तय न करे।",
+  f"{COI}, Articles 371, 371A and 371B.",
+  "fed-special-provisions-371-371a-371b")
+
+S(FE, "medium", "Consider the following statements about the Inter-State Council:",
+  "अंतर-राज्य परिषद के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Article 263 empowers the President to establish such a Council if it appears to him that the public interest would be served by it.",
+   "It was set up in 1990 on the recommendation of the Sarkaria Commission.",
+   "Its Standing Committee is chaired by the Union Home Minister."],
+  ["अनुच्छेद 263 राष्ट्रपति को ऐसी परिषद स्थापित करने की शक्ति देता है यदि उन्हें लगे कि इससे लोकहित सधेगा।",
+   "इसे 1990 में सरकारिया आयोग की सिफ़ारिश पर स्थापित किया गया।",
+   "इसकी स्थायी समिति की अध्यक्षता केंद्रीय गृह मंत्री करते हैं।"],
+  C3, 2,
+  "All three statements are correct. Article 263 does not create the Council; it only enables the President to do so by order, which is why it could lie unused until 1990. The Standing Committee, set up in 1996, carries on consultation between meetings of the full Council, which meets rarely.",
+  "तीनों कथन सही हैं। अनुच्छेद 263 परिषद को स्वयं नहीं बनाता; वह केवल राष्ट्रपति को आदेश द्वारा ऐसा करने में सक्षम बनाता है, इसीलिए यह 1990 तक अप्रयुक्त पड़ा रह सका। 1996 में बनी स्थायी समिति पूर्ण परिषद की बैठकों के बीच परामर्श जारी रखती है, जिसकी बैठकें कम ही होती हैं।",
+  f"{COI}, Article 263; Ministry of Home Affairs -- Inter-State Council Secretariat.",
+  "fed-inter-state-council")
+
+S(FE, "medium", "Consider the following statements about the Zonal Councils:",
+  "क्षेत्रीय परिषदों (Zonal Councils) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are statutory bodies set up under the States Reorganisation Act, 1956.",
+   "There are five Zonal Councils.",
+   "They are advisory bodies.",
+   "The North Eastern Council is one of the five Zonal Councils."],
+  ["ये राज्य पुनर्गठन अधिनियम, 1956 के तहत बने वैधानिक निकाय हैं।",
+   "पाँच क्षेत्रीय परिषदें हैं।",
+   "ये सलाहकारी निकाय हैं।",
+   "पूर्वोत्तर परिषद पाँच क्षेत्रीय परिषदों में से एक है।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct: the Northern, Central, Eastern, Western and Southern Councils were created to encourage co-operation among States and settle common issues, such as border, linguistic minority and transport questions. "
+  "Statement 4 is wrong: the North Eastern Council is a separate statutory body created by the North Eastern Council Act, 1971, and now works as a regional planning body under the Ministry of Development of North Eastern Region.",
+  "कथन 1, 2 और 3 सही हैं: उत्तरी, मध्य, पूर्वी, पश्चिमी और दक्षिणी परिषदें राज्यों के बीच सहयोग बढ़ाने और सीमा, भाषाई अल्पसंख्यक और परिवहन जैसे साझा प्रश्न सुलझाने के लिए बनीं। "
+  "कथन 4 गलत है: पूर्वोत्तर परिषद पूर्वोत्तर परिषद अधिनियम, 1971 से बना एक अलग वैधानिक निकाय है, और अब पूर्वोत्तर क्षेत्र विकास मंत्रालय के अधीन एक क्षेत्रीय योजना निकाय के रूप में काम करती है।",
+  "States Reorganisation Act, 1956, sections 15-22; North Eastern Council Act, 1971.",
+  "fed-zonal-councils-nec")
+
+S(FE, "medium", "Consider the following statements about trade, commerce and intercourse within India:",
+  "भारत के भीतर व्यापार, वाणिज्य और समागम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Article 301 declares that trade, commerce and intercourse throughout the territory of India shall be free.",
+   "Parliament can impose restrictions on the freedom of trade between States in the public interest.",
+   "A State Bill imposing reasonable restrictions on trade in the public interest needs the previous sanction of the President for its introduction."],
+  ["अनुच्छेद 301 घोषित करता है कि भारत के पूरे राज्यक्षेत्र में व्यापार, वाणिज्य और समागम स्वतंत्र होगा।",
+   "संसद लोकहित में राज्यों के बीच व्यापार की स्वतंत्रता पर निर्बंधन लगा सकती है।",
+   "लोकहित में व्यापार पर युक्तियुक्त निर्बंधन लगाने वाले राज्य विधेयक को प्रस्तुत करने के लिए राष्ट्रपति की पूर्व मंज़ूरी चाहिए।"],
+  C3, 2,
+  "All three statements are correct (Articles 301, 302 and 304(b)). The freedom protects the economic unity of the country, which is why a State's restrictions need the Union's prior approval. Unlike Article 19(1)(g), the freedom in Article 301 is not a Fundamental Right, but it binds the Union and the States alike and can be enforced in the courts.",
+  "तीनों कथन सही हैं (अनुच्छेद 301, 302 और 304(b))। यह स्वतंत्रता देश की आर्थिक एकता की रक्षा करती है, इसीलिए किसी राज्य के निर्बंधनों के लिए संघ की पूर्व स्वीकृति चाहिए। अनुच्छेद 19(1)(g) के विपरीत अनुच्छेद 301 की स्वतंत्रता मौलिक अधिकार नहीं है, पर यह संघ और राज्यों, दोनों पर बाध्यकारी है और न्यायालयों में प्रवर्तित कराई जा सकती है।",
+  f"{COI}, Articles 301-304.",
+  "fed-trade-commerce-301-304")
+
+S(FE, "medium", "Consider the following statements about the sharing of Union taxes with the States:",
+  "संघीय करों के राज्यों के साथ बँटवारे के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 80th Amendment Act, 2000 brought all Union taxes, with a few exceptions, into a common divisible pool shared with the States.",
+   "The 80th Amendment Act excluded corporation tax from the divisible pool.",
+   "The Fifteenth Finance Commission recommended that the States receive 41 per cent of the divisible pool."],
+  ["80वें संशोधन अधिनियम, 2000 ने कुछ अपवादों को छोड़कर सभी संघीय करों को राज्यों के साथ बाँटे जाने वाले एक साझा विभाज्य पूल में ला दिया।",
+   "80वें संशोधन अधिनियम ने निगम कर को विभाज्य पूल से बाहर रखा।",
+   "पंद्रहवें वित्त आयोग ने सिफ़ारिश की कि राज्यों को विभाज्य पूल का 41 प्रतिशत मिले।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: the 'alternative scheme of devolution' recommended by the Tenth Finance Commission replaced the earlier practice of sharing only income tax and Union excise duties; the 15th Commission's 41 per cent was one point lower than the 14th's 42 per cent, reflecting the reorganisation of Jammu and Kashmir. "
+  "Statement 2 is wrong: corporation tax was brought into the pool; what stays out is surcharges and cesses and the taxes assigned wholly to the States.",
+  "कथन 1 और 3 सही हैं: दसवें वित्त आयोग द्वारा सुझाई गई 'हस्तांतरण की वैकल्पिक योजना' ने केवल आयकर और संघीय उत्पाद शुल्क बाँटने की पहले की प्रथा की जगह ली; 15वें आयोग का 41 प्रतिशत 14वें के 42 प्रतिशत से एक अंक कम था, जो जम्मू-कश्मीर के पुनर्गठन को दर्शाता है। "
+  "कथन 2 गलत है: निगम कर को पूल में लाया गया; बाहर रहते हैं अधिभार और उपकर तथा वे कर जो पूरी तरह राज्यों को सौंपे गए हैं।",
+  f"{COI}, Articles 269-271 and 280; Constitution (Eightieth Amendment) Act, 2000; Report of the Fifteenth Finance Commission (2020).",
+  "fed-divisible-pool-80th-15th-fc")
+
+S(FE, "medium", "Consider the following statements about grants from the Union to the States:",
+  "संघ से राज्यों को अनुदानों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Article 275 provides for grants-in-aid to States in need of assistance, on the recommendation of the Finance Commission.",
+   "Article 282 allows the Union to make grants only for purposes within its own legislative competence.",
+   "Grants under Article 275 are charged on the Consolidated Fund of India."],
+  ["अनुच्छेद 275 सहायता की आवश्यकता वाले राज्यों को वित्त आयोग की सिफ़ारिश पर सहायता-अनुदान का प्रावधान करता है।",
+   "अनुच्छेद 282 संघ को केवल उन्हीं प्रयोजनों के लिए अनुदान देने देता है जो उसकी अपनी विधायी क्षमता के भीतर हों।",
+   "अनुच्छेद 275 के तहत अनुदान भारत की संचित निधि पर भारित हैं।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: Article 275 grants -- 'statutory' grants, including special grants for Scheduled Tribes and Scheduled Areas -- are charged and so not voted annually. "
+  "Statement 2 reverses Article 282: the Union or a State may make grants for any public purpose 'notwithstanding that the purpose is not one with respect to which Parliament or the Legislature ... may make laws'. These 'discretionary' grants financed the bulk of centrally sponsored schemes for decades, a practice criticised for bypassing the Finance Commission.",
+  "कथन 1 और 3 सही हैं: अनुच्छेद 275 के अनुदान, 'वैधानिक' अनुदान, जिनमें अनुसूचित जनजातियों और अनुसूचित क्षेत्रों के लिए विशेष अनुदान भी हैं, भारित हैं और इसलिए हर वर्ष मतदान के लिए नहीं रखे जाते। "
+  "कथन 2 अनुच्छेद 282 को उलट देता है: संघ या राज्य किसी भी सार्वजनिक प्रयोजन के लिए अनुदान दे सकते हैं, 'भले ही वह प्रयोजन ऐसा न हो जिसके संबंध में संसद या विधानमंडल कानून बना सकता है'। इन 'विवेकाधीन' अनुदानों से दशकों तक केंद्र प्रायोजित योजनाओं का अधिकांश वित्तपोषण हुआ; इस प्रथा की आलोचना वित्त आयोग को दरकिनार करने के लिए होती है।",
+  f"{COI}, Articles 275 and 282.",
+  "fed-grants-275-282")
+
+S(FE, "medium", "Consider the following statements about the National Capital Territory of Delhi:",
+  "राष्ट्रीय राजधानी क्षेत्र दिल्ली के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In 2023, a Constitution Bench held that the elected government of Delhi has legislative and executive power over services, except those relating to public order, police and land.",
+   "The National Capital Civil Service Authority created by Parliament later in 2023 is chaired by the Lieutenant Governor.",
+   "The Legislative Assembly of Delhi can make laws on police."],
+  ["2023 में संविधान पीठ ने माना कि दिल्ली की निर्वाचित सरकार के पास सेवाओं पर विधायी और कार्यकारी शक्ति है, सिवाय लोक व्यवस्था, पुलिस और भूमि से संबंधित सेवाओं के।",
+   "2023 में ही बाद में संसद द्वारा बनाए गए राष्ट्रीय राजधानी सिविल सेवा प्राधिकरण की अध्यक्षता उपराज्यपाल करते हैं।",
+   "दिल्ली की विधानसभा पुलिस पर कानून बना सकती है।"],
+  C3, 0,
+  "Only statement 1 is correct: the Court read Article 239AA as giving Delhi's elected government control over the civil services it works through. "
+  "Statement 2 is wrong: Parliament's amendment to the Government of National Capital Territory of Delhi Act, 1991 created the Authority with the Chief Minister as chairperson and the Chief Secretary and the Principal Home Secretary as members -- so the two officials can outvote the Chief Minister, and the Lieutenant Governor has the final word. "
+  "Statement 3 is wrong: Article 239AA(3)(a) keeps public order, police and land outside the Assembly's power.",
+  "केवल कथन 1 सही है: न्यायालय ने अनुच्छेद 239AA को इस रूप में पढ़ा कि दिल्ली की निर्वाचित सरकार का उन सिविल सेवाओं पर नियंत्रण है जिनके ज़रिए वह काम करती है। "
+  "कथन 2 गलत है: राष्ट्रीय राजधानी क्षेत्र दिल्ली शासन अधिनियम, 1991 में संसद के संशोधन ने प्राधिकरण बनाया, जिसमें मुख्यमंत्री अध्यक्ष और मुख्य सचिव तथा प्रधान गृह सचिव सदस्य हैं; इसलिए दोनों अधिकारी मुख्यमंत्री को बहुमत से पीछे छोड़ सकते हैं, और अंतिम निर्णय उपराज्यपाल का होता है। "
+  "कथन 3 गलत है: अनुच्छेद 239AA(3)(a) लोक व्यवस्था, पुलिस और भूमि को विधानसभा की शक्ति से बाहर रखता है।",
+  f"{COI}, Article 239AA; {SC} -- Government of NCT of Delhi v. Union of India (2023); Government of National Capital Territory of Delhi (Amendment) Act, 2023.",
+  "fed-delhi-services-2023")
+
+S(FE, "medium", "Consider the following statements about Jammu and Kashmir:",
+  "जम्मू और कश्मीर के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The special status under Article 370 was ended in August 2019 through Presidential orders under that Article.",
+   "The Jammu and Kashmir Reorganisation Act, 2019 converted the State into two Union Territories.",
+   "The first elections to the Legislative Assembly of the Union Territory of Jammu and Kashmir were held in 2024."],
+  ["अनुच्छेद 370 के तहत विशेष दर्जा अगस्त 2019 में उसी अनुच्छेद के तहत राष्ट्रपति के आदेशों से समाप्त किया गया।",
+   "जम्मू और कश्मीर पुनर्गठन अधिनियम, 2019 ने राज्य को दो केंद्रशासित प्रदेशों में बदल दिया।",
+   "जम्मू और कश्मीर केंद्रशासित प्रदेश की विधानसभा के पहले चुनाव 2024 में हुए।"],
+  C3, 2,
+  "All three statements are correct. Constitution Orders 272 and 273 of 5-6 August 2019 applied the whole Constitution to Jammu and Kashmir and made Article 370 inoperative; the Reorganisation Act created the Union Territory of Jammu and Kashmir, with a legislature, and Ladakh. The Supreme Court, upholding the change in 2023, directed elections by September 2024 and statehood 'at the earliest'.",
+  "तीनों कथन सही हैं। 5-6 अगस्त 2019 के संविधान आदेश 272 और 273 ने पूरे संविधान को जम्मू-कश्मीर पर लागू किया और अनुच्छेद 370 को निष्प्रभावी बनाया; पुनर्गठन अधिनियम ने विधानमंडल वाला जम्मू-कश्मीर केंद्रशासित प्रदेश और लद्दाख बनाया। 2023 में इस परिवर्तन को सही ठहराते हुए उच्चतम न्यायालय ने सितंबर 2024 तक चुनाव कराने और 'यथाशीघ्र' राज्य का दर्जा बहाल करने का निर्देश दिया।",
+  f"Constitution (Application to Jammu and Kashmir) Order, 2019 (C.O. 272) and C.O. 273; Jammu and Kashmir Reorganisation Act, 2019; {SC} -- In Re: Article 370 of the Constitution (2023).",
+  "fed-jammu-kashmir-2019-2024")
+
+S(FE, "hard", "Consider the following statements about the Union's powers over the States in a constitutional breakdown:",
+  "संवैधानिक तंत्र के विफल होने पर राज्यों पर संघ की शक्तियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under Article 365, if a State fails to comply with directions given by the Union, the President may hold that its government cannot be carried on in accordance with the Constitution.",
+   "President's Rule under Article 356 can be proclaimed only on receipt of a report from the Governor.",
+   "In Rameshwar Prasad (2006), the Supreme Court held the dissolution of the Bihar Legislative Assembly in 2005 unconstitutional."],
+  ["अनुच्छेद 365 के तहत यदि कोई राज्य संघ के निर्देशों का पालन नहीं करता, तो राष्ट्रपति मान सकते हैं कि उसका शासन संविधान के अनुसार नहीं चलाया जा सकता।",
+   "अनुच्छेद 356 के तहत राष्ट्रपति शासन केवल राज्यपाल की रिपोर्ट मिलने पर ही घोषित किया जा सकता है।",
+   "रामेश्वर प्रसाद (2006) में उच्चतम न्यायालय ने 2005 में बिहार विधानसभा के विघटन को असंवैधानिक माना।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: Article 365 is a deeming provision that links Articles 256-257 to Article 356, and in Rameshwar Prasad the Court found that the Governor's report was based on no relevant material, though it did not restore the dissolved Assembly as fresh elections were under way. "
+  "Statement 2 is wrong: Article 356 allows action 'on receipt of a report from the Governor ... or otherwise', so a Governor's report is not a legal precondition.",
+  "कथन 1 और 3 सही हैं: अनुच्छेद 365 एक मानने वाला प्रावधान है जो अनुच्छेद 256-257 को अनुच्छेद 356 से जोड़ता है, और रामेश्वर प्रसाद में न्यायालय ने पाया कि राज्यपाल की रिपोर्ट किसी प्रासंगिक सामग्री पर आधारित नहीं थी, हालाँकि उसने विघटित विधानसभा को बहाल नहीं किया क्योंकि नए चुनाव चल रहे थे। "
+  "कथन 2 गलत है: अनुच्छेद 356 'राज्यपाल की रिपोर्ट मिलने पर ... या अन्यथा' कार्रवाई की अनुमति देता है, इसलिए राज्यपाल की रिपोर्ट विधिक पूर्व-शर्त नहीं है।",
+  f"{COI}, Articles 356 and 365; {SC} -- Rameshwar Prasad v. Union of India (2006).",
+  "fed-art365-356-rameshwar-prasad")
+
+S(FE, "hard", "Consider the following statements about borrowing by the States:",
+  "राज्यों द्वारा उधार लेने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A State may borrow within India upon the security of its Consolidated Fund, within limits fixed by its Legislature.",
+   "A State cannot raise loans from outside India.",
+   "A State that still owes money to the Union needs the Union's consent to raise any fresh loan."],
+  ["कोई राज्य अपनी संचित निधि की प्रतिभूति पर, अपने विधानमंडल द्वारा तय सीमाओं के भीतर, भारत के भीतर उधार ले सकता है।",
+   "कोई राज्य भारत के बाहर से ऋण नहीं ले सकता।",
+   "जिस राज्य पर अब भी संघ का कर्ज़ बकाया है, उसे कोई नया ऋण लेने के लिए संघ की सहमति चाहिए।"],
+  C3, 2,
+  "All three statements are correct (Article 293). Because almost every State owes the Union money, clause (3) gives the Centre a say over nearly all State borrowing -- the basis of the net borrowing ceilings it fixes each year, which some States have challenged before the Supreme Court. External assistance reaches States only through the Union.",
+  "तीनों कथन सही हैं (अनुच्छेद 293)। चूँकि लगभग हर राज्य पर संघ का कर्ज़ है, इसलिए खंड (3) केंद्र को लगभग सारे राज्य-ऋण पर अधिकार देता है; यही हर वर्ष तय की जाने वाली शुद्ध उधार-सीमाओं का आधार है, जिसे कुछ राज्यों ने उच्चतम न्यायालय में चुनौती दी है। बाहरी सहायता राज्यों तक केवल संघ के माध्यम से पहुँचती है।",
+  f"{COI}, Article 293.",
+  "fed-state-borrowing-293")
+
+S(FE, "hard", "Consider the following statements about the recommendations of commissions on Centre-State relations:",
+  "केंद्र-राज्य संबंधों पर आयोगों की सिफ़ारिशों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Sarkaria Commission recommended that the Governor should belong to the State to which he is appointed.",
+   "The Punchhi Commission recommended that Governors be removable at the pleasure of the President without any special procedure.",
+   "The Sarkaria Commission recommended the abolition of the All-India Services."],
+  ["सरकारिया आयोग ने सिफ़ारिश की कि राज्यपाल उसी राज्य का हो जिसमें उसकी नियुक्ति होती है।",
+   "पुंछी आयोग ने सिफ़ारिश की कि राज्यपालों को किसी विशेष प्रक्रिया के बिना राष्ट्रपति के प्रसादपर्यंत हटाया जा सके।",
+   "सरकारिया आयोग ने अखिल भारतीय सेवाओं को समाप्त करने की सिफ़ारिश की।"],
+  C3, 3,
+  "None of the statements is correct -- each reverses the recommendation. Sarkaria wanted Governors to be eminent persons from outside the State, not active in local politics. Punchhi proposed a fixed five-year term, with removal only through a resolution of the State Legislature, to end arbitrary dismissals. And Sarkaria wanted the All-India Services strengthened and new ones created, seeing them as a bond of national unity.",
+  "कोई भी कथन सही नहीं है; हर कथन सिफ़ारिश को उलट देता है। सरकारिया चाहता था कि राज्यपाल राज्य के बाहर के प्रतिष्ठित व्यक्ति हों, जो स्थानीय राजनीति में सक्रिय न हों। पुंछी ने मनमाने ढंग से हटाए जाने को रोकने के लिए निश्चित पाँच वर्ष का कार्यकाल प्रस्तावित किया, जिसमें हटाना केवल राज्य विधानमंडल के संकल्प से हो। और सरकारिया अखिल भारतीय सेवाओं को राष्ट्रीय एकता का बंधन मानकर उन्हें मज़बूत करना और नई सेवाएँ बनाना चाहता था।",
+  "Report of the Commission on Centre-State Relations (Sarkaria, 1988); Report of the Commission on Centre-State Relations (Punchhi, 2010).",
+  "fed-sarkaria-punchhi-recommendations")
+
+S(FE, "hard", "Consider the following statements about Article 261:",
+  "अनुच्छेद 261 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Full faith and credit is to be given throughout India to the public acts, records and judicial proceedings of the Union and of every State.",
+   "Final judgments or orders of civil courts in any part of India are capable of execution anywhere in India.",
+   "Parliament has no power to prescribe the manner in which such acts and records are proved."],
+  ["भारत में सर्वत्र संघ और हर राज्य के सार्वजनिक कार्यों, अभिलेखों और न्यायिक कार्यवाहियों को पूर्ण विश्वास और मान्यता दी जानी है।",
+   "भारत के किसी भी भाग के सिविल न्यायालयों के अंतिम निर्णय या आदेश भारत में कहीं भी निष्पादित किए जा सकते हैं।",
+   "ऐसे कार्यों और अभिलेखों को सिद्ध करने की रीति निर्धारित करने की संसद के पास कोई शक्ति नहीं है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct (Article 261(1) and (3)): in a federation with a single judiciary, a decree or public record of one State cannot be ignored in another. "
+  "Statement 3 is wrong: Article 261(2) expressly leaves it to Parliament to prescribe how such acts, records and proceedings are proved and what effect they have.",
+  "कथन 1 और 2 सही हैं (अनुच्छेद 261(1) और (3)): एकल न्यायपालिका वाले संघ में एक राज्य की डिक्री या सार्वजनिक अभिलेख की दूसरे राज्य में उपेक्षा नहीं की जा सकती। "
+  "कथन 3 गलत है: अनुच्छेद 261(2) स्पष्ट रूप से संसद पर छोड़ता है कि ऐसे कार्य, अभिलेख और कार्यवाहियाँ कैसे सिद्ध हों और उनका क्या प्रभाव हो।",
+  f"{COI}, Article 261.",
+  "fed-full-faith-credit-261")
+
+S(FE, "hard", "Consider the following statements about the administration of tribal areas in the North-East:",
+  "पूर्वोत्तर के जनजातीय क्षेत्रों के प्रशासन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Sixth Schedule applies to tribal areas in Assam, Meghalaya, Tripura and Mizoram.",
+   "The hill areas of Manipur are administered under the Sixth Schedule.",
+   "Arunachal Pradesh is covered by the Sixth Schedule."],
+  ["छठी अनुसूची असम, मेघालय, त्रिपुरा और मिज़ोरम के जनजातीय क्षेत्रों पर लागू होती है।",
+   "मणिपुर के पहाड़ी क्षेत्रों का प्रशासन छठी अनुसूची के तहत होता है।",
+   "अरुणाचल प्रदेश छठी अनुसूची के अंतर्गत आता है।"],
+  C3, 0,
+  "Only statement 1 is correct: the Sixth Schedule is confined to these four States. "
+  "Statement 2 is wrong: Manipur's hill areas have a Hill Areas Committee of the Assembly under Article 371C and autonomous district councils under the Manipur (Hill Areas) District Councils Act, 1971, not the Sixth Schedule -- a long-standing demand of hill groups. "
+  "Statement 3 is wrong: Arunachal Pradesh has special provisions of its own, and demands to bring it or Ladakh under the Sixth Schedule have not been met.",
+  "केवल कथन 1 सही है: छठी अनुसूची इन चार राज्यों तक सीमित है। "
+  "कथन 2 गलत है: मणिपुर के पहाड़ी क्षेत्रों के लिए अनुच्छेद 371C के तहत विधानसभा की पहाड़ी क्षेत्र समिति और मणिपुर (पहाड़ी क्षेत्र) ज़िला परिषद अधिनियम, 1971 के तहत स्वायत्त ज़िला परिषदें हैं, छठी अनुसूची नहीं; यह पहाड़ी समूहों की पुरानी माँग है। "
+  "कथन 3 गलत है: अरुणाचल प्रदेश के अपने विशेष प्रावधान हैं, और उसे या लद्दाख को छठी अनुसूची में लाने की माँगें पूरी नहीं हुई हैं।",
+  f"{COI}, Articles 244, 371C and Sixth Schedule.",
+  "fed-sixth-schedule-coverage")
+
+M(FE, "medium", "Which one of the following subjects was moved from the State List to the Concurrent List by the 42nd Amendment Act, 1976?",
+  "निम्नलिखित में से कौन-सा विषय 42वें संशोधन अधिनियम, 1976 द्वारा राज्य सूची से समवर्ती सूची में ले जाया गया?",
+  ["Forests", "Public health and sanitation", "Agriculture", "Betting and gambling"],
+  ["वन", "लोक स्वास्थ्य और स्वच्छता", "कृषि", "दाँव और जुआ"],
+  0,
+  "The 42nd Amendment shifted five subjects -- education, forests, weights and measures, protection of wild animals and birds, and administration of justice (other than of the High Courts and Supreme Court) -- to the Concurrent List, one of its most centralising changes. Public health, agriculture and betting remain State subjects.",
+  "42वें संशोधन ने पाँच विषय, शिक्षा, वन, नाप-तौल, वन्य पशुओं और पक्षियों का संरक्षण, और न्याय प्रशासन (उच्च न्यायालयों और उच्चतम न्यायालय को छोड़कर), समवर्ती सूची में ले गया; यह उसके सबसे केंद्रीकरण वाले परिवर्तनों में से एक था। लोक स्वास्थ्य, कृषि और दाँव अब भी राज्य के विषय हैं।",
+  f"{COI}, Seventh Schedule; Constitution (Forty-second Amendment) Act, 1976.",
+  "fed-42nd-state-to-concurrent")
+
+M(FE, "medium", "A Tribes Advisory Council under the Fifth Schedule consists of not more than:",
+  "पाँचवीं अनुसूची के तहत जनजाति सलाहकार परिषद में अधिकतम कितने सदस्य होते हैं?",
+  ["20 members", "15 members", "25 members", "30 members"],
+  ["20 सदस्य", "15 सदस्य", "25 सदस्य", "30 सदस्य"],
+  0,
+  "Paragraph 4 provides for a Council of not more than twenty members, of whom as nearly as possible three-fourths are representatives of the Scheduled Tribes in the State Legislative Assembly. It is required in every State with Scheduled Areas, and can be set up in a State with Scheduled Tribes but no Scheduled Areas if the President so directs.",
+  "अनुच्छेद 4 अधिकतम बीस सदस्यों की परिषद का प्रावधान करता है, जिनमें से यथासंभव तीन-चौथाई राज्य विधानसभा में अनुसूचित जनजातियों के प्रतिनिधि होते हैं। यह अनुसूचित क्षेत्रों वाले हर राज्य में आवश्यक है, और राष्ट्रपति के निर्देश पर ऐसे राज्य में भी बन सकती है जहाँ अनुसूचित जनजातियाँ हों पर अनुसूचित क्षेत्र न हों।",
+  f"{COI}, Fifth Schedule, paragraph 4.",
+  "fed-tribes-advisory-council")
+
+M(FE, "medium", "The doctrine of 'pith and substance' is used by the courts to:",
+  "न्यायालय 'सार और तत्व' (pith and substance) के सिद्धांत का उपयोग किसलिए करते हैं?",
+  ["decide which legislature was competent to make a law touching more than one List",
+   "decide whether a constitutional amendment violates the basic structure of the Constitution",
+   "decide whether delegated legislation exceeds the powers conferred by the parent Act",
+   "decide whether an ordinance was issued in a genuine emergency"],
+  ["यह तय करना कि एक से अधिक सूचियों को छूने वाला कानून बनाने में कौन-सा विधानमंडल सक्षम था",
+   "यह तय करना कि कोई संविधान संशोधन संविधान के मूल ढाँचे का उल्लंघन करता है या नहीं",
+   "यह तय करना कि प्रत्यायोजित विधान मूल अधिनियम द्वारा दी गई शक्तियों से आगे जाता है या नहीं",
+   "यह तय करना कि कोई अध्यादेश वास्तविक आपात में जारी हुआ था या नहीं"],
+  0,
+  "Laws often touch entries in more than one List. Under this doctrine, developed by the Privy Council in Canadian and Indian cases and applied by the Supreme Court in State of Bombay v. F.N. Balsara (1951), the court looks at the true nature and character of the law; if in substance it falls within the enacting legislature's List, an incidental encroachment on another List does not invalidate it.",
+  "कानून प्रायः एक से अधिक सूचियों की प्रविष्टियों को छूते हैं। प्रिवी काउंसिल द्वारा कनाडाई और भारतीय मामलों में विकसित और उच्चतम न्यायालय द्वारा बॉम्बे राज्य बनाम एफ.एन. बलसारा (1951) में लागू इस सिद्धांत के तहत न्यायालय कानून की वास्तविक प्रकृति और स्वरूप देखता है; यदि सार रूप में वह कानून बनाने वाले विधानमंडल की सूची में आता है, तो दूसरी सूची में आनुषंगिक अतिक्रमण उसे अमान्य नहीं करता।",
+  f"{SC} -- State of Bombay v. F.N. Balsara (1951); {COI}, Article 246.",
+  "fed-pith-and-substance")
+
+M(FE, "hard", "President's Rule was imposed for the first time in 1951 in:",
+  "राष्ट्रपति शासन पहली बार 1951 में कहाँ लगाया गया?",
+  ["Punjab", "PEPSU", "Kerala", "Andhra State"],
+  ["पंजाब", "पेप्सू (PEPSU)", "केरल", "आंध्र राज्य"],
+  0,
+  "Article 356 was first used in Punjab in June 1951, amid a leadership crisis in the ruling party, followed by PEPSU in 1953 and Andhra State in 1954. Kerala in 1959 -- the dismissal of E.M.S. Namboodiripad's elected Communist government -- is the case most often remembered, which is why it tempts.",
+  "अनुच्छेद 356 का पहली बार प्रयोग जून 1951 में पंजाब में हुआ, सत्तारूढ़ दल में नेतृत्व संकट के बीच; उसके बाद 1953 में पेप्सू और 1954 में आंध्र राज्य में। 1959 का केरल, ई.एम.एस. नंबूदिरीपाद की निर्वाचित कम्युनिस्ट सरकार की बर्ख़ास्तगी, सबसे अधिक याद किया जाने वाला मामला है, इसीलिए वह आकर्षक विकल्प है।",
+  f"Report of the Commission on Centre-State Relations (Sarkaria, 1988), chapter on Article 356; {NC} -- Federalism.",
+  "fed-first-presidents-rule-punjab")
+
+A(FE, "medium",
+  "The Rajya Sabha does not give equal representation to all the States.",
+  "राज्यसभा सभी राज्यों को समान प्रतिनिधित्व नहीं देती।",
+  "Seats in the Rajya Sabha are allotted to the States broadly on the basis of their population.",
+  "राज्यसभा में सीटें राज्यों को मोटे तौर पर उनकी जनसंख्या के आधार पर आवंटित होती हैं।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. The Fourth Schedule allots seats roughly by population -- Uttar Pradesh has 31, while several small States have one each -- unlike the United States Senate, where every state has two. This is one reason Indian federalism is called asymmetric.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। चौथी अनुसूची सीटें मोटे तौर पर जनसंख्या के अनुसार आवंटित करती है: उत्तर प्रदेश के पास 31 हैं, जबकि कई छोटे राज्यों के पास एक-एक; जबकि अमेरिकी सीनेट में हर राज्य के दो सदस्य होते हैं। यह भारतीय संघवाद को असममित कहे जाने का एक कारण है।",
+  f"{COI}, Article 80 and Fourth Schedule; {NC} -- Federalism.",
+  "fed-rajya-sabha-unequal-representation")
+
+A(FE, "medium",
+  "The Union can deploy its armed forces in a State to deal with internal disturbance without the consent of the State.",
+  "संघ किसी राज्य में आंतरिक अशांति से निपटने के लिए उस राज्य की सहमति के बिना अपने सशस्त्र बल तैनात कर सकता है।",
+  "Article 355 allows the Union to deploy its forces in a State only after the State Government requests it.",
+  "अनुच्छेद 355 संघ को किसी राज्य में अपने बल केवल राज्य सरकार के अनुरोध के बाद ही तैनात करने देता है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Article 355 casts a duty on the Union to protect every State against external aggression and internal disturbance, and Entry 2A of the Union List, added in 1976, lets it deploy armed or other forces in aid of the civil power in any State. Neither is conditional on the State's request, though in practice forces are usually sent on one.",
+  "कथन-I सही है पर कथन-II गलत है। अनुच्छेद 355 संघ पर हर राज्य को बाहरी आक्रमण और आंतरिक अशांति से बचाने का कर्तव्य डालता है, और 1976 में जोड़ी गई संघ सूची की प्रविष्टि 2A उसे किसी भी राज्य में नागरिक शक्ति की सहायता के लिए सशस्त्र या अन्य बल तैनात करने देती है। दोनों में से कोई भी राज्य के अनुरोध पर निर्भर नहीं है, हालाँकि व्यवहार में बल प्रायः अनुरोध पर ही भेजे जाते हैं।",
+  f"{COI}, Article 355 and Seventh Schedule, List I, Entry 2A.",
+  "fed-art355-deployment")
+
+A(FE, "hard",
+  "The amount of Union tax revenue actually shared with the States is smaller than the Union's gross tax revenue.",
+  "राज्यों के साथ वास्तव में बाँटा जाने वाला संघीय कर-राजस्व संघ के सकल कर-राजस्व से कम होता है।",
+  "Surcharges and cesses levied by the Union are excluded from the divisible pool.",
+  "संघ द्वारा लगाए गए अधिभार और उपकर विभाज्य पूल से बाहर रखे जाते हैं।",
+  0,
+  "Both Statements II and III are correct, and both explain Statement I. The States' share is calculated on the 'net proceeds' -- gross collections minus the cost of collection (Article 279) -- and surcharges and cesses are kept out altogether (Article 270(1)). The growing share of cesses and surcharges in Union revenue is a major grievance of the States.",
+  "कथन II और III दोनों सही हैं, और दोनों कथन I की व्याख्या करते हैं। राज्यों का हिस्सा 'शुद्ध आगम' पर गिना जाता है, यानी सकल संग्रह में से संग्रह की लागत घटाकर (अनुच्छेद 279), और अधिभार तथा उपकर पूरी तरह बाहर रखे जाते हैं (अनुच्छेद 270(1))। संघ के राजस्व में उपकरों और अधिभारों का बढ़ता हिस्सा राज्यों की एक बड़ी शिकायत है।",
+  f"{COI}, Articles 270 and 279.",
+  "fed-divisible-pool-net-proceeds",
+  s3="The States' share is calculated on the net proceeds of taxes, after deducting the cost of collection.",
+  s3_hi="राज्यों का हिस्सा संग्रह की लागत घटाने के बाद करों के शुद्ध आगम पर गिना जाता है।")
+
+P(FE, "hard", "Consider the following pairs of Articles and the special provisions they make:",
+  "अनुच्छेदों और उनके द्वारा किए गए विशेष प्रावधानों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Article 371C : Manipur", "Article 371D : Andhra Pradesh and Telangana",
+   "Article 371E : A High Court for Andhra Pradesh", "Article 371J : Mizoram"],
+  ["अनुच्छेद 371C : मणिपुर", "अनुच्छेद 371D : आंध्र प्रदेश और तेलंगाना",
+   "अनुच्छेद 371E : आंध्र प्रदेश के लिए एक उच्च न्यायालय", "अनुच्छेद 371J : मिज़ोरम"],
+  1,
+  "Only pairs 1 and 2 are correct. Article 371C provides for the Hill Areas Committee of the Manipur Assembly, and Article 371D for equitable opportunities in public employment and education in Andhra Pradesh and Telangana. "
+  "Pair 3 is wrong: Article 371E allows Parliament to establish a Central University in Andhra Pradesh. Pair 4 is wrong: Article 371J, added by the 98th Amendment (2012), concerns the Kalyana-Karnataka (formerly Hyderabad-Karnataka) region.",
+  "केवल युग्म 1 और 2 सही हैं। अनुच्छेद 371C मणिपुर विधानसभा की पहाड़ी क्षेत्र समिति का, और अनुच्छेद 371D आंध्र प्रदेश और तेलंगाना में सार्वजनिक रोज़गार और शिक्षा में समान अवसरों का प्रावधान करता है। "
+  "युग्म 3 गलत है: अनुच्छेद 371E संसद को आंध्र प्रदेश में एक केंद्रीय विश्वविद्यालय स्थापित करने देता है। युग्म 4 गलत है: 98वें संशोधन (2012) द्वारा जोड़ा गया अनुच्छेद 371J कल्याण-कर्नाटक (पहले हैदराबाद-कर्नाटक) क्षेत्र से संबंधित है।",
+  f"{COI}, Articles 371C-371J.",
+  "fed-special-provisions-371c-371j-pairs")
+
+P(FE, "hard", "Consider the following pairs of inter-governmental bodies and their chairpersons:",
+  "अंतर-सरकारी निकायों और उनके अध्यक्षों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Inter-State Council : The Prime Minister", "Zonal Councils : The Union Home Minister",
+   "GST Council : The Union Finance Minister", "Governing Council of NITI Aayog : The Union Home Minister"],
+  ["अंतर-राज्य परिषद : प्रधानमंत्री", "क्षेत्रीय परिषदें : केंद्रीय गृह मंत्री",
+   "GST परिषद : केंद्रीय वित्त मंत्री", "नीति आयोग की शासी परिषद : केंद्रीय गृह मंत्री"],
+  2,
+  "Three pairs are correct: the Prime Minister chairs the Inter-State Council, the Home Minister chairs each Zonal Council (with Chief Ministers of the zone as vice-chairpersons by rotation), and the Finance Minister chairs the GST Council, whose members are State finance or other ministers. "
+  "Pair 4 is wrong: the Governing Council of NITI Aayog, which brings together the Chief Ministers and Lieutenant Governors, is chaired by the Prime Minister.",
+  "तीन युग्म सही हैं: प्रधानमंत्री अंतर-राज्य परिषद की, गृह मंत्री हर क्षेत्रीय परिषद की (क्षेत्र के मुख्यमंत्री बारी-बारी से उपाध्यक्ष होते हैं), और वित्त मंत्री GST परिषद की अध्यक्षता करते हैं, जिसके सदस्य राज्यों के वित्त या अन्य मंत्री होते हैं। "
+  "युग्म 4 गलत है: नीति आयोग की शासी परिषद, जो मुख्यमंत्रियों और उपराज्यपालों को एक साथ लाती है, प्रधानमंत्री की अध्यक्षता में होती है।",
+  f"{COI}, Articles 263 and 279A; States Reorganisation Act, 1956, section 16; NITI Aayog -- Cabinet Resolution (2015).",
+  "fed-intergovernmental-bodies-chairs-pairs")
+
+P(FE, "medium", "Consider the following pairs of Union Territories and their features:",
+  "केंद्रशासित प्रदेशों और उनकी विशेषताओं के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Chandigarh : Administered by the Governor of Punjab as its Administrator", "Lakshadweep : Has a Legislative Assembly",
+   "Puducherry : Has a Legislative Assembly", "Ladakh : Has a Legislative Assembly"],
+  ["चंडीगढ़ : पंजाब के राज्यपाल प्रशासक के रूप में इसका प्रशासन करते हैं", "लक्षद्वीप : इसकी विधानसभा है",
+   "पुदुचेरी : इसकी विधानसभा है", "लद्दाख : इसकी विधानसभा है"],
+  1,
+  "Only pairs 1 and 3 are correct. Only three Union Territories have Legislative Assemblies -- Delhi, Puducherry and Jammu and Kashmir. "
+  "Pairs 2 and 4 are wrong: Lakshadweep and Ladakh are administered by an Administrator or Lieutenant Governor appointed by the President, without a legislature; Ladakh's demand for a legislature or Sixth Schedule status has driven protests since 2019.",
+  "केवल युग्म 1 और 3 सही हैं। केवल तीन केंद्रशासित प्रदेशों की विधानसभाएँ हैं: दिल्ली, पुदुचेरी और जम्मू-कश्मीर। "
+  "युग्म 2 और 4 गलत हैं: लक्षद्वीप और लद्दाख का प्रशासन राष्ट्रपति द्वारा नियुक्त प्रशासक या उपराज्यपाल बिना विधानमंडल के करते हैं; विधानमंडल या छठी अनुसूची के दर्जे की लद्दाख की माँग 2019 से विरोध-प्रदर्शनों का कारण रही है।",
+  f"{COI}, Articles 239, 239A and 239AA; Jammu and Kashmir Reorganisation Act, 2019.",
+  "fed-union-territories-pairs")
+
+S(FE, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Constitution divides legislative powers between the Union and the States in three Lists.",
+   "A State Legislature can amend the State List."],
+  ["संविधान संघ और राज्यों के बीच विधायी शक्तियों को तीन सूचियों में बाँटता है।",
+   "कोई राज्य विधानमंडल राज्य सूची में संशोधन कर सकता है।"],
+  T2, 0,
+  "Only statement 1 is correct: the Seventh Schedule has the Union, State and Concurrent Lists. Statement 2 is wrong: the Lists are part of the Constitution and can be changed only by Parliament under Article 368 -- with ratification by at least half the States, because the change affects the federal balance.",
+  "केवल कथन 1 सही है: सातवीं अनुसूची में संघ, राज्य और समवर्ती सूचियाँ हैं। कथन 2 गलत है: सूचियाँ संविधान का भाग हैं और केवल संसद अनुच्छेद 368 के तहत उन्हें बदल सकती है, कम से कम आधे राज्यों के अनुसमर्थन के साथ, क्योंकि यह परिवर्तन संघीय संतुलन को प्रभावित करता है।",
+  f"{COI}, Articles 246 and 368 and Seventh Schedule.",
+  "fed-three-lists-easy")
+
+A(FE, "easy",
+  "The Governor is the constitutional head of a State.",
+  "राज्यपाल राज्य का संवैधानिक प्रमुख है।",
+  "The Governor is appointed by the President.",
+  "राज्यपाल की नियुक्ति राष्ट्रपति करते हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. The Governor is the constitutional head because the executive power of the State is vested in him while real power lies with the Council of Ministers; the method of appointment is a separate matter, reflecting the Union's role in a federation with a strong Centre.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। राज्यपाल संवैधानिक प्रमुख इसलिए है कि राज्य की कार्यपालिका शक्ति उसमें निहित है जबकि वास्तविक शक्ति मंत्रिपरिषद के पास है; नियुक्ति का तरीका एक अलग विषय है, जो सशक्त केंद्र वाले संघ में संघ की भूमिका को दर्शाता है।",
+  f"{COI}, Articles 154, 155 and 163.",
+  "fed-governor-head-appointment-easy")
+
+# ================================================================ PANCHAYATI RAJ (11)
+S(PR, "medium", "Consider the following statements about the early history of Panchayati Raj:",
+  "पंचायती राज के प्रारंभिक इतिहास के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Balwantrai Mehta Committee (1957) recommended a three-tier system of democratic decentralisation.",
+   "Panchayati Raj was first inaugurated at Nagaur in Rajasthan on 2 October 1959.",
+   "Andhra Pradesh followed Rajasthan in adopting Panchayati Raj in 1959."],
+  ["बलवंतराय मेहता समिति (1957) ने लोकतांत्रिक विकेंद्रीकरण की त्रि-स्तरीय व्यवस्था की सिफ़ारिश की।",
+   "पंचायती राज का पहली बार उद्घाटन 2 अक्टूबर 1959 को राजस्थान के नागौर में हुआ।",
+   "राजस्थान के बाद आंध्र प्रदेश ने 1959 में पंचायती राज अपनाया।"],
+  C3, 2,
+  "All three statements are correct. The Committee, set up to review the Community Development Programme, proposed elected bodies at the village, block and district levels; Prime Minister Nehru inaugurated the first at Nagaur, and Andhra Pradesh introduced it later the same year. These bodies weakened in the following decades, which led to later committees and finally to the 73rd Amendment.",
+  "तीनों कथन सही हैं। सामुदायिक विकास कार्यक्रम की समीक्षा के लिए बनी समिति ने गाँव, खंड और ज़िला स्तर पर निर्वाचित निकाय प्रस्तावित किए; प्रधानमंत्री नेहरू ने पहले का उद्घाटन नागौर में किया, और आंध्र प्रदेश ने उसी वर्ष बाद में इसे लागू किया। अगले दशकों में ये निकाय कमज़ोर पड़े, जिससे बाद की समितियाँ बनीं और अंततः 73वाँ संशोधन आया।",
+  "Report of the Team for the Study of Community Projects and National Extension Service (Balwantrai Mehta, 1957); Ministry of Panchayati Raj.",
+  "panchayat-balwantrai-nagaur")
+
+S(PR, "medium", "Consider the following statements about the 73rd Amendment Act, 1992:",
+  "73वें संशोधन अधिनियम, 1992 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Gram Sabha consists of the persons registered in the electoral rolls relating to a village within the area of a Panchayat.",
+   "A State with a population of less than 50 lakh need not constitute Panchayats at the intermediate level.",
+   "The chairpersons of village Panchayats must be directly elected."],
+  ["ग्राम सभा में वे व्यक्ति होते हैं जो पंचायत क्षेत्र के भीतर किसी गाँव से संबंधित निर्वाचक नामावलियों में पंजीकृत हैं।",
+   "50 लाख से कम जनसंख्या वाले राज्य को मध्यवर्ती स्तर पर पंचायतें गठित करना ज़रूरी नहीं है।",
+   "ग्राम पंचायतों के अध्यक्षों का प्रत्यक्ष रूप से चुना जाना अनिवार्य है।"],
+  C3, 0,
+  "Only statement 1 is correct (Article 243(b)). "
+  "Statement 2 is wrong: the exemption from the intermediate tier applies to States with a population not exceeding 20 lakh (Article 243B(2)). "
+  "Statement 3 is wrong: the manner of electing the chairperson of a village Panchayat is left to State law; only members of Panchayats at all levels must be directly elected, and chairpersons at the intermediate and district levels are elected indirectly.",
+  "केवल कथन 1 सही है (अनुच्छेद 243(b))। "
+  "कथन 2 गलत है: मध्यवर्ती स्तर से छूट उन राज्यों पर लागू है जिनकी जनसंख्या 20 लाख से अधिक न हो (अनुच्छेद 243B(2))। "
+  "कथन 3 गलत है: ग्राम पंचायत के अध्यक्ष के चुनाव की रीति राज्य कानून पर छोड़ी गई है; केवल सभी स्तरों पर पंचायतों के सदस्यों का प्रत्यक्ष चुनाव अनिवार्य है, और मध्यवर्ती तथा ज़िला स्तर के अध्यक्ष अप्रत्यक्ष रूप से चुने जाते हैं।",
+  f"{COI}, Articles 243, 243B and 243C.",
+  "panchayat-73rd-gram-sabha-tiers-chair")
+
+S(PR, "medium", "Consider the following statements about urban local bodies under the 74th Amendment Act, 1992:",
+  "74वें संशोधन अधिनियम, 1992 के तहत शहरी स्थानीय निकायों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Wards Committees must be constituted in municipalities with a population of three lakh or more.",
+   "A Metropolitan Planning Committee is to be constituted for every metropolitan area with a population of ten lakh or more.",
+   "Every municipality has a term of five years unless dissolved earlier."],
+  ["तीन लाख या अधिक जनसंख्या वाली नगरपालिकाओं में वार्ड समितियाँ गठित करना ज़रूरी है।",
+   "दस लाख या अधिक जनसंख्या वाले हर महानगर क्षेत्र के लिए एक महानगर योजना समिति गठित की जानी है।",
+   "हर नगरपालिका का कार्यकाल पाँच वर्ष होता है, जब तक उसे पहले भंग न कर दिया जाए।"],
+  C3, 2,
+  "All three statements are correct (Articles 243S, 243ZE and 243U). The Metropolitan Planning Committee is meant to draft a development plan for the whole metropolitan area, cutting across municipal boundaries, though many States have been slow to set one up.",
+  "तीनों कथन सही हैं (अनुच्छेद 243S, 243ZE और 243U)। महानगर योजना समिति का उद्देश्य नगरपालिका सीमाओं से परे पूरे महानगर क्षेत्र के लिए विकास योजना बनाना है, हालाँकि कई राज्यों ने इसे बनाने में देरी की है।",
+  f"{COI}, Articles 243S, 243U and 243ZE.",
+  "panchayat-74th-wards-mpc-term")
+
+S(PR, "medium", "Consider the following statements about the State Election Commissioner:",
+  "राज्य निर्वाचन आयुक्त के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The State Election Commissioner is appointed by the President.",
+   "The State Election Commissioner can be removed by the Governor at his pleasure.",
+   "The conditions of service of the State Election Commissioner can be varied to his disadvantage after his appointment."],
+  ["राज्य निर्वाचन आयुक्त की नियुक्ति राष्ट्रपति करते हैं।",
+   "राज्यपाल राज्य निर्वाचन आयुक्त को अपने प्रसादपर्यंत हटा सकते हैं।",
+   "राज्य निर्वाचन आयुक्त की सेवा-शर्तों को उसकी नियुक्ति के बाद उसके लिए अहितकर रूप से बदला जा सकता है।"],
+  C3, 3,
+  "None of the statements is correct. Under Article 243K the Commissioner is appointed by the Governor, can be removed only in the manner and on the grounds prescribed for a High Court judge, and cannot have his conditions of service varied to his disadvantage -- safeguards meant to keep local elections free of State government pressure, which the Supreme Court has repeatedly insisted on.",
+  "कोई भी कथन सही नहीं है। अनुच्छेद 243K के तहत आयुक्त की नियुक्ति राज्यपाल करते हैं, उन्हें केवल उच्च न्यायालय के न्यायाधीश के लिए निर्धारित रीति और आधारों पर हटाया जा सकता है, और उनकी सेवा-शर्तें उनके लिए अहितकर रूप से नहीं बदली जा सकतीं; ये सुरक्षा उपाय स्थानीय चुनावों को राज्य सरकार के दबाव से मुक्त रखने के लिए हैं, जिन पर उच्चतम न्यायालय ने बार-बार ज़ोर दिया है।",
+  f"{COI}, Article 243K.",
+  "panchayat-state-election-commissioner")
+
+S(PR, "hard", "Consider the following statements about the finances and accounts of Panchayats:",
+  "पंचायतों के वित्त और लेखों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A State Legislature may by law authorise a Panchayat to levy, collect and appropriate taxes, duties, tolls and fees.",
+   "The maintenance and audit of Panchayat accounts are governed by provisions made by the State Legislature.",
+   "Panchayats have a power to levy taxes guaranteed directly by the Constitution, independent of any State law."],
+  ["राज्य विधानमंडल कानून द्वारा किसी पंचायत को कर, शुल्क, पथकर और फ़ीस लगाने, वसूलने और विनियोजित करने का अधिकार दे सकता है।",
+   "पंचायत लेखों का रखरखाव और लेखापरीक्षा राज्य विधानमंडल द्वारा बनाए गए प्रावधानों से संचालित होते हैं।",
+   "पंचायतों के पास कर लगाने की ऐसी शक्ति है जिसकी गारंटी संविधान सीधे देता है, किसी राज्य कानून से स्वतंत्र।"],
+  C3, 1,
+  "Statements 1 and 2 are correct (Articles 243H and 243J). "
+  "Statement 3 is wrong: the Constitution only enables the State to devolve taxing powers; Panchayats have no taxing power of their own, which is why their dependence on State and Union transfers -- and on the State Finance Commissions' recommendations -- is the central weakness of rural local government.",
+  "कथन 1 और 2 सही हैं (अनुच्छेद 243H और 243J)। "
+  "कथन 3 गलत है: संविधान केवल राज्य को कराधान की शक्तियाँ हस्तांतरित करने में सक्षम बनाता है; पंचायतों के पास अपनी कोई कराधान शक्ति नहीं है; इसीलिए राज्य और संघ के हस्तांतरणों पर, और राज्य वित्त आयोगों की सिफ़ारिशों पर, उनकी निर्भरता ग्रामीण स्थानीय शासन की केंद्रीय कमज़ोरी है।",
+  f"{COI}, Articles 243H and 243J.",
+  "panchayat-finances-243h-243j")
+
+S(PR, "hard", "Consider the following statements about the Gram Nyayalayas Act, 2008:",
+  "ग्राम न्यायालय अधिनियम, 2008 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A Gram Nyayalaya is to be established for every Panchayat at the intermediate level or a group of such Panchayats.",
+   "A Gram Nyayalaya is presided over by a Nyayadhikari appointed by the State Government in consultation with the High Court.",
+   "Every State is bound by the Act to establish Gram Nyayalayas throughout its territory."],
+  ["हर मध्यवर्ती स्तर की पंचायत या ऐसी पंचायतों के समूह के लिए एक ग्राम न्यायालय स्थापित किया जाना है।",
+   "ग्राम न्यायालय की अध्यक्षता राज्य सरकार द्वारा उच्च न्यायालय के परामर्श से नियुक्त न्यायाधिकारी करता है।",
+   "अधिनियम के तहत हर राज्य अपने पूरे क्षेत्र में ग्राम न्यायालय स्थापित करने के लिए बाध्य है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the courts are meant to bring justice to the villagers' doorstep, as mobile courts following summary procedure. "
+  "Statement 3 is wrong: the Act says the State Government 'may' establish them, and implementation has been patchy -- only a few hundred are working, and the Supreme Court has had to ask States to set them up.",
+  "कथन 1 और 2 सही हैं: ये न्यायालय ग्रामीणों तक उनके द्वार पर न्याय पहुँचाने के लिए हैं, संक्षिप्त प्रक्रिया अपनाने वाले चलते-फिरते न्यायालयों के रूप में। "
+  "कथन 3 गलत है: अधिनियम कहता है कि राज्य सरकार इन्हें स्थापित 'कर सकती है', और क्रियान्वयन अधूरा रहा है; केवल कुछ सौ काम कर रहे हैं, और उच्चतम न्यायालय को राज्यों से इन्हें स्थापित करने के लिए कहना पड़ा है।",
+  "Gram Nyayalayas Act, 2008, sections 3 and 5; Department of Justice -- Gram Nyayalayas.",
+  "panchayat-gram-nyayalayas")
+
+M(PR, "medium", "Which committee recommended a two-tier system of Panchayati Raj, with the district as the first point of decentralisation below the State?",
+  "किस समिति ने पंचायती राज की द्वि-स्तरीय व्यवस्था की सिफ़ारिश की, जिसमें राज्य के नीचे विकेंद्रीकरण का पहला बिंदु ज़िला हो?",
+  ["Ashok Mehta Committee", "G.V.K. Rao Committee", "L.M. Singhvi Committee", "Thungon Committee"],
+  ["अशोक मेहता समिति", "जी.वी.के. राव समिति", "एल.एम. सिंघवी समिति", "थुंगन समिति"],
+  0,
+  "The Ashok Mehta Committee (1977-78) proposed a zila parishad at the district level and mandal panchayats covering groups of villages, with official participation of political parties. G.V.K. Rao (1985) called the Panchayati Raj bodies 'grass without roots', L.M. Singhvi (1986) recommended constitutional recognition, and the Thungon committee (1988) made the district the unit of planning.",
+  "अशोक मेहता समिति (1977-78) ने ज़िला स्तर पर ज़िला परिषद और गाँवों के समूहों वाली मंडल पंचायतें प्रस्तावित कीं, राजनीतिक दलों की आधिकारिक भागीदारी के साथ। जी.वी.के. राव (1985) ने पंचायती राज निकायों को 'बिना जड़ों की घास' कहा, एल.एम. सिंघवी (1986) ने संवैधानिक मान्यता की सिफ़ारिश की, और थुंगन समिति (1988) ने ज़िले को योजना की इकाई बनाया।",
+  "Report of the Committee on Panchayati Raj Institutions (Ashok Mehta, 1978); Ministry of Panchayati Raj.",
+  "panchayat-ashok-mehta-two-tier")
+
+M(PR, "hard", "Which Article of the Constitution provides for the constitution of Wards Committees in municipalities?",
+  "संविधान का कौन-सा अनुच्छेद नगरपालिकाओं में वार्ड समितियों के गठन का प्रावधान करता है?",
+  ["Article 243S", "Article 243R", "Article 243T", "Article 243ZD"],
+  ["अनुच्छेद 243S", "अनुच्छेद 243R", "अनुच्छेद 243T", "अनुच्छेद 243ZD"],
+  0,
+  "Article 243S requires Wards Committees in municipalities of three lakh or more. The neighbours are the traps: Article 243R deals with the composition of municipalities, 243T with the reservation of seats, and 243ZD with the District Planning Committee.",
+  "अनुच्छेद 243S तीन लाख या अधिक जनसंख्या वाली नगरपालिकाओं में वार्ड समितियाँ ज़रूरी करता है। पड़ोसी अनुच्छेद ही जाल हैं: अनुच्छेद 243R नगरपालिकाओं की संरचना से, 243T सीटों के आरक्षण से, और 243ZD ज़िला योजना समिति से संबंधित है।",
+  f"{COI}, Articles 243R-243ZD.",
+  "panchayat-wards-committees-243s")
+
+A(PR, "hard",
+  "Part IX of the Constitution does not apply to Nagaland, Meghalaya and Mizoram.",
+  "संविधान का भाग IX नगालैंड, मेघालय और मिज़ोरम पर लागू नहीं होता।",
+  "Article 243M excludes these States from the operation of Part IX.",
+  "अनुच्छेद 243M इन राज्यों को भाग IX के प्रभाव से बाहर रखता है।",
+  0,
+  "All three statements are correct, and both Statements II and III explain Statement I. Article 243M is the legal exclusion, and its reason is that these States, with the hill areas of Manipur, have traditional or customary bodies -- village councils, Dorbar Shnongs and the like -- that the framers of the amendment did not want to displace. Parliament can extend Part IX to them with exceptions and modifications.",
+  "तीनों कथन सही हैं, और कथन II तथा III दोनों कथन I की व्याख्या करते हैं। अनुच्छेद 243M विधिक अपवर्जन है, और उसका कारण यह है कि इन राज्यों में, मणिपुर के पहाड़ी क्षेत्रों के साथ, पारंपरिक या प्रथागत निकाय हैं, जैसे ग्राम परिषदें, दोरबार श्नोंग आदि, जिन्हें संशोधन बनाने वाले हटाना नहीं चाहते थे। संसद अपवादों और संशोधनों के साथ भाग IX को उन पर लागू कर सकती है।",
+  f"{COI}, Article 243M.",
+  "panchayat-243m-exempted-states",
+  s3="These States have their own traditional institutions of local self-government.",
+  s3_hi="इन राज्यों की अपनी पारंपरिक स्थानीय स्वशासन संस्थाएँ हैं।")
+
+P(PR, "medium", "Consider the following pairs of Articles in Part IX and their subject matter:",
+  "भाग IX के अनुच्छेदों और उनकी विषय-वस्तु के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Article 243A : Gram Sabha", "Article 243D : Reservation of seats", "Article 243E : Duration of Panchayats", "Article 243B : Elections to the Panchayats"],
+  ["अनुच्छेद 243A : ग्राम सभा", "अनुच्छेद 243D : सीटों का आरक्षण", "अनुच्छेद 243E : पंचायतों की अवधि", "अनुच्छेद 243B : पंचायतों के चुनाव"],
+  2,
+  "Three pairs are correct. Pair 4 is wrong: Article 243B provides for the constitution of Panchayats at the village, intermediate and district levels; elections are dealt with in Article 243K.",
+  "तीन युग्म सही हैं। युग्म 4 गलत है: अनुच्छेद 243B गाँव, मध्यवर्ती और ज़िला स्तर पर पंचायतों के गठन का प्रावधान करता है; चुनाव अनुच्छेद 243K में हैं।",
+  f"{COI}, Articles 243A-243K.",
+  "panchayat-part-ix-articles-pairs")
+
+S(PR, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 73rd Amendment Act gave constitutional status to Panchayati Raj institutions.",
+   "The minimum age for contesting an election to a Panchayat is 25 years."],
+  ["73वें संशोधन अधिनियम ने पंचायती राज संस्थाओं को संवैधानिक दर्जा दिया।",
+   "पंचायत चुनाव लड़ने की न्यूनतम आयु 25 वर्ष है।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: under Article 243F a person qualified to be an MLA is qualified for a Panchayat, except that the minimum age is 21 years rather than 25.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: अनुच्छेद 243F के तहत विधायक बनने योग्य व्यक्ति पंचायत के लिए योग्य है, सिवाय इसके कि न्यूनतम आयु 25 नहीं, 21 वर्ष है।",
+  f"{COI}, Article 243F.",
+  "panchayat-constitutional-status-age-easy")
+
+if __name__ == "__main__":
+    write("pol_l2_t4_federalism_local.sql")
