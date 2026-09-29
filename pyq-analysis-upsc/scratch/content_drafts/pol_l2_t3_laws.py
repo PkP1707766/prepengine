@@ -1,0 +1,438 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 3 (Polity 3: Judiciary, Bodies, Elections & Laws) -- Statutory-Laws, 28 new
+bilingual rows against the live gap report: medium statement 11, hard statement 6, medium MCQ 3,
+medium Statement-I/II 3, hard MCQ 1, hard Statement-I/II/III 1, hard pairs 1, medium pairs 1,
+easy statement 1. The 12 existing rows (new criminal laws, DPDP, RTI, Telecommunications Act,
+Public Examinations Act, POCSO, Juvenile Justice, 2023-25 Acts pairs) are not repeated, and no
+new row says which new code replaced the CrPC or the Evidence Act, or when they came into force.
+Forest rights and environmental laws are left to the Environment tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Polity"
+SL = "Statutory-Laws"
+SC = "Supreme Court of India"
+
+# ---------------------------------------------------------------- medium statements (11)
+S(SL, "medium", "Consider the following statements about the Consumer Protection Act, 2019:",
+  "उपभोक्ता संरक्षण अधिनियम, 2019 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It provides for 'product liability' actions against manufacturers, service providers and sellers for harm caused by defective products.",
+   "It does not apply to goods and services bought through e-commerce.",
+   "A consumer can file a complaint in the Commission within whose jurisdiction he or she resides or works for gain."],
+  ["यह दोषपूर्ण उत्पादों से हुई हानि के लिए निर्माताओं, सेवा प्रदाताओं और विक्रेताओं के विरुद्ध 'उत्पाद दायित्व' की कार्रवाई का प्रावधान करता है।",
+   "यह ई-कॉमर्स के माध्यम से ख़रीदी गई वस्तुओं और सेवाओं पर लागू नहीं होता।",
+   "उपभोक्ता उस आयोग में शिकायत दर्ज कर सकता है जिसके क्षेत्राधिकार में वह रहता है या आजीविका के लिए काम करता है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct: the 2019 Act, replacing the 1986 law, added product liability and let consumers file where they live or work rather than only where the seller is based, with e-filing and mediation. "
+  "Statement 2 is wrong: the definition of 'consumer' expressly covers offline and online transactions, teleshopping, direct selling and multi-level marketing, and the Consumer Protection (E-Commerce) Rules, 2020 were made under it.",
+  "कथन 1 और 3 सही हैं: 1986 के कानून की जगह आए 2019 के अधिनियम ने उत्पाद दायित्व जोड़ा और उपभोक्ताओं को केवल विक्रेता के स्थान पर नहीं, बल्कि जहाँ वे रहते या काम करते हैं वहाँ शिकायत करने दी, ई-फ़ाइलिंग और मध्यस्थता के साथ। "
+  "कथन 2 गलत है: 'उपभोक्ता' की परिभाषा स्पष्ट रूप से ऑफ़लाइन और ऑनलाइन लेन-देन, टेलीशॉपिंग, प्रत्यक्ष बिक्री और बहु-स्तरीय विपणन को शामिल करती है, और उपभोक्ता संरक्षण (ई-कॉमर्स) नियम, 2020 इसी के तहत बने।",
+  "Consumer Protection Act, 2019, sections 2(7), 34 and Chapter VI; Consumer Protection (E-Commerce) Rules, 2020.",
+  "laws-consumer-protection-2019")
+
+S(SL, "medium", "Consider the following statements about the Rights of Persons with Disabilities Act, 2016:",
+  "दिव्यांगजन अधिकार अधिनियम, 2016 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It recognises 21 specified disabilities.",
+   "It provides for 3 per cent reservation in government jobs for persons with benchmark disabilities.",
+   "It provides for 3 per cent reservation of seats in government higher educational institutions for persons with benchmark disabilities."],
+  ["यह 21 निर्दिष्ट दिव्यांगताओं को मान्यता देता है।",
+   "यह बेंचमार्क दिव्यांगता वाले व्यक्तियों के लिए सरकारी नौकरियों में 3 प्रतिशत आरक्षण का प्रावधान करता है।",
+   "यह बेंचमार्क दिव्यांगता वाले व्यक्तियों के लिए सरकारी उच्च शिक्षा संस्थानों में 3 प्रतिशत सीटों के आरक्षण का प्रावधान करता है।"],
+  C3, 0,
+  "Only statement 1 is correct: the Act widened the list from seven disabilities under the 1995 law to 21, adding acid-attack victims, dwarfism, thalassaemia, Parkinson's disease and others. "
+  "Statements 2 and 3 use the old figure: the 2016 Act raised job reservation from 3 to 4 per cent (section 34) and fixed at least 5 per cent of seats in government and government-aided higher educational institutions (section 32).",
+  "केवल कथन 1 सही है: अधिनियम ने 1995 के कानून की सात दिव्यांगताओं की सूची बढ़ाकर 21 की, जिसमें तेज़ाब-हमले के पीड़ित, बौनापन, थैलेसीमिया, पार्किंसन रोग आदि जोड़े गए। "
+  "कथन 2 और 3 पुराना आँकड़ा देते हैं: 2016 के अधिनियम ने नौकरियों में आरक्षण 3 से बढ़ाकर 4 प्रतिशत किया (धारा 34) और सरकारी तथा सरकारी सहायता प्राप्त उच्च शिक्षा संस्थानों में कम से कम 5 प्रतिशत सीटें तय कीं (धारा 32)।",
+  "Rights of Persons with Disabilities Act, 2016, sections 32 and 34 and Schedule.",
+  "laws-rpwd-2016")
+
+S(SL, "medium", "Consider the following statements about the Transgender Persons (Protection of Rights) Act, 2019:",
+  "ट्रांसजेंडर व्यक्ति (अधिकारों का संरक्षण) अधिनियम, 2019 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A certificate of identity as a transgender person is issued by the District Magistrate.",
+   "It prohibits discrimination against transgender persons in education, employment and healthcare.",
+   "A person must undergo medical examination or surgery to be issued a certificate of identity as a transgender person."],
+  ["ट्रांसजेंडर व्यक्ति के रूप में पहचान का प्रमाणपत्र ज़िला मजिस्ट्रेट जारी करता है।",
+   "यह शिक्षा, रोज़गार और स्वास्थ्य सेवा में ट्रांसजेंडर व्यक्तियों के साथ भेदभाव को मना करता है।",
+   "ट्रांसजेंडर व्यक्ति के रूप में पहचान का प्रमाणपत्र पाने के लिए व्यक्ति को चिकित्सा जाँच या शल्य-क्रिया करानी होती है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. "
+  "Statement 3 is wrong: the Act gives the right to a self-perceived gender identity, and the certificate as 'transgender' is issued on application without any medical examination; proof of surgery is required only if the person later seeks a revised certificate as male or female -- a distinction criticised as falling short of the NALSA judgment.",
+  "कथन 1 और 2 सही हैं। "
+  "कथन 3 गलत है: अधिनियम स्वयं द्वारा अनुभूत लैंगिक पहचान का अधिकार देता है, और 'ट्रांसजेंडर' के रूप में प्रमाणपत्र आवेदन पर बिना किसी चिकित्सा जाँच के जारी होता है; शल्य-क्रिया का प्रमाण तभी चाहिए जब व्यक्ति बाद में पुरुष या महिला के रूप में संशोधित प्रमाणपत्र माँगे; इस भेद की आलोचना होती है कि यह नालसा निर्णय से कम पड़ता है।",
+  "Transgender Persons (Protection of Rights) Act, 2019, sections 3-7.",
+  "laws-transgender-persons-2019")
+
+S(SL, "medium", "Consider the following statements about the Protection of Women from Domestic Violence Act, 2005:",
+  "घरेलू हिंसा से महिलाओं का संरक्षण अधिनियम, 2005 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It provides civil remedies such as protection orders, residence orders and monetary relief.",
+   "'Domestic violence' under it includes economic abuse.",
+   "It provides for Protection Officers to assist aggrieved women.",
+   "It protects only women who are legally married to the respondent."],
+  ["यह संरक्षण आदेश, निवास आदेश और आर्थिक राहत जैसे सिविल उपचार देता है।",
+   "इसके तहत 'घरेलू हिंसा' में आर्थिक दुर्व्यवहार शामिल है।",
+   "यह पीड़ित महिलाओं की सहायता के लिए संरक्षण अधिकारियों का प्रावधान करता है।",
+   "यह केवल उन महिलाओं की रक्षा करता है जो प्रत्यर्थी से विधिवत विवाहित हैं।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct: the Act works mainly through civil orders from a magistrate, and defines domestic violence to include physical, sexual, verbal, emotional and economic abuse. "
+  "Statement 4 is wrong: an 'aggrieved person' is any woman in a domestic relationship with the respondent -- a wife, a woman in a relationship 'in the nature of marriage', a mother, sister, daughter or widow living in a shared household.",
+  "कथन 1, 2 और 3 सही हैं: अधिनियम मुख्य रूप से मजिस्ट्रेट के सिविल आदेशों से काम करता है, और घरेलू हिंसा में शारीरिक, यौन, मौखिक, भावनात्मक और आर्थिक दुर्व्यवहार शामिल करता है। "
+  "कथन 4 गलत है: 'पीड़ित व्यक्ति' प्रत्यर्थी के साथ घरेलू संबंध में रहने वाली कोई भी महिला है: पत्नी, 'विवाह जैसे संबंध' में रहने वाली महिला, साझा घर में रहने वाली माँ, बहन, बेटी या विधवा।",
+  "Protection of Women from Domestic Violence Act, 2005, sections 2, 3, 8 and 18-22.",
+  "laws-domestic-violence-2005")
+
+S(SL, "medium", "Consider the following statements about the National Food Security Act, 2013:",
+  "राष्ट्रीय खाद्य सुरक्षा अधिनियम, 2013 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It covers up to 75 per cent of the rural population and up to 50 per cent of the urban population.",
+   "The eldest woman of the household, aged 18 or above, is treated as the head of the household for issuing ration cards.",
+   "Antyodaya Anna Yojana households are entitled to 35 kg of foodgrains per household per month.",
+   "Since January 2023, foodgrains under the Act have been provided free of cost."],
+  ["यह ग्रामीण जनसंख्या के अधिकतम 75 प्रतिशत और शहरी जनसंख्या के अधिकतम 50 प्रतिशत को शामिल करता है।",
+   "राशन कार्ड जारी करने के लिए परिवार की 18 वर्ष या उससे अधिक आयु की सबसे बड़ी महिला को परिवार का मुखिया माना जाता है।",
+   "अंत्योदय अन्न योजना के परिवार प्रति परिवार प्रति माह 35 किलो खाद्यान्न के हक़दार हैं।",
+   "जनवरी 2023 से अधिनियम के तहत खाद्यान्न निःशुल्क दिया जा रहा है।"],
+  C4, 3,
+  "All four statements are correct. Priority households get 5 kg per person per month and AAY households 35 kg per household; the Act also provides maternity benefit of at least ₹6,000 and meals for children. From 1 January 2023 the Centre made NFSA foodgrains free under the Pradhan Mantri Garib Kalyan Anna Yojana, later extended for five years. "
+  "A student who distrusts an all-true set will fall for 'Only three'.",
+  "चारों कथन सही हैं। प्राथमिकता वाले परिवारों को प्रति व्यक्ति प्रति माह 5 किलो और AAY परिवारों को प्रति परिवार 35 किलो मिलता है; अधिनियम कम से कम ₹6,000 का मातृत्व लाभ और बच्चों के लिए भोजन भी देता है। 1 जनवरी 2023 से केंद्र ने प्रधानमंत्री गरीब कल्याण अन्न योजना के तहत NFSA खाद्यान्न निःशुल्क किया, जिसे बाद में पाँच वर्ष के लिए बढ़ाया गया। "
+  "जो विद्यार्थी सभी कथन सही होने पर संदेह करता है, वह 'केवल तीन' के जाल में फँसेगा।",
+  "National Food Security Act, 2013, sections 3, 4 and 13; Department of Food and Public Distribution -- PMGKAY.",
+  "laws-national-food-security-act")
+
+S(SL, "medium", "Consider the following statements about the Right of Children to Free and Compulsory Education Act, 2009:",
+  "निःशुल्क और अनिवार्य बाल शिक्षा का अधिकार अधिनियम, 2009 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A 2019 amendment allows States to hold regular examinations in Classes 5 and 8 and to hold back children who fail them.",
+   "Its provisions apply to minority educational institutions in the same way as to other schools.",
+   "It allows schools to hold screening tests for admission to Class 1."],
+  ["2019 का एक संशोधन राज्यों को कक्षा 5 और 8 में नियमित परीक्षाएँ कराने और उनमें असफल बच्चों को रोकने की अनुमति देता है।",
+   "इसके प्रावधान अल्पसंख्यक शिक्षा संस्थानों पर भी अन्य विद्यालयों की तरह लागू होते हैं।",
+   "यह विद्यालयों को कक्षा 1 में प्रवेश के लिए स्क्रीनिंग परीक्षा लेने देता है।"],
+  C3, 0,
+  "Only statement 1 is correct: the amendment modified the original 'no-detention' policy, giving a child a re-examination before being held back. "
+  "Statement 2 is wrong: in Pramati Educational and Cultural Trust (2014) the Supreme Court held the Act inapplicable to minority schools, aided or unaided, because of Article 30. "
+  "Statement 3 is wrong: section 13 bars both capitation fees and any screening procedure for admission.",
+  "केवल कथन 1 सही है: संशोधन ने मूल 'अनुत्तीर्ण न करने' की नीति को बदला, और रोके जाने से पहले बच्चे को पुनः परीक्षा का अवसर दिया। "
+  "कथन 2 गलत है: प्रमति एजुकेशनल एंड कल्चरल ट्रस्ट (2014) में उच्चतम न्यायालय ने अनुच्छेद 30 के कारण अधिनियम को अल्पसंख्यक विद्यालयों पर, सहायता प्राप्त हों या नहीं, अलागू माना। "
+  "कथन 3 गलत है: धारा 13 कैपिटेशन शुल्क और प्रवेश के लिए किसी भी स्क्रीनिंग प्रक्रिया, दोनों को मना करती है।",
+  f"Right of Children to Free and Compulsory Education Act, 2009, sections 13 and 16 (as amended in 2019); {SC} -- Pramati Educational and Cultural Trust v. Union of India (2014).",
+  "laws-rte-detention-minority-screening")
+
+S(SL, "medium", "Consider the following statements about the Medical Termination of Pregnancy Act, as amended in 2021:",
+  "2021 में संशोधित चिकित्सीय गर्भपात अधिनियम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A pregnancy of up to 20 weeks can be terminated on the opinion of one registered medical practitioner.",
+   "For certain categories of women, such as survivors of rape and minors, termination is allowed up to 24 weeks on the opinion of two practitioners.",
+   "Beyond 24 weeks, termination is allowed in cases of substantial foetal abnormalities diagnosed by a Medical Board."],
+  ["20 सप्ताह तक की गर्भावस्था एक पंजीकृत चिकित्सक की राय पर समाप्त की जा सकती है।",
+   "बलात्कार पीड़िताओं और नाबालिगों जैसी कुछ श्रेणियों की महिलाओं के लिए दो चिकित्सकों की राय पर 24 सप्ताह तक गर्भपात की अनुमति है।",
+   "24 सप्ताह के बाद मेडिकल बोर्ड द्वारा पहचानी गई गंभीर भ्रूण असामान्यताओं के मामलों में गर्भपात की अनुमति है।"],
+  C3, 2,
+  "All three statements are correct. The 2021 amendment raised the limit from 20 to 24 weeks for special categories, removed the upper limit for substantial foetal abnormalities, and extended the 'failure of contraceptive' ground to unmarried women. In X v. Principal Secretary, Health (2022), the Supreme Court held that unmarried women are equally entitled to terminate up to 24 weeks.",
+  "तीनों कथन सही हैं। 2021 के संशोधन ने विशेष श्रेणियों के लिए सीमा 20 से बढ़ाकर 24 सप्ताह की, गंभीर भ्रूण असामान्यताओं के लिए ऊपरी सीमा हटाई, और 'गर्भनिरोधक की विफलता' का आधार अविवाहित महिलाओं तक बढ़ाया। एक्स बनाम प्रधान सचिव, स्वास्थ्य (2022) में उच्चतम न्यायालय ने माना कि अविवाहित महिलाओं को भी 24 सप्ताह तक गर्भपात का समान अधिकार है।",
+  f"Medical Termination of Pregnancy Act, 1971, section 3 (as amended in 2021); {SC} -- X v. Principal Secretary, Health and Family Welfare Department (2022).",
+  "laws-mtp-amendment-2021")
+
+S(SL, "medium", "Consider the following statements about the Mental Healthcare Act, 2017:",
+  "मानसिक स्वास्थ्य देखभाल अधिनियम, 2017 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It gives every person a right to access mental healthcare from services run or funded by the government.",
+   "It allows a person to make an advance directive on how he or she wishes to be treated for mental illness.",
+   "It allows electroconvulsive therapy to be given without anaesthesia and muscle relaxants in emergencies."],
+  ["यह हर व्यक्ति को सरकार द्वारा संचालित या वित्तपोषित सेवाओं से मानसिक स्वास्थ्य देखभाल पाने का अधिकार देता है।",
+   "यह व्यक्ति को यह अग्रिम निर्देश (advance directive) देने देता है कि मानसिक बीमारी के लिए उसका उपचार कैसे हो।",
+   "यह आपात स्थिति में बिना निश्चेतक (anaesthesia) और मांसपेशी शिथिलक के विद्युत-आक्षेपी चिकित्सा (ECT) देने की अनुमति देता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct (sections 18 and 5): the Act takes a rights-based approach, letting a person also name a nominated representative for treatment decisions. "
+  "Statement 3 is wrong: section 95 prohibits electroconvulsive therapy without muscle relaxants and anaesthesia in all cases, along with sterilisation as a treatment and chaining in any manner.",
+  "कथन 1 और 2 सही हैं (धारा 18 और 5): अधिनियम अधिकार-आधारित दृष्टि अपनाता है और व्यक्ति को उपचार संबंधी निर्णयों के लिए एक नामित प्रतिनिधि चुनने भी देता है। "
+  "कथन 3 गलत है: धारा 95 बिना मांसपेशी शिथिलक और निश्चेतक के विद्युत-आक्षेपी चिकित्सा को हर स्थिति में मना करती है, साथ ही उपचार के रूप में नसबंदी और किसी भी रूप में ज़ंजीर से बाँधने को भी।",
+  "Mental Healthcare Act, 2017, sections 5, 14, 18 and 95.",
+  "laws-mental-healthcare-rights")
+
+S(SL, "medium", "Consider the following statements about the Disaster Management Act, 2005:",
+  "आपदा प्रबंधन अधिनियम, 2005 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The National Disaster Management Authority is chaired by the Prime Minister.",
+   "A State Disaster Management Authority is chaired by the Chief Minister.",
+   "A District Disaster Management Authority is chaired by the Member of Parliament from the district."],
+  ["राष्ट्रीय आपदा प्रबंधन प्राधिकरण की अध्यक्षता प्रधानमंत्री करते हैं।",
+   "राज्य आपदा प्रबंधन प्राधिकरण की अध्यक्षता मुख्यमंत्री करते हैं।",
+   "ज़िला आपदा प्रबंधन प्राधिकरण की अध्यक्षता ज़िले के संसद सदस्य करते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the Act builds a three-tier structure headed by the political executive at the national and State levels. "
+  "Statement 3 is wrong: a District Authority is chaired by the Collector, District Magistrate or Deputy Commissioner, with an elected representative of the local authority as co-chairperson -- the district tier is meant to be run by the administration that responds on the ground.",
+  "कथन 1 और 2 सही हैं: अधिनियम राष्ट्रीय और राज्य स्तर पर राजनीतिक कार्यपालिका की अध्यक्षता वाला त्रि-स्तरीय ढाँचा बनाता है। "
+  "कथन 3 गलत है: ज़िला प्राधिकरण की अध्यक्षता कलेक्टर, ज़िला मजिस्ट्रेट या उपायुक्त करते हैं, और स्थानीय प्राधिकरण का एक निर्वाचित प्रतिनिधि सह-अध्यक्ष होता है; ज़िला स्तर उसी प्रशासन के हाथ में रखा गया है जो ज़मीन पर प्रतिक्रिया करता है।",
+  "Disaster Management Act, 2005, sections 3, 14 and 25.",
+  "laws-disaster-management-authorities")
+
+S(SL, "medium", "Consider the following statements about the Places of Worship (Special Provisions) Act, 1991:",
+  "उपासना स्थल (विशेष उपबंध) अधिनियम, 1991 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It freezes the religious character of places of worship as it existed on 26 January 1950.",
+   "It allows suits to be filed for converting a place of worship to its earlier religious character.",
+   "It applies to ancient and historical monuments covered by the Ancient Monuments and Archaeological Sites and Remains Act, 1958."],
+  ["यह उपासना स्थलों के धार्मिक स्वरूप को उसी रूप में स्थिर करता है जैसा वह 26 जनवरी 1950 को था।",
+   "यह किसी उपासना स्थल को उसके पहले के धार्मिक स्वरूप में बदलने के लिए वाद दायर करने की अनुमति देता है।",
+   "यह प्राचीन संस्मारक तथा पुरातत्वीय स्थल और अवशेष अधिनियम, 1958 के अंतर्गत आने वाले प्राचीन और ऐतिहासिक स्मारकों पर लागू होता है।"],
+  C3, 3,
+  "None of the statements is correct. The cut-off date is 15 August 1947, the day of independence, not the date the Constitution came into force. "
+  "Far from allowing such suits, section 4(2) provides that proceedings to change the religious character pending on the Act's commencement abate, and no fresh ones can be instituted. "
+  "Section 4(3) exempts monuments protected under the 1958 Act, which is why disputes over some sites turn on their status as protected monuments; the Act's validity is itself under challenge before the Supreme Court.",
+  "कोई भी कथन सही नहीं है। निर्णायक तिथि 15 अगस्त 1947, स्वतंत्रता का दिन, है, संविधान लागू होने की तिथि नहीं। "
+  "ऐसे वादों की अनुमति देने के बजाय धारा 4(2) कहती है कि अधिनियम के लागू होने पर धार्मिक स्वरूप बदलने की लंबित कार्यवाहियाँ समाप्त हो जाती हैं, और कोई नई कार्यवाही शुरू नहीं हो सकती। "
+  "धारा 4(3) 1958 के अधिनियम के तहत संरक्षित स्मारकों को छूट देती है, इसीलिए कुछ स्थलों पर विवाद उनके संरक्षित स्मारक होने पर टिकते हैं; अधिनियम की वैधता को स्वयं उच्चतम न्यायालय में चुनौती दी गई है।",
+  "Places of Worship (Special Provisions) Act, 1991, sections 3 and 4.",
+  "laws-places-of-worship-1991")
+
+S(SL, "medium", "Consider the following statements about the Maintenance and Welfare of Parents and Senior Citizens Act, 2007:",
+  "माता-पिता और वरिष्ठ नागरिकों का भरण-पोषण तथा कल्याण अधिनियम, 2007 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Claims for maintenance are decided by Maintenance Tribunals.",
+   "The obligation to maintain a childless senior citizen can extend to a relative who would inherit the senior citizen's property.",
+   "Parties before a Maintenance Tribunal cannot be represented by a legal practitioner."],
+  ["भरण-पोषण के दावे भरण-पोषण अधिकरण तय करते हैं।",
+   "निःसंतान वरिष्ठ नागरिक के भरण-पोषण का दायित्व उस रिश्तेदार तक जा सकता है जो उसकी संपत्ति का उत्तराधिकारी होगा।",
+   "भरण-पोषण अधिकरण के सामने पक्षकारों का प्रतिनिधित्व कोई विधि व्यवसायी (वकील) नहीं कर सकता।"],
+  C3, 2,
+  "All three statements are correct. The Act creates a quick, inexpensive forum: Tribunals must ordinarily decide within 90 days, and section 17 keeps lawyers out so that elderly parents are not outmatched. It also lets a senior citizen have a property transfer declared void if the transferee fails to provide the promised care.",
+  "तीनों कथन सही हैं। अधिनियम एक तेज़ और सस्ता मंच बनाता है: अधिकरणों को सामान्यतः 90 दिनों में निर्णय करना होता है, और धारा 17 वकीलों को बाहर रखती है ताकि बुज़ुर्ग माता-पिता कमज़ोर न पड़ें। यह वरिष्ठ नागरिक को उस संपत्ति-हस्तांतरण को शून्य घोषित कराने भी देता है जिसमें हस्तांतरिती वादा की गई देखभाल न करे।",
+  "Maintenance and Welfare of Parents and Senior Citizens Act, 2007, sections 4, 7, 17 and 23.",
+  "laws-senior-citizens-maintenance")
+
+# ---------------------------------------------------------------- hard statements (6)
+S(SL, "hard", "Consider the following statements about the Prevention of Money-laundering Act, 2002:",
+  "धन-शोधन निवारण अधिनियम, 2002 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In Pankaj Bansal (2023), the Supreme Court held that the grounds of arrest must be furnished to the arrested person in writing.",
+   "An order provisionally attaching property must be confirmed by the Adjudicating Authority.",
+   "Money laundering is a stand-alone offence that can be prosecuted even where there is no scheduled offence."],
+  ["पंकज बंसल (2023) में उच्चतम न्यायालय ने माना कि गिरफ़्तारी के आधार गिरफ़्तार व्यक्ति को लिखित रूप में दिए जाने चाहिए।",
+   "संपत्ति को अनंतिम रूप से कुर्क करने वाले आदेश की पुष्टि न्यायनिर्णायक प्राधिकरण को करनी होती है।",
+   "धन-शोधन एक स्वतंत्र अपराध है, जिस पर अनुसूचित अपराध न होने पर भी अभियोजन चल सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: a provisional attachment lasts up to 180 days unless confirmed under section 8. "
+  "Statement 3 is wrong: money laundering depends on the 'proceeds of crime' from a scheduled offence; in Vijay Madanlal Choudhary (2022) the Court held that if the accused is discharged or acquitted of the scheduled offence, or it is quashed, there can be no money-laundering case.",
+  "कथन 1 और 2 सही हैं: अनंतिम कुर्की धारा 8 के तहत पुष्टि न होने पर अधिकतम 180 दिन चलती है। "
+  "कथन 3 गलत है: धन-शोधन किसी अनुसूचित अपराध से प्राप्त 'अपराध की आय' पर निर्भर है; विजय मदनलाल चौधरी (2022) में न्यायालय ने माना कि यदि अभियुक्त अनुसूचित अपराध से उन्मोचित या बरी हो जाए, या वह रद्द हो जाए, तो धन-शोधन का मामला नहीं बन सकता।",
+  f"Prevention of Money-laundering Act, 2002, sections 3, 5 and 8; {SC} -- Pankaj Bansal v. Union of India (2023); Vijay Madanlal Choudhary v. Union of India (2022).",
+  "laws-pmla-arrest-attachment")
+
+S(SL, "hard", "Consider the following statements about the Unlawful Activities (Prevention) Act, 1967, as amended in 2019:",
+  "2019 में संशोधित विधिविरुद्ध क्रियाकलाप (निवारण) अधिनियम, 1967 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Central Government can designate individuals, and not only organisations, as terrorists.",
+   "Cases under the Act can be investigated by officers of the National Investigation Agency only if they are of the rank of Deputy Superintendent of Police or above.",
+   "An individual can be designated a terrorist only after being convicted by a court."],
+  ["केंद्र सरकार केवल संगठनों को ही नहीं, व्यक्तियों को भी आतंकवादी घोषित कर सकती है।",
+   "अधिनियम के तहत मामलों की जाँच राष्ट्रीय अन्वेषण अभिकरण के अधिकारी तभी कर सकते हैं जब वे पुलिस उपाधीक्षक या उससे ऊपर के पद के हों।",
+   "किसी व्यक्ति को अदालत द्वारा दोषसिद्ध होने के बाद ही आतंकवादी घोषित किया जा सकता है।"],
+  C3, 0,
+  "Only statement 1 is correct: the 2019 amendment added a Fourth Schedule for individual terrorists. "
+  "Statement 2 is wrong: the same amendment empowered NIA officers of the rank of Inspector or above to investigate, in place of the DSP-level requirement that applies to State police. "
+  "Statement 3 is wrong: designation is an executive act based on the government's belief that a person is involved in terrorism; no trial or conviction is needed, and the remedy is a review committee -- the main ground on which the amendment has been challenged.",
+  "केवल कथन 1 सही है: 2019 के संशोधन ने व्यक्तिगत आतंकवादियों के लिए चौथी अनुसूची जोड़ी। "
+  "कथन 2 गलत है: उसी संशोधन ने इंस्पेक्टर या उससे ऊपर के पद के NIA अधिकारियों को जाँच का अधिकार दिया, उस उपाधीक्षक-स्तर की शर्त के स्थान पर जो राज्य पुलिस पर लागू होती है। "
+  "कथन 3 गलत है: घोषणा सरकार के इस विश्वास पर आधारित कार्यकारी कार्य है कि व्यक्ति आतंकवाद में शामिल है; कोई मुक़दमा या दोषसिद्धि ज़रूरी नहीं, और उपाय एक समीक्षा समिति है; यही वह मुख्य आधार है जिस पर संशोधन को चुनौती दी गई है।",
+  "Unlawful Activities (Prevention) Act, 1967, sections 35, 36 and 43 (as amended in 2019).",
+  "laws-uapa-2019-individuals")
+
+S(SL, "hard", "Consider the following statements about the Prevention of Corruption (Amendment) Act, 2018:",
+  "भ्रष्टाचार निवारण (संशोधन) अधिनियम, 2018 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It made the giving of a bribe a specific offence.",
+   "It requires prior approval before an investigation into a public servant's decisions or recommendations taken in the discharge of official functions.",
+   "The requirement of prior approval also protects public servants who have retired, for acts done while in service."],
+  ["इसने रिश्वत देने को एक विशिष्ट अपराध बनाया।",
+   "यह आधिकारिक कार्यों के निर्वहन में लिए गए किसी लोक सेवक के निर्णयों या सिफ़ारिशों की जाँच से पहले पूर्व अनुमोदन की अपेक्षा करता है।",
+   "पूर्व अनुमोदन की शर्त सेवानिवृत्त हो चुके लोक सेवकों की भी, सेवा के दौरान किए गए कार्यों के लिए, रक्षा करती है।"],
+  C3, 2,
+  "All three statements are correct. Section 8 punishes bribe-giving, with an exception for a person compelled to pay who reports it within seven days. Section 17A requires approval from the government or authority competent to remove the public servant -- or which was competent at the time, in the case of a retired officer -- though not where the person is caught taking a bribe. Critics argue the provision weakens investigations.",
+  "तीनों कथन सही हैं। धारा 8 रिश्वत देने को दंडनीय बनाती है, उस व्यक्ति के लिए अपवाद के साथ जिसे भुगतान के लिए मजबूर किया गया और जो सात दिनों के भीतर इसकी सूचना दे। धारा 17A उस सरकार या प्राधिकरण का अनुमोदन माँगती है जो लोक सेवक को हटाने में सक्षम है, या सेवानिवृत्त अधिकारी के मामले में उस समय सक्षम था, पर तब नहीं जब व्यक्ति रिश्वत लेते पकड़ा जाए। आलोचकों का तर्क है कि यह प्रावधान जाँच को कमज़ोर करता है।",
+  "Prevention of Corruption Act, 1988, sections 8 and 17A (as amended in 2018).",
+  "laws-prevention-of-corruption-2018")
+
+S(SL, "hard", "Consider the following statements about the Foreign Contribution (Regulation) Amendment Act, 2020:",
+  "विदेशी अंशदान (विनियमन) संशोधन अधिनियम, 2020 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It prohibits the transfer of foreign contribution received by an organisation to any other person or organisation.",
+   "It caps the share of foreign contribution that can be used for administrative expenses at 20 per cent.",
+   "Foreign contribution must first be received in a designated 'FCRA account' in the State Bank of India, New Delhi Main Branch."],
+  ["यह किसी संगठन द्वारा प्राप्त विदेशी अंशदान को किसी अन्य व्यक्ति या संगठन को हस्तांतरित करने को मना करता है।",
+   "यह प्रशासनिक व्यय के लिए उपयोग किए जा सकने वाले विदेशी अंशदान के हिस्से को 20 प्रतिशत तक सीमित करता है।",
+   "विदेशी अंशदान पहले भारतीय स्टेट बैंक की नई दिल्ली मुख्य शाखा में एक निर्दिष्ट 'FCRA खाते' में ही प्राप्त करना होगा।"],
+  C3, 2,
+  "All three statements are correct. The 2020 amendment ended sub-granting to smaller NGOs, cut the administrative-expense ceiling from 50 to 20 per cent, required the Aadhaar of office-bearers, and centralised receipt in one SBI branch. The Supreme Court upheld the amendment in Noel Harper (2022), holding that there is no fundamental right to receive foreign contributions.",
+  "तीनों कथन सही हैं। 2020 के संशोधन ने छोटे NGOs को उप-अनुदान समाप्त किया, प्रशासनिक व्यय की सीमा 50 से घटाकर 20 प्रतिशत की, पदाधिकारियों का आधार ज़रूरी किया, और प्राप्ति को SBI की एक शाखा में केंद्रित किया। उच्चतम न्यायालय ने नोएल हार्पर (2022) में संशोधन को सही ठहराया, यह मानते हुए कि विदेशी अंशदान प्राप्त करने का कोई मौलिक अधिकार नहीं है।",
+  f"Foreign Contribution (Regulation) Act, 2010, sections 7, 8 and 17 (as amended in 2020); {SC} -- Noel Harper v. Union of India (2022).",
+  "laws-fcra-2020")
+
+S(SL, "hard", "Consider the following statements about the labour codes:",
+  "श्रम संहिताओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["There are four codes: on wages, industrial relations, social security, and occupational safety, health and working conditions.",
+   "Together they consolidate 29 central labour laws.",
+   "The Code on Social Security covers gig workers and platform workers.",
+   "All four codes were enacted together as a single law in 2020."],
+  ["चार संहिताएँ हैं: मज़दूरी, औद्योगिक संबंध, सामाजिक सुरक्षा, तथा व्यावसायिक सुरक्षा, स्वास्थ्य और कार्य-दशाएँ।",
+   "मिलकर वे 29 केंद्रीय श्रम कानूनों को समेकित करती हैं।",
+   "सामाजिक सुरक्षा संहिता गिग कामगारों और प्लेटफ़ॉर्म कामगारों को शामिल करती है।",
+   "चारों संहिताएँ 2020 में एक ही कानून के रूप में एक साथ अधिनियमित की गईं।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct: the Social Security Code is the first central law to define gig and platform workers and to provide for social security schemes for them, funded partly by aggregators. "
+  "Statement 4 is wrong: they are four separate Acts -- the Code on Wages in 2019 and the other three in 2020 -- and their rules were notified and brought into force much later, because labour is in the Concurrent List and the States had to frame their own rules.",
+  "कथन 1, 2 और 3 सही हैं: सामाजिक सुरक्षा संहिता पहला केंद्रीय कानून है जो गिग और प्लेटफ़ॉर्म कामगारों को परिभाषित करता है और उनके लिए सामाजिक सुरक्षा योजनाओं का प्रावधान करता है, जिनका वित्तपोषण आंशिक रूप से एग्रीगेटर करते हैं। "
+  "कथन 4 गलत है: ये चार अलग अधिनियम हैं, मज़दूरी संहिता 2019 में और बाकी तीन 2020 में, और इनके नियम बहुत बाद में अधिसूचित होकर लागू हुए, क्योंकि श्रम समवर्ती सूची में है और राज्यों को अपने नियम बनाने थे।",
+  "Code on Wages, 2019; Industrial Relations Code, 2020; Code on Social Security, 2020; Occupational Safety, Health and Working Conditions Code, 2020; Ministry of Labour and Employment.",
+  "laws-labour-codes")
+
+S(SL, "hard", "Consider the following statements about the Bharatiya Nyaya Sanhita, 2023:",
+  "भारतीय न्याय संहिता, 2023 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It treats murder by a group of five or more persons on grounds such as race, caste, sex or language as a specific offence.",
+   "It leaves organised crime to be dealt with only under State laws such as the Maharashtra Control of Organised Crime Act.",
+   "It treats snatching only as a form of theft and has no separate provision for it."],
+  ["यह पाँच या अधिक व्यक्तियों के समूह द्वारा मूलवंश, जाति, लिंग या भाषा जैसे आधारों पर की गई हत्या को एक विशिष्ट अपराध मानती है।",
+   "यह संगठित अपराध से निपटना केवल महाराष्ट्र संगठित अपराध नियंत्रण अधिनियम जैसे राज्य कानूनों पर छोड़ती है।",
+   "यह झपटमारी (snatching) को केवल चोरी का एक रूप मानती है और उसके लिए कोई अलग प्रावधान नहीं रखती।"],
+  C3, 0,
+  "Only statement 1 is correct: section 103(2) makes such 'mob lynching' punishable with death or life imprisonment. "
+  "Statement 2 is wrong: the BNS brings 'organised crime' (section 111) and 'terrorist act' (section 113) into the general criminal law for the first time. "
+  "Statement 3 is wrong: snatching is now a separate offence (section 304), defined as suddenly or forcibly seizing movable property, in response to the rise in chain and phone snatching.",
+  "केवल कथन 1 सही है: धारा 103(2) ऐसी 'भीड़ द्वारा हत्या' को मृत्युदंड या आजीवन कारावास से दंडनीय बनाती है। "
+  "कथन 2 गलत है: BNS पहली बार 'संगठित अपराध' (धारा 111) और 'आतंकवादी कृत्य' (धारा 113) को सामान्य दांडिक कानून में लाती है। "
+  "कथन 3 गलत है: झपटमारी अब एक अलग अपराध है (धारा 304), जिसे चल संपत्ति को अचानक या बलपूर्वक छीनने के रूप में परिभाषित किया गया है; यह चेन और फ़ोन झपटने की बढ़ती घटनाओं के जवाब में है।",
+  "Bharatiya Nyaya Sanhita, 2023, sections 103, 111, 113 and 304.",
+  "laws-bns-lynching-organised-crime-snatching")
+
+# ---------------------------------------------------------------- MCQs (medium 3, hard 1)
+M(SL, "medium", "Under the Right of Children to Free and Compulsory Education Act, 2009, private unaided schools must admit children from weaker sections and disadvantaged groups in at least what share of the seats at the entry level?",
+  "निःशुल्क और अनिवार्य बाल शिक्षा का अधिकार अधिनियम, 2009 के तहत निजी गैर-सहायता प्राप्त विद्यालयों को प्रवेश स्तर की कम से कम कितनी सीटों पर दुर्बल वर्गों और वंचित समूहों के बच्चों को प्रवेश देना होता है?",
+  ["25 per cent", "20 per cent", "15 per cent", "33 per cent"],
+  ["25 प्रतिशत", "20 प्रतिशत", "15 प्रतिशत", "33 प्रतिशत"],
+  0,
+  "Section 12(1)(c) requires 25 per cent of entry-level seats to be filled with such children, with the government reimbursing the school at its per-child cost. The Supreme Court upheld the provision in Society for Unaided Private Schools of Rajasthan (2012), while exempting unaided minority schools.",
+  "धारा 12(1)(c) प्रवेश स्तर की 25 प्रतिशत सीटें ऐसे बच्चों से भरने की अपेक्षा करती है, और सरकार विद्यालय को प्रति-बच्चा अपनी लागत पर प्रतिपूर्ति करती है। उच्चतम न्यायालय ने सोसाइटी फ़ॉर अनएडेड प्राइवेट स्कूल्स ऑफ़ राजस्थान (2012) में इस प्रावधान को सही ठहराया, और गैर-सहायता प्राप्त अल्पसंख्यक विद्यालयों को छूट दी।",
+  f"Right of Children to Free and Compulsory Education Act, 2009, section 12; {SC} -- Society for Unaided Private Schools of Rajasthan v. Union of India (2012).",
+  "laws-rte-25-per-cent")
+
+M(SL, "medium", "The Surrogacy (Regulation) Act, 2021 permits:",
+  "सरोगेसी (विनियमन) अधिनियम, 2021 किसकी अनुमति देता है?",
+  ["Only altruistic surrogacy", "Only commercial surrogacy", "Both altruistic and commercial surrogacy", "Surrogacy only for foreign couples"],
+  ["केवल परोपकारी सरोगेसी", "केवल वाणिज्यिक सरोगेसी", "परोपकारी और वाणिज्यिक, दोनों सरोगेसी", "केवल विदेशी दंपतियों के लिए सरोगेसी"],
+  0,
+  "The Act bans commercial surrogacy and allows altruistic surrogacy, in which the surrogate receives no payment beyond medical expenses and insurance, for Indian couples and certain widowed or divorced women who hold a certificate of medical necessity. India had been a hub of commercial surrogacy for foreign couples, which the government had already curbed in 2015.",
+  "अधिनियम वाणिज्यिक सरोगेसी पर रोक लगाता है और परोपकारी सरोगेसी की अनुमति देता है, जिसमें सरोगेट माँ को चिकित्सा व्यय और बीमा के अलावा कोई भुगतान नहीं मिलता, भारतीय दंपतियों और कुछ विधवा या तलाक़शुदा महिलाओं के लिए जिनके पास चिकित्सीय आवश्यकता का प्रमाणपत्र हो। भारत विदेशी दंपतियों के लिए वाणिज्यिक सरोगेसी का केंद्र बन गया था, जिस पर सरकार ने 2015 में ही रोक लगा दी थी।",
+  "Surrogacy (Regulation) Act, 2021, sections 2-4.",
+  "laws-surrogacy-altruistic")
+
+M(SL, "medium", "The Promotion and Regulation of Online Gaming Act, 2025 prohibits:",
+  "ऑनलाइन गेमिंग संवर्धन और विनियमन अधिनियम, 2025 किस पर रोक लगाता है?",
+  ["online money games and their advertisement", "e-sports competitions recognised by the government",
+   "online social and educational games", "all multiplayer online games"],
+  ["ऑनलाइन मनी गेम और उनका विज्ञापन", "सरकार द्वारा मान्यता प्राप्त ई-स्पोर्ट्स प्रतियोगिताएँ",
+   "ऑनलाइन सामाजिक और शैक्षिक खेल", "सभी मल्टीप्लेयर ऑनलाइन खेल"],
+  0,
+  "The Act bans online games played for money or other stakes, whether based on skill or chance, along with their advertisement and the processing of payments for them by banks. It does the opposite for e-sports and for social and educational games, which it seeks to promote, and provides for an authority to regulate the sector.",
+  "अधिनियम पैसे या अन्य दाँव पर खेले जाने वाले ऑनलाइन खेलों पर रोक लगाता है, चाहे वे कौशल पर आधारित हों या संयोग पर, साथ ही उनके विज्ञापन और बैंकों द्वारा उनके भुगतान की प्रक्रिया पर भी। ई-स्पोर्ट्स और सामाजिक तथा शैक्षिक खेलों के लिए यह उलटा करता है, उन्हें बढ़ावा देना चाहता है, और क्षेत्र के नियमन के लिए एक प्राधिकरण का प्रावधान करता है।",
+  "Promotion and Regulation of Online Gaming Act, 2025; Ministry of Electronics and Information Technology.",
+  "laws-online-gaming-2025")
+
+M(SL, "hard", "Which one of the following laws was NOT subsumed in the Code on Wages, 2019?",
+  "निम्नलिखित में से कौन-सा कानून मज़दूरी संहिता, 2019 में समाहित नहीं किया गया?",
+  ["Factories Act, 1948", "Minimum Wages Act, 1948", "Payment of Bonus Act, 1965", "Equal Remuneration Act, 1976"],
+  ["कारखाना अधिनियम, 1948", "न्यूनतम मज़दूरी अधिनियम, 1948", "बोनस संदाय अधिनियम, 1965", "समान पारिश्रमिक अधिनियम, 1976"],
+  0,
+  "The Code on Wages replaced four laws: the Payment of Wages Act, 1936, the Minimum Wages Act, 1948, the Payment of Bonus Act, 1965 and the Equal Remuneration Act, 1976. The Factories Act, 1948 went into the Occupational Safety, Health and Working Conditions Code, 2020 -- the year '1948' shared with the Minimum Wages Act is what makes it tempting.",
+  "मज़दूरी संहिता ने चार कानूनों की जगह ली: मज़दूरी संदाय अधिनियम, 1936, न्यूनतम मज़दूरी अधिनियम, 1948, बोनस संदाय अधिनियम, 1965 और समान पारिश्रमिक अधिनियम, 1976। कारखाना अधिनियम, 1948 व्यावसायिक सुरक्षा, स्वास्थ्य और कार्य-दशा संहिता, 2020 में गया; न्यूनतम मज़दूरी अधिनियम के साथ साझा वर्ष '1948' ही इसे आकर्षक बनाता है।",
+  "Code on Wages, 2019, section 69; Occupational Safety, Health and Working Conditions Code, 2020.",
+  "laws-code-on-wages-subsumed")
+
+# ---------------------------------------------------------------- Statement-I/II (medium 3) and I/II/III (hard 1)
+A(SL, "medium",
+  "The Mental Healthcare Act, 2017 made an attempt to commit suicide punishable with imprisonment.",
+  "मानसिक स्वास्थ्य देखभाल अधिनियम, 2017 ने आत्महत्या के प्रयास को कारावास से दंडनीय बनाया।",
+  "The Act presumes, unless the contrary is proved, that a person who attempts suicide is under severe stress and is not to be tried and punished.",
+  "अधिनियम यह मानता है कि, जब तक विपरीत सिद्ध न हो, आत्महत्या का प्रयास करने वाला व्यक्ति गंभीर तनाव में है और उस पर मुक़दमा चलाकर उसे दंडित नहीं किया जाना है।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. Section 115 did the opposite of Statement-I: it effectively decriminalised attempted suicide, which Section 309 of the IPC had punished, and required the government to provide care and rehabilitation. The Bharatiya Nyaya Sanhita has no general offence of attempted suicide; it punishes only an attempt made to compel or restrain a public servant.",
+  "कथन-I गलत है पर कथन-II सही है। धारा 115 ने कथन-I का उलटा किया: उसने आत्महत्या के प्रयास को, जिसे IPC की धारा 309 दंडित करती थी, व्यवहार में अपराध की श्रेणी से बाहर किया और सरकार से देखभाल तथा पुनर्वास की अपेक्षा की। भारतीय न्याय संहिता में आत्महत्या के प्रयास का कोई सामान्य अपराध नहीं है; वह केवल किसी लोक सेवक को मजबूर करने या रोकने के लिए किए गए प्रयास को दंडित करती है।",
+  "Mental Healthcare Act, 2017, section 115; Bharatiya Nyaya Sanhita, 2023, section 226.",
+  "laws-mhca-suicide-presumption")
+
+A(SL, "medium",
+  "A domestic worker can make a complaint of sexual harassment under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013.",
+  "कोई घरेलू कामगार कार्यस्थल पर महिलाओं का लैंगिक उत्पीड़न (निवारण, प्रतिषेध और प्रतितोष) अधिनियम, 2013 के तहत यौन उत्पीड़न की शिकायत कर सकती है।",
+  "A complaint by a domestic worker is heard by the Internal Committee constituted by the employer.",
+  "घरेलू कामगार की शिकायत नियोक्ता द्वारा गठित आंतरिक समिति सुनती है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. The Act treats a dwelling house as a workplace and domestic workers as covered employees, but since a household has no Internal Committee, their complaints -- and those from establishments with fewer than ten workers -- go to the Local Committee constituted by the District Officer.",
+  "कथन-I सही है पर कथन-II गलत है। अधिनियम निवास-गृह को कार्यस्थल और घरेलू कामगारों को संरक्षित कर्मचारी मानता है, पर चूँकि किसी घर में आंतरिक समिति नहीं होती, इसलिए उनकी शिकायतें, और दस से कम कामगारों वाले प्रतिष्ठानों की शिकायतें भी, ज़िला अधिकारी द्वारा गठित स्थानीय समिति के पास जाती हैं।",
+  "Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013, sections 2 and 6.",
+  "laws-posh-domestic-workers")
+
+A(SL, "medium",
+  "The Places of Worship (Special Provisions) Act, 1991 did not apply to the Ram Janmabhoomi-Babri Masjid site at Ayodhya.",
+  "उपासना स्थल (विशेष उपबंध) अधिनियम, 1991 अयोध्या के राम जन्मभूमि-बाबरी मस्जिद स्थल पर लागू नहीं हुआ।",
+  "Section 5 of the Act expressly excluded that site and the proceedings relating to it from its operation.",
+  "अधिनियम की धारा 5 ने उस स्थल और उससे जुड़ी कार्यवाहियों को स्पष्ट रूप से अपने प्रभाव से बाहर रखा।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Because of the section 5 exemption, the title dispute continued and was decided by the Supreme Court in M. Siddiq v. Mahant Suresh Das (2019); in that judgment the Court described the Act as protecting the secular features of the Constitution.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। धारा 5 की छूट के कारण स्वामित्व विवाद चलता रहा और उच्चतम न्यायालय ने एम. सिद्दीक़ बनाम महंत सुरेश दास (2019) में उसका निर्णय किया; उसी निर्णय में न्यायालय ने अधिनियम को संविधान की धर्मनिरपेक्ष विशेषताओं की रक्षा करने वाला बताया।",
+  f"Places of Worship (Special Provisions) Act, 1991, section 5; {SC} -- M. Siddiq v. Mahant Suresh Das (2019).",
+  "laws-places-of-worship-ayodhya-exemption")
+
+A(SL, "hard",
+  "Bail is harder to obtain for an offence under the Prevention of Money-laundering Act than under the ordinary criminal law.",
+  "धन-शोधन निवारण अधिनियम के तहत अपराध के लिए ज़मानत पाना सामान्य दांडिक कानून की तुलना में कठिन है।",
+  "Section 45 of the Act requires the court to be satisfied that there are reasonable grounds for believing that the accused is not guilty and is not likely to commit an offence while on bail.",
+  "अधिनियम की धारा 45 अपेक्षा करती है कि न्यायालय संतुष्ट हो कि यह मानने के उचित आधार हैं कि अभियुक्त दोषी नहीं है और ज़मानत पर रहते हुए उसके अपराध करने की संभावना नहीं है।",
+  2,
+  "Only one of Statements II and III is correct -- Statement II -- and it explains Statement I: these 'twin conditions' reverse the usual presumption in favour of bail. "
+  "Statement III is wrong: the Court had struck down an earlier version of the twin conditions in Nikesh Tarachand Shah (2017), but after Parliament amended section 45, Vijay Madanlal Choudhary upheld the conditions -- while later rulings have stressed that long incarceration without trial can itself justify bail.",
+  "कथन II और III में से केवल एक, कथन II, सही है और वह कथन I की व्याख्या करता है: ये 'दोहरी शर्तें' ज़मानत के पक्ष में सामान्य धारणा को उलट देती हैं। "
+  "कथन III गलत है: न्यायालय ने निकेश ताराचंद शाह (2017) में दोहरी शर्तों के पहले के रूप को रद्द किया था, पर संसद द्वारा धारा 45 में संशोधन के बाद विजय मदनलाल चौधरी ने शर्तों को सही ठहराया; हालाँकि बाद के निर्णयों ने ज़ोर दिया है कि बिना मुक़दमे के लंबी क़ैद अपने आप में ज़मानत का आधार हो सकती है।",
+  f"Prevention of Money-laundering Act, 2002, section 45; {SC} -- Nikesh Tarachand Shah v. Union of India (2017); Vijay Madanlal Choudhary v. Union of India (2022).",
+  "laws-pmla-bail-twin-conditions",
+  s3="In Vijay Madanlal Choudhary (2022), the Supreme Court struck down these conditions.",
+  s3_hi="विजय मदनलाल चौधरी (2022) में उच्चतम न्यायालय ने इन शर्तों को रद्द कर दिया।")
+
+# ---------------------------------------------------------------- pairs (medium 1, hard 1)
+P(SL, "medium", "Consider the following pairs of Acts and the bodies or offices they establish:",
+  "अधिनियमों और उनके द्वारा स्थापित निकायों या पदों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Consumer Protection Act, 2019 : Central Consumer Protection Authority",
+   "Mental Healthcare Act, 2017 : Mental Health Review Boards",
+   "Rights of Persons with Disabilities Act, 2016 : Chief Commissioner for Persons with Disabilities",
+   "Transgender Persons (Protection of Rights) Act, 2019 : National Commission for Transgender Persons"],
+  ["उपभोक्ता संरक्षण अधिनियम, 2019 : केंद्रीय उपभोक्ता संरक्षण प्राधिकरण",
+   "मानसिक स्वास्थ्य देखभाल अधिनियम, 2017 : मानसिक स्वास्थ्य पुनर्विलोकन बोर्ड",
+   "दिव्यांगजन अधिकार अधिनियम, 2016 : दिव्यांगजन के लिए मुख्य आयुक्त",
+   "ट्रांसजेंडर व्यक्ति (अधिकारों का संरक्षण) अधिनियम, 2019 : राष्ट्रीय ट्रांसजेंडर व्यक्ति आयोग"],
+  2,
+  "Three pairs are correct. The CCPA acts against unfair trade practices and misleading advertisements, the Review Boards oversee admissions and advance directives, and the Chief Commissioner monitors the disability law. "
+  "Pair 4 is wrong: the 2019 Act creates a National Council for Transgender Persons, an advisory body chaired by the Union Minister for Social Justice -- not a commission with powers of inquiry.",
+  "तीन युग्म सही हैं। CCPA अनुचित व्यापार प्रथाओं और भ्रामक विज्ञापनों के विरुद्ध कार्रवाई करता है, पुनर्विलोकन बोर्ड भर्ती और अग्रिम निर्देशों की निगरानी करते हैं, और मुख्य आयुक्त दिव्यांगता कानून की निगरानी करता है। "
+  "युग्म 4 गलत है: 2019 का अधिनियम राष्ट्रीय ट्रांसजेंडर व्यक्ति परिषद बनाता है, जो केंद्रीय सामाजिक न्याय मंत्री की अध्यक्षता वाला एक सलाहकारी निकाय है; यह जाँच की शक्तियों वाला आयोग नहीं है।",
+  "Consumer Protection Act, 2019, section 10; Mental Healthcare Act, 2017, section 73; Rights of Persons with Disabilities Act, 2016, section 74; Transgender Persons (Protection of Rights) Act, 2019, section 16.",
+  "laws-acts-bodies-pairs")
+
+P(SL, "hard", "Consider the following pairs of social legislation and the year of enactment:",
+  "सामाजिक विधानों और उनके अधिनियमन के वर्ष के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Protection of Civil Rights Act : 1955", "Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act : 1989",
+   "Dowry Prohibition Act : 1971", "Prohibition of Child Marriage Act : 1929"],
+  ["नागरिक अधिकार संरक्षण अधिनियम : 1955", "अनुसूचित जाति और अनुसूचित जनजाति (अत्याचार निवारण) अधिनियम : 1989",
+   "दहेज प्रतिषेध अधिनियम : 1971", "बाल विवाह प्रतिषेध अधिनियम : 1929"],
+  1,
+  "Only pairs 1 and 2 are correct. The 1955 Act was enacted as the Untouchability (Offences) Act and renamed in 1976, so its year stays 1955. "
+  "Pair 3 is wrong: the Dowry Prohibition Act dates from 1961. Pair 4 is wrong: 1929 is the Child Marriage Restraint Act (the 'Sarda Act'); the Prohibition of Child Marriage Act, which replaced it and made such marriages voidable, was enacted in 2006.",
+  "केवल युग्म 1 और 2 सही हैं। 1955 का अधिनियम अस्पृश्यता (अपराध) अधिनियम के रूप में बना और 1976 में उसका नाम बदला गया, इसलिए उसका वर्ष 1955 ही रहता है। "
+  "युग्म 3 गलत है: दहेज प्रतिषेध अधिनियम 1961 का है। युग्म 4 गलत है: 1929 बाल विवाह निरोधक अधिनियम ('शारदा अधिनियम') का वर्ष है; उसकी जगह लेने वाला और ऐसे विवाहों को शून्यकरणीय बनाने वाला बाल विवाह प्रतिषेध अधिनियम 2006 में बना।",
+  "Protection of Civil Rights Act, 1955; Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989; Dowry Prohibition Act, 1961; Prohibition of Child Marriage Act, 2006.",
+  "laws-social-legislation-years-pairs")
+
+# ---------------------------------------------------------------- easy statement (1)
+S(SL, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Dowry Prohibition Act makes both giving and taking dowry punishable.",
+   "Under the Maintenance and Welfare of Parents and Senior Citizens Act, 2007, a 'senior citizen' is a person who has attained the age of 65 years."],
+  ["दहेज प्रतिषेध अधिनियम दहेज देने और लेने, दोनों को दंडनीय बनाता है।",
+   "माता-पिता और वरिष्ठ नागरिकों का भरण-पोषण तथा कल्याण अधिनियम, 2007 के तहत 'वरिष्ठ नागरिक' वह व्यक्ति है जिसने 65 वर्ष की आयु प्राप्त कर ली है।"],
+  T2, 0,
+  "Only statement 1 is correct: section 3 punishes giving, taking and abetting dowry. Statement 2 is wrong: the 2007 Act defines a senior citizen as an Indian citizen who has attained the age of 60 years.",
+  "केवल कथन 1 सही है: धारा 3 दहेज देने, लेने और उसके दुष्प्रेरण को दंडित करती है। कथन 2 गलत है: 2007 का अधिनियम वरिष्ठ नागरिक को ऐसे भारतीय नागरिक के रूप में परिभाषित करता है जिसने 60 वर्ष की आयु प्राप्त कर ली है।",
+  "Dowry Prohibition Act, 1961, section 3; Maintenance and Welfare of Parents and Senior Citizens Act, 2007, section 2(h).",
+  "laws-dowry-senior-citizen-easy")
+
+if __name__ == "__main__":
+    write("pol_l2_t3_laws.sql")
