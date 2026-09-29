@@ -1,0 +1,41 @@
+Economy rows: 176
+old decoder sub-topics: {'Macroeconomics': 126, 'Agriculture': 32, 'Financial Markets': 4, 'Banking & Finance': 3, 'Fiscal Policy': 3, 'Demography': 2, 'Corporate Regulation': 1, 'Taxation': 1, 'Energy': 1, 'Public Finance': 1, 'Mining': 1, 'Economic Geography': 1}
+
+sub-topic                                        count  pooled%  recency%  2023-26%
+Financial Markets, Instruments & Fintech            35    19.9%     26.3%     33.8%
+Industry, Infrastructure, Energy & Services         25    14.2%     17.8%     24.6%
+Agriculture & Food Economy                          33    18.8%     13.2%      6.2%
+Money, Banking & Monetary Policy                    24    13.6%     11.5%      7.7%
+External Sector & International Institutions        20    11.4%      8.7%      4.6%
+Budget, Deficits & Public Debt                      10     5.7%      6.2%      6.2%
+Macro Concepts, National Income & Inflation         11     6.2%      5.5%      4.6%
+Taxation & Fiscal Federalism                         9     5.1%      4.5%      3.1%
+Inclusive Growth, Welfare & Demography               4     2.3%      3.7%      6.2%
+Growth, Development, Poverty & Planning              5     2.8%      2.7%      3.1%
+TOTAL                                              176
+
+Level-2 roll-up (recency-weighted):
+  Test 15 Basic Concepts, Money & Banking               43.2%
+  Test 16 Growth, Development & External Sector         11.4%
+  Test 17 Fiscal Policy, Budget & Economic Survey       10.7%
+  Test 18 Sectors of the Economy & Inclusive Growth     34.7%
+
+sub_topic_weights (recency, rounded, sum=1):
+{'Macro Concepts, National Income & Inflation': 0.0546, 'Money, Banking & Monetary Policy': 0.115, 'Financial Markets, Instruments & Fintech': 0.2627, 'External Sector & International Institutions': 0.0868, 'Growth, Development, Poverty & Planning': 0.0271, 'Budget, Deficits & Public Debt': 0.0619, 'Taxation & Fiscal Federalism': 0.0451, 'Agriculture & Food Economy': 0.1323, 'Industry, Infrastructure, Energy & Services': 0.1777, 'Inclusive Growth, Welfare & Demography': 0.0368} sum = 1.0
+
+2023-26 corpus: 65 questions
+question types: {'assertion_reason': 10, 'mcq': 13, 'statement_based': 40, 'match_the_following': 2}
+difficulty:     {'hard': 13, 'easy': 13, 'medium': 39}
+question_type_weights[Economy] = {'assertion_reason': 0.1538, 'mcq': 0.2, 'statement_based': 0.6154, 'match_the_following': 0.0308} sum = 1.0
+difficulty_weights[Economy]    = {'hard': 0.2, 'easy': 0.2, 'medium': 0.6} sum = 1.0
+
+per year (type):
+  2023 {'assertion_reason': 4, 'mcq': 3, 'statement_based': 7}
+  2024 {'statement_based': 11, 'mcq': 3, 'assertion_reason': 2}
+  2025 {'statement_based': 11, 'assertion_reason': 4, 'mcq': 1}
+  2026 {'statement_based': 11, 'match_the_following': 2, 'mcq': 6}
+per year (difficulty):
+  2023 {'hard': 1, 'easy': 5, 'medium': 8}
+  2024 {'easy': 2, 'hard': 2, 'medium': 12}
+  2025 {'medium': 11, 'easy': 3, 'hard': 2}
+  2026 {'medium': 8, 'hard': 8, 'easy': 3}

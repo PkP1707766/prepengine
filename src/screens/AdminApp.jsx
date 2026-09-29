@@ -90,8 +90,15 @@ const SUBTOPICS_BY_SUBJECT = {
     "Geography": ["Geomorphology & Earth's Interior", "Climatology & Biomes", "Oceanography & Hydrosphere", "World Regions, Water Bodies & Places",
       "Indian Rivers, Lakes & Wetlands", "Indian Physiography, Climate & Regions",
       "Resources: Minerals, Energy & Agriculture", "Transport, Ports & Human Geography"],
-    // L.2 #3 (Fintech-Digital-Finance) and #4 (Critical-Minerals-Energy-Transition).
-    "Economy": ["Macroeconomics", "Financial Markets", "Banking", "Fintech-Digital-Finance", "Critical-Minerals-Energy-Transition", "Five-Year Plans & Policy"],
+    // Content re-tag of all 176 Economy PYQs (pyq-analysis-upsc/scratch/
+    // retag_economy_subtopics.py): the decoder's "Macroeconomics" held 126 of
+    // them. Grouped by the four Level-2 tests: Basic Concepts, Money & Banking;
+    // Growth, Development & External Sector; Fiscal Policy & Budget; Sectors &
+    // Inclusive Growth.
+    "Economy": ["Macro Concepts, National Income & Inflation", "Money, Banking & Monetary Policy", "Financial Markets, Instruments & Fintech",
+      "External Sector & International Institutions", "Growth, Development, Poverty & Planning",
+      "Budget, Deficits & Public Debt", "Taxation & Fiscal Federalism",
+      "Agriculture & Food Economy", "Industry, Infrastructure, Energy & Services", "Inclusive Growth, Welfare & Demography"],
     // Content re-tag of all 161 Environment PYQs (pyq-analysis-upsc/scratch/
     // retag_environment_subtopics.py): the decoder's "Biodiversity" held 94% of
     // them. Grouped by the three Level-2 tests: Ecology & Biodiversity; Climate

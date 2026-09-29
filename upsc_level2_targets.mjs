@@ -12,8 +12,8 @@ import { buildCells } from "./src/lib/generate.js";
 
 export const PAPER = 100;
 // Test numbers follow the order the series runs in; subjects whose banks are furthest
-// along come first. Economy and S&T still need their sub-topics re-tagged from PYQ
-// content (the same catch-all problem Geography had), so their scopes are pending.
+// along come first. Economy was re-tagged from PYQ content on 2026-09-29; S&T still needs
+// its sub-topics re-tagged (the same catch-all problem Geography had), so its scopes are pending.
 export const LEVEL2 = [
   { no: 1, title: "Polity 1: Constitutional Framework & Rights", subject: "Polity", subs: ["Constitutional Framework", "Fundamental Rights, DPSP & Duties"] },
   { no: 2, title: "Polity 2: Parliament & Executive", subject: "Polity", subs: ["Parliament & State Legislature", "Union & State Executive"] },
@@ -29,10 +29,10 @@ export const LEVEL2 = [
   { no: 12, title: "Geography 1: World Physical Geography", subject: "Geography", subs: ["Geomorphology & Earth's Interior", "Climatology & Biomes", "Oceanography & Hydrosphere", "World Regions, Water Bodies & Places"] },
   { no: 13, title: "Geography 2: Indian Physical Geography", subject: "Geography", subs: ["Indian Rivers, Lakes & Wetlands", "Indian Physiography, Climate & Regions"] },
   { no: 14, title: "Geography 3: Human & Economic Geography", subject: "Geography", subs: ["Resources: Minerals, Energy & Agriculture", "Transport, Ports & Human Geography"] },
-  { no: 15, title: "Economy 1: Basic Concepts, Money & Banking", subject: "Economy", subs: null },
-  { no: 16, title: "Economy 2: Growth, Development & External Sector", subject: "Economy", subs: null },
-  { no: 17, title: "Economy 3: Fiscal Policy, Budget & Economic Survey", subject: "Economy", subs: null },
-  { no: 18, title: "Economy 4: Sectors of the Economy & Inclusive Growth", subject: "Economy", subs: null },
+  { no: 15, title: "Economy 1: Basic Concepts, Money & Banking", subject: "Economy", subs: ["Macro Concepts, National Income & Inflation", "Money, Banking & Monetary Policy", "Financial Markets, Instruments & Fintech"] },
+  { no: 16, title: "Economy 2: Growth, Development & External Sector", subject: "Economy", subs: ["External Sector & International Institutions", "Growth, Development, Poverty & Planning"] },
+  { no: 17, title: "Economy 3: Fiscal Policy, Budget & Economic Survey", subject: "Economy", subs: ["Budget, Deficits & Public Debt", "Taxation & Fiscal Federalism"] },
+  { no: 18, title: "Economy 4: Sectors of the Economy & Inclusive Growth", subject: "Economy", subs: ["Agriculture & Food Economy", "Industry, Infrastructure, Energy & Services", "Inclusive Growth, Welfare & Demography"] },
   { no: 19, title: "Science & Technology 1: General Science", subject: "Science & Technology", subs: null },
   { no: 20, title: "Science & Technology 2: Applied S&T & Agriculture", subject: "Science & Technology", subs: null },
   { no: 21, title: "GS Comprehensive Revision (full syllabus)", subject: null, subs: null },

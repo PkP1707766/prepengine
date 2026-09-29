@@ -1,0 +1,177 @@
+year,question_number,title,old_sub_topic,new_sub_topic
+2015,2,14th Finance Commission,Macroeconomics,Taxation & Fiscal Federalism
+2015,4,Tax/GDP Ratio,Macroeconomics,Taxation & Fiscal Federalism
+2015,8,Index of 8 Core Industries,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2015,11,N-Fertilizer Impact,Agriculture,Agriculture & Food Economy
+2015,13,FRP Sugarcane,Agriculture,Agriculture & Food Economy
+2015,22,SLR Cut,Macroeconomics,"Money, Banking & Monetary Policy"
+2015,24,Agri Market Regulation,Agriculture,Agriculture & Food Economy
+2015,29,CPI-IW,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2015,34,Rupee Convertibility,Macroeconomics,External Sector & International Institutions
+2015,58,Steel Imports,Macroeconomics,External Sector & International Institutions
+2015,62,AIBP + CADP,Agriculture,Agriculture & Food Economy
+2015,65,Basel III,Macroeconomics,"Money, Banking & Monetary Policy"
+2015,81,GDP Growth,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2015,86,Monetary Policy Tools,Macroeconomics,"Money, Banking & Monetary Policy"
+2015,87,Inflation Control,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2015,90,Capital-Augmenting Tech,Macroeconomics,"Growth, Development, Poverty & Planning"
+2015,94,International Liquidity,Macroeconomics,External Sector & International Institutions
+2015,97,Seed Village,Agriculture,Agriculture & Food Economy
+2015,98,Reduce Deficit,Macroeconomics,"Budget, Deficits & Public Debt"
+2015,99,GI Status,Macroeconomics,External Sector & International Institutions
+2015,100,IREDA,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2016,3,Fiscal Deficit Reduction,Macroeconomics,"Budget, Deficits & Public Debt"
+2016,4,Payment Banks,Macroeconomics,"Money, Banking & Monetary Policy"
+2016,8,IFC Masala Bonds,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2016,12,Capital Budget,Macroeconomics,"Budget, Deficits & Public Debt"
+2016,18,Import Cover,Macroeconomics,External Sector & International Institutions
+2016,24,Neem-coated Urea,Agriculture,Agriculture & Food Economy
+2016,29,Core Banking Solutions,Macroeconomics,"Money, Banking & Monetary Policy"
+2016,37,Ease of Doing Business,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2016,43,MCLR,Macroeconomics,"Money, Banking & Monetary Policy"
+2016,56,FSDC,Macroeconomics,"Money, Banking & Monetary Policy"
+2016,60,BEPS,Macroeconomics,Taxation & Fiscal Federalism
+2016,61,1st NIMZ,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2016,62,District Mineral Foundation,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2016,71,SGB + GMS,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2016,83,Drip Irrigation,Agriculture,Agriculture & Food Economy
+2017,11,MPC,Macroeconomics,"Money, Banking & Monetary Policy"
+2017,20,PBPT Act 1988,Macroeconomics,Taxation & Fiscal Federalism
+2017,27,Domestic Content Requirement,Macroeconomics,External Sector & International Institutions
+2017,33,e-NAM,Agriculture,Agriculture & Food Economy
+2017,40,Small Finance Banks,Macroeconomics,"Money, Banking & Monetary Policy"
+2017,55,NIIF,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2017,64,S4A,Macroeconomics,"Money, Banking & Monetary Policy"
+2017,71,Water Conservation Agri,Agriculture,Agriculture & Food Economy
+2017,77,Post-1991 Liberalisation,Macroeconomics,"Growth, Development, Poverty & Planning"
+2017,79,NPCI,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2017,81,GST Advantages,Macroeconomics,Taxation & Fiscal Federalism
+2017,94,Tax/Deficit Trends,Macroeconomics,"Budget, Deficits & Public Debt"
+2020,17,Gold Tranche,Macroeconomics,External Sector & International Institutions
+2020,49,Financial Crisis Immunity,Macroeconomics,External Sector & International Institutions
+2020,50,Cash Withdrawal Effect,Macroeconomics,"Money, Banking & Monetary Policy"
+2020,51,FDI Major Characteristic,Macroeconomics,External Sector & International Institutions
+2020,52,India International Trade,Macroeconomics,External Sector & International Institutions
+2020,53,WTI,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2020,54,Non-Financial Debt,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2020,56,TRIMS,Macroeconomics,External Sector & International Institutions
+2020,57,Expansionist Policy,Macroeconomics,"Money, Banking & Monetary Policy"
+2020,58,Post-1991 Economy,Macroeconomics,"Growth, Development, Poverty & Planning"
+2020,59,DCCBs,Macroeconomics,"Money, Banking & Monetary Policy"
+2020,60,Cyber Insurance,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2020,61,Public Investment in Agri,Macroeconomics,Agriculture & Food Economy
+2020,62,Interest Coverage Ratio,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2020,63,Rice Price Factors,Agriculture,Agriculture & Food Economy
+2020,66,KCC Short-Term Credit,Agriculture,Agriculture & Food Economy
+2020,67,CPI vs WPI,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2020,69,MSP Procurement,Agriculture,Agriculture & Food Economy
+2020,70,Money Market Instruments,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2020,80,Biochar in Farming,Agriculture,Agriculture & Food Economy
+2020,83,Zero Tillage Benefits,Agriculture,Agriculture & Food Economy
+2020,84,Biofuel Raw Materials,Agriculture,"Industry, Infrastructure, Energy & Services"
+2020,86,Pulses Production,Agriculture,Agriculture & Food Economy
+2020,87,Crop Description,Agriculture,Agriculture & Food Economy
+2020,89,Sugarcane Cultivation,Agriculture,Agriculture & Food Economy
+2020,90,Eco-Friendly Agri,Agriculture,Agriculture & Food Economy
+2020,91,Fertigation,Agriculture,Agriculture & Food Economy
+2020,94,Chemical Fertilizers,Agriculture,Agriculture & Food Economy
+2021,3,Economic Recession Response,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2021,4,Market Demand,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2021,5,Urban Cooperative Banks,Macroeconomics,"Money, Banking & Monetary Policy"
+2021,6,Bond Yields,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2021,7,FDI Inclusions,Macroeconomics,External Sector & International Institutions
+2021,8,Devaluation,Macroeconomics,External Sector & International Institutions
+2021,9,Black Money Worry,Macroeconomics,Taxation & Fiscal Federalism
+2021,10,Most Inflationary,Macroeconomics,"Budget, Deficits & Public Debt"
+2021,11,Money Multiplier,Macroeconomics,"Money, Banking & Monetary Policy"
+2021,12,Demand-Pull Inflation,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2021,13,Demat/Bonds,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2021,15,Lender of Last Resort,Macroeconomics,"Money, Banking & Monetary Policy"
+2021,51,Permaculture,Agriculture,Agriculture & Food Economy
+2021,52,Palm Oil,Agriculture,Agriculture & Food Economy
+2021,57,Least Water-Efficient,Agriculture,Agriculture & Food Economy
+2021,59,Climate-Smart Village,Agriculture,Agriculture & Food Economy
+2021,63,Moringa + Tamarind,Agriculture,Agriculture & Food Economy
+2022,1,IMF Lending Instruments,Macroeconomics,External Sector & International Institutions
+2022,2,NEER/REER,Macroeconomics,External Sector & International Institutions
+2022,3,RBI Inflation Response,Macroeconomics,"Money, Banking & Monetary Policy"
+2022,4,G20 Common Framework,Macroeconomics,External Sector & International Institutions
+2022,5,Inflation-Indexed Bonds,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2022,6,E-Commerce Platforms,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2022,7,Real Sector,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2022,8,Indirect Transfers,Macroeconomics,Taxation & Fiscal Federalism
+2022,9,Capital Expenditure,Macroeconomics,"Budget, Deficits & Public Debt"
+2022,10,Household Savings + G-Secs,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2022,22,SRI Rice Intensification,Agriculture,Agriculture & Food Economy
+2022,61,Fed Tightening,Macroeconomics,External Sector & International Institutions
+2022,62,Tea-Producing States,Agriculture,Agriculture & Food Economy
+2022,63,Credit Rating Agencies,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2022,64,Banks Board Bureau,Macroeconomics,"Money, Banking & Monetary Policy"
+2022,65,Convertible Bonds,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2022,68,Price Stability,Macroeconomics,"Money, Banking & Monetary Policy"
+2022,79,Tea Board,Macroeconomics,Agriculture & Food Economy
+2023,21,InvITs,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2023,22,Central Bank Rate Hikes,Macroeconomics,"Money, Banking & Monetary Policy"
+2023,23,Carbon Markets,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2023,24,Sterilization RBI,Macroeconomics,"Money, Banking & Monetary Policy"
+2023,25,Capital Markets,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2023,26,Small Farmer Large Field,Agriculture,Agriculture & Food Economy
+2023,27,Niger Seeds,Agriculture,Agriculture & Food Economy
+2023,28,Intangible Assets,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2023,66,Coal Thermal Plants,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2023,71,MSMED Act,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2023,72,CBDC,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2023,73,Beta,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2023,74,SHGs,Macroeconomics,"Inclusive Growth, Welfare & Demography"
+2023,88,India PLI Export,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2024,27,Distributed Energy Resources,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2024,40,CBLO,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2024,41,Total Fertility Rate,Demography,"Inclusive Growth, Welfare & Demography"
+2024,42,NBFC/FII/SE,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2024,43,Bond Trading Participants,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2024,44,Financial Instruments,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2024,45,Economic Sectors,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2024,46,SAF Feedstock,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2024,47,Physical Capital,Macroeconomics,"Macro Concepts, National Income & Inflation"
+2024,49,RBI Foreign Banks Rules,Macroeconomics,"Money, Banking & Monetary Policy"
+2024,50,CSR Rules,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2024,51,US Debt Default,Macroeconomics,External Sector & International Institutions
+2024,52,Syndicated Lending,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2024,53,Digital Rupee (CBDC),Macroeconomics,"Financial Markets, Instruments & Fintech"
+2024,67,Low Birth Rate Countries,Demography,"Inclusive Growth, Welfare & Demography"
+2024,92,Apples Import,Macroeconomics,External Sector & International Institutions
+2025,1,With reference to investments... Alternative Investment Funds,Financial Markets,"Financial Markets, Instruments & Fintech"
+2025,2,Sources of income for the Reserve Bank of India,Banking & Finance,"Money, Banking & Monetary Policy"
+2025,4,RBSR / Business Responsibility and Sustainability Report,Corporate Regulation,"Industry, Infrastructure, Energy & Services"
+2025,5,Agricultural income tax exemption statements,Taxation,Taxation & Fiscal Federalism
+2025,7,Bondholders vs stockholders risk,Financial Markets,"Financial Markets, Instruments & Fintech"
+2025,8,India equity options trading statements,Financial Markets,"Financial Markets, Instruments & Fintech"
+2025,10,Capital receipts statements,Fiscal Policy,"Budget, Deficits & Public Debt"
+2025,24,Turmeric production statements 2022-23,Agriculture,Agriculture & Food Economy
+2025,60,Petroleum and Natural Gas Regulatory Board activities,Energy,"Industry, Infrastructure, Energy & Services"
+2025,61,Revenue/fiscal/primary deficit numerical,Fiscal Policy,"Budget, Deficits & Public Debt"
+2025,63,Ethanol producers Brazil vs USA,Financial Markets,"Industry, Infrastructure, Energy & Services"
+2025,65,Fiscal deficit / gross primary deficit numerical,Fiscal Policy,"Budget, Deficits & Public Debt"
+2025,66,15th Finance Commission recommendations,Public Finance,Taxation & Fiscal Federalism
+2025,67,IBRD statements,Banking & Finance,External Sector & International Institutions
+2025,68,RTGS vs NEFT statements,Banking & Finance,"Financial Markets, Instruments & Fintech"
+2025,89,Minor minerals rules Centre vs State,Mining,"Industry, Infrastructure, Energy & Services"
+2026,28,RAD under NMSA,Agriculture,Agriculture & Food Economy
+2026,29,Oeko-Tex · Eri Silk,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2026,35,Sagarmala ⚡META,Economic Geography,"Industry, Infrastructure, Energy & Services"
+2026,83,Semiconductor Plants NOT Matched,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2026,86,Blockchain Features,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,87,E-commerce Model,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2026,88,RBI FI-Index Sub-indices,Macroeconomics,"Inclusive Growth, Welfare & Demography"
+2026,89,ONDC Objective,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2026,90,UPI vs CBDC NOT Correct,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,91,RWA Tokenization,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,92,Sustainability Bond,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,93,M1xchange MSME,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,94,Crowding Out Effect,Macroeconomics,"Budget, Deficits & Public Debt"
+2026,95,REE & Critical Minerals,Macroeconomics,"Industry, Infrastructure, Energy & Services"
+2026,96,Aviation Insurance,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,97,Crowdfunding,Macroeconomics,"Financial Markets, Instruments & Fintech"
+2026,98,Committees Matching,Macroeconomics,"Growth, Development, Poverty & Planning"
+2026,99,NBFCs,Macroeconomics,"Money, Banking & Monetary Policy"
+2026,100,Multidimensional Poverty Index,Macroeconomics,"Growth, Development, Poverty & Planning"
