@@ -1,0 +1,901 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 16 (Economy 2: Growth, Development & External Sector) -- External Sector, part 2 (38) and
+Growth, Development, Poverty & Planning (24).
+  External (institutions): medium statement 15, easy statement 4, hard statement 4, medium MCQ 4, medium
+    Statement-I/II 3, easy MCQ 2, hard MCQ 2, easy Statement-I/II 1, hard Statement-I/II 1, easy pairs 1,
+    medium pairs 1 -- the WTO and its agreements, the IMF, the World Bank Group and other institutions,
+    groupings and India's trade agreements.
+  Growth & development: medium statement 9, easy statement 3, hard statement 3, medium MCQ 3, medium I/II 2,
+    easy I/II 1, easy MCQ 1, hard I/II/III 1, hard MCQ 1.
+Balance of payments, reserves and trade policy are in econ_l2_t16_bop_trade.py; the HDI and the demographic
+dividend are in Geography Test 14, and the Economic Survey in Test 17."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+EX = "External Sector & International Institutions"
+GD = "Growth, Development, Poverty & Planning"
+WTO = "World Trade Organization"
+IMF = "International Monetary Fund"
+NCD = "NCERT Class XII, Indian Economic Development"
+NITI = "NITI Aayog"
+
+# ================================================================ EXTERNAL: MEDIUM STATEMENTS (15)
+S(EX, "medium", "Consider the following statements about the World Trade Organization (WTO):",
+  "विश्व व्यापार संगठन (WTO) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was set up in 1995 and took over from the GATT as the body overseeing world trade rules.",
+   "Its decisions are usually taken by consensus.",
+   "Its rules require members to give imported goods better treatment than domestically produced goods."],
+  ["इसकी स्थापना 1995 में हुई और इसने विश्व व्यापार नियमों की निगरानी करने वाले निकाय के रूप में GATT का स्थान लिया।",
+   "इसके निर्णय प्रायः आम सहमति से लिए जाते हैं।",
+   "इसके नियम सदस्यों से अपेक्षा करते हैं कि वे आयातित वस्तुओं को घरेलू उत्पादित वस्तुओं से बेहतर व्यवहार दें।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The WTO grew out of the Uruguay Round and the Marrakesh Agreement of 1994; the GATT of 1947 survives as its agreement on trade in goods. Because every member effectively holds a veto, consensus can make decisions slow. "
+  "Statement 3 is wrong: the national-treatment principle requires imports to be treated no less favourably than domestic goods once they have entered the market -- equal treatment, not better.",
+  "कथन 1 और 2 सही हैं। WTO उरुग्वे दौर और 1994 के मारकेश समझौते से बना; 1947 का GATT वस्तु व्यापार पर इसके समझौते के रूप में बना हुआ है। चूँकि व्यवहार में हर सदस्य के पास वीटो है, आम सहमति निर्णयों को धीमा बना सकती है। "
+  "कथन 3 गलत है: राष्ट्रीय व्यवहार (national treatment) का सिद्धांत अपेक्षा करता है कि बाज़ार में प्रवेश के बाद आयातों के साथ घरेलू वस्तुओं से कम अनुकूल व्यवहार न हो, यानी समान व्यवहार, बेहतर नहीं।",
+  f"{WTO} -- Understanding the WTO.",
+  "ex-wto-basics")
+
+S(EX, "medium", "Consider the following statements about dispute settlement at the WTO:",
+  "WTO में विवाद निपटान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["WTO rulings are enforced by the UN Security Council.",
+   "Only member governments can bring disputes to the WTO.",
+   "A member that wins a dispute may retaliate against the losing member without first obtaining authorisation from the WTO."],
+  ["WTO के निर्णयों को संयुक्त राष्ट्र सुरक्षा परिषद लागू करवाती है।",
+   "केवल सदस्य सरकारें ही WTO में विवाद ला सकती हैं।",
+   "विवाद जीतने वाला सदस्य WTO से पहले अनुमति लिए बिना हारने वाले सदस्य के विरुद्ध जवाबी कार्रवाई कर सकता है।"],
+  C3, 0,
+  "Only statement 2 is correct: companies cannot sue at the WTO; they must persuade their government to take up the case. "
+  "Statement 1 is wrong: the WTO has no link with the Security Council -- compliance rests on members themselves, backed by the threat of authorised retaliation. "
+  "Statement 3 is wrong: if a member does not comply with a ruling, the winning side must seek authorisation from the Dispute Settlement Body, and the retaliation must be proportionate to the harm.",
+  "केवल कथन 2 सही है: कंपनियाँ WTO में मुक़दमा नहीं कर सकतीं; उन्हें अपनी सरकार को मामला उठाने के लिए राज़ी करना होता है। "
+  "कथन 1 गलत है: WTO का सुरक्षा परिषद से कोई संबंध नहीं है; अनुपालन स्वयं सदस्यों पर निर्भर है, जिसके पीछे अधिकृत जवाबी कार्रवाई का भय होता है। "
+  "कथन 3 गलत है: यदि कोई सदस्य निर्णय का पालन नहीं करता, तो जीतने वाले पक्ष को विवाद निपटान निकाय से अनुमति लेनी होती है, और जवाबी कार्रवाई हानि के अनुपात में होनी चाहिए।",
+  f"{WTO} -- Dispute Settlement Understanding.",
+  "ex-wto-dispute-rules")
+
+S(EX, "medium", "Consider the following statements about farm subsidies under the WTO's Agreement on Agriculture:",
+  "WTO के कृषि समझौते के तहत कृषि सब्सिडी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Green box subsidies cause minimal trade distortion and are not capped.",
+   "For developing countries, amber box support is allowed up to a de minimis level of 10 per cent of the value of production.",
+   "Blue box subsidies are those linked to export performance."],
+  ["ग्रीन बॉक्स सब्सिडी व्यापार को बहुत कम विकृत करती है और उस पर कोई सीमा नहीं है।",
+   "विकासशील देशों के लिए एम्बर बॉक्स समर्थन उत्पादन मूल्य के 10 प्रतिशत के न्यूनतम (de minimis) स्तर तक अनुमत है।",
+   "ब्लू बॉक्स सब्सिडी वे हैं जो निर्यात प्रदर्शन से जुड़ी हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Green box support -- research, extension, food-security stocks bought at market prices, direct income support not tied to output -- is unlimited, while price and input support in the amber box is capped, at 5 per cent for developed countries. "
+  "Statement 3 is wrong: blue box payments are made under programmes that limit production, such as acreage limits; subsidies tied to export performance are export subsidies, which members agreed at Nairobi in 2015 to abolish.",
+  "कथन 1 और 2 सही हैं। ग्रीन बॉक्स समर्थन, जैसे अनुसंधान, विस्तार सेवाएँ, बाज़ार मूल्य पर ख़रीदे गए खाद्य सुरक्षा भंडार और उत्पादन से न जुड़ा प्रत्यक्ष आय समर्थन, असीमित है, जबकि एम्बर बॉक्स में मूल्य और आदान समर्थन सीमित है, विकसित देशों के लिए 5 प्रतिशत पर। "
+  "कथन 3 गलत है: ब्लू बॉक्स भुगतान उत्पादन सीमित करने वाले कार्यक्रमों, जैसे रकबे की सीमा, के तहत दिए जाते हैं; निर्यात प्रदर्शन से जुड़ी सब्सिडी निर्यात सब्सिडी है, जिसे समाप्त करने पर सदस्य 2015 में नैरोबी में सहमत हुए।",
+  f"{WTO} -- Agreement on Agriculture; Nairobi Ministerial Decision on Export Competition (2015).",
+  "ex-wto-subsidy-boxes")
+
+S(EX, "medium", "Consider the following statements about public stockholding for food security at the WTO:",
+  "WTO में खाद्य सुरक्षा के लिए सार्वजनिक भंडारण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 'peace clause' agreed at Bali in 2013 shields developing countries' public stockholding programmes for food security from legal challenge at the WTO.",
+   "India's procurement at minimum support prices is counted as green box support.",
+   "India has invoked the peace clause in respect of its support to wheat."],
+  ["2013 में बाली में सहमत 'शांति खंड' (peace clause) खाद्य सुरक्षा के लिए विकासशील देशों के सार्वजनिक भंडारण कार्यक्रमों को WTO में क़ानूनी चुनौती से बचाता है।",
+   "न्यूनतम समर्थन मूल्य पर भारत की ख़रीद को ग्रीन बॉक्स समर्थन माना जाता है।",
+   "भारत ने गेहूँ को दिए गए अपने समर्थन के संबंध में शांति खंड का प्रयोग किया है।"],
+  C3, 0,
+  "Only statement 1 is correct: the interim protection applies even if the support breaches the agreed limits, and lasts until a permanent solution is found, subject to conditions on transparency and not distorting world markets. "
+  "Statement 2 is wrong: buying grain at administered prices above world reference prices counts as market price support in the amber box -- which is exactly why India needs the peace clause. "
+  "Statement 3 is wrong: in 2020 India became the first country to invoke it -- for rice, after its support to rice for 2018-19 exceeded the 10 per cent limit, not for wheat.",
+  "केवल कथन 1 सही है: यह अंतरिम सुरक्षा समर्थन के तय सीमा पार करने पर भी लागू होती है और स्थायी समाधान मिलने तक रहती है, पारदर्शिता और विश्व बाज़ारों को विकृत न करने की शर्तों के साथ। "
+  "कथन 2 गलत है: विश्व संदर्भ मूल्यों से ऊँचे प्रशासित मूल्यों पर अनाज ख़रीदना एम्बर बॉक्स में बाज़ार मूल्य समर्थन माना जाता है; ठीक इसीलिए भारत को शांति खंड की आवश्यकता है। "
+  "कथन 3 गलत है: 2020 में भारत इसका प्रयोग करने वाला पहला देश बना, चावल के लिए, जब 2018-19 में चावल पर उसका समर्थन 10 प्रतिशत की सीमा पार कर गया; गेहूँ के लिए नहीं।",
+  f"{WTO} -- Bali Ministerial Decision on Public Stockholding (2013); India's notification of 2020.",
+  "ex-wto-peace-clause")
+
+S(EX, "medium", "Consider the following statements about some WTO agreements:",
+  "कुछ WTO समझौतों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Trade Facilitation Agreement aims to speed up the movement and clearance of goods across borders.",
+   "The Information Technology Agreement eliminates tariffs on a wide range of IT products.",
+   "India is a member of the WTO's Agreement on Government Procurement."],
+  ["व्यापार सुविधा समझौता (TFA) सीमाओं के पार वस्तुओं की आवाजाही और निकासी तेज़ करने का लक्ष्य रखता है।",
+   "सूचना प्रौद्योगिकी समझौता (ITA) IT उत्पादों की व्यापक श्रेणी पर टैरिफ़ समाप्त करता है।",
+   "भारत WTO के सरकारी ख़रीद समझौते (GPA) का सदस्य है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The TFA, in force since 2017, simplifies customs procedures -- single windows, advance rulings, risk-based checks -- and India, a member of the ITA since 1997, removed duties on many IT goods under it. "
+  "Statement 3 is wrong: the GPA is a plurilateral agreement that only some members have joined; India is an observer, keeping its public procurement free to favour domestic suppliers.",
+  "कथन 1 और 2 सही हैं। 2017 से लागू TFA सीमा शुल्क प्रक्रियाओं को सरल बनाता है, जैसे एकल खिड़की, अग्रिम निर्णय और जोखिम-आधारित जाँच; 1997 से ITA के सदस्य भारत ने इसके तहत कई IT वस्तुओं पर शुल्क हटाए। "
+  "कथन 3 गलत है: GPA एक बहुपक्षीय (plurilateral) समझौता है जिसमें केवल कुछ सदस्य शामिल हुए हैं; भारत एक पर्यवेक्षक है, ताकि उसकी सरकारी ख़रीद घरेलू आपूर्तिकर्ताओं को प्राथमिकता देने के लिए स्वतंत्र रहे।",
+  f"{WTO} -- Trade Facilitation Agreement; Information Technology Agreement; Agreement on Government Procurement.",
+  "ex-wto-tfa-ita-gpa")
+
+S(EX, "medium", "Consider the following statements about the International Monetary Fund (IMF):",
+  "अंतरराष्ट्रीय मुद्रा कोष (IMF) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The IMF was set up at the Bretton Woods conference of 1944.",
+   "A member's voting power in the IMF depends largely on its quota.",
+   "Decisions on major issues in the IMF need only a simple majority of votes."],
+  ["IMF की स्थापना 1944 के ब्रेटन वुड्स सम्मेलन में हुई।",
+   "IMF में किसी सदस्य की मतदान शक्ति मुख्य रूप से उसके कोटे पर निर्भर करती है।",
+   "IMF में बड़े मुद्दों पर निर्णयों के लिए केवल साधारण बहुमत चाहिए।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Quotas, which reflect a country's weight in the world economy, decide how much it pays in, how much it can borrow and how many votes it has. "
+  "Statement 3 is wrong: major decisions, such as changes in quotas, need an 85 per cent majority, which gives the United States, with about 16 per cent of the votes, an effective veto.",
+  "कथन 1 और 2 सही हैं। कोटे, जो विश्व अर्थव्यवस्था में किसी देश के भार को दर्शाते हैं, तय करते हैं कि वह कितना योगदान देगा, कितना उधार ले सकेगा और उसके कितने मत होंगे। "
+  "कथन 3 गलत है: कोटे में बदलाव जैसे बड़े निर्णयों के लिए 85 प्रतिशत बहुमत चाहिए, जिससे लगभग 16 प्रतिशत मतों वाले संयुक्त राज्य अमेरिका को व्यवहार में वीटो मिल जाता है।",
+  f"{IMF} -- Articles of Agreement; IMF Quotas.",
+  "ex-imf-basics")
+
+S(EX, "medium", "Consider the following statements about some reports and reviews:",
+  "कुछ रिपोर्टों और समीक्षाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The World Economic Outlook is published by the World Economic Forum.",
+   "The Global Financial Stability Report is published by the World Bank.",
+   "The IMF holds Article IV consultations only with members that have borrowed from it."],
+  ["विश्व आर्थिक परिदृश्य (World Economic Outlook) विश्व आर्थिक मंच (World Economic Forum) प्रकाशित करता है।",
+   "वैश्विक वित्तीय स्थिरता रिपोर्ट (Global Financial Stability Report) विश्व बैंक प्रकाशित करता है।",
+   "IMF अनुच्छेद IV परामर्श केवल उन सदस्यों के साथ करता है जिन्होंने उससे उधार लिया है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: the World Economic Outlook, issued in April and October with growth forecasts for every country, is the IMF's; the World Economic Forum, based in Geneva, publishes reports such as the Global Competitiveness and Global Risks reports. "
+  "Statement 2 is wrong: the Global Financial Stability Report is also an IMF publication. "
+  "Statement 3 is wrong: Article IV of the IMF's Articles obliges it to hold regular -- usually annual -- consultations on economic policies with every member, borrower or not; India's are held each year.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: अप्रैल और अक्टूबर में हर देश के वृद्धि पूर्वानुमानों के साथ जारी होने वाला विश्व आर्थिक परिदृश्य IMF का है; जिनेवा स्थित विश्व आर्थिक मंच वैश्विक प्रतिस्पर्धात्मकता और वैश्विक जोखिम जैसी रिपोर्टें प्रकाशित करता है। "
+  "कथन 2 गलत है: वैश्विक वित्तीय स्थिरता रिपोर्ट भी IMF का ही प्रकाशन है। "
+  "कथन 3 गलत है: IMF के अनुच्छेदों का अनुच्छेद IV उसे हर सदस्य के साथ, चाहे उसने उधार लिया हो या नहीं, आर्थिक नीतियों पर नियमित, प्रायः वार्षिक, परामर्श करने को बाध्य करता है; भारत के साथ ये हर वर्ष होते हैं।",
+  f"{IMF} -- Flagship publications; World Bank -- Publications.",
+  "ex-imf-reports-article-iv-none")
+
+S(EX, "medium", "Consider the following statements about the World Bank Group:",
+  "विश्व बैंक समूह के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The IBRD lends mainly to middle-income and creditworthy lower-income countries.",
+   "The International Development Association gives concessional loans and grants to the poorest countries.",
+   "The International Finance Corporation invests in the private sector.",
+   "The Multilateral Investment Guarantee Agency insures foreign investors against political risks."],
+  ["IBRD मुख्य रूप से मध्यम आय वाले और ऋण-योग्य निम्न आय वाले देशों को ऋण देता है।",
+   "अंतरराष्ट्रीय विकास संघ (IDA) सबसे ग़रीब देशों को रियायती ऋण और अनुदान देता है।",
+   "अंतरराष्ट्रीय वित्त निगम (IFC) निजी क्षेत्र में निवेश करता है।",
+   "बहुपक्षीय निवेश गारंटी एजेंसी (MIGA) विदेशी निवेशकों को राजनीतिक जोखिमों के विरुद्ध बीमा देती है।"],
+  C4, 3,
+  "All four statements are correct. India, once IDA's largest borrower, 'graduated' from it in 2014 and now borrows from the IBRD. "
+  "MIGA does not lend: it covers risks such as expropriation, war and currency restrictions, to encourage investment in developing countries. The fifth member, ICSID, settles investment disputes. A student who expects one of four to be wrong will be drawn to 'Only three'.",
+  "चारों कथन सही हैं। कभी IDA का सबसे बड़ा उधारकर्ता रहा भारत 2014 में इससे 'स्नातक' हो गया और अब IBRD से उधार लेता है। "
+  "MIGA ऋण नहीं देती: वह विकासशील देशों में निवेश को प्रोत्साहित करने के लिए ज़ब्ती, युद्ध और मुद्रा प्रतिबंध जैसे जोखिमों को कवर करती है। पाँचवाँ सदस्य, ICSID, निवेश विवादों का निपटारा करता है। जो विद्यार्थी चार में से एक को गलत मानकर चलता है, वह 'केवल तीन' की ओर खिंचेगा।",
+  "World Bank Group -- Organisation.",
+  "ex-world-bank-group")
+
+S(EX, "medium", "Consider the following statements about some World Bank reports:",
+  "विश्व बैंक की कुछ रिपोर्टों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The World Bank discontinued its 'Doing Business' report in 2021.",
+   "Its successor, Business Ready (B-READY), released its first report in 2024.",
+   "The World Development Report is published by the IMF."],
+  ["विश्व बैंक ने 2021 में अपनी 'डूइंग बिज़नेस' रिपोर्ट बंद कर दी।",
+   "इसकी उत्तराधिकारी, बिज़नेस रेडी (B-READY), ने अपनी पहली रिपोर्ट 2024 में जारी की।",
+   "विश्व विकास रिपोर्ट (World Development Report) IMF प्रकाशित करता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Doing Business, in which India had climbed from 142nd in 2014 to 63rd in 2019, was dropped after an audit found irregularities in the data of some countries; B-READY assesses the regulatory framework, public services and efficiency of doing business across firms' life cycle. "
+  "Statement 3 is wrong: the World Development Report is the World Bank's annual flagship, each year on a theme.",
+  "कथन 1 और 2 सही हैं। डूइंग बिज़नेस, जिसमें भारत 2014 के 142वें स्थान से 2019 में 63वें स्थान पर पहुँचा था, कुछ देशों के आँकड़ों में अनियमितताएँ मिलने के बाद बंद कर दी गई; B-READY कंपनियों के जीवन-चक्र में व्यवसाय करने के विनियामक ढाँचे, सार्वजनिक सेवाओं और दक्षता का आकलन करती है। "
+  "कथन 3 गलत है: विश्व विकास रिपोर्ट विश्व बैंक की वार्षिक प्रमुख रिपोर्ट है, जो हर वर्ष किसी एक विषय पर होती है।",
+  "World Bank -- Business Ready; World Development Report.",
+  "ex-doing-business-bready")
+
+S(EX, "medium", "Consider the following statements about some multilateral development banks:",
+  "कुछ बहुपक्षीय विकास बैंकों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Asian Infrastructure Investment Bank began operations in 2016.",
+   "India is the second-largest shareholder in the Asian Infrastructure Investment Bank.",
+   "The Asian Development Bank is headquartered in Manila."],
+  ["एशियाई अवसंरचना निवेश बैंक (AIIB) ने 2016 में कार्य शुरू किया।",
+   "भारत एशियाई अवसंरचना निवेश बैंक का दूसरा सबसे बड़ा शेयरधारक है।",
+   "एशियाई विकास बैंक (ADB) का मुख्यालय मनीला में है।"],
+  C3, 2,
+  "All three statements are correct. The AIIB, based in Beijing and led by China as the largest shareholder, has become one of India's biggest lenders for roads, power and urban projects. The ADB, set up in 1966, is dominated by Japan and the United States as its largest shareholders, and a Japanese national has always been its president.",
+  "तीनों कथन सही हैं। बीजिंग स्थित AIIB, जिसका सबसे बड़ा शेयरधारक चीन है, भारत को सड़कों, बिजली और शहरी परियोजनाओं के लिए ऋण देने वाले सबसे बड़े ऋणदाताओं में से एक बन गया है। 1966 में बने ADB में जापान और संयुक्त राज्य अमेरिका सबसे बड़े शेयरधारक हैं, और उसका अध्यक्ष सदा जापानी नागरिक रहा है।",
+  "Asian Infrastructure Investment Bank; Asian Development Bank.",
+  "ex-aiib-adb")
+
+S(EX, "medium", "Consider the following statements about some international bodies:",
+  "कुछ अंतरराष्ट्रीय निकायों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Bank for International Settlements is often called the 'central bank of central banks'.",
+   "India is a member of the Organisation for Economic Co-operation and Development (OECD).",
+   "The Financial Action Task Force is a specialised agency of the United Nations."],
+  ["अंतरराष्ट्रीय निपटान बैंक (BIS) को प्रायः 'केंद्रीय बैंकों का केंद्रीय बैंक' कहा जाता है।",
+   "भारत आर्थिक सहयोग और विकास संगठन (OECD) का सदस्य है।",
+   "वित्तीय कार्रवाई कार्य बल (FATF) संयुक्त राष्ट्र की एक विशेष एजेंसी है।"],
+  C3, 0,
+  "Only statement 1 is correct: the BIS, based in Basel and founded in 1930, banks for central banks and hosts the Basel Committee that sets banking standards; the RBI is a member. "
+  "Statement 2 is wrong: India is not an OECD member, although it works with the organisation as a key partner. "
+  "Statement 3 is wrong: the FATF is an inter-governmental body set up by the G7 in 1989, with its secretariat at the OECD in Paris; it is not part of the UN system.",
+  "केवल कथन 1 सही है: 1930 में स्थापित, बासेल स्थित BIS केंद्रीय बैंकों के लिए बैंकिंग करता है और बैंकिंग मानक तय करने वाली बासेल समिति की मेज़बानी करता है; RBI इसका सदस्य है। "
+  "कथन 2 गलत है: भारत OECD का सदस्य नहीं है, यद्यपि वह एक प्रमुख साझेदार के रूप में संगठन के साथ काम करता है। "
+  "कथन 3 गलत है: FATF 1989 में G7 द्वारा बनाया गया एक अंतर-सरकारी निकाय है, जिसका सचिवालय पेरिस में OECD में है; यह संयुक्त राष्ट्र प्रणाली का भाग नहीं है।",
+  "Bank for International Settlements; OECD; Financial Action Task Force.",
+  "ex-bis-oecd-fatf")
+
+S(EX, "medium", "Consider the following statements about the G20:",
+  "G20 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The African Union became a permanent member of the G20 at the New Delhi summit in 2023.",
+   "The European Union is a member of the G20.",
+   "India held the G20 presidency in 2023."],
+  ["2023 के नई दिल्ली शिखर सम्मेलन में अफ़्रीकी संघ G20 का स्थायी सदस्य बना।",
+   "यूरोपीय संघ G20 का सदस्य है।",
+   "2023 में G20 की अध्यक्षता भारत के पास थी।"],
+  C3, 2,
+  "All three statements are correct. Under India's presidency, whose theme was 'One Earth, One Family, One Future', the African Union joined the European Union as the second regional body among the members; the G20 accounts for about 85 per cent of world GDP.",
+  "तीनों कथन सही हैं। भारत की अध्यक्षता में, जिसका विषय 'एक पृथ्वी, एक परिवार, एक भविष्य' था, अफ़्रीकी संघ यूरोपीय संघ के बाद सदस्यों में दूसरा क्षेत्रीय निकाय बना; G20 विश्व GDP का लगभग 85 प्रतिशत है।",
+  "Ministry of External Affairs -- India's G20 Presidency.",
+  "ex-g20-au-eu-presidency")
+
+S(EX, "medium", "Consider the following statements about India's trade agreements:",
+  "भारत के व्यापार समझौतों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India's trade agreement with the UAE, signed in 2022, is an Economic Cooperation and Trade Agreement (ECTA).",
+   "India signed an Economic Cooperation and Trade Agreement with Australia in 2022.",
+   "India's Trade and Economic Partnership Agreement (TEPA) was signed with the European Union.",
+   "India and the United Kingdom signed a trade agreement in 2025."],
+  ["2022 में हुआ भारत का UAE के साथ व्यापार समझौता एक आर्थिक सहयोग और व्यापार समझौता (ECTA) है।",
+   "भारत ने 2022 में ऑस्ट्रेलिया के साथ आर्थिक सहयोग और व्यापार समझौता (ECTA) किया।",
+   "भारत का व्यापार और आर्थिक भागीदारी समझौता (TEPA) यूरोपीय संघ के साथ हुआ।",
+   "भारत और यूनाइटेड किंगडम ने 2025 में एक व्यापार समझौता किया।"],
+  C4, 1,
+  "Statements 2 and 4 are correct: the interim deal with Australia is the ECTA, and the India-UK Comprehensive Economic and Trade Agreement was signed in July 2025. "
+  "Statement 1 is wrong: the UAE deal, signed in February 2022 and India's first major trade agreement in about a decade, is a Comprehensive Economic Partnership Agreement (CEPA). "
+  "Statement 3 is wrong: TEPA, signed in March 2024 and in force from October 2025, is with the European Free Trade Association -- Switzerland, Norway, Iceland and Liechtenstein -- and includes a commitment to raise their investment in India by 100 billion dollars over 15 years.",
+  "कथन 2 और 4 सही हैं: ऑस्ट्रेलिया के साथ अंतरिम समझौता ECTA है, और भारत-UK व्यापक आर्थिक और व्यापार समझौता जुलाई 2025 में हुआ। "
+  "कथन 1 गलत है: फ़रवरी 2022 में हुआ और लगभग एक दशक में भारत का पहला बड़ा व्यापार समझौता, UAE के साथ समझौता, व्यापक आर्थिक भागीदारी समझौता (CEPA) है। "
+  "कथन 3 गलत है: मार्च 2024 में हस्ताक्षरित और अक्टूबर 2025 से लागू TEPA यूरोपीय मुक्त व्यापार संघ (EFTA), यानी स्विट्ज़रलैंड, नॉर्वे, आइसलैंड और लिकटेंस्टीन, के साथ है, और इसमें 15 वर्षों में भारत में उनके निवेश को 100 अरब डॉलर तक बढ़ाने की प्रतिबद्धता है।",
+  "Ministry of Commerce and Industry -- Trade Agreements.",
+  "ex-india-trade-agreements")
+
+S(EX, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India is a participant in the trade pillar of the Indo-Pacific Economic Framework for Prosperity (IPEF).",
+   "The IPEF was launched by the United States in 2022.",
+   "The SAARC Development Fund is based in Kathmandu."],
+  ["भारत समृद्धि के लिए हिंद-प्रशांत आर्थिक ढाँचे (IPEF) के व्यापार स्तंभ में भागीदार है।",
+   "IPEF को संयुक्त राज्य अमेरिका ने 2022 में शुरू किया।",
+   "सार्क विकास कोष (SAARC Development Fund) काठमांडू में स्थित है।"],
+  C3, 0,
+  "Only statement 2 is correct: the IPEF, launched in Tokyo in May 2022, groups 14 countries in four pillars -- trade, supply chains, clean economy and fair economy. "
+  "Statement 1 is wrong: India joined the supply-chain, clean-economy and fair-economy pillars but stayed out of the trade pillar, citing concerns over commitments on labour, environment and digital trade. "
+  "Statement 3 is wrong: the SAARC Development Fund has its secretariat in Thimphu, Bhutan; it is the SAARC Secretariat that is in Kathmandu.",
+  "केवल कथन 2 सही है: मई 2022 में टोक्यो में शुरू किया गया IPEF 14 देशों को चार स्तंभों, यानी व्यापार, आपूर्ति शृंखला, स्वच्छ अर्थव्यवस्था और निष्पक्ष अर्थव्यवस्था, में जोड़ता है। "
+  "कथन 1 गलत है: भारत आपूर्ति शृंखला, स्वच्छ अर्थव्यवस्था और निष्पक्ष अर्थव्यवस्था के स्तंभों में शामिल हुआ, पर श्रम, पर्यावरण और डिजिटल व्यापार पर प्रतिबद्धताओं की चिंता से व्यापार स्तंभ से बाहर रहा। "
+  "कथन 3 गलत है: सार्क विकास कोष का सचिवालय थिम्पू, भूटान में है; काठमांडू में सार्क सचिवालय है।",
+  "Ministry of Commerce and Industry -- IPEF; SAARC Development Fund.",
+  "ex-ipef-saarc-fund")
+
+S(EX, "medium", "Consider the following statements about sovereign debt:",
+  "सॉवरेन ऋण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The G20 Common Framework for Debt Treatments is meant mainly for middle-income countries.",
+   "The Paris Club is an informal group of major debtor countries.",
+   "India declined to take part in Sri Lanka's debt restructuring after its 2022 default."],
+  ["ऋण उपचार के लिए G20 का साझा ढाँचा (Common Framework) मुख्य रूप से मध्यम आय वाले देशों के लिए है।",
+   "पेरिस क्लब प्रमुख ऋणी देशों का एक अनौपचारिक समूह है।",
+   "श्रीलंका की 2022 की चूक (default) के बाद भारत ने उसके ऋण पुनर्गठन में भाग लेने से इनकार कर दिया।"],
+  C3, 3,
+  "None of the statements is correct. The Common Framework, agreed in 2020 by the G20 together with the Paris Club, covers low-income countries and brings in new creditors such as China; middle-income Sri Lanka was outside it. The Paris Club is an informal group of major creditor governments. India was the first creditor to give Sri Lanka the financing assurances its IMF programme needed in 2023, and co-chaired the official creditors' committee with Japan and France.",
+  "कोई भी कथन सही नहीं है। 2020 में G20 द्वारा पेरिस क्लब के साथ तय साझा ढाँचा निम्न आय वाले देशों के लिए है और चीन जैसे नए लेनदारों को भी जोड़ता है; मध्यम आय वाला श्रीलंका इसके बाहर था। पेरिस क्लब प्रमुख लेनदार सरकारों का एक अनौपचारिक समूह है। 2023 में श्रीलंका के IMF कार्यक्रम के लिए आवश्यक वित्तीय आश्वासन देने वाला भारत पहला लेनदार था, और उसने जापान तथा फ़्रांस के साथ आधिकारिक लेनदार समिति की सह-अध्यक्षता की।",
+  f"{IMF} -- Sri Lanka Extended Fund Facility (2023); G20 Common Framework (2020).",
+  "ex-sovereign-debt-common-framework")
+
+# ================================================================ EXTERNAL: EASY STATEMENTS (4)
+S(EX, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The IMF and the World Bank are headquartered in Washington, D.C.",
+   "The WTO is headquartered in New York."],
+  ["IMF और विश्व बैंक का मुख्यालय वॉशिंगटन डी.सी. में है।",
+   "WTO का मुख्यालय न्यूयॉर्क में है।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: the WTO is based in Geneva; New York is the headquarters of the United Nations.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: WTO जिनेवा में स्थित है; न्यूयॉर्क संयुक्त राष्ट्र का मुख्यालय है।",
+  f"{IMF}; {WTO}.",
+  "ex-imf-wto-headquarters-easy")
+
+S(EX, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The World Bank gives loans for development projects.",
+   "The IMF helps countries facing balance of payments difficulties."],
+  ["विश्व बैंक विकास परियोजनाओं के लिए ऋण देता है।",
+   "IMF भुगतान संतुलन की कठिनाइयों का सामना करने वाले देशों की मदद करता है।"],
+  T2, 2,
+  "Both statements are correct. The two Bretton Woods institutions divide the work: the World Bank finances development -- roads, schools, health, water -- while the IMF watches over the international monetary system and lends to countries short of foreign exchange.",
+  "दोनों कथन सही हैं। दोनों ब्रेटन वुड्स संस्थाएँ काम बाँटती हैं: विश्व बैंक विकास, जैसे सड़कें, स्कूल, स्वास्थ्य और जल, का वित्तपोषण करता है, जबकि IMF अंतरराष्ट्रीय मौद्रिक प्रणाली पर नज़र रखता है और विदेशी मुद्रा की कमी वाले देशों को ऋण देता है।",
+  f"{IMF}; World Bank.",
+  "ex-imf-world-bank-roles-easy")
+
+S(EX, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India is a member of the G7.",
+   "India is a member of the Asian Development Bank."],
+  ["भारत G7 का सदस्य है।",
+   "भारत एशियाई विकास बैंक (ADB) का सदस्य है।"],
+  T2, 1,
+  "Only statement 2 is correct: India is a founding member of the ADB and one of its largest borrowers. Statement 1 is wrong: the G7 consists of the United States, Canada, the United Kingdom, France, Germany, Italy and Japan; India is often invited to its summits as a guest.",
+  "केवल कथन 2 सही है: भारत ADB का संस्थापक सदस्य और इसके सबसे बड़े उधारकर्ताओं में से एक है। कथन 1 गलत है: G7 में संयुक्त राज्य अमेरिका, कनाडा, यूनाइटेड किंगडम, फ़्रांस, जर्मनी, इटली और जापान हैं; भारत को प्रायः इसके शिखर सम्मेलनों में अतिथि के रूप में बुलाया जाता है।",
+  "Asian Development Bank -- Members; Ministry of External Affairs.",
+  "ex-g7-adb-membership-easy")
+
+S(EX, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["SAARC includes Myanmar.",
+   "ASEAN includes Sri Lanka."],
+  ["सार्क (SAARC) में म्यांमार शामिल है।",
+   "आसियान (ASEAN) में श्रीलंका शामिल है।"],
+  T2, 3,
+  "Neither statement is correct -- the two countries are swapped. SAARC's eight members are Afghanistan, Bangladesh, Bhutan, India, the Maldives, Nepal, Pakistan and Sri Lanka; Myanmar belongs to ASEAN, whose members are South-East Asian countries -- Indonesia, Malaysia, the Philippines, Singapore, Thailand, Brunei, Vietnam, Laos, Myanmar, Cambodia and, since 2025, Timor-Leste. Both Myanmar and Sri Lanka are in BIMSTEC.",
+  "कोई भी कथन सही नहीं है; दोनों देशों की अदला-बदली की गई है। सार्क के आठ सदस्य अफ़ग़ानिस्तान, बांग्लादेश, भूटान, भारत, मालदीव, नेपाल, पाकिस्तान और श्रीलंका हैं; म्यांमार आसियान का सदस्य है, जिसके सदस्य दक्षिण-पूर्व एशियाई देश हैं, यानी इंडोनेशिया, मलेशिया, फ़िलीपींस, सिंगापुर, थाईलैंड, ब्रुनेई, वियतनाम, लाओस, म्यांमार, कंबोडिया और 2025 से तिमोर-लेस्ते। म्यांमार और श्रीलंका दोनों बिम्सटेक में हैं।",
+  "Ministry of External Affairs.",
+  "ex-saarc-asean-easy")
+
+# ================================================================ EXTERNAL: HARD STATEMENTS (4)
+S(EX, "hard", "Consider the following statements about Special Drawing Rights (SDRs):",
+  "विशेष आहरण अधिकारों (SDR) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Private companies and individuals can hold SDRs as a store of value.",
+   "The value of the SDR is based on a basket of five currencies.",
+   "SDR allocations are made to members in proportion to their quotas in the IMF."],
+  ["निजी कंपनियाँ और व्यक्ति मूल्य-संचय के रूप में SDR रख सकते हैं।",
+   "SDR का मूल्य पाँच मुद्राओं की एक टोकरी पर आधारित है।",
+   "SDR का आवंटन सदस्यों को IMF में उनके कोटे के अनुपात में किया जाता है।"],
+  C3, 1,
+  "Statements 2 and 3 are correct. The basket consists of the US dollar, the euro, the Chinese renminbi (added in 2016), the Japanese yen and the pound sterling; the largest allocation ever, about 650 billion dollars in 2021, helped countries through the pandemic. "
+  "Statement 1 is wrong: the SDR is an international reserve asset and unit of account; only member countries' monetary authorities and a few prescribed official bodies can hold it, and they exchange it for usable currencies.",
+  "कथन 2 और 3 सही हैं। टोकरी में अमेरिकी डॉलर, यूरो, चीनी रेनमिन्बी (2016 में जोड़ी गई), जापानी येन और पाउंड स्टर्लिंग हैं; अब तक का सबसे बड़ा आवंटन, 2021 में लगभग 650 अरब डॉलर, महामारी में देशों के लिए सहायक रहा। "
+  "कथन 1 गलत है: SDR एक अंतरराष्ट्रीय आरक्षित परिसंपत्ति और लेखा इकाई है; इसे केवल सदस्य देशों के मौद्रिक प्राधिकरण और कुछ निर्धारित आधिकारिक निकाय रख सकते हैं, और वे इसे उपयोग योग्य मुद्राओं में बदलते हैं।",
+  f"{IMF} -- Special Drawing Rights fact sheet.",
+  "ex-sdr")
+
+S(EX, "hard", "Consider the following statements about developing countries at the WTO:",
+  "WTO में विकासशील देशों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Special and differential treatment gives developing countries longer periods to implement agreements.",
+   "A country's developing-country status at the WTO is assigned by the World Bank according to its income.",
+   "Least-developed countries have had to protect pharmaceutical patents under TRIPS on the same timetable as other developing countries."],
+  ["विशेष और विभेदक व्यवहार (special and differential treatment) विकासशील देशों को समझौते लागू करने के लिए अधिक लंबी अवधि देता है।",
+   "WTO में किसी देश का विकासशील देश का दर्जा विश्व बैंक उसकी आय के अनुसार तय करता है।",
+   "अल्पविकसित देशों को TRIPS के तहत औषधि पेटेंट की सुरक्षा अन्य विकासशील देशों की समय-सारिणी पर ही देनी पड़ी है।"],
+  C3, 0,
+  "Only statement 1 is correct: S&DT also allows lower commitments, technical assistance and protection of their interests in disputes. "
+  "Statement 2 is wrong: there is no WTO definition of a developing country -- members declare their own status, which others may challenge; this self-declaration, used by China and India among others, is one of the issues the United States has pressed. "
+  "Statement 3 is wrong: least-developed countries, a category defined by the UN, get the longest transitions -- they need not protect pharmaceutical patents until 2033, whereas developing countries such as India had to grant product patents on medicines from 2005.",
+  "केवल कथन 1 सही है: यह व्यवहार कम प्रतिबद्धताओं, तकनीकी सहायता और विवादों में उनके हितों की सुरक्षा की अनुमति भी देता है। "
+  "कथन 2 गलत है: WTO में विकासशील देश की कोई परिभाषा नहीं है; सदस्य अपना दर्जा स्वयं घोषित करते हैं, जिसे दूसरे चुनौती दे सकते हैं; चीन और भारत सहित कई देशों द्वारा प्रयुक्त यह स्व-घोषणा उन मुद्दों में से एक है जिन पर संयुक्त राज्य अमेरिका ज़ोर देता रहा है। "
+  "कथन 3 गलत है: संयुक्त राष्ट्र द्वारा परिभाषित श्रेणी, अल्पविकसित देशों, को सबसे लंबी संक्रमण अवधि मिलती है; उन्हें 2033 तक औषधि पेटेंट की सुरक्षा नहीं देनी है, जबकि भारत जैसे विकासशील देशों को 2005 से दवाओं पर उत्पाद पेटेंट देने पड़े।",
+  f"{WTO} -- Special and differential treatment provisions; TRIPS Council decision on LDC pharmaceutical transition (2015).",
+  "ex-wto-sdt-self-declaration")
+
+S(EX, "hard", "Consider the following statements about IMF lending:",
+  "IMF के ऋण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Extended Fund Facility supports countries with balance of payments problems that need longer-term reform.",
+   "IMF loans usually come with conditions on economic policy.",
+   "The Rapid Financing Instrument requires a full programme with detailed policy conditions."],
+  ["विस्तारित निधि सुविधा (EFF) भुगतान संतुलन की उन समस्याओं वाले देशों का समर्थन करती है जिन्हें दीर्घकालिक सुधार की आवश्यकता है।",
+   "IMF ऋण प्रायः आर्थिक नीति से जुड़ी शर्तों के साथ आते हैं।",
+   "त्वरित वित्तपोषण उपकरण (RFI) के लिए विस्तृत नीतिगत शर्तों वाला पूरा कार्यक्रम आवश्यक है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: EFF programmes, like Sri Lanka's and Pakistan's, run for three or four years with structural reforms, and conditionality is the IMF's way of ensuring that loans can be repaid. "
+  "Statement 3 is wrong: the RFI gives quick, one-off help for urgent needs such as a natural disaster or a commodity-price shock, with little or no ex post conditionality -- many countries drew on it during the pandemic.",
+  "कथन 1 और 2 सही हैं: श्रीलंका और पाकिस्तान जैसे EFF कार्यक्रम संरचनात्मक सुधारों के साथ तीन-चार वर्ष चलते हैं, और शर्तें लगाना IMF का यह सुनिश्चित करने का तरीक़ा है कि ऋण चुकाए जा सकें। "
+  "कथन 3 गलत है: RFI प्राकृतिक आपदा या वस्तु-मूल्य झटके जैसी तात्कालिक आवश्यकताओं के लिए, बहुत कम या बिना बाद की शर्तों के, त्वरित और एकबारगी सहायता देता है; महामारी में कई देशों ने इसका उपयोग किया।",
+  f"{IMF} -- IMF Lending fact sheet.",
+  "ex-imf-lending-facilities")
+
+S(EX, "hard", "Consider the following statements about the WTO Agreement on Fisheries Subsidies:",
+  "मत्स्य सब्सिडी पर WTO समझौते के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It prohibits subsidies to illegal, unreported and unregulated fishing.",
+   "It entered into force in 2025.",
+   "It also prohibits subsidies for fishing overfished stocks."],
+  ["यह अवैध, असूचित और अनियमित (IUU) मछली पकड़ने के लिए सब्सिडी पर रोक लगाता है।",
+   "यह 2025 में लागू हुआ।",
+   "यह अत्यधिक दोहन वाले मछली भंडारों (overfished stocks) को पकड़ने के लिए सब्सिडी पर भी रोक लगाता है।"],
+  C3, 2,
+  "All three statements are correct. Adopted at the Twelfth Ministerial Conference in 2022, the agreement came into force in September 2025 once two-thirds of members had accepted it; it also bans subsidies for fishing on the unregulated high seas. Rules on subsidies that drive overcapacity, which matter greatly to India's small-scale fishers, were left to a second stage of negotiations.",
+  "तीनों कथन सही हैं। 2022 के बारहवें मंत्रिस्तरीय सम्मेलन में अपनाया गया यह समझौता सितंबर 2025 में, दो-तिहाई सदस्यों की स्वीकृति के बाद, लागू हुआ; यह अनियमित खुले समुद्रों में मछली पकड़ने के लिए सब्सिडी पर भी रोक लगाता है। अति-क्षमता बढ़ाने वाली सब्सिडी के नियम, जो भारत के छोटे मछुआरों के लिए बहुत महत्त्वपूर्ण हैं, वार्ता के दूसरे चरण पर छोड़ दिए गए।",
+  f"{WTO} -- Agreement on Fisheries Subsidies.",
+  "ex-wto-fisheries-subsidies")
+
+# ================================================================ EXTERNAL: MCQs (medium 4, easy 2, hard 2)
+M(EX, "medium", "Which one of the following countries became a full member of BRICS in 2024?",
+  "निम्नलिखित में से कौन-सा देश 2024 में BRICS का पूर्ण सदस्य बना?",
+  ["Ethiopia", "Turkey", "Argentina", "Mexico"],
+  ["इथियोपिया", "तुर्किये", "अर्जेंटीना", "मेक्सिको"],
+  0,
+  "BRICS, formed by Brazil, Russia, India and China (with South Africa from 2010), admitted Egypt, Ethiopia, Iran and the UAE from 1 January 2024, and Indonesia in 2025. Argentina was invited at the Johannesburg summit of 2023 but declined under its new government; Turkey applied in 2024 and was offered the new partner-country status; Mexico is not a member.",
+  "ब्राज़ील, रूस, भारत और चीन द्वारा बनाए गए BRICS (2010 से दक्षिण अफ़्रीका सहित) ने 1 जनवरी 2024 से मिस्र, इथियोपिया, ईरान और UAE को, और 2025 में इंडोनेशिया को सदस्य बनाया। अर्जेंटीना को 2023 के जोहान्सबर्ग शिखर सम्मेलन में आमंत्रित किया गया था, पर उसकी नई सरकार ने मना कर दिया; तुर्किये ने 2024 में आवेदन किया और उसे नया साझेदार देश का दर्जा देने की पेशकश हुई; मेक्सिको सदस्य नहीं है।",
+  "Ministry of External Affairs -- BRICS.",
+  "ex-brics-2024-expansion")
+
+M(EX, "medium", "The 'most-favoured-nation' principle of the WTO means that a member must:",
+  "WTO के 'सर्वाधिक अनुकूल राष्ट्र' (most-favoured-nation) सिद्धांत का अर्थ है कि किसी सदस्य को:",
+  ["give every other member any trade advantage it gives to one member", "favour the country from which it imports the most goods",
+   "give developing countries lower tariffs than developed countries in all cases", "charge the same tariff on every product that it imports from any source"],
+  ["कोई भी व्यापारिक लाभ जो वह किसी एक सदस्य को दे, वही अन्य सभी सदस्यों को देना चाहिए", "उस देश को प्राथमिकता देनी चाहिए जिससे वह सबसे अधिक वस्तुएँ आयात करता है",
+   "सभी मामलों में विकासशील देशों को विकसित देशों से कम टैरिफ़ देना चाहिए", "किसी भी स्रोत से आयात होने वाले हर उत्पाद पर एक ही टैरिफ़ लगाना चाहिए"],
+  0,
+  "MFN means non-discrimination between trading partners: a tariff cut for one member must be extended to all. The main exceptions are free trade agreements and customs unions, and preferences for developing countries; MFN does not require the same tariff on different products.",
+  "MFN का अर्थ व्यापारिक साझेदारों के बीच भेदभाव न करना है: एक सदस्य के लिए टैरिफ़ में कटौती सभी सदस्यों तक बढ़ानी होगी। इसके मुख्य अपवाद मुक्त व्यापार समझौते और सीमा शुल्क संघ, और विकासशील देशों के लिए वरीयताएँ हैं; MFN अलग-अलग उत्पादों पर एक समान टैरिफ़ की अपेक्षा नहीं करता।",
+  f"{WTO} -- Principles of the trading system.",
+  "ex-wto-mfn")
+
+M(EX, "medium", "The 'World Investment Report' is published by:",
+  "'विश्व निवेश रिपोर्ट' (World Investment Report) कौन प्रकाशित करता है?",
+  ["UNCTAD", "The World Economic Forum", "The United Nations Development Programme", "The International Labour Organization"],
+  ["UNCTAD (संयुक्त राष्ट्र व्यापार और विकास सम्मेलन)", "विश्व आर्थिक मंच", "संयुक्त राष्ट्र विकास कार्यक्रम", "अंतरराष्ट्रीय श्रम संगठन"],
+  0,
+  "The UN Conference on Trade and Development publishes the World Investment Report every year, tracking foreign direct investment flows. The World Economic Forum publishes the Global Competitiveness and Global Gender Gap reports, the UNDP the Human Development Report, and the ILO the World Employment and Social Outlook.",
+  "संयुक्त राष्ट्र व्यापार और विकास सम्मेलन हर वर्ष विश्व निवेश रिपोर्ट प्रकाशित करता है, जो प्रत्यक्ष विदेशी निवेश के प्रवाहों पर नज़र रखती है। विश्व आर्थिक मंच वैश्विक प्रतिस्पर्धात्मकता और वैश्विक लैंगिक अंतराल रिपोर्ट, UNDP मानव विकास रिपोर्ट, और ILO विश्व रोज़गार और सामाजिक परिदृश्य प्रकाशित करता है।",
+  "UNCTAD -- World Investment Report.",
+  "ex-world-investment-report")
+
+M(EX, "medium", "The Financial Action Task Force (FATF) is mainly concerned with:",
+  "वित्तीय कार्रवाई कार्य बल (FATF) मुख्य रूप से किससे संबंधित है?",
+  ["combating money laundering and the financing of terrorism", "setting capital adequacy rules for commercial banks",
+   "fixing the exchange rates of the currencies of member countries", "lending to countries hit by financial crises"],
+  ["धन-शोधन (money laundering) और आतंकवाद के वित्तपोषण से लड़ना", "वाणिज्यिक बैंकों के लिए पूँजी पर्याप्तता नियम बनाना",
+   "सदस्य देशों की मुद्राओं की विनिमय दरें तय करना", "वित्तीय संकटों से प्रभावित देशों को ऋण देना"],
+  0,
+  "The FATF sets standards against money laundering and terror financing and reviews countries against them; those with serious gaps are placed under 'increased monitoring' (the grey list) or, in the worst cases, on the black list. India became a full member in 2010. Capital rules for banks come from the Basel Committee, and crisis lending from the IMF.",
+  "FATF धन-शोधन और आतंक-वित्तपोषण के विरुद्ध मानक तय करता है और देशों की उन पर समीक्षा करता है; गंभीर कमियों वाले देशों को 'बढ़ी हुई निगरानी' (ग्रे सूची) में, या सबसे बुरे मामलों में काली सूची में, डाला जाता है। भारत 2010 में इसका पूर्ण सदस्य बना। बैंकों के पूँजी नियम बासेल समिति से, और संकट में ऋण IMF से आते हैं।",
+  "Financial Action Task Force.",
+  "ex-fatf-role")
+
+M(EX, "easy", "Which one of the following groupings has only India, Brazil and South Africa as its members?",
+  "निम्नलिखित में से किस समूह के सदस्य केवल भारत, ब्राज़ील और दक्षिण अफ़्रीका हैं?",
+  ["IBSA", "BRICS", "BASIC", "G4"],
+  ["इब्सा (IBSA)", "ब्रिक्स (BRICS)", "बेसिक (BASIC)", "G4"],
+  0,
+  "IBSA, set up by the Brasilia Declaration of 2003, brings together three large democracies from three continents. BASIC adds China and coordinates positions in climate negotiations; the G4 -- Brazil, Germany, India and Japan -- seeks permanent seats on the UN Security Council; and BRICS includes Russia, China and newer members.",
+  "2003 की ब्रासीलिया घोषणा से बना इब्सा तीन महाद्वीपों के तीन बड़े लोकतंत्रों को जोड़ता है। बेसिक में चीन भी है और यह जलवायु वार्ताओं में साझा रुख़ तय करता है; G4, यानी ब्राज़ील, जर्मनी, भारत और जापान, संयुक्त राष्ट्र सुरक्षा परिषद में स्थायी सीटें चाहता है; और ब्रिक्स में रूस, चीन और नए सदस्य भी हैं।",
+  "Ministry of External Affairs -- IBSA.",
+  "ex-ibsa-easy")
+
+M(EX, "easy", "Which one of the following is a group of major oil-exporting countries?",
+  "निम्नलिखित में से कौन-सा प्रमुख तेल-निर्यातक देशों का समूह है?",
+  ["OPEC", "ASEAN", "SAARC", "APEC"],
+  ["ओपेक (OPEC)", "आसियान (ASEAN)", "सार्क (SAARC)", "एपेक (APEC)"],
+  0,
+  "The Organization of the Petroleum Exporting Countries, founded in 1960, coordinates oil output among its members, such as Saudi Arabia, Iraq, Iran and the UAE; with Russia and other allies it forms 'OPEC+'. ASEAN, SAARC and APEC are regional groupings for broader cooperation.",
+  "1960 में स्थापित पेट्रोलियम निर्यातक देशों का संगठन अपने सदस्यों, जैसे सऊदी अरब, इराक़, ईरान और UAE, के बीच तेल उत्पादन का समन्वय करता है; रूस और अन्य सहयोगियों के साथ यह 'ओपेक+' बनाता है। आसियान, सार्क और एपेक व्यापक सहयोग के लिए क्षेत्रीय समूह हैं।",
+  "Organization of the Petroleum Exporting Countries.",
+  "ex-opec-easy")
+
+M(EX, "hard", "India decided in 2019 not to join the Regional Comprehensive Economic Partnership (RCEP). Which one of the following was its main concern?",
+  "भारत ने 2019 में क्षेत्रीय व्यापक आर्थिक भागीदारी (RCEP) में शामिल न होने का निर्णय लिया। निम्नलिखित में से कौन-सी उसकी मुख्य चिंता थी?",
+  ["A likely surge of cheaper imports, especially from China, without adequate safeguards",
+   "A requirement that members adopt a common external tariff on imports from non-members",
+   "Its requirement that members allow the free movement of workers among themselves",
+   "A clause obliging members to give up legal protection for their geographical indications"],
+  ["विशेषकर चीन से सस्ते आयात में संभावित उछाल, पर्याप्त सुरक्षा उपायों के बिना",
+   "यह शर्त कि सदस्य गैर-सदस्यों से आयात पर एक साझा बाहरी टैरिफ़ अपनाएँ",
+   "यह शर्त कि सदस्य आपस में कामगारों की मुक्त आवाजाही की अनुमति दें",
+   "यह खंड कि सदस्य अपने भौगोलिक संकेतकों (GI) की क़ानूनी सुरक्षा छोड़ दें"],
+  0,
+  "India, which already ran large trade deficits with China and several RCEP members, feared that deep tariff cuts would flood its markets with Chinese goods and hurt its farmers, dairy sector and small industry, and it found the proposed safeguards and rules of origin inadequate. RCEP, in force since 2022, is a free trade agreement, not a customs union, so it sets no common external tariff; it protects geographical indications rather than removing them; and India had in fact sought easier movement of its professionals, which the deal did not offer.",
+  "भारत का चीन और कई RCEP सदस्यों के साथ पहले से बड़ा व्यापार घाटा था; उसे डर था कि गहरी टैरिफ़ कटौती उसके बाज़ारों को चीनी वस्तुओं से भर देगी और उसके किसानों, डेयरी क्षेत्र और लघु उद्योग को हानि पहुँचाएगी, और उसे प्रस्तावित सुरक्षा उपाय तथा उद्गम के नियम (rules of origin) अपर्याप्त लगे। 2022 से लागू RCEP एक मुक्त व्यापार समझौता है, सीमा शुल्क संघ नहीं, इसलिए इसमें कोई साझा बाहरी टैरिफ़ नहीं है; यह भौगोलिक संकेतकों की सुरक्षा करता है, उन्हें हटाता नहीं; और भारत तो अपने पेशेवरों की आसान आवाजाही चाहता था, जो इस समझौते में नहीं मिली।",
+  "Ministry of Commerce and Industry; Ministry of External Affairs -- statement on RCEP (2019).",
+  "ex-rcep-india-opt-out")
+
+M(EX, "hard", "Which one of the following countries is NOT a member of the European Free Trade Association (EFTA)?",
+  "निम्नलिखित में से कौन-सा देश यूरोपीय मुक्त व्यापार संघ (EFTA) का सदस्य नहीं है?",
+  ["Sweden", "Norway", "Iceland", "Liechtenstein"],
+  ["स्वीडन", "नॉर्वे", "आइसलैंड", "लिकटेंस्टीन"],
+  0,
+  "EFTA today has four members -- Switzerland, Norway, Iceland and Liechtenstein -- none of which is in the European Union. Sweden was a founding member of EFTA in 1960 but left in 1995 on joining the EU, which makes it the trap.",
+  "EFTA के आज चार सदस्य हैं, यानी स्विट्ज़रलैंड, नॉर्वे, आइसलैंड और लिकटेंस्टीन, और इनमें से कोई भी यूरोपीय संघ में नहीं है। स्वीडन 1960 में EFTA का संस्थापक सदस्य था, पर 1995 में EU में शामिल होने पर इससे अलग हो गया; इसीलिए यह जाल है।",
+  "European Free Trade Association.",
+  "ex-efta-members")
+
+# ================================================================ EXTERNAL: STATEMENT-I/II (medium 3, easy 1, hard 1)
+A(EX, "medium",
+  "The WTO's system for settling disputes has been weakened since December 2019.",
+  "दिसंबर 2019 से WTO की विवाद निपटान प्रणाली कमज़ोर हो गई है।",
+  "The United States has blocked the appointment of new members to the WTO's Appellate Body.",
+  "संयुक्त राज्य अमेरिका ने WTO के अपीलीय निकाय में नए सदस्यों की नियुक्ति रोक रखी है।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. With too few members left to hear appeals, a losing party can appeal a panel ruling 'into the void' and keep the dispute unresolved; some members have set up a Multi-Party Interim Appeal Arrangement as a stopgap, which India has not joined.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। अपील सुनने के लिए बहुत कम सदस्य बचने से हारने वाला पक्ष किसी पैनल निर्णय के विरुद्ध 'शून्य में' अपील करके विवाद को अनसुलझा रख सकता है; कुछ सदस्यों ने अस्थायी उपाय के रूप में बहुपक्षीय अंतरिम अपील व्यवस्था (MPIA) बनाई है, जिसमें भारत शामिल नहीं हुआ।",
+  f"{WTO} -- Appellate Body.",
+  "ex-wto-appellate-body-crisis")
+
+A(EX, "medium",
+  "India is among the founding members of the IMF and the World Bank.",
+  "भारत IMF और विश्व बैंक के संस्थापक सदस्यों में से है।",
+  "The IMF now has 191 member countries.",
+  "अब IMF के 191 सदस्य देश हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. India took part in the Bretton Woods conference and was among the original members when the two institutions began work in 1945-46; the IMF's membership grew over the decades and reached 191 with Liechtenstein in 2024, which has nothing to do with India's founding role.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। भारत ने ब्रेटन वुड्स सम्मेलन में भाग लिया और 1945-46 में दोनों संस्थाओं के काम शुरू करते समय मूल सदस्यों में था; IMF की सदस्यता दशकों में बढ़ी और 2024 में लिकटेंस्टीन के साथ 191 हो गई, जिसका भारत की संस्थापक भूमिका से कोई संबंध नहीं है।",
+  f"{IMF} -- Members; World Bank -- Member countries.",
+  "ex-india-founding-bretton-woods")
+
+A(EX, "medium",
+  "The New Development Bank lends for infrastructure and sustainable development projects.",
+  "न्यू डेवलपमेंट बैंक अवसंरचना और सतत विकास परियोजनाओं के लिए ऋण देता है।",
+  "Membership of the New Development Bank is restricted to the five founding BRICS countries.",
+  "न्यू डेवलपमेंट बैंक की सदस्यता पाँच संस्थापक BRICS देशों तक सीमित है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. The NDB was set up by the BRICS countries under an agreement signed at Fortaleza in 2014, with equal shares for the five founders; membership is open to UN members, and countries such as Bangladesh, the UAE, Egypt and Algeria have joined since. It has financed Indian projects in metro rail, roads and water supply.",
+  "कथन-I सही है पर कथन-II गलत है। NDB को BRICS देशों ने 2014 में फ़ोर्टालेज़ा में हस्ताक्षरित एक समझौते के तहत बनाया, जिसमें पाँचों संस्थापकों के बराबर शेयर हैं; सदस्यता संयुक्त राष्ट्र के सदस्यों के लिए खुली है, और तब से बांग्लादेश, UAE, मिस्र और अल्जीरिया जैसे देश इसमें शामिल हुए हैं। इसने भारत में मेट्रो रेल, सड़कों और जलापूर्ति की परियोजनाओं का वित्तपोषण किया है।",
+  "New Development Bank.",
+  "ex-ndb-members")
+
+A(EX, "easy",
+  "Countries join the WTO to secure fair and predictable access to other members' markets.",
+  "देश अन्य सदस्यों के बाज़ारों तक निष्पक्ष और पूर्वानुमेय पहुँच पाने के लिए WTO में शामिल होते हैं।",
+  "WTO members commit to rules such as most-favoured-nation treatment and ceilings on their tariffs.",
+  "WTO सदस्य सर्वाधिक अनुकूल राष्ट्र व्यवहार और अपने टैरिफ़ पर अधिकतम सीमाओं जैसे नियमों के प्रति प्रतिबद्ध होते हैं।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Because every member binds its tariffs at agreed maximum levels and must not discriminate between partners, exporters can plan knowing that the rules will not change overnight.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। चूँकि हर सदस्य अपने टैरिफ़ को तय अधिकतम स्तरों पर बाँधता है और साझेदारों के बीच भेदभाव नहीं कर सकता, इसलिए निर्यातक यह जानते हुए योजना बना सकते हैं कि नियम रातों-रात नहीं बदलेंगे।",
+  f"{WTO} -- Understanding the WTO.",
+  "ex-wto-predictability-easy")
+
+A(EX, "hard",
+  "The G20 has a permanent secretariat that runs its work between summits.",
+  "G20 का एक स्थायी सचिवालय है जो शिखर सम्मेलनों के बीच उसका काम चलाता है।",
+  "G20 leaders' summits began in 2008, in response to the global financial crisis.",
+  "G20 नेताओं के शिखर सम्मेलन 2008 में वैश्विक वित्तीय संकट के जवाब में शुरू हुए।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct. The G20 has no permanent secretariat or staff: the presidency rotates each year, the host runs a temporary secretariat, and a 'troika' of the past, present and next presidencies provides continuity. It began in 1999, after the Asian financial crisis, as a forum of finance ministers and central bank governors, and was raised to the leaders' level with the Washington summit of November 2008.",
+  "कथन-I गलत है पर कथन-II सही है। G20 का कोई स्थायी सचिवालय या कर्मचारी नहीं है: अध्यक्षता हर वर्ष बदलती है, मेज़बान एक अस्थायी सचिवालय चलाता है, और पिछली, वर्तमान और अगली अध्यक्षताओं की 'त्रयी' (troika) निरंतरता बनाए रखती है। इसकी शुरुआत 1999 में, एशियाई वित्तीय संकट के बाद, वित्त मंत्रियों और केंद्रीय बैंक गवर्नरों के मंच के रूप में हुई, और नवंबर 2008 के वॉशिंगटन शिखर सम्मेलन के साथ इसे नेताओं के स्तर पर ले जाया गया।",
+  "Ministry of External Affairs -- G20.",
+  "ex-g20-secretariat-summits")
+
+# ================================================================ EXTERNAL: PAIRS (easy 1, medium 1)
+P(EX, "easy", "Consider the following pairs of organisations and their headquarters:",
+  "संगठनों और उनके मुख्यालयों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["OECD : Paris", "New Development Bank : Shanghai", "OPEC : Riyadh", "UNCTAD : Geneva"],
+  ["OECD : पेरिस", "न्यू डेवलपमेंट बैंक : शंघाई", "ओपेक : रियाद", "UNCTAD : जिनेवा"],
+  2,
+  "Pairs 1, 2 and 4 are correct. "
+  "Pair 3 is wrong: although Saudi Arabia is OPEC's leading producer, the organisation's headquarters are in Vienna, Austria.",
+  "युग्म 1, 2 और 4 सही हैं। "
+  "युग्म 3 गलत है: यद्यपि सऊदी अरब ओपेक का प्रमुख उत्पादक है, संगठन का मुख्यालय ऑस्ट्रिया के वियना में है।",
+  "OECD; New Development Bank; OPEC; UNCTAD.",
+  "ex-headquarters-pairs-easy")
+
+P(EX, "medium", "Consider the following pairs of WTO agreements and their subjects:",
+  "WTO समझौतों और उनके विषयों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Agreement on Agriculture : Farm subsidies and market access", "SPS Agreement : Food safety and animal and plant health",
+   "TBT Agreement : Technical regulations and standards", "TRIPS Agreement : Intellectual property rights"],
+  ["कृषि समझौता : कृषि सब्सिडी और बाज़ार पहुँच", "SPS समझौता : खाद्य सुरक्षा और पशु तथा पादप स्वास्थ्य",
+   "TBT समझौता : तकनीकी विनियम और मानक", "TRIPS समझौता : बौद्धिक संपदा अधिकार"],
+  3,
+  "All four pairs are correct. The SPS and TBT agreements let members set health, safety and product standards but require them to be science-based and not disguised barriers to trade; TRIPS sets minimum standards for patents, copyright and trademarks, with flexibilities such as compulsory licensing for public health. "
+  "A student who expects one mismatch will fall for 'Only three pairs'.",
+  "चारों युग्म सही हैं। SPS और TBT समझौते सदस्यों को स्वास्थ्य, सुरक्षा और उत्पाद मानक तय करने देते हैं, पर अपेक्षा करते हैं कि वे विज्ञान-आधारित हों और व्यापार की छिपी बाधाएँ न बनें; TRIPS पेटेंट, कॉपीराइट और ट्रेडमार्क के न्यूनतम मानक तय करता है, जिसमें सार्वजनिक स्वास्थ्य के लिए अनिवार्य लाइसेंसिंग जैसी छूटें हैं। "
+  "जो विद्यार्थी एक बेमेल की अपेक्षा करता है, वह 'केवल तीन युग्म' के जाल में फँसेगा।",
+  f"{WTO} -- Legal texts.",
+  "ex-wto-agreements-pairs")
+
+# ================================================================ GROWTH & DEVELOPMENT: MEDIUM STATEMENTS (9)
+S(GD, "medium", "Consider the following statements about planning in India:",
+  "भारत में नियोजन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Eighth Five Year Plan moved towards 'indicative planning', with a smaller role for the public sector.",
+   "The Fifth Five Year Plan stressed the removal of poverty and introduced the Minimum Needs Programme.",
+   "The National Development Council, which approved the Five Year Plans, was set up under an Act of Parliament."],
+  ["आठवीं पंचवर्षीय योजना सार्वजनिक क्षेत्र की छोटी भूमिका के साथ 'सांकेतिक नियोजन' (indicative planning) की ओर बढ़ी।",
+   "पाँचवीं पंचवर्षीय योजना ने ग़रीबी उन्मूलन पर ज़ोर दिया और न्यूनतम आवश्यकता कार्यक्रम शुरू किया।",
+   "पंचवर्षीय योजनाओं को स्वीकृति देने वाली राष्ट्रीय विकास परिषद संसद के एक अधिनियम के तहत बनी थी।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Eighth Plan (1992-97), the first after the 1991 reforms, shifted the state towards setting goals and building infrastructure while markets guided private investment. The Fifth Plan (1974-79) put removal of poverty and self-reliance at the centre, and its Minimum Needs Programme aimed at elementary education, rural health, drinking water, rural roads and housing. "
+  "Statement 3 is wrong: the National Development Council was set up in 1952 by an executive resolution; chaired by the Prime Minister, it brought the Chief Ministers into approving the Plans.",
+  "कथन 1 और 2 सही हैं। 1991 के सुधारों के बाद की पहली, आठवीं योजना (1992-97) ने राज्य की भूमिका को लक्ष्य तय करने और अवसंरचना बनाने की ओर मोड़ा, जबकि निजी निवेश को बाज़ार दिशा देने लगा। पाँचवीं योजना (1974-79) ने ग़रीबी उन्मूलन और आत्मनिर्भरता को केंद्र में रखा, और इसके न्यूनतम आवश्यकता कार्यक्रम का लक्ष्य प्रारंभिक शिक्षा, ग्रामीण स्वास्थ्य, पेयजल, ग्रामीण सड़कें और आवास था। "
+  "कथन 3 गलत है: राष्ट्रीय विकास परिषद 1952 में एक कार्यकारी संकल्प से बनी; प्रधानमंत्री की अध्यक्षता वाली इस परिषद ने योजनाओं की स्वीकृति में मुख्यमंत्रियों को शामिल किया।",
+  f"{NCD} -- Indian Economy 1950-1990; Planning Commission -- Five Year Plan documents.",
+  "gd-plans-eighth-fifth-ndc")
+
+S(GD, "medium", "Consider the following statements about India's development strategy between 1950 and 1990:",
+  "1950 और 1990 के बीच भारत की विकास रणनीति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Import substitution was the main strategy of trade policy.",
+   "The Industrial Policy Resolution of 1956 reserved a number of industries for the public sector.",
+   "Industrial licensing was used to regulate the location and expansion of private industry."],
+  ["आयात प्रतिस्थापन व्यापार नीति की मुख्य रणनीति थी।",
+   "1956 के औद्योगिक नीति प्रस्ताव ने कई उद्योगों को सार्वजनिक क्षेत्र के लिए आरक्षित किया।",
+   "निजी उद्योग के स्थान और विस्तार को नियंत्रित करने के लिए औद्योगिक लाइसेंस प्रणाली का उपयोग किया गया।"],
+  C3, 2,
+  "All three statements are correct. Planners sought self-reliance by producing at home what had been imported, behind tariffs and quotas; the 1956 Resolution put 17 industries, including arms, atomic energy, railways and heavy industry, in Schedule A for the state alone; and a licence was needed to set up a factory, expand capacity or change products -- a tool also used to steer industry towards backward regions. The same controls were later blamed for inefficiency and delay.",
+  "तीनों कथन सही हैं। योजनाकारों ने शुल्कों और कोटा के संरक्षण में, पहले आयात होने वाली वस्तुएँ देश में बनाकर आत्मनिर्भरता चाही; 1956 के प्रस्ताव ने हथियार, परमाणु ऊर्जा, रेलवे और भारी उद्योग सहित 17 उद्योगों को अनुसूची A में केवल राज्य के लिए रखा; और कारख़ाना लगाने, क्षमता बढ़ाने या उत्पाद बदलने के लिए लाइसेंस चाहिए था, जिसका उपयोग उद्योगों को पिछड़े क्षेत्रों की ओर ले जाने के लिए भी होता था। बाद में इन्हीं नियंत्रणों को अकुशलता और देरी के लिए दोषी ठहराया गया।",
+  f"{NCD} -- Indian Economy 1950-1990.",
+  "gd-1950-90-strategy")
+
+S(GD, "medium", "Consider the following statements about India's Five Year Plans:",
+  "भारत की पंचवर्षीय योजनाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The First Five Year Plan gave priority to agriculture.",
+   "The Second Five Year Plan, based on the Mahalanobis model, stressed agriculture over industry.",
+   "The Twelfth Five Year Plan ended in 2012."],
+  ["पहली पंचवर्षीय योजना ने कृषि को प्राथमिकता दी।",
+   "महालनोबिस मॉडल पर आधारित दूसरी पंचवर्षीय योजना ने उद्योग की तुलना में कृषि पर ज़ोर दिया।",
+   "बारहवीं पंचवर्षीय योजना 2012 में समाप्त हुई।"],
+  C3, 0,
+  "Only statement 1 is correct: coming after Partition and food shortages, the First Plan (1951-56) put irrigation and farming first. "
+  "Statement 2 is wrong: the Second Plan (1956-61) turned to rapid industrialisation, with heavy and capital-goods industries in the public sector -- the core of the Mahalanobis strategy. "
+  "Statement 3 is wrong: the Twelfth Plan ran from 2012 to 2017 and was the last; the government then moved to vision and strategy documents.",
+  "केवल कथन 1 सही है: विभाजन और खाद्य कमी के बाद आई पहली योजना (1951-56) ने सिंचाई और खेती को सबसे आगे रखा। "
+  "कथन 2 गलत है: दूसरी योजना (1956-61) ने सार्वजनिक क्षेत्र में भारी और पूँजीगत वस्तु उद्योगों के साथ तेज़ औद्योगीकरण की ओर रुख़ किया; यही महालनोबिस रणनीति का सार था। "
+  "कथन 3 गलत है: बारहवीं योजना 2012 से 2017 तक चली और अंतिम थी; इसके बाद सरकार दृष्टि और रणनीति दस्तावेज़ों की ओर बढ़ी।",
+  f"{NCD} -- Indian Economy 1950-1990.",
+  "gd-five-year-plans")
+
+S(GD, "medium", "Consider the following statements about the economic reforms of 1991:",
+  "1991 के आर्थिक सुधारों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The reforms were triggered by a balance of payments crisis.",
+   "Industrial licensing was abolished for most industries.",
+   "The rupee was revalued upwards in July 1991."],
+  ["ये सुधार भुगतान संतुलन के संकट से शुरू हुए।",
+   "अधिकांश उद्योगों के लिए औद्योगिक लाइसेंस प्रणाली समाप्त कर दी गई।",
+   "जुलाई 1991 में रुपये का ऊपर की ओर पुनर्मूल्यन (revaluation) किया गया।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. With reserves enough for barely two weeks of imports, India pledged gold and turned to the IMF; the New Industrial Policy of July 1991 ended licensing except for a short list of industries, opened more sectors to private and foreign investment and cut the areas reserved for the public sector. "
+  "Statement 3 is wrong: the rupee was devalued, by about 18-19 per cent in two steps in early July 1991, to make exports competitive.",
+  "कथन 1 और 2 सही हैं। मुश्किल से दो सप्ताह के आयात लायक भंडार के साथ भारत ने सोना गिरवी रखा और IMF की ओर गया; जुलाई 1991 की नई औद्योगिक नीति ने उद्योगों की एक छोटी सूची को छोड़कर लाइसेंस प्रणाली समाप्त की, अधिक क्षेत्रों को निजी और विदेशी निवेश के लिए खोला और सार्वजनिक क्षेत्र के लिए आरक्षित क्षेत्र घटाए। "
+  "कथन 3 गलत है: निर्यात को प्रतिस्पर्धी बनाने के लिए जुलाई 1991 के आरंभ में दो चरणों में रुपये का लगभग 18-19 प्रतिशत अवमूल्यन (devaluation) किया गया।",
+  f"{NCD} -- Liberalisation, Privatisation and Globalisation.",
+  "gd-1991-reforms")
+
+S(GD, "medium", "Consider the following statements about the measurement of poverty in India:",
+  "भारत में ग़रीबी के मापन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Tendulkar committee anchored its poverty line to calorie norms of 2,400 kcal in rural and 2,100 kcal in urban areas.",
+   "The poverty line proposed by the Rangarajan committee was lower than the Tendulkar line.",
+   "India's official poverty lines are based on household income rather than consumption expenditure."],
+  ["तेंदुलकर समिति ने अपनी ग़रीबी रेखा को ग्रामीण क्षेत्रों में 2,400 और शहरी क्षेत्रों में 2,100 किलो-कैलोरी के मानकों से जोड़ा।",
+   "रंगराजन समिति द्वारा प्रस्तावित ग़रीबी रेखा तेंदुलकर रेखा से कम थी।",
+   "भारत की आधिकारिक ग़रीबी रेखाएँ उपभोग व्यय के बजाय पारिवारिक आय पर आधारित हैं।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: the calorie norms of 2,400 and 2,100 kcal came from the 1979 task force headed by Y.K. Alagh; the Tendulkar committee (2009) moved away from calorie anchoring to a basket of goods and services that included spending on health and education, and its method gave 21.9 per cent poor in 2011-12. "
+  "Statement 2 is wrong: the Rangarajan committee (2014) set a higher line -- about 32 rupees a day in rural areas and 47 in urban areas against Tendulkar's 27 and 33 -- and so estimated a higher 29.5 per cent. "
+  "Statement 3 is wrong: India measures poverty by household consumption expenditure from the National Sample Survey -- income is hard to measure for farmers and informal workers, and consumption better reflects living standards.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: 2,400 और 2,100 किलो-कैलोरी के मानक 1979 में वाई.के. अलघ की अध्यक्षता वाले कार्य बल से आए थे; तेंदुलकर समिति (2009) ने कैलोरी पर टिकने के बजाय स्वास्थ्य और शिक्षा पर ख़र्च सहित वस्तुओं और सेवाओं की एक टोकरी अपनाई, और इसकी पद्धति ने 2011-12 में 21.9 प्रतिशत ग़रीब बताए। "
+  "कथन 2 गलत है: रंगराजन समिति (2014) ने ऊँची रेखा तय की, यानी तेंदुलकर के 27 और 33 रुपये के मुक़ाबले ग्रामीण क्षेत्रों में लगभग 32 और शहरी क्षेत्रों में 47 रुपये प्रतिदिन, और इसलिए 29.5 प्रतिशत का ऊँचा अनुमान दिया। "
+  "कथन 3 गलत है: भारत राष्ट्रीय प्रतिदर्श सर्वेक्षण से प्राप्त पारिवारिक उपभोग व्यय से ग़रीबी मापता है; किसानों और अनौपचारिक कामगारों की आय मापना कठिन है, और उपभोग जीवन-स्तर को बेहतर दर्शाता है।",
+  "Planning Commission -- Report of the Expert Group (Rangarajan, 2014); Tendulkar Expert Group (2009); Alagh Task Force (1979).",
+  "gd-poverty-lines")
+
+S(GD, "medium", "Consider the following statements about the national Multidimensional Poverty Index (MPI):",
+  "राष्ट्रीय बहुआयामी ग़रीबी सूचकांक (MPI) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["NITI Aayog's national MPI uses data from the National Family Health Survey.",
+   "It measures deprivation in health, education and standard of living.",
+   "A person is counted as multidimensionally poor if deprived in any one of its indicators."],
+  ["NITI आयोग का राष्ट्रीय MPI राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण के आँकड़ों का उपयोग करता है।",
+   "यह स्वास्थ्य, शिक्षा और जीवन-स्तर में वंचना को मापता है।",
+   "किसी व्यक्ति को बहुआयामी रूप से ग़रीब माना जाता है यदि वह इसके किसी भी एक संकेतक में वंचित हो।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The index uses 12 indicators -- the 10 of the global MPI plus maternal health and bank accounts -- such as nutrition, school attendance, cooking fuel, sanitation, drinking water, electricity, housing and assets. "
+  "Statement 3 is wrong: a single deprivation is not enough -- a person is counted as multidimensionally poor only if deprived in a third or more of the weighted indicators.",
+  "कथन 1 और 2 सही हैं। यह सूचकांक 12 संकेतकों का उपयोग करता है, यानी वैश्विक MPI के 10 और मातृ स्वास्थ्य तथा बैंक खाते, जैसे पोषण, विद्यालय उपस्थिति, खाना पकाने का ईंधन, स्वच्छता, पेयजल, बिजली, आवास और परिसंपत्तियाँ। "
+  "कथन 3 गलत है: एक वंचना पर्याप्त नहीं है; किसी व्यक्ति को बहुआयामी रूप से ग़रीब तभी गिना जाता है जब वह भारित संकेतकों के एक-तिहाई या अधिक में वंचित हो।",
+  f"{NITI} -- National Multidimensional Poverty Index.",
+  "gd-national-mpi")
+
+S(GD, "medium", "Consider the following statements about the measurement of inequality:",
+  "असमानता के मापन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A Gini coefficient of 0 means perfect equality.",
+   "The Lorenz curve shows the cumulative share of income held by cumulative shares of the population.",
+   "The Kuznets curve suggests that inequality first rises and then falls as an economy develops."],
+  ["0 का गिनी गुणांक पूर्ण समानता दर्शाता है।",
+   "लॉरेंज़ वक्र जनसंख्या के संचयी हिस्सों के पास आय के संचयी हिस्से को दर्शाता है।",
+   "कुज़नेट्स वक्र संकेत देता है कि अर्थव्यवस्था के विकास के साथ असमानता पहले बढ़ती है और फिर घटती है।"],
+  C3, 2,
+  "All three statements are correct. The further the Lorenz curve bows away from the line of equality, the larger the Gini coefficient, which is the area between them as a share of the whole triangle. Simon Kuznets's inverted-U pattern, drawn from the history of rich countries, has been questioned since inequality rose again in many of them after 1980.",
+  "तीनों कथन सही हैं। लॉरेंज़ वक्र समानता की रेखा से जितना दूर झुकता है, गिनी गुणांक उतना बड़ा होता है, जो दोनों के बीच का क्षेत्र पूरे त्रिभुज के हिस्से के रूप में है। साइमन कुज़नेट्स का उलटे-U वाला प्रतिरूप, जो धनी देशों के इतिहास से निकाला गया, इसलिए प्रश्नों के घेरे में आया कि 1980 के बाद उनमें से कई में असमानता फिर बढ़ी।",
+  f"{NCD}.",
+  "gd-inequality-gini-lorenz-kuznets")
+
+S(GD, "medium", "Consider the following statements about types of unemployment:",
+  "बेरोज़गारी के प्रकारों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Disguised unemployment exists when more people work on a job than are needed, so that the marginal product of some of them is zero.",
+   "Frictional unemployment arises from a long-term mismatch between workers' skills and the jobs available.",
+   "Cyclical unemployment arises from the seasonal pattern of farm operations."],
+  ["प्रच्छन्न (disguised) बेरोज़गारी तब होती है जब किसी काम में आवश्यकता से अधिक लोग लगे हों, जिससे उनमें से कुछ का सीमांत उत्पाद शून्य हो।",
+   "घर्षणात्मक (frictional) बेरोज़गारी कामगारों के कौशल और उपलब्ध नौकरियों के बीच दीर्घकालिक असंगति से पैदा होती है।",
+   "चक्रीय (cyclical) बेरोज़गारी कृषि कार्यों के मौसमी प्रतिरूप से पैदा होती है।"],
+  C3, 0,
+  "Only statement 1 is correct: it is common on small family farms, where removing some workers would not reduce output. "
+  "Statement 2 is wrong: frictional unemployment is the short spell between leaving one job and finding another; a lasting mismatch of skills, often caused by changes in technology, is structural unemployment. "
+  "Statement 3 is wrong: joblessness tied to the farm calendar -- work at sowing and harvest, little in between -- is seasonal unemployment; cyclical unemployment rises and falls with the business cycle, as demand slumps in a recession.",
+  "केवल कथन 1 सही है: यह छोटे पारिवारिक खेतों पर आम है, जहाँ कुछ कामगारों को हटाने से उत्पादन नहीं घटेगा। "
+  "कथन 2 गलत है: घर्षणात्मक बेरोज़गारी एक नौकरी छोड़ने और दूसरी पाने के बीच की छोटी अवधि है; कौशल की स्थायी असंगति, जो प्रायः प्रौद्योगिकी में बदलाव से होती है, संरचनात्मक बेरोज़गारी है। "
+  "कथन 3 गलत है: खेती के कैलेंडर से जुड़ी बेरोज़गारी, यानी बुआई और कटाई पर काम और बीच में बहुत कम, मौसमी बेरोज़गारी है; चक्रीय बेरोज़गारी व्यापार चक्र के साथ घटती-बढ़ती है, जैसे मंदी में माँग गिरने पर।",
+  f"{NCD} -- Employment: Growth, Informalisation and Other Issues.",
+  "gd-unemployment-types")
+
+S(GD, "medium", "Consider the following statements about the Periodic Labour Force Survey (PLFS):",
+  "आवधिक श्रम बल सर्वेक्षण (PLFS) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is conducted by the National Statistics Office.",
+   "Since 2025 it has been releasing monthly estimates of unemployment.",
+   "It does not cover rural India."],
+  ["इसे राष्ट्रीय सांख्यिकी कार्यालय (NSO) संचालित करता है।",
+   "2025 से यह बेरोज़गारी के मासिक अनुमान जारी कर रहा है।",
+   "यह ग्रामीण भारत को शामिल नहीं करता।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Begun in 2017-18 to replace the five-yearly employment surveys, the PLFS reports the labour force participation rate, the worker-population ratio and the unemployment rate by 'usual status' and 'current weekly status'; the redesigned survey from 2025 gives monthly and quarterly figures. "
+  "Statement 3 is wrong: it covers both rural and urban India; only its earlier quarterly bulletins were limited to urban areas.",
+  "कथन 1 और 2 सही हैं। पंचवर्षीय रोज़गार सर्वेक्षणों के स्थान पर 2017-18 में शुरू हुआ PLFS 'सामान्य स्थिति' और 'वर्तमान साप्ताहिक स्थिति' के आधार पर श्रम बल भागीदारी दर, कामगार-जनसंख्या अनुपात और बेरोज़गारी दर बताता है; 2025 से नए रूप में यह मासिक और तिमाही आँकड़े देता है। "
+  "कथन 3 गलत है: यह ग्रामीण और शहरी, दोनों भारत को शामिल करता है; केवल इसके पहले के तिमाही बुलेटिन शहरी क्षेत्रों तक सीमित थे।",
+  "Ministry of Statistics and Programme Implementation -- Periodic Labour Force Survey.",
+  "gd-plfs")
+
+# ================================================================ GROWTH & DEVELOPMENT: EASY STATEMENTS (3)
+S(GD, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Economic growth means a rise in a country's real output over time.",
+   "Economic growth and economic development are the same concept."],
+  ["आर्थिक वृद्धि का अर्थ समय के साथ किसी देश के वास्तविक उत्पादन में वृद्धि है।",
+   "आर्थिक वृद्धि और आर्थिक विकास एक ही अवधारणा हैं।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: development is a wider idea -- it includes better health, education, living conditions and choices for people, which may not follow automatically from higher output.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: विकास एक व्यापक विचार है; इसमें लोगों के बेहतर स्वास्थ्य, शिक्षा, रहन-सहन और विकल्प शामिल हैं, जो अधिक उत्पादन से अपने-आप नहीं आते।",
+  "NCERT Class X, Understanding Economic Development -- Development.",
+  "gd-growth-vs-development-easy")
+
+S(GD, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A rise in GDP shows that income is being shared more equally.",
+   "GDP measures the value of the final goods and services produced within a country."],
+  ["GDP में वृद्धि दर्शाती है कि आय अधिक समान रूप से बँट रही है।",
+   "GDP किसी देश के भीतर उत्पादित अंतिम वस्तुओं और सेवाओं के मूल्य को मापता है।"],
+  T2, 1,
+  "Only statement 2 is correct. Statement 1 is wrong: GDP is a total; it says nothing about how income is shared, and it can rise while inequality widens.",
+  "केवल कथन 2 सही है। कथन 1 गलत है: GDP एक कुल योग है; यह आय के बँटवारे के बारे में कुछ नहीं बताता, और असमानता बढ़ते समय भी बढ़ सकता है।",
+  "NCERT Class X, Understanding Economic Development -- Development.",
+  "gd-gdp-meaning-easy")
+
+S(GD, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The literacy rate and life expectancy are indicators of development.",
+   "A large share of India's rural population works in agriculture."],
+  ["साक्षरता दर और जीवन प्रत्याशा विकास के संकेतक हैं।",
+   "भारत की ग्रामीण जनसंख्या का एक बड़ा भाग कृषि में काम करता है।"],
+  T2, 2,
+  "Both statements are correct. Agriculture still employs about 45 per cent of India's workforce, most of it in villages, although it produces less than a fifth of GDP -- one reason rural incomes lag behind.",
+  "दोनों कथन सही हैं। कृषि आज भी भारत के लगभग 45 प्रतिशत कामगारों को रोज़गार देती है, जिनमें से अधिकांश गाँवों में हैं, यद्यपि यह GDP का पाँचवें भाग से भी कम उत्पादन करती है; ग्रामीण आय के पीछे रहने का यह एक कारण है।",
+  "NCERT Class X, Understanding Economic Development; Periodic Labour Force Survey.",
+  "gd-development-indicators-easy")
+
+# ================================================================ GROWTH & DEVELOPMENT: HARD STATEMENTS (3)
+S(GD, "hard", "Consider the following statements about growth theory:",
+  "वृद्धि सिद्धांत के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In the Harrod-Domar model, the growth rate depends on the saving rate and the capital-output ratio.",
+   "A higher incremental capital-output ratio (ICOR) means that capital is being used more efficiently.",
+   "The Solow model predicts that, other things being equal, poorer economies tend to grow faster than richer ones."],
+  ["हैरॉड-डोमर मॉडल में वृद्धि दर बचत दर और पूँजी-उत्पाद अनुपात पर निर्भर करती है।",
+   "ऊँचे वृद्धिशील पूँजी-उत्पाद अनुपात (ICOR) का अर्थ है कि पूँजी का अधिक कुशलता से उपयोग हो रहा है।",
+   "सोलो मॉडल भविष्यवाणी करता है कि अन्य बातें समान रहने पर, ग़रीब अर्थव्यवस्थाएँ धनी अर्थव्यवस्थाओं से तेज़ी से बढ़ती हैं।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. In Harrod-Domar, growth equals the saving rate divided by the ICOR -- the logic behind India's early plans of raising saving and investment. In the Solow model, capital earns higher returns where it is scarce, so poorer economies can catch up, converging towards similar income levels if they share the same saving, technology and institutions. "
+  "Statement 2 is wrong: a higher ICOR means more capital is needed for each extra unit of output -- capital is being used less efficiently.",
+  "कथन 1 और 3 सही हैं। हैरॉड-डोमर में वृद्धि बचत दर को ICOR से भाग देने के बराबर है; भारत की आरंभिक योजनाओं में बचत और निवेश बढ़ाने के पीछे यही तर्क था। सोलो मॉडल में पूँजी वहाँ अधिक प्रतिफल देती है जहाँ वह दुर्लभ है, इसलिए ग़रीब अर्थव्यवस्थाएँ बराबरी कर सकती हैं और समान बचत, प्रौद्योगिकी और संस्थाएँ होने पर मिलते-जुलते आय स्तरों की ओर अभिसरित होती हैं। "
+  "कथन 2 गलत है: ऊँचे ICOR का अर्थ है कि उत्पादन की हर अतिरिक्त इकाई के लिए अधिक पूँजी चाहिए, यानी पूँजी का कम कुशलता से उपयोग हो रहा है।",
+  f"{NCD}; Economic Survey -- chapters on investment and growth.",
+  "gd-growth-models-icor")
+
+S(GD, "hard", "Consider the following statements about the World Bank's international poverty line:",
+  "विश्व बैंक की अंतरराष्ट्रीय ग़रीबी रेखा के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In 2025 the World Bank raised its line for extreme poverty to 3 dollars a person a day.",
+   "The international poverty line is measured at market exchange rates.",
+   "The international poverty line is updated every year for inflation in the United States."],
+  ["2025 में विश्व बैंक ने अत्यधिक ग़रीबी की अपनी रेखा बढ़ाकर प्रति व्यक्ति प्रतिदिन 3 डॉलर कर दी।",
+   "अंतरराष्ट्रीय ग़रीबी रेखा बाज़ार विनिमय दरों पर मापी जाती है।",
+   "अंतरराष्ट्रीय ग़रीबी रेखा को हर वर्ष संयुक्त राज्य अमेरिका की मुद्रास्फीति के अनुसार अद्यतन किया जाता है।"],
+  C3, 0,
+  "Only statement 1 is correct: the line moved from 2.15 to 3 dollars a day with the switch to 2021 price levels, based on the national poverty lines of the poorest countries. "
+  "Statement 2 is wrong: it is measured in purchasing power parity dollars, which adjust for the fact that a dollar buys much more in India than in the United States. "
+  "Statement 3 is wrong: the line is fixed in PPP dollars of a base year and is revised only when a new round of the International Comparison Program produces new PPPs -- the previous change was in 2022.",
+  "केवल कथन 1 सही है: 2021 के मूल्य स्तरों पर जाने के साथ यह रेखा 2.15 से 3 डॉलर प्रतिदिन हुई, जो सबसे ग़रीब देशों की राष्ट्रीय ग़रीबी रेखाओं पर आधारित है। "
+  "कथन 2 गलत है: इसे क्रय शक्ति समता (PPP) डॉलरों में मापा जाता है, जो इस तथ्य के लिए समायोजन करते हैं कि भारत में एक डॉलर से संयुक्त राज्य अमेरिका की तुलना में कहीं अधिक ख़रीदा जा सकता है। "
+  "कथन 3 गलत है: यह रेखा किसी आधार वर्ष के PPP डॉलरों में तय होती है और केवल तब संशोधित होती है जब अंतरराष्ट्रीय तुलना कार्यक्रम का नया दौर नई PPP देता है; पिछला बदलाव 2022 में हुआ था।",
+  "World Bank -- Poverty and Inequality Platform (June 2025 update).",
+  "gd-international-poverty-line")
+
+S(GD, "hard", "Consider the following statements about some ideas in development economics:",
+  "विकास अर्थशास्त्र के कुछ विचारों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["W. Arthur Lewis's dual-sector model describes surplus labour moving from traditional agriculture to modern industry.",
+   "The 'big push' theory argues for large, coordinated investment across many sectors at once.",
+   "The phrase 'Hindu rate of growth' referred to India's slow growth of about 3.5 per cent a year before the 1980s."],
+  ["डब्ल्यू. आर्थर लुईस का द्वि-क्षेत्रीय मॉडल पारंपरिक कृषि से आधुनिक उद्योग की ओर अधिशेष श्रम के जाने का वर्णन करता है।",
+   "'बड़ा धक्का' (big push) सिद्धांत एक साथ कई क्षेत्रों में बड़े, समन्वित निवेश का तर्क देता है।",
+   "'हिंदू विकास दर' वाक्यांश 1980 के दशक से पहले भारत की लगभग 3.5 प्रतिशत प्रति वर्ष की धीमी वृद्धि के लिए प्रयुक्त होता था।"],
+  C3, 2,
+  "All three statements are correct. Lewis argued that industry can grow for a long time by drawing low-paid labour from farms without raising wages; Paul Rosenstein-Rodan's big push held that industries depend on one another's markets, so isolated investments fail. The economist Raj Krishna coined 'Hindu rate of growth' for India's pace in 1950-80 -- the label referred to the slow rate, not to religion.",
+  "तीनों कथन सही हैं। लुईस का तर्क था कि उद्योग मज़दूरी बढ़ाए बिना खेतों से कम वेतन वाला श्रम खींचकर लंबे समय तक बढ़ सकता है; पॉल रोज़ेनस्टीन-रोडान का 'बड़ा धक्का' मानता था कि उद्योग एक-दूसरे के बाज़ारों पर निर्भर होते हैं, इसलिए अलग-थलग निवेश विफल होते हैं। अर्थशास्त्री राज कृष्ण ने 1950-80 की भारत की गति के लिए 'हिंदू विकास दर' शब्द गढ़ा; यह नाम धीमी दर के लिए था, धर्म के लिए नहीं।",
+  f"{NCD}; Economic Survey.",
+  "gd-lewis-big-push-hindu-rate")
+
+# ================================================================ GROWTH & DEVELOPMENT: MCQs (medium 3, easy 1, hard 1)
+M(GD, "medium", "'Jobless growth' refers to a situation in which:",
+  "'रोज़गारविहीन वृद्धि' (jobless growth) किस स्थिति को कहते हैं?",
+  ["output rises but employment grows very little", "employment rises but output falls",
+   "the government stops recruiting while private hiring booms", "unemployment falls because people stop looking for work"],
+  ["उत्पादन बढ़ता है पर रोज़गार बहुत कम बढ़ता है", "रोज़गार बढ़ता है पर उत्पादन घटता है",
+   "सरकार भर्ती बंद कर देती है जबकि निजी भर्तियों में तेज़ी आती है", "बेरोज़गारी इसलिए घटती है कि लोग काम ढूँढना बंद कर देते हैं"],
+  0,
+  "Jobless growth happens when output grows through more capital and technology rather than more workers -- a concern for India because growth driven by services and capital-intensive industry has created fewer jobs than its young, growing workforce needs.",
+  "रोज़गारविहीन वृद्धि तब होती है जब उत्पादन अधिक कामगारों के बजाय अधिक पूँजी और प्रौद्योगिकी से बढ़ता है; यह भारत के लिए चिंता का विषय है, क्योंकि सेवाओं और पूँजी-प्रधान उद्योग से चली वृद्धि ने उसके युवा, बढ़ते कार्यबल की आवश्यकता से कम नौकरियाँ पैदा की हैं।",
+  f"{NCD} -- Employment: Growth, Informalisation and Other Issues.",
+  "gd-jobless-growth")
+
+M(GD, "medium", "Which one of the following is an example of a 'merit good'?",
+  "निम्नलिखित में से कौन-सा 'गुणकारी वस्तु' (merit good) का उदाहरण है?",
+  ["Primary education", "Cigarettes", "Luxury cars", "Lottery tickets bought by households"],
+  ["प्राथमिक शिक्षा", "सिगरेट", "विलासिता वाली कारें", "परिवारों द्वारा ख़रीदे गए लॉटरी टिकट"],
+  0,
+  "Merit goods, such as education, vaccination and health care, benefit society beyond the person who consumes them, so people tend to consume too little of them if left to the market; governments therefore provide or subsidise them. Cigarettes are the opposite -- demerit goods, which governments tax heavily.",
+  "शिक्षा, टीकाकरण और स्वास्थ्य सेवा जैसी गुणकारी वस्तुएँ उपभोग करने वाले व्यक्ति से आगे समाज को भी लाभ देती हैं, इसलिए बाज़ार पर छोड़ने पर लोग इनका बहुत कम उपभोग करते हैं; इसलिए सरकारें इन्हें उपलब्ध कराती हैं या इन पर सब्सिडी देती हैं। सिगरेट इसके उलट, अगुणकारी वस्तुएँ (demerit goods) हैं, जिन पर सरकारें भारी कर लगाती हैं।",
+  "NCERT Class XII, Introductory Macroeconomics -- Government Budget and the Economy.",
+  "gd-merit-goods")
+
+M(GD, "medium", "India ran three annual plans in place of a five-year plan, a period often called the 'plan holiday', immediately after which one of the following?",
+  "भारत ने एक पंचवर्षीय योजना के स्थान पर तीन वार्षिक योजनाएँ चलाईं, जिस अवधि को प्रायः 'योजना अवकाश' (plan holiday) कहा जाता है। यह निम्नलिखित में से किसके ठीक बाद हुआ?",
+  ["The Third Five Year Plan", "The Second Five Year Plan", "The Fifth Five Year Plan", "The Seventh Five Year Plan"],
+  ["तीसरी पंचवर्षीय योजना", "दूसरी पंचवर्षीय योजना", "पाँचवीं पंचवर्षीय योजना", "सातवीं पंचवर्षीय योजना"],
+  0,
+  "The Third Plan (1961-66) was thrown off course by the wars of 1962 and 1965 and two severe droughts; with a devaluation in 1966 as well, the Fourth Plan was postponed and three annual plans were run from 1966 to 1969. The Seventh Plan was followed by only two annual plans (1990-92), and the Fifth Plan was cut short in 1978 and replaced by a 'rolling plan'.",
+  "तीसरी योजना (1961-66) 1962 और 1965 के युद्धों और दो भीषण सूखों से पटरी से उतर गई; 1966 के अवमूल्यन के साथ चौथी योजना स्थगित कर दी गई और 1966 से 1969 तक तीन वार्षिक योजनाएँ चलीं। सातवीं योजना के बाद केवल दो वार्षिक योजनाएँ (1990-92) चलीं, और पाँचवीं योजना 1978 में समय से पहले समाप्त कर 'अनवरत योजना' (rolling plan) से बदल दी गई।",
+  f"{NCD} -- Indian Economy 1950-1990.",
+  "gd-plan-holiday")
+
+M(GD, "easy", "Which sector of the economy includes services such as banking, transport and trade?",
+  "अर्थव्यवस्था के किस क्षेत्र में बैंकिंग, परिवहन और व्यापार जैसी सेवाएँ शामिल हैं?",
+  ["The tertiary sector", "The primary sector", "The secondary sector", "The informal manufacturing sector"],
+  ["तृतीयक क्षेत्र", "प्राथमिक क्षेत्र", "द्वितीयक क्षेत्र", "अनौपचारिक विनिर्माण क्षेत्र"],
+  0,
+  "The tertiary or service sector supports the other two -- it moves, stores, sells and finances goods and provides services such as health and education; it is now the largest part of India's GDP.",
+  "तृतीयक या सेवा क्षेत्र अन्य दो क्षेत्रों को सहारा देता है; यह वस्तुओं को ले जाता, रखता, बेचता और उनका वित्तपोषण करता है, और स्वास्थ्य तथा शिक्षा जैसी सेवाएँ देता है; अब यह भारत के GDP का सबसे बड़ा भाग है।",
+  "NCERT Class X, Understanding Economic Development -- Sectors of the Indian Economy.",
+  "gd-tertiary-sector-easy")
+
+M(GD, "hard", "If a country's real GDP grows at 6 per cent a year, it will double in roughly:",
+  "यदि किसी देश का वास्तविक GDP 6 प्रतिशत प्रति वर्ष की दर से बढ़ता है, तो वह लगभग कितने समय में दोगुना हो जाएगा?",
+  ["12 years", "6 years", "17 years", "20 years"],
+  ["12 वर्ष", "6 वर्ष", "17 वर्ष", "20 वर्ष"],
+  0,
+  "By the 'rule of 70', a quantity growing at g per cent a year doubles in about 70/g years: 70/6 is about 11.7, or roughly 12 years. The 17-year option is what 4 per cent growth would take, and 6 years would need growth of about 12 per cent.",
+  "'70 के नियम' के अनुसार g प्रतिशत प्रति वर्ष की दर से बढ़ने वाली मात्रा लगभग 70/g वर्षों में दोगुनी होती है: 70/6 लगभग 11.7, यानी लगभग 12 वर्ष। 17 वर्ष का विकल्प 4 प्रतिशत की वृद्धि पर लगने वाला समय है, और 6 वर्षों के लिए लगभग 12 प्रतिशत की वृद्धि चाहिए।",
+  f"{NCD}.",
+  "gd-rule-of-70")
+
+# ================================================================ GROWTH & DEVELOPMENT: STATEMENT-I/II (medium 2, easy 1, hard I/II/III 1)
+A(GD, "medium",
+  "Rapid population growth can hold back the rise in per capita income.",
+  "तेज़ जनसंख्या वृद्धि प्रति व्यक्ति आय की वृद्धि को रोक सकती है।",
+  "Per capita income is national income divided by the number of workers.",
+  "प्रति व्यक्ति आय राष्ट्रीय आय को कामगारों की संख्या से भाग देने पर मिलती है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Per capita income divides national income by the whole population, children and the elderly included; income per worker is a measure of labour productivity. That is exactly why population growth matters: if national income grows by 6 per cent while population grows by 2 per cent, income per head rises only about 4 per cent.",
+  "कथन-I सही है पर कथन-II गलत है। प्रति व्यक्ति आय राष्ट्रीय आय को पूरी जनसंख्या से, बच्चों और बुज़ुर्गों सहित, भाग देकर मिलती है; प्रति कामगार आय श्रम उत्पादकता का माप है। इसीलिए जनसंख्या वृद्धि मायने रखती है: यदि राष्ट्रीय आय 6 प्रतिशत बढ़े और जनसंख्या 2 प्रतिशत, तो प्रति व्यक्ति आय केवल लगभग 4 प्रतिशत बढ़ती है।",
+  "NCERT Class X, Understanding Economic Development -- Development.",
+  "gd-population-per-capita-income")
+
+A(GD, "medium",
+  "Most of India's workers are employed in the informal sector.",
+  "भारत के अधिकांश कामगार अनौपचारिक क्षेत्र में काम करते हैं।",
+  "The e-Shram portal registers unorganised workers.",
+  "ई-श्रम पोर्टल असंगठित कामगारों का पंजीकरण करता है।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. Most Indian workers -- farmers and farm labourers, the self-employed, casual workers and those in small unregistered enterprises -- have no written contract or social security, a result of small firm sizes, low skills and the structure of agriculture. The e-Shram portal, launched in 2021, is a national database meant to carry welfare schemes to such workers: a response to informality, not its cause.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। अधिकांश भारतीय कामगारों, यानी किसानों और खेतिहर मज़दूरों, स्व-रोज़गार वालों, अनियमित मज़दूरों और छोटे अपंजीकृत उद्यमों में काम करने वालों, के पास न लिखित अनुबंध है न सामाजिक सुरक्षा; इसके कारण फ़र्मों का छोटा आकार, कम कौशल और कृषि की संरचना हैं। 2021 में शुरू हुआ ई-श्रम पोर्टल ऐसे कामगारों तक कल्याणकारी योजनाएँ पहुँचाने के लिए एक राष्ट्रीय डेटाबेस है: यह अनौपचारिकता का जवाब है, उसका कारण नहीं।",
+  f"{NCD} -- Employment: Growth, Informalisation and Other Issues; Ministry of Labour and Employment -- e-Shram.",
+  "gd-informal-sector-eshram")
+
+A(GD, "easy",
+  "Education raises the productivity of workers.",
+  "शिक्षा कामगारों की उत्पादकता बढ़ाती है।",
+  "Educated workers can learn new skills and use better technology.",
+  "शिक्षित कामगार नए कौशल सीख सकते हैं और बेहतर प्रौद्योगिकी का उपयोग कर सकते हैं।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. This is why spending on education is treated as investment in human capital, which raises both individual earnings and national output.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। इसीलिए शिक्षा पर ख़र्च को मानव पूँजी में निवेश माना जाता है, जो व्यक्तिगत आय और राष्ट्रीय उत्पादन, दोनों को बढ़ाता है।",
+  f"{NCD} -- Human Capital Formation in India.",
+  "gd-education-productivity-easy")
+
+A(GD, "hard",
+  "Multidimensional poverty in India fell sharply between 2015-16 and 2019-21.",
+  "2015-16 और 2019-21 के बीच भारत में बहुआयामी ग़रीबी तेज़ी से घटी।",
+  "Access to clean cooking fuel, sanitation and bank accounts improved greatly under schemes such as Ujjwala, Swachh Bharat and Jan Dhan.",
+  "उज्ज्वला, स्वच्छ भारत और जन धन जैसी योजनाओं के तहत स्वच्छ खाना पकाने के ईंधन, स्वच्छता और बैंक खातों तक पहुँच में बहुत सुधार हुआ।",
+  2,
+  "Statement I is correct; of Statements II and III, only Statement II is correct, and it explains Statement I. By NITI Aayog's national MPI, the share of the multidimensionally poor fell from about 25 per cent to 15 per cent between the two rounds of the National Family Health Survey, with the largest gains in cooking fuel, sanitation, bank accounts and drinking water. "
+  "Statement III is wrong: India's population kept rising over the period -- the fall in poverty came from better access to basic needs, not fewer people.",
+  "कथन I सही है; कथन II और III में से केवल कथन II सही है, और वह कथन I की व्याख्या करता है। NITI आयोग के राष्ट्रीय MPI के अनुसार राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण के दो दौरों के बीच बहुआयामी रूप से ग़रीबों का हिस्सा लगभग 25 प्रतिशत से घटकर 15 प्रतिशत रह गया, जिसमें सबसे बड़ा सुधार खाना पकाने के ईंधन, स्वच्छता, बैंक खातों और पेयजल में हुआ। "
+  "कथन III गलत है: इस अवधि में भारत की जनसंख्या बढ़ती रही; ग़रीबी में कमी बुनियादी आवश्यकताओं तक बेहतर पहुँच से आई, कम लोगों से नहीं।",
+  f"{NITI} -- National Multidimensional Poverty Index: A Progress Review (2023).",
+  "gd-mpi-fall-schemes",
+  s3="India's population fell over the same period.",
+  s3_hi="उसी अवधि में भारत की जनसंख्या घटी।")
+
+if __name__ == "__main__":
+    write("econ_l2_t16_institutions_growth.sql")
