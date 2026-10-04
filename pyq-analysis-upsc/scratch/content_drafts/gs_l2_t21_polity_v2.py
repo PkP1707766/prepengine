@@ -224,20 +224,20 @@ S(JV, "medium", "A State minister makes a public statement disparaging a survivo
 # ================================================================ FUNDAMENTAL RIGHTS (1)
 S(FR, "medium", "Consider the following statements about how far Articles 19 and 21 reach:",
   "अनुच्छेद 19 और 21 की पहुँच के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
-  ["In Anuradha Bhasin v. Union of India (2020), the Supreme Court held that orders suspending internet services must be published and reviewed periodically.",
+  ["In Paschim Banga Khet Mazdoor Samity (1996), the Supreme Court held that a government hospital's failure to give timely emergency treatment to an injured person violates Article 21.",
    "In Subramanian Swamy v. Union of India (2016), the Supreme Court struck down criminal defamation as an unreasonable restriction on free speech.",
    "In the Ramlila Maidan case (2012), the Supreme Court treated the right to sleep as part of the right to life under Article 21."],
-  ["अनुराधा भसीन बनाम भारत संघ (2020) में सर्वोच्च न्यायालय ने कहा कि इंटरनेट सेवाएँ निलंबित करने वाले आदेश प्रकाशित किए जाएँ और समय-समय पर उनकी समीक्षा हो।",
+  ["पश्चिम बंगा खेत मज़दूर समिति (1996) में सर्वोच्च न्यायालय ने कहा कि किसी घायल व्यक्ति को समय पर आपातकालीन उपचार न देकर सरकारी अस्पताल अनुच्छेद 21 का उल्लंघन करता है।",
    "सुब्रमण्यम स्वामी बनाम भारत संघ (2016) में सर्वोच्च न्यायालय ने आपराधिक मानहानि को अभिव्यक्ति की स्वतंत्रता पर अनुचित प्रतिबंध मानकर रद्द कर दिया।",
    "रामलीला मैदान मामले (2012) में सर्वोच्च न्यायालय ने नींद के अधिकार को अनुच्छेद 21 के तहत जीवन के अधिकार का भाग माना।"],
   C3, 1,
-  "Statements 1 and 3 are correct. In Anuradha Bhasin the Court held that speech and trade over the internet are protected under Article 19(1)(a) and (g); a shutdown must therefore be necessary and proportionate, cannot be indefinite, and must be published and periodically reviewed so that it can be challenged. "
+  "Statements 1 and 3 are correct. In Paschim Banga Khet Mazdoor Samity an injured man was turned away by several government hospitals for want of beds; the Court held that preserving human life is the State's primary duty under Article 21, that a government hospital failing to give timely treatment violates that right, and that a lack of funds is no excuse. "
   "In Ramlila Maidan, a midnight police action against a sleeping crowd was held to violate the right to sleep, part of the right to life and personal liberty. "
   "Statement 2 reverses the holding: Subramanian Swamy upheld criminal defamation (now in the Bharatiya Nyaya Sanhita), reasoning that reputation is itself part of Article 21 and that defamation is a ground of restriction named in Article 19(2).",
-  "कथन 1 और 3 सही हैं। अनुराधा भसीन में न्यायालय ने कहा कि इंटरनेट के माध्यम से अभिव्यक्ति और व्यापार अनुच्छेद 19(1)(क) और (छ) के तहत संरक्षित हैं; इसलिए इंटरनेट बंदी आवश्यक और आनुपातिक होनी चाहिए, अनिश्चितकालीन नहीं हो सकती, और उसे प्रकाशित कर समय-समय पर उसकी समीक्षा होनी चाहिए ताकि उसे चुनौती दी जा सके। "
+  "कथन 1 और 3 सही हैं। पश्चिम बंगा खेत मज़दूर समिति मामले में एक घायल व्यक्ति को कई सरकारी अस्पतालों ने बिस्तर न होने के कारण लौटा दिया था; न्यायालय ने कहा कि मानव जीवन की रक्षा अनुच्छेद 21 के तहत राज्य का प्राथमिक कर्तव्य है, समय पर उपचार न देने वाला सरकारी अस्पताल इस अधिकार का उल्लंघन करता है, और धन की कमी कोई बहाना नहीं है। "
   "रामलीला मैदान मामले में सोती भीड़ पर आधी रात की पुलिस कार्रवाई को नींद के अधिकार का उल्लंघन माना गया, जो प्राण और दैहिक स्वतंत्रता के अधिकार का भाग है। "
   "कथन 2 निर्णय को उलट देता है: सुब्रमण्यम स्वामी मामले में आपराधिक मानहानि (अब भारतीय न्याय संहिता में) को वैध ठहराया गया, इस तर्क पर कि प्रतिष्ठा स्वयं अनुच्छेद 21 का भाग है और मानहानि अनुच्छेद 19(2) में दिया गया प्रतिबंध का एक आधार है।",
-  f"{SC} -- Anuradha Bhasin v. Union of India (2020); Subramanian Swamy v. Union of India (2016); In re Ramlila Maidan Incident (2012).",
+  f"{SC} -- Paschim Banga Khet Mazdoor Samity v. State of West Bengal (1996); Subramanian Swamy v. Union of India (2016); In re Ramlila Maidan Incident (2012).",
   "rights-internet-defamation-sleep", craft="precision")
 
 # ================================================================ GOVERNANCE (2)
