@@ -1,0 +1,267 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 6 (History 2: Ancient India) -- depth audit of 2026-10-04, part A: pairs and MCQs
+(docs/upsc-question-design-standard.md §6). Part B (upg_l2_t06_ancient_b.py) has the statement rows and
+the tags for the kept rows.
+
+Before the audit the test had analytic 2, precision 24, recall 80. Part A rewrites 14 rows in place with
+the same concept id, type and difficulty:
+  - 3 pairs rows now link a find, a term or a school to what it shows: Harappan finds and what they
+    suggest, Vedic terms and what they tell us about society, the darshanas and their central concerns.
+  - 11 MCQs now ask what a source shows or why it is read with caution (Junagadh, Hathigumpha,
+    Megasthenes, the Allahabad Prashasti, the Nasadiya Sukta, the Puranas on the Nandas, Nagarjunakonda,
+    the Rig Veda's rivers, Prinsep's decipherment, the Jatakas), plus one multi-item list (the
+    pilgrims who studied at Nalanda).
+Leaks avoided while drafting:
+  - Lothal's dockyard (answers the Indus trade row) and the Ganga-delta port (answers the ports pairs row);
+  - the Satavahanas defeating Rudradaman (would mislead on the Nashik Prashasti MCQ);
+  - the Nandas' army size (answers the Magadha row);
+  - 'Kaviraja' for Samudragupta (answers the rulers' titles pairs row)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write_updates, CODE
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "History"
+d.REQUIRE_CRAFT = True
+ANC = "Ancient"
+RS = "R.S. Sharma, India's Ancient Past (Oxford University Press)"
+US = "Upinder Singh, A History of Ancient and Early Medieval India (Pearson)"
+NCM = "NCERT Class XII, Themes in Indian History"
+
+# ================================================================ PAIRS (3)
+P(ANC, "medium", "Consider the following pairs of finds at Harappan sites and what they are taken to suggest:",
+  "हड़प्पा स्थलों पर मिली वस्तुओं और उनसे लगाए जाने वाले निष्कर्षों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["A ploughed field with criss-cross furrows at Kalibangan : Two crops were grown together in the same field",
+   "Large reservoirs at Dholavira : Careful harvesting of water in a dry region",
+   "Bead-making workshops at Chanhudaro : Specialised craft production",
+   "Iron implements at Banawali : Knowledge of iron smelting"],
+  ["कालीबंगा में आड़ी-तिरछी कूँड़ों वाला जुता खेत : एक ही खेत में दो फ़सलें साथ उगाई जाती थीं",
+   "धोलावीरा के बड़े जलाशय : सूखे क्षेत्र में जल का सावधानीपूर्वक संग्रहण",
+   "चन्हूदड़ो की मनका बनाने की कार्यशालाएँ : विशिष्ट शिल्प उत्पादन",
+   "बनावली में लोहे के औज़ार : लोहा गलाने का ज्ञान"],
+  2,
+  "Three pairs are correct. The furrows at Kalibangan run in two directions at right angles, a pattern still used in the region to grow two crops, such as mustard and gram, in one field. Dholavira, in the dry Rann of Kachchh, had a chain of reservoirs and channels to store run-off. The workshops at Chanhudaro, with tools and beads at every stage of making, point to specialised crafts serving trade. "
+  "Pair 4 is wrong: the Harappans used copper and bronze, not iron, which came into use in the subcontinent only around 1000 BCE or a little earlier. Banawali is known for a terracotta model of a plough.",
+  "तीन युग्म सही हैं। कालीबंगा की कूँड़ें एक-दूसरे से समकोण पर दो दिशाओं में हैं, यह पद्धति आज भी उस क्षेत्र में एक खेत में दो फ़सलें, जैसे सरसों और चना, उगाने के लिए अपनाई जाती है। सूखे कच्छ के रण में स्थित धोलावीरा में बहते पानी को रोकने के लिए जलाशयों और नालियों की शृंखला थी। हर चरण के औज़ारों और मनकों वाली चन्हूदड़ो की कार्यशालाएँ व्यापार के लिए विशिष्ट शिल्पों की ओर संकेत करती हैं। "
+  "युग्म 4 गलत है: हड़प्पावासी लोहे का नहीं, ताँबे और काँसे का उपयोग करते थे; उपमहाद्वीप में लोहा लगभग 1000 ई.पू. या उससे थोड़ा पहले प्रयोग में आया। बनावली हल के मिट्टी के एक नमूने के लिए जाना जाता है।",
+  US, "ancient-harappan-sites-features-pairs", craft="linkage")
+
+P(ANC, "medium", "Consider the following pairs of Vedic terms and what they tell us about Vedic society:",
+  "निम्नलिखित वैदिक शब्दों और उनसे वैदिक समाज के बारे में मिलने वाली जानकारी के युग्मों पर विचार कीजिए:",
+  ["Gavishti, 'the search for cows', a word for war : Cattle raids were a common cause of conflict",
+   "Bali, an offering to the chief : A tax fixed and collected by royal officials from the start",
+   "Vidatha, an assembly in which women took part : Women had some share in public life",
+   "Bhagadugha, the collector of the king's share : The growth of royal revenue in the later Vedic period"],
+  ["गविष्टि, 'गायों की खोज', युद्ध के लिए एक शब्द : पशु-हरण संघर्ष का एक आम कारण था",
+   "बलि, मुखिया को दी जाने वाली भेंट : शुरू से ही राजकीय अधिकारियों द्वारा तय और वसूला जाने वाला कर",
+   "विदथ, एक सभा जिसमें स्त्रियाँ भाग लेती थीं : सार्वजनिक जीवन में स्त्रियों की कुछ भागीदारी थी",
+   "भागदुघ, राजा का भाग वसूलने वाला : उत्तर वैदिक काल में राजकीय राजस्व की वृद्धि"],
+  2,
+  "Three pairs are correct. That war could be called 'the search for cows' shows how far wealth and conflict turned on cattle. Women's presence in the vidatha, one of the oldest assemblies, suggests they had some public role in the early period. The bhagadugha, among the officials named in later Vedic texts, reflects the growth of kingship and of a regular royal share. "
+  "Pair 2 is wrong: in the Rig Vedic period bali was a voluntary offering to the chief, often from the spoils of war; it hardened into a compulsory tax only later, as kingdoms took shape.",
+  "तीन युग्म सही हैं। युद्ध को 'गायों की खोज' कहा जा सकना दिखाता है कि धन और संघर्ष कितना पशुओं पर टिके थे। सबसे पुरानी सभाओं में से एक विदथ में स्त्रियों की उपस्थिति बताती है कि प्रारंभिक काल में उनकी कुछ सार्वजनिक भूमिका थी। उत्तर वैदिक ग्रंथों में वर्णित अधिकारियों में से एक भागदुघ राजत्व और नियमित राजकीय भाग की वृद्धि को दर्शाता है। "
+  "युग्म 2 गलत है: ऋग्वैदिक काल में बलि मुखिया को दी जाने वाली स्वैच्छिक भेंट थी, जो प्रायः युद्ध की लूट से आती थी; राज्यों के बनने के साथ यह बाद में ही अनिवार्य कर बनी।",
+  RS, "ancient-vedic-terms-pairs", craft="linkage")
+
+P(ANC, "medium", "Consider the following pairs of schools of Indian philosophy and their central concerns:",
+  "भारतीय दर्शन के निम्नलिखित संप्रदायों और उनकी केंद्रीय चिंताओं के युग्मों पर विचार कीजिए:",
+  ["Nyaya : Logic and the means of valid knowledge",
+   "Vaisheshika : The analysis of the world into atoms and categories",
+   "Sankhya : The worship of a personal creator god",
+   "Mimamsa : Meditation and the discipline of body and mind"],
+  ["न्याय : तर्कशास्त्र और प्रामाणिक ज्ञान के साधन",
+   "वैशेषिक : संसार का परमाणुओं और पदार्थों में विश्लेषण",
+   "सांख्य : एक साकार सृष्टिकर्ता ईश्वर की उपासना",
+   "मीमांसा : ध्यान और शरीर तथा मन का अनुशासन"],
+  1,
+  "Only pairs 1 and 2 are correct. Nyaya, attributed to Gautama, set out the means of valid knowledge -- perception, inference, comparison and testimony -- and Vaisheshika, attributed to Kanada, explained the world through atoms and a set of categories. "
+  "Pair 3 is wrong: classical Sankhya, attributed to Kapila, is a dualism of purusha (spirit) and prakriti (matter) and does not need a creator god. Pair 4 describes Yoga, systematised by Patanjali; Mimamsa, attributed to Jaimini, is concerned with interpreting the Vedic injunctions and the performance of ritual.",
+  "केवल युग्म 1 और 2 सही हैं। गौतम को श्रेय दिए जाने वाले न्याय ने प्रामाणिक ज्ञान के साधन, यानी प्रत्यक्ष, अनुमान, उपमान और शब्द, निर्धारित किए, और कणाद को श्रेय दिए जाने वाले वैशेषिक ने संसार की व्याख्या परमाणुओं और कुछ पदार्थों के माध्यम से की। "
+  "युग्म 3 गलत है: कपिल को श्रेय दिया जाने वाला शास्त्रीय सांख्य पुरुष (चेतना) और प्रकृति (जड़) का द्वैतवाद है और उसे सृष्टिकर्ता ईश्वर की आवश्यकता नहीं। युग्म 4 योग का वर्णन करता है, जिसे पतंजलि ने व्यवस्थित किया; जैमिनि को श्रेय दिया जाने वाला मीमांसा वैदिक विधियों की व्याख्या और कर्मकांड के पालन से जुड़ा है।",
+  RS, "ancient-darshanas-founders-pairs", craft="linkage")
+
+# ================================================================ MCQs (11)
+M(ANC, "easy", "The Rig Veda mentions the Indus and its tributaries again and again, but the Ganga only once or twice. This suggests that the early Vedic people:",
+  "ऋग्वेद में सिंधु और उसकी सहायक नदियों का बार-बार उल्लेख है, पर गंगा का केवल एक-दो बार। इससे संकेत मिलता है कि प्रारंभिक वैदिक लोग:",
+  ["lived mainly in the north-west, in the land of the Indus and its tributaries",
+   "lived mainly in the Ganga valley but did not yet regard that river as sacred",
+   "were sea-faring people who settled along the western coast",
+   "had moved into the Deccan before they reached the Punjab"],
+  ["मुख्यतः उत्तर-पश्चिम में, सिंधु और उसकी सहायक नदियों के प्रदेश में रहते थे",
+   "मुख्यतः गंगा घाटी में रहते थे, पर उस नदी को अभी पवित्र नहीं मानते थे",
+   "समुद्री यात्री थे जो पश्चिमी तट पर बस गए",
+   "पंजाब पहुँचने से पहले दक्कन में जा चुके थे"],
+  0,
+  "The Rig Veda calls their land Sapta Sindhu, the land of seven rivers -- the Indus, its Punjab tributaries and the Saraswati. The rare mentions of the Ganga and the Yamuna show that the Gangetic plain lay at the edge of their world. "
+  "Later Vedic texts describe the movement eastwards into the Ganga-Yamuna doab and beyond, where kingdoms such as the Kurus and Panchalas arose. Nothing in the hymns points to a sea-faring life or to the Deccan.",
+  "ऋग्वेद उनके प्रदेश को सप्त सिंधु, यानी सात नदियों का देश, कहता है: सिंधु, पंजाब की उसकी सहायक नदियाँ और सरस्वती। गंगा और यमुना के दुर्लभ उल्लेख बताते हैं कि गंगा का मैदान उनके संसार के किनारे पर था। "
+  "उत्तर वैदिक ग्रंथ पूर्व की ओर गंगा-यमुना दोआब और उससे आगे बढ़ने का वर्णन करते हैं, जहाँ कुरु और पांचाल जैसे राज्य उभरे। ऋचाओं में समुद्री जीवन या दक्कन की ओर कोई संकेत नहीं है।",
+  RS, "ancient-sapta-sindhu", craft="inference")
+
+M(ANC, "easy", "James Prinsep's decipherment of the Brahmi script in 1837 was a landmark for Indian history mainly because it:",
+  "1837 में जेम्स प्रिंसेप द्वारा ब्राह्मी लिपि का पढ़ा जाना भारतीय इतिहास के लिए मुख्यतः इसलिए मील का पत्थर था कि इसने:",
+  ["made the edicts of Ashoka readable and so opened up the history of the Mauryas",
+   "proved that the Harappan seals were written in an early form of the same Brahmi script",
+   "led directly to the discovery of Harappa and Mohenjodaro",
+   "fixed the date of the Rig Veda by reading its earliest surviving manuscripts"],
+  ["अशोक के अभिलेखों को पढ़ने योग्य बनाया और इस तरह मौर्यों का इतिहास खोल दिया",
+   "सिद्ध किया कि हड़प्पा की मुहरें इसी ब्राह्मी लिपि के प्रारंभिक रूप में लिखी गई थीं",
+   "सीधे हड़प्पा और मोहनजोदड़ो की खोज करवाई",
+   "ऋग्वेद की सबसे पुरानी बची पांडुलिपियाँ पढ़कर उसकी तिथि तय की"],
+  0,
+  "Prinsep, an official of the Calcutta mint and secretary of the Asiatic Society, worked out Brahmi and then Kharoshthi, so the edicts of a king who called himself 'Devanampiya Piyadasi' could be read across the subcontinent; later finds tied that title to the name Ashoka. "
+  "The Harappan script is still undeciphered, Harappa was excavated only from 1921, and the Rig Veda was handed down orally for centuries before it was written down, so no manuscript could date it.",
+  "कलकत्ता टकसाल के अधिकारी और एशियाटिक सोसाइटी के सचिव प्रिंसेप ने ब्राह्मी और फिर खरोष्ठी को पढ़ा, जिससे स्वयं को 'देवानांपिय पियदसि' कहने वाले राजा के अभिलेख पूरे उपमहाद्वीप में पढ़े जा सके; बाद की खोजों ने इस उपाधि को अशोक नाम से जोड़ा। "
+  "हड़प्पा लिपि अब भी पढ़ी नहीं जा सकी है, हड़प्पा की खुदाई 1921 से ही हुई, और ऋग्वेद लिखे जाने से पहले सदियों तक मौखिक रूप से चला, इसलिए कोई पांडुलिपि उसकी तिथि तय नहीं कर सकती थी।",
+  US, "ancient-prinsep-brahmi", craft="linkage")
+
+M(ANC, "easy", "Historians value the Jataka tales, stories of the Buddha's previous births, as a source chiefly on:",
+  "इतिहासकार बुद्ध के पूर्व जन्मों की कथाओं, जातक कथाओं, को मुख्यतः किसके स्रोत के रूप में महत्व देते हैं?",
+  ["social and economic life in their times -- trade, crafts and guilds",
+   "the exact order and dates of succession of the kings of Magadha",
+   "the teachings of the Jain Tirthankaras and the rules of Jain monks",
+   "the rules for performing the great Vedic sacrifices such as the ashvamedha"],
+  ["अपने समय के सामाजिक और आर्थिक जीवन का, जैसे व्यापार, शिल्प और श्रेणियाँ",
+   "मगध के राजाओं के उत्तराधिकार के सटीक क्रम और तिथियों का",
+   "जैन तीर्थंकरों की शिक्षाओं और जैन भिक्षुओं के नियमों का",
+   "अश्वमेध जैसे बड़े वैदिक यज्ञों को करने के नियमों का"],
+  0,
+  "Each Jataka teaches a virtue through a story of the Bodhisattva, often born as an animal, but the settings -- caravans of merchants, guilds of craftsmen, villages, ports and markets -- give a picture of everyday life in the early historical period. Scenes from them are carved on the railings and gateways of Bharhut and Sanchi. "
+  "They are stories, not chronicles, so they cannot give the order of kings, and they belong to the Buddhist, not the Jain or Vedic, tradition.",
+  "हर जातक बोधिसत्व की, जो प्रायः पशु रूप में जन्मे, कथा के माध्यम से कोई सद्गुण सिखाता है, पर उनकी पृष्ठभूमि, यानी व्यापारियों के कारवाँ, शिल्पियों की श्रेणियाँ, गाँव, बंदरगाह और बाज़ार, प्रारंभिक ऐतिहासिक काल के दैनिक जीवन का चित्र देती है। भरहुत और सांची की वेदिकाओं और तोरणों पर उनके दृश्य उकेरे गए हैं। "
+  "वे कथाएँ हैं, इतिहास-वृत्त नहीं, इसलिए राजाओं का क्रम नहीं बता सकतीं, और वे बौद्ध परंपरा की हैं, जैन या वैदिक की नहीं।",
+  NCM, "ancient-jataka-tales", craft="linkage")
+
+M(ANC, "hard", "The Junagadh rock inscription of the Shaka ruler Rudradaman I (about 150 CE) records his repair of the Sudarshana lake. Which one of the following conclusions do historians draw from it?",
+  "शक शासक रुद्रदामन प्रथम का जूनागढ़ शिलालेख (लगभग 150 ई.) सुदर्शन झील की उसकी मरम्मत का वर्णन करता है। इतिहासकार इससे निम्नलिखित में से कौन-सा निष्कर्ष निकालते हैं?",
+  ["A ruler of foreign origin used long, polished Sanskrit for royal records before the Guptas",
+   "The Sudarshana lake had been built by Ashoka himself, to irrigate the dry lands of Saurashtra",
+   "The Shakas had by then given up their rule in western India",
+   "Saurashtra had passed under the rule of the Satavahanas by the middle of the second century CE"],
+  ["विदेशी मूल के एक शासक ने गुप्तों से पहले राजकीय अभिलेखों के लिए लंबी, परिष्कृत संस्कृत का उपयोग किया",
+   "सुदर्शन झील स्वयं अशोक ने सौराष्ट्र की सूखी भूमि की सिंचाई के लिए बनवाई थी",
+   "शकों ने तब तक पश्चिमी भारत में अपना शासन छोड़ दिया था",
+   "दूसरी सदी ई. के मध्य तक सौराष्ट्र सातवाहनों के शासन में आ चुका था"],
+  0,
+  "The Junagadh inscription is the first long inscription in polished Sanskrit prose, by a Shaka ruler of the Western Kshatrapas, at a time when most royal records -- including those of the Satavahanas -- were in Prakrit. "
+  "It also gives the lake's history: it was built under Chandragupta Maurya by his governor Pushyagupta, given channels under Ashoka by Tushaspha, and restored by Rudradaman after a storm breached it; Skandagupta's governor repaired it again three centuries later. Saurashtra was then Rudradaman's own territory, and the Shakas ruled in western India until the Guptas displaced them.",
+  "जूनागढ़ अभिलेख परिष्कृत संस्कृत गद्य का पहला लंबा अभिलेख है, जो पश्चिमी क्षत्रपों के एक शक शासक का है, उस समय जब सातवाहनों सहित अधिकांश राजकीय अभिलेख प्राकृत में थे। "
+  "यह झील का इतिहास भी देता है: इसे चंद्रगुप्त मौर्य के समय उनके राज्यपाल पुष्यगुप्त ने बनवाया, अशोक के समय तुषास्फ ने इसमें नहरें जोड़ीं, और तूफ़ान से टूटने पर रुद्रदामन ने इसे फिर बनवाया; तीन सदी बाद स्कंदगुप्त के राज्यपाल ने इसकी फिर मरम्मत की। तब सौराष्ट्र स्वयं रुद्रदामन का क्षेत्र था, और गुप्तों द्वारा हटाए जाने तक शक पश्चिमी भारत पर शासन करते रहे।",
+  US, "ancient-junagadh-rock-inscription-rudradaman", craft="inference")
+
+M(ANC, "hard", "The Hathigumpha inscription near Bhubaneswar records the deeds of Kharavela of Kalinga in about the first century BCE. Which one of the following does it best show?",
+  "भुवनेश्वर के पास स्थित हाथीगुम्फा अभिलेख लगभग पहली सदी ई.पू. में कलिंग के खारवेल के कार्यों का वर्णन करता है। यह निम्नलिखित में से किसे सबसे अच्छी तरह दिखाता है?",
+  ["Kalinga had again become a strong independent power within two centuries of Ashoka",
+   "Kalinga remained a province of the Mauryan empire until the end of the first century BCE",
+   "Kharavela was a Buddhist ruler who opposed the spread of Jainism in Kalinga",
+   "Kalinga had by then been absorbed into the kingdom of the Kushanas"],
+  ["अशोक के दो सदी के भीतर कलिंग फिर एक शक्तिशाली स्वतंत्र शक्ति बन गया था",
+   "कलिंग पहली सदी ई.पू. के अंत तक मौर्य साम्राज्य का प्रांत बना रहा",
+   "खारवेल एक बौद्ध शासक था जिसने कलिंग में जैन धर्म के प्रसार का विरोध किया",
+   "तब तक कलिंग कुषाणों के राज्य में मिल चुका था"],
+  0,
+  "The Prakrit inscription of Kharavela, of the Mahameghavahana (Chedi) line, records his reign year by year: campaigns against a Satavahana king and raids into Magadha, from where he says he brought back a Jina image taken away by a Nanda king, and the extension of a canal first dug in Nanda times. "
+  "Kharavela was a patron of Jainism, and the caves at Udayagiri and Khandagiri were cut for Jain monks. The inscription thus shows Kalinga's revival as an independent power after the Mauryan collapse, long before the Kushanas, who never reached Kalinga.",
+  "महामेघवाहन (चेदि) वंश के खारवेल का प्राकृत अभिलेख उसके शासन का वर्ष-दर-वर्ष वर्णन करता है: एक सातवाहन राजा के विरुद्ध अभियान और मगध पर आक्रमण, जहाँ से वह किसी नंद राजा द्वारा ले जाई गई जिन-प्रतिमा वापस लाने की बात कहता है, और नंद काल में पहली बार खोदी गई एक नहर का विस्तार। "
+  "खारवेल जैन धर्म का संरक्षक था, और उदयगिरि और खंडगिरि की गुफाएँ जैन भिक्षुओं के लिए काटी गईं। इस प्रकार अभिलेख मौर्य पतन के बाद कलिंग के एक स्वतंत्र शक्ति के रूप में पुनरुत्थान को दिखाता है, कुषाणों से बहुत पहले, जो कभी कलिंग तक नहीं पहुँचे।",
+  US, "ancient-hathigumpha-inscription-kharavela", craft="inference")
+
+M(ANC, "medium", "Megasthenes' 'Indica' survives only in passages quoted by later Greek and Roman writers. Historians use it with caution mainly because:",
+  "मेगस्थनीज़ की 'इंडिका' केवल बाद के यूनानी और रोमन लेखकों द्वारा उद्धृत अंशों में बची है। इतिहासकार इसका उपयोग सावधानी से मुख्यतः इसलिए करते हैं कि:",
+  ["it survives only in later quotations, and claims such as 'no slavery' clash with Indian sources",
+   "Megasthenes never visited India himself and wrote only from what traders at the frontier told him",
+   "it describes the Gupta empire, which arose some six centuries after the court he was sent to",
+   "it was written in Sanskrit, a language that the later Greek and Roman scholars could not read"],
+  ["यह केवल बाद के उद्धरणों में बची है, और 'दासता नहीं थी' जैसे दावे भारतीय स्रोतों से टकराते हैं",
+   "मेगस्थनीज़ स्वयं कभी भारत नहीं आया और केवल सीमा के व्यापारियों से सुनी बातों पर लिखा",
+   "यह गुप्त साम्राज्य का वर्णन करती है, जो उसके भेजे गए दरबार के लगभग छह सदी बाद उभरा",
+   "यह संस्कृत में लिखी गई थी, जिसे बाद के यूनानी और रोमन विद्वान पढ़ नहीं सकते थे"],
+  0,
+  "Megasthenes lived at Pataliputra as the envoy of Seleucus Nicator, but his book is lost; what we have are excerpts in Strabo, Arrian and Diodorus, who may have paraphrased or chosen selectively. Some of his statements -- that Indian society had seven classes and that there were no slaves -- do not fit the Arthashastra or Ashoka's edicts, which mention dasas. "
+  "His picture of Pataliputra's wooden walls and city boards is still valuable, but it is read alongside Indian evidence. He wrote in Greek, about the Mauryan court.",
+  "मेगस्थनीज़ सेल्यूकस निकेटर के दूत के रूप में पाटलिपुत्र में रहा, पर उसकी पुस्तक खो गई है; हमारे पास स्ट्रैबो, एरियन और डियोडोरस के उद्धरण हैं, जिन्होंने संभवतः भावार्थ दिया या चुनकर लिया। उसके कुछ कथन, कि भारतीय समाज में सात वर्ग थे और कोई दास नहीं थे, अर्थशास्त्र या अशोक के अभिलेखों से मेल नहीं खाते, जिनमें दासों का उल्लेख है। "
+  "पाटलिपुत्र की लकड़ी की दीवारों और नगर-मंडलों का उसका वर्णन अब भी मूल्यवान है, पर उसे भारतीय साक्ष्यों के साथ पढ़ा जाता है। उसने मौर्य दरबार के बारे में यूनानी में लिखा।",
+  US, "ancient-megasthenes-seleucus-indica", craft="inference")
+
+M(ANC, "medium", "The Nasadiya Sukta of the Rig Veda asks how the universe came into being and ends by wondering whether even the one who watches over it knows. It is often cited as evidence that:",
+  "ऋग्वेद का नासदीय सूक्त पूछता है कि ब्रह्मांड कैसे अस्तित्व में आया, और अंत में यह संदेह करता है कि क्या उसका अधिष्ठाता भी यह जानता है। इसे प्रायः किसके प्रमाण के रूप में उद्धृत किया जाता है?",
+  ["speculative questioning about the first cause was part of the Vedic tradition early on",
+   "the Rig Vedic people believed in one all-knowing creator whose word was beyond doubt",
+   "the Vedic tradition had by then rejected the gods of sacrifice, such as Indra and Agni",
+   "the hymn was borrowed from an early Buddhist text on the origin of the world and of life"],
+  ["आदि कारण के बारे में चिंतनशील प्रश्न पूछना प्रारंभ से ही वैदिक परंपरा का भाग था",
+   "ऋग्वैदिक लोग एक सर्वज्ञ सृष्टिकर्ता में विश्वास करते थे जिसके वचन पर संदेह नहीं हो सकता था",
+   "तब तक वैदिक परंपरा ने इंद्र और अग्नि जैसे यज्ञ के देवताओं को त्याग दिया था",
+   "यह सूक्त संसार और जीवन की उत्पत्ति पर किसी प्रारंभिक बौद्ध ग्रंथ से लिया गया था"],
+  0,
+  "The hymn opens by saying there was then neither non-existence nor existence, and closes by doubting whether even the overseer in the highest heaven knows how creation began -- a striking example of open philosophical inquiry within the oldest Veda, which the Upanishads later carried further. "
+  "Doubt, not certainty, is its mark. The Rig Veda as a whole remains centred on Indra, Agni and the other gods of sacrifice, and it is centuries older than Buddhism.",
+  "सूक्त यह कहकर शुरू होता है कि तब न असत् था न सत्, और यह संदेह करते हुए समाप्त होता है कि क्या सबसे ऊँचे आकाश में बैठा अधिष्ठाता भी जानता है कि सृष्टि कैसे शुरू हुई; यह सबसे प्राचीन वेद के भीतर खुली दार्शनिक जिज्ञासा का उल्लेखनीय उदाहरण है, जिसे उपनिषदों ने आगे बढ़ाया। "
+  "इसकी पहचान निश्चितता नहीं, संदेह है। समग्र ऋग्वेद इंद्र, अग्नि और यज्ञ के अन्य देवताओं पर केंद्रित रहता है, और यह बौद्ध धर्म से सदियों पुराना है।",
+  RS, "ancient-nasadiya-sukta", craft="inference")
+
+M(ANC, "medium", "The Puranas call Mahapadma Nanda, founder of the Nanda dynasty, a 'destroyer of all Kshatriyas' and a man of low birth. This is best read as showing that:",
+  "पुराण नंद वंश के संस्थापक महापद्म नंद को 'सभी क्षत्रियों का नाशक' और निम्न कुल का व्यक्ति कहते हैं। इसे सबसे अच्छी तरह किस रूप में पढ़ा जाता है?",
+  ["the Nandas broke the norm that kings should be Kshatriyas, and Brahmanical authors resented it",
+   "the Nandas were a foreign dynasty that had entered north-western India with the Persian armies",
+   "Mahapadma Nanda had converted to Buddhism and persecuted the Brahmanas and the Kshatriyas",
+   "the Puranas were composed by the Nandas' own court poets to praise their rise to power"],
+  ["नंदों ने इस मान्यता को तोड़ा कि राजा क्षत्रिय होने चाहिए, और ब्राह्मणवादी लेखकों को यह अखरा",
+   "नंद एक विदेशी वंश था जो फ़ारसी सेनाओं के साथ उत्तर-पश्चिमी भारत में आया था",
+   "महापद्म नंद ने बौद्ध धर्म अपनाकर ब्राह्मणों और क्षत्रियों पर अत्याचार किया था",
+   "पुराण नंदों के अपने दरबारी कवियों ने उनके उत्थान की प्रशंसा में रचे थे"],
+  0,
+  "The Brahmanical texts held that kingship belonged to the Kshatriyas, so a powerful king of humble origin was described in hostile terms; the same Puranas call him 'ekarat', sole sovereign, a sign of how far he extended Magadha. "
+  "The Nandas were an Indian dynasty, the Puranas were compiled by Brahmanical authors over a long period, and there is no evidence that Mahapadma became a Buddhist. Several later ruling houses in north India also came from outside the Kshatriya varna.",
+  "ब्राह्मणवादी ग्रंथ मानते थे कि राजत्व क्षत्रियों का है, इसलिए साधारण कुल से उठे एक शक्तिशाली राजा का वर्णन शत्रुतापूर्ण शब्दों में किया गया; वही पुराण उसे 'एकराट्', यानी एकमात्र सम्राट, कहते हैं, जो दिखाता है कि उसने मगध का कितना विस्तार किया। "
+  "नंद एक भारतीय वंश था, पुराण ब्राह्मणवादी लेखकों ने लंबे समय में संकलित किए, और महापद्म के बौद्ध बनने का कोई प्रमाण नहीं है। उत्तर भारत के बाद के कई राजवंश भी क्षत्रिय वर्ण से बाहर के थे।",
+  RS, "ancient-mahapadma-nanda", craft="inference")
+
+M(ANC, "medium", "Historians check the claims of the Allahabad Prashasti, which describes the conquests of Samudragupta, against coins and other inscriptions. They do so mainly because:",
+  "इतिहासकार समुद्रगुप्त की विजयों का वर्णन करने वाली प्रयाग प्रशस्ति के दावों को सिक्कों और अन्य अभिलेखों से जाँचते हैं। वे ऐसा मुख्यतः इसलिए करते हैं कि:",
+  ["it is a eulogy by his court poet, so it shows his campaigns in the most flattering light",
+   "it was composed about three centuries after his reign, from oral traditions of the court",
+   "it is written in a script and a language that scholars have not yet fully deciphered",
+   "it was inscribed by the rulers he had defeated, who played down his success"],
+  ["यह उसके दरबारी कवि की प्रशंसा है, इसलिए यह उसके अभियानों को सबसे प्रशंसात्मक रूप में दिखाती है",
+   "यह उसके शासन के लगभग तीन सदी बाद दरबार की मौखिक परंपराओं से रची गई",
+   "यह ऐसी लिपि और भाषा में है जिसे विद्वान अभी पूरी तरह पढ़ नहीं पाए हैं",
+   "इसे उसके द्वारा पराजित शासकों ने उत्कीर्ण कराया, जिन्होंने उसकी सफलता को कम करके दिखाया"],
+  0,
+  "The prashasti was composed by Harishena, a court official, in ornate Sanskrit, in praise of his master: it lists kings 'uprooted' in the north, southern kings captured and then released, and frontier peoples and distant rulers said to pay homage. Some of these claims are probably exaggerated, so historians check them against coins and other inscriptions. "
+  "It was written in Samudragupta's own time, in Gupta Brahmi, which is fully readable; it is carved on an Ashokan pillar now at Allahabad.",
+  "प्रशस्ति दरबारी अधिकारी हरिषेण ने अलंकृत संस्कृत में अपने स्वामी की प्रशंसा में रची: इसमें उत्तर के 'उखाड़ फेंके गए' राजा, पकड़कर फिर छोड़ दिए गए दक्षिणी राजा, और श्रद्धांजलि देने वाले बताए गए सीमांत लोग तथा दूर के शासक सूचीबद्ध हैं। इनमें से कुछ दावे संभवतः बढ़ा-चढ़ाकर कहे गए हैं, इसलिए इतिहासकार उन्हें सिक्कों और अन्य अभिलेखों से जाँचते हैं। "
+  "यह समुद्रगुप्त के अपने समय में गुप्त ब्राह्मी में लिखी गई, जो पूरी तरह पढ़ी जा सकती है; यह अब इलाहाबाद में स्थित एक अशोक स्तंभ पर उत्कीर्ण है।",
+  US, "ancient-allahabad-prashasti-samudragupta", craft="inference")
+
+M(ANC, "medium", "Which of the following Chinese pilgrims studied or stayed at Nalanda?\n1. Fa-hien (Faxian)\n2. Hiuen Tsang (Xuanzang)\n3. I-tsing (Yijing)\n4. Sung Yun\nSelect the correct answer using the code given below.",
+  "निम्नलिखित में से किन चीनी यात्रियों ने नालंदा में अध्ययन किया या वहाँ रहे?\n1. फ़ाह्यान\n2. ह्वेनसांग\n3. इत्सिंग\n4. सुंग युन\nनीचे दिए गए कूट का प्रयोग कर सही उत्तर चुनिए।",
+  ["2 and 3 only", "1, 2 and 3 only", "1 and 4 only", "3 and 4 only"],
+  ["केवल 2 और 3", "केवल 1, 2 और 3", "केवल 1 और 4", "केवल 3 और 4"],
+  0,
+  "Hiuen Tsang studied at Nalanda under its head, Shilabhadra, in the 630s, and I-tsing spent about ten years there in the late seventh century, describing its discipline and daily routine. "
+  "Fa-hien travelled in India in about 399-414 CE, before Nalanda grew into a great monastery, and Sung Yun, who came in about 518-22 CE, went only as far as Udyana and Gandhara in the north-west.",
+  "ह्वेनसांग ने 630 के दशक में नालंदा के प्रमुख शीलभद्र के अधीन अध्ययन किया, और इत्सिंग सातवीं सदी के उत्तरार्ध में लगभग दस वर्ष वहाँ रहे और उसके अनुशासन तथा दिनचर्या का वर्णन किया। "
+  "फ़ाह्यान लगभग 399-414 ई. में भारत में घूमे, नालंदा के एक महान विहार बनने से पहले, और लगभग 518-22 ई. में आए सुंग युन केवल उत्तर-पश्चिम में उद्यान और गांधार तक गए।",
+  US, "ancient-i-tsing-nalanda", craft="multi")
+
+M(ANC, "hard", "At Nagarjunakonda, the Ikshvaku kings of the third and fourth centuries CE performed Vedic sacrifices, while women of the royal family built great Buddhist monasteries and stupas. This is best taken as evidence that:",
+  "नागार्जुनकोंडा में तीसरी और चौथी सदी ई. के इक्ष्वाकु राजाओं ने वैदिक यज्ञ किए, जबकि राजपरिवार की स्त्रियों ने बड़े बौद्ध विहार और स्तूप बनवाए। इसे सबसे अच्छी तरह किसका प्रमाण माना जाता है?",
+  ["royal households in early India often patronised more than one religious tradition at once",
+   "the Ikshvakus had converted to Buddhism and given up the Vedic rituals of their ancestors",
+   "women were barred from patronising Vedic ritual and so turned to Buddhism in protest",
+   "Buddhism in the Krishna valley was a religion of the court alone, with no support from merchants"],
+  ["प्रारंभिक भारत के राजपरिवार प्रायः एक साथ एक से अधिक धार्मिक परंपराओं को संरक्षण देते थे",
+   "इक्ष्वाकुओं ने बौद्ध धर्म अपनाकर अपने पूर्वजों के वैदिक कर्मकांड छोड़ दिए थे",
+   "स्त्रियों को वैदिक कर्मकांड को संरक्षण देने से रोका गया था, इसलिए उन्होंने विरोध में बौद्ध धर्म अपनाया",
+   "कृष्णा घाटी में बौद्ध धर्म केवल दरबार का धर्म था, जिसे व्यापारियों का कोई समर्थन नहीं था"],
+  0,
+  "The Ikshvakus ruled the lower Krishna valley from Vijayapuri after the Satavahanas. Their kings boasted of sacrifices such as the ashvamedha, while queens and princesses -- with merchants and guilds -- endowed the Mahachaitya and monasteries for several Buddhist schools. "
+  "Such shared patronage within one family was common in early India and does not mean a conversion. The site was flooded by the Nagarjuna Sagar dam, and many monuments were moved to an island museum.",
+  "सातवाहनों के बाद इक्ष्वाकुओं ने विजयपुरी से निचली कृष्णा घाटी पर शासन किया। उनके राजाओं ने अश्वमेध जैसे यज्ञों पर गर्व किया, जबकि रानियों और राजकुमारियों ने, व्यापारियों और श्रेणियों के साथ, महाचैत्य और कई बौद्ध संप्रदायों के विहारों को दान दिया। "
+  "एक ही परिवार में ऐसा साझा संरक्षण प्रारंभिक भारत में आम था और इसका अर्थ धर्मांतरण नहीं है। नागार्जुन सागर बाँध से यह स्थल डूब गया, और कई स्मारक एक द्वीप-संग्रहालय में ले जाए गए।",
+  US, "ancient-ikshvakus-nagarjunakonda", craft="inference")
+
+if __name__ == "__main__":
+    write_updates("upg_l2_t06_ancient_a.sql", statuses=("draft", "published"))
