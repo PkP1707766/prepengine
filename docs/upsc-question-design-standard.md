@@ -42,8 +42,9 @@ The Hindi is written with the English, to the same standard (`docs/upsc-hindi-st
 An audit on 2026-10-04 found the bank accurate but too often shallow. 49% of all rows were "how many are correct" over 3-4 single-fact statements about one entity. There were no case or scenario items, no concept-linkage items, and no 5- or 6-item lists, and some "easy" rows were school-level. The count format itself is right: it is rising in UPSC's own papers. The fault was what the statements asked. The owner shared recent mock papers from a reputed coaching institute as a benchmark. They are used here only to learn construction; their wording, sources, numbering and branding never enter the bank. The recipes below hold every paper from now on.
 
 **Quota per 100-question paper (and per sectional test):**
-- At least **35 analytic rows**. An analytic row uses one of recipes A-E below.
-- At most **30 pure-recall rows**, meaning what, where, who or when about a single entity, with no condition, mechanism or application.
+- At least **35 analytic rows**. An analytic row uses recipe A, B, C or E below: application, inference, linkage or multi-item judgement.
+- About 35 **precision rows** (recipe D): exact conditions, exceptions, near-miss traps.
+- At most **30 pure-recall rows**, meaning what, where, who or when about a single entity, with no condition, mechanism or application. History and world places lean on recall by nature; the other subjects and the current-affairs share make up for it, so the cap holds for the paper.
 - Hard rows near the recent UPSC share for the subject (History about 40%; see the playbook). A row is labelled hard only if it needs two or more independent verifications with a trap, or an application or inference.
 - Every row records its recipe in `question_data.craft`: `recall`, `precision`, `application`, `inference`, `linkage` or `multi`. The share is reported per paper.
 
