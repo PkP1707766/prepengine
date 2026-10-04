@@ -444,6 +444,35 @@ export const FX_EXAM = {
           ],
         },
         {
+          // UPSC concept-linkage form: Roman statements, then a numbered list of principles (data.sublist).
+          id: "fx-eb0l", subject: "Polity", topic: "Constitutional Framework", type: "statement_based", marks: 2, negative: 0.66,
+          text: "Consider the following statements:",
+          text_hi: "निम्नलिखित कथनों पर विचार कीजिए:",
+          data: {
+            numbering: "roman",
+            statements: [
+              "Parliament can amend any part of the Constitution, but not so as to destroy its basic structure.",
+              "A law can be struck down by the courts if it violates a Fundamental Right.",
+            ],
+            statements_hi: [
+              "संसद संविधान के किसी भी भाग में संशोधन कर सकती है, पर उसके मूल ढाँचे को नष्ट करने वाला नहीं।",
+              "मौलिक अधिकार का उल्लंघन करने वाले क़ानून को न्यायालय रद्द कर सकते हैं।",
+            ],
+            sublist_lead: "The above statements reflect which of the following?",
+            sublist_lead_hi: "उपर्युक्त कथन निम्नलिखित में से किसे दर्शाते हैं?",
+            sublist: ["Parliamentary sovereignty", "Constitutional supremacy"],
+            sublist_hi: ["संसदीय संप्रभुता", "संवैधानिक सर्वोच्चता"],
+            closing: "Select the correct answer using the code given below:",
+            closing_hi: "नीचे दिए गए कूट का प्रयोग कर सही उत्तर चुनिए:",
+          },
+          options: [
+            { id: "fx-eb0l-a", body: "1 only", body_hi: "केवल 1" },
+            { id: "fx-eb0l-b", body: "2 only", body_hi: "केवल 2" },
+            { id: "fx-eb0l-c", body: "Both 1 and 2", body_hi: "1 और 2 दोनों" },
+            { id: "fx-eb0l-d", body: "Neither 1 nor 2", body_hi: "न तो 1, न ही 2" },
+          ],
+        },
+        {
           id: "fx-eb3", subject: "Reasoning & Aptitude", topic: "Quantitative/Numerical", type: "reasoning_aptitude", marks: 2, negative: 0.66,
           text: "Find the missing term in the following number series:",
           text_hi: "निम्नलिखित संख्या श्रृंखला में लुप्त पद ज्ञात कीजिए:",

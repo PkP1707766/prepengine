@@ -38,7 +38,10 @@ export function StemData({ data }) {
   const siStyle = data.ar_labels === "statement";
   const series = data.series;
   const closing = data.closing;
-  if (!statements && !hasMatch && !hasAR && !series && !closing) return null;
+  // A second numbered list after the statements: the principles in "associated with which of
+  // the following?", or the relationships in "which relationship among the above holds?".
+  const sublist = Array.isArray(data.sublist) && data.sublist.length > 0 ? data.sublist : null;
+  if (!statements && !hasMatch && !hasAR && !series && !closing && !sublist) return null;
 
   return (
     <div className="stem-data">
@@ -72,6 +75,12 @@ export function StemData({ data }) {
         </div>
       )}
       {series && <div className="series-line">{inLang(lang, series, data.series_hi)}</div>}
+      {sublist && data.sublist_lead && <div className="stem-closing">{inLang(lang, data.sublist_lead, data.sublist_lead_hi)}</div>}
+      {sublist && (
+        <ol className="stmt-list sublist">
+          {sublist.map((s, i) => <li key={i}>{inLang(lang, s, (data.sublist_hi || [])[i])}</li>)}
+        </ol>
+      )}
       {closing && <div className="stem-closing">{inLang(lang, closing, data.closing_hi)}</div>}
     </div>
   );

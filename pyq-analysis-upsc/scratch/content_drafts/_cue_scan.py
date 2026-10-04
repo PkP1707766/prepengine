@@ -5,6 +5,7 @@ sys.path.insert(0, os.getcwd())
 import draft_common as d
 d.write = lambda name: None
 for f in sys.argv[2:]:
+    d.REQUIRE_CRAFT = False   # a batch opts in for itself; do not leak it into the next file
     runpy.run_path(f, run_name="scan")
 pool = json.load(open(sys.argv[1], encoding="utf-8"))["rows"]
 def vis(qd, body, options):

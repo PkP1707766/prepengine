@@ -1,0 +1,330 @@
+# -*- coding: utf-8 -*-
+"""Level 2 · Test 21 -- Economy block, rewritten to the depth standard of October 2026
+(docs/upsc-question-design-standard.md §6). It updates the 17 draft rows of gs_l2_t21_economy.py in place:
+same concepts, same blueprint cells.
+Seven rows now hand the student numbers or a case to work through instead of three loose facts:
+  - a bank crossing a PCA threshold;
+  - a shrunken biscuit packet and what a shelf-price index would miss;
+  - a city congestion charge to classify;
+  - a district's births and infant deaths, to turn into IMR and NMR;
+  - a country's reserves, imports and short-term debt, to test against import cover and Greenspan-Guidotti;
+  - an NGO raising money on the Social Stock Exchange;
+  - an FDI-funded shopping platform's three practices, to test against the e-commerce rules.
+Craft mix: application 6, inference 4, precision 4, linkage 1, recall 2."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write_updates
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+d.REQUIRE_CRAFT = True
+MB = "Money, Banking & Monetary Policy"
+MC = "Macro Concepts, National Income & Inflation"
+FT = "Taxation & Fiscal Federalism"
+IG = "Inclusive Growth, Welfare & Demography"
+EX = "External Sector & International Institutions"
+FM = "Financial Markets, Instruments & Fintech"
+AG = "Agriculture & Food Economy"
+FB = "Budget, Deficits & Public Debt"
+IN = "Industry, Infrastructure, Energy & Services"
+RBI = "Reserve Bank of India"
+SEBI = "Securities and Exchange Board of India"
+NCM = "NCERT Class XII, Introductory Macroeconomics"
+IED = "NCERT Class XI, Indian Economic Development"
+DPIIT = "Department for Promotion of Industry and Internal Trade"
+MOA = "Ministry of Agriculture and Farmers Welfare"
+
+# ================================================================ MONEY & BANKING (2)
+S(MB, "medium", "A scheduled commercial bank's net NPA ratio crosses the first risk threshold under the Reserve Bank of India's Prompt Corrective Action (PCA) framework. Consider the following statements:",
+  "एक अनुसूचित वाणिज्यिक बैंक का शुद्ध NPA अनुपात भारतीय रिज़र्व बैंक के त्वरित सुधारात्मक कार्रवाई (PCA) ढाँचे की पहली जोखिम सीमा पार कर जाता है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The RBI may restrict the bank from distributing dividends.",
+   "The RBI is required to cancel the bank's licence at once.",
+   "Had the lender been a small finance bank, it would have been dealt with outside the PCA framework."],
+  ["RBI बैंक को लाभांश बाँटने से रोक सकता है।",
+   "RBI को बैंक का लाइसेंस तुरंत रद्द करना होता है।",
+   "यदि ऋणदाता एक लघु वित्त बैंक होता, तो उससे PCA ढाँचे के बाहर निपटा जाता।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. PCA is a graded supervisory tool, not a closure order. Once a bank breaches a threshold on capital, asset quality (net NPA) or leverage, the RBI imposes curbs that tighten with each threshold -- on dividends first, then on branch expansion and capital spending -- and can add discretionary ones such as limits on fresh lending, while the bank repairs its balance sheet. "
+  "Statement 2 is wrong: cancelling a licence is a separate, extreme step under the Banking Regulation Act. "
+  "Statement 3 is correct: the 2021 revision took payments banks and small finance banks out of PCA, and a separate PCA framework now applies to NBFCs.",
+  "कथन 1 और 3 सही हैं। PCA एक चरणबद्ध पर्यवेक्षी उपाय है, बंद करने का आदेश नहीं। जब कोई बैंक पूँजी, परिसंपत्ति गुणवत्ता (शुद्ध NPA) या लीवरेज की कोई सीमा पार करता है, तो RBI हर सीमा के साथ कड़े होते प्रतिबंध लगाता है, पहले लाभांश पर, फिर शाखा विस्तार और पूँजीगत व्यय पर, और नए ऋण की सीमा जैसे विवेकाधीन प्रतिबंध भी जोड़ सकता है, जबकि बैंक अपनी बैलेंस शीट सुधारता है। "
+  "कथन 2 गलत है: लाइसेंस रद्द करना बैंकिंग विनियमन अधिनियम के तहत एक अलग और चरम क़दम है। "
+  "कथन 3 सही है: 2021 के संशोधन ने पेमेंट्स बैंकों और लघु वित्त बैंकों को PCA से बाहर कर दिया, और NBFCs के लिए अब अलग PCA ढाँचा है।",
+  f"{RBI} -- Prompt Corrective Action Framework for Scheduled Commercial Banks (2021).",
+  "mb-pca-framework-banks", craft="application")
+
+A(MB, "medium",
+  "The RBI requires SBI, HDFC Bank and ICICI Bank to hold Common Equity Tier 1 capital above the level required of other banks.",
+  "RBI, SBI, HDFC बैंक और ICICI बैंक से अन्य बैंकों से अपेक्षित स्तर से अधिक कॉमन इक्विटी टियर 1 पूँजी रखने की अपेक्षा करता है।",
+  "Banks classified as Domestic Systemically Important Banks receive an explicit government guarantee on all their deposits.",
+  "घरेलू प्रणालीगत रूप से महत्वपूर्ण बैंक (D-SIB) घोषित बैंकों को उनकी सभी जमाओं पर सरकार की स्पष्ट गारंटी मिलती है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Under its 2014 framework the RBI names Domestic Systemically Important Banks (D-SIBs) each year on the basis of size, interconnectedness, substitutability and complexity, and places them in buckets that carry an additional CET1 requirement; SBI sits in the highest bucket of the three. "
+  "The extra capital is meant to lower the chance and the cost of their failure, precisely because markets may treat them as 'too big to fail'. There is no explicit government guarantee on their deposits; deposit insurance treats every insured bank alike.",
+  "कथन-I सही है पर कथन-II गलत है। अपने 2014 के ढाँचे के तहत RBI हर वर्ष आकार, परस्पर जुड़ाव, प्रतिस्थापन-क्षमता और जटिलता के आधार पर घरेलू प्रणालीगत रूप से महत्वपूर्ण बैंकों (D-SIBs) को चिह्नित करता है और उन्हें ऐसे वर्गों (buckets) में रखता है जिनके साथ अतिरिक्त CET1 की शर्त जुड़ी है; तीनों में SBI सबसे ऊँचे वर्ग में है। "
+  "अतिरिक्त पूँजी का उद्देश्य उनके विफल होने की आशंका और लागत घटाना है, ठीक इसलिए कि बाज़ार उन्हें 'इतना बड़ा कि डूब न सके' मान सकता है। उनकी जमाओं पर सरकार की कोई स्पष्ट गारंटी नहीं है; जमा बीमा सभी बीमित बैंकों के लिए एक जैसा है।",
+  f"{RBI} -- Framework for dealing with Domestic Systemically Important Banks (2014) and the annual D-SIB list.",
+  "mb-dsib-additional-cet1", craft="inference")
+
+# ================================================================ MACRO (1)
+M(MC, "easy", "A packet of biscuits that sold for ₹20 for 100 g now sells for ₹20 for 90 g. If a price index recorded only the shelf price of the packet, what would happen to measured inflation for this item?",
+  "बिस्कुट का एक पैकेट जो 100 ग्राम के लिए ₹20 में बिकता था, अब 90 ग्राम के लिए ₹20 में बिकता है। यदि कोई क़ीमत सूचकांक केवल पैकेट की छपी क़ीमत दर्ज करे, तो इस वस्तु की मापी गई मुद्रास्फीति का क्या होगा?",
+  ["It would understate inflation, since the price per gram has risen by about 11 per cent",
+   "It would overstate inflation, because the packet now offers less value to the buyer",
+   "It would measure inflation correctly, because the shelf price is unchanged",
+   "It would show deflation, since the quantity sold to each buyer has fallen by ten per cent"],
+  ["यह मुद्रास्फीति को कम आँकेगा, क्योंकि प्रति ग्राम क़ीमत लगभग 11 प्रतिशत बढ़ी है",
+   "यह मुद्रास्फीति को बढ़ाकर आँकेगा, क्योंकि पैकेट अब ख़रीदार को कम मूल्य देता है",
+   "यह मुद्रास्फीति को सही मापेगा, क्योंकि छपी क़ीमत नहीं बदली है",
+   "यह अपस्फीति दिखाएगा, क्योंकि हर ख़रीदार को बेची गई मात्रा दस प्रतिशत घटी है"],
+  0,
+  "The price per gram has gone up from 20 paise to about 22.2 paise, a rise of about 11 per cent, though the sticker price is unchanged. An index that tracked only the sticker price would record no change and so understate inflation, which is why statistical agencies adjust for changes in pack size. "
+  "This hidden price rise is called shrinkflation. It is not deflation, which is a fall in the general price level.",
+  "प्रति ग्राम क़ीमत 20 पैसे से बढ़कर लगभग 22.2 पैसे हो गई है, यानी लगभग 11 प्रतिशत की वृद्धि, जबकि छपी क़ीमत वही है। केवल छपी क़ीमत देखने वाला सूचकांक कोई बदलाव दर्ज नहीं करेगा और इस तरह मुद्रास्फीति को कम आँकेगा; इसीलिए सांख्यिकी एजेंसियाँ पैकेट के आकार में बदलाव के अनुसार समायोजन करती हैं। "
+  "इस छिपी क़ीमत-वृद्धि को श्रिंकफ़्लेशन (shrinkflation) कहते हैं। यह अपस्फीति (deflation) नहीं है, जो सामान्य क़ीमत स्तर का गिरना है।",
+  f"{NCM}; {RBI} -- inflation measurement.",
+  "mc-shrinkflation-easy", craft="inference")
+
+# ================================================================ TAXATION (1)
+M(FT, "medium", "A city charges every private vehicle that enters its centre during peak hours an amount set close to the cost that each vehicle imposes on others through congestion and pollution. Such a charge is best described as a",
+  "एक शहर व्यस्त समय में अपने केंद्र में प्रवेश करने वाले हर निजी वाहन से उतनी राशि लेता है जो उस लागत के क़रीब है जो प्रत्येक वाहन भीड़ और प्रदूषण के ज़रिए दूसरों पर डालता है। ऐसे शुल्क का सबसे सही वर्णन है",
+  ["Pigouvian tax", "Tobin tax", "user fee for a public service", "progressive tax on vehicle owners"],
+  ["पिगूवियन कर", "टोबिन कर", "किसी सार्वजनिक सेवा का उपयोगकर्ता शुल्क", "वाहन स्वामियों पर प्रगामी कर"],
+  0,
+  "A Pigouvian tax, named after Arthur Pigou, is set near the external cost an activity imposes on others, so that those who cause congestion or pollution weigh the full cost to society; the congestion charges of London and Singapore are the standard examples. "
+  "It is not merely a user fee, which recovers the cost of a service supplied, and it is not a Tobin tax, a small levy on currency trades. A flat charge per vehicle is not progressive either, since it does not rise with income.",
+  "पिगूवियन कर, जिसका नाम आर्थर पिगू पर है, किसी गतिविधि द्वारा दूसरों पर डाली गई बाहरी लागत के क़रीब रखा जाता है, ताकि भीड़ या प्रदूषण पैदा करने वाले समाज पर पड़ने वाली पूरी लागत को ध्यान में रखें; लंदन और सिंगापुर के भीड़ शुल्क इसके प्रचलित उदाहरण हैं। "
+  "यह केवल उपयोगकर्ता शुल्क नहीं है, जो दी गई सेवा की लागत वसूलता है, और न ही टोबिन कर है, जो मुद्रा सौदों पर छोटा शुल्क है। प्रति वाहन एक समान शुल्क प्रगामी भी नहीं है, क्योंकि वह आय के साथ नहीं बढ़ता।",
+  f"{NCM} -- Government Budget and the Economy; Economic Survey -- environmental taxation.",
+  "ft-pigouvian-tax", craft="application")
+
+# ================================================================ INCLUSIVE GROWTH (1)
+S(IG, "easy", "In a district, 2,000 babies were born alive in a year. Of these, 40 died before their first birthday, and 24 of those 40 died within 28 days of birth. Consider the following statements:",
+  "एक ज़िले में एक वर्ष में 2,000 शिशु जीवित जन्मे। इनमें से 40 की मृत्यु पहले जन्मदिन से पहले हुई, और उन 40 में से 24 की मृत्यु जन्म के 28 दिनों के भीतर हुई। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The infant mortality rate of the district is 20.",
+   "The neonatal mortality rate of the district is 24.",
+   "More of these babies died between the 29th day and the first birthday than within the first 28 days."],
+  ["ज़िले की शिशु मृत्यु दर 20 है।",
+   "ज़िले की नवजात मृत्यु दर 24 है।",
+   "इन शिशुओं में से 29वें दिन से पहले जन्मदिन के बीच मरने वाले, पहले 28 दिनों में मरने वालों से अधिक थे।"],
+  C3, 0,
+  "Only statement 1 is correct. The infant mortality rate (IMR) counts deaths before the first birthday per 1,000 live births: 40 / 2,000 x 1,000 = 20. "
+  "Statement 2 confuses a count with a rate: the neonatal mortality rate is 24 / 2,000 x 1,000 = 12 per 1,000 live births. "
+  "Statement 3 is wrong: 24 babies died in the first 28 days and only 16 later. That mirrors India's pattern -- most infant deaths are now neonatal, so newborn care matters most. The SDG targets for 2030 are a neonatal mortality rate of 12 or less and a maternal mortality ratio below 70 per 1,00,000 live births.",
+  "केवल कथन 1 सही है। शिशु मृत्यु दर (IMR) प्रति 1,000 जीवित जन्मों पर पहले जन्मदिन से पहले की मृत्यु गिनती है: 40 / 2,000 x 1,000 = 20। "
+  "कथन 2 संख्या और दर को मिला देता है: नवजात मृत्यु दर 24 / 2,000 x 1,000 = 12 प्रति 1,000 जीवित जन्म है। "
+  "कथन 3 गलत है: पहले 28 दिनों में 24 शिशुओं की मृत्यु हुई और बाद में केवल 16 की। यही भारत का स्वरूप है, जहाँ अब अधिकांश शिशु मृत्यु नवजात अवस्था में होती हैं, इसलिए नवजात देखभाल सबसे अहम है। 2030 के SDG लक्ष्य हैं: नवजात मृत्यु दर 12 या उससे कम और मातृ मृत्यु अनुपात प्रति 1,00,000 जीवित जन्मों पर 70 से कम।",
+  "Office of the Registrar General of India -- Sample Registration System; NITI Aayog -- SDG India targets.",
+  "ig-mortality-measures-mmr-imr-nmr", craft="application")
+
+# ================================================================ EXTERNAL SECTOR (2)
+S(EX, "hard", "Consider the following statements about the 'Triffin dilemma':",
+  "'ट्रिफ़िन दुविधा' (Triffin dilemma) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It arises when a national currency serves as the world's main reserve currency, since supplying the world with reserves requires that country to run persistent external deficits that can erode confidence in the currency.",
+   "It was first described in the context of the British pound under the classical gold standard of the nineteenth century.",
+   "The Chinese renminbi is now the largest component of the world's official foreign-exchange reserves."],
+  ["यह तब उत्पन्न होती है जब कोई राष्ट्रीय मुद्रा दुनिया की मुख्य आरक्षित मुद्रा बनती है, क्योंकि दुनिया को भंडार उपलब्ध कराने के लिए उस देश को लगातार बाह्य घाटा चलाना पड़ता है, जो उस मुद्रा में भरोसा घटा सकता है।",
+   "इसका वर्णन पहली बार उन्नीसवीं सदी के शास्त्रीय स्वर्ण मानक के तहत ब्रिटिश पाउंड के संदर्भ में किया गया था।",
+   "चीनी रेनमिनबी आज दुनिया के आधिकारिक विदेशी मुद्रा भंडार का सबसे बड़ा घटक है।"],
+  C3, 0,
+  "Only statement 1 is correct. The economist Robert Triffin warned in 1960 that under the Bretton Woods system the world needed ever more dollars as reserves, which the United States could supply only by running deficits -- yet mounting deficits would undermine faith in the dollar's convertibility into gold. The strain helped end that system in the early 1970s, and the dilemma is still debated for today's dollar-based system. "
+  "Statement 3 is wrong: the US dollar still makes up well over half of the reserves reported to the IMF, followed by the euro; the renminbi's share is only a few per cent.",
+  "केवल कथन 1 सही है। अर्थशास्त्री रॉबर्ट ट्रिफ़िन ने 1960 में चेताया कि ब्रेटन वुड्स व्यवस्था में दुनिया को भंडार के रूप में लगातार अधिक डॉलर चाहिए थे, जिन्हें अमेरिका केवल घाटा चलाकर ही दे सकता था, पर बढ़ता घाटा डॉलर की सोने में परिवर्तनीयता पर भरोसा कमज़ोर करता। इसी खिंचाव ने 1970 के दशक की शुरुआत में उस व्यवस्था के अंत में भूमिका निभाई, और आज की डॉलर-आधारित व्यवस्था के लिए भी इस दुविधा पर बहस होती है। "
+  "कथन 3 गलत है: IMF को बताए गए भंडार में आज भी अमेरिकी डॉलर का हिस्सा आधे से काफ़ी अधिक है, उसके बाद यूरो आता है; रेनमिनबी का हिस्सा केवल कुछ प्रतिशत है।",
+  "International Monetary Fund -- Currency Composition of Official Foreign Exchange Reserves (COFER); Robert Triffin, Gold and the Dollar Crisis (1960).",
+  "ex-triffin-dilemma-reserve-currency", craft="inference")
+
+S(EX, "medium", "A country holds foreign-exchange reserves of $600 billion. Its imports are $60 billion a month, and its external debt falling due within the next year is $150 billion. Consider the following statements:",
+  "एक देश के पास 600 अरब डॉलर का विदेशी मुद्रा भंडार है। उसका आयात हर महीने 60 अरब डॉलर है, और अगले एक वर्ष में देय उसका बाह्य ऋण 150 अरब डॉलर है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Its reserves cover ten months of imports.",
+   "It satisfies the Greenspan-Guidotti rule of reserve adequacy.",
+   "If its monthly imports rose to $75 billion with reserves unchanged, its import cover would fall to eight months, but it would still satisfy the Greenspan-Guidotti rule."],
+  ["उसका भंडार दस महीने के आयात को कवर करता है।",
+   "वह भंडार पर्याप्तता का ग्रीनस्पैन-गुइडोटी नियम पूरा करता है।",
+   "यदि भंडार वही रहते हुए उसका मासिक आयात 75 अरब डॉलर हो जाए, तो उसका आयात कवर घटकर आठ महीने रह जाएगा, पर वह ग्रीनस्पैन-गुइडोटी नियम फिर भी पूरा करेगा।"],
+  C3, 2,
+  "All three are correct. Import cover is reserves divided by monthly imports: 600 / 60 = 10 months, well above the traditional comfort level of about three months. "
+  "The Greenspan-Guidotti rule looks at the capital account instead: reserves should at least equal the external debt falling due within a year, so that the country could repay it without fresh borrowing, and 600 is far above 150. "
+  "Because the two yardsticks measure different risks, a rise in imports cuts import cover (600 / 75 = 8 months) but leaves the Greenspan-Guidotti test untouched.",
+  "तीनों कथन सही हैं। आयात कवर, भंडार को मासिक आयात से भाग देकर निकलता है: 600 / 60 = 10 महीने, जो लगभग तीन महीने के पारंपरिक सुरक्षित स्तर से बहुत ऊपर है। "
+  "ग्रीनस्पैन-गुइडोटी नियम इसके बजाय पूँजी खाते को देखता है: भंडार कम से कम एक वर्ष में देय बाह्य ऋण के बराबर होना चाहिए, ताकि देश बिना नए ऋण के उसे चुका सके, और 600, 150 से बहुत अधिक है। "
+  "क्योंकि दोनों पैमाने अलग-अलग जोखिम मापते हैं, इसलिए आयात बढ़ने से आयात कवर घटता है (600 / 75 = 8 महीने), पर ग्रीनस्पैन-गुइडोटी कसौटी पर कोई असर नहीं पड़ता।",
+  f"{RBI} -- Annual Report and Monthly Bulletin, external sector indicators; International Monetary Fund -- reserve adequacy.",
+  "ex-reserve-adequacy-import-cover", craft="application")
+
+# ================================================================ FINANCIAL MARKETS (4)
+S(FM, "medium", "A not-for-profit organisation that runs schools wants to raise money through the Social Stock Exchange in India. Consider the following statements:",
+  "स्कूल चलाने वाला एक ग़ैर-लाभकारी संगठन भारत में सोशल स्टॉक एक्सचेंज के माध्यम से धन जुटाना चाहता है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It must register with the Social Stock Exchange before it can raise funds there.",
+   "Investors in its Zero Coupon Zero Principal instruments will receive neither interest nor repayment of the amount.",
+   "It must report each year on the social impact achieved with the money raised."],
+  ["वहाँ धन जुटाने से पहले उसे सोशल स्टॉक एक्सचेंज में पंजीकरण कराना होगा।",
+   "उसके ज़ीरो कूपन ज़ीरो प्रिंसिपल इंस्ट्रूमेंट में निवेश करने वालों को न ब्याज मिलेगा, न राशि वापस मिलेगी।",
+   "उसे हर वर्ष जुटाए गए धन से हुए सामाजिक प्रभाव की रिपोर्ट देनी होगी।"],
+  C3, 2,
+  "All three are correct. Under SEBI's framework (2022), the Social Stock Exchange is a segment of the NSE and the BSE. A not-for-profit must register first, and it can then raise money through Zero Coupon Zero Principal instruments, which work like a donation routed through the market: the investor gets no interest and no principal back. "
+  "What the investor does get is an annual impact report, which is the exchange's main safeguard. An NPO cannot issue equity, though for-profit social enterprises can list equity or debt. Corporate foundations, political and religious bodies, and trade associations are not eligible.",
+  "तीनों कथन सही हैं। SEBI के ढाँचे (2022) के तहत सोशल स्टॉक एक्सचेंज, NSE और BSE का एक खंड है। ग़ैर-लाभकारी संगठन को पहले पंजीकरण कराना होता है, फिर वह ज़ीरो कूपन ज़ीरो प्रिंसिपल इंस्ट्रूमेंट से धन जुटा सकता है, जो बाज़ार के रास्ते दिए गए दान की तरह काम करते हैं: निवेशक को न ब्याज मिलता है, न मूलधन वापस। "
+  "निवेशक को जो मिलता है वह वार्षिक प्रभाव रिपोर्ट है, और यही इस एक्सचेंज की मुख्य सुरक्षा है। ग़ैर-लाभकारी संगठन इक्विटी जारी नहीं कर सकता, यद्यपि लाभकारी सामाजिक उद्यम इक्विटी या ऋण सूचीबद्ध कर सकते हैं। कॉरपोरेट फ़ाउंडेशन, राजनीतिक और धार्मिक संस्थाएँ तथा व्यापार संघ इसके पात्र नहीं हैं।",
+  f"{SEBI} -- Framework on Social Stock Exchange (2022).",
+  "fm-social-stock-exchange", craft="application")
+
+P(FM, "hard", "Consider the following pairs of stock-market terms and their meanings:",
+  "शेयर बाज़ार के शब्दों और उनके अर्थों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Buyback : A company purchases its own shares from its shareholders",
+   "Stock split : A company raises fresh capital by selling new shares to its existing shareholders",
+   "Sweat equity : Free shares given to all shareholders out of the company's reserves",
+   "India VIX : An index of the thirty largest companies listed on the National Stock Exchange"],
+  ["बायबैक : कंपनी अपने ही शेयर अपने शेयरधारकों से ख़रीदती है",
+   "स्टॉक स्प्लिट : कंपनी अपने मौजूदा शेयरधारकों को नए शेयर बेचकर नई पूँजी जुटाती है",
+   "स्वेट इक्विटी : कंपनी के आरक्षित कोष से सभी शेयरधारकों को दिए गए मुफ़्त शेयर",
+   "इंडिया VIX : नेशनल स्टॉक एक्सचेंज पर सूचीबद्ध तीस सबसे बड़ी कंपनियों का सूचकांक"],
+  0,
+  "Only the first pair is correct. In a buyback the company repurchases, and usually cancels, its own shares, returning cash to holders. "
+  "A stock split only divides each share into more shares of a lower face value -- the share capital and each holder's stake stay the same; selling new shares to existing holders is a rights issue. "
+  "Sweat equity is shares issued, often at a discount, to employees or directors for their know-how or for creating intellectual property; free shares out of reserves are a bonus issue. "
+  "India VIX is the NSE's volatility index, worked out from Nifty 50 option prices to show how sharply the market expects prices to swing over the next 30 days -- hence its nickname, the 'fear gauge'.",
+  "केवल पहला युग्म सही है। बायबैक में कंपनी अपने शेयर वापस ख़रीदकर प्रायः रद्द कर देती है और शेयरधारकों को नक़दी लौटाती है। "
+  "स्टॉक स्प्लिट केवल हर शेयर को कम अंकित मूल्य वाले अधिक शेयरों में बाँटता है; शेयर पूँजी और हर शेयरधारक की हिस्सेदारी वही रहती है; मौजूदा शेयरधारकों को नए शेयर बेचना राइट्स इश्यू है। "
+  "स्वेट इक्विटी वे शेयर हैं जो कर्मचारियों या निदेशकों को उनके ज्ञान या बौद्धिक संपदा बनाने के बदले, प्रायः छूट पर, दिए जाते हैं; आरक्षित कोष से मुफ़्त शेयर बोनस इश्यू हैं। "
+  "इंडिया VIX, NSE का अस्थिरता सूचकांक है, जो निफ़्टी 50 के ऑप्शन मूल्यों से निकाला जाता है और दिखाता है कि बाज़ार अगले 30 दिनों में क़ीमतों में कितने उतार-चढ़ाव की अपेक्षा करता है; इसीलिए इसे 'भय का पैमाना' भी कहते हैं।",
+  f"{SEBI} -- Buy-back of Securities Regulations, 2018 and Share Based Employee Benefits and Sweat Equity Regulations, 2021; National Stock Exchange -- India VIX.",
+  "fm-market-terms-buyback-split-sweat-vix", craft="precision")
+
+M(FM, "medium", "'Bima Sugam', an initiative in the insurance sector, is best described as",
+  "बीमा क्षेत्र की पहल 'बीमा सुगम' का सबसे सही वर्णन है",
+  ["an online marketplace where many insurers' policies can be bought, serviced and claimed",
+   "a deposit insurance scheme that covers bank deposits above the present limit",
+   "a scheme that gives gig workers free life cover and a monthly pension",
+   "a reinsurance company set up jointly by public sector insurers to cover disaster losses"],
+  ["एक ऑनलाइन बाज़ार जहाँ अनेक बीमा कंपनियों की पॉलिसियाँ ख़रीदी, सँभाली और क्लेम की जा सकें",
+   "बैंक जमाओं को मौजूदा सीमा से ऊपर बीमा देने वाली जमा बीमा योजना",
+   "गिग कामगारों को मुफ़्त जीवन बीमा और मासिक पेंशन देने वाली योजना",
+   "आपदा से हुए नुक़सान को कवर करने के लिए सरकारी बीमा कंपनियों द्वारा मिलकर बनाई गई पुनर्बीमा कंपनी"],
+  0,
+  "Bima Sugam, driven by the Insurance Regulatory and Development Authority of India (IRDAI), is designed as a single digital platform -- run by a not-for-profit company owned by the insurers -- on which people can compare and buy life, health and general insurance from different companies, service their policies and settle claims. "
+  "The aim is to cut distribution costs and raise India's low insurance penetration, much as a common platform did for digital payments. Deposit insurance is the business of the DICGC, not of the insurance regulator.",
+  "बीमा सुगम, जिसे भारतीय बीमा विनियामक और विकास प्राधिकरण (IRDAI) आगे बढ़ा रहा है, एक एकल डिजिटल मंच के रूप में बनाया गया है, जिसे बीमा कंपनियों के स्वामित्व वाली एक ग़ैर-लाभकारी कंपनी चलाती है; इस पर लोग विभिन्न कंपनियों के जीवन, स्वास्थ्य और सामान्य बीमा की तुलना कर ख़रीद सकें, पॉलिसी से जुड़ी सेवाएँ ले सकें और क्लेम निपटा सकें। "
+  "इसका उद्देश्य वितरण लागत घटाना और भारत में बीमा की कम पहुँच बढ़ाना है, जैसे एक साझा मंच ने डिजिटल भुगतान के लिए किया। जमा बीमा DICGC का काम है, बीमा नियामक का नहीं।",
+  "Insurance Regulatory and Development Authority of India -- Bima Sugam.",
+  "fm-bima-sugam", craft="recall")
+
+S(FM, "easy", "Consider the following statements about municipal bonds in India:",
+  "भारत में नगरपालिका बॉन्ड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are debt instruments issued by urban local bodies to raise money for projects such as water supply or roads.",
+   "They can be listed and traded on stock exchanges under SEBI's regulations."],
+  ["ये नगरीय स्थानीय निकायों द्वारा जल आपूर्ति या सड़क जैसी परियोजनाओं के लिए धन जुटाने हेतु जारी ऋण-पत्र हैं।",
+   "इन्हें SEBI के विनियमों के तहत स्टॉक एक्सचेंजों पर सूचीबद्ध कर उनका व्यापार किया जा सकता है।"],
+  T2, 2,
+  "Both statements are correct. Municipal bonds let city governments borrow directly from investors; Bengaluru and Ahmedabad were among the first issuers in the late 1990s, and issues picked up after SEBI framed regulations for the issue and listing of municipal debt securities (2015) and the Union government began offering incentives to cities that issue them. "
+  "Only bodies with sound accounts and a good credit rating can tap the market, which is one reason few cities have done so.",
+  "दोनों कथन सही हैं। नगरपालिका बॉन्ड से नगर सरकारें सीधे निवेशकों से उधार ले पाती हैं; 1990 के दशक के अंत में बेंगलुरु और अहमदाबाद पहले जारीकर्ताओं में थे, और SEBI द्वारा नगरपालिका ऋण प्रतिभूतियों के निर्गम और सूचीकरण के विनियम (2015) बनाने तथा केंद्र सरकार द्वारा बॉन्ड जारी करने वाले शहरों को प्रोत्साहन देने के बाद इनकी संख्या बढ़ी। "
+  "केवल अच्छे लेखे-जोखे और अच्छी क्रेडिट रेटिंग वाले निकाय ही बाज़ार से धन ले सकते हैं, और यही एक कारण है कि कम शहरों ने ऐसा किया है।",
+  f"{SEBI} -- Issue and Listing of Municipal Debt Securities Regulations (2015); Ministry of Housing and Urban Affairs.",
+  "fm-municipal-bonds-easy", craft="recall")
+
+# ================================================================ AGRICULTURE (2)
+S(AG, "medium", "Consider the following statements about Farmer Producer Organisations (FPOs):",
+  "किसान उत्पादक संगठनों (FPOs) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A central scheme launched in 2020 set out to form and promote 10,000 new FPOs.",
+   "An FPO can be registered either as a producer company under the Companies Act or as a cooperative society.",
+   "FPOs are barred from selling their members' produce directly to buyers and must route all sales through APMC mandis."],
+  ["2020 में शुरू हुई एक केंद्रीय योजना का लक्ष्य 10,000 नए FPO बनाना और उन्हें बढ़ावा देना था।",
+   "किसी FPO को कंपनी अधिनियम के तहत उत्पादक कंपनी या सहकारी समिति के रूप में पंजीकृत कराया जा सकता है।",
+   "FPOs अपने सदस्यों की उपज सीधे ख़रीदारों को नहीं बेच सकते और उन्हें सारी बिक्री APMC मंडियों से करनी होती है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Formation and Promotion of 10,000 FPOs scheme (2020) funds cluster-based farmer businesses -- management costs for five years, a matching equity grant and a credit guarantee -- with SFAC, NABARD and NCDC among the implementing agencies. FPOs register as producer companies (now under the Companies Act, 2013) or under cooperative laws. "
+  "Statement 3 is wrong: pooling their produce lets FPOs bargain better, sell directly to processors, exporters and retail chains or on electronic platforms, and buy inputs in bulk -- that is their whole purpose.",
+  "कथन 1 और 2 सही हैं। 10,000 FPOs के गठन और संवर्धन की योजना (2020) क्लस्टर-आधारित किसान व्यवसायों को धन देती है, जैसे पाँच वर्ष का प्रबंधन ख़र्च, बराबरी का इक्विटी अनुदान और ऋण गारंटी; SFAC, NABARD और NCDC इसकी कार्यान्वयन एजेंसियों में हैं। FPO उत्पादक कंपनी (अब कंपनी अधिनियम, 2013 के तहत) या सहकारी क़ानूनों के तहत पंजीकृत होते हैं। "
+  "कथन 3 गलत है: उपज को एक साथ लाने से FPO बेहतर मोलभाव कर पाते हैं, प्रसंस्करणकर्ताओं, निर्यातकों और खुदरा शृंखलाओं को या इलेक्ट्रॉनिक मंचों पर सीधे बेचते हैं, और थोक में इनपुट ख़रीदते हैं; यही उनका पूरा उद्देश्य है।",
+  f"{MOA} -- Formation and Promotion of 10,000 Farmer Producer Organisations (2020).",
+  "ag-fpo-10000-scheme", craft="precision")
+
+A(AG, "medium",
+  "A farmer who stores grain in a warehouse registered with the Warehousing Development and Regulatory Authority can raise a bank loan against it without selling the crop.",
+  "भंडारण विकास और विनियामक प्राधिकरण (WDRA) में पंजीकृत गोदाम में अनाज रखने वाला किसान फ़सल बेचे बिना उसके बदले बैंक ऋण ले सकता है।",
+  "Electronic negotiable warehouse receipts issued by such warehouses can be pledged with banks as collateral.",
+  "ऐसे गोदामों द्वारा जारी इलेक्ट्रॉनिक परक्राम्य भंडार रसीदें (e-NWR) बैंकों के पास ज़मानत के रूप में गिरवी रखी जा सकती हैं।",
+  0,
+  "Both statements are correct and Statement-II explains Statement-I. Under the Warehousing (Development and Regulation) Act, 2007, the WDRA registers warehouses and regulates negotiable warehouse receipts, which since 2017 have been issued in electronic form through repositories. "
+  "Because the receipt is negotiable -- it can be transferred by endorsement -- banks accept it as security, so a farmer can borrow at harvest time and wait for better prices instead of selling into a glut.",
+  "दोनों कथन सही हैं और कथन-II कथन-I की व्याख्या करता है। भंडारण (विकास और विनियमन) अधिनियम, 2007 के तहत WDRA गोदामों का पंजीकरण करता है और परक्राम्य भंडार रसीदों का विनियमन करता है, जो 2017 से रिपॉज़िटरी के माध्यम से इलेक्ट्रॉनिक रूप में जारी होती हैं। "
+  "क्योंकि रसीद परक्राम्य है, यानी पृष्ठांकन से हस्तांतरित हो सकती है, बैंक इसे ज़मानत मानते हैं; इसलिए किसान कटाई के समय उधार लेकर बेहतर क़ीमत की प्रतीक्षा कर सकता है, भरमार के समय बेचने के बजाय।",
+  "Warehousing (Development and Regulation) Act, 2007; Warehousing Development and Regulatory Authority -- e-NWR system.",
+  "ag-wdra-enwr-pledge-loans", craft="linkage")
+
+# ================================================================ BUDGET (1)
+A(FB, "easy",
+  "Heavy borrowing by the government can push up interest rates for private borrowers.",
+  "सरकार का भारी उधार निजी उधारकर्ताओं के लिए ब्याज दरें बढ़ा सकता है।",
+  "Government borrowing increases the total supply of savings available to private borrowers.",
+  "सरकारी उधार निजी उधारकर्ताओं के लिए उपलब्ध बचत की कुल आपूर्ति बढ़ाता है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. When the government borrows heavily, it competes with private firms for the same pool of savings, and the higher interest rates that follow can squeeze out some private investment -- the 'crowding-out' effect. "
+  "Statement-II has it backwards: government borrowing adds to the demand for loanable funds, not to their supply, which is exactly why rates tend to rise. The effect is weaker when the economy has spare capacity or when capital flows in from abroad.",
+  "कथन-I सही है पर कथन-II गलत है। जब सरकार भारी उधार लेती है तो वह बचत के उसी भंडार के लिए निजी कंपनियों से होड़ करती है, और इससे बढ़ी ब्याज दरें कुछ निजी निवेश को बाहर धकेल सकती हैं; इसे 'क्राउडिंग-आउट' प्रभाव कहते हैं। "
+  "कथन-II उल्टी बात कहता है: सरकारी उधार उधार-योग्य धन की माँग बढ़ाता है, आपूर्ति नहीं, और इसी कारण दरें बढ़ती हैं। जब अर्थव्यवस्था में क्षमता ख़ाली हो या विदेश से पूँजी आ रही हो, तब यह प्रभाव कमज़ोर होता है।",
+  f"{NCM} -- Government Budget and the Economy.",
+  "fb-crowding-out-easy", craft="inference")
+
+# ================================================================ INDUSTRY & SERVICES (3)
+S(IN, "hard", "Consider the following statements about the 'Ratna' status of central public sector enterprises (CPSEs):",
+  "केंद्रीय सार्वजनिक क्षेत्र उद्यमों (CPSEs) के 'रत्न' दर्जे के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A CPSE can be granted Maharatna status directly, without first having Navratna status.",
+   "To become a Maharatna, a CPSE must be listed on an Indian stock exchange with the minimum prescribed public shareholding.",
+   "The board of a Navratna CPSE can invest any amount in a single project without government approval."],
+  ["किसी CPSE को पहले नवरत्न दर्जा पाए बिना सीधे महारत्न का दर्जा दिया जा सकता है।",
+   "महारत्न बनने के लिए CPSE का न्यूनतम निर्धारित सार्वजनिक शेयरधारिता के साथ किसी भारतीय स्टॉक एक्सचेंज पर सूचीबद्ध होना आवश्यक है।",
+   "नवरत्न CPSE का बोर्ड सरकार की मंज़ूरी के बिना किसी एक परियोजना में कितनी भी राशि निवेश कर सकता है।"],
+  C3, 0,
+  "Only statement 2 is correct. The Maharatna scheme (2010) is open only to CPSEs that already hold Navratna status, are listed with the minimum public shareholding under SEBI rules, and clear high thresholds of average turnover, net worth and net profit over three years. "
+  "Statement 3 is wrong: a Navratna board may invest up to ₹1,000 crore, or 15 per cent of its net worth, in a single project without government approval; a Maharatna board's limit is higher, up to ₹5,000 crore. "
+  "The status is conferred by the Department of Public Enterprises, now under the Ministry of Finance, and gives large CPSEs more freedom to compete and to expand abroad.",
+  "केवल कथन 2 सही है। महारत्न योजना (2010) केवल उन CPSEs के लिए है जिनके पास पहले से नवरत्न दर्जा है, जो SEBI नियमों के अनुसार न्यूनतम सार्वजनिक शेयरधारिता के साथ सूचीबद्ध हैं, और जो तीन वर्षों के औसत कारोबार, निवल मूल्य और शुद्ध लाभ की ऊँची सीमाएँ पार करते हैं। "
+  "कथन 3 गलत है: नवरत्न बोर्ड सरकार की मंज़ूरी के बिना किसी एक परियोजना में ₹1,000 करोड़ या अपने निवल मूल्य के 15 प्रतिशत तक निवेश कर सकता है; महारत्न बोर्ड की सीमा अधिक, ₹5,000 करोड़ तक, है। "
+  "यह दर्जा सार्वजनिक उद्यम विभाग देता है, जो अब वित्त मंत्रालय के अधीन है, और इससे बड़े CPSEs को प्रतिस्पर्धा करने और विदेश में विस्तार की अधिक स्वतंत्रता मिलती है।",
+  "Department of Public Enterprises -- Maharatna, Navratna and Miniratna schemes.",
+  "in-maharatna-navratna-status", craft="precision")
+
+S(IN, "medium", "Consider the following statements about product standards in India:",
+  "भारत में उत्पाद मानकों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Quality Control Orders issued under the Bureau of Indian Standards Act, 2016 make it compulsory for the covered products to carry the BIS standard mark.",
+   "Goods covered by a Quality Control Order are exempt from it when they are imported.",
+   "Hallmarking of gold jewellery with a six-digit Hallmark Unique Identification (HUID) number has been made compulsory in notified districts."],
+  ["भारतीय मानक ब्यूरो अधिनियम, 2016 के तहत जारी गुणवत्ता नियंत्रण आदेश (QCO) शामिल उत्पादों पर BIS मानक चिह्न लगाना अनिवार्य करते हैं।",
+   "गुणवत्ता नियंत्रण आदेश के दायरे वाली वस्तुएँ आयात किए जाने पर उससे मुक्त रहती हैं।",
+   "अधिसूचित ज़िलों में सोने के आभूषणों पर छह अंकों वाले हॉलमार्क यूनिक आइडेंटिफ़िकेशन (HUID) नंबर के साथ हॉलमार्किंग अनिवार्य कर दी गई है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. Ministries issue Quality Control Orders for products ranging from helmets and pressure cookers to steel and chemicals; once one is in force, no one may make, import, store or sell a covered product without BIS certification. "
+  "Statement 2 is wrong: QCOs apply equally to imports -- which is why foreign makers must also obtain BIS licences, and why critics say some QCOs act as non-tariff barriers that raise input costs for Indian manufacturers. "
+  "Compulsory hallmarking began in June 2021 in 256 districts and has since been widened; each piece carries a six-character alphanumeric HUID that lets buyers check its purity.",
+  "कथन 1 और 3 सही हैं। मंत्रालय हेलमेट और प्रेशर कुकर से लेकर इस्पात और रसायनों तक के उत्पादों के लिए गुणवत्ता नियंत्रण आदेश जारी करते हैं; आदेश लागू होने पर कोई भी व्यक्ति BIS प्रमाणन के बिना शामिल उत्पाद न बना सकता है, न आयात, भंडारण या बिक्री कर सकता है। "
+  "कथन 2 गलत है: QCO आयात पर भी समान रूप से लागू होते हैं; इसीलिए विदेशी निर्माताओं को भी BIS लाइसेंस लेना पड़ता है, और आलोचक कहते हैं कि कुछ QCO ग़ैर-शुल्क बाधा की तरह काम करते हैं जो भारतीय निर्माताओं की इनपुट लागत बढ़ाते हैं। "
+  "अनिवार्य हॉलमार्किंग जून 2021 में 256 ज़िलों में शुरू हुई और तब से इसका विस्तार हुआ है; हर आभूषण पर छह अक्षरों-अंकों वाला HUID होता है जिससे ख़रीदार उसकी शुद्धता जाँच सकते हैं।",
+  "Bureau of Indian Standards -- Quality Control Orders and hallmarking; Bureau of Indian Standards Act, 2016.",
+  "in-qco-bis-hallmarking", craft="precision")
+
+S(IN, "medium", "A company with 100 per cent foreign direct investment runs an online shopping platform in India. Consider the following practices:",
+  "100 प्रतिशत प्रत्यक्ष विदेशी निवेश वाली एक कंपनी भारत में ऑनलाइन ख़रीदारी का प्लेटफ़ॉर्म चलाती है। निम्नलिखित प्रथाओं पर विचार कीजिए:",
+  ["It buys goods in bulk from manufacturers and sells them to consumers in its own name.",
+   "It lets independent sellers list their products on the platform and charges them a commission.",
+   "A seller in which the platform company holds equity sells its products on the platform."],
+  ["वह निर्माताओं से थोक में सामान ख़रीदकर अपने नाम से उपभोक्ताओं को बेचती है।",
+   "वह स्वतंत्र विक्रेताओं को प्लेटफ़ॉर्म पर अपने उत्पाद दिखाने देती है और उनसे कमीशन लेती है।",
+   "एक ऐसा विक्रेता, जिसमें प्लेटफ़ॉर्म कंपनी की इक्विटी हिस्सेदारी है, प्लेटफ़ॉर्म पर अपने उत्पाद बेचता है।"],
+  None, 1,
+  "Practices 1 and 3 breach the policy. FDI up to 100 per cent through the automatic route is allowed only in the marketplace model -- practice 2, a platform that brings buyers and sellers together for a fee. "
+  "FDI is not allowed in the inventory model of practice 1, in which the company owns the goods and sells them itself. The 2018 changes also bar an entity in which the marketplace or its group companies hold equity, or whose inventory they control, from selling on that platform, which rules out practice 3. "
+  "The line protects small retailers, since multi-brand retail remains restricted.",
+  "प्रथाएँ 1 और 3 नीति का उल्लंघन करती हैं। स्वचालित मार्ग से 100 प्रतिशत तक FDI की अनुमति केवल मार्केटप्लेस मॉडल में है, यानी प्रथा 2, जिसमें प्लेटफ़ॉर्म शुल्क लेकर ख़रीदारों और विक्रेताओं को जोड़ता है। "
+  "प्रथा 1 के इन्वेंटरी मॉडल में, जिसमें कंपनी सामान की स्वामी होकर उसे ख़ुद बेचती है, FDI की अनुमति नहीं है। 2018 के बदलाव उस इकाई को भी उस प्लेटफ़ॉर्म पर बेचने से रोकते हैं जिसमें मार्केटप्लेस या उसकी समूह कंपनियों की इक्विटी हो या जिसकी इन्वेंटरी पर उनका नियंत्रण हो, जिससे प्रथा 3 बाहर हो जाती है। "
+  "यह रेखा छोटे खुदरा व्यापारियों की रक्षा के लिए है, क्योंकि बहु-ब्रांड खुदरा पर अब भी प्रतिबंध है।",
+  f"{DPIIT} -- Consolidated FDI Policy and Press Note 2 (2018 Series) on e-commerce.",
+  "in-ecommerce-fdi-marketplace-inventory", opts=["1 only", "1 and 3 only", "2 and 3 only", "1, 2 and 3"],
+  opts_hi=["केवल 1", "केवल 1 और 3", "केवल 2 और 3", "1, 2 और 3"],
+  closing="Which of the above practices would breach India's FDI policy for e-commerce?",
+  closing_hi="उपर्युक्त में से कौन-सी प्रथा/प्रथाएँ ई-कॉमर्स के लिए भारत की FDI नीति का उल्लंघन करेंगी?", craft="application")
+
+if __name__ == "__main__":
+    write_updates("gs_l2_t21_economy_v2.sql")
