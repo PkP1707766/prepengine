@@ -222,23 +222,23 @@ S(JV, "medium", "A State minister makes a public statement disparaging a survivo
   "verdicts-kaushal-kishor-2023", craft="application")
 
 # ================================================================ FUNDAMENTAL RIGHTS (1)
-S(FR, "medium", "Consider the following statements:",
-  "निम्नलिखित कथनों पर विचार कीजिए:",
-  ["A State legislature may, by law, restrict the Fundamental Rights of the State's armed police so as to ensure discipline.",
-   "Article 34 empowers the President to declare martial law in any part of the country.",
-   "Under Anuradha Bhasin v. Union of India (2020), an order suspending internet services need not be made public, since it concerns public order."],
-  ["राज्य विधानमंडल क़ानून द्वारा अनुशासन बनाए रखने के लिए राज्य की सशस्त्र पुलिस के मौलिक अधिकारों को सीमित कर सकता है।",
-   "अनुच्छेद 34 राष्ट्रपति को देश के किसी भी भाग में सैन्य क़ानून (मार्शल लॉ) घोषित करने की शक्ति देता है।",
-   "अनुराधा भसीन बनाम भारत संघ (2020) के अनुसार इंटरनेट सेवाएँ निलंबित करने वाले आदेश को सार्वजनिक करना आवश्यक नहीं है, क्योंकि वह लोक व्यवस्था से जुड़ा है।"],
-  C3, 3,
-  "None is correct. Statement 1 is wrong: Article 33 gives this power only to Parliament, for the armed forces, forces charged with public order, intelligence bodies and their communication services. "
-  "Statement 2 is wrong: the Constitution nowhere says who may declare martial law; Article 34 only lets Parliament indemnify officers for acts done to restore order in an area where martial law was in force. "
-  "Statement 3 is wrong: the Court held that orders suspending the internet must be published so that they can be challenged, must be necessary and proportionate, cannot be indefinite, and must be reviewed periodically; speech and trade over the internet are protected under Article 19(1)(a) and (g).",
-  "कोई भी कथन सही नहीं है। कथन 1 गलत है: अनुच्छेद 33 यह शक्ति केवल संसद को देता है, सशस्त्र बलों, लोक व्यवस्था के लिए उत्तरदायी बलों, ख़ुफ़िया संस्थाओं और उनकी संचार सेवाओं के लिए। "
-  "कथन 2 गलत है: संविधान कहीं नहीं बताता कि मार्शल लॉ कौन घोषित करेगा; अनुच्छेद 34 केवल संसद को यह शक्ति देता है कि मार्शल लॉ वाले क्षेत्र में व्यवस्था बहाल करने के लिए किए गए कार्यों के लिए अधिकारियों को क्षतिपूर्ति (indemnity) दे। "
-  "कथन 3 गलत है: न्यायालय ने कहा कि इंटरनेट निलंबन के आदेश प्रकाशित होने चाहिए ताकि उन्हें चुनौती दी जा सके, वे आवश्यक और आनुपातिक हों, अनिश्चितकालीन न हों और समय-समय पर उनकी समीक्षा हो; इंटरनेट के माध्यम से अभिव्यक्ति और व्यापार अनुच्छेद 19(1)(क) और (छ) के तहत संरक्षित हैं।",
-  f"{COI} -- Articles 33 and 34; {SC} -- Anuradha Bhasin v. Union of India (2020).",
-  "rights-art33-34-bhasin", craft="precision")
+S(FR, "medium", "Consider the following statements about how far Articles 19 and 21 reach:",
+  "अनुच्छेद 19 और 21 की पहुँच के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In Anuradha Bhasin v. Union of India (2020), the Supreme Court held that orders suspending internet services must be published and reviewed periodically.",
+   "In Subramanian Swamy v. Union of India (2016), the Supreme Court struck down criminal defamation as an unreasonable restriction on free speech.",
+   "In the Ramlila Maidan case (2012), the Supreme Court treated the right to sleep as part of the right to life under Article 21."],
+  ["अनुराधा भसीन बनाम भारत संघ (2020) में सर्वोच्च न्यायालय ने कहा कि इंटरनेट सेवाएँ निलंबित करने वाले आदेश प्रकाशित किए जाएँ और समय-समय पर उनकी समीक्षा हो।",
+   "सुब्रमण्यम स्वामी बनाम भारत संघ (2016) में सर्वोच्च न्यायालय ने आपराधिक मानहानि को अभिव्यक्ति की स्वतंत्रता पर अनुचित प्रतिबंध मानकर रद्द कर दिया।",
+   "रामलीला मैदान मामले (2012) में सर्वोच्च न्यायालय ने नींद के अधिकार को अनुच्छेद 21 के तहत जीवन के अधिकार का भाग माना।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. In Anuradha Bhasin the Court held that speech and trade over the internet are protected under Article 19(1)(a) and (g); a shutdown must therefore be necessary and proportionate, cannot be indefinite, and must be published and periodically reviewed so that it can be challenged. "
+  "In Ramlila Maidan, a midnight police action against a sleeping crowd was held to violate the right to sleep, part of the right to life and personal liberty. "
+  "Statement 2 reverses the holding: Subramanian Swamy upheld criminal defamation (now in the Bharatiya Nyaya Sanhita), reasoning that reputation is itself part of Article 21 and that defamation is a ground of restriction named in Article 19(2).",
+  "कथन 1 और 3 सही हैं। अनुराधा भसीन में न्यायालय ने कहा कि इंटरनेट के माध्यम से अभिव्यक्ति और व्यापार अनुच्छेद 19(1)(क) और (छ) के तहत संरक्षित हैं; इसलिए इंटरनेट बंदी आवश्यक और आनुपातिक होनी चाहिए, अनिश्चितकालीन नहीं हो सकती, और उसे प्रकाशित कर समय-समय पर उसकी समीक्षा होनी चाहिए ताकि उसे चुनौती दी जा सके। "
+  "रामलीला मैदान मामले में सोती भीड़ पर आधी रात की पुलिस कार्रवाई को नींद के अधिकार का उल्लंघन माना गया, जो प्राण और दैहिक स्वतंत्रता के अधिकार का भाग है। "
+  "कथन 2 निर्णय को उलट देता है: सुब्रमण्यम स्वामी मामले में आपराधिक मानहानि (अब भारतीय न्याय संहिता में) को वैध ठहराया गया, इस तर्क पर कि प्रतिष्ठा स्वयं अनुच्छेद 21 का भाग है और मानहानि अनुच्छेद 19(2) में दिया गया प्रतिबंध का एक आधार है।",
+  f"{SC} -- Anuradha Bhasin v. Union of India (2020); Subramanian Swamy v. Union of India (2016); In re Ramlila Maidan Incident (2012).",
+  "rights-internet-defamation-sleep", craft="precision")
 
 # ================================================================ GOVERNANCE (2)
 M(GV, "medium", "'Jeevan Pramaan', a digital public service of the Government of India, is used for",
@@ -303,4 +303,4 @@ M(BO, "medium", "A woman complains to the National Commission for Women that her
   "bodies-ncw-statutory-powers", craft="application")
 
 if __name__ == "__main__":
-    write_updates("gs_l2_t21_polity_v2.sql")
+    write_updates("gs_l2_t21_polity_v2.sql", replaces={"rights-internet-defamation-sleep": "rights-art33-34-bhasin"})

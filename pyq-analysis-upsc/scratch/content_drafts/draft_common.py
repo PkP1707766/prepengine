@@ -122,11 +122,14 @@ def C(topic, diff, body, body_hi, items, items_hi, opts, ans, expl, expl_hi, cit
 
 CRAFT = {}
 
-def write_updates(name, replaces=None):
-    """Rewrite existing draft rows in place, matched on concept_group_id. replaces maps a new
-    concept id to the old one it overwrites (when the rewrite changes the concept); rows not in
-    it overwrite the row with their own id. Only status 'draft' rows are touched."""
+def write_updates(name, replaces=None, statuses=("draft",), tags=None):
+    """Rewrite existing rows in place, matched on concept_group_id. replaces maps a new concept id to
+    the old one it overwrites (when the rewrite changes the concept); rows not in it overwrite the row
+    with their own id. Only rows whose status is in statuses are touched -- the Level-2 audit also
+    passes "published" (on 2026-10-04 no UPSC test was published and the only responses were the
+    admin's dry runs). tags: {concept id: craft} for kept rows, written as craft tags in the same file."""
     replaces = replaces or {}
+    st = ", ".join(sql_q(x) for x in statuses)
     here = os.path.dirname(os.path.abspath(__file__))
     stmts = []
     for r in ROWS:
@@ -137,8 +140,13 @@ def write_updates(name, replaces=None):
         sql = ("update public.questions set " + ", ".join(f"{k} = {sql_q(v)}" for k, v in sets.items())
                + ", question_data = " + sql_q(json.dumps(r["question_data"], ensure_ascii=False)) + "::jsonb"
                + ", options = " + sql_q(json.dumps(r["options"], ensure_ascii=False)) + "::jsonb, updated_at = now()"
-               + f" where exam_category = 'upsc' and status = 'draft' and concept_group_id = {sql_q(old)} returning concept_group_id;")
+               + f" where exam_category = 'upsc' and status in ({st}) and concept_group_id = {sql_q(old)} returning concept_group_id;")
         stmts.append(sql)
+    for cg, craft in (tags or {}).items():
+        assert craft in CRAFTS, f"{cg}: bad craft {craft}"
+        assert cg not in {r["concept_group_id"] for r in ROWS}, f"{cg} is both rewritten and tagged"
+        stmts.append("update public.questions set question_data = jsonb_set(coalesce(question_data, '{}'::jsonb), '{craft}', "
+                     f"to_jsonb({sql_q(craft)}::text)) where exam_category = 'upsc' and concept_group_id = {sql_q(cg)} returning concept_group_id;")
     open(os.path.join(here, name), "w", encoding="utf-8").write("begin;" + chr(10) + chr(10).join(stmts) + chr(10) + "commit;" + chr(10))
     json.dump([r["concept_group_id"] for r in ROWS], open(os.path.join(here, name.replace(".sql", "_cgs.json")), "w"))
     _report(name)
