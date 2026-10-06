@@ -115,6 +115,9 @@ def T(subj, topic, diff, body, body_hi, opts, opts_hi, ans, expl, expl_hi, cg, c
     assert not (ORDINAL.search(expl) or ORDINAL.search(expl_hi)), f"{cg}: name the options by content, not by position"
     lens = [len(x) for x in opts]
     assert lens[ans] <= max(l for i, l in enumerate(lens) if i != ans), f"{cg}: the correct option is the longest"
+    lh = [len(x) for x in opts_hi]
+    if max(lens + lh) > 12:   # one-word answers (a relation, a name) differ in length by nature
+        assert lh[ans] <= max(l for i, l in enumerate(lh) if i != ans), f"{cg}: the correct option is the longest in Hindi"
     _verify(cg, check, opts[ans])
     if pos is None:
         pos = TEXT_SLOTS[_tn[0] % 4]
