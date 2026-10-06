@@ -35,11 +35,11 @@ p = passage("p01",
   "केवल पेड़ों पर टिकी गर्मी-योजना अगले दशक की योजना है, अगली गर्मी की नहीं।")
 RQ(p, "Main Idea", "medium", "mcq", CRUX, CRUX_HI,
    "The passage grants that trees are 'the obvious remedy' but shows that they work slowly, and ends by saying that a plan relying on trees alone will not help the next summer; quick measures such as cool roofs "
-   "must sit alongside them. The second option contradicts the passage, which calls trees the obvious remedy. The third picks one cause and makes it the main one: the passage names both missing green cover and tin roofs. "
-   "The fourth is a detail the passage mentions in passing, not its central point.",
+   "must sit alongside them. Saying that planting trees does little contradicts the passage, which calls trees the obvious remedy. Blaming tin roofs makes one cause the main one: the passage names both missing green cover and tin roofs. "
+   "Counting surviving trees is a detail the passage mentions in passing, not its central point.",
    "परिच्छेद मानता है कि पेड़ 'स्पष्ट उपाय' हैं, पर दिखाता है कि वे धीरे काम करते हैं, और अंत में कहता है कि केवल पेड़ों पर टिकी योजना अगली गर्मी में सहायता नहीं करेगी; ठंडी छतों जैसे जल्दी असर वाले उपाय "
-   "उनके साथ चलने चाहिए। दूसरा विकल्प परिच्छेद का खंडन करता है, जो पेड़ों को स्पष्ट उपाय कहता है। तीसरा एक कारण को मुख्य कारण बना देता है: परिच्छेद हरियाली की कमी और टिन की छतें दोनों बताता है। "
-   "चौथा एक ब्योरा है जिसका उल्लेख परिच्छेद चलते-चलते करता है, उसका केंद्रीय विचार नहीं।",
+   "उनके साथ चलने चाहिए। यह कहना कि पेड़ लगाने से बहुत कम लाभ होता है, परिच्छेद का खंडन करता है, जो पेड़ों को स्पष्ट उपाय कहता है। टिन की छतों को मुख्य कारण बताना एक कारण को मुख्य बना देता है: परिच्छेद हरियाली की कमी और टिन की छतें दोनों बताता है। "
+   "बचे हुए पेड़ गिनने की बात एक ब्योरा है जिसका उल्लेख परिच्छेद चलते-चलते करता है, उसका केंद्रीय विचार नहीं।",
    "crux",
    opts=["Tree planting must be paired with measures that cool cities quickly.",
          "Planting trees does little to reduce heat in cities.",
@@ -487,9 +487,9 @@ p = passage("p10",
   "चिंतित जनता के सामने अनिश्चितता स्वीकार करना किसी विशेषज्ञ को जोखिम भरा लगता है; लंबे समय में उसे छिपाना अधिक जोखिम भरा है।")
 RQ(p, "Main Idea", "medium", "mcq", CRUX, CRUX_HI,
    "The passage argues that trust is kept by candour -- saying what is not known and revising openly -- and that projecting certainty backfires when advice changes. "
-   "Avoiding advice in a crisis is not suggested; the comparison with doctors is an analogy, not a ranking of whom people trust more; and the passage rejects the view of trust as a fixed stock, the very view the last option repeats.",
+   "Avoiding advice in a crisis is not suggested; the comparison with doctors is an analogy, not a ranking of whom people trust more; and the passage rejects the view of trust as a fixed stock that, once lost, can never be won back.",
    "परिच्छेद का तर्क है कि भरोसा स्पष्टता से बना रहता है -- यह बताना कि क्या ज्ञात नहीं और खुलकर संशोधन करना -- और यह कि सलाह बदलने पर निश्चितता का दिखावा उलटा पड़ता है। "
-   "संकट में सलाह न देने का सुझाव नहीं दिया गया; डॉक्टरों से तुलना एक उपमा है, यह क्रम नहीं कि लोग किस पर अधिक भरोसा करते हैं; और परिच्छेद भरोसे को निश्चित भंडार मानने वाले दृष्टिकोण को नकारता है, जिसे अंतिम विकल्प दोहराता है।",
+   "संकट में सलाह न देने का सुझाव नहीं दिया गया; डॉक्टरों से तुलना एक उपमा है, यह क्रम नहीं कि लोग किस पर अधिक भरोसा करते हैं; और परिच्छेद भरोसे को ऐसा निश्चित भंडार मानने वाले दृष्टिकोण को नकारता है जो एक बार खो जाने पर कभी वापस नहीं मिलता।",
    "crux",
    opts=["Experts keep public trust by being open about what they do not know.",
          "Scientists should avoid giving any advice at all in a time of crisis.",

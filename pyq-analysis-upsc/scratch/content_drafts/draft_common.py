@@ -147,7 +147,7 @@ def write_updates(name, replaces=None, statuses=("draft",), tags=None):
         assert cg not in {r["concept_group_id"] for r in ROWS}, f"{cg} is both rewritten and tagged"
         stmts.append("update public.questions set question_data = jsonb_set(coalesce(question_data, '{}'::jsonb), '{craft}', "
                      f"to_jsonb({sql_q(craft)}::text)) where exam_category = 'upsc' and concept_group_id = {sql_q(cg)} returning concept_group_id;")
-    open(os.path.join(here, name), "w", encoding="utf-8").write("begin;" + chr(10) + chr(10).join(stmts) + chr(10) + "commit;" + chr(10))
+    open(os.path.join(here, name), "w", encoding="utf-8", newline="\n").write("begin;" + chr(10) + chr(10).join(stmts) + chr(10) + "commit;" + chr(10))
     json.dump([r["concept_group_id"] for r in ROWS], open(os.path.join(here, name.replace(".sql", "_cgs.json")), "w"))
     _report(name)
 
@@ -173,7 +173,7 @@ def write(name):
     sql = ("insert into public.questions (exam_category, subject, topic, type, difficulty, body, body_hi, question_data, options, "
            "marks_correct, marks_wrong, explanation, explanation_hi, concept_group_id, source_type, source_citation, status)\nvalues\n"
            + ",\n".join(vals) + "\nreturning concept_group_id;\n")
-    open(os.path.join(here, name), "w", encoding="utf-8").write(sql)
+    open(os.path.join(here, name), "w", encoding="utf-8", newline="\n").write(sql)
     json.dump([r["concept_group_id"] for r in ROWS], open(os.path.join(here, name.replace(".sql", "_cgs.json")), "w"))
     print(f"{name}: {len(ROWS)} rows")
     print("cells:", json.dumps(dict(sorted(CELLS.items())), ensure_ascii=False))

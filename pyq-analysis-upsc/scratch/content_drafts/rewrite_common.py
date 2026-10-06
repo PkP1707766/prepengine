@@ -87,5 +87,5 @@ def O(fid, opts, opts_hi, ans):
 
 def write(name):
     here = os.path.dirname(os.path.abspath(__file__))
-    open(os.path.join(here, name), "w", encoding="utf-8").write("\n".join(OUT) + "\n")
+    open(os.path.join(here, name), "w", encoding="utf-8", newline="\n").write("\n".join(OUT) + "\n")
     print(f"{name}: {len(OUT)} rows;", dict(sorted(TALLY.items())))

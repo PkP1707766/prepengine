@@ -21,7 +21,7 @@ Every Quant and Reasoning key is checked in code before the row is accepted: a b
 a function that works the answer out by brute force or direct computation and must return the
 option text marked correct. A row also refuses missing Hindi, and a text MCQ whose key is the longest
 option."""
-import json, os
+import json, os, re
 from bilingual import combo_hi, sql_q, CLOSING_HI
 
 QA, LR, RC = "Quantitative Aptitude", "Logical Reasoning", "Reading Comprehension"
@@ -104,10 +104,15 @@ def N(subj, topic, diff, body, body_hi, opts, key, expl, expl_hi, cg, check, opt
 TEXT_SLOTS = [3, 1, 0, 2]   # where the key of each text MCQ goes, in turn
 _tn = [0]
 
+# T() moves the key, so an explanation must name the options by content: 'the second option' can end up
+# pointing at the wrong one. 'The first distractor' / 'पहला ग़लत विकल्प' stay true, since distractors keep their order.
+ORDINAL = re.compile(r"\b(first|second|third|fourth|last) option|(पहल|दूसर|तीसर|चौथ)[ाे] विकल्प|अंतिम विकल्प", re.I)
+
 def T(subj, topic, diff, body, body_hi, opts, opts_hi, ans, expl, expl_hi, cg, craft="inference", pos=None, check=None,
       slot=None, group=None):
     """A text MCQ: the key is written at opts[ans] and moved to the next slot (or to pos), distractors
     keeping their order. The key must not be the longest option."""
+    assert not (ORDINAL.search(expl) or ORDINAL.search(expl_hi)), f"{cg}: name the options by content, not by position"
     lens = [len(x) for x in opts]
     assert lens[ans] <= max(l for i, l in enumerate(lens) if i != ans), f"{cg}: the correct option is the longest"
     _verify(cg, check, opts[ans])
@@ -196,6 +201,23 @@ def RQ(pid, topic, diff, form, stem, stem_hi, expl, expl_hi, cg_tail, **kw):
 LAYOUT = ("Q Q L Q Q R3 Q L Q R3 Q Q L Q R3 L Q Q L R2 Q Q L Q R3 Q L Q Q R3 L Q Q L Q R3 Q L Q Q R2 "
           "DQ DQ DL DL DL R3 Q L Q Q L R3 Q Q L Q Q L Q L Q").split()
 
+def interleave(slot):
+    """Reorder one slot's rows before assemble() so each topic's items fall evenly through the paper rather
+    than in the order they were written (topic k of n items goes to fractions (k + 0.5) / n); rows of other
+    slots keep their places. Test 1 was written already mixed and does not call this."""
+    idx = [i for i, r in enumerate(ROWS) if r["slot"] == slot]
+    rows = [ROWS[i] for i in idx]
+    topics = list(dict.fromkeys(r["topic"] for r in rows))
+    count = {t: sum(r["topic"] == t for r in rows) for t in topics}
+    seen = dict.fromkeys(topics, 0)
+    keyed = []
+    for r in rows:
+        keyed.append(((seen[r["topic"]] + 0.5) / count[r["topic"]], topics.index(r["topic"]), r))
+        seen[r["topic"]] += 1
+    keyed.sort(key=lambda x: x[:2])
+    for i, (_, _, r) in zip(idx, keyed):
+        ROWS[i] = r
+
 def assemble():
     """Give every row its position on the paper (question_data.csat_order) by filling the layout's slots
     in the order the rows were built, keeping each passage's items together and in order."""
@@ -255,6 +277,6 @@ def write(name, order):
     sql = ("insert into public.questions (exam_category, subject, topic, type, difficulty, body, body_hi, question_data, options, "
            "marks_correct, marks_wrong, explanation, explanation_hi, concept_group_id, source_type, source_citation, status)\nvalues\n"
            + ",\n".join(vals) + "\nreturning concept_group_id;\n")
-    open(os.path.join(here, name), "w", encoding="utf-8").write(sql)
+    open(os.path.join(here, name), "w", encoding="utf-8", newline="\n").write(sql)
     json.dump([r["concept_group_id"] for r in order], open(os.path.join(here, name.replace(".sql", "_cgs.json")), "w"))
     print(f"{name}: {len(order)} rows")

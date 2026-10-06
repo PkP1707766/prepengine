@@ -51,5 +51,5 @@ def H(fid, body_hi, expl_hi, st=None, l1=None, l2=None, a=None, r=None, r2=None,
 
 def write(name, subject=None):
     left = [i for i, r in EN.items() if (subject is None or r["subject"] == subject) and i not in SEEN]
-    open(os.path.join(HERE, name), "w", encoding="utf-8").write("\n".join(OUT) + "\n")
+    open(os.path.join(HERE, name), "w", encoding="utf-8", newline="\n").write("\n".join(OUT) + "\n")
     print(f"{name}: {len(OUT)} rows; still without Hindi in this subject: {len(left)}")

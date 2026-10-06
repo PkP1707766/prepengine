@@ -1,0 +1,3 @@
+# The SQL here is run as-is against the database; a CRLF checkout (core.autocrlf) would put "\r" inside the
+# quoted multi-line bodies (passages, data-sufficiency stems). Keep these files LF on every checkout.
+*.sql text eol=lf

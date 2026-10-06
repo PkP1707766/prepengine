@@ -116,7 +116,7 @@ def write_sql(here, name):
     sql = ("insert into public.questions\n(exam_category, subject, topic, type, difficulty, body, question_data, options, marks_correct, marks_wrong, explanation, concept_group_id, source_type, source_citation, status)\nvalues\n"
            + ",\n".join(rows) + "\nreturning topic, type, difficulty, concept_group_id;\n")
     out = os.path.join(here, name)
-    open(out, "w", encoding="utf-8").write(sql)
+    open(out, "w", encoding="utf-8", newline="\n").write(sql)
     print(f"wrote {name}: {len(rows)} rows, {len(sql)} chars")
     print("cells:", {f"{d}/{t}/{s}": n for (d, t, s), n in sorted(cells.items())})
     print("answer tally:", dict(sorted(tally.items())))
