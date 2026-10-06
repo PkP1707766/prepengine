@@ -241,17 +241,22 @@ N(LR, "Direction & Distance", "medium",
 
 # 11 -- each letter moved one place further
 def _cd1():
-    code = lambda w: "".join(chr((ord(ch) - 65 + i + 1) % 26 + 65) for i, ch in enumerate(w))
-    assert code("CAT") == "DCW" and code("DOG") == "EQJ"
-    return code("FISH")
+    # The examples have three letters and so fix the shifts for positions 1-3 only; the question is asked about a
+    # three-letter word, so no shift has to be guessed beyond what the examples show.
+    shift = lambda w: "".join(chr((ord(ch) - 65 + i + 1) % 26 + 65) for i, ch in enumerate(w))
+    assert shift("CAT") == "DCW" and shift("DOG") == "EQJ"
+    assert shift("HEN") == "IGQ" and "".join(chr(ord(ch) + 1) for ch in "HEN") == "IFO"
+    assert "".join(chr(ord(ch) + i) for i, ch in enumerate("HEN")) == "HFP"
+    assert "".join(chr(ord(ch) - i - 1) for i, ch in enumerate("HEN")) == "GCK"
+    return shift("HEN")
 N(LR, "Coding-Decoding", "medium",
-  "In a certain code, CAT is written as DCW and DOG as EQJ. How is FISH written in that code?",
-  "एक निश्चित कूट में CAT को DCW और DOG को EQJ लिखा जाता है। उसी कूट में FISH को कैसे लिखा जाएगा?",
-  ["GJTI", "GKVI", "GKVK", "GKVL"], 3,
-  "Compare letter by letter: C → D (+1), A → C (+2), T → W (+3), and D → E, O → Q, G → J in the same way: each letter moves one place further than the one before. "
-  "FISH becomes F + 1 = G, I + 2 = K, S + 3 = V, H + 4 = L: GKVL. GKVK stops the steps at +3; GKVI starts them again at +1; GJTI moves every letter by one.",
-  "अक्षर-दर-अक्षर तुलना कीजिए: C → D (+1), A → C (+2), T → W (+3), और इसी तरह D → E, O → Q, G → J: हर अक्षर पिछले से एक स्थान अधिक खिसकता है। "
-  "FISH बनता है F + 1 = G, I + 2 = K, S + 3 = V, H + 4 = L: GKVL। GKVK कदमों को +3 पर रोक देता है; GKVI उन्हें फिर +1 से शुरू करता है; GJTI हर अक्षर को एक स्थान खिसकाता है।",
+  "In a certain code, CAT is written as DCW and DOG as EQJ. How is HEN written in that code?",
+  "एक निश्चित कूट में CAT को DCW और DOG को EQJ लिखा जाता है। उसी कूट में HEN को कैसे लिखा जाएगा?",
+  ["GCK", "HFP", "IFO", "IGQ"], 3,
+  "Compare letter by letter: C → D (+1), A → C (+2), T → W (+3), and D → E, O → Q, G → J in the same way: the first letter moves one place, the second two and the third three. "
+  "HEN becomes H + 1 = I, E + 2 = G, N + 3 = Q: IGQ. IFO moves every letter by one place; HFP starts the steps at +0; GCK moves the letters backwards instead of forwards.",
+  "अक्षर-दर-अक्षर तुलना कीजिए: C → D (+1), A → C (+2), T → W (+3), और इसी तरह D → E, O → Q, G → J: पहला अक्षर एक स्थान, दूसरा दो और तीसरा तीन स्थान खिसकता है। "
+  "HEN बनता है H + 1 = I, E + 2 = G, N + 3 = Q: IGQ। IFO हर अक्षर को एक ही स्थान खिसकाता है; HFP कदमों को +0 से शुरू करता है; GCK अक्षरों को आगे के बजाय पीछे ले जाता है।",
   "lr-cd-each-letter-one-place-further", _cd1)
 
 # 12 -- a product written backwards
