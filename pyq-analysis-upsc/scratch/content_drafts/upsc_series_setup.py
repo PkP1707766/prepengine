@@ -12,7 +12,8 @@ level, a blueprint for every planned paper, and the 27 complete Level-2 papers, 
               marks_correct::float as mc, marks_wrong::float as mw
        from public.questions where exam_category = 'upsc' order by concept_group_id;
   2. node pyq-analysis-upsc/scratch/upsc_l2_cell_targets.mjs > l2_targets.json   (from the repo root)
-  3. PYTHONIOENCODING=utf-8 python upsc_series_setup.py asm_bank.json l2_targets.json
+  3. node pyq-analysis-upsc/scratch/upsc_l1_cell_targets.mjs > l1_targets.jsonl   (from the repo root)
+  4. PYTHONIOENCODING=utf-8 python upsc_series_setup.py asm_bank.json l2_targets.json l1_targets.jsonl
      -> writes upsc_series_setup.sql (one transaction; re-running it updates in place).
 
 How each Level-2 paper is made:
@@ -26,6 +27,9 @@ How each Level-2 paper is made:
   - CSAT Test n (1-7): the 80 rows of csat_set 'csat-l2-tNN' in their authored csat_order.
   - Test 21 has 84 of its 100 rows (its 16 current-affairs rows are written nearer its date), so only its
     blueprint is made now.
+Level-1 papers are assembled the same way once all 100 rows of a paper exist (their concept ids carry the
+paper's prefix, e.g. l1-pol-), checked cell by cell against upsc_l1_cell_targets.mjs. They stay undated until
+the owner decides whether Level 1 runs on dates or self-paced.
 Nothing is published: the owner publishes each test after reviewing it. Each test is linked to the UPSC
 plan (prelims-2026) and its question_usages are recorded exactly as commit_generated_test() does."""
 import glob, io, json, os, random, re, sys, uuid
@@ -146,6 +150,16 @@ L2 = [
      "Space technology and missions; IT, communication and emerging technologies; energy and environmental "
      "technology; defence, aerospace and security technology. Sources: ISRO; MeitY; DST; DRDO; PIB."),
 ]
+# Rows written for other levels carry a level prefix in their concept id; Level 2 never draws them.
+OTHER_LEVELS = ("l1-", "l3-", "l4-", "ca-")
+
+L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
+    (1, "l1-pol-", "Polity at the NCERT foundation level: the functions and philosophy of the Constitution, liberty, equality, rights, "
+     "justice and the rule of law, Parliament and the executive compared with other systems, federalism and power sharing, "
+     "local government, elections and electoral systems, governance and the laws NCERT uses to discuss social justice. "
+     "Sources: NCERT Classes VIII-XII Political Science; the Constitution of India."),
+]
+
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",
              "The whole GS Paper I syllabus on the UPSC mix, with 16 current-affairs questions from the months before it.")
 
@@ -210,6 +224,12 @@ CSAT_DATES = ["2026-11-07", "2026-11-28", "2026-12-19", "2027-01-09", "2027-01-3
 
 def main():
     bank_path, targets_path = sys.argv[1], sys.argv[2]
+    l1_targets = {}
+    if len(sys.argv) > 3:
+        for line in io.open(sys.argv[3], encoding="utf-8"):
+            if line.strip():
+                x = json.loads(line)
+                l1_targets[x["no"]] = Counter({(c[0], c[1], c[2]): c[3] for c in x["cells"]})
     raw = io.open(bank_path, encoding="utf-8").read()
     bank = json.loads(raw[raw.index("{"):raw.rindex("}") + 1])["rows"]
     targets = json.load(open(targets_path, encoding="utf-8"))
@@ -259,7 +279,8 @@ def main():
     for no, short, title, title_hi, theme, part, desc in L2:
         cells = {(c["difficulty"], c["type"], c["topic"]): c["n"] for c in targets[str(no)]}
         subs = {k[2] for k in cells}
-        rows = [r for r in bank if r["topic"] in subs and not r["csat_set"] and r["cg"] not in t21 and (r["difficulty"], r["type"], r["topic"]) in cells]
+        rows = [r for r in bank if r["topic"] in subs and not r["csat_set"] and r["cg"] not in t21 and not r["cg"].startswith(OTHER_LEVELS)
+                and (r["difficulty"], r["type"], r["topic"]) in cells]
         have = Counter((r["difficulty"], r["type"], r["topic"]) for r in rows)
         assert have == Counter(cells), f"Test {no}: cells differ from targets"
         order = arrange(rows, seed=no)
@@ -274,17 +295,28 @@ def main():
                       "The full CSAT Paper II syllabus: 34 quantitative aptitude, 18 logical reasoning and 28 reading-comprehension "
                       "questions on 10 passages, in the UPSC order. 80 questions · 200 marks · 2 hours · +2.5 / -0.83; qualifying at 33%.",
                       f"{CSAT_DATES[n - 1]} 14:30:00+05:30", "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
+    l1_titles = {pos: (t, th) for series, pos, t, th, *_ in other_blueprints() if series == "l1"}
+    for no, prefix, desc in L1_PAPERS:
+        rows = [r for r in bank if r["cg"].startswith(prefix)]
+        if len(rows) < 100:
+            print(f"Level 1 Test {no}: {len(rows)} of 100 rows, paper not made yet")
+            continue
+        assert Counter((r["difficulty"], r["type"], r["topic"]) for r in rows) == l1_targets[no], f"Level 1 Test {no}: cells differ from targets"
+        bp_ids[("l1", no)] = (uid(f"blueprint/l1/{no}"), "upsc27-l1-gs")
+        tests.append(("l1", no, *l1_titles[no], desc + " 100 questions · 200 marks · 2 hours · +2 / -0.66.", None,
+                      "General Studies Paper I", "सामान्य अध्ययन प्रश्नपत्र I", arrange(rows, seed=100 + no)))
     seen = set()
     for kind, n, title, title_hi, desc, when, sec, sec_hi, rows in tests:
         ids = [r["id"] for r in rows]
         assert not (seen & set(ids)), f"{title}: a question is in two tests"
         seen |= set(ids)
-        tid = uid(f"test/l2/{kind}/{n}")
+        tid = uid(f"test/l1/gs/{n}") if kind == "l1" else uid(f"test/l2/{kind}/{n}")
+        series_id = SID["l1"] if kind == "l1" else L2_SERIES
         bid, theme = bp_ids[(kind, n)]
         sections = [{"id": "s1", "name": sec, "name_hi": sec_hi, "questionIds": ids}]
         sql.append("insert into public.tests (id, exam_category, title, title_hi, description, series_id, blueprint_id, duration_min, sections, "
                    "is_free, is_published, shuffle_questions, shuffle_options, scheduled_for) values "
-                   f"({q(tid)}, 'upsc', {q(title)}, {q(title_hi)}, {q(desc)}, {q(L2_SERIES)}, {q(bid)}, 120, {j(sections)}, false, false, false, false, {q(when)}) "
+                   f"({q(tid)}, 'upsc', {q(title)}, {q(title_hi)}, {q(desc)}, {q(series_id)}, {q(bid)}, 120, {j(sections)}, false, false, false, false, {q(when)}) "
                    "on conflict (id) do update set title = excluded.title, title_hi = excluded.title_hi, description = excluded.description, "
                    "series_id = excluded.series_id, blueprint_id = excluded.blueprint_id, duration_min = excluded.duration_min, sections = excluded.sections, "
                    "shuffle_questions = excluded.shuffle_questions, shuffle_options = excluded.shuffle_options, scheduled_for = excluded.scheduled_for, updated_at = now();")
@@ -296,7 +328,7 @@ def main():
         sql.append(f"insert into public.plan_tests (plan_code, test_id) select {q(PLAN)}, {q(tid)} "
                    f"where not exists (select 1 from public.plan_tests where plan_code = {q(PLAN)} and test_id = {q(tid)});")
         keys = "".join("abcd"[r["key"]] for r in rows)
-        report.append((title, len(rows), when[:10], keys, "".join(r["difficulty"][0] for r in rows)))
+        report.append((title, len(rows), (when or "undated")[:10], keys, "".join(r["difficulty"][0] for r in rows)))
     sql.append("commit;")
     sql.append("select (select count(*) from public.test_series where exam_category = 'upsc') as series, "
                "(select count(*) from public.test_blueprints where exam_category = 'upsc' and series_id is not null) as blueprints, "
@@ -309,7 +341,7 @@ def main():
         for a, b in zip(keys, keys[1:]):
             run = run + 1 if a == b else 1; best = max(best, run)
         hard = [diff[i:i + 25].count("h") for i in range(0, len(diff), 25)]
-        print(f"{when} {n:>3} q | longest letter run {best} | hard by quarter {hard} | {title}")
+        print(f"{when:10} {n:>3} q | longest letter run {best} | hard by quarter {hard} | {title}")
     print(f"upsc_series_setup.sql: {len(SERIES)} series, {len(L2) + 8 + len(other_blueprints())} blueprints, {len(tests)} tests, {len(seen)} questions")
 
 def arrange(rows, seed):

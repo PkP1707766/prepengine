@@ -1,0 +1,435 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 1 (Polity, NCERT Foundation) -- part B: Parliament & State Legislature (17) and Union &
+State Executive (8). 25 new bilingual rows on the Level-1 cell targets:
+  Parliament: easy MCQ 1, easy statement 3, easy Statement-I/II 1, easy pairs 1, medium MCQ 2, medium
+    statement 6, medium Statement-I/II 1, medium pairs 1, hard statement 1.
+  Executive: easy statement 1, medium MCQ 1, medium statement 3, medium Statement-I/II 1, hard statement 1,
+    hard Statement-I/II/III 1.
+The angle is NCERT's: why a parliament and two Houses, how Parliament and the courts relate, committees,
+the parliamentary and presidential executives compared, the permanent executive. The Level-2 rows on
+devices, motions, committees' composition, Articles 85-123, the President's election, vetoes, ordinances
+and the Governor's discretion are not repeated."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Polity"
+d.REQUIRE_CRAFT = True
+PL = "Parliament & State Legislature"
+EX = "Union & State Executive"
+COI = "Constitution of India"
+NC11 = "NCERT Class XI, Political Science -- Indian Constitution at Work"
+NC12 = "NCERT Class XII, Political Science -- Politics in India since Independence"
+SPL8 = "NCERT Class VIII, Social and Political Life -- III"
+FIVE = ["Only two", "Only three", "Only four", "All five"]
+FIVE_HI = ["केवल दो", "केवल तीन", "केवल चार", "सभी पाँच"]
+
+# ================================================================ PARLIAMENT (17)
+# ---------------------------------------------------------------- easy (6)
+M(PL, "easy", "Which one of the following best describes 'delegated legislation'?",
+  "निम्नलिखित में से कौन-सा 'प्रत्यायोजित विधान' का सबसे अच्छा वर्णन करता है?",
+  ["Rules and regulations that the executive makes under the authority of an Act of Parliament",
+   "Laws that a State legislature makes on a subject that Parliament has transferred to it for good",
+   "Ordinances that the President promulgates on the advice of ministers when Parliament is not in session",
+   "Bills that are moved in Parliament by members who are not ministers in the government"],
+  ["नियम और विनियम जो कार्यपालिका संसद के किसी अधिनियम के प्राधिकार से बनाती है",
+   "वे कानून जो राज्य विधानमंडल उस विषय पर बनाता है जिसे संसद ने स्थायी रूप से उसे सौंप दिया हो",
+   "वे अध्यादेश जो संसद का सत्र न चलने पर राष्ट्रपति मंत्रियों की सलाह पर प्रख्यापित करते हैं",
+   "वे विधेयक जो संसद में ऐसे सदस्य पेश करते हैं जो सरकार में मंत्री नहीं हैं"],
+  0,
+  "Parliament cannot write every detail of a law, so an Act often authorises the government to frame rules, regulations and notifications to carry it out. Such delegated (subordinate) legislation must stay within the limits of the parent Act, and Parliament keeps watch over it through a committee. "
+  "Ordinances are the President's own law-making power under Article 123, Bills of members who are not ministers are private members' Bills, and Parliament has no power to hand a Union subject over to a State legislature for good.",
+  "संसद किसी कानून का हर ब्योरा नहीं लिख सकती, इसलिए अधिनियम प्रायः सरकार को उसे लागू करने के लिए नियम, विनियम और अधिसूचनाएँ बनाने का अधिकार देता है। ऐसा प्रत्यायोजित (अधीनस्थ) विधान मूल अधिनियम की सीमाओं के भीतर रहना चाहिए, और संसद एक समिति के माध्यम से उस पर नज़र रखती है। "
+  "अध्यादेश अनुच्छेद 123 के तहत राष्ट्रपति की अपनी विधायी शक्ति हैं, मंत्री न होने वाले सदस्यों के विधेयक गैर-सरकारी सदस्यों के विधेयक हैं, और संसद के पास संघ के किसी विषय को स्थायी रूप से राज्य विधानमंडल को सौंपने की शक्ति नहीं है।",
+  f"{NC11}, Chapter 5 (Legislature).",
+  "l1-pol-delegated-legislation", craft="precision")
+
+S(PL, "easy", "Consider the following statements about the functions of Parliament:",
+  "संसद के कार्यों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Parliament keeps the executive accountable through devices such as questions, debates and the voting of budget demands.",
+   "The Lok Sabha can remove an individual minister by passing a vote of no-confidence against that minister alone."],
+  ["संसद प्रश्नों, बहसों और बजट माँगों पर मतदान जैसे उपायों से कार्यपालिका को जवाबदेह रखती है।",
+   "लोक सभा किसी एक मंत्री के विरुद्ध अविश्वास प्रस्ताव पारित करके केवल उसी मंत्री को हटा सकती है।"],
+  T2, 0,
+  "Only statement 1 is correct. Holding the executive to account is one of Parliament's main functions, and it works through everyday devices -- questions, debates, motions and the scrutiny and voting of the money the government asks for. "
+  "Statement 2 is wrong: the Council of Ministers is collectively responsible to the Lok Sabha, so a vote of no-confidence is moved against the whole Council, and its passage brings down the entire government; a minister leaves office individually only by resigning or being dropped by the Prime Minister.",
+  "केवल कथन 1 सही है। कार्यपालिका को जवाबदेह रखना संसद के मुख्य कार्यों में से एक है, और यह रोज़मर्रा के उपायों से होता है -- प्रश्न, बहस, प्रस्ताव और सरकार द्वारा माँगे गए धन की जाँच और उस पर मतदान। "
+  "कथन 2 गलत है: मंत्रिपरिषद लोक सभा के प्रति सामूहिक रूप से उत्तरदायी है, इसलिए अविश्वास प्रस्ताव पूरी परिषद के विरुद्ध लाया जाता है, और उसके पारित होने से पूरी सरकार गिरती है; कोई मंत्री व्यक्तिगत रूप से तभी पद छोड़ता है जब वह त्यागपत्र दे या प्रधानमंत्री उसे हटा दें।",
+  f"{NC11}, Chapter 5; {COI}, Article 75(3).",
+  "l1-pol-parliament-accountability-collective", craft="precision")
+
+S(PL, "easy", "Consider the following statements about the Opposition in Parliament:",
+  "संसद में विपक्ष के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Opposition's role includes questioning the government and pointing out the failures of its policies.",
+   "A law gives the Leader of the Opposition in each House the salary and allowances of a Cabinet Minister."],
+  ["विपक्ष की भूमिका में सरकार से प्रश्न पूछना और उसकी नीतियों की विफलताएँ उजागर करना शामिल है।",
+   "एक कानून प्रत्येक सदन में विपक्ष के नेता को कैबिनेट मंत्री के बराबर वेतन और भत्ते देता है।"],
+  T2, 2,
+  "Both statements are correct. In a parliamentary democracy the Opposition checks the government on the floor of the House and offers voters an alternative. "
+  "Its leader's position has a statutory basis: the Salary and Allowances of Leaders of Opposition in Parliament Act, 1977 recognises the Leader of the Opposition in each House and gives the office the salary and allowances of a Cabinet Minister, though the Constitution itself does not mention the office.",
+  "दोनों कथन सही हैं। संसदीय लोकतंत्र में विपक्ष सदन के पटल पर सरकार पर अंकुश रखता है और मतदाताओं को एक विकल्प देता है। "
+  "उसके नेता के पद का सांविधिक आधार है: संसद में विपक्ष के नेता वेतन और भत्ते अधिनियम, 1977 प्रत्येक सदन में विपक्ष के नेता को मान्यता देता है और इस पद को कैबिनेट मंत्री के बराबर वेतन और भत्ते देता है, यद्यपि संविधान में इस पद का उल्लेख नहीं है।",
+  f"{SPL8}, Chapter 3 (Why do we need a Parliament?); Salary and Allowances of Leaders of Opposition in Parliament Act, 1977.",
+  "l1-pol-opposition-role-leader-statute", craft="recall")
+
+S(PL, "easy", "Consider the following statements about bicameral legislatures:",
+  "द्विसदनीय विधायिकाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A second House allows a Bill to be looked at again before it becomes law.",
+   "A bicameral legislature always passes laws faster than a unicameral one.",
+   "In a federation, a second House can give representation to the federating units."],
+  ["दूसरा सदन किसी विधेयक के कानून बनने से पहले उस पर दोबारा विचार का अवसर देता है।",
+   "द्विसदनीय विधायिका सदा एकसदनीय विधायिका से जल्दी कानून पारित करती है।",
+   "संघ में दूसरा सदन संघ की इकाइयों को प्रतिनिधित्व दे सकता है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. The Constituent Assembly chose two Houses for India's Parliament for these reasons: a second chamber allows reconsideration of hasty decisions, and the Rajya Sabha represents the States in the Union legislature. "
+  "Statement 2 is wrong: a Bill that must pass two Houses usually takes longer, and that check on haste is part of the point of a second House.",
+  "कथन 1 और 3 सही हैं। संविधान सभा ने भारत की संसद के लिए इन्हीं कारणों से दो सदन चुने: दूसरा सदन जल्दबाज़ी के निर्णयों पर पुनर्विचार का अवसर देता है, और राज्य सभा संघीय विधायिका में राज्यों का प्रतिनिधित्व करती है। "
+  "कथन 2 गलत है: जिस विधेयक को दो सदनों से गुज़रना हो उसमें प्रायः अधिक समय लगता है, और जल्दबाज़ी पर यही अंकुश दूसरे सदन का एक उद्देश्य है।",
+  f"{NC11}, Chapter 5 (Legislature).",
+  "l1-pol-bicameralism-reasons", craft="inference")
+
+A(PL, "easy",
+  "A Money Bill can be introduced only in the Lok Sabha.",
+  "धन विधेयक केवल लोक सभा में पेश किया जा सकता है।",
+  "The Lok Sabha is directly elected by the people, and the Council of Ministers is responsible to it.",
+  "लोक सभा जनता द्वारा सीधे चुनी जाती है, और मंत्रिपरिषद उसके प्रति उत्तरदायी है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. The power to tax and spend belongs to the House that represents the people directly and that the government answers to -- the old principle of no taxation without representation. "
+  "So a Money Bill starts in the Lok Sabha, and the Rajya Sabha can only make recommendations on it within fourteen days, which the Lok Sabha may accept or reject.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। कर लगाने और खर्च करने की शक्ति उस सदन की है जो जनता का सीधे प्रतिनिधित्व करता है और जिसके प्रति सरकार जवाबदेह है -- 'प्रतिनिधित्व के बिना कोई कर नहीं' का पुराना सिद्धांत। "
+  "इसलिए धन विधेयक लोक सभा में शुरू होता है, और राज्य सभा चौदह दिनों के भीतर उस पर केवल सिफ़ारिशें कर सकती है, जिन्हें लोक सभा माने या न माने।",
+  f"{NC11}, Chapter 5; {COI}, Articles 109 and 110.",
+  "l1-pol-money-bill-lok-sabha-why", craft="linkage")
+
+P(PL, "easy", "Consider the following pairs of terms used in parliamentary politics and their meanings:",
+  "संसदीय राजनीति में प्रयुक्त शब्दों और उनके अर्थों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Coalition government : A government formed by two or more parties together",
+   "Hung Parliament : A House in which no party or pre-poll alliance has a majority",
+   "Lame-duck session : The last session of a Lok Sabha held after a new Lok Sabha has been elected",
+   "Whip : An order of the presiding officer suspending a member from the House"],
+  ["गठबंधन सरकार : दो या अधिक दलों द्वारा मिलकर बनाई गई सरकार",
+   "त्रिशंकु संसद : ऐसा सदन जिसमें किसी दल या चुनाव-पूर्व गठबंधन को बहुमत न हो",
+   "लेम-डक सत्र : नई लोक सभा चुने जाने के बाद पुरानी लोक सभा का अंतिम सत्र",
+   "सचेतक (व्हिप) : पीठासीन अधिकारी का किसी सदस्य को सदन से निलंबित करने का आदेश"],
+  2,
+  "Pairs 1, 2 and 3 are correctly matched. In a lame-duck session, members who have not been re-elected -- the 'lame ducks' -- still sit until the new House is constituted. "
+  "Pair 4 is wrong: a whip is a party office-bearer who ensures that the party's members attend and vote as the party decides, and the word also means the party's written direction itself; suspension of a member is a separate power of the presiding officer.",
+  "युग्म 1, 2 और 3 सही सुमेलित हैं। लेम-डक सत्र में दोबारा न चुने गए सदस्य -- 'लेम डक' -- नए सदन के गठन तक बैठते रहते हैं। "
+  "युग्म 4 गलत है: सचेतक दल का वह पदाधिकारी है जो सुनिश्चित करता है कि दल के सदस्य उपस्थित रहें और दल के निर्णय के अनुसार मतदान करें, और यह शब्द दल के लिखित निर्देश के लिए भी प्रयुक्त होता है; किसी सदस्य का निलंबन पीठासीन अधिकारी की एक अलग शक्ति है।",
+  f"{NC11}, Chapter 5; {SPL8}, Chapter 3.",
+  "l1-pol-parliamentary-terms-pairs", craft="recall")
+
+# ---------------------------------------------------------------- medium (10)
+M(PL, "medium", "Why are members of the Rajya Sabha elected for six years, with one-third of them retiring every second year?",
+  "राज्य सभा के सदस्य छह वर्ष के लिए क्यों चुने जाते हैं, जिनमें से एक-तिहाई हर दूसरे वर्ष सेवानिवृत्त होते हैं?",
+  ["So that the House is never dissolved as a whole and keeps its continuity",
+   "So that every State gets an equal number of seats in the House over a period of time",
+   "So that the Lok Sabha can remove a part of the House when it loses the confidence of the people",
+   "So that the President can nominate fresh members to the House every two years in place of others"],
+  ["ताकि सदन कभी पूरा का पूरा भंग न हो और उसकी निरंतरता बनी रहे",
+   "ताकि समय के साथ हर राज्य को सदन में बराबर सीटें मिल जाएँ",
+   "ताकि जनता का विश्वास खोने पर लोक सभा सदन के एक भाग को हटा सके",
+   "ताकि राष्ट्रपति हर दो वर्ष में दूसरों के स्थान पर सदन में नए सदस्य मनोनीत कर सकें"],
+  0,
+  "Staggered terms make the Rajya Sabha a permanent House: because only a third of its members retire at a time, it is never dissolved as a whole, and it carries experience and continuity across changes in the Lok Sabha. "
+  "Seats in the Rajya Sabha are allotted to States broadly by population, not equally; the Lok Sabha has no power to remove members of the other House; and the President's twelve nominees are part of the same rotation, not its purpose.",
+  "क्रमबद्ध कार्यकाल राज्य सभा को एक स्थायी सदन बनाते हैं: चूँकि एक बार में केवल एक-तिहाई सदस्य सेवानिवृत्त होते हैं, इसलिए वह कभी पूरा भंग नहीं होता, और लोक सभा में बदलाव के बीच भी अनुभव और निरंतरता बनाए रखता है। "
+  "राज्य सभा में सीटें राज्यों को मोटे तौर पर जनसंख्या के आधार पर दी जाती हैं, बराबर नहीं; लोक सभा को दूसरे सदन के सदस्य हटाने की कोई शक्ति नहीं; और राष्ट्रपति के बारह मनोनीत सदस्य इसी चक्र का हिस्सा हैं, उसका उद्देश्य नहीं।",
+  f"{NC11}, Chapter 5; {COI}, Article 83(1).",
+  "l1-pol-rajya-sabha-staggered-terms-continuity", craft="linkage")
+
+M(PL, "medium", "A court declares a section of an Act of Parliament void because it violates Article 19. The government wants the policy behind the section to survive. Which one of the following can Parliament validly do?",
+  "एक न्यायालय संसद के किसी अधिनियम की एक धारा को अनुच्छेद 19 का उल्लंघन करने के कारण शून्य घोषित करता है। सरकार चाहती है कि उस धारा के पीछे की नीति बनी रहे। संसद निम्नलिखित में से क्या वैध रूप से कर सकती है?",
+  ["Amend the law so as to remove the defect that the court found in it",
+   "Pass a resolution in both Houses declaring the judgment to be inoperative",
+   "Pass a law directing the court to rehear the case and reverse its judgment",
+   "Bar the publication of the judgment in the Gazette so that it does not take effect"],
+  ["कानून में ऐसा संशोधन करना जिससे न्यायालय द्वारा पाया गया दोष दूर हो जाए",
+   "दोनों सदनों में एक संकल्प पारित करके निर्णय को निष्प्रभावी घोषित करना",
+   "न्यायालय को मामले की दोबारा सुनवाई करके अपना निर्णय पलटने का निर्देश देने वाला कानून बनाना",
+   "निर्णय के राजपत्र में प्रकाशन पर रोक लगाना ताकि वह प्रभावी न हो"],
+  0,
+  "Parliament cannot overrule a judgment directly -- not by resolution, not by ordering a court to decide a case a certain way, and a judgment does not depend on publication in the Gazette to take effect. "
+  "What it can do is change the law itself: if it amends the Act to remove the basis of the court's finding, the new law operates, and the courts can test the amended law afresh. That is how the separation of powers between the legislature and the judiciary works in practice.",
+  "संसद किसी निर्णय को सीधे नहीं पलट सकती -- न संकल्प से, न किसी न्यायालय को किसी खास ढंग से मामला तय करने का आदेश देकर, और किसी निर्णय को प्रभावी होने के लिए राजपत्र में प्रकाशन की ज़रूरत नहीं होती। "
+  "वह कानून को ही बदल सकती है: यदि वह न्यायालय के निष्कर्ष का आधार हटाने के लिए अधिनियम में संशोधन करे, तो नया कानून लागू होता है, और न्यायालय संशोधित कानून को नए सिरे से परख सकते हैं। व्यवहार में विधायिका और न्यायपालिका के बीच शक्तियों का पृथक्करण इसी तरह काम करता है।",
+  f"{NC11}, Chapters 5 and 6 (Judiciary).",
+  "l1-pol-parliament-cures-defect-not-overrule", craft="application")
+
+S(PL, "medium", "Consider the following statements about coalition politics at the Centre:",
+  "केंद्र में गठबंधन राजनीति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["No single party won a majority in the Lok Sabha in any general election from 1989 until 2014.",
+   "The National Front government formed in 1989 was supported from outside by both the BJP and the Left parties.",
+   "The United Front government formed in 1996 depended on outside support from the Congress."],
+  ["1989 से 2014 तक किसी भी आम चुनाव में किसी एक दल को लोक सभा में बहुमत नहीं मिला।",
+   "1989 में बनी राष्ट्रीय मोर्चा सरकार को भाजपा और वाम दलों, दोनों ने बाहर से समर्थन दिया।",
+   "1996 में बनी संयुक्त मोर्चा सरकार कांग्रेस के बाहरी समर्थन पर निर्भर थी।"],
+  C3, 2,
+  "All three statements are correct. The 1989 election ended the era of single-party majorities: V.P. Singh's National Front ruled with outside support from two rival camps, the BJP and the Left. "
+  "In 1996 the United Front governments of H.D. Deve Gowda and I.K. Gujral survived on the Congress's support from outside, and every government until 2014 was a coalition or a minority government; in 2014 one party again won a majority on its own.",
+  "तीनों कथन सही हैं। 1989 के चुनाव ने एकदलीय बहुमत का दौर समाप्त किया: वी.पी. सिंह का राष्ट्रीय मोर्चा दो प्रतिद्वंद्वी खेमों, भाजपा और वाम दलों, के बाहरी समर्थन से चला। "
+  "1996 में एच.डी. देवगौड़ा और आई.के. गुजराल की संयुक्त मोर्चा सरकारें कांग्रेस के बाहरी समर्थन पर टिकी रहीं, और 2014 तक हर सरकार गठबंधन या अल्पमत सरकार रही; 2014 में एक दल ने फिर अपने बल पर बहुमत पाया।",
+  f"{NC12}, Chapter 9 (Recent Developments in Indian Politics).",
+  "l1-pol-coalition-era-1989-2014", craft="recall")
+
+S(PL, "medium", "Consider the following statements about how a Bill becomes law:",
+  "किसी विधेयक के कानून बनने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A Bill other than a Money Bill can be introduced in either House of Parliament.",
+   "The President must give or withhold assent to a Bill within one month of its being presented."],
+  ["धन विधेयक के अलावा कोई विधेयक संसद के किसी भी सदन में पेश किया जा सकता है।",
+   "राष्ट्रपति को प्रस्तुत किए जाने के एक माह के भीतर विधेयक पर अनुमति देनी या रोकनी होती है।"],
+  T2, 0,
+  "Only statement 1 is correct. Ordinary Bills, and Bills to amend the Constitution, may begin in either House; only a Money Bill (and certain other financial Bills) must start in the Lok Sabha. "
+  "Statement 2 is wrong: the Constitution sets no time limit for the President's decision on an ordinary Bill, which is why keeping a Bill pending indefinitely -- the 'pocket veto' -- is possible. A time limit applies only to returning it: a Bill must be returned for reconsideration 'as soon as possible'.",
+  "केवल कथन 1 सही है। साधारण विधेयक, और संविधान संशोधन विधेयक, किसी भी सदन में शुरू हो सकते हैं; केवल धन विधेयक (और कुछ अन्य वित्त विधेयक) लोक सभा में शुरू होने चाहिए। "
+  "कथन 2 गलत है: संविधान साधारण विधेयक पर राष्ट्रपति के निर्णय की कोई समय-सीमा तय नहीं करता, इसीलिए विधेयक को अनिश्चित काल तक लंबित रखना -- 'जेबी वीटो' -- संभव है। विधेयक को पुनर्विचार के लिए लौटाना 'यथाशीघ्र' होना चाहिए।",
+  f"{NC11}, Chapter 5; {COI}, Articles 107, 111 and 117.",
+  "l1-pol-bill-introduction-no-assent-deadline", craft="precision")
+
+S(PL, "medium", "Consider the following statements about parliamentary committees:",
+  "संसदीय समितियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Much of Parliament's detailed scrutiny of Bills and budgets takes place in committees, since the whole House cannot examine every detail.",
+   "The reports of parliamentary committees are recommendations, which the government is not legally bound to accept.",
+   "The Department-related Standing Committees examine the demands for grants of the ministries."],
+  ["संसद द्वारा विधेयकों और बजट की बारीक जाँच का बड़ा हिस्सा समितियों में होता है, क्योंकि पूरा सदन हर ब्योरे की जाँच नहीं कर सकता।",
+   "संसदीय समितियों की रिपोर्टें सिफ़ारिशें होती हैं, जिन्हें मानने के लिए सरकार कानूनी रूप से बाध्य नहीं है।",
+   "विभाग-संबंधित स्थायी समितियाँ मंत्रालयों की अनुदान माँगों की जाँच करती हैं।"],
+  C3, 2,
+  "All three statements are correct. Committees are Parliament's workshops: a small group of members from different parties can take evidence, study a Bill clause by clause and examine each ministry's spending in a way the full House cannot. "
+  "Their reports carry weight but are advisory; the government reports back on the action it has taken. The Department-related Standing Committees, set up in 1993, scrutinise the demands for grants of the ministries under them before the Lok Sabha votes on them.",
+  "तीनों कथन सही हैं। समितियाँ संसद की कार्यशालाएँ हैं: अलग-अलग दलों के सदस्यों का एक छोटा समूह साक्ष्य ले सकता है, किसी विधेयक का खंड-दर-खंड अध्ययन कर सकता है और हर मंत्रालय के खर्च की उस तरह जाँच कर सकता है जैसे पूरा सदन नहीं कर सकता। "
+  "उनकी रिपोर्टों का वज़न होता है पर वे परामर्शी हैं; सरकार की गई कार्रवाई की जानकारी देती है। 1993 में बनी विभाग-संबंधित स्थायी समितियाँ अपने अधीन मंत्रालयों की अनुदान माँगों की लोक सभा में मतदान से पहले जाँच करती हैं।",
+  f"{NC11}, Chapter 5.",
+  "l1-pol-committees-why-advisory-drsc", craft="inference")
+
+S(PL, "medium", "Consider the following statements about Parliament's control over public finance:",
+  "सार्वजनिक वित्त पर संसद के नियंत्रण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["No tax can be levied or collected except by the authority of law.",
+   "No money can be withdrawn from the Consolidated Fund of India except under an appropriation made by law.",
+   "The Comptroller and Auditor-General presents his reports on the Union's accounts directly to the Speaker of the Lok Sabha."],
+  ["कानून के प्राधिकार के बिना कोई कर न लगाया जा सकता है, न वसूला जा सकता है।",
+   "कानून द्वारा किए गए विनियोग के बिना भारत की संचित निधि से कोई धन नहीं निकाला जा सकता।",
+   "नियंत्रक-महालेखापरीक्षक संघ के लेखों पर अपनी रिपोर्टें सीधे लोक सभा अध्यक्ष को प्रस्तुत करता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: Article 265 makes every tax depend on a law, and Article 266(3) with Article 114 makes every withdrawal from the Consolidated Fund depend on an Appropriation Act -- together they put the purse in Parliament's hands. "
+  "Statement 3 is wrong: under Article 151 the CAG submits the reports on the Union's accounts to the President, who has them laid before each House of Parliament; the Public Accounts Committee then examines them.",
+  "कथन 1 और 2 सही हैं: अनुच्छेद 265 हर कर को कानून पर निर्भर बनाता है, और अनुच्छेद 266(3) अनुच्छेद 114 के साथ संचित निधि से हर निकासी को विनियोग अधिनियम पर निर्भर बनाता है -- दोनों मिलकर धन की थैली संसद के हाथ में रखते हैं। "
+  "कथन 3 गलत है: अनुच्छेद 151 के तहत नियंत्रक-महालेखापरीक्षक संघ के लेखों पर रिपोर्टें राष्ट्रपति को सौंपता है, जो उन्हें संसद के प्रत्येक सदन के समक्ष रखवाते हैं; फिर लोक लेखा समिति उनकी जाँच करती है।",
+  f"{COI}, Articles 114, 151, 265 and 266.",
+  "l1-pol-parliament-purse-265-266-151", craft="linkage")
+
+S(PL, "medium", "Consider the following statements comparing the Rajya Sabha with the Senate of the United States:",
+  "राज्य सभा की तुलना संयुक्त राज्य अमेरिका की सीनेट से करने वाले निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Like the US Senate, the Rajya Sabha cannot remove the government by a vote of no-confidence.",
+   "Unlike the US Senate, the Rajya Sabha does not have to confirm the appointment of judges.",
+   "Unlike the US Senate, the Rajya Sabha can be dissolved before its term ends."],
+  ["अमेरिकी सीनेट की तरह राज्य सभा भी अविश्वास मत से सरकार को नहीं हटा सकती।",
+   "अमेरिकी सीनेट के विपरीत राज्य सभा को न्यायाधीशों की नियुक्ति की पुष्टि नहीं करनी होती।",
+   "अमेरिकी सीनेट के विपरीत राज्य सभा को उसका कार्यकाल पूरा होने से पहले भंग किया जा सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Neither House can bring down a government: the US President does not depend on Congress's confidence at all, and in India the Council of Ministers answers to the Lok Sabha alone. "
+  "The US Senate confirms senior appointments, including federal judges, and consents to treaties; in India judges are appointed by the President, on the recommendation of the collegium, and no House of Parliament confirms them. "
+  "Statement 3 is wrong: both are permanent Houses whose members retire in batches, and neither can be dissolved.",
+  "कथन 1 और 2 सही हैं। कोई भी सदन सरकार को नहीं गिरा सकता: अमेरिकी राष्ट्रपति कांग्रेस के विश्वास पर बिल्कुल निर्भर नहीं, और भारत में मंत्रिपरिषद केवल लोक सभा के प्रति उत्तरदायी है। "
+  "अमेरिकी सीनेट संघीय न्यायाधीशों सहित वरिष्ठ नियुक्तियों की पुष्टि करती है और संधियों पर सहमति देती है; भारत में न्यायाधीशों की नियुक्ति राष्ट्रपति कॉलेजियम की सिफ़ारिश पर करते हैं, और संसद का कोई सदन उनकी पुष्टि नहीं करता। "
+  "कथन 3 गलत है: दोनों स्थायी सदन हैं जिनके सदस्य समूहों में सेवानिवृत्त होते हैं, और कोई भी भंग नहीं किया जा सकता।",
+  f"{NC11}, Chapter 5; Constitution of the United States, Article II, Section 2.",
+  "l1-pol-rajya-sabha-us-senate-compared", craft="inference")
+
+S(PL, "medium", "Consider the following statements about the working of Parliament:",
+  "संसद की कार्यप्रणाली के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Most of the Bills that Parliament passes are introduced by the government.",
+   "Most of the Bills that Parliament passes are private members' Bills.",
+   "The anti-defection law has weakened the control of party leaders over their members of Parliament."],
+  ["संसद द्वारा पारित अधिकांश विधेयक सरकार पेश करती है।",
+   "संसद द्वारा पारित अधिकांश विधेयक गैर-सरकारी सदस्यों के विधेयक होते हैं।",
+   "दल-बदल विरोधी कानून ने अपने संसद सदस्यों पर दल के नेताओं का नियंत्रण कमज़ोर किया है।"],
+  C3, 0,
+  "Only statement 1 is correct. In a parliamentary system the executive leads the legislature: the government frames almost all the Bills, and the Business Advisory Committee and the government shape the agenda. Private members' Bills are rarely passed. "
+  "Statement 3 reverses the effect of the Tenth Schedule: because a member who defies the party whip can lose his seat, the law has strengthened party leaders' hold over their members, which is one reason the executive dominates Parliament.",
+  "केवल कथन 1 सही है। संसदीय प्रणाली में कार्यपालिका विधायिका का नेतृत्व करती है: लगभग सभी विधेयक सरकार तैयार करती है, और कार्य मंत्रणा समिति तथा सरकार कार्यसूची तय करते हैं। गैर-सरकारी सदस्यों के विधेयक शायद ही पारित होते हैं। "
+  "कथन 3 दसवीं अनुसूची के प्रभाव को उलट देता है: दल के सचेतक की अवहेलना करने वाला सदस्य अपनी सीट खो सकता है, इसलिए इस कानून ने अपने सदस्यों पर दल के नेताओं की पकड़ मज़बूत की है, जो संसद पर कार्यपालिका के प्रभुत्व का एक कारण है।",
+  f"{NC11}, Chapter 5 (Legislature).",
+  "l1-pol-executive-dominates-legislature", craft="inference")
+
+A(PL, "medium",
+  "The Rajya Sabha can delay an ordinary Bill passed by the Lok Sabha, but it usually cannot block it for good.",
+  "राज्य सभा लोक सभा द्वारा पारित किसी साधारण विधेयक को टाल सकती है, पर सामान्यतः उसे हमेशा के लिए रोक नहीं सकती।",
+  "A deadlock between the Houses over an ordinary Bill can be resolved at a joint sitting, where the Lok Sabha's larger numbers usually prevail.",
+  "किसी साधारण विधेयक पर दोनों सदनों के बीच गतिरोध संयुक्त बैठक में सुलझाया जा सकता है, जहाँ लोक सभा की बड़ी संख्या सामान्यतः भारी पड़ती है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. If the Rajya Sabha rejects an ordinary Bill, amends it in a way the Lok Sabha does not accept, or sits on it for six months, the President may summon a joint sitting under Article 108. "
+  "The joint sitting decides by a majority of members present and voting, and since the Lok Sabha has more than twice as many members, the government's majority there usually carries the Bill. No joint sitting is possible for a Money Bill or a Bill to amend the Constitution.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। यदि राज्य सभा किसी साधारण विधेयक को अस्वीकार कर दे, उसमें ऐसा संशोधन करे जो लोक सभा को स्वीकार न हो, या छह माह तक उस पर कुछ न करे, तो राष्ट्रपति अनुच्छेद 108 के तहत संयुक्त बैठक बुला सकते हैं। "
+  "संयुक्त बैठक उपस्थित और मत देने वाले सदस्यों के बहुमत से निर्णय करती है, और चूँकि लोक सभा के सदस्य दोगुने से भी अधिक हैं, वहाँ सरकार का बहुमत सामान्यतः विधेयक को पारित करा देता है। धन विधेयक या संविधान संशोधन विधेयक के लिए संयुक्त बैठक संभव नहीं है।",
+  f"{NC11}, Chapter 5; {COI}, Article 108.",
+  "l1-pol-rajya-sabha-delay-joint-sitting", craft="linkage")
+
+P(PL, "medium", "Consider the following pairs of a function of Parliament and an example of it:",
+  "संसद के किसी कार्य और उसके उदाहरण के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Electoral function : Electing the Vice-President",
+   "Constituent function : Amending the Constitution",
+   "Judicial function : Hearing appeals from the High Courts",
+   "Financial function : Appointing the Comptroller and Auditor-General"],
+  ["निर्वाचन संबंधी कार्य : उपराष्ट्रपति का चुनाव",
+   "संविधायी कार्य : संविधान में संशोधन",
+   "न्यायिक कार्य : उच्च न्यायालयों से अपीलें सुनना",
+   "वित्तीय कार्य : नियंत्रक-महालेखापरीक्षक की नियुक्ति"],
+  1,
+  "Pairs 1 and 2 are correctly matched: the members of both Houses elect the Vice-President, and Parliament amends the Constitution under Article 368. "
+  "Pair 3 is wrong: Parliament's 'judicial' functions are quasi-judicial -- impeaching the President, removing judges, punishing breaches of privilege -- while appeals from the High Courts go to the Supreme Court. "
+  "Pair 4 is wrong: the President appoints the CAG; Parliament's financial function lies in sanctioning taxes and expenditure and in examining the CAG's reports.",
+  "युग्म 1 और 2 सही सुमेलित हैं: दोनों सदनों के सदस्य उपराष्ट्रपति को चुनते हैं, और संसद अनुच्छेद 368 के तहत संविधान में संशोधन करती है। "
+  "युग्म 3 गलत है: संसद के 'न्यायिक' कार्य अर्ध-न्यायिक हैं -- राष्ट्रपति पर महाभियोग, न्यायाधीशों को हटाना, विशेषाधिकार-भंग पर दंड -- जबकि उच्च न्यायालयों से अपीलें सर्वोच्च न्यायालय में जाती हैं। "
+  "युग्म 4 गलत है: नियंत्रक-महालेखापरीक्षक की नियुक्ति राष्ट्रपति करते हैं; संसद का वित्तीय कार्य करों और व्यय को मंज़ूरी देने और नियंत्रक-महालेखापरीक्षक की रिपोर्टों की जाँच में है।",
+  f"{NC11}, Chapter 5; {COI}, Articles 66, 148 and 368.",
+  "l1-pol-functions-of-parliament-pairs", craft="linkage")
+
+# ---------------------------------------------------------------- hard (1)
+S(PL, "hard", "Consider the following:",
+  "निम्नलिखित पर विचार कीजिए:",
+  ["Removing a judge of the Supreme Court",
+   "Approving a Proclamation of National Emergency",
+   "Creating a new All-India Service",
+   "Passing a Bill to amend the Constitution",
+   "Approving a Proclamation of President's Rule in a State"],
+  ["सर्वोच्च न्यायालय के किसी न्यायाधीश को हटाना",
+   "राष्ट्रीय आपातकाल की उद्घोषणा का अनुमोदन",
+   "नई अखिल भारतीय सेवा का सृजन",
+   "संविधान संशोधन विधेयक पारित करना",
+   "किसी राज्य में राष्ट्रपति शासन की उद्घोषणा का अनुमोदन"],
+  None, 3,
+  "In all five the Rajya Sabha has at least as much say as the Lok Sabha. A judge is removed only on an address passed by each House by a special majority; Proclamations of National Emergency and of President's Rule must be approved by both Houses; and a Bill to amend the Constitution must pass each House separately, with no joint sitting to break a deadlock. "
+  "In creating a new All-India Service the Rajya Sabha has the larger role: Parliament can do so only after the Rajya Sabha passes a resolution under Article 312 by a two-thirds majority. The Lok Sabha's primacy is confined to money matters and to the confidence of the government.",
+  "पाँचों में राज्य सभा की भूमिका लोक सभा से कम नहीं है। न्यायाधीश को केवल प्रत्येक सदन द्वारा विशेष बहुमत से पारित समावेदन पर हटाया जाता है; राष्ट्रीय आपातकाल और राष्ट्रपति शासन की उद्घोषणाओं का दोनों सदनों से अनुमोदन ज़रूरी है; और संविधान संशोधन विधेयक को प्रत्येक सदन में अलग-अलग पारित होना होता है, गतिरोध तोड़ने के लिए कोई संयुक्त बैठक नहीं होती। "
+  "नई अखिल भारतीय सेवा के सृजन में राज्य सभा की भूमिका बड़ी है: संसद ऐसा तभी कर सकती है जब राज्य सभा अनुच्छेद 312 के तहत दो-तिहाई बहुमत से संकल्प पारित करे। लोक सभा की प्रधानता धन संबंधी मामलों और सरकार के विश्वास तक सीमित है।",
+  f"{COI}, Articles 124(4), 352, 356, 312 and 368.",
+  "l1-pol-rajya-sabha-equal-say-five-cases", opts=FIVE, opts_hi=FIVE_HI,
+  closing="In how many of the above does the Rajya Sabha have at least as much say as the Lok Sabha?",
+  closing_hi="उपर्युक्त में से कितने में राज्य सभा की भूमिका लोक सभा से कम नहीं है?", craft="multi")
+
+# ================================================================ EXECUTIVE (8)
+S(EX, "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In a presidential system, the President is both the head of State and the head of government.",
+   "In a parliamentary system, the head of government can be removed by the legislature through a vote of no-confidence."],
+  ["अध्यक्षात्मक प्रणाली में राष्ट्रपति राज्य का प्रमुख भी होता है और सरकार का प्रमुख भी।",
+   "संसदीय प्रणाली में विधायिका अविश्वास मत द्वारा सरकार के प्रमुख को हटा सकती है।"],
+  T2, 2,
+  "Both statements are correct. In the United States the President heads both the State and the government, is elected for a fixed term and cannot be removed by Congress except by impeachment. "
+  "In a parliamentary system the two roles are split -- a nominal head of State and a Prime Minister who heads the government -- and the government survives only as long as it keeps the confidence of the lower House.",
+  "दोनों कथन सही हैं। संयुक्त राज्य अमेरिका में राष्ट्रपति राज्य और सरकार दोनों का प्रमुख है, एक निश्चित अवधि के लिए चुना जाता है और महाभियोग के सिवा कांग्रेस उसे नहीं हटा सकती। "
+  "संसदीय प्रणाली में ये दोनों भूमिकाएँ बँटी होती हैं -- एक नाममात्र का राज्य-प्रमुख और सरकार का प्रमुख प्रधानमंत्री -- और सरकार तभी तक बनी रहती है जब तक उसे निचले सदन का विश्वास प्राप्त हो।",
+  f"{NC11}, Chapter 4 (Executive).",
+  "l1-pol-presidential-parliamentary-heads", craft="precision")
+
+M(EX, "medium", "In which one of the following countries does a President elected directly by the people share executive power with a Prime Minister who is responsible to the legislature?",
+  "निम्नलिखित में से किस देश में जनता द्वारा सीधे चुना गया राष्ट्रपति विधायिका के प्रति उत्तरदायी प्रधानमंत्री के साथ कार्यपालिका शक्ति साझा करता है?",
+  ["France", "Germany", "Canada", "Japan"],
+  ["फ़्रांस", "जर्मनी", "कनाडा", "जापान"],
+  0,
+  "France has a semi-presidential system: the President is directly elected and holds real powers, while the Prime Minister and the ministers are responsible to the National Assembly. "
+  "Germany, Canada and Japan are parliamentary systems: Germany's President is elected indirectly and is largely ceremonial, Canada's head of State is the monarch, and Japan's is the Emperor, while the Chancellor or Prime Minister heads the government.",
+  "फ़्रांस में अर्ध-अध्यक्षात्मक प्रणाली है: राष्ट्रपति सीधे चुना जाता है और उसके पास वास्तविक शक्तियाँ हैं, जबकि प्रधानमंत्री और मंत्री राष्ट्रीय सभा के प्रति उत्तरदायी हैं। "
+  "जर्मनी, कनाडा और जापान में संसदीय प्रणालियाँ हैं: जर्मनी का राष्ट्रपति अप्रत्यक्ष रूप से चुना जाता है और मुख्यतः औपचारिक है, कनाडा का राज्य-प्रमुख सम्राट है, और जापान का सम्राट, जबकि सरकार का प्रमुख चांसलर या प्रधानमंत्री है।",
+  f"{NC11}, Chapter 4 (Executive).",
+  "l1-pol-semi-presidential-france", pos=0, craft="recall")
+
+S(EX, "medium", "Consider the following statements about the permanent executive in India:",
+  "भारत में स्थायी कार्यपालिका के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Civil servants remain in office when governments change.",
+   "Members of the All-India Services are recruited by the Union but serve in the States as well as at the Centre.",
+   "Civil servants are expected to be politically neutral and to carry out the policies of whichever government is in power."],
+  ["सरकारें बदलने पर भी लोक सेवक पद पर बने रहते हैं।",
+   "अखिल भारतीय सेवाओं के सदस्यों की भर्ती संघ करता है, पर वे केंद्र के साथ-साथ राज्यों में भी सेवा करते हैं।",
+   "लोक सेवकों से अपेक्षा है कि वे राजनीतिक रूप से तटस्थ रहें और जो भी सरकार सत्ता में हो उसकी नीतियाँ लागू करें।"],
+  C3, 2,
+  "All three statements are correct. Ministers form the political executive, which changes with elections; the civil service is the permanent executive, which carries on and gives continuity and expertise. "
+  "Officers of the IAS and IPS are recruited through the UPSC and allotted to State cadres, so they serve under State governments and on deputation at the Centre. Their neutrality is what lets them serve successive governments of different parties.",
+  "तीनों कथन सही हैं। मंत्री राजनीतिक कार्यपालिका बनाते हैं, जो चुनावों के साथ बदलती है; लोक सेवा स्थायी कार्यपालिका है, जो बनी रहती है और निरंतरता तथा विशेषज्ञता देती है। "
+  "आईएएस और आईपीएस के अधिकारी संघ लोक सेवा आयोग के माध्यम से भर्ती होकर राज्य संवर्गों में आवंटित होते हैं, इसलिए वे राज्य सरकारों के अधीन और प्रतिनियुक्ति पर केंद्र में सेवा करते हैं। उनकी तटस्थता ही उन्हें अलग-अलग दलों की एक के बाद एक सरकारों की सेवा करने देती है।",
+  f"{NC11}, Chapter 4 (Executive).",
+  "l1-pol-permanent-executive-civil-service", craft="precision")
+
+S(EX, "medium", "Consider the following statements about the Constituent Assembly's choice of a parliamentary executive for India:",
+  "भारत के लिए संसदीय कार्यपालिका के संविधान सभा के चुनाव के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Members feared that a presidential executive might become too powerful and centred on one person.",
+   "India had already had some experience of the parliamentary system under the colonial constitutional reforms.",
+   "The parliamentary executive was preferred because it is more stable than a presidential executive."],
+  ["सदस्यों को आशंका थी कि अध्यक्षात्मक कार्यपालिका बहुत शक्तिशाली और एक व्यक्ति पर केंद्रित हो सकती है।",
+   "भारत को औपनिवेशिक संवैधानिक सुधारों के तहत संसदीय प्रणाली का कुछ अनुभव पहले से था।",
+   "संसदीय कार्यपालिका को इसलिए वरीयता दी गई क्योंकि वह अध्यक्षात्मक कार्यपालिका से अधिक स्थिर है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The framers wanted an executive that would be answerable to the people's representatives, and the provincial governments formed under the Government of India Act, 1935 had given Indian leaders experience of ministerial responsibility. "
+  "Statement 3 is the reverse of the reasoning: as Ambedkar put it, the Draft Constitution preferred 'more responsibility to more stability' -- a presidential executive with a fixed term is the more stable one, but a parliamentary executive is more accountable.",
+  "कथन 1 और 2 सही हैं। संविधान निर्माता ऐसी कार्यपालिका चाहते थे जो जनता के प्रतिनिधियों के प्रति जवाबदेह हो, और भारत सरकार अधिनियम, 1935 के तहत बनी प्रांतीय सरकारों ने भारतीय नेताओं को मंत्रिमंडलीय उत्तरदायित्व का अनुभव दिया था। "
+  "कथन 3 तर्क का उलटा है: अंबेडकर के शब्दों में, प्रारूप संविधान ने 'अधिक स्थिरता की तुलना में अधिक उत्तरदायित्व' को वरीयता दी -- निश्चित कार्यकाल वाली अध्यक्षात्मक कार्यपालिका अधिक स्थिर होती है, पर संसदीय कार्यपालिका अधिक जवाबदेह।",
+  f"{NC11}, Chapter 4 (Executive); Constituent Assembly Debates, 4 November 1948.",
+  "l1-pol-why-parliamentary-executive", craft="inference")
+
+S(EX, "medium", "Consider the following statements about the position of the Prime Minister:",
+  "प्रधानमंत्री की स्थिति के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Once appointed, the Prime Minister's position no longer depends on the support of a majority in the Lok Sabha.",
+   "Coalition governments tend to increase the Prime Minister's freedom in choosing ministers.",
+   "The Prime Minister's term is fixed at five years, whatever the support in the Lok Sabha."],
+  ["नियुक्त हो जाने के बाद प्रधानमंत्री की स्थिति लोक सभा में बहुमत के समर्थन पर निर्भर नहीं रहती।",
+   "गठबंधन सरकारें मंत्रियों के चयन में प्रधानमंत्री की स्वतंत्रता बढ़ाने की प्रवृत्ति रखती हैं।",
+   "लोक सभा में समर्थन चाहे जो हो, प्रधानमंत्री का कार्यकाल पाँच वर्ष के लिए निश्चित है।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: the Prime Minister is powerful because he leads the majority in the Lok Sabha, and he holds office only as long as that majority holds. "
+  "Statement 2 is the reverse: in a coalition the Prime Minister must accommodate the allies' choices of ministers and portfolios and consult them on policy, which limits his freedom. "
+  "Statement 3 is wrong: the Prime Minister has no fixed term -- a government can fall at any time if it loses the confidence of the Lok Sabha.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: प्रधानमंत्री इसलिए शक्तिशाली है कि वह लोक सभा में बहुमत का नेता है, और वह तभी तक पद पर रहता है जब तक वह बहुमत बना रहे। "
+  "कथन 2 उलटा है: गठबंधन में प्रधानमंत्री को मंत्रियों और विभागों के बारे में सहयोगी दलों की पसंद का ध्यान रखना और नीति पर उनसे परामर्श करना पड़ता है, जो उसकी स्वतंत्रता सीमित करता है। "
+  "कथन 3 गलत है: प्रधानमंत्री का कोई निश्चित कार्यकाल नहीं है -- लोक सभा का विश्वास खोने पर सरकार कभी भी गिर सकती है।",
+  f"{NC11}, Chapter 4 (Executive).",
+  "l1-pol-prime-minister-position-coalition", craft="inference")
+
+A(EX, "medium",
+  "The Council of Ministers is collectively responsible to the Lok Sabha.",
+  "मंत्रिपरिषद लोक सभा के प्रति सामूहिक रूप से उत्तरदायी है।",
+  "Ministers are appointed by the President on the advice of the Prime Minister.",
+  "मंत्रियों की नियुक्ति राष्ट्रपति प्रधानमंत्री की सलाह पर करते हैं।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. Collective responsibility (Article 75(3)) follows from the parliamentary principle that the government must keep the confidence of the elected House: ministers stand or fall together and must publicly support Cabinet decisions. "
+  "Who appoints the ministers (Article 75(1)) is a separate rule; it does not account for their responsibility to the Lok Sabha.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। सामूहिक उत्तरदायित्व (अनुच्छेद 75(3)) इस संसदीय सिद्धांत से निकलता है कि सरकार को निर्वाचित सदन का विश्वास बनाए रखना होता है: मंत्री साथ टिकते या गिरते हैं और उन्हें मंत्रिमंडल के निर्णयों का सार्वजनिक रूप से समर्थन करना होता है। "
+  "मंत्रियों की नियुक्ति कौन करता है (अनुच्छेद 75(1)), यह एक अलग नियम है; वह लोक सभा के प्रति उनके उत्तरदायित्व की व्याख्या नहीं करता।",
+  f"{COI}, Article 75; {NC11}, Chapter 4.",
+  "l1-pol-collective-responsibility-not-appointment", craft="linkage")
+
+S(EX, "hard", "Consider the following heads of State:",
+  "निम्नलिखित राज्य-प्रमुखों पर विचार कीजिए:",
+  ["The Emperor of Japan", "The King of the United Kingdom", "The President of Germany", "The President of India"],
+  ["जापान के सम्राट", "यूनाइटेड किंगडम के राजा", "जर्मनी के राष्ट्रपति", "भारत के राष्ट्रपति"],
+  None, 3,
+  "None of them is chosen directly by the people. The Japanese Emperor and the British monarch hold hereditary offices. "
+  "Germany's President is elected by a Federal Convention made up of the members of the Bundestag and an equal number of delegates of the State parliaments, and India's President is elected by an electoral college of the elected members of Parliament and of the State Legislative Assemblies. "
+  "All four are heads of parliamentary systems, in which the real executive is a Prime Minister or Chancellor answerable to the legislature.",
+  "इनमें से कोई भी सीधे जनता द्वारा नहीं चुना जाता। जापान के सम्राट और ब्रिटेन के सम्राट के पद वंशानुगत हैं। "
+  "जर्मनी के राष्ट्रपति को एक संघीय सम्मेलन चुनता है जिसमें बुंडेस्टाग के सदस्य और उतनी ही संख्या में राज्य संसदों के प्रतिनिधि होते हैं, और भारत के राष्ट्रपति को संसद और राज्य विधानसभाओं के निर्वाचित सदस्यों का निर्वाचक मंडल चुनता है। "
+  "चारों संसदीय प्रणालियों के प्रमुख हैं, जिनमें वास्तविक कार्यपालिका विधायिका के प्रति जवाबदेह प्रधानमंत्री या चांसलर होता है।",
+  f"{NC11}, Chapter 4 (Executive); Basic Law for the Federal Republic of Germany, Article 54.",
+  "l1-pol-heads-of-state-none-directly-elected",
+  opts=["Only one", "Only two", "Only three", "None"], opts_hi=["केवल एक", "केवल दो", "केवल तीन", "कोई नहीं"],
+  closing="How many of the above are elected directly by the people?", closing_hi="उपर्युक्त में से कितने सीधे जनता द्वारा चुने जाते हैं?",
+  craft="precision")
+
+A(EX, "hard",
+  "The Constituent Assembly decided that the Governor of a State would be appointed by the President rather than elected.",
+  "संविधान सभा ने तय किया कि राज्य का राज्यपाल चुना जाने के बजाय राष्ट्रपति द्वारा नियुक्त होगा।",
+  "An elected Governor might have become a rival centre of power to the elected Chief Minister.",
+  "निर्वाचित राज्यपाल निर्वाचित मुख्यमंत्री के समानांतर एक प्रतिद्वंद्वी शक्ति-केंद्र बन सकता था।",
+  0,
+  "All three statements are correct, and both Statement-II and Statement-III explain Statement-I. The Assembly saw the Governor as a constitutional head acting on ministerial advice; a Governor with his own popular mandate could have claimed authority against the ministry, and a separate election in every State would also have been costly and divisive. "
+  "So the Governor is appointed by the President (Article 155) and holds office during the President's pleasure.",
+  "तीनों कथन सही हैं, और कथन-II तथा कथन-III दोनों कथन-I की व्याख्या करते हैं। सभा राज्यपाल को मंत्रिपरिषद की सलाह पर काम करने वाला संवैधानिक प्रमुख मानती थी; अपने जनादेश वाला राज्यपाल मंत्रिमंडल के विरुद्ध अधिकार का दावा कर सकता था, और हर राज्य में अलग चुनाव महँगा और विभाजनकारी भी होता। "
+  "इसलिए राज्यपाल की नियुक्ति राष्ट्रपति करते हैं (अनुच्छेद 155) और वह राष्ट्रपति के प्रसादपर्यंत पद धारण करता है।",
+  f"{NC11}, Chapter 4; Constituent Assembly Debates (1949), on the provisions for the Governor; {COI}, Article 155.",
+  "l1-pol-governor-appointed-not-elected-why",
+  s3="A separate election for Governor in every State would have been costly and divisive.",
+  s3_hi="हर राज्य में राज्यपाल का अलग चुनाव महँगा और विभाजनकारी होता।", craft="linkage")
+
+write("pol_l1_t1_b.sql")
