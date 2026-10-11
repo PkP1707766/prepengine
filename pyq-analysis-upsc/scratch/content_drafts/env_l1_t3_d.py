@@ -1,0 +1,285 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 3 (Environment & Ecology, NCERT Foundation) -- part D: Pollution, Waste & Resources (16)
+(upsc_l1_cell_targets.mjs 3): easy MCQ 1, easy statement 3, easy Statement-I/II 1, medium MCQ 2, medium statement 6,
+medium Statement-I/II 1, hard statement 2.
+The angle is what NCERT teaches about fuels, water, waste and pollution -- fuels and their products (Science
+VIII), clean water and what must not go down the drain (Science VII and VIII), biodegradable waste and the
+kulhad (Science X), the two kinds of smog, green chemistry and pesticides (Chemistry XI), and the case studies
+of Biology XII (EcoSan, polyblend roads, the Arcata marsh, Delhi's CNG, Dagar's farm). Level-2 facts are not
+repeated (acid rain and the Taj, the pollution-control devices, sewage-treatment stages, BOD, biomagnification
+and DDT, ground-level ozone and PAN, the waste hierarchy, the waste rules). MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Environment & Ecology"
+d.REQUIRE_CRAFT = True
+PO = "Pollution, Waste & Resources"
+SC7 = "NCERT Class VII, Science (Wastewater Story)"
+SC8 = "NCERT Class VIII, Science"
+SC10 = "NCERT Class X, Science (Our Environment)"
+CH11 = "NCERT Class XI, Chemistry (Environmental Chemistry, earlier editions)"
+BI12 = "NCERT Class XII, Biology (Environmental Issues, earlier editions)"
+
+# ---------------------------------------------------------------- easy MCQ (1)
+M(PO, "easy", "Which one of the following fuels has the highest calorific value?",
+  "निम्नलिखित में से किस ईंधन का ऊष्मीय मान (calorific value) सबसे अधिक है?",
+  ["Hydrogen", "Liquefied petroleum gas", "Kerosene", "Coal"],
+  ["हाइड्रोजन", "द्रवित पेट्रोलियम गैस (LPG)", "मिट्टी का तेल", "कोयला"],
+  0,
+  "The calorific value of a fuel is the amount of heat produced by the complete combustion of one kilogram of it, measured in kilojoules per kilogram: about 150,000 for hydrogen, 55,000 for LPG, 45,000 for kerosene, petrol and diesel, and 25,000-33,000 for coal. "
+  "Hydrogen also burns to give only water, but it is costly and difficult to store and transport safely -- an ideal fuel must also be cheap, readily available, easy to handle and leave no harmful products.",
+  "किसी ईंधन का ऊष्मीय मान उसके एक किलोग्राम के पूर्ण दहन से उत्पन्न ऊष्मा है, जो किलोजूल प्रति किलोग्राम में मापी जाती है: हाइड्रोजन का लगभग 1,50,000, LPG का 55,000, मिट्टी के तेल, पेट्रोल और डीज़ल का 45,000, और कोयले का 25,000-33,000। "
+  "हाइड्रोजन जलकर केवल जल बनाती है, पर वह महँगी है और उसका सुरक्षित भंडारण तथा परिवहन कठिन है -- आदर्श ईंधन को सस्ता, आसानी से उपलब्ध, सँभालने में सरल और हानिकारक उत्पादों से रहित भी होना चाहिए।",
+  f"{SC8} (Combustion and Flame).",
+  "l1-env-calorific-value-hydrogen", pos=3, craft="precision")
+
+# ---------------------------------------------------------------- easy statement (3)
+S(PO, "easy", "Consider the following statements about coal and its products:",
+  "कोयले और उसके उत्पादों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Coke, an almost pure form of carbon, is used in making steel and in extracting many metals.",
+   "Coal tar is used to make synthetic dyes, drugs, explosives, perfumes, plastics and naphthalene balls.",
+   "Coal was formed from the remains of sea animals, while petroleum was formed from forests buried on land."],
+  ["लगभग शुद्ध कार्बन, कोक, इस्पात बनाने और कई धातुओं के निष्कर्षण में प्रयुक्त होता है।",
+   "कोलतार से संश्लिष्ट रंग, औषधियाँ, विस्फोटक, सुगंधित पदार्थ, प्लास्टिक और नैफ़्थलीन की गोलियाँ बनती हैं।",
+   "कोयला समुद्री जीवों के अवशेषों से बना, जबकि पेट्रोलियम भूमि पर दबे वनों से बना।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: processing coal in industry yields coke, coal tar and coal gas, which was once used for street lighting and is now used as fuel in industries near coal processing plants. "
+  "Statement 3 reverses the origins: coal formed from dense forests in low-lying wetlands that were buried about 300 million years ago and slowly converted into coal by high temperature and pressure (carbonisation), while petroleum and natural gas formed from organisms living in the sea, buried under sand and clay.",
+  "कथन 1 और 2 सही हैं: उद्योगों में कोयले के प्रक्रमण से कोक, कोलतार और कोयला गैस मिलती है, जो कभी सड़कों पर रोशनी के लिए प्रयुक्त होती थी और अब कोयला प्रक्रमण संयंत्रों के पास के उद्योगों में ईंधन है। "
+  "कथन 3 उत्पत्ति को उलट देता है: कोयला निचली आर्द्र भूमि के घने वनों से बना, जो लगभग 30 करोड़ वर्ष पहले दब गए और उच्च ताप तथा दाब से धीरे-धीरे कोयले में बदले (कार्बनीकरण), जबकि पेट्रोलियम और प्राकृतिक गैस समुद्र में रहने वाले जीवों से बने, जो रेत और मिट्टी के नीचे दब गए।",
+  f"{SC8} (Coal and Petroleum).",
+  "l1-env-coke-coal-tar-origins", craft="precision")
+
+S(PO, "easy", "Consider the following statements about the Ganga Action Plan:",
+  "गंगा कार्य योजना के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was launched in 1985 to reduce the pollution of the river.",
+   "Since most of the Ganga's pollution came from natural sources, the Plan concentrated on removing silt from the river bed."],
+  ["इसे 1985 में नदी का प्रदूषण घटाने के लिए शुरू किया गया।",
+   "चूँकि गंगा का अधिकांश प्रदूषण प्राकृतिक स्रोतों से आता था, इसलिए योजना का ध्यान नदी तल से गाद हटाने पर था।"],
+  T2, 0,
+  "Only statement 1 is correct. Statement 2 is wrong: the Ganga is polluted mainly by human activity -- untreated sewage from the towns along its banks, garbage, industrial waste such as that from tanneries, and the ashes and remains of the dead -- so the Plan aimed to intercept, divert and treat sewage before it reached the river. "
+  "Rising population and industrialisation kept adding to the load, and the effort was later taken forward by the Namami Gange programme.",
+  "केवल कथन 1 सही है। कथन 2 गलत है: गंगा मुख्यतः मानवीय गतिविधियों से प्रदूषित होती है -- किनारे बसे नगरों का बिना उपचारित सीवेज, कचरा, चर्मशोधनशालाओं जैसे उद्योगों का अपशिष्ट, और शवों की राख तथा अवशेष -- इसलिए योजना का उद्देश्य सीवेज को नदी तक पहुँचने से पहले रोकना, मोड़ना और उपचारित करना था। "
+  "बढ़ती जनसंख्या और औद्योगीकरण बोझ बढ़ाते रहे, और बाद में यह प्रयास नमामि गंगे कार्यक्रम के रूप में आगे बढ़ाया गया।",
+  f"{SC8} (Pollution of Air and Water); National Mission for Clean Ganga.",
+  "l1-env-ganga-action-plan-1985", craft="precision")
+
+S(PO, "easy", "Consider the following statements about making water safe to drink:",
+  "पानी को पीने के लिए सुरक्षित बनाने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Boiling water kills most of the germs present in it.",
+   "Chlorination is a commonly used chemical method of purifying water.",
+   "Filtering water through a cloth or a filter removes suspended impurities."],
+  ["पानी उबालने से उसमें मौजूद अधिकांश रोगाणु मर जाते हैं।",
+   "क्लोरीनीकरण पानी शुद्ध करने की एक सामान्य रासायनिक विधि है।",
+   "कपड़े या फ़िल्टर से पानी छानने से निलंबित अशुद्धियाँ दूर होती हैं।"],
+  C3, 2,
+  "All three statements are correct. Water that is suitable for drinking is called potable water; at home it can be made safer by filtering out solid particles, boiling it to kill germs, or adding chlorine tablets in the right dose. "
+  "Filtering alone does not remove germs or dissolved harmful substances, which is why boiling or chlorination is also needed when the source is doubtful.",
+  "तीनों कथन सही हैं। पीने योग्य पानी को पेय जल (potable water) कहते हैं; घर पर ठोस कणों को छानकर, रोगाणु मारने के लिए उबालकर, या सही मात्रा में क्लोरीन की गोलियाँ डालकर उसे अधिक सुरक्षित बनाया जा सकता है। "
+  "केवल छानने से रोगाणु या घुले हुए हानिकारक पदार्थ दूर नहीं होते, इसीलिए स्रोत संदिग्ध हो तो उबालना या क्लोरीनीकरण भी ज़रूरी है।",
+  f"{SC8} (Pollution of Air and Water).",
+  "l1-env-potable-water-boil-chlorinate", craft="recall")
+
+# ---------------------------------------------------------------- easy Statement-I/II (1)
+A(PO, "easy",
+  "Replacing plastic cups with clay kulhads on a very large scale could itself harm the environment.",
+  "बहुत बड़े पैमाने पर प्लास्टिक के कपों के स्थान पर मिट्टी के कुल्हड़ अपनाना स्वयं पर्यावरण को हानि पहुँचा सकता है।",
+  "Making kulhads in huge numbers would use up large amounts of fertile topsoil.",
+  "भारी संख्या में कुल्हड़ बनाने में बड़ी मात्रा में उपजाऊ ऊपरी मिट्टी खप जाएगी।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. When the railways looked for a substitute for disposable plastic cups, clay kulhads were suggested; but making them on a mass scale would strip away fertile topsoil, which takes a very long time to form. "
+  "The example shows that every solution to an environmental problem has to be weighed for its own costs -- disposable paper cups and washable cups each have trade-offs too.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। जब रेलवे ने प्रयोग कर फेंके जाने वाले प्लास्टिक के कपों का विकल्प खोजा, तो मिट्टी के कुल्हड़ सुझाए गए; पर उन्हें बड़े पैमाने पर बनाने से उपजाऊ ऊपरी मिट्टी नष्ट होगी, जिसे बनने में बहुत लंबा समय लगता है। "
+  "यह उदाहरण दिखाता है कि किसी भी पर्यावरणीय समस्या के हर समाधान की अपनी लागत भी तौलनी पड़ती है -- काग़ज़ के कपों और धोकर दोबारा प्रयोग होने वाले कपों के भी अपने लाभ-हानि हैं।",
+  f"{SC10}.",
+  "l1-env-kulhads-topsoil-trade-off", craft="inference")
+
+# ---------------------------------------------------------------- medium MCQ (2)
+M(PO, "medium", "EcoSan toilets, used in parts of Kerala and Sri Lanka, are designed to",
+  "केरल और श्रीलंका के कुछ भागों में प्रयुक्त इकोसैन (EcoSan) शौचालय किस उद्देश्य से बनाए गए हैं?",
+  ["compost human excreta into natural fertiliser, using no water for flushing",
+   "treat sewage with strong chemicals before releasing it into the nearest river",
+   "generate electricity from the methane given off by sewage",
+   "pump human waste into deep borewells, away from the surface"],
+  ["मानव मल को कंपोस्ट करके प्राकृतिक उर्वरक बनाना, बिना फ़्लश के पानी के",
+   "सीवेज को तेज़ रसायनों से उपचारित कर निकटतम नदी में छोड़ना",
+   "सीवेज से निकलने वाली मीथेन से बिजली बनाना",
+   "मानव अपशिष्ट को सतह से दूर गहरे बोरवेलों में पंप करना"],
+  0,
+  "Ecological sanitation (EcoSan) is a sustainable system for handling human excreta using dry composting toilets: the waste is recycled into a resource -- a natural fertiliser that reduces the need for chemical fertilisers -- instead of being flushed away. "
+  "Such toilets save water, keep sewage out of rivers and groundwater, and are a practical, hygienic and cost-efficient answer where water is scarce or the water table high.",
+  "पारिस्थितिक स्वच्छता (EcoSan) सूखे कंपोस्टिंग शौचालयों से मानव मल सँभालने की एक सतत व्यवस्था है: अपशिष्ट को बहाकर फेंकने के बजाय संसाधन में बदला जाता है -- एक प्राकृतिक उर्वरक, जो रासायनिक उर्वरकों की ज़रूरत घटाता है। "
+  "ऐसे शौचालय पानी बचाते हैं, सीवेज को नदियों और भूजल से दूर रखते हैं, और जहाँ पानी कम हो या भूजल-स्तर ऊँचा हो, वहाँ व्यावहारिक, स्वास्थ्यकर और किफ़ायती उपाय हैं।",
+  f"{BI12}.",
+  "l1-env-ecosan-dry-composting-toilets", pos=2, craft="precision")
+
+M(PO, "medium", "Ahmed Khan of Bangalore found a use for plastic waste by",
+  "बेंगलुरु के अहमद ख़ान ने प्लास्टिक कचरे का उपयोग कैसे खोजा?",
+  ["making it into polyblend, a powder mixed with bitumen to lay roads",
+   "burning it in large power plants to generate electricity for the city",
+   "converting it into diesel fuel by heating it without oxygen",
+   "compressing it into blocks for building low-cost houses"],
+  ["उसे पॉलीब्लेंड नामक चूर्ण में बदलकर, जिसे सड़कें बनाने के लिए बिटुमेन में मिलाया जाता है",
+   "उसे बड़े बिजलीघरों में जलाकर नगर के लिए बिजली बनाकर",
+   "उसे बिना ऑक्सीजन के गर्म करके डीज़ल ईंधन में बदलकर",
+   "उसे दबाकर कम लागत वाले घरों के लिए ईंटें बनाकर"],
+  0,
+  "Ahmed Khan, a manufacturer of plastic sacks, developed polyblend, a fine powder of recycled modified plastic; mixed with bitumen, it was used to lay roads in Bangalore. "
+  "In trials with R.V. College of Engineering and the Bangalore City Corporation, the blend improved bitumen's water-repellent property and increased road life by a factor of three -- turning a non-biodegradable waste into a useful resource.",
+  "प्लास्टिक के बोरे बनाने वाले अहमद ख़ान ने पॉलीब्लेंड विकसित किया, जो पुनर्चक्रित, संशोधित प्लास्टिक का बारीक चूर्ण है; बिटुमेन में मिलाकर इसे बेंगलुरु में सड़कें बनाने में प्रयुक्त किया गया। "
+  "आर.वी. इंजीनियरिंग कॉलेज और बेंगलुरु नगर निगम के साथ प्रयोगों में इस मिश्रण ने बिटुमेन का जल-रोधी गुण बढ़ाया और सड़कों की आयु तीन गुना कर दी -- एक अजैव-निम्नीकरणीय कचरे को उपयोगी संसाधन में बदल दिया।",
+  f"{BI12}.",
+  "l1-env-polyblend-plastic-roads", pos=0, craft="precision")
+
+# ---------------------------------------------------------------- medium statement (6)
+S(PO, "medium", "Consider the following statements about the integrated wastewater treatment at Arcata, California:",
+  "आर्केटा, कैलिफ़ोर्निया के एकीकृत अपशिष्ट जल उपचार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["After conventional treatment, the town's wastewater is cleaned further by passing it through a series of connected marshes.",
+   "Plants, algae, fungi and bacteria in the marshes absorb and break down the pollutants.",
+   "The marshes are run by a large chemical company, which sells the treated water."],
+  ["पारंपरिक उपचार के बाद नगर के अपशिष्ट जल को आपस में जुड़े दलदलों (marshes) की एक शृंखला से गुज़ारकर और साफ़ किया जाता है।",
+   "दलदलों के पौधे, शैवाल, कवक और बैक्टीरिया प्रदूषकों को सोखते और तोड़ते हैं।",
+   "दलदलों को एक बड़ी रसायन कंपनी चलाती है, जो उपचारित पानी बेचती है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: after sedimentation, filtering and chlorine treatment, the water flows through six connected marshes spread over about 60 hectares, where natural communities of organisms neutralise, absorb and assimilate the pollutants, so the water is cleaned naturally as it passes through. "
+  "Statement 3 is wrong: a citizens' group, the Friends of the Arcata Marsh, looks after and safeguards the project -- an example of how a community can integrate wastewater treatment with nature.",
+  "कथन 1 और 2 सही हैं: अवसादन, छनन और क्लोरीन उपचार के बाद पानी लगभग 60 हेक्टेयर में फैले छह जुड़े हुए दलदलों से बहता है, जहाँ जीवों के प्राकृतिक समुदाय प्रदूषकों को निष्प्रभावी करते, सोखते और आत्मसात करते हैं, इसलिए बहते हुए पानी प्राकृतिक रूप से साफ़ होता है। "
+  "कथन 3 गलत है: एक नागरिक समूह, फ़्रेंड्स ऑफ़ द आर्केटा मार्श, इस परियोजना की देखभाल और सुरक्षा करता है -- यह उदाहरण है कि समुदाय अपशिष्ट जल उपचार को प्रकृति से कैसे जोड़ सकता है।",
+  f"{BI12}.",
+  "l1-env-arcata-marsh-wastewater", craft="precision")
+
+S(PO, "medium", "Consider the following statements about what may be poured down a household drain:",
+  "घर की नाली में क्या डाला जा सकता है, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Cooking oil and fats poured down the drain are easily broken down in the sewers.",
+   "Medicines and chemicals such as paints and solvents poured down the drain are removed completely at sewage treatment plants.",
+   "Used tea leaves and food remains can be thrown into the drain, since they decompose in water."],
+  ["नाली में डाला गया खाना पकाने का तेल और वसा सीवरों में आसानी से टूट जाते हैं।",
+   "नाली में डाली गई दवाएँ और पेंट तथा विलायक जैसे रसायन सीवेज उपचार संयंत्रों में पूरी तरह हटा दिए जाते हैं।",
+   "प्रयुक्त चायपत्ती और बचा हुआ भोजन नाली में फेंका जा सकता है, क्योंकि वे पानी में सड़ जाते हैं।"],
+  C3, 3,
+  "None of the statements is correct. Oils and fats harden and block the pipes, and in an open drain they clog the pores of the soil, reducing its ability to filter water. "
+  "Chemicals such as paints, solvents, insecticides, motor oil and medicines can kill the microbes that help purify water at treatment plants. Tea leaves, food remains, cotton and similar solid wastes choke the drains and hinder the free flow of sewage; they belong in the dustbin, or in a compost pit.",
+  "कोई भी कथन सही नहीं है। तेल और वसा जमकर पाइपों को रोक देते हैं, और खुली नाली में वे मिट्टी के छिद्र भर देते हैं, जिससे पानी छानने की उसकी क्षमता घटती है। "
+  "पेंट, विलायक, कीटनाशक, मोटर तेल और दवाएँ जैसे रसायन उपचार संयंत्रों में पानी शुद्ध करने वाले सूक्ष्मजीवों को मार सकते हैं। चायपत्ती, बचा भोजन, रुई और ऐसे ठोस अपशिष्ट नालियों को रोकते और सीवेज के मुक्त बहाव में बाधा डालते हैं; इनकी जगह कूड़ेदान या कंपोस्ट गड्ढा है।",
+  f"{SC7}.",
+  "l1-env-drain-oils-chemicals-solids", craft="application")
+
+S(PO, "medium", "Consider the following statements about smog:",
+  "धूम-कोहरे (smog) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Classical smog, of the kind once common in London, forms in cool, humid conditions from smoke, fog and sulphur dioxide, and is chemically reducing.",
+   "Photochemical smog forms in warm, dry, sunny weather from the action of sunlight on nitrogen oxides and hydrocarbons from vehicles, and is chemically oxidising.",
+   "Plants such as pine, juniper, oak and vine can metabolise nitrogen oxides, so planting them can help to reduce photochemical smog."],
+  ["क्लासिकी धूम-कोहरा, जैसा कभी लंदन में आम था, ठंडी, नम दशाओं में धुएँ, कोहरे और सल्फ़र डाइऑक्साइड से बनता है, और रासायनिक रूप से अपचायक होता है।",
+   "प्रकाश-रासायनिक धूम-कोहरा गर्म, शुष्क, धूप वाले मौसम में वाहनों से निकले नाइट्रोजन ऑक्साइडों और हाइड्रोकार्बनों पर धूप की क्रिया से बनता है, और रासायनिक रूप से ऑक्सीकारक होता है।",
+   "चीड़, जुनिपर, बलूत (oak) और अंगूर की बेल जैसे पौधे नाइट्रोजन ऑक्साइडों का उपापचय कर सकते हैं, इसलिए उन्हें लगाना प्रकाश-रासायनिक धूम-कोहरा घटाने में मदद कर सकता है।"],
+  C3, 2,
+  "All three statements are correct. The word smog comes from smoke and fog; classical smog is associated with burning coal in cold, damp weather, while photochemical smog, first studied in Los Angeles, is a product of traffic and sunshine, and causes eye irritation, breathing trouble and damage to rubber and plants. "
+  "Controlling it means cutting the primary precursors -- through catalytic converters in vehicles, for instance -- and planting trees that can take up nitrogen oxides.",
+  "तीनों कथन सही हैं। स्मॉग शब्द स्मोक (धुआँ) और फ़ॉग (कोहरा) से बना है; क्लासिकी धूम-कोहरा ठंडे, नम मौसम में कोयला जलाने से जुड़ा है, जबकि पहली बार लॉस एंजेलिस में अध्ययन किया गया प्रकाश-रासायनिक धूम-कोहरा यातायात और धूप का परिणाम है, और आँखों में जलन, साँस की तकलीफ़ तथा रबर और पौधों को क्षति पहुँचाता है। "
+  "इसे नियंत्रित करने का अर्थ है प्राथमिक पूर्ववर्ती प्रदूषकों को घटाना -- जैसे वाहनों में उत्प्रेरक परिवर्तक लगाकर -- और नाइट्रोजन ऑक्साइड सोख सकने वाले वृक्ष लगाना।",
+  f"{CH11}.",
+  "l1-env-classical-photochemical-smog", craft="precision")
+
+S(PO, "medium", "Consider the following statements about green chemistry:",
+  "हरित रसायन (green chemistry) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In dry cleaning, liquid carbon dioxide with a suitable detergent can replace tetrachloroethene, a suspected carcinogen that can contaminate groundwater.",
+   "Paper can be bleached with hydrogen peroxide instead of chlorine.",
+   "Green chemistry seeks to reduce the use and generation of hazardous substances in chemical processes."],
+  ["शुष्क धुलाई (dry cleaning) में उपयुक्त अपमार्जक के साथ द्रव कार्बन डाइऑक्साइड टेट्राक्लोरोएथीन का स्थान ले सकती है, जो संदिग्ध कैंसरकारी है और भूजल को दूषित कर सकता है।",
+   "काग़ज़ को क्लोरीन के बजाय हाइड्रोजन पेरॉक्साइड से विरंजित (bleach) किया जा सकता है।",
+   "हरित रसायन रासायनिक प्रक्रियाओं में ख़तरनाक पदार्थों के उपयोग और उत्पादन को घटाने का प्रयास करता है।"],
+  C3, 2,
+  "All three statements are correct. Green chemistry is a way of thinking about chemistry that prevents pollution at the source -- choosing safer starting materials, solvents and conditions, and making the most efficient use of reactants -- rather than cleaning up afterwards. "
+  "Hydrogen peroxide gives better results in bleaching and leaves water as its by-product, while chlorine bleaching can produce harmful chlorinated compounds.",
+  "तीनों कथन सही हैं। हरित रसायन रसायनशास्त्र के बारे में सोचने का ऐसा तरीक़ा है जो प्रदूषण को बाद में साफ़ करने के बजाय स्रोत पर ही रोकता है -- सुरक्षित प्रारंभिक पदार्थ, विलायक और दशाएँ चुनकर, और अभिकारकों का अधिकतम कुशल उपयोग करके। "
+  "विरंजन में हाइड्रोजन पेरॉक्साइड बेहतर परिणाम देता है और उप-उत्पाद के रूप में केवल जल छोड़ता है, जबकि क्लोरीन से विरंजन हानिकारक क्लोरीनयुक्त यौगिक बना सकता है।",
+  f"{CH11}.",
+  "l1-env-green-chemistry-dry-cleaning", craft="linkage")
+
+S(PO, "medium", "Consider the following statements about petroleum:",
+  "पेट्रोलियम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Paraffin wax, obtained on refining petroleum, is used to make candles, ointments and vaseline.",
+   "Bitumen, another product of refining, is used for surfacing roads.",
+   "Kerosene is used as a fuel for jet aircraft.",
+   "Petroleum is called 'black gold' because of its great commercial importance."],
+  ["पेट्रोलियम के परिष्करण से मिलने वाला पैराफ़िन मोम मोमबत्तियाँ, मरहम और वैसलीन बनाने में प्रयुक्त होता है।",
+   "परिष्करण का एक अन्य उत्पाद, बिटुमेन, सड़कों की सतह बनाने में प्रयुक्त होता है।",
+   "मिट्टी का तेल जेट विमानों के ईंधन के रूप में प्रयुक्त होता है।",
+   "अपने अत्यधिक व्यावसायिक महत्व के कारण पेट्रोलियम को 'काला सोना' कहा जाता है।"],
+  C4, 3,
+  "All four statements are correct. Petroleum is a mixture of constituents that are separated in a refinery: LPG for homes and industry, petrol as motor fuel and a solvent for dry cleaning, kerosene for stoves, lamps and jet aircraft, diesel for heavy vehicles and generators, lubricating oil, paraffin wax and bitumen. "
+  "Many useful substances obtained from petroleum and natural gas -- petrochemicals -- go into detergents, fibres such as polyester and nylon, and plastics.",
+  "चारों कथन सही हैं। पेट्रोलियम विभिन्न घटकों का मिश्रण है, जिन्हें परिष्करणी में अलग किया जाता है: घरों और उद्योगों के लिए LPG, मोटर ईंधन और शुष्क धुलाई के विलायक के रूप में पेट्रोल, चूल्हों, लैंपों और जेट विमानों के लिए मिट्टी का तेल, भारी वाहनों और जनरेटरों के लिए डीज़ल, स्नेहक तेल, पैराफ़िन मोम और बिटुमेन। "
+  "पेट्रोलियम और प्राकृतिक गैस से मिलने वाले कई उपयोगी पदार्थ -- पेट्रो-रसायन -- अपमार्जकों, पॉलिएस्टर और नायलॉन जैसे रेशों और प्लास्टिकों में जाते हैं।",
+  f"{SC8} (Coal and Petroleum).",
+  "l1-env-petroleum-refining-products", craft="recall")
+
+S(PO, "medium", "Consider the following statements about the use of CNG in Delhi's public transport:",
+  "दिल्ली के सार्वजनिक परिवहन में CNG के उपयोग के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["By the end of 2002, Delhi's public transport buses had been switched to CNG.",
+   "CNG burns less completely than petrol or diesel, leaving more unburnt fuel.",
+   "CNG is more easily stolen or adulterated than petrol or diesel."],
+  ["2002 के अंत तक दिल्ली की सार्वजनिक परिवहन बसें CNG पर चलने लगी थीं।",
+   "CNG पेट्रोल या डीज़ल से कम पूर्णता से जलती है और अधिक बिना जला ईंधन छोड़ती है।",
+   "CNG को पेट्रोल या डीज़ल की तुलना में अधिक आसानी से चुराया या मिलावटी किया जा सकता है।"],
+  C3, 0,
+  "Only statement 1 is correct: following the Supreme Court's directions, Delhi's buses, and later its three-wheelers and taxis, were converted to CNG, which, along with stricter vehicle norms, brought down air pollution in the city for a time. "
+  "Statement 2 is wrong: CNG burns most efficiently, and very little of it is left unburnt. Statement 3 is wrong: CNG cannot be siphoned off or adulterated the way petrol or diesel can, and it is also cheaper; the difficulty lies in laying pipelines and ensuring an uninterrupted supply.",
+  "केवल कथन 1 सही है: सर्वोच्च न्यायालय के निर्देशों के बाद दिल्ली की बसों, और बाद में तिपहिया वाहनों तथा टैक्सियों को CNG में बदला गया, जिसने कड़े वाहन मानकों के साथ कुछ समय के लिए शहर का वायु प्रदूषण घटाया। "
+  "कथन 2 गलत है: CNG सबसे कुशलता से जलती है, और उसका बहुत कम भाग बिना जला बचता है। कथन 3 गलत है: CNG को पेट्रोल या डीज़ल की तरह निकाला या मिलावटी नहीं किया जा सकता, और यह सस्ती भी है; कठिनाई पाइपलाइन बिछाने और निर्बाध आपूर्ति सुनिश्चित करने में है।",
+  f"{BI12}.",
+  "l1-env-delhi-cng-switch-2002", craft="precision")
+
+# ---------------------------------------------------------------- medium Statement-I/II (1)
+A(PO, "medium",
+  "Plastics persist in the environment for a very long time.",
+  "प्लास्टिक पर्यावरण में बहुत लंबे समय तक बने रहते हैं।",
+  "Plastics are broken down quickly by bacteria in the soil, though slowly in water.",
+  "प्लास्टिक मिट्टी में बैक्टीरिया द्वारा जल्दी, पर जल में धीरे टूटते हैं।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. Substances broken down by biological processes, through the action of bacteria and other saprophytes, are biodegradable; plastics are non-biodegradable -- the enzymes of decomposers are specific and do not act on them -- so they persist for long periods in soil and water alike and may harm living things. "
+  "Fragments break off over time, which is how plastic waste turns into persistent small particles rather than disappearing.",
+  "कथन-I सही है, पर कथन-II गलत है। जो पदार्थ जैविक प्रक्रियाओं से, बैक्टीरिया और अन्य मृतजीवियों की क्रिया से, टूटते हैं वे जैव-निम्नीकरणीय हैं; प्लास्टिक अजैव-निम्नीकरणीय हैं -- अपघटकों के एंज़ाइम विशिष्ट होते हैं और उन पर काम नहीं करते -- इसलिए वे मिट्टी और जल, दोनों में लंबे समय तक बने रहते हैं और सजीवों को हानि पहुँचा सकते हैं। "
+  "समय के साथ उनके टुकड़े टूटते जाते हैं, और इसी तरह प्लास्टिक कचरा ग़ायब होने के बजाय टिकाऊ छोटे कणों में बदल जाता है।",
+  f"{SC10}.",
+  "l1-env-plastics-non-biodegradable", craft="inference")
+
+# ---------------------------------------------------------------- hard statement (2)
+S(PO, "hard", "Consider the following statements about the integrated organic farm of Ramesh Chandra Dagar in Sonipat, Haryana:",
+  "हरियाणा के सोनीपत में रमेश चंद्र डागर के एकीकृत जैविक खेत के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It links bee-keeping, dairy management, water harvesting, composting and agriculture in a chain of processes that support one another.",
+   "Cattle dung is used as manure and crop waste is turned into compost, so chemical fertilisers are not needed.",
+   "Dagar set up the Haryana Kisan Welfare Club to spread such practices among farmers.",
+   "In such a system, the waste of one process becomes the input for another."],
+  ["यह मधुमक्खी पालन, डेयरी प्रबंधन, जल संचयन, कंपोस्टिंग और कृषि को एक-दूसरे को सहारा देने वाली प्रक्रियाओं की शृंखला में जोड़ता है।",
+   "गोबर खाद के रूप में और फ़सल अवशेष कंपोस्ट के रूप में प्रयुक्त होते हैं, इसलिए रासायनिक उर्वरकों की आवश्यकता नहीं पड़ती।",
+   "डागर ने ऐसी पद्धतियाँ किसानों में फैलाने के लिए हरियाणा किसान कल्याण क्लब बनाया।",
+   "ऐसी व्यवस्था में एक प्रक्रिया का अपशिष्ट दूसरी प्रक्रिया का आगत बन जाता है।"],
+  C4, 3,
+  "All four statements are correct. Dagar's farm is the textbook example of integrated organic farming -- a cyclical, zero-waste procedure in which the outputs and wastes of one activity feed the next, making the venture both economical and sustainable. "
+  "Using natural manure and compost instead of chemical fertilisers also cuts the run-off of fertilisers that leads to eutrophication, and the club he founded has spread the method to thousands of farmers.",
+  "चारों कथन सही हैं। डागर का खेत एकीकृत जैविक खेती का पाठ्यपुस्तकीय उदाहरण है -- एक चक्रीय, शून्य-अपशिष्ट प्रक्रिया जिसमें एक गतिविधि के उत्पाद और अपशिष्ट अगली गतिविधि को पोषण देते हैं, जिससे उद्यम किफ़ायती और सतत, दोनों बनता है। "
+  "रासायनिक उर्वरकों के स्थान पर प्राकृतिक खाद और कंपोस्ट का उपयोग उर्वरकों के बहाव को भी घटाता है, जिससे सुपोषण (eutrophication) होता है, और उनके बनाए क्लब ने यह पद्धति हज़ारों किसानों तक फैलाई है।",
+  f"{BI12}.",
+  "l1-env-dagar-integrated-organic-farm", craft="linkage")
+
+S(PO, "hard", "Consider the following statements about pesticides and herbicides:",
+  "कीटनाशकों और खरपतवारनाशकों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Organophosphates and carbamates, which replaced the chlorinated pesticides, are severe nerve poisons and so are more harmful to humans.",
+   "Some insects have become resistant to these newer pesticides as well.",
+   "Weedkillers such as sodium chlorate and sodium arsenite are harmless to mammals."],
+  ["क्लोरीनयुक्त कीटनाशकों का स्थान लेने वाले ऑर्गेनोफ़ॉस्फ़ेट और कार्बामेट तीव्र तंत्रिका-विष हैं, इसलिए मनुष्यों के लिए अधिक हानिकारक हैं।",
+   "कुछ कीट इन नए कीटनाशकों के प्रति भी प्रतिरोधी हो गए हैं।",
+   "सोडियम क्लोरेट और सोडियम आर्सेनाइट जैसे खरपतवारनाशक स्तनधारियों के लिए हानिरहित हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Because the chlorinated organic pesticides persisted and built up in food chains, they were replaced by organophosphates and carbamates, which break down faster but are more toxic nerve poisons -- and insects have developed resistance to them too, a pattern seen with each new generation of pesticide. "
+  "Statement 3 is wrong: inorganic weedkillers such as sodium chlorate and sodium arsenite are toxic to mammals; many organic herbicides have been linked to birth defects, which is why integrated pest management, using fewer chemicals, is encouraged.",
+  "कथन 1 और 2 सही हैं। चूँकि क्लोरीनयुक्त कार्बनिक कीटनाशक लंबे समय तक बने रहकर खाद्य शृंखलाओं में संचित होते थे, इसलिए उनका स्थान ऑर्गेनोफ़ॉस्फ़ेट और कार्बामेट ने लिया, जो जल्दी टूटते हैं पर अधिक ज़हरीले तंत्रिका-विष हैं -- और कीटों में इनके प्रति भी प्रतिरोध विकसित हुआ है, जैसा हर नई पीढ़ी के कीटनाशक के साथ देखा गया है। "
+  "कथन 3 गलत है: सोडियम क्लोरेट और सोडियम आर्सेनाइट जैसे अकार्बनिक खरपतवारनाशक स्तनधारियों के लिए विषैले हैं; कई कार्बनिक खरपतवारनाशकों को जन्म-दोषों से जोड़ा गया है, इसीलिए कम रसायनों वाले एकीकृत कीट प्रबंधन को प्रोत्साहित किया जाता है।",
+  f"{CH11}.",
+  "l1-env-organophosphates-herbicides", craft="precision")
+
+write("env_l1_t3_d.sql")

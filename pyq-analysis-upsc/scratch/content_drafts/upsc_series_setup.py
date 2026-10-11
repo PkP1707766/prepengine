@@ -168,6 +168,11 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "through travellers, chronicles and the Ain, regional cultures, the colonial countryside, crafts and cities, 1857, reform, "
      "Gandhi and Partition, with the basics of art, architecture and music. "
      "Sources: NCERT Classes VI-VIII Our Pasts I-III; Class XII Themes in Indian History I-III; NCERT art and craft books."),
+    (3, "l1-env-", "Environment and Ecology at the NCERT foundation level: forests, plants, fungi and animals and how they live, "
+     "populations and the loss of biodiversity, the ozone layer, the greenhouse effect and the carbon cycle, energy and fuels, "
+     "water, waste and pollution, conservation by the State and by communities, India's climate policy and carbon markets, and "
+     "the ideas behind the international environmental order. "
+     "Sources: NCERT Science VII-X, Geography X-XI, Biology XI-XII and Chemistry XI; MoEFCC, BEE, UNFCCC and UNEP."),
 ]
 
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",

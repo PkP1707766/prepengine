@@ -1,0 +1,318 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 3 (Environment & Ecology, NCERT Foundation) -- part B: Fauna & Animal Behaviour (19)
+(upsc_l1_cell_targets.mjs 3): easy MCQ 1, easy statement 4, easy Statement-I/II 1, medium MCQ 2, medium statement 7,
+medium Statement-I/II 1, hard MCQ 1, hard statement 2.
+The angle is the animal kingdom and the life of animals as NCERT teaches them -- classification and body plans
+(Biology XI), adaptations to climate (Science VII), endemism and the Red Data Book (Science VIII), and predation,
+competition, parasitism and mutualism (Biology XII). Level-2 facts are not repeated (the kangaroo rat, seals'
+fat, bats and echolocation, the camel's hump, the Arctic fox, mimicry, aestivation, high-altitude blood,
+zooplankton diapause, Cuscuta, the seahorse, the marsupials, the gharial). MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Environment & Ecology"
+d.REQUIRE_CRAFT = True
+FA = "Fauna & Animal Behaviour"
+SC7 = "NCERT Class VII, Science (Weather, Climate and Adaptations of Animals to Climate)"
+SC8 = "NCERT Class VIII, Science (Conservation of Plants and Animals)"
+BI11 = "NCERT Class XI, Biology (Animal Kingdom)"
+BI12 = "NCERT Class XII, Biology (Organisms and Populations)"
+
+# ---------------------------------------------------------------- easy MCQ (1)
+M(FA, "easy", "Ichthyophis, a limbless animal often mistaken for a snake or an earthworm, belongs to which group?",
+  "इक्थियोफ़िस, एक पादहीन जंतु जिसे प्रायः साँप या केंचुआ समझ लिया जाता है, किस समूह का है?",
+  ["Amphibians", "Reptiles", "Cartilaginous fishes", "Annelids"],
+  ["उभयचर", "सरीसृप", "उपास्थिमय मछलियाँ", "ऐनेलिड"],
+  0,
+  "Ichthyophis is a limbless amphibian, a caecilian, that burrows in moist soil. Amphibians -- toads (Bufo), frogs (Rana), tree frogs (Hyla), salamanders (Salamandra) and caecilians -- can live in water and on land; their skin is moist and without scales, and they breathe through gills, lungs and the skin. "
+  "Unlike a snake, Ichthyophis has no scales; unlike an earthworm, it has a backbone.",
+  "इक्थियोफ़िस एक पादहीन उभयचर, सीसिलियन, है जो नम मिट्टी में बिल बनाता है। उभयचर -- टोड (ब्यूफ़ो), मेंढक (राना), वृक्ष-मेंढक (हायला), सैलामैंडर (सैलामैंड्रा) और सीसिलियन -- जल और स्थल, दोनों पर रह सकते हैं; उनकी त्वचा नम और शल्क-रहित होती है, और वे क्लोम, फेफड़ों और त्वचा से साँस लेते हैं। "
+  "साँप के विपरीत इक्थियोफ़िस में शल्क नहीं होते; केंचुए के विपरीत इसमें रीढ़ की हड्डी होती है।",
+  BI11 + ".",
+  "l1-env-ichthyophis-limbless-amphibian", pos=3, craft="precision")
+
+# ---------------------------------------------------------------- easy statement (4)
+S(FA, "easy", "Consider the following statements about animals of the polar regions:",
+  "ध्रुवीय क्षेत्रों के जंतुओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Polar bears have white fur, which helps them stay hidden against the snow and ice while hunting.",
+   "Penguins keep warm by huddling together, and their streamlined bodies and webbed feet make them good swimmers."],
+  ["ध्रुवीय भालुओं का फ़र सफ़ेद होता है, जो शिकार करते समय उन्हें बर्फ़ और हिम की पृष्ठभूमि में छिपाए रखने में मदद करता है।",
+   "पेंगुइन एक-दूसरे से सटकर गर्म रहते हैं, और उनके धारारेखित (streamlined) शरीर और जालयुक्त पैर उन्हें अच्छा तैराक बनाते हैं।"],
+  T2, 2,
+  "Both statements are correct. The polar bear's white fur makes it hard to see against the snowy background, protecting it and helping it catch prey; it also has two thick layers of fur, long curved claws and wide paws for walking in snow and swimming, and a keen sense of smell. "
+  "Penguins, too, are coloured to merge with their surroundings, have thick skin and a lot of fat, and crowd together to conserve heat; on land they waddle, but in water they are fast swimmers.",
+  "दोनों कथन सही हैं। ध्रुवीय भालू का सफ़ेद फ़र उसे बर्फ़ीली पृष्ठभूमि में मुश्किल से दिखने वाला बनाता है, जिससे उसकी रक्षा होती है और शिकार पकड़ने में मदद मिलती है; उसके फ़र की दो मोटी परतें, लंबे मुड़े पंजे और बर्फ़ पर चलने तथा तैरने के लिए चौड़े पंजे होते हैं, और उसकी सूँघने की शक्ति तीव्र होती है। "
+  "पेंगुइन भी परिवेश में घुल-मिल जाने वाले रंग के होते हैं, उनकी त्वचा मोटी और वसा अधिक होती है, और वे गर्मी बचाने के लिए झुंड में सट जाते हैं; स्थल पर वे डगमगाकर चलते हैं, पर जल में तेज़ तैराक हैं।",
+  SC7 + ".",
+  "l1-env-polar-bear-penguin-adaptations", craft="inference")
+
+S(FA, "easy", "Consider the following statements about animals of tropical rain forests:",
+  "उष्णकटिबंधीय वर्षा वनों के जंतुओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Red-eyed frogs have sticky pads on their feet that help them climb the trees of the rain forest.",
+   "The long, large beak of the toucan helps it reach fruits on branches too weak to bear its weight.",
+   "The lion-tailed macaque spends most of its time on the ground, feeding on grass."],
+  ["लाल आँखों वाले मेंढकों के पैरों में चिपचिपे गद्दे होते हैं, जो उन्हें वर्षा वन के वृक्षों पर चढ़ने में मदद करते हैं।",
+   "टूकन की लंबी, बड़ी चोंच उसे उन शाखाओं के फलों तक पहुँचने में मदद करती है जो उसका भार नहीं सह सकतीं।",
+   "सिंह-पुच्छी मकाक (lion-tailed macaque) अपना अधिकांश समय भूमि पर घास खाते हुए बिताता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: in the crowded rain forest, where food and space are contested, many animals are adapted to life in the trees. "
+  "Statement 3 is wrong: the lion-tailed macaque, or 'beard ape', of the rain forests of the Western Ghats, with its silver-white mane, lives in the tree-tops on fruits, seeds, young leaves, flowers and buds, searches for insects under the bark, and rarely comes down to the ground.",
+  "कथन 1 और 2 सही हैं: भीड़-भरे वर्षा वन में, जहाँ भोजन और स्थान के लिए होड़ होती है, कई जंतु वृक्षों पर जीवन के अनुकूल हैं। "
+  "कथन 3 गलत है: चाँदी जैसे सफ़ेद अयाल वाला, पश्चिमी घाट के वर्षा वनों का सिंह-पुच्छी मकाक या 'दाढ़ी वाला बंदर' वृक्षों की चोटियों पर फलों, बीजों, नई पत्तियों, फूलों और कलियों पर जीता है, छाल के नीचे कीड़े खोजता है, और शायद ही कभी भूमि पर उतरता है।",
+  SC7 + ".",
+  "l1-env-rainforest-animal-adaptations", craft="precision")
+
+S(FA, "easy", "Consider the following statements about reptiles:",
+  "सरीसृपों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Reptiles have dry, cornified skin with epidermal scales or scutes.",
+   "Reptiles have moist, glandular skin through which they can breathe, like frogs.",
+   "Reptiles lay their eggs in water, like most amphibians."],
+  ["सरीसृपों की त्वचा शुष्क और शृंगीय (cornified) होती है, जिस पर बाह्यत्वचीय शल्क या स्क्यूट होते हैं।",
+   "सरीसृपों की त्वचा मेंढकों की तरह नम और ग्रंथिमय होती है, जिससे वे साँस ले सकते हैं।",
+   "सरीसृप अधिकांश उभयचरों की तरह जल में अंडे देते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct: the dry, scaly skin of reptiles cuts water loss and is one reason they could become mostly terrestrial; snakes and lizards shed their scales as a skin cast. "
+  "Statement 2 is wrong: it is amphibians whose moist, scaleless skin helps them breathe. Statement 3 is wrong: reptiles have internal fertilisation and lay eggs on land, with direct development -- there is no aquatic larval stage like the tadpole.",
+  "केवल कथन 1 सही है: सरीसृपों की शुष्क, शल्कयुक्त त्वचा जल की हानि घटाती है और यह एक कारण है कि वे अधिकतर स्थलीय बन सके; साँप और छिपकलियाँ अपने शल्क केंचुल के रूप में उतारते हैं। "
+  "कथन 2 गलत है: नम, शल्क-रहित त्वचा से साँस लेने में मदद उभयचरों को मिलती है। कथन 3 गलत है: सरीसृपों में निषेचन आंतरिक होता है और वे स्थल पर अंडे देते हैं, और विकास प्रत्यक्ष होता है -- टैडपोल जैसी कोई जलीय लार्वा अवस्था नहीं होती।",
+  BI11 + ".",
+  "l1-env-reptile-skin-eggs", craft="precision")
+
+S(FA, "easy", "Consider the following statements about birds:",
+  "पक्षियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Birds have hollow bones with air cavities, which help to keep them light.",
+   "Birds are cold-blooded, so their body temperature changes with their surroundings."],
+  ["पक्षियों की हड्डियाँ खोखली और वायु-गुहाओं वाली होती हैं, जो उन्हें हल्का रखने में मदद करती हैं।",
+   "पक्षी असमतापी (cold-blooded) होते हैं, इसलिए उनके शरीर का तापमान परिवेश के साथ बदलता है।"],
+  T2, 0,
+  "Only statement 1 is correct: the long, hollow, pneumatic bones of birds, together with feathers, forelimbs modified into wings and a body built for flight, make flying possible. "
+  "Statement 2 is wrong: birds, like mammals, are warm-blooded (homoiothermous) and keep a constant body temperature; fishes, amphibians and reptiles are cold-blooded.",
+  "केवल कथन 1 सही है: पक्षियों की लंबी, खोखली, वातिल (pneumatic) हड्डियाँ, पंखों, डैनों में बदले अग्रपादों और उड़ान के अनुकूल शरीर के साथ मिलकर उड़ना संभव बनाती हैं। "
+  "कथन 2 गलत है: पक्षी, स्तनधारियों की तरह, समतापी (warm-blooded) होते हैं और शरीर का तापमान स्थिर रखते हैं; मछलियाँ, उभयचर और सरीसृप असमतापी हैं।",
+  BI11 + ".",
+  "l1-env-birds-pneumatic-warm-blooded", craft="precision")
+
+# ---------------------------------------------------------------- easy Statement-I/II (1)
+A(FA, "easy",
+  "Sharks have to keep swimming to avoid sinking.",
+  "शार्कों को डूबने से बचने के लिए लगातार तैरते रहना पड़ता है।",
+  "Sharks have no air bladder.",
+  "शार्कों में वायु-आशय (air bladder) नहीं होता।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Bony fishes use an air bladder to regulate their buoyancy, but cartilaginous fishes such as sharks lack one, so they must keep moving to stay up. "
+  "Sharks also differ from bony fishes in having a cartilaginous skeleton, gill slits without a covering operculum and tough skin with minute placoid scales.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। अस्थिल मछलियाँ उत्प्लावकता नियंत्रित करने के लिए वायु-आशय का उपयोग करती हैं, पर शार्क जैसी उपास्थिमय मछलियों में यह नहीं होता, इसलिए उन्हें ऊपर बने रहने के लिए चलते रहना पड़ता है। "
+  "शार्क अस्थिल मछलियों से इस बात में भी भिन्न हैं कि उनका कंकाल उपास्थिमय होता है, क्लोम-छिद्र ढकने वाला प्रच्छद (operculum) नहीं होता, और त्वचा सूक्ष्म प्लेकॉइड शल्कों वाली कठोर होती है।",
+  BI11 + ".",
+  "l1-env-shark-no-air-bladder", craft="inference")
+
+# ---------------------------------------------------------------- medium MCQ (2)
+M(FA, "medium", "Which one of the following mammals lays eggs?",
+  "निम्नलिखित में से कौन-सा स्तनधारी अंडे देता है?",
+  ["Platypus", "Blue whale", "Flying fox", "Hedgehog"],
+  ["प्लैटिपस", "नीली व्हेल", "फ़्लाइंग फ़ॉक्स (फल-चमगादड़)", "हेजहॉग (कंटकचूहा)"],
+  0,
+  "The platypus (Ornithorhynchus) of Australia, like the echidnas, is an egg-laying mammal; yet, like all mammals, it has hair and feeds its young on milk from mammary glands. "
+  "Most mammals are viviparous: the blue whale (Balaenoptera), the largest living animal, the flying fox (Pteropus), a fruit bat, and the hedgehog all give birth to live young.",
+  "ऑस्ट्रेलिया का प्लैटिपस (ऑर्निथोरिंकस), एकिडना की तरह, अंडे देने वाला स्तनधारी है; फिर भी सभी स्तनधारियों की तरह उसके बाल होते हैं और वह स्तन ग्रंथियों के दूध से बच्चों को पोषण देता है। "
+  "अधिकांश स्तनधारी जरायुज (viviparous) हैं: सबसे बड़ा जीवित जंतु नीली व्हेल (बैलेनोप्टेरा), फल-चमगादड़ फ़्लाइंग फ़ॉक्स (टेरोपस) और हेजहॉग, सभी जीवित बच्चों को जन्म देते हैं।",
+  BI11 + ".",
+  "l1-env-platypus-egg-laying-mammal", pos=1, craft="precision")
+
+M(FA, "medium", "The Monarch butterfly is highly distasteful to the birds that prey on it. How does it acquire this protection?",
+  "मोनार्क तितली अपने शिकारी पक्षियों के लिए अत्यंत अरुचिकर होती है। उसे यह सुरक्षा कैसे मिलती है?",
+  ["As a caterpillar, it feeds on a poisonous weed and stores a chemical from it",
+   "It makes the toxin itself, in special glands it has from birth, without any outside source",
+   "Its bright colours alone deter birds, though it is harmless to eat",
+   "It mimics the colours of a distasteful butterfly while itself being edible"],
+  ["इल्ली (caterpillar) अवस्था में वह एक ज़हरीली खरपतवार खाती है और उसका एक रसायन अपने शरीर में रख लेती है",
+   "वह जन्म से मौजूद विशेष ग्रंथियों में, बिना किसी बाहरी स्रोत के, स्वयं विष बनाती है",
+   "केवल उसके चटक रंग पक्षियों को दूर रखते हैं, यद्यपि उसे खाना हानिरहित है",
+   "वह स्वयं खाने योग्य होते हुए किसी अरुचिकर तितली के रंगों की नक़ल करती है"],
+  0,
+  "The Monarch acquires a special chemical during its caterpillar stage by feeding on a poisonous weed, and carries it into adult life, which makes it highly distasteful to birds -- one of many chemical defences prey species have evolved against predation. "
+  "Plants defend themselves in a similar way: Calotropis, for instance, produces highly poisonous cardiac glycosides, which is why cattle and goats are never seen browsing on it.",
+  "मोनार्क इल्ली अवस्था में एक ज़हरीली खरपतवार खाकर एक विशेष रसायन प्राप्त करती है और उसे वयस्क जीवन में साथ रखती है, जिससे वह पक्षियों के लिए अत्यंत अरुचिकर हो जाती है -- यह शिकार से बचने के लिए शिकार-प्रजातियों में विकसित अनेक रासायनिक रक्षाओं में से एक है। "
+  "पौधे भी इसी तरह अपनी रक्षा करते हैं: उदाहरण के लिए आक (कैलोट्रोपिस) अत्यंत विषैले कार्डियक ग्लाइकोसाइड बनाता है, इसीलिए मवेशी और बकरियाँ उसे कभी चरती नहीं दिखतीं।",
+  BI12 + ".",
+  "l1-env-monarch-butterfly-defence", pos=2, craft="inference")
+
+# ---------------------------------------------------------------- medium statement (7)
+S(FA, "medium", "Consider the following statements about predators and their role in ecosystems:",
+  "शिकारियों (predators) और पारितंत्रों में उनकी भूमिका के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The prickly pear cactus, introduced into Australia in the early 1920s, spread rapidly over millions of hectares of rangeland.",
+   "It was brought under control only after a cactus-feeding moth from its natural habitat was introduced.",
+   "When the starfish Pisaster was removed from an intertidal community on the Pacific coast of America, more than ten species of invertebrates became extinct within a year.",
+   "By keeping prey populations in check, predators can reduce competition among the prey species and so help maintain species diversity."],
+  ["1920 के दशक के आरंभ में ऑस्ट्रेलिया लाया गया नागफनी (prickly pear) कैक्टस लाखों हेक्टेयर चरागाहों में तेज़ी से फैल गया।",
+   "इसे तभी नियंत्रित किया जा सका जब इसके प्राकृतिक आवास से कैक्टस खाने वाला एक शलभ (moth) लाया गया।",
+   "जब अमेरिका के प्रशांत तट के एक अंतर्ज्वारीय समुदाय से तारामीन पाइसास्टर को हटाया गया, तो एक वर्ष के भीतर 10 से अधिक अकशेरुकी प्रजातियाँ विलुप्त हो गईं।",
+   "शिकार-आबादियों को नियंत्रण में रखकर शिकारी शिकार-प्रजातियों के बीच प्रतिस्पर्धा घटा सकते हैं और इस तरह प्रजाति-विविधता बनाए रखने में मदद करते हैं।"],
+  C4, 3,
+  "All four statements are correct. In Australia the cactus had no natural enemies, and the moth brought in from its native range regulated it -- the principle behind biological control of pests. "
+  "Pisaster, a key predator, had kept a dominant competitor in check; once it was gone, interspecific competition eliminated more than ten other invertebrate species. Predators are usually 'prudent': if a predator over-exploited its prey, the prey might go extinct, and the predator with it.",
+  "चारों कथन सही हैं। ऑस्ट्रेलिया में कैक्टस का कोई प्राकृतिक शत्रु नहीं था, और उसके मूल क्षेत्र से लाए गए शलभ ने उसे नियंत्रित किया -- यही कीटों के जैविक नियंत्रण का सिद्धांत है। "
+  "प्रमुख शिकारी पाइसास्टर ने एक प्रबल प्रतिस्पर्धी को नियंत्रण में रखा था; उसके हटते ही अंतरजातीय प्रतिस्पर्धा ने 10 से अधिक अन्य अकशेरुकी प्रजातियों को समाप्त कर दिया। शिकारी प्रायः 'विवेकी' होते हैं: यदि कोई शिकारी अपने शिकार का अति-दोहन करे, तो शिकार विलुप्त हो सकता है, और उसके साथ शिकारी भी।",
+  BI12 + ".",
+  "l1-env-prickly-pear-pisaster-predation", craft="linkage")
+
+S(FA, "medium", "Consider the following statements about competition between species:",
+  "प्रजातियों के बीच प्रतिस्पर्धा के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Abingdon tortoise of the Galapagos Islands became extinct within a decade after goats were introduced, apparently because the goats were more efficient browsers.",
+   "On the rocky coasts of Scotland, the larger barnacle Balanus dominates the intertidal zone and excludes the smaller Chthamalus from it.",
+   "MacArthur's five species of warblers avoided competition by living on different kinds of trees."],
+  ["गैलापागोस द्वीपों का एबिंगडन कछुआ बकरियाँ लाए जाने के एक दशक के भीतर विलुप्त हो गया, स्पष्टतः क्योंकि बकरियाँ अधिक कुशलता से चरती थीं।",
+   "स्कॉटलैंड के चट्टानी तटों पर बड़ा बार्नेकल बैलेनस अंतर्ज्वारीय क्षेत्र पर हावी रहता है और छोटे चैथमेलस को वहाँ से बाहर कर देता है।",
+   "मैकआर्थर की वार्बलर पक्षियों की पाँच प्रजातियों ने अलग-अलग प्रकार के वृक्षों पर रहकर प्रतिस्पर्धा से बचाव किया।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: competition can occur even between unrelated species, such as tortoises and goats, that depend on the same limited resource, and Connell's field experiments showed one barnacle excluding another from part of the shore. "
+  "Statement 3 is wrong: MacArthur's five closely related warblers lived on the same tree; they coexisted by resource partitioning -- differences in their foraging behaviour, such as feeding in different parts of the tree.",
+  "कथन 1 और 2 सही हैं: एक ही सीमित संसाधन पर निर्भर असंबंधित प्रजातियों, जैसे कछुओं और बकरियों, के बीच भी प्रतिस्पर्धा हो सकती है, और कॉनेल के क्षेत्र-प्रयोगों ने एक बार्नेकल को दूसरे को तट के एक भाग से बाहर करते दिखाया। "
+  "कथन 3 गलत है: मैकआर्थर की पाँच निकट संबंधी वार्बलर प्रजातियाँ एक ही वृक्ष पर रहती थीं; वे संसाधन विभाजन (resource partitioning) से साथ रह सकीं -- भोजन खोजने के व्यवहार में अंतर से, जैसे वृक्ष के अलग-अलग भागों में भोजन करना।",
+  BI12 + ".",
+  "l1-env-abingdon-balanus-warblers", craft="precision")
+
+S(FA, "medium", "Consider the following statements about the orchid Ophrys and its bee pollinator:",
+  "ऑर्किड ओफ़्रिस और उसकी परागणकर्ता मधुमक्खी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["One petal of the Mediterranean orchid Ophrys resembles the female of a species of bee, which lures male bees that then pollinate the flower.",
+   "The orchid rewards the visiting bee with nectar in return for pollination."],
+  ["भूमध्यसागरीय ऑर्किड ओफ़्रिस की एक पंखुड़ी मधुमक्खी की एक प्रजाति की मादा जैसी दिखती है, जो नर मधुमक्खियों को लुभाती है, और वे फिर फूल का परागण करती हैं।",
+   "ऑर्किड परागण के बदले आने वाली मधुमक्खी को मकरंद देता है।"],
+  T2, 0,
+  "Only statement 1 is correct: the male bee is drawn to what it perceives as a female and 'pseudocopulates' with the flower, getting dusted with pollen that it carries to the next flower -- a case of 'sexual deceit'. "
+  "Statement 2 is wrong: the bee gets no reward. The relationship also shows co-evolution: if the female bee's colour pattern changed even slightly, pollination would fail unless the orchid's flower changed with it.",
+  "केवल कथन 1 सही है: नर मधुमक्खी उसे मादा समझकर आकर्षित होती है और फूल के साथ 'छद्म-मैथुन' करती है, जिससे उस पर पराग लग जाता है जिसे वह अगले फूल तक ले जाती है -- यह 'लैंगिक छल' का उदाहरण है। "
+  "कथन 2 गलत है: मधुमक्खी को कोई पुरस्कार नहीं मिलता। यह संबंध सह-विकास भी दिखाता है: यदि मादा मधुमक्खी के रंग-प्रतिरूप में ज़रा भी बदलाव हो, तो जब तक ऑर्किड का फूल भी साथ न बदले, परागण विफल हो जाएगा।",
+  BI12 + ".",
+  "l1-env-ophrys-sexual-deceit", craft="inference")
+
+S(FA, "medium", "Consider the following statements about fishes:",
+  "मछलियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Torpedo, a cartilaginous fish, has electric organs that can deliver a strong shock.",
+   "Exocoetus, the flying fish, can glide through the air above the water.",
+   "Sharks have a bony skeleton and gill covers (operculum), like the rohu."],
+  ["उपास्थिमय मछली टॉरपीडो में विद्युत अंग होते हैं, जो तेज़ झटका दे सकते हैं।",
+   "उड़न मछली एक्सोसीटस जल के ऊपर हवा में सरक (glide) सकती है।",
+   "रोहू की तरह शार्कों में अस्थिल कंकाल और क्लोम-आवरण (operculum) होते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: Torpedo's electric organs, like the poison sting of the sting ray Trygon, are among the special features of cartilaginous fishes, while the flying fish is a bony fish whose large pectoral fins let it glide. "
+  "Statement 3 is wrong: sharks have a cartilaginous skeleton and separate gill slits without an operculum; it is bony fishes such as the rohu (Labeo), catla and magur that have a bony skeleton, four pairs of gills covered by an operculum, and an air bladder.",
+  "कथन 1 और 2 सही हैं: टॉरपीडो के विद्युत अंग, स्टिंग रे ट्रायगॉन के विषैले डंक की तरह, उपास्थिमय मछलियों की विशेषताओं में हैं, जबकि उड़न मछली एक अस्थिल मछली है जिसके बड़े वक्ष-पंख उसे सरकने देते हैं। "
+  "कथन 3 गलत है: शार्कों का कंकाल उपास्थिमय होता है और क्लोम-छिद्र अलग-अलग, बिना प्रच्छद के; अस्थिल कंकाल, प्रच्छद से ढके चार जोड़ी क्लोम और वायु-आशय रोहू (लेबियो), कतला और मांगुर जैसी अस्थिल मछलियों में होते हैं।",
+  BI11 + ".",
+  "l1-env-torpedo-flying-fish-shark-skeleton", craft="precision")
+
+S(FA, "medium", "Consider the following statements about the classification of animals:",
+  "जंतुओं के वर्गीकरण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Spiders and scorpions are insects, since they have jointed legs.",
+   "Bats are birds, since they can fly.",
+   "Whales are fish, since they live in water and have fins."],
+  ["मकड़ी और बिच्छू कीट हैं, क्योंकि उनके संधियुक्त पैर होते हैं।",
+   "चमगादड़ पक्षी हैं, क्योंकि वे उड़ सकते हैं।",
+   "व्हेल मछलियाँ हैं, क्योंकि वे जल में रहती हैं और उनके मीनपंख होते हैं।"],
+  C3, 3,
+  "None of the statements is correct: animals are classified by their fundamental body plan, not by a single feature or by where they live. Spiders and scorpions are arthropods with jointed legs, but they are arachnids with four pairs of legs, while insects have three pairs and a body in three parts. "
+  "Bats are mammals -- they have hair, give birth to live young and suckle them -- and whales are mammals too: they breathe air through lungs and feed their young on milk.",
+  "कोई भी कथन सही नहीं है: जंतुओं का वर्गीकरण उनकी मूल शारीरिक संरचना से होता है, किसी एक विशेषता या रहने के स्थान से नहीं। मकड़ी और बिच्छू संधियुक्त पैरों वाले आर्थ्रोपोड हैं, पर वे चार जोड़ी पैरों वाले एरेक्निड हैं, जबकि कीटों के तीन जोड़ी पैर और तीन भागों वाला शरीर होता है। "
+  "चमगादड़ स्तनधारी हैं -- उनके बाल होते हैं, वे बच्चों को जन्म देते और दूध पिलाते हैं -- और व्हेल भी स्तनधारी हैं: वे फेफड़ों से वायु में साँस लेती हैं और बच्चों को दूध पिलाती हैं।",
+  BI11 + ".",
+  "l1-env-classification-misconceptions", craft="precision")
+
+S(FA, "medium", "Consider the following statements about endemic species and the Red Data Book:",
+  "स्थानिक (endemic) प्रजातियों और रेड डेटा बुक के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["An endemic species is one found naturally only in a particular area and nowhere else.",
+   "The Red Data Book records only species that have already become extinct.",
+   "Every endemic species is, by definition, an endangered species."],
+  ["स्थानिक प्रजाति वह है जो प्राकृतिक रूप से केवल एक विशेष क्षेत्र में मिलती है और कहीं नहीं।",
+   "रेड डेटा बुक केवल उन प्रजातियों को दर्ज करती है जो विलुप्त हो चुकी हैं।",
+   "परिभाषा के अनुसार हर स्थानिक प्रजाति संकटग्रस्त प्रजाति होती है।"],
+  C3, 0,
+  "Only statement 1 is correct: endemism can be at the level of a region, a State or a country -- the Indian giant squirrel and the flying squirrel, for instance, are listed as endemic fauna of the Pachmarhi Biosphere Reserve. "
+  "Statement 2 is wrong: the Red Data Book is a source book that keeps a record of endangered animals and plants, so that they can be protected; it is maintained internationally, and India keeps one for its own species. "
+  "Statement 3 is wrong: an endemic species can be secure if its habitat is intact, though its restricted range makes it vulnerable if that habitat is destroyed.",
+  "केवल कथन 1 सही है: स्थानिकता किसी क्षेत्र, राज्य या देश के स्तर पर हो सकती है -- उदाहरण के लिए भारतीय विशाल गिलहरी और उड़न गिलहरी पचमढ़ी जीवमंडल आरक्षित क्षेत्र के स्थानिक जीवों में गिनी गई हैं। "
+  "कथन 2 गलत है: रेड डेटा बुक एक स्रोत-पुस्तक है जो संकटग्रस्त जंतुओं और पौधों का अभिलेख रखती है, ताकि उनकी रक्षा हो सके; यह अंतरराष्ट्रीय स्तर पर रखी जाती है, और भारत अपनी प्रजातियों के लिए भी एक रखता है। "
+  "कथन 3 गलत है: आवास सुरक्षित हो तो स्थानिक प्रजाति भी सुरक्षित रह सकती है, यद्यपि उसका सीमित क्षेत्र उसे आवास नष्ट होने पर असुरक्षित बना देता है।",
+  SC8 + ".",
+  "l1-env-endemic-red-data-book", craft="precision")
+
+S(FA, "medium", "Consider the following statements about parasites:",
+  "परजीवियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The human liver fluke completes its life cycle using two intermediate hosts, a snail and a fish.",
+   "Lice on humans and ticks on dogs are ectoparasites.",
+   "Many parasites have lost unnecessary sense organs and even the digestive system, and have a high reproductive capacity."],
+  ["मानव यकृत पर्णाभ कृमि (liver fluke) दो मध्यवर्ती परपोषियों, एक घोंघे और एक मछली, के सहारे अपना जीवन-चक्र पूरा करता है।",
+   "मनुष्यों पर जूँ और कुत्तों पर किलनी (tick) बाह्य-परजीवी हैं।",
+   "कई परजीवियों ने अनावश्यक संवेदी अंग और पाचन तंत्र तक खो दिए हैं, और उनकी प्रजनन क्षमता बहुत अधिक होती है।"],
+  C3, 2,
+  "All three statements are correct. Parasites have evolved special adaptations -- adhesive organs or suckers to cling to the host, the loss of organs they no longer need, and very high reproductive capacity to make up for the chances of reaching a new host. "
+  "Ectoparasites feed on the external surface of the host, as lice, ticks and the copepods on many marine fish do; endoparasites live inside the host's body, and many, like the liver fluke, have complicated life cycles involving several hosts.",
+  "तीनों कथन सही हैं। परजीवियों में विशेष अनुकूलन विकसित हुए हैं -- परपोषी से चिपकने के लिए आसंजक अंग या चूषक, अनावश्यक अंगों का लोप, और नए परपोषी तक पहुँचने की संभावनाओं की भरपाई के लिए बहुत अधिक प्रजनन क्षमता। "
+  "बाह्य-परजीवी परपोषी की बाहरी सतह पर पलते हैं, जैसे जूँ, किलनी और कई समुद्री मछलियों पर कोपेपॉड; अंतः-परजीवी परपोषी के शरीर के भीतर रहते हैं, और यकृत कृमि जैसे कई परजीवियों के जीवन-चक्र जटिल होते हैं जिनमें कई परपोषी होते हैं।",
+  BI12 + ".",
+  "l1-env-parasites-liver-fluke-ectoparasites", craft="precision")
+
+# ---------------------------------------------------------------- medium Statement-I/II (1)
+A(FA, "medium",
+  "The clown fish lives safely among the stinging tentacles of the sea anemone.",
+  "क्लाउन मछली समुद्री एनीमोन के डंक मारने वाले स्पर्शकों के बीच सुरक्षित रहती है।",
+  "The sea anemone feeds on the clown fish's eggs in return, which makes their relationship one of parasitism.",
+  "बदले में समुद्री एनीमोन क्लाउन मछली के अंडे खाता है, जिससे उनका संबंध परजीविता का बन जाता है।",
+  2,
+  "Statement-I is correct but Statement-II is incorrect. The clown fish gets protection from predators, which stay away from the anemone's stinging tentacles; the anemone does not appear to gain anything by hosting the fish, so the relationship is an example of commensalism -- one species benefits and the other is neither harmed nor helped.",
+  "कथन-I सही है, पर कथन-II गलत है। क्लाउन मछली को शिकारियों से सुरक्षा मिलती है, जो एनीमोन के डंक मारने वाले स्पर्शकों से दूर रहते हैं; मछली को आश्रय देकर एनीमोन को कोई लाभ होता नहीं दिखता, इसलिए यह संबंध सहभोजिता (commensalism) का उदाहरण है -- एक प्रजाति को लाभ होता है और दूसरी को न हानि, न लाभ।",
+  BI12 + ".",
+  "l1-env-clownfish-anemone-commensalism", craft="inference")
+
+# ---------------------------------------------------------------- hard MCQ (1)
+M(FA, "hard", "Which one of the following animals has a four-chambered heart?",
+  "निम्नलिखित में से किस जंतु का हृदय चार-कक्षीय होता है?",
+  ["Crocodile", "Frog", "Garden lizard", "Shark"],
+  ["मगरमच्छ", "मेंढक", "गिरगिट (गार्डन लिज़र्ड)", "शार्क"],
+  0,
+  "Fishes have a two-chambered heart (one auricle and one ventricle); amphibians and most reptiles, such as the garden lizard Calotes, have a three-chambered heart (two auricles and one ventricle); crocodiles are the exception among reptiles, with a four-chambered heart, as in birds and mammals. "
+  "A four-chambered heart keeps oxygen-rich and oxygen-poor blood fully apart.",
+  "मछलियों का हृदय दो-कक्षीय (एक अलिंद और एक निलय) होता है; उभयचरों और गिरगिट (कैलोटीस) जैसे अधिकांश सरीसृपों का हृदय तीन-कक्षीय (दो अलिंद और एक निलय) होता है; सरीसृपों में मगरमच्छ अपवाद हैं, जिनका हृदय पक्षियों और स्तनधारियों की तरह चार-कक्षीय होता है। "
+  "चार-कक्षीय हृदय ऑक्सीजन-युक्त और ऑक्सीजन-रहित रक्त को पूरी तरह अलग रखता है।",
+  BI11 + ".",
+  "l1-env-crocodile-four-chambered-heart", pos=3, craft="precision")
+
+# ---------------------------------------------------------------- hard statement (2)
+S(FA, "hard", "Consider the following statements about the animal kingdom:",
+  "जंतु जगत के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Echinoderms move and feed with the help of a water vascular system and tube feet.",
+   "Arthropoda is the largest animal phylum: over two-thirds of all named species on earth are arthropods.",
+   "Molluscs, such as snails and the octopus, form the second-largest animal phylum.",
+   "Cnidarians, such as corals and sea anemones, have stinging cells called cnidoblasts."],
+  ["एकाइनोडर्म जल संवहनी तंत्र और नाल-पादों (tube feet) की सहायता से चलते और भोजन करते हैं।",
+   "आर्थ्रोपोडा सबसे बड़ा जंतु संघ है: पृथ्वी की सभी नामित प्रजातियों में दो-तिहाई से अधिक आर्थ्रोपोड हैं।",
+   "घोंघे और ऑक्टोपस जैसे मोलस्क दूसरा सबसे बड़ा जंतु संघ बनाते हैं।",
+   "प्रवाल और समुद्री एनीमोन जैसे नाइडेरियन में दंश-कोशिकाएँ होती हैं, जिन्हें निडोब्लास्ट कहते हैं।"],
+  C4, 3,
+  "All four statements are correct. The water vascular system of echinoderms, such as the starfish and the sea urchin, helps in locomotion, the capture and transport of food, and respiration; arthropods, with jointed legs and a chitinous exoskeleton, include insects, spiders, crabs and centipedes; molluscs have a soft body, often covered by a calcareous shell; "
+  "and the cnidoblasts on the tentacles of cnidarians are used for anchorage, defence and the capture of prey.",
+  "चारों कथन सही हैं। तारामीन और समुद्री अर्चिन जैसे एकाइनोडर्म का जल संवहनी तंत्र चलने, भोजन पकड़ने और ले जाने, और श्वसन में मदद करता है; संधियुक्त पैरों और काइटिन के बाह्य-कंकाल वाले आर्थ्रोपोड में कीट, मकड़ियाँ, केकड़े और कनखजूरे शामिल हैं; मोलस्क का शरीर कोमल होता है, जो प्रायः चूने के कवच से ढका रहता है; "
+  "और नाइडेरियन के स्पर्शकों पर निडोब्लास्ट जुड़ने, रक्षा और शिकार पकड़ने में काम आते हैं।",
+  BI11 + ".",
+  "l1-env-phyla-echinoderm-arthropod-mollusc-cnidaria", craft="recall")
+
+S(FA, "hard", "Consider the following statements about the body plans of animals:",
+  "जंतुओं की शारीरिक संरचना (body plan) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Adult echinoderms, such as the starfish, are radially symmetrical, though their larvae are bilaterally symmetrical.",
+   "Flatworms, such as the tapeworm, have no body cavity (coelom).",
+   "Insects have a closed circulatory system, like that of mammals."],
+  ["तारामीन जैसे वयस्क एकाइनोडर्म अरीय सममित होते हैं, यद्यपि उनके लार्वा द्विपार्श्व सममित होते हैं।",
+   "फ़ीताकृमि जैसे चपटे कृमियों में कोई देहगुहा (coelom) नहीं होती।",
+   "कीटों का परिसंचरण तंत्र स्तनधारियों की तरह बंद होता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The radial symmetry of adult echinoderms is secondary -- their bilateral larvae show their descent from bilateral ancestors; flatworms are acoelomates, roundworms pseudocoelomates, and annelids, molluscs, arthropods, echinoderms and chordates true coelomates. "
+  "Statement 3 is wrong: arthropods, including insects, have an open circulatory system, in which blood flows through open spaces and bathes the organs; annelids and chordates have a closed system, with blood circulating through vessels.",
+  "कथन 1 और 2 सही हैं। वयस्क एकाइनोडर्म की अरीय सममिति द्वितीयक है -- उनके द्विपार्श्व लार्वा द्विपार्श्व पूर्वजों से उनकी उत्पत्ति दिखाते हैं; चपटे कृमि अगुहीय (acoelomate), गोल कृमि कूटगुहीय (pseudocoelomate), और ऐनेलिड, मोलस्क, आर्थ्रोपोड, एकाइनोडर्म तथा कॉर्डेट वास्तविक गुहीय (coelomate) हैं। "
+  "कथन 3 गलत है: कीटों सहित आर्थ्रोपोड में खुला परिसंचरण तंत्र होता है, जिसमें रक्त खुले स्थानों में बहकर अंगों को नहलाता है; ऐनेलिड और कॉर्डेट में बंद तंत्र होता है, जिसमें रक्त वाहिकाओं में बहता है।",
+  BI11 + ".",
+  "l1-env-symmetry-coelom-circulation", craft="precision")
+
+write("env_l1_t3_b.sql")

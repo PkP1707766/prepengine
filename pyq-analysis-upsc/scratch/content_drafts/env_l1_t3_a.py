@@ -1,0 +1,375 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 3 (Environment & Ecology, NCERT Foundation) -- part A: Flora, Fungi & Forests (11),
+Ecosystems & Ecological Processes (8) and Indian Environmental Laws & Bodies (4) (upsc_l1_cell_targets.mjs 3).
+The angle is what the NCERT books teach -- forests and their layers and classes (Science VII, Geography X and
+XI), the plant kingdom, fungi and lichens (Biology XI), populations and the loss of biodiversity (Biology XII)
+-- with the policies and bodies built on them. The 318 Level-2 Environment rows are not repeated: no row here
+turns on a fact a Level-2 row tests (bryophytes as amphibians, the gymnosperm groups, lichens as pioneers,
+mycorrhiza and Trichoderma, cacti, the evergreen and deciduous forests, age pyramids, decomposition, Liebig,
+nutrient cycles, the species-area Z, succession, ecotones, the interaction pairs, Costanza, the Biodiversity
+Act's NBA, or -- from Level-2 Polity -- the origin of the Fundamental Duties). MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Environment & Ecology"
+d.REQUIRE_CRAFT = True
+FL, EC, LW = "Flora, Fungi & Forests", "Ecosystems & Ecological Processes", "Indian Environmental Laws & Bodies"
+SC7 = "NCERT Class VII, Science"
+GE10 = "NCERT Class X, Geography -- Contemporary India II"
+GE11 = "NCERT Class XI, Geography -- India: Physical Environment"
+BI11 = "NCERT Class XI, Biology"
+BI12 = "NCERT Class XII, Biology"
+
+# ================================================================ FLORA, FUNGI & FORESTS (11)
+M(FL, "easy", "In a forest, the roof-like cover formed by the branches of the tall trees over the other plants is called the",
+  "किसी वन में ऊँचे वृक्षों की शाखाओं से अन्य पौधों के ऊपर बनने वाला छत जैसा आवरण क्या कहलाता है?",
+  ["canopy", "crown", "understorey", "humus"],
+  ["वितान (canopy)", "शिखर या मुकुट (crown)", "अधोतल (understorey)", "ह्यूमस"],
+  0,
+  "The branches of the tall trees look like a roof over the other plants: this is the canopy. The crown is the branchy part of a single tree above its stem; the understorey is the layer of smaller trees and shrubs beneath the canopy; and humus is the dark matter formed in the soil when dead plants and animals decay. "
+  "A forest has such layers -- emergent trees, canopy, understorey, shrubs and herbs -- each with its own light and animals.",
+  "ऊँचे वृक्षों की शाखाएँ अन्य पौधों के ऊपर छत जैसी लगती हैं: यही वितान (canopy) है। शिखर (crown) किसी एक वृक्ष के तने के ऊपर का शाखाओं वाला भाग है; अधोतल (understorey) वितान के नीचे छोटे वृक्षों और झाड़ियों की परत है; और ह्यूमस मृत पौधों और जंतुओं के सड़ने से मिट्टी में बनने वाला गहरे रंग का पदार्थ है। "
+  "वन में ऐसी परतें होती हैं -- सबसे ऊँचे वृक्ष, वितान, अधोतल, झाड़ियाँ और शाक -- और हर परत का अपना प्रकाश और अपने जंतु होते हैं।",
+  f"{SC7} (Forests: Our Lifeline).",
+  "l1-env-forest-canopy-crown", pos=2, craft="precision")
+
+S(FL, "easy", "Consider the following statements about forests:",
+  "वनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Humus, the dark material formed when dead leaves and animals decay, returns nutrients to the soil.",
+   "Forests cannot regenerate on their own once some trees are cut, so they always need to be replanted."],
+  ["मृत पत्तियों और जंतुओं के सड़ने से बनने वाला गहरे रंग का पदार्थ, ह्यूमस, मिट्टी को पोषक तत्व लौटाता है।",
+   "कुछ वृक्ष कटने के बाद वन अपने-आप पुनर्जीवित नहीं हो सकते, इसलिए उन्हें सदा फिर से लगाना पड़ता है।"],
+  T2, 0,
+  "Only statement 1 is correct. Decomposers -- micro-organisms that feed on dead plants and animals -- turn them into humus, so the nutrients taken up by plants return to the soil and nothing goes waste in a forest. "
+  "Statement 2 is wrong: a forest is a dynamic, living entity; seeds dispersed by animals, wind and water germinate and grow into new plants, so a forest left undisturbed regenerates -- which is also why it can be lost if seeds and seedlings are destroyed faster than they can grow.",
+  "केवल कथन 1 सही है। अपघटक -- मृत पौधों और जंतुओं पर पलने वाले सूक्ष्मजीव -- उन्हें ह्यूमस में बदल देते हैं, इसलिए पौधों द्वारा लिए गए पोषक तत्व मिट्टी में लौट आते हैं और वन में कुछ भी व्यर्थ नहीं जाता। "
+  "कथन 2 गलत है: वन एक गतिशील, जीवित इकाई है; जंतुओं, वायु और जल से बिखरे बीज अंकुरित होकर नए पौधे बनते हैं, इसलिए अबाधित छोड़ा गया वन पुनर्जीवित होता है -- और इसीलिए यदि बीज और पौध उगने से तेज़ी से नष्ट हों, तो वन खो भी सकता है।",
+  f"{SC7} (Forests: Our Lifeline).",
+  "l1-env-humus-forest-regeneration", craft="inference")
+
+S(FL, "easy", "Consider the following statements about the classes of forest in India:",
+  "भारत में वनों के वर्गों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Reserved forests make up more than half of the total forest land.",
+   "Protected forests make up almost one-third of the total forest area.",
+   "Unclassed forests belong only to the government and cannot be owned by communities or individuals."],
+  ["आरक्षित वन कुल वन भूमि के आधे से अधिक हैं।",
+   "संरक्षित वन कुल वन क्षेत्र का लगभग एक-तिहाई हैं।",
+   "अवर्गीकृत वन केवल सरकार के हैं और उनका स्वामित्व समुदायों या व्यक्तियों के पास नहीं हो सकता।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Reserved forests, the most valuable for conserving forests and wildlife, make up more than half of the forest land, and protected forests, guarded against further depletion, almost one-third; together they form the permanent forest estate, which in Madhya Pradesh makes up about three-quarters of the forest area. "
+  "Statement 3 is wrong: unclassed forests are other forests and wastelands belonging to the government and to private individuals and communities; the north-eastern States and parts of Gujarat have a very high share of such forests, many managed by local communities.",
+  "कथन 1 और 2 सही हैं। वनों और वन्यजीवों के संरक्षण के लिए सबसे मूल्यवान आरक्षित वन वन भूमि के आधे से अधिक हैं, और आगे क्षरण से बचाए गए संरक्षित वन लगभग एक-तिहाई; दोनों मिलकर स्थायी वन संपदा बनाते हैं, जो मध्य प्रदेश में वन क्षेत्र का लगभग तीन-चौथाई है। "
+  "कथन 3 गलत है: अवर्गीकृत वन वे अन्य वन और बंजर भूमि हैं जो सरकार के साथ-साथ निजी व्यक्तियों और समुदायों के भी हैं; पूर्वोत्तर राज्यों और गुजरात के कुछ भागों में ऐसे वनों का हिस्सा बहुत अधिक है, जिनमें से कई का प्रबंधन स्थानीय समुदाय करते हैं।",
+  f"{GE10} (Forest and Wildlife Resources).",
+  "l1-env-forest-classes-reserved-protected", craft="precision")
+
+M(FL, "medium", "Agar, used to grow microbes in laboratories and in making ice-creams and jellies, is obtained from",
+  "प्रयोगशालाओं में सूक्ष्मजीव उगाने और आइसक्रीम तथा जेली बनाने में प्रयुक्त अगार किससे प्राप्त होता है?",
+  ["red algae such as Gelidium and Gracilaria",
+   "brown algae such as Laminaria and Fucus",
+   "blue-green algae such as Nostoc and Anabaena",
+   "fungi such as yeast and Rhizopus"],
+  ["जेलिडियम और ग्रेसिलेरिया जैसे लाल शैवाल",
+   "लैमिनेरिया और फ़्यूकस जैसे भूरे शैवाल",
+   "नॉस्टॉक और एनाबीना जैसे नील-हरित शैवाल",
+   "यीस्ट और राइज़ोपस जैसे कवक"],
+  0,
+  "Agar comes from the red algae Gelidium and Gracilaria. Algae are useful in several other ways: the brown algae yield algin and the red algae carrageen, both used commercially as hydrocolloids; many marine brown and red algae, such as Porphyra, Laminaria and Sargassum, are eaten as food. "
+  "Nostoc and Anabaena are cyanobacteria that fix atmospheric nitrogen, and yeast and Rhizopus are fungi.",
+  "अगार लाल शैवाल जेलिडियम और ग्रेसिलेरिया से मिलता है। शैवाल कई अन्य तरह से भी उपयोगी हैं: भूरे शैवाल से एल्जिन और लाल शैवाल से कैरागीन मिलता है, जिनका व्यावसायिक उपयोग हाइड्रोकोलॉइड के रूप में होता है; पोर्फ़ायरा, लैमिनेरिया और सारगासम जैसे कई समुद्री भूरे और लाल शैवाल भोजन के रूप में खाए जाते हैं। "
+  "नॉस्टॉक और एनाबीना वायुमंडलीय नाइट्रोजन स्थिर करने वाले सायनोबैक्टीरिया हैं, और यीस्ट तथा राइज़ोपस कवक हैं।",
+  f"{BI11} (Plant Kingdom).",
+  "l1-env-agar-red-algae", pos=0, craft="precision")
+
+S(FL, "medium", "Consider the following statements about the plant kingdom:",
+  "पादप जगत के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Pteridophytes were the first terrestrial plants to possess vascular tissues, xylem and phloem.",
+   "In gymnosperms the ovules are not enclosed by an ovary wall, so the seeds are 'naked'.",
+   "The giant redwood, Sequoia, one of the tallest trees in the world, is an angiosperm."],
+  ["टेरिडोफ़ाइट पहले स्थलीय पौधे थे जिनमें संवहनी ऊतक, ज़ाइलम और फ़्लोएम, थे।",
+   "जिम्नोस्पर्म में बीजांड अंडाशय की भित्ति से ढके नहीं होते, इसलिए बीज 'नग्न' होते हैं।",
+   "विश्व के सबसे ऊँचे वृक्षों में से एक, विशाल रेडवुड सिकोया, एक आवृतबीजी (angiosperm) है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Pteridophytes, such as ferns, horsetails and Selaginella, were the first land plants with xylem and phloem, though they still need water for fertilisation; in gymnosperms (from gymnos, 'naked', and sperma, 'seeds') the ovules sit exposed, before and after fertilisation. "
+  "Statement 3 is wrong: Sequoia is a gymnosperm, like the pines and cedars; in angiosperms the seeds are enclosed within fruits.",
+  "कथन 1 और 2 सही हैं। फ़र्न, हॉर्सटेल और सेलेजिनेला जैसे टेरिडोफ़ाइट ज़ाइलम और फ़्लोएम वाले पहले स्थलीय पौधे थे, यद्यपि उन्हें निषेचन के लिए अब भी जल चाहिए; जिम्नोस्पर्म (जिम्नोस, 'नग्न', और स्पर्मा, 'बीज') में बीजांड निषेचन से पहले और बाद में खुले रहते हैं। "
+  "कथन 3 गलत है: सिकोया चीड़ और देवदार की तरह एक जिम्नोस्पर्म है; आवृतबीजियों में बीज फलों के भीतर बंद रहते हैं।",
+  f"{BI11} (Plant Kingdom).",
+  "l1-env-pteridophyte-gymnosperm-sequoia", craft="precision")
+
+S(FL, "medium", "Consider the following statements about the tropical thorn forests of India:",
+  "भारत के उष्णकटिबंधीय कँटीले वनों (tropical thorn forests) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They occur where the annual rainfall is less than about 50 cm.",
+   "Babool, ber, khejri and the wild date palm are among their typical trees.",
+   "They are found in semi-arid parts of Punjab, Haryana, Rajasthan and Gujarat."],
+  ["ये वहाँ मिलते हैं जहाँ वार्षिक वर्षा लगभग 50 सेमी से कम होती है।",
+   "बबूल, बेर, खेजड़ी और जंगली खजूर इनके विशिष्ट वृक्षों में हैं।",
+   "ये पंजाब, हरियाणा, राजस्थान और गुजरात के अर्ध-शुष्क भागों में मिलते हैं।"],
+  C3, 2,
+  "All three statements are correct. Tropical thorn forests grow in the semi-arid areas of south-west Punjab, Haryana, Rajasthan, Gujarat, Madhya Pradesh and Uttar Pradesh, where rainfall is below about 50 cm. "
+  "The plants remain leafless for most of the year and look like scrub; besides babool, ber, khejri and the wild date palm, khair, neem and palas are found, with tussocky grass growing to about two metres in the undergrowth.",
+  "तीनों कथन सही हैं। उष्णकटिबंधीय कँटीले वन दक्षिण-पश्चिम पंजाब, हरियाणा, राजस्थान, गुजरात, मध्य प्रदेश और उत्तर प्रदेश के अर्ध-शुष्क क्षेत्रों में उगते हैं, जहाँ वर्षा लगभग 50 सेमी से कम होती है। "
+  "पौधे वर्ष के अधिकांश भाग में पत्तीविहीन रहते हैं और झाड़ियों जैसे दिखते हैं; बबूल, बेर, खेजड़ी और जंगली खजूर के अलावा खैर, नीम और पलाश मिलते हैं, और नीचे लगभग दो मीटर तक ऊँची गुच्छेदार घास उगती है।",
+  f"{GE11} (Natural Vegetation).",
+  "l1-env-tropical-thorn-forests", craft="recall")
+
+S(FL, "medium", "Consider the following statements about lichens:",
+  "लाइकेन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In a lichen, the algal partner prepares food for the fungus, while the fungus provides shelter and absorbs mineral nutrients and water.",
+   "Lichens are good indicators of pollution, because they do not grow in polluted areas.",
+   "The algal partner of a lichen is called the phycobiont, and the fungal partner the mycobiont."],
+  ["लाइकेन में शैवाल साथी कवक के लिए भोजन बनाता है, जबकि कवक आश्रय देता है और खनिज पोषक तत्व तथा जल सोखता है।",
+   "लाइकेन प्रदूषण के अच्छे सूचक हैं, क्योंकि वे प्रदूषित क्षेत्रों में नहीं उगते।",
+   "लाइकेन के शैवाल साथी को फ़ाइकोबायंट और कवक साथी को माइकोबायंट कहते हैं।"],
+  C3, 2,
+  "All three statements are correct. A lichen is a symbiotic, mutually useful association between an alga, which is autotrophic, and a fungus, which is heterotrophic -- so closely bound that one would never imagine it has two partners. "
+  "Because lichens absorb what falls on them and are sensitive to pollutants such as sulphur dioxide, their absence from an area is a sign of polluted air.",
+  "तीनों कथन सही हैं। लाइकेन स्वपोषी शैवाल और परपोषी कवक के बीच एक सहजीवी, पारस्परिक रूप से उपयोगी संबंध है -- इतना घनिष्ठ कि कोई सोच भी नहीं सकता कि इसके दो साथी हैं। "
+  "चूँकि लाइकेन अपने ऊपर गिरने वाली चीज़ें सोख लेते हैं और सल्फ़र डाइऑक्साइड जैसे प्रदूषकों के प्रति संवेदनशील हैं, इसलिए किसी क्षेत्र से उनका अभाव प्रदूषित वायु का संकेत है।",
+  f"{BI11} (Biological Classification).",
+  "l1-env-lichens-symbiosis-indicator", craft="linkage")
+
+S(FL, "medium", "Consider the following statements about the loss of tropical rain forests:",
+  "उष्णकटिबंधीय वर्षा वनों के ह्रास के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Tropical rain forests, which once covered more than 14 per cent of the earth's land surface, now cover no more than about 6 per cent.",
+   "Parts of the Amazon rain forest are being cleared to grow soya beans or to make grasslands for beef cattle.",
+   "The Amazon rain forest is so vast that it has been called the 'lungs of the planet'.",
+   "Habitat loss and fragmentation is the most important cause driving plants and animals to extinction."],
+  ["उष्णकटिबंधीय वर्षा वन, जो कभी पृथ्वी की भूमि के 14 प्रतिशत से अधिक भाग पर थे, अब लगभग 6 प्रतिशत से अधिक पर नहीं हैं।",
+   "अमेज़न वर्षा वन के भाग सोयाबीन उगाने या गोमांस के लिए पशुओं के चरागाह बनाने के लिए साफ़ किए जा रहे हैं।",
+   "अमेज़न वर्षा वन इतना विशाल है कि उसे 'पृथ्वी के फेफड़े' कहा गया है।",
+   "आवास का ह्रास और विखंडन पौधों और जंतुओं को विलुप्ति की ओर ले जाने वाला सबसे महत्वपूर्ण कारण है।"],
+  C4, 3,
+  "All four statements are correct. The Amazon, which probably harbours millions of species, is being cut for soya bean cultivation and cattle pasture, and the shrinking of rain forests from over 14 to no more than 6 per cent of the land surface is the clearest example of habitat loss. "
+  "When large habitats are broken up into fragments, mammals and birds that need large territories, and animals with migratory habits, are badly affected, and their populations decline.",
+  "चारों कथन सही हैं। संभवतः लाखों प्रजातियों वाले अमेज़न को सोयाबीन की खेती और पशुओं के चरागाहों के लिए काटा जा रहा है, और वर्षा वनों का भूमि के 14 प्रतिशत से अधिक से घटकर 6 प्रतिशत से अधिक न रह जाना आवास-ह्रास का सबसे स्पष्ट उदाहरण है। "
+  "जब बड़े आवास टुकड़ों में बँट जाते हैं, तो बड़े क्षेत्र की ज़रूरत वाले स्तनधारी और पक्षी, और प्रवासी जंतु बुरी तरह प्रभावित होते हैं, और उनकी आबादी घटती है।",
+  f"{BI12} (Biodiversity and Conservation).",
+  "l1-env-rainforest-loss-amazon", craft="linkage")
+
+A(FL, "medium",
+  "Sphagnum moss has long been used as a packing material for sending living plant material over long distances.",
+  "स्फ़ैग्नम मॉस का लंबे समय से जीवित पादप सामग्री को दूर भेजने के लिए पैकिंग सामग्री के रूप में उपयोग होता रहा है।",
+  "Sphagnum can hold a large amount of water.",
+  "स्फ़ैग्नम बहुत अधिक जल धारण कर सकता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I: because Sphagnum holds so much water, it keeps living material moist during trans-shipment. The same moss forms peat, which has long been used as fuel; mosses, along with lichens, also help to colonise bare rock and prevent soil erosion by forming dense mats.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है: चूँकि स्फ़ैग्नम इतना अधिक जल धारण करता है, यह भेजे जाने के दौरान जीवित सामग्री को नम रखता है। यही मॉस पीट बनाता है, जो लंबे समय से ईंधन के रूप में प्रयुक्त होता रहा है; मॉस घनी चटाइयाँ बनाकर मिट्टी के कटाव को भी रोकते हैं।",
+  f"{BI11} (Plant Kingdom).",
+  "l1-env-sphagnum-packing-water", craft="inference")
+
+S(FL, "hard", "Consider the following statements about algae:",
+  "शैवालों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Chlorella, a unicellular alga rich in protein, is used as a food supplement, even by space travellers.",
+   "At least half of the total carbon dioxide fixation on earth is carried out by algae through photosynthesis.",
+   "All algae are multicellular, like the seaweeds Fucus and Sargassum."],
+  ["प्रोटीन से भरपूर एककोशिकीय शैवाल क्लोरेला का उपयोग खाद्य पूरक के रूप में होता है, अंतरिक्ष यात्रियों द्वारा भी।",
+   "पृथ्वी पर कुल कार्बन डाइऑक्साइड स्थिरीकरण का कम से कम आधा भाग शैवाल प्रकाश-संश्लेषण से करते हैं।",
+   "सभी शैवाल फ़्यूकस और सारगासम जैसे समुद्री शैवालों की तरह बहुकोशिकीय होते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. As primary producers, algae are at the base of the food chain in all aquatic habitats, and by fixing so much carbon dioxide they also raise the level of dissolved oxygen in their surroundings. "
+  "Statement 3 is wrong: algae range from unicellular forms such as Chlamydomonas and Chlorella, through colonial forms such as Volvox, to filamentous forms such as Ulothrix and Spirogyra and large seaweeds such as kelps.",
+  "कथन 1 और 2 सही हैं। प्राथमिक उत्पादक होने के नाते शैवाल सभी जलीय आवासों में खाद्य शृंखला के आधार पर हैं, और इतनी कार्बन डाइऑक्साइड स्थिर करके वे अपने आसपास घुली ऑक्सीजन का स्तर भी बढ़ाते हैं। "
+  "कथन 3 गलत है: शैवाल क्लैमाइडोमोनास और क्लोरेला जैसे एककोशिकीय रूपों से लेकर वॉल्वॉक्स जैसे निवही (colonial) रूपों, यूलोथ्रिक्स और स्पाइरोगाइरा जैसे तंतुमय रूपों और केल्प जैसे बड़े समुद्री शैवालों तक होते हैं।",
+  f"{BI11} (Plant Kingdom).",
+  "l1-env-algae-chlorella-co2-fixation", craft="precision")
+
+P(FL, "hard", "Consider the following pairs of fungi and what they are known for:",
+  "कवकों और उनकी पहचान के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Puccinia : Rust of wheat", "Ustilago : Smut disease", "Albugo : Parasite on mustard (white rust)", "Penicillium : Source of an antibiotic"],
+  ["पक्सीनिया : गेहूँ का किट्ट (rust) रोग", "अस्टिलैगो : कंड (smut) रोग", "एल्ब्यूगो : सरसों पर परजीवी (श्वेत किट्ट)", "पेनिसिलियम : एक प्रतिजैविक (antibiotic) का स्रोत"],
+  3,
+  "All four pairs are correctly matched. Fungi live in many ways: some, such as Puccinia, Ustilago and Albugo, are parasites that cause serious diseases of crops; some are the source of antibiotics, as Penicillium is of penicillin; unicellular yeasts are used to make bread and beer; and many are saprophytes that decompose dead matter. "
+  "Fungi also form symbioses -- with algae as lichens and with the roots of higher plants as mycorrhiza.",
+  "चारों युग्म सही सुमेलित हैं। कवक कई तरह से जीते हैं: पक्सीनिया, अस्टिलैगो और एल्ब्यूगो जैसे कुछ परजीवी फ़सलों के गंभीर रोग पैदा करते हैं; कुछ प्रतिजैविकों के स्रोत हैं, जैसे पेनिसिलियम पेनिसिलिन का; एककोशिकीय यीस्ट से ब्रेड और बीयर बनती है; और कई मृतजीवी (saprophyte) मृत पदार्थ का अपघटन करते हैं। "
+  "कवक सहजीवी संबंध भी बनाते हैं -- शैवालों के साथ लाइकेन के रूप में और ऊँचे पौधों की जड़ों के साथ माइकोराइज़ा के रूप में।",
+  f"{BI11} (Biological Classification).",
+  "l1-env-fungi-diseases-uses-pairs", craft="precision")
+
+# ================================================================ ECOSYSTEMS & ECOLOGICAL PROCESSES (8)
+S(EC, "easy", "Consider the following statements about how populations grow:",
+  "आबादियाँ (populations) कैसे बढ़ती हैं, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["When resources are unlimited, a population grows exponentially, giving a J-shaped curve.",
+   "In logistic growth, a population keeps growing faster and faster, with no upper limit."],
+  ["जब संसाधन असीमित हों, तो आबादी घातांकी (exponential) रूप से बढ़ती है, जिससे J-आकार का वक्र बनता है।",
+   "लॉजिस्टिक वृद्धि में आबादी बिना किसी ऊपरी सीमा के तेज़ से तेज़ बढ़ती जाती है।"],
+  T2, 0,
+  "Only statement 1 is correct: with unlimited food and space, each species could realise its full innate potential to grow, as Darwin noted. "
+  "Statement 2 is wrong: no habitat has unlimited resources, so in logistic (Verhulst-Pearl) growth the population passes through a lag phase, then acceleration, and then levels off at the carrying capacity (K), the largest population the habitat can sustain -- giving an S-shaped, sigmoid curve, which is more realistic for most animals.",
+  "केवल कथन 1 सही है: असीमित भोजन और स्थान के साथ हर प्रजाति वृद्धि की अपनी पूरी जन्मजात क्षमता तक पहुँच सकती है, जैसा डार्विन ने कहा था। "
+  "कथन 2 गलत है: किसी आवास में असीमित संसाधन नहीं होते, इसलिए लॉजिस्टिक (वरहुल्स्ट-पर्ल) वृद्धि में आबादी पहले धीमी अवस्था (lag phase), फिर त्वरण, और फिर वहन क्षमता (K) -- आवास द्वारा सँभाली जा सकने वाली सबसे बड़ी आबादी -- पर स्थिर हो जाती है, जिससे S-आकार का सिग्मॉइड वक्र बनता है, जो अधिकांश जंतुओं के लिए अधिक यथार्थवादी है।",
+  f"{BI12} (Organisms and Populations).",
+  "l1-env-exponential-logistic-growth", craft="precision")
+
+S(EC, "easy", "Consider the following statements about the density of a population:",
+  "किसी आबादी के घनत्व के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Births (natality) and immigration add to the density of a population.",
+   "Deaths (mortality) and emigration reduce it.",
+   "Population density can be measured only by counting every individual in the area."],
+  ["जन्म (जन्म-दर) और आप्रवासन किसी आबादी के घनत्व को बढ़ाते हैं।",
+   "मृत्यु (मृत्यु-दर) और उत्प्रवासन उसे घटाते हैं।",
+   "आबादी का घनत्व केवल क्षेत्र के हर व्यक्ति को गिनकर ही मापा जा सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: these four processes -- natality, mortality, immigration and emigration -- are what change a population's density over time. "
+  "Statement 3 is wrong: counting every individual is often impossible or unnecessary, so ecologists use relative measures -- the number of fish caught per trap, the percentage cover of a plant, or, for tigers in a national park, pug marks and faecal pellets.",
+  "कथन 1 और 2 सही हैं: यही चार प्रक्रियाएँ -- जन्म-दर, मृत्यु-दर, आप्रवासन और उत्प्रवासन -- समय के साथ किसी आबादी का घनत्व बदलती हैं। "
+  "कथन 3 गलत है: हर व्यक्ति को गिनना प्रायः असंभव या अनावश्यक होता है, इसलिए पारिस्थितिकीविद सापेक्ष माप अपनाते हैं -- प्रति जाल पकड़ी गई मछलियों की संख्या, किसी पौधे का प्रतिशत आवरण, या राष्ट्रीय उद्यान में बाघों के लिए पंजों के निशान और मल।",
+  f"{BI12} (Organisms and Populations).",
+  "l1-env-population-density-change", craft="inference")
+
+M(EC, "medium", "A parasite that can live only on one particular species of fish dies out when that fish becomes extinct. This is an example of",
+  "केवल एक विशेष मछली प्रजाति पर रह सकने वाला परजीवी उस मछली के विलुप्त होने पर समाप्त हो जाता है। यह किसका उदाहरण है?",
+  ["co-extinction", "over-exploitation", "an alien species invasion", "habitat fragmentation"],
+  ["सह-विलुप्ति (co-extinction)", "अति-दोहन", "विदेशी प्रजाति का आक्रमण", "आवास का विखंडन"],
+  0,
+  "When a species becomes extinct, the plant and animal species associated with it in an obligatory way also become extinct: when a host fish dies out, its unique assemblage of parasites meets the same fate, and in a co-evolved plant-pollinator mutualism the extinction of one leads to that of the other. "
+  "Co-extinction is one of the four major causes of biodiversity loss, the 'Evil Quartet', with habitat loss and fragmentation, over-exploitation and alien species invasions.",
+  "जब कोई प्रजाति विलुप्त होती है, तो उससे अनिवार्य रूप से जुड़ी पादप और जंतु प्रजातियाँ भी विलुप्त हो जाती हैं: जब कोई परपोषी मछली समाप्त होती है, तो उसके विशिष्ट परजीवियों का भी वही हश्र होता है, और सह-विकसित पौधे-परागणकर्ता सहोपकारिता में एक की विलुप्ति दूसरे की विलुप्ति की ओर ले जाती है। "
+  "सह-विलुप्ति जैव-विविधता ह्रास के चार प्रमुख कारणों, 'दुष्ट चौकड़ी' (Evil Quartet), में से एक है -- अन्य तीन हैं आवास ह्रास और विखंडन, अति-दोहन और विदेशी प्रजातियों का आक्रमण।",
+  f"{BI12} (Biodiversity and Conservation).",
+  "l1-env-co-extinction-host-parasite", pos=3, craft="application")
+
+S(EC, "medium", "Consider the following statements about the loss of species:",
+  "प्रजातियों की हानि के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The introduction of the Nile perch into Lake Victoria in east Africa led to the extinction of more than 200 species of cichlid fish.",
+   "The illegal introduction of the African catfish Clarias gariepinus for aquaculture threatens the native catfishes of Indian rivers.",
+   "Steller's sea cow and the passenger pigeon became extinct because of invasions by alien species."],
+  ["पूर्वी अफ़्रीका की विक्टोरिया झील में नाइल पर्च लाए जाने से सिक्लिड मछलियों की 200 से अधिक प्रजातियाँ विलुप्त हो गईं।",
+   "जलकृषि के लिए अफ़्रीकी कैटफ़िश क्लेरियस गैरीपिनस का अवैध प्रवेश भारतीय नदियों की देशी कैटफ़िश के लिए ख़तरा है।",
+   "स्टेलर की समुद्री गाय और पैसेंजर कबूतर विदेशी प्रजातियों के आक्रमण के कारण विलुप्त हुए।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: alien species introduced deliberately or by accident can become invasive, and the Nile perch wiped out an ecologically unique assemblage of cichlids in Lake Victoria. "
+  "Statement 3 is wrong: Steller's sea cow and the passenger pigeon, like many species lost in the last 500 years, were driven to extinction by over-exploitation -- humans hunted them far faster than they could breed. Many marine fish populations are over-harvested today for the same reason.",
+  "कथन 1 और 2 सही हैं: जानबूझकर या संयोग से लाई गई विदेशी प्रजातियाँ आक्रामक बन सकती हैं, और नाइल पर्च ने विक्टोरिया झील की सिक्लिड मछलियों के एक पारिस्थितिक रूप से अनूठे समूह को मिटा दिया। "
+  "कथन 3 गलत है: स्टेलर की समुद्री गाय और पैसेंजर कबूतर, पिछले 500 वर्षों में खोई कई प्रजातियों की तरह, अति-दोहन से विलुप्त हुए -- मनुष्यों ने उनका शिकार उनके प्रजनन से कहीं तेज़ी से किया। आज भी कई समुद्री मछलियों का इसी कारण अति-दोहन हो रहा है।",
+  f"{BI12} (Biodiversity and Conservation).",
+  "l1-env-nile-perch-clarias-overexploitation", craft="precision")
+
+S(EC, "medium", "Consider the following statements about why biodiversity matters to ecosystems:",
+  "पारितंत्रों के लिए जैव-विविधता क्यों महत्वपूर्ण है, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Paul Ehrlich's 'rivet popper hypothesis' compares the species of an ecosystem to the rivets that hold an aeroplane together.",
+   "In this analogy, losing the rivets that hold the wings, which stand for key species, is a more serious threat than losing rivets on the seats.",
+   "David Tilman's long-term experiments found that plots with more species showed less year-to-year variation in total biomass."],
+  ["पॉल एर्लिक की 'रिवेट पॉपर परिकल्पना' किसी पारितंत्र की प्रजातियों की तुलना हवाई जहाज़ को जोड़े रखने वाली कीलों (rivets) से करती है।",
+   "इस उपमा में पंखों को थामने वाली कीलें, जो मुख्य प्रजातियों का प्रतीक हैं, खोना सीटों की कीलें खोने से अधिक गंभीर ख़तरा है।",
+   "डेविड टिलमैन के दीर्घकालिक प्रयोगों में पाया गया कि अधिक प्रजातियों वाले भूखंडों में कुल जैवभार में वर्ष-दर-वर्ष कम उतार-चढ़ाव होता है।"],
+  C3, 2,
+  "All three statements are correct. In Ehrlich's analogy, passengers who each pop a rivet (cause a species to go extinct) may not at first affect flight safety (ecosystem functioning), but the plane grows dangerously weak as more rivets go -- and which rivet goes matters. "
+  "Tilman's outdoor plots tentatively supported the idea that more diverse communities are more stable and, in his experiments, more productive, though ecologists are still working out exactly how species richness contributes to well-being.",
+  "तीनों कथन सही हैं। एर्लिक की उपमा में हर यात्री द्वारा एक कील निकालना (किसी प्रजाति का विलुप्त होना) पहले उड़ान की सुरक्षा (पारितंत्र के कार्य) पर असर नहीं डालता, पर जैसे-जैसे कीलें निकलती हैं, जहाज़ ख़तरनाक रूप से कमज़ोर होता जाता है -- और कौन-सी कील निकली, यह भी मायने रखता है। "
+  "टिलमैन के खुले भूखंडों ने इस विचार का अस्थायी समर्थन किया कि अधिक विविध समुदाय अधिक स्थिर और, उनके प्रयोगों में, अधिक उत्पादक होते हैं, यद्यपि पारिस्थितिकीविद अभी यह समझ रहे हैं कि प्रजाति-समृद्धि ठीक कैसे योगदान देती है।",
+  f"{BI12} (Biodiversity and Conservation).",
+  "l1-env-rivet-popper-tilman", craft="inference")
+
+S(EC, "medium", "Consider the following statements about the reasons given for conserving biodiversity:",
+  "जैव-विविधता के संरक्षण के लिए दिए जाने वाले कारणों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 'narrowly utilitarian' argument points to the direct economic benefits that people draw from nature, such as food, firewood, fibre and medicines.",
+   "The 'broadly utilitarian' argument points to the services that ecosystems provide, such as pollination by bees, birds and bats.",
+   "The 'ethical' argument holds that every species has an intrinsic value, even if it is of no current economic value to us."],
+  ["'संकीर्ण उपयोगितावादी' तर्क प्रकृति से लोगों को मिलने वाले प्रत्यक्ष आर्थिक लाभों, जैसे भोजन, ईंधन-लकड़ी, रेशे और औषधियों, की ओर ध्यान दिलाता है।",
+   "'व्यापक उपयोगितावादी' तर्क पारितंत्रों की सेवाओं, जैसे मधुमक्खियों, पक्षियों और चमगादड़ों द्वारा परागण, की ओर ध्यान दिलाता है।",
+   "'नैतिक' तर्क मानता है कि हर प्रजाति का अपना आंतरिक मूल्य है, भले ही आज उसका हमारे लिए कोई आर्थिक मूल्य न हो।"],
+  C3, 2,
+  "All three statements are correct. The narrowly utilitarian case includes bioprospecting -- exploring molecular, genetic and species-level diversity for products of economic importance, such as the more than 25 per cent of drugs sold worldwide that come from plants. "
+  "The broadly utilitarian case points to services that would be hard to put a price on, such as pollination and the aesthetic pleasure of nature; the ethical case holds that we share the planet with millions of species and have a moral duty to pass on our biological legacy in good order to future generations.",
+  "तीनों कथन सही हैं। संकीर्ण उपयोगितावादी पक्ष में जैव-पूर्वेक्षण (bioprospecting) शामिल है -- आर्थिक महत्व के उत्पादों के लिए आणविक, आनुवंशिक और प्रजाति स्तर की विविधता की खोज, जैसे विश्व में बिकने वाली 25 प्रतिशत से अधिक दवाएँ जो पौधों से आती हैं। "
+  "व्यापक उपयोगितावादी पक्ष उन सेवाओं की ओर ध्यान दिलाता है जिनका मूल्य आँकना कठिन है, जैसे परागण और प्रकृति का सौंदर्य-आनंद; नैतिक पक्ष मानता है कि हम लाखों प्रजातियों के साथ यह ग्रह साझा करते हैं और अपनी जैविक विरासत अच्छी दशा में आने वाली पीढ़ियों को सौंपना हमारा नैतिक कर्तव्य है।",
+  f"{BI12} (Biodiversity and Conservation).",
+  "l1-env-utilitarian-ethical-arguments", craft="precision")
+
+A(EC, "medium",
+  "Many species of fig trees can be pollinated only by their own 'partner' species of wasp.",
+  "अंजीर (fig) के वृक्षों की कई प्रजातियों का परागण केवल उनकी अपनी 'साथी' ततैया (wasp) प्रजाति ही कर सकती है।",
+  "The female wasp uses the fig's fruit to lay her eggs, and the developing seeds nourish her larvae, while she pollinates the fig's flowers.",
+  "मादा ततैया अंजीर के फल का उपयोग अंडे देने के लिए करती है, और विकसित होते बीज उसके लार्वा को पोषण देते हैं, जबकि वह अंजीर के फूलों का परागण करती है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. The fig and its wasp are a classic case of mutualism: the wasp pollinates the fig while searching for suitable egg-laying sites, and the fig offers the wasp both a place to lay eggs and food for its larvae -- a relationship so tight that each fig species depends on its own wasp. "
+  "Such co-evolved partnerships are also why the extinction of one partner can lead to that of the other.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। अंजीर और उसकी ततैया सहोपकारिता (mutualism) का एक उत्कृष्ट उदाहरण हैं: ततैया अंडे देने की उपयुक्त जगह खोजते हुए अंजीर का परागण करती है, और अंजीर ततैया को अंडे देने का स्थान और उसके लार्वा के लिए भोजन, दोनों देता है -- यह संबंध इतना घनिष्ठ है कि हर अंजीर प्रजाति अपनी ततैया पर निर्भर है। "
+  "ऐसी सह-विकसित साझेदारियाँ ही कारण हैं कि एक साथी की विलुप्ति दूसरे की विलुप्ति की ओर ले जा सकती है।",
+  f"{BI12} (Organisms and Populations).",
+  "l1-env-fig-wasp-mutualism", craft="linkage")
+
+S(EC, "hard", "Consider the following statements about the number and kinds of species on earth:",
+  "पृथ्वी पर प्रजातियों की संख्या और प्रकार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["More than 70 per cent of all the species recorded are animals.",
+   "Plants, including algae, fungi, bryophytes, gymnosperms and angiosperms, make up no more than about 22 per cent of all recorded species.",
+   "Among animals, insects are the most species-rich group, making up more than 70 per cent of animal species.",
+   "The ecologist Robert May has placed the global species diversity at about 7 million."],
+  ["अब तक दर्ज सभी प्रजातियों में 70 प्रतिशत से अधिक जंतु हैं।",
+   "शैवाल, कवक, ब्रायोफ़ाइट, जिम्नोस्पर्म और आवृतबीजी सहित पौधे सभी दर्ज प्रजातियों के लगभग 22 प्रतिशत से अधिक नहीं हैं।",
+   "जंतुओं में कीट सबसे अधिक प्रजातियों वाला समूह हैं, जो जंतु प्रजातियों के 70 प्रतिशत से अधिक हैं।",
+   "पारिस्थितिकीविद रॉबर्ट मे ने पृथ्वी की कुल प्रजाति-विविधता लगभग 70 लाख आँकी है।"],
+  C4, 3,
+  "All four statements are correct. The IUCN (2004) put the number of described plant and animal species at slightly over 1.5 million, but many more remain undiscovered -- especially in the tropics -- and earlier estimates ranged from 20 to 50 million; Robert May's more conservative estimate, based on the ratio of tropical to temperate species, is about 7 million. "
+  "Out of every ten animals on the planet, seven are insects -- a reminder of how lopsided the known diversity of life is.",
+  "चारों कथन सही हैं। IUCN (2004) ने वर्णित पादप और जंतु प्रजातियों की संख्या 15 लाख से कुछ अधिक बताई, पर बहुत-सी, विशेषकर उष्णकटिबंध में, अब भी अनजानी हैं -- और पहले के अनुमान 2 से 5 करोड़ तक थे; उष्णकटिबंधीय और शीतोष्ण प्रजातियों के अनुपात पर आधारित रॉबर्ट मे का अधिक संयत अनुमान लगभग 70 लाख है। "
+  "पृथ्वी के हर दस जंतुओं में सात कीट हैं -- यह याद दिलाता है कि जीवन की ज्ञात विविधता कितनी एकतरफ़ा है।",
+  f"{BI12} (Biodiversity and Conservation).",
+  "l1-env-species-numbers-insects-may", craft="precision")
+
+# ================================================================ INDIAN ENVIRONMENTAL LAWS & BODIES (4)
+S(LW, "easy", "Consider the following statements about the Animal Welfare Board of India:",
+  "भारतीय जीव-जंतु कल्याण बोर्ड (Animal Welfare Board of India) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is a statutory advisory body set up under the Prevention of Cruelty to Animals Act, 1960.",
+   "Its first chairperson was Rukmini Devi Arundale, whose efforts in the Rajya Sabha led to that Act."],
+  ["यह पशु क्रूरता निवारण अधिनियम, 1960 के तहत स्थापित एक सांविधिक सलाहकार निकाय है।",
+   "इसकी पहली अध्यक्ष रुक्मिणी देवी अरुंडेल थीं, जिनके राज्यसभा में प्रयासों से यह अधिनियम बना।"],
+  T2, 2,
+  "Both statements are correct. The Board, set up in 1962 under the 1960 Act, advises the government on animal welfare laws, promotes the humane treatment of animals and supports animal welfare organisations. "
+  "Rukmini Devi Arundale, better known as the dancer who founded Kalakshetra, moved a private member's bill against cruelty to animals as a nominated member of the Rajya Sabha; the government then brought in its own bill, which became the 1960 Act, and she was the Board's first chairperson.",
+  "दोनों कथन सही हैं। 1960 के अधिनियम के तहत 1962 में स्थापित बोर्ड पशु कल्याण क़ानूनों पर सरकार को सलाह देता है, पशुओं के प्रति मानवीय व्यवहार को बढ़ावा देता है और पशु कल्याण संगठनों को सहायता देता है। "
+  "कलाक्षेत्र की संस्थापक नृत्यांगना के रूप में अधिक प्रसिद्ध रुक्मिणी देवी अरुंडेल ने राज्यसभा की मनोनीत सदस्य के रूप में पशु क्रूरता के विरुद्ध एक निजी सदस्य विधेयक रखा; इसके बाद सरकार अपना विधेयक लाई, जो 1960 का अधिनियम बना, और वे बोर्ड की पहली अध्यक्ष बनीं।",
+  "Prevention of Cruelty to Animals Act, 1960; Animal Welfare Board of India; Ministry of Fisheries, Animal Husbandry and Dairying.",
+  "l1-env-animal-welfare-board-rukmini-devi", craft="linkage")
+
+M(LW, "medium", "The National Forest Policy, 1988 set the goal of bringing what share of India's total land area under forest or tree cover?",
+  "राष्ट्रीय वन नीति, 1988 ने भारत के कुल भू-क्षेत्र के कितने भाग को वन या वृक्ष आवरण के अंतर्गत लाने का लक्ष्य रखा?",
+  ["One-third", "One-quarter", "One-half", "One-fifth"],
+  ["एक-तिहाई", "एक-चौथाई", "आधा", "पाँचवाँ भाग"],
+  0,
+  "The policy, which revised the forest policy of 1952, aims at a minimum of one-third of the country's land area under forest or tree cover, and two-thirds in the hills and mountains, to prevent erosion and land degradation. "
+  "It shifted the emphasis from producing timber for revenue to maintaining ecological balance and meeting the needs of local people for fuelwood, fodder and minor forest produce. India's recorded forest and tree cover is still well below the one-third goal.",
+  "1952 की वन नीति को संशोधित करने वाली इस नीति का लक्ष्य देश के भू-क्षेत्र का कम से कम एक-तिहाई भाग, और पहाड़ों तथा पर्वतीय क्षेत्रों में दो-तिहाई भाग, वन या वृक्ष आवरण के अंतर्गत लाना है, ताकि कटाव और भूमि-क्षरण रुके। "
+  "इसने ज़ोर राजस्व के लिए इमारती लकड़ी उत्पादन से हटाकर पारिस्थितिक संतुलन बनाए रखने और ईंधन-लकड़ी, चारे तथा लघु वनोपज की स्थानीय ज़रूरतें पूरी करने पर रखा। भारत का दर्ज वन और वृक्ष आवरण अब भी एक-तिहाई के लक्ष्य से काफ़ी नीचे है।",
+  f"{GE11} (Natural Vegetation); Ministry of Environment, Forest and Climate Change, National Forest Policy, 1988.",
+  "l1-env-national-forest-policy-one-third", pos=1, craft="precision")
+
+S(LW, "medium", "Consider the following statements about Joint Forest Management (JFM) in India:",
+  "भारत में संयुक्त वन प्रबंधन (JFM) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It involves local communities in protecting and restoring degraded forests, in return for a share of the forest produce.",
+   "Kerala was the first State to pass a resolution for joint forest management, in 1988.",
+   "Under it, the ownership of the protected forest land passes to the village community."],
+  ["इसमें स्थानीय समुदाय वनोपज के एक हिस्से के बदले क्षरित वनों की रक्षा और पुनर्स्थापना में भाग लेते हैं।",
+   "संयुक्त वन प्रबंधन का प्रस्ताव पारित करने वाला पहला राज्य 1988 में केरल था।",
+   "इसके तहत संरक्षित वन भूमि का स्वामित्व ग्राम समुदाय को मिल जाता है।"],
+  C3, 0,
+  "Only statement 1 is correct: village institutions undertake protection, mostly on degraded land managed by the forest department, and in return are entitled to intermediate benefits such as non-timber forest produce and a share of the timber harvested through 'successful protection'. "
+  "Statement 2 is wrong: Odisha passed the first JFM resolution in 1988; an earlier experiment in the Arabari forest range of West Bengal (1972) had shown that degraded sal forest recovered when villagers were given a stake in it. "
+  "Statement 3 is wrong: the land remains with the forest department; the communities gain rights to benefits, not ownership.",
+  "केवल कथन 1 सही है: ग्राम संस्थाएँ, अधिकतर वन विभाग की क्षरित भूमि पर, रक्षा का काम करती हैं और बदले में ग़ैर-इमारती वनोपज और 'सफल संरक्षण' से काटी गई इमारती लकड़ी का हिस्सा जैसे मध्यवर्ती लाभ पाने की हक़दार होती हैं। "
+  "कथन 2 गलत है: पहला JFM प्रस्ताव 1988 में ओडिशा ने पारित किया; इससे पहले पश्चिम बंगाल की अराबाड़ी वन रेंज (1972) के एक प्रयोग ने दिखाया था कि ग्रामीणों को हिस्सेदारी देने पर क्षरित साल वन फिर से पनप उठे। "
+  "कथन 3 गलत है: भूमि वन विभाग के पास ही रहती है; समुदायों को लाभों पर अधिकार मिलते हैं, स्वामित्व नहीं।",
+  f"{GE10} (Forest and Wildlife Resources); NCERT Class X, Science (Management of Natural Resources).",
+  "l1-env-joint-forest-management-odisha", craft="precision")
+
+S(LW, "medium", "Consider the following statements about the institutions set up under the Biological Diversity Act, 2002:",
+  "जैविक विविधता अधिनियम, 2002 के तहत स्थापित संस्थाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Biodiversity Management Committees are set up by local bodies.",
+   "These committees prepare People's Biodiversity Registers, documenting local biological resources and the knowledge associated with them.",
+   "State Biodiversity Boards are set up under the Environment (Protection) Act, 1986."],
+  ["जैव-विविधता प्रबंधन समितियाँ स्थानीय निकायों द्वारा गठित की जाती हैं।",
+   "ये समितियाँ लोक जैव-विविधता रजिस्टर तैयार करती हैं, जिनमें स्थानीय जैविक संसाधनों और उनसे जुड़े ज्ञान का दस्तावेज़ीकरण होता है।",
+   "राज्य जैव-विविधता बोर्ड पर्यावरण (संरक्षण) अधिनियम, 1986 के तहत स्थापित किए जाते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Act sets up a three-tier structure: the National Biodiversity Authority, State Biodiversity Boards and, at the level of panchayats and municipalities, Biodiversity Management Committees, whose People's Biodiversity Registers record local plants, animals and traditional knowledge -- the basis for sharing the benefits when such resources are used commercially. "
+  "Statement 3 is wrong: the State Biodiversity Boards are set up under the Biological Diversity Act itself.",
+  "कथन 1 और 2 सही हैं। अधिनियम त्रिस्तरीय ढाँचा बनाता है: राष्ट्रीय जैव-विविधता प्राधिकरण, राज्य जैव-विविधता बोर्ड और, पंचायतों तथा नगरपालिकाओं के स्तर पर, जैव-विविधता प्रबंधन समितियाँ, जिनके लोक जैव-विविधता रजिस्टर स्थानीय पौधों, जंतुओं और परंपरागत ज्ञान को दर्ज करते हैं -- ऐसे संसाधनों के व्यावसायिक उपयोग पर लाभ-साझेदारी का आधार। "
+  "कथन 3 गलत है: राज्य जैव-विविधता बोर्ड स्वयं जैविक विविधता अधिनियम के तहत स्थापित होते हैं।",
+  "Biological Diversity Act, 2002; National Biodiversity Authority.",
+  "l1-env-bmc-peoples-biodiversity-register", craft="precision")
+
+write("env_l1_t3_a.sql")
