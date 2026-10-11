@@ -1,0 +1,298 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 2 (History, NCERT Foundation) -- part C: Modern India, the easy rows and the medium MCQs
+(16 of the 37 Modern rows; upsc_l1_cell_targets.mjs 2):
+  easy MCQ 3, easy statement 6, easy pairs 1, medium MCQ 6.
+The angle is Our Pasts III (Class VIII) and Themes in Indian History III (Class XII): how the colonial state
+came to know India, the colonial countryside, crafts and industry, education and reform, 1857 as historians
+read it, Gandhi and the sources for him, Partition, colonial cities. Level-2 facts are not repeated (the
+Permanent Settlement's fixity, Ryotwari and Mahalwari, Tinkathia, the Doctrine of Lapse, the causes of the Hul,
+Birsa's and Rampa's risings, Satyashodhak, SNDP, Vaikom, Wood's Despatch, the education commissions, the
+patola/jamdani techniques, the Deccan riots, Vidyasagar's and Rammohun's readings of the shastras, the
+Objectives Resolution, linguistic States). MCQ keys are pinned (pos) to spread the letters."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "History"
+d.REQUIRE_CRAFT = True
+MO = "Modern"
+OP3 = "NCERT Class VIII, History -- Our Pasts III"
+TH3 = "NCERT Class XII, History -- Themes in Indian History, Part III"
+
+# ---------------------------------------------------------------- easy MCQ (3)
+M(MO, "easy", "In 1817 James Mill divided Indian history into Hindu, Muslim and British periods. Why do historians today reject this periodisation?",
+  "1817 में जेम्स मिल ने भारतीय इतिहास को हिंदू, मुस्लिम और ब्रिटिश कालों में बाँटा। आज इतिहासकार इस काल-विभाजन को क्यों अस्वीकार करते हैं?",
+  ["It makes religion the defining feature of each age and assumes British rule was a civilising force",
+   "It begins Indian history only with the arrival of the British, leaving out all the earlier centuries",
+   "It was written in Persian, so most British administrators of the time could not read it",
+   "It divides history by the reigns of individual Mughal emperors instead of by long periods"],
+  ["यह धर्म को हर युग की निर्णायक विशेषता बना देता है और मान लेता है कि ब्रिटिश शासन सभ्य बनाने वाली शक्ति था",
+   "यह भारतीय इतिहास को केवल अंग्रेज़ों के आगमन से शुरू करता है और पहले की सभी सदियों को छोड़ देता है",
+   "यह फ़ारसी में लिखा गया था, इसलिए उस समय के अधिकांश ब्रिटिश प्रशासक इसे पढ़ नहीं सकते थे",
+   "यह इतिहास को लंबे कालों के बजाय अलग-अलग मुग़ल सम्राटों के शासनकाल के अनुसार बाँटता है"],
+  0,
+  "Mill's 'A History of British India' assumed that the religion of the rulers was the only important historical change, and that all Asian societies were at a lower level of civilisation than Europe -- so British rule, in his view, would civilise India. "
+  "Historians point out that such a division ignores the rich diversity of the economy, society and cultures of each period, and that the so-called Hindu or Muslim ages were never shaped by one religion alone; many prefer ancient, medieval and modern, while noting that these labels too have problems.",
+  "मिल की 'ए हिस्ट्री ऑफ़ ब्रिटिश इंडिया' मानती थी कि शासकों का धर्म ही एकमात्र महत्वपूर्ण ऐतिहासिक परिवर्तन है, और सभी एशियाई समाज सभ्यता में यूरोप से निचले स्तर पर हैं -- इसलिए उसके मत में ब्रिटिश शासन भारत को सभ्य बनाएगा। "
+  "इतिहासकार बताते हैं कि ऐसा विभाजन हर काल की अर्थव्यवस्था, समाज और संस्कृतियों की समृद्ध विविधता की अनदेखी करता है, और तथाकथित हिंदू या मुस्लिम युग कभी केवल एक धर्म से नहीं बने; कई इतिहासकार प्राचीन, मध्यकालीन और आधुनिक का प्रयोग करते हैं, यद्यपि इन नामों की भी अपनी समस्याएँ हैं।",
+  f"{OP3}, Chapter 1 (How, When and Where).",
+  "l1-his-james-mill-periodisation", pos=2, craft="inference")
+
+M(MO, "easy", "Rabindranath Tagore started a school at Santiniketan in 1901. Which one of the following ideas lay behind it?",
+  "रवींद्रनाथ टैगोर ने 1901 में शांतिनिकेतन में एक विद्यालय शुरू किया। इसके पीछे निम्नलिखित में से कौन-सा विचार था?",
+  ["Children should learn in a free and creative setting, close to nature, not in prison-like schools",
+   "Children should master English before anything else, since it alone gave access to modern knowledge",
+   "Schools should mainly prepare children for well-paid posts in government service",
+   "Learning should be confined to the classroom, under strict discipline and fixed routines"],
+  ["बच्चों को जेल जैसे विद्यालयों में नहीं, बल्कि प्रकृति के निकट, स्वतंत्र और रचनात्मक वातावरण में सीखना चाहिए",
+   "बच्चों को सबसे पहले अंग्रेज़ी में निपुण होना चाहिए, क्योंकि केवल उसी से आधुनिक ज्ञान तक पहुँच मिलती थी",
+   "विद्यालयों को मुख्य रूप से बच्चों को सरकारी सेवा के अच्छे वेतन वाले पदों के लिए तैयार करना चाहिए",
+   "सीखना कड़े अनुशासन और तय दिनचर्या के साथ कक्षा तक ही सीमित रहना चाहिए"],
+  0,
+  "Tagore, who had hated going to school as a child, felt that childhood ought to be a time of self-learning, outside the rigid discipline of the schooling system set up by the British; teachers had to be imaginative, and a school in rural surroundings, in harmony with nature, would let children's natural creativity grow. "
+  "Unlike Gandhiji, who was deeply critical of Western civilisation, Tagore wanted to combine elements of modern Western civilisation, such as science and technology, with what he saw as the best in Indian tradition.",
+  "बचपन में विद्यालय जाना नापसंद करने वाले टैगोर मानते थे कि बचपन स्व-शिक्षा का समय होना चाहिए, अंग्रेज़ों की स्थापित शिक्षा-व्यवस्था के कड़े अनुशासन से बाहर; शिक्षकों को कल्पनाशील होना चाहिए, और ग्रामीण परिवेश में, प्रकृति के साथ सामंजस्य में बना विद्यालय बच्चों की स्वाभाविक रचनात्मकता को बढ़ने देगा। "
+  "पश्चिमी सभ्यता के कड़े आलोचक गांधीजी के विपरीत, टैगोर आधुनिक पश्चिमी सभ्यता के तत्वों, जैसे विज्ञान और प्रौद्योगिकी, को भारतीय परंपरा के सर्वश्रेष्ठ के साथ जोड़ना चाहते थे।",
+  f"{OP3}, Chapter 7 (Civilising the 'Native', Educating the Nation).",
+  "l1-his-tagore-santiniketan", pos=0, craft="inference")
+
+M(MO, "easy", "The Tata Iron and Steel Company began producing steel at Jamshedpur in 1912. Why did its output expand rapidly from 1914?",
+  "टाटा आयरन एंड स्टील कंपनी ने 1912 में जमशेदपुर में इस्पात उत्पादन शुरू किया। 1914 से इसका उत्पादन तेज़ी से क्यों बढ़ा?",
+  ["The First World War cut imports of British steel, so the railways turned to TISCO for rails",
+   "The British government banned the import of all foreign steel into India from 1914",
+   "Indian peasants began buying steel ploughs in large numbers after a series of good harvests",
+   "TISCO began exporting most of its steel to Japan, which had no steel industry of its own"],
+  ["प्रथम विश्व युद्ध से ब्रिटिश इस्पात का आयात घट गया, इसलिए रेलवे पटरियों के लिए TISCO की ओर मुड़ी",
+   "ब्रिटिश सरकार ने 1914 से भारत में सभी विदेशी इस्पात के आयात पर रोक लगा दी",
+   "अच्छी फ़सलों के बाद भारतीय किसान बड़ी संख्या में इस्पात के हल ख़रीदने लगे",
+   "TISCO अपना अधिकांश इस्पात जापान को निर्यात करने लगी, जहाँ अपना कोई इस्पात उद्योग नहीं था"],
+  0,
+  "When the First World War broke out in 1914, British steel had to meet the demands of the war in Europe, so imports into India fell sharply and the Indian Railways turned to TISCO for rails. "
+  "As the war dragged on, TISCO also produced shells and carriage wheels for the war, and by 1919 the colonial government was buying 90 per cent of its steel. The site near the Subarnarekha river had been found by Charles Weld and Dorabji Tata after a long search for iron ore and water.",
+  "1914 में प्रथम विश्व युद्ध छिड़ने पर ब्रिटिश इस्पात को यूरोप में युद्ध की माँग पूरी करनी पड़ी, इसलिए भारत में आयात तेज़ी से घटा और भारतीय रेलवे पटरियों के लिए TISCO की ओर मुड़ी। "
+  "युद्ध लंबा खिंचने पर TISCO ने युद्ध के लिए गोले और गाड़ियों के पहिये भी बनाए, और 1919 तक औपनिवेशिक सरकार इसका 90 प्रतिशत इस्पात ख़रीद रही थी। सुवर्णरेखा नदी के पास का यह स्थल चार्ल्स वेल्ड और दोराबजी टाटा ने लौह अयस्क और पानी की लंबी खोज के बाद पाया था।",
+  f"{OP3}, Chapter 6 (Weavers, Iron Smelters and Factory Owners).",
+  "l1-his-tisco-first-world-war", pos=3, craft="inference")
+
+# ---------------------------------------------------------------- easy statement (6)
+S(MO, "easy", "Consider the following statements about how the colonial government gathered information about India:",
+  "औपनिवेशिक सरकार भारत के बारे में जानकारी कैसे जुटाती थी, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["From 1881 a census of the whole of British India was held every ten years.",
+   "Surveys of botany, zoology, archaeology, anthropology and forests were part of the effort to know the country in order to govern it."],
+  ["1881 से पूरे ब्रिटिश भारत की जनगणना हर दस वर्ष में होने लगी।",
+   "वनस्पति, जीव, पुरातत्व, मानवविज्ञान और वनों के सर्वेक्षण देश पर शासन करने के लिए उसे जानने के प्रयास का भाग थे।"],
+  T2, 2,
+  "Both statements are correct. After a first attempt at an all-India census in 1872, the census was held every ten years from 1881, recording the number of people in each province, their castes, religions and occupations. "
+  "Officials believed that a country had to be properly known before it could be effectively administered, so they mapped it, surveyed its land revenue and its villages, and classified its plants, animals, monuments and peoples.",
+  "दोनों कथन सही हैं। 1872 में अखिल भारतीय जनगणना के पहले प्रयास के बाद 1881 से हर दस वर्ष में जनगणना होने लगी, जिसमें हर प्रांत के लोगों की संख्या, उनकी जातियाँ, धर्म और व्यवसाय दर्ज किए जाते थे। "
+  "अधिकारी मानते थे कि किसी देश का प्रभावी प्रशासन करने से पहले उसे ठीक से जानना ज़रूरी है, इसलिए उन्होंने उसका मानचित्रण किया, उसके भू-राजस्व और गाँवों का सर्वेक्षण किया, और उसके पौधों, जानवरों, स्मारकों और लोगों का वर्गीकरण किया।",
+  f"{OP3}, Chapter 1 (How, When and Where); {TH3}, Chapter 11 (Colonial Cities).",
+  "l1-his-colonial-census-surveys", craft="linkage")
+
+S(MO, "easy", "Consider the following statements about indigo cultivation in Bengal in the nineteenth century:",
+  "उन्नीसवीं सदी में बंगाल में नील की खेती के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the ryoti system, planters made ryots sign a contract (satta) and gave them cash advances at low rates of interest to grow indigo.",
+   "Under nij cultivation, the planter grew indigo on lands he directly controlled, using hired labourers.",
+   "The Indigo Commission set up after the revolt of 1859 held the ryots responsible and ruled that they must keep growing indigo."],
+  ["रैयती व्यवस्था में बागान मालिक रैयतों से एक अनुबंध (सट्टा) पर हस्ताक्षर करवाते थे और नील उगाने के लिए उन्हें कम ब्याज पर नकद अग्रिम देते थे।",
+   "निज खेती में बागान मालिक अपने सीधे नियंत्रण वाली ज़मीन पर भाड़े के मज़दूरों से नील उगवाता था।",
+   "1859 के विद्रोह के बाद बने नील आयोग ने रैयतों को दोषी ठहराया और निर्णय दिया कि उन्हें नील उगाते रहना होगा।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Nij cultivation needed large compact plots and many labourers at the same time as the rice harvest, so planters relied mainly on the ryoti system, in which the loan tied the ryot to growing indigo on part of his land -- a cycle of debt that was hard to break. "
+  "Statement 3 is wrong: after the 'Blue Rebellion' of 1859, the Indigo Commission held the planters guilty and criticised their coercive methods; it declared that indigo was not profitable for the ryots and that, while they must fulfil their existing contracts, they could refuse to grow indigo in future.",
+  "कथन 1 और 2 सही हैं। निज खेती के लिए बड़े, एक साथ जुड़े खेत और धान की कटाई के समय ही बहुत-से मज़दूर चाहिए थे, इसलिए बागान मालिक मुख्य रूप से रैयती व्यवस्था पर निर्भर थे, जिसमें ऋण रैयत को अपनी ज़मीन के एक भाग पर नील उगाने से बाँध देता था -- कर्ज़ का ऐसा चक्र जिसे तोड़ना कठिन था। "
+  "कथन 3 गलत है: 1859 के 'नील विद्रोह' के बाद नील आयोग ने बागान मालिकों को दोषी ठहराया और उनके ज़बरदस्ती के तरीक़ों की आलोचना की; उसने घोषित किया कि नील रैयतों के लिए लाभदायक नहीं है, और वे अपने मौजूदा अनुबंध पूरे करें, पर भविष्य में नील उगाने से इनकार कर सकते हैं।",
+  f"{OP3}, Chapter 3 (Ruling the Countryside).",
+  "l1-his-indigo-nij-ryoti", craft="precision")
+
+S(MO, "easy", "Consider the following statements about Indian textiles and the coming of British cloth:",
+  "भारतीय वस्त्रों और ब्रिटिश कपड़े के आगमन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Calico Act of 1720 encouraged the import of printed Indian cotton cloth into England.",
+   "Indian textile exports grew steadily in the early nineteenth century as British markets opened up.",
+   "In the nineteenth century Surat, Masulipatnam and Hugli grew into the leading centres of the textile trade."],
+  ["1720 के कैलिको अधिनियम ने इंग्लैंड में छपे हुए भारतीय सूती कपड़े के आयात को बढ़ावा दिया।",
+   "उन्नीसवीं सदी के आरंभ में ब्रिटिश बाज़ार खुलने के साथ भारतीय वस्त्रों का निर्यात लगातार बढ़ा।",
+   "उन्नीसवीं सदी में सूरत, मसूलीपट्टनम और हुगली वस्त्र व्यापार के प्रमुख केंद्र बन गए।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 is wrong: worried by the popularity of Indian textiles, wool and silk makers in England pressed for the Calico Act of 1720, which banned the use of printed cotton textiles -- chintz -- in England. "
+  "Statement 2 is wrong: as cotton mills grew in England, Indian textiles faced high duties there and competition elsewhere; by the 1830s British cotton cloth flooded Indian markets, and by the 1880s two-thirds of the cotton clothes worn by Indians were made of British cloth. "
+  "Statement 3 is wrong: Surat on the Gujarat coast, Masulipatnam on the Coromandel coast and Hugli in Bengal declined as exports fell; Bombay and Calcutta grew as the new centres of trade.",
+  "कोई भी कथन सही नहीं है। कथन 1 गलत है: भारतीय वस्त्रों की लोकप्रियता से चिंतित इंग्लैंड के ऊन और रेशम निर्माताओं के दबाव में 1720 का कैलिको अधिनियम बना, जिसने इंग्लैंड में छपे सूती वस्त्रों -- छींट -- के उपयोग पर रोक लगा दी। "
+  "कथन 2 गलत है: इंग्लैंड में सूती मिलें बढ़ने के साथ भारतीय वस्त्रों पर वहाँ भारी शुल्क लगे और अन्य जगह प्रतिस्पर्धा मिली; 1830 के दशक तक ब्रिटिश सूती कपड़ा भारतीय बाज़ारों में भर गया, और 1880 के दशक तक भारतीयों के पहने दो-तिहाई सूती कपड़े ब्रिटेन में बने कपड़े के होते थे। "
+  "कथन 3 गलत है: निर्यात घटने के साथ गुजरात तट पर सूरत, कोरोमंडल तट पर मसूलीपट्टनम और बंगाल में हुगली का पतन हुआ; बंबई और कलकत्ता व्यापार के नए केंद्र बने।",
+  f"{OP3}, Chapter 6 (Weavers, Iron Smelters and Factory Owners).",
+  "l1-his-indian-textiles-decline", craft="precision")
+
+S(MO, "easy", "Consider the following statements about Wootz steel:",
+  "वूट्ज़ इस्पात (Wootz steel) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Tipu Sultan's sword was made of Wootz steel, produced in south India, which gave it a very hard, sharp edge and a flowing water pattern.",
+   "Wootz steel making expanded in the nineteenth century because British factories adopted the technique."],
+  ["टीपू सुल्तान की तलवार दक्षिण भारत में बनने वाले वूट्ज़ इस्पात की थी, जिससे उसे बहुत कठोर, तीखी धार और बहते पानी जैसा पैटर्न मिला।",
+   "उन्नीसवीं सदी में वूट्ज़ इस्पात बनाने का काम फैला, क्योंकि ब्रिटिश कारख़ानों ने यह तकनीक अपना ली।"],
+  T2, 0,
+  "Only statement 1 is correct. Wootz steel, made in small clay crucibles in south India, had small carbon crystals that gave a blade its hard edge and its watery pattern; European scientists, among them Michael Faraday, studied its properties. "
+  "Statement 2 is wrong: by the mid-nineteenth century the technique was completely lost -- swords and armour went out of demand with the British conquest, and imports of iron and steel from England displaced the local smelters, who also lost access to forests for charcoal under the new forest laws.",
+  "केवल कथन 1 सही है। दक्षिण भारत में मिट्टी की छोटी कुठालियों (crucibles) में बनने वाले वूट्ज़ इस्पात में कार्बन के छोटे क्रिस्टल होते थे, जो तलवार को कठोर धार और पानी जैसा पैटर्न देते थे; माइकल फ़ैराडे सहित यूरोपीय वैज्ञानिकों ने इसके गुणों का अध्ययन किया। "
+  "कथन 2 गलत है: उन्नीसवीं सदी के मध्य तक यह तकनीक पूरी तरह लुप्त हो गई -- ब्रिटिश विजय के साथ तलवारों और कवच की माँग ख़त्म हो गई, इंग्लैंड से आए लोहे और इस्पात ने स्थानीय लोहा गलाने वालों को हटा दिया, और नए वन क़ानूनों से वे लकड़ी का कोयला पाने के लिए वनों तक पहुँच भी खो बैठे।",
+  f"{OP3}, Chapter 6 (Weavers, Iron Smelters and Factory Owners).",
+  "l1-his-wootz-steel-tipu", craft="precision")
+
+S(MO, "easy", "Consider the following statements about the debate on education in the early nineteenth century:",
+  "उन्नीसवीं सदी के आरंभ में शिक्षा पर बहस के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Orientalists such as William Jones and Henry Thomas Colebrooke held that Indians should be taught in their own languages and that their ancient texts deserved study.",
+   "The Calcutta Madrasa (1781) and the Hindu College at Benaras (1791) were set up to promote the study of Arabic, Persian and Sanskrit learning.",
+   "Macaulay agreed with the Orientalists that Eastern learning was as valuable as Western learning."],
+  ["विलियम जोन्स और हेनरी टॉमस कोलब्रुक जैसे प्राच्यवादी मानते थे कि भारतीयों को उनकी अपनी भाषाओं में पढ़ाया जाए और उनके प्राचीन ग्रंथ अध्ययन के योग्य हैं।",
+   "कलकत्ता मदरसा (1781) और बनारस का हिंदू कॉलेज (1791) अरबी, फ़ारसी और संस्कृत विद्या के अध्ययन को बढ़ावा देने के लिए स्थापित किए गए।",
+   "मैकाले प्राच्यवादियों से सहमत था कि पूर्वी विद्या पश्चिमी विद्या जितनी ही मूल्यवान है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Orientalists believed that Indian civilisation had attained its glory in the ancient past, and that institutions teaching Indian learning would win the respect of the people. "
+  "Statement 3 is wrong: Macaulay saw India as an uncivilised country and wrote that 'a single shelf of a good European library was worth the whole native literature of India and Arabia'; his Minute of 1835 led to English being made the medium of instruction for higher education.",
+  "कथन 1 और 2 सही हैं। प्राच्यवादी मानते थे कि भारतीय सभ्यता ने प्राचीन काल में अपना गौरव पाया था, और भारतीय विद्या सिखाने वाली संस्थाएँ लोगों का सम्मान जीतेंगी। "
+  "कथन 3 गलत है: मैकाले भारत को असभ्य देश मानता था और उसने लिखा कि 'एक अच्छे यूरोपीय पुस्तकालय की एक अलमारी भारत और अरब के पूरे देशी साहित्य के बराबर है'; उसके 1835 के विवरण-पत्र (मिनट) के बाद उच्च शिक्षा का माध्यम अंग्रेज़ी बना दिया गया।",
+  f"{OP3}, Chapter 7 (Civilising the 'Native', Educating the Nation).",
+  "l1-his-orientalists-anglicists", craft="precision")
+
+S(MO, "easy", "Consider the following statements about women who wrote on the condition of women in the nineteenth and early twentieth centuries:",
+  "उन्नीसवीं और बीसवीं सदी के आरंभ में महिलाओं की दशा पर लिखने वाली महिलाओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Tarabai Shinde, educated at home in Poona, published Stripurushtulna, criticising the social differences between men and women.",
+   "Rokeya Sakhawat Hossain wrote Sultana's Dream, a satire imagining a land where women had the freedom to study, work and invent.",
+   "Rokeya Sakhawat Hossain also started schools for Muslim girls in Patna and Calcutta."],
+  ["पूना में घर पर शिक्षित ताराबाई शिंदे ने स्त्रीपुरुषतुलना प्रकाशित की, जिसमें स्त्रियों और पुरुषों के बीच के सामाजिक भेदों की आलोचना थी।",
+   "रुक़ैया सख़ावत हुसैन ने सुल्ताना'स ड्रीम लिखा, एक व्यंग्य जिसमें ऐसे देश की कल्पना थी जहाँ स्त्रियों को पढ़ने, काम करने और आविष्कार करने की स्वतंत्रता हो।",
+   "रुक़ैया सख़ावत हुसैन ने पटना और कलकत्ता में मुस्लिम लड़कियों के लिए विद्यालय भी शुरू किए।"],
+  C3, 2,
+  "All three statements are correct. Tarabai Shinde's Stripurushtulna ('A Comparison between Women and Men') is among the early writings that criticised the social differences between men and women. "
+  "Rokeya Sakhawat Hossain boldly criticised religious leaders of every faith for keeping women from education; her Sultana's Dream (1905), written in English, imagined a 'Ladyland' run by women, and she founded schools for Muslim girls in Patna and Calcutta.",
+  "तीनों कथन सही हैं। ताराबाई शिंदे की स्त्रीपुरुषतुलना ('स्त्रियों और पुरुषों की तुलना') उन प्रारंभिक लेखनों में है जिन्होंने स्त्रियों और पुरुषों के सामाजिक भेदों की आलोचना की। "
+  "रुक़ैया सख़ावत हुसैन ने स्त्रियों को शिक्षा से दूर रखने के लिए हर धर्म के धार्मिक नेताओं की साहसपूर्वक आलोचना की; अंग्रेज़ी में लिखे उनके सुल्ताना'स ड्रीम (1905) में स्त्रियों द्वारा चलाए जाने वाले 'लेडीलैंड' की कल्पना थी, और उन्होंने पटना और कलकत्ता में मुस्लिम लड़कियों के लिए विद्यालय स्थापित किए।",
+  f"{OP3}, Chapter 8 (Women, Caste and Reform).",
+  "l1-his-women-writers-reform", craft="precision")
+
+# ---------------------------------------------------------------- easy pairs (1)
+P(MO, "easy", "Consider the following pairs of communities and the ways of life described for them in the colonial period:",
+  "समुदायों और औपनिवेशिक काल में उनके लिए वर्णित जीवन-शैली के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Van Gujjars : Cattle herders of the Punjab hills", "Gaddis : Shepherds of Kulu",
+   "Bakarwals : Goat herders of Kashmir", "Khonds : Plough cultivators of the Punjab plains"],
+  ["वन गुज्जर : पंजाब की पहाड़ियों के पशुपालक", "गद्दी : कुल्लू के गड़रिये",
+   "बकरवाल : कश्मीर के बकरी पालक", "खोंड : पंजाब के मैदानों के हल चलाने वाले किसान"],
+  2,
+  "Pairs 1, 2 and 3 are correctly matched: the Van Gujjars of the Punjab hills and the Labadis of Andhra Pradesh herded cattle, the Gaddis of Kulu were shepherds and the Bakarwals of Kashmir reared goats, moving with the seasons in search of pasture. "
+  "Pair 4 is wrong: the Khonds lived in the forests of Odisha, hunting in groups and gathering forest produce, which they ate or sold in local markets.",
+  "युग्म 1, 2 और 3 सही सुमेलित हैं: पंजाब की पहाड़ियों के वन गुज्जर और आंध्र प्रदेश के लबाड़ी पशु चराते थे, कुल्लू के गद्दी गड़रिये थे और कश्मीर के बकरवाल बकरियाँ पालते थे, जो चरागाहों की खोज में ऋतुओं के साथ घूमते थे। "
+  "युग्म 4 गलत है: खोंड ओडिशा के वनों में रहते थे, समूहों में शिकार करते और वन-उपज इकट्ठा करते थे, जिसे वे खाते या स्थानीय बाज़ारों में बेचते थे।",
+  f"{OP3}, Chapter 4 (Tribals, Dikus and the Vision of a Golden Age).",
+  "l1-his-pastoral-forest-groups-pairs", craft="precision")
+
+# ---------------------------------------------------------------- medium MCQ (6)
+M(MO, "medium", "After the Permanent Settlement in Bengal, the 'sunset law' meant that",
+  "बंगाल में स्थायी बंदोबस्त के बाद 'सूर्यास्त क़ानून' (sunset law) का अर्थ था कि",
+  ["a zamindari could be auctioned if the revenue was not paid by sunset on the due date",
+   "zamindars had to stop collecting rent from the ryots at sunset every day",
+   "the revenue demand on each zamindari was revised at the end of every harvest season",
+   "ryots who worked on the zamindar's own land after sunset were exempted from paying any rent"],
+  ["तय तिथि को सूर्यास्त तक राजस्व न चुकाने पर ज़मींदारी नीलाम की जा सकती थी",
+   "ज़मींदारों को हर दिन सूर्यास्त पर रैयतों से लगान वसूलना बंद करना होता था",
+   "हर फ़सल-ऋतु के अंत में हर ज़मींदारी पर राजस्व की माँग संशोधित होती थी",
+   "सूर्यास्त के बाद ज़मींदार की ज़मीन पर काम करने वाले रैयत लगान से मुक्त थे"],
+  0,
+  "Under the sunset law, if the payment did not come in by sunset on the specified date, the zamindari was liable to be auctioned -- one reason why many estates changed hands in the decades after 1793. "
+  "The rigid deadline, together with a high initial demand fixed when agricultural prices were low, left zamindars little room when their ryots defaulted.",
+  "सूर्यास्त क़ानून के अनुसार यदि भुगतान तय तिथि को सूर्यास्त तक नहीं पहुँचता था, तो ज़मींदारी नीलाम की जा सकती थी -- यह एक कारण था कि 1793 के बाद के दशकों में कई जागीरें हाथ बदल गईं। "
+  "कड़ी समय-सीमा और कृषि मूल्यों के कम रहते तय की गई ऊँची प्रारंभिक माँग ने रैयतों के न चुकाने पर ज़मींदारों के पास बहुत कम गुंजाइश छोड़ी।",
+  f"{TH3}, Chapter 9 (Colonialism and the Countryside).",
+  "l1-his-sunset-law", pos=1, craft="precision")
+
+M(MO, "medium", "In the early nineteenth century, the jotedars of northern Bengal were",
+  "उन्नीसवीं सदी के आरंभ में उत्तरी बंगाल के जोतदार कौन थे?",
+  ["rich peasants who controlled large areas of land, local trade and moneylending",
+   "revenue officials appointed by the Company to collect rent on behalf of the zamindars",
+   "landless labourers who worked on the zamindars' own estates for a share of the crop",
+   "European planters who leased land from the zamindars to grow indigo for export"],
+  ["धनी किसान, जो बड़े भू-भागों के साथ-साथ स्थानीय व्यापार और साहूकारी पर भी नियंत्रण रखते थे",
+   "ज़मींदारों की ओर से लगान वसूलने के लिए कंपनी द्वारा नियुक्त राजस्व अधिकारी",
+   "भूमिहीन मज़दूर, जो फ़सल के हिस्से के बदले ज़मींदारों की अपनी जागीरों पर काम करते थे",
+   "यूरोपीय बागान मालिक, जो निर्यात के लिए नील उगाने को ज़मींदारों से ज़मीन पट्टे पर लेते थे"],
+  0,
+  "By the early nineteenth century the jotedars had acquired vast areas of land -- sometimes several thousand acres -- which they had cultivated by sharecroppers (adhiyars or bargadars); they also controlled local trade and moneylending, and so held great power over the poorer cultivators. "
+  "Living in the villages, unlike the zamindars, they resisted the zamindars' efforts to raise rents and often bought up zamindari estates at auction; they were most powerful in northern Bengal, as in Dinajpur.",
+  "उन्नीसवीं सदी के आरंभ तक जोतदारों ने बहुत बड़े भू-भाग -- कभी-कभी कई हज़ार एकड़ -- हासिल कर लिए थे, जिन्हें वे बटाईदारों (अधियार या बरगादार) से जुतवाते थे; वे स्थानीय व्यापार और साहूकारी पर भी नियंत्रण रखते थे, और इसलिए ग़रीब किसानों पर उनका बड़ा प्रभाव था। "
+  "ज़मींदारों के विपरीत गाँवों में रहने वाले जोतदार लगान बढ़ाने के ज़मींदारों के प्रयासों का विरोध करते थे और अक्सर नीलामी में ज़मींदारी जागीरें ख़रीद लेते थे; उत्तरी बंगाल में, जैसे दिनाजपुर में, वे सबसे शक्तिशाली थे।",
+  f"{TH3}, Chapter 9 (Colonialism and the Countryside).",
+  "l1-his-jotedars-bengal", pos=3, craft="precision")
+
+M(MO, "medium", "Why did the British encourage the Santhals to settle in the Rajmahal hills in the early nineteenth century?",
+  "उन्नीसवीं सदी के आरंभ में अंग्रेज़ों ने संथालों को राजमहल की पहाड़ियों में बसने के लिए क्यों प्रोत्साहित किया?",
+  ["They cleared forests and practised settled plough cultivation, which could yield revenue",
+   "They were thought to be skilled soldiers who would guard the frontier against the Marathas",
+   "They agreed to grow indigo for European planters on the slopes of the hills",
+   "They were allies of the Paharias and were expected to help the British pacify them"],
+  ["वे जंगल साफ़ करके स्थायी हल-खेती करते थे, जिससे राजस्व मिल सकता था",
+   "उन्हें कुशल सैनिक माना जाता था जो मराठों के विरुद्ध सीमा की रक्षा करेंगे",
+   "वे पहाड़ियों की ढलानों पर यूरोपीय बागान मालिकों के लिए नील उगाने को राज़ी थे",
+   "वे पहाड़ियों (Paharias) के सहयोगी थे और उनसे अपेक्षा थी कि वे उन्हें शांत करने में अंग्रेज़ों की मदद करेंगे"],
+  0,
+  "The British had failed to subdue the Paharias, hunters and shifting cultivators of the hills who raided the plains; the Santhals, who had been coming into Bengal as reclaimers of land, cleared forests and ploughed with vigour, so officials saw them as ideal settlers who would expand cultivation and pay revenue. "
+  "In 1832 a large area, the Damin-i-Koh, was demarcated as Santhal land; the Paharias retreated deeper into the hills, and the Santhals themselves, burdened by revenue and moneylenders, later rose in revolt in 1855-56.",
+  "अंग्रेज़ पहाड़ियों (Paharias) को, जो पहाड़ों के शिकारी और झूम खेती करने वाले थे और मैदानों पर धावे बोलते थे, वश में नहीं कर पाए थे; ज़मीन तैयार करने वालों के रूप में बंगाल आ रहे संथाल जंगल साफ़ करते और जोश से हल चलाते थे, इसलिए अधिकारियों ने उन्हें आदर्श बसने वाले माना जो खेती बढ़ाएँगे और राजस्व देंगे। "
+  "1832 में एक बड़ा क्षेत्र, दामिन-इ-कोह, संथालों की भूमि के रूप में सीमांकित किया गया; पहाड़िया और गहरे पहाड़ों में चले गए, और राजस्व तथा साहूकारों के बोझ से दबे संथालों ने स्वयं बाद में 1855-56 में विद्रोह किया।",
+  f"{TH3}, Chapter 9 (Colonialism and the Countryside).",
+  "l1-his-santhals-damin-i-koh", pos=0, craft="inference")
+
+M(MO, "medium", "Historians of 1857 study rumours closely -- such as the rumour that the British had mixed the bone dust of cows and pigs into the flour sold in the market. Why?",
+  "1857 के इतिहासकार अफ़वाहों का बारीकी से अध्ययन करते हैं -- जैसे यह अफ़वाह कि अंग्रेज़ों ने बाज़ार में बिकने वाले आटे में गाय और सुअर की हड्डियों का चूरा मिला दिया है। क्यों?",
+  ["They spread because they echoed real fears, so they show what people thought the British intended",
+   "They were the official reasons that the rebel leaders sent in writing to the British authorities",
+   "They were deliberately spread by British officers to turn Hindus and Muslims against each other",
+   "Government inquiries later proved them to be true, so they are reliable records of British policy"],
+  ["वे इसलिए फैलीं कि वे वास्तविक आशंकाओं को दोहराती थीं, इसलिए वे बताती हैं कि लोग अंग्रेज़ों के इरादे क्या समझते थे",
+   "वे वे आधिकारिक कारण थीं जो विद्रोही नेताओं ने लिखित रूप में अंग्रेज़ अधिकारियों को भेजे",
+   "उन्हें अंग्रेज़ अधिकारियों ने हिंदुओं और मुसलमानों को एक-दूसरे के विरुद्ध करने के लिए जानबूझकर फैलाया",
+   "बाद की सरकारी जाँचों ने उन्हें सच सिद्ध किया, इसलिए वे ब्रिटिश नीति के विश्वसनीय अभिलेख हैं"],
+  0,
+  "Rumours circulate only when they resonate with deeper fears and suspicions. Since the late 1820s the British had pursued reforms -- Western education, laws against sati (1829) and permitting widow remarriage -- and had annexed states such as Awadh, so many feared that their religion and their way of life were under attack. "
+  "Read against these policies, the rumours about cartridges and flour show what people believed the British meant to do, even though they were not literally true.",
+  "अफ़वाहें तभी फैलती हैं जब वे लोगों की गहरी आशंकाओं और संदेहों से मेल खाती हैं। 1820 के दशक के अंत से अंग्रेज़ सुधार कर रहे थे -- पश्चिमी शिक्षा, सती के विरुद्ध (1829) और विधवा पुनर्विवाह की अनुमति देने वाले क़ानून -- और अवध जैसे राज्यों का विलय कर चुके थे, इसलिए कई लोगों को डर था कि उनके धर्म और जीवन-शैली पर हमला हो रहा है। "
+  "इन नीतियों के संदर्भ में पढ़ने पर कारतूसों और आटे की अफ़वाहें दिखाती हैं कि लोग अंग्रेज़ों के इरादे क्या समझते थे, भले ही वे शब्दशः सच न हों।",
+  f"{TH3}, Chapter 10 (Rebels and the Raj).",
+  "l1-his-1857-rumours", pos=3, craft="inference")
+
+M(MO, "medium", "At the opening of the Banaras Hindu University in February 1916, Mahatma Gandhi",
+  "फ़रवरी 1916 में बनारस हिंदू विश्वविद्यालय के उद्घाटन पर महात्मा गांधी ने",
+  ["criticised the Indian elite for its indifference to the labouring poor",
+   "announced a nationwide campaign of non-cooperation with the government",
+   "called on students to leave all colleges that received government aid",
+   "accepted the presidency of the Indian National Congress for that year"],
+  ["श्रमिक ग़रीबों के प्रति उदासीनता के लिए भारतीय अभिजात वर्ग की आलोचना की",
+   "सरकार के साथ असहयोग के राष्ट्रव्यापी अभियान की घोषणा की",
+   "छात्रों से सरकारी सहायता पाने वाले सभी कॉलेज छोड़ने का आह्वान किया",
+   "उस वर्ष भारतीय राष्ट्रीय कांग्रेस की अध्यक्षता स्वीकार की"],
+  0,
+  "Gandhiji's first major public appearance after his return from South Africa was at the opening of the university, before princes, philanthropists and Annie Besant. He charged the Indian elite with a lack of concern for the labouring poor, and said that India's salvation could only come through its farmers -- the speech showed that nationalism, in his view, had to reach the people. "
+  "Non-cooperation began only in 1920, and he became President of the Congress in 1924.",
+  "दक्षिण अफ़्रीका से लौटने के बाद गांधीजी का पहला बड़ा सार्वजनिक भाषण राजाओं, परोपकारियों और एनी बेसेंट के सामने विश्वविद्यालय के उद्घाटन पर हुआ। उन्होंने श्रमिक ग़रीबों के प्रति चिंता के अभाव के लिए भारतीय अभिजात वर्ग को दोषी ठहराया, और कहा कि भारत का उद्धार केवल किसानों से हो सकता है -- यह भाषण दिखाता है कि उनके मत में राष्ट्रवाद को जनता तक पहुँचना था। "
+  "असहयोग 1920 में ही शुरू हुआ, और वे 1924 में कांग्रेस के अध्यक्ष बने।",
+  f"{TH3}, Chapter 12 (Mahatma Gandhi and the Nationalist Movement).",
+  "l1-his-gandhi-bhu-1916", pos=1, craft="precision")
+
+M(MO, "medium", "Historians of the Partition of 1947 make wide use of oral testimonies. Which one of the following is the main reason?",
+  "1947 के विभाजन के इतिहासकार मौखिक साक्ष्यों का व्यापक उपयोग करते हैं। इसका मुख्य कारण निम्नलिखित में से कौन-सा है?",
+  ["They capture ordinary people's experiences, which official records leave out",
+   "They give exact dates and figures that are more reliable than government records",
+   "They were collected by the Boundary Commission as official evidence in 1947",
+   "They make it unnecessary to consult newspapers, diaries or government files"],
+  ["वे सामान्य लोगों के अनुभवों को सामने लाते हैं, जिन्हें सरकारी अभिलेख छोड़ देते हैं",
+   "वे ऐसी सटीक तिथियाँ और आँकड़े देते हैं जो सरकारी अभिलेखों से अधिक विश्वसनीय हैं",
+   "उन्हें 1947 में सीमा आयोग ने आधिकारिक साक्ष्य के रूप में एकत्र किया था",
+   "उनके बाद समाचारपत्रों, डायरियों या सरकारी फ़ाइलों को देखने की आवश्यकता नहीं रहती"],
+  0,
+  "Oral narratives, memoirs, diaries and family histories help historians grasp the experiences of ordinary men and women -- the trials and tribulations of displacement and violence -- which are difficult to find in government records concerned with high politics. "
+  "Critics note that oral data may lack concreteness and that their chronology can be imprecise, so historians cross-check them with other sources rather than relying on them alone.",
+  "मौखिक वृत्तांत, संस्मरण, डायरियाँ और पारिवारिक इतिहास इतिहासकारों को सामान्य स्त्री-पुरुषों के अनुभव -- विस्थापन और हिंसा की यातनाएँ -- समझने में मदद करते हैं, जो उच्च राजनीति से जुड़े सरकारी अभिलेखों में पाना कठिन है। "
+  "आलोचक कहते हैं कि मौखिक आँकड़ों में ठोसपन की कमी हो सकती है और उनका कालक्रम अस्पष्ट हो सकता है, इसलिए इतिहासकार केवल उन पर निर्भर रहने के बजाय उन्हें अन्य स्रोतों से जाँचते हैं।",
+  f"{TH3}, Chapter 14 (Understanding Partition).",
+  "l1-his-partition-oral-history", pos=2, craft="inference")
+
+write("his_l1_t2_c.sql")

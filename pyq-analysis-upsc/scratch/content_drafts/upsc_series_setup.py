@@ -163,6 +163,11 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "justice and the rule of law, Parliament and the executive compared with other systems, federalism and power sharing, "
      "local government, elections and electoral systems, governance and the laws NCERT uses to discuss social justice. "
      "Sources: NCERT Classes VIII-XII Political Science; the Constitution of India."),
+    (2, "l1-his-", "History at the NCERT foundation level: how historians know the past (sources, methods and the limits of "
+     "evidence), the Harappan city, early villages, towns and states, Vedic, Buddhist and Jaina traditions, the medieval world "
+     "through travellers, chronicles and the Ain, regional cultures, the colonial countryside, crafts and cities, 1857, reform, "
+     "Gandhi and Partition, with the basics of art, architecture and music. "
+     "Sources: NCERT Classes VI-VIII Our Pasts I-III; Class XII Themes in Indian History I-III; NCERT art and craft books."),
 ]
 
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",
