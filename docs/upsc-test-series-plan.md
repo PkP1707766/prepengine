@@ -108,10 +108,16 @@ The owner cleared the old tests; the series was rebuilt from scratch by `pyq-ana
 
 - **Five series**, one per level plus current affairs: Level 1 NCERT Foundation, Level 2 Sectional Mastery (the existing series, kept), Level 3 Integration & Precision, Level 4 Full-Length Simulation, Current Affairs Quarterly Tests. Series appear only in the admin.
 - **72 blueprints**, one per planned paper: Level 2's 21 GS tests and 7 CSAT tests (the 14 existing GS blueprints kept), Level 1's 6 subject papers, revision and 3 CSAT half papers, Level 3's 6 GS and 4 CSAT tests, Level 4's 10 GS and 9 CSAT simulators, and the 5 quarterly current-affairs tests. Each level has its own theme group, so the generator never repeats a concept within a level.
-- **27 complete Level-2 papers**, unpublished, dated as above, linked to the UPSC plan (`prelims-2026`), with their question usages recorded as `commit_generated_test()` does:
+- **27 complete Level-2 papers**, dated as above, linked to the UPSC plan (`prelims-2026`), with their question usages recorded as `commit_generated_test()` does:
   - GS Test n (1–20) is the bank rows of its sub-topic scope, less Test 21's 84 static rows, whose (difficulty, type, sub-topic) cell is in the test's `buildCells()` targets. Every cell then holds exactly its target. Seven older published rows fall outside their paper's mix (match-the-pairs or assertion–reason formats the mix does not use) and stay in the bank for later levels.
   - Each paper has one fixed order, with question and option shuffling off, so every candidate sees the same numbering and answer key: sub-topics interleaved, hard items spread evenly, no answer letter four times running.
   - CSAT Test n is the 80 rows of `csat-l2-tNN` in their authored UPSC order.
   - Test 21 waits for its 16 current-affairs rows, which are written nearer its date; only its blueprint exists.
-- **Open point:** the GS answer ladders give (d) only 11–20 per paper. The fixed "None / Neither / All" options sit at (d), so option shuffling cannot change this. A content pass that re-keys some items to (d) would remove the pattern.
-- The owner publishes each test after review. A published test with a future date shows to students as upcoming.
+- **Answer (d) fixed (2026-10-11).** The GS answer ladders had given (d) only 8–20 keys per paper, because the fixed "None / Neither / All" options sit at (d) and option shuffling cannot move them. `l2_dshare_fix.py` (writing `l2_dshare_fix.sql`) changed two things:
+  - 59 MCQs had their key moved to (d) where option order carries no meaning.
+  - 97 "Only one" items were re-keyed to "None": the one true statement became a precise near-miss, and the explanation's opening was rewritten. Every new statement was checked for cues against the rest of its paper.
+  - Result: every GS paper now has 22 (d) keys, and Test 21's static part has 19 of 84. `pol_l1_t1_dfix.py` did the same for Level 1 Test 1 (19 to 22).
+  - The setup now refuses any paper with fewer than 22 per cent (d) keys.
+- **Published (2026-10-11).** On the owner's go-ahead, `upsc_l2_publish.sql` published the 27 Level-2 papers and marked their 2,560 questions published, after the admin's own checks: standard lengths, no question in two papers, none shared with another published test. Each shows to entitled students as upcoming until its date.
+  - A published paper is frozen: re-running the setup leaves its order, usages and date untouched.
+  - Level 1 Test 1 stays unpublished until the owner decides whether Level 1 runs on dates or self-paced.

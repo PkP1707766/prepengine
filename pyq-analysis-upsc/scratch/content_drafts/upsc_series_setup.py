@@ -24,14 +24,19 @@ How each Level-2 paper is made:
   - The 100 rows are put in one fixed order (shuffling off, so every candidate sees the same numbering and
     answer key): sub-topics interleaved, about the same number of hard items in every ten positions, the
     first item not hard, no answer letter four times running and no sub-topic three times running.
+  - Every paper must have (d) as the key of at least 22 per cent of its items (asserted): the fixed UPSC
+    ladders put None / Neither / All at (d), and a bank that drifts to 'Only one' keys makes (d) a guessable
+    non-answer (fixed on 2026-10-11 by l2_dshare_fix.sql and pol_l1_t1_dfix.sql).
   - CSAT Test n (1-7): the 80 rows of csat_set 'csat-l2-tNN' in their authored csat_order.
   - Test 21 has 84 of its 100 rows (its 16 current-affairs rows are written nearer its date), so only its
     blueprint is made now.
 Level-1 papers are assembled the same way once all 100 rows of a paper exist (their concept ids carry the
 paper's prefix, e.g. l1-pol-), checked cell by cell against upsc_l1_cell_targets.mjs. They stay undated until
 the owner decides whether Level 1 runs on dates or self-paced.
-Nothing is published: the owner publishes each test after reviewing it. Each test is linked to the UPSC
-plan (prelims-2026) and its question_usages are recorded exactly as commit_generated_test() does."""
+Tests are created unpublished; the owner approves publishing (the 27 Level-2 papers went live on 2026-10-11 via
+upsc_l2_publish.sql, after the answer-(d) fix in l2_dshare_fix.sql). A published paper is frozen: a re-run leaves
+its question order, usages and dates untouched, since students may already have sat it. Each test is linked to
+the UPSC plan (prelims-2026) and its question_usages are recorded exactly as commit_generated_test() does."""
 import glob, io, json, os, random, re, sys, uuid
 from collections import Counter
 
@@ -319,12 +324,14 @@ def main():
                    f"({q(tid)}, 'upsc', {q(title)}, {q(title_hi)}, {q(desc)}, {q(series_id)}, {q(bid)}, 120, {j(sections)}, false, false, false, false, {q(when)}) "
                    "on conflict (id) do update set title = excluded.title, title_hi = excluded.title_hi, description = excluded.description, "
                    "series_id = excluded.series_id, blueprint_id = excluded.blueprint_id, duration_min = excluded.duration_min, sections = excluded.sections, "
-                   "shuffle_questions = excluded.shuffle_questions, shuffle_options = excluded.shuffle_options, scheduled_for = excluded.scheduled_for, updated_at = now();")
-        sql.append(f"delete from public.question_usages where test_id = {q(tid)};")
+                   "shuffle_questions = excluded.shuffle_questions, shuffle_options = excluded.shuffle_options, scheduled_for = excluded.scheduled_for, updated_at = now() "
+                   "where not public.tests.is_published;")      # a published paper is frozen: students may already have sat it
+        draft = f"exists (select 1 from public.tests where id = {q(tid)} and not is_published)"
+        sql.append(f"delete from public.question_usages where test_id = {q(tid)} and {draft};")
         sql.append("insert into public.question_usages (question_id, test_id, blueprint_id, theme_group_id, concept_group_id) "
-                   f"select q.id, {q(tid)}, {q(bid)}, {q(theme)}, q.concept_group_id from public.questions q where q.id = any(array[{', '.join(q(i) for i in ids)}]::uuid[]);")
+                   f"select q.id, {q(tid)}, {q(bid)}, {q(theme)}, q.concept_group_id from public.questions q where q.id = any(array[{', '.join(q(i) for i in ids)}]::uuid[]) and {draft};")
         sql.append("update public.questions q set times_used = (select count(*) from public.question_usages u where u.question_id = q.id), "
-                   f"last_used_test_id = {q(tid)}, last_used_date = now() where q.id = any(array[{', '.join(q(i) for i in ids)}]::uuid[]);")
+                   f"last_used_test_id = {q(tid)}, last_used_date = now() where q.id = any(array[{', '.join(q(i) for i in ids)}]::uuid[]) and {draft};")
         sql.append(f"insert into public.plan_tests (plan_code, test_id) select {q(PLAN)}, {q(tid)} "
                    f"where not exists (select 1 from public.plan_tests where plan_code = {q(PLAN)} and test_id = {q(tid)});")
         keys = "".join("abcd"[r["key"]] for r in rows)
@@ -340,8 +347,11 @@ def main():
         run = best = 1
         for a, b in zip(keys, keys[1:]):
             run = run + 1 if a == b else 1; best = max(best, run)
-        hard = [diff[i:i + 25].count("h") for i in range(0, len(diff), 25)]
-        print(f"{when:10} {n:>3} q | longest letter run {best} | hard by quarter {hard} | {title}")
+        qtr = -(-len(diff) // 4)                    # four equal quarters (20 items in an 80-item paper)
+        hard = [diff[i:i + qtr].count("h") for i in range(0, len(diff), qtr)]
+        share = Counter(keys)                   # the fixed ladders put None / Neither / All at (d): keep (d) a real answer
+        assert share["d"] >= round(0.22 * n), f"{title}: only {share['d']} (d) keys of {n} -- re-key some items first (see l2_dshare_fix.py)"
+        print(f"{when:10} {n:>3} q | longest letter run {best} | keys {'/'.join(str(share[c]) for c in 'abcd')} | hard by quarter {hard} | {title}")
     print(f"upsc_series_setup.sql: {len(SERIES)} series, {len(L2) + 8 + len(other_blueprints())} blueprints, {len(tests)} tests, {len(seen)} questions")
 
 def arrange(rows, seed):
