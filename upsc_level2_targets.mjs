@@ -31,11 +31,11 @@ export const LEVEL2 = [
   { no: 14, title: "Geography 3: Human & Economic Geography", subject: "Geography", subs: ["Resources: Minerals, Energy & Agriculture", "Transport, Ports & Human Geography"] },
   { no: 15, title: "Economy 1: Basic Concepts, Money & Banking", subject: "Economy", subs: ["Macro Concepts, National Income & Inflation", "Money, Banking & Monetary Policy", "Financial Markets, Instruments & Fintech"] },
   { no: 16, title: "Economy 2: Growth, Development & External Sector", subject: "Economy", subs: ["External Sector & International Institutions", "Growth, Development, Poverty & Planning"] },
-  { no: 17, title: "Economy 3: Fiscal Policy, Budget & Economic Survey", subject: "Economy", subs: ["Budget, Deficits & Public Debt", "Taxation & Fiscal Federalism"] },
-  { no: 18, title: "Economy 4: Sectors of the Economy & Inclusive Growth", subject: "Economy", subs: ["Agriculture & Food Economy", "Industry, Infrastructure, Energy & Services", "Inclusive Growth, Welfare & Demography"] },
+  { no: 17, title: "Economy 3: Fiscal Policy, Budget & Taxation", subject: "Economy", subs: ["Budget, Deficits & Public Debt", "Taxation & Fiscal Federalism"] },
+  { no: 18, title: "Economy 4: Agriculture, Industry, Infrastructure & Inclusive Growth", subject: "Economy", subs: ["Agriculture & Food Economy", "Industry, Infrastructure, Energy & Services", "Inclusive Growth, Welfare & Demography"] },
   { no: 19, title: "Science & Technology 1: General Science", subject: "Science & Technology", subs: ["Physics & Everyday Science", "Chemistry & Materials", "Biology, Health & Biotechnology", "Astronomy & Earth Science"] },
-  { no: 20, title: "Science & Technology 2: Applied S&T & Agriculture", subject: "Science & Technology", subs: ["Space Technology & Missions", "IT, Communication & Emerging Technologies", "Energy & Environmental Technology", "Defence, Aerospace & Security Technology"] },
-  { no: 21, title: "GS Comprehensive Revision (full syllabus)", subject: null, subs: null },
+  { no: 20, title: "Science & Technology 2: Space, Digital, Energy & Defence Technology", subject: "Science & Technology", subs: ["Space Technology & Missions", "IT, Communication & Emerging Technologies", "Energy & Environmental Technology", "Defence, Aerospace & Security Technology"] },
+  { no: 21, title: "GS Revision: Full Syllabus", subject: null, subs: null },
 ];
 
 const isMain = import.meta.url === new URL(process.argv[1], "file://").href || process.argv[1]?.endsWith("upsc_level2_targets.mjs");

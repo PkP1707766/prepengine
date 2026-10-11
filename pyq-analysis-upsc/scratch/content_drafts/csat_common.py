@@ -248,6 +248,25 @@ def assemble():
         r["question_data"]["csat_order"] = n
     return order
 
+def place(order, groups):
+    """Reorder items within the positions their (slot, topic) group already holds on the paper, and renumber
+    csat_order. groups maps a slot ("Q" or "L") to lists of concept-id tails (the id after "<SET>-"), one list
+    per topic, in the order the items should appear. Used to spread hard items through a paper whose modules
+    were written easy to hard (Tests 1-6; Test 7 orders its rows before interleave() instead)."""
+    pre = len(SET) + 1
+    for slot, lists in groups.items():
+        for names in lists:
+            pos = [i for i, r in enumerate(order) if r["slot"] == slot and r["concept_group_id"][pre:] in names]
+            rows = {order[i]["concept_group_id"][pre:]: order[i] for i in pos}
+            assert len(rows) == len(names) and len({r["topic"] for r in rows.values()}) == 1, names
+            topic = rows[names[0]]["topic"]
+            assert len(names) == sum(r["slot"] == slot and r["topic"] == topic for r in order), names
+            for i, n in zip(pos, names):
+                order[i] = rows[n]
+    for n, r in enumerate(order, 1):
+        r["question_data"]["csat_order"] = n
+    return order
+
 def report(order):
     by = {}
     for r in order:

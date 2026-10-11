@@ -72,7 +72,7 @@ Economy and S&T still need the content re-tag Geography had, because their decod
 
 ## Schedule (proposal; each test is scheduled only once it is complete)
 
-- **Level 2:** weekly on Sundays, 1 November 2026 to 21 March 2027 (21 GS tests), with CSAT 1–7 on alternate Saturdays. This needs about 80 new, verified questions a week from October.
+- **Level 2 (set up on 2026-10-11):** GS Tests 1–21 every Sunday at 9:30 am, 1 November 2026 to 21 March 2027; CSAT Tests 1–7 every third Saturday at 2:30 pm (7 and 28 November, 19 December, 9 and 30 January, 20 February, 13 March), so CSAT practice runs through the whole level instead of ending in February. The times match the real exam's two sittings.
 - **Level 3:** late March to April 2027.
 - **Level 4:** April to 16 May 2027, two simulators a week in the final stretch, the last one a week before the exam.
 - **Current Affairs:** quarterly (Jan–Mar, Apr–Jun, Jul–Sep, Oct–Dec 2026, Jan–Mar 2027 windows).
@@ -101,3 +101,17 @@ All 378 questions were audited (`docs/upsc-bank-audit-2026-09-28.md`): 80 Histor
 - App: UPSC paper formats enforced at blueprint save, paper save and publish; CSAT papers timed at two hours; UPSC generation draws around every published UPSC test (no repeats) instead of BPSC's last-five cooldown.
 - Data: a "UPSC Prelims 2027 — Level 2: Sectional Mastery" series. The eleven Level-2 blueprints moved to 100 questions, numbered titles and fresh theme groups. Geography's three Level-2 blueprints were added (tests 12–14).
 - Files: `upsc_level2_targets.mjs` (+ `_output.txt`), `upsc_level2_series_setup.sql`, this plan.
+
+## Series setup (2026-10-11)
+
+The owner cleared the old tests; the series was rebuilt from scratch by `pyq-analysis-upsc/scratch/content_drafts/upsc_series_setup.py` (it writes `upsc_series_setup.sql`, one transaction that can be re-run).
+
+- **Five series**, one per level plus current affairs: Level 1 NCERT Foundation, Level 2 Sectional Mastery (the existing series, kept), Level 3 Integration & Precision, Level 4 Full-Length Simulation, Current Affairs Quarterly Tests. Series appear only in the admin.
+- **72 blueprints**, one per planned paper: Level 2's 21 GS tests and 7 CSAT tests (the 14 existing GS blueprints kept), Level 1's 6 subject papers, revision and 3 CSAT half papers, Level 3's 6 GS and 4 CSAT tests, Level 4's 10 GS and 9 CSAT simulators, and the 5 quarterly current-affairs tests. Each level has its own theme group, so the generator never repeats a concept within a level.
+- **27 complete Level-2 papers**, unpublished, dated as above, linked to the UPSC plan (`prelims-2026`), with their question usages recorded as `commit_generated_test()` does:
+  - GS Test n (1–20) is the bank rows of its sub-topic scope, less Test 21's 84 static rows, whose (difficulty, type, sub-topic) cell is in the test's `buildCells()` targets. Every cell then holds exactly its target. Seven older published rows fall outside their paper's mix (match-the-pairs or assertion–reason formats the mix does not use) and stay in the bank for later levels.
+  - Each paper has one fixed order, with question and option shuffling off, so every candidate sees the same numbering and answer key: sub-topics interleaved, hard items spread evenly, no answer letter four times running.
+  - CSAT Test n is the 80 rows of `csat-l2-tNN` in their authored UPSC order.
+  - Test 21 waits for its 16 current-affairs rows, which are written nearer its date; only its blueprint exists.
+- **Open point:** the GS answer ladders give (d) only 11–20 per paper. The fixed "None / Neither / All" options sit at (d), so option shuffling cannot change this. A content pass that re-keys some items to (d) would remove the pattern.
+- The owner publishes each test after review. A published test with a future date shows to students as upcoming.
