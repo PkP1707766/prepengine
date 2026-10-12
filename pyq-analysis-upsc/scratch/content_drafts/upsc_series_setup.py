@@ -173,6 +173,12 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "water, waste and pollution, conservation by the State and by communities, India's climate policy and carbon markets, and "
      "the ideas behind the international environmental order. "
      "Sources: NCERT Science VII-X, Geography X-XI, Biology XI-XII and Chemistry XI; MoEFCC, BEE, UNFCCC and UNEP."),
+    (4, "l1-geo-", "Geography at the NCERT foundation level: the globe, latitudes, longitudes and time, maps, scale and contours, "
+     "the atmosphere, winds, rain and the biomes, the continents, oceans and the regions NCERT studies, India's size, relief, "
+     "climate and rainfall, rivers, lakes and water resources, rocks, the interior, plates and landforms, the oceans' "
+     "temperature, relief and salinity, population, settlements and transport, and resources, minerals and crops. "
+     "Sources: NCERT Classes VI-VIII Geography; Contemporary India I-II; Class XI Fundamentals of Physical Geography, "
+     "India: Physical Environment and Practical Work; Class XII Fundamentals of Human Geography and India: People and Economy."),
 ]
 
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",
