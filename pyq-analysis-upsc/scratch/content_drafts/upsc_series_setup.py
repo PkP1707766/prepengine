@@ -184,6 +184,11 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "income and the Keynesian ideas, taxes and the budget's objectives, food security and the farm economy, land reform and "
      "the Green Revolution, sectors and infrastructure, globalisation and the foreign exchange market, poverty and human capital. "
      "Sources: NCERT Economics IX-XII and Business Studies XI-XII; RBI, SEBI, NPCI and the Ministry of Finance."),
+    (6, "l1-sci-", "Science and Technology at the NCERT foundation level: materials, reactions and acids in daily life, combustion, "
+     "pressure, sound, light and the eye, electricity at home and electromagnetism, the human body, microbes and heredity, "
+     "work, energy and power stations, stars, gravitation and Kepler's laws, ISRO's landmark missions, computer systems, "
+     "networks, the internet and software licences, and the basics of India's defence technology. "
+     "Sources: NCERT Science VII-X, Physics and Biology XI-XII, Computer Science and Informatics Practices XI-XII; ISRO, DRDO, MNRE and the Ministries of Power and Defence."),
 ]
 
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",
