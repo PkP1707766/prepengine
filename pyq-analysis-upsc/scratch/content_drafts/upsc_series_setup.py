@@ -189,6 +189,12 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "work, energy and power stations, stars, gravitation and Kepler's laws, ISRO's landmark missions, computer systems, "
      "networks, the internet and software licences, and the basics of India's defence technology. "
      "Sources: NCERT Science VII-X, Physics and Biology XI-XII, Computer Science and Informatics Practices XI-XII; ISRO, DRDO, MNRE and the Ministries of Power and Defence."),
+    (7, "l1-rev-", "GS Foundation Revision: the whole static GS syllabus at the NCERT foundation level, in the full-length paper's "
+     "subject mix without current affairs -- Polity 18, History with art and culture 19, Environment 18, Geography 12, "
+     "Economy 20 and Science and Technology 13 -- revisiting each subject through NCERT chapters and official sources that "
+     "the six subject papers did not use. "
+     "Sources: NCERT Classes VI-XII (Political Science, History, Fine Art, Geography, Science, Physics, Chemistry, Biology, "
+     "Economics and Business Studies); the Constitution and Central Acts; MoEFCC, RBI, SEBI, ISRO and the Ministries concerned."),
 ]
 
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",

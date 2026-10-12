@@ -1,0 +1,353 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 7 (GS Foundation Revision, NCERT Foundation) -- part B: History, with Music & Dance and
+Painting (19) (upsc_l1_cell_targets.mjs 7).
+History cells: Modern e-MCQ, e-stmt, m-MCQ, m-stmt x2, m-pairs, h-stmt; Ancient the same seven; Medieval e-stmt,
+m-MCQ, m-stmt; Music & Dance e-stmt; Painting h-MCQ.
+Level 2 holds the standard History facts and Level-1 Test 2 another 100 rows, so this part draws on NCERT passages
+neither used: print in Goa and Cochin, the Bastar rebellion and Brandis (Forest Society), Awadh under Baba
+Ramchandra, folklore and the Swadeshi flag, indenture culture, the China-trade industrialists; Patne, the grama
+bhojaka, Gargi and Satyakama Jabala, the dakshinapatha, the Mahabharata figures, stridhana; the Banjaras, the Sikh
+rakhi, Surat; Kalbelia; Company painting. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "History"
+d.REQUIRE_CRAFT = True
+MO, AN, ME, MD, PA = "Modern", "Ancient", "Medieval", "Music & Dance", "Painting"
+OP1 = "NCERT Class VI, History -- Our Pasts I"
+OP2 = "NCERT Class VII, History -- Our Pasts II"
+TH1 = "NCERT Class XII, History -- Themes in Indian History, Part I"
+IC1 = "NCERT Class IX, History -- India and the Contemporary World I"
+IC2 = "NCERT Class X, History -- India and the Contemporary World II"
+ART1 = "NCERT Class XI, Fine Art -- An Introduction to Indian Art, Part I"
+ART2 = "NCERT Class XII, Fine Art -- An Introduction to Indian Art, Part II"
+
+# ================================================================ Modern (7)
+M(MO, "easy",
+  "On the advice of a German forest expert, the colonial government set up the Indian Forest Service in 1864 and passed the Indian Forest Act in 1865. The expert became the first Inspector General of Forests in India. Who was he?",
+  "एक जर्मन वन विशेषज्ञ की सलाह पर औपनिवेशिक सरकार ने 1864 में भारतीय वन सेवा स्थापित की और 1865 में भारतीय वन अधिनियम पारित किया। यही विशेषज्ञ भारत के पहले वन महानिरीक्षक बने। वे कौन थे?",
+  ["Dietrich Brandis", "James Rennell", "Thomas Munro", "Alexander Cunningham"],
+  ["डीट्रिख़ ब्रैंडिस", "जेम्स रेनेल", "थॉमस मुनरो", "अलेक्ज़ेंडर कनिंघम"],
+  0,
+  "Dietrich Brandis held that forests needed a proper system of management: rules on the use of forest resources, limits on felling and grazing, and people trained in the science of conservation. He set up the Indian Forest Service in 1864 and helped frame the Indian Forest Act of 1865. "
+  "The Imperial Forest Research Institute, set up at Dehradun in 1906, taught 'scientific forestry', in which natural forests of many kinds of trees were cut down and replaced by one type of tree planted in straight rows. "
+  "James Rennell was the Company's map-maker in Bengal, Thomas Munro is linked with the ryotwari settlement, and Alexander Cunningham was the first Director-General of the Archaeological Survey of India.",
+  "डीट्रिख़ ब्रैंडिस का मत था कि वनों के लिए एक उचित प्रबंधन व्यवस्था चाहिए: वन संसाधनों के उपयोग के नियम, कटाई और चराई पर रोक, और संरक्षण के विज्ञान में प्रशिक्षित लोग। उन्होंने 1864 में भारतीय वन सेवा स्थापित की और 1865 का भारतीय वन अधिनियम बनाने में मदद की। "
+  "1906 में देहरादून में स्थापित इंपीरियल फ़ॉरेस्ट रिसर्च इंस्टीट्यूट में 'वैज्ञानिक वानिकी' पढ़ाई जाती थी, जिसमें कई प्रकार के पेड़ों वाले प्राकृतिक वन काटकर उनकी जगह एक ही प्रकार के पेड़ सीधी पंक्तियों में लगाए जाते थे। "
+  "जेम्स रेनेल बंगाल में कंपनी के मानचित्रकार थे, थॉमस मुनरो रैयतवाड़ी बंदोबस्त से जुड़े हैं, और अलेक्ज़ेंडर कनिंघम भारतीय पुरातत्व सर्वेक्षण के पहले महानिदेशक थे।",
+  f"{IC1}, Chapter 4 (Forest Society and Colonialism).",
+  "l1-rev-brandis-forest-service", pos=0, craft="recall")
+
+S(MO, "easy", "Consider the following statements about the coming of print to India:",
+  "भारत में छपाई के आगमन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The printing press first came to India with the English East India Company, at Calcutta in the late eighteenth century.",
+   "Catholic priests printed the first Tamil book in 1579, at Cochin."],
+  ["छापाख़ाना भारत में सबसे पहले अठारहवीं सदी के अंत में कलकत्ता में अंग्रेज़ ईस्ट इंडिया कंपनी के साथ आया।",
+   "कैथोलिक पादरियों ने 1579 में कोचीन में पहली तमिल पुस्तक छापी।"],
+  T2, 1,
+  "Only statement 2 is correct. The printing press first came to Goa with Portuguese missionaries in the mid-sixteenth century; Jesuit priests learnt Konkani and printed several tracts, and by 1674 about 50 books had been printed in Konkani and Kanara. "
+  "Catholic priests printed the first Tamil book in 1579 at Cochin and the first Malayalam book in 1713. The English East India Company began to import presses only from the late seventeenth century.",
+  "केवल कथन 2 सही है। छापाख़ाना सबसे पहले सोलहवीं सदी के मध्य में पुर्तगाली धर्मप्रचारकों के साथ गोवा आया; जेसुइट पादरियों ने कोंकणी सीखी और कई पुस्तिकाएँ छापीं, और 1674 तक कोंकणी और कन्नड़ में लगभग 50 पुस्तकें छप चुकी थीं। "
+  "कैथोलिक पादरियों ने 1579 में कोचीन में पहली तमिल पुस्तक और 1713 में पहली मलयालम पुस्तक छापी। अंग्रेज़ ईस्ट इंडिया कंपनी ने सत्रहवीं सदी के अंत से ही छापेख़ाने मँगाने शुरू किए।",
+  f"{IC2}, Chapter 5 (Print Culture and the Modern World).",
+  "l1-rev-print-goa-cochin", craft="recall")
+
+M(MO, "medium",
+  "During the Non-Cooperation Movement, the peasant movement in Awadh led by Baba Ramchandra saw the houses of talukdars and merchants attacked and grain hoards seized in 1921, while local leaders told peasants that Gandhiji had declared that no taxes were to be paid and that land was to be redistributed among the poor. What does this episode best show?",
+  "असहयोग आंदोलन के दौरान बाबा रामचंद्र के नेतृत्व वाले अवध के किसान आंदोलन में 1921 में तालुक़दारों और व्यापारियों के घरों पर हमले हुए और अनाज के भंडार क़ब्ज़े में लिए गए, जबकि स्थानीय नेता किसानों से कहते थे कि गांधीजी ने घोषणा की है कि कोई कर नहीं दिया जाएगा और ज़मीन ग़रीबों में बाँटी जाएगी। यह प्रसंग सबसे अच्छी तरह क्या दर्शाता है?",
+  ["Different social groups read their own aspirations into the idea of swaraj",
+   "The Congress had adopted a programme of redistributing land to the landless in 1920",
+   "The Awadh movement was led mainly by the educated middle classes of the towns",
+   "Gandhiji had given up non-violence as a method of struggle in the countryside"],
+  ["विभिन्न सामाजिक समूहों ने स्वराज के विचार में अपनी-अपनी आकांक्षाएँ देखीं",
+   "कांग्रेस ने 1920 में भूमिहीनों में भूमि बाँटने का कार्यक्रम अपना लिया था",
+   "अवध आंदोलन का नेतृत्व मुख्यतः क़स्बों के शिक्षित मध्य वर्ग के हाथ में था",
+   "गांधीजी ने ग्रामीण क्षेत्रों में संघर्ष के तरीक़े के रूप में अहिंसा छोड़ दी थी"],
+  0,
+  "NCERT uses Awadh to show that the peasants understood swaraj in their own way. Baba Ramchandra, a sanyasi who had earlier been to Fiji as an indentured labourer, led the peasants against talukdars and landlords who demanded very high rents and forced labour (begar); the Oudh Kisan Sabha, set up in October 1920, was headed by Jawaharlal Nehru, Baba Ramchandra and a few others. "
+  "The Congress leadership was unhappy with the attacks and seizures, and Gandhiji had made no such declaration: his name was being invoked to sanction every action and aspiration. In the same way, for plantation workers in Assam swaraj meant the right to move freely out of the confined space of the tea garden.",
+  "NCERT अवध के उदाहरण से दिखाता है कि किसानों ने स्वराज को अपने ढंग से समझा। बाबा रामचंद्र, एक संन्यासी जो पहले गिरमिटिया मज़दूर के रूप में फ़िजी जा चुके थे, ने बहुत ऊँचा लगान और बेगार माँगने वाले तालुक़दारों और ज़मींदारों के विरुद्ध किसानों का नेतृत्व किया; अक्टूबर 1920 में बनी अवध किसान सभा के प्रमुख जवाहरलाल नेहरू, बाबा रामचंद्र और कुछ अन्य थे। "
+  "कांग्रेस नेतृत्व हमलों और क़ब्ज़ों से असंतुष्ट था, और गांधीजी ने ऐसी कोई घोषणा नहीं की थी: हर कार्रवाई और आकांक्षा को उचित ठहराने के लिए उनके नाम का सहारा लिया जा रहा था। इसी तरह असम के बाग़ान मज़दूरों के लिए स्वराज का अर्थ था चाय बाग़ान की बंद सीमा से बाहर आने-जाने की आज़ादी।",
+  f"{IC2}, Chapter 2 (Nationalism in India).",
+  "l1-rev-awadh-peasants-swaraj", pos=3, craft="inference")
+
+S(MO, "medium", "Consider the following statements about how nationalists built a sense of collective belonging through culture:",
+  "राष्ट्रवादियों ने संस्कृति के माध्यम से सामूहिक अपनेपन की भावना कैसे बनाई, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Rabindranath Tagore collected ballads, nursery rhymes and myths, and led the movement for folk revival.",
+   "Natesa Sastri dismissed folk tales as corrupted versions of the classical texts and published them only as a record of rural superstition.",
+   "The tricolour flag designed during the Swadeshi movement in Bengal had eight lotuses, for the eight provinces of British India, and a crescent moon, representing Hindus and Muslims."],
+  ["रवींद्रनाथ टैगोर ने गाथा-गीत, बालगीत और मिथक एकत्र किए, और लोक-परंपराओं के पुनरुद्धार के आंदोलन का नेतृत्व किया।",
+   "नटेसा शास्त्री ने लोककथाओं को शास्त्रीय ग्रंथों का बिगड़ा रूप मानकर ख़ारिज किया और उन्हें केवल ग्रामीण अंधविश्वास के अभिलेख के रूप में प्रकाशित किया।",
+   "बंगाल में स्वदेशी आंदोलन के दौरान बनाए गए तिरंगे झंडे पर ब्रिटिश भारत के आठ प्रांतों के प्रतीक आठ कमल और हिंदुओं व मुसलमानों का प्रतीक एक अर्धचंद्र था।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. In the late nineteenth century nationalists recorded the folk tales sung by bards and toured villages to gather folk songs and legends, believing that these gave a true picture of a traditional culture corrupted by outside forces; in Bengal, Tagore himself collected ballads, nursery rhymes and myths. "
+  "Statement 2 is wrong: in Madras, Natesa Sastri published a massive four-volume collection of Tamil folk tales, 'The Folklore of Southern India', because he believed folklore was national literature -- 'the most trustworthy manifestation of the people's real thoughts and characteristics'. "
+  "Symbols such as the Swadeshi flag (red, green and yellow) did similar work, giving people a shared image of the nation.",
+  "कथन 1 और 3 सही हैं। उन्नीसवीं सदी के उत्तरार्ध में राष्ट्रवादियों ने भाटों द्वारा गाई जाने वाली लोककथाएँ दर्ज कीं और लोकगीत व किंवदंतियाँ एकत्र करने के लिए गाँवों का दौरा किया, क्योंकि वे मानते थे कि इनसे उस पारंपरिक संस्कृति का सच्चा चित्र मिलता है जिसे बाहरी शक्तियों ने विकृत कर दिया था; बंगाल में स्वयं टैगोर ने गाथा-गीत, बालगीत और मिथक एकत्र किए। "
+  "कथन 2 गलत है: मद्रास में नटेसा शास्त्री ने तमिल लोककथाओं का चार खंडों का विशाल संग्रह, 'द फ़ोकलोर ऑफ़ सदर्न इंडिया', प्रकाशित किया, क्योंकि वे लोककथाओं को राष्ट्रीय साहित्य मानते थे -- 'लोगों के वास्तविक विचारों और विशेषताओं की सबसे विश्वसनीय अभिव्यक्ति'। "
+  "स्वदेशी झंडे (लाल, हरा और पीला) जैसे प्रतीकों ने भी यही काम किया, लोगों को राष्ट्र की एक साझा छवि दी।",
+  f"{IC2}, Chapter 2 (Nationalism in India -- The Sense of Collective Belonging).",
+  "l1-rev-folklore-swadeshi-flag", craft="inference")
+
+S(MO, "medium", "Consider the following statements about Indian indentured labour in the nineteenth and early twentieth centuries:",
+  "उन्नीसवीं और बीसवीं सदी के आरंभ में भारतीय गिरमिटिया (अनुबंधित) श्रम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Most indentured workers came from present-day eastern Uttar Pradesh, Bihar, central India and the dry districts of Tamil Nadu.",
+   "In Trinidad the annual Muharram procession was transformed into a riotous carnival called 'Hosay', in which workers of all races and religions joined.",
+   "'Chutney music', popular in Trinidad and Guyana, is a creative contemporary expression of the post-indenture experience.",
+   "Indian nationalist leaders backed the system for the money that migrants sent home, so it lasted until 1947."],
+  ["अधिकांश गिरमिटिया मज़दूर आज के पूर्वी उत्तर प्रदेश, बिहार, मध्य भारत और तमिलनाडु के सूखे ज़िलों से आए थे।",
+   "त्रिनिदाद में मुहर्रम का वार्षिक जुलूस 'होसे' नामक एक उल्लासपूर्ण उत्सव में बदल गया, जिसमें सभी नस्लों और धर्मों के मज़दूर शामिल होते थे।",
+   "त्रिनिदाद और गयाना में लोकप्रिय 'चटनी संगीत' गिरमिट के बाद के अनुभव की एक रचनात्मक समकालीन अभिव्यक्ति है।",
+   "भारतीय राष्ट्रवादी नेताओं ने प्रवासियों द्वारा घर भेजे जाने वाले धन के कारण इस व्यवस्था का समर्थन किया, इसलिए यह 1947 तक चलती रही।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct. In those regions cottage industries were declining, land rents rising and lands being cleared for mines and plantations, so many accepted the agents' offers -- often given false information about the work and the destination. "
+  "Workers found harsh conditions and few legal rights, but they built new forms of individual and collective expression that blended old and new cultures: Hosay in Trinidad, Rastafarianism (made famous by Bob Marley), which reflects links with Indian migrants to the Caribbean, and chutney music. "
+  "Statement 4 is wrong: from the 1900s India's nationalist leaders opposed indentured migration as abusive and cruel, and it was abolished in 1921.",
+  "कथन 1, 2 और 3 सही हैं। उन क्षेत्रों में कुटीर उद्योग गिर रहे थे, लगान बढ़ रहा था और खदानों व बाग़ानों के लिए ज़मीनें साफ़ की जा रही थीं, इसलिए बहुतों ने एजेंटों के प्रस्ताव मान लिए -- जिन्हें अक्सर काम और गंतव्य के बारे में झूठी जानकारी दी जाती थी। "
+  "मज़दूरों को कठोर परिस्थितियाँ और बहुत कम क़ानूनी अधिकार मिले, पर उन्होंने व्यक्तिगत और सामूहिक अभिव्यक्ति के नए रूप गढ़े जिनमें पुरानी और नई संस्कृतियाँ घुल-मिल गईं: त्रिनिदाद का होसे, रस्ताफ़ारियनवाद (जिसे बॉब मार्ले ने प्रसिद्ध किया), जो कैरिबियन में भारतीय प्रवासियों से जुड़ाव दर्शाता है, और चटनी संगीत। "
+  "कथन 4 गलत है: 1900 के दशक से भारत के राष्ट्रवादी नेताओं ने गिरमिटिया प्रवास का अपमानजनक और क्रूर बताकर विरोध किया, और 1921 में इसे समाप्त कर दिया गया।",
+  f"{IC2}, Chapter 3 (The Making of a Global World).",
+  "l1-rev-indenture-hosay-chutney", craft="inference")
+
+P(MO, "medium", "Consider the following pairs of early Indian industrialists and what is recorded about them:",
+  "प्रारंभिक भारतीय उद्योगपतियों और उनके बारे में दर्ज बातों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Dwarkanath Tagore : Turned from the China trade to industry, setting up six joint-stock companies in the 1830s and 1840s",
+   "Seth Hukumchand : A Marwari businessman who set up the first Indian jute mill in Calcutta in 1917",
+   "Dinshaw Petit : A Parsi of Bombay whose early wealth came partly from exports to China and raw cotton shipments to England",
+   "G.D. Birla : Set up the first cotton mill of Ahmedabad in the 1860s"],
+  ["द्वारकानाथ टैगोर : चीन व्यापार से उद्योग की ओर मुड़े और 1830 और 1840 के दशकों में छह संयुक्त पूँजी कंपनियाँ स्थापित कीं",
+   "सेठ हुकुमचंद : मारवाड़ी व्यवसायी जिन्होंने 1917 में कलकत्ता में पहली भारतीय जूट मिल स्थापित की",
+   "दिनशॉ पेटिट : बंबई के पारसी जिनकी आरंभिक संपत्ति अंशतः चीन को निर्यात और इंग्लैंड को कच्ची कपास भेजने से आई",
+   "जी.डी. बिड़ला : 1860 के दशक में अहमदाबाद की पहली सूती मिल स्थापित की"],
+  2,
+  "Pairs 1, 2 and 3 are correctly matched. Many early Indian industrialists made their first money in trade with China: Dwarkanath Tagore (whose enterprises sank in the business crises of the 1840s), Parsis such as Dinshaw Petit and Jamsetjee Nusserwanjee Tata in Bombay, and Seth Hukumchand, who also traded with China. "
+  "Pair 4 is wrong: it was the father and grandfather of G.D. Birla who traded with China; Birla himself belongs to the twentieth century. Ahmedabad's first cotton mill came up in the 1860s, a year after the Elgin Mill at Kanpur.",
+  "युग्म 1, 2 और 3 सही सुमेलित हैं। कई प्रारंभिक भारतीय उद्योगपतियों ने पहला धन चीन के साथ व्यापार में कमाया: द्वारकानाथ टैगोर (जिनके उद्यम 1840 के दशक के व्यावसायिक संकटों में डूब गए), बंबई के दिनशॉ पेटिट और जमशेदजी नुसरवानजी टाटा जैसे पारसी, और सेठ हुकुमचंद, जो चीन से व्यापार भी करते थे। "
+  "युग्म 4 गलत है: चीन से व्यापार जी.डी. बिड़ला के पिता और दादा करते थे; स्वयं बिड़ला बीसवीं सदी के हैं। अहमदाबाद की पहली सूती मिल 1860 के दशक में, कानपुर की एल्गिन मिल के एक वर्ष बाद, लगी।",
+  f"{IC2}, Chapter 4 (The Age of Industrialisation).",
+  "l1-rev-early-industrialists-pairs", craft="precision")
+
+S(MO, "hard", "Consider the following statements about the rebellion of 1910 in Bastar:",
+  "बस्तर में 1910 के विद्रोह के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It followed a colonial proposal of 1905 to reserve two-thirds of the forest and to stop shifting cultivation, hunting and the collection of forest produce.",
+   "Mango boughs, a lump of earth, chillies and arrows were circulated between villages as a call to rebel.",
+   "The British captured Gunda Dhur, the best-known figure of the movement, and executed him.",
+   "After the rebellion, the colonial government permanently gave up the reservation of forests in Bastar."],
+  ["यह 1905 के उस औपनिवेशिक प्रस्ताव के बाद हुआ जिसमें दो-तिहाई वन को आरक्षित करने और झूम खेती, शिकार तथा वन उपज के संग्रह को रोकने की बात थी।",
+   "विद्रोह के आह्वान के रूप में आम की टहनियाँ, मिट्टी का ढेला, मिर्चें और तीर गाँव-गाँव घुमाए गए।",
+   "अंग्रेज़ों ने आंदोलन के सबसे प्रसिद्ध व्यक्ति गुंडा धुर को पकड़कर फाँसी दे दी।",
+   "विद्रोह के बाद औपनिवेशिक सरकार ने बस्तर में वनों का आरक्षण स्थायी रूप से छोड़ दिया।"],
+  C4, 1,
+  "Statements 1 and 2 are correct. The initiative came from the Dhurwas of the Kanger forest, where reservation first took place; there was no single leader, though Gunda Dhur of Nethanar village is remembered as an important figure. "
+  "Statement 3 is wrong: the British took three months (February-May 1910) to regain control, flogging and punishing villagers, but they never managed to capture Gunda Dhur. "
+  "Statement 4 is wrong: in a major victory for the rebels, work on reservation was only temporarily suspended, and the area to be reserved was reduced to roughly half of what had been planned before 1910.",
+  "कथन 1 और 2 सही हैं। पहल कांगेर वन के धुरवा समुदाय ने की, जहाँ आरक्षण सबसे पहले हुआ था; कोई एक नेता नहीं था, यद्यपि नेतानार गाँव के गुंडा धुर को एक महत्वपूर्ण व्यक्ति के रूप में याद किया जाता है। "
+  "कथन 3 गलत है: अंग्रेज़ों को फिर से नियंत्रण पाने में तीन महीने (फ़रवरी-मई 1910) लगे, उन्होंने ग्रामीणों को कोड़े मारे और दंडित किया, पर वे गुंडा धुर को कभी पकड़ नहीं पाए। "
+  "कथन 4 गलत है: विद्रोहियों की एक बड़ी जीत के रूप में आरक्षण का काम केवल अस्थायी रूप से रोका गया, और आरक्षित किए जाने वाले क्षेत्र को 1910 से पहले की योजना के लगभग आधे तक घटा दिया गया।",
+  f"{IC1}, Chapter 4 (Forest Society and Colonialism).",
+  "l1-rev-bastar-1910", craft="inference")
+
+# ================================================================ Ancient (7)
+M(AN, "easy", "A piece of ostrich eggshell with designs engraved on it, among the early evidence of artistic expression in the subcontinent, was found at:",
+  "उपमहाद्वीप में कलात्मक अभिव्यक्ति के आरंभिक साक्ष्यों में से एक, शुतुरमुर्ग के अंडे के छिलके का एक टुकड़ा जिस पर आकृतियाँ उकेरी गई हैं, कहाँ मिला था?",
+  ["Patne", "Hunsgi", "Bhimbetka", "the Kurnool caves"],
+  ["पटणे", "हुँसगी", "भीमबेटका", "कुरनूल की गुफ़ाएँ"],
+  0,
+  "The engraved piece of ostrich eggshell was found at Patne, in present-day Maharashtra. "
+  "Hunsgi in Karnataka is known for its early stone-tool sites, the Kurnool caves in Andhra Pradesh for traces of ash that show the use of fire, and the rock shelters of Bhimbetka in Madhya Pradesh for their paintings.",
+  "उकेरी गई आकृतियों वाला शुतुरमुर्ग के अंडे के छिलके का टुकड़ा आज के महाराष्ट्र के पटणे में मिला था। "
+  "कर्नाटक का हुँसगी आरंभिक पाषाण-औज़ार स्थलों के लिए, आंध्र प्रदेश की कुरनूल गुफ़ाएँ आग के उपयोग को दर्शाने वाले राख के अवशेषों के लिए, और मध्य प्रदेश के भीमबेटका के शैलाश्रय अपने चित्रों के लिए जाने जाते हैं।",
+  f"{OP1}, Chapter 2 (On the Trail of the Earliest People).",
+  "l1-rev-patne-ostrich-eggshell", pos=0, craft="recall")
+
+S(AN, "easy", "Consider the following statements about the Harappan civilisation:",
+  "हड़प्पा सभ्यता के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The bronze figure known as the 'dancing girl' was found at Mohenjodaro.",
+   "Lothal, a centre for making objects of stone, shell and metal, stood beside a tributary of the Indus in Sindh."],
+  ["'नर्तकी' (dancing girl) के नाम से जानी जाने वाली काँसे की मूर्ति मोहनजोदड़ो में मिली थी।",
+   "पत्थर, सीप और धातु की वस्तुएँ बनाने का केंद्र लोथल सिंध में सिंधु की एक सहायक नदी के किनारे स्थित था।"],
+  T2, 0,
+  "Only statement 1 is correct. The bronze 'dancing girl', cast by the lost-wax method, is one of the best-known objects from Mohenjodaro. "
+  "Statement 2 is wrong: Lothal stood beside a tributary of the Sabarmati in Gujarat, close to the Gulf of Khambat and near sources of semi-precious stones; it was an important centre for making objects of stone, shell and metal, and had a storehouse in which many seals and sealings were found.",
+  "केवल कथन 1 सही है। लुप्त-मोम विधि से ढली काँसे की 'नर्तकी' मोहनजोदड़ो की सबसे प्रसिद्ध वस्तुओं में से है। "
+  "कथन 2 गलत है: लोथल गुजरात में साबरमती की एक सहायक नदी के किनारे, खंभात की खाड़ी के निकट और अर्ध-क़ीमती पत्थरों के स्रोतों के पास स्थित था; यह पत्थर, सीप और धातु की वस्तुएँ बनाने का एक महत्वपूर्ण केंद्र था, और यहाँ एक भंडारगृह था जिसमें बहुत-सी मुहरें और मुद्रांकन मिले।",
+  f"{OP1}, Chapter 4 (In the Earliest Cities); {ART1}, Chapter 2 (Arts of the Indus Valley).",
+  "l1-rev-dancing-girl-lothal", craft="recall")
+
+M(AN, "medium",
+  "In a village of northern India about 2,500 years ago, a man held a post that passed from father to son. He was often the largest landowner, had his fields worked by slaves and hired workers, collected taxes from the village for the king, and sometimes acted as judge and policeman. He was the:",
+  "लगभग 2,500 वर्ष पहले उत्तर भारत के एक गाँव में एक व्यक्ति ऐसे पद पर था जो पिता से पुत्र को मिलता था। वह प्रायः सबसे बड़ा भूस्वामी होता था, उसके खेतों में दास और भाड़े के मज़दूर काम करते थे, वह राजा के लिए गाँव से कर वसूलता था, और कभी-कभी न्यायाधीश और पुलिस का काम भी करता था। वह था:",
+  ["grama bhojaka", "grihapati", "dasa karmakara", "dhamma mahamatta"],
+  ["ग्राम भोजक", "गृहपति", "दास कर्मकार", "धम्म महामात्त"],
+  0,
+  "In the northern part of the subcontinent the village headman was the grama bhojaka. The post was usually hereditary; as the most powerful man in the village he was used by the king to collect taxes, and he also acted as judge and sometimes as policeman. "
+  "Grihapatis were independent farmers, most of them smaller landowners; dasa karmakaras were men and women who owned no land and worked on fields owned by others; dhamma mahamattas were the officials Ashoka appointed to teach people about dhamma.",
+  "उपमहाद्वीप के उत्तरी भाग में गाँव का मुखिया ग्राम भोजक कहलाता था। यह पद प्रायः वंशानुगत होता था; गाँव का सबसे शक्तिशाली व्यक्ति होने के कारण राजा उससे कर वसूलवाता था, और वह न्यायाधीश तथा कभी-कभी पुलिस का काम भी करता था। "
+  "गृहपति स्वतंत्र किसान थे, जिनमें अधिकांश छोटे भूस्वामी थे; दास कर्मकार वे स्त्री-पुरुष थे जिनके पास ज़मीन नहीं थी और जो दूसरों के खेतों पर काम करते थे; धम्म महामात्त वे अधिकारी थे जिन्हें अशोक ने लोगों को धम्म सिखाने के लिए नियुक्त किया था।",
+  f"{OP1}, Chapter 9 (Vital Villages, Thriving Towns).",
+  "l1-rev-grama-bhojaka", pos=3, craft="application")
+
+S(AN, "medium", "The Upanishads record discussions on the nature of the soul and the universe. Consider the following statements about who took part in them:",
+  "उपनिषदों में आत्मा और ब्रह्मांड के स्वरूप पर हुई चर्चाएँ दर्ज हैं। इनमें कौन भाग लेता था, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Most of the thinkers were men, especially brahmins and rajas.",
+   "Women were not wholly excluded: Gargi, famous for her learning, took part in debates held in royal courts.",
+   "Birth was no bar: poor people and slaves regularly joined the debates as equals."],
+  ["अधिकांश चिंतक पुरुष थे, विशेषकर ब्राह्मण और राजा।",
+   "स्त्रियाँ पूरी तरह बाहर नहीं थीं: अपनी विद्वत्ता के लिए प्रसिद्ध गार्गी ने राजदरबारों में होने वाले वाद-विवादों में भाग लिया।",
+   "जन्म कोई बाधा नहीं था: ग़रीब लोग और दास नियमित रूप से बराबरी के साथ इन वाद-विवादों में शामिल होते थे।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Most Upanishadic thinkers were men, especially brahmins and rajas, with occasional women thinkers such as Gargi. "
+  "Statement 3 is wrong: poor people rarely took part. The famous exception was Satyakama Jabala, named after his mother, the slave woman Jabali; because of his deep desire to learn, a brahmin teacher named Gautama accepted him as a student, and he became one of the best-known thinkers of the time -- an exception that shows the rule.",
+  "कथन 1 और 2 सही हैं। अधिकांश उपनिषदिक चिंतक पुरुष थे, विशेषकर ब्राह्मण और राजा, और कभी-कभी गार्गी जैसी स्त्री चिंतकों का उल्लेख मिलता है। "
+  "कथन 3 गलत है: ग़रीब लोग बहुत कम भाग लेते थे। प्रसिद्ध अपवाद सत्यकाम जाबाल थे, जिनका नाम उनकी माँ, दासी जबाली के नाम पर पड़ा; सीखने की उनकी गहरी इच्छा के कारण गौतम नामक एक ब्राह्मण शिक्षक ने उन्हें शिष्य बनाया, और वे उस समय के सबसे प्रसिद्ध चिंतकों में से एक बने -- यह अपवाद ही नियम को दर्शाता है।",
+  f"{OP1}, Chapter 7 (New Questions and Ideas).",
+  "l1-rev-upanishad-thinkers-gargi", craft="inference")
+
+S(AN, "medium", "Consider the following statements about the term 'dakshinapatha':",
+  "'दक्षिणापथ' शब्द के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It literally meant the route leading to the south, and was also used as a name for the entire southern region.",
+   "Gautamiputra Shri Satakarni and other Satavahana rulers were known as lords of the dakshinapatha.",
+   "Samudragupta's prashasti says that the rulers of the dakshinapatha surrendered to him and were then allowed to rule again."],
+  ["इसका शाब्दिक अर्थ था दक्षिण की ओर जाने वाला मार्ग, और यह पूरे दक्षिणी क्षेत्र के नाम के रूप में भी प्रयुक्त होता था।",
+   "गौतमीपुत्र श्री सातकर्णि और अन्य सातवाहन शासक दक्षिणापथ के स्वामी कहलाते थे।",
+   "समुद्रगुप्त की प्रशस्ति कहती है कि दक्षिणापथ के शासकों ने उसके सामने आत्मसमर्पण किया और फिर उन्हें दोबारा शासन करने दिया गया।"],
+  C3, 2,
+  "All three statements are correct. The Satavahanas, the most important of whom was Gautamiputra Shri Satakarni, were called lords of the dakshinapatha. "
+  "Samudragupta's prashasti treats different regions differently: the nine rulers of Aryavarta were uprooted and their kingdoms made part of his empire, but the twelve rulers of the dakshinapatha, some of whom ruled from Kanchipuram, surrendered after being defeated and were allowed to rule again. "
+  "The same southern lands thus appear first as the base of a Deccan dynasty and later as a region that a north Indian conqueror chose not to annex.",
+  "तीनों कथन सही हैं। सातवाहन, जिनमें सबसे महत्वपूर्ण गौतमीपुत्र श्री सातकर्णि थे, दक्षिणापथ के स्वामी कहलाते थे। "
+  "समुद्रगुप्त की प्रशस्ति अलग-अलग क्षेत्रों से अलग व्यवहार दर्शाती है: आर्यावर्त के नौ शासकों को उखाड़ फेंका गया और उनके राज्य उसके साम्राज्य में मिला लिए गए, पर दक्षिणापथ के बारह शासकों ने, जिनमें से कुछ कांचीपुरम से शासन करते थे, पराजित होने के बाद आत्मसमर्पण किया और उन्हें फिर से शासन करने दिया गया। "
+  "इस तरह वही दक्षिणी भूमि पहले दक्कन के एक राजवंश के आधार के रूप में और बाद में ऐसे क्षेत्र के रूप में दिखती है जिसे उत्तर भारत के एक विजेता ने अपने राज्य में न मिलाने का निर्णय किया।",
+  f"{OP1}, Chapter 10 (Traders, Kings and Pilgrims) and Chapter 11 (New Empires and Kingdoms).",
+  "l1-rev-dakshinapatha", craft="linkage")
+
+P(AN, "medium", "Consider the following pairs of figures from the Mahabharata and the stories told about them:",
+  "महाभारत के पात्रों और उनसे जुड़ी कथाओं के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Ekalavya : A forest-dwelling nishada whom Drona refused as a pupil, and from whom he later demanded the right thumb as his fee",
+   "Hidimba : A rakshasa woman who married Bhima and bore him a son, Ghatotkacha",
+   "Draupadi : Her marriage to the five Pandavas is an instance of polyandry",
+   "Gandhari : Made a last appeal to her eldest son, Duryodhana, to make peace with the Pandavas"],
+  ["एकलव्य : वन में रहने वाला निषाद जिसे द्रोण ने शिष्य बनाने से मना किया, और जिससे बाद में गुरु-दक्षिणा में दाहिने हाथ का अँगूठा माँगा",
+   "हिडिंबा : एक राक्षसी जिसने भीम से विवाह किया और उनके पुत्र घटोत्कच को जन्म दिया",
+   "द्रौपदी : पाँच पांडवों से उसका विवाह बहुपतित्व (polyandry) का उदाहरण है",
+   "गांधारी : अपने ज्येष्ठ पुत्र दुर्योधन से पांडवों के साथ शांति करने की अंतिम अपील की"],
+  3,
+  "All four pairs are correctly matched. Historians read these stories for what they reveal about social norms: Ekalavya's story shows how learning was restricted by birth, and how a nishada who knew the dharma could still be denied; "
+  "the Hidimba episode shows how the authors of the epic viewed forest peoples, whom they described as rakshasas; Draupadi's marriage was unusual, and historians suggest that polyandry may once have been practised among some ruling groups or in times of crisis; "
+  "Gandhari's appeal to Duryodhana shows a mother advising peace, an advice her son did not heed.",
+  "चारों युग्म सही सुमेलित हैं। इतिहासकार इन कथाओं को सामाजिक मानदंडों के साक्ष्य के रूप में पढ़ते हैं: एकलव्य की कथा दिखाती है कि शिक्षा जन्म से कैसे सीमित थी, और धर्म जानने वाले निषाद को भी कैसे वंचित किया जा सकता था; "
+  "हिडिंबा का प्रसंग दिखाता है कि महाकाव्य के रचनाकार वनवासियों को कैसे देखते थे, जिन्हें वे राक्षस कहते थे; द्रौपदी का विवाह असामान्य था, और इतिहासकार मानते हैं कि बहुपतित्व कभी कुछ शासक समूहों में या संकट के समय में प्रचलित रहा होगा; "
+  "दुर्योधन से गांधारी की अपील एक माँ की शांति की सलाह दिखाती है, जिसे उसके पुत्र ने नहीं माना।",
+  f"{TH1}, Chapter 3 (Kinship, Caste and Class).",
+  "l1-rev-mahabharata-figures-pairs", craft="recall")
+
+S(AN, "hard", "Consider the following statements about property and gender according to the Manusmriti:",
+  "मनुस्मृति के अनुसार संपत्ति और लिंग के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The paternal estate was to be divided equally among the sons after the death of the parents, with a special share for the eldest.",
+   "Women could keep the gifts they received at marriage as stridhana, which their children could inherit without the husband having any claim on it.",
+   "Women were encouraged to keep and manage family property and their own valuables independently of their husbands."],
+  ["माता-पिता की मृत्यु के बाद पैतृक संपत्ति पुत्रों में बराबर बाँटी जानी थी, और ज्येष्ठ पुत्र को एक विशेष भाग मिलना था।",
+   "स्त्रियाँ विवाह के समय मिले उपहारों को स्त्रीधन के रूप में रख सकती थीं, जिसे उनकी संतान विरासत में पा सकती थी और जिस पर पति का कोई दावा नहीं होता था।",
+   "स्त्रियों को पारिवारिक संपत्ति और अपनी मूल्यवान वस्तुएँ पति से स्वतंत्र रूप से रखने और संभालने के लिए प्रोत्साहित किया गया था।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: women could not claim a share of the paternal estate, but stridhana (literally, a woman's wealth) passed to their children, not to the husband. "
+  "Statement 3 is wrong: the Manusmriti warned women against hoarding family property, or even their own valuables, without the husband's permission. "
+  "So, while upper-class women may have had access to some resources, land, cattle and money were generally controlled by men.",
+  "कथन 1 और 2 सही हैं: स्त्रियाँ पैतृक संपत्ति में हिस्से का दावा नहीं कर सकती थीं, पर स्त्रीधन (शाब्दिक अर्थ, स्त्री का धन) उनकी संतान को मिलता था, पति को नहीं। "
+  "कथन 3 गलत है: मनुस्मृति स्त्रियों को पति की अनुमति के बिना पारिवारिक संपत्ति, यहाँ तक कि अपनी मूल्यवान वस्तुओं का भी संचय करने से मना करती थी। "
+  "इसलिए उच्च वर्ग की स्त्रियों की कुछ संसाधनों तक पहुँच भले रही हो, ज़मीन, मवेशी और धन पर सामान्यतः पुरुषों का नियंत्रण था।",
+  f"{TH1}, Chapter 3 (Kinship, Caste and Class).",
+  "l1-rev-manusmriti-stridhana", craft="precision")
+
+# ================================================================ Medieval (3)
+S(ME, "easy", "Consider the following statements about the Banjaras:",
+  "बंजारों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They were trader-nomads whose caravan was called a tanda.",
+   "They transported food grain for the Mughal army during military campaigns."],
+  ["वे व्यापारी-घुमंतू थे जिनके कारवाँ को टांडा कहा जाता था।",
+   "वे सैन्य अभियानों के दौरान मुग़ल सेना के लिए अनाज ढोते थे।"],
+  T2, 2,
+  "Both statements are correct. The Banjaras were the most important trader-nomads, moving in caravans called tandas. Jahangir wrote in his memoirs that they carried grain on their bullocks from different areas and sold it in towns, "
+  "and for a large army on campaign there could be as many as 100,000 bullocks carrying grain.",
+  "दोनों कथन सही हैं। बंजारे सबसे महत्वपूर्ण व्यापारी-घुमंतू थे, जो टांडा कहे जाने वाले कारवाँ में चलते थे। जहाँगीर ने अपने संस्मरणों में लिखा कि वे अलग-अलग इलाक़ों से अपने बैलों पर अनाज लाकर क़स्बों में बेचते थे, "
+  "और अभियान पर निकली बड़ी सेना के लिए अनाज ढोने वाले बैलों की संख्या 1,00,000 तक हो सकती थी।",
+  f"{OP2}, Chapter 7 (Tribes, Nomads and Settled Communities).",
+  "l1-rev-banjaras-tanda", craft="recall")
+
+M(ME, "medium", "The system called 'rakhi', introduced by the Sikhs in the eighteenth century, was:",
+  "अठारहवीं सदी में सिखों द्वारा आरंभ की गई 'राखी' नामक व्यवस्था थी:",
+  ["protection offered to cultivators in return for a tax of 20 per cent of their produce",
+   "a claim to one-fourth of the land revenue of territories lying outside one's own kingdom",
+   "an assignment of the revenue of an area to an officer in place of a cash salary",
+   "a collective decision taken by the whole body at Amritsar at Baisakhi and Diwali"],
+  ["किसानों को उनकी उपज के 20 प्रतिशत कर के बदले दी जाने वाली सुरक्षा",
+   "अपने राज्य से बाहर के क्षेत्रों के भू-राजस्व के एक-चौथाई भाग पर दावा",
+   "किसी अधिकारी को नक़द वेतन के बदले किसी क्षेत्र के राजस्व का आवंटन",
+   "बैसाखी और दीवाली पर अमृतसर में पूरे समुदाय द्वारा लिया गया सामूहिक निर्णय"],
+  0,
+  "In the eighteenth century the Sikhs organised themselves into bands called jathas and later misls, whose combined force was the dal khalsa; the whole body met at Amritsar at Baisakhi and Diwali to take collective decisions called gurmatas (resolutions of the Guru), and the rakhi system offered cultivators protection for a tax of 20 per cent of the produce. "
+  "Under Maharaja Ranjit Singh the Sikh groups were reunited, with Lahore as the capital from 1799. "
+  "A claim to a quarter of the land revenue describes the Maratha chauth, and an assignment of revenue in place of salary the Mughal jagir.",
+  "अठारहवीं सदी में सिखों ने स्वयं को जत्थों और बाद में मिसलों में संगठित किया, जिनकी संयुक्त सेना दल ख़ालसा कहलाती थी; पूरा समुदाय बैसाखी और दीवाली पर अमृतसर में मिलकर सामूहिक निर्णय लेता था जिन्हें गुरमता (गुरु के प्रस्ताव) कहा जाता था, और राखी व्यवस्था में किसानों को उपज के 20 प्रतिशत कर के बदले सुरक्षा दी जाती थी। "
+  "महाराजा रणजीत सिंह के अधीन सिख समूह फिर से एक हुए, और 1799 से लाहौर राजधानी बना। "
+  "भू-राजस्व के एक-चौथाई पर दावा मराठों की चौथ का, और वेतन के बदले राजस्व का आवंटन मुग़ल जागीर का वर्णन है।",
+  f"{OP2}, Chapter 10 (Eighteenth-Century Political Formations).",
+  "l1-rev-sikh-rakhi-system", pos=0, craft="precision")
+
+S(ME, "medium", "Consider the following statements about Surat in the Mughal period:",
+  "मुग़ल काल में सूरत के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was the gateway for trade with West Asia via the Gulf of Ormuz.",
+   "It was called the gate to Mecca, because many pilgrim ships set sail from there.",
+   "Its textiles, famous for their gold lace borders (zari), had a market in West Asia, Africa and Europe.",
+   "Its decline towards the end of the seventeenth century was caused mainly by a Mughal ban on European factories in the city."],
+  ["यह होर्मुज़ (ओरमुज़) की खाड़ी के रास्ते पश्चिम एशिया के साथ व्यापार का प्रवेश-द्वार था।",
+   "इसे मक्का का द्वार कहा जाता था, क्योंकि बहुत-से तीर्थयात्री जहाज़ यहीं से रवाना होते थे।",
+   "सुनहरी ज़री की किनारी के लिए प्रसिद्ध इसके वस्त्रों का बाज़ार पश्चिम एशिया, अफ़्रीका और यूरोप में था।",
+   "सत्रहवीं सदी के अंत की ओर इसका पतन मुख्यतः शहर में यूरोपीय कारख़ानों (फ़ैक्टरियों) पर मुग़ल प्रतिबंध के कारण हुआ।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct. Surat, with Cambay and later Ahmedabad, was the emporium of western trade in the Mughal period; it was cosmopolitan, and in the seventeenth century the Portuguese, Dutch and English all had their factories and warehouses there. "
+  "Statement 4 is wrong: Surat declined because of the loss of markets and productivity as the Mughal Empire declined, Portuguese control of the sea routes, and competition from Bombay, where the English East India Company shifted its headquarters in 1668.",
+  "कथन 1, 2 और 3 सही हैं। मुग़ल काल में खंभात और बाद में अहमदाबाद के साथ सूरत पश्चिमी व्यापार का बड़ा केंद्र था; यह सर्वदेशीय शहर था, और सत्रहवीं सदी में पुर्तगाली, डच और अंग्रेज़ सभी के यहाँ कारख़ाने और गोदाम थे। "
+  "कथन 4 गलत है: सूरत का पतन मुग़ल साम्राज्य के पतन के साथ बाज़ारों और उत्पादकता के घटने, समुद्री मार्गों पर पुर्तगाली नियंत्रण, और बंबई की प्रतिस्पर्धा के कारण हुआ, जहाँ अंग्रेज़ ईस्ट इंडिया कंपनी ने 1668 में अपना मुख्यालय स्थानांतरित किया।",
+  f"{OP2}, Chapter 6 (Towns, Traders and Craftspersons).",
+  "l1-rev-surat-mughal-port", craft="inference")
+
+# ================================================================ Music & Dance (1)
+S(MD, "easy", "Consider the following statements about Kalbelia:",
+  "कालबेलिया के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is the folk song and dance tradition of a community of Rajasthan who were once professional snake handlers.",
+   "In the dance, the men perform while the women accompany them on the poongi and the khanjari."],
+  ["यह राजस्थान के उस समुदाय की लोकगीत और लोकनृत्य परंपरा है जो कभी पेशेवर सपेरे थे।",
+   "इस नृत्य में पुरुष नाचते हैं जबकि स्त्रियाँ पूंगी और खंजरी बजाकर उनका साथ देती हैं।"],
+  T2, 0,
+  "Only statement 1 is correct. The Kalbelia evoke their former occupation in their songs and dances, which UNESCO inscribed in 2010 on its Representative List of the Intangible Cultural Heritage of Humanity. "
+  "Statement 2 reverses the roles: the women, in flowing black skirts, dance and swirl in movements that recall a serpent, while the men accompany them on the khanjari (a percussion instrument) and the poongi (a woodwind instrument once used to catch snakes).",
+  "केवल कथन 1 सही है। कालबेलिया अपने गीतों और नृत्यों में अपने पुराने पेशे की याद करते हैं, जिन्हें यूनेस्को ने 2010 में मानवता की अमूर्त सांस्कृतिक विरासत की प्रतिनिधि सूची में शामिल किया। "
+  "कथन 2 भूमिकाएँ उलट देता है: लहराते काले घाघरों में स्त्रियाँ साँप जैसी मुद्राओं में घूमते हुए नाचती हैं, जबकि पुरुष खंजरी (एक ताल वाद्य) और पूंगी (साँप पकड़ने में प्रयुक्त होने वाला एक सुषिर वाद्य) बजाकर उनका साथ देते हैं।",
+  "Sangeet Natak Akademi; UNESCO, Representative List of the Intangible Cultural Heritage of Humanity (2010).",
+  "l1-rev-kalbelia", craft="recall")
+
+# ================================================================ Painting (1)
+M(PA, "hard",
+  "'Company painting' developed in the late eighteenth and nineteenth centuries at centres such as Murshidabad, Patna, Lucknow and Tanjore. Historians value these paintings today mainly because:",
+  "'कंपनी चित्रकला' अठारहवीं सदी के अंत और उन्नीसवीं सदी में मुर्शिदाबाद, पटना, लखनऊ और तंजौर जैसे केंद्रों पर विकसित हुई। इतिहासकार आज इन चित्रों को मुख्यतः इसलिए महत्व देते हैं क्योंकि:",
+  ["Indian artists working for European patrons recorded the occupations, dress and festivals of the time",
+   "they are the earliest paintings in the subcontinent made on paper, which until then had been used only for writing",
+   "they were the first paintings to show Hindu deities in the style of European oil portraits, for sale as prints",
+   "they illustrated the official chronicles of the later Mughal emperors, written at the court in Delhi"],
+  ["यूरोपीय संरक्षकों के लिए काम करने वाले भारतीय चित्रकारों ने उस समय के पेशों, पहनावे और त्योहारों को दर्ज किया",
+   "ये उपमहाद्वीप के काग़ज़ पर बने सबसे पुराने चित्र हैं, जो काग़ज़ तब तक केवल लिखने के काम आता था",
+   "ये पहले चित्र थे जिनमें हिंदू देवताओं को यूरोपीय तैल-चित्रों की शैली में, प्रिंट के रूप में बेचने के लिए, दिखाया गया",
+   "इनमें दिल्ली के दरबार में लिखे गए उत्तरवर्ती मुग़ल बादशाहों के आधिकारिक इतिहास-ग्रंथों का चित्रण था"],
+  0,
+  "Company officials wanted pictures of the land they now ruled, so Indian painters trained in Mughal and regional traditions adapted their work to European taste -- watercolour on paper, shading and perspective -- and painted sets of occupations and castes, festivals, costumes, monuments, plants and birds. "
+  "These sets are a valuable visual record of everyday life in that period. Paper had long been used for painting under the Mughals; Hindu deities in the manner of European oil portraits, sold as prints, are linked with Raja Ravi Varma; and the illustrated court chronicles belong to the Mughal ateliers.",
+  "कंपनी के अधिकारी उस भूमि के चित्र चाहते थे जिस पर अब वे शासन करते थे, इसलिए मुग़ल और क्षेत्रीय परंपराओं में प्रशिक्षित भारतीय चित्रकारों ने अपने काम को यूरोपीय रुचि के अनुसार ढाला -- काग़ज़ पर जलरंग, छाया और परिप्रेक्ष्य -- और पेशों व जातियों, त्योहारों, वेशभूषा, स्मारकों, पौधों और पक्षियों के चित्र-संग्रह बनाए। "
+  "ये संग्रह उस काल के दैनिक जीवन का एक मूल्यवान दृश्य अभिलेख हैं। मुग़लों के अधीन काग़ज़ पर चित्रकारी बहुत पहले से होती थी; यूरोपीय तैल-चित्रों की शैली में प्रिंट के रूप में बिकने वाले हिंदू देवताओं के चित्र राजा रवि वर्मा से जुड़े हैं; और सचित्र दरबारी इतिहास-ग्रंथ मुग़ल चित्रशालाओं की देन हैं।",
+  f"{ART2} (The Bengal School and Cultural Nationalism).",
+  "l1-rev-company-painting", pos=3, craft="inference")
+
+write("rev_l1_t7_b.sql")

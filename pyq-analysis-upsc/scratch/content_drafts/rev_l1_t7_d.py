@@ -1,0 +1,222 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 7 (GS Foundation Revision, NCERT Foundation) -- part D: Geography (12) (upsc_l1_cell_targets.mjs 7).
+Geography cells: Climatology e-MCQ, m-stmt; Indian Physiography e-MCQ, m-stmt; World Regions e-stmt, m-MCQ, m-stmt;
+Indian Rivers e-SI, m-stmt; Geomorphology m-stmt; Resources h-SI; Transport & Human Geography h-pairs.
+Level 2 and Level-1 Test 4 hold the standard Geography facts, so this part draws on what neither used: the
+normal lapse rate worked as a sum, bugyals, the velds, the Brahmaputra in Tibet and India, the kolkhoz, pressure
+with height and the turning of winds round a cyclone, the uses of lakes, degassing and the early atmosphere,
+conurbation and megalopolis, the Bharmaur tribal sub-plan, rice in Punjab and Haryana, and the types of port
+(Fundamentals of Physical and Human Geography, India: Physical Environment, India: People and Economy,
+Contemporary India I, Our Environment). MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Geography"
+d.REQUIRE_CRAFT = True
+CL, IP = "Climatology & Biomes", "Indian Physiography, Climate & Regions"
+WR, IR = "World Regions, Water Bodies & Places", "Indian Rivers, Lakes & Wetlands"
+GM, RE = "Geomorphology & Earth's Interior", "Resources: Minerals, Energy & Agriculture"
+TR = "Transport, Ports & Human Geography"
+GF11 = "NCERT Class XI, Geography -- Fundamentals of Physical Geography"
+GE11 = "NCERT Class XI, Geography -- India: Physical Environment"
+HG12 = "NCERT Class XII, Geography -- Fundamentals of Human Geography"
+GE12 = "NCERT Class XII, Geography -- India: People and Economy"
+CI9 = "NCERT Class IX, Geography -- Contemporary India I"
+OE7 = "NCERT Class VII, Geography -- Our Environment"
+
+# ================================================================ Climatology & Biomes (2)
+M(CL, "easy",
+  "Temperature in the troposphere normally falls by about 1 °C for every 165 metres of height (the normal lapse rate). If a town at sea level records 30 °C, the temperature on a hilltop 1,650 metres above it would be about:",
+  "क्षोभमंडल में तापमान सामान्यतः हर 165 मीटर की ऊँचाई पर लगभग 1 °C घटता है (सामान्य ह्रास दर)। यदि समुद्र तल पर स्थित किसी नगर का तापमान 30 °C हो, तो उससे 1,650 मीटर ऊँची पहाड़ी की चोटी पर तापमान लगभग होगा:",
+  ["20 °C", "25 °C", "13.5 °C", "28.4 °C"],
+  ["20 °C", "25 °C", "13.5 °C", "28.4 °C"],
+  0,
+  "1,650 metres divided by 165 metres gives 10, so the temperature falls by about 10 °C, from 30 °C to about 20 °C. "
+  "Temperature falls with height because the troposphere is heated mainly from below, by the long-wave radiation given off by the earth's surface; this is why hill stations are cooler than the plains even in the tropics. "
+  "25 °C would halve the effect, 13.5 °C assumes a fall of about 1 °C for every 100 metres, and 28.4 °C a fall of about 1 °C per kilometre.",
+  "1,650 मीटर को 165 मीटर से भाग देने पर 10 आता है, इसलिए तापमान लगभग 10 °C घटकर 30 °C से लगभग 20 °C हो जाता है। "
+  "ऊँचाई के साथ तापमान इसलिए घटता है क्योंकि क्षोभमंडल मुख्यतः नीचे से, पृथ्वी की सतह द्वारा छोड़े गए दीर्घ-तरंग विकिरण से, गर्म होता है; इसी कारण उष्णकटिबंध में भी पहाड़ी स्थान मैदानों से ठंडे रहते हैं। "
+  "25 °C प्रभाव को आधा कर देता है, 13.5 °C हर 100 मीटर पर लगभग 1 °C की गिरावट मानता है, और 28.4 °C हर किलोमीटर पर लगभग 1 °C की।",
+  f"{GF11}, Chapter 8 (Solar Radiation, Heat Balance and Temperature).",
+  "l1-rev-normal-lapse-rate", pos=3, craft="application")
+
+S(CL, "medium", "Consider the following statements about atmospheric pressure and winds:",
+  "वायुमंडलीय दाब और पवनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Normal atmospheric pressure at sea level is about 1,013.2 millibars.",
+   "In the lower atmosphere, pressure falls rapidly with height, by about 1 millibar for every 10 metres.",
+   "In the northern hemisphere, winds blow clockwise around a low-pressure centre (a cyclone)."],
+  ["समुद्र तल पर सामान्य वायुमंडलीय दाब लगभग 1,013.2 मिलीबार होता है।",
+   "निचले वायुमंडल में दाब ऊँचाई के साथ तेज़ी से, लगभग हर 10 मीटर पर 1 मिलीबार, घटता है।",
+   "उत्तरी गोलार्ध में पवनें निम्न दाब केंद्र (चक्रवात) के चारों ओर दक्षिणावर्त (clockwise) चलती हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The large vertical pressure gradient does not produce strong upward winds because it is largely balanced by gravity. "
+  "Statement 3 is wrong: deflected by the Coriolis force, winds blow anticlockwise around a cyclone in the northern hemisphere and clockwise in the southern hemisphere; around an anticyclone (a high-pressure centre) the pattern is reversed -- clockwise in the north, anticlockwise in the south.",
+  "कथन 1 और 2 सही हैं। बड़ी ऊर्ध्वाधर दाब प्रवणता से तेज़ ऊपर की ओर पवनें नहीं चलतीं, क्योंकि गुरुत्व बल उसे काफ़ी हद तक संतुलित कर देता है। "
+  "कथन 3 गलत है: कोरिऑलिस बल से विक्षेपित होकर पवनें उत्तरी गोलार्ध में चक्रवात के चारों ओर वामावर्त (anticlockwise) और दक्षिणी गोलार्ध में दक्षिणावर्त चलती हैं; प्रतिचक्रवात (उच्च दाब केंद्र) के चारों ओर यह उलट जाता है -- उत्तर में दक्षिणावर्त, दक्षिण में वामावर्त।",
+  f"{GF11}, Chapter 10 (Atmospheric Circulation and Weather Systems).",
+  "l1-rev-pressure-cyclone-rotation", craft="precision")
+
+# ================================================================ Indian Physiography, Climate & Regions (2)
+M(IP, "easy",
+  "In the Great Himalayan range of Uttarakhand, the Bhotias, a nomadic group, take their herds in summer to grasslands in the higher reaches and return to the valleys in winter. These summer grasslands are known as:",
+  "उत्तराखंड की महान हिमालय श्रेणी में घुमंतू भोटिया गर्मियों में अपने पशुओं को ऊँचाई पर स्थित घास के मैदानों में ले जाते हैं और सर्दियों में घाटियों में लौट आते हैं। ये ग्रीष्मकालीन घास के मैदान कहलाते हैं:",
+  ["bugyals", "duns", "duars", "karewas"],
+  ["बुग्याल", "दून", "द्वार (दुआर)", "करेवा"],
+  0,
+  "Bugyals are the summer grasslands of the higher reaches of the Uttarakhand Himalaya, to which the Bhotias migrate in summer. "
+  "Duns are the longitudinal valleys between the Lesser Himalaya and the Shiwaliks, such as Dehra Dun; duars are the foothill formations of the Darjiling and Sikkim Himalaya, used for tea gardens; and karewas are the thick glacial clay deposits of the Kashmir valley, used for growing saffron.",
+  "बुग्याल उत्तराखंड हिमालय के ऊँचे भागों के ग्रीष्मकालीन घास के मैदान हैं, जहाँ भोटिया गर्मियों में प्रवास करते हैं। "
+  "दून लघु हिमालय और शिवालिक के बीच की अनुदैर्ध्य घाटियाँ हैं, जैसे देहरादून; द्वार दार्जिलिंग और सिक्किम हिमालय की तलहटी की संरचनाएँ हैं, जिनका उपयोग चाय बाग़ानों के लिए होता है; और करेवा कश्मीर घाटी के मोटे हिमानी मृत्तिका निक्षेप हैं, जिन पर केसर उगाया जाता है।",
+  f"{GE11}, Chapter 2 (Structure and Physiography).",
+  "l1-rev-bugyals-bhotias", pos=3, craft="recall")
+
+S(IP, "medium", "Consider the following statements about the Bharmaur tribal region of Himachal Pradesh:",
+  "हिमाचल प्रदेश के भरमौर जनजातीय क्षेत्र के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It lies in Chamba district and is inhabited mainly by Gaddis, who have kept a distinct identity and speak the Gaddiali dialect.",
+   "Notified as a tribal area in 1975, it received an Integrated Tribal Development Project that gave priority to transport and communications, agriculture and allied activities, and social services.",
+   "Literacy, including female literacy, rose sharply after the project.",
+   "Pastoralism has grown in importance since then, and most households now migrate seasonally with their flocks."],
+  ["यह चंबा ज़िले में है और यहाँ मुख्यतः गद्दी रहते हैं, जिन्होंने अपनी अलग पहचान बनाए रखी है और जो गद्दियाली बोली बोलते हैं।",
+   "1975 में जनजातीय क्षेत्र अधिसूचित होने पर इसे एक समन्वित जनजातीय विकास परियोजना मिली, जिसने परिवहन और संचार, कृषि व संबद्ध गतिविधियों, और सामाजिक सेवाओं को प्राथमिकता दी।",
+   "परियोजना के बाद साक्षरता, जिसमें स्त्री साक्षरता भी शामिल है, तेज़ी से बढ़ी।",
+   "तब से पशुचारण का महत्व बढ़ा है, और अब अधिकांश परिवार अपने रेवड़ों के साथ मौसमी प्रवास करते हैं।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct. Under the tribal sub-plan of the Fifth Five Year Plan, Bharmaur, comprising the Bharmaur and Holi tehsils, became one of the Integrated Tribal Development Projects of Himachal Pradesh; its largest contribution was infrastructure -- schools, health care, drinking water, roads, communications and electricity. "
+  "Literacy rose from about 12 per cent in 1971 to about 65 per cent in 2011, and female literacy from under 5 per cent to over 42 per cent; the sex ratio improved and child marriage declined. "
+  "Statement 4 is wrong: the share of pastoralism in the economy has fallen, and only about a tenth of households still practise transhumance, while pulses and cash crops have gained.",
+  "कथन 1, 2 और 3 सही हैं। पाँचवीं पंचवर्षीय योजना की जनजातीय उप-योजना के अंतर्गत भरमौर और होली तहसीलों वाला भरमौर हिमाचल प्रदेश की समन्वित जनजातीय विकास परियोजनाओं में से एक बना; इसका सबसे बड़ा योगदान अवसंरचना था -- स्कूल, स्वास्थ्य सेवा, पेयजल, सड़कें, संचार और बिजली। "
+  "साक्षरता 1971 के लगभग 12 प्रतिशत से बढ़कर 2011 में लगभग 65 प्रतिशत हो गई, और स्त्री साक्षरता 5 प्रतिशत से कम से बढ़कर 42 प्रतिशत से अधिक; लिंगानुपात सुधरा और बाल विवाह घटे। "
+  "कथन 4 गलत है: अर्थव्यवस्था में पशुचारण का हिस्सा घटा है, और केवल लगभग दसवाँ भाग परिवार अब भी ऋतु-प्रवास करते हैं, जबकि दलहन और नक़दी फ़सलों का महत्व बढ़ा है।",
+  f"{GE12}, Chapter 9 (Planning and Sustainable Development in Indian Context -- the Bharmaur case study).",
+  "l1-rev-bharmaur-itdp", craft="inference")
+
+# ================================================================ World Regions, Water Bodies & Places (3)
+S(WR, "easy", "Consider the following statements about the velds of South Africa:",
+  "दक्षिण अफ़्रीका के वेल्ड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The velds are rolling plateaus bounded by the Drakensberg mountains on the east, with the Kalahari desert to their west.",
+   "Kimberley and Johannesburg, in the veld region, are known for diamond mining and gold mining respectively."],
+  ["वेल्ड लहरदार पठार हैं जिनके पूर्व में ड्रेकन्सबर्ग पर्वत हैं और पश्चिम में कालाहारी मरुस्थल।",
+   "वेल्ड क्षेत्र के किंबरली और जोहान्सबर्ग क्रमशः हीरे और सोने के खनन के लिए जाने जाते हैं।"],
+  T2, 2,
+  "Both statements are correct. The velds have a mild climate, with most of their rain in the summer months; where the soil is fertile, maize, wheat, barley, oats and potatoes are grown. "
+  "Cattle rearing and mining are the main occupations, Merino sheep are widely raised for their wool, and Kimberley and Johannesburg grew around diamond and gold mines.",
+  "दोनों कथन सही हैं। वेल्ड की जलवायु सम है और अधिकांश वर्षा गर्मी के महीनों में होती है; जहाँ मिट्टी उपजाऊ है वहाँ मक्का, गेहूँ, जौ, जई और आलू उगाए जाते हैं। "
+  "पशुपालन और खनन मुख्य व्यवसाय हैं, ऊन के लिए मेरिनो भेड़ें बड़े पैमाने पर पाली जाती हैं, और किंबरली व जोहान्सबर्ग हीरे और सोने की खानों के आसपास बढ़े।",
+  f"{OE7}, Chapter 9 (Life in the Temperate Grasslands).",
+  "l1-rev-velds-south-africa", craft="recall")
+
+M(WR, "medium",
+  "In a farming system introduced in the former Soviet Union, farmers pooled their land, livestock and labour and worked together, keeping only very small plots for their own needs; the government set yearly targets, and the produce was sold to the state at fixed prices. This collective farm was called the:",
+  "पूर्व सोवियत संघ में आरंभ की गई एक कृषि व्यवस्था में किसान अपनी ज़मीन, पशु और श्रम मिलाकर साथ काम करते थे और अपनी ज़रूरतों के लिए केवल बहुत छोटे भूखंड रखते थे; सरकार वार्षिक लक्ष्य तय करती थी, और उपज तय क़ीमतों पर राज्य को बेची जाती थी। यह सामूहिक फ़ार्म कहलाता था:",
+  ["kolkhoz", "fazenda", "estancia", "ladang"],
+  ["कोलखोज़", "फ़ज़ेंडा", "एस्टांसिया", "लदांग"],
+  0,
+  "The kolkhoz model of collective farming, based on social ownership of the means of production and collective labour, was introduced in the former Soviet Union to overcome the inefficiency of earlier methods and to make the country self-sufficient in food; produce beyond the fixed quota was shared among the members or sold in the market. "
+  "Fazendas are the large coffee plantations of Brazil, estancias the large ranches of Argentina, and ladang the name for shifting cultivation in Indonesia and Malaysia.",
+  "उत्पादन के साधनों के सामाजिक स्वामित्व और सामूहिक श्रम पर आधारित सामूहिक खेती का कोलखोज़ मॉडल पूर्व सोवियत संघ में पहले के तरीक़ों की अक्षमता दूर करने और देश को खाद्य में आत्मनिर्भर बनाने के लिए लाया गया; तय कोटे से अधिक उपज सदस्यों में बाँटी जाती या बाज़ार में बेची जाती थी। "
+  "फ़ज़ेंडा ब्राज़ील के बड़े कॉफ़ी बाग़ान हैं, एस्टांसिया अर्जेंटीना के बड़े पशु-फ़ार्म, और लदांग इंडोनेशिया व मलेशिया में स्थानांतरी कृषि का नाम है।",
+  f"{HG12}, Chapter 5 (Primary Activities).",
+  "l1-rev-kolkhoz", pos=0, craft="application")
+
+S(WR, "medium", "Consider the following statements about large urban regions:",
+  "बड़े नगरीय क्षेत्रों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["'Conurbation', a term coined by Patrick Geddes in 1915, is a large urban area formed when originally separate towns or cities merge, as in Greater London.",
+   "'Megalopolis', a term popularised by Jean Gottmann in 1957, describes a super-metropolitan region such as the one stretching from Boston to south of Washington.",
+   "London became a 'million city' only in the second half of the twentieth century."],
+  ["1915 में पैट्रिक गेडिस द्वारा गढ़ा गया शब्द 'सन्नगर' (conurbation) वह बड़ा नगरीय क्षेत्र है जो मूलतः अलग-अलग क़स्बों या नगरों के आपस में मिल जाने से बनता है, जैसे ग्रेटर लंदन।",
+   "1957 में ज्यां गॉटमैन द्वारा लोकप्रिय बनाया गया शब्द 'मेगालोपोलिस' बोस्टन से वॉशिंगटन के दक्षिण तक फैले क्षेत्र जैसे अति-महानगरीय प्रदेश को दर्शाता है।",
+   "लंदन बीसवीं सदी के उत्तरार्ध में ही 'मिलियन सिटी' (दस लाखी नगर) बना।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Greater London, Manchester, Chicago and Tokyo are examples of conurbations; a megalopolis -- Greek for 'great city' -- is a union of conurbations, and the urban landscape from Boston in the north to south of Washington is the best-known example. "
+  "Statement 3 is wrong: London was the first city to pass a million people, by about 1800, followed by Paris in 1850 and New York in 1860; by 1950 there were around eighty such cities.",
+  "कथन 1 और 2 सही हैं। ग्रेटर लंदन, मैनचेस्टर, शिकागो और टोक्यो सन्नगरों के उदाहरण हैं; मेगालोपोलिस -- यूनानी में 'महान नगर' -- सन्नगरों का संघ है, और उत्तर में बोस्टन से वॉशिंगटन के दक्षिण तक फैला नगरीय भूदृश्य इसका सबसे प्रसिद्ध उदाहरण है। "
+  "कथन 3 गलत है: लंदन लगभग 1800 तक दस लाख की आबादी पार करने वाला पहला नगर था, उसके बाद 1850 में पेरिस और 1860 में न्यूयॉर्क; 1950 तक ऐसे लगभग अस्सी नगर थे।",
+  f"{HG12}, Chapter 10 (Human Settlements).",
+  "l1-rev-conurbation-megalopolis", craft="precision")
+
+# ================================================================ Indian Rivers, Lakes & Wetlands (2)
+A(IR, "easy",
+  "The Brahmaputra carries a much larger volume of water and silt in India than it does in Tibet.",
+  "ब्रह्मपुत्र तिब्बत की तुलना में भारत में कहीं अधिक मात्रा में जल और गाद लेकर बहती है।",
+  "In Tibet the river flows through a cold and dry region, while in India it passes through a region of high rainfall.",
+  "तिब्बत में यह नदी एक ठंडे और शुष्क क्षेत्र से बहती है, जबकि भारत में यह अधिक वर्षा वाले क्षेत्र से गुज़रती है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. In cold, dry Tibet the river carries little water and silt; in India, fed by heavy rain, it carries a large volume of water and a considerable load of silt. "
+  "In Assam it has a braided channel along its whole length, overflows its banks every rainy season, and is known for shifting its channel frequently.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। ठंडे, शुष्क तिब्बत में नदी कम जल और कम गाद ढोती है; भारत में भारी वर्षा से पोषित होकर यह बड़ी मात्रा में जल और काफ़ी गाद ढोती है। "
+  "असम में इसकी पूरी लंबाई में गुंफित (braided) धारा है, यह हर वर्षा ऋतु में तटों से बाहर बहती है, और बार-बार अपनी धारा बदलने के लिए जानी जाती है।",
+  f"{CI9}, Chapter 3 (Drainage).",
+  "l1-rev-brahmaputra-tibet-india", craft="inference")
+
+S(IR, "medium", "Consider the following statements about lakes:",
+  "झीलों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Lakes help regulate the flow of a river, preventing floods in heavy rain and keeping up its flow in the dry season.",
+   "Lakes can be used to generate hydroelectricity, and they moderate the climate of their surroundings.",
+   "Lakes in the basins of inland drainage of semi-arid regions hold water throughout the year."],
+  ["झीलें नदी के प्रवाह को नियमित करने में मदद करती हैं -- भारी वर्षा में बाढ़ रोकती हैं और शुष्क ऋतु में प्रवाह बनाए रखती हैं।",
+   "झीलों का उपयोग जलविद्युत बनाने में हो सकता है, और वे आसपास की जलवायु को सम बनाती हैं।",
+   "अर्ध-शुष्क क्षेत्रों के आंतरिक अपवाह बेसिनों की झीलों में पूरे वर्ष पानी रहता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. By storing water in heavy rain and releasing it slowly, a lake acts as a buffer for the river; lakes also maintain aquatic ecosystems, add to natural beauty and support tourism and recreation. "
+  "Statement 3 is wrong: most lakes are permanent, but those in the basins of inland drainage of semi-arid regions often hold water only in the rainy season.",
+  "कथन 1 और 2 सही हैं। भारी वर्षा में पानी रोककर और उसे धीरे-धीरे छोड़कर झील नदी के लिए एक बफ़र का काम करती है; झीलें जलीय पारितंत्र भी बनाए रखती हैं, प्राकृतिक सौंदर्य बढ़ाती हैं और पर्यटन व मनोरंजन में सहायक होती हैं। "
+  "कथन 3 गलत है: अधिकांश झीलें स्थायी हैं, पर अर्ध-शुष्क क्षेत्रों के आंतरिक अपवाह बेसिनों की झीलों में प्रायः केवल वर्षा ऋतु में पानी रहता है।",
+  f"{CI9}, Chapter 3 (Drainage -- Lakes).",
+  "l1-rev-lakes-value", craft="inference")
+
+# ================================================================ Geomorphology & Earth's Interior (1)
+S(GM, "medium", "Consider the following statements about how the earth's atmosphere evolved:",
+  "पृथ्वी का वायुमंडल कैसे विकसित हुआ, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The early atmosphere, made largely of hydrogen and helium, was stripped away by the solar wind.",
+   "Gases released from the earth's interior -- mainly water vapour, nitrogen, carbon dioxide, methane and ammonia -- formed the next atmosphere, a process called degassing.",
+   "Free oxygen built up in the atmosphere much later, through photosynthesis by early life in the oceans."],
+  ["आरंभिक वायुमंडल, जो मुख्यतः हाइड्रोजन और हीलियम का था, सौर पवन द्वारा उड़ा दिया गया।",
+   "पृथ्वी के भीतर से निकली गैसों -- मुख्यतः जलवाष्प, नाइट्रोजन, कार्बन डाइऑक्साइड, मीथेन और अमोनिया -- से अगला वायुमंडल बना, जिस प्रक्रिया को गैस-उत्सर्जन (degassing) कहते हैं।",
+   "स्वतंत्र ऑक्सीजन वायुमंडल में बहुत बाद में, महासागरों के आरंभिक जीवों के प्रकाश-संश्लेषण से, जमा हुई।"],
+  C3, 2,
+  "All three statements are correct. The present atmosphere evolved in three stages: the loss of the primordial atmosphere; degassing from the hot interior as the earth cooled, with continued volcanic eruptions adding water vapour and gases, and the condensing water vapour filling the oceans; "
+  "and the change brought about by life. Life began about 3,800 million years ago, and photosynthesis evolved some 2,500-3,000 million years ago; over a long time the oceans filled with oxygen and began to release it to the atmosphere.",
+  "तीनों कथन सही हैं। वर्तमान वायुमंडल तीन चरणों में विकसित हुआ: आदिम वायुमंडल का क्षय; पृथ्वी के ठंडा होने के साथ गर्म आंतरिक भाग से गैस-उत्सर्जन, जिसमें लगातार ज्वालामुखी विस्फोटों ने जलवाष्प और गैसें जोड़ीं और संघनित जलवाष्प से महासागर भरे; "
+  "और जीवन द्वारा लाया गया परिवर्तन। जीवन लगभग 3,800 मिलियन वर्ष पहले आरंभ हुआ, और प्रकाश-संश्लेषण लगभग 2,500-3,000 मिलियन वर्ष पहले विकसित हुआ; लंबे समय में महासागर ऑक्सीजन से भर गए और उसे वायुमंडल में छोड़ने लगे।",
+  f"{GF11}, Chapter 2 (The Origin and Evolution of the Earth).",
+  "l1-rev-atmosphere-evolution-degassing", craft="precision")
+
+# ================================================================ Resources: Minerals, Energy & Agriculture (1)
+A(RE, "hard",
+  "Punjab and Haryana, though not traditional rice-growing areas, obtain high yields of rice.",
+  "पंजाब और हरियाणा, यद्यपि पारंपरिक धान उगाने वाले क्षेत्र नहीं हैं, धान की ऊँची पैदावार लेते हैं।",
+  "There the crop is grown under irrigation with improved seeds and more fertilisers, and the dry climate makes it less susceptible to pests.",
+  "वहाँ यह फ़सल सिंचाई के साथ उन्नत बीजों और अधिक उर्वरकों से उगाई जाती है, और शुष्क जलवायु के कारण उस पर कीटों का प्रकोप कम होता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Rice cultivation in the irrigated areas of Punjab and Haryana was taken up in the 1970s, following the Green Revolution; genetically improved seed, higher use of fertilisers and pesticides, and the lower susceptibility of the crop to pests in a dry climate give the region higher yields than the rain-fed rice areas of eastern India. "
+  "The cost is heavy pressure on groundwater, whose use in these States is among the highest in the country.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। पंजाब और हरियाणा के सिंचित क्षेत्रों में धान की खेती 1970 के दशक में हरित क्रांति के बाद शुरू हुई; आनुवंशिक रूप से उन्नत बीज, उर्वरकों और कीटनाशकों का अधिक उपयोग, और शुष्क जलवायु में फ़सल पर कीटों का कम प्रकोप इस क्षेत्र को पूर्वी भारत के वर्षा-आधारित धान क्षेत्रों से अधिक पैदावार देते हैं। "
+  "इसकी क़ीमत भूजल पर भारी दबाव है, जिसका उपयोग इन राज्यों में देश में सबसे अधिक में से है।",
+  f"{GE12}, Chapter 5 (Land Resources and Agriculture -- Rice).",
+  "l1-rev-rice-punjab-haryana", craft="inference")
+
+# ================================================================ Transport, Ports & Human Geography (1)
+P(TR, "hard", "Consider the following pairs of ports and their type:",
+  "बंदरगाहों और उनके प्रकार के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Piraeus, serving Athens : Out port",
+   "Dover and Calais : Packet station (ferry port)",
+   "Singapore : Entrepot port",
+   "Karwar : Naval port"],
+  ["एथेंस की सेवा करने वाला पिरेयस : बाह्य पत्तन (out port)",
+   "डोवर और कैले : पैकेट स्टेशन (फ़ेरी पत्तन)",
+   "सिंगापुर : आंत्रेपो (पुनर्निर्यात) पत्तन",
+   "कारवार : नौसैनिक पत्तन"],
+  3,
+  "All four pairs are correctly matched. An out port is a deep-water port built away from the main port to receive ships too large to reach it, as Piraeus serves Athens. "
+  "Packet stations, or ferry ports, carry passengers and mail across short stretches of water and come in facing pairs, like Dover in England and Calais in France across the English Channel. "
+  "Entrepot ports are collection centres where goods from many countries are brought for re-export -- Singapore for Asia, Rotterdam for Europe, Copenhagen for the Baltic. Naval ports such as Kochi and Karwar serve warships and have repair workshops for them.",
+  "चारों युग्म सही सुमेलित हैं। बाह्य पत्तन मुख्य पत्तन से दूर बना गहरे पानी का पत्तन है जो उन बड़े जहाज़ों को लेता है जो मुख्य पत्तन तक नहीं पहुँच सकते, जैसे पिरेयस एथेंस की सेवा करता है। "
+  "पैकेट स्टेशन या फ़ेरी पत्तन छोटी जल-दूरियों के पार यात्रियों और डाक को ले जाते हैं और आमने-सामने जोड़ों में होते हैं, जैसे इंग्लिश चैनल के आर-पार इंग्लैंड का डोवर और फ़्रांस का कैले। "
+  "आंत्रेपो पत्तन संग्रह केंद्र हैं जहाँ अनेक देशों से माल पुनर्निर्यात के लिए लाया जाता है -- एशिया के लिए सिंगापुर, यूरोप के लिए रॉटरडैम, बाल्टिक के लिए कोपेनहेगन। कोच्चि और कारवार जैसे नौसैनिक पत्तन युद्धपोतों की सेवा करते हैं और उनके लिए मरम्मत कार्यशालाएँ रखते हैं।",
+  f"{HG12}, Chapter 9 (International Trade -- Types of port).",
+  "l1-rev-port-types-pairs", craft="linkage")
+
+write("rev_l1_t7_d.sql")

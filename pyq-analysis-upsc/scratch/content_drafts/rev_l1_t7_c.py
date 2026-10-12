@@ -1,0 +1,342 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 7 (GS Foundation Revision, NCERT Foundation) -- part C: Environment & Ecology (18)
+(upsc_l1_cell_targets.mjs 7).
+Environment cells: Flora e-MCQ, m-stmt; Fauna e-stmt, m-MCQ, m-stmt; Climate Science e-stmt, m-stmt; Pollution
+e-stmt, m-MCQ, m-stmt; Protected Areas e-stmt, m-stmt; Ecosystems m-stmt, h-SI; Climate Agreements m-stmt, h-SI;
+International Conventions m-stmt; Indian Laws & Bodies h-pairs.
+Level 2 holds 318 Environment rows and Level-1 Test 3 another 100, so this part draws on what neither used:
+social forestry's classes (Geography XI), the Forest Survey's definitions, desert lizards (Biology XII), invasive
+alien animals and Section 62A, tipping points, past climates (Geography XI), the Battery Waste Management Rules,
+fluoride and fluorapatite (Chemistry XI), Jhabua's watershed work (Geography XII), community reserves, the
+Central Zoo Authority, the Ramsar definition and peatlands, lakes freezing from the top (Physics XI), bunker fuels
+and CORSIA, the global commons (Contemporary World Politics), and the statutes behind the pollution boards, GEAC
+and the coastal zone authorities. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Environment & Ecology"
+d.REQUIRE_CRAFT = True
+FL, FA = "Flora, Fungi & Forests", "Fauna & Animal Behaviour"
+CS, PO = "Climate Science & Mitigation", "Pollution, Waste & Resources"
+PA, EC = "Protected Areas & Wildlife Protection", "Ecosystems & Ecological Processes"
+CA, IC = "Climate Agreements & Carbon Markets", "International Conventions & Organisations"
+LW = "Indian Environmental Laws & Bodies"
+GE11 = "NCERT Class XI, Geography -- India: Physical Environment"
+GF11 = "NCERT Class XI, Geography -- Fundamentals of Physical Geography"
+GE12 = "NCERT Class XII, Geography -- India: People and Economy"
+BI12 = "NCERT Class XII, Biology"
+CH11 = "NCERT Class XI, Chemistry, Part II"
+PH11 = "NCERT Class XI, Physics, Part II"
+CWP = "NCERT Class XII, Political Science -- Contemporary World Politics"
+WPA = "Wild Life (Protection) Act, 1972"
+
+# ================================================================ Flora, Fungi & Forests (2)
+M(FL, "easy",
+  "A farmer plants trees along the margins of her fields and around her cattle shed, using seedlings that the State forest department gives free to small and medium farmers. Under the classification of social forestry by the National Commission on Agriculture (1976), this is:",
+  "एक किसान अपने खेतों की मेड़ों पर और अपने पशु-बाड़े के आसपास पेड़ लगाती है, जिनके पौधे राज्य वन विभाग छोटे और मझोले किसानों को मुफ़्त देता है। राष्ट्रीय कृषि आयोग (1976) के सामाजिक वानिकी के वर्गीकरण में यह है:",
+  ["farm forestry", "urban forestry", "community forestry", "joint forest management"],
+  ["फ़ार्म वानिकी", "नगरीय वानिकी", "सामुदायिक वानिकी", "संयुक्त वन प्रबंधन"],
+  0,
+  "Social forestry means managing and protecting forests and afforesting barren land to help environmental, social and rural development. The National Commission on Agriculture (1976) divided it into urban forestry (trees on public and private land in and around cities -- green belts, parks, roadside avenues), "
+  "rural forestry (agro-forestry and community forestry, the latter on public or community land such as village pastures, temple land, roadsides, canal banks and railway strips), and farm forestry, in which farmers grow trees on their own farm land -- field margins, land around homes and cow sheds -- often with free seedlings from the forest department. "
+  "Joint forest management, by contrast, involves village communities in protecting and regenerating degraded forest land owned by the State.",
+  "सामाजिक वानिकी का अर्थ है पर्यावरणीय, सामाजिक और ग्रामीण विकास के लिए वनों का प्रबंधन व संरक्षण और बंजर भूमि पर वनरोपण। राष्ट्रीय कृषि आयोग (1976) ने इसे नगरीय वानिकी (शहरों में और उनके आसपास सार्वजनिक व निजी भूमि पर पेड़ -- हरित पट्टियाँ, पार्क, सड़क किनारे की वृक्षावलियाँ), "
+  "ग्रामीण वानिकी (कृषि-वानिकी और सामुदायिक वानिकी, जिसमें दूसरी गाँव के चरागाह, मंदिर की भूमि, सड़क किनारे, नहर के तटबंध और रेल पटरी की पट्टियों जैसी सार्वजनिक या सामुदायिक भूमि पर होती है), और फ़ार्म वानिकी में बाँटा, जिसमें किसान अपनी खेती की ज़मीन पर -- खेतों की मेड़ों, घरों और पशु-बाड़ों के आसपास -- प्रायः वन विभाग के मुफ़्त पौधों से पेड़ उगाते हैं। "
+  "इसके विपरीत संयुक्त वन प्रबंधन में ग्राम समुदाय राज्य के स्वामित्व वाली क्षरित वन भूमि की सुरक्षा और पुनर्जनन में भाग लेते हैं।",
+  f"{GE11}, Chapter 5 (Natural Vegetation -- Social Forestry).",
+  "l1-rev-farm-forestry", pos=3, craft="application")
+
+S(FL, "medium", "Consider the following statements about how the Forest Survey of India assesses forest cover:",
+  "भारतीय वन सर्वेक्षण (Forest Survey of India) वनावरण का आकलन कैसे करता है, इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Forest cover includes all land of more than one hectare with a tree canopy density above 10 per cent, irrespective of ownership and legal status, so orchards and bamboo can count.",
+   "'Very dense forest' is land with a tree canopy density of 70 per cent or more.",
+   "Scrub, degraded forest land with a canopy density below 10 per cent, is included in forest cover.",
+   "Land recorded as forest in government records may have no forest cover, and forest cover may lie outside recorded forest land."],
+  ["वनावरण में एक हेक्टेयर से अधिक की वह सारी भूमि शामिल है जिसका वृक्ष वितान घनत्व 10 प्रतिशत से अधिक हो, चाहे स्वामित्व और क़ानूनी स्थिति कुछ भी हो, इसलिए बाग़ और बाँस भी गिने जा सकते हैं।",
+   "'अति सघन वन' वह भूमि है जिसका वृक्ष वितान घनत्व 70 प्रतिशत या अधिक हो।",
+   "झाड़ी (scrub), अर्थात 10 प्रतिशत से कम वितान घनत्व वाली क्षरित वन भूमि, वनावरण में शामिल की जाती है।",
+   "सरकारी अभिलेखों में वन के रूप में दर्ज भूमि पर वनावरण न भी हो, और वनावरण दर्ज वन भूमि के बाहर भी हो सकता है।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. The Forest Survey of India, under the Ministry of Environment, Forest and Climate Change, maps forest cover from satellite data and publishes the India State of Forest Report every two years. "
+  "Forest cover is classed as very dense (canopy density 70 per cent and above), moderately dense (40-70 per cent) and open forest (10-40 per cent). Because the test is canopy, not legal status, recorded forest land and actual forest cover need not coincide. "
+  "Statement 3 is wrong: scrub, with a canopy density below 10 per cent, is reported separately and is not counted as forest cover; patches of trees under one hectare outside recorded forests are reported as tree cover.",
+  "कथन 1, 2 और 4 सही हैं। पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय के अधीन भारतीय वन सर्वेक्षण उपग्रह आँकड़ों से वनावरण का मानचित्रण करता है और हर दो वर्ष में भारत वन स्थिति रिपोर्ट प्रकाशित करता है। "
+  "वनावरण को अति सघन (वितान घनत्व 70 प्रतिशत और अधिक), मध्यम सघन (40-70 प्रतिशत) और खुले वन (10-40 प्रतिशत) में बाँटा जाता है। चूँकि कसौटी वितान है, क़ानूनी स्थिति नहीं, इसलिए दर्ज वन भूमि और वास्तविक वनावरण का एक होना ज़रूरी नहीं। "
+  "कथन 3 गलत है: 10 प्रतिशत से कम वितान घनत्व वाली झाड़ी अलग से दर्शाई जाती है और वनावरण में नहीं गिनी जाती; दर्ज वनों के बाहर एक हेक्टेयर से छोटे वृक्ष-समूह वृक्षावरण (tree cover) के रूप में दर्ज होते हैं।",
+  "Forest Survey of India (Ministry of Environment, Forest and Climate Change), India State of Forest Report.",
+  "l1-rev-fsi-forest-cover-classes", craft="application")
+
+# ================================================================ Fauna & Animal Behaviour (3)
+S(FA, "easy", "Consider the following statements about desert lizards:",
+  "मरुस्थलीय छिपकलियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They keep their body temperature fairly constant by behaviour, basking in the sun when they cool and moving into shade when it gets hot.",
+   "Some species burrow into the soil to escape the heat above ground."],
+  ["वे व्यवहार द्वारा अपने शरीर का तापमान लगभग स्थिर रखती हैं -- ठंडी होने पर धूप सेंकती हैं और गर्मी बढ़ने पर छाया में चली जाती हैं।",
+   "कुछ प्रजातियाँ ज़मीन के ऊपर की गर्मी से बचने के लिए मिट्टी में बिल बनाकर छिप जाती हैं।"],
+  T2, 2,
+  "Both statements are correct. Desert lizards lack the physiological means that mammals have -- such as sweating -- to cope with the high temperatures of their habitat, so they rely on behaviour: they bask when their body temperature drops below the comfort zone, move into shade as the air heats up, and some burrow into the soil. "
+  "Such behavioural responses are one of the ways organisms cope with a stressful environment, alongside regulating, conforming, migrating and suspending activity.",
+  "दोनों कथन सही हैं। मरुस्थलीय छिपकलियों के पास अपने आवास के ऊँचे तापमान से निपटने के वे शारीरिक साधन -- जैसे पसीना -- नहीं होते जो स्तनधारियों के पास होते हैं, इसलिए वे व्यवहार पर निर्भर रहती हैं: शरीर का तापमान आरामदायक सीमा से नीचे जाने पर वे धूप सेंकती हैं, हवा गर्म होने पर छाया में चली जाती हैं, और कुछ मिट्टी में बिल बना लेती हैं। "
+  "ऐसी व्यवहारगत प्रतिक्रियाएँ कठिन पर्यावरण से निपटने के तरीक़ों में से एक हैं, जिनके साथ नियमन, अनुरूपण, प्रवास और गतिविधि का निलंबन भी आते हैं।",
+  f"{BI12}, Chapter 13 (Organisms and Populations).",
+  "l1-rev-desert-lizard-behaviour", craft="recall")
+
+M(FA, "medium",
+  "A freshwater turtle native to the south-eastern United States is widely sold as a pet in India. Unwanted animals released into ponds and lakes breed there and compete with native turtles for food and basking sites. Which turtle is this?",
+  "दक्षिण-पूर्वी संयुक्त राज्य अमेरिका का मूल निवासी एक मीठे पानी का कछुआ भारत में बड़े पैमाने पर पालतू जीव के रूप में बिकता है। तालाबों और झीलों में छोड़े गए ऐसे कछुए वहाँ प्रजनन करते हैं और भोजन तथा धूप सेंकने की जगहों के लिए देशी कछुओं से होड़ करते हैं। यह कौन-सा कछुआ है?",
+  ["Red-eared slider", "Indian flapshell turtle", "Olive ridley turtle", "Indian star tortoise"],
+  ["रेड-ईयर्ड स्लाइडर", "भारतीय फ़्लैपशेल कछुआ", "ऑलिव रिडले कछुआ", "भारतीय स्टार कछुआ"],
+  0,
+  "The red-eared slider, named for the red stripe behind each eye, comes from the south-eastern United States; through the pet trade it has spread worldwide, and released animals have established themselves in Indian water bodies, where they compete with native species. "
+  "The Indian flapshell is a native freshwater turtle, the olive ridley a sea turtle that nests in mass on the Odisha coast, and the Indian star tortoise a native land tortoise that is itself a victim of the illegal pet trade.",
+  "रेड-ईयर्ड स्लाइडर, जिसका नाम हर आँख के पीछे की लाल धारी से पड़ा है, दक्षिण-पूर्वी संयुक्त राज्य अमेरिका से आता है; पालतू जीवों के व्यापार से यह पूरी दुनिया में फैल गया है, और छोड़े गए कछुए भारतीय जलाशयों में बस गए हैं, जहाँ वे देशी प्रजातियों से होड़ करते हैं। "
+  "भारतीय फ़्लैपशेल एक देशी मीठे पानी का कछुआ है, ऑलिव रिडले एक समुद्री कछुआ जो ओडिशा तट पर सामूहिक रूप से अंडे देता है, और भारतीय स्टार कछुआ एक देशी स्थलीय कछुआ है जो स्वयं अवैध पालतू व्यापार का शिकार है।",
+  "Zoological Survey of India; IUCN Species Survival Commission, Invasive Species Specialist Group (Global Invasive Species Database).",
+  "l1-rev-red-eared-slider", pos=3, craft="application")
+
+S(FA, "medium", "Consider the following statements about invasive alien animals in India:",
+  "भारत में आक्रामक विदेशी (invasive alien) जंतुओं के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The African giant snail, a pest of crops and garden plants in Kerala and elsewhere, is listed among the world's 100 worst invasive alien species.",
+   "The Wild Life (Protection) Amendment Act, 2022 empowers the Central Government to regulate or prohibit the import, trade, possession or proliferation of invasive alien species.",
+   "The Mozambique tilapia, common in Indian reservoirs, is a native carp of the Ganga basin."],
+  ["फ़सलों और बग़ीचों के पौधों का शत्रु, केरल और अन्य जगहों में पाया जाने वाला अफ़्रीकी विशाल घोंघा, दुनिया की 100 सबसे बुरी आक्रामक विदेशी प्रजातियों में सूचीबद्ध है।",
+   "वन्यजीव (संरक्षण) संशोधन अधिनियम, 2022 केंद्र सरकार को आक्रामक विदेशी प्रजातियों के आयात, व्यापार, रखने या फैलाव को विनियमित या प्रतिबंधित करने का अधिकार देता है।",
+   "भारतीय जलाशयों में आम मोज़ाम्बिक तिलापिया गंगा बेसिन की एक देशी कार्प मछली है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The African giant snail, native to East Africa, was spread by people across the tropics; besides damaging crops, it can carry the rat lungworm, a parasite that can cause a form of meningitis in humans. "
+  "Section 62A, inserted into the Act in 2022, lets the Central Government regulate or prohibit invasive alien species that threaten wild animals or plants or their habitat. "
+  "Statement 3 is wrong: the Mozambique tilapia is an African cichlid introduced into India in the 1950s; it breeds prolifically and competes with native fish, and it too is on the list of the worst invasive species. Alien species often spread unchecked because they have left their natural predators and diseases behind.",
+  "कथन 1 और 2 सही हैं। पूर्वी अफ़्रीका का मूल निवासी अफ़्रीकी विशाल घोंघा मनुष्यों द्वारा पूरे उष्णकटिबंध में फैलाया गया; फ़सलों को नुक़सान पहुँचाने के अलावा यह रैट लंगवर्म नामक परजीवी का वाहक हो सकता है, जो मनुष्यों में एक प्रकार का मस्तिष्क-ज्वर (meningitis) पैदा कर सकता है। "
+  "2022 में अधिनियम में जोड़ी गई धारा 62A केंद्र सरकार को उन आक्रामक विदेशी प्रजातियों को विनियमित या प्रतिबंधित करने देती है जो वन्य जीवों, पौधों या उनके आवास के लिए ख़तरा हों। "
+  "कथन 3 गलत है: मोज़ाम्बिक तिलापिया एक अफ़्रीकी सिक्लिड मछली है जिसे 1950 के दशक में भारत लाया गया; यह तेज़ी से प्रजनन करती है और देशी मछलियों से होड़ करती है, और यह भी सबसे बुरी आक्रामक प्रजातियों की सूची में है। विदेशी प्रजातियाँ प्रायः इसलिए बेरोकटोक फैलती हैं क्योंकि उनके प्राकृतिक शिकारी और रोग पीछे छूट जाते हैं।",
+  f"{WPA}, Section 62A (inserted in 2022); IUCN Invasive Species Specialist Group, '100 of the World's Worst Invasive Alien Species'.",
+  "l1-rev-invasive-alien-animals", craft="precision")
+
+# ================================================================ Climate Science & Mitigation (2)
+S(CS, "easy", "Consider the following statements about climate 'tipping points':",
+  "जलवायु के 'टिपिंग पॉइंट' (tipping points) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A tipping point is a threshold beyond which a part of the climate system changes in a self-sustaining way, often abruptly and possibly irreversibly.",
+   "Once a tipping point is crossed, the change can always be reversed quickly by cutting emissions."],
+  ["टिपिंग पॉइंट वह सीमा है जिसके पार जलवायु तंत्र का कोई भाग स्वतः चलते रहने वाले ढंग से, प्रायः अचानक और संभवतः अपरिवर्तनीय रूप से, बदल जाता है।",
+   "टिपिंग पॉइंट पार हो जाने के बाद उत्सर्जन घटाकर उस परिवर्तन को हमेशा जल्दी पलटा जा सकता है।"],
+  T2, 0,
+  "Only statement 1 is correct. Feedbacks make the change self-sustaining: a shrinking ice sheet, for instance, exposes darker ground and lowers its own surface, so it keeps melting even if warming stops. "
+  "Candidate tipping elements include the loss of the Greenland and West Antarctic ice sheets, the dieback of the Amazon rainforest and the thawing of permafrost. "
+  "Statement 2 is wrong: the IPCC stresses that such changes may be irreversible on human timescales; even where a reversal is possible, it may need temperatures to fall well below the level at which the change began, and take centuries or longer.",
+  "केवल कथन 1 सही है। प्रतिपुष्टियाँ (feedbacks) परिवर्तन को स्वतः चलने वाला बना देती हैं: उदाहरण के लिए, सिकुड़ती हिमचादर गहरे रंग की ज़मीन खोल देती है और अपनी सतह नीची कर लेती है, इसलिए गर्माहट रुकने पर भी वह पिघलती रहती है। "
+  "संभावित टिपिंग तत्वों में ग्रीनलैंड और पश्चिम अंटार्कटिक हिमचादरों का क्षय, अमेज़न वर्षावन का सूखकर मरना और पर्माफ़्रॉस्ट का पिघलना शामिल हैं। "
+  "कथन 2 गलत है: IPCC ज़ोर देता है कि ऐसे परिवर्तन मानवीय समय-पैमाने पर अपरिवर्तनीय हो सकते हैं; जहाँ पलटना संभव हो, वहाँ भी तापमान को उस स्तर से काफ़ी नीचे लाना पड़ सकता है जहाँ परिवर्तन शुरू हुआ था, और इसमें सदियाँ या उससे अधिक लग सकती हैं।",
+  "IPCC Sixth Assessment Report (2021-23), Glossary and Working Group I.",
+  "l1-rev-climate-tipping-point", craft="recall")
+
+S(CS, "medium", "Consider the following statements about climate change in the historical and recent past:",
+  "ऐतिहासिक और निकट अतीत में जलवायु परिवर्तन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Severe drought in the south-western Great Plains of the USA in the 1930s is remembered as the 'Dust Bowl'.",
+   "Warm and dry conditions in Europe in the tenth and eleventh centuries coincided with the Vikings settling on Greenland.",
+   "The Rajasthan desert has been as dry as it is today throughout the last ten thousand years, including the time of the Harappan civilisation.",
+   "World temperature showed an upward trend from about 1885 to 1940, after which the rate of increase slowed down."],
+  ["1930 के दशक में संयुक्त राज्य अमेरिका के दक्षिण-पश्चिमी ग्रेट प्लेन्स का भीषण सूखा 'डस्ट बाउल' के नाम से याद किया जाता है।",
+   "दसवीं और ग्यारहवीं सदी में यूरोप की गर्म और शुष्क परिस्थितियाँ उसी समय थीं जब वाइकिंग ग्रीनलैंड में बसे।",
+   "राजस्थान का मरुस्थल पिछले दस हज़ार वर्षों में, हड़प्पा सभ्यता के समय सहित, हमेशा आज जितना ही शुष्क रहा है।",
+   "लगभग 1885 से 1940 तक विश्व के तापमान में बढ़ने की प्रवृत्ति रही, जिसके बाद वृद्धि की दर धीमी हो गई।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. Records of crop yields and failures, floods and migrations show that climate has always varied: Europe had warm, dry spells such as the one that allowed the Vikings to settle Greenland, and the Dust Bowl drove farm families off the Great Plains. "
+  "Statement 3 is wrong: around 8,000 BC the Rajasthan desert had a wet and cool climate; the period from 3,000 to 1,700 BC had higher rainfall, and about 2,000-1,700 BC the region was a centre of the Harappan civilisation. Dry conditions have grown sharper since then.",
+  "कथन 1, 2 और 4 सही हैं। फ़सल उत्पादन और फ़सल-विफलता, बाढ़ और प्रवास के अभिलेख दिखाते हैं कि जलवायु सदा बदलती रही है: यूरोप में गर्म, शुष्क दौर आए, जैसे वह जिसने वाइकिंगों को ग्रीनलैंड में बसने दिया, और डस्ट बाउल ने किसान परिवारों को ग्रेट प्लेन्स छोड़ने पर मजबूर किया। "
+  "कथन 3 गलत है: लगभग 8,000 ई.पू. राजस्थान के मरुस्थल की जलवायु नम और ठंडी थी; 3,000 से 1,700 ई.पू. के बीच वर्षा अधिक थी, और लगभग 2,000-1,700 ई.पू. यह क्षेत्र हड़प्पा सभ्यता का एक केंद्र था। तब से शुष्कता बढ़ती गई है।",
+  f"{GF11}, Chapter 12 (World Climate and Climate Change).",
+  "l1-rev-past-climate-episodes", craft="precision")
+
+# ================================================================ Pollution, Waste & Resources (3)
+S(PO, "easy", "Consider the following statements about the Battery Waste Management Rules, 2022:",
+  "बैटरी अपशिष्ट प्रबंधन नियम, 2022 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They apply Extended Producer Responsibility to producers of all kinds of batteries, including electric-vehicle, portable, automotive and industrial batteries.",
+   "They make municipal bodies alone responsible for collecting and recycling waste batteries."],
+  ["ये विद्युत-वाहन, पोर्टेबल, ऑटोमोटिव और औद्योगिक बैटरियों सहित सभी प्रकार की बैटरियों के उत्पादकों पर विस्तारित उत्पादक उत्तरदायित्व (EPR) लागू करते हैं।",
+   "ये अपशिष्ट बैटरियों के संग्रह और पुनर्चक्रण की ज़िम्मेदारी केवल नगर निकायों पर डालते हैं।"],
+  T2, 0,
+  "Only statement 1 is correct. Under Extended Producer Responsibility, producers and importers must meet targets for collecting and recycling or refurbishing the batteries they place on the market, and must use a minimum share of recycled material in new batteries; EPR certificates are traded on a central online portal, and environmental compensation is levied on the polluter-pays principle. "
+  "Statement 2 is wrong: the main obligation lies on producers, not municipal bodies. The rules replaced the Batteries (Management and Handling) Rules, 2001, which had dealt with lead-acid batteries.",
+  "केवल कथन 1 सही है। विस्तारित उत्पादक उत्तरदायित्व के अंतर्गत उत्पादकों और आयातकों को बाज़ार में उतारी गई बैटरियों के संग्रह और पुनर्चक्रण या नवीनीकरण के लक्ष्य पूरे करने होते हैं, और नई बैटरियों में पुनर्चक्रित सामग्री का न्यूनतम अंश उपयोग करना होता है; EPR प्रमाणपत्रों का व्यापार एक केंद्रीय ऑनलाइन पोर्टल पर होता है, और 'प्रदूषक भुगतान करे' सिद्धांत पर पर्यावरणीय क्षतिपूर्ति ली जाती है। "
+  "कथन 2 गलत है: मुख्य दायित्व उत्पादकों पर है, नगर निकायों पर नहीं। इन नियमों ने बैटरी (प्रबंधन और हैंडलिंग) नियम, 2001 का स्थान लिया, जो सीसा-अम्ल बैटरियों से संबंधित थे।",
+  "Ministry of Environment, Forest and Climate Change, Battery Waste Management Rules, 2022.",
+  "l1-rev-battery-waste-rules-2022", craft="precision")
+
+M(PO, "medium",
+  "Soluble fluoride is often added to drinking water to bring its concentration to about 1 ppm. Why does this help protect teeth?",
+  "दाँतों की रक्षा के लिए पीने के पानी में घुलनशील फ़्लोराइड मिलाकर उसकी सांद्रता लगभग 1 ppm तक लाई जाती है। इससे दाँतों की रक्षा क्यों होती है?",
+  ["It converts the hydroxyapatite of tooth enamel into the harder fluorapatite",
+   "It neutralises the acids that bacteria produce in the mouth, as a strong base would",
+   "It coats the teeth with a soft film that dissolves and is renewed at every meal",
+   "It raises the calcium in saliva, which makes the teeth grow larger and stronger"],
+  ["यह दाँतों के इनेमल के हाइड्रॉक्सीएपेटाइट को अधिक कठोर फ़्लोरएपेटाइट में बदल देता है",
+   "यह एक प्रबल क्षार की तरह मुँह में बैक्टीरिया द्वारा बनाए गए अम्लों को उदासीन कर देता है",
+   "यह दाँतों पर एक मुलायम परत चढ़ाता है जो हर भोजन के साथ घुलकर फिर बन जाती है",
+   "यह लार में कैल्शियम बढ़ाता है, जिससे दाँत बड़े और मज़बूत होकर बढ़ते हैं"],
+  0,
+  "Fluoride ions convert hydroxyapatite, the mineral of the enamel on the surface of the teeth, into fluorapatite, which is much harder and resists the acids that cause decay; too little fluoride in water is linked with tooth decay. "
+  "But the margin is narrow: above about 2 ppm fluoride causes brown mottling of the teeth (dental fluorosis), and over 10 ppm harms bones and teeth, as reported from parts of Rajasthan. "
+  "The Bureau of Indian Standards accordingly sets an acceptable limit of 1 mg per litre for drinking water (1.5 mg per litre where no other source exists).",
+  "फ़्लोराइड आयन दाँतों की सतह के इनेमल के खनिज हाइड्रॉक्सीएपेटाइट को फ़्लोरएपेटाइट में बदल देते हैं, जो कहीं अधिक कठोर होता है और सड़न पैदा करने वाले अम्लों का प्रतिरोध करता है; पानी में बहुत कम फ़्लोराइड दाँतों की सड़न से जुड़ा है। "
+  "पर सीमा संकरी है: लगभग 2 ppm से अधिक फ़्लोराइड दाँतों पर भूरे धब्बे (दंत फ़्लोरोसिस) पैदा करता है, और 10 ppm से अधिक हड्डियों और दाँतों को हानि पहुँचाता है, जैसा राजस्थान के कुछ भागों से बताया गया है। "
+  "इसीलिए भारतीय मानक ब्यूरो पीने के पानी में 1 मिलीग्राम प्रति लीटर की स्वीकार्य सीमा तय करता है (जहाँ कोई अन्य स्रोत न हो वहाँ 1.5 मिलीग्राम प्रति लीटर)।",
+  f"{CH11}, Unit 14 (Environmental Chemistry -- International standards for drinking water); Bureau of Indian Standards, IS 10500 (Drinking Water).",
+  "l1-rev-fluoride-fluorapatite", pos=3, craft="inference")
+
+S(PO, "medium", "Consider the following statements about watershed management in Jhabua district of Madhya Pradesh:",
+  "मध्य प्रदेश के झाबुआ ज़िले में जलसंभर (watershed) प्रबंधन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The programmes there, funded by the Union Ministries of Rural Development and of Agriculture, aimed to halt the degradation of land and forest in a district with a large Bhil population.",
+   "In Petlawad block, Bhil households planted trees and fodder grass on the commons and kept them free of open grazing through social fencing, with cattle stall-fed instead.",
+   "The experience shows that common lands recover best when local communities are kept away from them."],
+  ["वहाँ के कार्यक्रमों का, जिनके लिए केंद्रीय ग्रामीण विकास और कृषि मंत्रालयों ने धन दिया, उद्देश्य बड़ी भील आबादी वाले ज़िले में भूमि और वन के क्षरण को रोकना था।",
+   "पेटलावद प्रखंड में भील परिवारों ने साझा भूमि पर पेड़ और चारा घास लगाई और सामाजिक घेराबंदी (social fencing) द्वारा उसे खुली चराई से बचाए रखा, पशुओं को खूँटे पर चारा दिया गया।",
+   "यह अनुभव दिखाता है कि साझा भूमि तब सबसे अच्छी तरह सुधरती है जब स्थानीय समुदायों को उससे दूर रखा जाए।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Jhabua, in the westernmost agro-climatic zone of Madhya Pradesh, was among the most backward districts of the country, its poverty worsened by the degradation of its forest and land. "
+  "In Petlawad block each household planted and looked after at least one tree on the common land, fodder grass was planted on the pastures, and the lands were socially fenced for at least two years; even afterwards there was no open grazing, only stall-feeding. "
+  "Statement 3 is wrong: the lesson is the opposite -- the commons were revived because the community itself took charge of them.",
+  "कथन 1 और 2 सही हैं। मध्य प्रदेश के सबसे पश्चिमी कृषि-जलवायु क्षेत्र में स्थित झाबुआ देश के सबसे पिछड़े ज़िलों में से था, जिसकी ग़रीबी वनों और भूमि के क्षरण से और बढ़ी थी। "
+  "पेटलावद प्रखंड में हर परिवार ने साझा भूमि पर कम से कम एक पेड़ लगाया और उसकी देखभाल की, चरागाहों पर चारा घास लगाई गई, और भूमि को कम से कम दो वर्ष तक सामाजिक घेराबंदी में रखा गया; उसके बाद भी खुली चराई नहीं, केवल खूँटे पर चारा दिया गया। "
+  "कथन 3 गलत है: सीख इसके उलट है -- साझा भूमि इसलिए पुनर्जीवित हुई क्योंकि समुदाय ने स्वयं उसकी ज़िम्मेदारी ली।",
+  f"{GE12} (Geographical Perspective on Selected Issues and Problems -- land degradation, the Jhabua case study).",
+  "l1-rev-jhabua-watershed-bhils", craft="inference")
+
+# ================================================================ Protected Areas & Wildlife Protection (2)
+S(PA, "easy", "Consider the following statements about community reserves:",
+  "सामुदायिक रिज़र्व (community reserves) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Keshopur-Chhamb, in Gurdaspur district of Punjab, was declared India's first community reserve.",
+   "A community reserve can be declared only on land owned by the State Forest Department."],
+  ["पंजाब के गुरदासपुर ज़िले का केशोपुर-छंब भारत का पहला सामुदायिक रिज़र्व घोषित किया गया।",
+   "सामुदायिक रिज़र्व केवल राज्य वन विभाग के स्वामित्व वाली भूमि पर ही घोषित किया जा सकता है।"],
+  T2, 0,
+  "Only statement 1 is correct. Keshopur-Chhamb, a wetland visited by large numbers of migratory birds, was declared a community reserve in 2007 and later became a Ramsar site. "
+  "Statement 2 is wrong: under Section 36C of the Wild Life (Protection) Act, the State Government may declare private or community land -- not part of a national park, sanctuary or conservation reserve -- a community reserve where the community or an individual has volunteered to conserve wildlife and its habitat; a committee of the community manages it.",
+  "केवल कथन 1 सही है। बड़ी संख्या में प्रवासी पक्षियों वाली आर्द्रभूमि केशोपुर-छंब को 2007 में सामुदायिक रिज़र्व घोषित किया गया और बाद में यह रामसर स्थल बनी। "
+  "कथन 2 गलत है: वन्यजीव (संरक्षण) अधिनियम की धारा 36C के अंतर्गत राज्य सरकार ऐसी निजी या सामुदायिक भूमि को -- जो किसी राष्ट्रीय उद्यान, अभयारण्य या संरक्षण रिज़र्व का भाग न हो -- सामुदायिक रिज़र्व घोषित कर सकती है जहाँ समुदाय या कोई व्यक्ति वन्य जीवों और उनके आवास के संरक्षण के लिए स्वेच्छा से आगे आया हो; समुदाय की एक समिति इसका प्रबंधन करती है।",
+  f"{WPA}, Section 36C; Department of Forests and Wildlife Preservation, Punjab.",
+  "l1-rev-community-reserve-keshopur", craft="precision")
+
+S(PA, "medium", "Consider the following statements about the Central Zoo Authority:",
+  "केंद्रीय चिड़ियाघर प्राधिकरण (Central Zoo Authority) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["No zoo can be operated in India without being recognised by the Authority.",
+   "It identifies endangered species for captive breeding and assigns this responsibility to zoos.",
+   "A recognised zoo may acquire or transfer animals of species listed in Schedule I without the Authority's permission."],
+  ["प्राधिकरण की मान्यता के बिना भारत में कोई चिड़ियाघर नहीं चलाया जा सकता।",
+   "यह बंदी प्रजनन (captive breeding) के लिए संकटग्रस्त प्रजातियों की पहचान करता है और यह ज़िम्मेदारी चिड़ियाघरों को सौंपता है।",
+   "मान्यता प्राप्त चिड़ियाघर अनुसूची I में सूचीबद्ध प्रजातियों के जंतुओं को प्राधिकरण की अनुमति के बिना प्राप्त या स्थानांतरित कर सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Authority was provided for by a 1991 amendment to the Wild Life (Protection) Act (Section 38A); it sets standards for housing and care, evaluates zoos and grants or refuses recognition, and coordinates conservation breeding of endangered species. "
+  "Statement 3 is wrong: under Section 38-I, no zoo may acquire, sell or transfer an animal of a species in Schedule I except with the previous permission of the Authority.",
+  "कथन 1 और 2 सही हैं। प्राधिकरण का प्रावधान वन्यजीव (संरक्षण) अधिनियम में 1991 के संशोधन (धारा 38A) से हुआ; यह जंतुओं के आवास और देखभाल के मानक तय करता है, चिड़ियाघरों का मूल्यांकन करके मान्यता देता या अस्वीकार करता है, और संकटग्रस्त प्रजातियों के संरक्षण प्रजनन का समन्वय करता है। "
+  "कथन 3 गलत है: धारा 38-I के अंतर्गत कोई भी चिड़ियाघर अनुसूची I की प्रजाति के जंतु को प्राधिकरण की पूर्व अनुमति के बिना प्राप्त, विक्रय या स्थानांतरित नहीं कर सकता।",
+  f"{WPA}, Sections 38A-38J; Central Zoo Authority, Ministry of Environment, Forest and Climate Change.",
+  "l1-rev-central-zoo-authority", craft="precision")
+
+# ================================================================ Ecosystems & Ecological Processes (2)
+S(EC, "medium", "Consider the following statements about wetlands:",
+  "आर्द्रभूमियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the Ramsar Convention's definition, areas of marine water count as wetlands where the depth at low tide does not exceed six metres.",
+   "Peatlands cover only about 3 per cent of the world's land surface but store more carbon than all the world's forests combined.",
+   "Draining a peatland for farming locks its carbon away more securely."],
+  ["रामसर अभिसमय की परिभाषा में समुद्री जल के वे क्षेत्र आर्द्रभूमि माने जाते हैं जहाँ भाटे के समय गहराई छह मीटर से अधिक न हो।",
+   "पीटभूमियाँ (peatlands) विश्व की स्थल सतह के केवल लगभग 3 प्रतिशत भाग पर हैं, पर विश्व के सभी वनों को मिलाकर जितना कार्बन है उससे अधिक संचित करती हैं।",
+   "खेती के लिए पीटभूमि को सुखाने से उसका कार्बन और सुरक्षित रूप से बंद हो जाता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Ramsar definition is broad: marshes, fens, peatlands or water, natural or artificial, permanent or temporary, static or flowing, fresh, brackish or salt, and shallow marine waters. "
+  "In peatlands, waterlogging slows decomposition so much that dead plant matter piles up as peat over thousands of years; they hold nearly a third of the world's soil carbon -- about twice that of all forests. "
+  "Statement 3 is wrong: draining lets air into the peat, which then decomposes and releases its carbon as carbon dioxide, and dry peat burns easily, so drained and burning peatlands are large sources of emissions. "
+  "Wetlands also act like sponges, storing floodwater and releasing it slowly, recharge aquifers, and filter sediments and pollutants.",
+  "कथन 1 और 2 सही हैं। रामसर परिभाषा व्यापक है: दलदल, फ़ेन, पीटभूमि या जल -- प्राकृतिक या कृत्रिम, स्थायी या अस्थायी, स्थिर या बहता, मीठा, खारा या लवणीय -- और उथला समुद्री जल। "
+  "पीटभूमियों में जलमग्नता अपघटन को इतना धीमा कर देती है कि मृत पादप पदार्थ हज़ारों वर्षों में पीट के रूप में जमा होता जाता है; इनमें विश्व के मृदा कार्बन का लगभग एक-तिहाई -- सभी वनों का लगभग दोगुना -- है। "
+  "कथन 3 गलत है: सुखाने से पीट में हवा पहुँचती है, जिससे वह अपघटित होकर अपना कार्बन कार्बन डाइऑक्साइड के रूप में छोड़ती है, और सूखी पीट आसानी से जलती है, इसलिए सुखाई गई और जलती पीटभूमियाँ उत्सर्जन के बड़े स्रोत हैं। "
+  "आर्द्रभूमियाँ स्पंज की तरह बाढ़ का पानी रोककर धीरे-धीरे छोड़ती भी हैं, जलभृतों का पुनर्भरण करती हैं, और तलछट तथा प्रदूषकों को छानती हैं।",
+  "Ramsar Convention on Wetlands (1971), Article 1; UNEP, Global Peatlands Assessment (2022).",
+  "l1-rev-wetland-definition-peatlands", craft="inference")
+
+A(EC, "hard",
+  "In very cold winters a lake freezes from the top downwards, and fish survive in the liquid water beneath the ice.",
+  "बहुत ठंडी सर्दियों में झील ऊपर से नीचे की ओर जमती है, और मछलियाँ बर्फ़ के नीचे के तरल पानी में जीवित रहती हैं।",
+  "Water is densest at about 4 °C, so as a lake cools, water colder than this stays near the surface, where it freezes.",
+  "पानी लगभग 4 °C पर सबसे सघन होता है, इसलिए झील के ठंडा होने पर इससे ठंडा पानी सतह के पास रहता है, जहाँ वह जम जाता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. As the surface water cools to 4 °C it becomes denser and sinks, mixing the lake; once the lake is at 4 °C, further cooling makes the surface water lighter, so it stays on top and freezes. "
+  "Ice, being less dense than water, floats, and it conducts heat poorly, so it insulates the water below, which stays at about 4 °C. This anomalous expansion of water is why aquatic life survives the winter in cold regions.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। सतह का पानी 4 °C तक ठंडा होने पर सघन होकर नीचे बैठता है और झील को मिलाता है; झील के 4 °C पर आ जाने के बाद और ठंडक से सतह का पानी हल्का हो जाता है, इसलिए ऊपर रहकर जम जाता है। "
+  "पानी से कम सघन होने के कारण बर्फ़ तैरती है, और ऊष्मा की कुचालक होने से नीचे के पानी को, जो लगभग 4 °C पर रहता है, ठंड से बचाती है। पानी का यही असंगत प्रसार (anomalous expansion) ठंडे क्षेत्रों में जलीय जीवन को सर्दियों में जीवित रखता है।",
+  f"{PH11}, Chapter 10 (Thermal Properties of Matter -- anomalous expansion of water).",
+  "l1-rev-lake-freezing-4c", craft="inference")
+
+# ================================================================ Climate Agreements & Carbon Markets (2)
+S(CA, "medium", "Consider the following statements about greenhouse gas emissions from international transport:",
+  "अंतरराष्ट्रीय परिवहन से होने वाले ग्रीनहाउस गैस उत्सर्जन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the UNFCCC's reporting rules, emissions from fuel used for international aviation and shipping are reported separately and kept out of national totals.",
+   "The International Maritime Organization is the UN agency that regulates greenhouse gas emissions from international shipping.",
+   "Emissions from domestic flights within India are likewise kept out of India's national greenhouse gas inventory."],
+  ["UNFCCC के रिपोर्टिंग नियमों के अंतर्गत अंतरराष्ट्रीय विमानन और नौवहन में प्रयुक्त ईंधन से होने वाला उत्सर्जन अलग से दर्ज होता है और राष्ट्रीय कुल योग से बाहर रखा जाता है।",
+   "अंतरराष्ट्रीय समुद्री संगठन (IMO) वह संयुक्त राष्ट्र एजेंसी है जो अंतरराष्ट्रीय नौवहन से ग्रीनहाउस गैस उत्सर्जन का विनियमन करती है।",
+   "भारत के भीतर घरेलू उड़ानों का उत्सर्जन भी इसी तरह भारत की राष्ट्रीय ग्रीनहाउस गैस सूची से बाहर रखा जाता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Fuel for an international voyage may be bought in one country by an operator from a second, on a trip between a third and a fourth, so these 'bunker fuel' emissions cannot easily be assigned to any one nation; they are reported as memo items, and the Kyoto Protocol asked developed countries to limit them through the International Civil Aviation Organization and the International Maritime Organization. "
+  "Statement 3 is wrong: domestic aviation and navigation fall within a country's territory and are part of its national inventory.",
+  "कथन 1 और 2 सही हैं। किसी अंतरराष्ट्रीय यात्रा का ईंधन एक देश में, दूसरे देश के संचालक द्वारा, तीसरे और चौथे देश के बीच की यात्रा के लिए ख़रीदा जा सकता है, इसलिए इस 'बंकर ईंधन' उत्सर्जन को किसी एक राष्ट्र के नाम करना कठिन है; इसे स्मरण-मद (memo item) के रूप में दर्ज किया जाता है, और क्योटो प्रोटोकॉल ने विकसित देशों से इसे अंतरराष्ट्रीय नागर विमानन संगठन और अंतरराष्ट्रीय समुद्री संगठन के माध्यम से सीमित करने को कहा। "
+  "कथन 3 गलत है: घरेलू विमानन और नौवहन देश की सीमा के भीतर आते हैं और उसकी राष्ट्रीय सूची का भाग हैं।",
+  "IPCC Guidelines for National Greenhouse Gas Inventories and UNFCCC reporting guidelines; Kyoto Protocol, Article 2.2; International Maritime Organization.",
+  "l1-rev-bunker-fuel-emissions", craft="inference")
+
+A(CA, "hard",
+  "The Carbon Offsetting and Reduction Scheme for International Aviation (CORSIA) requires airlines to reduce the number of international flights they operate each year.",
+  "अंतरराष्ट्रीय विमानन के लिए कार्बन ऑफ़सेटिंग और न्यूनीकरण योजना (CORSIA) विमान कंपनियों से हर वर्ष अपनी अंतरराष्ट्रीय उड़ानों की संख्या घटाने की अपेक्षा करती है।",
+  "CORSIA requires aeroplane operators to offset the growth in carbon dioxide emissions from international flights above a baseline by buying eligible emission units.",
+  "CORSIA विमान संचालकों से अपेक्षा करती है कि वे एक आधार-स्तर से ऊपर अंतरराष्ट्रीय उड़ानों के कार्बन डाइऑक्साइड उत्सर्जन में वृद्धि की भरपाई पात्र उत्सर्जन इकाइयाँ ख़रीदकर करें।",
+  3,
+  "Statement-I is incorrect and Statement-II is correct. CORSIA, adopted by the International Civil Aviation Organization in 2016, does not limit traffic; it is an offsetting scheme, under which operators buy eligible emission units to cover emissions above a baseline linked to 2019 levels. "
+  "Its pilot phase (2021-23) and first phase (2024-26) are voluntary for States; from 2027 it becomes mandatory for most, with exemptions for least developed countries, small island developing States, landlocked developing countries and States with small shares of international traffic.",
+  "कथन-I गलत है और कथन-II सही है। अंतरराष्ट्रीय नागर विमानन संगठन द्वारा 2016 में अपनाई गई CORSIA यातायात को सीमित नहीं करती; यह एक भरपाई (offsetting) योजना है, जिसके अंतर्गत संचालक 2019 के स्तर से जुड़े आधार-स्तर से ऊपर के उत्सर्जन की भरपाई के लिए पात्र उत्सर्जन इकाइयाँ ख़रीदते हैं। "
+  "इसका प्रायोगिक चरण (2021-23) और पहला चरण (2024-26) देशों के लिए स्वैच्छिक हैं; 2027 से यह अधिकांश के लिए अनिवार्य हो जाती है, जिसमें अल्पविकसित देशों, लघु द्वीपीय विकासशील देशों, स्थलरुद्ध विकासशील देशों और अंतरराष्ट्रीय यातायात में छोटे हिस्से वाले देशों को छूट है।",
+  "International Civil Aviation Organization, CORSIA (Assembly Resolution A39-3, 2016, and later resolutions).",
+  "l1-rev-corsia-offsetting", craft="inference")
+
+# ================================================================ International Conventions & Organisations (1)
+S(IC, "medium", "Consider the following statements about the global commons and environmental movements:",
+  "वैश्विक साझा संपदा (global commons) और पर्यावरण आंदोलनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["'Global commons' are areas outside the sovereign jurisdiction of any one state, such as the earth's atmosphere, Antarctica, the ocean floor and outer space.",
+   "Managing the global commons has proved difficult, partly because of uncertain scientific knowledge and partly because of inequalities between the North and the South.",
+   "The campaign in the early 1980s to save the Franklin river and its surrounding forests in Australia was an early anti-dam movement in the North."],
+  ["'वैश्विक साझा संपदा' वे क्षेत्र हैं जो किसी एक राज्य के संप्रभु क्षेत्राधिकार से बाहर हैं, जैसे पृथ्वी का वायुमंडल, अंटार्कटिका, समुद्र तल और बाह्य अंतरिक्ष।",
+   "वैश्विक साझा संपदा का प्रबंधन कठिन सिद्ध हुआ है, कुछ तो अनिश्चित वैज्ञानिक ज्ञान के कारण और कुछ उत्तर और दक्षिण के बीच असमानताओं के कारण।",
+   "1980 के दशक के आरंभ में ऑस्ट्रेलिया में फ़्रैंकलिन नदी और उसके आसपास के वनों को बचाने का अभियान उत्तर (विकसित देशों) का एक आरंभिक बाँध-विरोधी आंदोलन था।"],
+  C3, 2,
+  "All three statements are correct. Resources that no single state owns tend to be overused, so they need international cooperation -- the Antarctic Treaty, the Montreal Protocol and the Antarctic Environmental Protocol are examples. "
+  "Cooperation is hard: the ozone hole, discovered in the mid-1980s, showed how scientific uncertainty slows action, and the history of outer space shows how far the management of the commons depends on technology that only some countries possess. "
+  "Anti-dam campaigns, beginning with the Franklin river in Australia, joined wilderness protection to the rights of people displaced by large dams, a struggle seen in India in the Narmada Bachao Andolan.",
+  "तीनों कथन सही हैं। जिन संसाधनों का कोई एक राज्य स्वामी नहीं होता उनका अति-उपयोग होता है, इसलिए उन्हें अंतरराष्ट्रीय सहयोग चाहिए -- अंटार्कटिक संधि, मॉन्ट्रियल प्रोटोकॉल और अंटार्कटिक पर्यावरण प्रोटोकॉल इसके उदाहरण हैं। "
+  "सहयोग कठिन है: 1980 के दशक के मध्य में खोजे गए ओज़ोन छिद्र ने दिखाया कि वैज्ञानिक अनिश्चितता कार्रवाई को कैसे धीमा करती है, और बाह्य अंतरिक्ष का इतिहास दिखाता है कि साझा संपदा का प्रबंधन कितना उस प्रौद्योगिकी पर निर्भर है जो कुछ ही देशों के पास है। "
+  "ऑस्ट्रेलिया की फ़्रैंकलिन नदी से आरंभ हुए बाँध-विरोधी अभियानों ने वन्य क्षेत्रों की सुरक्षा को बड़े बाँधों से विस्थापित लोगों के अधिकारों से जोड़ा, जिसका भारतीय उदाहरण नर्मदा बचाओ आंदोलन है।",
+  f"{CWP}, Chapter 8 (Environment and Natural Resources).",
+  "l1-rev-global-commons-franklin", craft="inference")
+
+# ================================================================ Indian Environmental Laws & Bodies (1)
+P(LW, "hard", "Consider the following pairs of bodies and the laws under which they were set up:",
+  "निकायों और उन क़ानूनों के निम्नलिखित युग्मों पर विचार कीजिए जिनके अंतर्गत वे स्थापित किए गए:",
+  ["State Pollution Control Boards : Water (Prevention and Control of Pollution) Act, 1974",
+   "Genetic Engineering Appraisal Committee : Environment (Protection) Act, 1986",
+   "Botanical Survey of India : Biological Diversity Act, 2002",
+   "Coastal Zone Management Authorities : Environment (Protection) Act, 1986"],
+  ["राज्य प्रदूषण नियंत्रण बोर्ड : जल (प्रदूषण निवारण एवं नियंत्रण) अधिनियम, 1974",
+   "जेनेटिक इंजीनियरिंग मूल्यांकन समिति (GEAC) : पर्यावरण (संरक्षण) अधिनियम, 1986",
+   "भारतीय वनस्पति सर्वेक्षण : जैविक विविधता अधिनियम, 2002",
+   "तटीय क्षेत्र प्रबंधन प्राधिकरण : पर्यावरण (संरक्षण) अधिनियम, 1986"],
+  2,
+  "Pairs 1, 2 and 4 are correctly matched. The State Pollution Control Boards were constituted under the Water Act of 1974 and later given functions under the Air Act of 1981 as well; the Genetic Engineering Appraisal Committee works under the Rules of 1989 framed under the Environment (Protection) Act, and approves the environmental release of genetically engineered organisms; "
+  "the national and State Coastal Zone Management Authorities were constituted under Section 3(3) of the same Act to enforce the coastal regulation zone rules. "
+  "Pair 3 is wrong: the Botanical Survey of India, which surveys and documents the country's plant resources, was set up in 1890 and is not a statutory body; the Biological Diversity Act created the National Biodiversity Authority, the State Biodiversity Boards and the Biodiversity Management Committees.",
+  "युग्म 1, 2 और 4 सही सुमेलित हैं। राज्य प्रदूषण नियंत्रण बोर्ड 1974 के जल अधिनियम के अंतर्गत गठित हुए और बाद में उन्हें 1981 के वायु अधिनियम के अंतर्गत भी कार्य सौंपे गए; जेनेटिक इंजीनियरिंग मूल्यांकन समिति पर्यावरण (संरक्षण) अधिनियम के अंतर्गत बने 1989 के नियमों के अधीन काम करती है और आनुवंशिक रूप से अभियांत्रित जीवों को पर्यावरण में छोड़ने की स्वीकृति देती है; "
+  "राष्ट्रीय और राज्य तटीय क्षेत्र प्रबंधन प्राधिकरण तटीय विनियमन क्षेत्र के नियम लागू करने के लिए उसी अधिनियम की धारा 3(3) के अंतर्गत गठित हुए। "
+  "युग्म 3 गलत है: देश के पादप संसाधनों का सर्वेक्षण और प्रलेखन करने वाला भारतीय वनस्पति सर्वेक्षण 1890 में स्थापित हुआ और यह सांविधिक निकाय नहीं है; जैविक विविधता अधिनियम ने राष्ट्रीय जैव विविधता प्राधिकरण, राज्य जैव विविधता बोर्डों और जैव विविधता प्रबंधन समितियों का सृजन किया।",
+  "Water (Prevention and Control of Pollution) Act, 1974; Environment (Protection) Act, 1986, Section 3(3), and the Rules, 1989; Ministry of Environment, Forest and Climate Change.",
+  "l1-rev-env-bodies-statutes-pairs", craft="precision")
+
+write("rev_l1_t7_c.sql")
