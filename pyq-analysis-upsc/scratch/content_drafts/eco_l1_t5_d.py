@@ -1,0 +1,298 @@
+# -*- coding: utf-8 -*-
+"""Level 1 · Test 5 (Economy, NCERT Foundation) -- part D: Industry, Infrastructure, Energy & Services (18)
+(upsc_l1_cell_targets.mjs 5): easy MCQ 1, easy statement 3, easy Statement-I/II 1, medium MCQ 2, medium statement 6,
+medium Statement-I/II 2, hard MCQ 1, hard statement 2.
+The angle is NCERT Class X 'Sectors of the Indian Economy' (organised and unorganised, public and private, how the
+tertiary sector supports the rest) and Class XI 'Infrastructure' and the small-scale-industry story, with the
+official programmes that built on them: village and household electrification, UJALA, ethanol blending, the Green
+Hydrogen Mission, Udyam registration and ODOP. Level-2 facts are not repeated (core industries, IIP, PMI, PLI, MSME
+thresholds, Maharatna status, coal, open access, discom losses, the regulators pairs, telecom, logistics, PPP models,
+Make in India, the 1991 delicensing, Ayushman Bharat and Jal Jeevan in Level-2 Polity). MCQ keys are pinned."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+d.REQUIRE_CRAFT = True
+IN = "Industry, Infrastructure, Energy & Services"
+EC10 = "NCERT Class X, Economics -- Understanding Economic Development"
+IED = "NCERT Class XI, Economics -- Indian Economic Development"
+
+# ---------------------------------------------------------------- easy MCQ (1)
+M(IN, "easy", "A worker at a small roadside eatery has no fixed hours, no paid leave and no provident fund, and can be asked to leave at any time. He works in",
+  "सड़क किनारे एक छोटे भोजनालय के श्रमिक के काम के घंटे तय नहीं हैं, उसे सवेतन छुट्टी या भविष्य निधि नहीं मिलती, और उसे कभी भी काम छोड़ने को कहा जा सकता है। वह किसमें काम करता है?",
+  ["the unorganised sector", "the organised private sector", "the public sector", "the quaternary sector"],
+  ["असंगठित क्षेत्र", "संगठित निजी क्षेत्र", "सार्वजनिक क्षेत्र", "चतुर्थक क्षेत्र"],
+  0,
+  "The unorganised sector consists of small and scattered units, largely outside the control of the government; there are rules, but they are often not followed, jobs are low-paid and irregular, and there is no paid leave, sick leave or job security. "
+  "Organised-sector enterprises are registered with the government and must follow its rules on wages, working hours, leave and social security, which is why their workers enjoy security of employment.",
+  "असंगठित क्षेत्र छोटी और बिखरी इकाइयों से बना है, जो अधिकतर सरकार के नियंत्रण से बाहर हैं; नियम हैं, पर प्रायः उनका पालन नहीं होता, नौकरियाँ कम वेतन वाली और अनियमित हैं, और सवेतन छुट्टी, बीमारी की छुट्टी या नौकरी की सुरक्षा नहीं होती। "
+  "संगठित क्षेत्र के उद्यम सरकार में पंजीकृत होते हैं और उन्हें मज़दूरी, काम के घंटों, छुट्टी और सामाजिक सुरक्षा के नियम मानने होते हैं, इसीलिए उनके श्रमिकों को रोज़गार की सुरक्षा मिलती है।",
+  f"{EC10} (Sectors of the Indian Economy).",
+  "l1-eco-unorganised-sector-worker", pos=3, craft="application")
+
+# ---------------------------------------------------------------- easy statement (3)
+S(IN, "easy", "Consider the following statements about sources of energy:",
+  "ऊर्जा के स्रोतों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Firewood, agricultural waste and dried dung are non-commercial sources of energy.",
+   "Coal, petroleum and electricity are commercial sources of energy, since they are bought and sold.",
+   "Commercial sources of energy are generally exhaustible, hydropower being an exception, while non-commercial sources are generally renewable."],
+  ["जलाऊ लकड़ी, कृषि अपशिष्ट और सूखा गोबर ऊर्जा के ग़ैर-वाणिज्यिक स्रोत हैं।",
+   "कोयला, पेट्रोलियम और बिजली ऊर्जा के वाणिज्यिक स्रोत हैं, क्योंकि उन्हें ख़रीदा और बेचा जाता है।",
+   "ऊर्जा के वाणिज्यिक स्रोत, जलविद्युत को छोड़कर, सामान्यतः समाप्य हैं, जबकि ग़ैर-वाणिज्यिक स्रोत सामान्यतः नवीकरणीय हैं।"],
+  C3, 2,
+  "All three statements are correct. Non-commercial sources are gathered from nature rather than bought, and are still widely used for cooking and heating in rural homes. "
+  "Commercial energy, chiefly coal, has become the main source for industry, transport and electricity as the economy has grown; solar, wind and tidal power are the non-conventional sources being developed to reduce the dependence on fossil fuels.",
+  "तीनों कथन सही हैं। ग़ैर-वाणिज्यिक स्रोत ख़रीदे नहीं, प्रकृति से इकट्ठे किए जाते हैं, और ग्रामीण घरों में अब भी भोजन पकाने और गर्मी के लिए व्यापक रूप से प्रयुक्त होते हैं। "
+  "अर्थव्यवस्था के बढ़ने के साथ वाणिज्यिक ऊर्जा, मुख्यतः कोयला, उद्योग, परिवहन और बिजली का मुख्य स्रोत बन गई है; सौर, पवन और ज्वारीय ऊर्जा वे ग़ैर-परंपरागत स्रोत हैं जिन्हें जीवाश्म ईंधनों पर निर्भरता घटाने के लिए विकसित किया जा रहा है।",
+  f"{IED} (Infrastructure).",
+  "l1-eco-commercial-noncommercial-energy", craft="recall")
+
+S(IN, "easy", "Consider the following statements about the public and private sectors:",
+  "सार्वजनिक और निजी क्षेत्रों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In the public sector, the government owns most of the assets and provides the services, as in the railways and the post office.",
+   "Activities in the private sector are guided by the motive of earning profits."],
+  ["सार्वजनिक क्षेत्र में अधिकांश परिसंपत्तियों का स्वामित्व सरकार के पास होता है और वही सेवाएँ देती है, जैसे रेलवे और डाकघर में।",
+   "निजी क्षेत्र की गतिविधियाँ लाभ कमाने के उद्देश्य से निर्देशित होती हैं।"],
+  T2, 2,
+  "Both statements are correct. The two sectors are distinguished by who owns the assets and is responsible for delivering the services; companies such as Tata Steel and Reliance Industries are privately owned. "
+  "The public sector's purpose is not just to earn profits: it provides things the society needs that private firms will not supply at a reasonable cost, such as roads, bridges, harbours and irrigation, raising the money through taxes.",
+  "दोनों कथन सही हैं। दोनों क्षेत्रों में भेद इस आधार पर है कि परिसंपत्तियों का स्वामी कौन है और सेवाएँ देने का उत्तरदायित्व किसका है; टाटा स्टील और रिलायंस इंडस्ट्रीज़ जैसी कंपनियाँ निजी स्वामित्व में हैं। "
+  "सार्वजनिक क्षेत्र का उद्देश्य केवल लाभ कमाना नहीं है: यह समाज की ज़रूरत की वे चीज़ें देता है जो निजी फ़र्में उचित लागत पर नहीं देंगी, जैसे सड़कें, पुल, बंदरगाह और सिंचाई, और इसके लिए धन करों से जुटाता है।",
+  f"{EC10} (Sectors of the Indian Economy).",
+  "l1-eco-public-private-sector", craft="recall")
+
+S(IN, "easy", "Consider the following statements about infrastructure:",
+  "आधारिक संरचना (infrastructure) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Energy, transport and communication are examples of economic infrastructure.",
+   "Education, health and housing are examples of social infrastructure.",
+   "Infrastructure itself directly produces the goods that consumers buy."],
+  ["ऊर्जा, परिवहन और संचार आर्थिक आधारिक संरचना के उदाहरण हैं।",
+   "शिक्षा, स्वास्थ्य और आवास सामाजिक आधारिक संरचना के उदाहरण हैं।",
+   "आधारिक संरचना स्वयं वे वस्तुएँ सीधे उत्पन्न करती है जो उपभोक्ता ख़रीदते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: economic infrastructure supports the process of production directly, while social infrastructure builds up the health and skills of the people who work in it. "
+  "Statement 3 is wrong: infrastructure is the support system on which agriculture, industry and trade depend; it raises their productivity, as irrigation lets farmers grow more than one crop a year and roads and power let factories reach markets.",
+  "कथन 1 और 2 सही हैं: आर्थिक आधारिक संरचना उत्पादन की प्रक्रिया को सीधे सहारा देती है, जबकि सामाजिक आधारिक संरचना उसमें काम करने वाले लोगों के स्वास्थ्य और कौशल का निर्माण करती है। "
+  "कथन 3 गलत है: आधारिक संरचना वह सहायक तंत्र है जिस पर कृषि, उद्योग और व्यापार निर्भर हैं; यह उनकी उत्पादकता बढ़ाती है, जैसे सिंचाई किसानों को वर्ष में एक से अधिक फ़सल उगाने देती है और सड़कें तथा बिजली कारख़ानों को बाज़ारों तक पहुँचाती हैं।",
+  f"{IED} (Infrastructure).",
+  "l1-eco-economic-social-infrastructure", craft="precision")
+
+# ---------------------------------------------------------------- easy Statement-I/II (1)
+A(IN, "easy",
+  "Services such as transport, storage, communication, banking and trade grow as agriculture and industry develop.",
+  "कृषि और उद्योग के विकास के साथ परिवहन, भंडारण, संचार, बैंकिंग और व्यापार जैसी सेवाएँ बढ़ती हैं।",
+  "These services aid the production and sale of goods.",
+  "ये सेवाएँ वस्तुओं के उत्पादन और बिक्री में सहायता करती हैं।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Tertiary activities do not themselves produce goods but support the production process: goods must be transported, stored, financed and sold, so more farm and factory output creates more demand for these services. "
+  "Rising incomes add to the demand for other services such as eating out, tourism, private schools and hospitals.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। तृतीयक गतिविधियाँ स्वयं वस्तुएँ नहीं बनातीं पर उत्पादन प्रक्रिया को सहारा देती हैं: वस्तुओं को ढोना, भंडारित करना, वित्तपोषित करना और बेचना पड़ता है, इसलिए खेतों और कारख़ानों का अधिक उत्पादन इन सेवाओं की माँग बढ़ाता है। "
+  "बढ़ती आय बाहर खाने, पर्यटन, निजी स्कूलों और अस्पतालों जैसी अन्य सेवाओं की माँग बढ़ाती है।",
+  f"{EC10} (Sectors of the Indian Economy).",
+  "l1-eco-tertiary-supports-production", craft="inference")
+
+# ---------------------------------------------------------------- medium MCQ (2)
+M(IN, "medium", "Which one of the following is NOT one of the systems of medicine under AYUSH?",
+  "निम्नलिखित में से कौन-सी AYUSH के अंतर्गत आने वाली चिकित्सा पद्धतियों में से नहीं है?",
+  ["Acupuncture", "Sowa-Rigpa", "Unani", "Yoga and Naturopathy"],
+  ["एक्यूपंक्चर", "सोवा-रिग्पा", "यूनानी", "योग और प्राकृतिक चिकित्सा"],
+  0,
+  "AYUSH covers Ayurveda, Yoga and Naturopathy, Unani, Siddha, Sowa-Rigpa and Homoeopathy, looked after by a separate Ministry of AYUSH since 2014. Sowa-Rigpa is the traditional medicine of the Himalayan regions, such as Ladakh and Sikkim, rooted in Buddhist learning. "
+  "Acupuncture, a Chinese practice of inserting needles at specific points, is not one of the AYUSH systems.",
+  "AYUSH में आयुर्वेद, योग और प्राकृतिक चिकित्सा, यूनानी, सिद्ध, सोवा-रिग्पा और होम्योपैथी आती हैं, जिनकी देखरेख 2014 से अलग आयुष मंत्रालय करता है। सोवा-रिग्पा लद्दाख और सिक्किम जैसे हिमालयी क्षेत्रों की बौद्ध ज्ञान में निहित परंपरागत चिकित्सा है। "
+  "विशेष बिंदुओं पर सुइयाँ लगाने की चीनी पद्धति एक्यूपंक्चर AYUSH पद्धतियों में से नहीं है।",
+  f"Ministry of AYUSH; {IED} (Infrastructure: health).",
+  "l1-eco-ayush-systems", pos=3, craft="precision")
+
+M(IN, "medium", "The Pradhan Mantri Bhartiya Janaushadhi Pariyojana aims mainly to",
+  "प्रधानमंत्री भारतीय जनौषधि परियोजना का मुख्य उद्देश्य क्या है?",
+  ["sell quality generic medicines cheaply through its own stores", "give free hospital treatment of up to ₹5 lakh per family each year",
+   "promote exports by Indian pharmaceutical companies", "fund public laboratories to research new medicines"],
+  ["अपनी दुकानों के माध्यम से गुणवत्तापूर्ण जेनेरिक दवाएँ सस्ते में बेचना", "प्रति परिवार प्रति वर्ष ₹5 लाख तक का निःशुल्क अस्पताल उपचार देना",
+   "भारतीय दवा कंपनियों के निर्यात को बढ़ावा देना", "नई दवाओं के अनुसंधान के लिए सार्वजनिक प्रयोगशालाओं को धन देना"],
+  0,
+  "Under the scheme, run by the Department of Pharmaceuticals, Jan Aushadhi Kendras sell generic medicines -- sold under the name of their active ingredient rather than a brand -- at prices often 50 to 90 per cent below branded equivalents, with quality checked in accredited laboratories. "
+  "Since medicines are the largest part of what Indian households pay out of pocket for health, cheaper medicines protect poor families from health costs; free hospital treatment is the separate task of PM-JAY.",
+  "औषध विभाग द्वारा चलाई जाने वाली इस योजना में जन औषधि केंद्र जेनेरिक दवाएँ -- जो ब्रांड के बजाय अपने सक्रिय घटक के नाम से बिकती हैं -- ब्रांडेड दवाओं से प्रायः 50 से 90 प्रतिशत कम कीमत पर बेचते हैं, और उनकी गुणवत्ता मान्यता प्राप्त प्रयोगशालाओं में जाँची जाती है। "
+  "चूँकि स्वास्थ्य पर भारतीय परिवारों के अपनी जेब से होने वाले व्यय का सबसे बड़ा भाग दवाएँ हैं, सस्ती दवाएँ ग़रीब परिवारों को स्वास्थ्य लागत से बचाती हैं; निःशुल्क अस्पताल उपचार PM-JAY का अलग कार्य है।",
+  "Department of Pharmaceuticals, Ministry of Chemicals and Fertilizers (PMBJP).",
+  "l1-eco-jan-aushadhi-generic-medicines", pos=3, craft="precision")
+
+# ---------------------------------------------------------------- medium statement (6)
+S(IN, "medium", "Consider the following statements about electrification in India:",
+  "भारत में विद्युतीकरण के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["All inhabited census villages had been electrified by April 2018, under the Deendayal Upadhyaya Gram Jyoti Yojana.",
+   "The Saubhagya scheme, launched in 2017, aimed to give electricity connections to all willing un-electrified households.",
+   "The Saubhagya scheme provided free LPG connections to poor women."],
+  ["दीनदयाल उपाध्याय ग्राम ज्योति योजना के अंतर्गत अप्रैल 2018 तक सभी बसे हुए जनगणना गाँवों का विद्युतीकरण हो चुका था।",
+   "2017 में आरंभ सौभाग्य योजना का उद्देश्य बिजली रहित सभी इच्छुक परिवारों को बिजली कनेक्शन देना था।",
+   "सौभाग्य योजना ने ग़रीब महिलाओं को निःशुल्क LPG कनेक्शन दिए।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: a village counted as electrified when basic infrastructure reached it and at least 10 per cent of its households and its public places had power, which left many homes unconnected -- the gap Saubhagya was designed to close. "
+  "Statement 3 is wrong: free LPG connections for poor women are given under the Pradhan Mantri Ujjwala Yojana, launched in 2016.",
+  "कथन 1 और 2 सही हैं: किसी गाँव को विद्युतीकृत तब माना जाता था जब बुनियादी ढाँचा वहाँ पहुँच जाए और उसके कम से कम 10 प्रतिशत घरों तथा सार्वजनिक स्थानों में बिजली हो, जिससे कई घर बिना कनेक्शन रह गए -- यही कमी दूर करने के लिए सौभाग्य बनी। "
+  "कथन 3 गलत है: ग़रीब महिलाओं को निःशुल्क LPG कनेक्शन 2016 में आरंभ प्रधानमंत्री उज्ज्वला योजना के अंतर्गत दिए जाते हैं।",
+  "Ministry of Power (DDUGJY; Saubhagya).",
+  "l1-eco-ddugjy-saubhagya", craft="precision")
+
+S(IN, "medium", "Consider the following statements about health infrastructure in India:",
+  "भारत में स्वास्थ्य संबंधी आधारिक संरचना के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Sub-centres, primary health centres and community health centres provide primary health care.",
+   "Hospitals with better facilities for surgery, X-ray and ECG, mostly at district headquarters and in big towns, are secondary health care institutions.",
+   "Ayushman Arogya Mandirs, earlier called Health and Wellness Centres, upgrade sub-centres and primary health centres to provide comprehensive primary health care."],
+  ["उप-केंद्र, प्राथमिक स्वास्थ्य केंद्र और सामुदायिक स्वास्थ्य केंद्र प्राथमिक स्वास्थ्य देखभाल देते हैं।",
+   "शल्य-चिकित्सा, एक्स-रे और ECG की बेहतर सुविधाओं वाले अस्पताल, जो अधिकतर ज़िला मुख्यालयों और बड़े नगरों में हैं, द्वितीयक स्वास्थ्य देखभाल संस्थान हैं।",
+   "आयुष्मान आरोग्य मंदिर, जिन्हें पहले स्वास्थ्य और कल्याण केंद्र कहते थे, उप-केंद्रों और प्राथमिक स्वास्थ्य केंद्रों का उन्नयन करके व्यापक प्राथमिक स्वास्थ्य देखभाल देते हैं।"],
+  C3, 2,
+  "All three statements are correct. Patients whose condition cannot be managed at the primary level are referred to secondary or tertiary institutions; the tertiary level, with advanced equipment and specialists, includes institutions such as the All India Institute of Medical Sciences and medical colleges. "
+  "The Arogya Mandirs add screening for non-communicable diseases, free essential medicines and diagnostics, and wellness activities close to the community.",
+  "तीनों कथन सही हैं। जिन रोगियों की स्थिति प्राथमिक स्तर पर नहीं सँभलती, उन्हें द्वितीयक या तृतीयक संस्थानों को भेजा जाता है; उन्नत उपकरणों और विशेषज्ञों वाले तृतीयक स्तर में अखिल भारतीय आयुर्विज्ञान संस्थान और चिकित्सा महाविद्यालय जैसे संस्थान आते हैं। "
+  "आरोग्य मंदिर समुदाय के निकट ग़ैर-संचारी रोगों की जाँच, निःशुल्क आवश्यक दवाएँ और जाँचें, और कल्याण गतिविधियाँ जोड़ते हैं।",
+  f"{IED} (Infrastructure: health); Ministry of Health and Family Welfare.",
+  "l1-eco-health-care-tiers", craft="recall")
+
+S(IN, "medium", "Consider the following statements about the formal and informal sectors, as NCERT defines them:",
+  "NCERT की परिभाषा के अनुसार औपचारिक और अनौपचारिक क्षेत्रों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["All public-sector establishments, and private-sector establishments that employ 10 or more hired workers, are formal-sector establishments.",
+   "Casual construction workers in cities, who work for several employers, belong to the formal sector.",
+   "Farmers cultivating their own land are counted among formal-sector workers."],
+  ["सभी सार्वजनिक क्षेत्र के प्रतिष्ठान, और 10 या अधिक किराए के श्रमिक रखने वाले निजी क्षेत्र के प्रतिष्ठान, औपचारिक क्षेत्र के प्रतिष्ठान हैं।",
+   "नगरों के अनियत निर्माण श्रमिक, जो कई नियोक्ताओं के लिए काम करते हैं, औपचारिक क्षेत्र में आते हैं।",
+   "अपनी भूमि पर खेती करने वाले किसान औपचारिक क्षेत्र के श्रमिकों में गिने जाते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct; those who work in such establishments are formal-sector workers, and they are entitled to social security benefits and can form trade unions. "
+  "Statements 2 and 3 are wrong: all other enterprises and their workers form the informal sector -- millions of farmers, agricultural labourers, owners of small enterprises and their workers, the self-employed with no hired workers, and non-farm casual wage labourers, such as construction and head-load workers in towns and cities, who work for more than one employer -- so the informal sector is large in urban as well as rural India.",
+  "केवल कथन 1 सही है; ऐसे प्रतिष्ठानों में काम करने वाले औपचारिक क्षेत्र के श्रमिक हैं, जिन्हें सामाजिक सुरक्षा लाभ मिलते हैं और जो श्रमिक संघ बना सकते हैं। "
+  "कथन 2 और 3 गलत हैं: अन्य सभी उद्यम और उनके श्रमिक अनौपचारिक क्षेत्र बनाते हैं -- करोड़ों किसान, खेतिहर मज़दूर, छोटे उद्यमों के स्वामी और उनके श्रमिक, बिना किराए के श्रमिकों वाले स्वरोज़गारी, और ग़ैर-कृषि अनियत दिहाड़ी मज़दूर, जैसे नगरों के निर्माण और बोझ ढोने वाले मज़दूर, जो एक से अधिक नियोक्ताओं के लिए काम करते हैं -- इसलिए अनौपचारिक क्षेत्र ग्रामीण के साथ-साथ नगरीय भारत में भी बड़ा है।",
+  "NCERT Class XI, Economics -- Indian Economic Development (Employment: Growth, Informalisation and Other Issues).",
+  "l1-eco-formal-sector-ten-workers", craft="precision")
+
+S(IN, "medium", "Consider the following statements about Udyam registration of micro, small and medium enterprises:",
+  "सूक्ष्म, लघु और मध्यम उद्यमों के उद्यम पंजीकरण (Udyam registration) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is done online, free of cost and without paper, on the basis of self-declaration.",
+   "It needs an Aadhaar number, while details of investment and turnover are drawn from government databases linked to PAN and GST.",
+   "Once granted, the registration needs no renewal.",
+   "Registered enterprises can avail of benefits such as priority sector lending from banks."],
+  ["यह स्व-घोषणा के आधार पर ऑनलाइन, निःशुल्क और बिना काग़ज़ के होता है।",
+   "इसके लिए आधार संख्या चाहिए, जबकि निवेश और कारोबार का विवरण PAN और GST से जुड़े सरकारी डेटाबेस से लिया जाता है।",
+   "एक बार मिल जाने के बाद पंजीकरण के नवीनीकरण की आवश्यकता नहीं होती।",
+   "पंजीकृत उद्यम बैंकों से प्राथमिकता-क्षेत्र ऋण जैसे लाभ ले सकते हैं।"],
+  C4, 3,
+  "All four statements are correct. Udyam registration, introduced in July 2020 along with the composite classification of enterprises by investment and turnover, replaced the earlier Udyog Aadhaar filing and requires no documents to be uploaded. "
+  "The registration is the gateway to MSME schemes, such as collateral-free credit guarantees, protection against delayed payments and preference in public procurement.",
+  "चारों कथन सही हैं। निवेश और कारोबार के आधार पर उद्यमों के संयुक्त वर्गीकरण के साथ जुलाई 2020 में आरंभ उद्यम पंजीकरण ने पहले के उद्योग आधार की जगह ली, और इसमें कोई दस्तावेज़ अपलोड नहीं करना पड़ता। "
+  "यह पंजीकरण MSME योजनाओं का द्वार है, जैसे बिना समर्थक ऋणाधार के ऋण गारंटी, विलंबित भुगतानों से सुरक्षा और सरकारी ख़रीद में वरीयता।",
+  "Ministry of Micro, Small and Medium Enterprises (Udyam Registration).",
+  "l1-eco-udyam-registration", craft="recall")
+
+S(IN, "medium", "Consider the following statements about the Pradhan Mantri Gram Sadak Yojana (PMGSY):",
+  "प्रधानमंत्री ग्राम सड़क योजना (PMGSY) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was launched in December 2000.",
+   "It aims to give all-weather road connectivity to eligible habitations that have none.",
+   "It is a centrally sponsored scheme whose cost is shared with the States, the Centre bearing a larger share in the North-Eastern and Himalayan States.",
+   "The contractor who builds a road is also responsible for maintaining it for five years after construction."],
+  ["इसे दिसंबर 2000 में आरंभ किया गया।",
+   "इसका उद्देश्य बिना सड़क वाली पात्र बसावटों को बारहमासी सड़क संपर्क देना है।",
+   "यह केंद्र प्रायोजित योजना है जिसकी लागत राज्यों के साथ बाँटी जाती है, और पूर्वोत्तर तथा हिमालयी राज्यों में केंद्र बड़ा हिस्सा वहन करता है।",
+   "सड़क बनाने वाला ठेकेदार निर्माण के बाद पाँच वर्ष तक उसके रखरखाव के लिए भी उत्तरदायी होता है।"],
+  C4, 3,
+  "All four statements are correct. A village that can be cut off in the rains loses access to markets, schools, health care and jobs, so rural roads raise farm incomes and widen opportunities; the Centre bears 60 per cent of the cost in most States and 90 per cent in the North-Eastern and Himalayan States. "
+  "Building in a five-year maintenance obligation was meant to stop new roads from crumbling, and later phases have moved from connecting habitations to upgrading the rural road network.",
+  "चारों कथन सही हैं। जो गाँव बरसात में कट जाए, वह बाज़ारों, स्कूलों, स्वास्थ्य सेवा और रोज़गार से कट जाता है, इसलिए ग्रामीण सड़कें कृषि आय बढ़ाती और अवसर फैलाती हैं; अधिकांश राज्यों में केंद्र लागत का 60 प्रतिशत और पूर्वोत्तर तथा हिमालयी राज्यों में 90 प्रतिशत वहन करता है। "
+  "पाँच वर्ष के रखरखाव का दायित्व इसलिए जोड़ा गया कि नई सड़कें जल्दी न टूटें, और बाद के चरण बसावटों को जोड़ने से आगे ग्रामीण सड़क तंत्र के उन्नयन की ओर बढ़े हैं।",
+  "Ministry of Rural Development (PMGSY).",
+  "l1-eco-pmgsy-rural-roads", craft="recall")
+
+S(IN, "medium", "Consider the following statements about the One District One Product (ODOP) initiative:",
+  "एक ज़िला एक उत्पाद (ODOP) पहल के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was first launched by Uttar Pradesh in 2018.",
+   "At the national level, it aims to identify, brand and promote at least one product from each district.",
+   "It covers only agricultural produce."],
+  ["इसे सबसे पहले उत्तर प्रदेश ने 2018 में आरंभ किया।",
+   "राष्ट्रीय स्तर पर इसका उद्देश्य प्रत्येक ज़िले के कम से कम एक उत्पाद की पहचान, ब्रांडिंग और प्रोत्साहन है।",
+   "इसमें केवल कृषि उपज शामिल है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: building on a district's existing strengths in a product spreads growth beyond big cities and helps local artisans and farmers reach national and export markets. "
+  "Statement 3 is wrong: ODOP products include handicrafts, handlooms and textiles, toys and processed foods as well as farm produce -- Moradabad's brassware and Firozabad's glassware among them.",
+  "कथन 1 और 2 सही हैं: किसी उत्पाद में ज़िले की मौजूदा ताक़त पर निर्माण संवृद्धि को बड़े नगरों से आगे फैलाता है और स्थानीय दस्तकारों तथा किसानों को राष्ट्रीय और निर्यात बाज़ारों तक पहुँचने में मदद करता है। "
+  "कथन 3 गलत है: ODOP उत्पादों में कृषि उपज के साथ हस्तशिल्प, हथकरघा और वस्त्र, खिलौने और प्रसंस्कृत खाद्य भी हैं -- इनमें मुरादाबाद के पीतल के बर्तन और फ़िरोज़ाबाद का काँच का सामान भी है।",
+  "Department for Promotion of Industry and Internal Trade (ODOP); Government of Uttar Pradesh.",
+  "l1-eco-one-district-one-product", craft="precision")
+
+# ---------------------------------------------------------------- medium Statement-I/II (2)
+A(IN, "medium",
+  "The government often supplies electricity to small-scale industries at rates they can afford, bearing part of the cost itself.",
+  "सरकार प्रायः लघु उद्योगों को उनकी सामर्थ्य के अनुसार दरों पर बिजली देती है, और लागत का एक भाग स्वयं वहन करती है।",
+  "If electricity were sold at the full cost of generation, many small-scale units might have to shut down.",
+  "यदि बिजली उत्पादन की पूरी लागत पर बेची जाए, तो कई लघु इकाइयों को बंद होना पड़ सकता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. NCERT uses this example to show why the public sector supports some activities that the private sector would not carry on by itself: charging the full cost of power would raise the production costs of many small units, which employ large numbers of people. "
+  "Similar reasoning lies behind the government's role in buying grain from farmers at a fair price and selling it at a lower price through ration shops.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। NCERT यह उदाहरण यह दिखाने के लिए देता है कि सार्वजनिक क्षेत्र कुछ ऐसी गतिविधियों को क्यों सहारा देता है जिन्हें निजी क्षेत्र अपने बूते नहीं चलाएगा: बिजली की पूरी लागत वसूलने से कई छोटी इकाइयों की उत्पादन लागत बढ़ जाएगी, जो बड़ी संख्या में लोगों को रोज़गार देती हैं। "
+  "किसानों से उचित कीमत पर अनाज ख़रीदकर राशन दुकानों के ज़रिए कम कीमत पर बेचने में सरकार की भूमिका के पीछे भी ऐसा ही तर्क है।",
+  f"{EC10} (Sectors of the Indian Economy).",
+  "l1-eco-public-sector-electricity-small-units", craft="inference")
+
+A(IN, "medium",
+  "Cold storages can raise the incomes of farmers who grow potatoes and onions.",
+  "शीत भंडार (cold storage) आलू और प्याज़ उगाने वाले किसानों की आय बढ़ा सकते हैं।",
+  "They let farmers store their produce and sell it later, when prices are better, instead of selling it all just after the harvest.",
+  "वे किसानों को अपनी उपज भंडारित करके बाद में, बेहतर कीमत मिलने पर, बेचने देते हैं, बजाय इसके कि वे पूरी उपज कटाई के तुरंत बाद बेच दें।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Prices of perishable crops fall steeply at harvest time, when everyone sells together; storage spreads the sales over the year. "
+  "NCERT lists cold storages, along with mills to process local produce, rural roads and cheap credit, among the ways of creating more and better-paid work in rural areas.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। जल्दी ख़राब होने वाली फ़सलों की कीमतें कटाई के समय, जब सब एक साथ बेचते हैं, बहुत गिर जाती हैं; भंडारण बिक्री को पूरे वर्ष में फैला देता है। "
+  "NCERT स्थानीय उपज के प्रसंस्करण की मिलों, ग्रामीण सड़कों और सस्ते ऋण के साथ शीत भंडारों को ग्रामीण क्षेत्रों में अधिक और बेहतर वेतन वाला काम पैदा करने के उपायों में गिनाता है।",
+  f"{EC10} (Sectors of the Indian Economy).",
+  "l1-eco-cold-storage-farm-incomes", craft="inference")
+
+# ---------------------------------------------------------------- hard MCQ (1)
+M(IN, "hard", "A 1,000 MW power station generates 5,256 million units (kWh) of electricity in a year of 8,760 hours. Its plant load factor is about",
+  "1,000 मेगावाट का एक बिजलीघर 8,760 घंटे के एक वर्ष में 5,256 मिलियन यूनिट (kWh) बिजली उत्पन्न करता है। उसका संयंत्र भार कारक (plant load factor) लगभग कितना है?",
+  ["60 per cent", "52.6 per cent", "87.6 per cent", "66.7 per cent"],
+  ["60 प्रतिशत", "52.6 प्रतिशत", "87.6 प्रतिशत", "66.7 प्रतिशत"],
+  0,
+  "The plant load factor is the actual output as a share of the maximum possible output. Running at full capacity all year, the plant would produce 1,000 MW x 8,760 hours = 8,760 million kWh; it produced 5,256 million kWh, and 5,256 / 8,760 = 0.6, or 60 per cent. "
+  "A low PLF means costly capacity standing idle -- because of fuel shortages, breakdowns or weak demand -- and raises the cost of each unit generated.",
+  "संयंत्र भार कारक वास्तविक उत्पादन का अधिकतम संभव उत्पादन में हिस्सा है। पूरे वर्ष पूरी क्षमता पर चलने पर संयंत्र 1,000 मेगावाट x 8,760 घंटे = 8,760 मिलियन kWh उत्पन्न करता; उसने 5,256 मिलियन kWh उत्पन्न किए, और 5,256 / 8,760 = 0.6, यानी 60 प्रतिशत। "
+  "कम PLF का अर्थ है महँगी क्षमता का बेकार पड़े रहना -- ईंधन की कमी, ख़राबी या कमज़ोर माँग के कारण -- और इससे उत्पन्न हर यूनिट की लागत बढ़ती है।",
+  "Central Electricity Authority (performance of thermal power stations).",
+  "l1-eco-plant-load-factor", pos=0, craft="application")
+
+# ---------------------------------------------------------------- hard statement (2)
+S(IN, "hard", "Consider the following statements about small-scale industries in India's planning era:",
+  "भारत के नियोजन काल में लघु उद्योगों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Village and Small-Scale Industries Committee (the Karve Committee) of 1955 saw small-scale industry as a means of promoting rural development.",
+   "Small-scale industries were promoted because they are more labour-intensive and so create more employment for the same capital.",
+   "A number of products were reserved for production only by small-scale industries."],
+  ["1955 की ग्राम और लघु उद्योग समिति (कर्वे समिति) ने लघु उद्योग को ग्रामीण विकास को बढ़ावा देने का साधन माना।",
+   "लघु उद्योगों को इसलिए बढ़ावा दिया गया कि वे अधिक श्रम-प्रधान हैं और इसलिए उतनी ही पूँजी से अधिक रोज़गार पैदा करते हैं।",
+   "कई उत्पाद केवल लघु उद्योगों द्वारा उत्पादन के लिए आरक्षित किए गए।"],
+  C3, 2,
+  "All three statements are correct. To help small units survive competition from big firms, they were given concessions such as lower excise duty and bank loans at lower interest, and products were reserved for them on the criterion of their ability to make those goods. "
+  "Critics argued that reservation kept firms small and uncompetitive; the list was cut steadily after 1991 and finally abolished in 2015.",
+  "तीनों कथन सही हैं। छोटी इकाइयों को बड़ी फ़र्मों की प्रतिस्पर्धा में टिकाए रखने के लिए उन्हें कम उत्पाद शुल्क और कम ब्याज पर बैंक ऋण जैसी रियायतें दी गईं, और उन वस्तुओं को बनाने की उनकी क्षमता की कसौटी पर उत्पाद उनके लिए आरक्षित किए गए। "
+  "आलोचकों का तर्क था कि आरक्षण ने फ़र्मों को छोटा और अप्रतिस्पर्धी बनाए रखा; 1991 के बाद यह सूची लगातार घटाई गई और अंततः 2015 में समाप्त कर दी गई।",
+  f"{IED} (Indian Economy 1950-1990).",
+  "l1-eco-small-scale-industry-reservation", craft="linkage")
+
+S(IN, "hard", "Consider the following statements about the Electricity Act, 2003:",
+  "विद्युत अधिनियम, 2003 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Setting up a thermal generating station does not require a licence under the Act.",
+   "Hydroelectric projects above a cost fixed by the Central Government need the concurrence of the Central Electricity Authority.",
+   "The distribution of electricity can be undertaken only by government-owned companies."],
+  ["अधिनियम के अंतर्गत ताप विद्युत उत्पादन केंद्र स्थापित करने के लिए लाइसेंस की आवश्यकता नहीं है।",
+   "केंद्र सरकार द्वारा तय लागत से ऊपर की जलविद्युत परियोजनाओं के लिए केंद्रीय विद्युत प्राधिकरण की सहमति चाहिए।",
+   "बिजली का वितरण केवल सरकारी स्वामित्व वाली कंपनियाँ कर सकती हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct: the Act delicensed generation to draw in investment, while keeping a technical check on large hydro projects, which involve dams, rivers and the safety of people downstream. "
+  "Statement 3 is wrong: transmission and distribution are licensed activities, but licences are open to private companies -- private distribution licensees supply power in Delhi, Mumbai, Kolkata, Ahmedabad and Surat, among other places.",
+  "कथन 1 और 2 सही हैं: अधिनियम ने निवेश आकर्षित करने के लिए उत्पादन को लाइसेंस-मुक्त किया, जबकि बड़ी जलविद्युत परियोजनाओं पर तकनीकी नियंत्रण रखा, जिनमें बाँध, नदियाँ और नीचे रहने वाले लोगों की सुरक्षा जुड़ी है। "
+  "कथन 3 गलत है: पारेषण और वितरण लाइसेंस वाली गतिविधियाँ हैं, पर लाइसेंस निजी कंपनियों के लिए भी खुले हैं -- दिल्ली, मुंबई, कोलकाता, अहमदाबाद और सूरत सहित कई स्थानों पर निजी वितरण लाइसेंसधारी बिजली देते हैं।",
+  "The Electricity Act, 2003 (sections 7, 8 and 14); Ministry of Power.",
+  "l1-eco-electricity-act-delicensing", craft="precision")
+
+write("eco_l1_t5_d.sql")

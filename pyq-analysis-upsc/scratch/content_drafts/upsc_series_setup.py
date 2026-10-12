@@ -179,6 +179,11 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "temperature, relief and salinity, population, settlements and transport, and resources, minerals and crops. "
      "Sources: NCERT Classes VI-VIII Geography; Contemporary India I-II; Class XI Fundamentals of Physical Geography, "
      "India: Physical Environment and Practical Work; Class XII Fundamentals of Human Geography and India: People and Economy."),
+    (5, "l1-eco-", "Economy at the NCERT foundation level: money, credit and banks, how banks create money, sources of business "
+     "finance, financial markets, insurance and banking services, the payment systems and investor rules met first, national "
+     "income and the Keynesian ideas, taxes and the budget's objectives, food security and the farm economy, land reform and "
+     "the Green Revolution, sectors and infrastructure, globalisation and the foreign exchange market, poverty and human capital. "
+     "Sources: NCERT Economics IX-XII and Business Studies XI-XII; RBI, SEBI, NPCI and the Ministry of Finance."),
 ]
 
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",
