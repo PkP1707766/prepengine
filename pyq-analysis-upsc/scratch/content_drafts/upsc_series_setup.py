@@ -31,7 +31,8 @@ How each Level-2 paper is made:
   - Test 21 has 84 of its 100 rows (its 16 current-affairs rows are written nearer its date), so only its
     blueprint is made now.
 Level-1 papers are assembled the same way once all 100 rows of a paper exist (their concept ids carry the
-paper's prefix, e.g. l1-pol-), checked cell by cell against upsc_l1_cell_targets.mjs. They stay undated until
+paper's prefix, e.g. l1-pol-), checked cell by cell against upsc_l1_cell_targets.mjs; its three CSAT half papers are the
+40 rows of csat_set 'csat-l1-mNN' in their authored csat_order, timed at one hour. They stay undated until
 the owner decides whether Level 1 runs on dates or self-paced.
 Tests are created unpublished; the owner approves publishing (the 27 Level-2 papers went live on 2026-10-11 via
 upsc_l2_publish.sql, after the answer-(d) fix in l2_dshare_fix.sql). A published paper is frozen: a re-run leaves
@@ -197,6 +198,10 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "Economics and Business Studies); the Constitution and Central Acts; MoEFCC, RBI, SEBI, ISRO and the Ministries concerned."),
 ]
 
+L1_CSAT_DESC = ("CSAT Paper II at the foundation level, as a one-hour half paper: 17 quantitative-aptitude, 9 logical-reasoning "
+                "and 14 reading-comprehension questions on five passages, in the UPSC order, with a short data-sufficiency block. "
+                "40 questions · 100 marks · 1 hour · +2.5 / -0.83; qualifying at 33%.")
+
 L2_TEST21 = ("GS Revision: Full Syllabus", "सामान्य अध्ययन पुनरावृत्ति: संपूर्ण पाठ्यक्रम",
              "The whole GS Paper I syllabus on the UPSC mix, with 16 current-affairs questions from the months before it.")
 
@@ -342,18 +347,27 @@ def main():
         bp_ids[("l1", no)] = (uid(f"blueprint/l1/{no}"), "upsc27-l1-gs")
         tests.append(("l1", no, *l1_titles[no], desc + " 100 questions · 200 marks · 2 hours · +2 / -0.66.", None,
                       "General Studies Paper I", "सामान्य अध्ययन प्रश्नपत्र I", arrange(rows, seed=100 + no)))
+    for i in range(1, 4):                       # Level 1's CSAT half papers: the 40 rows of csat_set 'csat-l1-mNN' in authored order
+        rows = sorted((r for r in bank if r["csat_set"] == f"csat-l1-m{i:02d}"), key=lambda r: r["csat_order"])
+        if len(rows) < 40:
+            print(f"Level 1 CSAT Mini {i}: {len(rows)} of 40 rows, paper not made yet")
+            continue
+        assert [r["csat_order"] for r in rows] == list(range(1, 41)), f"CSAT Mini {i}: csat_order is not 1-40"
+        bp_ids[("l1csat", i)] = (uid(f"blueprint/l1/{7 + i}"), "upsc27-l1-csat")
+        tests.append(("l1csat", i, *l1_titles[7 + i], L1_CSAT_DESC, None, "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
     seen = set()
     for kind, n, title, title_hi, desc, when, sec, sec_hi, rows in tests:
         ids = [r["id"] for r in rows]
         assert not (seen & set(ids)), f"{title}: a question is in two tests"
         seen |= set(ids)
-        tid = uid(f"test/l1/gs/{n}") if kind == "l1" else uid(f"test/l2/{kind}/{n}")
-        series_id = SID["l1"] if kind == "l1" else L2_SERIES
+        tid = uid({"l1": f"test/l1/gs/{n}", "l1csat": f"test/l1/csat/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
+        series_id = SID["l1"] if kind.startswith("l1") else L2_SERIES
+        minutes = 60 if kind == "l1csat" else 120      # a CSAT half paper is one hour (src/lib/generate.js UPSC_PAPER_FORMATS)
         bid, theme = bp_ids[(kind, n)]
         sections = [{"id": "s1", "name": sec, "name_hi": sec_hi, "questionIds": ids}]
         sql.append("insert into public.tests (id, exam_category, title, title_hi, description, series_id, blueprint_id, duration_min, sections, "
                    "is_free, is_published, shuffle_questions, shuffle_options, scheduled_for) values "
-                   f"({q(tid)}, 'upsc', {q(title)}, {q(title_hi)}, {q(desc)}, {q(series_id)}, {q(bid)}, 120, {j(sections)}, false, false, false, false, {q(when)}) "
+                   f"({q(tid)}, 'upsc', {q(title)}, {q(title_hi)}, {q(desc)}, {q(series_id)}, {q(bid)}, {minutes}, {j(sections)}, false, false, false, false, {q(when)}) "
                    "on conflict (id) do update set title = excluded.title, title_hi = excluded.title_hi, description = excluded.description, "
                    "series_id = excluded.series_id, blueprint_id = excluded.blueprint_id, duration_min = excluded.duration_min, sections = excluded.sections, "
                    "shuffle_questions = excluded.shuffle_questions, shuffle_options = excluded.shuffle_options, scheduled_for = excluded.scheduled_for, updated_at = now() "

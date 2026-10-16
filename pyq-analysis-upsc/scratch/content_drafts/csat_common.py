@@ -203,6 +203,9 @@ def RQ(pid, topic, diff, form, stem, stem_hi, expl, expl_hi, cg_tail, **kw):
 # passage with three or two items, DQ / DL = the data-sufficiency block's Quant / Reasoning items.
 LAYOUT = ("Q Q L Q Q R3 Q L Q R3 Q Q L Q R3 L Q Q L R2 Q Q L Q R3 Q L Q Q R3 L Q Q L Q R3 Q L Q Q R2 "
           "DQ DQ DL DL DL R3 Q L Q Q L R3 Q Q L Q Q L Q L Q").split()
+# Level 1's CSAT half paper (40 items, 1 hour): the same flow at half the length -- 16 Quant and 8 Reasoning items
+# between five passages (four with three items, one with two), and a two-item data-sufficiency block (1 + 1).
+LAYOUT_MINI = "Q Q L Q R3 Q L Q Q R3 L Q Q L R2 Q Q L Q R3 DQ DL Q L Q R3 L Q Q L Q".split()
 
 def interleave(slot):
     """Reorder one slot's rows before assemble() so each topic's items fall evenly through the paper rather
@@ -221,9 +224,12 @@ def interleave(slot):
     for i, (_, _, r) in zip(idx, keyed):
         ROWS[i] = r
 
-def assemble():
+def assemble(layout=None):
     """Give every row its position on the paper (question_data.csat_order) by filling the layout's slots
-    in the order the rows were built, keeping each passage's items together and in order."""
+    in the order the rows were built, keeping each passage's items together and in order. layout defaults
+    to the 80-item LAYOUT; Level 1's half papers pass LAYOUT_MINI."""
+    layout = layout or LAYOUT
+    size = sum(int(s[1]) if s.startswith("R") else 1 for s in layout)
     pool = {k: [r for r in ROWS if r["slot"] == k] for k in ("Q", "L", "DQ", "DL")}
     groups = []
     for r in ROWS:
@@ -232,7 +238,7 @@ def assemble():
     take = {k: iter(v) for k, v in pool.items()}
     gi = iter(groups)
     order = []
-    for s in LAYOUT:
+    for s in layout:
         if s.startswith("R"):
             g = next(gi)
             items = [r for r in ROWS if r["group"] == g]
@@ -243,7 +249,7 @@ def assemble():
     for k, it in take.items():
         assert next(it, None) is None, f"rows left over for slot {k}"
     assert next(gi, None) is None, "passages left over"
-    assert len(order) == len(ROWS) == 80, (len(order), len(ROWS))
+    assert len(order) == len(ROWS) == size, (len(order), len(ROWS), size)
     for n, r in enumerate(order, 1):
         r["question_data"]["csat_order"] = n
     return order
