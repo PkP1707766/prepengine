@@ -1,0 +1,311 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 1 (GS Integrated Test 1) -- part E: Economy (17) (upsc_l3_cell_targets.mjs 1).
+Economy cells: Financial Markets e-stmt, h-stmt, m-stmt x2; Industry e-stmt, m-MCQ, m-stmt; Macro e-SI; External e-SI,
+m-stmt; Taxation h-SI; Inclusive Growth h-pairs; Agriculture m-MCQ, m-stmt; Money & Banking m-MCQ, m-stmt; Budget m-stmt.
+Level 2 holds 417 Economy rows and Level 1 another 120, covering almost every instrument, scheme and statute in the
+standard lists (see the Level-2 test notes for Tests 15-18). Every fact here was grepped against both and is one
+neither tests: sovereign gold bonds; commercial coal mining; Okun's law; ECGC; Specialised Investment Funds,
+accredited investors and tri-party repo; the Article 276 cap on profession tax; the SRS, the CRS and the Time Use
+Survey; the PM Dhan-Dhaanya Krishi Yojana; NARCL's 15:85 price; KABIL; nano urea, the Price Stabilisation Fund and
+Bharat-brand staples; the FRBM Act's budget statements; the Banking Laws (Amendment) Act, 2025; Bharat Bond ETFs,
+STRIPS and the Floating Rate Savings Bonds; the Gold Monetisation Scheme, the NRI bond issues of 1998 and 2000 and
+Electronic Gold Receipts; the National Critical Mineral Mission; and the Fully Accessible Route. MCQ keys are pinned."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, T2
+
+d.SUBJECT = "Economy"
+d.REQUIRE_CRAFT = True
+FM = "Financial Markets, Instruments & Fintech"
+MB = "Money, Banking & Monetary Policy"
+IN = "Industry, Infrastructure, Energy & Services"
+RBI = "Reserve Bank of India"
+SEBI = "Securities and Exchange Board of India"
+NCM = "NCERT Class XII, Introductory Macroeconomics"
+MOF = "Ministry of Finance"
+MOM = "Ministry of Mines"
+
+# ================================================================ FINANCIAL MARKETS (4)
+S(FM, "easy", "With reference to Sovereign Gold Bonds, consider the following statements:",
+  "सॉवरेन गोल्ड बॉन्ड के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They were issued by the Reserve Bank of India on behalf of the Government of India and denominated in grams of gold.",
+   "Each unit sold was backed by a gram of physical gold that the Reserve Bank bought and stored for the investor."],
+  ["इन्हें भारत सरकार की ओर से भारतीय रिज़र्व बैंक ने जारी किया था और इनका मूल्यवर्ग सोने के ग्रामों में था।",
+   "बेची गई हर इकाई के पीछे एक ग्राम भौतिक सोना था जिसे रिज़र्व बैंक ने निवेशक के लिए ख़रीदकर रखा था।"],
+  T2, 0,
+  "Only statement 1 is correct. Sovereign Gold Bonds, sold from 2015, were government securities issued by the RBI for the Government of India, priced and redeemed in rupees at the price of gold and paying 2.5 per cent a year on the amount invested. "
+  "They were not backed by physical gold: the money raised went into the government's borrowing, and the government bore the risk of a rise in the gold price -- one reason fresh issues were stopped after 2024. The scheme's purpose was to draw savings away from imported physical gold.",
+  "केवल कथन 1 सही है। 2015 से बेचे गए सॉवरेन गोल्ड बॉन्ड भारत सरकार के लिए RBI द्वारा जारी सरकारी प्रतिभूतियाँ थे, जिनका मूल्य और मोचन सोने के भाव पर रुपयों में होता था और जो निवेश की गई राशि पर वर्ष में 2.5 प्रतिशत ब्याज देते थे। "
+  "उनके पीछे भौतिक सोना नहीं था: जुटाया गया धन सरकार के उधार में गया, और सोने के भाव में वृद्धि का जोखिम सरकार ने उठाया -- यह एक कारण है कि 2024 के बाद नए निर्गम रोक दिए गए। योजना का उद्देश्य बचत को आयातित भौतिक सोने से हटाना था।",
+  f"{RBI} (Sovereign Gold Bond Scheme notifications); {MOF}.",
+  "l3-t1-eco-sovereign-gold-bonds", craft="precision")
+
+S(FM, "hard", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["SEBI's framework for accredited investors lets those who meet income or net-worth thresholds invest in certain products, such as alternative investment funds, with relaxed minimum investment rules.",
+   "A Specialised Investment Fund, a category introduced by SEBI in 2025, requires an investor to put in at least ₹10 lakh across its strategies.",
+   "In a tri-party repo, the lender and the borrower settle the trade and manage the collateral directly with each other, without any third-party agent."],
+  ["SEBI का मान्यता-प्राप्त निवेशकों का ढाँचा आय या निवल संपत्ति की सीमा पूरी करने वालों को वैकल्पिक निवेश कोष जैसे कुछ उत्पादों में ढीले न्यूनतम निवेश नियमों के साथ निवेश करने देता है।",
+   "SEBI द्वारा 2025 में शुरू की गई श्रेणी, विशेषीकृत निवेश कोष (SIF), में निवेशक को उसकी रणनीतियों में कुल मिलाकर कम से कम ₹10 लाख लगाने होते हैं।",
+   "त्रिपक्षीय रेपो में ऋणदाता और उधारकर्ता बिना किसी तृतीय-पक्ष एजेंट के, सीधे एक-दूसरे के साथ सौदे का निपटान और संपार्श्विक का प्रबंधन करते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Accredited investors, certified on income or net-worth criteria, may invest in AIFs, portfolio management and similar products with relaxed minimum ticket sizes, on the view that they can bear the risk. "
+  "The SIF sits between mutual funds and portfolio management services, allowing riskier strategies such as limited unhedged short positions, with a minimum of ₹10 lakh per investor (accredited investors are exempt). "
+  "Statement 3 is wrong: the defining feature of a tri-party repo is a third-party agent -- such as a clearing corporation -- that selects, values and holds the collateral and settles the trade for both sides.",
+  "कथन 1 और 2 सही हैं। आय या निवल संपत्ति के मानदंडों पर प्रमाणित मान्यता-प्राप्त निवेशक AIF, पोर्टफ़ोलियो प्रबंधन और ऐसे उत्पादों में ढीले न्यूनतम निवेश के साथ निवेश कर सकते हैं, इस दृष्टि से कि वे जोखिम उठा सकते हैं। "
+  "SIF म्यूचुअल फ़ंड और पोर्टफ़ोलियो प्रबंधन सेवाओं के बीच है, जो सीमित बिना-हेज शॉर्ट पोज़ीशन जैसी अधिक जोखिम वाली रणनीतियाँ अपनाने देता है, प्रति निवेशक न्यूनतम ₹10 लाख के साथ (मान्यता-प्राप्त निवेशकों को छूट)। "
+  "कथन 3 ग़लत है: त्रिपक्षीय रेपो की परिभाषित विशेषता एक तृतीय-पक्ष एजेंट है -- जैसे कोई क्लियरिंग कॉर्पोरेशन -- जो संपार्श्विक चुनता, आँकता और रखता है और दोनों पक्षों के लिए सौदे का निपटान करता है।",
+  f"{SEBI} (accredited investors, 2021; Specialised Investment Funds, 2025); {RBI} (Repurchase Transactions Directions).",
+  "l3-t1-eco-accredited-sif-triparty-repo", craft="precision")
+
+S(FM, "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Bharat Bond ETFs invest in highly rated bonds of public sector companies and mature on a fixed target date.",
+   "STRIPS allow the coupons and the principal of a corporate bond to be traded separately as zero-coupon securities.",
+   "The Floating Rate Savings Bonds, 2020 pay a fixed rate of interest for their whole term and can be traded on the stock exchanges."],
+  ["भारत बॉन्ड ETF सार्वजनिक क्षेत्र की कंपनियों के उच्च रेटिंग वाले बॉन्ड में निवेश करते हैं और एक तय लक्ष्य-तिथि पर परिपक्व होते हैं।",
+   "STRIPS किसी कॉर्पोरेट बॉन्ड के कूपनों और मूलधन को शून्य-कूपन प्रतिभूतियों के रूप में अलग-अलग व्यापार योग्य बनाते हैं।",
+   "फ़्लोटिंग रेट सेविंग्स बॉन्ड, 2020 पूरी अवधि के लिए एक तय ब्याज दर देते हैं और शेयर बाज़ारों पर बेचे-ख़रीदे जा सकते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct. Bharat Bond ETFs, launched in 2019, hold AAA-rated bonds of central public sector enterprises and other public bodies, each series maturing on a set date, which gives investors a predictable bond-like return through an exchange-traded fund. "
+  "STRIPS (Separate Trading of Registered Interest and Principal of Securities) apply to government securities, not corporate bonds. The Floating Rate Savings Bonds pay a rate reset every six months at the National Savings Certificate rate plus 0.35 per cent, and cannot be traded.",
+  "केवल कथन 1 सही है। 2019 में शुरू हुए भारत बॉन्ड ETF केंद्रीय सार्वजनिक क्षेत्र के उद्यमों और अन्य सार्वजनिक निकायों के AAA-रेटिंग वाले बॉन्ड रखते हैं, हर शृंखला एक तय तिथि पर परिपक्व होती है, जिससे निवेशकों को एक्सचेंज-ट्रेडेड फ़ंड के माध्यम से बॉन्ड जैसा अनुमानित प्रतिफल मिलता है। "
+  "STRIPS (प्रतिभूतियों के पंजीकृत ब्याज और मूलधन का अलग व्यापार) सरकारी प्रतिभूतियों पर लागू होते हैं, कॉर्पोरेट बॉन्ड पर नहीं। फ़्लोटिंग रेट सेविंग्स बॉन्ड हर छह महीने में राष्ट्रीय बचत पत्र की दर से 0.35 प्रतिशत अधिक पर बदलने वाली दर देते हैं, और उनका व्यापार नहीं हो सकता।",
+  f"{RBI} (STRIPS; Floating Rate Savings Bonds, 2020 (Taxable)); DIPAM (Bharat Bond ETF).",
+  "l3-t1-eco-bharat-bond-strips-frsb", craft="precision")
+
+S(FM, "medium", "Consider the following statements about schemes and instruments linked to gold and to deposits from abroad:",
+  "सोने और विदेश से आने वाली जमाओं से जुड़ी योजनाओं और साधनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the Gold Monetisation Scheme, households and institutions could deposit idle gold with banks and earn interest on it.",
+   "The Resurgent India Bonds of 1998 and the India Millennium Deposits of 2000 were raised by the Reserve Bank from foreign governments.",
+   "Electronic Gold Receipts, traded on the stock exchanges, are issued by the Reserve Bank of India."],
+  ["स्वर्ण मुद्रीकरण योजना के अंतर्गत परिवार और संस्थाएँ बेकार पड़ा सोना बैंकों में जमा करके उस पर ब्याज कमा सकते थे।",
+   "1998 के रिसर्जेंट इंडिया बॉन्ड और 2000 के इंडिया मिलेनियम डिपॉज़िट रिज़र्व बैंक ने विदेशी सरकारों से जुटाए थे।",
+   "शेयर बाज़ारों पर बिकने वाली इलेक्ट्रॉनिक गोल्ड रसीदें भारतीय रिज़र्व बैंक जारी करता है।"],
+  C3, 0,
+  "Only statement 1 is correct. The Gold Monetisation Scheme of 2015 let idle household and temple gold be deposited with banks for interest, to put it to use and cut imports (its medium- and long-term deposits were stopped in 2025). "
+  "Statement 2 is wrong: both issues were raised by the State Bank of India from non-resident Indians, at times of pressure on the balance of payments -- after the 1998 nuclear tests and in 2000. "
+  "Statement 3 is wrong: Electronic Gold Receipts are created against gold held by SEBI-registered vault managers and traded on the exchanges; the RBI does not issue them.",
+  "केवल कथन 1 सही है। 2015 की स्वर्ण मुद्रीकरण योजना ने घरों और मंदिरों का बेकार सोना ब्याज के लिए बैंकों में जमा करने दिया, ताकि उसका उपयोग हो और आयात घटे (उसकी मध्यम और दीर्घ अवधि की जमाएँ 2025 में बंद कर दी गईं)। "
+  "कथन 2 ग़लत है: दोनों निर्गम भारतीय स्टेट बैंक ने अनिवासी भारतीयों से, भुगतान संतुलन पर दबाव के समय -- 1998 के परमाणु परीक्षणों के बाद और 2000 में -- जुटाए थे। "
+  "कथन 3 ग़लत है: इलेक्ट्रॉनिक गोल्ड रसीदें SEBI-पंजीकृत वॉल्ट प्रबंधकों के पास रखे सोने के आधार पर बनती हैं और एक्सचेंजों पर बिकती हैं; RBI उन्हें जारी नहीं करता।",
+  f"{MOF} (Gold Monetisation Scheme, 2015); {RBI}; {SEBI} (Electronic Gold Receipts).",
+  "l3-t1-eco-gms-nri-bonds-egr", craft="precision")
+
+# ================================================================ INDUSTRY, INFRASTRUCTURE, ENERGY & SERVICES (3)
+S(IN, "easy", "With reference to the coal sector in India, consider the following statements:",
+  "भारत के कोयला क्षेत्र के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Since 2020, coal blocks have been auctioned for commercial mining, so that the coal can be sold in the open market and not only used in the miner's own plants.",
+   "Coal India Limited remains the only company permitted to sell coal in the open market."],
+  ["2020 से कोयला खदानों की नीलामी वाणिज्यिक खनन के लिए होती रही है, ताकि कोयला केवल खनन करने वाले के अपने संयंत्रों में प्रयोग होने के बजाय खुले बाज़ार में बेचा जा सके।",
+   "कोल इंडिया लिमिटेड अब भी खुले बाज़ार में कोयला बेचने की अनुमति वाली एकमात्र कंपनी है।"],
+  T2, 0,
+  "Only statement 1 is correct. Until 2020, private companies could mine coal only for captive use in their own steel, power or cement plants; the reforms of 2020 opened auctions for commercial mining with no end-use restriction, and allowed captive mines to sell part of their output. "
+  "So Coal India no longer has a monopoly on selling coal, though it still produces most of India's coal.",
+  "केवल कथन 1 सही है। 2020 तक निजी कंपनियाँ केवल अपने इस्पात, बिजली या सीमेंट संयंत्रों में निजी उपयोग के लिए कोयला खोद सकती थीं; 2020 के सुधारों ने बिना अंतिम-उपयोग प्रतिबंध के वाणिज्यिक खनन की नीलामी खोली, और निजी उपयोग वाली खदानों को अपने उत्पादन का कुछ भाग बेचने दिया। "
+  "इसलिए कोयला बेचने पर कोल इंडिया का एकाधिकार नहीं रहा, यद्यपि भारत का अधिकांश कोयला अब भी वही पैदा करती है।",
+  "Ministry of Coal (commercial coal mining, 2020); Mineral Laws (Amendment) Act, 2020.",
+  "l3-t1-eco-commercial-coal-mining", craft="recall")
+
+M(IN, "medium",
+  "Khanij Bidesh India Ltd (KABIL), set up to secure critical and strategic minerals such as lithium and cobalt from abroad, is a joint venture of which companies?",
+  "लिथियम और कोबाल्ट जैसे महत्त्वपूर्ण और सामरिक खनिज विदेश से सुनिश्चित करने के लिए स्थापित खनिज बिदेश इंडिया लिमिटेड (KABIL) किन कंपनियों का संयुक्त उद्यम है?",
+  ["Coal India, ONGC Videsh and the Steel Authority of India", "Indian Rare Earths, NMDC and Bharat Electronics",
+   "Hindustan Zinc, GAIL and the State Bank of India", "National Aluminium, Hindustan Copper and MECL"],
+  ["कोल इंडिया, ONGC विदेश और स्टील अथॉरिटी ऑफ़ इंडिया", "इंडियन रेयर अर्थ्स, NMDC और भारत इलेक्ट्रॉनिक्स",
+   "हिंदुस्तान ज़िंक, GAIL और भारतीय स्टेट बैंक", "नेशनल एल्युमिनियम, हिंदुस्तान कॉपर और MECL"],
+  3,
+  "KABIL was formed in 2019 by three Ministry of Mines companies -- National Aluminium Company (NALCO), Hindustan Copper (HCL) and the Mineral Exploration and Consultancy Ltd (MECL) -- to identify and acquire mineral assets abroad, such as the lithium blocks it took up in Argentina. "
+  "The other combinations mix companies of other ministries; Indian Rare Earths, for example, is under the Department of Atomic Energy.",
+  "KABIL 2019 में खान मंत्रालय की तीन कंपनियों -- नेशनल एल्युमिनियम कंपनी (नाल्को), हिंदुस्तान कॉपर (HCL) और मिनरल एक्सप्लोरेशन एंड कंसल्टेंसी लिमिटेड (MECL) -- ने विदेश में खनिज संपत्तियाँ पहचानने और प्राप्त करने के लिए बनाई, जैसे अर्जेंटीना में उसके द्वारा लिए गए लिथियम ब्लॉक। "
+  "बाक़ी संयोजन दूसरे मंत्रालयों की कंपनियों को मिलाते हैं; उदाहरण के लिए, इंडियन रेयर अर्थ्स परमाणु ऊर्जा विभाग के अधीन है।",
+  f"{MOM} (KABIL).",
+  "l3-t1-eco-kabil-joint-venture", pos=3, craft="recall")
+
+S(IN, "medium", "Consider the following statements about critical minerals in India:",
+  "भारत में महत्त्वपूर्ण खनिजों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The National Critical Mineral Mission, approved in 2025, covers the whole chain from exploration and mining to processing and the recycling of such minerals.",
+   "The Ministry of Mines has identified a list of thirty critical minerals.",
+   "Only State governments may auction blocks of critical minerals; the Union has no power to do so."],
+  ["2025 में स्वीकृत राष्ट्रीय महत्त्वपूर्ण खनिज मिशन अन्वेषण और खनन से लेकर ऐसे खनिजों के प्रसंस्करण और पुनर्चक्रण तक पूरी शृंखला को शामिल करता है।",
+   "खान मंत्रालय ने तीस महत्त्वपूर्ण खनिजों की एक सूची पहचानी है।",
+   "महत्त्वपूर्ण खनिजों के ब्लॉकों की नीलामी केवल राज्य सरकारें कर सकती हैं; संघ के पास ऐसी कोई शक्ति नहीं है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Mission aims at self-reliance in minerals needed for batteries, electronics and clean energy across the value chain, and the 2023 list names thirty critical minerals, including lithium, cobalt, nickel, graphite and the rare earths. "
+  "Statement 3 is wrong: the Mines and Minerals (Development and Regulation) Amendment Act, 2023 empowered the Union government to auction concessions for a set of critical and strategic minerals, while the royalty still goes to the State.",
+  "कथन 1 और 2 सही हैं। मिशन बैटरियों, इलेक्ट्रॉनिक्स और स्वच्छ ऊर्जा के लिए आवश्यक खनिजों में पूरी मूल्य-शृंखला पर आत्मनिर्भरता का लक्ष्य रखता है, और 2023 की सूची में लिथियम, कोबाल्ट, निकेल, ग्रेफ़ाइट और दुर्लभ मृदा तत्वों सहित तीस महत्त्वपूर्ण खनिज हैं। "
+  "कथन 3 ग़लत है: खान और खनिज (विकास और विनियमन) संशोधन अधिनियम, 2023 ने संघ सरकार को कुछ महत्त्वपूर्ण और सामरिक खनिजों की रियायतें नीलाम करने का अधिकार दिया, जबकि रॉयल्टी अब भी राज्य को मिलती है।",
+  f"{MOM} (Critical Minerals for India, 2023; National Critical Mineral Mission, 2025); MMDR Amendment Act, 2023.",
+  "l3-t1-eco-critical-mineral-mission", craft="linkage")
+
+# ================================================================ MACRO (e-SI)
+A("Macro Concepts, National Income & Inflation", "easy",
+  "Statement-I: When an economy's output grows more slowly than its potential output, its unemployment rate tends to rise.",
+  "कथन-I: जब किसी अर्थव्यवस्था का उत्पादन उसके संभावित उत्पादन से धीमी गति से बढ़ता है, तो उसकी बेरोज़गारी दर बढ़ने लगती है।",
+  "Statement-II: Okun's law describes an inverse relationship between the output gap and the rate of unemployment.",
+  "कथन-II: ओकुन का नियम उत्पादन अंतराल और बेरोज़गारी दर के बीच व्युत्क्रम संबंध बताता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Okun's law, an empirical regularity first noted in the United States, links shortfalls of output below its potential to rises in unemployment: when the output gap widens, firms need fewer workers, so unemployment goes up, and when output grows faster than potential, unemployment falls. "
+  "The size of the effect varies from country to country and is weaker where much employment is informal, as in India.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। ओकुन का नियम, एक अनुभवजन्य नियमितता जो पहले संयुक्त राज्य अमेरिका में देखी गई, उत्पादन के संभावित स्तर से नीचे रहने को बेरोज़गारी में वृद्धि से जोड़ता है: जब उत्पादन अंतराल बढ़ता है, फ़र्मों को कम श्रमिक चाहिए, इसलिए बेरोज़गारी बढ़ती है, और जब उत्पादन संभावित से तेज़ बढ़ता है, बेरोज़गारी घटती है। "
+  "प्रभाव का आकार देश-देश में अलग होता है और वहाँ कमज़ोर होता है जहाँ बहुत-सा रोज़गार अनौपचारिक है, जैसे भारत में।",
+  f"{NCM}; {RBI} (Monetary Policy Reports: output gap).",
+  "l3-t1-eco-okuns-law", craft="inference")
+
+# ================================================================ EXTERNAL SECTOR (e-SI, m-stmt)
+A("External Sector & International Institutions", "easy",
+  "Statement-I: ECGC Ltd provides insurance to Indian exporters against the risk that foreign buyers fail to pay.",
+  "कथन-I: ECGC लिमिटेड भारतीय निर्यातकों को इस जोखिम के विरुद्ध बीमा देता है कि विदेशी ख़रीदार भुगतान न करें।",
+  "Statement-II: ECGC is a statutory corporation set up by an Act of Parliament as a subsidiary of the Reserve Bank of India.",
+  "कथन-II: ECGC संसद के एक अधिनियम द्वारा भारतीय रिज़र्व बैंक की सहायक कंपनी के रूप में स्थापित एक वैधानिक निगम है।",
+  2,
+  "Statement-I is correct and Statement-II is incorrect. ECGC (formerly the Export Credit Guarantee Corporation of India) covers exporters against commercial risks such as a buyer's insolvency and political risks such as war or exchange controls in the buyer's country, and guarantees banks that lend to exporters. "
+  "It was set up in 1957 as a company, wholly owned by the Government of India and administered by the Ministry of Commerce and Industry -- not as a statutory body or an RBI subsidiary.",
+  "कथन-I सही है और कथन-II ग़लत है। ECGC (पहले भारतीय निर्यात ऋण गारंटी निगम) निर्यातकों को ख़रीदार के दिवालियेपन जैसे वाणिज्यिक जोखिमों और ख़रीदार के देश में युद्ध या विनिमय नियंत्रण जैसे राजनीतिक जोखिमों के विरुद्ध सुरक्षा देता है, और निर्यातकों को ऋण देने वाले बैंकों को गारंटी देता है। "
+  "इसकी स्थापना 1957 में एक कंपनी के रूप में हुई, जो पूरी तरह भारत सरकार के स्वामित्व में है और वाणिज्य एवं उद्योग मंत्रालय द्वारा प्रशासित है -- न कि वैधानिक निकाय या RBI की सहायक के रूप में।",
+  "Ministry of Commerce and Industry (ECGC Ltd).",
+  "l3-t1-eco-ecgc-export-credit-insurance", craft="precision")
+
+S("External Sector & International Institutions", "medium", "Consider the following statements about foreign borrowing and investment in India:",
+  "भारत में विदेशी उधार और निवेश के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the Fully Accessible Route, non-residents may hold specified government securities only up to 6 per cent of their outstanding stock.",
+   "External Commercial Borrowings can be raised by Indian companies only from foreign governments."],
+  ["पूर्णतः सुलभ मार्ग (फ़ुली एक्सेसिबल रूट) के अंतर्गत अनिवासी निर्दिष्ट सरकारी प्रतिभूतियाँ उनके बकाया भंडार के केवल 6 प्रतिशत तक रख सकते हैं।",
+   "बाह्य वाणिज्यिक उधार (ECB) भारतीय कंपनियाँ केवल विदेशी सरकारों से जुटा सकती हैं।"],
+  T2, 3,
+  "Neither statement is correct. The Fully Accessible Route, opened by the RBI in 2020, lets non-residents invest in specified government securities without any investment limit -- that openness is what allowed Indian bonds to be included in global bond indices from 2024. "
+  "External Commercial Borrowings are loans that eligible Indian entities raise from recognised non-resident lenders -- foreign banks, export credit agencies, international financial institutions and even foreign equity holders -- under the automatic or the approval route.",
+  "कोई भी कथन सही नहीं है। RBI द्वारा 2020 में खोला गया पूर्णतः सुलभ मार्ग अनिवासियों को निर्दिष्ट सरकारी प्रतिभूतियों में बिना किसी निवेश-सीमा के निवेश करने देता है -- इसी खुलेपन से 2024 से भारतीय बॉन्ड वैश्विक बॉन्ड सूचकांकों में शामिल हो सके। "
+  "बाह्य वाणिज्यिक उधार वे ऋण हैं जो पात्र भारतीय इकाइयाँ मान्यता-प्राप्त अनिवासी ऋणदाताओं -- विदेशी बैंकों, निर्यात ऋण एजेंसियों, अंतरराष्ट्रीय वित्तीय संस्थानों और विदेशी इक्विटी धारकों तक -- से स्वचालित या अनुमोदन मार्ग से जुटाती हैं।",
+  f"{RBI} (Fully Accessible Route, 2020; Master Direction on External Commercial Borrowings).",
+  "l3-t1-eco-far-and-ecb", craft="precision")
+
+# ================================================================ TAXATION & FISCAL FEDERALISM (h-SI)
+A("Taxation & Fiscal Federalism", "hard",
+  "Statement-I: A State may levy a tax on professions, trades, callings and employments, but the total amount payable by any one person under it in a year cannot exceed ₹2,500.",
+  "कथन-I: राज्य व्यवसायों, व्यापारों, आजीविकाओं और नियोजनों पर कर लगा सकता है, पर उसके अंतर्गत किसी एक व्यक्ति द्वारा वर्ष में देय कुल राशि ₹2,500 से अधिक नहीं हो सकती।",
+  "Statement-II: Taxes on professions fall in the Union List, and the States levy them only under a power delegated by Parliament.",
+  "कथन-II: व्यवसायों पर कर संघ सूची में आते हैं, और राज्य उन्हें केवल संसद द्वारा प्रत्यायोजित शक्ति के अंतर्गत लगाते हैं।",
+  2,
+  "Statement-I is correct and Statement-II is incorrect. Article 276 caps the profession tax at ₹2,500 a year per person (the limit was ₹250 until the Sixtieth Amendment of 1988) and saves it from being struck down as a tax on income, which is a Union subject. "
+  "The power itself is the States' own: 'taxes on professions, trades, callings and employments' is Entry 60 of the State List, and its proceeds can go to the State or to its local bodies.",
+  "कथन-I सही है और कथन-II ग़लत है। अनुच्छेद 276 व्यवसाय कर को प्रति व्यक्ति वर्ष में ₹2,500 तक सीमित करता है (1988 के साठवें संशोधन तक सीमा ₹250 थी) और उसे आय पर कर, जो संघ का विषय है, के रूप में रद्द होने से बचाता है। "
+  "शक्ति स्वयं राज्यों की है: 'व्यवसायों, व्यापारों, आजीविकाओं और नियोजनों पर कर' राज्य सूची की प्रविष्टि 60 है, और इसकी आय राज्य या उसके स्थानीय निकायों को जा सकती है।",
+  "Constitution of India, Article 276 and Seventh Schedule, List II, Entry 60; Constitution (Sixtieth Amendment) Act, 1988.",
+  "l3-t1-eco-art276-profession-tax", craft="precision")
+
+# ================================================================ INCLUSIVE GROWTH, WELFARE & DEMOGRAPHY (h-pairs)
+P("Inclusive Growth, Welfare & Demography", "hard", "Consider the following pairs of official data sources and what they measure:",
+  "आधिकारिक आँकड़ा स्रोतों और उनके द्वारा मापी जाने वाली बातों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Sample Registration System : Birth, death and infant mortality rates, estimated from a sample of areas",
+   "Civil Registration System : Births and deaths registered under the law",
+   "Time Use Survey : How people divide their time between paid work, unpaid work and other activities",
+   "National Family Health Survey : The monthly consumption expenditure of households"],
+  ["नमूना पंजीकरण प्रणाली : जन्म, मृत्यु और शिशु मृत्यु दरें, क्षेत्रों के एक नमूने से आँकी गईं",
+   "नागरिक पंजीकरण प्रणाली : क़ानून के अंतर्गत पंजीकृत जन्म और मृत्यु",
+   "समय उपयोग सर्वेक्षण : लोग अपना समय सवेतन काम, अवैतनिक काम और अन्य गतिविधियों में कैसे बाँटते हैं",
+   "राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण : परिवारों का मासिक उपभोग व्यय"],
+  2,
+  "The first three pairs are correct. The Sample Registration System of the Registrar General gives annual estimates of fertility and mortality from a large sample of villages and urban blocks, because registration of births and deaths is incomplete in many States; "
+  "the Civil Registration System compiles the births and deaths actually registered under the Registration of Births and Deaths Act, 1969; and the National Statistics Office's Time Use Surveys (2019 and 2024) measure, among other things, the unpaid work done mostly by women. "
+  "The fourth pair is wrong: the NFHS covers health, nutrition and fertility; consumption expenditure comes from the Household Consumption Expenditure Survey.",
+  "पहले तीन युग्म सही हैं। महापंजीयक की नमूना पंजीकरण प्रणाली गाँवों और शहरी खंडों के बड़े नमूने से प्रजनन और मृत्यु दरों के वार्षिक अनुमान देती है, क्योंकि कई राज्यों में जन्म और मृत्यु का पंजीकरण अधूरा है; "
+  "नागरिक पंजीकरण प्रणाली जन्म और मृत्यु पंजीकरण अधिनियम, 1969 के अंतर्गत वास्तव में पंजीकृत जन्मों और मृत्युओं को संकलित करती है; और राष्ट्रीय सांख्यिकी कार्यालय के समय उपयोग सर्वेक्षण (2019 और 2024) अन्य बातों के साथ वह अवैतनिक काम मापते हैं जो अधिकतर महिलाएँ करती हैं। "
+  "चौथा युग्म ग़लत है: NFHS स्वास्थ्य, पोषण और प्रजनन को शामिल करता है; उपभोग व्यय घरेलू उपभोग व्यय सर्वेक्षण से आता है।",
+  "Office of the Registrar General of India (SRS, CRS); National Statistics Office (Time Use Survey); Ministry of Health and Family Welfare (NFHS).",
+  "l3-t1-eco-srs-crs-time-use-sources", craft="precision")
+
+# ================================================================ AGRICULTURE & FOOD ECONOMY (m-MCQ, m-stmt)
+M("Agriculture & Food Economy", "medium",
+  "Which one of the following best describes the Prime Minister Dhan-Dhaanya Krishi Yojana approved in 2025?",
+  "2025 में स्वीकृत प्रधानमंत्री धन-धान्य कृषि योजना का सबसे अच्छा वर्णन निम्नलिखित में से कौन-सा करता है?",
+  ["A scheme of direct income support that pays every landholding farmer a fixed sum each year in three instalments",
+   "A crop insurance scheme that charges farmers a uniform low premium and covers losses from sowing to harvest",
+   "A scheme to set up ten thousand farmer producer organisations, each with equity grants and credit guarantees",
+   "A programme for about 100 low-productivity districts, built by converging existing schemes"],
+  ["प्रत्यक्ष आय सहायता की एक योजना जो हर भूमिधारक किसान को हर वर्ष तीन किस्तों में एक तय राशि देती है",
+   "एक फ़सल बीमा योजना जो किसानों से एक समान कम प्रीमियम लेती है और बुआई से कटाई तक की हानि को शामिल करती है",
+   "दस हज़ार किसान उत्पादक संगठन बनाने की योजना, जिनमें से हर एक को इक्विटी अनुदान और ऋण गारंटी मिलती है",
+   "लगभग 100 कम-उत्पादकता वाले ज़िलों के लिए एक कार्यक्रम, जो मौजूदा योजनाओं के अभिसरण से बना है"],
+  3,
+  "The PM Dhan-Dhaanya Krishi Yojana picks about 100 districts with low productivity, low cropping intensity and below-average credit, and raises their farm performance by converging dozens of existing schemes of several ministries through district plans, in the manner of the Aspirational Districts Programme. "
+  "The other options describe PM-KISAN, the PM Fasal Bima Yojana and the scheme for 10,000 FPOs.",
+  "प्रधानमंत्री धन-धान्य कृषि योजना कम उत्पादकता, कम फ़सल-सघनता और औसत से कम ऋण वाले लगभग 100 ज़िलों को चुनती है, और आकांक्षी ज़िला कार्यक्रम की तरह ज़िला योजनाओं के माध्यम से कई मंत्रालयों की दर्जनों मौजूदा योजनाओं को मिलाकर उनका कृषि प्रदर्शन बढ़ाती है। "
+  "बाक़ी विकल्प पीएम-किसान, प्रधानमंत्री फ़सल बीमा योजना और 10,000 FPO की योजना का वर्णन करते हैं।",
+  "Ministry of Agriculture and Farmers Welfare (Cabinet approval, July 2025); Union Budget 2025-26.",
+  "l3-t1-eco-pm-dhan-dhaanya-krishi", pos=1, craft="recall")
+
+S("Agriculture & Food Economy", "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Nano urea, developed by IFFCO, is a liquid fertiliser that is sprayed on the leaves of the crop.",
+   "The Price Stabilisation Fund is used to build buffer stocks of pulses and onions and release them to moderate their prices.",
+   "'Bharat'-brand atta, rice and dal are sold at reduced prices through bodies such as NAFED and the NCCF."],
+  ["IFFCO द्वारा विकसित नैनो यूरिया एक तरल उर्वरक है जिसे फ़सल की पत्तियों पर छिड़का जाता है।",
+   "मूल्य स्थिरीकरण कोष का उपयोग दालों और प्याज़ के बफ़र भंडार बनाने और उनके भाव नियंत्रित करने के लिए उन्हें जारी करने में होता है।",
+   "'भारत' ब्रांड आटा, चावल और दाल NAFED और NCCF जैसी संस्थाओं के माध्यम से कम दाम पर बेचे जाते हैं।"],
+  C3, 2,
+  "All three are correct. Nano urea is a suspension of nitrogen nanoparticles sprayed on leaves, meant to replace part of the granular urea a crop needs. "
+  "The Price Stabilisation Fund, now run by the Department of Consumer Affairs, finances the procurement and storage of onions and pulses when prices are low and their release when prices spike. "
+  "Under the 'Bharat' brand, the government sells atta made from FCI wheat, rice and dal at fixed low prices through NAFED, the NCCF and Kendriya Bhandar outlets and vans -- another tool, besides buffer stocks, for holding down food prices.",
+  "तीनों सही हैं। नैनो यूरिया पत्तियों पर छिड़का जाने वाला नाइट्रोजन नैनोकणों का निलंबन है, जो फ़सल को चाहिए दानेदार यूरिया के एक भाग की जगह लेने के लिए है। "
+  "मूल्य स्थिरीकरण कोष, जो अब उपभोक्ता मामले विभाग चलाता है, भाव कम होने पर प्याज़ और दालों की ख़रीद और भंडारण तथा भाव उछलने पर उनकी बिक्री का वित्तपोषण करता है। "
+  "'भारत' ब्रांड के अंतर्गत सरकार FCI के गेहूँ से बना आटा, चावल और दाल NAFED, NCCF और केंद्रीय भंडार की दुकानों और गाड़ियों के माध्यम से तय कम दामों पर बेचती है -- बफ़र भंडार के अलावा खाद्य भाव नियंत्रित रखने का एक और साधन।",
+  "Department of Fertilizers; Department of Consumer Affairs (Price Stabilisation Fund; Bharat brand sales).",
+  "l3-t1-eco-nano-urea-psf-bharat-brand", craft="linkage")
+
+# ================================================================ MONEY, BANKING & MONETARY POLICY (m-MCQ, m-stmt)
+M(MB, "medium",
+  "When the National Asset Reconstruction Company Ltd (NARCL) acquires a stressed loan from a bank, how is the agreed price paid?",
+  "जब राष्ट्रीय परिसंपत्ति पुनर्निर्माण कंपनी लिमिटेड (NARCL) किसी बैंक से दबावग्रस्त ऋण प्राप्त करती है, तो तय मूल्य का भुगतान कैसे होता है?",
+  ["Entirely in cash, drawn from a special fund set up out of the Consolidated Fund of India",
+   "Eighty-five per cent in cash and fifteen per cent in NARCL's own equity shares",
+   "In ten-year government bonds that the bank must hold until they mature, with no cash at all",
+   "Fifteen per cent in cash and the rest in government-guaranteed security receipts"],
+  ["पूरी तरह नक़द, भारत की संचित निधि से बने एक विशेष कोष से",
+   "पचासी प्रतिशत नक़द और पंद्रह प्रतिशत NARCL के अपने इक्विटी शेयरों में",
+   "दस वर्षीय सरकारी बॉन्ड में, जिन्हें बैंक को परिपक्वता तक रखना होगा, बिना किसी नक़द भुगतान के",
+   "पंद्रह प्रतिशत नक़द और शेष सरकारी गारंटी-समर्थित प्रतिभूति रसीदों में"],
+  3,
+  "NARCL, set up in 2021 and majority-owned by public sector banks, pays 15 per cent of the agreed value in cash and 85 per cent in security receipts; the Government of India guarantees the security receipts, so that if the eventual recovery falls short of their face value the shortfall is made good. "
+  "A separate company, the India Debt Resolution Company Ltd, manages the resolution of the acquired assets. The design lets banks clean their balance sheets without the government paying cash upfront.",
+  "2021 में स्थापित और अधिकांशतः सार्वजनिक क्षेत्र के बैंकों के स्वामित्व वाली NARCL तय मूल्य का 15 प्रतिशत नक़द और 85 प्रतिशत प्रतिभूति रसीदों में चुकाती है; भारत सरकार प्रतिभूति रसीदों की गारंटी देती है, ताकि यदि अंततः वसूली उनके अंकित मूल्य से कम रहे तो कमी पूरी की जाए। "
+  "एक अलग कंपनी, इंडिया डेट रिज़ॉल्यूशन कंपनी लिमिटेड, प्राप्त परिसंपत्तियों के समाधान का प्रबंधन करती है। यह संरचना बैंकों को सरकार द्वारा अग्रिम नक़द भुगतान के बिना अपने तुलनपत्र साफ़ करने देती है।",
+  f"{MOF} (Cabinet approval of the guarantee for NARCL security receipts, 2021); {RBI}.",
+  "l3-t1-eco-narcl-15-85", pos=3, craft="application")
+
+S(MB, "medium", "With reference to the Banking Laws (Amendment) Act, 2025, consider the following statements:",
+  "बैंकिंग क़ानून (संशोधन) अधिनियम, 2025 के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It allows a depositor to name up to four nominees for an account.",
+   "It raised the threshold of 'substantial interest' in a company from ₹5 lakh to ₹2 crore.",
+   "It brought all cooperative societies, including primary agricultural credit societies, under the banking regulation of the Reserve Bank."],
+  ["यह किसी जमाकर्ता को एक खाते के लिए चार नामांकित व्यक्ति तक नामित करने देता है।",
+   "इसने किसी कंपनी में 'पर्याप्त हित' की सीमा ₹5 लाख से बढ़ाकर ₹2 करोड़ कर दी।",
+   "इसने प्राथमिक कृषि ऋण समितियों सहित सभी सहकारी समितियों को रिज़र्व बैंक के बैंकिंग विनियमन के अंतर्गत ला दिया।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Act allows up to four nominees, named together in fixed shares or one after another, for deposits and articles in safe custody, and raised the 'substantial interest' limit -- unchanged since 1968 -- from ₹5 lakh to ₹2 crore; it also lengthened the tenure of directors of cooperative banks to ten years. "
+  "Statement 3 is wrong: primary agricultural credit societies remain outside banking regulation, and the Act did not bring every cooperative society under the RBI.",
+  "कथन 1 और 2 सही हैं। अधिनियम जमाओं और सुरक्षित अभिरक्षा की वस्तुओं के लिए चार तक नामांकित व्यक्ति, एक साथ तय हिस्सों में या एक के बाद एक, नामित करने देता है, और 1968 से अपरिवर्तित 'पर्याप्त हित' की सीमा ₹5 लाख से बढ़ाकर ₹2 करोड़ कर दी; इसने सहकारी बैंकों के निदेशकों का कार्यकाल भी बढ़ाकर दस वर्ष कर दिया। "
+  "कथन 3 ग़लत है: प्राथमिक कृषि ऋण समितियाँ बैंकिंग विनियमन से बाहर ही हैं, और अधिनियम ने हर सहकारी समिति को RBI के अधीन नहीं किया।",
+  "Banking Laws (Amendment) Act, 2025; " + RBI + ".",
+  "l3-t1-eco-banking-laws-amendment-2025", craft="precision")
+
+# ================================================================ BUDGET, DEFICITS & PUBLIC DEBT (m-stmt)
+S("Budget, Deficits & Public Debt", "medium", "Consider the following statements about the statements laid before Parliament with the Union Budget:",
+  "संघीय बजट के साथ संसद के समक्ष रखे जाने वाले विवरणों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Macro-economic Framework Statement assesses the prospects for growth and the balance of payments.",
+   "The Medium-term Fiscal Policy cum Fiscal Policy Strategy Statement sets out rolling targets for fiscal indicators.",
+   "Both statements are required by Article 112 of the Constitution."],
+  ["समष्टि-आर्थिक ढाँचा विवरण संवृद्धि और भुगतान संतुलन की संभावनाओं का आकलन करता है।",
+   "मध्यम-अवधि राजकोषीय नीति सह राजकोषीय नीति रणनीति विवरण राजकोषीय संकेतकों के लिए चलते (रोलिंग) लक्ष्य निर्धारित करता है।",
+   "दोनों विवरण संविधान के अनुच्छेद 112 द्वारा अपेक्षित हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. These statements are laid under the Fiscal Responsibility and Budget Management Act, 2003: the Macro-economic Framework Statement sets out the growth outlook, the fiscal balance and the external sector, and the fiscal policy statement gives rolling targets for deficits and debt and explains the strategy behind taxes, spending and borrowing. "
+  "Statement 3 is wrong: Article 112 requires only the 'annual financial statement'; these statements rest on the FRBM Act, not the Constitution.",
+  "कथन 1 और 2 सही हैं। ये विवरण राजकोषीय उत्तरदायित्व और बजट प्रबंधन अधिनियम, 2003 के अंतर्गत रखे जाते हैं: समष्टि-आर्थिक ढाँचा विवरण संवृद्धि की संभावना, राजकोषीय संतुलन और बाह्य क्षेत्र बताता है, और राजकोषीय नीति विवरण घाटों और ऋण के लिए चलते लक्ष्य देता है तथा करों, व्यय और उधार के पीछे की रणनीति समझाता है। "
+  "कथन 3 ग़लत है: अनुच्छेद 112 केवल 'वार्षिक वित्तीय विवरण' की अपेक्षा करता है; ये विवरण FRBM अधिनियम पर आधारित हैं, संविधान पर नहीं।",
+  f"Fiscal Responsibility and Budget Management Act, 2003 (s.3); Union Budget documents ({MOF}); Constitution of India, Article 112.",
+  "l3-t1-eco-frbm-budget-statements", craft="precision")
+
+write("gs_l3_t1_e.sql")
