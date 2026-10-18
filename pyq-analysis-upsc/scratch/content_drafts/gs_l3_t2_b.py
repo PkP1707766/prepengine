@@ -1,0 +1,292 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 2 (GS Integrated Test 2) -- part B: History (16) (upsc_l3_cell_targets.mjs 2).
+History cells: Modern e-MCQ, e-stmt, h-stmt, m-MCQ, m-stmt x2; Ancient e-MCQ, e-stmt, h-stmt, m-MCQ, m-stmt x2;
+Medieval m-MCQ, m-stmt, m-pairs; Music & Dance h-pairs.
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Test 1, and is one none of them
+tests: Rani Gaidinliu and the Heraka movement; Derozio and the Dharma Sabha; the C. Rajagopalachari formula and the
+Desai-Liaquat pact; the Butler Committee; the Guruvayur satyagraha and the Travancore Temple Entry Proclamation;
+Punnapra-Vayalar and the Telangana struggle; the Daimabad bronzes; the Ettuthokai, Pattuppattu and akam/puram;
+Brahmagupta's rules for zero and the Bakhshali manuscript; Malavikagnimitram's Shunga hero; the Bhabru edict;
+Adichanallur; the Ramappa temple; Alauddin Husain Shah's Bengal; the Atala, Jahaz Mahal, Adina and Champaner
+monuments; the Ravanhatha, pena, tumbi and nadaswaram. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, write
+from polity_common import C3, T2
+
+d.SUBJECT = "History"
+d.REQUIRE_CRAFT = True
+MOD = "NCERT Class XII, Themes in Indian History III; NCERT (old), Modern India"
+TH1 = "NCERT Class XII, Themes in Indian History I"
+OP1 = "NCERT Class VI, Our Pasts I"
+OP2 = "NCERT Class VII, Our Pasts II"
+ASI = "Archaeological Survey of India"
+MUS = "NCERT Class XI, An Introduction to Indian Art; Sangeet Natak Akademi"
+
+# ================================================================ MODERN (6)
+M("Modern", "easy",
+  "Rani Gaidinliu, who was given the title 'Rani' by Jawaharlal Nehru, is remembered for leading which movement against British rule?",
+  "रानी गाइदिन्ल्यू, जिन्हें जवाहरलाल नेहरू ने 'रानी' की उपाधि दी, ब्रिटिश शासन के विरुद्ध किस आंदोलन का नेतृत्व करने के लिए याद की जाती हैं?",
+  ["The Heraka movement of the Zeliangrong Nagas in the hills of Manipur",
+   "The Khasi resistance to a British road through the hills in the 1820s and 1830s",
+   "The Kuki rising of 1917-19 against recruitment for the wartime Labour Corps",
+   "The Ahom revolt of 1828 led by Gomdhar Konwar against British annexation"],
+  ["मणिपुर की पहाड़ियों में ज़ेलियांगरोंग नागाओं का हेराका आंदोलन",
+   "1820 और 1830 के दशक में पहाड़ियों से होकर ब्रिटिश सड़क के विरुद्ध खासी प्रतिरोध",
+   "युद्धकालीन श्रम दल (लेबर कोर) में भर्ती के विरुद्ध 1917-19 का कुकी विद्रोह",
+   "ब्रिटिश अधिग्रहण के विरुद्ध गोमधर कोंवर के नेतृत्व में 1828 का अहोम विद्रोह"],
+  0,
+  "Gaidinliu joined the Heraka movement of her cousin Haipou Jadonang at the age of thirteen; it sought to revive the Zeliangrong Naga faith and to end British rule. After Jadonang was hanged in 1931 she led it, was captured in 1932 and spent fifteen years in jail, being released only in 1947. Nehru, who met her in Shillong jail in 1937, called her the 'Rani' of the Nagas. "
+  "The Khasi resistance was led by U Tirot Sing; the Kuki rising and the Ahom revolt of Gomdhar Konwar were other uprisings of the north-east.",
+  "गाइदिन्ल्यू तेरह वर्ष की आयु में अपने चचेरे भाई हाइपोउ जादोनांग के हेराका आंदोलन से जुड़ीं; इसका लक्ष्य ज़ेलियांगरोंग नागा आस्था को पुनर्जीवित करना और ब्रिटिश शासन समाप्त करना था। 1931 में जादोनांग को फाँसी के बाद उन्होंने इसका नेतृत्व किया, 1932 में पकड़ी गईं और पंद्रह वर्ष जेल में रहीं, केवल 1947 में रिहा हुईं। 1937 में शिलांग जेल में उनसे मिले नेहरू ने उन्हें नागाओं की 'रानी' कहा। "
+  "खासी प्रतिरोध का नेतृत्व यू तिरोत सिंग ने किया था; कुकी विद्रोह और गोमधर कोंवर का अहोम विद्रोह पूर्वोत्तर के अन्य विद्रोह थे।",
+  f"{MOD}; Ministry of Culture.",
+  "l3-t2-his-gaidinliu-heraka", pos=0, craft="recall")
+
+S("Modern", "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Henry Louis Vivian Derozio, a teacher at the Hindu College in Calcutta, inspired the radical group of students known as Young Bengal.",
+   "The Dharma Sabha, founded in Calcutta in 1830, campaigned with Rammohun Roy for the abolition of sati."],
+  ["कलकत्ता के हिंदू कॉलेज के शिक्षक हेनरी लुई विवियन डेरोज़ियो ने उन उग्र विद्यार्थियों के समूह को प्रेरित किया जो यंग बंगाल के नाम से जाना गया।",
+   "1830 में कलकत्ता में स्थापित धर्म सभा ने राममोहन राय के साथ सती प्रथा के उन्मूलन के लिए अभियान चलाया।"],
+  T2, 0,
+  "Only statement 1 is correct. Derozio, who taught at the Hindu College from 1826 until his dismissal in 1831, encouraged his students to question custom and religious orthodoxy; the Young Bengal group they formed was known for its rationalism and its open defiance of social rules. "
+  "Statement 2 is wrong: the Dharma Sabha, led by Radhakanta Deb, was formed to defend sati after Bentinck's regulation of 1829 banned it, and it petitioned the Privy Council against the ban -- the opposite of Rammohun Roy's campaign.",
+  "केवल कथन 1 सही है। 1826 से 1831 में बर्ख़ास्तगी तक हिंदू कॉलेज में पढ़ाने वाले डेरोज़ियो ने अपने विद्यार्थियों को रीति-रिवाज और धार्मिक रूढ़िवाद पर प्रश्न उठाने को प्रेरित किया; उनके द्वारा बनाया गया यंग बंगाल समूह अपने तर्कवाद और सामाजिक नियमों की खुली अवहेलना के लिए जाना गया। "
+  "कथन 2 ग़लत है: राधाकांत देब के नेतृत्व वाली धर्म सभा 1829 में बेंटिंक के विनियम द्वारा सती पर प्रतिबंध के बाद सती के बचाव में बनी, और उसने प्रतिबंध के विरुद्ध प्रिवी काउंसिल में याचिका दी -- राममोहन राय के अभियान का ठीक उलटा।",
+  MOD + ".",
+  "l3-t2-his-derozio-dharma-sabha", craft="linkage")
+
+S("Modern", "hard", "Consider the following statements about proposals made during the Second World War to settle the Congress-League question:",
+  "कांग्रेस-लीग प्रश्न को सुलझाने के लिए द्वितीय विश्व युद्ध के दौरान किए गए प्रस्तावों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The C. Rajagopalachari formula (1944) proposed that, after the war, contiguous Muslim-majority districts in the north-west and east would decide on separation by a plebiscite of all their adult inhabitants.",
+   "Jinnah accepted the formula, and the Gandhi-Jinnah talks of 1944 ended in an agreement based on it.",
+   "The Desai-Liaquat pact (1945) envisaged an interim government at the Centre in which the Congress and the League would nominate equal numbers of members."],
+  ["सी. राजगोपालाचारी सूत्र (1944) ने प्रस्ताव किया कि युद्ध के बाद उत्तर-पश्चिम और पूर्व के सटे हुए मुस्लिम-बहुल ज़िले अपने सभी वयस्क निवासियों के जनमत-संग्रह से अलगाव पर निर्णय करेंगे।",
+   "जिन्ना ने यह सूत्र स्वीकार किया, और 1944 की गांधी-जिन्ना वार्ता उस पर आधारित समझौते के साथ समाप्त हुई।",
+   "देसाई-लियाक़त समझौते (1945) में केंद्र में एक अंतरिम सरकार की परिकल्पना थी जिसमें कांग्रेस और लीग बराबर संख्या में सदस्य नामित करतीं।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. Rajagopalachari's formula asked the League to back the demand for independence and join a provisional government; after the war a commission would mark out the contiguous Muslim-majority districts, whose whole adult population would vote on separation, with agreements on defence, commerce and communications if they separated. "
+  "Statement 2 is wrong: Jinnah rejected it -- he wanted only Muslims to vote and no common centre -- and the Gandhi-Jinnah talks of September 1944 broke down. "
+  "The Desai-Liaquat understanding, reached by Bhulabhai Desai and Liaquat Ali Khan in the Central Legislative Assembly, proposed equal Congress and League nominees with 20 per cent of seats for minorities; neither party formally endorsed it, but its parity idea resurfaced at the Shimla Conference.",
+  "कथन 1 और 3 सही हैं। राजगोपालाचारी के सूत्र ने लीग से स्वतंत्रता की माँग का समर्थन करने और अस्थायी सरकार में शामिल होने को कहा; युद्ध के बाद एक आयोग सटे हुए मुस्लिम-बहुल ज़िलों को चिह्नित करता, जिनकी पूरी वयस्क जनसंख्या अलगाव पर मत देती, और अलग होने पर रक्षा, वाणिज्य और संचार पर समझौते होते। "
+  "कथन 2 ग़लत है: जिन्ना ने इसे अस्वीकार किया -- वे चाहते थे कि केवल मुसलमान मत दें और कोई साझा केंद्र न हो -- और सितंबर 1944 की गांधी-जिन्ना वार्ता विफल रही। "
+  "केंद्रीय विधान सभा में भूलाभाई देसाई और लियाक़त अली ख़ान द्वारा बनी देसाई-लियाक़त सहमति ने कांग्रेस और लीग के बराबर नामितों और अल्पसंख्यकों के लिए 20 प्रतिशत सीटों का प्रस्ताव किया; किसी दल ने इसका औपचारिक समर्थन नहीं किया, पर इसका समता का विचार शिमला सम्मेलन में फिर उभरा।",
+  MOD + ".",
+  "l3-t2-his-cr-formula-desai-liaquat", craft="inference")
+
+M("Modern", "medium",
+  "The Indian States Committee of 1927-29, chaired by Sir Harcourt Butler, was appointed to:",
+  "सर हरकोर्ट बटलर की अध्यक्षता वाली 1927-29 की भारतीय रियासत समिति किसलिए नियुक्त की गई थी?",
+  ["recommend how fast the higher civil services should be Indianised",
+   "inquire into the firing on the crowd at Jallianwala Bagh in Amritsar",
+   "review the working of dyarchy in the provinces after the reforms of 1919 came into force",
+   "examine the relationship between the paramount power and the princely states"],
+  ["उच्च सिविल सेवाओं के भारतीयकरण की गति की सिफ़ारिश करना",
+   "अमृतसर के जलियाँवाला बाग़ में भीड़ पर गोलीबारी की जाँच करना",
+   "1919 के सुधार लागू होने के बाद प्रांतों में द्वैध शासन के कामकाज की समीक्षा करना",
+   "सर्वोच्च सत्ता (पैरामाउंट पावर) और देशी रियासतों के संबंध की जाँच करना"],
+  3,
+  "The Butler Committee examined the relations between the Crown as paramount power and the princely states, and the financial and economic relations between the states and British India. Its report (1929) declared that 'paramountcy must remain paramount' and that the princes should not be transferred to an Indian government responsible to an Indian legislature without their consent -- a position that encouraged the princes to stand apart from the national movement and later shaped the federation plan of 1935. "
+  "The civil services were the subject of the Lee Commission (1923-24), Jallianwala Bagh of the Hunter Committee, and dyarchy of the Muddiman Committee (1924).",
+  "बटलर समिति ने सर्वोच्च सत्ता के रूप में क्राउन और देशी रियासतों के संबंधों, तथा रियासतों और ब्रिटिश भारत के वित्तीय और आर्थिक संबंधों की जाँच की। उसकी रिपोर्ट (1929) ने घोषित किया कि 'सर्वोच्चता सर्वोच्च ही रहनी चाहिए' और रियासतों को उनकी सहमति के बिना भारतीय विधानमंडल के प्रति उत्तरदायी भारतीय सरकार को नहीं सौंपा जाना चाहिए -- इस रुख़ ने राजाओं को राष्ट्रीय आंदोलन से अलग रहने को प्रोत्साहित किया और बाद में 1935 की संघ योजना को आकार दिया। "
+  "सिविल सेवाएँ ली आयोग (1923-24), जलियाँवाला बाग़ हंटर समिति, और द्वैध शासन मुडीमैन समिति (1924) के विषय थे।",
+  MOD + ".",
+  "l3-t2-his-butler-committee-paramountcy", pos=3, craft="precision")
+
+S("Modern", "medium", "Consider the following statements about temple-entry movements in Kerala:",
+  "केरल में मंदिर-प्रवेश आंदोलनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Guruvayur satyagraha of 1931-32 was led by K. Kelappan.",
+   "The Temple Entry Proclamation of 1936 opened the temples under the Travancore government to all Hindus, whatever their caste.",
+   "The Vaikom satyagraha of 1924-25 ended with most of the roads around the Vaikom temple opened to all castes, but not with entry into the temple itself."],
+  ["1931-32 के गुरुवायूर सत्याग्रह का नेतृत्व के. केलप्पन ने किया।",
+   "1936 की मंदिर प्रवेश उद्घोषणा ने त्रावणकोर सरकार के अधीन मंदिरों को हर जाति के सभी हिंदुओं के लिए खोल दिया।",
+   "1924-25 का वैकोम सत्याग्रह वैकोम मंदिर के आसपास की अधिकांश सड़कों को सभी जातियों के लिए खुलवाने के साथ समाप्त हुआ, पर मंदिर में प्रवेश के साथ नहीं।"],
+  C3, 2,
+  "All three statements are correct. At Guruvayur, Kelappan's fast was called off at Gandhi's request, and a referendum in Ponnani taluk showed most caste Hindus in favour of temple entry; the temple itself was opened only in 1947. "
+  "The Travancore Proclamation, issued by the Maharaja in November 1936, was hailed by Gandhi as a 'miracle of modern times'. "
+  "At Vaikom, the compromise of 1925 opened three of the four roads around the temple to all, which is why the movement is remembered for the right to use public roads -- the larger aim of entry into temples was won only later, by campaigns such as these.",
+  "तीनों कथन सही हैं। गुरुवायूर में केलप्पन का अनशन गांधी के अनुरोध पर समाप्त हुआ, और पोन्नानी तालुक में हुए जनमत-संग्रह ने दिखाया कि अधिकांश सवर्ण हिंदू मंदिर-प्रवेश के पक्ष में थे; स्वयं मंदिर केवल 1947 में खुला। "
+  "नवंबर 1936 में महाराजा द्वारा जारी त्रावणकोर उद्घोषणा को गांधी ने 'आधुनिक समय का चमत्कार' कहा। "
+  "वैकोम में 1925 के समझौते ने मंदिर के आसपास की चार में से तीन सड़कें सबके लिए खोलीं, इसीलिए आंदोलन सार्वजनिक सड़कों के उपयोग के अधिकार के लिए याद किया जाता है -- मंदिरों में प्रवेश का बड़ा लक्ष्य बाद में ऐसे ही अभियानों से मिला।",
+  MOD + ".",
+  "l3-t2-his-guruvayur-temple-entry-1936", craft="linkage")
+
+S("Modern", "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Punnapra-Vayalar uprising of 1946 in Travancore was led by the Congress against the Dewan's plan to merge Travancore with the Indian Union.",
+   "The Telangana armed struggle ended in September 1948, when the Indian Army took over Hyderabad."],
+  ["त्रावणकोर में 1946 का पुन्नप्रा-वायलार विद्रोह कांग्रेस के नेतृत्व में दीवान की उस योजना के विरुद्ध था जिसमें त्रावणकोर को भारतीय संघ में मिलाना था।",
+   "तेलंगाना सशस्त्र संघर्ष सितंबर 1948 में समाप्त हो गया, जब भारतीय सेना ने हैदराबाद को अपने नियंत्रण में ले लिया।"],
+  T2, 3,
+  "Neither statement is correct. Punnapra-Vayalar (October 1946) was a communist-led rising of coir and other workers against Dewan C.P. Ramaswami Iyer, whose 'American model' constitution was a step towards an independent Travancore -- the opposite of a merger; it was crushed by the state's forces, but helped discredit the Dewan's plan. "
+  "The Telangana struggle, led by the communists through the Andhra Mahasabha against the Nizam, the Razakars and the big landlords, went on after Operation Polo (September 1948) against the Indian Army as well, and was called off only in October 1951.",
+  "कोई भी कथन सही नहीं है। पुन्नप्रा-वायलार (अक्टूबर 1946) कॉयर और अन्य मज़दूरों का साम्यवादी नेतृत्व वाला विद्रोह था जो दीवान सी.पी. रामास्वामी अय्यर के विरुद्ध था, जिनका 'अमेरिकी मॉडल' संविधान स्वतंत्र त्रावणकोर की ओर एक क़दम था -- विलय का ठीक उलटा; इसे राज्य की सेनाओं ने कुचल दिया, पर इसने दीवान की योजना को अविश्वसनीय बनाने में मदद की। "
+  "निज़ाम, रज़ाकारों और बड़े ज़मींदारों के विरुद्ध आंध्र महासभा के माध्यम से साम्यवादियों के नेतृत्व वाला तेलंगाना संघर्ष ऑपरेशन पोलो (सितंबर 1948) के बाद भारतीय सेना के विरुद्ध भी चलता रहा, और केवल अक्टूबर 1951 में वापस लिया गया।",
+  MOD + ".",
+  "l3-t2-his-punnapra-vayalar-telangana", craft="precision")
+
+# ================================================================ ANCIENT (6)
+M("Ancient", "easy",
+  "The Daimabad hoard of bronzes, which includes a chariot with a rider drawn by a pair of oxen, was found in which present-day State?",
+  "दाइमाबाद का कांस्य भंडार, जिसमें बैलों की जोड़ी द्वारा खींचा जाता सवार-सहित रथ शामिल है, किस वर्तमान राज्य में मिला था?",
+  ["Gujarat", "Rajasthan", "Maharashtra", "Madhya Pradesh"],
+  ["गुजरात", "राजस्थान", "महाराष्ट्र", "मध्य प्रदेश"],
+  2,
+  "Daimabad lies on the Pravara, a tributary of the Godavari, in Ahmednagar district of Maharashtra. Its hoard of four heavy bronzes -- the ox-drawn chariot with its rider, an elephant, a rhinoceros and a buffalo -- was found in 1974, and is linked with the late Harappan phase, though its date is debated. "
+  "The site, with layers from the late Harappan to the Jorwe culture, is one of the southernmost places with Harappan traits.",
+  "दाइमाबाद महाराष्ट्र के अहमदनगर ज़िले में गोदावरी की सहायक प्रवरा नदी पर है। चार भारी कांस्य मूर्तियों का इसका भंडार -- सवार-सहित बैल-चालित रथ, एक हाथी, एक गैंडा और एक भैंसा -- 1974 में मिला, और उत्तर हड़प्पा चरण से जोड़ा जाता है, यद्यपि उसकी तिथि पर विवाद है। "
+  "उत्तर हड़प्पा से जोर्वे संस्कृति तक की परतों वाला यह स्थल हड़प्पाई लक्षणों वाले सबसे दक्षिणी स्थानों में से एक है।",
+  f"{ASI}; {TH1}.",
+  "l3-t2-his-daimabad-bronzes", pos=2, craft="recall")
+
+S("Ancient", "easy", "Consider the following statements about Sangam literature:",
+  "संगम साहित्य के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Sangam poems were later compiled into the Eight Anthologies (Ettuthokai) and the Ten Idylls (Pattuppattu).",
+   "In Sangam poetry, akam poems deal with war, kings and public life, while puram poems deal with love."],
+  ["संगम कविताओं को बाद में आठ संग्रहों (एट्टुत्तोकै) और दस गीतों (पत्तुप्पाट्टु) में संकलित किया गया।",
+   "संगम काव्य में अकम कविताएँ युद्ध, राजाओं और सार्वजनिक जीवन से, जबकि पुरम कविताएँ प्रेम से संबंधित हैं।"],
+  T2, 0,
+  "Only statement 1 is correct. The surviving Sangam corpus of some 2,400 poems is arranged in the Ettuthokai and the Pattuppattu. "
+  "Statement 2 reverses the two genres: akam ('inner') poems are about love and the inner life, set in five landscapes (tinai) such as the hills and the seashore, while puram ('outer') poems praise kings, war, generosity and death -- which is why puram poems are the historian's main source for Sangam polity.",
+  "केवल कथन 1 सही है। लगभग 2,400 कविताओं का बचा हुआ संगम संग्रह एट्टुत्तोकै और पत्तुप्पाट्टु में व्यवस्थित है। "
+  "कथन 2 दोनों विधाओं को उलट देता है: अकम ('भीतरी') कविताएँ प्रेम और भीतरी जीवन के बारे में हैं, जो पहाड़ों और समुद्र-तट जैसे पाँच भू-दृश्यों (तिणै) में रची गई हैं, जबकि पुरम ('बाहरी') कविताएँ राजाओं, युद्ध, उदारता और मृत्यु की प्रशंसा करती हैं -- इसीलिए पुरम कविताएँ संगम राजव्यवस्था के लिए इतिहासकार का मुख्य स्रोत हैं।",
+  f"{TH1}; {OP1}.",
+  "l3-t2-his-ettuthokai-akam-puram", craft="precision")
+
+S("Ancient", "hard", "Consider the following statements about early Indian mathematics:",
+  "प्रारंभिक भारतीय गणित के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Brahmagupta's Brahmasphutasiddhanta (628 CE) gave rules for adding, subtracting and multiplying with zero and with negative numbers.",
+   "The Bakhshali manuscript, found near Peshawar in 1881, uses a dot as a symbol for zero.",
+   "Aryabhata's Aryabhatiya was the first work to treat zero as a number with its own rules of operation."],
+  ["ब्रह्मगुप्त के ब्रह्मस्फुटसिद्धांत (628 ई.) ने शून्य और ऋणात्मक संख्याओं के साथ जोड़ने, घटाने और गुणा करने के नियम दिए।",
+   "1881 में पेशावर के पास मिली बख़्शाली पांडुलिपि शून्य के प्रतीक के रूप में एक बिंदु का उपयोग करती है।",
+   "आर्यभट का आर्यभटीय शून्य को उसके अपने संक्रिया-नियमों वाली संख्या मानने वाली पहली कृति था।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Brahmagupta treated positive and negative numbers as 'fortunes' and 'debts' and set out rules such as 'a debt minus zero is a debt' and 'zero multiplied by anything is zero' -- the earliest known treatment of zero as a number in its own right. "
+  "The Bakhshali manuscript, a birch-bark mathematical text now in the Bodleian Library at Oxford, marks the empty place with a dot; radiocarbon tests have suggested that parts of it are very early, though its date is disputed. "
+  "Statement 3 is wrong: Aryabhata (499 CE) used a place-value system, but the rules for operating with zero come from Brahmagupta over a century later.",
+  "कथन 1 और 2 सही हैं। ब्रह्मगुप्त ने धनात्मक और ऋणात्मक संख्याओं को 'धन' और 'ऋण' माना और 'ऋण में से शून्य घटाने पर ऋण' तथा 'किसी भी संख्या को शून्य से गुणा करने पर शून्य' जैसे नियम दिए -- शून्य को अपने आप में संख्या मानने का सबसे पुराना ज्ञात विवेचन। "
+  "भोजपत्र पर लिखी गणितीय कृति बख़्शाली पांडुलिपि, जो अब ऑक्सफ़ोर्ड की बॉडलियन लाइब्रेरी में है, ख़ाली स्थान को एक बिंदु से चिह्नित करती है; रेडियोकार्बन परीक्षणों ने संकेत दिया है कि इसके कुछ भाग बहुत पुराने हैं, यद्यपि इसकी तिथि विवादित है। "
+  "कथन 3 ग़लत है: आर्यभट (499 ई.) ने स्थानीय मान पद्धति का प्रयोग किया, पर शून्य के साथ संक्रिया के नियम एक शताब्दी से अधिक बाद ब्रह्मगुप्त से आते हैं।",
+  f"{TH1}; NCERT Class VI, Our Pasts I (Ancient science and mathematics).",
+  "l3-t2-his-brahmagupta-zero-bakhshali", craft="linkage")
+
+M("Ancient", "medium",
+  "The hero of Kalidasa's play Malavikagnimitram was a king of which dynasty?",
+  "कालिदास के नाटक मालविकाग्निमित्रम् का नायक किस राजवंश का राजा था?",
+  ["The Shungas", "The Mauryas", "The Satavahanas", "The Guptas"],
+  ["शुंग", "मौर्य", "सातवाहन", "गुप्त"],
+  0,
+  "Malavikagnimitram tells of the love of Agnimitra, son of Pushyamitra Shunga and his viceroy at Vidisha, for the maiden Malavika. Beneath the romance lie historical details: it mentions Pushyamitra's horse sacrifice and the victory of Agnimitra's son Vasumitra over the Yavanas (Indo-Greeks) on the banks of the Sindhu. "
+  "It is one of the few literary sources for the Shungas, who ruled after the last Mauryan king, Brihadratha, was killed by Pushyamitra.",
+  "मालविकाग्निमित्रम् पुष्यमित्र शुंग के पुत्र और विदिशा में उनके उपराजा अग्निमित्र के कुमारी मालविका के प्रति प्रेम की कथा है। प्रेम-कथा के पीछे ऐतिहासिक ब्योरे हैं: इसमें पुष्यमित्र के अश्वमेध यज्ञ और अग्निमित्र के पुत्र वसुमित्र की सिंधु के तट पर यवनों (हिंद-यूनानियों) पर विजय का उल्लेख है। "
+  "यह शुंगों के कुछ साहित्यिक स्रोतों में से एक है, जिन्होंने अंतिम मौर्य राजा बृहद्रथ की पुष्यमित्र द्वारा हत्या के बाद शासन किया।",
+  f"{TH1}; NCERT (old), Ancient India.",
+  "l3-t2-his-malavikagnimitram-shunga", pos=1, craft="linkage")
+
+S("Ancient", "medium", "Consider the following statements about the Bhabru edict of Ashoka:",
+  "अशोक के भाब्रू अभिलेख के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In it Ashoka declares his faith in the Buddha, the Dhamma and the Sangha.",
+   "It names particular Buddhist texts that Ashoka wished monks, nuns and lay followers to hear and study.",
+   "It is a pillar edict found at Sarnath that warns monks and nuns against causing a schism in the Sangha."],
+  ["इसमें अशोक बुद्ध, धम्म और संघ में अपनी आस्था घोषित करते हैं।",
+   "यह विशेष बौद्ध ग्रंथों के नाम देता है जिन्हें अशोक चाहते थे कि भिक्षु, भिक्षुणियाँ और उपासक सुनें और पढ़ें।",
+   "यह सारनाथ में मिला एक स्तंभ अभिलेख है जो भिक्षुओं और भिक्षुणियों को संघ में फूट डालने के विरुद्ध चेतावनी देता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Bhabru (Calcutta-Bairat) edict, a minor rock inscription found near Bairat in Rajasthan and now kept in Kolkata, is addressed to the Sangha; it is the most openly Buddhist of Ashoka's records and lists seven texts he commended. "
+  "Statement 3 describes a different record: the 'schism edict' on the pillars at Sarnath, Sanchi and Allahabad threatens monks and nuns who split the Sangha with expulsion. "
+  "The contrast is useful: in his major edicts to the public Ashoka preached a general Dhamma, while to the Sangha he wrote as a Buddhist lay follower.",
+  "कथन 1 और 2 सही हैं। राजस्थान में बैराट के पास मिला और अब कोलकाता में रखा भाब्रू (कलकत्ता-बैराट) अभिलेख एक लघु शिलालेख है जो संघ को संबोधित है; यह अशोक के अभिलेखों में सबसे खुले रूप से बौद्ध है और उनके द्वारा अनुशंसित सात ग्रंथों की सूची देता है। "
+  "कथन 3 एक अलग अभिलेख का वर्णन करता है: सारनाथ, साँची और इलाहाबाद के स्तंभों पर 'संघभेद अभिलेख' संघ में फूट डालने वाले भिक्षुओं और भिक्षुणियों को निष्कासन की चेतावनी देता है। "
+  "यह अंतर उपयोगी है: जनता के लिए अपने मुख्य अभिलेखों में अशोक ने एक सामान्य धम्म का उपदेश दिया, जबकि संघ को उन्होंने एक बौद्ध उपासक के रूप में लिखा।",
+  f"{TH1}; {ASI}.",
+  "l3-t2-his-bhabru-edict", craft="precision")
+
+S("Ancient", "medium", "Consider the following statements about Adichanallur:",
+  "आदिचनल्लूर के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is an Iron Age urn-burial site on the banks of the Tamraparni in Tamil Nadu.",
+   "It was first excavated in the colonial period, by Alexander Rea of the Archaeological Survey, more than a century ago.",
+   "Gold diadems, bronze objects and iron tools and weapons were among the goods found with the burials."],
+  ["यह तमिलनाडु में ताम्रपर्णी के तट पर लौह युग का कलश-शवाधान स्थल है।",
+   "इसका पहला उत्खनन औपनिवेशिक काल में, एक शताब्दी से भी पहले, पुरातत्व सर्वेक्षण के अलेक्ज़ेंडर री ने किया था।",
+   "शवाधानों के साथ मिली वस्तुओं में सोने के मुकुट-पट्ट, कांस्य वस्तुएँ और लोहे के औज़ार व हथियार थे।"],
+  C3, 2,
+  "All three statements are correct. Adichanallur, in Thoothukudi district, is one of the largest urn-burial grounds of south India: the dead, or their bones, were placed in large pots buried in the ground, with grave goods. "
+  "Alexander Rea dug there between 1899 and 1905 and found gold diadems and mouthpieces, bronze vessels and figurines, and many iron implements; the Archaeological Survey resumed excavations in 2004, and the finds have fed the debate about the date of the Iron Age and of early Tamil society that sites such as Keezhadi have revived.",
+  "तीनों कथन सही हैं। थूथुकुडी ज़िले का आदिचनल्लूर दक्षिण भारत के सबसे बड़े कलश-शवाधान स्थलों में से एक है: मृतकों, या उनकी अस्थियों, को बड़े घड़ों में रखकर वस्तुओं के साथ ज़मीन में गाड़ा जाता था। "
+  "अलेक्ज़ेंडर री ने 1899 और 1905 के बीच वहाँ खुदाई की और सोने के मुकुट-पट्ट व मुखपट्ट, कांस्य पात्र और मूर्तियाँ, तथा लोहे के अनेक उपकरण पाए; पुरातत्व सर्वेक्षण ने 2004 में फिर उत्खनन शुरू किया, और इन खोजों ने लौह युग और प्रारंभिक तमिल समाज की तिथि पर उस बहस को बल दिया है जिसे कीलाडी जैसे स्थलों ने फिर जगाया है।",
+  f"{ASI}; {TH1}.",
+  "l3-t2-his-adichanallur-urn-burials", craft="recall")
+
+# ================================================================ MEDIEVAL (3)
+M("Medieval", "medium",
+  "The Ramappa (Rudreshwara) temple at Palampet, inscribed as a World Heritage Site in 2021, was built under which dynasty?",
+  "पालमपेट का रामप्पा (रुद्रेश्वर) मंदिर, जिसे 2021 में विश्व धरोहर स्थल घोषित किया गया, किस राजवंश के अधीन बना?",
+  ["The Hoysalas", "The Yadavas of Devagiri", "The Eastern Gangas", "The Kakatiyas"],
+  ["होयसल", "देवगिरि के यादव", "पूर्वी गंग", "काकतीय"],
+  3,
+  "The temple was built in 1213 by Recharla Rudra, a general of the Kakatiya king Ganapatideva, and takes its popular name from its sculptor, Ramappa. Its features include bracket figures of dancers, a sandbox foundation, and bricks so light that they float on water, used in the tower. "
+  "It lies in the Mulugu district of Telangana, in the old Kakatiya heartland around Warangal; the Hoysalas built at Belur and Halebidu, and the Eastern Gangas at Konark and Puri.",
+  "यह मंदिर 1213 में काकतीय राजा गणपतिदेव के सेनापति रेचर्ला रुद्र ने बनवाया, और इसका लोकप्रिय नाम इसके मूर्तिकार रामप्पा से आता है। इसकी विशेषताओं में नर्तकियों की ब्रैकेट-मूर्तियाँ, रेत-पेटी (सैंडबॉक्स) नींव, और शिखर में प्रयुक्त ऐसी हल्की ईंटें हैं जो पानी पर तैरती हैं। "
+  "यह तेलंगाना के मुलुगु ज़िले में, वारंगल के आसपास के पुराने काकतीय क्षेत्र में है; होयसलों ने बेलूर और हलेबिडु में, और पूर्वी गंगों ने कोणार्क और पुरी में निर्माण किया।",
+  f"UNESCO World Heritage List (Kakatiya Rudreshwara (Ramappa) Temple, 2021); {ASI}.",
+  "l3-t2-his-ramappa-kakatiya", pos=3, craft="recall")
+
+S("Medieval", "medium", "Consider the following statements about Alauddin Husain Shah, Sultan of Bengal (1494-1519):",
+  "बंगाल के सुल्तान अलाउद्दीन हुसैन शाह (1494-1519) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Bengali literature flourished under him and his officials, who sponsored Bengali versions of the Mahabharata.",
+   "Rupa and Sanatana, who became leading theologians of Chaitanya's movement, had served as high officials of his court.",
+   "He founded the Ilyas Shahi dynasty."],
+  ["उनके और उनके अधिकारियों के अधीन बांग्ला साहित्य फला-फूला, जिन्होंने महाभारत के बांग्ला रूपांतरों को प्रायोजित किया।",
+   "रूप और सनातन, जो चैतन्य के आंदोलन के प्रमुख धर्मशास्त्री बने, उनके दरबार में उच्च अधिकारी रह चुके थे।",
+   "उन्होंने इलियास शाही राजवंश की स्थापना की।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Husain Shah's reign is remembered as a golden age of the Bengal Sultanate: his general Paragal Khan commissioned Kavindra Parameshvara's Bengali Mahabharata, and poets of the Manasa cult wrote in his time. "
+  "Chaitanya lived during his reign, and two of the Sultan's ministers, the brothers known as Rupa and Sanatana, left his service to become Chaitanya's disciples and the theologians of Gaudiya Vaishnavism at Vrindavan. "
+  "Statement 3 is wrong: Husain Shah founded his own Husain Shahi dynasty; the Ilyas Shahi dynasty had been founded by Shamsuddin Ilyas Shah in the 1340s.",
+  "कथन 1 और 2 सही हैं। हुसैन शाह का शासन बंगाल सल्तनत के स्वर्ण युग के रूप में याद किया जाता है: उनके सेनापति परागल ख़ान ने कवींद्र परमेश्वर का बांग्ला महाभारत लिखवाया, और मनसा पंथ के कवियों ने उनके समय में लिखा। "
+  "चैतन्य उनके शासनकाल में हुए, और सुल्तान के दो मंत्री, रूप और सनातन नाम से प्रसिद्ध भाई, उनकी सेवा छोड़कर चैतन्य के शिष्य और वृंदावन में गौड़ीय वैष्णव धर्म के धर्मशास्त्री बने। "
+  "कथन 3 ग़लत है: हुसैन शाह ने अपने हुसैन शाही राजवंश की स्थापना की; इलियास शाही राजवंश की स्थापना 1340 के दशक में शम्सुद्दीन इलियास शाह ने की थी।",
+  f"{OP2}; NCERT Class XII, Themes in Indian History II.",
+  "l3-t2-his-husain-shah-bengal", craft="linkage")
+
+P("Medieval", "medium", "Consider the following pairs of monuments and the regional sultanates under which they were built:",
+  "स्मारकों और उन क्षेत्रीय सल्तनतों के निम्नलिखित युग्मों पर विचार कीजिए जिनके अधीन वे बने:",
+  ["Atala Masjid, Jaunpur : Sharqi Sultanate",
+   "Jahaz Mahal, Mandu : Malwa Sultanate",
+   "Adina Mosque, Pandua : Bengal Sultanate",
+   "Jami Masjid, Champaner : Bahmani Sultanate"],
+  ["अटाला मस्जिद, जौनपुर : शर्क़ी सल्तनत",
+   "जहाज़ महल, मांडू : मालवा सल्तनत",
+   "अदीना मस्जिद, पांडुआ : बंगाल सल्तनत",
+   "जामी मस्जिद, चंपानेर : बहमनी सल्तनत"],
+  2,
+  "The first three pairs are correct. The Atala Masjid, finished in 1408 under Ibrahim Shah Sharqi, set the Jaunpur style of great gateway screens; the Jahaz Mahal, a palace between two lakes, was built under the Khalji sultans of Malwa; and the vast Adina Mosque at Pandua was built in the 1370s by Sikandar Shah of the Ilyas Shahi line of Bengal. "
+  "The fourth pair is wrong: the Jami Masjid at Champaner was completed in 1513 under the Gujarat Sultanate, after Mahmud Begada took Champaner -- the site is now part of the Champaner-Pavagadh World Heritage Site. The Bahmani sultans built at Gulbarga and Bidar.",
+  "पहले तीन युग्म सही हैं। इब्राहिम शाह शर्क़ी के अधीन 1408 में पूरी हुई अटाला मस्जिद ने विशाल प्रवेश-आवरणों वाली जौनपुर शैली स्थापित की; दो झीलों के बीच बना महल जहाज़ महल मालवा के ख़लजी सुल्तानों के अधीन बना; और पांडुआ की विशाल अदीना मस्जिद 1370 के दशक में बंगाल के इलियास शाही वंश के सिकंदर शाह ने बनवाई। "
+  "चौथा युग्म ग़लत है: चंपानेर की जामी मस्जिद 1513 में गुजरात सल्तनत के अधीन पूरी हुई, जब महमूद बेगड़ा ने चंपानेर जीता -- यह स्थल अब चंपानेर-पावागढ़ विश्व धरोहर स्थल का भाग है। बहमनी सुल्तानों ने गुलबर्गा और बीदर में निर्माण किया।",
+  f"{OP2}; {ASI}; UNESCO World Heritage List (Champaner-Pavagadh, 2004).",
+  "l3-t2-his-sultanate-monuments-pairs", craft="recall")
+
+# ================================================================ MUSIC & DANCE (h-pairs)
+P("Music & Dance", "hard", "Consider the following pairs of musical instruments and the traditions they belong to:",
+  "वाद्ययंत्रों और उनसे जुड़ी परंपराओं के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Ravanhatha : A bowed string instrument of the folk musicians of Rajasthan",
+   "Pena : A bowed single-string instrument of Manipur, played in Lai Haraoba",
+   "Tumbi : A plucked single-string instrument of Punjabi folk music",
+   "Nadaswaram : A double-reed wind instrument played at temple rituals and weddings in Tamil Nadu"],
+  ["रावणहत्था : राजस्थान के लोक संगीतकारों का गज से बजने वाला तार-वाद्य",
+   "पेना : मणिपुर का गज से बजने वाला एक-तारा वाद्य, जो लाई हराओबा में बजता है",
+   "तुंबी : पंजाबी लोक संगीत का छेड़कर बजने वाला एक-तारा वाद्य",
+   "नादस्वरम : तमिलनाडु में मंदिर अनुष्ठानों और विवाहों में बजने वाला दोहरी रीड का सुषिर वाद्य"],
+  3,
+  "All four pairs are correct. The ravanhatha, a bamboo-necked fiddle with a coconut-shell body, accompanies the epic narratives of Rajasthan's folk performers; the pena, also a fiddle with a coconut-shell resonator, is central to the Meitei ritual festival of Lai Haraoba; and the tumbi, a single string over a gourd, gives bhangra and Punjabi folk songs their high, bright sound. "
+  "The nadaswaram, a long double-reed pipe, is played with the thavil drum and is considered auspicious in Tamil temple and wedding music. In the Natyashastra's scheme the first three are tata (stringed) instruments and the nadaswaram a sushira (wind) instrument.",
+  "चारों युग्म सही हैं। बाँस की गर्दन और नारियल के खोल के शरीर वाला रावणहत्था राजस्थान के लोक कलाकारों के महाकाव्य-आख्यानों का साथ देता है; नारियल के खोल के अनुनादक वाला पेना मैतेई अनुष्ठानिक उत्सव लाई हराओबा का केंद्रीय वाद्य है; और लौकी पर तने एक तार वाली तुंबी भांगड़ा और पंजाबी लोकगीतों को उनकी ऊँची, चमकीली ध्वनि देती है। "
+  "लंबी दोहरी रीड वाली नली नादस्वरम थविल ढोल के साथ बजता है और तमिल मंदिर और विवाह संगीत में शुभ माना जाता है। नाट्यशास्त्र की योजना में पहले तीन तत (तार) वाद्य हैं और नादस्वरम सुषिर (फूँक) वाद्य है।",
+  MUS + ".",
+  "l3-t2-his-instruments-ravanhatha-pena-tumbi", craft="precision")
+
+write("gs_l3_t2_b.sql")

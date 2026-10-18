@@ -1,0 +1,310 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 2 (GS Integrated Test 2) -- part E: Economy (17) (upsc_l3_cell_targets.mjs 2).
+Economy cells: Financial Markets e-stmt, h-stmt, m-stmt x2; Industry e-stmt, m-MCQ, m-stmt; Macro e-SI; External e-SI,
+m-stmt; Taxation h-SI; Inclusive Growth h-pairs; Agriculture m-MCQ, m-stmt; Money & Banking m-MCQ, m-stmt; Budget m-stmt.
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Test 1, and is one none of them
+tests: NPS Vatsalya; segregated portfolios (side-pocketing); SEBI's market-capitalisation categories; the Voluntary
+Retention Route; the Fund of Funds for Startups; the bulk drug parks; the real-time and green power markets; GDP at
+purchasing power parity; rules of origin and CAROTAR; the WTO moratorium on e-commerce duties; the 2022 windfall tax;
+NAMASTE, SMILE, SHRESHTA and Ayushman Vay Vandana; the oil palm mission; farmers' rights under the PPV&FR Act;
+payment aggregators; the Positive Pay System; SNA-SPARSH. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Economy"
+d.REQUIRE_CRAFT = True
+FM = "Financial Markets, Instruments & Fintech"
+MB = "Money, Banking & Monetary Policy"
+IN = "Industry, Infrastructure, Energy & Services"
+EX = "External Sector & International Institutions"
+AG = "Agriculture & Food Economy"
+RBI = "Reserve Bank of India"
+SEBI = "Securities and Exchange Board of India"
+NCM = "NCERT Class XII, Introductory Macroeconomics"
+MOF = "Ministry of Finance"
+
+# ================================================================ FINANCIAL MARKETS (4)
+S(FM, "easy", "With reference to NPS Vatsalya, consider the following statements:",
+  "NPS वात्सल्य के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It lets parents or guardians open and contribute to a pension account in the name of a minor child.",
+   "When the child turns eighteen, the account can be shifted into a regular National Pension System account."],
+  ["यह माता-पिता या संरक्षकों को किसी नाबालिग बच्चे के नाम पर पेंशन खाता खोलने और उसमें अंशदान करने देता है।",
+   "बच्चे के अठारह वर्ष का होने पर खाते को एक सामान्य राष्ट्रीय पेंशन प्रणाली खाते में बदला जा सकता है।"],
+  T2, 2,
+  "Both statements are correct. NPS Vatsalya, announced in the Union Budget 2024-25 and run by the Pension Fund Regulatory and Development Authority, lets a parent start retirement saving for a child with a small minimum yearly contribution; limited partial withdrawals are allowed for needs such as education after a lock-in. "
+  "At eighteen the account moves into the ordinary NPS, so that decades of compounding work in the child's favour -- an attempt to widen pension coverage in a country where most workers have none.",
+  "दोनों कथन सही हैं। केंद्रीय बजट 2024-25 में घोषित और पेंशन निधि विनियामक और विकास प्राधिकरण द्वारा संचालित NPS वात्सल्य माता-पिता को छोटे न्यूनतम वार्षिक अंशदान से बच्चे के लिए सेवानिवृत्ति बचत शुरू करने देता है; लॉक-इन के बाद शिक्षा जैसी ज़रूरतों के लिए सीमित आंशिक निकासी की अनुमति है। "
+  "अठारह वर्ष पर खाता सामान्य NPS में चला जाता है, ताकि दशकों का चक्रवृद्धि लाभ बच्चे के पक्ष में काम करे -- यह ऐसे देश में पेंशन कवरेज बढ़ाने का प्रयास है जहाँ अधिकांश कामगारों के पास कोई पेंशन नहीं है।",
+  f"Pension Fund Regulatory and Development Authority (NPS Vatsalya, 2024); Union Budget 2024-25.",
+  "l3-t2-eco-nps-vatsalya", craft="recall")
+
+S(FM, "hard", "With reference to 'side-pocketing' (segregated portfolios) in debt mutual funds, consider the following statements:",
+  "डेट म्यूचुअल फ़ंडों में 'साइड-पॉकेटिंग' (पृथक पोर्टफ़ोलियो) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It allows a scheme to separate a security that has defaulted or been downgraded from the rest of its portfolio.",
+   "Investors holding units when the portfolio is split receive units in the segregated portfolio and get any money later recovered from it.",
+   "Investors who join the scheme after the split also share in recoveries from the segregated portfolio."],
+  ["यह किसी योजना को डिफ़ॉल्ट हुई या रेटिंग घटी प्रतिभूति को अपने शेष पोर्टफ़ोलियो से अलग करने देता है।",
+   "पोर्टफ़ोलियो के विभाजन के समय यूनिट रखने वाले निवेशकों को पृथक पोर्टफ़ोलियो की यूनिटें मिलती हैं और उससे बाद में वसूला गया धन मिलता है।",
+   "विभाजन के बाद योजना से जुड़ने वाले निवेशक भी पृथक पोर्टफ़ोलियो की वसूली में हिस्सा पाते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. SEBI allowed segregated portfolios in 2018, after defaults such as IL&FS's, so that one bad paper does not trap a whole scheme: on a credit event the stressed security is ring-fenced, the main portfolio carries on with normal subscriptions and redemptions, and existing investors get an equal number of units in the side pocket, which are listed but not open to new money. "
+  "Statement 3 is wrong: recoveries go only to those who held units on the date of segregation; later investors buy into the clean main portfolio alone. The design protects existing investors from a rush of redemptions at distorted prices, and new investors from paying for a loss they did not share.",
+  "कथन 1 और 2 सही हैं। IL&FS जैसे डिफ़ॉल्ट के बाद SEBI ने 2018 में पृथक पोर्टफ़ोलियो की अनुमति दी, ताकि एक ख़राब पत्र पूरी योजना को न फँसा दे: ऋण घटना होने पर दबावग्रस्त प्रतिभूति को अलग घेर दिया जाता है, मुख्य पोर्टफ़ोलियो सामान्य अभिदान और मोचन के साथ चलता रहता है, और मौजूदा निवेशकों को साइड पॉकेट में बराबर संख्या में यूनिटें मिलती हैं, जो सूचीबद्ध होती हैं पर नए धन के लिए खुली नहीं होतीं। "
+  "कथन 3 ग़लत है: वसूली केवल उन्हें जाती है जिनके पास पृथक्करण की तिथि को यूनिटें थीं; बाद के निवेशक केवल साफ़ मुख्य पोर्टफ़ोलियो ख़रीदते हैं। यह संरचना मौजूदा निवेशकों को विकृत दामों पर मोचन की भगदड़ से, और नए निवेशकों को उस हानि की क़ीमत चुकाने से बचाती है जिसमें वे भागीदार नहीं थे।",
+  f"{SEBI} (circular on creation of segregated portfolios in mutual fund schemes, 2018).",
+  "l3-t2-eco-side-pocketing-segregated", craft="inference")
+
+S(FM, "medium", "Consider the following statements about the categories that SEBI uses for mutual fund schemes:",
+  "म्यूचुअल फ़ंड योजनाओं के लिए SEBI द्वारा प्रयुक्त श्रेणियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Large-cap companies are the first 100 listed companies by full market capitalisation.",
+   "Mid-cap companies are those ranked 101st to 250th.",
+   "Small-cap companies are those ranked 251st and below.",
+   "The lists are drawn up by the Association of Mutual Funds in India and revised twice a year."],
+  ["लार्ज-कैप कंपनियाँ पूर्ण बाज़ार पूँजीकरण के आधार पर पहली 100 सूचीबद्ध कंपनियाँ हैं।",
+   "मिड-कैप कंपनियाँ वे हैं जिनका क्रम 101वाँ से 250वाँ है।",
+   "स्मॉल-कैप कंपनियाँ वे हैं जिनका क्रम 251वाँ और उससे नीचे है।",
+   "ये सूचियाँ एसोसिएशन ऑफ़ म्यूचुअल फ़ंड्स इन इंडिया बनाती है और वर्ष में दो बार संशोधित करती है।"],
+  C4, 3,
+  "All four statements are correct. SEBI's 2017 circular on categorising schemes fixed these definitions so that a 'large-cap' or 'small-cap' label means the same thing in every fund house, and investors can compare like with like; a large-cap fund, for instance, must keep most of its money in the top 100 companies. "
+  "AMFI publishes the ranked list every six months, so a company can move between categories as its share price changes -- which is why fund portfolios shift after each revision.",
+  "चारों कथन सही हैं। योजनाओं के वर्गीकरण पर SEBI के 2017 के परिपत्र ने ये परिभाषाएँ तय कीं ताकि 'लार्ज-कैप' या 'स्मॉल-कैप' का अर्थ हर फ़ंड हाउस में एक ही हो, और निवेशक समान की समान से तुलना कर सकें; उदाहरण के लिए, लार्ज-कैप फ़ंड को अपना अधिकांश धन शीर्ष 100 कंपनियों में रखना होता है। "
+  "AMFI हर छह महीने में क्रमबद्ध सूची प्रकाशित करता है, इसलिए किसी कंपनी का शेयर दाम बदलने पर वह श्रेणियों के बीच जा सकती है -- इसीलिए हर संशोधन के बाद फ़ंड पोर्टफ़ोलियो बदलते हैं।",
+  f"{SEBI} (categorisation and rationalisation of mutual fund schemes, 2017); Association of Mutual Funds in India.",
+  "l3-t2-eco-market-cap-categories", craft="precision")
+
+S(FM, "medium", "With reference to the Voluntary Retention Route (VRR) for foreign portfolio investors, consider the following statements:",
+  "विदेशी पोर्टफ़ोलियो निवेशकों के लिए स्वैच्छिक प्रतिधारण मार्ग (VRR) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is meant for foreign portfolio investment in the equity shares of Indian companies.",
+   "Investors using it may take their money out at any time, as there is no minimum retention period."],
+  ["यह भारतीय कंपनियों के इक्विटी शेयरों में विदेशी पोर्टफ़ोलियो निवेश के लिए है।",
+   "इसका उपयोग करने वाले निवेशक कभी भी अपना धन निकाल सकते हैं, क्योंकि कोई न्यूनतम प्रतिधारण अवधि नहीं है।"],
+  T2, 3,
+  "Neither statement is correct. The Voluntary Retention Route, opened by the RBI in 2019, is for foreign portfolio investment in debt -- government and corporate bonds. "
+  "Its bargain is the reverse of statement 2: investors commit to keep a large part of their allotted investment (75 per cent) in India for a minimum period of three years, and in return are freed from some of the macro-prudential limits that apply to ordinary FPI debt investment. The aim is to attract stable, long-term foreign money into Indian bonds rather than 'hot money' that leaves at the first sign of trouble.",
+  "कोई भी कथन सही नहीं है। RBI द्वारा 2019 में खोला गया स्वैच्छिक प्रतिधारण मार्ग ऋण -- सरकारी और कॉर्पोरेट बॉन्ड -- में विदेशी पोर्टफ़ोलियो निवेश के लिए है। "
+  "इसका सौदा कथन 2 का उलटा है: निवेशक अपने आवंटित निवेश का बड़ा भाग (75 प्रतिशत) कम से कम तीन वर्ष भारत में रखने की प्रतिबद्धता करते हैं, और बदले में उन्हें सामान्य FPI ऋण निवेश पर लागू कुछ समष्टि-विवेकपूर्ण सीमाओं से छूट मिलती है। उद्देश्य भारतीय बॉन्डों में स्थिर, दीर्घकालिक विदेशी धन आकर्षित करना है, न कि ऐसा 'हॉट मनी' जो संकट का पहला संकेत मिलते ही निकल जाए।",
+  f"{RBI} (Voluntary Retention Route for FPI investment in debt, 2019).",
+  "l3-t2-eco-voluntary-retention-route", craft="precision")
+
+# ================================================================ INDUSTRY, INFRASTRUCTURE, ENERGY & SERVICES (3)
+S(IN, "easy", "With reference to the Fund of Funds for Startups, consider the following statements:",
+  "स्टार्टअप्स के लिए फ़ंड ऑफ़ फ़ंड्स के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It invests directly in startups by buying their shares.",
+   "It is managed by NABARD."],
+  ["यह स्टार्टअप्स के शेयर ख़रीदकर सीधे उनमें निवेश करता है।",
+   "इसका प्रबंधन नाबार्ड करता है।"],
+  T2, 3,
+  "Neither statement is correct. The Fund of Funds for Startups, set up in 2016 under the Startup India initiative with a corpus of ₹10,000 crore, is managed by the Small Industries Development Bank of India (SIDBI). "
+  "It does not pick startups itself: it commits money to SEBI-registered alternative investment funds, which must invest a multiple of that amount in startups -- so public money draws in private venture capital and professional fund managers choose the companies.",
+  "कोई भी कथन सही नहीं है। स्टार्टअप इंडिया पहल के अंतर्गत 2016 में ₹10,000 करोड़ की निधि के साथ स्थापित स्टार्टअप्स के लिए फ़ंड ऑफ़ फ़ंड्स का प्रबंधन भारतीय लघु उद्योग विकास बैंक (SIDBI) करता है। "
+  "यह स्वयं स्टार्टअप नहीं चुनता: यह SEBI-पंजीकृत वैकल्पिक निवेश कोषों को धन देता है, जिन्हें उस राशि का कई गुना स्टार्टअप्स में लगाना होता है -- इस प्रकार सार्वजनिक धन निजी वेंचर पूँजी को खींचता है और पेशेवर फ़ंड प्रबंधक कंपनियाँ चुनते हैं।",
+  "Department for Promotion of Industry and Internal Trade (Startup India); Small Industries Development Bank of India.",
+  "l3-t2-eco-fund-of-funds-startups", craft="precision")
+
+M(IN, "medium",
+  "The Scheme for Promotion of Bulk Drug Parks, approved in 2020, aims mainly to:",
+  "2020 में स्वीकृत बल्क ड्रग पार्कों के संवर्धन की योजना का मुख्य उद्देश्य क्या है?",
+  ["cut reliance on imported drug ingredients by giving makers shared facilities in parks",
+   "cap the retail prices of essential medicines sold by private chemists across the country",
+   "open a chain of shops that sell generic medicines at low prices in every district of India",
+   "set up drug-testing laboratories at ports to check the quality of imported finished medicines"],
+  ["पार्कों में निर्माताओं को साझा सुविधाएँ देकर आयातित दवा-घटकों पर निर्भरता घटाना",
+   "देश भर में निजी दवा विक्रेताओं द्वारा बेची जाने वाली आवश्यक दवाओं के खुदरा दाम सीमित करना",
+   "भारत के हर ज़िले में कम दाम पर जेनेरिक दवाएँ बेचने वाली दुकानों की शृंखला खोलना",
+   "आयातित तैयार दवाओं की गुणवत्ता जाँचने के लिए बंदरगाहों पर दवा-परीक्षण प्रयोगशालाएँ बनाना"],
+  0,
+  "India is a leading exporter of generic medicines but imports a large share of the active pharmaceutical ingredients and key starting materials it needs, much of it from China -- a weakness exposed when supplies were disrupted in 2020. "
+  "The scheme helps three States (Gujarat, Himachal Pradesh and Andhra Pradesh) build parks with common facilities such as effluent treatment, steam and testing, lowering the cost of making these ingredients at home; it works alongside a production-linked incentive for the same products. Price caps are the work of the National Pharmaceutical Pricing Authority, and cheap generic shops of the Jan Aushadhi scheme.",
+  "भारत जेनेरिक दवाओं का प्रमुख निर्यातक है पर अपनी ज़रूरत के सक्रिय औषधीय घटकों और प्रमुख आरंभिक सामग्रियों का बड़ा हिस्सा, जिसमें से बहुत-सा चीन से, आयात करता है -- यह कमज़ोरी 2020 में आपूर्ति बाधित होने पर उजागर हुई। "
+  "योजना तीन राज्यों (गुजरात, हिमाचल प्रदेश और आंध्र प्रदेश) को बहिःस्राव उपचार, भाप और परीक्षण जैसी साझा सुविधाओं वाले पार्क बनाने में मदद करती है, जिससे इन घटकों को देश में बनाने की लागत घटती है; यह इन्हीं उत्पादों के लिए उत्पादन-संबद्ध प्रोत्साहन के साथ काम करती है। मूल्य-सीमा राष्ट्रीय औषध मूल्य निर्धारण प्राधिकरण का काम है, और सस्ती जेनेरिक दुकानें जन औषधि योजना की।",
+  "Department of Pharmaceuticals (Scheme for Promotion of Bulk Drug Parks, 2020).",
+  "l3-t2-eco-bulk-drug-parks", pos=0, craft="linkage")
+
+S(IN, "medium", "Consider the following statements about India's electricity markets:",
+  "भारत के बिजली बाज़ारों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The power exchanges run a real-time market in which electricity is auctioned in half-hour blocks for delivery about an hour later.",
+   "A green day-ahead market lets buyers purchase renewable power, which helps them meet their renewable purchase obligations.",
+   "The power exchanges are regulated by the Securities and Exchange Board of India."],
+  ["बिजली एक्सचेंज एक रियल-टाइम बाज़ार चलाते हैं जिसमें लगभग एक घंटे बाद आपूर्ति के लिए आधे-आधे घंटे के खंडों में बिजली की नीलामी होती है।",
+   "एक हरित डे-अहेड बाज़ार ख़रीदारों को नवीकरणीय बिजली ख़रीदने देता है, जिससे उन्हें अपने नवीकरणीय क्रय दायित्व पूरे करने में मदद मिलती है।",
+   "बिजली एक्सचेंजों का विनियमन भारतीय प्रतिभूति और विनिमय बोर्ड करता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The real-time market, started in 2020, holds 48 auctions a day, letting distribution companies and large consumers correct their positions close to delivery -- useful as solar and wind output varies through the day. "
+  "The green markets, launched in 2020 and 2021, let renewable generators sell to buyers who must source a share of their power from renewables. "
+  "Statement 3 is wrong: the power exchanges are regulated by the Central Electricity Regulatory Commission under the Electricity Act, 2003; SEBI regulates securities and commodity derivatives.",
+  "कथन 1 और 2 सही हैं। 2020 में शुरू हुआ रियल-टाइम बाज़ार दिन में 48 नीलामियाँ करता है, जिससे वितरण कंपनियाँ और बड़े उपभोक्ता आपूर्ति के निकट अपनी स्थिति सुधार सकते हैं -- यह इसलिए उपयोगी है कि सौर और पवन उत्पादन दिन भर बदलता रहता है। "
+  "2020 और 2021 में शुरू हुए हरित बाज़ार नवीकरणीय उत्पादकों को उन ख़रीदारों को बेचने देते हैं जिन्हें अपनी बिजली का एक अंश नवीकरणीय स्रोतों से लेना होता है। "
+  "कथन 3 ग़लत है: बिजली एक्सचेंजों का विनियमन विद्युत अधिनियम, 2003 के अंतर्गत केंद्रीय विद्युत विनियामक आयोग करता है; SEBI प्रतिभूतियों और कमोडिटी डेरिवेटिव का विनियमन करता है।",
+  "Central Electricity Regulatory Commission (Power Market Regulations, 2021); Ministry of Power.",
+  "l3-t2-eco-real-time-green-power-markets", craft="precision")
+
+# ================================================================ MACRO (e-SI)
+A("Macro Concepts, National Income & Inflation", "easy",
+  "Statement-I: India's GDP is much larger when measured at purchasing power parity than when converted at market exchange rates.",
+  "कथन-I: क्रय शक्ति समता पर मापने पर भारत का GDP बाज़ार विनिमय दरों पर परिवर्तित करने की तुलना में बहुत बड़ा होता है।",
+  "Statement-II: Many goods, and especially services, cost less in India than in high-income countries, so a rupee buys more at home than its exchange-rate value suggests.",
+  "कथन-II: कई वस्तुएँ, और विशेषकर सेवाएँ, उच्च-आय वाले देशों की तुलना में भारत में सस्ती हैं, इसलिए एक रुपया देश में उससे अधिक ख़रीदता है जितना उसका विनिमय-दर मूल्य बताता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Market exchange rates are set mainly by traded goods and capital flows, while haircuts, rents, domestic help and many other services are far cheaper in a lower-income country. "
+  "Purchasing power parity rates, estimated through the World Bank's International Comparison Programme, correct for this by valuing output at common prices; on that basis India is the world's third-largest economy, though its income per head remains low. PPP figures suit comparisons of living standards; market rates suit comparisons of external weight such as trade and debt.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। बाज़ार विनिमय दरें मुख्यतः व्यापार योग्य वस्तुओं और पूँजी प्रवाहों से तय होती हैं, जबकि बाल कटाई, किराया, घरेलू सहायता और अनेक अन्य सेवाएँ कम आय वाले देश में बहुत सस्ती होती हैं। "
+  "विश्व बैंक के अंतरराष्ट्रीय तुलना कार्यक्रम से आँकी गई क्रय शक्ति समता दरें उत्पादन को साझा दामों पर आँककर इसे सुधारती हैं; इस आधार पर भारत विश्व की तीसरी सबसे बड़ी अर्थव्यवस्था है, यद्यपि उसकी प्रति व्यक्ति आय कम बनी हुई है। PPP आँकड़े जीवन-स्तर की तुलना के लिए, और बाज़ार दरें व्यापार और ऋण जैसे बाहरी भार की तुलना के लिए उपयुक्त हैं।",
+  f"{NCM}; World Bank (International Comparison Programme, 2021).",
+  "l3-t2-eco-gdp-at-ppp", craft="inference")
+
+# ================================================================ EXTERNAL SECTOR (e-SI, m-stmt)
+A(EX, "easy",
+  "Statement-I: Free trade agreements contain 'rules of origin'.",
+  "कथन-I: मुक्त व्यापार समझौतों में 'उद्गम के नियम' होते हैं।",
+  "Statement-II: Rules of origin set how much of a product must be made in the partner countries for it to qualify for the agreement's lower tariffs, so that goods from other countries are not simply routed through a partner.",
+  "कथन-II: उद्गम के नियम तय करते हैं कि किसी उत्पाद का कितना भाग साझेदार देशों में बना होना चाहिए ताकि वह समझौते के कम शुल्कों का पात्र हो, जिससे अन्य देशों का माल बस किसी साझेदार के रास्ते न भेजा जाए।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Without rules of origin, a country outside the agreement could ship goods to a partner with low tariffs, do little to them and re-export them duty-free -- 'trade deflection'. Rules usually require a minimum share of local value addition or a change in the product's tariff classification. "
+  "India, worried that goods from third countries were entering through its FTA partners, notified the Customs (Administration of Rules of Origin under Trade Agreements) Rules, 2020, which require importers to back their origin claims.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। उद्गम के नियमों के बिना समझौते से बाहर का देश कम शुल्क वाले किसी साझेदार को माल भेज सकता, उस पर नाममात्र काम करके उसे शुल्क-मुक्त फिर निर्यात कर सकता -- 'व्यापार विचलन'। नियम सामान्यतः न्यूनतम स्थानीय मूल्य-वर्धन या उत्पाद के शुल्क वर्गीकरण में परिवर्तन की अपेक्षा करते हैं। "
+  "तीसरे देशों के माल के अपने FTA साझेदारों के रास्ते आने की चिंता में भारत ने सीमा शुल्क (व्यापार समझौतों के अंतर्गत उद्गम के नियमों का प्रशासन) नियम, 2020 अधिसूचित किए, जो आयातकों से अपने उद्गम दावों का प्रमाण देने की अपेक्षा करते हैं।",
+  "Department of Commerce; Central Board of Indirect Taxes and Customs (CAROTAR, 2020).",
+  "l3-t2-eco-rules-of-origin", craft="linkage")
+
+S(EX, "medium", "Consider the following statements about the WTO and electronic commerce:",
+  "WTO और इलेक्ट्रॉनिक वाणिज्य के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["From 1998, WTO members repeatedly agreed at their ministerial conferences not to impose customs duties on electronic transmissions.",
+   "India and some other developing countries have questioned this moratorium, arguing that it costs them tariff revenue as more goods are delivered digitally.",
+   "The moratorium also bars members from levying domestic taxes such as GST on digital services."],
+  ["1998 से WTO सदस्यों ने अपने मंत्रिस्तरीय सम्मेलनों में बार-बार इलेक्ट्रॉनिक प्रसारणों पर सीमा शुल्क न लगाने पर सहमति दी।",
+   "भारत और कुछ अन्य विकासशील देशों ने इस अधिस्थगन पर प्रश्न उठाया है, यह तर्क देते हुए कि जैसे-जैसे अधिक वस्तुएँ डिजिटल रूप से पहुँचती हैं, उन्हें शुल्क राजस्व की हानि होती है।",
+   "यह अधिस्थगन सदस्यों को डिजिटल सेवाओं पर GST जैसे घरेलू कर लगाने से भी रोकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The moratorium began as a temporary pledge in 1998 and was renewed at one ministerial conference after another, usually after hard bargaining; India, South Africa and Indonesia have argued that as films, music, software, books and even designs for 3D printing move online, a permanent ban on duties narrows their policy space and revenue. "
+  "Statement 3 is wrong: the moratorium covers only customs duties at the border, so countries remain free to apply internal taxes -- India, for example, levies GST on online services supplied from abroad.",
+  "कथन 1 और 2 सही हैं। अधिस्थगन 1998 में अस्थायी संकल्प के रूप में शुरू हुआ और एक के बाद एक मंत्रिस्तरीय सम्मेलन में, प्रायः कड़े मोलभाव के बाद, नवीनीकृत होता रहा; भारत, दक्षिण अफ़्रीका और इंडोनेशिया का तर्क रहा है कि जैसे-जैसे फ़िल्में, संगीत, सॉफ़्टवेयर, पुस्तकें और 3D प्रिंटिंग के डिज़ाइन तक ऑनलाइन जाते हैं, शुल्कों पर स्थायी रोक उनकी नीतिगत गुंजाइश और राजस्व को घटाती है। "
+  "कथन 3 ग़लत है: अधिस्थगन केवल सीमा पर लगने वाले सीमा शुल्क को शामिल करता है, इसलिए देश आंतरिक कर लगाने के लिए स्वतंत्र रहते हैं -- उदाहरण के लिए, भारत विदेश से दी जाने वाली ऑनलाइन सेवाओं पर GST लगाता है।",
+  "World Trade Organization (Work Programme on Electronic Commerce); Department of Commerce.",
+  "l3-t2-eco-wto-ecommerce-moratorium", craft="precision")
+
+# ================================================================ TAXATION & FISCAL FEDERALISM (h-SI)
+A("Taxation & Fiscal Federalism", "hard",
+  "Statement-I: In July 2022 India imposed a special additional excise duty on domestically produced crude oil, commonly called a windfall tax.",
+  "कथन-I: जुलाई 2022 में भारत ने देश में उत्पादित कच्चे तेल पर एक विशेष अतिरिक्त उत्पाद शुल्क लगाया, जिसे आम तौर पर अप्रत्याशित लाभ कर (विंडफ़ॉल टैक्स) कहा गया।",
+  "Statement-II: A windfall tax is aimed at unexpected profits that arise from outside events, such as a jump in world prices, rather than from firms' own efforts.",
+  "कथन-II: अप्रत्याशित लाभ कर उन अनपेक्षित मुनाफ़ों को लक्ष्य बनाता है जो कंपनियों के अपने प्रयासों से नहीं, बल्कि विश्व क़ीमतों में उछाल जैसी बाहरी घटनाओं से उत्पन्न होते हैं।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. When crude prices soared after the war in Ukraine began, domestic producers earned far more on oil whose cost had not changed, and refiners profited from exporting fuel; the government responded with a per-tonne levy on domestic crude and export duties on petrol, diesel and jet fuel, revised every fortnight in line with international prices. "
+  "The levies were scrapped in December 2024 once prices had eased. Critics argue such taxes deter investment in exploration; supporters see them as a fair share for the public of gains no one earned.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। यूक्रेन में युद्ध शुरू होने के बाद कच्चे तेल के दाम उछले तो घरेलू उत्पादकों ने उस तेल पर कहीं अधिक कमाया जिसकी लागत नहीं बदली थी, और रिफ़ाइनरों ने ईंधन निर्यात से मुनाफ़ा कमाया; सरकार ने घरेलू कच्चे तेल पर प्रति टन शुल्क और पेट्रोल, डीज़ल तथा विमान ईंधन पर निर्यात शुल्क लगाए, जिन्हें अंतरराष्ट्रीय दामों के अनुसार हर पखवाड़े संशोधित किया जाता था। "
+  "दाम घटने पर दिसंबर 2024 में ये शुल्क समाप्त कर दिए गए। आलोचकों का तर्क है कि ऐसे कर अन्वेषण में निवेश को हतोत्साहित करते हैं; समर्थक इन्हें उन लाभों में जनता का उचित हिस्सा मानते हैं जिन्हें किसी ने अर्जित नहीं किया।",
+  f"{MOF} (Department of Revenue notifications, 2022-2024).",
+  "l3-t2-eco-windfall-tax-crude", craft="linkage")
+
+# ================================================================ INCLUSIVE GROWTH, WELFARE & DEMOGRAPHY (h-pairs)
+P("Inclusive Growth, Welfare & Demography", "hard", "Consider the following pairs of schemes and the people they are meant for:",
+  "योजनाओं और उन लोगों के निम्नलिखित युग्मों पर विचार कीजिए जिनके लिए वे हैं:",
+  ["NAMASTE : Sanitation workers who clean sewers and septic tanks",
+   "SMILE : Transgender persons and persons engaged in begging",
+   "SHRESHTA : Farmer producer organisations in tribal areas",
+   "Ayushman Vay Vandana : All citizens aged 70 and above, whatever their income"],
+  ["नमस्ते : सीवर और सेप्टिक टैंक साफ़ करने वाले स्वच्छता कर्मी",
+   "स्माइल : ट्रांसजेंडर व्यक्ति और भिक्षावृत्ति में लगे व्यक्ति",
+   "श्रेष्ठा : जनजातीय क्षेत्रों के किसान उत्पादक संगठन",
+   "आयुष्मान वय वंदना : 70 वर्ष और उससे अधिक आयु के सभी नागरिक, आय चाहे जो हो"],
+  2,
+  "The first, second and fourth pairs are correct. NAMASTE (National Action for Mechanised Sanitation Ecosystem) seeks to end deaths in hazardous cleaning by mechanising it and by giving sanitation workers safety gear, health cover and other livelihoods; SMILE (Support for Marginalised Individuals for Livelihood and Enterprise) offers shelter, skills and rehabilitation; and Ayushman Vay Vandana (2024) extends health cover under AB-PMJAY to everyone aged 70 or more. "
+  "The third pair is wrong: SHRESHTA is a scheme of residential education that places meritorious Scheduled Caste students from poor families in good private residential schools.",
+  "पहला, दूसरा और चौथा युग्म सही हैं। नमस्ते (यंत्रीकृत स्वच्छता पारितंत्र के लिए राष्ट्रीय कार्रवाई) ख़तरनाक सफ़ाई को यंत्रीकृत करके और स्वच्छता कर्मियों को सुरक्षा उपकरण, स्वास्थ्य कवर और अन्य आजीविकाएँ देकर ऐसी सफ़ाई में मौतें समाप्त करना चाहती है; स्माइल (आजीविका और उद्यम के लिए हाशिए के व्यक्तियों को सहायता) आश्रय, कौशल और पुनर्वास देती है; और आयुष्मान वय वंदना (2024) AB-PMJAY के अंतर्गत स्वास्थ्य कवर 70 या अधिक आयु के हर व्यक्ति तक बढ़ाती है। "
+  "तीसरा युग्म ग़लत है: श्रेष्ठा आवासीय शिक्षा की योजना है जो ग़रीब परिवारों के मेधावी अनुसूचित जाति विद्यार्थियों को अच्छे निजी आवासीय विद्यालयों में भेजती है।",
+  "Ministry of Social Justice and Empowerment (NAMASTE, SMILE, SHRESHTA); Ministry of Health and Family Welfare (AB-PMJAY, 2024).",
+  "l3-t2-eco-namaste-smile-shreshta-vay-vandana", craft="precision")
+
+# ================================================================ AGRICULTURE & FOOD ECONOMY (m-MCQ, m-stmt)
+M(AG, "medium",
+  "The National Mission on Edible Oils -- Oil Palm, launched in 2021, seeks to raise domestic supply of edible oil mainly by:",
+  "2021 में शुरू किया गया राष्ट्रीय खाद्य तेल मिशन -- ऑयल पाम घरेलू खाद्य तेल आपूर्ति मुख्यतः किस प्रकार बढ़ाना चाहता है?",
+  ["raising mustard yields in Rajasthan and Haryana through new hybrid seeds and free inputs",
+   "importing crude palm oil free of duty and selling it through the public distribution system",
+   "promoting groundnut and sesame exports so as to earn foreign exchange for edible oil imports",
+   "expanding oil palm planting, especially in the north-eastern States and the Andaman Islands"],
+  ["नए संकर बीजों और मुफ़्त आदानों के माध्यम से राजस्थान और हरियाणा में सरसों की उपज बढ़ाना",
+   "कच्चा पाम तेल शुल्क-मुक्त आयात कर सार्वजनिक वितरण प्रणाली के माध्यम से बेचना",
+   "खाद्य तेल आयात के लिए विदेशी मुद्रा कमाने हेतु मूँगफली और तिल के निर्यात को बढ़ावा देना",
+   "विशेषकर पूर्वोत्तर राज्यों और अंडमान द्वीपों में ऑयल पाम की खेती का विस्तार करना"],
+  3,
+  "India imports more than half of the edible oil it consumes, much of it palm oil from Indonesia and Malaysia. Oil palm gives far more oil per hectare than any other oilseed, so the mission backs its planting, with a special focus on the north-east and the Andaman and Nicobar Islands, which have suitable rainfall and land. "
+  "Because the tree takes years to bear fruit and its bunches must be processed quickly, the mission guarantees growers a 'viability price' linked to international prices. Environmental groups have warned against planting it in ecologically sensitive forest areas.",
+  "भारत अपनी खपत के खाद्य तेल का आधे से अधिक आयात करता है, जिसमें बहुत-सा इंडोनेशिया और मलेशिया से पाम तेल है। ऑयल पाम किसी भी अन्य तिलहन से प्रति हेक्टेयर कहीं अधिक तेल देता है, इसलिए मिशन इसकी खेती को समर्थन देता है, विशेषकर पूर्वोत्तर और अंडमान एवं निकोबार द्वीपों पर ध्यान के साथ, जहाँ उपयुक्त वर्षा और भूमि है। "
+  "चूँकि पेड़ को फल देने में वर्षों लगते हैं और उसके गुच्छों का प्रसंस्करण जल्दी करना होता है, मिशन उत्पादकों को अंतरराष्ट्रीय दामों से जुड़ी 'व्यवहार्यता क़ीमत' की गारंटी देता है। पर्यावरण समूहों ने पारिस्थितिक रूप से संवेदनशील वन क्षेत्रों में इसकी खेती के विरुद्ध चेतावनी दी है।",
+  "Ministry of Agriculture and Farmers Welfare (National Mission on Edible Oils -- Oil Palm, 2021).",
+  "l3-t2-eco-nmeo-oil-palm", pos=3, craft="linkage")
+
+S(AG, "medium", "With reference to the Protection of Plant Varieties and Farmers' Rights Act, 2001, consider the following statements:",
+  "पौधा किस्म और कृषक अधिकार संरक्षण अधिनियम, 2001 के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Farmers may save, use, exchange and sell the seed of a protected variety, but not as branded seed.",
+   "Farmers' own traditional varieties can be registered under the Act.",
+   "In 2021 the authority under the Act revoked a registration held by PepsiCo for a potato variety used to make chips."],
+  ["किसान संरक्षित किस्म के बीज बचा सकते हैं, प्रयोग कर सकते हैं, आदान-प्रदान कर सकते हैं और बेच सकते हैं, पर ब्रांडेड बीज के रूप में नहीं।",
+   "अधिनियम के अंतर्गत किसानों की अपनी पारंपरिक किस्मों का पंजीकरण हो सकता है।",
+   "2021 में अधिनियम के अंतर्गत प्राधिकरण ने चिप्स बनाने में प्रयुक्त आलू की एक किस्म के लिए पेप्सिको का पंजीकरण रद्द कर दिया।"],
+  C3, 2,
+  "All three statements are correct. Unlike plant-variety laws in many countries, India's Act recognises farmers as breeders and conservers as well as cultivators: section 39 lets them keep and sell farm-saved seed of protected varieties so long as it is not sold under the breeder's brand, and farmers' varieties can be registered and rewarded through a gene fund. "
+  "The PepsiCo case began when the company sued Gujarat farmers in 2019 for growing its registered variety; after an outcry it withdrew the suits, and the Protection of Plant Varieties and Farmers' Rights Authority later revoked the registration on a farmers' rights activist's petition.",
+  "तीनों कथन सही हैं। कई देशों के पौधा-किस्म क़ानूनों के विपरीत भारत का अधिनियम किसानों को खेतिहर के साथ प्रजनक और संरक्षक भी मानता है: धारा 39 उन्हें संरक्षित किस्मों के खेत में बचाए बीज रखने और बेचने देती है, बशर्ते वह प्रजनक के ब्रांड से न बेचा जाए, और किसानों की किस्मों का पंजीकरण हो सकता है तथा जीन निधि से उन्हें पुरस्कृत किया जा सकता है। "
+  "पेप्सिको मामला तब शुरू हुआ जब कंपनी ने 2019 में अपनी पंजीकृत किस्म उगाने पर गुजरात के किसानों पर मुक़दमे किए; विरोध के बाद उसने मुक़दमे वापस लिए, और पौधा किस्म और कृषक अधिकार संरक्षण प्राधिकरण ने बाद में एक कृषक-अधिकार कार्यकर्ता की याचिका पर पंजीकरण रद्द कर दिया।",
+  "Protection of Plant Varieties and Farmers' Rights Act, 2001, s.39; PPV&FR Authority.",
+  "l3-t2-eco-ppvfr-farmers-rights", craft="linkage")
+
+# ================================================================ MONEY, BANKING & MONETARY POLICY (m-MCQ, m-stmt)
+M(MB, "medium",
+  "Under the RBI's rules, a 'payment aggregator', as distinct from a 'payment gateway', is an entity that:",
+  "RBI के नियमों के अंतर्गत 'भुगतान गेटवे' से भिन्न 'भुगतान एग्रीगेटर' वह इकाई है जो:",
+  ["only supplies the technology to route payment data, without ever handling the money itself",
+   "issues prepaid wallets that customers load in advance and use at many merchants",
+   "operates the national switch through which all debit and credit card payments are cleared",
+   "collects payments from customers for merchants and later settles the money with them"],
+  ["केवल भुगतान डेटा भेजने की तकनीक देती है, स्वयं कभी धन नहीं संभालती",
+   "प्रीपेड वॉलेट जारी करती है जिन्हें ग्राहक पहले से भरकर अनेक व्यापारियों के पास प्रयोग करते हैं",
+   "वह राष्ट्रीय स्विच चलाती है जिससे सभी डेबिट और क्रेडिट कार्ड भुगतान क्लियर होते हैं",
+   "व्यापारियों के लिए ग्राहकों से भुगतान एकत्र करती है और बाद में उनसे धन का निपटान करती है"],
+  3,
+  "A payment aggregator receives customers' money into its own account and passes it on to the merchant, so for a while it holds funds that belong to others; that is why the RBI's guidelines of 2020 require aggregators to be authorised under the Payment and Settlement Systems Act, 2007, to meet net-worth requirements and to keep collections in escrow accounts with banks. "
+  "A payment gateway only provides the technical link between the merchant's site and the banks and never handles the money -- the first option. Prepaid wallets are prepaid payment instruments, and the card switch describes networks such as RuPay.",
+  "भुगतान एग्रीगेटर ग्राहकों का धन अपने खाते में लेकर व्यापारी को आगे देता है, इसलिए कुछ समय वह दूसरों का धन रखता है; इसीलिए RBI के 2020 के दिशानिर्देश एग्रीगेटरों से भुगतान और निपटान प्रणाली अधिनियम, 2007 के अंतर्गत प्राधिकृत होने, निवल-संपत्ति की शर्तें पूरी करने और संग्रह को बैंकों में एस्क्रो खातों में रखने की अपेक्षा करते हैं। "
+  "भुगतान गेटवे केवल व्यापारी की साइट और बैंकों के बीच तकनीकी कड़ी देता है और धन कभी नहीं संभालता -- पहला विकल्प। प्रीपेड वॉलेट प्रीपेड भुगतान साधन हैं, और कार्ड स्विच रुपे जैसे नेटवर्कों का वर्णन है।",
+  f"{RBI} (Guidelines on Regulation of Payment Aggregators and Payment Gateways, 2020); Payment and Settlement Systems Act, 2007.",
+  "l3-t2-eco-payment-aggregator-vs-gateway", pos=3, craft="precision")
+
+S(MB, "medium", "Consider the following statements about the Positive Pay System for cheques:",
+  "चेकों के लिए पॉज़िटिव पे प्रणाली के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The person issuing a cheque sends its key details to the bank in advance, and the bank checks them before paying.",
+   "Banks must offer it for cheques of ₹50,000 and above, and may make it compulsory for cheques of ₹5 lakh and above.",
+   "It works within the Cheque Truncation System, through which cheques are cleared as images."],
+  ["चेक जारी करने वाला व्यक्ति उसके प्रमुख विवरण बैंक को पहले भेजता है, और बैंक भुगतान से पहले उनकी जाँच करता है।",
+   "बैंकों को ₹50,000 और उससे अधिक के चेकों के लिए यह सुविधा देनी होती है, और वे ₹5 लाख और उससे अधिक के चेकों के लिए इसे अनिवार्य कर सकते हैं।",
+   "यह चेक ट्रंकेशन सिस्टम के भीतर काम करती है, जिसके माध्यम से चेक छवियों के रूप में क्लियर होते हैं।"],
+  C3, 2,
+  "All three statements are correct. Under Positive Pay, introduced from January 2021, the drawer confirms details such as the date, the payee's name and the amount through net banking, a mobile app or the branch; when the cheque comes for clearing, the bank matches them and flags any mismatch, which defeats cheques whose amount or payee has been altered. "
+  "Using it is the account holder's choice for amounts of ₹50,000 and above, and banks may insist on it for ₹5 lakh and above. It was built by the NPCI into the Cheque Truncation System, in which the image of the cheque, not the paper, travels between banks.",
+  "तीनों कथन सही हैं। जनवरी 2021 से लागू पॉज़िटिव पे के अंतर्गत चेक जारीकर्ता नेट बैंकिंग, मोबाइल ऐप या शाखा के माध्यम से तिथि, आदाता का नाम और राशि जैसे विवरणों की पुष्टि करता है; जब चेक क्लियरिंग के लिए आता है, तो बैंक उनका मिलान कर किसी भी अंतर को चिह्नित करता है, जिससे राशि या आदाता बदले गए चेक विफल हो जाते हैं। "
+  "₹50,000 और उससे अधिक की राशि के लिए इसका उपयोग खाताधारक की इच्छा पर है, और ₹5 लाख और उससे अधिक के लिए बैंक इस पर ज़ोर दे सकते हैं। इसे NPCI ने चेक ट्रंकेशन सिस्टम में बनाया, जिसमें काग़ज़ नहीं बल्कि चेक की छवि बैंकों के बीच जाती है।",
+  f"{RBI} (Positive Pay System for Cheque Truncation System, 2020); National Payments Corporation of India.",
+  "l3-t2-eco-positive-pay-cheques", craft="application")
+
+# ================================================================ BUDGET, DEFICITS & PUBLIC DEBT (m-stmt)
+S("Budget, Deficits & Public Debt", "medium", "With reference to SNA-SPARSH, consider the following statements:",
+  "SNA-स्पर्श के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under it, the Union's money for centrally sponsored schemes is released 'just in time', when payments actually fall due, instead of being parked in advance in State accounts.",
+   "One of its aims is to reduce idle cash balances and so lower the government's borrowing and interest costs.",
+   "It applies only to central sector schemes funded wholly by the Union, and not to centrally sponsored schemes."],
+  ["इसके अंतर्गत केंद्र प्रायोजित योजनाओं के लिए संघ का धन पहले से राज्य खातों में रखे जाने के बजाय 'ठीक समय पर', जब भुगतान वास्तव में देय हों, जारी किया जाता है।",
+   "इसका एक उद्देश्य निष्क्रिय नक़द शेष घटाना और इस प्रकार सरकार की उधारी और ब्याज लागत कम करना है।",
+   "यह केवल पूरी तरह संघ द्वारा वित्तपोषित केंद्रीय क्षेत्र योजनाओं पर लागू होता है, केंद्र प्रायोजित योजनाओं पर नहीं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. For years the Union released money for centrally sponsored schemes to States and implementing agencies, where large sums lay unspent in bank accounts while the Union itself borrowed at interest. The Single Nodal Agency model and then SNA-SPARSH, which links the Public Financial Management System and State treasuries with the RBI's e-Kuber platform, let the money flow from the Consolidated Fund only when a beneficiary or vendor is actually paid. "
+  "Statement 3 is wrong: the system was designed precisely for centrally sponsored schemes, which States co-finance and implement.",
+  "कथन 1 और 2 सही हैं। वर्षों तक संघ केंद्र प्रायोजित योजनाओं का धन राज्यों और कार्यान्वयन एजेंसियों को जारी करता रहा, जहाँ बड़ी राशियाँ बैंक खातों में बिना ख़र्च पड़ी रहतीं जबकि संघ स्वयं ब्याज पर उधार लेता था। एकल नोडल एजेंसी मॉडल और फिर SNA-स्पर्श, जो सार्वजनिक वित्तीय प्रबंधन प्रणाली और राज्य कोषागारों को RBI के ई-कुबेर मंच से जोड़ता है, धन को समेकित निधि से तभी जाने देता है जब किसी लाभार्थी या विक्रेता को वास्तव में भुगतान होता है। "
+  "कथन 3 ग़लत है: यह प्रणाली ठीक केंद्र प्रायोजित योजनाओं के लिए बनाई गई थी, जिन्हें राज्य सह-वित्तपोषित और कार्यान्वित करते हैं।",
+  f"{MOF} (Department of Expenditure: SNA-SPARSH, 2023); Controller General of Accounts (PFMS).",
+  "l3-t2-eco-sna-sparsh-just-in-time", craft="application")
+
+write("gs_l3_t2_e.sql")
