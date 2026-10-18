@@ -1,0 +1,262 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 3 (GS Integrated Test 3) -- part C: Environment & Ecology (15) (upsc_l3_cell_targets.mjs 3).
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Tests 1-2, and is one none of them
+tests: buransh; the strangler fig; the Indian skimmer; fungus-farming ants and termites; the Indian wolf and the striped
+hyena; biomining of legacy waste; oil-spill response; ecosystem engineers; contrails; stratospheric cooling as a
+fingerprint; the Koronivia joint work; the Bugun liocichla and Eaglenest; Rajaji National Park; the Convention on
+Long-Range Transboundary Air Pollution; ICFRE, IIFM, the G.B. Pant institute and SACON. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Environment & Ecology"
+d.REQUIRE_CRAFT = True
+BIO12 = "NCERT Class XII, Biology (Organisms and Populations; Ecosystem; Biodiversity and Conservation)"
+MOEF = "Ministry of Environment, Forest and Climate Change"
+IUCN = "IUCN Red List of Threatened Species"
+IPCC = "IPCC Sixth Assessment Report"
+
+# ---------------------------------------------------------------- Flora, Fungi & Forests (e-MCQ, m-stmt)
+M("Flora, Fungi & Forests", "easy",
+  "Buransh, whose red flowers are made into a juice in the hills of Uttarakhand and which is the State tree of Uttarakhand, is a species of:",
+  "बुरांश, जिसके लाल फूलों से उत्तराखंड की पहाड़ियों में रस बनाया जाता है और जो उत्तराखंड का राज्य वृक्ष है, किसकी एक प्रजाति है?",
+  ["rhododendron", "oak", "deodar", "horse chestnut"],
+  ["रोडोडेंड्रॉन", "बाँज (ओक)", "देवदार", "पांगर (हॉर्स चेस्टनट)"],
+  0,
+  "Buransh is Rhododendron arboreum, a tree of the temperate Himalayan forests between about 1,500 and 3,600 metres whose scarlet flowers bloom in spring; the flowers are made into a squash and chutney, and the plant is valued in folk medicine. "
+  "It is also the national flower of Nepal. Early flowering in recent years, linked to warmer winters, is one of the changes in Himalayan plant life that ecologists are tracking; oak (banj) and deodar are other trees of the same belt.",
+  "बुरांश रोडोडेंड्रॉन आर्बोरियम है, लगभग 1,500 से 3,600 मीटर के बीच के शीतोष्ण हिमालयी वनों का वृक्ष जिसके चटक लाल फूल वसंत में खिलते हैं; फूलों से शरबत और चटनी बनती है, और लोक औषधि में पौधे का महत्त्व है। "
+  "यह नेपाल का राष्ट्रीय फूल भी है। हाल के वर्षों में गर्म सर्दियों से जुड़ा जल्दी फूलना हिमालयी वनस्पति में उन परिवर्तनों में से एक है जिन पर पारिस्थितिकीविद् नज़र रख रहे हैं; बाँज और देवदार उसी पट्टी के अन्य वृक्ष हैं।",
+  "NCERT Class XI, India: Physical Environment (Natural Vegetation); Uttarakhand Forest Department.",
+  "l3-t3-env-buransh-rhododendron", pos=0, craft="recall")
+
+S("Flora, Fungi & Forests", "medium", "Consider the following statements about strangler figs:",
+  "स्ट्रैंगलर अंजीर (गला घोंटने वाले फ़िग) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A strangler fig often begins life as an epiphyte, germinating on a branch of a host tree from a seed dropped by a bird.",
+   "Its roots grow down and fuse around the host's trunk, and the host may eventually die, leaving the fig standing as a hollow lattice.",
+   "It is a total parasite that draws its food from the host tree's phloem."],
+  ["स्ट्रैंगलर अंजीर प्रायः अधिपादप के रूप में जीवन शुरू करता है, किसी पक्षी द्वारा गिराए बीज से परपोषी वृक्ष की शाखा पर अंकुरित होकर।",
+   "इसकी जड़ें नीचे बढ़कर परपोषी के तने के चारों ओर जुड़ जाती हैं, और परपोषी अंततः मर सकता है, जिससे अंजीर एक खोखली जाली के रूप में खड़ा रह जाता है।",
+   "यह एक पूर्ण परजीवी है जो परपोषी वृक्ष के फ़्लोएम से अपना भोजन लेता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Starting high in the canopy gives the young fig light that seedlings on the dark forest floor lack; its aerial roots reach the soil and thicken, and its crown shades the host, which can die from competition for light and from being constricted. "
+  "Statement 3 is wrong: the fig makes its own food by photosynthesis and takes water and minerals from the soil through its own roots -- it competes with its host rather than feeding on it, unlike a parasite such as Cuscuta. Figs, fruiting through the year, are keystone food sources for birds, bats and primates in tropical forests.",
+  "कथन 1 और 2 सही हैं। वितान में ऊँचाई पर शुरुआत युवा अंजीर को वह प्रकाश देती है जो अंधेरे वन-तल के पौधों को नहीं मिलता; इसकी वायवीय जड़ें मिट्टी तक पहुँचकर मोटी होती हैं, और इसका मुकुट परपोषी को छाया देता है, जो प्रकाश की प्रतिस्पर्धा और जकड़े जाने से मर सकता है। "
+  "कथन 3 ग़लत है: अंजीर प्रकाश-संश्लेषण से अपना भोजन बनाता है और अपनी जड़ों से मिट्टी से पानी और खनिज लेता है -- वह परपोषी पर निर्भर नहीं, उससे प्रतिस्पर्धा करता है, अमरबेल जैसे परजीवी के विपरीत। वर्ष भर फल देने वाले अंजीर उष्णकटिबंधीय वनों में पक्षियों, चमगादड़ों और प्राइमेटों के लिए कीस्टोन भोजन स्रोत हैं।",
+  BIO12 + ".",
+  "l3-t3-env-strangler-fig", craft="inference")
+
+# ---------------------------------------------------------------- Fauna & Animal Behaviour (e-stmt, h-stmt, m-stmt)
+S("Fauna & Animal Behaviour", "easy", "Consider the following statements about the Indian skimmer:",
+  "भारतीय स्किमर पक्षी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It feeds by flying low over the water with its longer lower bill slicing the surface to catch fish.",
+   "In India it nests on the sandbars of rivers such as the Chambal."],
+  ["यह पानी के ऊपर नीचे उड़ते हुए अपनी लंबी निचली चोंच से सतह को चीरकर मछली पकड़ता है।",
+   "भारत में यह चंबल जैसी नदियों के रेतीले टापुओं पर घोंसले बनाता है।"],
+  T2, 2,
+  "Both statements are correct. The Indian skimmer is the only bird in the region whose lower mandible is longer than the upper; it skims the water with the lower bill and snaps shut on any fish it touches. "
+  "It nests in colonies on exposed sandbars, especially in the National Chambal Sanctuary, so sand mining, changes in river flow, grazing animals and disturbance by people threaten it, and it is listed as Endangered.",
+  "दोनों कथन सही हैं। भारतीय स्किमर इस क्षेत्र का एकमात्र पक्षी है जिसका निचला जबड़ा ऊपरी से लंबा है; यह निचली चोंच से पानी को सरसराता है और जिस मछली को छूता है उस पर चोंच बंद कर लेता है। "
+  "यह खुले रेतीले टापुओं पर, विशेषकर राष्ट्रीय चंबल अभयारण्य में, बस्तियों में घोंसले बनाता है, इसलिए रेत खनन, नदी प्रवाह में बदलाव, चरते पशु और लोगों का हस्तक्षेप इसके लिए ख़तरा हैं, और यह संकटग्रस्त सूची में है।",
+  f"{IUCN}; Bombay Natural History Society.",
+  "l3-t3-env-indian-skimmer", craft="recall")
+
+S("Fauna & Animal Behaviour", "hard", "Consider the following statements about insects that grow fungi:",
+  "कवक उगाने वाले कीटों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Leafcutter ants do not eat the leaves they cut; they use them to grow a fungus on which they feed.",
+   "Some termites, including species found in India, cultivate fungus gardens inside their mounds.",
+   "This relationship is parasitism, because the fungus harms the insects that grow it."],
+  ["पत्ती काटने वाली चींटियाँ अपनी काटी पत्तियाँ नहीं खातीं; वे उनसे एक कवक उगाती हैं जिसे वे खाती हैं।",
+   "कुछ दीमक, जिनमें भारत में पाई जाने वाली प्रजातियाँ शामिल हैं, अपने टीलों के भीतर कवक-बाग़ उगाती हैं।",
+   "यह संबंध परजीविता है, क्योंकि कवक उसे उगाने वाले कीटों को हानि पहुँचाता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Leafcutter ants of the Americas carry leaf fragments into their nests, chew them into a mulch and tend a fungus that breaks the leaves down and provides food for the colony; fungus-growing termites of Africa and Asia do the same with plant matter in combs inside their mounds, and the Termitomyces mushrooms that sprout from such mounds after rain are eaten in many parts of India. "
+  "Statement 3 is wrong: the partners depend on each other -- the insects feed and protect the fungus, the fungus digests plant material the insects cannot -- which is mutualism, a form of farming that evolved millions of years before human agriculture.",
+  "कथन 1 और 2 सही हैं। अमेरिका की पत्ती काटने वाली चींटियाँ पत्तियों के टुकड़े अपने घोंसलों में ले जाकर चबाती हैं और एक कवक की देखभाल करती हैं जो पत्तियों को तोड़कर बस्ती को भोजन देता है; अफ़्रीका और एशिया की कवक उगाने वाली दीमकें अपने टीलों के भीतर छत्तों में पादप सामग्री के साथ यही करती हैं, और बारिश के बाद ऐसे टीलों से निकलने वाले टर्मिटोमाइसीज़ कुकुरमुत्ते भारत के कई भागों में खाए जाते हैं। "
+  "कथन 3 ग़लत है: साझेदार एक-दूसरे पर निर्भर हैं -- कीट कवक को खिलाते और बचाते हैं, कवक वह पादप सामग्री पचाता है जिसे कीट नहीं पचा सकते -- यह सहोपकारिता है, खेती का एक रूप जो मानव कृषि से करोड़ों वर्ष पहले विकसित हुआ।",
+  BIO12 + ".",
+  "l3-t3-env-fungus-farming-ants-termites", craft="inference")
+
+S("Fauna & Animal Behaviour", "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Most of India's wolves live outside protected areas, in open scrub, grasslands and farmland.",
+   "The striped hyena is the only hyena found in India and is largely a scavenger.",
+   "Like the spotted hyena of Africa, the striped hyena lives in large clans that hunt big game together."],
+  ["भारत के अधिकांश भेड़िये संरक्षित क्षेत्रों के बाहर, खुली झाड़ियों, घास के मैदानों और खेतों में रहते हैं।",
+   "धारीदार लकड़बग्घा भारत में पाया जाने वाला एकमात्र लकड़बग्घा है और मुख्यतः मुर्दाखोर है।",
+   "अफ़्रीका के चित्तीदार लकड़बग्घे की तरह धारीदार लकड़बग्घा बड़े झुंडों में रहता है जो मिलकर बड़े शिकार करते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Indian wolf is a creature of open, dry country -- the Deccan grasslands, scrub and farmland -- most of which lies outside the protected-area network, which was designed largely around forests; it therefore lives close to people and conflicts over livestock are common. "
+  "The striped hyena, also of dry open country, is mostly solitary or found in small family groups and feeds on carcasses and small prey. Statement 3 is wrong: large hunting clans are typical of the spotted hyena, which does not occur in India. Both species show why grasslands, often classed as 'wastelands', need protection too.",
+  "कथन 1 और 2 सही हैं। भारतीय भेड़िया खुले, शुष्क प्रदेश -- दक्कन के घास के मैदान, झाड़ियाँ और खेत -- का प्राणी है, जिसका अधिकांश भाग संरक्षित क्षेत्र नेटवर्क से बाहर है, जो मुख्यतः वनों के आसपास बना है; इसलिए यह लोगों के निकट रहता है और पशुधन को लेकर संघर्ष आम है। "
+  "धारीदार लकड़बग्घा, जो शुष्क खुले प्रदेश का ही है, अधिकतर अकेला या छोटे पारिवारिक समूहों में मिलता है और शवों तथा छोटे शिकार पर जीता है। कथन 3 ग़लत है: बड़े शिकारी झुंड चित्तीदार लकड़बग्घे की विशेषता हैं, जो भारत में नहीं मिलता। दोनों प्रजातियाँ दिखाती हैं कि घास के मैदानों को, जिन्हें प्रायः 'बंजर भूमि' माना जाता है, भी संरक्षण चाहिए।",
+  f"{IUCN}; Wildlife Institute of India.",
+  "l3-t3-env-indian-wolf-striped-hyena", craft="linkage")
+
+# ---------------------------------------------------------------- Pollution, Waste & Resources (e-stmt, m-stmt)
+S("Pollution, Waste & Resources", "easy", "Consider the following statements about the biomining of legacy waste:",
+  "पुराने (लेगेसी) कचरे के बायोमाइनिंग के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It involves digging up old dumpsites and separating the waste into soil-like material, recyclables and combustible fractions.",
+   "It works by burning the whole dump in the open."],
+  ["इसमें पुराने कचरा-स्थलों को खोदकर कचरे को मिट्टी जैसी सामग्री, पुनर्चक्रण योग्य वस्तुओं और ज्वलनशील अंशों में अलग किया जाता है।",
+   "यह पूरे कचरा-ढेर को खुले में जलाकर काम करता है।"],
+  T2, 0,
+  "Only statement 1 is correct. Old dumps are first stabilised, often with microbial cultures that speed up decomposition, and the material is then passed through trommel screens: the soil-like fines can be used as fill, the plastics and metals recycled, and the combustible fraction sent to cement kilns as refuse-derived fuel. "
+  "Open burning is exactly what biomining tries to end, since burning dumps release dioxins and smoke and catch fire on their own. Clearing legacy dumpsites and reclaiming the land is a goal of the Swachh Bharat Mission (Urban) 2.0.",
+  "केवल कथन 1 सही है। पुराने ढेरों को पहले स्थिर किया जाता है, प्रायः अपघटन तेज़ करने वाले सूक्ष्मजीव कल्चर से, और फिर सामग्री को ट्रॉमेल छलनियों से गुज़ारा जाता है: मिट्टी जैसे बारीक अंश भराव में प्रयुक्त हो सकते हैं, प्लास्टिक और धातुएँ पुनर्चक्रित होती हैं, और ज्वलनशील अंश कचरा-व्युत्पन्न ईंधन के रूप में सीमेंट भट्ठों में भेजा जाता है। "
+  "खुले में जलाना ठीक वही है जिसे बायोमाइनिंग समाप्त करना चाहता है, क्योंकि जलते ढेर डाइऑक्सिन और धुआँ छोड़ते हैं और अपने आप आग पकड़ लेते हैं। पुराने कचरा-स्थलों को साफ़ कर भूमि वापस पाना स्वच्छ भारत मिशन (शहरी) 2.0 का एक लक्ष्य है।",
+  "Ministry of Housing and Urban Affairs (Swachh Bharat Mission (Urban) 2.0); Central Pollution Control Board (guidelines on legacy waste).",
+  "l3-t3-env-biomining-legacy-waste", craft="application")
+
+S("Pollution, Waste & Resources", "medium", "Consider the following statements about responding to an oil spill at sea:",
+  "समुद्र में तेल रिसाव से निपटने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Floating booms are used to contain the oil, and skimmers to collect it from the surface.",
+   "Chemical dispersants break the oil into tiny droplets that mix into the water.",
+   "Dispersants remove the oil from the sea altogether."],
+  ["तेल को रोकने के लिए तैरते बूम, और सतह से उसे एकत्र करने के लिए स्किमर प्रयुक्त होते हैं।",
+   "रासायनिक डिस्पर्सेंट तेल को सूक्ष्म बूँदों में तोड़ देते हैं जो पानी में मिल जाती हैं।",
+   "डिस्पर्सेंट समुद्र से तेल को पूरी तरह हटा देते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Mechanical recovery with booms and skimmers actually removes oil but works only in calm seas. Dispersants help by keeping slicks off coasts and away from birds, and the small droplets are degraded faster by microbes. "
+  "Statement 3 is wrong: dispersants move the oil from the surface into the water column, where it can harm fish, larvae and corals, which is why their use is a trade-off decided case by case. In India, the Indian Coast Guard coordinates the response under the National Oil Spill Disaster Contingency Plan.",
+  "कथन 1 और 2 सही हैं। बूम और स्किमर से यांत्रिक पुनर्प्राप्ति वास्तव में तेल हटाती है पर केवल शांत समुद्र में काम करती है। डिस्पर्सेंट तेल की परत को तटों और पक्षियों से दूर रखने में मदद करते हैं, और छोटी बूँदों को सूक्ष्मजीव तेज़ी से अपघटित करते हैं। "
+  "कथन 3 ग़लत है: डिस्पर्सेंट तेल को सतह से जल-स्तंभ में ले जाते हैं, जहाँ वह मछलियों, लार्वा और प्रवालों को हानि पहुँचा सकता है, इसीलिए उनका उपयोग मामला-दर-मामला तय किया जाने वाला समझौता है। भारत में भारतीय तटरक्षक बल राष्ट्रीय तेल रिसाव आपदा आकस्मिक योजना के अंतर्गत कार्रवाई का समन्वय करता है।",
+  "Indian Coast Guard (National Oil Spill Disaster Contingency Plan); " + MOEF + ".",
+  "l3-t3-env-oil-spill-response", craft="application")
+
+# ---------------------------------------------------------------- Ecosystems & Ecological Processes (m-stmt)
+S("Ecosystems & Ecological Processes", "medium", "Consider the following statements about 'ecosystem engineers':",
+  "'पारितंत्र अभियंताओं' के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are organisms that physically change their surroundings in ways that create or alter habitats for other species.",
+   "Beavers, by building dams, turn stretches of stream into ponds and wetlands.",
+   "Elephants act as ecosystem engineers by felling trees, opening clearings and making paths through forest and savanna.",
+   "Earthworms are ecosystem engineers too, since their burrowing and casts change the structure of the soil."],
+  ["ये वे जीव हैं जो अपने परिवेश को भौतिक रूप से इस प्रकार बदलते हैं कि अन्य प्रजातियों के लिए आवास बनते या बदलते हैं।",
+   "ऊदबिलाव (बीवर) बाँध बनाकर धारा के हिस्सों को तालाबों और आर्द्रभूमियों में बदल देते हैं।",
+   "हाथी पेड़ गिराकर, खुले स्थान बनाकर और वन तथा सवाना में रास्ते बनाकर पारितंत्र अभियंता का काम करते हैं।",
+   "केंचुए भी पारितंत्र अभियंता हैं, क्योंकि उनका बिल बनाना और उनकी विष्ठा मिट्टी की संरचना बदलती है।"],
+  C4, 3,
+  "All four statements are correct. The idea of ecosystem engineering, put forward in the 1990s, focuses not on what an organism eats but on how it rebuilds its physical environment: a beaver pond traps sediment and creates habitat for fish, amphibians and waterbirds; elephants keep savannas open, disperse seeds and dig for water that other animals then use; earthworms aerate and mix the soil and speed decomposition. "
+  "Losing such species can therefore change a whole landscape, which is why they are often treated as priorities for conservation.",
+  "चारों कथन सही हैं। 1990 के दशक में प्रस्तुत पारितंत्र अभियांत्रिकी का विचार इस पर नहीं कि जीव क्या खाता है, बल्कि इस पर केंद्रित है कि वह अपने भौतिक पर्यावरण को कैसे फिर से बनाता है: ऊदबिलाव का तालाब तलछट रोकता है और मछलियों, उभयचरों और जलपक्षियों के लिए आवास बनाता है; हाथी सवाना को खुला रखते हैं, बीज फैलाते हैं और पानी के लिए गड्ढे खोदते हैं जिनका उपयोग बाद में अन्य जानवर करते हैं; केंचुए मिट्टी को वातित करते और मिलाते हैं तथा अपघटन तेज़ करते हैं। "
+  "इसलिए ऐसी प्रजातियों के खोने से पूरा भू-दृश्य बदल सकता है, इसीलिए उन्हें प्रायः संरक्षण की प्राथमिकता माना जाता है।",
+  BIO12 + ".",
+  "l3-t3-env-ecosystem-engineers", craft="application")
+
+# ---------------------------------------------------------------- Climate Science & Mitigation (m-MCQ, m-stmt)
+M("Climate Science & Mitigation", "medium",
+  "Contrails left by high-flying aircraft can spread into thin cirrus clouds. Scientists think their main effect on climate is to:",
+  "ऊँचाई पर उड़ते विमानों द्वारा छोड़ी गई संघनन रेखाएँ (कॉन्ट्रेल) पतले पक्षाभ बादलों में फैल सकती हैं। वैज्ञानिकों के अनुसार जलवायु पर उनका मुख्य प्रभाव क्या है?",
+  ["cool it greatly, by reflecting most of the incoming sunlight back into space",
+   "thin the ozone layer, by releasing chlorine into the stratosphere",
+   "acidify the oceans, by dissolving into seawater as carbonic acid",
+   "warm it, by trapping outgoing heat, especially at night"],
+  ["उसे बहुत ठंडा करना, आने वाले अधिकांश सूर्य-प्रकाश को अंतरिक्ष में लौटाकर",
+   "ओज़ोन परत को पतला करना, समताप मंडल में क्लोरीन छोड़कर",
+   "महासागरों को अम्लीय बनाना, समुद्री जल में कार्बोनिक अम्ल के रूप में घुलकर",
+   "उसे गर्म करना, बाहर जाती ऊष्मा को रोककर, विशेषकर रात में"],
+  3,
+  "Contrails form when the hot, moist exhaust of jet engines freezes into ice crystals in cold, humid air; in some conditions they spread into 'contrail cirrus' that lasts for hours. By day such clouds both reflect sunlight and trap heat, but at night they only trap heat, and the net effect is warming -- by some estimates comparable to that of all the carbon dioxide aviation has emitted. "
+  "Because contrails form only in particular layers of air, small changes in flight altitude could avoid many of them, a cheap mitigation option now being studied.",
+  "कॉन्ट्रेल तब बनते हैं जब जेट इंजनों का गर्म, नम धुआँ ठंडी, आर्द्र हवा में बर्फ़ के क्रिस्टलों में जम जाता है; कुछ परिस्थितियों में वे घंटों टिकने वाले 'कॉन्ट्रेल पक्षाभ' में फैल जाते हैं। दिन में ऐसे बादल सूर्य-प्रकाश परावर्तित भी करते हैं और ऊष्मा भी रोकते हैं, पर रात में वे केवल ऊष्मा रोकते हैं, और शुद्ध प्रभाव तापन है -- कुछ अनुमानों के अनुसार विमानन द्वारा अब तक छोड़ी गई सारी कार्बन डाइऑक्साइड के प्रभाव के बराबर। "
+  "चूँकि कॉन्ट्रेल हवा की विशेष परतों में ही बनते हैं, उड़ान की ऊँचाई में छोटे बदलाव उनमें से कई को टाल सकते हैं, यह एक सस्ता शमन विकल्प है जिसका अब अध्ययन हो रहा है।",
+  f"{IPCC} (Working Group I, aviation contrails).",
+  "l3-t3-env-contrail-cirrus-warming", pos=3, craft="inference")
+
+S("Climate Science & Mitigation", "medium", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["As greenhouse gases build up, the lower atmosphere warms while the stratosphere cools.",
+   "This pattern helps scientists tell greenhouse warming apart from warming caused by a brighter Sun, which would warm both layers.",
+   "The depletion of stratospheric ozone has also contributed to cooling of the stratosphere."],
+  ["ग्रीनहाउस गैसों के बढ़ने पर निचला वायुमंडल गर्म होता है जबकि समताप मंडल ठंडा होता है।",
+   "यह प्रतिरूप वैज्ञानिकों को ग्रीनहाउस तापन को अधिक चमकीले सूर्य से होने वाले तापन से अलग पहचानने में मदद करता है, जो दोनों परतों को गर्म करता।",
+   "समतापमंडलीय ओज़ोन के क्षरण ने भी समताप मंडल के ठंडा होने में योगदान दिया है।"],
+  C3, 2,
+  "All three statements are correct. More carbon dioxide traps heat in the troposphere, but in the thin stratosphere it radiates more energy to space than it absorbs, so that layer cools. If the warming were caused by more energy from the Sun, both layers would warm together; the observed warming below and cooling above is one of the 'fingerprints' that point to greenhouse gases. "
+  "Ozone heats the stratosphere by absorbing ultraviolet light, so its depletion since the 1970s has added to the cooling there.",
+  "तीनों कथन सही हैं। अधिक कार्बन डाइऑक्साइड क्षोभमंडल में ऊष्मा रोकती है, पर पतले समताप मंडल में वह जितनी ऊर्जा सोखती है उससे अधिक अंतरिक्ष में विकिरित करती है, इसलिए वह परत ठंडी होती है। यदि तापन सूर्य से अधिक ऊर्जा के कारण होता, तो दोनों परतें साथ गर्म होतीं; नीचे देखा गया तापन और ऊपर शीतलन उन 'अंगुलि-छापों' में से है जो ग्रीनहाउस गैसों की ओर संकेत करते हैं। "
+  "ओज़ोन पराबैंगनी प्रकाश सोखकर समताप मंडल को गर्म करती है, इसलिए 1970 के दशक से उसके क्षरण ने वहाँ शीतलन बढ़ाया है।",
+  f"{IPCC} (Working Group I, attribution); NCERT Class XI, Fundamentals of Physical Geography (Composition and Structure of Atmosphere).",
+  "l3-t3-env-stratospheric-cooling-fingerprint", craft="inference")
+
+# ---------------------------------------------------------------- Climate Agreements & Carbon Markets (m-stmt)
+S("Climate Agreements & Carbon Markets", "medium", "With reference to the Koronivia Joint Work on Agriculture under the UNFCCC, consider the following statements:",
+  "UNFCCC के अंतर्गत कृषि पर कोरोनिविया संयुक्त कार्य के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It set binding targets for cutting methane emissions from livestock and rice fields.",
+   "It was agreed at COP26 in Glasgow."],
+  ["इसने पशुधन और धान के खेतों से मीथेन उत्सर्जन घटाने के बाध्यकारी लक्ष्य तय किए।",
+   "इस पर ग्लासगो में COP26 में सहमति हुई।"],
+  T2, 3,
+  "Neither statement is correct. The Koronivia Joint Work on Agriculture, named after a research station in Fiji, was agreed at COP23 in Bonn in 2017, under Fiji's presidency; it was the first UNFCCC decision devoted to agriculture, and set up workshops on soil health, nutrient and livestock management and the effects of climate change on farming and food security. "
+  "It created no binding targets. At COP27 in 2022 it was succeeded by a four-year Sharm el-Sheikh joint work on agriculture and food security. India has stressed in these talks that agriculture in developing countries is about the livelihoods of small farmers, and should be treated mainly as a matter of adaptation.",
+  "कोई भी कथन सही नहीं है। फ़िजी के एक अनुसंधान केंद्र के नाम पर रखे गए कृषि पर कोरोनिविया संयुक्त कार्य पर 2017 में बॉन में COP23 में, फ़िजी की अध्यक्षता में, सहमति हुई; यह कृषि पर केंद्रित UNFCCC का पहला निर्णय था, और इसने मृदा स्वास्थ्य, पोषक तत्व और पशुधन प्रबंधन तथा खेती और खाद्य सुरक्षा पर जलवायु परिवर्तन के प्रभावों पर कार्यशालाएँ आयोजित कीं। "
+  "इसने कोई बाध्यकारी लक्ष्य नहीं बनाए। 2022 में COP27 में इसका स्थान कृषि और खाद्य सुरक्षा पर चार-वर्षीय शर्म अल-शेख़ संयुक्त कार्य ने लिया। भारत ने इन वार्ताओं में ज़ोर दिया है कि विकासशील देशों में कृषि छोटे किसानों की आजीविका का प्रश्न है, और इसे मुख्यतः अनुकूलन के विषय के रूप में देखा जाना चाहिए।",
+  f"UNFCCC (decision 4/CP.23; decision 3/CP.27); {MOEF}.",
+  "l3-t3-env-koronivia-agriculture", craft="precision")
+
+# ---------------------------------------------------------------- Protected Areas & Wildlife Protection (m-MCQ, m-stmt)
+M("Protected Areas & Wildlife Protection", "medium",
+  "The Bugun liocichla, a bird first described in 2006 and named after a local tribe, is known from the area around which protected area in Arunachal Pradesh?",
+  "बुगुन लियोसिक्ला, 2006 में पहली बार वर्णित और एक स्थानीय जनजाति के नाम पर रखा गया पक्षी, अरुणाचल प्रदेश के किस संरक्षित क्षेत्र के आसपास से ज्ञात है?",
+  ["Eaglenest Wildlife Sanctuary", "Namdapha National Park and Tiger Reserve", "Pakke Tiger Reserve", "Mouling National Park"],
+  ["ईगलनेस्ट वन्यजीव अभयारण्य", "नामदफा राष्ट्रीय उद्यान और बाघ अभयारण्य", "पक्के बाघ अभयारण्य", "मौलिंग राष्ट्रीय उद्यान"],
+  0,
+  "The Bugun liocichla, a brightly coloured babbler, was described by the astronomer and birdwatcher Ramana Athreya from the forests around Eaglenest Wildlife Sanctuary in West Kameng; only a few pairs were known, and it is listed as Critically Endangered. "
+  "Athreya named it after the Bugun community, on whose land it lives, and the Bugun now run a community reserve and eco-tourism that help protect it -- an example of conservation through local ownership in a biodiversity hotspot.",
+  "चमकीले रंग वाले बैबलर पक्षी बुगुन लियोसिक्ला का वर्णन खगोलविद् और पक्षी-प्रेमी रमण अत्रेय ने पश्चिम कामेंग में ईगलनेस्ट वन्यजीव अभयारण्य के आसपास के वनों से किया; केवल कुछ जोड़े ज्ञात थे, और यह अति संकटग्रस्त सूची में है। "
+  "अत्रेय ने इसका नाम बुगुन समुदाय के नाम पर रखा, जिसकी भूमि पर यह रहता है, और बुगुन अब एक सामुदायिक रिज़र्व और पारिस्थितिक पर्यटन चलाते हैं जो इसकी रक्षा में मदद करते हैं -- यह एक जैव-विविधता हॉटस्पॉट में स्थानीय स्वामित्व से संरक्षण का उदाहरण है।",
+  f"{IUCN}; Arunachal Pradesh Forest Department.",
+  "l3-t3-env-bugun-liocichla-eaglenest", pos=1, craft="linkage")
+
+S("Protected Areas & Wildlife Protection", "medium", "Consider the following statements about Rajaji National Park:",
+  "राजाजी राष्ट्रीय उद्यान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It lies along the Shivalik foothills in Uttarakhand and is known for its elephants.",
+   "It was declared a tiger reserve in 2015.",
+   "It is named after C. Rajagopalachari."],
+  ["यह उत्तराखंड में शिवालिक तलहटी के साथ स्थित है और अपने हाथियों के लिए जाना जाता है।",
+   "इसे 2015 में बाघ अभयारण्य घोषित किया गया।",
+   "इसका नाम सी. राजगोपालाचारी के नाम पर है।"],
+  C3, 2,
+  "All three statements are correct. Rajaji was formed in 1983 by joining the Rajaji, Motichur and Chilla sanctuaries around Haridwar, Dehradun and Pauri; it marks the north-western limit of the Asian elephant's range in India. "
+  "The Ganga divides the park, and the highways, railway, canals and towns that cut across it make its elephant and tiger corridors -- linking it with Corbett to the east -- a long-standing conservation problem. It became a tiger reserve in 2015 and is named after 'Rajaji', India's last Governor-General.",
+  "तीनों कथन सही हैं। राजाजी 1983 में हरिद्वार, देहरादून और पौड़ी के आसपास राजाजी, मोतीचूर और चिल्ला अभयारण्यों को जोड़कर बना; यह भारत में एशियाई हाथी के क्षेत्र की उत्तर-पश्चिमी सीमा है। "
+  "गंगा उद्यान को बाँटती है, और इसे काटते राजमार्ग, रेलवे, नहरें और नगर इसके हाथी और बाघ गलियारों -- जो इसे पूर्व में कॉर्बेट से जोड़ते हैं -- को एक पुरानी संरक्षण समस्या बनाते हैं। यह 2015 में बाघ अभयारण्य बना और इसका नाम भारत के अंतिम गवर्नर-जनरल 'राजाजी' के नाम पर है।",
+  f"National Tiger Conservation Authority; {MOEF}.",
+  "l3-t3-env-rajaji-national-park", craft="recall")
+
+# ---------------------------------------------------------------- International Conventions & Organisations (h-SI)
+A("International Conventions & Organisations", "hard",
+  "Statement-I: The Convention on Long-Range Transboundary Air Pollution (1979) was the first legally binding international treaty to deal with air pollution across a broad region.",
+  "कथन-I: लंबी दूरी के सीमापार वायु प्रदूषण पर अभिसमय (1979) व्यापक क्षेत्र में वायु प्रदूषण से निपटने वाली पहली विधिक रूप से बाध्यकारी अंतरराष्ट्रीय संधि थी।",
+  "Statement-II: It was adopted after scientists linked the acidification of lakes in Scandinavia to sulphur emissions from other countries of Europe.",
+  "कथन-II: इसे तब अपनाया गया जब वैज्ञानिकों ने स्कैंडिनेविया की झीलों के अम्लीकरण को यूरोप के अन्य देशों के सल्फ़र उत्सर्जन से जोड़ा।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. In the 1960s and 1970s Swedish and Norwegian scientists showed that dying fish and acidified lakes were caused by sulphur and nitrogen carried hundreds of kilometres from industrial Britain and central Europe; because no country could solve the problem alone, the countries of the UN Economic Commission for Europe negotiated the convention, signed in Geneva in 1979. "
+  "It works through protocols with specific cuts, such as the 1985 Helsinki sulphur protocol and the 1999 Gothenburg protocol on several pollutants, and is often cited as a model for regional cooperation on air quality -- including for South Asia, where much of the haze crosses borders.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। 1960 और 1970 के दशकों में स्वीडिश और नॉर्वेजियन वैज्ञानिकों ने दिखाया कि मरती मछलियाँ और अम्लीय झीलें औद्योगिक ब्रिटेन और मध्य यूरोप से सैकड़ों किलोमीटर दूर से आए सल्फ़र और नाइट्रोजन के कारण थीं; चूँकि कोई देश अकेले समस्या हल नहीं कर सकता था, संयुक्त राष्ट्र यूरोपीय आर्थिक आयोग के देशों ने अभिसमय पर वार्ता की, जिस पर 1979 में जिनेवा में हस्ताक्षर हुए। "
+  "यह विशिष्ट कटौतियों वाले प्रोटोकॉलों के माध्यम से काम करता है, जैसे 1985 का हेलसिंकी सल्फ़र प्रोटोकॉल और कई प्रदूषकों पर 1999 का गोथेनबर्ग प्रोटोकॉल, और प्रायः वायु गुणवत्ता पर क्षेत्रीय सहयोग के आदर्श के रूप में उद्धृत होता है -- दक्षिण एशिया के लिए भी, जहाँ बहुत-सी धुंध सीमाएँ पार करती है।",
+  "UNECE Convention on Long-range Transboundary Air Pollution (Geneva, 1979).",
+  "l3-t3-env-lrtap-convention", craft="linkage")
+
+# ---------------------------------------------------------------- Indian Environmental Laws & Bodies (h-pairs)
+P("Indian Environmental Laws & Bodies", "hard", "Consider the following pairs of institutions and the places where they are headquartered:",
+  "संस्थानों और उनके मुख्यालयों के स्थानों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Indian Council of Forestry Research and Education : Dehradun",
+   "Indian Institute of Forest Management : Bhopal",
+   "G.B. Pant National Institute of Himalayan Environment : Almora",
+   "Salim Ali Centre for Ornithology and Natural History : Hyderabad"],
+  ["भारतीय वानिकी अनुसंधान और शिक्षा परिषद : देहरादून",
+   "भारतीय वन प्रबंधन संस्थान : भोपाल",
+   "जी.बी. पंत राष्ट्रीय हिमालयी पर्यावरण संस्थान : अल्मोड़ा",
+   "सालिम अली पक्षी-विज्ञान और प्राकृतिक इतिहास केंद्र : हैदराबाद"],
+  2,
+  "The first three pairs are correct. ICFRE, an autonomous council of the Environment Ministry, runs a network of forest research institutes from Dehradun; IIFM in Bhopal trains forest managers and researchers in forest and environmental management; and the G.B. Pant institute, at Kosi-Katarmal near Almora, researches the environment and development of the Indian Himalayan region. "
+  "The fourth pair is wrong: SACON, named after the ornithologist Salim Ali and run under the Environment Ministry, is at Anaikatty near Coimbatore in Tamil Nadu.",
+  "पहले तीन युग्म सही हैं। पर्यावरण मंत्रालय की स्वायत्त परिषद ICFRE देहरादून से वन अनुसंधान संस्थानों का नेटवर्क चलाती है; भोपाल का IIFM वन और पर्यावरण प्रबंधन में वन प्रबंधकों और शोधकर्ताओं को प्रशिक्षित करता है; और अल्मोड़ा के पास कोसी-कटारमल स्थित जी.बी. पंत संस्थान भारतीय हिमालयी क्षेत्र के पर्यावरण और विकास पर शोध करता है। "
+  "चौथा युग्म ग़लत है: पक्षी-विज्ञानी सालिम अली के नाम पर रखा और पर्यावरण मंत्रालय के अंतर्गत चलने वाला SACON तमिलनाडु में कोयंबटूर के पास अनैकट्टी में है।",
+  f"{MOEF} (autonomous institutions).",
+  "l3-t3-env-institutes-icfre-iifm-gbpant-sacon", craft="recall")
+
+write("gs_l3_t3_c.sql")

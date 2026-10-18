@@ -1,0 +1,302 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 3 (GS Integrated Test 3) -- part E: Economy (17) (upsc_l3_cell_targets.mjs 3).
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Tests 1-2, and is one none of them
+tests: gold and silver ETFs; the Corporate Debt Market Development Fund; small and medium REITs; surety bonds; CGTMSE;
+PM e-Bus Sewa; Global Capability Centres; 'looking through' supply shocks; the end of US GSP benefits; EPCG; transfer
+pricing and Advance Pricing Agreements; DAJGUA, Sugamya Bharat, PM Matru Vandana and PM-AJAY; the Animal Husbandry
+Infrastructure Development Fund; PMMSY and fisheries in the State List; the RBI Integrated Ombudsman Scheme; the 2022
+microfinance framework; Cash Management Bills. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, T2
+
+d.SUBJECT = "Economy"
+d.REQUIRE_CRAFT = True
+FM = "Financial Markets, Instruments & Fintech"
+MB = "Money, Banking & Monetary Policy"
+IN = "Industry, Infrastructure, Energy & Services"
+EX = "External Sector & International Institutions"
+AG = "Agriculture & Food Economy"
+RBI = "Reserve Bank of India"
+SEBI = "Securities and Exchange Board of India"
+NCM = "NCERT Class XII, Introductory Macroeconomics"
+MOF = "Ministry of Finance"
+
+# ================================================================ FINANCIAL MARKETS (4)
+S(FM, "easy", "Consider the following statements about exchange-traded funds (ETFs) in India:",
+  "भारत में एक्सचेंज-ट्रेडेड फ़ंड (ETF) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The units of a gold ETF are backed by physical gold of standard purity held by a custodian.",
+   "SEBI has allowed mutual funds to launch silver ETFs."],
+  ["गोल्ड ETF की यूनिटों के पीछे संरक्षक के पास रखा मानक शुद्धता का भौतिक सोना होता है।",
+   "SEBI ने म्यूचुअल फ़ंडों को सिल्वर ETF शुरू करने की अनुमति दी है।"],
+  T2, 2,
+  "Both statements are correct. A gold ETF is a mutual fund scheme that buys gold of 99.5 per cent purity, kept with a custodian, and issues units that trade on the stock exchange at prices tracking the metal -- a way to hold gold without storage worries or making charges. "
+  "SEBI permitted silver ETFs in 2021, and the first were launched in 2022, giving investors similar exposure to silver, whose price is driven partly by industrial demand, for example from solar panels.",
+  "दोनों कथन सही हैं। गोल्ड ETF एक म्यूचुअल फ़ंड योजना है जो 99.5 प्रतिशत शुद्धता का सोना ख़रीदकर संरक्षक के पास रखती है, और ऐसी यूनिटें जारी करती है जो धातु के दाम के अनुसार शेयर बाज़ार में बिकती हैं -- भंडारण की चिंता या गढ़ाई शुल्क के बिना सोना रखने का तरीक़ा। "
+  "SEBI ने 2021 में सिल्वर ETF की अनुमति दी, और पहले ETF 2022 में आए, जिससे निवेशकों को चाँदी में ऐसा ही निवेश मिला, जिसका दाम आंशिक रूप से औद्योगिक माँग, जैसे सौर पैनलों, से तय होता है।",
+  f"{SEBI} (silver ETFs, 2021); Association of Mutual Funds in India.",
+  "l3-t3-eco-gold-silver-etfs", craft="recall")
+
+S(FM, "hard", "With reference to the Corporate Debt Market Development Fund (CDMDF), consider the following statements:",
+  "कॉर्पोरेट ऋण बाज़ार विकास कोष (CDMDF) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is a backstop facility, set up in 2023, to buy investment-grade corporate bonds from mutual funds during market stress.",
+   "It is funded by contributions from debt mutual fund schemes and their managers, with a guarantee from the National Credit Guarantee Trustee Company.",
+   "It may buy bonds from mutual funds at any time, even in normal markets, to support bond prices."],
+  ["यह 2023 में स्थापित एक बैकस्टॉप सुविधा है जो बाज़ार पर दबाव के समय म्यूचुअल फ़ंडों से निवेश-योग्य श्रेणी के कॉर्पोरेट बॉन्ड ख़रीदती है।",
+   "इसका वित्तपोषण डेट म्यूचुअल फ़ंड योजनाओं और उनके प्रबंधकों के अंशदान से होता है, और राष्ट्रीय ऋण गारंटी ट्रस्टी कंपनी की गारंटी है।",
+   "यह सामान्य बाज़ार में भी, बॉन्ड दामों को सहारा देने के लिए, कभी भी म्यूचुअल फ़ंडों से बॉन्ड ख़रीद सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. In March 2020, when investors rushed to redeem and corporate bonds could not be sold, several debt funds were frozen; SEBI responded by creating the CDMDF, to which debt schemes contribute a small share of their assets, with a government-backed guarantee scheme to multiply its buying power. "
+  "Statement 3 is wrong: the fund is meant to act only when SEBI judges that a market dislocation has occurred -- intervening in normal times would distort prices and blunt the discipline of the market.",
+  "कथन 1 और 2 सही हैं। मार्च 2020 में, जब निवेशक मोचन के लिए दौड़े और कॉर्पोरेट बॉन्ड बिक नहीं सके, कई डेट फ़ंड बंद हो गए; SEBI ने CDMDF बनाकर उत्तर दिया, जिसमें डेट योजनाएँ अपनी परिसंपत्ति का एक छोटा भाग देती हैं, और उसकी ख़रीद शक्ति बढ़ाने के लिए सरकार-समर्थित गारंटी योजना है। "
+  "कथन 3 ग़लत है: कोष तभी कार्य करता है जब SEBI मान ले कि बाज़ार में अव्यवस्था आई है -- सामान्य समय में हस्तक्षेप दामों को विकृत करेगा और बाज़ार के अनुशासन को कमज़ोर करेगा।",
+  f"{SEBI} (Corporate Debt Market Development Fund, 2023); {MOF} (Guarantee Scheme for Corporate Debt).",
+  "l3-t3-eco-cdmdf-backstop", craft="inference")
+
+S(FM, "medium", "With reference to small and medium real estate investment trusts (SM REITs), consider the following statements:",
+  "लघु और मध्यम रियल एस्टेट निवेश ट्रस्ट (SM REIT) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["SEBI created them in 2024 for property portfolios worth between ₹50 crore and ₹500 crore.",
+   "They bring platforms that sold 'fractional ownership' of commercial property under SEBI's regulation.",
+   "An investor must put in at least ₹10 lakh."],
+  ["SEBI ने इन्हें 2024 में ₹50 करोड़ से ₹500 करोड़ के बीच मूल्य वाले संपत्ति पोर्टफ़ोलियो के लिए बनाया।",
+   "ये वाणिज्यिक संपत्ति का 'आंशिक स्वामित्व' बेचने वाले प्लेटफ़ॉर्मों को SEBI के विनियमन में लाते हैं।",
+   "निवेशक को कम से कम ₹10 लाख लगाने होते हैं।"],
+  C3, 2,
+  "All three statements are correct. Large REITs need assets of at least ₹500 crore, which kept smaller office and warehouse properties out; meanwhile online platforms had been selling fractions of such buildings with little oversight. "
+  "The 2024 framework brings these into a regulated structure with disclosure, valuation and governance rules, while the high minimum ticket keeps the product for investors who can bear the risk of less liquid, concentrated property holdings.",
+  "तीनों कथन सही हैं। बड़े REIT के लिए कम से कम ₹500 करोड़ की परिसंपत्ति चाहिए, जिससे छोटे कार्यालय और गोदाम संपत्तियाँ बाहर रहती थीं; इस बीच ऑनलाइन प्लेटफ़ॉर्म ऐसी इमारतों के अंश थोड़ी निगरानी के साथ बेच रहे थे। "
+  "2024 का ढाँचा इन्हें प्रकटीकरण, मूल्यांकन और शासन नियमों वाली विनियमित संरचना में लाता है, जबकि ऊँची न्यूनतम राशि उत्पाद को उन निवेशकों के लिए रखती है जो कम तरल, केंद्रित संपत्ति धारिता का जोखिम उठा सकते हैं।",
+  f"{SEBI} (REIT Regulations amendment on SM REITs, 2024).",
+  "l3-t3-eco-sm-reits", craft="precision")
+
+S(FM, "medium", "Consider the following statements about surety bonds in India:",
+  "भारत में ज़मानत बॉन्ड (श्योरिटी बॉन्ड) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are a kind of life insurance policy.",
+   "They can be issued only by banks, not by insurance companies."],
+  ["ये एक प्रकार की जीवन बीमा पॉलिसी हैं।",
+   "इन्हें केवल बैंक जारी कर सकते हैं, बीमा कंपनियाँ नहीं।"],
+  T2, 3,
+  "Neither statement is correct. A surety bond is a guarantee: the insurer promises the project owner -- often a government agency -- that the contractor will perform, and pays if the contractor defaults. Under IRDAI's guidelines of 2022, general insurers may issue bid bonds, performance bonds and advance-payment bonds, and the Union Budget 2022-23 made them acceptable in government procurement. "
+  "They are an alternative to bank guarantees, which tie up a contractor's credit limits and collateral, so surety bonds free working capital for infrastructure firms.",
+  "कोई भी कथन सही नहीं है। ज़मानत बॉन्ड एक गारंटी है: बीमाकर्ता परियोजना-स्वामी -- प्रायः कोई सरकारी एजेंसी -- को वचन देता है कि ठेकेदार काम पूरा करेगा, और ठेकेदार के चूकने पर भुगतान करता है। IRDAI के 2022 के दिशानिर्देशों के अंतर्गत सामान्य बीमाकर्ता बोली बॉन्ड, निष्पादन बॉन्ड और अग्रिम-भुगतान बॉन्ड जारी कर सकते हैं, और केंद्रीय बजट 2022-23 ने इन्हें सरकारी ख़रीद में स्वीकार्य बनाया। "
+  "ये बैंक गारंटी का विकल्प हैं, जो ठेकेदार की ऋण सीमा और संपार्श्विक को बाँध देती हैं, इसलिए ज़मानत बॉन्ड अवसंरचना कंपनियों की कार्यशील पूँजी मुक्त करते हैं।",
+  "Insurance Regulatory and Development Authority of India (Surety Insurance Contracts Guidelines, 2022); Union Budget 2022-23.",
+  "l3-t3-eco-surety-bonds", craft="precision")
+
+# ================================================================ INDUSTRY, INFRASTRUCTURE, ENERGY & SERVICES (3)
+S(IN, "easy", "Consider the following statements about the Credit Guarantee Fund Trust for Micro and Small Enterprises (CGTMSE):",
+  "सूक्ष्म और लघु उद्यमों के लिए ऋण गारंटी निधि ट्रस्ट (CGTMSE) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It guarantees bank loans only to large industries.",
+   "It was set up jointly by the Government of India and SIDBI."],
+  ["यह केवल बड़े उद्योगों को बैंक ऋणों की गारंटी देता है।",
+   "इसकी स्थापना भारत सरकार और SIDBI ने संयुक्त रूप से की।"],
+  T2, 1,
+  "Only statement 2 is correct. CGTMSE was set up in 2000 by the Ministry of MSME and the Small Industries Development Bank of India to guarantee loans that banks and other lenders give to micro and small enterprises without collateral or third-party guarantees. "
+  "Statement 1 is wrong: the whole point is to help small firms that lack collateral -- the scheme covers a large share of any default, so lenders are more willing to lend to them. The guarantee ceiling has been raised over time.",
+  "केवल कथन 2 सही है। CGTMSE की स्थापना 2000 में MSME मंत्रालय और भारतीय लघु उद्योग विकास बैंक ने उन ऋणों की गारंटी के लिए की जो बैंक और अन्य ऋणदाता सूक्ष्म और लघु उद्यमों को बिना संपार्श्विक या तीसरे पक्ष की गारंटी के देते हैं। "
+  "कथन 1 ग़लत है: पूरा उद्देश्य संपार्श्विक से वंचित छोटी फ़र्मों की मदद करना है -- योजना किसी चूक का बड़ा भाग वहन करती है, इसलिए ऋणदाता उन्हें ऋण देने को अधिक तैयार होते हैं। गारंटी की सीमा समय के साथ बढ़ाई गई है।",
+  "Ministry of Micro, Small and Medium Enterprises; Small Industries Development Bank of India (CGTMSE).",
+  "l3-t3-eco-cgtmse", craft="recall")
+
+M(IN, "medium",
+  "The PM e-Bus Sewa scheme, approved in 2023, aims mainly to:",
+  "2023 में स्वीकृत पीएम ई-बस सेवा योजना का मुख्य उद्देश्य क्या है?",
+  ["give subsidies to households that buy electric cars in large cities",
+   "build a bus manufacturing plant in every State through public sector companies",
+   "convert inter-State luxury coaches from diesel to compressed natural gas",
+   "run about 10,000 electric buses in cities through public-private partnership"],
+  ["बड़े शहरों में इलेक्ट्रिक कार ख़रीदने वाले परिवारों को सब्सिडी देना",
+   "सार्वजनिक क्षेत्र की कंपनियों के माध्यम से हर राज्य में बस निर्माण संयंत्र बनाना",
+   "अंतर-राज्यीय लग्ज़री कोचों को डीज़ल से संपीडित प्राकृतिक गैस पर बदलना",
+   "सार्वजनिक-निजी भागीदारी से शहरों की सड़कों पर लगभग 10,000 इलेक्ट्रिक बसें चलाना"],
+  3,
+  "The scheme supports cities that lack organised bus services in running electric buses, operated by private firms under gross-cost contracts in which the city pays a fee per kilometre and keeps the fare revenue; the Union gives assistance per kilometre and also funds depots, charging infrastructure and other green urban mobility works. "
+  "Because past electric-bus contracts suffered from delayed payments by cash-strapped transport undertakings, a payment security mechanism was added to reassure operators and lenders. Electric buses cut urban air pollution and oil imports, but their high upfront cost makes such financing design crucial.",
+  "योजना संगठित बस सेवा से वंचित शहरों को इलेक्ट्रिक बसें चलाने में सहायता देती है, जिन्हें निजी फ़र्में सकल-लागत अनुबंधों के अंतर्गत चलाती हैं जिनमें शहर प्रति किलोमीटर शुल्क देता है और किराया राजस्व रखता है; संघ प्रति किलोमीटर सहायता देता है और डिपो, चार्जिंग अवसंरचना तथा अन्य हरित नगरीय गतिशीलता कार्यों का भी वित्तपोषण करता है। "
+  "चूँकि पिछले इलेक्ट्रिक-बस अनुबंधों में नक़दी-संकट वाले परिवहन उपक्रमों के देर से भुगतान की समस्या रही थी, संचालकों और ऋणदाताओं को आश्वस्त करने के लिए भुगतान सुरक्षा तंत्र जोड़ा गया। इलेक्ट्रिक बसें नगरीय वायु प्रदूषण और तेल आयात घटाती हैं, पर उनकी ऊँची प्रारंभिक लागत ऐसी वित्तीय संरचना को निर्णायक बनाती है।",
+  "Ministry of Housing and Urban Affairs (PM e-Bus Sewa, 2023); Ministry of Heavy Industries.",
+  "l3-t3-eco-pm-ebus-sewa", pos=3, craft="application")
+
+S(IN, "medium", "Consider the following statements about Global Capability Centres (GCCs) in India:",
+  "भारत में ग्लोबल कैपेबिलिटी सेंटर (GCC) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are units set up by multinational companies in India to carry out their own technology, research and business functions.",
+   "India hosts more such centres than any other country.",
+   "They are owned by Indian IT outsourcing firms that serve foreign clients under contract."],
+  ["ये बहुराष्ट्रीय कंपनियों द्वारा भारत में अपने ही प्रौद्योगिकी, अनुसंधान और व्यावसायिक कार्य करने के लिए स्थापित इकाइयाँ हैं।",
+   "भारत में किसी भी अन्य देश से अधिक ऐसे केंद्र हैं।",
+   "इनका स्वामित्व उन भारतीय IT आउटसोर्सिंग कंपनियों के पास है जो अनुबंध पर विदेशी ग्राहकों की सेवा करती हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. GCCs, once called captive centres, are owned by the parent firm -- a bank, carmaker or retailer -- and increasingly handle product engineering, analytics, AI and research rather than routine back-office work; India hosts well over a thousand of them, concentrated in Bengaluru, Hyderabad, Pune, Chennai and the National Capital Region. "
+  "Statement 3 is wrong: that describes the outsourcing model of firms such as TCS or Infosys, where work is done under contract for clients. GCCs are a growing source of services exports and high-skill jobs, and several States now have GCC policies.",
+  "कथन 1 और 2 सही हैं। GCC, जिन्हें पहले कैप्टिव केंद्र कहा जाता था, मूल कंपनी -- किसी बैंक, कार निर्माता या खुदरा विक्रेता -- के स्वामित्व में होते हैं और बढ़ते रूप में नियमित बैक-ऑफ़िस काम के बजाय उत्पाद अभियांत्रिकी, विश्लेषण, AI और अनुसंधान संभालते हैं; भारत में ऐसे एक हज़ार से कहीं अधिक केंद्र हैं, जो बेंगलुरु, हैदराबाद, पुणे, चेन्नई और राष्ट्रीय राजधानी क्षेत्र में केंद्रित हैं। "
+  "कथन 3 ग़लत है: वह TCS या इन्फ़ोसिस जैसी कंपनियों के आउटसोर्सिंग मॉडल का वर्णन है, जहाँ काम ग्राहकों के लिए अनुबंध पर होता है। GCC सेवा निर्यात और उच्च-कौशल रोज़गार का बढ़ता स्रोत हैं, और कई राज्यों की अब GCC नीतियाँ हैं।",
+  "Ministry of Electronics and Information Technology; Economic Survey (services sector).",
+  "l3-t3-eco-global-capability-centres", craft="precision")
+
+# ================================================================ MACRO (e-SI)
+A("Macro Concepts, National Income & Inflation", "easy",
+  "Statement-I: Central banks often 'look through' a temporary jump in vegetable prices caused by bad weather, rather than raising interest rates at once.",
+  "कथन-I: केंद्रीय बैंक प्रायः ख़राब मौसम से सब्ज़ियों के दामों में आए अस्थायी उछाल को 'नज़रअंदाज़' करते हैं, बजाय तुरंत ब्याज दरें बढ़ाने के।",
+  "Statement-II: Higher interest rates do little to raise the supply of vegetables quickly, and a weather-driven price spike is expected to reverse on its own.",
+  "कथन-II: ऊँची ब्याज दरें सब्ज़ियों की आपूर्ति जल्दी बढ़ाने में कम काम करती हैं, और मौसम से आया दाम-उछाल अपने आप पलटने की आशा रहती है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Monetary policy works on demand, with long lags; a supply shock to tomatoes or onions will usually fade with the next harvest before rate changes take effect, while raising rates would hurt growth for little gain. "
+  "This is why central banks watch core inflation alongside headline inflation. The caveat is that if repeated food shocks push up people's inflation expectations and wages -- 'second-round effects' -- the central bank may have to act after all, which is why the RBI keeps a close eye on household expectations surveys.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। मौद्रिक नीति माँग पर, लंबे अंतराल के साथ, काम करती है; टमाटर या प्याज़ की आपूर्ति का झटका सामान्यतः दरों में बदलाव के असर से पहले अगली फ़सल के साथ मिट जाता है, जबकि दरें बढ़ाने से थोड़े लाभ के लिए वृद्धि को हानि होगी। "
+  "इसीलिए केंद्रीय बैंक मुख्य (हेडलाइन) मुद्रास्फीति के साथ कोर मुद्रास्फीति पर भी नज़र रखते हैं। शर्त यह है कि यदि बार-बार के खाद्य झटके लोगों की मुद्रास्फीति अपेक्षाओं और मज़दूरी को बढ़ा दें -- 'दूसरे दौर के प्रभाव' -- तो केंद्रीय बैंक को आख़िरकार क़दम उठाना पड़ सकता है, इसीलिए RBI परिवारों के अपेक्षा सर्वेक्षणों पर निकट नज़र रखता है।",
+  f"{NCM}; {RBI} (Monetary Policy Reports).",
+  "l3-t3-eco-looking-through-supply-shocks", craft="inference")
+
+# ================================================================ EXTERNAL SECTOR (e-SI, m-stmt)
+A(EX, "easy",
+  "Statement-I: In 2019 the United States ended India's benefits under its Generalised System of Preferences (GSP).",
+  "कथन-I: 2019 में संयुक्त राज्य अमेरिका ने अपनी सामान्यीकृत अधिमान प्रणाली (GSP) के अंतर्गत भारत के लाभ समाप्त कर दिए।",
+  "Statement-II: GSP benefits are granted unilaterally by the donor country, without reciprocal concessions, so the donor can withdraw them.",
+  "कथन-II: GSP लाभ दाता देश एकतरफ़ा, बिना पारस्परिक रियायतों के, देता है, इसलिए दाता उन्हें वापस ले सकता है।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. Under GSP schemes, rich countries let goods from developing countries enter at low or zero duty; the WTO's 'Enabling Clause' permits this departure from most-favoured-nation treatment, but the preferences are not bound commitments. "
+  "India had been the largest beneficiary of the US scheme; Washington withdrew its eligibility in June 2019, citing a lack of 'equitable and reasonable' market access for American goods, which affected exports such as jewellery, leather goods and engineering products.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की व्याख्या करता है। GSP योजनाओं के अंतर्गत धनी देश विकासशील देशों के माल को कम या शून्य शुल्क पर आने देते हैं; WTO का 'समर्थकारी खंड' सर्वाधिक-अनुग्रहीत-राष्ट्र व्यवहार से इस विचलन की अनुमति देता है, पर ये अधिमान बाध्य प्रतिबद्धताएँ नहीं हैं। "
+  "भारत अमेरिकी योजना का सबसे बड़ा लाभार्थी रहा था; वॉशिंगटन ने अमेरिकी माल के लिए 'न्यायसंगत और युक्तियुक्त' बाज़ार पहुँच के अभाव का हवाला देकर जून 2019 में उसकी पात्रता वापस ले ली, जिससे आभूषण, चमड़े का सामान और इंजीनियरिंग उत्पादों जैसे निर्यात प्रभावित हुए।",
+  "Department of Commerce; World Trade Organization (Enabling Clause, 1979).",
+  "l3-t3-eco-us-gsp-withdrawal", craft="linkage")
+
+S(EX, "medium", "With reference to the Export Promotion Capital Goods (EPCG) scheme, consider the following statements:",
+  "निर्यात संवर्धन पूँजीगत वस्तु (EPCG) योजना के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It allows exporters to import capital goods at zero customs duty.",
+   "In return, the exporter must meet an export obligation equal to six times the duty saved, within six years.",
+   "Its benefits are available only to units located in Special Economic Zones."],
+  ["यह निर्यातकों को शून्य सीमा शुल्क पर पूँजीगत वस्तुएँ आयात करने देती है।",
+   "बदले में निर्यातक को छह वर्ष के भीतर बचाए गए शुल्क के छह गुना के बराबर निर्यात दायित्व पूरा करना होता है।",
+   "इसके लाभ केवल विशेष आर्थिक क्षेत्रों में स्थित इकाइयों को उपलब्ध हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Under the Foreign Trade Policy, EPCG lets manufacturers and service exporters bring in machinery to upgrade their technology without paying customs duty, provided they export enough over the following years; failure to meet the obligation means paying back the duty with interest. "
+  "Statement 3 is wrong: the scheme is open to exporters anywhere in the Domestic Tariff Area -- units in SEZs already enjoy duty-free imports under the SEZ law, which is why they are not the scheme's main users.",
+  "कथन 1 और 2 सही हैं। विदेश व्यापार नीति के अंतर्गत EPCG निर्माताओं और सेवा निर्यातकों को अपनी तकनीक उन्नत करने के लिए बिना सीमा शुल्क चुकाए मशीनरी लाने देती है, बशर्ते वे आगामी वर्षों में पर्याप्त निर्यात करें; दायित्व पूरा न करने पर शुल्क ब्याज सहित लौटाना पड़ता है। "
+  "कथन 3 ग़लत है: योजना घरेलू टैरिफ़ क्षेत्र में कहीं भी स्थित निर्यातकों के लिए खुली है -- SEZ की इकाइयों को SEZ क़ानून के अंतर्गत पहले से शुल्क-मुक्त आयात की सुविधा है, इसीलिए वे योजना के मुख्य उपयोगकर्ता नहीं हैं।",
+  "Directorate General of Foreign Trade (Foreign Trade Policy 2023, Chapter 5: EPCG).",
+  "l3-t3-eco-epcg-scheme", craft="precision")
+
+# ================================================================ TAXATION & FISCAL FEDERALISM (h-SI)
+A("Taxation & Fiscal Federalism", "hard",
+  "Statement-I: India's transfer-pricing rules apply only to transactions between unrelated companies.",
+  "कथन-I: भारत के अंतरण मूल्य निर्धारण (ट्रांसफ़र प्राइसिंग) नियम केवल असंबंधित कंपनियों के बीच लेन-देन पर लागू होते हैं।",
+  "Statement-II: An Advance Pricing Agreement fixes in advance how the prices of transactions between related entities of a multinational group will be set, reducing disputes.",
+  "कथन-II: अग्रिम मूल्य निर्धारण समझौता पहले से तय करता है कि किसी बहुराष्ट्रीय समूह की संबंधित इकाइयों के बीच लेन-देन के दाम कैसे निर्धारित होंगे, जिससे विवाद घटते हैं।",
+  3,
+  "Statement-I is incorrect and Statement-II is correct. Transfer pricing is about transactions between associated enterprises -- a parent and its subsidiary in another country, for example -- because related parties can set prices that shift profits to low-tax places; the Income-tax law requires such international transactions to be priced at 'arm's length', as unrelated parties would. "
+  "Because disputes over the right price were long and costly, India introduced Advance Pricing Agreements in 2012, under which a company and the tax department agree on the method for up to five future years, with a 'rollback' for earlier years -- greater certainty that has made India one of the larger users of APAs.",
+  "कथन-I ग़लत है और कथन-II सही है। अंतरण मूल्य निर्धारण संबद्ध उद्यमों -- उदाहरण के लिए किसी मूल कंपनी और दूसरे देश में उसकी सहायक -- के बीच लेन-देन से संबंधित है, क्योंकि संबंधित पक्ष ऐसे दाम तय कर सकते हैं जो लाभ को कम कर वाले स्थानों पर ले जाएँ; आयकर क़ानून अपेक्षा करता है कि ऐसे अंतरराष्ट्रीय लेन-देन 'असंबद्ध पक्षों' जैसे दामों पर हों। "
+  "चूँकि सही दाम पर विवाद लंबे और महँगे थे, भारत ने 2012 में अग्रिम मूल्य निर्धारण समझौते शुरू किए, जिनके अंतर्गत कंपनी और कर विभाग भविष्य के पाँच वर्षों तक के लिए पद्धति पर सहमत होते हैं, पिछले वर्षों के लिए 'रोलबैक' के साथ -- इस अधिक निश्चितता ने भारत को APA के बड़े उपयोगकर्ताओं में शामिल किया है।",
+  f"Income-tax Act (transfer pricing and Advance Pricing Agreement provisions); {MOF} (Central Board of Direct Taxes).",
+  "l3-t3-eco-transfer-pricing-apa", craft="precision")
+
+# ================================================================ INCLUSIVE GROWTH, WELFARE & DEMOGRAPHY (h-pairs)
+P("Inclusive Growth, Welfare & Demography", "hard", "Consider the following pairs of schemes and the ministries or departments that run them:",
+  "योजनाओं और उन्हें चलाने वाले मंत्रालयों या विभागों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Dharti Aaba Janjatiya Gram Utkarsh Abhiyan : Ministry of Tribal Affairs",
+   "Sugamya Bharat Abhiyan (Accessible India Campaign) : Department of Empowerment of Persons with Disabilities",
+   "Pradhan Mantri Matru Vandana Yojana : Ministry of Health and Family Welfare",
+   "Pradhan Mantri Anusuchit Jaati Abhyuday Yojana (PM-AJAY) : Ministry of Social Justice and Empowerment"],
+  ["धरती आबा जनजातीय ग्राम उत्कर्ष अभियान : जनजातीय कार्य मंत्रालय",
+   "सुगम्य भारत अभियान : दिव्यांगजन सशक्तीकरण विभाग",
+   "प्रधानमंत्री मातृ वंदना योजना : स्वास्थ्य और परिवार कल्याण मंत्रालय",
+   "प्रधानमंत्री अनुसूचित जाति अभ्युदय योजना (PM-AJAY) : सामाजिक न्याय और अधिकारिता मंत्रालय"],
+  2,
+  "The first, second and fourth pairs are correct. Dharti Aaba (2024) brings the schemes of many ministries together to saturate tribal-majority villages with roads, housing, water, health and livelihoods; the Accessible India Campaign (2015) aims to make public buildings, transport and websites accessible; and PM-AJAY merges earlier schemes to develop Scheduled Caste-majority villages and support SC livelihoods. "
+  "The third pair is wrong: the Matru Vandana Yojana, which pays pregnant women and nursing mothers a cash incentive to make up for lost wages and encourage health care, is run by the Ministry of Women and Child Development.",
+  "पहला, दूसरा और चौथा युग्म सही हैं। धरती आबा (2024) अनेक मंत्रालयों की योजनाओं को मिलाकर जनजाति-बहुल गाँवों को सड़क, आवास, पानी, स्वास्थ्य और आजीविका से संतृप्त करता है; सुगम्य भारत अभियान (2015) सार्वजनिक भवनों, परिवहन और वेबसाइटों को सुगम्य बनाना चाहता है; और PM-AJAY पुरानी योजनाओं को मिलाकर अनुसूचित जाति-बहुल गाँवों का विकास और SC आजीविकाओं को सहारा देता है। "
+  "तीसरा युग्म ग़लत है: गर्भवती महिलाओं और स्तनपान कराने वाली माताओं को खोई मज़दूरी की भरपाई और स्वास्थ्य देखभाल के लिए नक़द प्रोत्साहन देने वाली मातृ वंदना योजना महिला और बाल विकास मंत्रालय चलाता है।",
+  "Ministry of Tribal Affairs; Ministry of Social Justice and Empowerment; Ministry of Women and Child Development.",
+  "l3-t3-eco-schemes-dajgua-sugamya-pmmvy-pmajay", craft="precision")
+
+# ================================================================ AGRICULTURE & FOOD ECONOMY (m-MCQ, m-stmt)
+M(AG, "medium",
+  "The Animal Husbandry Infrastructure Development Fund, set up in 2020, mainly supports:",
+  "2020 में स्थापित पशुपालन अवसंरचना विकास निधि मुख्यतः किसे सहायता देती है?",
+  ["free veterinary treatment for cattle in every village through mobile clinics",
+   "insurance cover for milch animals against death from disease and disasters",
+   "investment in dairy, meat-processing and feed plants via interest subvention",
+   "the import of high-yielding exotic cattle breeds to cross with Indian cows"],
+  ["हर गाँव में मोबाइल क्लिनिकों के माध्यम से मवेशियों का निःशुल्क पशु-चिकित्सा उपचार",
+   "बीमारी और आपदाओं से मृत्यु के विरुद्ध दुधारू पशुओं का बीमा कवर",
+   "ब्याज अनुदान से डेयरी, मांस-प्रसंस्करण और पशु-आहार संयंत्रों में निवेश",
+   "भारतीय गायों से संकरण के लिए अधिक उपज वाली विदेशी नस्लों का आयात"],
+  2,
+  "The fund offers interest subvention and a credit guarantee on loans to private companies, farmer producer organisations, MSMEs and cooperatives that build dairy and meat processing units, animal-feed plants and breed-improvement farms. "
+  "The aim is to raise the value that livestock farmers get by expanding processing capacity, since India is the world's largest milk producer but processes a smaller share of its output than many countries. Mobile veterinary units and cattle insurance come under other livestock schemes.",
+  "निधि उन निजी कंपनियों, किसान उत्पादक संगठनों, MSME और सहकारी समितियों के ऋणों पर ब्याज अनुदान और ऋण गारंटी देती है जो डेयरी और मांस प्रसंस्करण इकाइयाँ, पशु-आहार संयंत्र और नस्ल-सुधार फ़ार्म बनाते हैं। "
+  "उद्देश्य प्रसंस्करण क्षमता बढ़ाकर पशुपालकों को मिलने वाला मूल्य बढ़ाना है, क्योंकि भारत विश्व का सबसे बड़ा दुग्ध उत्पादक है पर अपने उत्पादन का कई देशों से छोटा भाग प्रसंस्कृत करता है। मोबाइल पशु-चिकित्सा इकाइयाँ और पशु बीमा अन्य पशुधन योजनाओं के अंतर्गत आते हैं।",
+  "Department of Animal Husbandry and Dairying (Animal Husbandry Infrastructure Development Fund, 2020).",
+  "l3-t3-eco-ahidf", pos=0, craft="precision")
+
+S(AG, "medium", "Consider the following statements about India's fisheries sector:",
+  "भारत के मत्स्य क्षेत्र के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Pradhan Mantri Matsya Sampada Yojana, launched in 2020, is the largest investment made so far in India's fisheries sector.",
+   "India is among the world's top two producers of fish.",
+   "Fisheries is a subject in the State List, though fishing beyond territorial waters is a Union subject."],
+  ["2020 में शुरू हुई प्रधानमंत्री मत्स्य संपदा योजना भारत के मत्स्य क्षेत्र में अब तक का सबसे बड़ा निवेश है।",
+   "भारत विश्व के शीर्ष दो मत्स्य उत्पादकों में है।",
+   "मत्स्य पालन राज्य सूची का विषय है, यद्यपि प्रादेशिक जल से परे मत्स्यन संघ का विषय है।"],
+  C3, 2,
+  "All three statements are correct. PMMSY funds fishing harbours, cold chains, aquaculture, deep-sea vessels and insurance for fishers across marine and inland fisheries; India, second only to China in fish output, gets most of its production from inland aquaculture today rather than from the sea. "
+  "Under the Seventh Schedule, 'fisheries' is entry 21 of the State List while 'fishing and fisheries beyond territorial waters' is entry 57 of the Union List -- which is why the States regulate coastal fishing and the Union deep-sea fishing, and why a separate Union Department of Fisheries runs schemes largely through the States.",
+  "तीनों कथन सही हैं। PMMSY समुद्री और अंतर्देशीय मत्स्य क्षेत्रों में मत्स्यन बंदरगाहों, शीत शृंखलाओं, जलकृषि, गहरे समुद्र के जहाज़ों और मछुआरों के बीमा का वित्तपोषण करती है; मत्स्य उत्पादन में केवल चीन से पीछे भारत आज अपना अधिकांश उत्पादन समुद्र के बजाय अंतर्देशीय जलकृषि से पाता है। "
+  "सातवीं अनुसूची में 'मत्स्य पालन' राज्य सूची की प्रविष्टि 21 है जबकि 'प्रादेशिक जल से परे मत्स्यन और मत्स्य पालन' संघ सूची की प्रविष्टि 57 है -- इसीलिए राज्य तटीय मत्स्यन और संघ गहरे समुद्र के मत्स्यन का विनियमन करते हैं, और इसीलिए संघ का अलग मत्स्य विभाग अपनी योजनाएँ अधिकतर राज्यों के माध्यम से चलाता है।",
+  "Department of Fisheries (Pradhan Mantri Matsya Sampada Yojana, 2020); Constitution of India, Seventh Schedule.",
+  "l3-t3-eco-pmmsy-fisheries-state-list", craft="linkage")
+
+# ================================================================ MONEY, BANKING & MONETARY POLICY (m-MCQ, m-stmt)
+M(MB, "medium",
+  "The Reserve Bank - Integrated Ombudsman Scheme, 2021 mainly:",
+  "रिज़र्व बैंक - एकीकृत लोकपाल योजना, 2021 मुख्य रूप से क्या करती है?",
+  ["lets customers sue banks in consumer courts without paying any court fees",
+   "appoints a separate ombudsman for each bank, chosen by that bank's board",
+   "handles complaints against insurance companies and mutual funds as well",
+   "gives one free channel for complaints against all RBI-regulated entities"],
+  ["ग्राहकों को बिना न्यायालय शुल्क दिए उपभोक्ता अदालतों में बैंकों पर वाद करने देती है",
+   "हर बैंक के लिए उसके बोर्ड द्वारा चुना गया अलग लोकपाल नियुक्त करती है",
+   "बीमा कंपनियों और म्यूचुअल फ़ंडों के विरुद्ध शिकायतें भी संभालती है",
+   "RBI-विनियमित सभी इकाइयों के विरुद्ध शिकायत का एक निःशुल्क माध्यम देती है"],
+  3,
+  "The 2021 scheme merged the earlier separate ombudsman schemes for banks, NBFCs and digital transactions into 'one nation, one ombudsman': a customer can complain online, free of charge, about any deficiency in service by a bank, NBFC or payment system participant, without needing to know which scheme or office applies. "
+  "The ombudsman can award compensation, and appeals go to an appellate authority within the RBI. Complaints against insurers go to the insurance ombudsman under IRDAI, and those about mutual funds to SEBI's SCORES system.",
+  "2021 की योजना ने बैंकों, NBFC और डिजिटल लेन-देन के लिए पहले की अलग लोकपाल योजनाओं को 'एक राष्ट्र, एक लोकपाल' में मिला दिया: ग्राहक किसी बैंक, NBFC या भुगतान प्रणाली भागीदार की सेवा में किसी भी कमी की शिकायत ऑनलाइन, निःशुल्क कर सकता है, बिना यह जाने कि कौन-सी योजना या कार्यालय लागू होता है। "
+  "लोकपाल प्रतिकर दिला सकता है, और अपील RBI के भीतर एक अपीलीय प्राधिकारी के पास जाती है। बीमाकर्ताओं के विरुद्ध शिकायतें IRDAI के अंतर्गत बीमा लोकपाल के पास, और म्यूचुअल फ़ंड संबंधी SEBI की SCORES प्रणाली में जाती हैं।",
+  f"{RBI} (Reserve Bank - Integrated Ombudsman Scheme, 2021).",
+  "l3-t3-eco-rbi-integrated-ombudsman", pos=3, craft="precision")
+
+S(MB, "medium", "With reference to the RBI's regulatory framework for microfinance loans (2022), consider the following statements:",
+  "सूक्ष्म वित्त ऋणों के लिए RBI के विनियामक ढाँचे (2022) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A microfinance loan is defined as a collateral-free loan to a household with an annual income of up to ₹3 lakh.",
+   "The framework applies only to NBFC-microfinance institutions, not to banks."],
+  ["सूक्ष्म वित्त ऋण को ₹3 लाख तक की वार्षिक आय वाले परिवार को दिए गए संपार्श्विक-मुक्त ऋण के रूप में परिभाषित किया गया है।",
+   "ढाँचा केवल NBFC-सूक्ष्म वित्त संस्थाओं पर लागू होता है, बैंकों पर नहीं।"],
+  T2, 0,
+  "Only statement 1 is correct. The 2022 framework set a common, household-income-based definition of a microfinance loan and asked lenders to cap a household's loan repayments at 50 per cent of its monthly income, to prevent over-indebtedness. "
+  "Statement 2 is wrong: it applies to all regulated lenders in the segment -- banks, small finance banks, regional rural banks and NBFCs -- so that the same borrower is protected whoever lends. It also removed the earlier cap on the interest margin of NBFC-MFIs, leaving pricing to board-approved policies with disclosure.",
+  "केवल कथन 1 सही है। 2022 के ढाँचे ने सूक्ष्म वित्त ऋण की एक साझा, पारिवारिक-आय आधारित परिभाषा तय की और ऋणदाताओं से अति-ऋणग्रस्तता रोकने के लिए किसी परिवार की ऋण-अदायगी को उसकी मासिक आय के 50 प्रतिशत तक सीमित रखने को कहा। "
+  "कथन 2 ग़लत है: यह इस क्षेत्र के सभी विनियमित ऋणदाताओं -- बैंकों, लघु वित्त बैंकों, क्षेत्रीय ग्रामीण बैंकों और NBFC -- पर लागू होता है, ताकि ऋण चाहे जो दे, वही उधारकर्ता संरक्षित रहे। इसने NBFC-MFI के ब्याज मार्जिन पर पहले की सीमा भी हटाई, और मूल्य निर्धारण को प्रकटीकरण के साथ बोर्ड-स्वीकृत नीतियों पर छोड़ा।",
+  f"{RBI} (Master Direction -- Regulatory Framework for Microfinance Loans, 2022).",
+  "l3-t3-eco-microfinance-framework-2022", craft="precision")
+
+# ================================================================ BUDGET, DEFICITS & PUBLIC DEBT (m-stmt)
+S("Budget, Deficits & Public Debt", "medium", "Consider the following statements about Cash Management Bills (CMBs):",
+  "नक़द प्रबंधन बिलों (CMB) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They mature in one to five years.",
+   "They are issued by SEBI on behalf of the government.",
+   "They are used to finance the government's long-term capital spending."],
+  ["ये एक से पाँच वर्षों में परिपक्व होते हैं।",
+   "इन्हें सरकार की ओर से SEBI जारी करता है।",
+   "इनका उपयोग सरकार के दीर्घकालिक पूँजीगत व्यय के वित्तपोषण में होता है।"],
+  C3, 3,
+  "None of the statements is correct. Cash Management Bills, introduced in 2009, are short-term money-market instruments with maturities of less than 91 days, issued by the RBI on behalf of the Government of India to cover temporary mismatches between its receipts and payments -- for instance before advance-tax collections come in. "
+  "They behave like treasury bills but are issued as needed rather than on a fixed calendar; long-term spending is financed through dated government securities.",
+  "कोई भी कथन सही नहीं है। 2009 में शुरू किए गए नक़द प्रबंधन बिल 91 दिन से कम परिपक्वता वाले अल्पकालिक मुद्रा-बाज़ार साधन हैं, जिन्हें RBI भारत सरकार की ओर से उसकी प्राप्तियों और भुगतानों के बीच अस्थायी असंतुलन -- उदाहरण के लिए अग्रिम कर संग्रह आने से पहले -- पूरा करने के लिए जारी करता है। "
+  "ये ट्रेज़री बिलों जैसे होते हैं पर तय कैलेंडर पर नहीं, आवश्यकता के अनुसार जारी होते हैं; दीर्घकालिक व्यय दिनांकित सरकारी प्रतिभूतियों से वित्तपोषित होता है।",
+  f"{RBI}; {MOF} (Cash Management Bills, 2009).",
+  "l3-t3-eco-cash-management-bills", craft="precision")
+
+write("gs_l3_t3_e.sql")
