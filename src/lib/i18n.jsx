@@ -837,6 +837,14 @@ Object.assign(STR, {
   card_included:   { en: "What's included", hi: "इसमें क्या शामिल है" },
   card_tests_in:   { en: "Tests in this series", hi: "इस सीरीज़ के टेस्ट" },
   card_free_sample:{ en: "Free sample", hi: "मुफ़्त सैंपल" },
+  bd_tests_many:   { en: "{n} tests published", hi: "{n} टेस्ट प्रकाशित" },
+  bd_tests_one:    { en: "1 test published", hi: "1 टेस्ट प्रकाशित" },
+  bd_tests_short:  { en: "{n} tests", hi: "{n} टेस्ट" },
+  bd_tests_one_short: { en: "1 test", hi: "1 टेस्ट" },
+  bd_tests_soon:   { en: "Tests for this series are being finalised. Enrolling now locks in the current price and gives you every test as it is released.", hi: "इस सीरीज़ के टेस्ट अंतिम रूप में तैयार किए जा रहे हैं। अभी नामांकन करने पर मौजूदा कीमत तय हो जाती है और हर टेस्ट जारी होते ही आपको मिल जाता है।" },
+  bd_tmeta:        { en: "{q} questions · {m} min", hi: "{q} प्रश्न · {m} मिनट" },
+  bd_marks:        { en: "{k} marks", hi: "{k} अंक" },
+  bd_opens:        { en: "opens {d}", hi: "{d} से उपलब्ध" },
   card_goto_dash:  { en: "Go to your dashboard", hi: "अपने डैशबोर्ड पर जाएँ" },
 
   /* --- how it works --- */
@@ -1185,6 +1193,9 @@ Object.assign(STR, {
   sd_no_activity:  { en: "no activity", hi: "कोई गतिविधि नहीं" },
   sd_n_tests:      { en: "{n} tests", hi: "{n} टेस्ट" },
   sd_standalone:   { en: "Standalone test", hi: "अलग टेस्ट" },
+  sd_other_tests:  { en: "Other tests", hi: "अन्य टेस्ट" },
+  sd_group_tests:  { en: "{n} tests", hi: "{n} टेस्ट" },
+  sd_group_one:    { en: "1 test", hi: "1 टेस्ट" },
 
   /* --- dashboard: the greeting, the quotes and the stat sub-labels --- */
   sd_morning:      { en: "Good morning", hi: "सुप्रभात" },

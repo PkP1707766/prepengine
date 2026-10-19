@@ -8,6 +8,7 @@ import { EmptyState, ErrorState } from "../ui/Feedback.jsx";
 
 import * as DB from "../lib/db.js";
 import { fmtDate, fmtLongDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
+import { groupBySeries, seriesIn, shortTestTitle, titleIn } from "../lib/testOrder.js";
 import Pattern from "../ui/Pattern.jsx";
 import { ReviewCard, ReviewStyles } from "../ui/Review.jsx";
 
@@ -245,6 +246,10 @@ const CSS = `
 .test-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .test-title{font-size:15.5px;font-weight:800;color:#2e1c12;line-height:1.25}
 .test-series{font-size:12px;color:var(--muted);margin-top:3px}
+.test-group-head{grid-column:1/-1;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:14px 2px -2px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.test-group-head:first-child{margin-top:0}
+.test-group-name{font-family:var(--font-display);font-size:17px;color:var(--ink)}
+.test-group-n{font-size:12.5px;color:var(--muted);font-weight:600}
 .test-meta{display:flex;gap:16px;font-size:12.5px;color:#7a6450;font-weight:600}
 .test-meta span{display:flex;align-items:center;gap:5px}
 .test-score{display:flex;align-items:center;gap:14px;padding:12px;background:#fffaef;border-radius:10px;border:1px solid #fdf6e3}
@@ -730,7 +735,7 @@ function SmallStat({ n, l, c, bg }) { return <div style={{ flex: 1, background: 
    VIEW: HOME
    ============================================================ */
 function HomeView({ go, setAnalysis, onStart }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   // The available-tests row below maps with (t) => (...) for each test
   // record, which shadows this t (the translator) for its whole body. tr is
   // the same function under a name nothing else in this view reuses.
@@ -789,7 +794,7 @@ function HomeView({ go, setAnalysis, onStart }) {
                   only a short, unconditional verb. */}
               <div style={{ fontSize: 13.5, fontWeight: 700, color: "var(--ink)", marginBottom: 12,
                             maxWidth: 380, marginInline: "auto", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                {available[0].title}
+                {titleIn(lang, available[0])}
               </div>
               <button className="btn btn-primary" style={{ width: "auto", display: "inline-flex" }} onClick={() => onStart(available[0].id)}>
                 <Play size={16} />{t("sd_start_first")}
@@ -878,7 +883,7 @@ function HomeView({ go, setAnalysis, onStart }) {
                     a fixed number of lines rather than a fixed height. */}
                 <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", lineHeight: 1.3,
                               display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-                  {t.title}
+                  {titleIn(lang, t)}
                 </div>
                 {/* Qs/min and the Free/Included status used to be one run-on
                     line -- "150 Qs · 120 min · Included in your plan" -- with
@@ -976,7 +981,7 @@ function HomeView({ go, setAnalysis, onStart }) {
    VIEW: TEST SERIES
    ============================================================ */
 function TestsView({ setAnalysis, onStart, toast }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   /* The rows below bind each test to a variable called t, which shadows the
      translate function; tr is the same function under a name they cannot hide. */
   const tr = t;
@@ -985,12 +990,18 @@ function TestsView({ setAnalysis, onStart, toast }) {
   const [q, setQ] = useState("");
   const [sort, setSort] = useState("date");
 
+  // Available keeps the series order (Level 1 before Level 2, Test 1 before
+  // Test 2); Upcoming reads as a timetable, the next paper first.
   const available = tests.filter((t) => !t.isUpcoming);
-  const upcoming = tests.filter((t) => t.isUpcoming);
+  const upcoming = tests.filter((t) => t.isUpcoming)
+    .sort((a, b) => new Date(a.scheduledFor) - new Date(b.scheduledFor));
   const attempted = [...attempts].reverse();
 
   const needle = q.trim().toLowerCase();
-  const matches = (t) => !needle || t.title.toLowerCase().includes(needle) || (t.seriesTitle || "").toLowerCase().includes(needle);
+  const matches = (t) => !needle || t.title.toLowerCase().includes(needle)
+    || (t.titleHi || "").toLowerCase().includes(needle)
+    || (t.seriesTitle || "").toLowerCase().includes(needle);
+  const seriesOf = (t) => (t.seriesTitle ? seriesIn(lang, { title: t.seriesTitle, titleHi: t.seriesTitleHi }) : tr("sd_standalone"));
   const availableFiltered = available.filter(matches);
   const upcomingFiltered = upcoming.filter(matches);
 
@@ -1044,19 +1055,29 @@ function TestsView({ setAnalysis, onStart, toast }) {
                 : tr("sd_no_match").replace("{q}", q)}
             </div>
           )}
-          {availableFiltered.map((t) => (
-            <div className="test-card" key={t.id}>
-              <div className="test-top">
-                <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || tr("sd_standalone")}</div></div>
-                <Badge color={t.attemptedByMe ? { bg: "#e8f6ee", fg: "#1f8a4c" } : t.isFree ? { bg: "#faf2dc", fg: "#b8923a" } : { bg: "#fcf3df", fg: "#d4a64a" }}>
-                  {t.attemptedByMe ? tr("sd_done") : t.isFree ? tr("sd_free") : tr("sd_included")}
-                </Badge>
+          {/* One heading per series ("Level 1: NCERT Foundation"), so a
+              forty-test catalogue reads as levels rather than one long run. */}
+          {groupBySeries(availableFiltered).map((g) => (
+            <React.Fragment key={g.key || "standalone"}>
+              <div className="test-group-head">
+                <span className="test-group-name">{g.title ? seriesIn(lang, g) : tr("sd_other_tests")}</span>
+                <span className="test-group-n">{tr(g.tests.length === 1 ? "sd_group_one" : "sd_group_tests").replace("{n}", g.tests.length)}</span>
               </div>
-              <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} {tr("sd_qs")}</span><span><Clock size={14} />{t.durationMin} {tr("ex_min")}</span></div>
-              <button className={"btn " + (t.attemptedByMe ? "btn-ghost" : "btn-primary")} onClick={() => onStart(t.id)}>
-                {t.attemptedByMe ? <><RotateCcw size={16} />{tr("sd_reattempt")}</> : <><Play size={16} />{tr("sd_start_test")}</>}
-              </button>
-            </div>
+              {g.tests.map((t) => (
+                <div className="test-card" key={t.id}>
+                  <div className="test-top">
+                    <div><div className="test-title">{titleIn(lang, t)}</div><div className="test-series">{seriesOf(t)}</div></div>
+                    <Badge color={t.attemptedByMe ? { bg: "#e8f6ee", fg: "#1f8a4c" } : t.isFree ? { bg: "#faf2dc", fg: "#b8923a" } : { bg: "#fcf3df", fg: "#d4a64a" }}>
+                      {t.attemptedByMe ? tr("sd_done") : t.isFree ? tr("sd_free") : tr("sd_included")}
+                    </Badge>
+                  </div>
+                  <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} {tr("sd_qs")}</span><span><Clock size={14} />{t.durationMin} {tr("ex_min")}</span></div>
+                  <button className={"btn " + (t.attemptedByMe ? "btn-ghost" : "btn-primary")} onClick={() => onStart(t.id)}>
+                    {t.attemptedByMe ? <><RotateCcw size={16} />{tr("sd_reattempt")}</> : <><Play size={16} />{tr("sd_start_test")}</>}
+                  </button>
+                </div>
+              ))}
+            </React.Fragment>
           ))}
         </div>
       )}
@@ -1071,7 +1092,7 @@ function TestsView({ setAnalysis, onStart, toast }) {
           {upcomingFiltered.map((t) => (
             <div className="test-card" key={t.id}>
               <div className="test-top">
-                <div><div className="test-title">{t.title}</div><div className="test-series">{t.seriesTitle || tr("sd_standalone")}</div></div>
+                <div><div className="test-title">{titleIn(lang, t)}</div><div className="test-series">{seriesOf(t)}</div></div>
                 <Badge color={{ bg: "#faf2dc", fg: "#b8923a" }}><Calendar size={11} />{fmtDate(t.scheduledFor)}</Badge>
               </div>
               <div className="test-meta"><span><Layers size={14} />{t.totalQuestions} {tr("sd_qs")}</span><span><Clock size={14} />{t.durationMin} {tr("ex_min")}</span></div>
@@ -1306,8 +1327,8 @@ function PerformanceView({ go }) {
    VIEW: BATCHES
    ============================================================ */
 function BatchesView({ go, onStart, toast }) {
-  const { t } = useLang();
-  const { enrollments: allEnrollments, tests, attempts } = useData();
+  const { t, lang } = useLang();
+  const { enrollments: allEnrollments, tests, attempts, access } = useData();
   // A cancelled or refunded row still carries whatever expires_at was written
   // at grant time, often a year out -- date math alone would show it as a
   // perfectly normal, non-expired batch. status==="active" is the same
@@ -1335,17 +1356,20 @@ function BatchesView({ go, onStart, toast }) {
   return (
     <div className="test-grid">
       {enrollments.map((e, i) => {
-        const name = e.batches?.name || (e.plan_code ? e.plan_code.replace(/-/g, " ") : t("sd_full_access"));
-        const exam = e.batches?.courses?.exam_target || e.batches?.courses?.title || t("sd_all_exams");
+        // The bundle's own name and exam. The card used to print the plan code
+        // ("prelims 2026") for the UPSC Prelims 2027 bundle, and "All exams".
+        const name = e.plans?.name || e.batches?.name || (e.plan_code ? e.plan_code.replace(/-/g, " ") : t("sd_full_access"));
+        const exam = e.plans?.exam_category ? e.plans.exam_category.toUpperCase()
+          : e.batches?.courses?.exam_target || e.batches?.courses?.title || t("sd_all_exams");
         const validTill = e.expires_at || e.batches?.end_date || null;
         const daysLeft = validTill ? Math.ceil((new Date(validTill) - now) / 86400000) : null;
         const expired = daysLeft !== null && daysLeft < 0;
         const urgent = daysLeft !== null && !expired && daysLeft <= 7;
 
-        // Today a single plan unlocks the whole catalogue, so progress is
-        // measured against every published test. When per-batch test scoping
-        // lands, filter `tests` by `e.batch_id` here.
-        const scope = tests;
+        // A bundle unlocks only its own tests (plan_tests), so progress counts
+        // those. It used to count every published test of every exam.
+        const own = e.plan_code ? access?.byPlan?.get(e.plan_code) : null;
+        const scope = own ? tests.filter((x) => own.has(x.id)) : tests;
         const total = scope.length;
         const done = scope.filter((t) => attemptedIds.has(t.id)).length;
         const p = total > 0 ? (done / total) * 100 : 0;
@@ -1372,7 +1396,7 @@ function BatchesView({ go, onStart, toast }) {
               {expired ? (
                 <button className="btn btn-locked" style={{ marginTop: 16 }} onClick={() => toast(t("sd_renew_msg"))}><Lock size={16} />{t("sd_renew")}</button>
               ) : next ? (
-                <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => onStart(next.id)}><Play size={16} />{t("sd_continue")} — {next.title.slice(0, 22)}</button>
+                <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => onStart(next.id)}><Play size={16} />{t("sd_continue")} — {shortTestTitle(titleIn(lang, next))}</button>
               ) : (
                 <button className="btn btn-ghost" style={{ marginTop: 16 }} onClick={() => go("performance")}><BarChart3 size={16} />{t("sd_all_done")}</button>
               )}
@@ -2096,6 +2120,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
   const [profile, setProfile] = useState(null);
   const [attempts, setAttempts] = useState([]);
   const [tests, setTests] = useState([]);
+  const [access, setAccess] = useState(null);
   const [materials, setMaterials] = useState([]);
   const [enrollments, setEnrollments] = useState([]);
   const [activity, setActivity] = useState([]);
@@ -2117,9 +2142,12 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
       if (!user) { setLoadError(t("sd_session_expired")); setLoading(false); return; }
       const prof = await DB.ensureProfile(user);
 
-      const [att, allTests, mats, enr, act, lb, nts, rem] = await Promise.all([
+      const [att, allTests, acc, mats, enr, act, lb, nts, rem] = await Promise.all([
         DB.listAttempts(user.id),
         DB.listTests({ publishedOnly: true }),
+        // If this lookup fails the catalogue falls back to every published
+        // test, as before; opening one is still checked by the database.
+        DB.testAccess(user.id).catch((e) => { console.error("access lookup failed", e); return { all: true, ids: new Set(), byPlan: new Map() }; }),
         DB.materials.list(),
         DB.listEnrollments(user.id),
         DB.studyActivity(user.id),
@@ -2130,7 +2158,10 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
 
       const attemptedIds = new Set(att.map((a) => a.testId));
       const now = Date.now();
-      const decorated = allTests.map((t) => ({
+      // Only what this student can actually open (can_access_test): their
+      // bundles' tests and free samples, in series order. It used to be every
+      // published test of every exam, each marked "Included".
+      const decorated = allTests.filter((t) => acc.all || t.isFree || acc.ids.has(t.id)).map((t) => ({
         ...t,
         attemptedByMe: attemptedIds.has(t.id),
         isUpcoming: t.scheduledFor ? new Date(t.scheduledFor).getTime() > now : false,
@@ -2149,6 +2180,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
       });
       setAttempts(att);
       setTests(decorated);
+      setAccess(acc);
       setMaterials(mats.filter((m) => m.isPublished !== false));
       setEnrollments(enr);
       setActivity(act);
@@ -2221,7 +2253,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
   }
 
   const go = (v) => { setView(v); setSbOpen(false); };
-  const ctx = { profile, setProfile, attempts, tests, materials, enrollments,
+  const ctx = { profile, setProfile, attempts, tests, access, materials, enrollments,
                 activity, derived, subjects, leaderboard: board, reminders, setReminders, peer, reload: load };
 
   return (

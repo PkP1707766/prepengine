@@ -200,8 +200,8 @@ export const FX_MATERIALS = [
 ];
 
 export const FX_ENROLLMENTS = [
-  { id: "fx-e1", plan_code: "prelims-2026", batch_id: null, status: "active", expires_at: new Date(Date.now() + 300 * day).toISOString(), enrolled_at: iso(60), batches: null },
-  { id: "fx-e2", plan_code: "bpsc-2026", batch_id: null, status: "active", expires_at: new Date(Date.now() + 5 * day).toISOString(), enrolled_at: iso(120), batches: null },
+  { id: "fx-e1", plan_code: "prelims-2026", batch_id: null, status: "active", expires_at: new Date(Date.now() + 300 * day).toISOString(), enrolled_at: iso(60), plans: { name: "UPSC Prelims 2027 — Full Test Series", exam_category: "upsc" }, batches: null },
+  { id: "fx-e2", plan_code: "bpsc-2026", batch_id: null, status: "active", expires_at: new Date(Date.now() + 5 * day).toISOString(), enrolled_at: iso(120), plans: { name: "BPSC Prelims 2026 — Full Test Series", exam_category: "bpsc" }, batches: null },
 ];
 
 export const FX_ACTIVITY = Array.from({ length: 84 }, (_, i) => ({

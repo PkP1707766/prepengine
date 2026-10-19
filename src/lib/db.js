@@ -11,6 +11,7 @@
  */
 import { getSupabase } from "./supabase.js";
 import { bandFor } from "./format.js";
+import { sortTests } from "./testOrder.js";
 import { loadKey, saveKey, removeKey } from "./storage.js";
 
 /* ---------------------------------------------------------------------------
@@ -142,7 +143,7 @@ export async function listEnrollments(userId) {
   const sb = await getSupabase();
   const { data, error } = await sb
     .from("enrollments")
-    .select("id, plan_code, batch_id, status, expires_at, enrolled_at, batches(name, course_id, end_date, courses(title, exam_target))")
+    .select("id, plan_code, batch_id, status, expires_at, enrolled_at, plans(name, exam_category), batches(name, course_id, end_date, courses(title, exam_target))")
     .eq("student_id", userId)
     .order("enrolled_at", { ascending: false });
   if (error) throw error;
@@ -253,21 +254,27 @@ export async function bundleTests(code) {
   const sb = await getSupabase();
   const { data, error } = await sb
     .from("plan_tests")
-    .select("test_id, tests(id, title, duration_min, total_questions, total_marks, is_free, is_published, scheduled_for)")
+    .select("test_id, tests(id, exam_category, title, title_hi, series_id, test_series(title, title_hi), duration_min, total_questions, total_marks, is_free, is_published, scheduled_for, created_at)")
     .eq("plan_code", code);
   if (error) throw error;
-  return (data ?? [])
+  return sortTests((data ?? [])
     .map((r) => r.tests)
     .filter((t) => t && t.is_published)
     .map((t) => ({
       id: t.id,
+      examCategory: t.exam_category,
       title: t.title,
+      titleHi: t.title_hi || "",
+      seriesId: t.series_id,
+      seriesTitle: t.test_series?.title || "",
+      seriesTitleHi: t.test_series?.title_hi || "",
       durationMin: t.duration_min,
       totalQuestions: t.total_questions,
       totalMarks: Number(t.total_marks || 0),
       isFree: !!t.is_free,
       scheduledFor: t.scheduled_for,
-    }));
+      createdAt: t.created_at,
+    })));
 }
 
 /** Which bundles does this student hold right now?
@@ -376,6 +383,39 @@ export async function uploadBrochure(planCode, file) {
   if (error) throw error;
   const { data } = sb.storage.from("brochures").getPublicUrl(path);
   return { url: data.publicUrl, path };
+}
+
+/**
+ * Which published tests this student can actually open, mirroring the
+ * database's can_access_test(): a tester opens everything, anyone opens a free
+ * test, and otherwise a test must sit in a bundle the student holds right now.
+ *
+ * The catalogue used to list every published test of every exam, so a UPSC
+ * buyer saw the BPSC papers marked "Included" and got "You don't have access"
+ * on clicking one. `byPlan` also lets each bundle card count its own tests.
+ */
+export async function testAccess(userId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return { all: true, ids: new Set(), byPlan: new Map() };
+  const sb = await getSupabase();
+  const [{ data: prof }, { data: enr, error }] = await Promise.all([
+    sb.from("profiles").select("is_tester").eq("id", userId).maybeSingle(),
+    sb.from("enrollments").select("plan_code, expires_at")
+      .eq("student_id", userId).eq("status", "active"),
+  ]);
+  if (error) throw error;
+  // byPlan covers every active-status bundle, expired ones too, so an expired
+  // card still counts its own tests; only unexpired bundles unlock (ids).
+  const now = Date.now();
+  const rows = (enr ?? []).filter((e) => e.plan_code);
+  const live = new Set(rows.filter((e) => !e.expires_at || new Date(e.expires_at).getTime() > now).map((e) => e.plan_code));
+  const byPlan = new Map(rows.map((e) => [e.plan_code, new Set()]));
+  if (byPlan.size > 0) {
+    const { data, error: ptErr } = await sb.from("plan_tests").select("plan_code, test_id").in("plan_code", [...byPlan.keys()]);
+    if (ptErr) throw ptErr;
+    for (const r of data ?? []) byPlan.get(r.plan_code)?.add(r.test_id);
+  }
+  const ids = new Set([...byPlan].filter(([c]) => live.has(c)).flatMap(([, s]) => [...s]));
+  return { all: !!prof?.is_tester, ids, byPlan };
 }
 
 /** Which tests are currently assigned to a bundle. */
@@ -672,6 +712,7 @@ function testFromRow(r) {
     description: r.description || "",
     seriesId: r.series_id,
     seriesTitle: r.test_series?.title || "",
+    seriesTitleHi: r.test_series?.title_hi || "",
     durationMin: r.duration_min ?? 60,
     sections: Array.isArray(r.sections) ? r.sections : [],
     isFree: !!r.is_free,
@@ -714,7 +755,7 @@ export async function listTests({ publishedOnly = false, examCategory = null } =
   for (let from = 0; ; from += DB_PAGE_SIZE) {
     let q = sb
       .from("tests")
-      .select("*, test_series(title)")
+      .select("*, test_series(title, title_hi)")
       .order("created_at", { ascending: false })
       .order("id", { ascending: true }) // tiebreaker so range() pagination can't skip/repeat rows that share an order value
       .range(from, from + DB_PAGE_SIZE - 1);
@@ -725,12 +766,13 @@ export async function listTests({ publishedOnly = false, examCategory = null } =
     rows.push(...(data ?? []));
     if (!data || data.length < DB_PAGE_SIZE) break;
   }
-  return rows.map(testFromRow);
+  // Level 1 before Level 2, Test 1 before Test 2 -- see lib/testOrder.js.
+  return sortTests(rows.map(testFromRow));
 }
 
 export async function upsertTest(t) {
   const sb = await getSupabase();
-  const { data, error } = await sb.from("tests").upsert(testToRow(t)).select("*, test_series(title)").single();
+  const { data, error } = await sb.from("tests").upsert(testToRow(t)).select("*, test_series(title, title_hi)").single();
   if (error) throw error;
   return testFromRow(data);
 }

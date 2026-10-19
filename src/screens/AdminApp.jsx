@@ -7,6 +7,7 @@ import { ChromeControls } from "../lib/i18n.jsx";
 import * as DB from "../lib/db.js";
 import { generateTest, testDurationFor, UPSC_PAPER_FORMATS, upscPaperFormat } from "../lib/generate.js";
 import { fmtINR, fmtLongDate, initials, uid } from "../lib/format.js";
+import { sortTests, groupBySeries, seriesLabel } from "../lib/testOrder.js";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
 const AdminApp = (() => {
@@ -2442,6 +2443,8 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
   }
 
   const qCount = (t) => (t.sections || []).reduce((s, sec) => s + (sec.questionIds || []).length, 0);
+  // Series order, not newest-first -- a just-saved test lands in its place.
+  const ordered = sortTests(tests);
 
   return (
     <div>
@@ -2459,7 +2462,7 @@ function Tests({ tests, saveTest, removeTest, questions, seriesList, toast, askD
           <table className="tbl">
             <thead><tr><th>Test</th><th className="hide-narrow">Sections</th><th>Questions</th><th>Duration</th><th className="hide-narrow">Status</th><th style={{ textAlign: "right" }}>Actions</th></tr></thead>
             <tbody>
-              {tests.map((t) => (
+              {ordered.map((t) => (
                 <tr key={t.id}>
                   <td className="t-cell"><div style={{ fontWeight: 700, color: "var(--ink)" }}>{t.title}</div>{t.seriesTitle && <div className="q-sub">{t.seriesTitle}</div>}
                     <div className="q-sub show-narrow" style={{ color: t.isPublished ? "var(--green)" : "var(--muted)", fontWeight: 700 }}>● {t.isPublished ? "Published" : "Draft"}</div></td>
@@ -2939,6 +2942,7 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
    a test not listed here stays locked for that bundle's subscribers. */
 function BundleTests({ bundle, onDone, toast }) {
   const [selected, setSelected] = useState(null);
+  const [saved, setSaved] = useState(null);
   // Only this bundle's exam's tests can be assigned (the DB refuses the rest
   // since migration 0025); it used to offer every exam's tests.
   const [tests, setTests] = useState([]);
@@ -2955,10 +2959,10 @@ function BundleTests({ bundle, onDone, toast }) {
     (async () => {
       try {
         const ids = await DB.bundleTestIds(bundle.code);
-        if (alive) setSelected(new Set(ids));
+        if (alive) { setSelected(new Set(ids)); setSaved(new Set(ids)); }
       } catch (e) {
         console.error(e);
-        if (alive) setSelected(new Set());
+        if (alive) { setSelected(new Set()); setSaved(new Set()); }
       }
     })();
     return () => { alive = false; };
@@ -2966,12 +2970,24 @@ function BundleTests({ bundle, onDone, toast }) {
 
   if (!selected) return <SkeletonCards count={2} height={110} />;
 
+  // Grouped by series, in the order a student meets them: Level 1 before
+  // Level 2, Test 1 before Test 2 (lib/testOrder.js). The flat newest-first
+  // list put "CSAT Mini 3" on top and Level 2 above Level 1.
   const needle = q.trim().toLowerCase();
-  const shown = tests.filter((t) => !needle || t.title.toLowerCase().includes(needle));
+  const shown = sortTests(tests).filter((t) => !needle
+    || t.title.toLowerCase().includes(needle)
+    || (t.seriesTitle || "").toLowerCase().includes(needle));
+  const groups = groupBySeries(shown);
+  const dirty = !!saved && (saved.size !== selected.size || [...selected].some((id) => !saved.has(id)));
 
   const toggle = (id) => {
     const next = new Set(selected);
     next.has(id) ? next.delete(id) : next.add(id);
+    setSelected(next);
+  };
+  const setMany = (ids, on) => {
+    const next = new Set(selected);
+    ids.forEach((id) => (on ? next.add(id) : next.delete(id)));
     setSelected(next);
   };
 
@@ -2988,10 +3004,12 @@ function BundleTests({ bundle, onDone, toast }) {
     }
   };
 
+  const now = Date.now();
+
   return (
     <div>
       <button className="btn btn-ghost btn-sm" onClick={onDone} style={{ marginBottom: 16 }}>
-        <ArrowLeft size={15} />Back to bundles
+        <ArrowLeft size={15} />{dirty ? "Back without saving" : "Back to bundles"}
       </button>
 
       <div className="sec-head">
@@ -2999,41 +3017,63 @@ function BundleTests({ bundle, onDone, toast }) {
           <h2>Tests in "{bundle.name}"</h2>
           <div className="note">
             Only the tests ticked here unlock for someone who buys this bundle. Anything unticked
-            stays locked for them, even if it's published.
+            stays locked for them, even if it's published. Students see them in this same order.
           </div>
         </div>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <div className="search"><Search size={15} /><input placeholder="Search tests…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
-          <button className="btn btn-primary" onClick={save} disabled={saving}>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <div className="search"><Search size={15} /><input placeholder="Search tests or series…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+          <button className="btn btn-primary" onClick={save} disabled={saving || !dirty} title={dirty ? undefined : "Nothing has changed yet"}>
             <Save size={16} />{saving ? "Saving…" : `Save (${selected.size})`}
           </button>
         </div>
       </div>
+      {dirty && <div className="banner sample" style={{ marginBottom: 14 }}><AlertCircle size={17} />Unsaved changes. Press Save to apply them.</div>}
 
       {tests.length === 0 ? (
         <div className="panel"><Empty icon={<FileText size={26} />} title="No tests yet"
           text="Create and publish a test first, then come back to assign it to this bundle." /></div>
       ) : (
         <div className="panel panel-pad">
-          {shown.map((t) => {
-            const on = selected.has(t.id);
+          {groups.map((g, gi) => {
+            const ids = g.tests.map((t) => t.id);
+            const ticked = ids.filter((id) => selected.has(id)).length;
+            const all = ticked === ids.length;
             return (
-              <button
-                key={t.id}
-                className={"picker-item" + (on ? " on" : "")}
-                onClick={() => toggle(t.id)}
-                style={{ width: "100%", textAlign: "left" }}
-              >
-                <span className="picker-check">{on ? <Check size={14} /> : null}</span>
-                <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: "block", fontWeight: 700, color: "var(--ink)" }}>{t.title}</span>
-                  <span className="q-sub">
-                    {t.totalQuestions} questions · {t.durationMin} min
-                    {t.isFree ? " · free sample" : ""}
-                    {t.isPublished ? "" : " · draft (students can't see it)"}
-                  </span>
-                </span>
-              </button>
+              <div key={g.key || "none"} style={{ marginTop: gi === 0 ? 0 : 22 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap",
+                              padding: "0 2px 10px", marginBottom: 10, borderBottom: "1px solid var(--line)" }}>
+                  <div>
+                    <div style={{ fontWeight: 800, color: "var(--ink)", fontSize: 14.5 }}>{g.title ? seriesLabel(g.title) : "Not in a series"}</div>
+                    <div className="q-sub" style={{ marginTop: 2 }}>{ticked} of {ids.length} ticked</div>
+                  </div>
+                  <button className="btn btn-ghost btn-sm" style={{ width: "auto" }} onClick={() => setMany(ids, !all)}>
+                    {all ? <><X size={14} />Untick all</> : <><Check size={14} />Tick all {ids.length}</>}
+                  </button>
+                </div>
+                {g.tests.map((t) => {
+                  const on = selected.has(t.id);
+                  const later = t.scheduledFor && new Date(t.scheduledFor).getTime() > now;
+                  return (
+                    <button
+                      key={t.id}
+                      className={"picker-item" + (on ? " on" : "")}
+                      onClick={() => toggle(t.id)}
+                      style={{ width: "100%", textAlign: "left" }}
+                    >
+                      <span className="picker-check">{on ? <Check size={14} /> : null}</span>
+                      <span style={{ flex: 1, minWidth: 0 }}>
+                        <span style={{ display: "block", fontWeight: 700, color: "var(--ink)" }}>{t.title}</span>
+                        <span className="q-sub">
+                          {t.totalQuestions} questions · {t.durationMin} min
+                          {t.scheduledFor ? ` · ${later ? "opens" : "opened"} ${fmtLongDate(t.scheduledFor)}` : ""}
+                          {t.isFree ? " · free sample" : ""}
+                          {t.isPublished ? "" : " · draft (students can't see it)"}
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             );
           })}
           {shown.length === 0 && (

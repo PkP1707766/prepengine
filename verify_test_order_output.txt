@@ -1,0 +1,7 @@
+PASS  order does not depend on the order rows arrive in
+PASS  UPSC: Level 1 Tests 1-7, CSAT Minis 1-3, then Level 2 Tests 1-20, CSAT Tests 1-7
+PASS  UPSC groups: Level 1: NCERT Foundation (10), Level 2: Sectional Mastery (27)
+PASS  BPSC (no levels): creation order; a batch created together goes by its number, unnumbered last
+PASS  Hindi series heading drops the exam-and-year prefix
+
+ALL PASS

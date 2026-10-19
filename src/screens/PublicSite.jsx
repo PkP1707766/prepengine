@@ -14,6 +14,8 @@ import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
 import { Instagram, YouTube, Telegram, WhatsApp, LinkedIn, XMark } from "../ui/SocialIcons.jsx";
 import BrochureButton, { BROCHURE_CSS } from "../ui/BrochureButton.jsx";
 import * as DB from "../lib/db.js";
+import { fmtLongDate } from "../lib/format.js";
+import { groupBySeries, seriesIn, titleIn } from "../lib/testOrder.js";
 
 /* ============================================================
    PUBLIC SITE — the storefront.
@@ -786,6 +788,8 @@ const CSS = `
   font-size:12px;font-weight:800;background:color-mix(in srgb,var(--gold-300) 34%,transparent);color:var(--brand-700)}
 .pb-tname{flex:1;min-width:0;font-size:14.5px;font-weight:600;color:var(--ink-900)}
 .pb-tmeta{font-size:12.5px;color:var(--ink-400);margin-top:2px;font-weight:500}
+.pb-tgroup-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:22px 0 2px;padding-bottom:8px;border-bottom:1.5px solid var(--line);font-size:15px;font-weight:800;color:var(--ink-900)}
+.pb-tgroup-n{font-size:12.5px;font-weight:600;color:var(--ink-400);white-space:nowrap}
 
 /* ---------- RESPONSIVE ---------- */
 /* ---------- MOBILE POLISH -----------------------------------------------
@@ -1968,7 +1972,7 @@ const SOCIALS = SOCIAL_DEFS.map((d) => ({ ...d, href: (SOCIAL_LINKS[d.key] || ""
 
 /* ---------------------------------------------------------------- detail -- */
 function BundleDetail({ code, owned, onBack, onEnroll }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [bundle, setBundle] = useState(null);
   const [tests, setTests] = useState([]);
   const [err, setErr] = useState("");
@@ -2035,26 +2039,40 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
 
           <div className="pb-panel">
             <div className="pb-kicker">{t("card_tests_in")}</div>
-            <div className="pb-h3">{tests.length} test{tests.length === 1 ? "" : "s"} published</div>
+            <div className="pb-h3">{t(tests.length === 1 ? "bd_tests_one" : "bd_tests_many").replace("{n}", tests.length)}</div>
             {tests.length === 0 ? (
               <p style={{ fontSize: 14, color: "var(--ink-400)", lineHeight: 1.7, margin: 0 }}>
-                Tests for this series are being finalised. Enrolling now locks in the current price and
-                gives you every test as it is released.
+                {t("bd_tests_soon")}
               </p>
-            ) : tests.map((tt, i) => (
-              <div className="pb-trow" key={tt.id}>
-                <span className="pb-tnum">{i + 1}</span>
-                <div className="pb-tname">
-                  {tt.title}
-                  <div className="pb-tmeta">
-                    {tt.totalQuestions} questions · {tt.durationMin} min
-                    {tt.totalMarks > 0 ? ` · ${tt.totalMarks} marks` : ""}
+            ) : groupBySeries(tests).map((g) => (
+              /* Grouped by level in the order they are meant to be taken; the
+                 flat list ran 1-37 in no particular order. Dated papers show
+                 the day they open. */
+              <Fragment key={g.key || "standalone"}>
+                {g.title && (
+                  <div className="pb-tgroup-head">
+                    <span>{seriesIn(lang, g)}</span>
+                    <span className="pb-tgroup-n">{t(g.tests.length === 1 ? "bd_tests_one_short" : "bd_tests_short").replace("{n}", g.tests.length)}</span>
                   </div>
-                </div>
-                {tt.isFree
-                  ? <span className="pb-off">{t("card_free_sample")}</span>
-                  : <Lock size={15} style={{ color: "var(--ink-400)", flex: "0 0 auto" }} />}
-              </div>
+                )}
+                {g.tests.map((tt, i) => (
+                  <div className="pb-trow" key={tt.id}>
+                    <span className="pb-tnum">{i + 1}</span>
+                    <div className="pb-tname">
+                      {titleIn(lang, tt)}
+                      <div className="pb-tmeta">
+                        {t("bd_tmeta").replace("{q}", tt.totalQuestions).replace("{m}", tt.durationMin)}
+                        {tt.totalMarks > 0 ? " · " + t("bd_marks").replace("{k}", tt.totalMarks) : ""}
+                        {tt.scheduledFor && new Date(tt.scheduledFor).getTime() > Date.now()
+                          ? " · " + t("bd_opens").replace("{d}", fmtLongDate(tt.scheduledFor)) : ""}
+                      </div>
+                    </div>
+                    {tt.isFree
+                      ? <span className="pb-off">{t("card_free_sample")}</span>
+                      : <Lock size={15} style={{ color: "var(--ink-400)", flex: "0 0 auto" }} />}
+                  </div>
+                ))}
+              </Fragment>
             ))}
           </div>
         </div>
