@@ -1,0 +1,184 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 4 (GS Integrated Test 4) -- part D: Geography (10) (upsc_l3_cell_targets.mjs 4).
+Same cell plan as Tests 1-3.
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Tests 1-3, and is one none of them
+tests: the Krishna-Godavari basin's gas; new airports (Mopa, Donyi Polo, Ayodhya, Pakyong); the rapid intensification
+of cyclones; Zoji La and its tunnel; Bab-el-Mandeb; heat domes; the Tamirabarani and the Vaigai; river capture and knick
+points; Tuvalu and the Falepili Union; the Siachen glacier, the Nubra and the Saltoro ridge. MCQ keys are pinned."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, T2
+
+d.SUBJECT = "Geography"
+d.REQUIRE_CRAFT = True
+FPG = "NCERT Class XI, Fundamentals of Physical Geography"
+IPE = "NCERT Class XI, India: Physical Environment"
+FHG = "NCERT Class XII, Fundamentals of Human Geography"
+IPEc = "NCERT Class XII, India: People and Economy"
+
+# ---------------------------------------------------------------- Resources (e-SI)
+A("Resources: Minerals, Energy & Agriculture", "easy",
+  "The Krishna-Godavari basin is one of India's most important sources of natural gas, much of it from deep-water fields offshore.",
+  "कृष्णा-गोदावरी बेसिन भारत में प्राकृतिक गैस के सबसे महत्त्वपूर्ण स्रोतों में से एक है, जिसका बड़ा भाग अपतटीय गहरे-जल क्षेत्रों से आता है।",
+  "The thick sediments laid down over millions of years by the deltas of the Krishna and the Godavari buried organic matter that turned into hydrocarbons.",
+  "कृष्णा और गोदावरी के डेल्टाओं द्वारा लाखों वर्षों में जमा की गई मोटी अवसादी परतों ने कार्बनिक पदार्थ को दबा दिया, जो हाइड्रोकार्बन में बदल गया।",
+  0,
+  "Both statements are correct and Statement II explains Statement I. Hydrocarbons form where organic-rich sediment is buried deep enough, fast enough, to be 'cooked' by heat and pressure; the Krishna and Godavari have built a huge delta and a thick wedge of sediment out into the Bay of Bengal, and the continental margin there also has the structural traps that hold gas. "
+  "Both onshore fields and deep-water blocks such as KG-D6 and ONGC's KG-DWN-98/2 make the basin a major gas province; the same basin has also yielded gas hydrates, frozen methane in sea-floor sediment, which India is studying as a future resource.",
+  "दोनों कथन सही हैं और कथन II, कथन I की व्याख्या करता है। हाइड्रोकार्बन वहाँ बनते हैं जहाँ कार्बनिक-समृद्ध अवसाद पर्याप्त गहराई तक और पर्याप्त तेज़ी से दब जाए कि ताप और दबाव उसे 'पका' दें; कृष्णा और गोदावरी ने बंगाल की खाड़ी में विशाल डेल्टा और अवसाद की मोटी परत बनाई है, और वहाँ की महाद्वीपीय सीमा में गैस रोकने वाली संरचनात्मक ट्रैप भी हैं। "
+  "स्थलीय क्षेत्र और KG-D6 तथा ONGC के KG-DWN-98/2 जैसे गहरे-जल ब्लॉक इस बेसिन को एक प्रमुख गैस क्षेत्र बनाते हैं; इसी बेसिन से गैस हाइड्रेट -- समुद्र-तल के अवसाद में जमी मीथेन -- भी मिले हैं, जिनका भारत भविष्य के संसाधन के रूप में अध्ययन कर रहा है।",
+  f"Directorate General of Hydrocarbons; {IPEc}, chapter on mineral and energy resources.",
+  "l3-t4-geo-krishna-godavari-gas", craft="linkage")
+
+# ---------------------------------------------------------------- Transport, Ports & Human Geography (e-pairs)
+P("Transport, Ports & Human Geography", "easy", "Consider the following pairs of airports and the States in which they are located:",
+  "हवाई अड्डों और उन राज्यों के निम्नलिखित युग्मों पर विचार कीजिए जिनमें वे स्थित हैं:",
+  ["Manohar International Airport, Mopa : Goa",
+   "Donyi Polo Airport : Arunachal Pradesh",
+   "Maharishi Valmiki International Airport : Uttar Pradesh",
+   "Pakyong Airport : Meghalaya"],
+  ["मनोहर अंतरराष्ट्रीय हवाई अड्डा, मोपा : गोवा",
+   "दोन्यी पोलो हवाई अड्डा : अरुणाचल प्रदेश",
+   "महर्षि वाल्मीकि अंतरराष्ट्रीय हवाई अड्डा : उत्तर प्रदेश",
+   "पाक्योंग हवाई अड्डा : मेघालय"],
+  2,
+  "The first three pairs are correct. Goa's second airport, at Mopa in the north of the State, opened in 2023 and is named after Manohar Parrikar; Donyi Polo Airport, at Hollongi near Itanagar, opened in 2022 as Arunachal Pradesh's first greenfield airport, its name joining the Sun (Donyi) and Moon (Polo) revered by the State's tribes; and Maharishi Valmiki International Airport serves Ayodhya. "
+  "The fourth pair is wrong: Pakyong Airport, opened in 2018 on a ridge in east Sikkim and built on a huge reinforced slope, gave Sikkim its first airport; Meghalaya is served by Umroi (Shillong) airport.",
+  "पहले तीन युग्म सही हैं। राज्य के उत्तर में मोपा में गोवा का दूसरा हवाई अड्डा 2023 में खुला और मनोहर पर्रिकर के नाम पर है; ईटानगर के पास होल्लोंगी में दोन्यी पोलो हवाई अड्डा 2022 में अरुणाचल प्रदेश के पहले ग्रीनफ़ील्ड हवाई अड्डे के रूप में खुला, जिसका नाम राज्य की जनजातियों द्वारा पूजित सूर्य (दोन्यी) और चंद्रमा (पोलो) को जोड़ता है; और महर्षि वाल्मीकि अंतरराष्ट्रीय हवाई अड्डा अयोध्या को सेवा देता है। "
+  "चौथा युग्म ग़लत है: पूर्वी सिक्किम की एक पहाड़ी पर विशाल प्रबलित ढलान पर बना पाक्योंग हवाई अड्डा 2018 में खुला और सिक्किम का पहला हवाई अड्डा बना; मेघालय को उमरोई (शिलांग) हवाई अड्डा सेवा देता है।",
+  "Airports Authority of India; Ministry of Civil Aviation.",
+  "l3-t4-geo-new-airports-states", craft="recall")
+
+# ---------------------------------------------------------------- Climatology & Biomes (h-MCQ, m-stmt)
+M("Climatology & Biomes", "hard",
+  "Which one of the following combinations of conditions most favours the 'rapid intensification' of a tropical cyclone, in which its winds strengthen sharply within a day?",
+  "निम्नलिखित में से परिस्थितियों का कौन-सा संयोजन किसी उष्णकटिबंधीय चक्रवात के 'तीव्र सशक्तीकरण' के लिए सबसे अनुकूल है, जिसमें उसकी हवाएँ एक ही दिन में तेज़ी से प्रबल हो जाती हैं?",
+  ["A cool sea surface, strong vertical wind shear and dry air in the middle levels of the atmosphere",
+   "Passage over a broad, flat coastal plain where the moist ground keeps supplying water vapour to the storm",
+   "Strong vertical wind shear that tilts the storm, combined with a thin layer of warm water over a cold ocean",
+   "A deep layer of warm ocean water, weak vertical wind shear and a moist middle atmosphere"],
+  ["ठंडी समुद्री सतह, प्रबल ऊर्ध्वाधर पवन-अपरूपण और वायुमंडल के मध्य स्तरों में शुष्क हवा",
+   "एक चौड़े, समतल तटीय मैदान के ऊपर से गुज़रना जहाँ नम भूमि तूफ़ान को लगातार जलवाष्प देती रहे",
+   "तूफ़ान को झुका देने वाला प्रबल ऊर्ध्वाधर पवन-अपरूपण, ठंडे महासागर के ऊपर गर्म पानी की पतली परत के साथ",
+   "गर्म समुद्री जल की गहरी परत, कमज़ोर ऊर्ध्वाधर पवन-अपरूपण और नम मध्य वायुमंडल"],
+  3,
+  "Rapid intensification -- commonly defined as a rise in maximum sustained winds of at least 30 knots in 24 hours -- needs a deep reservoir of warm water, so that the cyclone's own churning brings up warm rather than cold water; little change in wind speed and direction with height, so the storm's vertical structure is not torn apart; and moist mid-level air that feeds the convection instead of drying it out. "
+  "Warming seas have made such episodes more frequent, including in the Arabian Sea, where storms such as Tauktae intensified within a day, leaving little time for warnings and evacuation. Landfall cuts a cyclone off from its ocean energy source, so passing over land weakens it rather than strengthening it.",
+  "तीव्र सशक्तीकरण -- जिसे सामान्यतः 24 घंटे में अधिकतम सतत हवाओं में कम-से-कम 30 नॉट की वृद्धि के रूप में परिभाषित किया जाता है -- के लिए गर्म पानी का गहरा भंडार चाहिए, ताकि चक्रवात का अपना मंथन ठंडा नहीं, गर्म पानी ऊपर लाए; ऊँचाई के साथ हवा की गति और दिशा में कम परिवर्तन, ताकि तूफ़ान की ऊर्ध्वाधर संरचना टूटे नहीं; और नम मध्य-स्तरीय हवा जो संवहन को सुखाने के बजाय पोषित करे। "
+  "गर्म होते समुद्रों ने ऐसी घटनाओं को अधिक बार होने वाला बना दिया है, अरब सागर में भी, जहाँ तौकते जैसे तूफ़ान एक ही दिन में प्रबल हुए, जिससे चेतावनी और निकासी के लिए कम समय बचा। स्थल पर पहुँचना चक्रवात को उसके महासागरीय ऊर्जा-स्रोत से काट देता है, इसलिए स्थल के ऊपर से गुज़रना उसे प्रबल नहीं, कमज़ोर करता है।",
+  "NCERT Class XI, Fundamentals of Physical Geography (Atmospheric Circulation and Weather Systems); India Meteorological Department.",
+  "l3-t4-geo-cyclone-rapid-intensification", pos=3, craft="inference")
+
+S("Climatology & Biomes", "medium", "Consider the following statements about a 'heat dome':",
+  "'हीट डोम' (ऊष्मा गुंबद) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It forms when a strong, persistent ridge of high pressure sits over a region and traps warm air beneath it.",
+   "Air sinking within the high-pressure system is warmed by compression, and the clear skies it brings let more sunshine reach the ground.",
+   "The record heat in the Pacific Northwest of the United States and Canada in 2021 was linked to a heat dome."],
+  ["यह तब बनता है जब उच्च दाब की एक प्रबल, स्थायी कटक किसी क्षेत्र के ऊपर टिक जाती है और उसके नीचे गर्म हवा को फँसा लेती है।",
+   "उच्च दाब तंत्र में नीचे उतरती हवा संपीडन से गर्म होती है, और उसके कारण साफ़ आसमान से अधिक धूप ज़मीन तक पहुँचती है।",
+   "2021 में संयुक्त राज्य अमेरिका और कनाडा के प्रशांत उत्तर-पश्चिम में रिकॉर्ड गर्मी को एक हीट डोम से जोड़ा गया था।"],
+  C3, 2,
+  "All three statements are correct. A heat dome is a stalled anticyclone, often linked to a strongly meandering jet stream: subsidence warms the air adiabatically and caps the lower atmosphere like a lid, the absence of clouds adds more solar heating, and dry soils then stop evaporation from cooling the surface, so heat builds day after day. "
+  "In late June 2021 such a dome over British Columbia and the north-western United States pushed temperatures to about 49.6 degrees Celsius at Lytton, a Canadian record, and attribution studies found such heat would have been virtually impossible without climate change. Similar blocking highs feed the long pre-monsoon heat waves of north-west India.",
+  "तीनों कथन सही हैं। हीट डोम एक ठहरा हुआ प्रतिचक्रवात है, जो प्रायः बहुत लहराती जेट धारा से जुड़ा होता है: अवतलन हवा को रुद्धोष्म रूप से गर्म करता है और निचले वायुमंडल को ढक्कन की तरह ढक देता है, बादलों का अभाव और सौर ताप जोड़ता है, और फिर सूखी मिट्टी वाष्पीकरण द्वारा सतह को ठंडा नहीं होने देती, इसलिए गर्मी दिन-ब-दिन बढ़ती जाती है। "
+  "जून 2021 के अंत में ब्रिटिश कोलंबिया और उत्तर-पश्चिमी संयुक्त राज्य के ऊपर ऐसे ही गुंबद ने लिटन में तापमान लगभग 49.6 डिग्री सेल्सियस तक पहुँचा दिया, जो कनाडा का रिकॉर्ड है, और कारण-निर्धारण अध्ययनों ने पाया कि जलवायु परिवर्तन के बिना ऐसी गर्मी लगभग असंभव होती। ऐसे ही अवरोधक उच्च दाब उत्तर-पश्चिम भारत की लंबी मानसून-पूर्व लू को बढ़ावा देते हैं।",
+  f"{FPG}, chapter on atmospheric circulation; World Meteorological Organization; India Meteorological Department.",
+  "l3-t4-geo-heat-dome", craft="linkage")
+
+# ---------------------------------------------------------------- Indian Physiography, Climate & Regions (h-SI, m-stmt)
+A("Indian Physiography, Climate & Regions", "hard",
+  "A tunnel is being built under Zoji La to give Ladakh all-weather road connectivity with the Kashmir valley.",
+  "लद्दाख को कश्मीर घाटी के साथ हर मौसम में सड़क-संपर्क देने के लिए ज़ोजी ला के नीचे एक सुरंग बनाई जा रही है।",
+  "Zoji La lies on the Pir Panjal range, which separates the Kashmir valley from the Jammu region.",
+  "ज़ोजी ला पीर पंजाल श्रेणी पर स्थित है, जो कश्मीर घाटी को जम्मू क्षेत्र से अलग करती है।",
+  2,
+  "Statement I is correct but Statement II is wrong. Zoji La, at about 3,500 metres on the Srinagar-Leh road between Sonamarg and Drass, crosses the Great Himalayan range; heavy snow closes it for months each winter, cutting Ladakh off by road, which is why the long Zoji La tunnel is being built beneath it, to complement the Sonamarg (Z-Morh) tunnel opened in 2025. "
+  "The Pir Panjal is a different, lesser Himalayan range, between the Kashmir valley and Jammu; it is crossed by the Banihal pass and now by road and rail tunnels on the Jammu-Srinagar route.",
+  "कथन I सही है पर कथन II ग़लत है। सोनमर्ग और द्रास के बीच श्रीनगर-लेह सड़क पर लगभग 3,500 मीटर की ऊँचाई पर ज़ोजी ला महान हिमालय श्रेणी को पार करता है; भारी हिमपात हर सर्दी में इसे महीनों बंद कर देता है, जिससे लद्दाख का सड़क-संपर्क कट जाता है, इसीलिए इसके नीचे लंबी ज़ोजी ला सुरंग बनाई जा रही है, जो 2025 में खुली सोनमर्ग (ज़ेड-मोड़) सुरंग की पूरक होगी। "
+  "पीर पंजाल एक अलग, लघु हिमालय की श्रेणी है, जो कश्मीर घाटी और जम्मू के बीच है; इसे बनिहाल दर्रा और अब जम्मू-श्रीनगर मार्ग की सड़क और रेल सुरंगें पार करती हैं।",
+  f"{IPE}, chapter on structure and physiography; Ministry of Road Transport and Highways (Zoji La tunnel project).",
+  "l3-t4-geo-zoji-la-great-himalaya", craft="precision")
+
+S("Indian Physiography, Climate & Regions", "medium", "Consider the following statements about the Siachen glacier:",
+  "सियाचिन हिमनद के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It lies in the eastern Karakoram range.",
+   "Its meltwater is the source of the Nubra, a tributary of the Shyok.",
+   "The Saltoro ridge lies to the east of the glacier, between it and the Aksai Chin."],
+  ["यह पूर्वी काराकोरम श्रेणी में स्थित है।",
+   "इसका पिघला जल श्योक की सहायक नदी नुब्रा का स्रोत है।",
+   "साल्टोरो कटक हिमनद के पूर्व में, उसके और अक्साई चिन के बीच, स्थित है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. At about 76 kilometres, Siachen is one of the longest glaciers outside the polar regions, lying in the eastern Karakoram; its snout feeds the Nubra, which joins the Shyok and through it the Indus. "
+  "Statement 3 is wrong: the Saltoro ridge runs along the western side of the glacier, and its passes such as Sia La and Bilafond La have been held by India since Operation Meghdoot in 1984, which is why the glacier region is described as the world's highest battlefield. Aksai Chin lies far to the east.",
+  "कथन 1 और 2 सही हैं। लगभग 76 किलोमीटर लंबा सियाचिन ध्रुवीय क्षेत्रों के बाहर के सबसे लंबे हिमनदों में से एक है, जो पूर्वी काराकोरम में स्थित है; इसका मुहाना नुब्रा को जल देता है, जो श्योक से और उसके माध्यम से सिंधु से मिलती है। "
+  "कथन 3 ग़लत है: साल्टोरो कटक हिमनद के पश्चिमी ओर चलती है, और सिया ला और बिलाफ़ोंड ला जैसे उसके दर्रे 1984 के ऑपरेशन मेघदूत से भारत के नियंत्रण में हैं, इसीलिए हिमनद-क्षेत्र को संसार का सबसे ऊँचा रणक्षेत्र कहा जाता है। अक्साई चिन बहुत पूर्व में है।",
+  f"{IPE}; Survey of India.",
+  "l3-t4-geo-siachen-nubra-saltoro", craft="precision")
+
+# ---------------------------------------------------------------- World Regions, Water Bodies & Places (m-MCQ, m-stmt)
+M("World Regions, Water Bodies & Places", "medium",
+  "Which strait, lying between Yemen on the Arabian Peninsula and Djibouti and Eritrea in Africa, links the Red Sea with the Gulf of Aden?",
+  "अरब प्रायद्वीप पर यमन और अफ़्रीका में जिबूती तथा इरिट्रिया के बीच स्थित कौन-सा जलडमरूमध्य लाल सागर को अदन की खाड़ी से जोड़ता है?",
+  ["Strait of Hormuz", "Bab-el-Mandeb", "Strait of Tiran", "Gulf of Suez"],
+  ["होर्मुज़ जलडमरूमध्य", "बाब-अल-मंदेब", "तिरान जलडमरूमध्य", "स्वेज़ की खाड़ी"],
+  1,
+  "The Bab-el-Mandeb, about 30 kilometres wide at its narrowest, is the southern gate of the Red Sea, so every ship using the Suez Canal between Europe and Asia passes through it; when attacks on shipping from Yemen began in late 2023, many lines diverted round the Cape of Good Hope, adding days to voyages and raising freight and insurance costs, including for Indian trade. "
+  "The Strait of Hormuz links the Persian Gulf with the Gulf of Oman; the Strait of Tiran leads from the Red Sea into the Gulf of Aqaba; and the Gulf of Suez is the Red Sea's north-western arm, ending at the canal.",
+  "बाब-अल-मंदेब, जो अपने सबसे संकरे बिंदु पर लगभग 30 किलोमीटर चौड़ा है, लाल सागर का दक्षिणी द्वार है, इसलिए यूरोप और एशिया के बीच स्वेज़ नहर का उपयोग करने वाला हर जहाज़ इससे गुज़रता है; जब 2023 के अंत में यमन से जहाज़ों पर हमले शुरू हुए, तो कई कंपनियों ने जहाज़ उत्तमाशा अंतरीप के रास्ते मोड़े, जिससे यात्राएँ कई दिन लंबी हुईं और भारतीय व्यापार समेत भाड़ा और बीमा लागत बढ़ी। "
+  "होर्मुज़ जलडमरूमध्य फ़ारस की खाड़ी को ओमान की खाड़ी से जोड़ता है; तिरान जलडमरूमध्य लाल सागर से अक़बा की खाड़ी में ले जाता है; और स्वेज़ की खाड़ी लाल सागर की उत्तर-पश्चिमी भुजा है, जो नहर पर समाप्त होती है।",
+  f"{FHG}, chapter on international trade; Ministry of External Affairs.",
+  "l3-t4-geo-bab-el-mandeb", pos=1, craft="application")
+
+S("World Regions, Water Bodies & Places", "medium", "Consider the following statements about Tuvalu:",
+  "तुवालु के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is a Pacific island nation made up of low-lying atolls and reef islands.",
+   "Under the Falepili Union treaty, Australia offers a special visa pathway for Tuvaluan citizens to live, work and study in Australia.",
+   "Under the same treaty, Tuvalu has become a part of Australian territory."],
+  ["यह निचले प्रवाल-वलय द्वीपों (एटॉल) और भित्ति द्वीपों से बना एक प्रशांत द्वीपीय देश है।",
+   "फ़ालेपिली संघ संधि के अंतर्गत ऑस्ट्रेलिया तुवालु के नागरिकों को ऑस्ट्रेलिया में रहने, काम करने और पढ़ने के लिए विशेष वीज़ा मार्ग देता है।",
+   "इसी संधि के अंतर्गत तुवालु ऑस्ट्रेलियाई राज्य-क्षेत्र का भाग बन गया है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Tuvalu's nine small islands rise only a few metres above the sea, so sea-level rise, storm surges and salt in its groundwater threaten its existence; the Falepili Union, signed in 2023 and in force from 2024, lets a limited number of Tuvaluans each year move to Australia, and commits Australia to help Tuvalu in disasters and on security. "
+  "Statement 3 is wrong: Tuvalu remains a sovereign state -- indeed in 2023 it amended its constitution to declare that its statehood will continue even if its land is lost to the sea, a claim it hopes other countries will recognise. The treaty is often cited as the first agreement to offer 'mobility with dignity' to a people facing climate displacement.",
+  "कथन 1 और 2 सही हैं। तुवालु के नौ छोटे द्वीप समुद्र से कुछ ही मीटर ऊँचे हैं, इसलिए समुद्र-तल वृद्धि, तूफ़ानी लहरें और उसके भूजल में खारापन उसके अस्तित्व के लिए ख़तरा हैं; 2023 में हस्ताक्षरित और 2024 से लागू फ़ालेपिली संघ हर वर्ष सीमित संख्या में तुवालुवासियों को ऑस्ट्रेलिया जाने देता है, और ऑस्ट्रेलिया को आपदाओं और सुरक्षा में तुवालु की सहायता के लिए वचनबद्ध करता है। "
+  "कथन 3 ग़लत है: तुवालु एक संप्रभु राज्य बना हुआ है -- वस्तुतः 2023 में उसने अपने संविधान में संशोधन कर घोषित किया कि उसकी भूमि समुद्र में डूब जाए तब भी उसका राज्यत्व बना रहेगा, एक ऐसा दावा जिसे वह चाहता है कि अन्य देश मान्यता दें। इस संधि को अक्सर जलवायु-विस्थापन झेल रहे लोगों को 'गरिमा के साथ आवागमन' देने वाला पहला समझौता बताया जाता है।",
+  "Australia-Tuvalu Falepili Union Treaty (2023); Ministry of External Affairs; IPCC Sixth Assessment Report (small islands).",
+  "l3-t4-geo-tuvalu-falepili-union", craft="linkage")
+
+# ---------------------------------------------------------------- Indian Rivers, Lakes & Wetlands (m-stmt)
+S("Indian Rivers, Lakes & Wetlands", "medium", "Consider the following statements about two rivers of southern Tamil Nadu:",
+  "दक्षिणी तमिलनाडु की दो नदियों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Tamirabarani rises in the Agasthyamalai hills of the Western Ghats and flows into the Gulf of Mannar.",
+   "The Vaigai rises in the Eastern Ghats and flows north into the Bay of Bengal near Chennai.",
+   "Both rivers are tributaries of the Kaveri."],
+  ["ताम्रपर्णी पश्चिमी घाट की अगस्त्यमलै पहाड़ियों से निकलती है और मन्नार की खाड़ी में गिरती है।",
+   "वैगई पूर्वी घाट से निकलती है और उत्तर की ओर बहकर चेन्नई के पास बंगाल की खाड़ी में गिरती है।",
+   "दोनों नदियाँ कावेरी की सहायक नदियाँ हैं।"],
+  C3, 0,
+  "Only statement 1 is correct. The Tamirabarani, fed by both monsoons in the high Agasthyamalai region, is one of Tamil Nadu's few perennial rivers; it waters Tirunelveli and Thoothukudi districts and meets the sea at Punnaikayal, close to Korkai, the old port of the Pandyas. "
+  "Statement 2 is wrong: the Vaigai rises in the Varushanad hills of the Western Ghats, flows east past Madurai, and is used up so heavily for irrigation that it usually ends in the big tank of Ramanathapuram, near the Palk Bay, before reaching the sea. Statement 3 is wrong: both are independent rivers draining their own basins south of the Kaveri.",
+  "केवल कथन 1 सही है। ऊँचे अगस्त्यमलै क्षेत्र में दोनों मानसूनों से पोषित ताम्रपर्णी तमिलनाडु की कुछ बारहमासी नदियों में से एक है; यह तिरुनेलवेली और थूथुकुडी ज़िलों को सींचती है और पांड्यों के पुराने बंदरगाह कोरकै के पास पुन्नैकायल पर समुद्र से मिलती है। "
+  "कथन 2 ग़लत है: वैगई पश्चिमी घाट की वरुशनाड पहाड़ियों से निकलती है, पूर्व की ओर मदुरै से होकर बहती है, और सिंचाई में इतनी अधिक उपयोग होती है कि प्रायः समुद्र तक पहुँचने से पहले पाक खाड़ी के पास रामनाथपुरम के बड़े तालाब में समाप्त हो जाती है। कथन 3 ग़लत है: दोनों कावेरी के दक्षिण में अपने-अपने बेसिन वाली स्वतंत्र नदियाँ हैं।",
+  f"{IPE}, chapter on drainage system; Central Water Commission.",
+  "l3-t4-geo-tamirabarani-vaigai", craft="precision")
+
+# ---------------------------------------------------------------- Geomorphology & Earth's Interior (m-stmt)
+S("Geomorphology & Earth's Interior", "medium", "Consider the following statements about the work of rivers:",
+  "नदियों के कार्य के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["River capture takes place when a more vigorously eroding stream cuts back headward into the basin of another and diverts its upper waters.",
+   "A knick point is a sharp break in the long profile of a river, often marked by a waterfall or rapids.",
+   "When a river is rejuvenated, by uplift of the land or a fall in sea level, new knick points form and migrate upstream."],
+  ["नदी-अपहरण तब होता है जब अधिक तीव्रता से अपरदन करने वाली धारा शीर्ष की ओर कटाव करते हुए दूसरी धारा के बेसिन में घुस जाती है और उसके ऊपरी जल को मोड़ लेती है।",
+   "निक बिंदु किसी नदी की अनुदैर्ध्य परिच्छेदिका में एक तीव्र विच्छेद है, जो प्रायः जलप्रपात या क्षिप्रिकाओं से चिह्नित होता है।",
+   "जब किसी नदी का पुनर्युवन होता है, भूमि के उत्थान या समुद्र-तल के गिरने से, तो नए निक बिंदु बनते हैं और ऊपर की ओर खिसकते हैं।"],
+  C3, 2,
+  "All three statements are correct. A stream with a steeper gradient or softer rocks erodes headward faster and can breach the divide, 'beheading' its neighbour, whose lower course is left as a misfit stream in an oversized valley -- a process geographers also call river piracy. "
+  "A knick point marks where the river is still adjusting its profile, typically where a hard rock band crosses its course or where a fall in base level has steepened the lower course; after rejuvenation, the knick point retreats upstream as the river cuts down, leaving incised meanders and terraces behind -- features seen on several peninsular rivers that drop off the plateau edge.",
+  "तीनों कथन सही हैं। अधिक ढाल या नरम चट्टानों वाली धारा शीर्ष की ओर तेज़ी से अपरदन करती है और जल-विभाजक को तोड़कर अपनी पड़ोसी धारा का 'सिर काट' सकती है, जिसका निचला मार्ग बहुत बड़ी घाटी में एक बेमेल धारा के रूप में रह जाता है -- इस प्रक्रिया को भूगोलवेत्ता नदी-दस्युता भी कहते हैं। "
+  "निक बिंदु वह स्थान है जहाँ नदी अभी अपनी परिच्छेदिका को समायोजित कर रही है, प्रायः जहाँ कठोर चट्टान की पट्टी उसके मार्ग को काटती है या जहाँ आधार-तल गिरने से निचला मार्ग अधिक ढालू हो गया है; पुनर्युवन के बाद नदी के नीचे की ओर कटाव करने के साथ निक बिंदु ऊपर की ओर पीछे हटता है, और पीछे गहरे कटे विसर्प और वेदिकाएँ छोड़ जाता है -- ऐसे लक्षण पठार के किनारे से उतरने वाली कई प्रायद्वीपीय नदियों पर दिखते हैं।",
+  f"{FPG}, chapter on landforms and their evolution.",
+  "l3-t4-geo-river-capture-knick-point", craft="inference")
+
+write("gs_l3_t4_d.sql")

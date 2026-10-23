@@ -1,0 +1,284 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 4 (GS Integrated Test 4) -- part B: History (16) (upsc_l3_cell_targets.mjs 4).
+History cells: Modern e-MCQ, e-stmt, h-stmt, m-MCQ, m-stmt x2; Ancient e-MCQ, e-stmt, h-stmt, m-MCQ, m-stmt x2;
+Medieval m-MCQ, m-stmt, m-pairs; Music & Dance h-pairs.
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Tests 1-3, and is one none of them
+tests: Usha Mehta's Congress Radio; Kattabomman and Velu Thampi; the Tripuri crisis of 1939; the Azad Hind government;
+Gandhi's Kaisar-i-Hind medal and the surrender of titles; P. C. Ray, Tata Steel's Indian capital, the Punjab National Bank and
+Bhadravati; the Sangam emblems; Gondophares and St Thomas; Kashyapa Matanga, Kumarajiva and Bodhidharma; Sittanavasal;
+Parshvanatha's four vows, sallekhana and the Sthanakvasis; upasampada, uposatha, vassa and upasaka; Mian Mir and the
+Qadiris; the Ayyavole, Manigramam and Nanadesi merchant bodies; Barbosa, Tavernier, Manucci and Ralph Fitch; Tappa,
+Haveli Sangeet, Sopana Sangeetham and Abhang. MCQ keys are pinned."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "History"
+d.REQUIRE_CRAFT = True
+MOD = "NCERT Class XII, Themes in Indian History III; NCERT (old), Modern India"
+TH1 = "NCERT Class XII, Themes in Indian History I"
+TH2 = "NCERT Class XII, Themes in Indian History II"
+OP1 = "NCERT Class VI, Our Pasts I"
+OP2 = "NCERT Class VII, Our Pasts II"
+MUS = "NCERT Class XI, An Introduction to Indian Art; Sangeet Natak Akademi"
+
+# ================================================================ MODERN (6)
+M("Modern", "easy",
+  "During the Quit India movement, a secret radio station, the 'Congress Radio', broadcast news and nationalist messages from Bombay. It was run by:",
+  "भारत छोड़ो आंदोलन के दौरान एक गुप्त रेडियो स्टेशन, 'कांग्रेस रेडियो', बंबई से समाचार और राष्ट्रवादी संदेश प्रसारित करता था। इसे कौन चलाती थीं?",
+  ["Usha Mehta", "Aruna Asaf Ali", "Sucheta Kripalani", "Matangini Hazra"],
+  ["उषा मेहता", "अरुणा आसफ़ अली", "सुचेता कृपलानी", "मातंगिनी हाज़रा"],
+  0,
+  "Usha Mehta, then a twenty-two-year-old student, ran the Congress Radio with a few colleagues from August 1942, moving the transmitter from place to place to avoid detection; Ram Manohar Lohia and other underground leaders broadcast on it until the police traced it in November 1942 and she was imprisoned. "
+  "The others were also heroines of 1942: Aruna Asaf Ali hoisted the Congress flag at the Gowalia Tank maidan on 9 August and then led the underground; Sucheta Kripalani organised the movement's women's wing in hiding; and Matangini Hazra, an elderly peasant woman, was shot leading a procession at Tamluk in Midnapore.",
+  "उषा मेहता, जो तब बाईस वर्ष की छात्रा थीं, अगस्त 1942 से कुछ साथियों के साथ कांग्रेस रेडियो चलाती रहीं और पकड़े जाने से बचने के लिए ट्रांसमीटर जगह-जगह ले जाती रहीं; राम मनोहर लोहिया और अन्य भूमिगत नेता इस पर बोलते रहे, जब तक नवंबर 1942 में पुलिस ने इसका पता नहीं लगा लिया और उन्हें जेल हुई। "
+  "बाक़ी भी 1942 की नायिकाएँ थीं: अरुणा आसफ़ अली ने 9 अगस्त को गोवालिया टैंक मैदान में कांग्रेस का झंडा फहराया और फिर भूमिगत आंदोलन का नेतृत्व किया; सुचेता कृपलानी ने छिपकर आंदोलन की महिला शाखा संगठित की; और वृद्ध किसान महिला मातंगिनी हाज़रा मिदनापुर के तमलुक में एक जुलूस का नेतृत्व करते हुए गोली से मारी गईं।",
+  MOD + "; Ministry of Culture, Quit India movement records.",
+  "l3-t4-his-usha-mehta-congress-radio", pos=0, craft="recall")
+
+S("Modern", "easy", "Consider the following statements about early resistance to the East India Company in the south:",
+  "दक्षिण में ईस्ट इंडिया कंपनी के प्रारंभिक प्रतिरोध के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Veerapandiya Kattabomman, the palayakkarar of Panchalankurichi, defied the Company's demands for tribute and was hanged in 1799.",
+   "Velu Thampi, the Dalawa of Travancore, called on the people to rise against the British in the Kundara Proclamation of 1809."],
+  ["पांचालंकुरिची के पालयक्कारर वीरपांडिय कट्टबोम्मन ने कंपनी की कर-माँगों की अवहेलना की और 1799 में उन्हें फाँसी दी गई।",
+   "त्रावणकोर के दलवा वेलु तंपी ने 1809 की कुंडरा उद्घोषणा में लोगों से अंग्रेज़ों के विरुद्ध उठ खड़े होने का आह्वान किया।"],
+  T2, 2,
+  "Both statements are correct. The palayakkarars (poligars) were military chiefs of the old Nayaka order in Tamil country; when the Company took over the collection of their tribute, Kattabomman refused to submit, and after his capture he was hanged at Kayathar -- the first of the Poligar wars, followed in 1800-01 by a wider rising under the Marudu brothers. "
+  "In Travancore, the subsidiary alliance and the Resident's interference provoked the Dalawa (chief minister) Velu Thampi, whose proclamation at Kundara in 1809 called for resistance; the revolt was crushed and he died rather than surrender. Both figures are remembered as early heroes of resistance in the south.",
+  "दोनों कथन सही हैं। पालयक्कारर (पोलिगार) तमिल क्षेत्र में पुरानी नायक व्यवस्था के सैनिक सरदार थे; जब कंपनी ने उनके कर की वसूली अपने हाथ में ली, कट्टबोम्मन ने झुकने से इनकार किया, और पकड़े जाने के बाद उन्हें कयातार में फाँसी दी गई -- यह पहला पोलिगार युद्ध था, जिसके बाद 1800-01 में मरुदु भाइयों के नेतृत्व में बड़ा विद्रोह हुआ। "
+  "त्रावणकोर में सहायक संधि और रेज़िडेंट के हस्तक्षेप ने दलवा (मुख्यमंत्री) वेलु तंपी को भड़काया, जिनकी 1809 की कुंडरा उद्घोषणा ने प्रतिरोध का आह्वान किया; विद्रोह कुचल दिया गया और उन्होंने आत्मसमर्पण के बजाय मृत्यु चुनी। दोनों दक्षिण में प्रतिरोध के आरंभिक नायकों के रूप में याद किए जाते हैं।",
+  MOD + "; Tamil Nadu and Kerala State Archives.",
+  "l3-t4-his-kattabomman-velu-thampi", craft="recall")
+
+S("Modern", "hard", "With reference to the crisis in the Indian National Congress in 1939, consider the following statements:",
+  "1939 में भारतीय राष्ट्रीय कांग्रेस के संकट के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Subhas Chandra Bose was re-elected Congress President by defeating Pattabhi Sitaramayya, whom Gandhi had backed.",
+   "At the Tripuri session, the Congress passed a resolution asking the President to constitute the Working Committee in accordance with Gandhi's wishes.",
+   "Bose continued as Congress President for the rest of his term and formed the Forward Bloc while holding that office."],
+  ["सुभाष चंद्र बोस पट्टाभि सीतारमैया को हराकर, जिन्हें गांधीजी का समर्थन था, फिर से कांग्रेस अध्यक्ष चुने गए।",
+   "त्रिपुरी अधिवेशन में कांग्रेस ने प्रस्ताव पारित कर अध्यक्ष से गांधीजी की इच्छा के अनुसार कार्यसमिति गठित करने को कहा।",
+   "बोस अपने कार्यकाल के शेष समय तक कांग्रेस अध्यक्ष बने रहे और इसी पद पर रहते हुए फ़ॉरवर्ड ब्लॉक बनाया।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. In January 1939 Bose won the presidential contest against Pattabhi Sitaramayya, and Gandhi called the result his own defeat; at Tripuri, near Jabalpur, in March, Govind Ballabh Pant's resolution reaffirmed faith in Gandhi's leadership and asked the President to nominate the Working Committee according to his wishes -- which left Bose unable to form a committee of his choice. "
+  "Statement 3 is wrong: after failing to reach agreement with Gandhi, Bose resigned in April 1939 and Rajendra Prasad became President; only then did Bose form the Forward Bloc, in May 1939, as a left grouping within the Congress, and he was later debarred from Congress office for defying its directives.",
+  "कथन 1 और 2 सही हैं। जनवरी 1939 में बोस ने अध्यक्ष पद का चुनाव पट्टाभि सीतारमैया के विरुद्ध जीता, और गांधीजी ने परिणाम को अपनी हार कहा; मार्च में जबलपुर के पास त्रिपुरी में गोविंद बल्लभ पंत के प्रस्ताव ने गांधीजी के नेतृत्व में आस्था दोहराई और अध्यक्ष से उनकी इच्छा के अनुसार कार्यसमिति मनोनीत करने को कहा -- जिससे बोस अपनी पसंद की समिति नहीं बना सके। "
+  "कथन 3 ग़लत है: गांधीजी से सहमति न बन पाने पर बोस ने अप्रैल 1939 में त्यागपत्र दे दिया और राजेंद्र प्रसाद अध्यक्ष बने; इसके बाद ही बोस ने मई 1939 में कांग्रेस के भीतर एक वामपंथी समूह के रूप में फ़ॉरवर्ड ब्लॉक बनाया, और उसके निर्देशों की अवहेलना के कारण बाद में उन्हें कांग्रेस के पदों से वंचित कर दिया गया।",
+  MOD + "; Indian National Congress, Report of the 52nd Session, Tripuri (1939).",
+  "l3-t4-his-tripuri-1939-bose-resignation", craft="linkage")
+
+M("Modern", "medium",
+  "With reference to the Provisional Government of Free India (Azad Hind) proclaimed in October 1943, which one of the following is correct?",
+  "अक्टूबर 1943 में घोषित स्वतंत्र भारत की अस्थायी सरकार (आज़ाद हिंद) के संदर्भ में, निम्नलिखित में से कौन-सा सही है?",
+  ["It was proclaimed at Tokyo by Rash Behari Bose, who then handed it over to Subhas Chandra Bose",
+   "It declared war on Britain and the United States",
+   "It was recognised as a government-in-exile by the Soviet Union and the United States",
+   "Its army captured Imphal and Kohima in 1944 and held them until the end of the war"],
+  ["इसे टोक्यो में रासबिहारी बोस ने घोषित किया, जिन्होंने फिर इसे सुभाष चंद्र बोस को सौंप दिया",
+   "इसने ब्रिटेन और संयुक्त राज्य अमेरिका के विरुद्ध युद्ध की घोषणा की",
+   "सोवियत संघ और संयुक्त राज्य अमेरिका ने इसे निर्वासित सरकार के रूप में मान्यता दी",
+   "इसकी सेना ने 1944 में इंफाल और कोहिमा पर कब्ज़ा किया और युद्ध के अंत तक उन्हें बनाए रखा"],
+  1,
+  "Subhas Chandra Bose proclaimed the Provisional Government at Singapore on 21 October 1943, as its head of state, prime minister and minister of war, and within days it declared war on Britain and the United States. Rash Behari Bose had earlier led the Indian Independence League and handed the movement to Subhas in July 1943, but he did not proclaim the government at Tokyo. "
+  "It was recognised by Japan, Germany, Italy and their allies -- not by the Soviet Union or the United States -- and Japan placed the Andaman and Nicobar Islands under its nominal charge, where Bose hoisted the tricolour at Port Blair in December 1943. The INA's advance into Manipur and Naga Hills in 1944 failed at the sieges of Imphal and Kohima.",
+  "सुभाष चंद्र बोस ने 21 अक्टूबर 1943 को सिंगापुर में राष्ट्राध्यक्ष, प्रधानमंत्री और युद्ध मंत्री के रूप में अस्थायी सरकार की घोषणा की, और कुछ ही दिनों में इसने ब्रिटेन और संयुक्त राज्य अमेरिका के विरुद्ध युद्ध घोषित किया। रासबिहारी बोस पहले इंडियन इंडिपेंडेंस लीग का नेतृत्व कर चुके थे और जुलाई 1943 में आंदोलन सुभाष को सौंप चुके थे, पर उन्होंने टोक्यो में सरकार की घोषणा नहीं की। "
+  "इसे जापान, जर्मनी, इटली और उनके सहयोगियों ने मान्यता दी -- सोवियत संघ या संयुक्त राज्य अमेरिका ने नहीं -- और जापान ने अंडमान और निकोबार द्वीप इसके नाममात्र के अधिकार में दिए, जहाँ बोस ने दिसंबर 1943 में पोर्ट ब्लेयर में तिरंगा फहराया। 1944 में मणिपुर और नागा पहाड़ियों में INA का अभियान इंफाल और कोहिमा की घेराबंदी में विफल रहा।",
+  MOD + "; Ministry of Culture, Netaji Subhas Chandra Bose papers.",
+  "l3-t4-his-azad-hind-provisional-govt", pos=1, craft="precision")
+
+S("Modern", "medium", "Consider the following statements about the renunciation of British honours by Indian leaders:",
+  "भारतीय नेताओं द्वारा ब्रिटिश सम्मानों के त्याग के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Gandhi returned his Kaisar-i-Hind medal in 1920, during the Khilafat and Non-Cooperation agitation.",
+   "Rabindranath Tagore returned his Nobel Prize in protest against the Jallianwala Bagh massacre.",
+   "The surrender of titles and honorary offices was part of the programme of the Swadeshi movement of 1905-08."],
+  ["गांधीजी ने 1920 में, ख़िलाफ़त और असहयोग आंदोलन के दौरान, अपना कैसर-ए-हिंद पदक लौटा दिया।",
+   "रवींद्रनाथ टैगोर ने जलियाँवाला बाग़ हत्याकांड के विरोध में अपना नोबेल पुरस्कार लौटा दिया।",
+   "उपाधियों और मानद पदों का त्याग 1905-08 के स्वदेशी आंदोलन के कार्यक्रम का भाग था।"],
+  C3, 0,
+  "Only statement 1 is correct. Gandhi had received the Kaisar-i-Hind gold medal for his ambulance work in South Africa; in August 1920 he returned it, with his Boer War and Zulu War medals, in a letter to the Viceroy explaining that the government's conduct over the Punjab and the Khilafat had forfeited his loyalty. "
+  "Statement 2 is wrong: Tagore renounced his knighthood, not his Nobel Prize, writing to the Viceroy in May 1919 that badges of honour had become a shame in the context of humiliation. Statement 3 is wrong: the surrender of titles and honorary offices was the first item of the Non-Cooperation programme adopted by the Congress in 1920; the Swadeshi movement relied on boycott of foreign goods, national education and self-help.",
+  "केवल कथन 1 सही है। गांधीजी को दक्षिण अफ़्रीका में एम्बुलेंस कार्य के लिए कैसर-ए-हिंद स्वर्ण पदक मिला था; अगस्त 1920 में उन्होंने बोअर युद्ध और ज़ुलू युद्ध के पदकों के साथ उसे लौटा दिया, और वायसराय को पत्र में समझाया कि पंजाब और ख़िलाफ़त पर सरकार के आचरण ने उनकी निष्ठा खो दी है। "
+  "कथन 2 ग़लत है: टैगोर ने नोबेल पुरस्कार नहीं, अपनी नाइटहुड (सर की उपाधि) त्यागी, और मई 1919 में वायसराय को लिखा कि अपमान के संदर्भ में सम्मान के तमग़े लज्जा बन गए हैं। कथन 3 ग़लत है: उपाधियों और मानद पदों का त्याग 1920 में कांग्रेस द्वारा अपनाए गए असहयोग कार्यक्रम का पहला बिंदु था; स्वदेशी आंदोलन विदेशी वस्तुओं के बहिष्कार, राष्ट्रीय शिक्षा और आत्मनिर्भरता पर टिका था।",
+  MOD + "; Collected Works of Mahatma Gandhi, vol. 18.",
+  "l3-t4-his-kaisar-i-hind-titles", craft="linkage")
+
+S("Modern", "medium", "With reference to Indian enterprise in the colonial period, consider the following statements:",
+  "औपनिवेशिक काल में भारतीय उद्यम के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Bengal Chemical and Pharmaceutical Works was founded by the chemist Prafulla Chandra Ray.",
+   "The Tata Iron and Steel Company, founded in 1907, raised its capital from Indian investors.",
+   "The Punjab National Bank was founded at Lahore in the 1890s, with Lala Lajpat Rai among its founders.",
+   "The Mysore Iron Works at Bhadravati was set up by the Mysore State under the guidance of M. Visvesvaraya."],
+  ["बंगाल केमिकल एंड फ़ार्मास्युटिकल वर्क्स की स्थापना रसायनशास्त्री प्रफुल्ल चंद्र राय ने की।",
+   "1907 में स्थापित टाटा आयरन एंड स्टील कंपनी ने अपनी पूँजी भारतीय निवेशकों से जुटाई।",
+   "पंजाब नेशनल बैंक की स्थापना 1890 के दशक में लाहौर में हुई, और लाला लाजपत राय उसके संस्थापकों में थे।",
+   "भद्रावती का मैसूर आयरन वर्क्स मैसूर राज्य ने एम. विश्वेश्वरैया के मार्गदर्शन में स्थापित किया।"],
+  C4, 3,
+  "All four statements are correct. P. C. Ray, a professor at Presidency College and the author of A History of Hindu Chemistry, started Bengal Chemical in the 1890s to show that Indians could manufacture drugs and chemicals themselves; when the Tatas could not raise money in London, the steel company's capital was subscribed in India within weeks, in the swadeshi mood of the time, and production began at Sakchi, later Jamshedpur. "
+  "The Punjab National Bank, opened in 1895 by Dyal Singh Majithia, Lajpat Rai and others, was among the first banks run entirely with Indian capital and management; and the Mysore State's iron works at Bhadravati, begun in 1923 under the engineer-statesman Visvesvaraya, used charcoal from the Malnad forests. Together they show economic nationalism turning into enterprise well before 1947.",
+  "चारों कथन सही हैं। प्रेसिडेंसी कॉलेज के प्रोफ़ेसर और 'ए हिस्ट्री ऑफ़ हिंदू केमिस्ट्री' के लेखक पी. सी. राय ने 1890 के दशक में बंगाल केमिकल शुरू किया, यह दिखाने के लिए कि भारतीय स्वयं दवाइयाँ और रसायन बना सकते हैं; जब टाटा लंदन में पैसा नहीं जुटा सके, तो उस समय के स्वदेशी माहौल में इस्पात कंपनी की पूँजी भारत में कुछ ही हफ़्तों में भर गई, और उत्पादन साकची, बाद के जमशेदपुर, में शुरू हुआ। "
+  "दयाल सिंह मजीठिया, लाजपत राय और अन्य द्वारा 1895 में खोला गया पंजाब नेशनल बैंक पूरी तरह भारतीय पूँजी और प्रबंधन से चलने वाले पहले बैंकों में था; और भद्रावती में मैसूर राज्य का लौह कारख़ाना, जो 1923 में इंजीनियर-राजनेता विश्वेश्वरैया के अधीन शुरू हुआ, मलनाड के जंगलों के लकड़ी के कोयले का उपयोग करता था। ये मिलकर दिखाते हैं कि आर्थिक राष्ट्रवाद 1947 से बहुत पहले उद्यम में बदल रहा था।",
+  MOD + "; Tata Steel and Punjab National Bank corporate histories; Visvesvaraya Iron and Steel Plant (SAIL).",
+  "l3-t4-his-colonial-indian-enterprise", craft="multi")
+
+# ================================================================ ANCIENT (6)
+M("Ancient", "easy",
+  "The three ruling houses of the Sangam age are often identified by their emblems. Which one of the following is correctly matched?",
+  "संगम युग के तीन शासक घरानों को प्रायः उनके प्रतीक-चिह्नों से पहचाना जाता है। निम्नलिखित में से कौन-सा सही सुमेलित है?",
+  ["Cheras -- fish", "Pandyas -- tiger", "Cholas -- bow and arrow", "Pandyas -- fish"],
+  ["चेर -- मछली", "पांड्य -- बाघ", "चोल -- धनुष-बाण", "पांड्य -- मछली"],
+  3,
+  "The Pandyas, who ruled from Madurai with Korkai as their port, bore the fish (the carp) on their banner and coins; the Cholas, with Uraiyur and Puhar, the tiger; and the Cheras, with Vanji and Muziris, the bow. "
+  "The emblems appear on coins and in Sangam poems, and the three houses -- the muvendar, 'three crowned kings' -- are named together already in Ashoka's second rock edict as the Chodas, Pandyas and Keralaputras. The Chola tiger later stood on the coins of Rajaraja and his successors.",
+  "मदुरै से शासन करने वाले पांड्यों का, जिनका बंदरगाह कोरकै था, झंडे और सिक्कों पर प्रतीक मछली (कार्प) था; उरैयूर और पुहार वाले चोलों का बाघ; और वंजी और मुज़िरिस वाले चेरों का धनुष। "
+  "ये प्रतीक सिक्कों और संगम कविताओं में मिलते हैं, और ये तीनों घराने -- मूवेंदर, 'तीन मुकुटधारी राजा' -- अशोक के दूसरे शिलालेख में ही चोड, पांड्य और केरलपुत्र के रूप में साथ-साथ उल्लिखित हैं। चोल बाघ बाद में राजराज और उनके उत्तराधिकारियों के सिक्कों पर भी रहा।",
+  OP1 + "; Tamil Nadu State Department of Archaeology.",
+  "l3-t4-his-sangam-dynasty-emblems", pos=3, craft="recall")
+
+S("Ancient", "easy", "Consider the following statements:",
+  "निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Gondophares was an Indo-Parthian king who ruled in the north-west in the first century CE.",
+   "Christian tradition, recorded in the 'Acts of Thomas', links the apostle Thomas's mission in India with his court."],
+  ["गोंडोफ़र्नीज़ एक हिंद-पार्थियन राजा था जिसने प्रथम शताब्दी ई. में उत्तर-पश्चिम में शासन किया।",
+   "'एक्ट्स ऑफ़ थॉमस' में दर्ज ईसाई परंपरा भारत में प्रेरित थॉमस के मिशन को उसके दरबार से जोड़ती है।"],
+  T2, 2,
+  "Both statements are correct. The Indo-Parthians (Pahlavas) followed the Shakas into the north-west, and Gondophares ruled over Gandhara and Arachosia; his name is known from coins and from the Takht-i-Bahi inscription near Peshawar. "
+  "The 'Acts of Thomas', a Syriac text of the third century, says the apostle came to the court of a king called Gudnaphar to build him a palace -- the coins proved such a king really existed. Christians of Kerala trace their church to Thomas's later preaching on the Malabar coast.",
+  "दोनों कथन सही हैं। हिंद-पार्थियन (पह्लव) शकों के बाद उत्तर-पश्चिम में आए, और गोंडोफ़र्नीज़ ने गांधार और अराकोसिया पर शासन किया; उसका नाम सिक्कों और पेशावर के पास के तख़्त-ए-बाही अभिलेख से ज्ञात है। "
+  "तीसरी शताब्दी का सिरियाई ग्रंथ 'एक्ट्स ऑफ़ थॉमस' कहता है कि प्रेरित गुदनफ़र नामक राजा के दरबार में उसके लिए महल बनाने आए थे -- सिक्कों ने सिद्ध किया कि ऐसा राजा सचमुच था। केरल के ईसाई अपने चर्च का आरंभ मालाबार तट पर थॉमस के बाद के प्रचार से मानते हैं।",
+  TH1 + "; Archaeological Survey of India.",
+  "l3-t4-his-gondophares-st-thomas", craft="recall")
+
+S("Ancient", "hard", "With reference to the spread of Buddhism to China, consider the following statements:",
+  "चीन में बौद्ध धर्म के प्रसार के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Chinese tradition holds that the Indian monks Kashyapa Matanga and Dharmaratna reached Luoyang in the first century CE, where the White Horse Temple was built for them.",
+   "Kumarajiva was a Chinese pilgrim who studied at Nalanda and brought the texts of the Yogacara school back to China.",
+   "Bodhidharma, revered as the first patriarch of Chan (Zen) Buddhism, is traditionally said to have been a Chinese monk who settled at Kanchipuram."],
+  ["चीनी परंपरा मानती है कि भारतीय भिक्षु कश्यप मातंग और धर्मरत्न प्रथम शताब्दी ई. में लुओयांग पहुँचे, जहाँ उनके लिए श्वेत अश्व मंदिर बनाया गया।",
+   "कुमारजीव एक चीनी तीर्थयात्री थे जिन्होंने नालंदा में अध्ययन किया और योगाचार संप्रदाय के ग्रंथ चीन ले गए।",
+   "चान (ज़ेन) बौद्ध धर्म के प्रथम आचार्य माने जाने वाले बोधिधर्म को परंपरागत रूप से एक चीनी भिक्षु बताया जाता है जो कांचीपुरम में बस गए।"],
+  C3, 0,
+  "Only statement 1 is correct. The story of Emperor Ming's dream of a golden figure, and of the two monks who came with texts on a white horse, is how Chinese tradition dates Buddhism's arrival; the White Horse Temple at Luoyang still stands. "
+  "Statement 2 confuses two figures: Kumarajiva (fourth-fifth century) was born at Kucha in Central Asia to an Indian father, and became the great translator of Mahayana texts at Chang'an; the pilgrim who studied at Nalanda and brought Yogacara texts home was Xuanzang, in the seventh century. Statement 3 inverts the tradition: Bodhidharma is said to have been an Indian -- in later accounts a prince from Kanchipuram -- who went to China in the fifth or sixth century.",
+  "केवल कथन 1 सही है। सम्राट मिंग के सुनहरी आकृति वाले स्वप्न, और श्वेत अश्व पर ग्रंथ लेकर आए दो भिक्षुओं की कथा से ही चीनी परंपरा बौद्ध धर्म के आगमन की तिथि तय करती है; लुओयांग का श्वेत अश्व मंदिर आज भी है। "
+  "कथन 2 दो व्यक्तियों को मिला देता है: कुमारजीव (चौथी-पाँचवीं शताब्दी) मध्य एशिया के कूचा में एक भारतीय पिता से जन्मे थे, और चांगआन में महायान ग्रंथों के महान अनुवादक बने; नालंदा में पढ़कर योगाचार ग्रंथ घर ले जाने वाले तीर्थयात्री सातवीं शताब्दी के ह्वेनसांग थे। कथन 3 परंपरा को उलट देता है: बोधिधर्म को भारतीय बताया जाता है -- बाद के वृत्तांतों में कांचीपुरम का एक राजकुमार -- जो पाँचवीं या छठी शताब्दी में चीन गए।",
+  TH1 + "; Ministry of Culture, India-China cultural relations.",
+  "l3-t4-his-buddhism-china-matanga-kumarajiva", craft="precision")
+
+M("Ancient", "medium",
+  "The rock-cut cave at Sittanavasal in Tamil Nadu, known for the paintings of a lotus pond on its ceiling, was a shrine of:",
+  "तमिलनाडु में सित्तनवासल की शैलकृत गुफा, जो अपनी छत पर कमल-ताल के चित्रों के लिए जानी जाती है, किसका पूजा-स्थल थी?",
+  ["the Jains", "the Ajivikas", "Theravada Buddhists", "Pashupata Shaivas"],
+  ["जैनों का", "आजीविकों का", "थेरवादी बौद्धों का", "पाशुपत शैवों का"],
+  0,
+  "Sittanavasal, near Pudukkottai, is a Jain cave temple -- the Arivar Koil, 'temple of the arhats' -- with images of Tirthankaras carved in its shrine; a natural cavern on the same hill has stone beds cut for Jain monks, with early Tamil-Brahmi inscriptions. "
+  "Its ceiling paintings, usually dated to the Pandya period of the ninth century, show a lotus pond with fish, geese, elephants and men gathering flowers -- a Jain image of the blissful samavasarana -- and are among the finest surviving murals in the south after Ajanta. The Ajivikas are linked with the Barabar caves of Bihar, not with Tamil Nadu.",
+  "पुदुक्कोट्टै के पास सित्तनवासल एक जैन गुफा मंदिर है -- अरिवर कोयिल, 'अर्हतों का मंदिर' -- जिसके गर्भगृह में तीर्थंकरों की प्रतिमाएँ उकेरी गई हैं; उसी पहाड़ी की एक प्राकृतिक गुफा में जैन मुनियों के लिए पत्थर की शय्याएँ कटी हैं, जिन पर आरंभिक तमिल-ब्राह्मी अभिलेख हैं। "
+  "इसकी छत के चित्र, जो सामान्यतः नौवीं शताब्दी के पांड्य काल के माने जाते हैं, मछलियों, हंसों, हाथियों और फूल तोड़ते मनुष्यों वाला कमल-ताल दिखाते हैं -- आनंदमय समवसरण की एक जैन छवि -- और अजंता के बाद दक्षिण के सबसे अच्छे बचे भित्तिचित्रों में हैं। आजीविक बिहार की बराबर गुफाओं से जुड़े हैं, तमिलनाडु से नहीं।",
+  "Archaeological Survey of India: Sittanavasal; NCERT Class XI, An Introduction to Indian Art.",
+  "l3-t4-his-sittanavasal-jain-paintings", pos=0, craft="application")
+
+S("Ancient", "medium", "With reference to Jainism, consider the following statements:",
+  "जैन धर्म के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Parshvanatha taught four vows, to which Mahavira added a fifth, brahmacharya.",
+   "Sallekhana is the practice of voluntarily giving up food and drink when the end of life is near.",
+   "The Sthanakvasis are a Digambara sect known for their elaborate worship of images in temples."],
+  ["पार्श्वनाथ ने चार व्रत सिखाए, जिनमें महावीर ने पाँचवाँ, ब्रह्मचर्य, जोड़ा।",
+   "सल्लेखना जीवन का अंत निकट होने पर स्वेच्छा से भोजन और जल त्यागने की प्रथा है।",
+   "स्थानकवासी एक दिगंबर संप्रदाय हैं जो मंदिरों में मूर्तियों की विस्तृत पूजा के लिए जाने जाते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Jain tradition holds that Parshvanatha, the twenty-third Tirthankara, preached the chaturyama -- non-violence, truth, not stealing and non-possession -- and that Mahavira made chastity a separate fifth vow; and sallekhana, a gradual fast undertaken with the community's knowledge, is regarded as a spiritual end, not suicide -- in 2015 the Supreme Court stayed a High Court ruling that had made it punishable. "
+  "Statement 3 is wrong on both counts: the Sthanakvasis are a Svetambara branch that arose in the seventeenth century and reject image worship, meeting in plain halls (sthanakas) instead; the Terapanthis, an eighteenth-century offshoot of them, also reject images.",
+  "कथन 1 और 2 सही हैं। जैन परंपरा मानती है कि तेईसवें तीर्थंकर पार्श्वनाथ ने चातुर्याम -- अहिंसा, सत्य, अस्तेय और अपरिग्रह -- का उपदेश दिया और महावीर ने ब्रह्मचर्य को अलग पाँचवाँ व्रत बनाया; और समुदाय की जानकारी में धीरे-धीरे किया जाने वाला उपवास सल्लेखना आध्यात्मिक अंत माना जाता है, आत्महत्या नहीं -- 2015 में सर्वोच्च न्यायालय ने उस उच्च न्यायालय निर्णय पर रोक लगाई जिसने इसे दंडनीय बनाया था। "
+  "कथन 3 दोनों बातों में ग़लत है: स्थानकवासी सत्रहवीं शताब्दी में उभरी एक श्वेतांबर शाखा हैं जो मूर्ति-पूजा अस्वीकार करते हैं और इसके बजाय सादे भवनों (स्थानकों) में एकत्र होते हैं; उन्हीं से अठारहवीं शताब्दी में निकले तेरापंथी भी मूर्तियाँ अस्वीकार करते हैं।",
+  TH1 + "; " + OP1 + ".",
+  "l3-t4-his-jain-vows-sallekhana-sthanakvasi", craft="precision")
+
+S("Ancient", "medium", "With reference to early Buddhist monastic life, consider the following terms and their meanings:",
+  "आरंभिक बौद्ध मठीय जीवन के संदर्भ में, निम्नलिखित शब्दों और उनके अर्थों पर विचार कीजिए:",
+  ["Upasampada -- full ordination as a monk or nun",
+   "Uposatha -- the fortnightly observance at which the rules of discipline were recited",
+   "Vassa -- the rainy-season retreat, when monks stayed in one place",
+   "Upasaka -- a lay follower who supported the monks"],
+  ["उपसंपदा -- भिक्षु या भिक्षुणी के रूप में पूर्ण दीक्षा",
+   "उपोसथ -- पाक्षिक अनुष्ठान जिसमें अनुशासन के नियम पढ़े जाते थे",
+   "वस्स (वर्षावास) -- वर्षा ऋतु का एकांतवास, जब भिक्षु एक ही स्थान पर रहते थे",
+   "उपासक -- भिक्षुओं का भरण-पोषण करने वाला गृहस्थ अनुयायी"],
+  C4, 3,
+  "All four are correct. A novice entered the order by pabbajja (going forth) and became a full monk or nun by upasampada; on uposatha days, at the new and full moon, the monks of a locality gathered to recite the Patimokkha, the code of discipline, and confess lapses; during the three months of vassa they stopped wandering, which is how permanent monasteries grew out of rain-retreats; and the upasakas and upasikas, the lay men and women, gave food, robes and shelter in return for teaching. "
+  "These terms come from the Vinaya Pitaka, and they explain why the sangha could survive for centuries close to towns and trade routes.",
+  "चारों सही हैं। नवदीक्षित पब्बज्जा (प्रव्रज्या) से संघ में प्रवेश करता था और उपसंपदा से पूर्ण भिक्षु या भिक्षुणी बनता था; उपोसथ के दिनों, अमावस्या और पूर्णिमा को, किसी क्षेत्र के भिक्षु एकत्र होकर अनुशासन-संहिता पातिमोक्ख का पाठ करते और त्रुटियाँ स्वीकार करते थे; वस्स के तीन महीनों में वे विचरण रोक देते थे, और इसी से वर्षावासों से स्थायी विहार विकसित हुए; और उपासक और उपासिकाएँ, गृहस्थ पुरुष और स्त्रियाँ, उपदेश के बदले भोजन, वस्त्र और आश्रय देते थे। "
+  "ये शब्द विनय पिटक से आते हैं, और समझाते हैं कि संघ शहरों और व्यापार-मार्गों के पास सदियों तक क्यों टिका रह सका।",
+  TH1 + ".",
+  "l3-t4-his-buddhist-monastic-terms", craft="multi",
+  closing="How many of the above pairs are correctly matched?",
+  closing_hi="उपर्युक्त में से कितने युग्म सही सुमेलित हैं?")
+
+# ================================================================ MEDIEVAL (3)
+M("Medieval", "medium",
+  "Mian Mir, the Sufi of Lahore whom Dara Shikoh revered, and whom Sikh tradition credits with laying the foundation stone of the Harmandir Sahib, belonged to which order?",
+  "लाहौर के सूफ़ी मियाँ मीर, जिनका दारा शिकोह बहुत आदर करते थे, और जिन्हें सिख परंपरा हरमंदिर साहिब की आधारशिला रखने का श्रेय देती है, किस सिलसिले से थे?",
+  ["Chishti", "Suhrawardi", "Qadiri", "Naqshbandi"],
+  ["चिश्ती", "सुहरावर्दी", "क़ादिरी", "नक़्शबंदी"],
+  2,
+  "Mian Mir (died 1635) belonged to the Qadiri order, founded on the teachings of Abdul Qadir Jilani of Baghdad and established in India in the fifteenth century. Dara Shikoh became a disciple of Mian Mir's successor Mulla Shah, wrote a biography of the saint, and drew from this milieu his interest in the common ground of Sufism and the Upanishads. "
+  "The Naqshbandis of the same period, led by Ahmad Sirhindi, took the opposite line, urging strict orthodoxy at the Mughal court; the Chishtis, the oldest order in India, had their centres at Ajmer and Delhi, and the Suhrawardis at Multan.",
+  "मियाँ मीर (मृत्यु 1635) क़ादिरी सिलसिले से थे, जो बग़दाद के अब्दुल क़ादिर जीलानी की शिक्षाओं पर आधारित है और पंद्रहवीं शताब्दी में भारत में स्थापित हुआ। दारा शिकोह मियाँ मीर के उत्तराधिकारी मुल्ला शाह के शिष्य बने, उन्होंने संत की जीवनी लिखी, और इसी परिवेश से सूफ़ीवाद और उपनिषदों की साझा भूमि में उनकी रुचि बनी। "
+  "उसी काल के नक़्शबंदियों ने, अहमद सरहिंदी के नेतृत्व में, उलटी राह अपनाई और मुग़ल दरबार में कठोर रूढ़िवाद पर बल दिया; भारत के सबसे पुराने चिश्ती सिलसिले के केंद्र अजमेर और दिल्ली में थे, और सुहरावर्दियों का मुल्तान में।",
+  TH2 + "; " + OP2 + ".",
+  "l3-t4-his-mian-mir-qadiri", pos=2, craft="linkage")
+
+S("Medieval", "medium", "Consider the following statements about merchant bodies of early medieval South India:",
+  "आरंभिक मध्यकालीन दक्षिण भारत के व्यापारी संगठनों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 'Five Hundred' of Ayyavole was a body of merchants associated with Aihole in present-day Karnataka.",
+   "The Manigramam and the Nanadesi carried on trade within the peninsula and with Southeast Asia and China.",
+   "These bodies were departments of the Chola state, managed by royal officials."],
+  ["अय्यावोले के 'पाँच सौ' वर्तमान कर्नाटक के ऐहोल से जुड़ा व्यापारियों का एक संगठन था।",
+   "मणिग्रामम और नानादेसी प्रायद्वीप के भीतर और दक्षिण-पूर्व एशिया तथा चीन के साथ व्यापार करते थे।",
+   "ये संगठन चोल राज्य के विभाग थे, जिनका प्रबंध शाही अधिकारी करते थे।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. From about the ninth century, itinerant merchants organised themselves into large associations -- the Ayyavole 'Five Hundred' (Ainnurruvar), named after Aihole, the Manigramam and the Nanadesi -- with their own banners, armed guards and charters; their inscriptions are found from Karnataka and Tamil Nadu to Sri Lanka, Thailand and Sumatra, and the NCERT notes their trade with Southeast Asia and China. "
+  "Statement 3 is wrong: they were self-governing bodies of merchants, not organs of the state; Chola kings encouraged them because their trade brought revenue and supported overseas ventures, but did not run them.",
+  "कथन 1 और 2 सही हैं। लगभग नौवीं शताब्दी से घुमंतू व्यापारी बड़े संगठनों में संगठित हुए -- ऐहोल के नाम पर अय्यावोले के 'पाँच सौ' (ऐन्नूर्रुवर), मणिग्रामम और नानादेसी -- जिनके अपने ध्वज, सशस्त्र रक्षक और अधिकार-पत्र थे; उनके अभिलेख कर्नाटक और तमिलनाडु से लेकर श्रीलंका, थाईलैंड और सुमात्रा तक मिलते हैं, और NCERT दक्षिण-पूर्व एशिया और चीन के साथ उनके व्यापार का उल्लेख करती है। "
+  "कथन 3 ग़लत है: वे व्यापारियों के स्वशासी संगठन थे, राज्य के अंग नहीं; चोल राजाओं ने उन्हें प्रोत्साहित किया क्योंकि उनके व्यापार से राजस्व मिलता था और समुद्र-पार उपक्रमों को सहारा मिलता था, पर उनका संचालन नहीं किया।",
+  OP2 + ", chapter 'Towns, Traders and Craftspersons'.",
+  "l3-t4-his-ayyavole-manigramam-nanadesi", craft="precision")
+
+P("Medieval", "medium", "Consider the following pairs of European visitors and what they are known for:",
+  "यूरोपीय आगंतुकों और जिनके लिए वे जाने जाते हैं, उनके निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Duarte Barbosa : A Portuguese official who described Vijayanagara and the Malabar coast in the early sixteenth century",
+   "Jean-Baptiste Tavernier : A French jewel merchant who described the diamond mines of Golconda",
+   "Niccolao Manucci : A Venetian who served in Dara Shikoh's artillery and wrote the Storia do Mogor",
+   "Ralph Fitch : An English merchant who travelled through Akbar's empire in the 1580s"],
+  ["दुआर्ते बारबोसा : सोलहवीं शताब्दी के आरंभ में विजयनगर और मालाबार तट का वर्णन करने वाला एक पुर्तगाली अधिकारी",
+   "ज्यां-बैप्टिस्ट टैवर्नियर : गोलकुंडा की हीरा खानों का वर्णन करने वाला एक फ़्रांसीसी रत्न व्यापारी",
+   "निकोलाओ मनूची : दारा शिकोह के तोपख़ाने में सेवा करने वाला और 'स्तोरिया दो मोगोर' लिखने वाला एक वेनिसवासी",
+   "राल्फ़ फ़िच : 1580 के दशक में अकबर के साम्राज्य से होकर यात्रा करने वाला एक अंग्रेज़ व्यापारी"],
+  3,
+  "All four pairs are correct. Barbosa, who worked in the Portuguese factories of Kannur and Kochi, left one of the earliest European accounts of Vijayanagara's trade and customs; Tavernier made several voyages to India in the seventeenth century selling and buying gems, and his account of the Kollur diamond mines and of the Peacock Throne is a key source; Manucci came to India as a boy, served Dara Shikoh and later lived at Madras, and his Storia do Mogor gives a gossipy inside view of the Mughal court. "
+  "Ralph Fitch was among the first Englishmen to see India, travelling by land through Agra, Fatehpur Sikri and Bengal; his reports fed the interest that led to the founding of the East India Company in 1600.",
+  "चारों युग्म सही हैं। कण्णूर और कोच्चि के पुर्तगाली कारख़ानों में काम करने वाले बारबोसा ने विजयनगर के व्यापार और रीतियों के सबसे आरंभिक यूरोपीय वृत्तांतों में से एक छोड़ा; टैवर्नियर ने सत्रहवीं शताब्दी में रत्न ख़रीदने-बेचने के लिए कई बार भारत की यात्रा की, और कोल्लूर की हीरा खानों तथा मयूर सिंहासन का उसका वर्णन एक प्रमुख स्रोत है; मनूची बचपन में भारत आया, दारा शिकोह की सेवा की और बाद में मद्रास में रहा, और उसकी 'स्तोरिया दो मोगोर' मुग़ल दरबार का चटपटा भीतरी दृश्य देती है। "
+  "राल्फ़ फ़िच भारत देखने वाले पहले अंग्रेज़ों में था, जिसने आगरा, फ़तेहपुर सीकरी और बंगाल होते हुए स्थल मार्ग से यात्रा की; उसकी रिपोर्टों ने उस रुचि को बढ़ाया जिससे 1600 में ईस्ट इंडिया कंपनी की स्थापना हुई।",
+  TH2 + ", 'Through the Eyes of Travellers'.",
+  "l3-t4-his-european-visitors-barbosa-fitch", craft="recall")
+
+# ================================================================ MUSIC & DANCE (1)
+P("Music & Dance", "hard", "Consider the following pairs of musical traditions and their descriptions:",
+  "संगीत परंपराओं और उनके विवरणों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Tappa : A quick, ornamented vocal form that grew out of the songs of camel drivers of the Punjab region",
+   "Haveli Sangeet : Temple music of the Pushtimarg tradition, sung in shrines such as Nathdwara",
+   "Sopana Sangeetham : Devotional singing on the steps leading to the sanctum of Kerala temples",
+   "Abhang : Devotional verses of the Bengali Vaishnava saints, sung in their kirtans"],
+  ["टप्पा : तेज़, अलंकृत गायन-शैली जो पंजाब क्षेत्र के ऊँट-चालकों के गीतों से विकसित हुई",
+   "हवेली संगीत : पुष्टिमार्ग परंपरा का मंदिर-संगीत, जो नाथद्वारा जैसे मंदिरों में गाया जाता है",
+   "सोपान संगीतम् : केरल के मंदिरों में गर्भगृह की ओर जाने वाली सीढ़ियों पर किया जाने वाला भक्ति-गायन",
+   "अभंग : बंगाली वैष्णव संतों के भक्ति-पद, जो उनके कीर्तनों में गाए जाते हैं"],
+  2,
+  "The first three pairs are correct. Tappa took shape from the songs of camel drivers and was refined into a semi-classical form by Ghulam Nabi Shori at the court of Awadh; Haveli Sangeet is the dhrupad-based music of the Pushtimarg sect founded by Vallabhacharya, sung before the image of Shrinathji at Nathdwara and other havelis; and Sopana Sangeetham is sung, usually to the edakka drum, on the sopanam, the steps of the sanctum, as the doors open for worship. "
+  "The fourth pair is wrong: the abhang is the Marathi devotional verse of the Varkari saints -- Namdev, Eknath, Tukaram -- sung in praise of Vitthala at Pandharpur; the Bengali Vaishnavas of the Chaitanya tradition sang padavali kirtan.",
+  "पहले तीन युग्म सही हैं। टप्पा ऊँट-चालकों के गीतों से बना और अवध के दरबार में ग़ुलाम नबी शोरी ने इसे उपशास्त्रीय रूप दिया; हवेली संगीत वल्लभाचार्य द्वारा स्थापित पुष्टिमार्ग संप्रदाय का ध्रुपद-आधारित संगीत है, जो नाथद्वारा और अन्य हवेलियों में श्रीनाथजी की प्रतिमा के समक्ष गाया जाता है; और सोपान संगीतम् प्रायः इडक्का ढोल के साथ, पूजा के लिए द्वार खुलते समय, गर्भगृह की सीढ़ियों यानी सोपानम् पर गाया जाता है। "
+  "चौथा युग्म ग़लत है: अभंग वारकरी संतों -- नामदेव, एकनाथ, तुकाराम -- के मराठी भक्ति-पद हैं, जो पंढरपुर के विट्ठल की स्तुति में गाए जाते हैं; चैतन्य परंपरा के बंगाली वैष्णव पदावली कीर्तन गाते थे।",
+  MUS + ".",
+  "l3-t4-his-tappa-haveli-sopana-abhang", craft="precision")
+
+write("gs_l3_t4_b.sql")

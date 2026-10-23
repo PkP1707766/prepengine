@@ -1,0 +1,292 @@
+# -*- coding: utf-8 -*-
+"""Level 3 · Test 4 (GS Integrated Test 4) -- part A: Polity (15) (upsc_l3_cell_targets.mjs 4).
+Same cell plan as Tests 1-3.
+Every fact was grepped against the Level-2 digests, all Level-1 drafts and Level 3 Tests 1-3, and is one none of them
+tests: Shakti Vahini, Independent Thought, Arjun Panditrao Khotkar and Basheshar Nath; Article 131 and the West Bengal
+CBI suit (2024); Seventh Schedule entries on betting, State lotteries, electricity and stock exchanges; renunciation and
+deprivation of citizenship (Citizenship Act, sections 8 and 10); State official languages and representations (Articles
+345-347, 350); office of profit and Jaya Bachchan; election from two constituencies (RPA sections 33(7) and 70); the
+language of business in legislatures (Articles 120 and 210); the 105th Amendment and the Maratha case; the State
+Election Commissioner's independence (State of Goa, 2021); ULPIN; Fifteenth Finance Commission grants to rural local
+bodies; the Waqf (Amendment) Act, 2025; Article 73 and Ram Jawaya Kapur; Rev. Stainislaus and Article 27.
+MCQ keys are pinned (pos). One Statement-I/II/III row (SI3)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Polity"
+d.REQUIRE_CRAFT = True
+COI = "Constitution of India"
+SC = "Supreme Court of India"
+
+# ---------------------------------------------------------------- Judicial-Verdicts (e-pairs)
+P("Judicial-Verdicts", "easy", "Consider the following pairs of Supreme Court judgments and what they decided:",
+  "सर्वोच्च न्यायालय के निर्णयों और उनमें तय की गई बातों के निम्नलिखित युग्मों पर विचार कीजिए:",
+  ["Shakti Vahini (2018) : Khap panchayats cannot interfere with the marriage of two consenting adults",
+   "Independent Thought (2017) : Sexual intercourse by a man with his wife aged between 15 and 18 years is rape",
+   "Arjun Panditrao Khotkar (2020) : A certificate is a condition for admitting an electronic record as secondary evidence",
+   "Basheshar Nath (1959) : A citizen can give up a fundamental right by an agreement with the State"],
+  ["शक्ति वाहिनी (2018) : खाप पंचायतें दो सहमत वयस्कों के विवाह में हस्तक्षेप नहीं कर सकतीं",
+   "इंडिपेंडेंट थॉट (2017) : 15 से 18 वर्ष की आयु की पत्नी के साथ पुरुष द्वारा यौन संबंध बलात्संग है",
+   "अर्जुन पंडितराव खोटकर (2020) : इलेक्ट्रॉनिक अभिलेख को द्वितीयक साक्ष्य के रूप में स्वीकार करने के लिए प्रमाणपत्र एक शर्त है",
+   "बशेशर नाथ (1959) : कोई नागरिक राज्य के साथ समझौते द्वारा किसी मौलिक अधिकार को छोड़ सकता है"],
+  2,
+  "The first three pairs are correct. Shakti Vahini treated the 'honour' policing of marriages by khap panchayats as a violation of the liberty and dignity of adults who choose their partners, and laid down preventive, remedial and punitive measures; Independent Thought read down the marital-rape exception in Section 375 of the IPC so far as it covered a wife below 18, bringing it in line with the child-protection law; Khotkar held that the certificate under Section 65B(4) of the Evidence Act is mandatory when an electronic record is produced as secondary evidence -- a rule carried into Section 63 of the Bharatiya Sakshya Adhiniyam, 2023. "
+  "The fourth pair is wrong: Basheshar Nath held that fundamental rights cannot be waived. They are not only private benefits but limits on State power placed in the public interest, so a citizen's settlement with the tax authorities could not cure an unconstitutional proceeding.",
+  "पहले तीन युग्म सही हैं। शक्ति वाहिनी ने खाप पंचायतों द्वारा विवाहों की 'सम्मान' के नाम पर निगरानी को अपने साथी चुनने वाले वयस्कों की स्वतंत्रता और गरिमा का उल्लंघन माना, और निवारक, उपचारात्मक और दंडात्मक उपाय तय किए; इंडिपेंडेंट थॉट ने भारतीय दंड संहिता की धारा 375 के वैवाहिक-बलात्संग अपवाद को 18 वर्ष से कम आयु की पत्नी पर लागू होने तक सीमित (रीड डाउन) किया, जिससे वह बाल-संरक्षण क़ानून के अनुरूप हुआ; खोटकर ने माना कि इलेक्ट्रॉनिक अभिलेख को द्वितीयक साक्ष्य के रूप में प्रस्तुत करने पर साक्ष्य अधिनियम की धारा 65B(4) का प्रमाणपत्र अनिवार्य है -- यह नियम भारतीय साक्ष्य अधिनियम, 2023 की धारा 63 में भी बना हुआ है। "
+  "चौथा युग्म ग़लत है: बशेशर नाथ ने माना कि मौलिक अधिकारों का अधित्यजन (त्याग) नहीं किया जा सकता। वे केवल निजी लाभ नहीं बल्कि लोकहित में राज्य की शक्ति पर लगाई गई सीमाएँ हैं, इसलिए कर-प्राधिकारियों के साथ नागरिक का समझौता किसी असंवैधानिक कार्यवाही को वैध नहीं बना सकता था।",
+  f"{SC}: Shakti Vahini v. Union of India (2018); Independent Thought v. Union of India (2017); Arjun Panditrao Khotkar v. Kailash Kushanrao Gorantyal (2020); Basheshar Nath v. CIT (1959).",
+  "l3-t4-pol-verdicts-shakti-vahini-khotkar-basheshar", craft="recall")
+
+# ---------------------------------------------------------------- Federalism & Special Provisions (h-MCQ, m-stmt)
+M("Federalism & Special Provisions", "hard",
+  "Which one of the following can be heard by the Supreme Court as an original suit under Article 131 of the Constitution?",
+  "निम्नलिखित में से किसकी सुनवाई सर्वोच्च न्यायालय संविधान के अनुच्छेद 131 के अंतर्गत मूल वाद के रूप में कर सकता है?",
+  ["A company's challenge to a Union tax notification which, it says, infringes its freedom to carry on business",
+   "A dispute between two States over sharing a river's waters, already referred to a tribunal under a law of Parliament",
+   "A dispute arising from a covenant signed with a princely State before 1950 whose terms exclude the Court's jurisdiction",
+   "A State's suit against the Union over CBI investigations in the State after it withdrew its general consent"],
+  ["किसी कंपनी की संघ के कर-अधिसूचना को चुनौती, जो उसके अनुसार व्यापार करने की उसकी स्वतंत्रता का उल्लंघन करती है",
+   "दो राज्यों के बीच किसी नदी के जल-बँटवारे का विवाद, जो संसद के क़ानून के अंतर्गत पहले ही अधिकरण को सौंपा जा चुका है",
+   "1950 से पहले किसी देशी रियासत के साथ हुई प्रसंविदा से उठा विवाद, जिसकी शर्तें न्यायालय की अधिकारिता को बाहर रखती हैं",
+   "राज्य द्वारा सामान्य सहमति वापस लेने के बाद राज्य में CBI की जाँचों पर संघ के विरुद्ध उसका वाद"],
+  3,
+  "Article 131 gives the Supreme Court exclusive original jurisdiction over disputes between the Government of India and one or more States, or between States, that turn on a legal right. In State of West Bengal v. Union of India (2024), the Court rejected the Union's objection that the CBI is an independent agency and held the State's suit maintainable: the CBI is constituted and superintended by the Union under the Delhi Special Police Establishment Act, so its continuing to register cases after the State withdrew consent is a dispute between the State and the Union. "
+  "The others fail. A company is not a party Article 131 contemplates -- it must use Article 32 or 226. Under Article 262, Parliament has barred the courts from inter-State water disputes covered by the Inter-State River Water Disputes Act, 1956. And the proviso to Article 131 itself excludes disputes arising from pre-Constitution treaties, covenants or sanads that exclude such jurisdiction.",
+  "अनुच्छेद 131 सर्वोच्च न्यायालय को भारत सरकार और एक या अधिक राज्यों के बीच, या राज्यों के बीच, किसी विधिक अधिकार पर टिके विवादों पर अनन्य मूल अधिकारिता देता है। पश्चिम बंगाल राज्य बनाम भारत संघ (2024) में न्यायालय ने संघ की यह आपत्ति ख़ारिज की कि CBI एक स्वतंत्र एजेंसी है, और राज्य के वाद को पोषणीय माना: CBI का गठन और अधीक्षण दिल्ली विशेष पुलिस स्थापना अधिनियम के अंतर्गत संघ करता है, इसलिए राज्य द्वारा सहमति वापस लेने के बाद भी उसका मामले दर्ज करते रहना राज्य और संघ के बीच का विवाद है। "
+  "बाक़ी विकल्प विफल हैं। कंपनी वह पक्षकार नहीं जिसकी अनुच्छेद 131 परिकल्पना करता है -- उसे अनुच्छेद 32 या 226 का सहारा लेना होगा। अनुच्छेद 262 के अंतर्गत संसद ने अंतर-राज्यिक नदी जल विवाद अधिनियम, 1956 के दायरे वाले विवादों से न्यायालयों को रोक दिया है। और अनुच्छेद 131 का परंतुक स्वयं संविधान-पूर्व की उन संधियों, प्रसंविदाओं या सनदों से उठे विवादों को बाहर रखता है जो ऐसी अधिकारिता को अपवर्जित करती हैं।",
+  f"{COI}, Articles 131 and 262; {SC}: State of West Bengal v. Union of India (2024); Delhi Special Police Establishment Act, 1946, section 6.",
+  "l3-t4-pol-art131-west-bengal-cbi-suit", pos=3, craft="application")
+
+S("Federalism & Special Provisions", "medium", "Consider the following subjects:",
+  "निम्नलिखित विषयों पर विचार कीजिए:",
+  ["Betting and gambling",
+   "Lotteries organised by the Government of a State",
+   "Electricity",
+   "Stock exchanges and futures markets"],
+  ["दाँव और जुआ",
+   "किसी राज्य की सरकार द्वारा आयोजित लॉटरी",
+   "विद्युत",
+   "स्टॉक एक्सचेंज और वायदा बाज़ार"],
+  C4, 0,
+  "Only item 1 is in the State List (Entry 34 of List II), which is why States decide whether to ban or permit betting and gambling. "
+  "The others are traps that sound local. Lotteries organised by the Government of India or of a State are in the Union List (Entry 40 of List I) -- Parliament regulates them through the Lotteries (Regulation) Act, 1998, even though a State runs them; electricity is in the Concurrent List (Entry 38 of List III), so both Parliament and the States legislate on it; and stock exchanges and futures markets are in the Union List (Entry 48 of List I).",
+  "केवल मद 1 राज्य सूची (सूची II की प्रविष्टि 34) में है, इसीलिए राज्य तय करते हैं कि दाँव और जुए पर रोक लगाएँ या उसकी अनुमति दें। "
+  "बाक़ी मदें स्थानीय लगने वाले जाल हैं। भारत सरकार या किसी राज्य की सरकार द्वारा आयोजित लॉटरी संघ सूची (सूची I की प्रविष्टि 40) में है -- राज्य द्वारा चलाए जाने पर भी संसद लॉटरी (विनियमन) अधिनियम, 1998 से उनका विनियमन करती है; विद्युत समवर्ती सूची (सूची III की प्रविष्टि 38) में है, इसलिए संसद और राज्य दोनों उस पर क़ानून बनाते हैं; और स्टॉक एक्सचेंज और वायदा बाज़ार संघ सूची (सूची I की प्रविष्टि 48) में हैं।",
+  f"{COI}, Seventh Schedule: List I, Entries 40 and 48; List II, Entry 34; List III, Entry 38; Lotteries (Regulation) Act, 1998.",
+  "l3-t4-pol-seventh-schedule-betting-lottery", craft="precision",
+  closing="How many of the above subjects are in the State List of the Seventh Schedule?",
+  closing_hi="उपर्युक्त में से कितने विषय सातवीं अनुसूची की राज्य सूची में हैं?")
+
+# ---------------------------------------------------------------- Constitutional Framework (h-stmt, m-stmt)
+S("Constitutional Framework", "hard", "With reference to the loss of Indian citizenship under the Citizenship Act, 1955, consider the following statements:",
+  "नागरिकता अधिनियम, 1955 के अंतर्गत भारतीय नागरिकता की समाप्ति के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Central Government may deprive a citizen of India by birth of citizenship if it is satisfied that he has shown disloyalty towards the Constitution.",
+   "When a person renounces Indian citizenship, every minor child of that person also ceases to be a citizen, but may resume citizenship by a declaration within one year of attaining full age.",
+   "A declaration of renunciation made while India is engaged in a war may be held back by the Central Government."],
+  ["केंद्र सरकार जन्म से भारत के नागरिक को नागरिकता से वंचित कर सकती है, यदि उसका समाधान हो जाए कि उसने संविधान के प्रति अनिष्ठा दिखाई है।",
+   "जब कोई व्यक्ति भारतीय नागरिकता का त्याग करता है, तो उसकी हर अवयस्क संतान भी नागरिक नहीं रहती, पर वयस्क होने के एक वर्ष के भीतर घोषणा करके नागरिकता फिर से प्राप्त कर सकती है।",
+   "भारत के किसी युद्ध में लगे होने के दौरान की गई त्याग की घोषणा को केंद्र सरकार रोके रख सकती है।"],
+  C3, 1,
+  "Statements 2 and 3 are correct. Section 8 of the Act deals with renunciation: a minor child loses citizenship along with the parent but can resume it by declaring so within a year of turning eighteen, and the proviso lets the Centre withhold registration of a renunciation made during a war in which India is engaged. "
+  "Statement 1 is wrong: deprivation under section 10 applies only to citizens by naturalisation, by registration (with some exceptions) or by domicile under Article 5(c) -- for instance for fraud, disloyalty, trading with an enemy in wartime, or a sentence of two years within five years of naturalisation or registration. A citizen by birth cannot be deprived; he loses citizenship only by renouncing it or by voluntarily acquiring another.",
+  "कथन 2 और 3 सही हैं। अधिनियम की धारा 8 त्याग से संबंधित है: अवयस्क संतान माता-पिता के साथ नागरिकता खो देती है, पर अठारह वर्ष की होने के एक वर्ष के भीतर घोषणा करके उसे फिर पा सकती है, और परंतुक केंद्र को भारत के किसी युद्ध में लगे होने के दौरान किए गए त्याग का पंजीकरण रोक रखने देता है। "
+  "कथन 1 ग़लत है: धारा 10 के अंतर्गत वंचन केवल देशीयकरण से, पंजीकरण से (कुछ अपवादों सहित) या अनुच्छेद 5(ग) के अंतर्गत अधिवास से बने नागरिकों पर लागू होता है -- जैसे कपट, अनिष्ठा, युद्धकाल में शत्रु से व्यापार, या देशीयकरण या पंजीकरण के पाँच वर्ष के भीतर दो वर्ष की सज़ा पर। जन्म से नागरिक को वंचित नहीं किया जा सकता; वह नागरिकता केवल उसका त्याग करके या स्वेच्छा से दूसरी नागरिकता लेकर ही खोता है।",
+  "Citizenship Act, 1955, sections 8, 9 and 10; " + COI + ", Article 11.",
+  "l3-t4-pol-citizenship-renunciation-deprivation", craft="precision")
+
+S("Constitutional Framework", "medium", "With reference to the language provisions of Part XVII of the Constitution, consider the following statements:",
+  "संविधान के भाग XVII के भाषा-संबंधी उपबंधों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Legislature of a State may by law adopt one or more of the languages in use in the State, or Hindi, as its official language.",
+   "Two or more States may agree that Hindi shall be the official language for communication between them.",
+   "On a demand, the President may direct that a language spoken by a substantial proportion of a State's population be officially recognised throughout the State or any part of it.",
+   "A person may submit a representation for the redress of a grievance only in the official language of the State concerned."],
+  ["किसी राज्य का विधानमंडल क़ानून द्वारा राज्य में प्रयुक्त एक या अधिक भाषाओं को, या हिंदी को, अपनी राजभाषा के रूप में अंगीकार कर सकता है।",
+   "दो या अधिक राज्य यह सहमति कर सकते हैं कि उनके बीच पत्राचार की राजभाषा हिंदी होगी।",
+   "माँग किए जाने पर राष्ट्रपति निर्देश दे सकते हैं कि किसी राज्य की जनसंख्या के पर्याप्त भाग द्वारा बोली जाने वाली भाषा को पूरे राज्य या उसके किसी भाग में शासकीय मान्यता दी जाए।",
+   "कोई व्यक्ति किसी व्यथा के निवारण के लिए अभ्यावेदन केवल संबंधित राज्य की राजभाषा में ही दे सकता है।"],
+  C4, 2,
+  "The first three statements are correct. Article 345 lets each State choose its official language or languages by law -- which is how Tamil, Bengali, Urdu and others became official in different States; Article 346 makes the Union's official language the language of communication between the Union and a State or between States, but lets two States agree to use Hindi; and Article 347 lets the President, if satisfied that a substantial section of a State's people wants it, direct official recognition of their language. "
+  "Statement 4 is wrong: Article 350 entitles every person to submit a representation to any officer or authority of the Union or a State in any of the languages used in the Union or in the State, as the case may be -- a safeguard for linguistic minorities, alongside Articles 350A and 350B.",
+  "पहले तीन कथन सही हैं। अनुच्छेद 345 हर राज्य को क़ानून द्वारा अपनी राजभाषा या राजभाषाएँ चुनने देता है -- इसी से तमिल, बांग्ला, उर्दू और अन्य भाषाएँ विभिन्न राज्यों में राजभाषा बनीं; अनुच्छेद 346 संघ की राजभाषा को संघ और राज्य के बीच या राज्यों के बीच पत्राचार की भाषा बनाता है, पर दो राज्यों को हिंदी के प्रयोग पर सहमत होने देता है; और अनुच्छेद 347 राष्ट्रपति को, यदि उनका समाधान हो जाए कि किसी राज्य के लोगों का पर्याप्त भाग ऐसा चाहता है, उनकी भाषा को शासकीय मान्यता देने का निर्देश देने देता है। "
+  "कथन 4 ग़लत है: अनुच्छेद 350 हर व्यक्ति को संघ या राज्य के किसी भी अधिकारी या प्राधिकारी को, यथास्थिति, संघ में या राज्य में प्रयुक्त किसी भी भाषा में अभ्यावेदन देने का अधिकार देता है -- यह अनुच्छेद 350A और 350B के साथ भाषाई अल्पसंख्यकों के लिए एक रक्षोपाय है।",
+  f"{COI}, Articles 345, 346, 347 and 350.",
+  "l3-t4-pol-part17-state-languages-representation", craft="precision")
+
+# ---------------------------------------------------------------- Parliament & State Legislature (h-stmt, m-MCQ, m-stmt)
+S("Parliament & State Legislature", "hard", "With reference to the disqualification of members of Parliament for holding an 'office of profit', consider the following statements:",
+  "'लाभ का पद' धारण करने के कारण संसद सदस्यों की निरर्हता के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Supreme Court has held that an office carrying remuneration is an office of profit even if its holder never actually drew any of it.",
+   "Parliament may by law declare that certain offices shall not disqualify their holders, and it has done so with retrospective effect.",
+   "Holding an office of profit under a State government does not disqualify a person from being a member of Parliament."],
+  ["सर्वोच्च न्यायालय ने माना है कि पारिश्रमिक वाला पद लाभ का पद है, भले ही उसके धारक ने वास्तव में उसमें से कुछ भी न लिया हो।",
+   "संसद क़ानून द्वारा घोषित कर सकती है कि कुछ पद अपने धारकों को निरर्ह नहीं करेंगे, और उसने ऐसा भूतलक्षी प्रभाव से भी किया है।",
+   "किसी राज्य सरकार के अधीन लाभ का पद धारण करना किसी व्यक्ति को संसद सदस्य होने से निरर्ह नहीं करता।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. In Jaya Bachchan v. Union of India (2006) the Court held that what matters is whether the office is capable of yielding a pecuniary gain, not whether the holder took it -- so a Rajya Sabha member who chaired the Uttar Pradesh Film Development Council was disqualified though she said she had drawn nothing. "
+  "Article 102(1)(a) itself lets Parliament exempt offices by law; the Parliament (Prevention of Disqualification) Act, 1959 lists them, and its 2006 amendment exempted more than fifty offices with effect going back to 1959, which the Court upheld in 2009. Statement 3 is wrong: Article 102(1)(a) covers an office of profit under the Government of India or the Government of any State, other than an office exempted by law.",
+  "कथन 1 और 2 सही हैं। जया बच्चन बनाम भारत संघ (2006) में न्यायालय ने माना कि महत्त्व इसका है कि पद आर्थिक लाभ देने में सक्षम है या नहीं, इसका नहीं कि धारक ने लाभ लिया या नहीं -- इसलिए उत्तर प्रदेश फ़िल्म विकास परिषद की अध्यक्ष रहीं राज्यसभा सदस्य निरर्ह हुईं, यद्यपि उन्होंने कहा कि उन्होंने कुछ नहीं लिया था। "
+  "अनुच्छेद 102(1)(क) स्वयं संसद को क़ानून द्वारा पदों को छूट देने देता है; संसद (निरर्हता निवारण) अधिनियम, 1959 उन्हें सूचीबद्ध करता है, और उसके 2006 के संशोधन ने पचास से अधिक पदों को 1959 तक पीछे जाने वाले प्रभाव से छूट दी, जिसे न्यायालय ने 2009 में बनाए रखा। कथन 3 ग़लत है: अनुच्छेद 102(1)(क) भारत सरकार या किसी भी राज्य की सरकार के अधीन लाभ के पद को शामिल करता है, सिवाय क़ानून द्वारा छूट-प्राप्त पद के।",
+  f"{COI}, Article 102(1)(a); {SC}: Jaya Bachchan v. Union of India (2006); Parliament (Prevention of Disqualification) Act, 1959, as amended in 2006.",
+  "l3-t4-pol-office-of-profit-jaya-bachchan", craft="precision")
+
+M("Parliament & State Legislature", "medium",
+  "A candidate contests a general election to the Lok Sabha from two constituencies and wins both. Which one of the following is correct?",
+  "कोई उम्मीदवार लोकसभा का आम चुनाव दो निर्वाचन क्षेत्रों से लड़ता है और दोनों जीत जाता है। निम्नलिखित में से कौन-सा सही है?",
+  ["He may keep both seats so long as he casts only one vote on any question before the House",
+   "He must resign one of the seats within fourteen days, failing which both seats fall vacant",
+   "The Speaker decides, after hearing him, which of the two constituencies he will represent",
+   "The Election Commission annuls his election from whichever constituency he won by the smaller margin"],
+  ["वह दोनों सीटें रख सकता है, बशर्ते सदन के सामने किसी भी प्रश्न पर वह केवल एक मत दे",
+   "उसे चौदह दिनों के भीतर एक सीट से त्यागपत्र देना होगा, वरना दोनों सीटें रिक्त हो जाएँगी",
+   "अध्यक्ष उसे सुनने के बाद तय करते हैं कि वह दोनों में से किस निर्वाचन क्षेत्र का प्रतिनिधित्व करेगा",
+   "निर्वाचन आयोग उस निर्वाचन क्षेत्र से उसका निर्वाचन रद्द कर देता है जहाँ उसकी जीत का अंतर कम था"],
+  1,
+  "Section 33(7) of the Representation of the People Act, 1951, added in 1996, lets a candidate contest from at most two constituencies of the same House. If he wins both, section 70 requires him to resign all but one seat within the prescribed time -- fourteen days under the election rules -- or every seat he won falls vacant. "
+  "The choice is the member's, not the Speaker's or the Election Commission's, and the seat he gives up then goes to a by-election, which is why the Law Commission and the Election Commission have suggested restricting candidates to one constituency or making them bear the cost of the by-election.",
+  "लोक प्रतिनिधित्व अधिनियम, 1951 की धारा 33(7), जो 1996 में जोड़ी गई, किसी उम्मीदवार को एक ही सदन के अधिकतम दो निर्वाचन क्षेत्रों से चुनाव लड़ने देती है। यदि वह दोनों जीत जाए, तो धारा 70 के अनुसार उसे निर्धारित समय -- निर्वाचन नियमों के अंतर्गत चौदह दिन -- के भीतर एक को छोड़ बाक़ी सभी सीटों से त्यागपत्र देना होता है, वरना उसकी जीती हर सीट रिक्त हो जाती है। "
+  "चुनाव सदस्य का होता है, अध्यक्ष या निर्वाचन आयोग का नहीं, और छोड़ी गई सीट पर फिर उप-चुनाव होता है, इसीलिए विधि आयोग और निर्वाचन आयोग ने उम्मीदवारों को एक ही निर्वाचन क्षेत्र तक सीमित करने या उप-चुनाव का ख़र्च उनसे वसूलने का सुझाव दिया है।",
+  "Representation of the People Act, 1951, sections 33(7) and 70; Conduct of Election Rules, 1961.",
+  "l3-t4-pol-two-constituencies-section-70", pos=1, craft="application")
+
+S("Parliament & State Legislature", "medium", "With reference to the language in which business is transacted in legislatures, consider the following statements:",
+  "विधानमंडलों में कार्य किस भाषा में होता है, इसके संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Business in Parliament is transacted in Hindi or in English, but the presiding officer may permit a member who cannot adequately express himself in either to address the House in his mother tongue.",
+   "The Constitution provided that the words 'or in English' in Article 120 would cease to apply after fifteen years unless Parliament by law provided otherwise.",
+   "Under Article 210, English ceased after fifteen years to be a language of business in every State Legislature, whatever the State's own law provided."],
+  ["संसद में कार्य हिंदी या अंग्रेज़ी में होता है, पर पीठासीन अधिकारी किसी ऐसे सदस्य को, जो इनमें से किसी में भी पर्याप्त रूप से अपनी बात न कह सके, सदन को अपनी मातृभाषा में संबोधित करने की अनुमति दे सकता है।",
+   "संविधान ने उपबंध किया कि अनुच्छेद 120 के शब्द 'या अंग्रेज़ी में' पंद्रह वर्ष बाद लागू नहीं रहेंगे, जब तक संसद क़ानून द्वारा अन्यथा उपबंध न करे।",
+   "अनुच्छेद 210 के अंतर्गत पंद्रह वर्ष बाद अंग्रेज़ी हर राज्य विधानमंडल में कार्य की भाषा नहीं रही, राज्य का अपना क़ानून चाहे जो कहे।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Article 120 makes Hindi and English the languages of Parliament, with the mother-tongue permission as a proviso, and its clause (2) set the fifteen-year sunset for English; Parliament kept English through the Official Languages Act, 1963, and members now often speak in other Eighth Schedule languages, with interpretation arranged for the House. "
+  "Statement 3 is wrong: Article 210 has the same structure for State Legislatures -- English lapses only 'unless the Legislature of the State by law otherwise provides', and the period was extended to twenty-five years for Himachal Pradesh, Manipur, Meghalaya and Tripura and to forty years for Arunachal Pradesh, Goa and Mizoram. Each legislature also uses the State's official language.",
+  "कथन 1 और 2 सही हैं। अनुच्छेद 120 हिंदी और अंग्रेज़ी को संसद की भाषाएँ बनाता है, मातृभाषा की अनुमति परंतुक के रूप में है, और उसके खंड (2) ने अंग्रेज़ी के लिए पंद्रह वर्ष की अवधि तय की; संसद ने राजभाषा अधिनियम, 1963 द्वारा अंग्रेज़ी को बनाए रखा, और अब सदस्य प्रायः आठवीं अनुसूची की अन्य भाषाओं में भी बोलते हैं, जिनका सदन के लिए भाषांतरण कराया जाता है। "
+  "कथन 3 ग़लत है: अनुच्छेद 210 की राज्य विधानमंडलों के लिए वही संरचना है -- अंग्रेज़ी तभी समाप्त होती है 'जब तक राज्य का विधानमंडल क़ानून द्वारा अन्यथा उपबंध न करे', और यह अवधि हिमाचल प्रदेश, मणिपुर, मेघालय और त्रिपुरा के लिए पच्चीस वर्ष और अरुणाचल प्रदेश, गोवा और मिज़ोरम के लिए चालीस वर्ष कर दी गई। हर विधानमंडल राज्य की राजभाषा का भी प्रयोग करता है।",
+  f"{COI}, Articles 120 and 210; Official Languages Act, 1963, section 3.",
+  "l3-t4-pol-art120-210-language-of-business", craft="precision")
+
+# ---------------------------------------------------------------- Constitutional & Statutory Bodies (h-SI3)
+A("Constitutional & Statutory Bodies", "hard",
+  "The Constitution (One Hundred and Fifth Amendment) Act, 2021 was enacted to restore the power of the States to prepare their own lists of socially and educationally backward classes.",
+  "संविधान (एक सौ पाँचवाँ संशोधन) अधिनियम, 2021 राज्यों को सामाजिक और शैक्षिक रूप से पिछड़े वर्गों की अपनी सूचियाँ तैयार करने की शक्ति लौटाने के लिए बनाया गया था।",
+  "In the Maratha reservation case (2021), the Supreme Court had held that after the 102nd Amendment only the President could identify socially and educationally backward classes.",
+  "मराठा आरक्षण मामले (2021) में सर्वोच्च न्यायालय ने माना था कि 102वें संशोधन के बाद केवल राष्ट्रपति ही सामाजिक और शैक्षिक रूप से पिछड़े वर्गों की पहचान कर सकते थे।",
+  2,
+  "Statements I and II are correct and II explains I; Statement III is wrong, so the answer is (c). The 102nd Amendment (2018) inserted Article 342A and gave the National Commission for Backward Classes constitutional status under Article 338B. In Jaishri Laxmanrao Patil (2021), besides striking down the Maratha quota, a majority read Article 342A as leaving the identification of such classes to the President, through a single Central List, with the States only recommending. "
+  "Parliament responded within months: the 105th Amendment (2021) amended Article 342A to confine the President's list to the Central List and added clause (3), letting each State prepare its own State List by law. Statement III wrongly gives the 105th Amendment credit for the Commission's constitutional status, which came three years earlier.",
+  "कथन I और II सही हैं और II, I की व्याख्या करता है; कथन III ग़लत है, इसलिए उत्तर (ग) है। 102वें संशोधन (2018) ने अनुच्छेद 342A जोड़ा और अनुच्छेद 338B के अंतर्गत राष्ट्रीय पिछड़ा वर्ग आयोग को संवैधानिक दर्जा दिया। जयश्री लक्ष्मणराव पाटिल (2021) में मराठा कोटे को रद्द करने के साथ-साथ बहुमत ने अनुच्छेद 342A को इस अर्थ में पढ़ा कि ऐसे वर्गों की पहचान एकल केंद्रीय सूची के माध्यम से राष्ट्रपति पर छोड़ी गई है, और राज्य केवल सिफ़ारिश कर सकते हैं। "
+  "संसद ने कुछ ही महीनों में जवाब दिया: 105वें संशोधन (2021) ने अनुच्छेद 342A में संशोधन कर राष्ट्रपति की सूची को केंद्रीय सूची तक सीमित किया और खंड (3) जोड़ा, जिससे हर राज्य क़ानून द्वारा अपनी राज्य सूची बना सके। कथन III ग़लत ढंग से आयोग के संवैधानिक दर्जे का श्रेय 105वें संशोधन को देता है, जो तीन वर्ष पहले मिल चुका था।",
+  f"{COI}, Articles 338B and 342A; Constitution (102nd Amendment) Act, 2018; Constitution (105th Amendment) Act, 2021; {SC}: Jaishri Laxmanrao Patil v. Chief Minister, Maharashtra (2021).",
+  "l3-t4-pol-105th-amendment-sebc-lists",
+  s3="The 105th Amendment also gave the National Commission for Backward Classes constitutional status.",
+  s3_hi="105वें संशोधन ने राष्ट्रीय पिछड़ा वर्ग आयोग को संवैधानिक दर्जा भी दिया।",
+  craft="linkage")
+
+# ---------------------------------------------------------------- Panchayati Raj & Local Governance (h-SI)
+A("Panchayati Raj & Local Governance", "hard",
+  "A State government cannot entrust the office of the State Election Commissioner, as an additional charge, to a serving secretary of its own government.",
+  "कोई राज्य सरकार राज्य निर्वाचन आयुक्त का पद अतिरिक्त प्रभार के रूप में अपनी ही सरकार के किसी सेवारत सचिव को नहीं सौंप सकती।",
+  "The Supreme Court has held that the State Election Commissioner must be a person independent of the State government.",
+  "सर्वोच्च न्यायालय ने माना है कि राज्य निर्वाचन आयुक्त राज्य सरकार से स्वतंत्र व्यक्ति होना चाहिए।",
+  0,
+  "Both statements are correct and Statement II explains Statement I. In State of Goa v. Fouziya Imtiaz Shaikh (2021), Goa had given its Law Secretary additional charge as State Election Commissioner, and he was conducting the municipal council elections. The Court called this a mockery of the Constitution: Article 243K, read with Article 243ZA for municipalities, vests the superintendence of local elections in an independent commission, so a person holding any office under the Central or a State government cannot hold the post. "
+  "The Court used its Article 142 powers to direct that independent persons be appointed in every State where government officials held the post. The commission's independence is also why Article 243K(2) protects the Commissioner from removal except in the manner of a High Court judge.",
+  "दोनों कथन सही हैं और कथन II, कथन I की व्याख्या करता है। गोवा राज्य बनाम फ़ौज़िया इम्तियाज़ शेख़ (2021) में गोवा ने अपने विधि सचिव को राज्य निर्वाचन आयुक्त का अतिरिक्त प्रभार दे दिया था, और वे नगरपालिका परिषदों के चुनाव करा रहे थे। न्यायालय ने इसे संविधान का उपहास कहा: अनुच्छेद 243K, नगरपालिकाओं के लिए अनुच्छेद 243ZA के साथ पढ़ा जाए तो, स्थानीय चुनावों का अधीक्षण एक स्वतंत्र आयोग में निहित करता है, इसलिए केंद्र या किसी राज्य सरकार के अधीन कोई पद धारण करने वाला व्यक्ति यह पद नहीं रख सकता। "
+  "न्यायालय ने अनुच्छेद 142 की अपनी शक्तियों से निर्देश दिया कि जिन राज्यों में सरकारी अधिकारी यह पद धारण कर रहे थे, वहाँ स्वतंत्र व्यक्ति नियुक्त किए जाएँ। आयोग की स्वतंत्रता के कारण ही अनुच्छेद 243K(2) आयुक्त को उच्च न्यायालय के न्यायाधीश की रीति के अलावा हटाए जाने से बचाता है।",
+  f"{SC}: State of Goa v. Fouziya Imtiaz Shaikh (2021); {COI}, Articles 243K and 243ZA.",
+  "l3-t4-pol-goa-state-election-commissioner", craft="inference")
+
+# ---------------------------------------------------------------- Governance (m-MCQ, m-stmt)
+M("Governance", "medium",
+  "Under the Digital India Land Records Modernization Programme, each land parcel is being given a fourteen-character alphanumeric identity generated from the geo-coordinates of its boundary points. This identity is known as the:",
+  "डिजिटल इंडिया भू-अभिलेख आधुनिकीकरण कार्यक्रम के अंतर्गत हर भूखंड को उसकी सीमा के बिंदुओं के भू-निर्देशांकों से बनी चौदह अक्षरों की अक्षरांकीय पहचान दी जा रही है। यह पहचान क्या कहलाती है?",
+  ["Unique Land Parcel Identification Number (ULPIN)",
+   "Property card number issued under the SVAMITVA scheme",
+   "Registration number of the National Generic Document Registration System",
+   "Farmer ID issued under the Agri Stack of the Digital Agriculture Mission"],
+  ["विशिष्ट भूखंड पहचान संख्या (ULPIN)",
+   "स्वामित्व योजना के अंतर्गत जारी संपत्ति कार्ड संख्या",
+   "राष्ट्रीय जेनेरिक दस्तावेज़ पंजीकरण प्रणाली की पंजीकरण संख्या",
+   "डिजिटल कृषि मिशन के एग्री स्टैक के अंतर्गत जारी किसान पहचान-पत्र"],
+  0,
+  "The Unique Land Parcel Identification Number, called 'Bhu-Aadhaar', is a fourteen-character code derived from the geo-coordinates of a parcel's vertices, so it stays the same however often the land changes hands; it is being rolled out by the Department of Land Resources under the land-records programme, and the Union Budget of 2024-25 set the aim of giving one to all rural land. "
+  "The distractors are neighbouring schemes: SVAMITVA issues property cards for inhabited village areas mapped by drones, the National Generic Document Registration System digitises the registration of deeds, and the Agri Stack Farmer ID links a farmer to his land records -- it uses the land data, but it identifies the person, not the parcel.",
+  "विशिष्ट भूखंड पहचान संख्या, जिसे 'भू-आधार' कहा जाता है, भूखंड के शीर्ष-बिंदुओं के भू-निर्देशांकों से बना चौदह अक्षरों का कोड है, इसलिए भूमि कितनी भी बार हस्तांतरित हो, यह वही रहता है; भू-संसाधन विभाग इसे भू-अभिलेख कार्यक्रम के अंतर्गत लागू कर रहा है, और 2024-25 के केंद्रीय बजट ने सभी ग्रामीण भूमि को यह देने का लक्ष्य रखा। "
+  "बाक़ी विकल्प पड़ोसी योजनाएँ हैं: स्वामित्व ड्रोन से मापे गए गाँवों के आबादी क्षेत्रों के लिए संपत्ति कार्ड देती है, राष्ट्रीय जेनेरिक दस्तावेज़ पंजीकरण प्रणाली विलेखों के पंजीकरण को डिजिटल बनाती है, और एग्री स्टैक का किसान पहचान-पत्र किसान को उसके भू-अभिलेखों से जोड़ता है -- वह भूमि के आँकड़ों का उपयोग करता है, पर पहचान व्यक्ति की करता है, भूखंड की नहीं।",
+  "Ministry of Rural Development, Department of Land Resources: Digital India Land Records Modernization Programme and ULPIN; Union Budget 2024-25.",
+  "l3-t4-pol-ulpin-bhu-aadhaar", pos=0, craft="application")
+
+S("Governance", "medium", "With reference to the Fifteenth Finance Commission's grants to rural local bodies for 2021-26, consider the following statements:",
+  "2021-26 के लिए ग्रामीण स्थानीय निकायों को पंद्रहवें वित्त आयोग के अनुदानों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Sixty per cent of the grants are 'tied' to sanitation and the maintenance of open-defecation-free status, and to drinking water and water recycling.",
+   "The 'untied' part may be spent on location-specific needs, but not on salaries or other establishment costs.",
+   "To receive the grants, local bodies have to make their accounts, including audited accounts, available online.",
+   "Grants are also given to traditional local bodies in areas where Part IX of the Constitution does not apply."],
+  ["अनुदानों का साठ प्रतिशत स्वच्छता और खुले में शौच-मुक्त स्थिति के रखरखाव, तथा पेयजल और जल पुनर्चक्रण से 'बद्ध' है।",
+   "'अबद्ध' भाग स्थान-विशेष की ज़रूरतों पर ख़र्च किया जा सकता है, पर वेतन या अन्य स्थापना-व्ययों पर नहीं।",
+   "अनुदान पाने के लिए स्थानीय निकायों को अपने लेखे, लेखापरीक्षित लेखों सहित, ऑनलाइन उपलब्ध कराने होते हैं।",
+   "उन क्षेत्रों के पारंपरिक स्थानीय निकायों को भी अनुदान दिए जाते हैं जहाँ संविधान का भाग IX लागू नहीं होता।"],
+  C4, 3,
+  "All four statements are correct. The Commission recommended grants for all tiers of rural local bodies, split 60:40 between tied and untied: the tied half-and-half for sanitation and for drinking water, rainwater harvesting and recycling, the untied for felt needs under the Eleventh Schedule, excluding salaries. "
+  "It made the online availability of provisional and audited accounts an entry-level condition, because grants without accounts had bred weak accountability, and it extended grants to the traditional bodies of the Fifth and Sixth Schedule areas and of States outside Part IX. The money is meant to be planned through the Gram Panchayat Development Plans that gram sabhas approve.",
+  "चारों कथन सही हैं। आयोग ने ग्रामीण स्थानीय निकायों के सभी स्तरों के लिए अनुदान सुझाए, जो बद्ध और अबद्ध में 60:40 के अनुपात में बँटे: बद्ध का आधा-आधा स्वच्छता के लिए और पेयजल, वर्षा-जल संचयन और पुनर्चक्रण के लिए, अबद्ध ग्यारहवीं अनुसूची के अंतर्गत महसूस की गई ज़रूरतों के लिए, वेतन को छोड़कर। "
+  "उसने अनंतिम और लेखापरीक्षित लेखों की ऑनलाइन उपलब्धता को प्रवेश-स्तरीय शर्त बनाया, क्योंकि बिना लेखों के अनुदानों से जवाबदेही कमज़ोर हुई थी, और उसने पाँचवीं और छठी अनुसूची के क्षेत्रों तथा भाग IX से बाहर के राज्यों के पारंपरिक निकायों तक अनुदान बढ़ाए। यह धन उन ग्राम पंचायत विकास योजनाओं के माध्यम से नियोजित होना है जिन्हें ग्राम सभाएँ स्वीकृत करती हैं।",
+  "Report of the Fifteenth Finance Commission for 2021-26, chapter on local governments; Ministry of Panchayati Raj guidelines on Fifteenth Finance Commission grants.",
+  "l3-t4-pol-xvfc-rural-local-body-grants", craft="multi")
+
+# ---------------------------------------------------------------- Statutory-Laws (m-stmt)
+S("Statutory-Laws", "medium", "With reference to the Waqf (Amendment) Act, 2025, consider the following statements:",
+  "वक़्फ़ (संशोधन) अधिनियम, 2025 के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It renamed the Waqf Act, 1995 as the Unified Waqf Management, Empowerment, Efficiency and Development Act.",
+   "It permits non-Muslims to be members of the Central Waqf Council and of the State Waqf Boards.",
+   "It omitted 'waqf by user' for the future, so a property can no longer become waqf merely through long religious use.",
+   "It made the Limitation Act, 1963 applicable to proceedings concerning waqf property."],
+  ["इसने वक़्फ़ अधिनियम, 1995 का नाम बदलकर एकीकृत वक़्फ़ प्रबंधन, सशक्तीकरण, दक्षता और विकास अधिनियम कर दिया।",
+   "यह ग़ैर-मुस्लिमों को केंद्रीय वक़्फ़ परिषद और राज्य वक़्फ़ बोर्डों का सदस्य होने देता है।",
+   "इसने भविष्य के लिए 'उपयोग द्वारा वक़्फ़' को हटा दिया, इसलिए कोई संपत्ति अब केवल लंबे धार्मिक उपयोग से वक़्फ़ नहीं बन सकती।",
+   "इसने परिसीमा अधिनियम, 1963 को वक़्फ़ संपत्ति से जुड़ी कार्यवाहियों पर लागू कर दिया।"],
+  C4, 3,
+  "All four statements are correct. The 2025 Act renamed the parent law (the UMEED Act), made room for non-Muslim members in the Council and the Boards, dropped 'waqf by user' prospectively (existing registered properties of this kind stay waqf unless disputed or government land), and removed the old exemption from the Limitation Act, so claims over waqf property are now subject to time limits like other civil claims. "
+  "It also allowed only a person practising Islam for at least five years to dedicate property, deleted the Boards' power to decide by themselves whether a property is waqf, and made Tribunal decisions appealable to the High Court. In September 2025 the Supreme Court declined to stay the whole Act, but paused some provisions, such as the five-year condition, until rules are framed.",
+  "चारों कथन सही हैं। 2025 के अधिनियम ने मूल क़ानून का नाम बदला (उम्मीद अधिनियम), परिषद और बोर्डों में ग़ैर-मुस्लिम सदस्यों के लिए स्थान बनाया, 'उपयोग द्वारा वक़्फ़' को भविष्यलक्षी रूप से हटाया (इस प्रकार की मौजूदा पंजीकृत संपत्तियाँ वक़्फ़ बनी रहेंगी, जब तक विवादित या सरकारी भूमि न हों), और परिसीमा अधिनियम से पुरानी छूट समाप्त की, इसलिए वक़्फ़ संपत्ति पर दावे अब अन्य दीवानी दावों की तरह समय-सीमा के अधीन हैं। "
+  "इसने यह भी किया कि केवल कम-से-कम पाँच वर्ष से इस्लाम का पालन करने वाला व्यक्ति ही संपत्ति समर्पित कर सके, बोर्डों की यह स्वयं तय करने की शक्ति हटाई कि कोई संपत्ति वक़्फ़ है या नहीं, और अधिकरण के निर्णयों के विरुद्ध उच्च न्यायालय में अपील का रास्ता खोला। सितंबर 2025 में सर्वोच्च न्यायालय ने पूरे अधिनियम पर रोक से इनकार किया, पर पाँच वर्ष की शर्त जैसे कुछ उपबंधों को नियम बनने तक रोक दिया।",
+  "Waqf (Amendment) Act, 2025; Mussalman Wakf (Repeal) Act, 2025; Ministry of Minority Affairs.",
+  "l3-t4-pol-waqf-amendment-2025", craft="precision")
+
+# ---------------------------------------------------------------- Union & State Executive (m-stmt)
+S("Union & State Executive", "medium", "With reference to the executive power of the Union, consider the following statements:",
+  "संघ की कार्यपालिका शक्ति के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It extends to the matters with respect to which Parliament has power to make laws.",
+   "The executive may act in such a field even when no law has been made, so long as it does not infringe any law or any fundamental right.",
+   "In matters of the Concurrent List it does not ordinarily extend to the States, unless the Constitution or a law made by Parliament expressly provides so."],
+  ["इसका विस्तार उन विषयों तक है जिन पर संसद को क़ानून बनाने की शक्ति है।",
+   "कार्यपालिका ऐसे क्षेत्र में तब भी कार्य कर सकती है जब कोई क़ानून न बना हो, बशर्ते वह किसी क़ानून या किसी मौलिक अधिकार का उल्लंघन न करे।",
+   "समवर्ती सूची के विषयों में इसका विस्तार सामान्यतः राज्यों तक नहीं होता, जब तक संविधान या संसद का बनाया क़ानून स्पष्ट रूप से ऐसा उपबंध न करे।"],
+  C3, 2,
+  "All three statements are correct. Article 73 makes the Union's executive power co-extensive with Parliament's legislative power, and Article 162 does the same for a State. In Rai Sahib Ram Jawaya Kapur v. State of Punjab (1955), the Court upheld the Punjab government's taking over of school-textbook publishing by executive decision: the executive need not wait for a statute to act in a field open to legislation, though it cannot, without legal authority, take away anyone's rights or act against an existing law. "
+  "The proviso to Article 73(1) keeps the Concurrent List with the States' executives in ordinary course, which is why Union laws on concurrent subjects -- the criminal laws, for example -- are carried out by State governments.",
+  "तीनों कथन सही हैं। अनुच्छेद 73 संघ की कार्यपालिका शक्ति को संसद की विधायी शक्ति के सह-विस्तारी बनाता है, और अनुच्छेद 162 राज्य के लिए यही करता है। राय साहब राम जवाया कपूर बनाम पंजाब राज्य (1955) में न्यायालय ने कार्यकारी निर्णय से पंजाब सरकार द्वारा स्कूली पाठ्यपुस्तकों के प्रकाशन को अपने हाथ में लेने को बनाए रखा: क़ानून बनाने के लिए खुले क्षेत्र में कार्य करने हेतु कार्यपालिका को किसी अधिनियम की प्रतीक्षा नहीं करनी पड़ती, यद्यपि वह विधिक प्राधिकार के बिना किसी के अधिकार नहीं छीन सकती या किसी मौजूदा क़ानून के विरुद्ध कार्य नहीं कर सकती। "
+  "अनुच्छेद 73(1) का परंतुक सामान्य स्थिति में समवर्ती सूची को राज्यों की कार्यपालिकाओं के पास रखता है, इसीलिए समवर्ती विषयों पर संघ के क़ानून -- जैसे आपराधिक क़ानून -- राज्य सरकारें लागू करती हैं।",
+  f"{COI}, Articles 73 and 162; {SC}: Rai Sahib Ram Jawaya Kapur v. State of Punjab (1955).",
+  "l3-t4-pol-art73-ram-jawaya-kapur", craft="inference")
+
+# ---------------------------------------------------------------- Fundamental Rights, DPSP & Duties (m-stmt)
+S("Fundamental Rights, DPSP & Duties", "medium", "With reference to the freedom of religion under the Constitution, consider the following statements:",
+  "संविधान के अंतर्गत धर्म की स्वतंत्रता के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The right to 'propagate' religion under Article 25 does not include a right to convert another person to one's own religion.",
+   "In Rev. Stainislaus (1977), the Supreme Court struck down State laws that penalised conversion by force, fraud or inducement.",
+   "Article 27 permits a tax whose proceeds are used to promote a religion, provided the proceeds are shared equally among all religions."],
+  ["अनुच्छेद 25 के अंतर्गत धर्म का 'प्रचार' करने के अधिकार में किसी दूसरे व्यक्ति का अपने धर्म में धर्मांतरण कराने का अधिकार शामिल नहीं है।",
+   "रेव. स्टैनिस्लॉस (1977) में सर्वोच्च न्यायालय ने बल, कपट या प्रलोभन से धर्मांतरण को दंडित करने वाले राज्य क़ानूनों को रद्द कर दिया।",
+   "अनुच्छेद 27 ऐसे कर की अनुमति देता है जिसकी आय किसी धर्म के संवर्धन पर ख़र्च हो, बशर्ते आय सभी धर्मों में बराबर बाँटी जाए।"],
+  C3, 0,
+  "Only statement 1 is correct. In Rev. Stainislaus v. State of Madhya Pradesh (1977), the Court read 'propagate' as the right to spread one's religion by exposition of its tenets, not a right to convert; a forced conversion would also violate the other person's freedom of conscience. "
+  "Statement 2 is wrong: the same judgment upheld the Madhya Pradesh and Orissa laws against conversion by force, fraud or allurement, as measures to maintain public order, on which Article 25 is expressly subject. Statement 3 is wrong: Article 27 forbids compelling anyone to pay taxes whose proceeds are specifically appropriated to promote or maintain any particular religion or denomination; sharing them among religions does not save such a tax, though a fee for services the State renders at religious places is not barred.",
+  "केवल कथन 1 सही है। रेव. स्टैनिस्लॉस बनाम मध्य प्रदेश राज्य (1977) में न्यायालय ने 'प्रचार' को अपने धर्म के सिद्धांतों की व्याख्या द्वारा उसे फैलाने के अधिकार के रूप में पढ़ा, धर्मांतरण के अधिकार के रूप में नहीं; बलात् धर्मांतरण दूसरे व्यक्ति की अंतःकरण की स्वतंत्रता का भी उल्लंघन होगा। "
+  "कथन 2 ग़लत है: इसी निर्णय ने बल, कपट या लालच से धर्मांतरण के विरुद्ध मध्य प्रदेश और उड़ीसा के क़ानूनों को लोक व्यवस्था बनाए रखने के उपायों के रूप में बनाए रखा, जिसके अधीन अनुच्छेद 25 स्पष्ट रूप से है। कथन 3 ग़लत है: अनुच्छेद 27 किसी को भी ऐसे कर देने के लिए विवश करने से रोकता है जिनकी आय किसी विशेष धर्म या संप्रदाय के संवर्धन या पोषण के लिए विशेष रूप से विनियोजित हो; आय को धर्मों में बाँटने से ऐसा कर बच नहीं जाता, यद्यपि धार्मिक स्थलों पर राज्य द्वारा दी गई सेवाओं का शुल्क वर्जित नहीं है।",
+  f"{COI}, Articles 25 and 27; {SC}: Rev. Stainislaus v. State of Madhya Pradesh (1977).",
+  "l3-t4-pol-stainislaus-art27", craft="precision")
+
+write("gs_l3_t4_a.sql")
