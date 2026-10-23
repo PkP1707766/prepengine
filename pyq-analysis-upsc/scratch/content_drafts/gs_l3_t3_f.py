@@ -122,10 +122,10 @@ S(CH, "medium", "Consider the following statements about electrochromic 'smart g
 
 # ================================================================ SPACE TECHNOLOGY & MISSIONS (h-SI)
 A("Space Technology & Missions", "hard",
-  "Statement-I: Seen from the ground, some NavIC satellites trace a figure-of-eight path in the sky over India once a day.",
-  "कथन-I: ज़मीन से देखने पर कुछ NavIC उपग्रह दिन में एक बार भारत के ऊपर आकाश में अंक आठ जैसा पथ बनाते हैं।",
-  "Statement-II: These satellites are in geosynchronous orbits inclined to the equator, so they match the Earth's rotation period but swing north and south of the equator each day.",
-  "कथन-II: ये उपग्रह भूमध्यरेखा से झुकी हुई भू-तुल्यकालिक कक्षाओं में हैं, इसलिए वे पृथ्वी के घूर्णन काल से मेल खाते हैं पर हर दिन भूमध्यरेखा के उत्तर और दक्षिण झूलते हैं।",
+  "Seen from the ground, some NavIC satellites trace a figure-of-eight path in the sky over India once a day.",
+  "ज़मीन से देखने पर कुछ NavIC उपग्रह दिन में एक बार भारत के ऊपर आकाश में अंक आठ जैसा पथ बनाते हैं।",
+  "These satellites are in geosynchronous orbits inclined to the equator, so they match the Earth's rotation period but swing north and south of the equator each day.",
+  "ये उपग्रह भूमध्यरेखा से झुकी हुई भू-तुल्यकालिक कक्षाओं में हैं, इसलिए वे पृथ्वी के घूर्णन काल से मेल खाते हैं पर हर दिन भूमध्यरेखा के उत्तर और दक्षिण झूलते हैं।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. A satellite with a 24-hour period stays over the same longitudes, but if its orbit is tilted to the equator it spends half the day north of the equator and half south, and the combination with slight variations in speed makes its ground track a figure of eight. "
   "NavIC mixes satellites in geostationary orbit with satellites in inclined geosynchronous orbit, so that all of them remain in view over India and its surroundings at all times, with good geometry for accurate fixes -- unlike GPS, whose satellites in medium Earth orbit circle the whole globe.",

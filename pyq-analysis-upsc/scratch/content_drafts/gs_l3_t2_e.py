@@ -143,10 +143,10 @@ S(IN, "medium", "Consider the following statements about India's electricity mar
 
 # ================================================================ MACRO (e-SI)
 A("Macro Concepts, National Income & Inflation", "easy",
-  "Statement-I: India's GDP is much larger when measured at purchasing power parity than when converted at market exchange rates.",
-  "कथन-I: क्रय शक्ति समता पर मापने पर भारत का GDP बाज़ार विनिमय दरों पर परिवर्तित करने की तुलना में बहुत बड़ा होता है।",
-  "Statement-II: Many goods, and especially services, cost less in India than in high-income countries, so a rupee buys more at home than its exchange-rate value suggests.",
-  "कथन-II: कई वस्तुएँ, और विशेषकर सेवाएँ, उच्च-आय वाले देशों की तुलना में भारत में सस्ती हैं, इसलिए एक रुपया देश में उससे अधिक ख़रीदता है जितना उसका विनिमय-दर मूल्य बताता है।",
+  "India's GDP is much larger when measured at purchasing power parity than when converted at market exchange rates.",
+  "क्रय शक्ति समता पर मापने पर भारत का GDP बाज़ार विनिमय दरों पर परिवर्तित करने की तुलना में बहुत बड़ा होता है।",
+  "Many goods, and especially services, cost less in India than in high-income countries, so a rupee buys more at home than its exchange-rate value suggests.",
+  "कई वस्तुएँ, और विशेषकर सेवाएँ, उच्च-आय वाले देशों की तुलना में भारत में सस्ती हैं, इसलिए एक रुपया देश में उससे अधिक ख़रीदता है जितना उसका विनिमय-दर मूल्य बताता है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Market exchange rates are set mainly by traded goods and capital flows, while haircuts, rents, domestic help and many other services are far cheaper in a lower-income country. "
   "Purchasing power parity rates, estimated through the World Bank's International Comparison Programme, correct for this by valuing output at common prices; on that basis India is the world's third-largest economy, though its income per head remains low. PPP figures suit comparisons of living standards; market rates suit comparisons of external weight such as trade and debt.",
@@ -157,10 +157,10 @@ A("Macro Concepts, National Income & Inflation", "easy",
 
 # ================================================================ EXTERNAL SECTOR (e-SI, m-stmt)
 A(EX, "easy",
-  "Statement-I: Free trade agreements contain 'rules of origin'.",
-  "कथन-I: मुक्त व्यापार समझौतों में 'उद्गम के नियम' होते हैं।",
-  "Statement-II: Rules of origin set how much of a product must be made in the partner countries for it to qualify for the agreement's lower tariffs, so that goods from other countries are not simply routed through a partner.",
-  "कथन-II: उद्गम के नियम तय करते हैं कि किसी उत्पाद का कितना भाग साझेदार देशों में बना होना चाहिए ताकि वह समझौते के कम शुल्कों का पात्र हो, जिससे अन्य देशों का माल बस किसी साझेदार के रास्ते न भेजा जाए।",
+  "Free trade agreements contain 'rules of origin'.",
+  "मुक्त व्यापार समझौतों में 'उद्गम के नियम' होते हैं।",
+  "Rules of origin set how much of a product must be made in the partner countries for it to qualify for the agreement's lower tariffs, so that goods from other countries are not simply routed through a partner.",
+  "उद्गम के नियम तय करते हैं कि किसी उत्पाद का कितना भाग साझेदार देशों में बना होना चाहिए ताकि वह समझौते के कम शुल्कों का पात्र हो, जिससे अन्य देशों का माल बस किसी साझेदार के रास्ते न भेजा जाए।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Without rules of origin, a country outside the agreement could ship goods to a partner with low tariffs, do little to them and re-export them duty-free -- 'trade deflection'. Rules usually require a minimum share of local value addition or a change in the product's tariff classification. "
   "India, worried that goods from third countries were entering through its FTA partners, notified the Customs (Administration of Rules of Origin under Trade Agreements) Rules, 2020, which require importers to back their origin claims.",
@@ -187,10 +187,10 @@ S(EX, "medium", "Consider the following statements about the WTO and electronic 
 
 # ================================================================ TAXATION & FISCAL FEDERALISM (h-SI)
 A("Taxation & Fiscal Federalism", "hard",
-  "Statement-I: In July 2022 India imposed a special additional excise duty on domestically produced crude oil, commonly called a windfall tax.",
-  "कथन-I: जुलाई 2022 में भारत ने देश में उत्पादित कच्चे तेल पर एक विशेष अतिरिक्त उत्पाद शुल्क लगाया, जिसे आम तौर पर अप्रत्याशित लाभ कर (विंडफ़ॉल टैक्स) कहा गया।",
-  "Statement-II: A windfall tax is aimed at unexpected profits that arise from outside events, such as a jump in world prices, rather than from firms' own efforts.",
-  "कथन-II: अप्रत्याशित लाभ कर उन अनपेक्षित मुनाफ़ों को लक्ष्य बनाता है जो कंपनियों के अपने प्रयासों से नहीं, बल्कि विश्व क़ीमतों में उछाल जैसी बाहरी घटनाओं से उत्पन्न होते हैं।",
+  "In July 2022 India imposed a special additional excise duty on domestically produced crude oil, commonly called a windfall tax.",
+  "जुलाई 2022 में भारत ने देश में उत्पादित कच्चे तेल पर एक विशेष अतिरिक्त उत्पाद शुल्क लगाया, जिसे आम तौर पर अप्रत्याशित लाभ कर (विंडफ़ॉल टैक्स) कहा गया।",
+  "A windfall tax is aimed at unexpected profits that arise from outside events, such as a jump in world prices, rather than from firms' own efforts.",
+  "अप्रत्याशित लाभ कर उन अनपेक्षित मुनाफ़ों को लक्ष्य बनाता है जो कंपनियों के अपने प्रयासों से नहीं, बल्कि विश्व क़ीमतों में उछाल जैसी बाहरी घटनाओं से उत्पन्न होते हैं।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. When crude prices soared after the war in Ukraine began, domestic producers earned far more on oil whose cost had not changed, and refiners profited from exporting fuel; the government responded with a per-tonne levy on domestic crude and export duties on petrol, diesel and jet fuel, revised every fortnight in line with international prices. "
   "The levies were scrapped in December 2024 once prices had eased. Critics argue such taxes deter investment in exploration; supporters see them as a fair share for the public of gains no one earned.",

@@ -22,10 +22,10 @@ IMD = "India Meteorological Department"
 
 # ---------------------------------------------------------------- Resources (e-SI)
 A("Resources: Minerals, Energy & Agriculture", "easy",
-  "Statement-I: Andhra Pradesh is the leading State in India's farmed shrimp production.",
-  "कथन-I: आंध्र प्रदेश भारत में पालित झींगा उत्पादन में अग्रणी राज्य है।",
-  "Statement-II: Its long coastline and the brackish-water areas around the Godavari and Krishna deltas suit coastal aquaculture.",
-  "कथन-II: इसकी लंबी तटरेखा और गोदावरी तथा कृष्णा डेल्टाओं के आसपास के खारे पानी वाले क्षेत्र तटीय जलकृषि के अनुकूल हैं।",
+  "Andhra Pradesh is the leading State in India's farmed shrimp production.",
+  "आंध्र प्रदेश भारत में पालित झींगा उत्पादन में अग्रणी राज्य है।",
+  "Its long coastline and the brackish-water areas around the Godavari and Krishna deltas suit coastal aquaculture.",
+  "इसकी लंबी तटरेखा और गोदावरी तथा कृष्णा डेल्टाओं के आसपास के खारे पानी वाले क्षेत्र तटीय जलकृषि के अनुकूल हैं।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Shrimp farming needs flat coastal land with access to brackish water, and the deltas of the Godavari and the Krishna, around districts such as Nellore, West Godavari and Krishna, offer it in plenty; Andhra Pradesh produces the largest share of India's farmed shrimp, most of it the whiteleg shrimp (Litopenaeus vannamei) introduced in 2009. "
   "Frozen shrimp is India's leading seafood export, though conversion of farmland and mangroves into ponds and the salinisation of soils are concerns.",
@@ -91,10 +91,10 @@ S("Climatology & Biomes", "medium", "Consider the following statements about the
 
 # ---------------------------------------------------------------- Indian Physiography, Climate & Regions (h-SI, m-stmt)
 A("Indian Physiography, Climate & Regions", "hard",
-  "Statement-I: Cloudbursts occur only in the Himalaya and never over the Western Ghats or the plains.",
-  "कथन-I: बादल फटने की घटनाएँ केवल हिमालय में होती हैं, पश्चिमी घाट या मैदानों पर कभी नहीं।",
-  "Statement-II: The India Meteorological Department treats rainfall of about 100 mm or more in an hour over a small area as a cloudburst.",
-  "कथन-II: भारत मौसम विज्ञान विभाग किसी छोटे क्षेत्र पर एक घंटे में लगभग 100 मिमी या उससे अधिक वर्षा को बादल फटना मानता है।",
+  "Cloudbursts occur only in the Himalaya and never over the Western Ghats or the plains.",
+  "बादल फटने की घटनाएँ केवल हिमालय में होती हैं, पश्चिमी घाट या मैदानों पर कभी नहीं।",
+  "The India Meteorological Department treats rainfall of about 100 mm or more in an hour over a small area as a cloudburst.",
+  "भारत मौसम विज्ञान विभाग किसी छोटे क्षेत्र पर एक घंटे में लगभग 100 मिमी या उससे अधिक वर्षा को बादल फटना मानता है।",
   3,
   "Statement-I is incorrect and Statement-II is correct. A cloudburst is a short, extreme downpour from a towering cumulonimbus cloud over an area of a few tens of square kilometres. "
   "Cloudbursts are most frequent on Himalayan slopes in the monsoon, because moist air forced up steep terrain rises fast and builds very tall clouds, and the rain falls into narrow valleys where it turns at once into flash floods and debris flows -- hence the disasters in Uttarakhand and Himachal Pradesh. But the same convective process can produce them over the Western Ghats and, more rarely, over the plains; what defines a cloudburst is the intensity of rain, not the place.",

@@ -140,10 +140,10 @@ S("Pollution, Waste & Resources", "medium", "Consider the following statements a
 
 # ---------------------------------------------------------------- International Conventions & Organisations (h-SI)
 A("International Conventions & Organisations", "hard",
-  "Statement-I: A species assessed as Least Concern on the IUCN Red List may still be classed as 'Largely Depleted' under the IUCN Green Status of Species.",
-  "कथन-I: IUCN रेड लिस्ट में 'कम चिंताजनक' (Least Concern) आँकी गई प्रजाति को भी IUCN ग्रीन स्टेटस ऑफ़ स्पीशीज़ में 'काफ़ी हद तक क्षीण' (Largely Depleted) वर्गीकृत किया जा सकता है।",
-  "Statement-II: The Green Status measures a species' recovery against its historical range and its ecological role there, whereas the Red List measures its risk of extinction.",
-  "कथन-II: ग्रीन स्टेटस किसी प्रजाति की बहाली को उसके ऐतिहासिक विस्तार-क्षेत्र और वहाँ उसकी पारिस्थितिक भूमिका के सापेक्ष मापता है, जबकि रेड लिस्ट उसके विलुप्ति के जोखिम को मापती है।",
+  "A species assessed as Least Concern on the IUCN Red List may still be classed as 'Largely Depleted' under the IUCN Green Status of Species.",
+  "IUCN रेड लिस्ट में 'कम चिंताजनक' (Least Concern) आँकी गई प्रजाति को भी IUCN ग्रीन स्टेटस ऑफ़ स्पीशीज़ में 'काफ़ी हद तक क्षीण' (Largely Depleted) वर्गीकृत किया जा सकता है।",
+  "The Green Status measures a species' recovery against its historical range and its ecological role there, whereas the Red List measures its risk of extinction.",
+  "ग्रीन स्टेटस किसी प्रजाति की बहाली को उसके ऐतिहासिक विस्तार-क्षेत्र और वहाँ उसकी पारिस्थितिक भूमिका के सापेक्ष मापता है, जबकि रेड लिस्ट उसके विलुप्ति के जोखिम को मापती है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. The Green Status, launched by the IUCN in 2021, asks how close a species is to being present and ecologically functional across all the parts of its range it once occupied, and places it on a scale from Extinct in the Wild through Critically, Largely, Moderately and Slightly Depleted to Fully Recovered. "
   "Because this is a different question from the Red List's -- how likely is extinction -- a widespread species in no danger of extinction can still have vanished from much of its old range or lost its ecological role there.",

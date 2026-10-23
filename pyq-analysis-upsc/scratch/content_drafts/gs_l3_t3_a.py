@@ -157,10 +157,10 @@ S("Parliament & State Legislature", "medium", "Consider the following statements
 
 # ---------------------------------------------------------------- Constitutional & Statutory Bodies (h-SI)
 A("Constitutional & Statutory Bodies", "hard",
-  "Statement-I: The recommendations of the National Statistical Commission are not binding on the government.",
-  "कथन-I: राष्ट्रीय सांख्यिकी आयोग की सिफ़ारिशें सरकार पर बाध्यकारी नहीं हैं।",
-  "Statement-II: The National Statistical Commission was set up in 2005 by an executive resolution, not by an Act of Parliament.",
-  "कथन-II: राष्ट्रीय सांख्यिकी आयोग 2005 में संसद के अधिनियम से नहीं, बल्कि एक कार्यकारी संकल्प द्वारा स्थापित किया गया।",
+  "The recommendations of the National Statistical Commission are not binding on the government.",
+  "राष्ट्रीय सांख्यिकी आयोग की सिफ़ारिशें सरकार पर बाध्यकारी नहीं हैं।",
+  "The National Statistical Commission was set up in 2005 by an executive resolution, not by an Act of Parliament.",
+  "राष्ट्रीय सांख्यिकी आयोग 2005 में संसद के अधिनियम से नहीं, बल्कि एक कार्यकारी संकल्प द्वारा स्थापित किया गया।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. The Commission was created on the recommendation of the Rangarajan Commission to act as the apex body setting priorities and standards for official statistics, but because it rests only on a government resolution it has no legal power to compel ministries to follow its advice. "
   "Its weakness was exposed in 2019, when two members resigned over the delay in releasing a labour force survey they had approved. A bill to give the Commission statutory status has been discussed but not enacted; the Chief Statistician of India serves as its Secretary.",
@@ -171,10 +171,10 @@ A("Constitutional & Statutory Bodies", "hard",
 
 # ---------------------------------------------------------------- Panchayati Raj & Local Governance (h-SI)
 A("Panchayati Raj & Local Governance", "hard",
-  "Statement-I: Before reserving seats for Other Backward Classes in local bodies, a State must satisfy the 'triple test' laid down by the Supreme Court.",
-  "कथन-I: स्थानीय निकायों में अन्य पिछड़े वर्गों के लिए सीटें आरक्षित करने से पहले राज्य को सर्वोच्च न्यायालय द्वारा तय 'त्रिस्तरीय परीक्षण' पूरा करना होता है।",
-  "Statement-II: The triple test requires a dedicated commission to study backwardness, the fixing of reservation local body-wise on that basis, and a ceiling of 50 per cent on total reservation.",
-  "कथन-II: त्रिस्तरीय परीक्षण में पिछड़ेपन के अध्ययन के लिए एक समर्पित आयोग, उसके आधार पर स्थानीय निकाय-वार आरक्षण तय करना और कुल आरक्षण पर 50 प्रतिशत की सीमा आवश्यक है।",
+  "Before reserving seats for Other Backward Classes in local bodies, a State must satisfy the 'triple test' laid down by the Supreme Court.",
+  "स्थानीय निकायों में अन्य पिछड़े वर्गों के लिए सीटें आरक्षित करने से पहले राज्य को सर्वोच्च न्यायालय द्वारा तय 'त्रिस्तरीय परीक्षण' पूरा करना होता है।",
+  "The triple test requires a dedicated commission to study backwardness, the fixing of reservation local body-wise on that basis, and a ceiling of 50 per cent on total reservation.",
+  "त्रिस्तरीय परीक्षण में पिछड़ेपन के अध्ययन के लिए एक समर्पित आयोग, उसके आधार पर स्थानीय निकाय-वार आरक्षण तय करना और कुल आरक्षण पर 50 प्रतिशत की सीमा आवश्यक है।",
   1,
   "Both statements are correct, but Statement-II does not explain Statement-I. Statement-II describes what the test contains; the reason States must meet it lies in the Court's view, from K. Krishna Murthy (2010) onwards, that political backwardness in local bodies is not the same as the social and educational backwardness used for jobs and education, so it must be shown with fresh, local data. "
   "In Vikas Kishanrao Gawali (2021) the Court struck down OBC quotas in Maharashtra's local bodies that had not met the test, and in 2022 it told States not to hold back local elections indefinitely while they did so.",

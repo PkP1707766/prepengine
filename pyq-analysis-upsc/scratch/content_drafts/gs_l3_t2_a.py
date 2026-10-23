@@ -180,10 +180,10 @@ S("Parliament & State Legislature", "medium", "With reference to the composition
 
 # ---------------------------------------------------------------- Constitutional & Statutory Bodies (h-SI)
 A("Constitutional & Statutory Bodies", "hard",
-  "Statement-I: The Chief Electoral Officer of a State supervises the preparation and revision of electoral rolls and the conduct of elections in the State, subject to the superintendence, direction and control of the Election Commission of India.",
-  "कथन-I: किसी राज्य का मुख्य निर्वाचन अधिकारी भारत निर्वाचन आयोग के अधीक्षण, निर्देशन और नियंत्रण के अधीन राज्य में मतदाता सूचियों की तैयारी और पुनरीक्षण तथा चुनावों के संचालन का पर्यवेक्षण करता है।",
-  "Statement-II: The Chief Electoral Officer is chosen by the State government on its own, the Election Commission having no part in the selection.",
-  "कथन-II: मुख्य निर्वाचन अधिकारी को राज्य सरकार अपने स्तर पर चुनती है, चयन में निर्वाचन आयोग की कोई भूमिका नहीं होती।",
+  "The Chief Electoral Officer of a State supervises the preparation and revision of electoral rolls and the conduct of elections in the State, subject to the superintendence, direction and control of the Election Commission of India.",
+  "किसी राज्य का मुख्य निर्वाचन अधिकारी भारत निर्वाचन आयोग के अधीक्षण, निर्देशन और नियंत्रण के अधीन राज्य में मतदाता सूचियों की तैयारी और पुनरीक्षण तथा चुनावों के संचालन का पर्यवेक्षण करता है।",
+  "The Chief Electoral Officer is chosen by the State government on its own, the Election Commission having no part in the selection.",
+  "मुख्य निर्वाचन अधिकारी को राज्य सरकार अपने स्तर पर चुनती है, चयन में निर्वाचन आयोग की कोई भूमिका नहीं होती।",
   2,
   "Statement-I is correct and Statement-II is incorrect. Section 13A of the Representation of the People Act, 1950 provides for a Chief Electoral Officer in each State, who works under the Election Commission's superintendence, direction and control. "
   "The officer is an officer of the State government, but it is the Election Commission that designates or nominates the officer, in consultation with that government. During elections, the officers on election duty are deemed to be on deputation to the Commission (section 13CC), so that the Commission, which has no large staff of its own, can direct the State machinery.",
@@ -194,10 +194,10 @@ A("Constitutional & Statutory Bodies", "hard",
 
 # ---------------------------------------------------------------- Panchayati Raj & Local Governance (h-SI)
 A("Panchayati Raj & Local Governance", "hard",
-  "Statement-I: Some States bar persons with more than two children from contesting panchayat elections, and the Supreme Court has upheld such a bar.",
-  "कथन-I: कुछ राज्य दो से अधिक संतान वाले व्यक्तियों को पंचायत चुनाव लड़ने से रोकते हैं, और सर्वोच्च न्यायालय ने ऐसी रोक को सही ठहराया है।",
-  "Statement-II: Article 243F allows a State Legislature to prescribe, by law, disqualifications for membership of a Panchayat.",
-  "कथन-II: अनुच्छेद 243F राज्य विधानमंडल को क़ानून द्वारा पंचायत की सदस्यता के लिए निरर्हताएँ निर्धारित करने देता है।",
+  "Some States bar persons with more than two children from contesting panchayat elections, and the Supreme Court has upheld such a bar.",
+  "कुछ राज्य दो से अधिक संतान वाले व्यक्तियों को पंचायत चुनाव लड़ने से रोकते हैं, और सर्वोच्च न्यायालय ने ऐसी रोक को सही ठहराया है।",
+  "Article 243F allows a State Legislature to prescribe, by law, disqualifications for membership of a Panchayat.",
+  "अनुच्छेद 243F राज्य विधानमंडल को क़ानून द्वारा पंचायत की सदस्यता के लिए निरर्हताएँ निर्धारित करने देता है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Article 243F disqualifies a person from panchayat membership under the election laws of the State and also 'by or under any law made by the Legislature of the State', which is what lets States add conditions of their own. "
   "In Javed v. State of Haryana (2003) the Court upheld Haryana's two-child bar as a reasonable measure that did not violate Articles 14, 21 or 25, and in Rajbala v. State of Haryana (2015) it upheld minimum educational qualifications, a working toilet at home and the clearing of certain dues as conditions for contesting. Such conditions vary from State to State, and some States have since dropped the two-child rule.",

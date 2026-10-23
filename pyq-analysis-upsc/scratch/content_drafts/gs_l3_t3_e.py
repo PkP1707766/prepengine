@@ -137,10 +137,10 @@ S(IN, "medium", "Consider the following statements about Global Capability Centr
 
 # ================================================================ MACRO (e-SI)
 A("Macro Concepts, National Income & Inflation", "easy",
-  "Statement-I: Central banks often 'look through' a temporary jump in vegetable prices caused by bad weather, rather than raising interest rates at once.",
-  "कथन-I: केंद्रीय बैंक प्रायः ख़राब मौसम से सब्ज़ियों के दामों में आए अस्थायी उछाल को 'नज़रअंदाज़' करते हैं, बजाय तुरंत ब्याज दरें बढ़ाने के।",
-  "Statement-II: Higher interest rates do little to raise the supply of vegetables quickly, and a weather-driven price spike is expected to reverse on its own.",
-  "कथन-II: ऊँची ब्याज दरें सब्ज़ियों की आपूर्ति जल्दी बढ़ाने में कम काम करती हैं, और मौसम से आया दाम-उछाल अपने आप पलटने की आशा रहती है।",
+  "Central banks often 'look through' a temporary jump in vegetable prices caused by bad weather, rather than raising interest rates at once.",
+  "केंद्रीय बैंक प्रायः ख़राब मौसम से सब्ज़ियों के दामों में आए अस्थायी उछाल को 'नज़रअंदाज़' करते हैं, बजाय तुरंत ब्याज दरें बढ़ाने के।",
+  "Higher interest rates do little to raise the supply of vegetables quickly, and a weather-driven price spike is expected to reverse on its own.",
+  "ऊँची ब्याज दरें सब्ज़ियों की आपूर्ति जल्दी बढ़ाने में कम काम करती हैं, और मौसम से आया दाम-उछाल अपने आप पलटने की आशा रहती है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Monetary policy works on demand, with long lags; a supply shock to tomatoes or onions will usually fade with the next harvest before rate changes take effect, while raising rates would hurt growth for little gain. "
   "This is why central banks watch core inflation alongside headline inflation. The caveat is that if repeated food shocks push up people's inflation expectations and wages -- 'second-round effects' -- the central bank may have to act after all, which is why the RBI keeps a close eye on household expectations surveys.",
@@ -151,10 +151,10 @@ A("Macro Concepts, National Income & Inflation", "easy",
 
 # ================================================================ EXTERNAL SECTOR (e-SI, m-stmt)
 A(EX, "easy",
-  "Statement-I: In 2019 the United States ended India's benefits under its Generalised System of Preferences (GSP).",
-  "कथन-I: 2019 में संयुक्त राज्य अमेरिका ने अपनी सामान्यीकृत अधिमान प्रणाली (GSP) के अंतर्गत भारत के लाभ समाप्त कर दिए।",
-  "Statement-II: GSP benefits are granted unilaterally by the donor country, without reciprocal concessions, so the donor can withdraw them.",
-  "कथन-II: GSP लाभ दाता देश एकतरफ़ा, बिना पारस्परिक रियायतों के, देता है, इसलिए दाता उन्हें वापस ले सकता है।",
+  "In 2019 the United States ended India's benefits under its Generalised System of Preferences (GSP).",
+  "2019 में संयुक्त राज्य अमेरिका ने अपनी सामान्यीकृत अधिमान प्रणाली (GSP) के अंतर्गत भारत के लाभ समाप्त कर दिए।",
+  "GSP benefits are granted unilaterally by the donor country, without reciprocal concessions, so the donor can withdraw them.",
+  "GSP लाभ दाता देश एकतरफ़ा, बिना पारस्परिक रियायतों के, देता है, इसलिए दाता उन्हें वापस ले सकता है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Under GSP schemes, rich countries let goods from developing countries enter at low or zero duty; the WTO's 'Enabling Clause' permits this departure from most-favoured-nation treatment, but the preferences are not bound commitments. "
   "India had been the largest beneficiary of the US scheme; Washington withdrew its eligibility in June 2019, citing a lack of 'equitable and reasonable' market access for American goods, which affected exports such as jewellery, leather goods and engineering products.",
@@ -181,10 +181,10 @@ S(EX, "medium", "With reference to the Export Promotion Capital Goods (EPCG) sch
 
 # ================================================================ TAXATION & FISCAL FEDERALISM (h-SI)
 A("Taxation & Fiscal Federalism", "hard",
-  "Statement-I: India's transfer-pricing rules apply only to transactions between unrelated companies.",
-  "कथन-I: भारत के अंतरण मूल्य निर्धारण (ट्रांसफ़र प्राइसिंग) नियम केवल असंबंधित कंपनियों के बीच लेन-देन पर लागू होते हैं।",
-  "Statement-II: An Advance Pricing Agreement fixes in advance how the prices of transactions between related entities of a multinational group will be set, reducing disputes.",
-  "कथन-II: अग्रिम मूल्य निर्धारण समझौता पहले से तय करता है कि किसी बहुराष्ट्रीय समूह की संबंधित इकाइयों के बीच लेन-देन के दाम कैसे निर्धारित होंगे, जिससे विवाद घटते हैं।",
+  "India's transfer-pricing rules apply only to transactions between unrelated companies.",
+  "भारत के अंतरण मूल्य निर्धारण (ट्रांसफ़र प्राइसिंग) नियम केवल असंबंधित कंपनियों के बीच लेन-देन पर लागू होते हैं।",
+  "An Advance Pricing Agreement fixes in advance how the prices of transactions between related entities of a multinational group will be set, reducing disputes.",
+  "अग्रिम मूल्य निर्धारण समझौता पहले से तय करता है कि किसी बहुराष्ट्रीय समूह की संबंधित इकाइयों के बीच लेन-देन के दाम कैसे निर्धारित होंगे, जिससे विवाद घटते हैं।",
   3,
   "Statement-I is incorrect and Statement-II is correct. Transfer pricing is about transactions between associated enterprises -- a parent and its subsidiary in another country, for example -- because related parties can set prices that shift profits to low-tax places; the Income-tax law requires such international transactions to be priced at 'arm's length', as unrelated parties would. "
   "Because disputes over the right price were long and costly, India introduced Advance Pricing Agreements in 2012, under which a company and the tax department agree on the method for up to five future years, with a 'rollback' for earlier years -- greater certainty that has made India one of the larger users of APAs.",

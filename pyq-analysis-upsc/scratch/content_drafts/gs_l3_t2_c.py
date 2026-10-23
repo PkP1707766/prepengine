@@ -244,10 +244,10 @@ S("Protected Areas & Wildlife Protection", "medium", "Consider the following sta
 
 # ---------------------------------------------------------------- International Conventions & Organisations (h-SI)
 A("International Conventions & Organisations", "hard",
-  "Statement-I: The Aarhus Convention gives the public rights of access to environmental information, of participation in environmental decision-making and of access to justice in environmental matters.",
-  "कथन-I: आरहूस अभिसमय जनता को पर्यावरणीय सूचना तक पहुँच, पर्यावरणीय निर्णय-निर्माण में भागीदारी और पर्यावरणीय मामलों में न्याय तक पहुँच के अधिकार देता है।",
-  "Statement-II: The Aarhus Convention was negotiated under the United Nations Economic Commission for Europe.",
-  "कथन-II: आरहूस अभिसमय पर संयुक्त राष्ट्र यूरोपीय आर्थिक आयोग के अंतर्गत वार्ता हुई थी।",
+  "The Aarhus Convention gives the public rights of access to environmental information, of participation in environmental decision-making and of access to justice in environmental matters.",
+  "आरहूस अभिसमय जनता को पर्यावरणीय सूचना तक पहुँच, पर्यावरणीय निर्णय-निर्माण में भागीदारी और पर्यावरणीय मामलों में न्याय तक पहुँच के अधिकार देता है।",
+  "The Aarhus Convention was negotiated under the United Nations Economic Commission for Europe.",
+  "आरहूस अभिसमय पर संयुक्त राष्ट्र यूरोपीय आर्थिक आयोग के अंतर्गत वार्ता हुई थी।",
   1,
   "Both statements are correct, but Statement-II does not explain Statement-I. The Aarhus Convention (1998, in force 2001) rests on three pillars -- information, participation and justice -- and links environmental protection with democratic rights; where it was negotiated says nothing about why it grants these rights. "
   "Being a UNECE treaty, its parties are mainly in Europe and Central Asia, and India is not a party. Latin America's counterpart, the Escazú Agreement (2018, in force 2021), adds the first treaty provisions on protecting environmental human-rights defenders. In India, similar rights come through the Right to Information Act, public hearings under the EIA notification and the National Green Tribunal.",

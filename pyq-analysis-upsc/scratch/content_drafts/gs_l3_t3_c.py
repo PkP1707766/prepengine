@@ -228,10 +228,10 @@ S("Protected Areas & Wildlife Protection", "medium", "Consider the following sta
 
 # ---------------------------------------------------------------- International Conventions & Organisations (h-SI)
 A("International Conventions & Organisations", "hard",
-  "Statement-I: The Convention on Long-Range Transboundary Air Pollution (1979) was the first legally binding international treaty to deal with air pollution across a broad region.",
-  "कथन-I: लंबी दूरी के सीमापार वायु प्रदूषण पर अभिसमय (1979) व्यापक क्षेत्र में वायु प्रदूषण से निपटने वाली पहली विधिक रूप से बाध्यकारी अंतरराष्ट्रीय संधि थी।",
-  "Statement-II: It was adopted after scientists linked the acidification of lakes in Scandinavia to sulphur emissions from other countries of Europe.",
-  "कथन-II: इसे तब अपनाया गया जब वैज्ञानिकों ने स्कैंडिनेविया की झीलों के अम्लीकरण को यूरोप के अन्य देशों के सल्फ़र उत्सर्जन से जोड़ा।",
+  "The Convention on Long-Range Transboundary Air Pollution (1979) was the first legally binding international treaty to deal with air pollution across a broad region.",
+  "लंबी दूरी के सीमापार वायु प्रदूषण पर अभिसमय (1979) व्यापक क्षेत्र में वायु प्रदूषण से निपटने वाली पहली विधिक रूप से बाध्यकारी अंतरराष्ट्रीय संधि थी।",
+  "It was adopted after scientists linked the acidification of lakes in Scandinavia to sulphur emissions from other countries of Europe.",
+  "इसे तब अपनाया गया जब वैज्ञानिकों ने स्कैंडिनेविया की झीलों के अम्लीकरण को यूरोप के अन्य देशों के सल्फ़र उत्सर्जन से जोड़ा।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. In the 1960s and 1970s Swedish and Norwegian scientists showed that dying fish and acidified lakes were caused by sulphur and nitrogen carried hundreds of kilometres from industrial Britain and central Europe; because no country could solve the problem alone, the countries of the UN Economic Commission for Europe negotiated the convention, signed in Geneva in 1979. "
   "It works through protocols with specific cuts, such as the 1985 Helsinki sulphur protocol and the 1999 Gothenburg protocol on several pollutants, and is often cited as a model for regional cooperation on air quality -- including for South Asia, where much of the haze crosses borders.",

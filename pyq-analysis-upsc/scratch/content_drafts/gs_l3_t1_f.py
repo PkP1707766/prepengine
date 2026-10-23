@@ -137,10 +137,10 @@ S(CH, "medium", "With reference to lab-grown diamonds, consider the following st
 
 # ================================================================ SPACE TECHNOLOGY & MISSIONS (h-SI)
 A("Space Technology & Missions", "hard",
-  "Statement-I: A dead satellite left at a height of about 400 km falls back into the atmosphere within a few years, whereas one left in geostationary orbit can stay up for a very long time.",
-  "कथन-I: लगभग 400 km की ऊँचाई पर छोड़ा गया निष्क्रिय उपग्रह कुछ वर्षों के भीतर वायुमंडल में वापस गिर जाता है, जबकि भूस्थिर कक्षा में छोड़ा गया उपग्रह बहुत लंबे समय तक ऊपर बना रह सकता है।",
-  "Statement-II: At the height of the geostationary orbit, the Earth's gravitational pull is too weak to bring a satellite down.",
-  "कथन-II: भूस्थिर कक्षा की ऊँचाई पर पृथ्वी का गुरुत्वाकर्षण खिंचाव किसी उपग्रह को नीचे लाने के लिए बहुत कमज़ोर होता है।",
+  "A dead satellite left at a height of about 400 km falls back into the atmosphere within a few years, whereas one left in geostationary orbit can stay up for a very long time.",
+  "लगभग 400 km की ऊँचाई पर छोड़ा गया निष्क्रिय उपग्रह कुछ वर्षों के भीतर वायुमंडल में वापस गिर जाता है, जबकि भूस्थिर कक्षा में छोड़ा गया उपग्रह बहुत लंबे समय तक ऊपर बना रह सकता है।",
+  "At the height of the geostationary orbit, the Earth's gravitational pull is too weak to bring a satellite down.",
+  "भूस्थिर कक्षा की ऊँचाई पर पृथ्वी का गुरुत्वाकर्षण खिंचाव किसी उपग्रह को नीचे लाने के लिए बहुत कमज़ोर होता है।",
   2,
   "Statement-I is correct and Statement-II is incorrect. What brings low satellites down is drag: a few hundred kilometres up there is still a trace of atmosphere, which steadily saps a satellite's speed so that its orbit sinks -- the International Space Station has to be boosted regularly for this reason. At about 36,000 km there is practically no air, so nothing lowers the orbit. "
   "Gravity there is still a little over 2 per cent of its strength at the surface, and it is this very pull that bends the satellite's path into a 24-hour circle: every satellite is falling all the time, but moving sideways fast enough to keep missing the Earth. "

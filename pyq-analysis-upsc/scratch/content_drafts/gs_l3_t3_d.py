@@ -19,10 +19,10 @@ IPEc = "NCERT Class XII, India: People and Economy"
 
 # ---------------------------------------------------------------- Resources (e-SI)
 A("Resources: Minerals, Energy & Agriculture", "easy",
-  "Statement-I: Jharkhand is the only State in India that produces tin concentrates.",
-  "कथन-I: झारखंड भारत का एकमात्र राज्य है जो टिन सांद्र का उत्पादन करता है।",
-  "Statement-II: India's tin ore, cassiterite, is mined in the Bastar region of Chhattisgarh.",
-  "कथन-II: भारत का टिन अयस्क, कैसिटेराइट, छत्तीसगढ़ के बस्तर क्षेत्र में खनित होता है।",
+  "Jharkhand is the only State in India that produces tin concentrates.",
+  "झारखंड भारत का एकमात्र राज्य है जो टिन सांद्र का उत्पादन करता है।",
+  "India's tin ore, cassiterite, is mined in the Bastar region of Chhattisgarh.",
+  "भारत का टिन अयस्क, कैसिटेराइट, छत्तीसगढ़ के बस्तर क्षेत्र में खनित होता है।",
   3,
   "Statement-I is incorrect and Statement-II is correct. Chhattisgarh, not Jharkhand, is India's only producer of tin concentrates, from cassiterite in the Dantewada area of Bastar, much of it worked on a small scale. "
   "Domestic output is tiny, so India imports almost all the tin it uses -- chiefly for solder in electronics and for tin-plating steel for food cans -- which is why tin appears on lists of critical minerals.",
@@ -88,10 +88,10 @@ S("Climatology & Biomes", "medium", "Consider the following statements about the
 
 # ---------------------------------------------------------------- Indian Physiography, Climate & Regions (h-SI, m-stmt)
 A("Indian Physiography, Climate & Regions", "hard",
-  "Statement-I: Far more tropical cyclones form over the Bay of Bengal than over the Arabian Sea.",
-  "कथन-I: अरब सागर की तुलना में बंगाल की खाड़ी पर कहीं अधिक उष्णकटिबंधीय चक्रवात बनते हैं।",
-  "Statement-II: The Bay of Bengal has warmer surface waters, a fresher upper layer from heavy river inflow that keeps heat near the surface, and receives the remnants of Pacific storms that cross South-east Asia.",
-  "कथन-II: बंगाल की खाड़ी का सतही जल अधिक गर्म है, भारी नदी प्रवाह से बनी कम खारी ऊपरी परत ऊष्मा को सतह के पास रखती है, और उसे दक्षिण-पूर्व एशिया पार करने वाले प्रशांत तूफ़ानों के अवशेष मिलते हैं।",
+  "Far more tropical cyclones form over the Bay of Bengal than over the Arabian Sea.",
+  "अरब सागर की तुलना में बंगाल की खाड़ी पर कहीं अधिक उष्णकटिबंधीय चक्रवात बनते हैं।",
+  "The Bay of Bengal has warmer surface waters, a fresher upper layer from heavy river inflow that keeps heat near the surface, and receives the remnants of Pacific storms that cross South-east Asia.",
+  "बंगाल की खाड़ी का सतही जल अधिक गर्म है, भारी नदी प्रवाह से बनी कम खारी ऊपरी परत ऊष्मा को सतह के पास रखती है, और उसे दक्षिण-पूर्व एशिया पार करने वाले प्रशांत तूफ़ानों के अवशेष मिलते हैं।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Roughly four cyclones form in the Bay for every one in the Arabian Sea. The Bay's surface stays warmer, its low-salinity surface layer, fed by the Ganga, Brahmaputra and other rivers, stops the cooler water below from mixing up, and low-pressure systems from the western Pacific often move across and redevelop over it; the Arabian Sea is cooler and its storms are often sheared apart. "
   "The balance is shifting, though: as the Arabian Sea has warmed, strong cyclones there have become more frequent in recent decades, putting the west coast at greater risk.",

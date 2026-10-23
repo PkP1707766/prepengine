@@ -132,10 +132,10 @@ S(CH, "medium", "Consider the following statements about types of glass:",
 
 # ================================================================ SPACE TECHNOLOGY & MISSIONS (h-SI)
 A("Space Technology & Missions", "hard",
-  "Statement-I: A spacecraft can gain speed relative to the Sun by flying close past a planet, without firing its engines.",
-  "कथन-I: कोई अंतरिक्ष यान अपने इंजन चलाए बिना किसी ग्रह के पास से उड़कर सूर्य के सापेक्ष गति बढ़ा सकता है।",
-  "Statement-II: During such a fly-by, the spacecraft takes a tiny share of the planet's orbital momentum around the Sun.",
-  "कथन-II: ऐसी उड़ान के दौरान अंतरिक्ष यान ग्रह के सूर्य के चारों ओर कक्षीय संवेग का एक अत्यंत छोटा अंश ले लेता है।",
+  "A spacecraft can gain speed relative to the Sun by flying close past a planet, without firing its engines.",
+  "कोई अंतरिक्ष यान अपने इंजन चलाए बिना किसी ग्रह के पास से उड़कर सूर्य के सापेक्ष गति बढ़ा सकता है।",
+  "During such a fly-by, the spacecraft takes a tiny share of the planet's orbital momentum around the Sun.",
+  "ऐसी उड़ान के दौरान अंतरिक्ष यान ग्रह के सूर्य के चारों ओर कक्षीय संवेग का एक अत्यंत छोटा अंश ले लेता है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Seen from the planet, the spacecraft leaves with the same speed it arrived with, only in a new direction; but the planet is itself moving round the Sun, so a spacecraft that passes behind it is swung forward and leaves with more speed in the Sun's frame. "
   "The energy comes from the planet, which slows by an immeasurably small amount because it is so massive. Gravity assists sent Voyager to the outer planets and help probes reach Mercury, while a fly-by in front of a planet can slow a craft down -- the Parker Solar Probe uses Venus fly-bys to fall closer to the Sun.",

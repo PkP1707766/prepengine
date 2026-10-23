@@ -23,10 +23,10 @@ IPEc = "NCERT Class XII, India: People and Economy"
 
 # ---------------------------------------------------------------- Resources (e-SI)
 A("Resources: Minerals, Energy & Agriculture", "easy",
-  "Statement-I: Shale gas does not flow readily into an ordinary vertical well.",
-  "कथन-I: शेल गैस किसी साधारण ऊर्ध्वाधर कुएँ में आसानी से प्रवाहित नहीं होती।",
-  "Statement-II: Shale gas is produced by drilling horizontally through the rock and fracturing it with water, sand and chemicals pumped in at high pressure.",
-  "कथन-II: शेल गैस चट्टान में क्षैतिज वेधन करके और उच्च दाब पर पानी, रेत और रसायन डालकर उसे तोड़कर निकाली जाती है।",
+  "Shale gas does not flow readily into an ordinary vertical well.",
+  "शेल गैस किसी साधारण ऊर्ध्वाधर कुएँ में आसानी से प्रवाहित नहीं होती।",
+  "Shale gas is produced by drilling horizontally through the rock and fracturing it with water, sand and chemicals pumped in at high pressure.",
+  "शेल गैस चट्टान में क्षैतिज वेधन करके और उच्च दाब पर पानी, रेत और रसायन डालकर उसे तोड़कर निकाली जाती है।",
   1,
   "Both statements are correct, but Statement-II does not explain Statement-I. The gas does not flow because shale is a fine-grained rock of very low permeability, which holds the gas in tiny, poorly connected pores; that is the reason. "
   "Statement-II describes the method -- horizontal drilling and hydraulic fracturing ('fracking') -- that the low permeability makes necessary; it is a consequence of Statement-I, not its explanation. Fracking's large use of water and the risk to groundwater are the main concerns about it.",
@@ -90,10 +90,10 @@ S("Climatology & Biomes", "medium", "With reference to the Atacama Desert, consi
 
 # ---------------------------------------------------------------- Indian Physiography, Climate & Regions (h-SI, m-stmt)
 A("Indian Physiography, Climate & Regions", "hard",
-  "Statement-I: The Thal Ghat and the Bhor Ghat carry the main road and railway routes from Mumbai onto the Deccan plateau.",
-  "कथन-I: थाल घाट और भोर घाट मुंबई से दक्कन पठार तक मुख्य सड़क और रेल मार्ग ले जाते हैं।",
-  "Statement-II: The Western Ghats rise steeply from the narrow coastal plain as an almost continuous wall, which roads and railways can climb only at a few passes.",
-  "कथन-II: पश्चिमी घाट संकीर्ण तटीय मैदान से लगभग सतत दीवार के रूप में खड़ी ढलान से उठते हैं, जिन पर सड़कें और रेलें केवल कुछ दर्रों पर ही चढ़ सकती हैं।",
+  "The Thal Ghat and the Bhor Ghat carry the main road and railway routes from Mumbai onto the Deccan plateau.",
+  "थाल घाट और भोर घाट मुंबई से दक्कन पठार तक मुख्य सड़क और रेल मार्ग ले जाते हैं।",
+  "The Western Ghats rise steeply from the narrow coastal plain as an almost continuous wall, which roads and railways can climb only at a few passes.",
+  "पश्चिमी घाट संकीर्ण तटीय मैदान से लगभग सतत दीवार के रूप में खड़ी ढलान से उठते हैं, जिन पर सड़कें और रेलें केवल कुछ दर्रों पर ही चढ़ सकती हैं।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. The Sahyadri present a steep escarpment to the west and slope gently east; because the wall is so continuous, routes from the coast are funnelled through a few passes, "
   "which is why the Thal Ghat (towards Nashik) and the Bhor Ghat (towards Pune) became the gateways from Mumbai to the plateau, with the railways climbing them through tunnels and reversing stations. The Eastern Ghats, by contrast, are broken into separate hill groups by the rivers that cut through them.",

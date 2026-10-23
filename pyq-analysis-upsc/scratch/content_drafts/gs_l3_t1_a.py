@@ -175,10 +175,10 @@ S("Parliament & State Legislature", "medium", "With reference to matters raised 
 
 # ---------------------------------------------------------------- Constitutional & Statutory Bodies (h-SI)
 A("Constitutional & Statutory Bodies", "hard",
-  "Statement-I: The Solicitor General of India holds a constitutional office created by Article 76.",
-  "कथन-I: भारत के सॉलिसिटर जनरल का पद अनुच्छेद 76 द्वारा सृजित एक संवैधानिक पद है।",
-  "Statement-II: The Constitution provides for the office of the Attorney General but not for that of the Solicitor General, whose office rests on the Law Officers (Conditions of Service) Rules, 1987.",
-  "कथन-II: संविधान महान्यायवादी (अटॉर्नी जनरल) के पद का प्रावधान करता है, पर सॉलिसिटर जनरल के पद का नहीं, जिसका पद विधि अधिकारी (सेवा शर्तें) नियम, 1987 पर आधारित है।",
+  "The Solicitor General of India holds a constitutional office created by Article 76.",
+  "भारत के सॉलिसिटर जनरल का पद अनुच्छेद 76 द्वारा सृजित एक संवैधानिक पद है।",
+  "The Constitution provides for the office of the Attorney General but not for that of the Solicitor General, whose office rests on the Law Officers (Conditions of Service) Rules, 1987.",
+  "संविधान महान्यायवादी (अटॉर्नी जनरल) के पद का प्रावधान करता है, पर सॉलिसिटर जनरल के पद का नहीं, जिसका पद विधि अधिकारी (सेवा शर्तें) नियम, 1987 पर आधारित है।",
   3,
   "Statement-I is incorrect and Statement-II is correct. Article 76 creates only the office of the Attorney General for India. The Solicitor General and the Additional Solicitors General are 'law officers' under the Law Officers (Conditions of Service) Rules, 1987, appointed by the Union government to assist the Attorney General; "
   "the office is neither constitutional nor created by a separate Act. Unlike the Attorney General, who has a right of audience in all courts and may speak in either House of Parliament under Article 88, the Solicitor General has no such constitutional standing.",
@@ -189,10 +189,10 @@ A("Constitutional & Statutory Bodies", "hard",
 
 # ---------------------------------------------------------------- Panchayati Raj & Local Governance (h-SI)
 A("Panchayati Raj & Local Governance", "hard",
-  "Statement-I: An election to a panchayat can be called in question only by an election petition presented to such authority and in such manner as a law of the State Legislature provides.",
-  "कथन-I: किसी पंचायत के निर्वाचन को केवल ऐसी निर्वाचन याचिका द्वारा प्रश्नगत किया जा सकता है जो उस प्राधिकारी को और उस रीति से प्रस्तुत की जाए जैसा राज्य विधानमंडल का क़ानून प्रावधान करे।",
-  "Statement-II: A State law on the delimitation of panchayat constituencies or the allotment of seats to them cannot be challenged in any court.",
-  "कथन-II: पंचायत निर्वाचन-क्षेत्रों के परिसीमन या उन्हें सीटों के आवंटन से संबंधित राज्य क़ानून को किसी न्यायालय में चुनौती नहीं दी जा सकती।",
+  "An election to a panchayat can be called in question only by an election petition presented to such authority and in such manner as a law of the State Legislature provides.",
+  "किसी पंचायत के निर्वाचन को केवल ऐसी निर्वाचन याचिका द्वारा प्रश्नगत किया जा सकता है जो उस प्राधिकारी को और उस रीति से प्रस्तुत की जाए जैसा राज्य विधानमंडल का क़ानून प्रावधान करे।",
+  "A State law on the delimitation of panchayat constituencies or the allotment of seats to them cannot be challenged in any court.",
+  "पंचायत निर्वाचन-क्षेत्रों के परिसीमन या उन्हें सीटों के आवंटन से संबंधित राज्य क़ानून को किसी न्यायालय में चुनौती नहीं दी जा सकती।",
   1,
   "Both statements are correct, but Statement-II does not explain Statement-I. Article 243-O has two separate clauses: clause (a) shuts out challenges in court to the validity of a law on the delimitation of constituencies or the allotment of seats, made under Article 243K; "
   "clause (b) says that no election to a panchayat shall be called in question except by an election petition before the authority a State law provides. One bar concerns the laws that draw the constituencies, the other the route for disputing an election; neither is the reason for the other. "

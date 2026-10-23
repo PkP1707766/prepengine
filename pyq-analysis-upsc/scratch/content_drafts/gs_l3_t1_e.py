@@ -142,10 +142,10 @@ S(IN, "medium", "Consider the following statements about critical minerals in In
 
 # ================================================================ MACRO (e-SI)
 A("Macro Concepts, National Income & Inflation", "easy",
-  "Statement-I: When an economy's output grows more slowly than its potential output, its unemployment rate tends to rise.",
-  "कथन-I: जब किसी अर्थव्यवस्था का उत्पादन उसके संभावित उत्पादन से धीमी गति से बढ़ता है, तो उसकी बेरोज़गारी दर बढ़ने लगती है।",
-  "Statement-II: Okun's law describes an inverse relationship between the output gap and the rate of unemployment.",
-  "कथन-II: ओकुन का नियम उत्पादन अंतराल और बेरोज़गारी दर के बीच व्युत्क्रम संबंध बताता है।",
+  "When an economy's output grows more slowly than its potential output, its unemployment rate tends to rise.",
+  "जब किसी अर्थव्यवस्था का उत्पादन उसके संभावित उत्पादन से धीमी गति से बढ़ता है, तो उसकी बेरोज़गारी दर बढ़ने लगती है।",
+  "Okun's law describes an inverse relationship between the output gap and the rate of unemployment.",
+  "ओकुन का नियम उत्पादन अंतराल और बेरोज़गारी दर के बीच व्युत्क्रम संबंध बताता है।",
   0,
   "Both statements are correct, and Statement-II explains Statement-I. Okun's law, an empirical regularity first noted in the United States, links shortfalls of output below its potential to rises in unemployment: when the output gap widens, firms need fewer workers, so unemployment goes up, and when output grows faster than potential, unemployment falls. "
   "The size of the effect varies from country to country and is weaker where much employment is informal, as in India.",
@@ -156,10 +156,10 @@ A("Macro Concepts, National Income & Inflation", "easy",
 
 # ================================================================ EXTERNAL SECTOR (e-SI, m-stmt)
 A("External Sector & International Institutions", "easy",
-  "Statement-I: ECGC Ltd provides insurance to Indian exporters against the risk that foreign buyers fail to pay.",
-  "कथन-I: ECGC लिमिटेड भारतीय निर्यातकों को इस जोखिम के विरुद्ध बीमा देता है कि विदेशी ख़रीदार भुगतान न करें।",
-  "Statement-II: ECGC is a statutory corporation set up by an Act of Parliament as a subsidiary of the Reserve Bank of India.",
-  "कथन-II: ECGC संसद के एक अधिनियम द्वारा भारतीय रिज़र्व बैंक की सहायक कंपनी के रूप में स्थापित एक वैधानिक निगम है।",
+  "ECGC Ltd provides insurance to Indian exporters against the risk that foreign buyers fail to pay.",
+  "ECGC लिमिटेड भारतीय निर्यातकों को इस जोखिम के विरुद्ध बीमा देता है कि विदेशी ख़रीदार भुगतान न करें।",
+  "ECGC is a statutory corporation set up by an Act of Parliament as a subsidiary of the Reserve Bank of India.",
+  "ECGC संसद के एक अधिनियम द्वारा भारतीय रिज़र्व बैंक की सहायक कंपनी के रूप में स्थापित एक वैधानिक निगम है।",
   2,
   "Statement-I is correct and Statement-II is incorrect. ECGC (formerly the Export Credit Guarantee Corporation of India) covers exporters against commercial risks such as a buyer's insolvency and political risks such as war or exchange controls in the buyer's country, and guarantees banks that lend to exporters. "
   "It was set up in 1957 as a company, wholly owned by the Government of India and administered by the Ministry of Commerce and Industry -- not as a statutory body or an RBI subsidiary.",
@@ -184,10 +184,10 @@ S("External Sector & International Institutions", "medium", "Consider the follow
 
 # ================================================================ TAXATION & FISCAL FEDERALISM (h-SI)
 A("Taxation & Fiscal Federalism", "hard",
-  "Statement-I: A State may levy a tax on professions, trades, callings and employments, but the total amount payable by any one person under it in a year cannot exceed ₹2,500.",
-  "कथन-I: राज्य व्यवसायों, व्यापारों, आजीविकाओं और नियोजनों पर कर लगा सकता है, पर उसके अंतर्गत किसी एक व्यक्ति द्वारा वर्ष में देय कुल राशि ₹2,500 से अधिक नहीं हो सकती।",
-  "Statement-II: Taxes on professions fall in the Union List, and the States levy them only under a power delegated by Parliament.",
-  "कथन-II: व्यवसायों पर कर संघ सूची में आते हैं, और राज्य उन्हें केवल संसद द्वारा प्रत्यायोजित शक्ति के अंतर्गत लगाते हैं।",
+  "A State may levy a tax on professions, trades, callings and employments, but the total amount payable by any one person under it in a year cannot exceed ₹2,500.",
+  "राज्य व्यवसायों, व्यापारों, आजीविकाओं और नियोजनों पर कर लगा सकता है, पर उसके अंतर्गत किसी एक व्यक्ति द्वारा वर्ष में देय कुल राशि ₹2,500 से अधिक नहीं हो सकती।",
+  "Taxes on professions fall in the Union List, and the States levy them only under a power delegated by Parliament.",
+  "व्यवसायों पर कर संघ सूची में आते हैं, और राज्य उन्हें केवल संसद द्वारा प्रत्यायोजित शक्ति के अंतर्गत लगाते हैं।",
   2,
   "Statement-I is correct and Statement-II is incorrect. Article 276 caps the profession tax at ₹2,500 a year per person (the limit was ₹250 until the Sixtieth Amendment of 1988) and saves it from being struck down as a tax on income, which is a Union subject. "
   "The power itself is the States' own: 'taxes on professions, trades, callings and employments' is Entry 60 of the State List, and its proceeds can go to the State or to its local bodies.",
