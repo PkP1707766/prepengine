@@ -11,8 +11,11 @@
      2. the series level -- "Level 1", "Level 2", ... read from the test title,
         else from its series title. Series without a level follow the levels;
      3. the series itself, so its tests stay together;
-     4. inside a levelled series: GS papers first, then CSAT (Paper II), each
-        by the number it carries ("Test 7", "CSAT Mini 2");
+     4. inside a levelled series: dated papers by the day they open, so the
+        list reads as the timetable (Level 2: GS Test 1 on 1 Nov, CSAT 1 on
+        7 Nov, GS Test 2 on 8 Nov ...); undated papers follow, GS first,
+        then CSAT (Paper II), each by the number it carries ("Test 7",
+        "CSAT Mini 2");
      5. then the order the tests were created in, then the title.
    Series without a level (the BPSC mock series) go by creation order first:
    their titles mix "Test 2" with "Special II", so the number only orders a
@@ -31,15 +34,21 @@ function keyOf(t) {
   const level = lv ? Number(lv[1]) : LAST;
   const n = NUMBER.exec(title);
   const at = Date.parse(t.createdAt || "");
+  const on = Date.parse(t.scheduledFor || "");
   return {
     exam: t.examCategory || "",
     level,
     series: t.seriesTitle || "",
+    // Undated papers sort after every dated one (Infinity), never between.
+    on: Number.isNaN(on) ? Infinity : on,
     csat: level < LAST && CSAT.test(title) ? 1 : 0,
     n: n ? Number(n[1]) : LAST,
     at: Number.isNaN(at) ? 0 : at,
   };
 }
+
+// Same day, or both undated (both Infinity), ties and falls through.
+const byDay = (x, y) => (x.on === y.on ? 0 : x.on - y.on);
 
 export function compareTests(a, b) {
   const x = keyOf(a), y = keyOf(b);
@@ -47,7 +56,7 @@ export function compareTests(a, b) {
     || x.level - y.level
     || x.series.localeCompare(y.series, "en", { numeric: true })
     || (x.level < LAST
-      ? x.csat - y.csat || x.n - y.n || x.at - y.at
+      ? byDay(x, y) || x.csat - y.csat || x.n - y.n || x.at - y.at
       : x.at - y.at || x.n - y.n)
     || String(a.title || "").localeCompare(String(b.title || ""), "en", { numeric: true });
 }
