@@ -37,6 +37,9 @@ the owner decides whether Level 1 runs on dates or self-paced.
 Level 3's four CSAT papers are the 80 rows of csat_set 'csat-l3-tNN' in their authored csat_order, dated on
 Saturdays at 2:30 pm from 27 March 2027 (the owner approved publishing them on 2026-10-24). Its six GS papers wait
 for their 16 current-affairs rows, written nearer their dates.
+Level 4's nine CSAT simulators are the 80 rows of csat_set 'csat-l4-sNN' in authored order, each on one recent shape
+of the real paper (layouts A/B/C in csat_l4_layouts.py, in rotation), dated twice a week -- Sundays and Wednesdays at
+2:30 pm, the hour of the real CSAT paper -- from 18 April to 16 May 2027, a week before the Prelims of 23 May 2027.
 Tests are created unpublished; the owner approves publishing (the 27 Level-2 papers went live on 2026-10-11 via
 upsc_l2_publish.sql, after the answer-(d) fix in l2_dshare_fix.sql). A published paper is frozen: a re-run leaves
 its question order, usages and dates untouched, since students may already have sat it. Each test is linked to
@@ -205,6 +208,15 @@ L3_CSAT_DESC = ("The full CSAT Paper II syllabus at the advanced level: 34 quant
                 "28 reading-comprehension questions on 10 passages, in the UPSC order, with harder items and closer options "
                 "than Level 2. 80 questions · 200 marks · 2 hours · +2.5 / -0.83; qualifying at 33%.")
 
+L4_SHAPES = {"A": ("2023 and 2024", 38, 15, 27, 9), "B": ("2025", 34, 17, 29, 10), "C": ("2026", 37, 20, 23, 10)}
+L4_ROTATION = "ABCABCABC"                  # simulator n uses layout L4_ROTATION[n - 1]
+def l4_csat_desc(shape):
+    years, nq, nl, nr, npass = L4_SHAPES[shape]
+    return (f"A full-length CSAT Paper II simulator on the shape of the {years} papers: {nq} quantitative-aptitude, {nl} "
+            f"logical-reasoning and {nr} reading-comprehension questions on {npass} passages, in the UPSC order, with a "
+            "five-item data-sufficiency block. 80 questions · 200 marks · 2 hours · +2.5 / -0.83; qualifying at 33%. "
+            "Scheduled at 2:30 pm, the hour of the real paper.")
+
 L1_CSAT_DESC = ("CSAT Paper II at the foundation level, as a one-hour half paper: 17 quantitative-aptitude, 9 logical-reasoning "
                 "and 14 reading-comprehension questions on five passages, in the UPSC order, with a short data-sufficiency block. "
                 "40 questions · 100 marks · 1 hour · +2.5 / -0.83; qualifying at 33%.")
@@ -271,6 +283,8 @@ GS_DATES = ["2026-11-01", "2026-11-08", "2026-11-15", "2026-11-22", "2026-11-29"
             "2027-02-07", "2027-02-14", "2027-02-21", "2027-02-28", "2027-03-07", "2027-03-14", "2027-03-21"]
 CSAT_DATES = ["2026-11-07", "2026-11-28", "2026-12-19", "2027-01-09", "2027-01-30", "2027-02-20", "2027-03-13"]
 L3_CSAT_DATES = ["2027-03-27", "2027-04-03", "2027-04-10", "2027-04-17"]   # Saturdays, after Level 2 ends on 21 March
+L4_CSAT_DATES = ["2027-04-18", "2027-04-21", "2027-04-25", "2027-04-28", "2027-05-02", "2027-05-05", "2027-05-09",
+                 "2027-05-12", "2027-05-16"]                                # Sundays and Wednesdays; Prelims on 23 May 2027
 
 def main():
     bank_path, targets_path = sys.argv[1], sys.argv[2]
@@ -373,13 +387,27 @@ def main():
         bp_ids[("l3csat", i)] = (uid(f"blueprint/l3/{6 + i}"), "upsc27-l3-csat")
         tests.append(("l3csat", i, *l3_titles[6 + i], L3_CSAT_DESC, f"{L3_CSAT_DATES[i - 1]} 14:30:00+05:30",
                       "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
+    l4_titles = {pos: (t, th) for series, pos, t, th, *_ in other_blueprints() if series == "l4"}
+    for i in range(1, 10):                      # Level 4's CSAT simulators: the 80 rows of csat_set 'csat-l4-sNN' in authored order
+        rows = sorted((r for r in bank if r["csat_set"] == f"csat-l4-s{i:02d}"), key=lambda r: r["csat_order"])
+        if len(rows) < 80:
+            print(f"Level 4 CSAT Simulator {i}: {len(rows)} of 80 rows, paper not made yet")
+            continue
+        assert [r["csat_order"] for r in rows] == list(range(1, 81)), f"Level 4 CSAT Simulator {i}: csat_order is not 1-80"
+        shape = L4_ROTATION[i - 1]
+        _, nq, nl, nr, _ = L4_SHAPES[shape]
+        assert Counter(r["subject"] for r in rows) == Counter({"Quantitative Aptitude": nq, "Logical Reasoning": nl, "Reading Comprehension": nr}), i
+        bp_ids[("l4csat", i)] = (uid(f"blueprint/l4/{10 + i}"), "upsc27-l4-csat")
+        tests.append(("l4csat", i, *l4_titles[10 + i], l4_csat_desc(shape), f"{L4_CSAT_DATES[i - 1]} 14:30:00+05:30",
+                      "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
     seen = set()
     for kind, n, title, title_hi, desc, when, sec, sec_hi, rows in tests:
         ids = [r["id"] for r in rows]
         assert not (seen & set(ids)), f"{title}: a question is in two tests"
         seen |= set(ids)
-        tid = uid({"l1": f"test/l1/gs/{n}", "l1csat": f"test/l1/csat/{n}", "l3csat": f"test/l3/csat/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
-        series_id = SID["l1"] if kind.startswith("l1") else SID["l3"] if kind.startswith("l3") else L2_SERIES
+        tid = uid({"l1": f"test/l1/gs/{n}", "l1csat": f"test/l1/csat/{n}", "l3csat": f"test/l3/csat/{n}",
+                   "l4csat": f"test/l4/csat/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
+        series_id = {"l1": SID["l1"], "l3": SID["l3"], "l4": SID["l4"]}.get(kind[:2], L2_SERIES)
         minutes = 60 if kind == "l1csat" else 120      # a CSAT half paper is one hour (src/lib/generate.js UPSC_PAPER_FORMATS)
         bid, theme = bp_ids[(kind, n)]
         sections = [{"id": "s1", "name": sec, "name_hi": sec_hi, "questionIds": ids}]
