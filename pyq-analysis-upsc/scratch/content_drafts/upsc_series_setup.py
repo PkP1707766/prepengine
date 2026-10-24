@@ -34,6 +34,9 @@ Level-1 papers are assembled the same way once all 100 rows of a paper exist (th
 paper's prefix, e.g. l1-pol-), checked cell by cell against upsc_l1_cell_targets.mjs; its three CSAT half papers are the
 40 rows of csat_set 'csat-l1-mNN' in their authored csat_order, timed at one hour. They stay undated until
 the owner decides whether Level 1 runs on dates or self-paced.
+Level 3's four CSAT papers are the 80 rows of csat_set 'csat-l3-tNN' in their authored csat_order, dated on
+Saturdays at 2:30 pm from 27 March 2027 (the owner approved publishing them on 2026-10-24). Its six GS papers wait
+for their 16 current-affairs rows, written nearer their dates.
 Tests are created unpublished; the owner approves publishing (the 27 Level-2 papers went live on 2026-10-11 via
 upsc_l2_publish.sql, after the answer-(d) fix in l2_dshare_fix.sql). A published paper is frozen: a re-run leaves
 its question order, usages and dates untouched, since students may already have sat it. Each test is linked to
@@ -198,6 +201,10 @@ L1_PAPERS = [  # (paper no, concept-id prefix, syllabus description)
      "Economics and Business Studies); the Constitution and Central Acts; MoEFCC, RBI, SEBI, ISRO and the Ministries concerned."),
 ]
 
+L3_CSAT_DESC = ("The full CSAT Paper II syllabus at the advanced level: 34 quantitative-aptitude, 18 logical-reasoning and "
+                "28 reading-comprehension questions on 10 passages, in the UPSC order, with harder items and closer options "
+                "than Level 2. 80 questions · 200 marks · 2 hours · +2.5 / -0.83; qualifying at 33%.")
+
 L1_CSAT_DESC = ("CSAT Paper II at the foundation level, as a one-hour half paper: 17 quantitative-aptitude, 9 logical-reasoning "
                 "and 14 reading-comprehension questions on five passages, in the UPSC order, with a short data-sufficiency block. "
                 "40 questions · 100 marks · 1 hour · +2.5 / -0.83; qualifying at 33%.")
@@ -263,6 +270,7 @@ GS_DATES = ["2026-11-01", "2026-11-08", "2026-11-15", "2026-11-22", "2026-11-29"
             "2026-12-20", "2026-12-27", "2027-01-03", "2027-01-10", "2027-01-17", "2027-01-24", "2027-01-31",
             "2027-02-07", "2027-02-14", "2027-02-21", "2027-02-28", "2027-03-07", "2027-03-14", "2027-03-21"]
 CSAT_DATES = ["2026-11-07", "2026-11-28", "2026-12-19", "2027-01-09", "2027-01-30", "2027-02-20", "2027-03-13"]
+L3_CSAT_DATES = ["2027-03-27", "2027-04-03", "2027-04-10", "2027-04-17"]   # Saturdays, after Level 2 ends on 21 March
 
 def main():
     bank_path, targets_path = sys.argv[1], sys.argv[2]
@@ -355,13 +363,23 @@ def main():
         assert [r["csat_order"] for r in rows] == list(range(1, 41)), f"CSAT Mini {i}: csat_order is not 1-40"
         bp_ids[("l1csat", i)] = (uid(f"blueprint/l1/{7 + i}"), "upsc27-l1-csat")
         tests.append(("l1csat", i, *l1_titles[7 + i], L1_CSAT_DESC, None, "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
+    l3_titles = {pos: (t, th) for series, pos, t, th, *_ in other_blueprints() if series == "l3"}
+    for i in range(1, 5):                       # Level 3's CSAT papers: the 80 rows of csat_set 'csat-l3-tNN' in authored order
+        rows = sorted((r for r in bank if r["csat_set"] == f"csat-l3-t{i:02d}"), key=lambda r: r["csat_order"])
+        if len(rows) < 80:
+            print(f"Level 3 CSAT Test {i}: {len(rows)} of 80 rows, paper not made yet")
+            continue
+        assert [r["csat_order"] for r in rows] == list(range(1, 81)), f"Level 3 CSAT Test {i}: csat_order is not 1-80"
+        bp_ids[("l3csat", i)] = (uid(f"blueprint/l3/{6 + i}"), "upsc27-l3-csat")
+        tests.append(("l3csat", i, *l3_titles[6 + i], L3_CSAT_DESC, f"{L3_CSAT_DATES[i - 1]} 14:30:00+05:30",
+                      "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
     seen = set()
     for kind, n, title, title_hi, desc, when, sec, sec_hi, rows in tests:
         ids = [r["id"] for r in rows]
         assert not (seen & set(ids)), f"{title}: a question is in two tests"
         seen |= set(ids)
-        tid = uid({"l1": f"test/l1/gs/{n}", "l1csat": f"test/l1/csat/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
-        series_id = SID["l1"] if kind.startswith("l1") else L2_SERIES
+        tid = uid({"l1": f"test/l1/gs/{n}", "l1csat": f"test/l1/csat/{n}", "l3csat": f"test/l3/csat/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
+        series_id = SID["l1"] if kind.startswith("l1") else SID["l3"] if kind.startswith("l3") else L2_SERIES
         minutes = 60 if kind == "l1csat" else 120      # a CSAT half paper is one hour (src/lib/generate.js UPSC_PAPER_FORMATS)
         bid, theme = bp_ids[(kind, n)]
         sections = [{"id": "s1", "name": sec, "name_hi": sec_hi, "questionIds": ids}]
