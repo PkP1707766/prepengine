@@ -198,19 +198,19 @@ P("Inclusive Growth, Welfare & Demography", "hard", "Consider the following pair
   "योजनाओं और उन्हें चलाने वाले मंत्रालयों या विभागों के निम्नलिखित युग्मों पर विचार कीजिए:",
   ["Dharti Aaba Janjatiya Gram Utkarsh Abhiyan : Ministry of Tribal Affairs",
    "Sugamya Bharat Abhiyan (Accessible India Campaign) : Department of Empowerment of Persons with Disabilities",
-   "Pradhan Mantri Matru Vandana Yojana : Ministry of Health and Family Welfare",
+   "Swachh Bharat Mission (Grameen) : Ministry of Housing and Urban Affairs",
    "Pradhan Mantri Anusuchit Jaati Abhyuday Yojana (PM-AJAY) : Ministry of Social Justice and Empowerment"],
   ["धरती आबा जनजातीय ग्राम उत्कर्ष अभियान : जनजातीय कार्य मंत्रालय",
    "सुगम्य भारत अभियान : दिव्यांगजन सशक्तीकरण विभाग",
-   "प्रधानमंत्री मातृ वंदना योजना : स्वास्थ्य और परिवार कल्याण मंत्रालय",
+   "स्वच्छ भारत मिशन (ग्रामीण) : आवासन और शहरी कार्य मंत्रालय",
    "प्रधानमंत्री अनुसूचित जाति अभ्युदय योजना (PM-AJAY) : सामाजिक न्याय और अधिकारिता मंत्रालय"],
   2,
   "The first, second and fourth pairs are correct. Dharti Aaba (2024) brings the schemes of many ministries together to saturate tribal-majority villages with roads, housing, water, health and livelihoods; the Accessible India Campaign (2015) aims to make public buildings, transport and websites accessible; and PM-AJAY merges earlier schemes to develop Scheduled Caste-majority villages and support SC livelihoods. "
-  "The third pair is wrong: the Matru Vandana Yojana, which pays pregnant women and nursing mothers a cash incentive to make up for lost wages and encourage health care, is run by the Ministry of Women and Child Development.",
+  "The third pair is wrong: the rural arm of the Swachh Bharat Mission, which built household toilets and now works on solid and liquid waste in villages, is run by the Department of Drinking Water and Sanitation in the Ministry of Jal Shakti; the Ministry of Housing and Urban Affairs runs the urban mission.",
   "पहला, दूसरा और चौथा युग्म सही हैं। धरती आबा (2024) अनेक मंत्रालयों की योजनाओं को मिलाकर जनजाति-बहुल गाँवों को सड़क, आवास, पानी, स्वास्थ्य और आजीविका से संतृप्त करता है; सुगम्य भारत अभियान (2015) सार्वजनिक भवनों, परिवहन और वेबसाइटों को सुगम्य बनाना चाहता है; और PM-AJAY पुरानी योजनाओं को मिलाकर अनुसूचित जाति-बहुल गाँवों का विकास और SC आजीविकाओं को सहारा देता है। "
-  "तीसरा युग्म ग़लत है: गर्भवती महिलाओं और स्तनपान कराने वाली माताओं को खोई मज़दूरी की भरपाई और स्वास्थ्य देखभाल के लिए नक़द प्रोत्साहन देने वाली मातृ वंदना योजना महिला और बाल विकास मंत्रालय चलाता है।",
-  "Ministry of Tribal Affairs; Ministry of Social Justice and Empowerment; Ministry of Women and Child Development.",
-  "l3-t3-eco-schemes-dajgua-sugamya-pmmvy-pmajay", craft="precision")
+  "तीसरा युग्म ग़लत है: स्वच्छ भारत मिशन की ग्रामीण शाखा, जिसने घरेलू शौचालय बनवाए और अब गाँवों में ठोस और तरल अपशिष्ट पर काम करती है, जल शक्ति मंत्रालय का पेयजल और स्वच्छता विभाग चलाता है; आवासन और शहरी कार्य मंत्रालय शहरी मिशन चलाता है।",
+  "Ministry of Tribal Affairs; Ministry of Social Justice and Empowerment; Ministry of Jal Shakti (Department of Drinking Water and Sanitation).",
+  "l3-t3-eco-schemes-dajgua-sugamya-sbmg-pmajay", craft="precision")
 
 # ================================================================ AGRICULTURE & FOOD ECONOMY (m-MCQ, m-stmt)
 M(AG, "medium",

@@ -28,35 +28,31 @@ MUS = "NCERT Class XI, An Introduction to Indian Art; Sangeet Natak Akademi"
 
 # ================================================================ MODERN (6)
 M("Modern", "easy",
-  "The first of the trials of officers of the Indian National Army held at the Red Fort in 1945 was of which three officers?",
-  "1945 में लाल क़िले में हुए आज़ाद हिंद फ़ौज के अधिकारियों के मुक़दमों में पहला मुक़दमा किन तीन अधिकारियों का था?",
-  ["Mohan Singh, Lakshmi Swaminathan and Subhas Chandra Bose's aide Abid Hasan",
-   "Bhagat Singh's associates Batukeshwar Dutt, Jaidev Kapur and Shiv Verma",
-   "Rash Behari Bose, Mohan Singh and Prem Kumar Sahgal, the three founders of the army",
-   "Shah Nawaz Khan, Prem Kumar Sahgal and Gurbaksh Singh Dhillon"],
-  ["मोहन सिंह, लक्ष्मी स्वामीनाथन और सुभाषचंद्र बोस के सहयोगी आबिद हसन",
-   "भगत सिंह के साथी बटुकेश्वर दत्त, जयदेव कपूर और शिव वर्मा",
-   "रासबिहारी बोस, मोहन सिंह और प्रेम कुमार सहगल, सेना के तीन संस्थापक",
-   "शाहनवाज़ ख़ान, प्रेम कुमार सहगल और गुरबख़्श सिंह ढिल्लों"],
+  "Sister Nivedita, the Irish-born educationist who opened a school for girls in Calcutta and wrote on Indian art and nationalism, was a disciple of:",
+  "आयरलैंड में जन्मी शिक्षाविद् भगिनी निवेदिता, जिन्होंने कलकत्ता में लड़कियों का विद्यालय खोला और भारतीय कला तथा राष्ट्रवाद पर लिखा, किनकी शिष्या थीं?",
+  ["Ramakrishna Paramahamsa", "Dayananda Saraswati", "Annie Besant", "Swami Vivekananda"],
+  ["रामकृष्ण परमहंस", "दयानंद सरस्वती", "एनी बेसेंट", "स्वामी विवेकानंद"],
   3,
-  "Shah Nawaz Khan, Prem Kumar Sahgal and Gurbaksh Singh Dhillon -- a Muslim, a Hindu and a Sikh -- were tried together at the Red Fort from November 1945. The Congress defended them, with Bhulabhai Desai leading the defence, and the trial set off protests across the country that cut across communities; "
-  "although they were sentenced to transportation for life, the Commander-in-Chief remitted the sentences in January 1946. The other names belong to the INA's earlier history or to the revolutionaries of the Hindustan Socialist Republican Association.",
-  "शाहनवाज़ ख़ान, प्रेम कुमार सहगल और गुरबख़्श सिंह ढिल्लों -- एक मुसलमान, एक हिंदू और एक सिख -- पर नवंबर 1945 से लाल क़िले में एक साथ मुक़दमा चला। कांग्रेस ने उनका बचाव किया, जिसका नेतृत्व भूलाभाई देसाई ने किया, और मुक़दमे ने देश भर में ऐसे विरोध भड़काए जो समुदायों की सीमाएँ लाँघ गए; "
-  "यद्यपि उन्हें आजीवन देश-निकाले की सज़ा हुई, प्रधान सेनापति ने जनवरी 1946 में सज़ाएँ माफ़ कर दीं। बाक़ी नाम आज़ाद हिंद फ़ौज के आरंभिक इतिहास या हिंदुस्तान सोशलिस्ट रिपब्लिकन एसोसिएशन के क्रांतिकारियों के हैं।",
-  MOD, "l3-t1-his-ina-red-fort-trial", pos=3, craft="recall")
+  "Margaret Noble met Vivekananda in London in 1895, came to India in 1898 and was given the name Nivedita, 'the dedicated', when he initiated her; she opened a girls' school in Bagbazar, nursed the sick during the plague of 1899, encouraged scientists such as J.C. Bose and artists of the Bengal school, and became an influential voice of nationalism during the Swadeshi years. "
+  "Ramakrishna was Vivekananda's own teacher, who died in 1886; Dayananda founded the Arya Samaj; and Annie Besant led the Theosophical Society and the Home Rule movement.",
+  "मार्गरेट नोबल 1895 में लंदन में विवेकानंद से मिलीं, 1898 में भारत आईं और जब उन्होंने उन्हें दीक्षा दी तो उन्हें 'समर्पित' अर्थ वाला नाम निवेदिता मिला; उन्होंने बागबाज़ार में लड़कियों का विद्यालय खोला, 1899 के प्लेग में बीमारों की सेवा की, जे.सी. बोस जैसे वैज्ञानिकों और बंगाल शैली के कलाकारों को प्रोत्साहित किया, और स्वदेशी वर्षों में राष्ट्रवाद की प्रभावशाली आवाज़ बनीं। "
+  "रामकृष्ण विवेकानंद के अपने गुरु थे, जिनकी 1886 में मृत्यु हुई; दयानंद ने आर्य समाज की स्थापना की; और एनी बेसेंट ने थियोसोफ़िकल सोसाइटी और होम रूल आंदोलन का नेतृत्व किया।",
+  MOD + "; Ramakrishna Mission.",
+  "l3-t1-his-sister-nivedita", pos=3, craft="recall")
 
-S("Modern", "easy", "With reference to the revolt of the ratings of the Royal Indian Navy in February 1946, consider the following statements:",
-  "फ़रवरी 1946 में रॉयल इंडियन नेवी के नाविकों (रेटिंग्स) के विद्रोह के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
-  ["It began on HMIS Talwar, a signals training establishment in Bombay, and spread to ships and shore establishments in other ports.",
-   "Sardar Vallabhbhai Patel, along with Muhammad Ali Jinnah, persuaded the ratings to surrender."],
-  ["यह बंबई में एक सिग्नल प्रशिक्षण प्रतिष्ठान, एचएमआईएस तलवार, पर आरंभ हुआ और दूसरे बंदरगाहों के जहाज़ों और तटीय प्रतिष्ठानों में फैल गया।",
-   "सरदार वल्लभभाई पटेल ने मुहम्मद अली जिन्ना के साथ नाविकों को आत्मसमर्पण के लिए राज़ी किया।"],
+S("Modern", "easy", "Consider the following statements about the Hindu Mela:",
+  "हिंदू मेले के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was started in Calcutta in 1867, with the support of the Tagore family, to foster national pride and Indian crafts and industry.",
+   "As a boy, Rabindranath Tagore recited a patriotic poem of his own at one of its gatherings."],
+  ["इसे 1867 में कलकत्ता में, टैगोर परिवार के सहयोग से, राष्ट्रीय गौरव और भारतीय शिल्प तथा उद्योग को बढ़ावा देने के लिए शुरू किया गया।",
+   "बालक के रूप में रवींद्रनाथ टैगोर ने इसके एक आयोजन में अपनी एक देशभक्ति कविता का पाठ किया।"],
   T2, 2,
-  "Both are correct. On 18 February 1946 ratings of HMIS Talwar struck against poor food, racial insults and the INA trials, and the revolt spread to Karachi, Calcutta and other ports, with the flags of the Congress, the Muslim League and the Communists hoisted together on the ships. "
-  "The Congress and League leaders, wary of an uprising they did not control, advised surrender: on 23 February the ratings gave in after assurances from Patel and Jinnah that they would not be victimised.",
-  "दोनों सही हैं। 18 फ़रवरी 1946 को एचएमआईएस तलवार के नाविकों ने ख़राब भोजन, नस्ली अपमान और आज़ाद हिंद फ़ौज के मुक़दमों के विरोध में हड़ताल की, और विद्रोह कराची, कलकत्ता और दूसरे बंदरगाहों में फैल गया, जहाँ जहाज़ों पर कांग्रेस, मुस्लिम लीग और कम्युनिस्टों के झंडे एक साथ फहराए गए। "
-  "कांग्रेस और लीग के नेताओं ने, उस विद्रोह से सावधान जो उनके नियंत्रण में नहीं था, आत्मसमर्पण की सलाह दी: 23 फ़रवरी को पटेल और जिन्ना के इस आश्वासन के बाद नाविकों ने हथियार डाल दिए कि उन्हें प्रताड़ित नहीं किया जाएगा।",
-  MOD, "l3-t1-his-rin-ratings-revolt-1946", craft="recall")
+  "Both statements are correct. The Hindu Mela, organised by Nabagopal Mitra with Dwijendranath and Ganendranath Tagore among its patrons, held annual gatherings with exhibitions of Indian crafts, wrestling and patriotic songs, and urged self-help in industry and education decades before the Swadeshi movement; in 1875 the fourteen-year-old Rabindranath recited a poem there, one of his first public appearances. "
+  "Historians treat it as an early sign of the cultural nationalism that later shaped the Indian Association and the Congress in Bengal.",
+  "दोनों कथन सही हैं। नवगोपाल मित्र द्वारा आयोजित हिंदू मेला, जिसके संरक्षकों में द्विजेंद्रनाथ और गणेंद्रनाथ टैगोर थे, भारतीय शिल्पों की प्रदर्शनियों, कुश्ती और देशभक्ति गीतों के साथ वार्षिक आयोजन करता था, और स्वदेशी आंदोलन से दशकों पहले उद्योग और शिक्षा में आत्मनिर्भरता का आग्रह करता था; 1875 में चौदह वर्षीय रवींद्रनाथ ने वहाँ एक कविता पढ़ी, जो उनकी पहली सार्वजनिक उपस्थितियों में से एक थी। "
+  "इतिहासकार इसे उस सांस्कृतिक राष्ट्रवाद का आरंभिक संकेत मानते हैं जिसने बाद में बंगाल में इंडियन एसोसिएशन और कांग्रेस को आकार दिया।",
+  MOD + ".",
+  "l3-t1-his-hindu-mela-1867", craft="recall")
 
 S("Modern", "hard", "Consider the following statements:",
   "निम्नलिखित कथनों पर विचार कीजिए:",

@@ -72,21 +72,21 @@ M("Federalism & Special Provisions", "hard",
   f"{COI}, Articles 285 and 289.",
   "l3-t1-pol-art289-state-trade-taxable", pos=0, craft="application")
 
-S("Federalism & Special Provisions", "medium", "Consider the following statements about trade and commerce within the territory of India:",
-  "भारत के राज्यक्षेत्र के भीतर व्यापार और वाणिज्य के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
-  ["Article 301 declares that trade, commerce and intercourse throughout the territory of India shall be free, subject to the other provisions of that Part.",
-   "A State law imposing reasonable restrictions on trade with or within the State in the public interest needs no prior sanction of the President.",
-   "Parliament cannot impose any restriction on the freedom of trade between one State and another."],
-  ["अनुच्छेद 301 घोषित करता है कि भारत के पूरे राज्यक्षेत्र में व्यापार, वाणिज्य और समागम स्वतंत्र होगा, उस भाग के अन्य प्रावधानों के अधीन।",
-   "राज्य के साथ या उसके भीतर व्यापार पर लोकहित में युक्तियुक्त प्रतिबंध लगाने वाले राज्य क़ानून के लिए राष्ट्रपति की पूर्व मंज़ूरी आवश्यक नहीं है।",
-   "संसद एक राज्य और दूसरे राज्य के बीच व्यापार की स्वतंत्रता पर कोई भी प्रतिबंध नहीं लगा सकती।"],
+S("Federalism & Special Provisions", "medium", "With reference to the Supreme Court's nine-judge decision in Jindal Stainless Ltd. v. State of Haryana (2016), consider the following statements:",
+  "जिंदल स्टेनलेस लिमिटेड बनाम हरियाणा राज्य (2016) में सर्वोच्च न्यायालय के नौ न्यायाधीशों के निर्णय के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It held that a non-discriminatory tax is not, by itself, a restriction on the freedom of trade guaranteed by Article 301.",
+   "It held that every State tax on goods entering from another State needs the President's previous sanction.",
+   "After the judgment, the States lost all power to levy an entry tax on goods."],
+  ["इसने माना कि भेदभाव-रहित कर अपने-आप में अनुच्छेद 301 द्वारा प्रत्याभूत व्यापार की स्वतंत्रता पर प्रतिबंध नहीं है।",
+   "इसने माना कि दूसरे राज्य से आने वाली वस्तुओं पर हर राज्य-कर के लिए राष्ट्रपति की पूर्व मंज़ूरी चाहिए।",
+   "इस निर्णय के बाद राज्यों ने वस्तुओं पर प्रवेश-कर लगाने की सारी शक्ति खो दी।"],
   C3, 0,
-  "Only statement 1 is correct. Under Article 304(b), a State may impose reasonable restrictions on trade in the public interest, but the Bill for such a law can be introduced in the State Legislature only with the President's previous sanction -- so statement 2 is wrong. "
-  "Article 302 lets Parliament impose restrictions on trade between States, or within any part of India, in the public interest -- so statement 3 is wrong. Article 304(a) separately allows a State to tax goods brought in from other States, provided it does not discriminate against them.",
-  "केवल कथन 1 सही है। अनुच्छेद 304(ख) के अंतर्गत राज्य लोकहित में व्यापार पर युक्तियुक्त प्रतिबंध लगा सकता है, पर ऐसे क़ानून का विधेयक राज्य विधानमंडल में राष्ट्रपति की पूर्व मंज़ूरी से ही पेश हो सकता है -- अतः कथन 2 ग़लत है। "
-  "अनुच्छेद 302 संसद को लोकहित में राज्यों के बीच, या भारत के किसी भाग के भीतर, व्यापार पर प्रतिबंध लगाने देता है -- अतः कथन 3 ग़लत है। अनुच्छेद 304(क) अलग से राज्य को दूसरे राज्यों से लाए गए माल पर कर लगाने देता है, बशर्ते वह उनके साथ भेदभाव न करे।",
-  f"{COI}, Articles 301, 302 and 304 (Part XIII).",
-  "l3-t1-pol-part-xiii-trade-301-304", craft="precision")
+  "Only statement 1 is correct. States had long levied entry taxes on goods brought in from other States, and traders argued that these hit the freedom of trade in Article 301 unless they were 'compensatory' or cleared under Article 304(b). The nine-judge bench rejected the compensatory-tax test and held that taxes are not, as such, restrictions on trade; only a tax that discriminates against goods from other States, in favour of local goods, offends Article 304(a). "
+  "Statements 2 and 3 are wrong: a non-discriminatory entry tax needed no presidential sanction, so the States kept the power, and the cases on whether particular levies were discriminatory went back to regular benches. Entry taxes were later subsumed into the GST in 2017.",
+  "केवल कथन 1 सही है। राज्य लंबे समय से दूसरे राज्यों से लाई गई वस्तुओं पर प्रवेश-कर लगाते रहे थे, और व्यापारियों का तर्क था कि जब तक वे 'प्रतिपूरक' न हों या अनुच्छेद 304(ख) के अंतर्गत स्वीकृत न हों, वे अनुच्छेद 301 की व्यापार-स्वतंत्रता पर चोट करते हैं। नौ न्यायाधीशों की पीठ ने प्रतिपूरक-कर की कसौटी ख़ारिज की और माना कि कर अपने-आप में व्यापार पर प्रतिबंध नहीं हैं; केवल वही कर अनुच्छेद 304(क) का उल्लंघन करता है जो स्थानीय वस्तुओं के पक्ष में दूसरे राज्यों की वस्तुओं से भेदभाव करे। "
+  "कथन 2 और 3 ग़लत हैं: भेदभाव-रहित प्रवेश-कर के लिए राष्ट्रपति की मंज़ूरी आवश्यक नहीं थी, इसलिए राज्यों की शक्ति बनी रही, और कोई विशेष कर भेदभावपूर्ण है या नहीं, इसके मामले सामान्य पीठों को लौटाए गए। बाद में 2017 में प्रवेश-कर GST में समाहित हो गए।",
+  f"{SC}: Jindal Stainless Ltd. v. State of Haryana (2016); {COI}, Articles 301 and 304.",
+  "l3-t1-pol-jindal-stainless-entry-tax", craft="precision")
 
 # ---------------------------------------------------------------- Constitutional Framework (h-stmt, m-stmt)
 S("Constitutional Framework", "hard", "With reference to the benches of the Supreme Court, consider the following statements:",

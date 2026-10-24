@@ -53,7 +53,7 @@ for cg, ps in cache.items():
     hits = defaultdict(set)
     for p in rare:
         for bcg, bt in btxt:
-            if p in bt: hits[bcg].add(p)
+            if bcg != cg and p in bt: hits[bcg].add(p)
     top = sorted(((len(v), k, v) for k, v in hits.items() if len(v) >= minshared), reverse=True)[:3]
     if top:
         flag += 1

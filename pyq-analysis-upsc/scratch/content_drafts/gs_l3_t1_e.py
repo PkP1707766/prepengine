@@ -124,21 +124,21 @@ M(IN, "medium",
   f"{MOM} (KABIL).",
   "l3-t1-eco-kabil-joint-venture", pos=3, craft="recall")
 
-S(IN, "medium", "Consider the following statements about critical minerals in India:",
-  "भारत में महत्त्वपूर्ण खनिजों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The National Critical Mineral Mission, approved in 2025, covers the whole chain from exploration and mining to processing and the recycling of such minerals.",
-   "The Ministry of Mines has identified a list of thirty critical minerals.",
-   "Only State governments may auction blocks of critical minerals; the Union has no power to do so."],
-  ["2025 में स्वीकृत राष्ट्रीय महत्त्वपूर्ण खनिज मिशन अन्वेषण और खनन से लेकर ऐसे खनिजों के प्रसंस्करण और पुनर्चक्रण तक पूरी शृंखला को शामिल करता है।",
-   "खान मंत्रालय ने तीस महत्त्वपूर्ण खनिजों की एक सूची पहचानी है।",
-   "महत्त्वपूर्ण खनिजों के ब्लॉकों की नीलामी केवल राज्य सरकारें कर सकती हैं; संघ के पास ऐसी कोई शक्ति नहीं है।"],
+S("Industry, Infrastructure, Energy & Services", "medium", "Consider the following statements about the industrial smart cities approved in 2024:",
+  "2024 में स्वीकृत औद्योगिक स्मार्ट शहरों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Twelve of them were approved under the National Industrial Corridor Development Programme.",
+   "They are planned as 'plug-and-play' sites, with land and infrastructure ready before investors arrive.",
+   "They are located only in coastal States, so that their output can be exported easily."],
+  ["इनमें से बारह को राष्ट्रीय औद्योगिक गलियारा विकास कार्यक्रम के अंतर्गत स्वीकृति दी गई।",
+   "इन्हें 'प्लग-एंड-प्ले' स्थलों के रूप में नियोजित किया गया है, जहाँ निवेशकों के आने से पहले भूमि और बुनियादी ढाँचा तैयार रहे।",
+   "ये केवल तटीय राज्यों में स्थित हैं, ताकि इनका उत्पादन आसानी से निर्यात हो सके।"],
   C3, 1,
-  "Statements 1 and 2 are correct. The Mission aims at self-reliance in minerals needed for batteries, electronics and clean energy across the value chain, and the 2023 list names thirty critical minerals, including lithium, cobalt, nickel, graphite and the rare earths. "
-  "Statement 3 is wrong: the Mines and Minerals (Development and Regulation) Amendment Act, 2023 empowered the Union government to auction concessions for a set of critical and strategic minerals, while the royalty still goes to the State.",
-  "कथन 1 और 2 सही हैं। मिशन बैटरियों, इलेक्ट्रॉनिक्स और स्वच्छ ऊर्जा के लिए आवश्यक खनिजों में पूरी मूल्य-शृंखला पर आत्मनिर्भरता का लक्ष्य रखता है, और 2023 की सूची में लिथियम, कोबाल्ट, निकेल, ग्रेफ़ाइट और दुर्लभ मृदा तत्वों सहित तीस महत्त्वपूर्ण खनिज हैं। "
-  "कथन 3 ग़लत है: खान और खनिज (विकास और विनियमन) संशोधन अधिनियम, 2023 ने संघ सरकार को कुछ महत्त्वपूर्ण और सामरिक खनिजों की रियायतें नीलाम करने का अधिकार दिया, जबकि रॉयल्टी अब भी राज्य को मिलती है।",
-  f"{MOM} (Critical Minerals for India, 2023; National Critical Mineral Mission, 2025); MMDR Amendment Act, 2023.",
-  "l3-t1-eco-critical-mineral-mission", craft="linkage")
+  "Statements 1 and 2 are correct. In August 2024 the Union Cabinet approved twelve greenfield industrial cities along the industrial corridors, developed by the National Industrial Corridor Development and Implementation Trust with the States, which provide the land; the aim is to cut the time and uncertainty of land acquisition and approvals by offering developed plots, utilities and connectivity in advance. "
+  "Statement 3 is wrong: the sites are spread across ten States, many of them inland -- among them Agra and Prayagraj in Uttar Pradesh, Gaya in Bihar, Jodhpur-Pali in Rajasthan, Zaheerabad in Telangana and Khurpia in Uttarakhand -- because the corridors follow freight routes and dedicated freight corridors as much as the coast.",
+  "कथन 1 और 2 सही हैं। अगस्त 2024 में केंद्रीय मंत्रिमंडल ने औद्योगिक गलियारों के साथ बारह ग्रीनफ़ील्ड औद्योगिक शहरों को स्वीकृति दी, जिन्हें राष्ट्रीय औद्योगिक गलियारा विकास और कार्यान्वयन ट्रस्ट राज्यों के साथ विकसित करता है, और राज्य भूमि देते हैं; उद्देश्य पहले से विकसित भूखंड, उपयोगिताएँ और संपर्क देकर भूमि-अधिग्रहण और स्वीकृतियों का समय और अनिश्चितता घटाना है। "
+  "कथन 3 ग़लत है: ये स्थल दस राज्यों में फैले हैं, उनमें से कई अंतर्देशीय -- जैसे उत्तर प्रदेश में आगरा और प्रयागराज, बिहार में गया, राजस्थान में जोधपुर-पाली, तेलंगाना में ज़हीराबाद और उत्तराखंड में खुरपिया -- क्योंकि गलियारे तट के साथ-साथ माल-मार्गों और समर्पित माल गलियारों का भी अनुसरण करते हैं।",
+  "Department for Promotion of Industry and Internal Trade: National Industrial Corridor Development Programme (Cabinet decision, August 2024).",
+  "l3-t1-eco-industrial-smart-cities-2024", craft="linkage")
 
 # ================================================================ MACRO (e-SI)
 A("Macro Concepts, National Income & Inflation", "easy",

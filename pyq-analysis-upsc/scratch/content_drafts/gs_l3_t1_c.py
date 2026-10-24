@@ -173,23 +173,23 @@ P("Indian Environmental Laws & Bodies", "hard", "Consider the following pairs of
 
 # ---------------------------------------------------------------- Climate Science & Mitigation (m-MCQ, m-stmt)
 M("Climate Science & Mitigation", "medium",
-  "The Arctic has warmed several times faster than the world as a whole. Which one of the following is the main reason?",
-  "आर्कटिक पूरे विश्व की तुलना में कई गुना तेज़ी से गर्म हुआ है। निम्नलिखित में से कौन-सा इसका मुख्य कारण है?",
-  ["An ozone hole over the Arctic lets in more ultraviolet radiation, which heats the ground and the sea directly.",
-   "Volcanic activity beneath the Arctic sea floor has increased and is warming the ocean from below.",
-   "The Arctic receives more hours of sunshine in a year than the tropics do, so it absorbs more heat.",
-   "As sea ice melts, darker open water absorbs more sunlight, which warms the region further."],
-  ["आर्कटिक के ऊपर ओज़ोन छिद्र अधिक पराबैंगनी विकिरण आने देता है, जो ज़मीन और समुद्र को सीधे गर्म करता है।",
-   "आर्कटिक समुद्र-तल के नीचे ज्वालामुखीय गतिविधि बढ़ी है और समुद्र को नीचे से गर्म कर रही है।",
-   "आर्कटिक को उष्णकटिबंध से वर्ष में अधिक घंटे धूप मिलती है, इसलिए वह अधिक ऊष्मा सोखता है।",
-   "समुद्री बर्फ़ पिघलने पर गहरा खुला पानी अधिक धूप सोखता है, जो क्षेत्र को और गर्म करता है।"],
-  3,
-  "This 'Arctic amplification' is driven mainly by the ice-albedo feedback: bright sea ice and snow reflect most sunlight, while the dark ocean that replaces them absorbs most of it, so melting causes warming that causes more melting. "
-  "Ultraviolet light carries too little energy to explain it, and the ozone hole is a feature of the Antarctic spring; there is no general rise in sub-sea volcanic heat; and over a year the poles receive less sunshine than the tropics, not more.",
-  "यह 'आर्कटिक प्रवर्धन' मुख्यतः बर्फ़-ऐल्बिडो प्रतिपुष्टि से होता है: चमकीली समुद्री बर्फ़ और हिम अधिकांश धूप परावर्तित करते हैं, जबकि उनकी जगह लेने वाला गहरा समुद्र उसका अधिकांश भाग सोख लेता है, इसलिए पिघलने से गर्मी बढ़ती है जो और पिघलाती है। "
-  "पराबैंगनी प्रकाश में इसे समझाने लायक ऊर्जा नहीं होती, और ओज़ोन छिद्र अंटार्कटिक वसंत की विशेषता है; समुद्र के नीचे ज्वालामुखीय ऊष्मा में कोई सामान्य वृद्धि नहीं है; और वर्ष भर में ध्रुवों को उष्णकटिबंध से कम धूप मिलती है, अधिक नहीं।",
-  f"{IPCC}; NCERT Class XI, Fundamentals of Physical Geography (insolation and heat balance).",
-  "l3-t1-env-arctic-amplification-albedo", pos=2, craft="inference")
+  "Ice cores drilled from the Antarctic and Greenland ice sheets are especially valuable to climate scientists mainly because:",
+  "अंटार्कटिक और ग्रीनलैंड की हिम-चादरों से निकाले गए बर्फ़ के कोर (आइस कोर) जलवायु वैज्ञानिकों के लिए विशेष रूप से मूल्यवान क्यों हैं?",
+  ["they hold microbes from past ages whose decay rates are used to date volcanic eruptions on other continents",
+   "they record the eleven-year sunspot cycle through changes in the thickness of each winter's snow layer",
+   "bubbles in them preserve samples of past air, showing greenhouse-gas levels over many millennia",
+   "their temperature at depth shows directly how warm the oceans were at each period of the past"],
+  ["उनमें पिछले युगों के सूक्ष्मजीव होते हैं जिनकी क्षय-दर से दूसरे महाद्वीपों के ज्वालामुखी विस्फोटों की तिथि तय होती है",
+   "वे हर सर्दी की हिम-परत की मोटाई में परिवर्तन के माध्यम से ग्यारह-वर्षीय सौर-कलंक चक्र को दर्ज करते हैं",
+   "उनके बुलबुलों में पिछली हवा के नमूने बचे रहते हैं, जो हज़ारों वर्षों के ग्रीनहाउस-गैस स्तर दिखाते हैं",
+   "गहराई पर उनका तापमान सीधे बताता है कि अतीत के हर काल में महासागर कितने गर्म थे"],
+  2,
+  "As snow piles up and is compressed into ice, it seals in small pockets of the atmosphere of the time, so analysing the bubbles gives carbon dioxide and methane levels going back about 800,000 years in Antarctic cores; the ratio of oxygen or hydrogen isotopes in the ice itself shows past temperatures, and layers of ash and dust mark eruptions and dry, windy periods. "
+  "These records show that carbon dioxide and temperature rose and fell together through the ice-age cycles, and that today's level -- above 420 parts per million -- is far higher than anything in that span, which is why ice cores are central evidence in assessments of human-caused warming.",
+  "जब बर्फ़ जमा होकर दबती हुई हिम बनती है, तो वह उस समय के वायुमंडल की छोटी जेबों को बंद कर लेती है, इसलिए बुलबुलों के विश्लेषण से अंटार्कटिक कोरों में लगभग 8,00,000 वर्ष पीछे तक के कार्बन डाइऑक्साइड और मीथेन स्तर मिलते हैं; स्वयं बर्फ़ में ऑक्सीजन या हाइड्रोजन समस्थानिकों का अनुपात पिछले तापमान बताता है, और राख तथा धूल की परतें विस्फोटों और शुष्क, आँधी वाले कालों को चिह्नित करती हैं। "
+  "ये अभिलेख दिखाते हैं कि हिमयुग-चक्रों में कार्बन डाइऑक्साइड और तापमान साथ-साथ चढ़ते-उतरते रहे, और आज का स्तर -- 420 भाग प्रति दस लाख से ऊपर -- उस पूरी अवधि के किसी भी स्तर से कहीं ऊँचा है, इसीलिए मानव-जनित तापन के आकलनों में आइस कोर केंद्रीय साक्ष्य हैं।",
+  IPCC + " (paleoclimate assessment); National Centre for Polar and Ocean Research.",
+  "l3-t1-env-ice-cores-past-air", pos=2, craft="inference")
 
 S("Climate Science & Mitigation", "medium", "Consider the following statements about radiative forcing:",
   "विकिरणी प्रणोदन (रेडिएटिव फ़ोर्सिंग) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
