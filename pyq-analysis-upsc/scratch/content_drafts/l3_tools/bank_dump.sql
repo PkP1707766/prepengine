@@ -1,2 +1,2 @@
 select concept_group_id cg, status, subject, regexp_replace(coalesce(body,'')||' '||coalesce(question_data->>'statements','')||' '||coalesce(question_data->>'assertion','')||' '||coalesce(question_data->>'reason','')||' '||coalesce(question_data->>'reason_2','')||' '||coalesce(question_data->>'list_1','')||' '||coalesce(question_data->>'list_2','')||' '||coalesce((select string_agg(o->>'body',' | ') from jsonb_array_elements(options) o),'')||' || '||coalesce(explanation,''),'\s+',' ','g') txt
-from questions where exam_category='upsc' and concept_group_id not like 'l3-t4-%';
+from questions where exam_category='upsc' ;
