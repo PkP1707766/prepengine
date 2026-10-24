@@ -206,17 +206,17 @@ S("Ancient", "medium", "Consider the following statements about Kankali Tila at 
 
 # ================================================================ MEDIEVAL (3)
 M("Medieval", "medium",
-  "The Kunjali Marakkars, who fought the Portuguese at sea in the sixteenth century, were the naval commanders of:",
-  "सोलहवीं शताब्दी में समुद्र में पुर्तगालियों से लड़ने वाले कुंजाली मरक्कार किसके नौसैनिक सेनापति थे?",
-  ["the Adil Shahi Sultan of Bijapur", "the emperor of Vijayanagara", "the Mughal emperor Akbar", "the Zamorin of Calicut"],
-  ["बीजापुर के आदिलशाही सुल्तान", "विजयनगर के सम्राट", "मुग़ल सम्राट अकबर", "कालीकट के ज़मोरिन"],
+  "The Dadu Panth, a sect of nirguna bhakti whose founder's verses were collected as the 'Dadu Vani', took root mainly in:",
+  "दादू पंथ, निर्गुण भक्ति का एक संप्रदाय जिसके संस्थापक के पद 'दादू वाणी' में संकलित हुए, मुख्यतः कहाँ जड़ें जमा सका?",
+  ["Bengal", "Maharashtra", "Punjab", "Rajasthan"],
+  ["बंगाल", "महाराष्ट्र", "पंजाब", "राजस्थान"],
   3,
-  "The Marakkars, a Muslim seafaring community of the Malabar coast, commanded the Zamorin's fleet for most of the sixteenth century, harrying Portuguese shipping with fast, light vessels and resisting the Portuguese attempt to control the spice trade through passes (cartazes). "
-  "The fourth Kunjali grew so powerful that the Zamorin joined the Portuguese against him; he surrendered in 1600 and was executed in Goa. The Indian Navy remembers them in the name of INS Kunjali.",
-  "मालाबार तट के मुस्लिम समुद्री समुदाय मरक्कारों ने सोलहवीं शताब्दी के अधिकांश समय ज़मोरिन के बेड़े का नेतृत्व किया, तेज़, हल्के जहाज़ों से पुर्तगाली जहाज़रानी को परेशान किया और अनुमति-पत्रों (कार्टाज़) के माध्यम से मसाला व्यापार नियंत्रित करने के पुर्तगाली प्रयास का विरोध किया। "
-  "चौथा कुंजाली इतना शक्तिशाली हो गया कि ज़मोरिन ने उसके विरुद्ध पुर्तगालियों का साथ दिया; उसने 1600 में आत्मसमर्पण किया और गोवा में उसे मृत्युदंड दिया गया। भारतीय नौसेना INS कुंजाली के नाम में उन्हें याद करती है।",
-  f"{OP2}; {TH2}.",
-  "l3-t3-his-kunjali-marakkars", pos=3, craft="recall")
+  "Dadu Dayal (1544-1603), a cotton-carder by tradition, spent most of his life in Rajasthan -- at Sambhar, Amber and finally Naraina near Jaipur, which remains the seat of the Dadu Panth; like Kabir, whom he revered, he rejected idol worship, caste distinctions and ritual, and taught devotion to a formless God in the language of the people. "
+  "His disciples Rajjab and Sundardas carried the teaching further and compiled his verses; the sect later also kept a body of armed 'naga' ascetics who served Rajput rulers. Bengal's great bhakti movement was the Vaishnavism of Chaitanya, Maharashtra's the Varkari tradition, and Punjab's the teaching of Guru Nanak.",
+  "दादू दयाल (1544-1603), परंपरा के अनुसार धुनिया, ने अपना अधिकांश जीवन राजस्थान में बिताया -- सांभर, आमेर और अंत में जयपुर के पास नराणा में, जो आज भी दादू पंथ का केंद्र है; कबीर की तरह, जिनका वे आदर करते थे, उन्होंने मूर्ति-पूजा, जाति-भेद और कर्मकांड को अस्वीकार किया, और लोकभाषा में निराकार ईश्वर की भक्ति सिखाई। "
+  "उनके शिष्यों रज्जब और सुंदरदास ने शिक्षा को आगे बढ़ाया और उनके पद संकलित किए; बाद में संप्रदाय ने सशस्त्र 'नागा' साधुओं का एक दल भी रखा जो राजपूत शासकों की सेवा करता था। बंगाल का महान भक्ति आंदोलन चैतन्य का वैष्णववाद था, महाराष्ट्र का वारकरी परंपरा, और पंजाब का गुरु नानक की शिक्षा।",
+  TH2 + ", 'Bhakti-Sufi Traditions'; " + OP2 + ".",
+  "l3-t3-his-dadu-panth-rajasthan", pos=3, craft="recall")
 
 S("Medieval", "medium", "Consider the following statements about the Yadavas of Devagiri:",
   "देवगिरि के यादवों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
