@@ -72,18 +72,21 @@ SERIES = [
      "2026-10-11 10:04:00+05:30"),
     ("l3", uid("series/l3"), "UPSC Prelims 2027 — Level 3: Integration & Precision",
      "UPSC प्रारंभिक परीक्षा 2027 — स्तर 3: समेकन और सटीकता",
-     "Late March to April 2027: six comprehensive GS Paper I tests across the whole syllabus (100 questions, "
-     "2 hours) and four harder CSAT Paper II tests (80 questions, 2 hours).",
+     "28 March to 17 April 2027: six comprehensive GS Paper I tests across the whole syllabus (100 questions, "
+     "2 hours), on Sundays and Wednesdays at 9:30 am from 28 March to 14 April, and four harder CSAT Paper II tests "
+     "(80 questions, 2 hours), on Saturdays at 2:30 pm from 27 March to 17 April.",
      "2026-10-11 10:03:00+05:30"),
     ("l4", uid("series/l4"), "UPSC Prelims 2027 — Level 4: Full-Length Simulation",
      "UPSC प्रारंभिक परीक्षा 2027 — स्तर 4: पूर्ण परीक्षा-अनुकरण",
-     "April to May 2027, exam-day conditions: ten GS Paper I simulators and nine CSAT Paper II simulators, "
-     "two a week in the final stretch, the last one a week before the Prelims.",
+     "17 April to 16 May 2027, on exam-day conditions: ten GS Paper I simulators at 9:30 am and nine CSAT Paper II "
+     "simulators at 2:30 pm, paired on the same day as in the real exam, twice a week (Sundays and Wednesdays, "
+     "starting on Saturday 17 April), the last a week before the Prelims of 23 May 2027.",
      "2026-10-11 10:02:00+05:30"),
     ("ca", uid("series/ca"), "UPSC Prelims 2027 — Current Affairs: Quarterly Tests",
      "UPSC प्रारंभिक परीक्षा 2027 — समसामयिकी: त्रैमासिक टेस्ट",
      "Five current-affairs GS Paper I tests (100 questions, 2 hours), one for each quarter from January-March "
-     "2026 to January-March 2027, each linking the quarter's events to the static syllabus.",
+     "2026 to January-March 2027, each linking the quarter's events to the static syllabus, on Saturdays at 9:30 am "
+     "from 12 December 2026 to 10 April 2027.",
      "2026-10-11 10:01:00+05:30"),
 ]
 SID = {k: i for k, i, *_ in SERIES}
@@ -285,8 +288,39 @@ CSAT_DATES = ["2026-11-07", "2026-11-28", "2026-12-19", "2027-01-09", "2027-01-3
 L3_CSAT_DATES = ["2027-03-27", "2027-04-03", "2027-04-10", "2027-04-17"]   # Saturdays, after Level 2 ends on 21 March
 L4_CSAT_DATES = ["2027-04-18", "2027-04-21", "2027-04-25", "2027-04-28", "2027-05-02", "2027-05-05", "2027-05-09",
                  "2027-05-12", "2027-05-16"]                                # Sundays and Wednesdays; Prelims on 23 May 2027
+# Dated now, made into tests by later branches once all their rows exist (owner, 2026-10-25: Level 3 done by
+# 14 April, everything before the final exam).
+L3_GS_DATES = ["2027-03-28", "2027-03-31", "2027-04-04", "2027-04-07", "2027-04-11", "2027-04-14"]  # Sun/Wed 9:30
+L4_GS_DATES = ["2027-04-17"] + L4_CSAT_DATES       # 9:30; GS Simulator n + 1 shares a day with CSAT Simulator n
+CA_DATES = ["2026-12-12", "2027-01-16", "2027-02-13", "2027-03-06", "2027-04-10"]   # Saturdays 9:30, after each quarter
+CA_QUARTER_ENDS = ["2026-03-31", "2026-06-30", "2026-09-30", "2026-12-31", "2027-03-31"]
+PRELIMS = "2027-05-23"
+
+def check_calendar():
+    """Every paper of the series in one calendar: no two papers in the same slot, no two GS papers (or two CSAT papers)
+    on one day, every date before the Prelims (the last a week before), and each current-affairs test after its quarter."""
+    import datetime as dt
+    slots = ([(d, "09:30", f"L2 GS {i}") for i, d in enumerate(GS_DATES, 1)]
+             + [(d, "14:30", f"L2 CSAT {i}") for i, d in enumerate(CSAT_DATES, 1)]
+             + [(d, "09:30", f"L3 GS {i}") for i, d in enumerate(L3_GS_DATES, 1)]
+             + [(d, "14:30", f"L3 CSAT {i}") for i, d in enumerate(L3_CSAT_DATES, 1)]
+             + [(d, "09:30", f"L4 GS {i}") for i, d in enumerate(L4_GS_DATES, 1)]
+             + [(d, "14:30", f"L4 CSAT {i}") for i, d in enumerate(L4_CSAT_DATES, 1)]
+             + [(d, "09:30", f"CA {i}") for i, d in enumerate(CA_DATES, 1)])
+    assert len(slots) == 21 + 7 + 6 + 4 + 10 + 9 + 5
+    taken = Counter((d, t) for d, t, _ in slots)
+    assert max(taken.values()) == 1, [k for k, v in taken.items() if v > 1]
+    last = dt.date.fromisoformat(PRELIMS) - dt.timedelta(days=7)
+    assert all(dt.date.fromisoformat(d) <= last for d, _, _ in slots), "a paper falls in the last week before the Prelims"
+    assert max(d for d, _, _ in slots) == last.isoformat()
+    assert all(d > end for d, end in zip(CA_DATES, CA_QUARTER_ENDS)), "a current-affairs test comes before its quarter ends"
+    assert max(L3_GS_DATES) <= "2027-04-14" and min(L4_GS_DATES + L4_CSAT_DATES) > max(L3_GS_DATES)
+    for d in L3_GS_DATES + L4_GS_DATES + L4_CSAT_DATES:
+        assert dt.date.fromisoformat(d).strftime("%a") in ("Sat", "Sun", "Wed"), d
+    return sorted(slots)
 
 def main():
+    calendar = check_calendar()
     bank_path, targets_path = sys.argv[1], sys.argv[2]
     l1_targets = {}
     if len(sys.argv) > 3:
@@ -444,6 +478,7 @@ def main():
         share = Counter(keys)                   # the fixed ladders put None / Neither / All at (d): keep (d) a real answer
         assert share["d"] >= round(0.22 * n), f"{title}: only {share['d']} (d) keys of {n} -- re-key some items first (see l2_dshare_fix.py)"
         print(f"{when:10} {n:>3} q | longest letter run {best} | keys {'/'.join(str(share[c]) for c in 'abcd')} | hard by quarter {hard} | {title}")
+    print(f"calendar: {len(calendar)} papers from {calendar[0][0]} to {calendar[-1][0]}, no clashes, the last a week before the Prelims of {PRELIMS}")
     print(f"upsc_series_setup.sql: {len(SERIES)} series, {len(L2) + 8 + len(other_blueprints())} blueprints, {len(tests)} tests, {len(seen)} questions")
 
 def arrange(rows, seed):
