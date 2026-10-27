@@ -1,0 +1,246 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 1 (January to March 2026) -- part C: Polity.
+
+Each question starts from an event of January-March 2026 -- the first phase of Census 2027, the Supreme Court's
+verdicts on passive euthanasia, Scheduled Caste status after conversion and women's rights, the stay on the UGC
+equity regulations, the Frontier Nagaland Territorial Authority, Assam's ST proposal, the Puducherry and other State
+elections -- and asks the constitutional or statutory knowledge behind it. Every fact was searched in the whole
+UPSC bank and is one no row tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Polity"
+d.REQUIRE_CRAFT = True
+COI = "Constitution of India"
+GV, FD, EX, JV = "Governance", "Federalism & Special Provisions", "Union & State Executive", "Judicial-Verdicts"
+CB, SL, EL, FR, CF = "Constitutional & Statutory Bodies", "Statutory-Laws", "Elections", "Fundamental Rights, DPSP & Duties", "Constitutional Framework"
+
+S(GV, "easy", "The houselisting phase of Census 2027 began on 1 April 2026. Consider the following statements:",
+  "जनगणना 2027 का मकान-सूचीकरण चरण 1 अप्रैल 2026 को शुरू हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Houselisting was to be completed between 1 April and 30 September 2026, each State and Union Territory choosing its own thirty-day window.",
+   "Households were given the option of enumerating themselves online for fifteen days before the house-to-house listing.",
+   "'Census' is a subject in the Union List of the Seventh Schedule."],
+  ["मकान-सूचीकरण 1 अप्रैल से 30 सितंबर 2026 के बीच पूरा होना था, जिसमें हर राज्य और संघ राज्यक्षेत्र अपनी तीस-दिनी अवधि स्वयं चुनता।",
+   "परिवारों को घर-घर सूचीकरण से पहले पंद्रह दिनों तक ऑनलाइन स्व-गणना का विकल्प दिया गया।",
+   "‘जनगणना’ सातवीं अनुसूची की संघ सूची का विषय है।"],
+  C3, 2,
+  "All three statements are correct. The Ministry of Home Affairs notified in January 2026 that the houselisting and housing census -- the first of the two phases, which records buildings, amenities and assets -- would run between 1 April and 30 September 2026, with each State and UT fixing a thirty-day field period; for the first time households could fill in the schedule themselves on a portal during the fifteen days before the enumerators' visit and receive an ID for verification. The population enumeration, including the enumeration of castes, follows in February 2027. "
+  "The census is a Union subject (Entry 69 of List I), conducted under the Census Act, 1948 by the Registrar General and Census Commissioner under the Home Ministry, with State officials acting as census officers.",
+  "तीनों कथन सही हैं। गृह मंत्रालय ने जनवरी 2026 में अधिसूचित किया कि मकान-सूचीकरण और आवास जनगणना -- दो चरणों में पहला, जो भवनों, सुविधाओं और परिसंपत्तियों को दर्ज करता है -- 1 अप्रैल से 30 सितंबर 2026 के बीच चलेगी, जिसमें हर राज्य और संघ राज्यक्षेत्र तीस-दिनी क्षेत्र-अवधि तय करेगा; पहली बार परिवार गणनाकारों के आने से पहले के पंद्रह दिनों में स्वयं एक पोर्टल पर अनुसूची भर सके और सत्यापन के लिए एक पहचान-संख्या पा सके। जातियों की गणना सहित जनसंख्या गणना फ़रवरी 2027 में होती है। "
+  "जनगणना संघ का विषय है (सूची I की प्रविष्टि 69), जो जनगणना अधिनियम, 1948 के अंतर्गत गृह मंत्रालय के अधीन महारजिस्ट्रार और जनगणना आयुक्त द्वारा कराई जाती है, और राज्य के अधिकारी जनगणना अधिकारियों के रूप में कार्य करते हैं।",
+  f"{COI}, Seventh Schedule, List I, Entry 69; Census Act, 1948; Ministry of Home Affairs, notification on the houselisting operations of Census 2027 (January 2026).",
+  "ca-t1-pol-census-2027-houselisting-self-enumeration", craft="recall")
+
+S(FD, "medium", "Puducherry went to the polls in 2026 along with Assam, Kerala, Tamil Nadu and West Bengal. Consider the following statements about Puducherry:",
+  "2026 में पुदुच्चेरी में असम, केरल, तमिलनाडु और पश्चिम बंगाल के साथ चुनाव हुए। पुदुच्चेरी के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Its Legislative Assembly was created directly by Article 239AA of the Constitution.",
+   "Members nominated to its Legislative Assembly by the Central Government have no right to vote in the House.",
+   "It has a Legislative Council in addition to the Legislative Assembly."],
+  ["इसकी विधानसभा संविधान के अनुच्छेद 239कक द्वारा सीधे बनाई गई।",
+   "केंद्र सरकार द्वारा इसकी विधानसभा में नामित सदस्यों को सदन में मत देने का अधिकार नहीं है।",
+   "इसमें विधानसभा के अतिरिक्त विधान परिषद भी है।"],
+  C3, 3,
+  "None of the statements is correct. Article 239A (inserted in 1962) only empowers Parliament to create a legislature and council of ministers for Puducherry by law, which it did through the Government of Union Territories Act, 1963; Article 239AA is the special provision for Delhi, whose Assembly the Constitution itself creates. "
+  "The 1963 Act lets the Centre nominate up to three members, and the Supreme Court upheld the nominations of 2017 in 2018; nominated members have the same rights in the House as elected ones, including the vote, as was seen in the confidence vote of 2021. The UT has a unicameral legislature of 30 elected and up to three nominated members, with no Council.",
+  "कोई भी कथन सही नहीं है। अनुच्छेद 239क (1962 में जोड़ा गया) केवल संसद को क़ानून द्वारा पुदुच्चेरी के लिए विधानमंडल और मंत्रिपरिषद बनाने की शक्ति देता है, जो उसने संघ राज्यक्षेत्र शासन अधिनियम, 1963 द्वारा किया; अनुच्छेद 239कक दिल्ली का विशेष प्रावधान है, जिसकी विधानसभा संविधान स्वयं बनाता है। "
+  "1963 का अधिनियम केंद्र को अधिकतम तीन सदस्य नामित करने देता है, और सर्वोच्च न्यायालय ने 2018 में 2017 के नामांकनों को बरक़रार रखा; नामित सदस्यों को सदन में निर्वाचित सदस्यों जैसे ही अधिकार हैं, मत देने सहित, जैसा 2021 के विश्वास मत में दिखा। इस संघ राज्यक्षेत्र में 30 निर्वाचित और अधिकतम तीन नामित सदस्यों वाला एकसदनीय विधानमंडल है, कोई परिषद नहीं।",
+  f"{COI}, Articles 239A and 239AA; Government of Union Territories Act, 1963, section 3; Supreme Court, K. Lakshminarayanan v. Union of India (2018).",
+  "ca-t1-pol-puducherry-239a-nominated-members-vote", craft="precision")
+
+S(EX, "medium", "In January 2026 the Governor's customary address to the legislatures of some States again became a matter of dispute between Governors and State governments. Consider the following statements:",
+  "जनवरी 2026 में कुछ राज्यों के विधानमंडलों में राज्यपाल का परंपरागत अभिभाषण फिर राज्यपालों और राज्य सरकारों के बीच विवाद का विषय बना। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under Article 176, the Governor addresses the Legislature at the beginning of the first session after each general election and of the first session of each year.",
+   "Since the address is the Governor's own, the Governor may leave out any part of it that he or she disagrees with."],
+  ["अनुच्छेद 176 के अंतर्गत राज्यपाल प्रत्येक आम चुनाव के बाद के पहले सत्र और प्रत्येक वर्ष के पहले सत्र के आरंभ में विधानमंडल को संबोधित करते हैं।",
+   "चूँकि अभिभाषण राज्यपाल का अपना होता है, राज्यपाल उसका कोई भी अंश छोड़ सकते हैं जिससे वे असहमत हों।"],
+  T2, 0,
+  "Only statement 1 is correct. Article 176 obliges the Governor to address the Legislature at the commencement of the first session after each general election to the Assembly and of the first session of each year, and to inform it of the causes of its summons; the House then debates a motion of thanks. "
+  "Statement 2 is wrong: the Governor acts on the aid and advice of the Council of Ministers (Shamsher Singh, 1974; Nabam Rebia, 2016), and the address is the government's statement of its policy, drafted by the government and approved by the Cabinet -- as the President's address under Article 87 is the Union government's. Leaving out or altering parts of it on personal disagreement is therefore not within the Governor's discretion, which is why such departures in several States have been contested.",
+  "केवल कथन 1 सही है। अनुच्छेद 176 राज्यपाल को विधानसभा के प्रत्येक आम चुनाव के बाद के पहले सत्र और प्रत्येक वर्ष के पहले सत्र के आरंभ में विधानमंडल को संबोधित करने और उसे आहूत करने के कारण बताने का दायित्व देता है; फिर सदन धन्यवाद प्रस्ताव पर चर्चा करता है। "
+  "कथन 2 ग़लत है: राज्यपाल मंत्रिपरिषद की सहायता और सलाह पर कार्य करते हैं (शमशेर सिंह, 1974; नबाम रेबिया, 2016), और अभिभाषण सरकार की नीति का वक्तव्य है, जिसे सरकार तैयार करती है और मंत्रिमंडल अनुमोदित करता है -- जैसे अनुच्छेद 87 के अंतर्गत राष्ट्रपति का अभिभाषण केंद्र सरकार का होता है। इसलिए निजी असहमति पर उसके अंश छोड़ना या बदलना राज्यपाल के विवेक में नहीं आता, इसीलिए कई राज्यों में ऐसे विचलनों पर विवाद हुआ है।",
+  f"{COI}, Articles 87, 163 and 176; Supreme Court, Shamsher Singh v. State of Punjab (1974) and Nabam Rebia v. Deputy Speaker (2016).",
+  "ca-t1-pol-governor-address-article-176", craft="precision")
+
+S(JV, "medium", "In March 2026 the Supreme Court allowed life support to be withdrawn from a man who had been in a vegetative state for thirteen years. Consider the following statements:",
+  "मार्च 2026 में सर्वोच्च न्यायालय ने तेरह वर्ष से निष्क्रिय अवस्था में पड़े एक व्यक्ति का जीवन-रक्षक उपचार हटाने की अनुमति दी। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In the Aruna Shanbaug case of 2011, the Court accepted passive euthanasia in principle but refused it in her own case.",
+   "In 2023 the Court simplified the procedure for giving effect to advance medical directives.",
+   "The 2026 case was the first in which the Court allowed life support to be withdrawn for a particular patient under this framework."],
+  ["2011 के अरुणा शानबाग मामले में न्यायालय ने निष्क्रिय इच्छामृत्यु को सिद्धांततः स्वीकार किया पर स्वयं उसके मामले में इसकी अनुमति नहीं दी।",
+   "2023 में न्यायालय ने अग्रिम चिकित्सा निर्देशों को प्रभावी करने की प्रक्रिया सरल की।",
+   "2026 का मामला पहला था जिसमें न्यायालय ने इस ढाँचे के अंतर्गत किसी विशेष रोगी का जीवन-रक्षक उपचार हटाने की अनुमति दी।"],
+  C3, 2,
+  "All three statements are correct. In Aruna Shanbaug (2011) the Court distinguished passive from active euthanasia, allowed the former with the High Court's approval in principle, but declined it for her because the hospital staff who cared for her opposed it. Common Cause (2018) located the right to die with dignity in Article 21 and recognised advance directives, and in January 2023 a Constitution Bench simplified the cumbersome procedure, cutting the role of the magistrate and setting time limits for medical boards. "
+  "In Harish Rana's case, decided on 11 March 2026, the Court, on the reports of two medical boards that recovery was impossible, permitted the withdrawal of clinically assisted nutrition and hydration with palliative care at AIIMS -- the first time the framework was applied to an individual patient. Active euthanasia remains unlawful in India.",
+  "तीनों कथन सही हैं। अरुणा शानबाग (2011) में न्यायालय ने निष्क्रिय और सक्रिय इच्छामृत्यु में भेद किया, पहली को उच्च न्यायालय की स्वीकृति से सिद्धांततः अनुमत किया, पर उसके लिए इनकार किया क्योंकि उसकी देखभाल करने वाले अस्पताल कर्मचारी इसके विरुद्ध थे। कॉमन कॉज़ (2018) ने गरिमा के साथ मरने के अधिकार को अनुच्छेद 21 में रखा और अग्रिम निर्देशों को मान्यता दी, और जनवरी 2023 में एक संविधान पीठ ने जटिल प्रक्रिया सरल की, मजिस्ट्रेट की भूमिका घटाई और चिकित्सा बोर्डों के लिए समय-सीमाएँ तय कीं। "
+  "11 मार्च 2026 को तय हरीश राणा के मामले में न्यायालय ने दो चिकित्सा बोर्डों की रिपोर्टों के आधार पर कि स्वस्थ होना असंभव है, एम्स में उपशामक देखभाल के साथ नैदानिक रूप से दिए जा रहे पोषण और जल को हटाने की अनुमति दी -- पहली बार यह ढाँचा किसी व्यक्तिगत रोगी पर लागू हुआ। सक्रिय इच्छामृत्यु भारत में अब भी विधिविरुद्ध है।",
+  "Supreme Court, Aruna Ramchandra Shanbaug v. Union of India (2011), Common Cause v. Union of India (2018, modified 2023) and Harish Rana v. Union of India (11 March 2026); Constitution of India, Article 21.",
+  "ca-t1-pol-passive-euthanasia-harish-rana", craft="linkage")
+
+S(JV, "hard", "In March 2026 the Supreme Court held that a person who converts from Hinduism, Sikhism or Buddhism to another religion loses Scheduled Caste status. Consider the following statements:",
+  "मार्च 2026 में सर्वोच्च न्यायालय ने निर्णय दिया कि हिंदू, सिख या बौद्ध धर्म से किसी अन्य धर्म में धर्मांतरण करने वाला व्यक्ति अनुसूचित जाति का दर्जा खो देता है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Paragraph 3 of the Constitution (Scheduled Castes) Order, 1950 says that no person professing a religion different from Hinduism, Sikhism or Buddhism shall be deemed a member of a Scheduled Caste.",
+   "As first issued, the Order covered Hindus alone; Sikhs were added in 1956 and Buddhists in 1990.",
+   "The list of Scheduled Castes notified for a State can be modified by the President alone, by issuing a further order."],
+  ["संविधान (अनुसूचित जातियाँ) आदेश, 1950 का अनुच्छेद 3 कहता है कि हिंदू, सिख या बौद्ध धर्म से भिन्न धर्म मानने वाला कोई व्यक्ति अनुसूचित जाति का सदस्य नहीं माना जाएगा।",
+   "मूल रूप से जारी आदेश केवल हिंदुओं पर लागू था; सिखों को 1956 में और बौद्धों को 1990 में जोड़ा गया।",
+   "किसी राज्य के लिए अधिसूचित अनुसूचित जातियों की सूची में परिवर्तन केवल राष्ट्रपति एक और आदेश जारी करके कर सकते हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The 1950 Order, issued by the President under Article 341(1), confined Scheduled Caste status to Hindus; Parliament extended it to Sikhs in 1956 and to Buddhists in 1990, reasoning that caste disabilities persisted among converts to these faiths. On 24 March 2026 the Court read paragraph 3 as absolute, so a convert to Christianity could not claim the protection of the SC/ST (Prevention of Atrocities) Act; whether Dalit Christians and Muslims should be included is a separate question before a commission and the Court. "
+  "Statement 3 is wrong: under Article 341(2) the President's list, once notified, can be altered only by a law of Parliament -- the President cannot change it by a further order.",
+  "कथन 1 और 2 सही हैं। अनुच्छेद 341(1) के अंतर्गत राष्ट्रपति द्वारा जारी 1950 के आदेश ने अनुसूचित जाति का दर्जा हिंदुओं तक सीमित रखा; संसद ने इसे 1956 में सिखों और 1990 में बौद्धों तक बढ़ाया, यह मानकर कि इन धर्मों में धर्मांतरित लोगों में जातिगत निर्योग्यताएँ बनी रहीं। 24 मार्च 2026 को न्यायालय ने अनुच्छेद 3 को पूर्ण माना, इसलिए ईसाई धर्म अपनाने वाला व्यक्ति अनुसूचित जाति और अनुसूचित जनजाति (अत्याचार निवारण) अधिनियम का संरक्षण नहीं माँग सका; दलित ईसाइयों और मुसलमानों को शामिल किया जाए या नहीं, यह एक आयोग और न्यायालय के समक्ष अलग प्रश्न है। "
+  "कथन 3 ग़लत है: अनुच्छेद 341(2) के अंतर्गत राष्ट्रपति की सूची एक बार अधिसूचित होने के बाद केवल संसद के क़ानून से बदली जा सकती है -- राष्ट्रपति उसे एक और आदेश से नहीं बदल सकते।",
+  f"{COI}, Article 341; Constitution (Scheduled Castes) Order, 1950, paragraph 3, as amended in 1956 and 1990; Supreme Court judgment of 24 March 2026.",
+  "ca-t1-pol-sc-order-1950-para-3-conversion", craft="precision")
+
+S(JV, "medium", "Consider the following statements about judgments of the Supreme Court in the first quarter of 2026:",
+  "2026 की पहली तिमाही में सर्वोच्च न्यायालय के निर्णयों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Court held that menstrual hygiene in schools is a matter of State policy alone and lies outside the right to life under Article 21.",
+   "The Court upheld the rule that an adoptive mother gets maternity benefit only if the child she adopts is below three months of age.",
+   "The Court directed all private employers to grant paid menstrual leave to women employees."],
+  ["न्यायालय ने निर्णय दिया कि विद्यालयों में मासिक धर्म स्वच्छता केवल राज्य की नीति का विषय है और अनुच्छेद 21 के अंतर्गत जीवन के अधिकार से बाहर है।",
+   "न्यायालय ने उस नियम को बरक़रार रखा कि दत्तक माता को मातृत्व लाभ तभी मिलता है जब गोद लिया गया बच्चा तीन महीने से कम का हो।",
+   "न्यायालय ने सभी निजी नियोक्ताओं को महिला कर्मचारियों को सवेतन मासिक धर्म अवकाश देने का निर्देश दिया।"],
+  C3, 3,
+  "None of the statements is correct; each reverses what the Court did. On 30 January 2026 it held that access to menstrual hygiene in schools -- free sanitary products, separate functional toilets, disposal facilities -- is part of the right to life and dignity under Article 21 and of the right to education, and issued directions to the governments. "
+  "In March 2026 it struck down, as arbitrary under Article 14, the condition that an adoptive mother gets twelve weeks' maternity benefit only for a child below three months, a rule carried from the Maternity Benefit Act into the Code on Social Security. And on paid menstrual leave it declined to impose a mandate, observing that a compulsory rule might hurt women's employment, and left the matter to policy.",
+  "कोई भी कथन सही नहीं है; प्रत्येक न्यायालय के किए को उलट देता है। 30 जनवरी 2026 को उसने निर्णय दिया कि विद्यालयों में मासिक धर्म स्वच्छता तक पहुँच -- मुफ़्त सैनिटरी उत्पाद, अलग कार्यशील शौचालय, निपटान सुविधाएँ -- अनुच्छेद 21 के अंतर्गत जीवन और गरिमा के अधिकार और शिक्षा के अधिकार का भाग है, और सरकारों को निर्देश दिए। "
+  "मार्च 2026 में उसने इस शर्त को अनुच्छेद 14 के अंतर्गत मनमाना मानकर निरस्त किया कि दत्तक माता को बारह सप्ताह का मातृत्व लाभ केवल तीन महीने से कम के बच्चे के लिए मिलेगा, जो नियम मातृत्व लाभ अधिनियम से सामाजिक सुरक्षा संहिता में आया था। और सवेतन मासिक धर्म अवकाश पर उसने अनिवार्यता थोपने से इनकार किया, यह कहते हुए कि बाध्यकारी नियम महिलाओं के रोज़गार को नुक़सान पहुँचा सकता है, और मामला नीति पर छोड़ दिया।",
+  f"{COI}, Articles 14, 21 and 21A; Code on Social Security, 2020, section 60; Supreme Court judgments of 30 January and March 2026.",
+  "ca-t1-pol-sc-2026-menstrual-health-adoption-leave", craft="multi")
+
+S(GV, "medium", "In February 2026 the Union Government told Parliament that it had no plans for a distinct legal recognition of the Denotified Tribes. Consider the following statements:",
+  "फ़रवरी 2026 में केंद्र सरकार ने संसद को बताया कि विमुक्त जनजातियों को अलग विधिक मान्यता देने की उसकी कोई योजना नहीं है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Criminal Tribes Act, first passed in 1871, was repealed after independence, and the communities notified under it were 'denotified' in 1952.",
+   "The Renke Commission and the Idate Commission were set up to study the condition of the Denotified, Nomadic and Semi-Nomadic Tribes.",
+   "The Denotified Tribes are a separate category in the Constitution, with seats reserved for them in the Lok Sabha."],
+  ["पहली बार 1871 में पारित आपराधिक जनजाति अधिनियम स्वतंत्रता के बाद निरस्त किया गया, और उसके अंतर्गत अधिसूचित समुदायों को 1952 में ‘विमुक्त’ किया गया।",
+   "विमुक्त, घुमंतू और अर्ध-घुमंतू जनजातियों की स्थिति का अध्ययन करने के लिए रेणके आयोग और इदाते आयोग बनाए गए।",
+   "विमुक्त जनजातियाँ संविधान में एक अलग श्रेणी हैं, जिनके लिए लोकसभा में सीटें आरक्षित हैं।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The colonial Criminal Tribes Act branded whole communities as 'born criminals'; on the recommendation of the Ayyangar committee it was repealed in 1949, and the communities were denotified on 31 August 1952, although Habitual Offenders laws in many States continued to stigmatise them. The Renke Commission reported in 2008 and the Idate Commission in 2017, and a Development and Welfare Board for these communities was set up in 2019. "
+  "Statement 3 is wrong: the Constitution has no such category. Depending on the State, these communities are listed among the Scheduled Castes, the Scheduled Tribes or the Other Backward Classes, and some are in none -- which is why they have sought a separate census entry and constitutional recognition.",
+  "कथन 1 और 2 सही हैं। औपनिवेशिक आपराधिक जनजाति अधिनियम ने पूरे समुदायों को ‘जन्मजात अपराधी’ ठहराया था; अय्यंगार समिति की सिफ़ारिश पर इसे 1949 में निरस्त किया गया, और समुदायों को 31 अगस्त 1952 को विमुक्त किया गया, यद्यपि अनेक राज्यों में आदतन अपराधी क़ानून उन पर कलंक बनाए रहे। रेणके आयोग ने 2008 में और इदाते आयोग ने 2017 में रिपोर्ट दी, और 2019 में इन समुदायों के लिए एक विकास और कल्याण बोर्ड बना। "
+  "कथन 3 ग़लत है: संविधान में ऐसी कोई श्रेणी नहीं है। राज्य के अनुसार ये समुदाय अनुसूचित जातियों, अनुसूचित जनजातियों या अन्य पिछड़े वर्गों में सूचीबद्ध हैं, और कुछ किसी में नहीं -- इसीलिए वे अलग जनगणना-प्रविष्टि और संवैधानिक मान्यता माँगते रहे हैं।",
+  "Ministry of Social Justice and Empowerment, Development and Welfare Board for DNTs, SNTs and NTs; reports of the National Commission for Denotified, Nomadic and Semi-Nomadic Tribes (2008, 2017).",
+  "ca-t1-pol-denotified-tribes-renke-idate", craft="linkage")
+
+S(CB, "easy", "In January 2026 the Supreme Court stayed the University Grants Commission (Promotion of Equity in Higher Education Institutions) Regulations, 2026. Consider the following statements:",
+  "जनवरी 2026 में सर्वोच्च न्यायालय ने विश्वविद्यालय अनुदान आयोग (उच्च शिक्षा संस्थानों में समता संवर्धन) विनियम, 2026 पर रोक लगा दी। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Court found the regulations prima facie vague and capable of misuse.",
+   "To avoid a vacuum, the Court directed that the equity regulations of 2012 continue in force for the time being.",
+   "The University Grants Commission is a statutory body set up under an Act of Parliament."],
+  ["न्यायालय ने विनियमों को प्रथम दृष्टया अस्पष्ट और दुरुपयोग-योग्य पाया।",
+   "रिक्तता से बचने के लिए न्यायालय ने निर्देश दिया कि 2012 के समता विनियम फ़िलहाल लागू रहें।",
+   "विश्वविद्यालय अनुदान आयोग संसद के एक अधिनियम के अंतर्गत बना सांविधिक निकाय है।"],
+  C3, 2,
+  "All three statements are correct. The regulations, notified in January 2026 to tackle caste discrimination on campuses, defined such discrimination only as discrimination against members of the Scheduled Castes, Scheduled Tribes and Other Backward Classes; on 29 January the Court found them prima facie vague and open to misuse, kept them in abeyance and, using Article 142, revived the 2012 regulations until further orders. "
+  "The UGC was established in 1953 and given statutory status by the University Grants Commission Act, 1956, under which it frames regulations for coordinating and maintaining standards in universities -- the power under which both sets of equity rules were made.",
+  "तीनों कथन सही हैं। परिसरों में जातिगत भेदभाव से निपटने के लिए जनवरी 2026 में अधिसूचित विनियमों ने ऐसे भेदभाव को केवल अनुसूचित जातियों, अनुसूचित जनजातियों और अन्य पिछड़े वर्गों के सदस्यों के विरुद्ध भेदभाव के रूप में परिभाषित किया; 29 जनवरी को न्यायालय ने उन्हें प्रथम दृष्टया अस्पष्ट और दुरुपयोग-योग्य पाया, उन्हें स्थगित रखा और अनुच्छेद 142 का प्रयोग करके अगले आदेश तक 2012 के विनियम पुनर्जीवित कर दिए। "
+  "यूजीसी 1953 में बना और विश्वविद्यालय अनुदान आयोग अधिनियम, 1956 द्वारा उसे सांविधिक दर्जा मिला, जिसके अंतर्गत वह विश्वविद्यालयों में मानकों के समन्वय और अनुरक्षण के लिए विनियम बनाता है -- इसी शक्ति के अंतर्गत समता नियमों के दोनों समूह बने।",
+  f"{COI}, Article 142; University Grants Commission Act, 1956, sections 12 and 26; Supreme Court order of 29 January 2026.",
+  "ca-t1-pol-ugc-equity-regulations-stay", craft="recall")
+
+S(SL, "hard", "In January 2026 it was pointed out that the Arbitration Council of India, provided for by law, had still not been constituted. Consider the following statements:",
+  "जनवरी 2026 में बताया गया कि विधि द्वारा प्रावधानित भारतीय मध्यस्थता परिषद अभी तक गठित नहीं हुई है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Arbitration Council of India was provided for by a 2019 amendment to grade arbitral institutions and accredit arbitrators.",
+   "The India International Arbitration Centre was set up by an Act of Parliament and declared an institution of national importance.",
+   "The Arbitration and Conciliation Act, 1996 was modelled on a law drafted by the World Trade Organization."],
+  ["भारतीय मध्यस्थता परिषद का प्रावधान 2019 के एक संशोधन द्वारा मध्यस्थता संस्थानों की श्रेणी तय करने और मध्यस्थों को प्रत्यायित करने के लिए किया गया।",
+   "भारत अंतरराष्ट्रीय मध्यस्थता केंद्र संसद के एक अधिनियम द्वारा स्थापित हुआ और उसे राष्ट्रीय महत्त्व का संस्थान घोषित किया गया।",
+   "मध्यस्थता और सुलह अधिनियम, 1996 विश्व व्यापार संगठन द्वारा तैयार एक क़ानून के आदर्श पर बना।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The Arbitration and Conciliation (Amendment) Act, 2019 added Part IA for an Arbitration Council of India to grade arbitral institutions, accredit arbitrators and promote institutional arbitration, but the Council had not been set up, which is why courts and reports kept returning to it. The same year Parliament enacted the New Delhi International Arbitration Centre Act, 2019, which took over the earlier International Centre for Alternative Dispute Resolution and declared the new centre an institution of national importance; a 2022 amendment renamed it the India International Arbitration Centre. "
+  "Statement 3 is wrong: the 1996 Act, which completes thirty years in 2026, was modelled on the UNCITRAL Model Law on International Commercial Arbitration of 1985, drafted by the UN Commission on International Trade Law; the WTO has nothing to do with it.",
+  "कथन 1 और 2 सही हैं। मध्यस्थता और सुलह (संशोधन) अधिनियम, 2019 ने मध्यस्थता संस्थानों की श्रेणी तय करने, मध्यस्थों को प्रत्यायित करने और संस्थागत मध्यस्थता को बढ़ावा देने के लिए भारतीय मध्यस्थता परिषद हेतु भाग IA जोड़ा, पर परिषद गठित नहीं हुई, इसीलिए न्यायालय और रिपोर्टें बार-बार इसकी ओर लौटती रहीं। उसी वर्ष संसद ने नई दिल्ली अंतरराष्ट्रीय मध्यस्थता केंद्र अधिनियम, 2019 बनाया, जिसने पहले के अंतरराष्ट्रीय वैकल्पिक विवाद समाधान केंद्र का अधिग्रहण कर नए केंद्र को राष्ट्रीय महत्त्व का संस्थान घोषित किया; 2022 के एक संशोधन ने उसका नाम भारत अंतरराष्ट्रीय मध्यस्थता केंद्र कर दिया। "
+  "कथन 3 ग़लत है: 2026 में तीस वर्ष पूरे करने वाला 1996 का अधिनियम अंतरराष्ट्रीय व्यापार विधि पर संयुक्त राष्ट्र आयोग (अनसिट्रल) द्वारा तैयार 1985 के अंतरराष्ट्रीय वाणिज्यिक मध्यस्थता पर आदर्श विधि के आदर्श पर बना; विश्व व्यापार संगठन का इससे कोई संबंध नहीं है।",
+  "Arbitration and Conciliation Act, 1996, Preamble and Part IA (inserted 2019); New Delhi International Arbitration Centre Act, 2019, as amended in 2022 (India International Arbitration Centre).",
+  "ca-t1-pol-arbitration-council-iiac-uncitral", craft="precision")
+
+M(EL, "medium",
+  "During the revision of electoral rolls in early 2026, the large number of 'Form 7' applications filed in some areas became controversial. Under the Registration of Electors Rules, 1960, Form 7 is used to:",
+  "2026 के आरंभ में मतदाता सूचियों के पुनरीक्षण के दौरान कुछ क्षेत्रों में दाख़िल ‘फ़ॉर्म 7’ आवेदनों की बड़ी संख्या विवादास्पद बनी। निर्वाचक रजिस्ट्रीकरण नियम, 1960 के अंतर्गत फ़ॉर्म 7 का उपयोग होता है:",
+  ["object to the inclusion of a name in the roll, or seek its deletion",
+   "apply for the inclusion of a new elector's name in the roll",
+   "seek correction of entries or shifting of residence within the roll",
+   "register as an overseas elector who lives abroad but has not taken up another citizenship"],
+  ["सूची में किसी नाम के शामिल किए जाने पर आपत्ति करने, या उसे हटाने की माँग के लिए",
+   "सूची में नए निर्वाचक का नाम शामिल करने के आवेदन के लिए",
+   "सूची की प्रविष्टियों में सुधार या निवास बदलने के लिए",
+   "विदेश में रहने वाले पर अन्य नागरिकता न लेने वाले प्रवासी निर्वाचक के रूप में पंजीकरण के लिए"],
+  0,
+  "Form 7 is the form for objecting to a proposed inclusion or seeking the deletion of a name -- for example, of a person who has died, shifted or is not eligible -- which is why a flood of such forms against particular voters can be used to try to remove genuine electors, and why the electoral registration officer must give notice and hear the person before deleting a name. "
+  "The other forms: Form 6 is for the inclusion of a new elector; Form 8 is for correcting entries, shifting residence, replacing the elector's photo identity card or marking a person with disability; and Form 6A is for overseas electors, Indian citizens living abroad who have not acquired the citizenship of another country.",
+  "फ़ॉर्म 7 किसी प्रस्तावित नाम पर आपत्ति करने या नाम हटाने की माँग का फ़ॉर्म है -- उदाहरण के लिए, ऐसे व्यक्ति का जिसकी मृत्यु हो गई, जो स्थानांतरित हो गया या पात्र नहीं है -- इसीलिए विशेष मतदाताओं के विरुद्ध ऐसे फ़ॉर्मों की बाढ़ से असली निर्वाचकों को हटाने का प्रयास हो सकता है, और इसीलिए निर्वाचक रजिस्ट्रीकरण अधिकारी को नाम हटाने से पहले व्यक्ति को सूचना देकर सुनना होता है। "
+  "अन्य फ़ॉर्म: फ़ॉर्म 6 नए निर्वाचक को शामिल करने के लिए है; फ़ॉर्म 8 प्रविष्टियों में सुधार, निवास बदलने, निर्वाचक फ़ोटो पहचान-पत्र बदलने या दिव्यांग व्यक्ति को चिह्नित करने के लिए है; और फ़ॉर्म 6क प्रवासी निर्वाचकों के लिए है, यानी विदेश में रहने वाले वे भारतीय नागरिक जिन्होंने किसी अन्य देश की नागरिकता नहीं ली।",
+  "Registration of Electors Rules, 1960, rules 13, 17-21A and Forms 6, 6A, 7 and 8; Representation of the People Act, 1950, sections 20A and 22.",
+  "ca-t1-pol-form-7-objection-deletion", pos=1, craft="recall")
+
+S(FR, "medium", "In February 2026 the Supreme Court issued notices to twelve States on a petition challenging their anti-conversion laws. Consider the following statements:",
+  "फ़रवरी 2026 में सर्वोच्च न्यायालय ने बारह राज्यों को उनके धर्मांतरण-विरोधी क़ानूनों को चुनौती देने वाली याचिका पर नोटिस जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In Rev. Stainislaus v. State of Madhya Pradesh (1977), the Supreme Court held that the right to propagate religion does not include a right to convert another person.",
+   "Parliament has enacted a law regulating religious conversion that applies throughout India.",
+   "Article 25 of the Constitution expressly mentions a right to convert other persons."],
+  ["रेवरेंड स्टैनिस्लॉस बनाम मध्य प्रदेश राज्य (1977) में सर्वोच्च न्यायालय ने निर्णय दिया कि धर्म के प्रचार के अधिकार में किसी अन्य व्यक्ति का धर्मांतरण कराने का अधिकार शामिल नहीं है।",
+   "संसद ने धर्मांतरण को विनियमित करने वाला एक क़ानून बनाया है जो पूरे भारत में लागू होता है।",
+   "संविधान का अनुच्छेद 25 स्पष्ट रूप से अन्य व्यक्तियों का धर्मांतरण कराने के अधिकार का उल्लेख करता है।"],
+  C3, 0,
+  "Only statement 1 is correct. Article 25 guarantees to all persons the freedom of conscience and the right freely to profess, practise and propagate religion, subject to public order, morality, health and the other Fundamental Rights. In Stainislaus the Court upheld the Orissa and Madhya Pradesh laws of the 1960s, holding that 'propagate' means to spread one's religion by exposition, not a right to convert anyone, and that conversion by force, fraud or inducement can be curbed in the interest of public order. "
+  "Statement 2 is wrong: there is no central law; the laws are State laws, from Odisha's of 1967 to several passed since 2020, some of which require prior notice to the District Magistrate. Statement 3 is wrong: the word 'convert' does not appear in Article 25; the question of how far conversion is protected arises only by interpretation of 'propagate'.",
+  "केवल कथन 1 सही है। अनुच्छेद 25 सभी व्यक्तियों को अंतःकरण की स्वतंत्रता और धर्म को अबाध रूप से मानने, आचरण करने और प्रचार करने का अधिकार देता है, जो लोक व्यवस्था, सदाचार, स्वास्थ्य और अन्य मौलिक अधिकारों के अधीन है। स्टैनिस्लॉस में न्यायालय ने 1960 के दशक के ओडिशा और मध्य प्रदेश के क़ानूनों को बरक़रार रखा, यह कहते हुए कि ‘प्रचार’ का अर्थ अपने धर्म का व्याख्या द्वारा प्रसार है, किसी का धर्मांतरण कराने का अधिकार नहीं, और बल, कपट या प्रलोभन से धर्मांतरण को लोक व्यवस्था के हित में रोका जा सकता है। "
+  "कथन 2 ग़लत है: कोई केंद्रीय क़ानून नहीं है; ये क़ानून राज्यों के हैं, 1967 के ओडिशा क़ानून से लेकर 2020 के बाद पारित कई क़ानूनों तक, जिनमें से कुछ ज़िला मजिस्ट्रेट को पूर्व सूचना माँगते हैं। कथन 3 ग़लत है: अनुच्छेद 25 में ‘धर्मांतरण’ शब्द नहीं है; धर्मांतरण कितना संरक्षित है, यह प्रश्न केवल ‘प्रचार’ की व्याख्या से उठता है।",
+  f"{COI}, Article 25; Supreme Court, Rev. Stainislaus v. State of Madhya Pradesh (1977).",
+  "ca-t1-pol-anti-conversion-stainislaus", craft="precision")
+
+S(GV, "medium", "In February 2026 the Prime Minister's Office's guidance on which questions about the PM CARES Fund could be asked in the Lok Sabha was reported. Consider the following statements about the Fund:",
+  "फ़रवरी 2026 में यह ख़बर आई कि प्रधानमंत्री कार्यालय ने बताया है कि लोकसभा में पीएम केयर्स फ़ंड के बारे में कौन-से प्रश्न पूछे जा सकते हैं। फ़ंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was set up in March 2020 as a public charitable trust, with the Prime Minister as its chairperson.",
+   "It is financed through appropriations from the Consolidated Fund of India.",
+   "Its accounts are audited by the Comptroller and Auditor General of India."],
+  ["इसे मार्च 2020 में एक सार्वजनिक धर्मार्थ न्यास के रूप में स्थापित किया गया, जिसके अध्यक्ष प्रधानमंत्री हैं।",
+   "इसका वित्तपोषण भारत की संचित निधि से विनियोग के माध्यम से होता है।",
+   "इसके लेखों की लेखापरीक्षा भारत के नियंत्रक-महालेखापरीक्षक करते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct. The Prime Minister's Citizen Assistance and Relief in Emergency Situations Fund was registered as a public charitable trust on 27 March 2020, with the Prime Minister as ex officio chairperson and the Ministers of Defence, Home Affairs and Finance as trustees. "
+  "Statement 2 is wrong: it receives only voluntary contributions from individuals and organisations, which qualify for full income-tax deduction and count as CSR spending; it gets no budgetary support. Statement 3 is wrong: being a trust outside government accounts, it is audited by an independent chartered accountant firm, not by the CAG -- which is also why the government has argued it is not a 'public authority' under the RTI Act and why the scope of questions on it in Parliament became an issue.",
+  "केवल कथन 1 सही है। आपात स्थितियों में प्रधानमंत्री नागरिक सहायता और राहत कोष 27 मार्च 2020 को एक सार्वजनिक धर्मार्थ न्यास के रूप में पंजीकृत हुआ, जिसके पदेन अध्यक्ष प्रधानमंत्री और न्यासी रक्षा, गृह और वित्त मंत्री हैं। "
+  "कथन 2 ग़लत है: इसे केवल व्यक्तियों और संगठनों से स्वैच्छिक अंशदान मिलता है, जिन पर पूरी आयकर कटौती मिलती है और जो सीएसआर व्यय में गिने जाते हैं; इसे कोई बजटीय सहायता नहीं मिलती। कथन 3 ग़लत है: सरकारी लेखों से बाहर का न्यास होने के कारण इसकी लेखापरीक्षा एक स्वतंत्र चार्टर्ड अकाउंटेंट फ़र्म करती है, सीएजी नहीं -- इसीलिए सरकार ने तर्क दिया है कि यह आरटीआई अधिनियम के अंतर्गत ‘लोक प्राधिकरण’ नहीं है, और इसीलिए संसद में इस पर प्रश्नों का दायरा मुद्दा बना।",
+  "PM CARES Fund, trust deed and annual statements (pmcares.gov.in); Income-tax Act, section 80G; Companies Act, 2013, Schedule VII.",
+  "ca-t1-pol-pm-cares-trust-not-cag", craft="precision")
+
+S(FD, "medium", "In February 2026 the Centre, the Government of Nagaland and the Eastern Nagaland People's Organisation signed an agreement to create the Frontier Nagaland Territorial Authority. Consider the following statements:",
+  "फ़रवरी 2026 में केंद्र, नागालैंड सरकार और ईस्टर्न नागालैंड पीपल्स ऑर्गनाइज़ेशन ने फ़्रंटियर नागालैंड टेरिटोरियल अथॉरिटी बनाने के समझौते पर हस्ताक्षर किए। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Authority is to cover six eastern districts of Nagaland, among them Tuensang and Mon, with powers devolved on a list of subjects.",
+   "Its creation required a constitutional amendment bringing Nagaland under the Sixth Schedule."],
+  ["यह प्राधिकरण नागालैंड के छह पूर्वी ज़िलों, जिनमें त्युएनसांग और मोन हैं, को समेटेगा, जिसे विषयों की एक सूची पर शक्तियाँ सौंपी गई हैं।",
+   "इसके गठन के लिए नागालैंड को छठी अनुसूची के अंतर्गत लाने वाला संविधान संशोधन आवश्यक था।"],
+  T2, 0,
+  "Only statement 1 is correct. The memorandum signed in New Delhi on 5 February 2026 provides for an autonomous Frontier Nagaland Territorial Authority for the six districts of Tuensang, Mon, Kiphire, Longleng, Noklak and Shamator, with powers on 46 subjects and initial costs met by the Home Ministry -- a compromise after the ENPO's demand, since 2010, for a separate State. "
+  "Statement 2 is wrong: the Authority comes from a tripartite agreement within the State, not from a constitutional amendment. Nagaland is not under the Sixth Schedule, which applies to the tribal areas of Assam, Meghalaya, Tripura and Mizoram; its special position rests on Article 371A, which protects Naga customary law and land and once gave the Governor special responsibility for the Tuensang district.",
+  "केवल कथन 1 सही है। 5 फ़रवरी 2026 को नई दिल्ली में हस्ताक्षरित ज्ञापन त्युएनसांग, मोन, किफ़िरे, लोंगलेंग, नोकलाक और शामातोर के छह ज़िलों के लिए एक स्वायत्त फ़्रंटियर नागालैंड टेरिटोरियल अथॉरिटी का प्रावधान करता है, जिसे 46 विषयों पर शक्तियाँ मिलेंगी और प्रारंभिक लागत गृह मंत्रालय वहन करेगा -- यह 2010 से अलग राज्य की ईएनपीओ की माँग के बाद का समझौता है। "
+  "कथन 2 ग़लत है: प्राधिकरण राज्य के भीतर एक त्रिपक्षीय समझौते से बना है, संविधान संशोधन से नहीं। नागालैंड छठी अनुसूची के अंतर्गत नहीं है, जो असम, मेघालय, त्रिपुरा और मिज़ोरम के जनजातीय क्षेत्रों पर लागू होती है; उसकी विशेष स्थिति अनुच्छेद 371क पर टिकी है, जो नागा प्रथागत क़ानून और भूमि की रक्षा करता है और जिसने कभी त्युएनसांग ज़िले के लिए राज्यपाल को विशेष उत्तरदायित्व दिया था।",
+  f"{COI}, Article 371A and Sixth Schedule; Ministry of Home Affairs, memorandum of agreement on the Frontier Nagaland Territorial Authority (5 February 2026).",
+  "ca-t1-pol-fnta-eastern-nagaland-371a", craft="linkage")
+
+S(CF, "medium", "In January 2026 a proposal to grant Scheduled Tribe status to six communities of Assam, among them the Tai-Ahom and the tea tribes, met opposition from existing tribal groups. Consider the following statements:",
+  "जनवरी 2026 में असम के छह समुदायों, जिनमें ताई-अहोम और चाय जनजातियाँ हैं, को अनुसूचित जनजाति का दर्जा देने के प्रस्ताव का मौजूदा जनजातीय समूहों ने विरोध किया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Once the list of Scheduled Tribes for a State has been notified, a community can be added to it only by a law of Parliament.",
+   "The criteria commonly used to identify a Scheduled Tribe, such as primitive traits and geographical isolation, come from the Lokur Committee of 1965 rather than from the Constitution.",
+   "Since the communities concerned are already listed as Other Backward Classes in Assam, their inclusion would require their removal from that list as well."],
+  ["किसी राज्य के लिए अनुसूचित जनजातियों की सूची एक बार अधिसूचित हो जाने के बाद किसी समुदाय को उसमें केवल संसद के क़ानून से जोड़ा जा सकता है।",
+   "अनुसूचित जनजाति की पहचान के लिए सामान्यतः प्रयुक्त मानदंड, जैसे आदिम लक्षण और भौगोलिक अलगाव, संविधान से नहीं बल्कि 1965 की लोकुर समिति से आते हैं।",
+   "चूँकि संबंधित समुदाय असम में पहले से अन्य पिछड़े वर्गों में सूचीबद्ध हैं, उनके शामिल होने के लिए उन्हें उस सूची से हटाना भी आवश्यक होगा।"],
+  C3, 2,
+  "All three statements are correct. Under Article 342(1) the President first specifies the Scheduled Tribes of each State, after consulting the Governor; under Article 342(2) any later inclusion or exclusion needs a law of Parliament. The Constitution does not define the criteria: the five tests used in practice -- primitive traits, distinctive culture, geographical isolation, shyness of contact with the community at large, and backwardness -- were set out by the Lokur Committee, and a proposal passes through the State, the Registrar General of India and the National Commission for Scheduled Tribes. "
+  "The six communities -- the Tai-Ahom, Chutia, Moran, Matak, Koch-Rajbongshi and the tea tribes or Adivasis -- are at present among Assam's Other Backward Classes, so the change would move them from one list to the other; existing ST groups fear a smaller share of reserved seats and jobs, which is the source of the opposition.",
+  "तीनों कथन सही हैं। अनुच्छेद 342(1) के अंतर्गत राष्ट्रपति राज्यपाल से परामर्श करके पहली बार प्रत्येक राज्य की अनुसूचित जनजातियाँ विनिर्दिष्ट करते हैं; अनुच्छेद 342(2) के अंतर्गत बाद में किसी को शामिल करने या हटाने के लिए संसद का क़ानून चाहिए। संविधान मानदंड परिभाषित नहीं करता: व्यवहार में प्रयुक्त पाँच कसौटियाँ -- आदिम लक्षण, विशिष्ट संस्कृति, भौगोलिक अलगाव, बड़े समाज से संपर्क में संकोच, और पिछड़ापन -- लोकुर समिति ने रखीं, और कोई प्रस्ताव राज्य, भारत के महारजिस्ट्रार और राष्ट्रीय अनुसूचित जनजाति आयोग से होकर गुज़रता है। "
+  "छह समुदाय -- ताई-अहोम, चुटिया, मोरान, मटक, कोच-राजबोंगशी और चाय जनजातियाँ या आदिवासी -- अभी असम के अन्य पिछड़े वर्गों में हैं, इसलिए यह बदलाव उन्हें एक सूची से दूसरी में ले जाएगा; मौजूदा अनुसूचित जनजाति समूहों को आरक्षित सीटों और नौकरियों में छोटे हिस्से का डर है, जो विरोध का कारण है।",
+  f"{COI}, Article 342; Ministry of Tribal Affairs, modalities for scheduling of tribes; Report of the Advisory Committee on the Revision of the Lists of Scheduled Castes and Scheduled Tribes (Lokur Committee, 1965).",
+  "ca-t1-pol-assam-six-communities-article-342", craft="application")
+
+for r in d.ROWS:
+    r["question_data"]["ca_window"] = "2026-Q1"
+write("ca_t1_c.sql")

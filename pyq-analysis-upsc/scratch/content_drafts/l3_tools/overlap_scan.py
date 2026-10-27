@@ -11,7 +11,7 @@ sys.path.insert(0, D); os.chdir(D)
 import draft_common as d
 d.write = lambda name: None
 rows = []
-for x in "abcdef":
+for x in "abcdefgh":
     m = f"{sys.argv[2]}_{x}"
     if not os.path.exists(f"{D}/{m}.py"): continue
     d.ROWS.clear(); d.CGS.clear(); d._mcq_n[0] = 0

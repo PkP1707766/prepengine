@@ -1,0 +1,249 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 1 (January to March 2026) -- part E: Science & Technology.
+
+Events of January-March 2026 -- the PSLV-C62 failure and the loss of the hyperspectral satellite Anvesha, the
+Nipah cases in West Bengal, the failure of an atomic clock on IRNSS-1F, the uranium deal with Canada, the debate on
+the SHANTI Act, the new IT rules on synthetic content, the total lunar eclipse of 3 March -- and the anniversaries of
+Goddard's rocket (1926), Baird's television (1926), Luna 9 (1966) and Mir (1986). Every fact was searched in the
+whole UPSC bank and is one no row tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+
+d.SUBJECT = "Science & Technology"
+d.REQUIRE_CRAFT = True
+SP, AS, BH = "Space Technology & Missions", "Astronomy & Earth Science", "Biology, Health & Biotechnology"
+EN, IT = "Energy & Environmental Technology", "IT, Communication & Emerging Technologies"
+
+S(SP, "medium", "On 12 January 2026 the PSLV-C62 mission failed to place its satellites in orbit. Consider the following statements about the Polar Satellite Launch Vehicle:",
+  "12 जनवरी 2026 को पीएसएलवी-सी62 मिशन अपने उपग्रहों को कक्षा में स्थापित करने में विफल रहा। ध्रुवीय उपग्रह प्रक्षेपण यान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Its third stage uses a cryogenic engine that burns liquid hydrogen with liquid oxygen.",
+   "PSLV-C62 was the first failure in the vehicle's history.",
+   "Its fourth stage cannot be restarted once it has shut down."],
+  ["इसका तीसरा चरण द्रव हाइड्रोजन को द्रव ऑक्सीजन के साथ जलाने वाला क्रायोजेनिक इंजन प्रयोग करता है।",
+   "पीएसएलवी-सी62 इस यान के इतिहास की पहली विफलता थी।",
+   "इसके चौथे चरण को एक बार बंद होने के बाद फिर से चालू नहीं किया जा सकता।"],
+  C3, 3,
+  "None of the statements is correct. The PSLV alternates solid and liquid stages: a solid first stage with strap-on boosters, the liquid Vikas engine in the second, a solid third stage using HTPB-based propellant, and a fourth stage with two small liquid engines. Both PSLV-C61 (May 2025) and PSLV-C62 failed in the solid third stage -- in January 2026 the vehicle showed a disturbance in roll near the end of that stage and strayed from its path, losing DRDO's hyperspectral satellite Anvesha and fifteen co-passengers. "
+  "Statement 2 is wrong: the PSLV had failed before, on its first flight in 1993 and in 2017 when a heat shield failed to separate, besides C61. Statement 3 is wrong: the fourth stage can be shut down and restarted, which lets one launch drop satellites into different orbits, and the spent stage has been reused as an orbital platform (POEM) for experiments.",
+  "कोई भी कथन सही नहीं है। पीएसएलवी में ठोस और द्रव चरण बारी-बारी से हैं: स्ट्रैप-ऑन बूस्टरों वाला ठोस पहला चरण, दूसरे में द्रव विकास इंजन, एचटीपीबी-आधारित नोदक वाला ठोस तीसरा चरण, और दो छोटे द्रव इंजनों वाला चौथा चरण। पीएसएलवी-सी61 (मई 2025) और पीएसएलवी-सी62 दोनों ठोस तीसरे चरण में विफल हुए -- जनवरी 2026 में उस चरण के अंत के पास यान के घूर्णन में विक्षोभ आया और वह अपने पथ से भटक गया, जिससे डीआरडीओ का हाइपरस्पेक्ट्रल उपग्रह अन्वेषा और पंद्रह सह-यात्री उपग्रह नष्ट हो गए। "
+  "कथन 2 ग़लत है: पीएसएलवी पहले भी विफल हुआ था, 1993 में अपनी पहली उड़ान में और 2017 में जब ऊष्मा-कवच अलग नहीं हुआ, साथ ही सी61 में। कथन 3 ग़लत है: चौथे चरण को बंद करके फिर चालू किया जा सकता है, जिससे एक ही प्रक्षेपण उपग्रहों को अलग-अलग कक्षाओं में छोड़ सकता है, और ख़र्च हो चुके चरण को प्रयोगों के लिए कक्षीय मंच (पोएम) के रूप में दोबारा प्रयोग किया गया है।",
+  "Indian Space Research Organisation, PSLV vehicle description and mission updates on PSLV-C61 (May 2025) and PSLV-C62 (January 2026).",
+  "ca-t1-sci-pslv-c62-stages-restartable-ps4", craft="precision")
+
+M(SP, "medium",
+  "March 2026 marked a hundred years since Robert Goddard launched the first liquid-propellant rocket. Compared with a solid-propellant rocket motor, a liquid-propellant engine has the advantage that it:",
+  "मार्च 2026 में रॉबर्ट गोडार्ड द्वारा पहला द्रव-नोदक रॉकेट प्रक्षेपित किए जाने के सौ वर्ष पूरे हुए। ठोस-नोदक रॉकेट मोटर की तुलना में द्रव-नोदक इंजन का लाभ यह है कि वह:",
+  ["can be throttled, shut down and often restarted, because the flow of propellants can be controlled",
+   "can be stored fully fuelled for years and fired at short notice, which suits missiles kept on alert",
+   "needs no oxidiser of its own, since it burns the oxygen of the atmosphere, and so is lighter for the same thrust",
+   "is simpler to build, having fewer moving parts such as pumps, valves and the plumbing between them"],
+  ["घटाया-बढ़ाया, बंद और प्रायः फिर चालू किया जा सकता है, क्योंकि नोदकों का प्रवाह नियंत्रित होता है",
+   "वर्षों तक पूरी तरह ईंधन भरकर रखा और तुरंत दागा जा सकता है, जो तैयार रखी मिसाइलों के अनुकूल है",
+   "उसे अपना ऑक्सीकारक नहीं चाहिए, क्योंकि वह वायुमंडल की ऑक्सीजन जलाता है, इसलिए समान प्रणोद के लिए हल्का है",
+   "बनाने में सरल है, क्योंकि उसमें पंप, वाल्व और उनके बीच की पाइपिंग जैसे कम चलने वाले पुर्ज़े हैं"],
+  0,
+  "Goddard's rocket, flown at Auburn, Massachusetts on 16 March 1926, burned gasoline with liquid oxygen. In a liquid engine the fuel and oxidiser are fed from tanks through valves and pumps, so the thrust can be varied, cut off and -- in engines designed for it, such as those of the PSLV's fourth stage -- relit in space; this precise control is why liquid stages are used to place satellites accurately. "
+  "The other options describe the opposite. A solid motor, cast with fuel and oxidiser together, can be stored ready for years and fired at once, which is why missiles such as the Agni series use it, and it is simpler, having almost no moving parts -- but once lit it burns to the end. And every rocket carries its own oxidiser, which is what lets it work in the vacuum of space; engines that take oxygen from the air are air-breathing engines such as ramjets and scramjets.",
+  "गोडार्ड का रॉकेट, जो 16 मार्च 1926 को मैसाचुसेट्स के ऑबर्न में उड़ा, द्रव ऑक्सीजन के साथ गैसोलीन जलाता था। द्रव इंजन में ईंधन और ऑक्सीकारक टंकियों से वाल्वों और पंपों के रास्ते आते हैं, इसलिए प्रणोद को घटाया-बढ़ाया, बंद किया और -- इसके लिए बने इंजनों में, जैसे पीएसएलवी के चौथे चरण के इंजन -- अंतरिक्ष में फिर जलाया जा सकता है; यही सटीक नियंत्रण उपग्रहों को ठीक स्थान पर रखने के लिए द्रव चरणों के प्रयोग का कारण है। "
+  "अन्य विकल्प उल्टा बताते हैं। ठोस मोटर, जिसमें ईंधन और ऑक्सीकारक साथ ढाले जाते हैं, वर्षों तक तैयार रखी और तुरंत दागी जा सकती है, इसीलिए अग्नि शृंखला जैसी मिसाइलें इसका प्रयोग करती हैं, और यह सरल होती है, जिसमें लगभग कोई चलने वाला पुर्ज़ा नहीं -- पर एक बार जलने पर अंत तक जलती है। और हर रॉकेट अपना ऑक्सीकारक साथ ले जाता है, यही उसे अंतरिक्ष के निर्वात में काम करने देता है; हवा से ऑक्सीजन लेने वाले इंजन रैमजेट और स्क्रैमजेट जैसे वायु-श्वसन इंजन हैं।",
+  "NCERT, Physics Part I (Class XI), Chapter 5 (Laws of Motion), on rocket propulsion; Indian Space Research Organisation, launch vehicle propulsion; NASA History Office, Robert H. Goddard (1926).",
+  "ca-t1-sci-goddard-centenary-liquid-propellant", pos=3, craft="application")
+
+S(IT, "medium", "January 2026 marked a hundred years since John Logie Baird first demonstrated television in public. Consider the following statements:",
+  "जनवरी 2026 में जॉन लोगी बेयर्ड द्वारा पहली बार सार्वजनिक रूप से टेलीविज़न प्रदर्शित किए जाने के सौ वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Baird's demonstration of 1926 took place in London.",
+   "Television broadcasting in India began in Bombay in 1972.",
+   "The Satellite Instructional Television Experiment of 1975-76 used a satellite built by ISRO."],
+  ["बेयर्ड का 1926 का प्रदर्शन लंदन में हुआ था।",
+   "भारत में टेलीविज़न प्रसारण 1972 में बंबई से शुरू हुआ।",
+   "1975-76 के उपग्रह शैक्षिक टेलीविज़न प्रयोग में इसरो द्वारा निर्मित उपग्रह का प्रयोग हुआ।"],
+  C3, 0,
+  "Only statement 1 is correct. On 26 January 1926 Baird showed moving images, produced by a mechanical system with a spinning disc, to members of the Royal Institution at his laboratory in Soho, London; electronic television later replaced his method. "
+  "Statement 2 is wrong: television in India began as an experimental service of All India Radio in Delhi on 15 September 1959; Bombay got a centre in 1972, and Doordarshan became separate from AIR in 1976. Statement 3 is wrong: SITE (August 1975 to July 1976) beamed educational programmes on health, farming and family planning to about 2,400 villages in six States using NASA's ATS-6 satellite, while ISRO built the ground segment and village receivers -- the experience that led to the INSAT system.",
+  "केवल कथन 1 सही है। 26 जनवरी 1926 को बेयर्ड ने लंदन के सोहो स्थित अपनी प्रयोगशाला में रॉयल इंस्टीट्यूशन के सदस्यों को घूमती डिस्क वाली एक यांत्रिक प्रणाली से बनी चलती छवियाँ दिखाईं; बाद में इलेक्ट्रॉनिक टेलीविज़न ने उनकी विधि की जगह ली। "
+  "कथन 2 ग़लत है: भारत में टेलीविज़न 15 सितंबर 1959 को दिल्ली में आकाशवाणी की एक प्रायोगिक सेवा के रूप में शुरू हुआ; बंबई में 1972 में केंद्र खुला, और दूरदर्शन 1976 में आकाशवाणी से अलग हुआ। कथन 3 ग़लत है: साइट (अगस्त 1975 से जुलाई 1976) ने नासा के एटीएस-6 उपग्रह से छह राज्यों के लगभग 2,400 गाँवों में स्वास्थ्य, खेती और परिवार नियोजन पर शैक्षिक कार्यक्रम प्रसारित किए, जबकि इसरो ने भू-खंड और गाँवों के रिसीवर बनाए -- इसी अनुभव से इन्सैट प्रणाली बनी।",
+  "Prasar Bharati, history of Doordarshan; Indian Space Research Organisation, Satellite Instructional Television Experiment (1975-76).",
+  "ca-t1-sci-baird-centenary-site-ats6", craft="linkage")
+
+S(AS, "easy", "A total lunar eclipse took place on 3 March 2026. Consider the following statements:",
+  "3 मार्च 2026 को पूर्ण चंद्रग्रहण हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["During totality the Moon often looks reddish, because the Earth's atmosphere bends and filters sunlight so that mainly red light reaches it.",
+   "A total lunar eclipse can be seen from anywhere on the night side of the Earth where the Moon is above the horizon.",
+   "Like a solar eclipse, a lunar eclipse is unsafe to watch with the naked eye."],
+  ["पूर्णता के दौरान चंद्रमा प्रायः लालिमा लिए दिखता है, क्योंकि पृथ्वी का वायुमंडल सूर्य के प्रकाश को मोड़ता और छानता है, जिससे मुख्यतः लाल प्रकाश उस तक पहुँचता है।",
+   "पूर्ण चंद्रग्रहण पृथ्वी के रात्रि वाले भाग में कहीं से भी देखा जा सकता है जहाँ चंद्रमा क्षितिज के ऊपर हो।",
+   "सूर्यग्रहण की तरह, चंद्रग्रहण को नंगी आँखों से देखना असुरक्षित है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Even inside the Earth's umbra the Moon receives some sunlight that has passed through the Earth's atmosphere: scattering removes most of the blue, and refraction bends the remaining red light into the shadow, giving the 'blood moon'. Because the Moon itself is in shadow, everyone who can see the Moon at that time sees the eclipse, unlike a solar eclipse, whose total phase is visible only along a narrow track. "
+  "Statement 3 is wrong: the eclipsed Moon is only dim reflected light and is entirely safe to watch, unlike the Sun, whose direct glare damages the retina.",
+  "कथन 1 और 2 सही हैं। पृथ्वी की प्रच्छाया के भीतर भी चंद्रमा को कुछ सूर्य-प्रकाश मिलता है जो पृथ्वी के वायुमंडल से गुज़रा होता है: प्रकीर्णन अधिकांश नीला प्रकाश हटा देता है, और अपवर्तन बचे हुए लाल प्रकाश को छाया में मोड़ देता है, जिससे ‘रक्त चंद्र’ बनता है। चूँकि चंद्रमा स्वयं छाया में होता है, उस समय चंद्रमा को देख सकने वाला हर व्यक्ति ग्रहण देखता है, जबकि सूर्यग्रहण की पूर्ण अवस्था केवल एक संकरी पट्टी से दिखती है। "
+  "कथन 3 ग़लत है: ग्रहण में चंद्रमा केवल मंद परावर्तित प्रकाश होता है और देखने में पूरी तरह सुरक्षित है, सूर्य के विपरीत, जिसकी सीधी चमक रेटिना को नुक़सान पहुँचाती है।",
+  "NCERT, Physics Part II (Class XII), Chapter 9 (Ray Optics), on refraction and scattering of light; NASA, eclipse catalogue (total lunar eclipse of 3 March 2026).",
+  "ca-t1-sci-lunar-eclipse-blood-moon-visibility", craft="application")
+
+S(BH, "medium", "Two cases of Nipah virus infection were confirmed in West Bengal in January 2026. Consider the following statements:",
+  "जनवरी 2026 में पश्चिम बंगाल में निपाह विषाणु संक्रमण के दो मामलों की पुष्टि हुई। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The virus was first identified in India, during an outbreak in Kerala in 2018.",
+   "It is transmitted mainly by the bite of Aedes mosquitoes.",
+   "A licensed Nipah vaccine is given to children under the Universal Immunisation Programme."],
+  ["यह विषाणु पहली बार भारत में, 2018 में केरल में एक प्रकोप के दौरान पहचाना गया था।",
+   "यह मुख्यतः एडीज़ मच्छरों के काटने से फैलता है।",
+   "सार्वभौमिक टीकाकरण कार्यक्रम के अंतर्गत बच्चों को निपाह का एक लाइसेंस-प्राप्त टीका दिया जाता है।"],
+  C3, 3,
+  "None of the statements is correct. Nipah, a henipavirus of the paramyxovirus family, was identified in 1998-99 during an outbreak among pig farmers in Malaysia and is named after the village of Sungai Nipah; India's first outbreaks were in West Bengal, at Siliguri in 2001 and Nadia in 2007, and Kerala has seen repeated outbreaks since 2018. The January 2026 cases, two nurses at a hospital in Barasat, were confirmed by the National Institute of Virology, Pune, and their contacts traced and tested. "
+  "The natural hosts are fruit bats; people are infected through fruit or raw date-palm sap contaminated by bats, through infected animals, and by close contact with patients -- not by mosquitoes. There is no licensed vaccine or specific drug; treatment is supportive, and vaccine candidates and monoclonal antibodies are still in trials.",
+  "कोई भी कथन सही नहीं है। पैरामिक्सोवायरस परिवार का हेनिपावायरस निपाह 1998-99 में मलेशिया में सूअर-पालकों में फैले प्रकोप के दौरान पहचाना गया और सुंगई निपाह गाँव के नाम पर रखा गया; भारत के पहले प्रकोप पश्चिम बंगाल में, 2001 में सिलीगुड़ी और 2007 में नदिया में हुए, और केरल में 2018 से बार-बार प्रकोप हुए हैं। जनवरी 2026 के मामलों, बारासात के एक अस्पताल की दो नर्सों, की पुष्टि राष्ट्रीय विषाणु विज्ञान संस्थान, पुणे ने की, और उनके संपर्कों का पता लगाकर जाँच की गई। "
+  "प्राकृतिक परपोषी फल-चमगादड़ हैं; लोग चमगादड़ों से दूषित फल या कच्चे खजूर-रस से, संक्रमित पशुओं से, और रोगियों के निकट संपर्क से संक्रमित होते हैं -- मच्छरों से नहीं। कोई लाइसेंस-प्राप्त टीका या विशिष्ट दवा नहीं है; उपचार सहायक है, और टीके के प्रत्याशी तथा मोनोक्लोनल एंटीबॉडी अभी परीक्षणों में हैं।",
+  "Ministry of Health and Family Welfare and National Centre for Disease Control, releases on Nipah virus disease in West Bengal (January 2026); World Health Organization, Nipah virus fact sheet.",
+  "ca-t1-sci-nipah-bengal-history-transmission", craft="precision")
+
+S(SP, "hard", "In March 2026 the last working atomic clock on the satellite IRNSS-1F stopped, ending its role in NavIC's navigation service. Consider the following statements:",
+  "मार्च 2026 में उपग्रह आईआरएनएसएस-1एफ़ की अंतिम कार्यरत परमाणु घड़ी बंद हो गई, जिससे नाविक की नेविगेशन सेवा में उसकी भूमिका समाप्त हो गई। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A receiver needs signals from at least four satellites to fix its position on its own.",
+   "NVS-01, launched in 2023, was the first NavIC satellite to carry an indigenously developed atomic clock.",
+   "Each NavIC satellite carries only one atomic clock, so a single clock failure ends its navigation role."],
+  ["किसी रिसीवर को स्वतंत्र रूप से अपनी स्थिति निर्धारित करने के लिए कम से कम चार उपग्रहों के संकेत चाहिए।",
+   "2023 में प्रक्षेपित एनवीएस-01 स्वदेशी रूप से विकसित परमाणु घड़ी ले जाने वाला पहला नाविक उपग्रह था।",
+   "प्रत्येक नाविक उपग्रह केवल एक परमाणु घड़ी ले जाता है, इसलिए एक घड़ी की विफलता उसकी नेविगेशन भूमिका समाप्त कर देती है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. A navigation receiver works out its distance from each satellite from the travel time of its signal, which is why the satellites need extremely stable atomic clocks; three distances fix a point in space, and a fourth is needed to correct the error of the receiver's own cheap clock. NVS-01 carried a rubidium clock developed at ISRO's Space Applications Centre, after imported clocks had failed on several first-generation satellites. "
+  "Statement 3 is wrong: each IRNSS satellite carried three clocks for redundancy; IRNSS-1F, launched in March 2016, had already lost two, and when the last stopped on 13 March 2026, just after its ten-year design life, it could no longer support navigation -- leaving NavIC short of satellites for standalone positioning, especially after NVS-02 failed to reach its orbit in 2025.",
+  "कथन 1 और 2 सही हैं। नेविगेशन रिसीवर हर उपग्रह से अपनी दूरी उसके संकेत के यात्रा-समय से निकालता है, इसीलिए उपग्रहों को अत्यंत स्थिर परमाणु घड़ियाँ चाहिए; तीन दूरियाँ अंतरिक्ष में एक बिंदु तय करती हैं, और रिसीवर की अपनी सस्ती घड़ी की त्रुटि ठीक करने के लिए चौथी चाहिए। आयातित घड़ियों के कई पहली पीढ़ी के उपग्रहों पर विफल होने के बाद एनवीएस-01 इसरो के अंतरिक्ष उपयोग केंद्र में विकसित रुबिडियम घड़ी ले गया। "
+  "कथन 3 ग़लत है: हर आईआरएनएसएस उपग्रह अतिरिक्तता के लिए तीन घड़ियाँ ले जाता था; मार्च 2016 में प्रक्षेपित आईआरएनएसएस-1एफ़ दो पहले ही खो चुका था, और जब 13 मार्च 2026 को, अपने दस-वर्षीय डिज़ाइन-जीवन के ठीक बाद, अंतिम घड़ी बंद हुई तो वह नेविगेशन में सहायक नहीं रहा -- जिससे नाविक के पास स्वतंत्र स्थिति-निर्धारण के लिए उपग्रह कम पड़ गए, विशेषकर 2025 में एनवीएस-02 के अपनी कक्षा तक न पहुँच पाने के बाद।",
+  "Indian Space Research Organisation, statement on IRNSS-1F (March 2026) and NVS-01 mission brochure (2023).",
+  "ca-t1-sci-navic-irnss-1f-clocks-four-satellites", craft="inference")
+
+S(EN, "hard", "During the Canadian Prime Minister's visit in March 2026, the Canadian company Cameco agreed to supply uranium to India's Department of Atomic Energy from 2027 to 2035. Consider the following statements:",
+  "मार्च 2026 में कनाडा के प्रधानमंत्री की यात्रा के दौरान कनाडाई कंपनी कैमेको ने 2027 से 2035 तक भारत के परमाणु ऊर्जा विभाग को यूरेनियम आपूर्ति पर सहमति दी। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India's import of uranium for civilian use became possible after the Nuclear Suppliers Group granted it a waiver in 2008.",
+   "Uranium imported under such agreements can be used in any Indian reactor, including those not under IAEA safeguards.",
+   "India and Canada had never cooperated in civil nuclear energy before this agreement."],
+  ["असैनिक उपयोग के लिए भारत का यूरेनियम आयात 2008 में परमाणु आपूर्तिकर्ता समूह से छूट मिलने के बाद संभव हुआ।",
+   "ऐसे समझौतों के अंतर्गत आयातित यूरेनियम किसी भी भारतीय रिएक्टर में प्रयोग किया जा सकता है, उनमें भी जो आईएईए सुरक्षा-उपायों के अधीन नहीं हैं।",
+   "इस समझौते से पहले भारत और कनाडा ने कभी असैनिक परमाणु ऊर्जा में सहयोग नहीं किया था।"],
+  C3, 0,
+  "Only statement 1 is correct. After its 1974 test India was cut off from nuclear trade; the India–US civil nuclear initiative led the Nuclear Suppliers Group in September 2008 to exempt India from its full-scope safeguards rule, opening imports of fuel and reactors. India's own ore is scarce and low-grade, so imported natural uranium keeps its pressurised heavy water reactors -- the backbone of the first stage of its programme -- at higher load factors. "
+  "Statement 2 is wrong: under the waiver and India's separation plan, which divided its facilities into civilian and strategic, imported fuel may be used only in reactors placed under IAEA safeguards. Statement 3 is wrong: Canada supplied the CIRUS research reactor (1960) and the design of the first Rawatbhata reactor, cooperation broke off after India's test of 1974, and was restored by an agreement of 2010, under which Cameco had supplied uranium from 2015; the new contract, worth about C$2.6 billion, follows the reset in relations.",
+  "केवल कथन 1 सही है। 1974 के परीक्षण के बाद भारत परमाणु व्यापार से कट गया था; भारत–अमेरिका असैनिक परमाणु पहल के बाद परमाणु आपूर्तिकर्ता समूह ने सितंबर 2008 में भारत को अपने पूर्ण-दायरे वाले सुरक्षा-उपाय नियम से छूट दी, जिससे ईंधन और रिएक्टरों का आयात खुला। भारत का अपना अयस्क कम और निम्न श्रेणी का है, इसलिए आयातित प्राकृतिक यूरेनियम उसके दाबित भारी जल रिएक्टरों -- उसके कार्यक्रम के पहले चरण की रीढ़ -- को ऊँचे भार-गुणांक पर चलाए रखता है। "
+  "कथन 2 ग़लत है: छूट और भारत की पृथक्करण योजना, जिसने उसकी सुविधाओं को असैनिक और सामरिक में बाँटा, के अंतर्गत आयातित ईंधन केवल आईएईए सुरक्षा-उपायों के अधीन रखे गए रिएक्टरों में प्रयोग हो सकता है। कथन 3 ग़लत है: कनाडा ने सायरस अनुसंधान रिएक्टर (1960) और रावतभाटा के पहले रिएक्टर का डिज़ाइन दिया था, 1974 के भारत के परीक्षण के बाद सहयोग टूटा, और 2010 के एक समझौते से बहाल हुआ, जिसके अंतर्गत कैमेको ने 2015 से यूरेनियम दिया था; लगभग 2.6 अरब कनाडाई डॉलर का नया अनुबंध संबंधों के नए आरंभ के बाद आया।",
+  "Department of Atomic Energy, nuclear power programme and India-specific safeguards; Ministry of External Affairs, India–Canada joint statement (March 2026); NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
+  "ca-t1-sci-cameco-uranium-phwr-safeguards", craft="linkage")
+
+S(IT, "medium", "In February 2026 the government amended the IT intermediary rules to deal with 'synthetically generated information'. Consider the following statements:",
+  "फ़रवरी 2026 में सरकार ने ‘कृत्रिम रूप से सृजित सूचना’ से निपटने के लिए आईटी मध्यवर्ती नियमों में संशोधन किया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The amended rules were made under the Information Technology Act, 2000.",
+   "Platforms must ensure that synthetic content, such as deepfakes, carries a prominent label and embedded identifying metadata.",
+   "The time allowed to intermediaries to remove unlawful content after a government or court order was cut from 36 hours to 3 hours."],
+  ["संशोधित नियम सूचना प्रौद्योगिकी अधिनियम, 2000 के अंतर्गत बनाए गए।",
+   "प्लेटफ़ॉर्मों को सुनिश्चित करना होगा कि डीपफ़ेक जैसी कृत्रिम सामग्री पर स्पष्ट लेबल और अंतर्निहित पहचान-मेटाडेटा हो।",
+   "सरकारी या न्यायालय के आदेश के बाद अवैध सामग्री हटाने के लिए मध्यवर्तियों को दिया गया समय 36 घंटे से घटाकर 3 घंटे कर दिया गया।"],
+  C3, 2,
+  "All three statements are correct. The Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Amendment Rules, 2026, notified on 10 February and in force from 20 February, define synthetically generated information as audio-visual content created or altered by a computer so that it appears real and is likely to be taken for a real person or event. "
+  "Platforms that allow such content must label it prominently and embed permanent provenance metadata, and large platforms must ask users to declare it; the window for removing unlawful content on an order was cut from 36 hours to 3, with 2 hours for complaints of non-consensual intimate images, including deepfakes. An intermediary that fails these duties risks losing its 'safe harbour' under section 79 of the IT Act.",
+  "तीनों कथन सही हैं। 10 फ़रवरी को अधिसूचित और 20 फ़रवरी से लागू सूचना प्रौद्योगिकी (मध्यवर्ती दिशानिर्देश और डिजिटल मीडिया आचार संहिता) संशोधन नियम, 2026 कृत्रिम रूप से सृजित सूचना को ऐसी दृश्य-श्रव्य सामग्री बताते हैं जो कंप्यूटर द्वारा बनाई या बदली गई हो ताकि वह असली लगे और किसी वास्तविक व्यक्ति या घटना के रूप में समझी जा सके। "
+  "ऐसी सामग्री की अनुमति देने वाले प्लेटफ़ॉर्मों को उस पर स्पष्ट लेबल और स्थायी उद्गम-मेटाडेटा लगाना होगा, और बड़े प्लेटफ़ॉर्मों को उपयोगकर्ताओं से इसकी घोषणा करवानी होगी; आदेश पर अवैध सामग्री हटाने की अवधि 36 घंटे से घटाकर 3 की गई, और डीपफ़ेक सहित असहमति वाली अंतरंग छवियों की शिकायतों के लिए 2 घंटे। इन कर्तव्यों में विफल मध्यवर्ती आईटी अधिनियम की धारा 79 के अंतर्गत अपनी ‘सुरक्षित पनाह’ खो सकता है।",
+  "Ministry of Electronics and Information Technology, Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Amendment Rules, 2026 (10 February 2026); Information Technology Act, 2000, sections 79 and 87.",
+  "ca-t1-sci-it-rules-2026-synthetic-content", craft="recall")
+
+S(EN, "hard", "The SHANTI Act, 2025, which opened civil nuclear power to the private sector, was widely debated in early 2026. Consider the following statements:",
+  "असैनिक परमाणु ऊर्जा को निजी क्षेत्र के लिए खोलने वाले शांति अधिनियम, 2025 पर 2026 के आरंभ में व्यापक बहस हुई। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It repealed both the Atomic Energy Act, 1962 and the Civil Liability for Nuclear Damage Act, 2010.",
+   "It allows companies other than the government-owned Nuclear Power Corporation of India to be licensed to build and operate nuclear power plants.",
+   "It gives the Atomic Energy Regulatory Board a statutory basis."],
+  ["इसने परमाणु ऊर्जा अधिनियम, 1962 और परमाणु क्षति के लिए सिविल दायित्व अधिनियम, 2010 दोनों को निरस्त किया।",
+   "यह सरकारी स्वामित्व वाले भारतीय परमाणु ऊर्जा निगम के अलावा अन्य कंपनियों को परमाणु बिजली संयंत्र बनाने और चलाने के लिए लाइसेंस पाने की अनुमति देता है।",
+   "यह परमाणु ऊर्जा नियामक बोर्ड को सांविधिक आधार देता है।"],
+  C3, 2,
+  "All three statements are correct. The Sustainable Harnessing and Advancement of Nuclear Energy for Transforming India (SHANTI) Act, passed in December 2025, replaced the two older laws with one framework. Under the 1962 Act only the Union or its companies, in practice NPCIL and joint ventures with it, could run nuclear plants; SHANTI lets licensed Indian companies and joint ventures build and operate them, while keeping sensitive activities with the Centre, as part of the plan for 100 GW of nuclear capacity by 2047 and for small modular reactors. "
+  "The Atomic Energy Regulatory Board, set up in 1983 by an executive order under the old Act, gets statutory standing. The most debated change is liability: operators' liability is capped according to plant size and the operator's right of recourse against suppliers, a feature of the 2010 law, was removed.",
+  "तीनों कथन सही हैं। दिसंबर 2025 में पारित भारत के रूपांतरण हेतु परमाणु ऊर्जा का सतत दोहन और उन्नयन (शांति) अधिनियम ने दोनों पुराने क़ानूनों की जगह एक ढाँचा रखा। 1962 के अधिनियम के अंतर्गत केवल केंद्र या उसकी कंपनियाँ, व्यवहार में एनपीसीआईएल और उसके साथ संयुक्त उपक्रम, परमाणु संयंत्र चला सकते थे; शांति लाइसेंस-प्राप्त भारतीय कंपनियों और संयुक्त उपक्रमों को उन्हें बनाने और चलाने देता है, संवेदनशील गतिविधियाँ केंद्र के पास रखते हुए, 2047 तक 100 गीगावाट परमाणु क्षमता और छोटे मॉड्यूलर रिएक्टरों की योजना के अंग के रूप में। "
+  "पुराने अधिनियम के अंतर्गत 1983 में एक कार्यकारी आदेश से बने परमाणु ऊर्जा नियामक बोर्ड को सांविधिक दर्जा मिला। सबसे विवादित बदलाव दायित्व का है: संचालकों का दायित्व संयंत्र के आकार के अनुसार सीमित किया गया और आपूर्तिकर्ताओं के विरुद्ध संचालक का प्रत्यावर्तन अधिकार, जो 2010 के क़ानून की विशेषता था, हटा दिया गया।",
+  "Sustainable Harnessing and Advancement of Nuclear Energy for Transforming India Act, 2025; Department of Atomic Energy releases on the Act (December 2025).",
+  "ca-t1-sci-shanti-act-private-nuclear-aerb", craft="recall")
+
+S(BH, "easy", "India aims to eliminate malaria by 2030. Consider the following statements:",
+  "भारत का लक्ष्य 2030 तक मलेरिया का उन्मूलन है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The National Framework for Malaria Elimination, launched in 2016, set 2030 as the target year for eliminating malaria in India.",
+   "The World Health Organization certifies a country as malaria-free once it has gone one full year without an indigenous case.",
+   "Malaria parasites are passed from person to person by the bite of male Anopheles mosquitoes."],
+  ["2016 में शुरू हुए मलेरिया उन्मूलन के राष्ट्रीय ढाँचे ने भारत में मलेरिया उन्मूलन के लिए 2030 को लक्ष्य-वर्ष रखा।",
+   "विश्व स्वास्थ्य संगठन किसी देश को एक पूरा वर्ष बिना किसी देशज मामले के बीतने पर मलेरिया-मुक्त प्रमाणित करता है।",
+   "मलेरिया परजीवी नर एनोफ़िलीज़ मच्छरों के काटने से एक व्यक्ति से दूसरे में जाते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct. The 2016 framework set phased targets for districts and States, aiming for zero indigenous cases by 2027 and elimination by 2030, and cases have fallen sharply since. "
+  "Statement 2 is wrong: the WHO certifies elimination only when a country shows, with strong surveillance, that the chain of local transmission has been interrupted for at least three consecutive years and that it can prevent re-establishment. Statement 3 is wrong: only female Anopheles mosquitoes bite, because they need blood to develop their eggs; male mosquitoes feed on nectar and plant juices.",
+  "केवल कथन 1 सही है। 2016 के ढाँचे ने ज़िलों और राज्यों के लिए चरणबद्ध लक्ष्य रखे, 2027 तक शून्य देशज मामले और 2030 तक उन्मूलन के उद्देश्य से, और तब से मामले तेज़ी से घटे हैं। "
+  "कथन 2 ग़लत है: विश्व स्वास्थ्य संगठन उन्मूलन तभी प्रमाणित करता है जब कोई देश सशक्त निगरानी के साथ दिखाए कि स्थानीय संचरण की शृंखला कम से कम लगातार तीन वर्ष टूटी रही है और वह इसकी पुनः स्थापना रोक सकता है। कथन 3 ग़लत है: केवल मादा एनोफ़िलीज़ मच्छर काटते हैं, क्योंकि उन्हें अंडे विकसित करने के लिए रक्त चाहिए; नर मच्छर मकरंद और पौधों के रस पर पलते हैं।",
+  "Ministry of Health and Family Welfare, National Framework for Malaria Elimination in India 2016-2030; World Health Organization, certification of malaria elimination; NCERT, Biology (Class XII), Chapter 7 (Human Health and Disease).",
+  "ca-t1-sci-malaria-elimination-2030-certification", craft="precision")
+
+S(SP, "medium", "The satellite lost on the PSLV-C62 mission in January 2026 was 'Anvesha', a hyperspectral imaging satellite. Consider the following statements:",
+  "जनवरी 2026 में पीएसएलवी-सी62 मिशन पर नष्ट हुआ उपग्रह ‘अन्वेषा’ एक हाइपरस्पेक्ट्रल इमेजिंग उपग्रह था। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A hyperspectral imager records the light from each point in hundreds of narrow, adjoining wavelength bands, which helps identify materials such as minerals, crops and pollutants.",
+   "Anvesha was a communication satellite built for a private broadband operator."],
+  ["हाइपरस्पेक्ट्रल इमेजर हर बिंदु से आने वाले प्रकाश को सैकड़ों संकरी, सटी हुई तरंगदैर्ध्य पट्टियों में दर्ज करता है, जिससे खनिज, फ़सलें और प्रदूषक जैसे पदार्थ पहचानने में मदद मिलती है।",
+   "अन्वेषा एक निजी ब्रॉडबैंड संचालक के लिए बना संचार उपग्रह था।"],
+  T2, 0,
+  "Only statement 1 is correct. An ordinary multispectral sensor records a few broad bands; a hyperspectral sensor splits the light into hundreds of narrow, contiguous bands, so every pixel carries a near-continuous spectrum -- a 'spectral signature' that can tell apart minerals, crop types and health, water quality, or a camouflaged object from real vegetation. ISRO flew such an imager on HySIS in 2018. "
+  "Statement 2 is wrong: Anvesha (EOS-N1) was an earth-observation satellite developed by the Defence Research and Development Organisation for strategic surveillance, which made its loss on the second consecutive PSLV failure a setback for defence as well as for ISRO.",
+  "केवल कथन 1 सही है। साधारण मल्टीस्पेक्ट्रल संवेदक कुछ चौड़ी पट्टियाँ दर्ज करता है; हाइपरस्पेक्ट्रल संवेदक प्रकाश को सैकड़ों संकरी, सटी हुई पट्टियों में बाँटता है, इसलिए हर पिक्सेल लगभग सतत स्पेक्ट्रम रखता है -- एक ‘स्पेक्ट्रमी हस्ताक्षर’ जो खनिजों, फ़सलों के प्रकार और स्वास्थ्य, जल-गुणवत्ता, या छद्मावरण में छिपी वस्तु और असली वनस्पति में भेद कर सकता है। इसरो ने 2018 में हाइसिस पर ऐसा इमेजर भेजा था। "
+  "कथन 2 ग़लत है: अन्वेषा (ईओएस-एन1) रक्षा अनुसंधान और विकास संगठन द्वारा सामरिक निगरानी के लिए विकसित पृथ्वी-अवलोकन उपग्रह था, इसलिए लगातार दूसरी पीएसएलवी विफलता में इसका नष्ट होना इसरो के साथ रक्षा के लिए भी झटका था।",
+  "Indian Space Research Organisation, PSLV-C62/EOS-N1 mission (January 2026) and HySIS (2018); NCERT, Fundamentals of Remote Sensing (Practical Work in Geography, Class XI), Chapter 7.",
+  "ca-t1-sci-hyperspectral-anvesha-drdo", craft="application")
+
+S(SP, "medium", "In January 2026 the question of how patent law would apply to a permanent human presence in space was debated. With reference to international space law, consider the following statements:",
+  "जनवरी 2026 में इस प्रश्न पर बहस हुई कि अंतरिक्ष में स्थायी मानव उपस्थिति पर पेटेंट क़ानून कैसे लागू होगा। अंतरराष्ट्रीय अंतरिक्ष विधि के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Outer Space Treaty of 1967 allows a State to claim sovereignty over a celestial body by occupying it first.",
+   "India is not a party to the Outer Space Treaty.",
+   "The United States is a party to the Moon Agreement of 1979."],
+  ["1967 की बाह्य अंतरिक्ष संधि किसी राज्य को किसी खगोलीय पिंड पर पहले क़ब्ज़ा करके संप्रभुता का दावा करने देती है।",
+   "भारत बाह्य अंतरिक्ष संधि का पक्षकार नहीं है।",
+   "संयुक्त राज्य अमेरिका 1979 के चंद्रमा समझौते का पक्षकार है।"],
+  C3, 3,
+  "None of the statements is correct. Article II of the Outer Space Treaty says outer space, including the Moon and other celestial bodies, is not subject to national appropriation by claim of sovereignty, by means of use or occupation, or by any other means; Article VIII keeps a State's jurisdiction over the objects and crews it registers, which is how national laws, including patent law, can reach activity on a space station. "
+  "India signed the treaty in 1967 and ratified it in 1982. The Moon Agreement of 1979, which calls the Moon's resources the 'common heritage of mankind', has few parties and none of the major spacefaring powers -- the United States, Russia and China have stayed out, and India signed but has not ratified it; India joined the US-led Artemis Accords in 2023.",
+  "कोई भी कथन सही नहीं है। बाह्य अंतरिक्ष संधि का अनुच्छेद II कहता है कि चंद्रमा और अन्य खगोलीय पिंडों सहित बाह्य अंतरिक्ष पर संप्रभुता के दावे, उपयोग या क़ब्ज़े, या किसी अन्य माध्यम से राष्ट्रीय स्वामित्व नहीं हो सकता; अनुच्छेद VIII राज्य का अपने पंजीकृत पिंडों और कर्मीदल पर अधिकार-क्षेत्र बनाए रखता है, इसी से पेटेंट क़ानून सहित राष्ट्रीय क़ानून किसी अंतरिक्ष स्टेशन की गतिविधि तक पहुँचते हैं। "
+  "भारत ने 1967 में संधि पर हस्ताक्षर किए और 1982 में अनुसमर्थन किया। 1979 का चंद्रमा समझौता, जो चंद्रमा के संसाधनों को ‘मानवजाति की साझा विरासत’ कहता है, के पक्षकार कम हैं और उनमें कोई बड़ी अंतरिक्ष शक्ति नहीं -- संयुक्त राज्य अमेरिका, रूस और चीन बाहर रहे हैं, और भारत ने हस्ताक्षर किए पर अनुसमर्थन नहीं किया; भारत 2023 में अमेरिका-नेतृत्व वाले आर्टेमिस समझौतों से जुड़ा।",
+  "Treaty on Principles Governing the Activities of States in the Exploration and Use of Outer Space (1967), Articles II, IV and VIII; Agreement Governing the Activities of States on the Moon and Other Celestial Bodies (1979); UN Office for Outer Space Affairs, status of treaties.",
+  "ca-t1-sci-outer-space-treaty-moon-agreement", craft="precision")
+
+S(AS, "easy", "February 2026 marked sixty years since the Luna 9 landing and forty years since the launch of the Mir space station. Consider the following statements:",
+  "फ़रवरी 2026 में लूना 9 के उतरने के साठ वर्ष और मीर अंतरिक्ष स्टेशन के प्रक्षेपण के चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Luna 9 of the Soviet Union made the first soft landing on the Moon.",
+   "Mir was launched by the United States as the first module of the International Space Station.",
+   "Giotto, the probe that photographed the nucleus of Halley's Comet in 1986, was a NASA mission."],
+  ["सोवियत संघ के लूना 9 ने चंद्रमा पर पहली मृदु अवतरण (सॉफ़्ट लैंडिंग) की।",
+   "मीर को संयुक्त राज्य अमेरिका ने अंतरराष्ट्रीय अंतरिक्ष स्टेशन के पहले मॉड्यूल के रूप में प्रक्षेपित किया।",
+   "1986 में हैली धूमकेतु के नाभिक की तस्वीर लेने वाला यान जियोट्टो नासा का मिशन था।"],
+  C3, 0,
+  "Only statement 1 is correct. Luna 9 touched down on 3 February 1966 and sent back the first pictures from the lunar surface, showing that it could bear the weight of a lander. "
+  "Statement 2 is wrong: Mir's core module was launched by the Soviet Union on 20 February 1986 and the station was assembled in orbit over the next decade, hosting long-duration crews until it was brought down in 2001; the ISS began separately in 1998. Statement 3 is wrong: Giotto was a European Space Agency probe; in March 1986 it flew within about 600 km of Halley's nucleus and took the first close-up images of a comet's nucleus, while Soviet and Japanese probes studied the comet from farther away.",
+  "केवल कथन 1 सही है। लूना 9 3 फ़रवरी 1966 को उतरा और चंद्र सतह से पहली तस्वीरें भेजीं, जिससे पता चला कि वह किसी अवतरण यान का भार सह सकती है। "
+  "कथन 2 ग़लत है: मीर का मुख्य मॉड्यूल सोवियत संघ ने 20 फ़रवरी 1986 को प्रक्षेपित किया और स्टेशन अगले दशक में कक्षा में जोड़ा गया, जिसने 2001 में नीचे लाए जाने तक दीर्घ-अवधि के कर्मीदलों की मेज़बानी की; आईएसएस अलग से 1998 में शुरू हुआ। कथन 3 ग़लत है: जियोट्टो यूरोपीय अंतरिक्ष एजेंसी का यान था; मार्च 1986 में वह हैली के नाभिक से लगभग 600 किमी के भीतर से गुज़रा और किसी धूमकेतु के नाभिक की पहली निकट तस्वीरें लीं, जबकि सोवियत और जापानी यानों ने धूमकेतु का अध्ययन अधिक दूरी से किया।",
+  "NASA Space Science Data Coordinated Archive, Luna 9 and Mir; European Space Agency, Giotto mission (1986).",
+  "ca-t1-sci-luna9-mir-giotto-anniversaries", craft="recall")
+
+S(BH, "easy", "In February 2026 the Prime Minister's call for organ donation drew attention to the shortage of deceased donors in India. Consider the following statements:",
+  "फ़रवरी 2026 में प्रधानमंत्री के अंगदान के आह्वान ने भारत में मृत दाताओं की कमी की ओर ध्यान खींचा। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Transplantation of Human Organs Act, 1994 recognises brain-stem death, so that organs can be retrieved from brain-dead donors.",
+   "Commercial dealing in human organs is a punishable offence under the Act.",
+   "The organs a deceased donor can give include the heart, lungs, liver and pancreas, not only the kidneys.",
+   "The National Organ and Tissue Transplant Organisation functions under the Union Ministry of Health and Family Welfare."],
+  ["मानव अंग प्रत्यारोपण अधिनियम, 1994 मस्तिष्क-स्तंभ मृत्यु को मान्यता देता है, जिससे मस्तिष्क-मृत दाताओं से अंग लिए जा सकते हैं।",
+   "अधिनियम के अंतर्गत मानव अंगों का वाणिज्यिक लेन-देन दंडनीय अपराध है।",
+   "मृत दाता जो अंग दे सकता है उनमें केवल गुर्दे नहीं, बल्कि हृदय, फेफड़े, यकृत और अग्न्याशय भी हैं।",
+   "राष्ट्रीय अंग और ऊतक प्रत्यारोपण संगठन केंद्रीय स्वास्थ्य और परिवार कल्याण मंत्रालय के अधीन कार्य करता है।"],
+  C4, 3,
+  "All four statements are correct. The 1994 Act (renamed the Transplantation of Human Organs and Tissues Act after its 2011 amendment) made brain-stem death a legal form of death, certified by a board of doctors, which opened the way to deceased donation; it bans buying and selling organs and requires authorisation committees to scrutinise donations between unrelated living persons. "
+  "A deceased donor can give the heart, lungs, liver, kidneys, pancreas and intestine, as well as tissues such as corneas and skin -- one donor can save several lives. NOTTO, set up under the Directorate General of Health Services, runs the national registry and network for allocation; India's deceased-donation rate remains below one per million people, which is why it and the Prime Minister have urged pledges.",
+  "चारों कथन सही हैं। 1994 के अधिनियम (2011 के संशोधन के बाद मानव अंग और ऊतक प्रत्यारोपण अधिनियम) ने डॉक्टरों के बोर्ड द्वारा प्रमाणित मस्तिष्क-स्तंभ मृत्यु को मृत्यु का विधिक रूप बनाया, जिससे मृत दाता से अंगदान का मार्ग खुला; यह अंगों की ख़रीद-बिक्री पर रोक लगाता है और असंबंधित जीवित व्यक्तियों के बीच दान की जाँच के लिए प्राधिकरण समितियाँ अनिवार्य करता है। "
+  "मृत दाता हृदय, फेफड़े, यकृत, गुर्दे, अग्न्याशय और आँत, साथ ही कॉर्निया और त्वचा जैसे ऊतक दे सकता है -- एक दाता कई जीवन बचा सकता है। स्वास्थ्य सेवा महानिदेशालय के अधीन बना नोटो आवंटन के लिए राष्ट्रीय रजिस्ट्री और नेटवर्क चलाता है; भारत में मृत-दान की दर प्रति दस लाख लोगों पर एक से कम है, इसीलिए उसने और प्रधानमंत्री ने संकल्प का आग्रह किया है।",
+  "Transplantation of Human Organs and Tissues Act, 1994 (as amended in 2011), sections 2, 3 and 19; Ministry of Health and Family Welfare, National Organ and Tissue Transplant Organisation.",
+  "ca-t1-sci-thota-brain-stem-death-deceased-donation", craft="recall")
+
+for r in d.ROWS:
+    r["question_data"]["ca_window"] = "2026-Q1"
+write("ca_t1_e.sql")

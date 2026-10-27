@@ -40,6 +40,9 @@ for their 16 current-affairs rows, written nearer their dates.
 Level 4's nine CSAT simulators are the 80 rows of csat_set 'csat-l4-sNN' in authored order, each on one recent shape
 of the real paper (layouts A/B/C in csat_l4_layouts.py, in rotation), dated twice a week -- Sundays and Wednesdays at
 2:30 pm, the hour of the real CSAT paper -- from 18 April to 16 May 2027, a week before the Prelims of 23 May 2027.
+The five quarterly current-affairs tests are the 100 rows whose concept ids carry the prefix 'ca-tN-', each question
+set against the static syllabus behind an event or anniversary of its quarter, put in one fixed order like a GS paper
+and dated on Saturdays at 9:30 am from 12 December 2026 (CA_DATES), each after its quarter has ended.
 Tests are created unpublished; the owner approves publishing (the 27 Level-2 papers went live on 2026-10-11 via
 upsc_l2_publish.sql, after the answer-(d) fix in l2_dshare_fix.sql). A published paper is frozen: a re-run leaves
 its question order, usages and dates untouched, since students may already have sat it. Each test is linked to
@@ -219,6 +222,16 @@ def l4_csat_desc(shape):
             f"logical-reasoning and {nr} reading-comprehension questions on {npass} passages, in the UPSC order, with a "
             "five-item data-sufficiency block. 80 questions · 200 marks · 2 hours · +2.5 / -0.83; qualifying at 33%. "
             "Scheduled at 2:30 pm, the hour of the real paper.")
+
+CA_DESC = [
+    "Current affairs of January to March 2026, each question set against the static syllabus it points to: the "
+    "Union Budget 2026-27, the Economic Survey and the Sixteenth Finance Commission; the new GDP and CPI series; the "
+    "India-EU and India-US trade deals; BRICS, the AI Impact Summit, the High Seas Treaty and the war in West Asia; "
+    "Supreme Court verdicts and Census 2027; ISRO, NavIC and nuclear energy; Ramsar sites and Project Cheetah; and "
+    "the anniversaries of the quarter, from Somnath (1026) to Startup India (2016). Sources: PIB and the ministries, "
+    "the Constitution and Acts, the RBI and NSO, the UN bodies; NCERT for the static background. "
+    "100 questions · 200 marks · 2 hours · +2 / -0.66.",
+    "", "", "", ""]   # Tests 2-5 get their syllabus when their rows are written
 
 L1_CSAT_DESC = ("CSAT Paper II at the foundation level, as a one-hour half paper: 17 quantitative-aptitude, 9 logical-reasoning "
                 "and 14 reading-comprehension questions on five passages, in the UPSC order, with a short data-sufficiency block. "
@@ -434,14 +447,24 @@ def main():
         bp_ids[("l4csat", i)] = (uid(f"blueprint/l4/{10 + i}"), "upsc27-l4-csat")
         tests.append(("l4csat", i, *l4_titles[10 + i], l4_csat_desc(shape), f"{L4_CSAT_DATES[i - 1]} 14:30:00+05:30",
                       "CSAT Paper II", "सीसैट प्रश्नपत्र II", rows))
+    ca_titles = {pos: (t, th) for series, pos, t, th, *_ in other_blueprints() if series == "ca"}
+    for i in range(1, 6):                       # Current-affairs quarterly tests: the 100 rows with concept prefix 'ca-tN-'
+        rows = [r for r in bank if r["cg"].startswith(f"ca-t{i}-")]
+        if len(rows) < 100:
+            print(f"Current Affairs Test {i}: {len(rows)} of 100 rows, paper not made yet")
+            continue
+        assert len(rows) == 100, f"Current Affairs Test {i}: {len(rows)} rows"
+        bp_ids[("ca", i)] = (uid(f"blueprint/ca/{i}"), "upsc27-ca")
+        tests.append(("ca", i, *ca_titles[i], CA_DESC[i - 1], f"{CA_DATES[i - 1]} 09:30:00+05:30",
+                      "General Studies Paper I", "सामान्य अध्ययन प्रश्नपत्र I", arrange(rows, seed=500 + i)))
     seen = set()
     for kind, n, title, title_hi, desc, when, sec, sec_hi, rows in tests:
         ids = [r["id"] for r in rows]
         assert not (seen & set(ids)), f"{title}: a question is in two tests"
         seen |= set(ids)
         tid = uid({"l1": f"test/l1/gs/{n}", "l1csat": f"test/l1/csat/{n}", "l3csat": f"test/l3/csat/{n}",
-                   "l4csat": f"test/l4/csat/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
-        series_id = {"l1": SID["l1"], "l3": SID["l3"], "l4": SID["l4"]}.get(kind[:2], L2_SERIES)
+                   "l4csat": f"test/l4/csat/{n}", "ca": f"test/ca/{n}"}.get(kind, f"test/l2/{kind}/{n}"))
+        series_id = {"l1": SID["l1"], "l3": SID["l3"], "l4": SID["l4"], "ca": SID["ca"]}.get(kind[:2], L2_SERIES)
         minutes = 60 if kind == "l1csat" else 120      # a CSAT half paper is one hour (src/lib/generate.js UPSC_PAPER_FORMATS)
         bid, theme = bp_ids[(kind, n)]
         sections = [{"id": "s1", "name": sec, "name_hi": sec_hi, "questionIds": ids}]
