@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "Science & Technology"
 d.REQUIRE_CRAFT = True
@@ -50,7 +52,7 @@ M(SP, "medium",
   "गोडार्ड का रॉकेट, जो 16 मार्च 1926 को मैसाचुसेट्स के ऑबर्न में उड़ा, द्रव ऑक्सीजन के साथ गैसोलीन जलाता था। द्रव इंजन में ईंधन और ऑक्सीकारक टंकियों से वाल्वों और पंपों के रास्ते आते हैं, इसलिए प्रणोद को घटाया-बढ़ाया, बंद किया और -- इसके लिए बने इंजनों में, जैसे पीएसएलवी के चौथे चरण के इंजन -- अंतरिक्ष में फिर जलाया जा सकता है; यही सटीक नियंत्रण उपग्रहों को ठीक स्थान पर रखने के लिए द्रव चरणों के प्रयोग का कारण है। "
   "अन्य विकल्प उल्टा बताते हैं। ठोस मोटर, जिसमें ईंधन और ऑक्सीकारक साथ ढाले जाते हैं, वर्षों तक तैयार रखी और तुरंत दागी जा सकती है, इसीलिए अग्नि शृंखला जैसी मिसाइलें इसका प्रयोग करती हैं, और यह सरल होती है, जिसमें लगभग कोई चलने वाला पुर्ज़ा नहीं -- पर एक बार जलने पर अंत तक जलती है। और हर रॉकेट अपना ऑक्सीकारक साथ ले जाता है, यही उसे अंतरिक्ष के निर्वात में काम करने देता है; हवा से ऑक्सीजन लेने वाले इंजन रैमजेट और स्क्रैमजेट जैसे वायु-श्वसन इंजन हैं।",
   "NCERT, Physics Part I (Class XI), Chapter 5 (Laws of Motion), on rocket propulsion; Indian Space Research Organisation, launch vehicle propulsion; NASA History Office, Robert H. Goddard (1926).",
-  "ca-t1-sci-goddard-centenary-liquid-propellant", pos=3, craft="application")
+  "ca-t1-sci-goddard-centenary-liquid-propellant", pos=POS.get("ca-t1-sci-goddard-centenary-liquid-propellant", 3), craft="application")
 
 S(IT, "medium", "January 2026 marked a hundred years since John Logie Baird first demonstrated television in public. Consider the following statements:",
   "जनवरी 2026 में जॉन लोगी बेयर्ड द्वारा पहली बार सार्वजनिक रूप से टेलीविज़न प्रदर्शित किए जाने के सौ वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -87,16 +89,16 @@ S(AS, "easy", "A total lunar eclipse took place on 3 March 2026. Consider the fo
 S(BH, "medium", "Two cases of Nipah virus infection were confirmed in West Bengal in January 2026. Consider the following statements:",
   "जनवरी 2026 में पश्चिम बंगाल में निपाह विषाणु संक्रमण के दो मामलों की पुष्टि हुई। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The virus was first identified in India, during an outbreak in Kerala in 2018.",
-   "It is transmitted mainly by the bite of Aedes mosquitoes.",
+   "Pigs are the virus's natural reservoir.",
    "A licensed Nipah vaccine is given to children under the Universal Immunisation Programme."],
   ["यह विषाणु पहली बार भारत में, 2018 में केरल में एक प्रकोप के दौरान पहचाना गया था।",
-   "यह मुख्यतः एडीज़ मच्छरों के काटने से फैलता है।",
+   "सूअर इस विषाणु के प्राकृतिक भंडार (reservoir) हैं।",
    "सार्वभौमिक टीकाकरण कार्यक्रम के अंतर्गत बच्चों को निपाह का एक लाइसेंस-प्राप्त टीका दिया जाता है।"],
   C3, 3,
   "None of the statements is correct. Nipah, a henipavirus of the paramyxovirus family, was identified in 1998-99 during an outbreak among pig farmers in Malaysia and is named after the village of Sungai Nipah; India's first outbreaks were in West Bengal, at Siliguri in 2001 and Nadia in 2007, and Kerala has seen repeated outbreaks since 2018. The January 2026 cases, two nurses at a hospital in Barasat, were confirmed by the National Institute of Virology, Pune, and their contacts traced and tested. "
-  "The natural hosts are fruit bats; people are infected through fruit or raw date-palm sap contaminated by bats, through infected animals, and by close contact with patients -- not by mosquitoes. There is no licensed vaccine or specific drug; treatment is supportive, and vaccine candidates and monoclonal antibodies are still in trials.",
+  "The natural reservoir is fruit bats of the genus Pteropus; pigs were only intermediate hosts that amplified the Malaysian outbreak. People are infected through fruit or raw date-palm sap contaminated by bats, through infected animals, and by close contact with patients. There is no licensed vaccine or specific drug; treatment is supportive, and vaccine candidates and monoclonal antibodies are still in trials.",
   "कोई भी कथन सही नहीं है। पैरामिक्सोवायरस परिवार का हेनिपावायरस निपाह 1998-99 में मलेशिया में सूअर-पालकों में फैले प्रकोप के दौरान पहचाना गया और सुंगई निपाह गाँव के नाम पर रखा गया; भारत के पहले प्रकोप पश्चिम बंगाल में, 2001 में सिलीगुड़ी और 2007 में नदिया में हुए, और केरल में 2018 से बार-बार प्रकोप हुए हैं। जनवरी 2026 के मामलों, बारासात के एक अस्पताल की दो नर्सों, की पुष्टि राष्ट्रीय विषाणु विज्ञान संस्थान, पुणे ने की, और उनके संपर्कों का पता लगाकर जाँच की गई। "
-  "प्राकृतिक परपोषी फल-चमगादड़ हैं; लोग चमगादड़ों से दूषित फल या कच्चे खजूर-रस से, संक्रमित पशुओं से, और रोगियों के निकट संपर्क से संक्रमित होते हैं -- मच्छरों से नहीं। कोई लाइसेंस-प्राप्त टीका या विशिष्ट दवा नहीं है; उपचार सहायक है, और टीके के प्रत्याशी तथा मोनोक्लोनल एंटीबॉडी अभी परीक्षणों में हैं।",
+  "प्राकृतिक भंडार टेरोपस वंश के फल-चमगादड़ हैं; सूअर केवल मध्यवर्ती परपोषी थे जिन्होंने मलेशिया के प्रकोप को बढ़ाया। लोग चमगादड़ों से दूषित फल या कच्चे खजूर-रस से, संक्रमित पशुओं से, और रोगियों के निकट संपर्क से संक्रमित होते हैं। कोई लाइसेंस-प्राप्त टीका या विशिष्ट दवा नहीं है; उपचार सहायक है, और टीके के प्रत्याशी तथा मोनोक्लोनल एंटीबॉडी अभी परीक्षणों में हैं।",
   "Ministry of Health and Family Welfare and National Centre for Disease Control, releases on Nipah virus disease in West Bengal (January 2026); World Health Organization, Nipah virus fact sheet.",
   "ca-t1-sci-nipah-bengal-history-transmission", craft="precision")
 
@@ -110,9 +112,9 @@ S(SP, "hard", "In March 2026 the last working atomic clock on the satellite IRNS
    "प्रत्येक नाविक उपग्रह केवल एक परमाणु घड़ी ले जाता है, इसलिए एक घड़ी की विफलता उसकी नेविगेशन भूमिका समाप्त कर देती है।"],
   C3, 1,
   "Statements 1 and 2 are correct. A navigation receiver works out its distance from each satellite from the travel time of its signal, which is why the satellites need extremely stable atomic clocks; three distances fix a point in space, and a fourth is needed to correct the error of the receiver's own cheap clock. NVS-01 carried a rubidium clock developed at ISRO's Space Applications Centre, after imported clocks had failed on several first-generation satellites. "
-  "Statement 3 is wrong: each IRNSS satellite carried three clocks for redundancy; IRNSS-1F, launched in March 2016, had already lost two, and when the last stopped on 13 March 2026, just after its ten-year design life, it could no longer support navigation -- leaving NavIC short of satellites for standalone positioning, especially after NVS-02 failed to reach its orbit in 2025.",
+  "Statement 3 is wrong: each IRNSS satellite carried three clocks for redundancy; IRNSS-1F, launched in March 2016, had already lost two, and when the last stopped on 13 March 2026, just after its ten-year design life, it could no longer support navigation -- leaving NavIC short of satellites for standalone positioning, especially after NVS-02 failed to reach its orbit in 2025. By July 2026 the government told Parliament that only three NavIC satellites were providing navigation signals, so standalone positioning was not available, though the timing service continued.",
   "कथन 1 और 2 सही हैं। नेविगेशन रिसीवर हर उपग्रह से अपनी दूरी उसके संकेत के यात्रा-समय से निकालता है, इसीलिए उपग्रहों को अत्यंत स्थिर परमाणु घड़ियाँ चाहिए; तीन दूरियाँ अंतरिक्ष में एक बिंदु तय करती हैं, और रिसीवर की अपनी सस्ती घड़ी की त्रुटि ठीक करने के लिए चौथी चाहिए। आयातित घड़ियों के कई पहली पीढ़ी के उपग्रहों पर विफल होने के बाद एनवीएस-01 इसरो के अंतरिक्ष उपयोग केंद्र में विकसित रुबिडियम घड़ी ले गया। "
-  "कथन 3 ग़लत है: हर आईआरएनएसएस उपग्रह अतिरिक्तता के लिए तीन घड़ियाँ ले जाता था; मार्च 2016 में प्रक्षेपित आईआरएनएसएस-1एफ़ दो पहले ही खो चुका था, और जब 13 मार्च 2026 को, अपने दस-वर्षीय डिज़ाइन-जीवन के ठीक बाद, अंतिम घड़ी बंद हुई तो वह नेविगेशन में सहायक नहीं रहा -- जिससे नाविक के पास स्वतंत्र स्थिति-निर्धारण के लिए उपग्रह कम पड़ गए, विशेषकर 2025 में एनवीएस-02 के अपनी कक्षा तक न पहुँच पाने के बाद।",
+  "कथन 3 ग़लत है: हर आईआरएनएसएस उपग्रह अतिरिक्तता के लिए तीन घड़ियाँ ले जाता था; मार्च 2016 में प्रक्षेपित आईआरएनएसएस-1एफ़ दो पहले ही खो चुका था, और जब 13 मार्च 2026 को, अपने दस-वर्षीय डिज़ाइन-जीवन के ठीक बाद, अंतिम घड़ी बंद हुई तो वह नेविगेशन में सहायक नहीं रहा -- जिससे नाविक के पास स्वतंत्र स्थिति-निर्धारण के लिए उपग्रह कम पड़ गए, विशेषकर 2025 में एनवीएस-02 के अपनी कक्षा तक न पहुँच पाने के बाद। जुलाई 2026 तक सरकार ने संसद को बताया कि केवल तीन नाविक उपग्रह नेविगेशन संकेत दे रहे थे, इसलिए स्वतंत्र स्थिति-निर्धारण उपलब्ध नहीं था, यद्यपि समय-सेवा चलती रही।",
   "Indian Space Research Organisation, statement on IRNSS-1F (March 2026) and NVS-01 mission brochure (2023).",
   "ca-t1-sci-navic-irnss-1f-clocks-four-satellites", craft="inference")
 
@@ -183,46 +185,46 @@ S(BH, "easy", "India aims to eliminate malaria by 2030. Consider the following s
 S(SP, "medium", "The satellite lost on the PSLV-C62 mission in January 2026 was 'Anvesha', a hyperspectral imaging satellite. Consider the following statements:",
   "जनवरी 2026 में पीएसएलवी-सी62 मिशन पर नष्ट हुआ उपग्रह ‘अन्वेषा’ एक हाइपरस्पेक्ट्रल इमेजिंग उपग्रह था। निम्नलिखित कथनों पर विचार कीजिए:",
   ["A hyperspectral imager records the light from each point in hundreds of narrow, adjoining wavelength bands, which helps identify materials such as minerals, crops and pollutants.",
-   "Anvesha was a communication satellite built for a private broadband operator."],
+   "Anvesha was developed by ISRO's Space Applications Centre."],
   ["हाइपरस्पेक्ट्रल इमेजर हर बिंदु से आने वाले प्रकाश को सैकड़ों संकरी, सटी हुई तरंगदैर्ध्य पट्टियों में दर्ज करता है, जिससे खनिज, फ़सलें और प्रदूषक जैसे पदार्थ पहचानने में मदद मिलती है।",
-   "अन्वेषा एक निजी ब्रॉडबैंड संचालक के लिए बना संचार उपग्रह था।"],
+   "अन्वेषा को इसरो के अंतरिक्ष उपयोग केंद्र ने विकसित किया था।"],
   T2, 0,
   "Only statement 1 is correct. An ordinary multispectral sensor records a few broad bands; a hyperspectral sensor splits the light into hundreds of narrow, contiguous bands, so every pixel carries a near-continuous spectrum -- a 'spectral signature' that can tell apart minerals, crop types and health, water quality, or a camouflaged object from real vegetation. ISRO flew such an imager on HySIS in 2018. "
-  "Statement 2 is wrong: Anvesha (EOS-N1) was an earth-observation satellite developed by the Defence Research and Development Organisation for strategic surveillance, which made its loss on the second consecutive PSLV failure a setback for defence as well as for ISRO.",
+  "Statement 2 is wrong: Anvesha (EOS-N1) was an earth-observation satellite developed not by ISRO but by the Defence Research and Development Organisation, for strategic surveillance, which made its loss on the second consecutive PSLV failure a setback for defence as well as for ISRO.",
   "केवल कथन 1 सही है। साधारण मल्टीस्पेक्ट्रल संवेदक कुछ चौड़ी पट्टियाँ दर्ज करता है; हाइपरस्पेक्ट्रल संवेदक प्रकाश को सैकड़ों संकरी, सटी हुई पट्टियों में बाँटता है, इसलिए हर पिक्सेल लगभग सतत स्पेक्ट्रम रखता है -- एक ‘स्पेक्ट्रमी हस्ताक्षर’ जो खनिजों, फ़सलों के प्रकार और स्वास्थ्य, जल-गुणवत्ता, या छद्मावरण में छिपी वस्तु और असली वनस्पति में भेद कर सकता है। इसरो ने 2018 में हाइसिस पर ऐसा इमेजर भेजा था। "
-  "कथन 2 ग़लत है: अन्वेषा (ईओएस-एन1) रक्षा अनुसंधान और विकास संगठन द्वारा सामरिक निगरानी के लिए विकसित पृथ्वी-अवलोकन उपग्रह था, इसलिए लगातार दूसरी पीएसएलवी विफलता में इसका नष्ट होना इसरो के साथ रक्षा के लिए भी झटका था।",
+  "कथन 2 ग़लत है: अन्वेषा (ईओएस-एन1) इसरो ने नहीं, बल्कि रक्षा अनुसंधान और विकास संगठन ने सामरिक निगरानी के लिए विकसित किया पृथ्वी-अवलोकन उपग्रह था, इसलिए लगातार दूसरी पीएसएलवी विफलता में इसका नष्ट होना इसरो के साथ रक्षा के लिए भी झटका था।",
   "Indian Space Research Organisation, PSLV-C62/EOS-N1 mission (January 2026) and HySIS (2018); NCERT, Fundamentals of Remote Sensing (Practical Work in Geography, Class XI), Chapter 7.",
   "ca-t1-sci-hyperspectral-anvesha-drdo", craft="application")
 
 S(SP, "medium", "In January 2026 the question of how patent law would apply to a permanent human presence in space was debated. With reference to international space law, consider the following statements:",
   "जनवरी 2026 में इस प्रश्न पर बहस हुई कि अंतरिक्ष में स्थायी मानव उपस्थिति पर पेटेंट क़ानून कैसे लागू होगा। अंतरराष्ट्रीय अंतरिक्ष विधि के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Outer Space Treaty of 1967 allows a State to claim sovereignty over a celestial body by occupying it first.",
-   "India is not a party to the Outer Space Treaty.",
+   "India is a party to the Outer Space Treaty.",
    "The United States is a party to the Moon Agreement of 1979."],
   ["1967 की बाह्य अंतरिक्ष संधि किसी राज्य को किसी खगोलीय पिंड पर पहले क़ब्ज़ा करके संप्रभुता का दावा करने देती है।",
-   "भारत बाह्य अंतरिक्ष संधि का पक्षकार नहीं है।",
+   "भारत बाह्य अंतरिक्ष संधि का पक्षकार है।",
    "संयुक्त राज्य अमेरिका 1979 के चंद्रमा समझौते का पक्षकार है।"],
-  C3, 3,
-  "None of the statements is correct. Article II of the Outer Space Treaty says outer space, including the Moon and other celestial bodies, is not subject to national appropriation by claim of sovereignty, by means of use or occupation, or by any other means; Article VIII keeps a State's jurisdiction over the objects and crews it registers, which is how national laws, including patent law, can reach activity on a space station. "
-  "India signed the treaty in 1967 and ratified it in 1982. The Moon Agreement of 1979, which calls the Moon's resources the 'common heritage of mankind', has few parties and none of the major spacefaring powers -- the United States, Russia and China have stayed out, and India signed but has not ratified it; India joined the US-led Artemis Accords in 2023.",
-  "कोई भी कथन सही नहीं है। बाह्य अंतरिक्ष संधि का अनुच्छेद II कहता है कि चंद्रमा और अन्य खगोलीय पिंडों सहित बाह्य अंतरिक्ष पर संप्रभुता के दावे, उपयोग या क़ब्ज़े, या किसी अन्य माध्यम से राष्ट्रीय स्वामित्व नहीं हो सकता; अनुच्छेद VIII राज्य का अपने पंजीकृत पिंडों और कर्मीदल पर अधिकार-क्षेत्र बनाए रखता है, इसी से पेटेंट क़ानून सहित राष्ट्रीय क़ानून किसी अंतरिक्ष स्टेशन की गतिविधि तक पहुँचते हैं। "
-  "भारत ने 1967 में संधि पर हस्ताक्षर किए और 1982 में अनुसमर्थन किया। 1979 का चंद्रमा समझौता, जो चंद्रमा के संसाधनों को ‘मानवजाति की साझा विरासत’ कहता है, के पक्षकार कम हैं और उनमें कोई बड़ी अंतरिक्ष शक्ति नहीं -- संयुक्त राज्य अमेरिका, रूस और चीन बाहर रहे हैं, और भारत ने हस्ताक्षर किए पर अनुसमर्थन नहीं किया; भारत 2023 में अमेरिका-नेतृत्व वाले आर्टेमिस समझौतों से जुड़ा।",
+  C3, 0,
+  "Only statement 2 is correct: India signed the Outer Space Treaty in 1967 and ratified it in 1982. Statement 1 is wrong: Article II of the Outer Space Treaty says outer space, including the Moon and other celestial bodies, is not subject to national appropriation by claim of sovereignty, by means of use or occupation, or by any other means; Article VIII keeps a State's jurisdiction over the objects and crews it registers, which is how national laws, including patent law, can reach activity on a space station. "
+  "Statement 3 is wrong: the Moon Agreement of 1979, which calls the Moon's resources the 'common heritage of mankind', has few parties and none of the major spacefaring powers -- the United States, Russia and China have stayed out, and India signed but has not ratified it; India joined the US-led Artemis Accords in 2023.",
+  "केवल कथन 2 सही है: भारत ने 1967 में बाह्य अंतरिक्ष संधि पर हस्ताक्षर किए और 1982 में अनुसमर्थन किया। कथन 1 ग़लत है: बाह्य अंतरिक्ष संधि का अनुच्छेद II कहता है कि चंद्रमा और अन्य खगोलीय पिंडों सहित बाह्य अंतरिक्ष पर संप्रभुता के दावे, उपयोग या क़ब्ज़े, या किसी अन्य माध्यम से राष्ट्रीय स्वामित्व नहीं हो सकता; अनुच्छेद VIII राज्य का अपने पंजीकृत पिंडों और कर्मीदल पर अधिकार-क्षेत्र बनाए रखता है, इसी से पेटेंट क़ानून सहित राष्ट्रीय क़ानून किसी अंतरिक्ष स्टेशन की गतिविधि तक पहुँचते हैं। "
+  "कथन 3 ग़लत है: 1979 का चंद्रमा समझौता, जो चंद्रमा के संसाधनों को ‘मानवजाति की साझा विरासत’ कहता है, के पक्षकार कम हैं और उनमें कोई बड़ी अंतरिक्ष शक्ति नहीं -- संयुक्त राज्य अमेरिका, रूस और चीन बाहर रहे हैं, और भारत ने हस्ताक्षर किए पर अनुसमर्थन नहीं किया; भारत 2023 में अमेरिका-नेतृत्व वाले आर्टेमिस समझौतों से जुड़ा।",
   "Treaty on Principles Governing the Activities of States in the Exploration and Use of Outer Space (1967), Articles II, IV and VIII; Agreement Governing the Activities of States on the Moon and Other Celestial Bodies (1979); UN Office for Outer Space Affairs, status of treaties.",
   "ca-t1-sci-outer-space-treaty-moon-agreement", craft="precision")
 
 S(AS, "easy", "February 2026 marked sixty years since the Luna 9 landing and forty years since the launch of the Mir space station. Consider the following statements:",
   "फ़रवरी 2026 में लूना 9 के उतरने के साठ वर्ष और मीर अंतरिक्ष स्टेशन के प्रक्षेपण के चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Luna 9 of the Soviet Union made the first soft landing on the Moon.",
-   "Mir was launched by the United States as the first module of the International Space Station.",
+   "Mir, launched in 1986, was the world's first space station.",
    "Giotto, the probe that photographed the nucleus of Halley's Comet in 1986, was a NASA mission."],
   ["सोवियत संघ के लूना 9 ने चंद्रमा पर पहली मृदु अवतरण (सॉफ़्ट लैंडिंग) की।",
-   "मीर को संयुक्त राज्य अमेरिका ने अंतरराष्ट्रीय अंतरिक्ष स्टेशन के पहले मॉड्यूल के रूप में प्रक्षेपित किया।",
+   "1986 में प्रक्षेपित मीर विश्व का पहला अंतरिक्ष स्टेशन था।",
    "1986 में हैली धूमकेतु के नाभिक की तस्वीर लेने वाला यान जियोट्टो नासा का मिशन था।"],
   C3, 0,
   "Only statement 1 is correct. Luna 9 touched down on 3 February 1966 and sent back the first pictures from the lunar surface, showing that it could bear the weight of a lander. "
-  "Statement 2 is wrong: Mir's core module was launched by the Soviet Union on 20 February 1986 and the station was assembled in orbit over the next decade, hosting long-duration crews until it was brought down in 2001; the ISS began separately in 1998. Statement 3 is wrong: Giotto was a European Space Agency probe; in March 1986 it flew within about 600 km of Halley's nucleus and took the first close-up images of a comet's nucleus, while Soviet and Japanese probes studied the comet from farther away.",
+  "Statement 2 is wrong: the first space station was the Soviet Salyut 1 of 1971. Mir, whose core module the Soviet Union launched on 20 February 1986, was the first modular station, assembled in orbit over the next decade and hosting long-duration crews until it was brought down in 2001; the ISS began separately in 1998. Statement 3 is wrong: Giotto was a European Space Agency probe; in March 1986 it flew within about 600 km of Halley's nucleus and took the first close-up images of a comet's nucleus, while Soviet and Japanese probes studied the comet from farther away.",
   "केवल कथन 1 सही है। लूना 9 3 फ़रवरी 1966 को उतरा और चंद्र सतह से पहली तस्वीरें भेजीं, जिससे पता चला कि वह किसी अवतरण यान का भार सह सकती है। "
-  "कथन 2 ग़लत है: मीर का मुख्य मॉड्यूल सोवियत संघ ने 20 फ़रवरी 1986 को प्रक्षेपित किया और स्टेशन अगले दशक में कक्षा में जोड़ा गया, जिसने 2001 में नीचे लाए जाने तक दीर्घ-अवधि के कर्मीदलों की मेज़बानी की; आईएसएस अलग से 1998 में शुरू हुआ। कथन 3 ग़लत है: जियोट्टो यूरोपीय अंतरिक्ष एजेंसी का यान था; मार्च 1986 में वह हैली के नाभिक से लगभग 600 किमी के भीतर से गुज़रा और किसी धूमकेतु के नाभिक की पहली निकट तस्वीरें लीं, जबकि सोवियत और जापानी यानों ने धूमकेतु का अध्ययन अधिक दूरी से किया।",
+  "कथन 2 ग़लत है: पहला अंतरिक्ष स्टेशन 1971 का सोवियत सैल्यूत 1 था। मीर, जिसका मुख्य मॉड्यूल सोवियत संघ ने 20 फ़रवरी 1986 को प्रक्षेपित किया, पहला मॉड्यूलर स्टेशन था, जो अगले दशक में कक्षा में जोड़ा गया, जिसने 2001 में नीचे लाए जाने तक दीर्घ-अवधि के कर्मीदलों की मेज़बानी की; आईएसएस अलग से 1998 में शुरू हुआ। कथन 3 ग़लत है: जियोट्टो यूरोपीय अंतरिक्ष एजेंसी का यान था; मार्च 1986 में वह हैली के नाभिक से लगभग 600 किमी के भीतर से गुज़रा और किसी धूमकेतु के नाभिक की पहली निकट तस्वीरें लीं, जबकि सोवियत और जापानी यानों ने धूमकेतु का अध्ययन अधिक दूरी से किया।",
   "NASA Space Science Data Coordinated Archive, Luna 9 and Mir; European Space Agency, Giotto mission (1986).",
   "ca-t1-sci-luna9-mir-giotto-anniversaries", craft="recall")
 
@@ -244,6 +246,4 @@ S(BH, "easy", "In February 2026 the Prime Minister's call for organ donation dre
   "Transplantation of Human Organs and Tissues Act, 1994 (as amended in 2011), sections 2, 3 and 19; Ministry of Health and Family Welfare, National Organ and Tissue Transplant Organisation.",
   "ca-t1-sci-thota-brain-stem-death-deceased-donation", craft="recall")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_e.sql")
+finish("ca_t1_e.sql", FORMAT, "2026-Q1", update="--update" in sys.argv)

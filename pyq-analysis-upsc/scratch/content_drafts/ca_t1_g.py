@@ -10,6 +10,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "Geography"
 d.REQUIRE_CRAFT = True
@@ -21,16 +23,16 @@ S(WR, "medium", "The US operation of January 2026 in which Venezuela's President
   ["Venezuela has the largest proven reserves of crude oil of any country.",
    "The Orinoco belt holds very large deposits of extra-heavy crude oil.",
    "Lake Maracaibo is a freshwater lake with no connection to the sea.",
-   "Venezuela's coastline lies on the Pacific Ocean."],
+   "Venezuela shares a land border with Ecuador."],
   ["वेनेज़ुएला के पास किसी भी देश से अधिक प्रमाणित कच्चे तेल के भंडार हैं।",
    "ओरिनोको पट्टी में अति-भारी कच्चे तेल के बहुत बड़े भंडार हैं।",
    "माराकाइबो झील एक मीठे पानी की झील है जिसका समुद्र से कोई संबंध नहीं है।",
-   "वेनेज़ुएला का समुद्र-तट प्रशांत महासागर पर है।"],
+   "वेनेज़ुएला की स्थल-सीमा इक्वाडोर से लगती है।"],
   C4, 1,
   "Statements 1 and 2 are correct. Venezuela's proven reserves, at about 300 billion barrels, are the largest in the world, ahead of Saudi Arabia's, but most of them lie in the Orinoco belt north of the Orinoco river as extra-heavy crude that is costly to extract, upgrade and refine -- one reason its output collapsed under sanctions and mismanagement, and why Indian refiners built to process heavy crude have been among its buyers. "
-  "Statement 3 is wrong: Lake Maracaibo, in the north-west, is a large brackish lagoon joined to the Gulf of Venezuela and the Caribbean by a narrow strait, and is one of the oldest oil-producing areas of the country. Statement 4 is wrong: Venezuela faces the Caribbean Sea and the Atlantic; it has no Pacific coast, which its neighbour Colombia has.",
+  "Statement 3 is wrong: Lake Maracaibo, in the north-west, is a large brackish lagoon joined to the Gulf of Venezuela and the Caribbean by a narrow strait, and is one of the oldest oil-producing areas of the country. Statement 4 is wrong: Venezuela's land neighbours are Colombia, Brazil and Guyana; Ecuador lies beyond Colombia, on the Pacific side of the Andes.",
   "कथन 1 और 2 सही हैं। लगभग 300 अरब बैरल के साथ वेनेज़ुएला के प्रमाणित भंडार सऊदी अरब से भी आगे, विश्व में सबसे बड़े हैं, पर उनमें से अधिकांश ओरिनोको नदी के उत्तर की ओरिनोको पट्टी में अति-भारी कच्चे तेल के रूप में हैं जिसे निकालना, उन्नत करना और परिष्कृत करना महँगा है -- यही प्रतिबंधों और कुप्रबंधन में उसका उत्पादन ढहने का एक कारण है, और इसीलिए भारी कच्चे तेल के लिए बनी भारतीय रिफ़ाइनरियाँ उसकी ख़रीदार रही हैं। "
-  "कथन 3 ग़लत है: उत्तर-पश्चिम में माराकाइबो झील एक बड़ा खारा लैगून है जो एक संकरे जलडमरूमध्य से वेनेज़ुएला की खाड़ी और कैरिबियन से जुड़ा है, और देश के सबसे पुराने तेल-उत्पादक क्षेत्रों में है। कथन 4 ग़लत है: वेनेज़ुएला कैरिबियन सागर और अटलांटिक की ओर है; उसका कोई प्रशांत तट नहीं है, जो उसके पड़ोसी कोलंबिया के पास है।",
+  "कथन 3 ग़लत है: उत्तर-पश्चिम में माराकाइबो झील एक बड़ा खारा लैगून है जो एक संकरे जलडमरूमध्य से वेनेज़ुएला की खाड़ी और कैरिबियन से जुड़ा है, और देश के सबसे पुराने तेल-उत्पादक क्षेत्रों में है। कथन 4 ग़लत है: वेनेज़ुएला के स्थल-पड़ोसी कोलंबिया, ब्राज़ील और गुयाना हैं; इक्वाडोर कोलंबिया के पार, एंडीज़ के प्रशांत वाले ओर है।",
   "OPEC, Annual Statistical Bulletin (proven crude oil reserves by country); NCERT, Fundamentals of Human Geography (Class XII), on mineral and energy resources; Oxford School Atlas.",
   "ca-t1-geo-venezuela-orinoco-maracaibo", craft="multi")
 
@@ -57,29 +59,31 @@ M(WR, "hard",
   ["ईरान का चाबहार", "क़तर का रास लफ़ान", "सऊदी अरब का रास तनूरा", "संयुक्त अरब अमीरात का जेबेल अली"],
   0,
   "Chabahar lies on the Gulf of Oman coast of Iran's Sistan-Baluchestan province, outside the Strait, which is why India developed its Shahid Beheshti terminal as a route to Afghanistan and Central Asia that avoids both Pakistan and the Gulf chokepoint (though the Budget of 2026-27 made no allocation for it after the US withdrew its sanctions waiver). "
-  "The other three lie inside the Persian Gulf: Ras Laffan is Qatar's LNG hub, the source of much of India's imported gas, which came under attack in March 2026; Ras Tanura is Saudi Arabia's main crude-export terminal; and Jebel Ali at Dubai is the region's busiest container port. Ships to and from all three must use the Strait -- the reason Saudi Arabia and the UAE have pipelines to Yanbu on the Red Sea and Fujairah on the Gulf of Oman to bypass it.",
+  "The other three lie inside the Persian Gulf: Ras Laffan is Qatar's LNG hub, the source of much of India's imported gas, which came under attack in March 2026; Ras Tanura is Saudi Arabia's main crude-export terminal; and Jebel Ali at Dubai is the region's busiest container port. Ships to and from all three must use the Strait -- the reason Saudi Arabia and the UAE have pipelines to Yanbu on the Red Sea and Fujairah on the Gulf of Oman to bypass it. The Strait reopened under an interim US-Iran agreement in June 2026 but was closed again in July when fighting resumed.",
   "चाबहार ईरान के सिस्तान-बलूचिस्तान प्रांत के ओमान की खाड़ी वाले तट पर, जलडमरूमध्य के बाहर है, इसीलिए भारत ने इसके शहीद बेहेश्ती टर्मिनल को अफ़ग़ानिस्तान और मध्य एशिया के ऐसे मार्ग के रूप में विकसित किया जो पाकिस्तान और खाड़ी के अवरोध-बिंदु दोनों से बचे (यद्यपि अमेरिका द्वारा प्रतिबंध-छूट वापस लेने के बाद 2026-27 के बजट में इसके लिए कोई आवंटन नहीं हुआ)। "
-  "अन्य तीनों फ़ारस की खाड़ी के भीतर हैं: रास लफ़ान क़तर का एलएनजी केंद्र है, भारत की आयातित गैस के बड़े भाग का स्रोत, जिस पर मार्च 2026 में हमला हुआ; रास तनूरा सऊदी अरब का मुख्य कच्चा-तेल निर्यात टर्मिनल है; और दुबई का जेबेल अली क्षेत्र का सबसे व्यस्त कंटेनर बंदरगाह है। तीनों तक आने-जाने वाले जहाज़ों को जलडमरूमध्य से गुज़रना पड़ता है -- इसीलिए सऊदी अरब और यूएई ने उससे बचने के लिए लाल सागर पर यानबू और ओमान की खाड़ी पर फ़ुजैरा तक पाइपलाइनें बनाई हैं।",
+  "अन्य तीनों फ़ारस की खाड़ी के भीतर हैं: रास लफ़ान क़तर का एलएनजी केंद्र है, भारत की आयातित गैस के बड़े भाग का स्रोत, जिस पर मार्च 2026 में हमला हुआ; रास तनूरा सऊदी अरब का मुख्य कच्चा-तेल निर्यात टर्मिनल है; और दुबई का जेबेल अली क्षेत्र का सबसे व्यस्त कंटेनर बंदरगाह है। तीनों तक आने-जाने वाले जहाज़ों को जलडमरूमध्य से गुज़रना पड़ता है -- इसीलिए सऊदी अरब और यूएई ने उससे बचने के लिए लाल सागर पर यानबू और ओमान की खाड़ी पर फ़ुजैरा तक पाइपलाइनें बनाई हैं। जून 2026 में एक अंतरिम अमेरिका-ईरान समझौते के अंतर्गत जलडमरूमध्य फिर खुला, पर जुलाई में लड़ाई फिर शुरू होने पर दोबारा बंद हो गया।",
   "Oxford School Atlas (West Asia); Ministry of Ports, Shipping and Waterways, Chabahar (Shahid Beheshti) port project; Ministry of Petroleum and Natural Gas, statements on supply security (March 2026).",
-  "ca-t1-geo-hormuz-ports-chabahar-outside", pos=3, craft="application")
+  "ca-t1-geo-hormuz-ports-chabahar-outside", pos=POS.get("ca-t1-geo-hormuz-ports-chabahar-outside", 3), craft="application")
 
-P(OC, "hard", "During the West Asian conflict of 2026, several islands were in the news. Consider the following pairs of islands and the waters in which they lie:",
-  "2026 के पश्चिम एशियाई संघर्ष के दौरान कई द्वीप चर्चा में रहे। द्वीपों और उन जलक्षेत्रों के निम्नलिखित युग्मों पर विचार कीजिए जिनमें वे स्थित हैं:",
-  ["Kharg Island : Persian Gulf",
-   "Qeshm Island : Strait of Hormuz",
-   "Socotra : Arabian Sea",
-   "Abu Musa : Persian Gulf"],
-  ["ख़ार्ग द्वीप : फ़ारस की खाड़ी",
-   "क़ेश्म द्वीप : होर्मुज़ जलडमरूमध्य",
-   "सोकोत्रा : अरब सागर",
-   "अबू मूसा : फ़ारस की खाड़ी"],
-  3,
-  "All four pairs are correct. Kharg, a small island off Iran's coast in the northern Persian Gulf, handles most of Iran's crude exports. Qeshm, the largest island of the region, lies in the Strait of Hormuz itself, opposite Bandar Abbas, and was among the places struck in March 2026. Socotra, which belongs to Yemen, lies in the Arabian Sea off the Horn of Africa, near the mouth of the Gulf of Aden. "
-  "Abu Musa, near the western approach to the Strait, is held by Iran and claimed by the United Arab Emirates, as are the Greater and Lesser Tunbs -- islands whose control matters because the deep-water shipping lanes pass close to them.",
-  "चारों युग्म सही हैं। ईरान के तट के पास उत्तरी फ़ारस की खाड़ी का छोटा द्वीप ख़ार्ग ईरान के अधिकांश कच्चे तेल के निर्यात को संभालता है। क्षेत्र का सबसे बड़ा द्वीप क़ेश्म स्वयं होर्मुज़ जलडमरूमध्य में, बंदर अब्बास के सामने है, और मार्च 2026 में जिन स्थानों पर हमले हुए उनमें था। यमन का सोकोत्रा हॉर्न ऑफ़ अफ़्रीका के पास, अदन की खाड़ी के मुहाने के निकट अरब सागर में है। "
-  "जलडमरूमध्य के पश्चिमी प्रवेश के पास अबू मूसा ईरान के नियंत्रण में है और संयुक्त अरब अमीरात उस पर दावा करता है, जैसे बड़े और छोटे टुंब पर -- ऐसे द्वीप जिनका नियंत्रण इसलिए मायने रखता है कि गहरे पानी के नौवहन मार्ग उनके पास से गुज़रते हैं।",
-  "Oxford School Atlas (West Asia and the Arabian Sea); NCERT, Fundamentals of Physical Geography (Class XI), on oceans and seas.",
-  "ca-t1-geo-gulf-islands-kharg-qeshm-socotra", craft="precision")
+MX(OC, "hard", "During the West Asian conflict of 2026, several islands were in the news. Match List-I (island) with List-II (description):",
+   "2026 के पश्चिम एशियाई संघर्ष के दौरान कई द्वीप चर्चा में रहे। सूची-I (द्वीप) का सूची-II (विवरण) से मिलान कीजिए:",
+   ["Kharg", "Qeshm", "Socotra", "Abu Musa"],
+   ["ख़ार्ग", "क़ेश्म", "सोकोत्रा", "अबू मूसा"],
+   ["The largest island of the Gulf region, lying in the Strait of Hormuz",
+    "An island held by Iran and claimed by the United Arab Emirates",
+    "The terminal for most of Iran's crude-oil exports, in the northern Persian Gulf",
+    "An island of Yemen in the Arabian Sea, near the Gulf of Aden"],
+   ["खाड़ी क्षेत्र का सबसे बड़ा द्वीप, जो होर्मुज़ जलडमरूमध्य में है",
+    "ईरान के नियंत्रण वाला द्वीप, जिस पर संयुक्त अरब अमीरात दावा करता है",
+    "उत्तरी फ़ारस की खाड़ी में ईरान के अधिकांश कच्चे तेल के निर्यात का टर्मिनल",
+    "अदन की खाड़ी के पास अरब सागर में यमन का द्वीप"],
+   (3, 1, 4, 2), POS.get("ca-t1-geo-gulf-islands-kharg-qeshm-socotra", 3),
+   "The correct code is A-3, B-1, C-4, D-2. Kharg, a small island off Iran's coast in the northern Persian Gulf, handles most of Iran's crude exports. Qeshm, the largest island of the region, lies in the Strait of Hormuz itself, opposite Bandar Abbas, and was among the places struck in March 2026. Socotra, which belongs to Yemen, lies in the Arabian Sea off the Horn of Africa, near the mouth of the Gulf of Aden. "
+   "Abu Musa, near the western approach to the Strait, is held by Iran and claimed by the United Arab Emirates, as are the Greater and Lesser Tunbs -- islands whose control matters because the deep-water shipping lanes pass close to them.",
+   "सही कूट A-3, B-1, C-4, D-2 है। ईरान के तट के पास उत्तरी फ़ारस की खाड़ी का छोटा द्वीप ख़ार्ग ईरान के अधिकांश कच्चे तेल के निर्यात को संभालता है। क्षेत्र का सबसे बड़ा द्वीप क़ेश्म स्वयं होर्मुज़ जलडमरूमध्य में, बंदर अब्बास के सामने है, और मार्च 2026 में जिन स्थानों पर हमले हुए उनमें था। यमन का सोकोत्रा हॉर्न ऑफ़ अफ़्रीका के पास, अदन की खाड़ी के मुहाने के निकट अरब सागर में है। "
+   "जलडमरूमध्य के पश्चिमी प्रवेश के पास अबू मूसा ईरान के नियंत्रण में है और संयुक्त अरब अमीरात उस पर दावा करता है, जैसे बड़े और छोटे टुंब पर -- ऐसे द्वीप जिनका नियंत्रण इसलिए मायने रखता है कि गहरे पानी के नौवहन मार्ग उनके पास से गुज़रते हैं।",
+   "Oxford School Atlas (West Asia and the Arabian Sea); NCERT, Fundamentals of Physical Geography (Class XI), on oceans and seas.",
+   "ca-t1-geo-gulf-islands-kharg-qeshm-socotra", "precision")
 
 S(GM, "hard", "January 2026 marked twenty-five years since the Bhuj earthquake of 26 January 2001. Consider the following statements:",
   "जनवरी 2026 में 26 जनवरी 2001 के भुज भूकंप के पच्चीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -140,8 +144,6 @@ M(WR, "easy",
   "मुसंदम प्रायद्वीप ओमान का एक बहिःक्षेत्र है, जो देश के शेष भाग से संयुक्त अरब अमीरात के क्षेत्र द्वारा अलग है; इसका ऊबड़-खाबड़, फ़्योर्ड जैसा तट जलडमरूमध्य के पार ईरान के बंदर अब्बास और क़ेश्म के सामने है। चूँकि सबसे संकरे भाग के नौवहन मार्ग एक यातायात पृथक्करण योजना के अंतर्गत ओमानी जल से गुज़रते हैं, जलडमरूमध्य खुला रखने में ओमान प्रमुख पक्ष है, और मस्कट प्रायः ईरान से वार्ता का माध्यम रहा है। "
   "यूएई खाड़ी के तट पर और दक्षिण-पश्चिम में है, उत्तरी तट ईरान के पास है, और सऊदी अरब जलडमरूमध्य तक पहुँचता ही नहीं।",
   "Oxford School Atlas (West Asia); International Maritime Organization, traffic separation scheme in the Strait of Hormuz.",
-  "ca-t1-geo-musandam-oman-exclave-hormuz", pos=0, craft="recall")
+  "ca-t1-geo-musandam-oman-exclave-hormuz", pos=POS.get("ca-t1-geo-musandam-oman-exclave-hormuz", 0), craft="recall")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_g.sql")
+finish("ca_t1_g.sql", FORMAT, "2026-Q1", update="--update" in sys.argv)

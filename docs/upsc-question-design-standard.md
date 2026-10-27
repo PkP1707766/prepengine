@@ -7,7 +7,8 @@ UPSC's Prelims has grown harder and more deliberate every year. It now rarely as
 - **"How many of the above ... are correct?"** is now the dominant form (about half of statement questions in 2025–26), usually with 3 or 4 statements. It cannot be solved by eliminating one statement: each must be judged on its own.
 - **Two-statement "which is/are correct"** stays, at a lower share.
 - **Statement-I / Statement-II**, and UPSC 2025's three-statement form (are II and III correct, and do they explain I?), mainly in Polity, Geography and Environment.
-- **"How many pairs are correctly matched"**, including the *NOT correctly matched* variant. The old A-2, B-1 code format is not used.
+- **"How many pairs are correctly matched"**, including the *NOT correctly matched* variant. The old A-2, B-1 code format was not used until the 2026 paper brought it back (next point).
+- **The 2026 shift.** The 2026 paper went back to combination codes ("1 and 2 only") for most multi-statement items, kept about six counts, and brought back about ten List-I/List-II matches with codes. Papers built after October 2026, starting with the current-affairs papers, follow it (`docs/upsc-current-affairs-design.md`). Published papers keep their formats.
 - **Direct questions** where the paper uses them (Geography's places and resources, Science's concepts), with four equally plausible options.
 - Each subject's type and difficulty mix comes from its own PYQ data (the live distribution config), not a generic split.
 

@@ -10,6 +10,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, C, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "History"
 d.REQUIRE_CRAFT = True
@@ -75,7 +77,8 @@ C(MO, "hard", "March 2026 marked a hundred years since the founding of the Nauja
    "दिल्ली की एक बैठक में हिंदुस्तान सोशलिस्ट रिपब्लिकन एसोसिएशन का गठन",
    "लाहौर में साइमन कमीशन के विरुद्ध प्रदर्शन पर पुलिस लाठीचार्ज के बाद लाला लाजपत राय की मृत्यु",
    "भगत सिंह और बटुकेश्वर दत्त द्वारा केंद्रीय विधानसभा में बम फेंकना"],
-  ["1-3-2-4", "2-1-3-4", "2-1-4-3", "1-2-3-4"], 3,
+  (lambda k: [o for o in ["1-3-2-4", "2-1-3-4", "2-1-4-3"][:k]] + ["1-2-3-4"] + ["1-3-2-4", "2-1-3-4", "2-1-4-3"][k:])(POS.get("ca-t1-his-naujawan-bharat-sabha-centenary-chronology", 3)),
+  POS.get("ca-t1-his-naujawan-bharat-sabha-centenary-chronology", 3),
   "The order is 1-2-3-4. Bhagat Singh, with Bhagwati Charan Vohra and others, founded the Naujawan Bharat Sabha at Lahore in March 1926 as an open organisation to draw young people, peasants and workers into a radical, secular nationalism. At a meeting at Feroz Shah Kotla, Delhi, on 8-9 September 1928, the revolutionaries reorganised the Hindustan Republican Association as the HSRA, adding socialism to their aims. "
   "On 30 October 1928 Lala Lajpat Rai was struck in the lathi charge on the Simon Commission protest at Lahore and died on 17 November; Bhagat Singh and his comrades shot Saunders in December to avenge him. On 8 April 1929 Bhagat Singh and Batukeshwar Dutt threw harmless bombs in the Central Legislative Assembly, against the Public Safety and Trade Disputes Bills, and courted arrest 'to make the deaf hear'.",
   "क्रम 1-2-3-4 है। भगत सिंह ने भगवती चरण वोहरा और अन्य के साथ मार्च 1926 में लाहौर में नौजवान भारत सभा की स्थापना की, एक खुले संगठन के रूप में जो युवाओं, किसानों और मज़दूरों को एक क्रांतिकारी, धर्मनिरपेक्ष राष्ट्रवाद से जोड़े। 8-9 सितंबर 1928 को दिल्ली के फ़िरोज़ शाह कोटला में एक बैठक में क्रांतिकारियों ने हिंदुस्तान रिपब्लिकन एसोसिएशन को एचएसआरए के रूप में पुनर्गठित किया और समाजवाद को अपने उद्देश्यों में जोड़ा। "
@@ -116,6 +119,4 @@ S(CU, "medium", "In January 2026 INSV Kaundinya, a sailing ship built by an anci
   "Ministry of Defence (Indian Navy) and Ministry of Culture, releases on INSV Kaundinya (December 2025 - January 2026); NCERT, An Introduction to Indian Art (Class XI), on the Ajanta paintings.",
   "ca-t1-his-insv-kaundinya-stitched-ship", craft="linkage")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_f.sql")
+finish("ca_t1_f.sql", FORMAT, "2026-Q1", update="--update" in sys.argv)

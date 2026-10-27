@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "Polity"
 d.REQUIRE_CRAFT = True
@@ -177,7 +179,7 @@ M(EL, "medium",
   "फ़ॉर्म 7 किसी प्रस्तावित नाम पर आपत्ति करने या नाम हटाने की माँग का फ़ॉर्म है -- उदाहरण के लिए, ऐसे व्यक्ति का जिसकी मृत्यु हो गई, जो स्थानांतरित हो गया या पात्र नहीं है -- इसीलिए विशेष मतदाताओं के विरुद्ध ऐसे फ़ॉर्मों की बाढ़ से असली निर्वाचकों को हटाने का प्रयास हो सकता है, और इसीलिए निर्वाचक रजिस्ट्रीकरण अधिकारी को नाम हटाने से पहले व्यक्ति को सूचना देकर सुनना होता है। "
   "अन्य फ़ॉर्म: फ़ॉर्म 6 नए निर्वाचक को शामिल करने के लिए है; फ़ॉर्म 8 प्रविष्टियों में सुधार, निवास बदलने, निर्वाचक फ़ोटो पहचान-पत्र बदलने या दिव्यांग व्यक्ति को चिह्नित करने के लिए है; और फ़ॉर्म 6क प्रवासी निर्वाचकों के लिए है, यानी विदेश में रहने वाले वे भारतीय नागरिक जिन्होंने किसी अन्य देश की नागरिकता नहीं ली।",
   "Registration of Electors Rules, 1960, rules 13, 17-21A and Forms 6, 6A, 7 and 8; Representation of the People Act, 1950, sections 20A and 22.",
-  "ca-t1-pol-form-7-objection-deletion", pos=1, craft="recall")
+  "ca-t1-pol-form-7-objection-deletion", pos=POS.get("ca-t1-pol-form-7-objection-deletion", 1), craft="recall")
 
 S(FR, "medium", "In February 2026 the Supreme Court issued notices to twelve States on a petition challenging their anti-conversion laws. Consider the following statements:",
   "फ़रवरी 2026 में सर्वोच्च न्यायालय ने बारह राज्यों को उनके धर्मांतरण-विरोधी क़ानूनों को चुनौती देने वाली याचिका पर नोटिस जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -227,20 +229,21 @@ S(FD, "medium", "In February 2026 the Centre, the Government of Nagaland and the
 
 S(CF, "medium", "In January 2026 a proposal to grant Scheduled Tribe status to six communities of Assam, among them the Tai-Ahom and the tea tribes, met opposition from existing tribal groups. Consider the following statements:",
   "जनवरी 2026 में असम के छह समुदायों, जिनमें ताई-अहोम और चाय जनजातियाँ हैं, को अनुसूचित जनजाति का दर्जा देने के प्रस्ताव का मौजूदा जनजातीय समूहों ने विरोध किया। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["Once the list of Scheduled Tribes for a State has been notified, a community can be added to it only by a law of Parliament.",
-   "The criteria commonly used to identify a Scheduled Tribe, such as primitive traits and geographical isolation, come from the Lokur Committee of 1965 rather than from the Constitution.",
-   "Since the communities concerned are already listed as Other Backward Classes in Assam, their inclusion would require their removal from that list as well."],
-  ["किसी राज्य के लिए अनुसूचित जनजातियों की सूची एक बार अधिसूचित हो जाने के बाद किसी समुदाय को उसमें केवल संसद के क़ानून से जोड़ा जा सकता है।",
-   "अनुसूचित जनजाति की पहचान के लिए सामान्यतः प्रयुक्त मानदंड, जैसे आदिम लक्षण और भौगोलिक अलगाव, संविधान से नहीं बल्कि 1965 की लोकुर समिति से आते हैं।",
-   "चूँकि संबंधित समुदाय असम में पहले से अन्य पिछड़े वर्गों में सूचीबद्ध हैं, उनके शामिल होने के लिए उन्हें उस सूची से हटाना भी आवश्यक होगा।"],
+  ["The tea tribes of Assam are largely descended from people brought from Chota Nagpur and central India to work on tea estates in the colonial period.",
+   "The six communities are at present listed among Assam's Other Backward Classes, so the change would move them from one list to another.",
+   "Assam notifies its Scheduled Tribes in separate lists for the plains and for the hill districts."],
+  ["असम की चाय जनजातियाँ मुख्यतः उन लोगों की वंशज हैं जिन्हें औपनिवेशिक काल में छोटानागपुर और मध्य भारत से चाय बाग़ानों में काम करने के लिए लाया गया था।",
+   "ये छह समुदाय अभी असम के अन्य पिछड़े वर्गों में सूचीबद्ध हैं, इसलिए यह बदलाव उन्हें एक सूची से दूसरी में ले जाएगा।",
+   "असम अपनी अनुसूचित जनजातियों को मैदानी क्षेत्रों और पहाड़ी ज़िलों के लिए अलग-अलग सूचियों में अधिसूचित करता है।"],
   C3, 2,
-  "All three statements are correct. Under Article 342(1) the President first specifies the Scheduled Tribes of each State, after consulting the Governor; under Article 342(2) any later inclusion or exclusion needs a law of Parliament. The Constitution does not define the criteria: the five tests used in practice -- primitive traits, distinctive culture, geographical isolation, shyness of contact with the community at large, and backwardness -- were set out by the Lokur Committee, and a proposal passes through the State, the Registrar General of India and the National Commission for Scheduled Tribes. "
-  "The six communities -- the Tai-Ahom, Chutia, Moran, Matak, Koch-Rajbongshi and the tea tribes or Adivasis -- are at present among Assam's Other Backward Classes, so the change would move them from one list to the other; existing ST groups fear a smaller share of reserved seats and jobs, which is the source of the opposition.",
-  "तीनों कथन सही हैं। अनुच्छेद 342(1) के अंतर्गत राष्ट्रपति राज्यपाल से परामर्श करके पहली बार प्रत्येक राज्य की अनुसूचित जनजातियाँ विनिर्दिष्ट करते हैं; अनुच्छेद 342(2) के अंतर्गत बाद में किसी को शामिल करने या हटाने के लिए संसद का क़ानून चाहिए। संविधान मानदंड परिभाषित नहीं करता: व्यवहार में प्रयुक्त पाँच कसौटियाँ -- आदिम लक्षण, विशिष्ट संस्कृति, भौगोलिक अलगाव, बड़े समाज से संपर्क में संकोच, और पिछड़ापन -- लोकुर समिति ने रखीं, और कोई प्रस्ताव राज्य, भारत के महारजिस्ट्रार और राष्ट्रीय अनुसूचित जनजाति आयोग से होकर गुज़रता है। "
-  "छह समुदाय -- ताई-अहोम, चुटिया, मोरान, मटक, कोच-राजबोंगशी और चाय जनजातियाँ या आदिवासी -- अभी असम के अन्य पिछड़े वर्गों में हैं, इसलिए यह बदलाव उन्हें एक सूची से दूसरी में ले जाएगा; मौजूदा अनुसूचित जनजाति समूहों को आरक्षित सीटों और नौकरियों में छोटे हिस्से का डर है, जो विरोध का कारण है।",
-  f"{COI}, Article 342; Ministry of Tribal Affairs, modalities for scheduling of tribes; Report of the Advisory Committee on the Revision of the Lists of Scheduled Castes and Scheduled Tribes (Lokur Committee, 1965).",
-  "ca-t1-pol-assam-six-communities-article-342", craft="application")
+  "All three statements are correct. From the mid-nineteenth century planters recruited labourers, often through indentured contracts, from the Munda, Oraon, Santhal and other communities of Chota Nagpur and central India; their descendants, the tea tribes or Adivasis, are listed as Scheduled Tribes in Jharkhand or Odisha but only as Other Backward Classes in Assam. The Tai-Ahom, Chutia, Moran, Matak and Koch-Rajbongshi are also OBCs there, so the proposal would shift all six from the OBC list to the ST list. "
+  "Assam's ST order has separate lists for the plains and for the autonomous hill districts of Karbi Anglong and Dima Hasao, which is one reason existing groups fear for their share of reserved seats and jobs. Under Article 342(2), any such inclusion needs a law of Parliament, after the proposal passes through the State, the Registrar General of India and the National Commission for Scheduled Tribes.",
+  "तीनों कथन सही हैं। उन्नीसवीं शताब्दी के मध्य से बाग़ान-मालिकों ने, प्रायः अनुबंधित शर्तों पर, छोटानागपुर और मध्य भारत के मुंडा, उरांव, संथाल और अन्य समुदायों से मज़दूर भर्ती किए; उनके वंशज, चाय जनजातियाँ या आदिवासी, झारखंड या ओडिशा में अनुसूचित जनजाति हैं पर असम में केवल अन्य पिछड़े वर्ग में सूचीबद्ध हैं। ताई-अहोम, चुटिया, मोरान, मटक और कोच-राजबोंगशी भी वहाँ अन्य पिछड़े वर्ग हैं, इसलिए प्रस्ताव सभी छह को अन्य पिछड़े वर्ग की सूची से अनुसूचित जनजाति की सूची में ले जाएगा। "
+  "असम के अनुसूचित जनजाति आदेश में मैदानी क्षेत्रों और कार्बी आंगलोंग तथा दीमा हसाओ के स्वायत्त पहाड़ी ज़िलों के लिए अलग सूचियाँ हैं, और यही एक कारण है कि मौजूदा समूह आरक्षित सीटों और नौकरियों में अपने हिस्से को लेकर आशंकित हैं। अनुच्छेद 342(2) के अंतर्गत ऐसे किसी समावेश के लिए संसद का क़ानून चाहिए, जब प्रस्ताव राज्य, भारत के महारजिस्ट्रार और राष्ट्रीय अनुसूचित जनजाति आयोग से होकर गुज़र जाए।",
+  f"{COI}, Article 342; Constitution (Scheduled Tribes) Order, 1950, Part II (Assam); Ministry of Tribal Affairs, modalities for scheduling of tribes; NCERT, Themes in Indian History Part III (Class XII), on plantation labour.",
+  "ca-t1-pol-assam-six-communities-tea-tribes-obc", craft="linkage")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_c.sql")
+# Rows renamed in the 2026-shape revision of 2026-10-27 (new concept id: old)
+RENAMED = {
+          "ca-t1-pol-assam-six-communities-tea-tribes-obc": "ca-t1-pol-assam-six-communities-article-342"}
+finish("ca_t1_c.sql", FORMAT, "2026-Q1", update="--update" in sys.argv, replaces=RENAMED)

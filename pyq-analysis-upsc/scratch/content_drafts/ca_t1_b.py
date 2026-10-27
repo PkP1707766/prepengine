@@ -10,6 +10,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "Economy"
 d.REQUIRE_CRAFT = True
@@ -23,24 +25,24 @@ IG = "Inclusive Growth, Welfare & Demography"
 EX = "External Sector & International Institutions"
 AG = "Agriculture & Food Economy"
 
-M(BD, "hard",
-  "In the Union Budget 2026-27 the fiscal deficit is estimated at 4.3 per cent of GDP and the revenue deficit at 1.5 per cent of GDP. Which one of the following can be correctly inferred from these two figures?",
-  "केंद्रीय बजट 2026-27 में राजकोषीय घाटा जीडीपी का 4.3 प्रतिशत और राजस्व घाटा जीडीपी का 1.5 प्रतिशत अनुमानित है। इन दो आँकड़ों से निम्नलिखित में से कौन-सा निष्कर्ष सही निकाला जा सकता है?",
-  ["About two-thirds of the borrowing is budgeted for spending other than revenue expenditure, such as capital outlay",
-   "The government is budgeted to run a primary surplus, since its interest payments are larger than the fiscal deficit",
-   "The government's revenue receipts are budgeted to exceed its revenue expenditure in that year",
-   "Interest payments are budgeted at 2.8 per cent of GDP, which is the difference between the two deficits"],
-  ["लगभग दो-तिहाई उधारी राजस्व व्यय से भिन्न व्यय, जैसे पूँजीगत परिव्यय, के लिए बजट की गई है",
-   "सरकार के प्राथमिक अधिशेष चलाने का बजट है, क्योंकि उसके ब्याज भुगतान राजकोषीय घाटे से अधिक हैं",
-   "उस वर्ष सरकार की राजस्व प्राप्तियाँ उसके राजस्व व्यय से अधिक रहने का बजट है",
-   "ब्याज भुगतान जीडीपी के 2.8 प्रतिशत पर बजट किए गए हैं, जो दोनों घाटों का अंतर है"],
+M(IN, "medium",
+  "The Union Budget 2026-27 proposed seven high-speed rail corridors between major cities. Which one of the following statements about high-speed rail in India is correct?",
+  "केंद्रीय बजट 2026-27 ने प्रमुख शहरों के बीच सात हाई-स्पीड रेल गलियारे प्रस्तावित किए। भारत में हाई-स्पीड रेल के बारे में निम्नलिखित में से कौन-सा कथन सही है?",
+  ["Three of the seven proposed corridors would meet at Hyderabad",
+   "The proposed corridors include an extension of the Mumbai–Ahmedabad line to Delhi",
+   "None of the proposed corridors would extend into eastern India",
+   "The Mumbai–Ahmedabad line under construction uses French technology financed by the European Investment Bank"],
+  ["प्रस्तावित सात में से तीन गलियारे हैदराबाद पर मिलेंगे",
+   "प्रस्तावित गलियारों में मुंबई–अहमदाबाद लाइन का दिल्ली तक विस्तार शामिल है",
+   "प्रस्तावित गलियारों में से कोई भी पूर्वी भारत तक नहीं जाएगा",
+   "निर्माणाधीन मुंबई–अहमदाबाद लाइन यूरोपीय निवेश बैंक के वित्त से फ़्रांसीसी तकनीक पर बन रही है"],
   0,
-  "The fiscal deficit is the government's total borrowing requirement; the revenue deficit is the part of it that pays for revenue (day-to-day) spending in excess of revenue receipts. The gap of 2.8 per cent of GDP is therefore borrowing used for capital outlay and net lending -- about 2.8/4.3, or two-thirds, of the total -- which is why a falling revenue deficit is read as an improvement in the quality of the deficit even when the fiscal deficit falls slowly. "
-  "The other options misread the identities. A positive revenue deficit means revenue receipts fall short of revenue expenditure. The primary deficit is the fiscal deficit minus interest payments; the Centre's interest bill is smaller than its fiscal deficit, so the primary balance is still a deficit, not a surplus. And the difference between the fiscal and revenue deficits measures capital-side borrowing, not interest.",
-  "राजकोषीय घाटा सरकार की कुल उधारी आवश्यकता है; राजस्व घाटा उसका वह भाग है जो राजस्व प्राप्तियों से अधिक राजस्व (दैनिक) व्यय को चुकाता है। इसलिए जीडीपी के 2.8 प्रतिशत का अंतर पूँजीगत परिव्यय और शुद्ध उधार के लिए ली गई उधारी है -- कुल का लगभग 2.8/4.3, यानी दो-तिहाई -- इसीलिए घटते राजस्व घाटे को घाटे की गुणवत्ता में सुधार माना जाता है, भले ही राजकोषीय घाटा धीरे घटे। "
-  "अन्य विकल्प सर्वसमिकाओं को ग़लत पढ़ते हैं। धनात्मक राजस्व घाटे का अर्थ है कि राजस्व प्राप्तियाँ राजस्व व्यय से कम हैं। प्राथमिक घाटा राजकोषीय घाटे में से ब्याज भुगतान घटाकर निकलता है; केंद्र का ब्याज-बिल उसके राजकोषीय घाटे से छोटा है, इसलिए प्राथमिक संतुलन अब भी घाटा है, अधिशेष नहीं। और राजकोषीय और राजस्व घाटों का अंतर पूँजीगत पक्ष की उधारी मापता है, ब्याज नहीं।",
-  "Union Budget 2026-27, Budget at a Glance and Budget Speech (1 February 2026); NCERT, Introductory Macroeconomics (Class XII), Chapter 5 (Government Budget and the Economy).",
-  "ca-t1-eco-budget-fd-rd-quality-of-deficit", pos=0, craft="application")
+  "The Budget named seven corridors: Mumbai–Pune, Pune–Hyderabad, Hyderabad–Bengaluru, Hyderabad–Chennai, Chennai–Bengaluru, Delhi–Varanasi and Varanasi–Siliguri. Hyderabad is an end of three of them -- to Pune, Bengaluru and Chennai -- and with the Chennai–Bengaluru link they would join four of the largest cities of the peninsula in one network. "
+  "The other statements are wrong. The list has no Delhi–Ahmedabad corridor. The Mumbai–Ahmedabad line, India's first high-speed project, is being built by the National High Speed Rail Corporation with Japanese Shinkansen technology and a loan from the Japan International Cooperation Agency. And the Varanasi–Siliguri corridor would take high-speed rail into eastern India, up to Siliguri, the gateway to the North-East.",
+  "बजट ने सात गलियारे गिनाए: मुंबई–पुणे, पुणे–हैदराबाद, हैदराबाद–बेंगलुरु, हैदराबाद–चेन्नई, चेन्नई–बेंगलुरु, दिल्ली–वाराणसी और वाराणसी–सिलीगुड़ी। हैदराबाद इनमें से तीन का एक सिरा है -- पुणे, बेंगलुरु और चेन्नई की ओर -- और चेन्नई–बेंगलुरु कड़ी के साथ ये प्रायद्वीप के चार सबसे बड़े शहरों को एक जाल में जोड़ेंगे। "
+  "अन्य कथन ग़लत हैं। सूची में दिल्ली–अहमदाबाद गलियारा नहीं है। भारत की पहली हाई-स्पीड परियोजना, मुंबई–अहमदाबाद लाइन, को राष्ट्रीय हाई स्पीड रेल निगम जापानी शिंकानसेन तकनीक और जापान अंतरराष्ट्रीय सहयोग एजेंसी के ऋण से बना रहा है। और वाराणसी–सिलीगुड़ी गलियारा हाई-स्पीड रेल को पूर्वी भारत में, पूर्वोत्तर के प्रवेश-द्वार सिलीगुड़ी तक, ले जाएगा।",
+  "Union Budget 2026-27, Budget Speech (1 February 2026); Ministry of Railways, National High Speed Rail Corporation Limited, Mumbai–Ahmedabad High Speed Rail project.",
+  "ca-t1-eco-hsr-seven-corridors-hyderabad", pos=POS.get("ca-t1-eco-hsr-seven-corridors-hyderabad", 0), craft="precision")
 
 S(TF, "hard", "With reference to the report of the Sixteenth Finance Commission, laid before Parliament on 1 February 2026, consider the following statements:",
   "1 फ़रवरी 2026 को संसद के समक्ष रखी गई सोलहवें वित्त आयोग की रिपोर्ट के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
@@ -58,18 +60,18 @@ S(TF, "hard", "With reference to the report of the Sixteenth Finance Commission,
   "Report of the Sixteenth Finance Commission (2026-27 to 2030-31) and the Explanatory Memorandum on the Action Taken (February 2026); Constitution of India, Article 280.",
   "ca-t1-eco-sixteenth-fc-criteria-gdp-contribution", craft="precision")
 
-A(TF, "hard",
-  "The share of the Union's gross tax revenue that actually reaches the States is well below the share of the divisible pool that the Finance Commission recommends for them.",
-  "केंद्र के सकल कर राजस्व का जो हिस्सा वास्तव में राज्यों तक पहुँचता है, वह वित्त आयोग द्वारा उनके लिए अनुशंसित विभाज्य पूल के हिस्से से काफ़ी कम है।",
-  "Cesses and surcharges levied by the Union are excluded from the divisible pool of taxes shared with the States.",
-  "केंद्र द्वारा लगाए गए उपकर और अधिभार राज्यों के साथ बाँटे जाने वाले करों के विभाज्य पूल से बाहर रखे जाते हैं।",
+A(MC, "hard",
+  "Since the Consumer Price Index was revised in February 2026, a given rise in food prices moves India's headline retail inflation less than it did before.",
+  "फ़रवरी 2026 में उपभोक्ता मूल्य सूचकांक के संशोधन के बाद से, खाद्य क़ीमतों में एक निश्चित वृद्धि भारत की मुख्य खुदरा मुद्रास्फीति को पहले से कम बढ़ाती है।",
+  "Food and beverages carry a smaller share of the weights in the new Consumer Price Index than in the 2012 series.",
+  "नए उपभोक्ता मूल्य सूचकांक के भारों में खाद्य और पेय पदार्थों का हिस्सा 2012 की शृंखला से कम है।",
   0,
-  "Both statements are correct, and Statement-II explains Statement-I. Under Article 270, the taxes on the Union List are shared with the States, but clause (1) excludes surcharges (Article 271) and cesses levied for specific purposes, and the net proceeds are also reduced by the cost of collection. The 41 per cent applies only to what remains -- the divisible pool. "
-  "Because the Union has raised a growing share of its revenue through cesses and surcharges, the divisible pool is a smaller part of gross tax revenue, so the States' effective share of gross collections has been in the low-to-mid thirties. This '41 per cent illusion' was a central complaint of the States before the Sixteenth Finance Commission.",
-  "दोनों कथन सही हैं, और कथन-II कथन-I की सही व्याख्या है। अनुच्छेद 270 के अंतर्गत संघ सूची के कर राज्यों के साथ बाँटे जाते हैं, पर उसका खंड (1) अधिभारों (अनुच्छेद 271) और विशिष्ट प्रयोजनों के लिए लगाए गए उपकरों को बाहर रखता है, और शुद्ध आगम से संग्रहण की लागत भी घटाई जाती है। 41 प्रतिशत केवल शेष पर -- विभाज्य पूल पर -- लागू होता है। "
-  "चूँकि केंद्र ने अपने राजस्व का बढ़ता हिस्सा उपकरों और अधिभारों से जुटाया है, विभाज्य पूल सकल कर राजस्व का छोटा भाग रह गया है, इसलिए सकल संग्रह में राज्यों का प्रभावी हिस्सा तीस के निचले से मध्य प्रतिशत के बीच रहा है। यह ‘41 प्रतिशत का भ्रम’ सोलहवें वित्त आयोग के समक्ष राज्यों की प्रमुख शिकायत थी।",
-  "Constitution of India, Articles 270, 271 and 279; Report of the Sixteenth Finance Commission (2026).",
-  "ca-t1-eco-cess-surcharge-outside-divisible-pool", craft="inference")
+  "Both statements are correct, and Statement-II explains Statement-I. Headline CPI inflation is a weighted average of the price changes of all the items in the basket, so the push any group gives to the headline rate is its own price change multiplied by its weight. In the new series (2024 = 100) food and beverages carry about 37 per cent of the weight, against about 46 per cent in the 2012 series, because the 2023-24 consumption survey found households spending a smaller share of their budgets on food. A 10 per cent rise in food prices, other prices unchanged, would therefore add about 3.7 percentage points to headline inflation instead of about 4.6. "
+  "This matters for monetary policy, because the inflation target the RBI pursues is set in terms of the CPI: food-price shocks from bad weather, which interest rates cannot cure, now sway the target variable less.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की सही व्याख्या है। मुख्य सीपीआई मुद्रास्फीति टोकरी की सभी वस्तुओं के मूल्य-परिवर्तनों का भारित औसत है, इसलिए कोई समूह मुख्य दर को जितना धकेलता है वह उसके अपने मूल्य-परिवर्तन और उसके भार का गुणनफल है। नई शृंखला (2024 = 100) में खाद्य और पेय पदार्थों का भार लगभग 37 प्रतिशत है, जबकि 2012 की शृंखला में लगभग 46 प्रतिशत था, क्योंकि 2023-24 के उपभोग सर्वेक्षण में परिवार अपने बजट का कम हिस्सा भोजन पर ख़र्च करते पाए गए। इसलिए अन्य क़ीमतें स्थिर रहने पर खाद्य क़ीमतों में 10 प्रतिशत की वृद्धि मुख्य मुद्रास्फीति में लगभग 4.6 के बजाय लगभग 3.7 प्रतिशत अंक जोड़ेगी। "
+  "मौद्रिक नीति के लिए इसका महत्त्व है, क्योंकि रिज़र्व बैंक जिस मुद्रास्फीति लक्ष्य का पालन करता है वह सीपीआई के रूप में तय होता है: ख़राब मौसम से उपजे खाद्य-मूल्य के झटके, जिन्हें ब्याज दरें ठीक नहीं कर सकतीं, अब लक्ष्य-चर को कम डगमगाते हैं।",
+  "Ministry of Statistics and Programme Implementation, Consumer Price Index (base 2024 = 100) and its methodology note (February 2026); Reserve Bank of India Act, 1934, section 45ZA.",
+  "ca-t1-eco-cpi-food-weight-headline-sensitivity", craft="inference")
 
 S(MC, "medium", "On 27 February 2026 the National Statistics Office released a new series of national accounts. Consider the following statements:",
   "27 फ़रवरी 2026 को राष्ट्रीय सांख्यिकी कार्यालय ने राष्ट्रीय लेखों की एक नई शृंखला जारी की। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -90,18 +92,18 @@ S(MC, "medium", "On 27 February 2026 the National Statistics Office released a n
 S(MC, "hard", "In February 2026 the National Statistics Office replaced the Consumer Price Index series of 2012 with a new series. Consider the following statements about the new series:",
   "फ़रवरी 2026 में राष्ट्रीय सांख्यिकी कार्यालय ने 2012 की उपभोक्ता मूल्य सूचकांक शृंखला के स्थान पर एक नई शृंखला लागू की। नई शृंखला के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its base year is 2024.",
-   "Food and beverages carry a smaller weight in it than in the 2012 series.",
+   "Its basket covers more items than that of the 2012 series.",
    "Its weights are drawn from the Household Consumption Expenditure Survey of 2023-24.",
    "Grain that households receive free under the PM Garib Kalyan Anna Yojana is given no weight in it."],
   ["इसका आधार वर्ष 2024 है।",
-   "इसमें खाद्य और पेय पदार्थों का भार 2012 की शृंखला से कम है।",
+   "इसकी टोकरी में 2012 की शृंखला से अधिक वस्तुएँ शामिल हैं।",
    "इसके भार 2023-24 के घरेलू उपभोग व्यय सर्वेक्षण से लिए गए हैं।",
    "पीएम ग़रीब कल्याण अन्न योजना के अंतर्गत परिवारों को मुफ़्त मिलने वाले अनाज को इसमें कोई भार नहीं दिया गया है।"],
   C4, 3,
-  "All four statements are correct. The new CPI (2024 = 100), whose first reading -- 2.75 per cent for January 2026 -- came out on 12 February, takes its weights from the 2023-24 consumption survey. The weight of food and beverages fell from about 46 per cent to about 37 per cent, because households now spend a smaller share on food, while housing, transport and communication gained; the basket grew from 299 to 358 items, adding services such as streaming, and prices are now also collected from online markets. "
-  "Free grain carries no price and households spend nothing on it, so it is given no weight. These changes matter beyond statistics: CPI inflation is the target of the RBI's monetary policy, so a smaller food weight makes the headline rate less sensitive to vegetable and pulse prices.",
-  "चारों कथन सही हैं। नया सीपीआई (2024 = 100), जिसकी पहली रीडिंग -- जनवरी 2026 के लिए 2.75 प्रतिशत -- 12 फ़रवरी को आई, अपने भार 2023-24 के उपभोग सर्वेक्षण से लेता है। खाद्य और पेय का भार लगभग 46 प्रतिशत से घटकर लगभग 37 प्रतिशत रह गया, क्योंकि परिवार अब भोजन पर कम हिस्सा ख़र्च करते हैं, जबकि आवास, परिवहन और संचार का भार बढ़ा; टोकरी 299 से बढ़कर 358 वस्तुओं की हो गई, जिसमें स्ट्रीमिंग जैसी सेवाएँ जुड़ीं, और क़ीमतें अब ऑनलाइन बाज़ारों से भी ली जाती हैं। "
-  "मुफ़्त अनाज की कोई क़ीमत नहीं होती और परिवार उस पर कुछ ख़र्च नहीं करते, इसलिए उसे कोई भार नहीं दिया गया। ये बदलाव आँकड़ों से आगे भी मायने रखते हैं: सीपीआई मुद्रास्फीति रिज़र्व बैंक की मौद्रिक नीति का लक्ष्य है, इसलिए खाद्य का छोटा भार मुख्य दर को सब्ज़ियों और दालों की क़ीमतों के प्रति कम संवेदनशील बनाता है।",
+  "All four statements are correct. The new CPI (2024 = 100), whose first reading -- 2.75 per cent for January 2026 -- came out on 12 February, takes its weights from the 2023-24 consumption survey. The basket grew from 299 to 358 items, adding services such as streaming, and prices are now also collected from online markets; the weight of food and beverages fell from about 46 per cent to about 37 per cent, because households now spend a smaller share on food, while housing, transport and communication gained. "
+  "Free grain carries no price and households spend nothing on it, so it is given no weight. Leaving it out avoids showing a fall in prices that households never paid; their gain from the scheme shows up instead as a smaller share of spending on cereals.",
+  "चारों कथन सही हैं। नया सीपीआई (2024 = 100), जिसकी पहली रीडिंग -- जनवरी 2026 के लिए 2.75 प्रतिशत -- 12 फ़रवरी को आई, अपने भार 2023-24 के उपभोग सर्वेक्षण से लेता है। टोकरी 299 से बढ़कर 358 वस्तुओं की हो गई, जिसमें स्ट्रीमिंग जैसी सेवाएँ जुड़ीं, और क़ीमतें अब ऑनलाइन बाज़ारों से भी ली जाती हैं; खाद्य और पेय का भार लगभग 46 प्रतिशत से घटकर लगभग 37 प्रतिशत रह गया, क्योंकि परिवार अब भोजन पर कम हिस्सा ख़र्च करते हैं, जबकि आवास, परिवहन और संचार का भार बढ़ा। "
+  "मुफ़्त अनाज की कोई क़ीमत नहीं होती और परिवार उस पर कुछ ख़र्च नहीं करते, इसलिए उसे कोई भार नहीं दिया गया। उसे बाहर रखने से ऐसी मूल्य-गिरावट नहीं दिखती जो परिवारों ने कभी चुकाई ही नहीं; योजना से उनका लाभ इसके बजाय अनाज पर ख़र्च के छोटे हिस्से के रूप में दिखता है।",
   "Ministry of Statistics and Programme Implementation, release of the Consumer Price Index (base 2024 = 100) and its methodology note (12 February 2026).",
   "ca-t1-eco-cpi-2024-series-weights", craft="multi")
 
@@ -138,7 +140,7 @@ M(IN, "medium",
   "केरल, तमिलनाडु, ओडिशा और आंध्र प्रदेश के तटों की भारी-खनिज बालू में मोनाज़ाइट है, एक फ़ॉस्फ़ेट खनिज जो थोरियम के साथ नियोडिमियम जैसे दुर्लभ मृदा तत्व रखता है; आईआरईएल (इंडिया) लिमिटेड इन बालुओं का खनन और प्रसंस्करण करती है। गलियारों का उद्देश्य एक ही पट्टी में खनन, पृथक्करण, अनुसंधान और स्थायी चुंबकों जैसे उत्पादों के निर्माण को जोड़कर चीन से आयात पर निर्भरता घटाना है, और ये नवंबर 2025 की दुर्लभ मृदा स्थायी चुंबक योजना के पूरक हैं। "
   "अन्य विकल्प चारों राज्यों पर लागू नहीं होते। बॉक्साइट ओडिशा और आंध्र प्रदेश के पूर्वी घाट में है पर केरल के तट पर नहीं; भारत की लिथियम खोजें, जैसे जम्मू और कश्मीर वाली, इन तटीय राज्यों में नहीं हैं; और आयात, भंडार नहीं, खनन और प्रसंस्करण गलियारे बसाने का कारण नहीं होते।",
   "Union Budget 2026-27, Budget Speech (1 February 2026); Ministry of Mines and Department of Atomic Energy (IREL (India) Limited); NCERT, India: People and Economy (Class XII), Chapter 7.",
-  "ca-t1-eco-rare-earth-corridors-monazite", pos=2, craft="inference")
+  "ca-t1-eco-rare-earth-corridors-monazite", pos=POS.get("ca-t1-eco-rare-earth-corridors-monazite", 2), craft="inference")
 
 S(IN, "medium", "The Union Budget 2026-27 announced the India Semiconductor Mission 2.0. Consider the following statements:",
   "केंद्रीय बजट 2026-27 ने इंडिया सेमीकंडक्टर मिशन 2.0 की घोषणा की। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -248,36 +250,40 @@ S(AG, "medium", "During the LPG shortage of March 2026 the government invoked th
 
 S(IN, "medium", "In February 2026 the Supreme Court heard appeals in the Competition Commission of India's case against Meta and WhatsApp. Consider the following statements:",
   "फ़रवरी 2026 में सर्वोच्च न्यायालय ने मेटा और व्हाट्सऐप के विरुद्ध भारतीय प्रतिस्पर्धा आयोग के मामले में अपीलें सुनीं। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The Competition Commission of India is a constitutional body.",
+  ["Under the Competition (Amendment) Act, 2023, an acquisition valued above ₹2,000 crore can need the Commission's approval even if the target's assets and turnover are below the usual thresholds.",
    "Appeals against the Commission's orders lie directly with the Supreme Court.",
    "The Commission can impose penalties only with reference to a company's turnover in India."],
-  ["भारतीय प्रतिस्पर्धा आयोग एक संवैधानिक निकाय है।",
+  ["प्रतिस्पर्धा (संशोधन) अधिनियम, 2023 के अंतर्गत ₹2,000 करोड़ से अधिक मूल्य के अधिग्रहण को आयोग की स्वीकृति की आवश्यकता हो सकती है, भले ही लक्ष्य कंपनी की परिसंपत्तियाँ और कारोबार सामान्य सीमाओं से कम हों।",
    "आयोग के आदेशों के विरुद्ध अपीलें सीधे सर्वोच्च न्यायालय में होती हैं।",
    "आयोग किसी कंपनी के भारत में कारोबार के संदर्भ में ही दंड लगा सकता है।"],
-  C3, 3,
-  "None of the statements is correct. The Competition Commission is a statutory body set up under the Competition Act, 2002 to check anti-competitive agreements, abuse of dominance and harmful mergers. Since 2017 appeals against its orders go to the National Company Law Appellate Tribunal, and only from there to the Supreme Court -- the route the WhatsApp privacy-policy case took after the Commission's penalty of 2024 and the Tribunal's ruling of 2025. "
-  "The Competition (Amendment) Act, 2023 allows penalties to be calculated on a firm's global turnover, so that large digital companies earning abroad cannot escape with small fines on their Indian revenue alone.",
-  "कोई भी कथन सही नहीं है। प्रतिस्पर्धा आयोग प्रतिस्पर्धा अधिनियम, 2002 के अंतर्गत बना एक सांविधिक निकाय है, जो प्रतिस्पर्धा-विरोधी करारों, प्रभुत्व के दुरुपयोग और हानिकारक विलयों पर रोक लगाता है। 2017 से उसके आदेशों के विरुद्ध अपीलें राष्ट्रीय कंपनी विधि अपीलीय अधिकरण में जाती हैं, और वहीं से सर्वोच्च न्यायालय -- व्हाट्सऐप निजता-नीति मामला 2024 के आयोग के दंड और 2025 के अधिकरण के निर्णय के बाद इसी मार्ग से आया। "
-  "प्रतिस्पर्धा (संशोधन) अधिनियम, 2023 दंड की गणना किसी फ़र्म के वैश्विक कारोबार पर करने की अनुमति देता है, ताकि विदेश में कमाने वाली बड़ी डिजिटल कंपनियाँ केवल भारतीय राजस्व पर छोटे जुर्मानों से न छूट जाएँ।",
-  "Competition Act, 2002, sections 7, 27 and 53A, as amended by the Finance Act, 2017 and the Competition (Amendment) Act, 2023.",
-  "ca-t1-eco-cci-statutory-nclat-global-turnover", craft="precision")
+  C3, 0,
+  "Only statement 1 is correct. The Competition Commission, a statutory body under the Competition Act, 2002, checks anti-competitive agreements, abuse of dominance and combinations that could harm competition. The Competition (Amendment) Act, 2023 added a deal-value test, in force since September 2024: a combination worth more than ₹2,000 crore must be notified if the target has substantial business operations in India, even when its assets and turnover fall below the older thresholds -- aimed at digital start-ups bought for their users and data rather than their revenue. Statement 2 is wrong: since 2017 appeals against its orders go to the National Company Law Appellate Tribunal, and only from there to the Supreme Court -- the route the WhatsApp privacy-policy case took after the Commission's penalty of 2024 and the Tribunal's ruling of 2025. "
+  "Statement 3 is wrong: the Competition (Amendment) Act, 2023 allows penalties to be calculated on a firm's global turnover, so that large digital companies earning abroad cannot escape with small fines on their Indian revenue alone.",
+  "केवल कथन 1 सही है। प्रतिस्पर्धा अधिनियम, 2002 के अंतर्गत बना सांविधिक निकाय, प्रतिस्पर्धा आयोग, प्रतिस्पर्धा-विरोधी करारों, प्रभुत्व के दुरुपयोग और प्रतिस्पर्धा को हानि पहुँचा सकने वाले संयोजनों पर रोक लगाता है। प्रतिस्पर्धा (संशोधन) अधिनियम, 2023 ने एक सौदा-मूल्य कसौटी जोड़ी, जो सितंबर 2024 से लागू है: ₹2,000 करोड़ से अधिक के संयोजन की सूचना देनी होगी यदि लक्ष्य कंपनी का भारत में पर्याप्त व्यावसायिक संचालन हो, भले ही उसकी परिसंपत्तियाँ और कारोबार पुरानी सीमाओं से कम हों -- इसका लक्ष्य वे डिजिटल स्टार्ट-अप हैं जिन्हें उनके राजस्व के बजाय उपयोगकर्ताओं और आँकड़ों के लिए ख़रीदा जाता है। कथन 2 ग़लत है: 2017 से उसके आदेशों के विरुद्ध अपीलें राष्ट्रीय कंपनी विधि अपीलीय अधिकरण में जाती हैं, और वहीं से सर्वोच्च न्यायालय -- व्हाट्सऐप निजता-नीति मामला 2024 के आयोग के दंड और 2025 के अधिकरण के निर्णय के बाद इसी मार्ग से आया। "
+  "कथन 3 ग़लत है: प्रतिस्पर्धा (संशोधन) अधिनियम, 2023 दंड की गणना किसी फ़र्म के वैश्विक कारोबार पर करने की अनुमति देता है, ताकि विदेश में कमाने वाली बड़ी डिजिटल कंपनियाँ केवल भारतीय राजस्व पर छोटे जुर्मानों से न छूट जाएँ।",
+  "Competition Act, 2002, sections 5, 7, 27 and 53A, as amended by the Finance Act, 2017 and the Competition (Amendment) Act, 2023; Competition Commission of India (Combinations) Regulations, 2024.",
+  "ca-t1-eco-cci-deal-value-nclat-global-turnover", craft="precision")
 
 S(IN, "medium", "In March 2026 Bihar made transit passes compulsory for moving minor minerals such as sand. Consider the following statements:",
   "मार्च 2026 में बिहार ने बालू जैसे गौण खनिजों के परिवहन के लिए पारगमन पास अनिवार्य किए। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["Under the Mines and Minerals (Development and Regulation) Act, 1957, the State Governments make the rules for granting concessions for minor minerals.",
-   "The Central Government has the power to declare any mineral to be a minor mineral.",
+  ["Ordinary sand used for building is classed as a minor mineral under the Mines and Minerals (Development and Regulation) Act, 1957.",
+   "Holders of mining leases pay a contribution to the District Mineral Foundation, which spends it on people and areas affected by mining.",
    "The royalty on minor minerals is collected by the Central Government."],
-  ["खान और खनिज (विकास और विनियमन) अधिनियम, 1957 के अंतर्गत गौण खनिजों के लिए रियायतें देने के नियम राज्य सरकारें बनाती हैं।",
-   "केंद्र सरकार को किसी भी खनिज को गौण खनिज घोषित करने की शक्ति है।",
+  ["निर्माण में प्रयुक्त साधारण बालू खान और खनिज (विकास और विनियमन) अधिनियम, 1957 के अंतर्गत गौण खनिज की श्रेणी में आती है।",
+   "खनन पट्टाधारक ज़िला खनिज प्रतिष्ठान को अंशदान देते हैं, जो उसे खनन से प्रभावित लोगों और क्षेत्रों पर ख़र्च करता है।",
    "गौण खनिजों पर रॉयल्टी केंद्र सरकार वसूलती है।"],
   C3, 1,
-  "Statements 1 and 2 are correct. Section 3(e) of the MMDR Act defines minor minerals as building stones, gravel, ordinary clay, ordinary sand (other than sand used for prescribed purposes) and any other mineral the Central Government notifies as minor; section 15 hands the regulation of minor minerals entirely to the States, which frame their own concession rules and enforce transit passes against illegal mining. "
-  "Statement 3 is wrong: the royalty, and the rates, on minor minerals are fixed and collected by the States -- an important source of their own non-tax revenue -- whereas the royalty rates for major minerals are set by the Centre in the Second Schedule, though collected by the States too.",
-  "कथन 1 और 2 सही हैं। एमएमडीआर अधिनियम की धारा 3(ङ) गौण खनिजों को इमारती पत्थर, बजरी, साधारण मिट्टी, साधारण बालू (निर्धारित प्रयोजनों वाली बालू को छोड़कर) और ऐसा कोई अन्य खनिज बताती है जिसे केंद्र सरकार गौण अधिसूचित करे; धारा 15 गौण खनिजों का विनियमन पूरी तरह राज्यों को सौंपती है, जो अपने रियायत नियम बनाते हैं और अवैध खनन के विरुद्ध पारगमन पास लागू करते हैं। "
-  "कथन 3 ग़लत है: गौण खनिजों पर रॉयल्टी, और उसकी दरें, राज्य तय करते और वसूलते हैं -- यह उनके अपने ग़ैर-कर राजस्व का महत्त्वपूर्ण स्रोत है -- जबकि प्रमुख खनिजों की रॉयल्टी दरें केंद्र दूसरी अनुसूची में तय करता है, यद्यपि वसूलते उन्हें भी राज्य ही हैं।",
-  "Mines and Minerals (Development and Regulation) Act, 1957, sections 3(e), 9 and 15.",
-  "ca-t1-eco-minor-minerals-state-rules-royalty", craft="precision")
+  "Statements 1 and 2 are correct. The Act lists ordinary sand (other than sand used for prescribed industrial purposes), building stones, gravel and ordinary clay as minor minerals, whose regulation it leaves to the States -- which is why it is a State such as Bihar that frames the rules and enforces transit passes against illegal sand mining. The 2015 amendment created a District Mineral Foundation in every district affected by mining, funded by leaseholders' contributions linked to the royalty, and the Pradhan Mantri Khanij Kshetra Kalyan Yojana guides how the money is spent on drinking water, health, education and livelihoods in those areas. "
+  "Statement 3 is wrong: the royalty on minor minerals, and its rates, are fixed and collected by the States -- an important source of their non-tax revenue; even for major minerals, the Centre only fixes the rates, and the States collect the royalty.",
+  "कथन 1 और 2 सही हैं। अधिनियम साधारण बालू (निर्धारित औद्योगिक प्रयोजनों वाली बालू को छोड़कर), इमारती पत्थर, बजरी और साधारण मिट्टी को गौण खनिज मानता है, जिनका विनियमन वह राज्यों पर छोड़ता है -- इसीलिए बिहार जैसा राज्य नियम बनाता है और अवैध बालू खनन के विरुद्ध पारगमन पास लागू करता है। 2015 के संशोधन ने खनन से प्रभावित हर ज़िले में एक ज़िला खनिज प्रतिष्ठान बनाया, जिसका धन रॉयल्टी से जुड़े पट्टाधारकों के अंशदान से आता है, और प्रधानमंत्री खनिज क्षेत्र कल्याण योजना बताती है कि यह धन उन क्षेत्रों में पेयजल, स्वास्थ्य, शिक्षा और आजीविका पर कैसे ख़र्च हो। "
+  "कथन 3 ग़लत है: गौण खनिजों पर रॉयल्टी, और उसकी दरें, राज्य तय करते और वसूलते हैं -- यह उनके ग़ैर-कर राजस्व का महत्त्वपूर्ण स्रोत है; प्रमुख खनिजों के लिए भी केंद्र केवल दरें तय करता है, रॉयल्टी राज्य ही वसूलते हैं।",
+  "Mines and Minerals (Development and Regulation) Act, 1957, sections 3(e), 9, 9B and 15; Ministry of Mines, Pradhan Mantri Khanij Kshetra Kalyan Yojana guidelines.",
+  "ca-t1-eco-minor-minerals-sand-dmf-royalty", craft="linkage")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_b.sql")
+# Rows renamed in the 2026-shape revision of 2026-10-27 (new concept id: old)
+RENAMED = {
+          "ca-t1-eco-minor-minerals-sand-dmf-royalty": "ca-t1-eco-minor-minerals-state-rules-royalty",
+          "ca-t1-eco-hsr-seven-corridors-hyderabad": "ca-t1-eco-budget-fd-rd-quality-of-deficit",
+          "ca-t1-eco-cpi-food-weight-headline-sensitivity": "ca-t1-eco-cess-surcharge-outside-divisible-pool",
+          "ca-t1-eco-cci-deal-value-nclat-global-turnover": "ca-t1-eco-cci-statutory-nclat-global-turnover"}
+finish("ca_t1_b.sql", FORMAT, "2026-Q1", update="--update" in sys.argv, replaces=RENAMED)

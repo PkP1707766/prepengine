@@ -10,6 +10,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "Environment & Ecology"
 d.REQUIRE_CRAFT = True
@@ -43,7 +45,7 @@ M(IC, "easy",
   "पटना पक्षी अभयारण्य उत्तर प्रदेश के एटा ज़िले में पटना गाँव के पास झील और दलदल वाला एक छोटा अभयारण्य है, जो बत्तखों, हंसों और अन्य जलपक्षियों का शीतकालीन ठिकाना है; इसका नाम ही बिहार की राजधानी को एक लुभावना ग़लत उत्तर बनाता है। इसे 2 फ़रवरी 2026 को, जिस दिन 1971 में ईरान के रामसर में अभिसमय पर हस्ताक्षर हुए थे, कच्छ के छारी-ढंड के साथ घोषित किया गया। "
   "बिहार के अपने रामसर स्थल, जैसे बेगूसराय का कांवर झील, कहीं और हैं; झारखंड और मध्य प्रदेश में पटना नाम का कोई स्थल नहीं है।",
   "Ministry of Environment, Forest and Climate Change, release on new Ramsar sites (2 February 2026); Ramsar Sites Information Service.",
-  "ca-t1-env-patna-bird-sanctuary-etah", pos=2, craft="recall")
+  "ca-t1-env-patna-bird-sanctuary-etah", pos=POS.get("ca-t1-env-patna-bird-sanctuary-etah", 2), craft="recall")
 
 S(CM, "medium", "The Union Budget 2026-27 earmarked ₹20,000 crore over five years for carbon capture, utilisation and storage (CCUS). Consider the following statements:",
   "केंद्रीय बजट 2026-27 ने कार्बन अभिग्रहण, उपयोग और भंडारण (सीसीयूएस) के लिए पाँच वर्षों में ₹20,000 करोड़ निर्धारित किए। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -79,17 +81,17 @@ S(IC, "hard", "The Agreement on Marine Biological Diversity of Areas beyond Nati
 
 S(PA, "medium", "Project Cheetah received a new batch of animals in February 2026. Consider the following statements:",
   "फ़रवरी 2026 में प्रोजेक्ट चीता को जानवरों का एक नया दल मिला। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The batch of cheetahs that reached Kuno in February 2026 came from Namibia.",
+  ["The batch of cheetahs that reached Kuno in February 2026 came from Botswana.",
    "Gandhi Sagar Wildlife Sanctuary, which became the project's second home for cheetahs, is in Rajasthan.",
    "The African cheetah is classified as Endangered on the IUCN Red List."],
-  ["फ़रवरी 2026 में कूनो पहुँचे चीतों का दल नामीबिया से आया था।",
+  ["फ़रवरी 2026 में कूनो पहुँचे चीतों का दल बोत्सवाना से आया था।",
    "परियोजना के चीतों का दूसरा घर बना गांधी सागर वन्यजीव अभयारण्य राजस्थान में है।",
    "अफ़्रीकी चीता आईयूसीएन रेड लिस्ट में संकटग्रस्त (एंडेंजर्ड) श्रेणी में है।"],
-  C3, 3,
-  "None of the statements is correct. The first cheetahs came from Namibia in 2022 and the second batch from South Africa in 2023; the nine cheetahs released into quarantine at Kuno National Park on 28 February 2026 came from Botswana, flown in with the Air Force's help -- the project's third international transfer. "
-  "Gandhi Sagar Wildlife Sanctuary, which received cheetahs in 2025, lies in Madhya Pradesh, on the Chambal in Mandsaur and Neemuch districts, like Kuno; the Banni grasslands of Gujarat and Nauradehi in Madhya Pradesh are being prepared as future sites. The cheetah as a species is listed as Vulnerable; only the Asiatic subspecies, which survives in Iran, is Critically Endangered.",
-  "कोई भी कथन सही नहीं है। पहले चीते 2022 में नामीबिया से और दूसरा दल 2023 में दक्षिण अफ़्रीका से आया; 28 फ़रवरी 2026 को कूनो राष्ट्रीय उद्यान में संगरोध बाड़ों में छोड़े गए नौ चीते बोत्सवाना से वायु सेना की सहायता से लाए गए -- यह परियोजना का तीसरा अंतरराष्ट्रीय स्थानांतरण था। "
-  "2025 में चीते पाने वाला गांधी सागर वन्यजीव अभयारण्य कूनो की तरह मध्य प्रदेश में, मंदसौर और नीमच ज़िलों में चंबल पर स्थित है; गुजरात के बन्नी घास के मैदान और मध्य प्रदेश का नौरादेही भावी स्थलों के रूप में तैयार किए जा रहे हैं। प्रजाति के रूप में चीता सुभेद्य (वल्नरेबल) सूचीबद्ध है; केवल एशियाई उप-प्रजाति, जो ईरान में बची है, गंभीर रूप से संकटग्रस्त है।",
+  C3, 0,
+  "Only statement 1 is correct. The first cheetahs came from Namibia in 2022 and the second batch from South Africa in 2023; the nine cheetahs released into quarantine at Kuno National Park on 28 February 2026 came from Botswana, flown in with the Air Force's help -- the project's third international transfer. "
+  "Statement 2 is wrong: Gandhi Sagar Wildlife Sanctuary, which received cheetahs in 2025, lies in Madhya Pradesh, on the Chambal in Mandsaur and Neemuch districts, like Kuno; the Banni grasslands of Gujarat and Nauradehi in Madhya Pradesh are being prepared as future sites. Statement 3 is wrong: the cheetah as a species is listed as Vulnerable; only the Asiatic subspecies, which survives in Iran, is Critically Endangered.",
+  "केवल कथन 1 सही है। पहले चीते 2022 में नामीबिया से और दूसरा दल 2023 में दक्षिण अफ़्रीका से आया; 28 फ़रवरी 2026 को कूनो राष्ट्रीय उद्यान में संगरोध बाड़ों में छोड़े गए नौ चीते बोत्सवाना से वायु सेना की सहायता से लाए गए -- यह परियोजना का तीसरा अंतरराष्ट्रीय स्थानांतरण था। "
+  "कथन 2 ग़लत है: 2025 में चीते पाने वाला गांधी सागर वन्यजीव अभयारण्य कूनो की तरह मध्य प्रदेश में, मंदसौर और नीमच ज़िलों में चंबल पर स्थित है; गुजरात के बन्नी घास के मैदान और मध्य प्रदेश का नौरादेही भावी स्थलों के रूप में तैयार किए जा रहे हैं। कथन 3 ग़लत है: प्रजाति के रूप में चीता सुभेद्य (वल्नरेबल) सूचीबद्ध है; केवल एशियाई उप-प्रजाति, जो ईरान में बची है, गंभीर रूप से संकटग्रस्त है।",
   "Ministry of Environment, Forest and Climate Change and National Tiger Conservation Authority, releases on Project Cheetah (February 2026); IUCN Red List, Acinonyx jubatus.",
   "ca-t1-env-cheetah-botswana-gandhi-sagar", craft="precision")
 
@@ -157,6 +159,4 @@ S(EP, "easy", "A warehouse fire in early 2026 drew attention to illegal construc
   "Ramsar Sites Information Service, East Kolkata Wetlands (2002); East Kolkata Wetlands (Conservation and Management) Act, 2006 (West Bengal).",
   "ca-t1-env-east-kolkata-wetlands-bheris", craft="recall")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_d.sql")
+finish("ca_t1_d.sql", FORMAT, "2026-Q1", update="--update" in sys.argv)

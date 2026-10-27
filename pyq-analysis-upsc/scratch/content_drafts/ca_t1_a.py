@@ -12,6 +12,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import draft_common as d
 from draft_common import S, M, P, A, write
 from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t1_format import FORMAT, POS
 
 d.SUBJECT = "Current Affairs"
 d.REQUIRE_CRAFT = True
@@ -51,21 +53,21 @@ M(IN, "medium",
   "यूरोपीय परिषद 27 सदस्य देशों के राष्ट्राध्यक्षों या शासनाध्यक्षों को, अपने अध्यक्ष (दिसंबर 2024 से अंतोनियो कोस्टा) और यूरोपीय आयोग की अध्यक्ष के साथ, एक साथ लाती है; वह यूरोपीय संघ की सामान्य राजनीतिक दिशा और प्राथमिकताएँ तय करती है, पर क़ानून पारित नहीं करती। "
   "दूसरा विकल्प यूरोपीय संसद का वर्णन है, जो सीधे चुना गया विधानमंडल है। तीसरा यूरोपीय आयोग का वर्णन है (जिसकी प्रमुख उर्सुला फ़ॉन डेर लेयेन दूसरी मुख्य अतिथि थीं), जो विधान प्रस्तावित करता है और अगले दिन भारत के साथ संपन्न हुए जैसे व्यापार समझौतों पर वार्ता करता है। चौथा यूरोप परिषद (काउंसिल ऑफ़ यूरोप) का वर्णन है, जो 1949 में बना एक अलग संगठन है और जिसका यूरोपीय मानवाधिकार न्यायालय स्ट्रासबर्ग में बैठता है। तीन मिलते-जुलते नाम -- यूरोपीय परिषद, यूरोपीय संघ की परिषद (सदस्य देशों के मंत्री) और यूरोप परिषद -- एक पुराना जाल हैं।",
   "Treaty on European Union, Articles 13-17; Ministry of External Affairs, Republic Day 2026 chief guests; Council of Europe, Statute (1949).",
-  "ca-t1-ca-european-council-three-councils", pos=1, craft="precision")
+  "ca-t1-ca-european-council-three-councils", pos=POS.get("ca-t1-ca-european-council-three-councils", 1), craft="precision")
 
 S(IN, "hard", "The United States' withdrawal from the Paris Agreement took effect in January 2026. With reference to withdrawal from international treaties and bodies, consider the following statements:",
   "जनवरी 2026 में पेरिस समझौते से संयुक्त राज्य अमेरिका का हटना प्रभावी हुआ। अंतरराष्ट्रीय संधियों और निकायों से हटने के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
-  ["Under the Paris Agreement, a Party's withdrawal takes effect on the day the depositary receives its notification.",
+  ["Under the Paris Agreement, a Party's withdrawal takes effect one year after the depositary receives its notification.",
    "A Party that withdraws from the UN Framework Convention on Climate Change still remains a Party to the Paris Agreement.",
    "The Constitution of the World Health Organization lays down a procedure under which any member may withdraw after giving one year's notice."],
-  ["पेरिस समझौते के अंतर्गत किसी पक्षकार का हटना उसी दिन प्रभावी होता है जिस दिन निक्षेपधारी को उसकी सूचना मिलती है।",
+  ["पेरिस समझौते के अंतर्गत किसी पक्षकार का हटना निक्षेपधारी को उसकी सूचना मिलने के एक वर्ष बाद प्रभावी होता है।",
    "जलवायु परिवर्तन पर संयुक्त राष्ट्र फ़्रेमवर्क अभिसमय से हटने वाला पक्षकार फिर भी पेरिस समझौते का पक्षकार बना रहता है।",
    "विश्व स्वास्थ्य संगठन का संविधान एक प्रक्रिया निर्धारित करता है जिसके अंतर्गत कोई भी सदस्य एक वर्ष की सूचना देकर हट सकता है।"],
-  C3, 3,
-  "None of the statements is correct. Under Article 28 of the Paris Agreement a Party may give notice only after three years from the Agreement's entry into force for it, and the withdrawal takes effect one year after the depositary (the UN Secretary-General) receives the notification -- which is why the notice given on 27 January 2025 took effect on 27 January 2026. Article 28(3) adds that withdrawing from the UNFCCC is deemed to be withdrawal from the Paris Agreement as well, since the Agreement sits under the Convention. "
-  "The WHO Constitution has no general withdrawal clause at all. The United States joined in 1948 with a reservation, approved by Congress, that it could leave on one year's notice after paying its dues; on that basis its exit, notified in January 2025, took effect on 22 January 2026. A presidential memorandum of 7 January 2026 also directed withdrawal from 66 other international organisations.",
-  "कोई भी कथन सही नहीं है। पेरिस समझौते के अनुच्छेद 28 के अंतर्गत कोई पक्षकार अपने लिए समझौता लागू होने के तीन वर्ष बाद ही सूचना दे सकता है, और हटना निक्षेपधारी (संयुक्त राष्ट्र महासचिव) को सूचना मिलने के एक वर्ष बाद प्रभावी होता है -- इसीलिए 27 जनवरी 2025 को दी गई सूचना 27 जनवरी 2026 को प्रभावी हुई। अनुच्छेद 28(3) यह भी कहता है कि यूएनएफ़सीसीसी से हटना पेरिस समझौते से हटना भी माना जाएगा, क्योंकि समझौता अभिसमय के अधीन है। "
-  "विश्व स्वास्थ्य संगठन के संविधान में हटने का कोई सामान्य उपबंध ही नहीं है। संयुक्त राज्य अमेरिका 1948 में कांग्रेस द्वारा अनुमोदित इस आरक्षण के साथ शामिल हुआ था कि वह अपना अंशदान चुकाकर एक वर्ष की सूचना पर हट सकेगा; इसी आधार पर जनवरी 2025 में सूचित उसका निकास 22 जनवरी 2026 को प्रभावी हुआ। 7 जनवरी 2026 के एक राष्ट्रपति ज्ञापन ने 66 अन्य अंतरराष्ट्रीय संगठनों से हटने का निर्देश भी दिया।",
+  C3, 0,
+  "Only statement 1 is correct. Under Article 28 of the Paris Agreement a Party may give notice only after three years from the Agreement's entry into force for it, and the withdrawal takes effect one year after the depositary (the UN Secretary-General) receives the notification -- which is why the notice given on 27 January 2025 took effect on 27 January 2026. "
+  "Statement 2 is wrong: Article 28(3) provides that withdrawing from the UNFCCC is deemed to be withdrawal from the Paris Agreement as well, since the Agreement sits under the Convention. Statement 3 is wrong: the WHO Constitution has no general withdrawal clause at all; the United States joined in 1948 with a reservation, approved by Congress, that it could leave on one year's notice after paying its dues, and on that basis its exit, notified in January 2025, took effect on 22 January 2026. A presidential memorandum of 7 January 2026 also directed withdrawal from 66 other international organisations.",
+  "केवल कथन 1 सही है। पेरिस समझौते के अनुच्छेद 28 के अंतर्गत कोई पक्षकार अपने लिए समझौता लागू होने के तीन वर्ष बाद ही सूचना दे सकता है, और हटना निक्षेपधारी (संयुक्त राष्ट्र महासचिव) को सूचना मिलने के एक वर्ष बाद प्रभावी होता है -- इसीलिए 27 जनवरी 2025 को दी गई सूचना 27 जनवरी 2026 को प्रभावी हुई। "
+  "कथन 2 ग़लत है: अनुच्छेद 28(3) कहता है कि यूएनएफ़सीसीसी से हटना पेरिस समझौते से हटना भी माना जाएगा, क्योंकि समझौता अभिसमय के अधीन है। कथन 3 ग़लत है: विश्व स्वास्थ्य संगठन के संविधान में हटने का कोई सामान्य उपबंध ही नहीं है; संयुक्त राज्य अमेरिका 1948 में कांग्रेस द्वारा अनुमोदित इस आरक्षण के साथ शामिल हुआ था कि वह अपना अंशदान चुकाकर एक वर्ष की सूचना पर हट सकेगा, और इसी आधार पर जनवरी 2025 में सूचित उसका निकास 22 जनवरी 2026 को प्रभावी हुआ। 7 जनवरी 2026 के एक राष्ट्रपति ज्ञापन ने 66 अन्य अंतरराष्ट्रीय संगठनों से हटने का निर्देश भी दिया।",
   "Paris Agreement (2015), Article 28; UNFCCC (1992), Article 25; Constitution of the World Health Organization (1946); UNFCCC secretariat and WHO statements, January 2026.",
   "ca-t1-ca-paris-who-withdrawal-mechanics", craft="precision")
 
@@ -103,36 +105,34 @@ S(IN, "medium", "India holds the chairship of BRICS in 2026. Consider the follow
   "Ministry of External Affairs, release on India's BRICS Chairship 2026 (13 January 2026); Kazan Declaration (2024).",
   "ca-t1-ca-brics-2026-chairship-no-secretariat", craft="precision")
 
-S(IN, "medium", "With reference to the AI Impact Summit held in New Delhi in February 2026, consider the following statements:",
-  "फ़रवरी 2026 में नई दिल्ली में आयोजित एआई इम्पैक्ट शिखर सम्मेलन के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
-  ["It was the first summit in its series to be hosted in the Global South.",
-   "Its three guiding principles, called 'Sutras', were People, Planet and Progress.",
-   "The New Delhi Declaration adopted at it creates legally binding obligations for the countries that endorsed it.",
-   "The previous summit of the series, held in Paris in 2025, was co-chaired by India."],
-  ["यह अपनी शृंखला का पहला शिखर सम्मेलन था जिसकी मेज़बानी वैश्विक दक्षिण में हुई।",
-   "इसके तीन मार्गदर्शक सिद्धांत, जिन्हें ‘सूत्र’ कहा गया, जन, ग्रह और प्रगति थे।",
-   "इसमें अपनाई गई नई दिल्ली घोषणा उसका समर्थन करने वाले देशों पर विधिक रूप से बाध्यकारी दायित्व डालती है।",
-   "शृंखला का पिछला शिखर सम्मेलन, जो 2025 में पेरिस में हुआ, उसकी सह-अध्यक्षता भारत ने की थी।"],
-  C4, 2,
-  "Statements 1, 2 and 4 are correct. The series began with the AI Safety Summit at Bletchley Park (2023) and continued at Seoul (2024) and Paris (the AI Action Summit of February 2025, co-chaired by France and India); New Delhi was its first host outside the developed world. The summit was organised around three Sutras -- People, Planet and Progress -- and seven 'Chakras' or working groups, among them human capital, safe and trusted AI, and democratising AI resources. "
-  "Statement 3 is wrong: like the earlier summit declarations, the New Delhi Declaration, endorsed by close to ninety countries and international organisations, is a political statement whose commitments are voluntary and non-binding.",
-  "कथन 1, 2 और 4 सही हैं। शृंखला ब्लेचली पार्क के एआई सुरक्षा शिखर सम्मेलन (2023) से शुरू होकर सोल (2024) और पेरिस (फ़रवरी 2025 का एआई एक्शन शिखर सम्मेलन, जिसकी सह-अध्यक्षता फ़्रांस और भारत ने की) तक चली; नई दिल्ली विकसित देशों से बाहर उसका पहला मेज़बान था। शिखर सम्मेलन तीन सूत्रों -- जन, ग्रह और प्रगति -- और सात ‘चक्रों’ या कार्य-समूहों के इर्द-गिर्द आयोजित हुआ, जिनमें मानव पूँजी, सुरक्षित और विश्वसनीय एआई, तथा एआई संसाधनों का लोकतंत्रीकरण शामिल थे। "
-  "कथन 3 ग़लत है: पहले के शिखर सम्मेलनों की घोषणाओं की तरह, लगभग नब्बे देशों और अंतरराष्ट्रीय संगठनों द्वारा समर्थित नई दिल्ली घोषणा एक राजनीतिक वक्तव्य है जिसकी प्रतिबद्धताएँ स्वैच्छिक और अबाध्यकारी हैं।",
-  "Ministry of Electronics and Information Technology, IndiaAI, AI Impact Summit 2026 releases (February 2026); Élysée and MEA, AI Action Summit, Paris (February 2025).",
-  "ca-t1-ca-ai-impact-summit-sutras-declaration", craft="recall")
+S(IN, "medium", "The AI Impact Summit held in New Delhi in February 2026 was the fourth in a series of global summits on artificial intelligence. Consider the following statements about the series:",
+  "फ़रवरी 2026 में नई दिल्ली में आयोजित एआई इम्पैक्ट शिखर सम्मेलन कृत्रिम बुद्धिमत्ता पर वैश्विक शिखर सम्मेलनों की शृंखला में चौथा था। इस शृंखला के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The New Delhi summit was the first of the series to be hosted in the Global South.",
+   "The summit of 2024 was hosted jointly by the Republic of Korea and the United Kingdom.",
+   "The series began with a summit hosted by France in 2023."],
+  ["नई दिल्ली शिखर सम्मेलन शृंखला का पहला था जिसकी मेज़बानी वैश्विक दक्षिण में हुई।",
+   "2024 के शिखर सम्मेलन की मेज़बानी कोरिया गणराज्य और यूनाइटेड किंगडम ने संयुक्त रूप से की।",
+   "शृंखला 2023 में फ़्रांस द्वारा आयोजित एक शिखर सम्मेलन से शुरू हुई।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The AI Seoul Summit of May 2024 was co-hosted by the Republic of Korea and the United Kingdom, and New Delhi was the first host outside the developed world, using the summit to put access, development and the Global South at the centre of the agenda. "
+  "Statement 3 is wrong: the series began with the AI Safety Summit hosted by the United Kingdom at Bletchley Park in November 2023, focused on the risks of frontier models. France hosted the third, the AI Action Summit of February 2025, which India co-chaired -- the shift in the summits' very names, from safety to action to impact, traces how the agenda widened.",
+  "कथन 1 और 2 सही हैं। मई 2024 के एआई सोल शिखर सम्मेलन की सह-मेज़बानी कोरिया गणराज्य और यूनाइटेड किंगडम ने की, और नई दिल्ली विकसित देशों से बाहर पहला मेज़बान था, जिसने शिखर सम्मेलन में पहुँच, विकास और वैश्विक दक्षिण को एजेंडा के केंद्र में रखा। "
+  "कथन 3 ग़लत है: शृंखला नवंबर 2023 में यूनाइटेड किंगडम द्वारा ब्लेचली पार्क में आयोजित एआई सुरक्षा शिखर सम्मेलन से शुरू हुई, जिसका ध्यान अग्रणी मॉडलों के जोखिमों पर था। फ़्रांस ने तीसरे, फ़रवरी 2025 के एआई एक्शन शिखर सम्मेलन, की मेज़बानी की, जिसकी सह-अध्यक्षता भारत ने की -- शिखर सम्मेलनों के नामों का ही बदलना, सुरक्षा से कार्रवाई और फिर प्रभाव तक, दिखाता है कि एजेंडा कैसे व्यापक हुआ।",
+  "Ministry of Electronics and Information Technology, IndiaAI, AI Impact Summit 2026 releases (February 2026); Government of the United Kingdom, AI Safety Summit (2023) and AI Seoul Summit (2024); Élysée and MEA, AI Action Summit, Paris (February 2025).",
+  "ca-t1-ca-ai-summit-series-hosts", craft="recall")
 
 S(IN, "hard", "Nepal elected a new House of Representatives in March 2026. With reference to Nepal's Constitution of 2015, consider the following statements:",
   "मार्च 2026 में नेपाल ने नई प्रतिनिधि सभा चुनी। नेपाल के 2015 के संविधान के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
-  ["All the members of the House of Representatives are elected by proportional representation.",
+  ["Of the 275 members of the House of Representatives, 165 are elected from single-member constituencies and 110 by proportional representation.",
    "The President of Nepal is elected directly by the people.",
    "Nepal's federal Parliament is unicameral."],
-  ["प्रतिनिधि सभा के सभी सदस्य आनुपातिक प्रतिनिधित्व द्वारा चुने जाते हैं।",
+  ["प्रतिनिधि सभा के 275 सदस्यों में से 165 एकल-सदस्यीय निर्वाचन क्षेत्रों से और 110 आनुपातिक प्रतिनिधित्व से चुने जाते हैं।",
    "नेपाल के राष्ट्रपति सीधे जनता द्वारा चुने जाते हैं।",
    "नेपाल की संघीय संसद एकसदनीय है।"],
-  C3, 3,
-  "None of the statements is correct. Nepal uses a mixed system: of the 275 members of the House of Representatives, 165 are elected by first-past-the-post in single-member constituencies and 110 by proportional representation, with the national vote for parties deciding the second share. The President is elected indirectly, by an electoral college of the members of the federal Parliament and of the seven Provincial Assemblies. The federal Parliament is bicameral, with the 59-member National Assembly as its upper house. "
+  C3, 0,
+  "Only statement 1 is correct. Nepal uses a mixed system: of the 275 members of the House of Representatives, 165 are elected by first-past-the-post in single-member constituencies and 110 by proportional representation, with the national vote for parties deciding the second share. Statement 2 is wrong: the President is elected indirectly, by an electoral college of the members of the federal Parliament and of the seven Provincial Assemblies. Statement 3 is wrong: the federal Parliament is bicameral, with the 59-member National Assembly as its upper house. "
   "The March 2026 election, the first after the youth-led protests of September 2025 brought down the previous government, gave the Rastriya Swatantra Party a clear majority, and Balendra Shah, a former mayor of Kathmandu, became Prime Minister.",
-  "कोई भी कथन सही नहीं है। नेपाल मिश्रित प्रणाली अपनाता है: प्रतिनिधि सभा के 275 सदस्यों में से 165 एकल-सदस्यीय निर्वाचन क्षेत्रों से सर्वाधिक-मत प्रणाली से और 110 आनुपातिक प्रतिनिधित्व से चुने जाते हैं, जिनका बँटवारा दलों को मिले राष्ट्रीय मतों से तय होता है। राष्ट्रपति अप्रत्यक्ष रूप से, संघीय संसद और सात प्रांतीय सभाओं के सदस्यों के निर्वाचक मंडल द्वारा चुने जाते हैं। संघीय संसद द्विसदनीय है, जिसका उच्च सदन 59 सदस्यीय राष्ट्रीय सभा है। "
+  "केवल कथन 1 सही है। नेपाल मिश्रित प्रणाली अपनाता है: प्रतिनिधि सभा के 275 सदस्यों में से 165 एकल-सदस्यीय निर्वाचन क्षेत्रों से सर्वाधिक-मत प्रणाली से और 110 आनुपातिक प्रतिनिधित्व से चुने जाते हैं, जिनका बँटवारा दलों को मिले राष्ट्रीय मतों से तय होता है। कथन 2 ग़लत है: राष्ट्रपति अप्रत्यक्ष रूप से, संघीय संसद और सात प्रांतीय सभाओं के सदस्यों के निर्वाचक मंडल द्वारा चुने जाते हैं। कथन 3 ग़लत है: संघीय संसद द्विसदनीय है, जिसका उच्च सदन 59 सदस्यीय राष्ट्रीय सभा है। "
   "मार्च 2026 का चुनाव, जो सितंबर 2025 के युवा-नेतृत्व वाले आंदोलनों से पिछली सरकार गिरने के बाद पहला था, राष्ट्रीय स्वतंत्र पार्टी को स्पष्ट बहुमत दे गया, और काठमांडू के पूर्व महापौर बालेन्द्र शाह प्रधानमंत्री बने।",
   "Constitution of Nepal (2015), Articles 62, 76, 84 and 86; Election Commission of Nepal, results of the House of Representatives election (March 2026).",
   "ca-t1-ca-nepal-mixed-system-indirect-president", craft="precision")
@@ -153,17 +153,17 @@ S(IN, "medium", "Bangladesh held a general election and a referendum on the same
 
 S(IN, "medium", "The process of selecting the next Secretary-General of the United Nations, who takes office in 2027, began in late 2025. Consider the following statements:",
   "संयुक्त राष्ट्र के अगले महासचिव, जो 2027 में पदभार ग्रहण करेंगे, के चयन की प्रक्रिया 2025 के अंत में शुरू हुई। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The Secretary-General is elected by the General Assembly alone, by a two-thirds majority, without any role for the Security Council.",
+  ["The Secretary-General is appointed by the General Assembly on the recommendation of the Security Council.",
    "The UN Charter fixes the Secretary-General's term at five years, renewable once.",
    "By a rule of the Charter, the post rotates among the UN's regional groups, and the 2027 term is reserved for Latin America."],
-  ["महासचिव को केवल महासभा दो-तिहाई बहुमत से चुनती है, जिसमें सुरक्षा परिषद की कोई भूमिका नहीं होती।",
+  ["महासचिव की नियुक्ति सुरक्षा परिषद की सिफ़ारिश पर महासभा करती है।",
    "संयुक्त राष्ट्र चार्टर महासचिव का कार्यकाल पाँच वर्ष तय करता है, जिसे एक बार बढ़ाया जा सकता है।",
    "चार्टर के एक नियम के अनुसार यह पद संयुक्त राष्ट्र के क्षेत्रीय समूहों में बारी-बारी से जाता है, और 2027 का कार्यकाल लैटिन अमेरिका के लिए आरक्षित है।"],
-  C3, 3,
-  "None of the statements is correct. Article 97 of the Charter says the Secretary-General is 'appointed by the General Assembly upon the recommendation of the Security Council'; the Council's recommendation is subject to the veto, so each permanent member can block a candidate. The Charter says nothing about the term: a five-year term was set by a General Assembly resolution of 1946, and re-appointment has been by practice. "
-  "Nor does the Charter provide for regional rotation. Many members argue that it is Latin America's 'turn' and that a woman should be chosen for the first time, and General Assembly resolutions encourage regional diversity and gender balance, but these are expectations, not rules. Candidates nominated by member states up to March 2026 included Rafael Grossi, Director General of the IAEA, Michelle Bachelet, a former President of Chile, and Rebeca Grynspan, the Secretary-General of UN Trade and Development.",
-  "कोई भी कथन सही नहीं है। चार्टर का अनुच्छेद 97 कहता है कि महासचिव ‘सुरक्षा परिषद की सिफ़ारिश पर महासभा द्वारा नियुक्त’ किए जाते हैं; परिषद की सिफ़ारिश पर वीटो लागू होता है, इसलिए हर स्थायी सदस्य किसी उम्मीदवार को रोक सकता है। चार्टर कार्यकाल के बारे में कुछ नहीं कहता: पाँच वर्ष का कार्यकाल 1946 के महासभा के एक संकल्प से तय हुआ, और पुनर्नियुक्ति परिपाटी से होती आई है। "
-  "चार्टर क्षेत्रीय बारी का भी कोई प्रावधान नहीं करता। अनेक सदस्यों का तर्क है कि अब लैटिन अमेरिका की ‘बारी’ है और पहली बार किसी महिला को चुना जाना चाहिए, और महासभा के संकल्प क्षेत्रीय विविधता और लैंगिक संतुलन को प्रोत्साहित करते हैं, पर ये अपेक्षाएँ हैं, नियम नहीं। मार्च 2026 तक सदस्य देशों द्वारा नामित उम्मीदवारों में आईएईए के महानिदेशक राफ़ेल ग्रोसी, चिली की पूर्व राष्ट्रपति मिशेल बाचेलेट और संयुक्त राष्ट्र व्यापार और विकास की महासचिव रेबेका ग्रिंसपैन शामिल थे।",
+  C3, 0,
+  "Only statement 1 is correct. Article 97 of the Charter says the Secretary-General is 'appointed by the General Assembly upon the recommendation of the Security Council'; the Council's recommendation is subject to the veto, so each permanent member can block a candidate. Statement 2 is wrong: the Charter says nothing about the term -- a five-year term was set by a General Assembly resolution of 1946, and re-appointment has been by practice. "
+  "Statement 3 is wrong: the Charter does not provide for regional rotation. Many members argue that it is Latin America's 'turn' and that a woman should be chosen for the first time, and General Assembly resolutions encourage regional diversity and gender balance, but these are expectations, not rules. Candidates nominated by member states up to March 2026 included Rafael Grossi, Director General of the IAEA, Michelle Bachelet, a former President of Chile, and Rebeca Grynspan, the Secretary-General of UN Trade and Development.",
+  "केवल कथन 1 सही है। चार्टर का अनुच्छेद 97 कहता है कि महासचिव ‘सुरक्षा परिषद की सिफ़ारिश पर महासभा द्वारा नियुक्त’ किए जाते हैं; परिषद की सिफ़ारिश पर वीटो लागू होता है, इसलिए हर स्थायी सदस्य किसी उम्मीदवार को रोक सकता है। कथन 2 ग़लत है: चार्टर कार्यकाल के बारे में कुछ नहीं कहता -- पाँच वर्ष का कार्यकाल 1946 के महासभा के एक संकल्प से तय हुआ, और पुनर्नियुक्ति परिपाटी से होती आई है। "
+  "कथन 3 ग़लत है: चार्टर क्षेत्रीय बारी का कोई प्रावधान नहीं करता। अनेक सदस्यों का तर्क है कि अब लैटिन अमेरिका की ‘बारी’ है और पहली बार किसी महिला को चुना जाना चाहिए, और महासभा के संकल्प क्षेत्रीय विविधता और लैंगिक संतुलन को प्रोत्साहित करते हैं, पर ये अपेक्षाएँ हैं, नियम नहीं। मार्च 2026 तक सदस्य देशों द्वारा नामित उम्मीदवारों में आईएईए के महानिदेशक राफ़ेल ग्रोसी, चिली की पूर्व राष्ट्रपति मिशेल बाचेलेट और संयुक्त राष्ट्र व्यापार और विकास की महासचिव रेबेका ग्रिंसपैन शामिल थे।",
   "Charter of the United Nations, Article 97; General Assembly resolutions 11(I) (1946) and 79/327 (2025); joint letter of the Presidents of the General Assembly and the Security Council (25 November 2025).",
   "ca-t1-ca-unsg-selection-article-97", craft="precision")
 
@@ -246,16 +246,16 @@ S(IN, "medium", "On 1 January 2026 India and Pakistan exchanged lists, as they d
 S(IN, "medium", "India began a new three-year term on the UN Human Rights Council in January 2026. Consider the following statements:",
   "जनवरी 2026 में भारत ने संयुक्त राष्ट्र मानवाधिकार परिषद में तीन वर्ष का नया कार्यकाल शुरू किया। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Members of the Council are chosen by the Security Council on the recommendation of the General Assembly.",
-   "A member that has served two consecutive terms may stand for immediate re-election to a third.",
+   "A member that has served two consecutive terms is not eligible for immediate re-election.",
    "The Council is one of the principal organs of the United Nations named in the UN Charter."],
   ["परिषद के सदस्य महासभा की सिफ़ारिश पर सुरक्षा परिषद द्वारा चुने जाते हैं।",
-   "लगातार दो कार्यकाल पूरे कर चुका सदस्य तीसरे कार्यकाल के लिए तुरंत चुनाव लड़ सकता है।",
+   "लगातार दो कार्यकाल पूरे कर चुका सदस्य तुरंत पुनर्निर्वाचन के लिए पात्र नहीं होता।",
    "परिषद संयुक्त राष्ट्र चार्टर में नामित संयुक्त राष्ट्र के प्रमुख अंगों में से एक है।"],
-  C3, 3,
-  "None of the statements is correct. The 47 members are elected directly by the General Assembly, by secret ballot, each needing an absolute majority of the Assembly's members, with seats shared among the regional groups; the Security Council has no role. "
-  "A member that has served two consecutive terms is not eligible for immediate re-election, and India's own record shows it: a member since the Council was created in 2006, India had to sit out 2011, 2018 and 2025, and was elected in October 2025 for 2026–28, its seventh term. The Council is a subsidiary body of the General Assembly, created by resolution 60/251 of 2006 to replace the Commission on Human Rights; the Charter's principal organs are the General Assembly, the Security Council, ECOSOC, the Trusteeship Council, the International Court of Justice and the Secretariat.",
-  "कोई भी कथन सही नहीं है। 47 सदस्य सीधे महासभा द्वारा गुप्त मतदान से चुने जाते हैं, प्रत्येक को महासभा के सदस्यों का पूर्ण बहुमत चाहिए, और सीटें क्षेत्रीय समूहों में बँटी हैं; सुरक्षा परिषद की कोई भूमिका नहीं है। "
-  "लगातार दो कार्यकाल पूरे कर चुका सदस्य तुरंत पुनर्निर्वाचन के लिए पात्र नहीं होता, और भारत का अपना अनुभव यही दिखाता है: 2006 में परिषद बनने से ही सदस्य रहे भारत को 2011, 2018 और 2025 में बाहर बैठना पड़ा, और अक्टूबर 2025 में वह 2026–28 के लिए अपने सातवें कार्यकाल हेतु चुना गया। परिषद महासभा का सहायक निकाय है, जो मानवाधिकार आयोग की जगह 2006 के संकल्प 60/251 से बनी; चार्टर के प्रमुख अंग महासभा, सुरक्षा परिषद, आर्थिक और सामाजिक परिषद, न्यासिता परिषद, अंतरराष्ट्रीय न्यायालय और सचिवालय हैं।",
+  C3, 0,
+  "Only statement 2 is correct, and India's own record shows it: a member since the Council was created in 2006, India had to sit out 2011, 2018 and 2025 after two straight terms each time, and was elected in October 2025 for 2026–28, its seventh term. "
+  "Statement 1 is wrong: the 47 members are elected directly by the General Assembly, by secret ballot, each needing an absolute majority of the Assembly's members, with seats shared among the regional groups; the Security Council has no role. Statement 3 is wrong: the Council is a subsidiary body of the General Assembly, created by resolution 60/251 of 2006 to replace the Commission on Human Rights; the Charter's principal organs are the General Assembly, the Security Council, ECOSOC, the Trusteeship Council, the International Court of Justice and the Secretariat.",
+  "केवल कथन 2 सही है, और भारत का अपना अनुभव यही दिखाता है: 2006 में परिषद बनने से ही सदस्य रहे भारत को हर बार लगातार दो कार्यकाल के बाद 2011, 2018 और 2025 में बाहर बैठना पड़ा, और अक्टूबर 2025 में वह 2026–28 के लिए अपने सातवें कार्यकाल हेतु चुना गया। "
+  "कथन 1 ग़लत है: 47 सदस्य सीधे महासभा द्वारा गुप्त मतदान से चुने जाते हैं, प्रत्येक को महासभा के सदस्यों का पूर्ण बहुमत चाहिए, और सीटें क्षेत्रीय समूहों में बँटी हैं; सुरक्षा परिषद की कोई भूमिका नहीं है। कथन 3 ग़लत है: परिषद महासभा का सहायक निकाय है, जो मानवाधिकार आयोग की जगह 2006 के संकल्प 60/251 से बनी; चार्टर के प्रमुख अंग महासभा, सुरक्षा परिषद, आर्थिक और सामाजिक परिषद, न्यासिता परिषद, अंतरराष्ट्रीय न्यायालय और सचिवालय हैं।",
   "UN General Assembly resolution 60/251 (2006); Charter of the United Nations, Article 7; Ministry of External Affairs, release on India's election to the Human Rights Council for 2026–28 (October 2025).",
   "ca-t1-ca-hrc-india-two-term-rule", craft="application")
 
@@ -278,16 +278,16 @@ S(IN, "medium", "The US operation in Venezuela in January 2026 revived debate ov
 S(IN, "medium", "US pressure over Greenland in early 2026 strained relations within NATO. Consider the following statements about NATO:",
   "2026 के आरंभ में ग्रीनलैंड को लेकर अमेरिकी दबाव ने नाटो के भीतर संबंधों पर तनाव डाला। नाटो के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["At its summit in The Hague in 2025, the allies committed to spend 5 per cent of GDP on core defence alone by 2030.",
-   "Its collective-defence clause, Article 5, has never been invoked.",
-   "Denmark, of which Greenland is a part, is not a member of NATO."],
+   "Its collective-defence clause, Article 5, has been invoked only once, after the attacks of 11 September 2001.",
+   "Finland and Sweden, which applied together after Russia's invasion of Ukraine, joined NATO in the same year."],
   ["2025 में हेग शिखर सम्मेलन में सहयोगियों ने 2030 तक केवल मूल रक्षा पर जीडीपी का 5 प्रतिशत ख़र्च करने का वचन दिया।",
-   "इसके सामूहिक रक्षा उपबंध, अनुच्छेद 5, का कभी प्रयोग नहीं हुआ।",
-   "डेनमार्क, जिसका ग्रीनलैंड एक भाग है, नाटो का सदस्य नहीं है।"],
-  C3, 3,
-  "None of the statements is correct. The Hague summit of June 2025 set a target of 5 per cent of GDP by 2035, split into at least 3.5 per cent for core defence and up to 1.5 per cent for related needs such as infrastructure, cyber defence and civil preparedness -- not 5 per cent on core defence, and not by 2030. "
-  "Article 5, under which an armed attack on one ally is an attack on all, has been invoked once, after the attacks of 11 September 2001 on the United States. Denmark is a founding member of the alliance of 1949, and Greenland, a self-governing part of the Kingdom of Denmark, hosts the US Pituffik Space Base -- which is why a US claim on the island set one ally against another.",
-  "कोई भी कथन सही नहीं है। जून 2025 के हेग शिखर सम्मेलन ने 2035 तक जीडीपी के 5 प्रतिशत का लक्ष्य रखा, जिसमें कम से कम 3.5 प्रतिशत मूल रक्षा के लिए और अधिकतम 1.5 प्रतिशत अवसंरचना, साइबर रक्षा और नागरिक तैयारी जैसी संबंधित आवश्यकताओं के लिए है -- न कि केवल मूल रक्षा पर 5 प्रतिशत, और न 2030 तक। "
-  "अनुच्छेद 5, जिसके अंतर्गत एक सहयोगी पर सशस्त्र हमला सब पर हमला है, का प्रयोग एक बार, संयुक्त राज्य अमेरिका पर 11 सितंबर 2001 के हमलों के बाद हुआ। डेनमार्क 1949 के गठबंधन का संस्थापक सदस्य है, और डेनमार्क राज्य का स्वशासित भाग ग्रीनलैंड अमेरिकी पिटुफ़िक अंतरिक्ष अड्डे की मेज़बानी करता है -- इसीलिए द्वीप पर अमेरिकी दावे ने एक सहयोगी को दूसरे के सामने खड़ा कर दिया।",
+   "इसके सामूहिक रक्षा उपबंध, अनुच्छेद 5, का प्रयोग केवल एक बार, 11 सितंबर 2001 के हमलों के बाद, हुआ है।",
+   "रूस के यूक्रेन पर आक्रमण के बाद साथ-साथ आवेदन करने वाले फ़िनलैंड और स्वीडन एक ही वर्ष में नाटो में शामिल हुए।"],
+  C3, 0,
+  "Only statement 2 is correct. Article 5, under which an armed attack on one ally is an attack on all, has been invoked once, after the attacks of 11 September 2001 on the United States. "
+  "Statement 1 is wrong: the Hague summit of June 2025 set a target of 5 per cent of GDP by 2035, split into at least 3.5 per cent for core defence and up to 1.5 per cent for related needs such as infrastructure, cyber defence and civil preparedness -- not 5 per cent on core defence, and not by 2030. Statement 3 is wrong: both applied in May 2022, but Finland joined in April 2023 and Sweden, after Turkey and Hungary delayed ratifying, only in March 2024, as the 32nd member. Greenland is a self-governing part of the Kingdom of Denmark, a founding member of the alliance, and hosts the US Pituffik Space Base -- which is why a US claim on the island set one ally against another.",
+  "केवल कथन 2 सही है। अनुच्छेद 5, जिसके अंतर्गत एक सहयोगी पर सशस्त्र हमला सब पर हमला है, का प्रयोग एक बार, संयुक्त राज्य अमेरिका पर 11 सितंबर 2001 के हमलों के बाद हुआ। "
+  "कथन 1 ग़लत है: जून 2025 के हेग शिखर सम्मेलन ने 2035 तक जीडीपी के 5 प्रतिशत का लक्ष्य रखा, जिसमें कम से कम 3.5 प्रतिशत मूल रक्षा के लिए और अधिकतम 1.5 प्रतिशत अवसंरचना, साइबर रक्षा और नागरिक तैयारी जैसी संबंधित आवश्यकताओं के लिए है -- न कि केवल मूल रक्षा पर 5 प्रतिशत, और न 2030 तक। कथन 3 ग़लत है: दोनों ने मई 2022 में आवेदन किया, पर फ़िनलैंड अप्रैल 2023 में शामिल हुआ और स्वीडन, तुर्किये और हंगरी द्वारा अनुसमर्थन में देरी के बाद, मार्च 2024 में 32वें सदस्य के रूप में। ग्रीनलैंड डेनमार्क राज्य का स्वशासित भाग है, जो गठबंधन का संस्थापक सदस्य है, और अमेरिकी पिटुफ़िक अंतरिक्ष अड्डे की मेज़बानी करता है -- इसीलिए द्वीप पर अमेरिकी दावे ने एक सहयोगी को दूसरे के सामने खड़ा कर दिया।",
   "North Atlantic Treaty (1949), Article 5; NATO, The Hague Summit Declaration (25 June 2025).",
   "ca-t1-ca-nato-hague-five-percent-article-5", craft="precision")
 
@@ -307,21 +307,21 @@ S(IN, "hard", "The strikes on Iran that began on 28 February 2026 were debated i
   "Charter of the United Nations, Articles 2(4), 10-14, 39-42 and 51.",
   "ca-t1-ca-un-charter-2-4-article-51", craft="application")
 
-S(IN, "hard", "Pakistan's 27th Constitutional Amendment of November 2025 drew comparisons with India's own arrangements. Consider the following statements:",
-  "नवंबर 2025 के पाकिस्तान के 27वें संविधान संशोधन की तुलना भारत की अपनी व्यवस्थाओं से की गई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "Consider the following statements about Pakistan's 27th Constitutional Amendment of November 2025:",
+  "नवंबर 2025 के पाकिस्तान के 27वें संविधान संशोधन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The amendment created a Federal Constitutional Court to hear constitutional cases, taking them away from Pakistan's Supreme Court.",
    "It created the post of Chief of Defence Forces, held by the army chief, and abolished the post of Chairman of the Joint Chiefs of Staff Committee.",
-   "In India, the Chief of Defence Staff exercises operational command over the Army, the Navy and the Air Force."],
+   "It lets an officer holding a five-star rank, such as Field Marshal, keep the rank and its privileges for life, with immunity from criminal prosecution."],
   ["संशोधन ने संवैधानिक मामलों की सुनवाई के लिए एक संघीय संवैधानिक न्यायालय बनाया, उन्हें पाकिस्तान के सर्वोच्च न्यायालय से हटाकर।",
    "इसने सेना प्रमुख द्वारा धारित रक्षा बलों के प्रमुख का पद बनाया, और संयुक्त सेना प्रमुख समिति के अध्यक्ष का पद समाप्त किया।",
-   "भारत में चीफ़ ऑफ़ डिफ़ेंस स्टाफ़ थल सेना, नौसेना और वायु सेना पर परिचालन कमान रखते हैं।"],
-  C3, 1,
-  "Statements 1 and 2 are correct. The amendment, passed in November 2025, set up a Federal Constitutional Court with its own judges for constitutional matters, reducing the Supreme Court largely to an appellate court, and rewrote Article 243 so that the Chief of Army Staff also holds the new post of Chief of Defence Forces over all three services, while the old joint chiefs' chairmanship was abolished; it also granted lifelong immunity to holders of the honorary five-star ranks. "
-  "Statement 3 is wrong: India's Chief of Defence Staff, created in 2019, is the permanent chairman of the Chiefs of Staff Committee, the Principal Military Adviser to the Defence Minister and the Secretary of the Department of Military Affairs, but by design has no operational command over the services, which stays with their chiefs.",
-  "कथन 1 और 2 सही हैं। नवंबर 2025 में पारित संशोधन ने संवैधानिक मामलों के लिए अपने न्यायाधीशों वाला एक संघीय संवैधानिक न्यायालय बनाया, जिससे सर्वोच्च न्यायालय मुख्यतः अपीलीय न्यायालय रह गया, और अनुच्छेद 243 को बदलकर थल सेना प्रमुख को तीनों सेनाओं पर नए रक्षा बल प्रमुख का पद भी दिया, जबकि संयुक्त प्रमुखों की पुरानी अध्यक्षता समाप्त कर दी; इसने मानद पाँच-सितारा पदधारकों को आजीवन उन्मुक्ति भी दी। "
-  "कथन 3 ग़लत है: 2019 में बना भारत का चीफ़ ऑफ़ डिफ़ेंस स्टाफ़ चीफ़्स ऑफ़ स्टाफ़ कमेटी का स्थायी अध्यक्ष, रक्षा मंत्री का प्रधान सैन्य सलाहकार और सैन्य मामलों के विभाग का सचिव है, पर योजनाबद्ध रूप से उसके पास सेनाओं पर कोई परिचालन कमान नहीं है, जो उनके प्रमुखों के पास रहती है।",
-  "Constitution of the Islamic Republic of Pakistan, Article 243 as amended (November 2025); Ministry of Defence (India), notification on the creation of the post of Chief of Defence Staff (December 2019).",
-  "ca-t1-ca-pakistan-27th-amendment-india-cds", craft="linkage")
+   "यह फ़ील्ड मार्शल जैसे पाँच-सितारा पद वाले अधिकारी को वह पद और उसके विशेषाधिकार आजीवन, आपराधिक अभियोजन से उन्मुक्ति के साथ, रखने देता है।"],
+  C3, 2,
+  "All three statements are correct. The amendment, passed in November 2025, set up a Federal Constitutional Court with its own judges for constitutional matters, reducing the Supreme Court largely to an appellate court, and rewrote Article 243 so that the Chief of Army Staff also holds the new post of Chief of Defence Forces over all three services, while the post of Chairman of the Joint Chiefs of Staff Committee was abolished. It also lets five-star officers keep their rank, privileges and uniform for life, with lifelong immunity from criminal prosecution -- which critics read as placing the army chief beyond the reach of the courts. "
+  "India's arrangements differ on each count. Constitutional cases stay with the Supreme Court. The Chief of Defence Staff, created in 2019, chairs the Chiefs of Staff Committee and heads the Department of Military Affairs but by design has no operational command over the services. India's two Field Marshals, Sam Manekshaw and K. M. Cariappa, held a ceremonial rank for life, and the Constitution shields only the President and the Governors from criminal proceedings, and only during their term of office (Article 361).",
+  "तीनों कथन सही हैं। नवंबर 2025 में पारित संशोधन ने संवैधानिक मामलों के लिए अपने न्यायाधीशों वाला एक संघीय संवैधानिक न्यायालय बनाया, जिससे सर्वोच्च न्यायालय मुख्यतः अपीलीय न्यायालय रह गया, और अनुच्छेद 243 को बदलकर थल सेना प्रमुख को तीनों सेनाओं पर नए रक्षा बल प्रमुख का पद भी दिया, जबकि संयुक्त सेना प्रमुख समिति के अध्यक्ष का पद समाप्त कर दिया। यह पाँच-सितारा अधिकारियों को अपना पद, विशेषाधिकार और वर्दी आजीवन रखने देता है, आपराधिक अभियोजन से आजीवन उन्मुक्ति के साथ -- जिसे आलोचक सेना प्रमुख को न्यायालयों की पहुँच से बाहर रखना मानते हैं। "
+  "भारत की व्यवस्थाएँ हर बिंदु पर भिन्न हैं। संवैधानिक मामले सर्वोच्च न्यायालय के पास ही रहते हैं। 2019 में बना चीफ़ ऑफ़ डिफ़ेंस स्टाफ़ चीफ़्स ऑफ़ स्टाफ़ कमेटी का अध्यक्ष और सैन्य मामलों के विभाग का प्रमुख है, पर योजनाबद्ध रूप से उसके पास सेनाओं पर कोई परिचालन कमान नहीं है। भारत के दो फ़ील्ड मार्शल, सैम मानेकशॉ और के. एम. करियप्पा, आजीवन एक औपचारिक पद पर रहे, और संविधान केवल राष्ट्रपति और राज्यपालों को, और केवल उनके कार्यकाल में, आपराधिक कार्यवाही से संरक्षण देता है (अनुच्छेद 361)।",
+  "Constitution of the Islamic Republic of Pakistan, Article 243 as amended by the Constitution (Twenty-seventh Amendment) Act, 2025; Ministry of Defence (India), notification on the creation of the post of Chief of Defence Staff (December 2019); Constitution of India, Article 361.",
+  "ca-t1-ca-pakistan-27th-amendment-fcc-cdf-immunity", craft="linkage")
 
 S(IN, "medium", "The Ganga Water Treaty between India and Bangladesh, signed in December 1996, comes up for renewal in 2026. Consider the following statements:",
   "दिसंबर 1996 में हस्ताक्षरित भारत और बांग्लादेश के बीच गंगा जल संधि 2026 में नवीनीकरण के लिए सामने है। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -340,21 +340,21 @@ S(IN, "medium", "The Ganga Water Treaty between India and Bangladesh, signed in 
   "ca-t1-ca-ganga-water-treaty-1996-renewal", craft="linkage")
 
 # ================================================================ NATIONAL
-S(NA, "medium", "The Union Government had set 31 March 2026 as the target date for ending Left Wing Extremism. Consider the following statements:",
-  "केंद्र सरकार ने वामपंथी उग्रवाद की समाप्ति के लिए 31 मार्च 2026 की लक्ष्य-तिथि तय की थी। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["'Police' and 'public order' are subjects in the State List of the Seventh Schedule.",
-   "CoBRA, a specialised unit for jungle warfare raised to fight Left Wing Extremism, is part of the Central Reserve Police Force.",
-   "Under the Unlawful Activities (Prevention) Act, the Union Government can declare an organisation a 'terrorist organisation' by adding it to a Schedule of the Act."],
-  ["‘पुलिस’ और ‘लोक व्यवस्था’ सातवीं अनुसूची की राज्य सूची के विषय हैं।",
-   "वामपंथी उग्रवाद से लड़ने के लिए बनी जंगल युद्ध की विशेष इकाई कोबरा केंद्रीय रिज़र्व पुलिस बल का भाग है।",
-   "विधिविरुद्ध क्रियाकलाप (निवारण) अधिनियम के अंतर्गत केंद्र सरकार किसी संगठन को अधिनियम की एक अनुसूची में जोड़कर ‘आतंकवादी संगठन’ घोषित कर सकती है।"],
-  C3, 2,
-  "All three statements are correct. Public order and police are State subjects (Entries 1 and 2 of List II), so the States lead operations and the Centre supports them with central armed police forces, funding for special infrastructure and the most affected districts, and coordination. The CRPF raised its Commando Battalions for Resolute Action from 2008 for jungle warfare in the Maoist-affected belt. "
-  "The Communist Party of India (Maoist) and its fronts are listed in the First Schedule of the UAPA, which lets the Union Government add or remove terrorist organisations by order. The number of districts counted as most affected had fallen to a handful by 2026, and the March 2026 deadline marked the drive to end armed Maoism.",
-  "तीनों कथन सही हैं। लोक व्यवस्था और पुलिस राज्य के विषय हैं (सूची II की प्रविष्टियाँ 1 और 2), इसलिए अभियान राज्य चलाते हैं और केंद्र केंद्रीय सशस्त्र पुलिस बलों, विशेष अवसंरचना और सबसे अधिक प्रभावित ज़िलों के लिए धन, और समन्वय से उनकी सहायता करता है। सीआरपीएफ़ ने माओवादी प्रभावित क्षेत्र में जंगल युद्ध के लिए 2008 से अपनी कमांडो बटालियन फ़ॉर रिज़ॉल्यूट एक्शन खड़ी कीं। "
-  "भारतीय कम्युनिस्ट पार्टी (माओवादी) और उसके मुखौटा संगठन यूएपीए की पहली अनुसूची में सूचीबद्ध हैं, जो केंद्र सरकार को आदेश द्वारा आतंकवादी संगठन जोड़ने या हटाने देती है। 2026 तक सबसे अधिक प्रभावित माने जाने वाले ज़िलों की संख्या कुछ ही रह गई थी, और मार्च 2026 की समय-सीमा सशस्त्र माओवाद को समाप्त करने के अभियान का प्रतीक थी।",
-  "Constitution of India, Seventh Schedule, List II, Entries 1 and 2; Unlawful Activities (Prevention) Act, 1967, sections 35 and First Schedule; Ministry of Home Affairs, annual report on Left Wing Extremism.",
-  "ca-t1-ca-lwe-deadline-cobra-uapa", craft="linkage")
+A(NA, "medium",
+  "The Union Government's drive to end Left Wing Extremism by 31 March 2026 relied on operations led by the State police forces, with the central armed police forces deployed in their support.",
+  "31 मार्च 2026 तक वामपंथी उग्रवाद समाप्त करने का केंद्र सरकार का अभियान राज्य पुलिस बलों के नेतृत्व वाले अभियानों पर टिका था, जिनकी सहायता में केंद्रीय सशस्त्र पुलिस बल तैनात थे।",
+  "'Police' and 'public order' are subjects in the State List of the Seventh Schedule.",
+  "‘पुलिस’ और ‘लोक व्यवस्था’ सातवीं अनुसूची की राज्य सूची के विषय हैं।",
+  1,
+  "Statements II and III are both correct, but only Statement II explains Statement I. Public order and police are State subjects (Entries 1 and 2 of List II), so it is the States that lead operations against armed groups on their soil; the Union supports them with central armed police forces under Article 355's duty to protect States against internal disturbance, with funds for special infrastructure and the most affected districts, and with intelligence and coordination. "
+  "Statement III is true -- the CRPF raised its Commando Battalions for Resolute Action from 2008 for jungle warfare in the Maoist-affected belt -- but it only names one of the supporting forces; it does not explain why the States lead. The number of districts counted as most affected had fallen to a handful by 2026, and the March 2026 deadline marked the drive to end armed Maoism.",
+  "कथन II और III दोनों सही हैं, पर केवल कथन II कथन I की व्याख्या करता है। लोक व्यवस्था और पुलिस राज्य के विषय हैं (सूची II की प्रविष्टियाँ 1 और 2), इसलिए अपनी धरती पर सशस्त्र समूहों के विरुद्ध अभियानों का नेतृत्व राज्य करते हैं; केंद्र अनुच्छेद 355 के अंतर्गत राज्यों की आंतरिक अशांति से रक्षा के कर्तव्य के तहत केंद्रीय सशस्त्र पुलिस बलों से, विशेष अवसंरचना और सबसे अधिक प्रभावित ज़िलों के लिए धन से, और ख़ुफ़िया सूचना तथा समन्वय से उनकी सहायता करता है। "
+  "कथन III सही है -- सीआरपीएफ़ ने माओवादी प्रभावित क्षेत्र में जंगल युद्ध के लिए 2008 से अपनी कमांडो बटालियन फ़ॉर रिज़ॉल्यूट एक्शन खड़ी कीं -- पर यह सहायक बलों में से केवल एक का नाम बताता है; यह नहीं बताता कि नेतृत्व राज्य क्यों करते हैं। 2026 तक सबसे अधिक प्रभावित माने जाने वाले ज़िलों की संख्या कुछ ही रह गई थी, और मार्च 2026 की समय-सीमा सशस्त्र माओवाद को समाप्त करने के अभियान का प्रतीक थी।",
+  "Constitution of India, Seventh Schedule, List II, Entries 1 and 2, and Article 355; Ministry of Home Affairs, annual report on Left Wing Extremism.",
+  "ca-t1-ca-lwe-state-police-si3",
+  s3="CoBRA, a unit raised for jungle warfare against Left Wing Extremism, is part of the Central Reserve Police Force.",
+  s3_hi="वामपंथी उग्रवाद के विरुद्ध जंगल युद्ध के लिए खड़ी की गई इकाई कोबरा केंद्रीय रिज़र्व पुलिस बल का भाग है।",
+  craft="inference")
 
 S(NA, "easy", "In February 2026 the Ministry of Home Affairs released a document named PRAHAAR. Consider the following statements:",
   "फ़रवरी 2026 में गृह मंत्रालय ने प्रहार नामक एक दस्तावेज़ जारी किया। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -374,36 +374,34 @@ S(NA, "easy", "In February 2026 the Ministry of Home Affairs released a document
 S(DF, "medium", "In February 2026 India hosted the International Fleet Review together with Exercise MILAN at Visakhapatnam. Consider the following statements:",
   "फ़रवरी 2026 में भारत ने विशाखापत्तनम में मिलन अभ्यास के साथ अंतरराष्ट्रीय बेड़ा समीक्षा की मेज़बानी की। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The fleet was reviewed by the President of India, the Supreme Commander of the armed forces.",
-   "It was the first International Fleet Review ever hosted by India.",
+   "India's previous International Fleet Review, before the one of 2026, was held at Mumbai.",
    "MILAN began in 1995 as a gathering of regional navies hosted at Port Blair.",
    "The Eastern Naval Command has its headquarters at Visakhapatnam."],
   ["बेड़े की समीक्षा सशस्त्र सेनाओं की सर्वोच्च कमांडर, भारत की राष्ट्रपति ने की।",
-   "यह भारत द्वारा आयोजित पहली अंतरराष्ट्रीय बेड़ा समीक्षा थी।",
+   "2026 से पहले भारत की पिछली अंतरराष्ट्रीय बेड़ा समीक्षा मुंबई में हुई थी।",
    "मिलन 1995 में पोर्ट ब्लेयर में आयोजित क्षेत्रीय नौसेनाओं के एक जमावड़े के रूप में शुरू हुआ।",
    "पूर्वी नौसेना कमान का मुख्यालय विशाखापत्तनम में है।"],
   C4, 2,
   "Statements 1, 3 and 4 are correct. Under Article 53(2) the supreme command of the Defence Forces vests in the President, and the fleet review is the ceremonial expression of it: President Droupadi Murmu reviewed the assembled ships from the presidential yacht on 18 February 2026. MILAN started in 1995 at Port Blair with a few navies of the Bay of Bengal region and has grown into a large multilateral exercise, now held at Visakhapatnam, the headquarters of the Eastern Naval Command. "
-  "Statement 2 is wrong: this was India's third International Fleet Review, after Mumbai in 2001 and Visakhapatnam in February 2016 -- so 2026 also marked ten years since the last one.",
+  "Statement 2 is wrong: this was India's third International Fleet Review; the first was at Mumbai in 2001, but the previous one was at Visakhapatnam in February 2016 -- so 2026 also marked ten years since the last one.",
   "कथन 1, 3 और 4 सही हैं। अनुच्छेद 53(2) के अंतर्गत रक्षा बलों की सर्वोच्च कमान राष्ट्रपति में निहित है, और बेड़ा समीक्षा उसकी औपचारिक अभिव्यक्ति है: राष्ट्रपति द्रौपदी मुर्मु ने 18 फ़रवरी 2026 को राष्ट्रपति नौका से एकत्र पोतों की समीक्षा की। मिलन 1995 में पोर्ट ब्लेयर में बंगाल की खाड़ी क्षेत्र की कुछ नौसेनाओं के साथ शुरू होकर एक बड़े बहुपक्षीय अभ्यास में बदल गया है, जो अब पूर्वी नौसेना कमान के मुख्यालय विशाखापत्तनम में होता है। "
-  "कथन 2 ग़लत है: यह भारत की तीसरी अंतरराष्ट्रीय बेड़ा समीक्षा थी, 2001 में मुंबई और फ़रवरी 2016 में विशाखापत्तनम के बाद -- इसलिए 2026 पिछली समीक्षा के दस वर्ष पूरे होने का भी वर्ष था।",
+  "कथन 2 ग़लत है: यह भारत की तीसरी अंतरराष्ट्रीय बेड़ा समीक्षा थी; पहली 2001 में मुंबई में हुई, पर पिछली फ़रवरी 2016 में विशाखापत्तनम में -- इसलिए 2026 पिछली समीक्षा के दस वर्ष पूरे होने का भी वर्ष था।",
   "Constitution of India, Article 53(2); Ministry of Defence (Indian Navy), releases on the International Fleet Review and MILAN 2026 (February 2026).",
   "ca-t1-ca-ifr-2026-milan-port-blair", craft="linkage")
 
-P(DF, "medium", "Consider the following pairs of joint military exercises held in early 2026 or earlier and India's partner country in each:",
-  "2026 के आरंभ में या उससे पहले आयोजित संयुक्त सैन्य अभ्यासों और उनमें भारत के साझेदार देश के निम्नलिखित युग्मों पर विचार कीजिए:",
-  ["Dharma Guardian : Japan",
-   "Vajra Prahar : United States",
-   "Desert Cyclone : Egypt"],
-  ["धर्म गार्जियन : जापान",
-   "वज्र प्रहार : संयुक्त राज्य अमेरिका",
-   "डेज़र्ट साइक्लोन : मिस्र"],
-  1,
-  "The first two pairs are correct. The seventh Dharma Guardian, between the Indian Army and the Japan Ground Self-Defense Force, began at Chaubattia in Uttarakhand on 24 February 2026; the sixteenth Vajra Prahar, a special-forces exercise with the United States, ran at Bakloh in Himachal Pradesh from late February into March. "
-  "The third pair is wrong: Desert Cyclone is India's exercise with the United Arab Emirates, first held in Rajasthan in 2024. The exercise with Egypt is called simply 'Cyclone' -- the near-identical names are the trap.",
-  "पहले दो युग्म सही हैं। भारतीय सेना और जापान ग्राउंड सेल्फ़-डिफ़ेंस फ़ोर्स के बीच सातवाँ धर्म गार्जियन 24 फ़रवरी 2026 को उत्तराखंड के चौबटिया में शुरू हुआ; संयुक्त राज्य अमेरिका के साथ विशेष बलों का सोलहवाँ वज्र प्रहार फ़रवरी के अंत से मार्च तक हिमाचल प्रदेश के बकलोह में चला। "
-  "तीसरा युग्म ग़लत है: डेज़र्ट साइक्लोन संयुक्त अरब अमीरात के साथ भारत का अभ्यास है, जो पहली बार 2024 में राजस्थान में हुआ। मिस्र के साथ अभ्यास का नाम केवल ‘साइक्लोन’ है -- लगभग एक जैसे नाम ही जाल हैं।",
-  "Ministry of Defence, releases on Exercise Dharma Guardian and Exercise Vajra Prahar (February 2026) and on Exercises Desert Cyclone and Cyclone.",
-  "ca-t1-ca-exercises-dharma-guardian-vajra-prahar", craft="precision")
+MX(DF, "medium", "Match List-I (joint military exercise) with List-II (India's partner in it):",
+   "सूची-I (संयुक्त सैन्य अभ्यास) का सूची-II (उसमें भारत का साझेदार) से मिलान कीजिए:",
+   ["Dharma Guardian", "Vajra Prahar", "Desert Cyclone", "Ajeya Warrior"],
+   ["धर्म गार्जियन", "वज्र प्रहार", "डेज़र्ट साइक्लोन", "अजेय वॉरियर"],
+   ["United Arab Emirates", "Japan", "United Kingdom", "United States"],
+   ["संयुक्त अरब अमीरात", "जापान", "यूनाइटेड किंगडम", "संयुक्त राज्य अमेरिका"],
+   (2, 4, 1, 3), POS.get("ca-t1-ca-exercises-dharma-guardian-vajra-prahar", 1),
+   "The correct code is A-2, B-4, C-1, D-3. The seventh Dharma Guardian, between the Indian Army and the Japan Ground Self-Defense Force, began at Chaubattia in Uttarakhand on 24 February 2026; the sixteenth Vajra Prahar, a special-forces exercise with the United States, ran at Bakloh in Himachal Pradesh from late February into March. "
+   "Desert Cyclone is India's exercise with the United Arab Emirates, first held in Rajasthan in 2024 -- not to be confused with 'Cyclone', the exercise with Egypt -- and Ajeya Warrior is the Indian Army's exercise with the British Army. Near-identical names and familiar partners are exactly how such matching items trap a candidate.",
+   "सही कूट A-2, B-4, C-1, D-3 है। भारतीय सेना और जापान ग्राउंड सेल्फ़-डिफ़ेंस फ़ोर्स के बीच सातवाँ धर्म गार्जियन 24 फ़रवरी 2026 को उत्तराखंड के चौबटिया में शुरू हुआ; संयुक्त राज्य अमेरिका के साथ विशेष बलों का सोलहवाँ वज्र प्रहार फ़रवरी के अंत से मार्च तक हिमाचल प्रदेश के बकलोह में चला। "
+   "डेज़र्ट साइक्लोन संयुक्त अरब अमीरात के साथ भारत का अभ्यास है, जो पहली बार 2024 में राजस्थान में हुआ -- इसे मिस्र के साथ होने वाले ‘साइक्लोन’ से न मिलाएँ -- और अजेय वॉरियर भारतीय सेना का ब्रिटिश सेना के साथ अभ्यास है। लगभग एक जैसे नाम और जाने-पहचाने साझेदार ही ऐसे मिलान-प्रश्नों का जाल होते हैं।",
+   "Ministry of Defence, releases on Exercise Dharma Guardian and Exercise Vajra Prahar (February 2026) and on Exercises Desert Cyclone, Cyclone and Ajeya Warrior.",
+   "ca-t1-ca-exercises-dharma-guardian-vajra-prahar", "precision")
 
 S(DF, "medium", "In January 2026 the Army Day parade was held in Jaipur, where the newly raised Bhairav battalions made their debut. Consider the following statements:",
   "जनवरी 2026 में सेना दिवस परेड जयपुर में हुई, जहाँ नई खड़ी की गई भैरव बटालियनों ने पहली बार भाग लिया। निम्नलिखित कथनों पर विचार कीजिए:",
@@ -422,23 +420,24 @@ S(DF, "medium", "In January 2026 the Army Day parade was held in Jaipur, where t
   "ca-t1-ca-army-day-cariappa-bhairav", craft="precision")
 
 # ================================================================ SCHEMES & INDICES
-P(SC, "medium", "Consider the following pairs of reports released in early 2026 and the organisations that publish them:",
-  "2026 के आरंभ में जारी रिपोर्टों और उन्हें प्रकाशित करने वाले संगठनों के निम्नलिखित युग्मों पर विचार कीजिए:",
-  ["Global Risks Report : World Economic Forum",
+M(SC, "medium",
+  "Which one of the following pairs of a report released in early 2026 and its publisher is NOT correctly matched?",
+  "2026 के आरंभ में जारी किसी रिपोर्ट और उसके प्रकाशक का निम्नलिखित में से कौन-सा युग्म सही सुमेलित नहीं है?",
+  ["Global Risks Report : World Bank",
    "Corruption Perceptions Index : Transparency International",
    "Democracy Index : Economist Intelligence Unit",
-   "World Employment and Social Outlook: Trends : International Monetary Fund"],
-  ["ग्लोबल रिस्क्स रिपोर्ट : विश्व आर्थिक मंच",
+   "World Employment and Social Outlook : International Labour Organization"],
+  ["ग्लोबल रिस्क्स रिपोर्ट : विश्व बैंक",
    "करप्शन परसेप्शन्स इंडेक्स : ट्रांसपेरेंसी इंटरनेशनल",
    "डेमोक्रेसी इंडेक्स : इकोनॉमिस्ट इंटेलिजेंस यूनिट",
-   "वर्ल्ड एम्प्लॉयमेंट एंड सोशल आउटलुक: ट्रेंड्स : अंतरराष्ट्रीय मुद्रा कोष"],
-  2,
-  "The first three pairs are correct. The World Economic Forum releases its Global Risks Report each January before the Davos meeting; Transparency International, a Berlin-based NGO, publishes the Corruption Perceptions Index each February from expert and business surveys; the Economist Intelligence Unit's Democracy Index classifies countries as full democracies, flawed democracies, hybrid regimes or authoritarian regimes. "
-  "The fourth pair is wrong: World Employment and Social Outlook: Trends is the International Labour Organization's flagship report; its January 2026 edition projected the global unemployment rate to stay near historic lows while warning about job quality. The IMF's flagship is the World Economic Outlook.",
-  "पहले तीन युग्म सही हैं। विश्व आर्थिक मंच हर जनवरी दावोस बैठक से पहले अपनी ग्लोबल रिस्क्स रिपोर्ट जारी करता है; बर्लिन स्थित गैर-सरकारी संगठन ट्रांसपेरेंसी इंटरनेशनल विशेषज्ञ और व्यावसायिक सर्वेक्षणों से हर फ़रवरी करप्शन परसेप्शन्स इंडेक्स प्रकाशित करता है; इकोनॉमिस्ट इंटेलिजेंस यूनिट का डेमोक्रेसी इंडेक्स देशों को पूर्ण लोकतंत्र, दोषपूर्ण लोकतंत्र, संकर शासन या सत्तावादी शासन में वर्गीकृत करता है। "
-  "चौथा युग्म ग़लत है: वर्ल्ड एम्प्लॉयमेंट एंड सोशल आउटलुक: ट्रेंड्स अंतरराष्ट्रीय श्रम संगठन की प्रमुख रिपोर्ट है; उसके जनवरी 2026 संस्करण ने रोज़गार की गुणवत्ता पर चेतावनी देते हुए वैश्विक बेरोज़गारी दर ऐतिहासिक निम्न स्तर के आसपास रहने का अनुमान लगाया। मुद्रा कोष की प्रमुख रिपोर्ट वर्ल्ड इकोनॉमिक आउटलुक है।",
+   "वर्ल्ड एम्प्लॉयमेंट एंड सोशल आउटलुक : अंतरराष्ट्रीय श्रम संगठन"],
+  0,
+  "The Global Risks Report is published by the World Economic Forum each January, before the Davos meeting; the World Bank's flagships are the World Development Report and Global Economic Prospects. The other three pairs are correct: Transparency International, a Berlin-based NGO, publishes the Corruption Perceptions Index each February from expert and business surveys; the Economist Intelligence Unit's Democracy Index classifies countries as full democracies, flawed democracies, hybrid regimes or authoritarian regimes; and the International Labour Organization's World Employment and Social Outlook: Trends, in its January 2026 edition, projected global unemployment to stay near historic lows while warning about job quality. "
+  "In a 'NOT correctly matched' item every option but one is true, so each pair must be checked on its own -- the familiar names of the other bodies are what make a wrong pairing look plausible.",
+  "ग्लोबल रिस्क्स रिपोर्ट विश्व आर्थिक मंच हर जनवरी दावोस बैठक से पहले प्रकाशित करता है; विश्व बैंक की प्रमुख रिपोर्टें वर्ल्ड डेवलपमेंट रिपोर्ट और ग्लोबल इकोनॉमिक प्रॉस्पेक्ट्स हैं। अन्य तीन युग्म सही हैं: बर्लिन स्थित गैर-सरकारी संगठन ट्रांसपेरेंसी इंटरनेशनल विशेषज्ञ और व्यावसायिक सर्वेक्षणों से हर फ़रवरी करप्शन परसेप्शन्स इंडेक्स प्रकाशित करता है; इकोनॉमिस्ट इंटेलिजेंस यूनिट का डेमोक्रेसी इंडेक्स देशों को पूर्ण लोकतंत्र, दोषपूर्ण लोकतंत्र, संकर शासन या सत्तावादी शासन में वर्गीकृत करता है; और अंतरराष्ट्रीय श्रम संगठन की वर्ल्ड एम्प्लॉयमेंट एंड सोशल आउटलुक: ट्रेंड्स के जनवरी 2026 संस्करण ने रोज़गार की गुणवत्ता पर चेतावनी देते हुए वैश्विक बेरोज़गारी ऐतिहासिक निम्न स्तर के आसपास रहने का अनुमान लगाया। "
+  "‘सही सुमेलित नहीं’ वाले प्रश्न में एक को छोड़कर हर विकल्प सही होता है, इसलिए हर युग्म को अलग से जाँचना होता है -- अन्य निकायों के परिचित नाम ही ग़लत युग्म को विश्वसनीय दिखाते हैं।",
   "World Economic Forum, Global Risks Report 2026; Transparency International, Corruption Perceptions Index 2025; Economist Intelligence Unit, Democracy Index; International Labour Organization, World Employment and Social Outlook: Trends 2026.",
-  "ca-t1-ca-reports-wef-ti-eiu-ilo", craft="recall")
+  "ca-t1-ca-reports-not-correctly-matched", pos=POS.get("ca-t1-ca-reports-not-correctly-matched", 2), craft="precision")
 
 S(SC, "easy", "The Union Budget 2026-27 allotted ₹67,600 crore to the Jal Jeevan Mission. Consider the following statements about the Mission:",
   "केंद्रीय बजट 2026-27 ने जल जीवन मिशन को ₹67,600 करोड़ दिए। मिशन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
@@ -460,15 +459,15 @@ S(SC, "medium", "In January 2026 a gram panchayat in Rajasthan was certified as 
   "जनवरी 2026 में राजस्थान की एक ग्राम पंचायत को पूर्णतः जैविक प्रमाणित किया गया, सिक्किम की घोषणा के दस वर्ष बाद। भारत में जैविक प्रमाणन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The National Programme for Organic Production is run by the Ministry of Agriculture and Farmers' Welfare.",
    "Produce certified under the Participatory Guarantee System (PGS-India) can be exported as certified organic.",
-   "Kerala was the first State to be declared fully organic."],
+   "Sikkim was declared India's first fully organic State in 2003."],
   ["जैविक उत्पादन का राष्ट्रीय कार्यक्रम कृषि और किसान कल्याण मंत्रालय चलाता है।",
    "सहभागी गारंटी प्रणाली (पीजीएस-इंडिया) के अंतर्गत प्रमाणित उपज को प्रमाणित जैविक के रूप में निर्यात किया जा सकता है।",
-   "केरल पूर्णतः जैविक घोषित होने वाला पहला राज्य था।"],
+   "सिक्किम को 2003 में भारत का पहला पूर्णतः जैविक राज्य घोषित किया गया।"],
   C3, 3,
   "None of the statements is correct. India runs two systems. The National Programme for Organic Production, begun in 2001, belongs to the Ministry of Commerce and Industry, with APEDA as its secretariat; it uses third-party certification by accredited bodies and is recognised by importing markets, so it is the route for exports. PGS-India, run by the Ministry of Agriculture and Farmers' Welfare, is a cheaper peer-review system in which local groups of farmers certify one another; it is meant for the domestic market and its produce cannot be exported as certified organic. "
-  "Sikkim was declared India's first fully organic State in January 2016, which is why the 2026 certification was measured against its ten-year mark.",
+  "Sikkim resolved in 2003 to go organic but was declared India's first fully organic State only in January 2016, after phasing out chemical inputs -- which is why the 2026 certification was measured against its ten-year mark.",
   "कोई भी कथन सही नहीं है। भारत दो प्रणालियाँ चलाता है। 2001 में शुरू हुआ जैविक उत्पादन का राष्ट्रीय कार्यक्रम वाणिज्य और उद्योग मंत्रालय का है, जिसका सचिवालय एपीडा है; यह मान्यता-प्राप्त निकायों द्वारा तृतीय-पक्ष प्रमाणन अपनाता है और आयातक बाज़ार इसे मान्यता देते हैं, इसलिए निर्यात का यही मार्ग है। कृषि और किसान कल्याण मंत्रालय की पीजीएस-इंडिया एक सस्ती सहकर्मी-समीक्षा प्रणाली है जिसमें किसानों के स्थानीय समूह एक-दूसरे को प्रमाणित करते हैं; यह घरेलू बाज़ार के लिए है और इसकी उपज प्रमाणित जैविक के रूप में निर्यात नहीं की जा सकती। "
-  "सिक्किम जनवरी 2016 में भारत का पहला पूर्णतः जैविक राज्य घोषित हुआ, इसीलिए 2026 के प्रमाणन को उसके दस वर्ष के पड़ाव से जोड़कर देखा गया।",
+  "सिक्किम ने 2003 में जैविक बनने का संकल्प लिया, पर रासायनिक आदानों को चरणबद्ध रूप से हटाने के बाद उसे जनवरी 2016 में ही भारत का पहला पूर्णतः जैविक राज्य घोषित किया गया -- इसीलिए 2026 के प्रमाणन को उसके दस वर्ष के पड़ाव से जोड़कर देखा गया।",
   "Ministry of Commerce and Industry (APEDA), National Programme for Organic Production; Ministry of Agriculture and Farmers' Welfare, PGS-India operational manual; Government of Sikkim, State Organic Mission.",
   "ca-t1-ca-organic-npop-pgs-sikkim", craft="precision")
 
@@ -556,6 +555,10 @@ S(DF, "medium", "In February 2026 the Assam Rifles inducted two indigenous dog b
   "Ministry of Home Affairs, annual report (Assam Rifles and border guarding forces); Assam Rifles Act, 2006.",
   "ca-t1-ca-assam-rifles-dual-control", craft="precision")
 
-for r in d.ROWS:
-    r["question_data"]["ca_window"] = "2026-Q1"
-write("ca_t1_a.sql")
+# Rows renamed in the 2026-shape revision of 2026-10-27 (new concept id: old)
+RENAMED = {
+          "ca-t1-ca-reports-not-correctly-matched": "ca-t1-ca-reports-wef-ti-eiu-ilo",
+          "ca-t1-ca-ai-summit-series-hosts": "ca-t1-ca-ai-impact-summit-sutras-declaration",
+          "ca-t1-ca-lwe-state-police-si3": "ca-t1-ca-lwe-deadline-cobra-uapa",
+          "ca-t1-ca-pakistan-27th-amendment-fcc-cdf-immunity": "ca-t1-ca-pakistan-27th-amendment-india-cds"}
+finish("ca_t1_a.sql", FORMAT, "2026-Q1", update="--update" in sys.argv, replaces=RENAMED)
