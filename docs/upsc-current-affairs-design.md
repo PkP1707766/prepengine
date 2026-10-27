@@ -97,3 +97,11 @@ After applying the update, check that:
 - **Cues travel between items.** A figure in one stem (41 per cent) or a fact in one statement can answer another item's statement. Read the cue scan pair by pair.
 - **Easy items are under-supplied.** Writers drift to medium and hard. Aim for about 15 easy items, which should be true current-affairs recall with a clean trap.
 - **The bank is saturated on core economics.** It already covers effective capital expenditure, PMI, the impossible trinity, supply shocks and SIDBI. Search before drafting (`bank_find.py`), and prefer the window's own new numbers: a new threshold, a new series, a new list.
+
+## 6. Lessons from CA 2
+
+- **Truth leaks by count, too.** Reordering spreads the true statements across positions, but not across counts. In CA 2's first draft, 62 of 67 three-statement items had exactly two true statements, so "1, 2 and 3" and the single-statement codes could be ruled out blind. Twenty-six items were rewritten, in both languages, to 6 with none true, 19 with one, 24 with two and 18 with all three; CA 1 had 7, 22, 20 and 16. `ca_check` now prints "true statements per item": read it before `ca_plan`.
+- **Statement-relationship keys bunch as well.** Four of the five SI items were first keyed "both correct, II explains I". Vary them: CA 2 ended with two of that key, and one each of "II does not explain", "I correct, II incorrect" and "I incorrect, II correct".
+- **A negative MCQ's explanation must not name an option's position.** `M()` moves the key to its `POS`, so "the first statement is wrong" can end up pointing at the wrong option. Name the statement by what it says.
+- **An item's stem can answer another item's statement.** A "Home Minister launched" stem, next to an item asking which ministry the NCRB is under, was a cue; the stem now says "the Centre".
+- **A published paper keeps its order.** `upsc_series_setup.py` reads `ca_tN_order.txt` (one question id per line, written from the database after publishing) when it exists. Without it, a paper whose rows are revised, as CA 1's were, would be re-arranged in the setup file, although the database guard leaves the live order alone.

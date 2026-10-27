@@ -1,0 +1,132 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 2 (April to June 2026) -- part D: Environment & Ecology.
+
+Environment in the news in April-June 2026: India's 99th and 100th Ramsar sites, Odisha's Marine Spatial Plan, a
+resident population of barn swallows in the Imphal valley, the Plastic Waste Management (Amendment) Rules, 2026, the
+move to finalise the Western Ghats Ecologically Sensitive Areas, India's withdrawal of its offer to host COP33, and
+Kerala's oil spill contingency plan. Every fact was searched in the whole UPSC bank and is one no row tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t2_format import FORMAT, POS
+
+d.SUBJECT = "Environment & Ecology"
+d.REQUIRE_CRAFT = True
+PA, IC, CM = "Protected Areas & Wildlife Protection", "International Conventions & Organisations", "Climate Science & Mitigation"
+CA, FF, EP = "Climate Agreements & Carbon Markets", "Flora, Fungi & Forests", "Ecosystems & Ecological Processes"
+PO = "Pollution & Waste Management"
+
+S(PA, "medium", "On World Environment Day, 5 June 2026, India announced its 100th Ramsar site. Consider the following statements:",
+  "विश्व पर्यावरण दिवस, 5 जून 2026 को भारत ने अपने 100वें रामसर स्थल की घोषणा की। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The 100th site is the Jai Prakash Narayan Bird Sanctuary, at Surha Tal in Ballia district of Uttar Pradesh.",
+   "Surha Tal is an oxbow lake left behind by the meandering of the Ganga.",
+   "Shekha Jheel, designated as the 99th site a few weeks earlier, is a brackish lagoon on the Gujarat coast."],
+  ["100वाँ स्थल उत्तर प्रदेश के बलिया ज़िले में सुरहा ताल स्थित जयप्रकाश नारायण पक्षी अभयारण्य है।",
+   "सुरहा ताल गंगा के घुमावदार प्रवाह से पीछे छूटी एक गोखुर झील है।",
+   "कुछ सप्ताह पहले 99वें स्थल के रूप में घोषित शेखा झील गुजरात तट पर एक खारे पानी का लैगून है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Surha Tal, about 17 km north of Ballia near the left bank of the Ganga, is an oval oxbow lake cut off as the river shifted its course; seasonal streams feed it, and the Katehar nala links it to the Ganga, its flow reversing when the river is in high flood. Declared a bird sanctuary by Uttar Pradesh in 1991 and named after Jayaprakash Narayan, who was born nearby, it supports fisheries and winter migratory birds. "
+  "Statement 3 is wrong: Shekha Jheel, designated in April 2026, is a perennial freshwater wetland in Aligarh district of Uttar Pradesh, near the Upper Ganga Canal, and is a stopover on the Central Asian Flyway -- so both the 99th and the 100th sites are inland wetlands of the Ganga plain.",
+  "कथन 1 और 2 सही हैं। बलिया से लगभग 17 किमी उत्तर में गंगा के बाएँ तट के पास स्थित सुरहा ताल एक अंडाकार गोखुर झील है, जो नदी के मार्ग बदलने से कट गई; मौसमी धाराएँ इसे भरती हैं, और कटहर नाला इसे गंगा से जोड़ता है, जिसका प्रवाह नदी में भारी बाढ़ के समय उलट जाता है। 1991 में उत्तर प्रदेश द्वारा पक्षी अभयारण्य घोषित और पास ही जन्मे जयप्रकाश नारायण के नाम पर रखा गया यह स्थल मत्स्य पालन और शीतकालीन प्रवासी पक्षियों को सहारा देता है। "
+  "कथन 3 ग़लत है: अप्रैल 2026 में घोषित शेखा झील उत्तर प्रदेश के अलीगढ़ ज़िले में ऊपरी गंगा नहर के पास एक बारहमासी मीठे पानी की आर्द्रभूमि है, और मध्य एशियाई उड़ान-मार्ग पर एक पड़ाव है -- इसलिए 99वाँ और 100वाँ, दोनों स्थल गंगा के मैदान की अंतर्देशीय आर्द्रभूमियाँ हैं।",
+  "Ministry of Environment, Forest and Climate Change and PIB, India's 99th and 100th Ramsar sites (April and June 2026); Ramsar Convention Secretariat, Ramsar Sites Information Service.",
+  "ca-t2-env-ramsar-100-surha-tal-shekha-jheel", craft="precision")
+
+S(EP, "medium", "In April 2026 Odisha became the first State to begin preparing a Marine Spatial Plan for its coastal waters. Consider the following statements:",
+  "अप्रैल 2026 में ओडिशा अपने तटीय जल के लिए समुद्री स्थानिक योजना तैयार करना शुरू करने वाला पहला राज्य बना। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Marine spatial planning maps a sea area and allots zones to uses such as fishing, tourism, shipping and conservation.",
+   "Odisha's plan is being prepared by the Indian National Centre for Ocean Information Services.",
+   "The first phase of such planning in India, under an initiative with Norway, covered Puducherry and Lakshadweep."],
+  ["समुद्री स्थानिक योजना किसी समुद्री क्षेत्र का मानचित्रण कर मत्स्यन, पर्यटन, नौवहन और संरक्षण जैसे उपयोगों के लिए क्षेत्र निर्धारित करती है।",
+   "ओडिशा की योजना भारतीय राष्ट्रीय महासागर सूचना सेवा केंद्र तैयार कर रहा है।",
+   "भारत में ऐसी योजना का पहला चरण, नॉर्वे के साथ एक पहल के अंतर्गत, पुदुचेरी और लक्षद्वीप में हुआ।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. Marine spatial planning is a data-led way of reducing conflict between uses of the sea -- fishing, aquaculture, tourism, shipping, energy and conservation -- by mapping waters, seabeds and habitats and setting zones for each. India's work began in 2019 under the India-Norway Integrated Ocean Management and Research Initiative, whose first phase prepared frameworks for the Union Territories of Puducherry and Lakshadweep. "
+  "Statement 2 is wrong: Odisha signed a memorandum of understanding with the National Centre for Coastal Research, under the Ministry of Earth Sciences, whose studies of water quality and of seagrass and seaweed beds are to identify zones for fisheries, aquaculture, tourism and protection along a coast that holds Chilika, Bhitarkanika and the Gahirmatha turtle beaches.",
+  "कथन 1 और 3 सही हैं। समुद्री स्थानिक योजना समुद्र के उपयोगों -- मत्स्यन, जलकृषि, पर्यटन, नौवहन, ऊर्जा और संरक्षण -- के बीच टकराव कम करने का आँकड़ों पर आधारित तरीक़ा है, जिसमें जल, समुद्र-तल और आवासों का मानचित्रण कर हर उपयोग के लिए क्षेत्र तय होते हैं। भारत में यह कार्य 2019 में भारत-नॉर्वे एकीकृत महासागर प्रबंधन और अनुसंधान पहल के अंतर्गत शुरू हुआ, जिसके पहले चरण ने केंद्रशासित प्रदेशों पुदुचेरी और लक्षद्वीप के लिए ढाँचे तैयार किए। "
+  "कथन 2 ग़लत है: ओडिशा ने पृथ्वी विज्ञान मंत्रालय के अधीन राष्ट्रीय तटीय अनुसंधान केंद्र के साथ समझौता ज्ञापन किया, जिसके जल-गुणवत्ता और समुद्री घास तथा समुद्री शैवाल के अध्ययन चिल्का, भितरकनिका और गहिरमाथा के कछुआ-तटों वाले तट पर मत्स्यन, जलकृषि, पर्यटन और संरक्षण के क्षेत्र पहचानेंगे।",
+  "Ministry of Earth Sciences, National Centre for Coastal Research, marine spatial planning under the India-Norway Integrated Ocean Management and Research Initiative; Government of Odisha, MoU on the Marine Spatial Plan (April 2026).",
+  "ca-t2-env-odisha-marine-spatial-plan-nccr", craft="precision")
+
+S(EP, "medium", "A study published in 2026 recorded a population of barn swallows that lives and breeds all year round in the Imphal valley of Manipur. Consider the following statements:",
+  "2026 में प्रकाशित एक अध्ययन ने मणिपुर की इंफाल घाटी में पूरे वर्ष रहने और प्रजनन करने वाली अबाबीलों (बार्न स्वैलो) की एक आबादी दर्ज की। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The barn swallow is otherwise known as a long-distance migrant that breeds in the northern hemisphere and winters far to the south.",
+   "The study was carried out by researchers of the Wildlife Institute of India, who marked the birds with colour rings.",
+   "The birds build cup-shaped nests of mud on houses and other human structures."],
+  ["बार्न स्वैलो अन्यथा एक लंबी दूरी का प्रवासी माना जाता है जो उत्तरी गोलार्ध में प्रजनन करता है और सर्दियाँ बहुत दक्षिण में बिताता है।",
+   "यह अध्ययन भारतीय वन्यजीव संस्थान के शोधकर्ताओं ने किया, जिन्होंने पक्षियों को रंगीन छल्लों से चिह्नित किया।",
+   "ये पक्षी घरों और अन्य मानव-निर्मित संरचनाओं पर मिट्टी के प्याले जैसे घोंसले बनाते हैं।"],
+  C3, 2,
+  "All three statements are correct. The barn swallow, the most widespread swallow in the world, breeds across Europe, Asia and North America and migrates to Africa, southern Asia and South America for the winter; in India it is mainly a winter visitor, with breeding populations in the Himalaya. Researchers of the Wildlife Institute of India surveyed the Imphal valley in 2022 and 2023, ringed birds with colours, and found adults at their nest sites in both the breeding and the non-breeding season -- the first record of a resident breeding population there. "
+  "The swallows build their mud cups under the eaves of houses, shops and other buildings across the valley; the authors link the change to a mild climate, plentiful flying insects and urban structures, and to land-use and climate change.",
+  "तीनों कथन सही हैं। विश्व की सबसे व्यापक अबाबील, बार्न स्वैलो, यूरोप, एशिया और उत्तरी अमेरिका में प्रजनन करती है और सर्दियों के लिए अफ़्रीका, दक्षिणी एशिया और दक्षिण अमेरिका जाती है; भारत में यह मुख्यतः शीतकालीन आगंतुक है, जिसकी प्रजनन करने वाली आबादियाँ हिमालय में हैं। भारतीय वन्यजीव संस्थान के शोधकर्ताओं ने 2022 और 2023 में इंफाल घाटी का सर्वेक्षण किया, पक्षियों को रंगीन छल्ले पहनाए, और वयस्कों को प्रजनन और ग़ैर-प्रजनन, दोनों मौसमों में घोंसलों पर पाया -- वहाँ प्रजनन करने वाली स्थायी आबादी का पहला अभिलेख। "
+  "अबाबीलें घाटी भर में घरों, दुकानों और अन्य इमारतों के छज्जों के नीचे मिट्टी के प्याले बनाती हैं; लेखक इस बदलाव को सौम्य जलवायु, उड़ने वाले कीटों की प्रचुरता और शहरी संरचनाओं तथा भूमि-उपयोग और जलवायु परिवर्तन से जोड़ते हैं।",
+  "Wildlife Institute of India, natural history note on a resident breeding population of the barn swallow in the Imphal valley (2026); NCERT, Biology (Class XII), Chapter 11 (Organisms and Populations), on adaptation.",
+  "ca-t2-env-barn-swallow-imphal-resident-wii", craft="inference")
+
+S(PO, "medium", "The Plastic Waste Management (Amendment) Rules, 2026 were notified on 31 March 2026. Consider the following statements:",
+  "प्लास्टिक अपशिष्ट प्रबंधन (संशोधन) नियम, 2026 को 31 मार्च 2026 को अधिसूचित किया गया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A producer that falls short of its recycling target for 2025-26 may make up the shortfall over the following three years instead of being penalised at once.",
+   "The obligation to use a minimum share of recycled plastic in rigid packaging has been retained."],
+  ["2025-26 के अपने पुनर्चक्रण लक्ष्य से चूकने वाला उत्पादक तुरंत दंडित होने के बजाय अगले तीन वर्षों में कमी पूरी कर सकता है।",
+   "कठोर पैकेजिंग में पुनर्चक्रित प्लास्टिक का न्यूनतम हिस्सा उपयोग करने का दायित्व बनाए रखा गया है।"],
+  T2, 2,
+  "Both statements are correct. The amendment to the Plastic Waste Management Rules, 2016 eases compliance with Extended Producer Responsibility: a shortfall against the 2025-26 recycling target can be carried forward for up to three years from 2026-27, with at least a third cleared each year, rather than drawing environmental compensation at once. "
+  "It keeps the targets for recycled content -- the share of recycled plastic that brand owners must use in their packaging, highest for rigid plastics -- and the reuse targets for rigid packaging. Critics argue that reliance on self-reported data and a broad view of what counts as recycling may weaken the system.",
+  "दोनों कथन सही हैं। प्लास्टिक अपशिष्ट प्रबंधन नियम, 2016 का यह संशोधन विस्तारित उत्पादक दायित्व के अनुपालन को आसान बनाता है: 2025-26 के पुनर्चक्रण लक्ष्य की कमी को तुरंत पर्यावरणीय क्षतिपूर्ति लगाने के बजाय 2026-27 से तीन वर्षों तक आगे ले जाया जा सकता है, हर वर्ष कम से कम एक-तिहाई पूरी करते हुए। "
+  "यह पुनर्चक्रित सामग्री के लक्ष्य -- पुनर्चक्रित प्लास्टिक का वह हिस्सा जिसे ब्रांड स्वामियों को अपनी पैकेजिंग में उपयोग करना होता है, कठोर प्लास्टिक के लिए सबसे अधिक -- और कठोर पैकेजिंग के पुनः उपयोग के लक्ष्य बनाए रखता है। आलोचकों का तर्क है कि स्व-घोषित आँकड़ों पर निर्भरता और पुनर्चक्रण की व्यापक परिभाषा व्यवस्था को कमज़ोर कर सकती है।",
+  "Ministry of Environment, Forest and Climate Change, Plastic Waste Management (Amendment) Rules, 2026, G.S.R. 237(E) (31 March 2026); Central Pollution Control Board, guidelines on Extended Producer Responsibility for plastic packaging.",
+  "ca-t2-env-pwm-amendment-2026-epr-carry-forward", craft="precision")
+
+S(FF, "hard", "In June 2026 the Centre was reported to be preparing to finalise the notification of Ecologically Sensitive Areas (ESAs) in the Western Ghats. Consider the following statements:",
+  "जून 2026 में बताया गया कि केंद्र पश्चिमी घाट में पारिस्थितिक रूप से संवेदनशील क्षेत्रों (ईएसए) की अधिसूचना को अंतिम रूप देने की तैयारी कर रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["ESAs are notified by the State Governments under the Wild Life (Protection) Act, 1972.",
+   "The draft notifications have proposed an ESA of about 56,800 sq km spread over six States.",
+   "Among the six States, Kerala has the largest area proposed as ESA."],
+  ["ईएसए राज्य सरकारों द्वारा वन्यजीव (संरक्षण) अधिनियम, 1972 के अंतर्गत अधिसूचित किए जाते हैं।",
+   "प्रारूप अधिसूचनाओं ने छह राज्यों में फैले लगभग 56,800 वर्ग किमी के ईएसए का प्रस्ताव किया है।",
+   "छह राज्यों में ईएसए के रूप में प्रस्तावित सबसे बड़ा क्षेत्र केरल का है।"],
+  C3, 0,
+  "Only statement 2 is correct. Statement 1 is wrong: unlike sanctuaries, usually declared by State Governments under the Wild Life (Protection) Act, 1972, ESAs are notified by the Central Government under section 3 of the Environment (Protection) Act, 1986, read with rule 5 of the Environment (Protection) Rules, to bar or regulate damaging activities -- mining, quarrying, the most polluting industries and large townships -- while ordinary life and farming continue. Following the High-Level Working Group of 2013, which proposed treating about 37 per cent of the Ghats as ecologically sensitive, the Centre has issued a string of draft notifications, the sixth of July 2024 covering about 56,826 sq km in Gujarat, Maharashtra, Goa, Karnataka, Kerala and Tamil Nadu; each draft has lapsed amid disputes with the States over which villages to include. "
+  "Statement 3 is wrong: Karnataka has the largest share in the drafts, about 20,668 sq km, followed by Maharashtra, about 17,340 sq km; Kerala's share is about 9,994 sq km.",
+  "केवल कथन 2 सही है। कथन 1 ग़लत है: प्रायः राज्य सरकारों द्वारा वन्यजीव (संरक्षण) अधिनियम, 1972 के अंतर्गत घोषित अभयारण्यों के विपरीत, ईएसए केंद्र सरकार द्वारा पर्यावरण (संरक्षण) अधिनियम, 1986 की धारा 3 और पर्यावरण (संरक्षण) नियमों के नियम 5 के अंतर्गत अधिसूचित होते हैं, ताकि हानिकारक गतिविधियों -- खनन, उत्खनन, सबसे प्रदूषणकारी उद्योगों और बड़ी टाउनशिप -- पर रोक या नियंत्रण हो, जबकि सामान्य जीवन और खेती चलती रहे। घाट के लगभग 37 प्रतिशत भाग को पारिस्थितिक रूप से संवेदनशील मानने का प्रस्ताव करने वाले 2013 के उच्च-स्तरीय कार्य समूह के बाद केंद्र ने कई प्रारूप अधिसूचनाएँ जारी की हैं, जिनमें जुलाई 2024 की छठी अधिसूचना गुजरात, महाराष्ट्र, गोवा, कर्नाटक, केरल और तमिलनाडु में लगभग 56,826 वर्ग किमी को समेटती थी; हर प्रारूप इस पर राज्यों से विवाद के बीच व्यपगत हो गया कि कौन-से गाँव शामिल हों। "
+  "कथन 3 ग़लत है: प्रारूपों में सबसे बड़ा हिस्सा कर्नाटक का है, लगभग 20,668 वर्ग किमी, फिर महाराष्ट्र का, लगभग 17,340 वर्ग किमी; केरल का हिस्सा लगभग 9,994 वर्ग किमी है।",
+  "Ministry of Environment, Forest and Climate Change, draft notifications on the Western Ghats Ecologically Sensitive Area (sixth draft, July 2024); Environment (Protection) Act, 1986, section 3, and Environment (Protection) Rules, 1986, rule 5.",
+  "ca-t2-env-western-ghats-esa-56800-karnataka", craft="precision")
+
+S(CA, "medium", "In April 2026 India withdrew its offer to host the 33rd Conference of the Parties (COP33) to the UN climate convention in 2028. Consider the following statements:",
+  "अप्रैल 2026 में भारत ने 2028 में संयुक्त राष्ट्र जलवायु अभिसमय के पक्षकारों के 33वें सम्मेलन (कॉप33) की मेज़बानी का अपना प्रस्ताव वापस ले लिया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["India had made the offer at COP28 in Dubai in 2023.",
+   "COP32, in 2027, is to be held in Brazil.",
+   "COP33 remains with the Asia-Pacific group, which must now put forward another host."],
+  ["भारत ने यह प्रस्ताव 2023 में दुबई में कॉप28 में रखा था।",
+   "2027 का कॉप32 ब्राज़ील में होना है।",
+   "कॉप33 एशिया-प्रशांत समूह के पास ही रहता है, जिसे अब कोई दूसरा मेज़बान प्रस्तावित करना होगा।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. The Prime Minister offered at COP28 in Dubai in December 2023 to host COP33 in 2028; in April 2026 Indian officials informed other countries that the offer was being withdrawn after a review of the country's commitments for that year, without a public statement of reasons. The turn to host passes among the UN's regional groups, so COP33 stays with the Asia-Pacific group, which has to agree on a replacement; the Republic of Korea has shown interest. "
+  "Statement 2 is wrong: Brazil hosted COP30, at Belém, in 2025. COP32, in 2027, is to be hosted by Ethiopia, at Addis Ababa, for the African group.",
+  "कथन 1 और 3 सही हैं। प्रधानमंत्री ने दिसंबर 2023 में दुबई में कॉप28 में 2028 के कॉप33 की मेज़बानी का प्रस्ताव रखा था; अप्रैल 2026 में भारतीय अधिकारियों ने अन्य देशों को सूचित किया कि उस वर्ष की देश की प्रतिबद्धताओं की समीक्षा के बाद प्रस्ताव वापस लिया जा रहा है, कारणों का कोई सार्वजनिक बयान दिए बिना। मेज़बानी की बारी संयुक्त राष्ट्र के क्षेत्रीय समूहों के बीच चलती है, इसलिए कॉप33 एशिया-प्रशांत समूह के पास रहता है, जिसे किसी दूसरे मेज़बान पर सहमत होना है; कोरिया गणराज्य ने रुचि दिखाई है। "
+  "कथन 2 ग़लत है: ब्राज़ील ने 2025 में बेलेम में कॉप30 की मेज़बानी की। 2027 के कॉप32 की मेज़बानी अफ़्रीकी समूह की ओर से इथियोपिया, अदीस अबाबा में, करेगा।",
+  "United Nations Framework Convention on Climate Change, hosts of future sessions of the COP; Ministry of Environment, Forest and Climate Change, India at COP28 (December 2023).",
+  "ca-t2-env-cop33-offer-withdrawn-cop32-ethiopia", craft="precision")
+
+S(PO, "hard", "In May 2026 Kerala finalised a draft Oil Spill Contingency Plan for its 590-km coastline. Consider the following statements:",
+  "मई 2026 में केरल ने अपनी 590 किमी लंबी तटरेखा के लिए तेल-रिसाव आकस्मिक योजना का प्रारूप अंतिम किया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The plan was prompted by two shipping accidents off the Kerala coast in 2025, including the sinking of the container ship MSC Elsa 3.",
+   "State plans of this kind are prepared within the framework of the National Oil Spill Disaster Contingency Plan.",
+   "Cleaning up oil that reaches the shoreline is the responsibility of the coastal State governments."],
+  ["यह योजना 2025 में केरल तट के पास दो नौवहन दुर्घटनाओं से प्रेरित थी, जिनमें कंटेनर जहाज़ एमएससी एल्सा 3 का डूबना शामिल था।",
+   "इस प्रकार की राज्य योजनाएँ राष्ट्रीय तेल-रिसाव आपदा आकस्मिक योजना के ढाँचे के भीतर तैयार की जाती हैं।",
+   "तट तक पहुँचे तेल की सफ़ाई तटीय राज्य सरकारों का दायित्व है।"],
+  C3, 2,
+  "All three statements are correct. The sinking of the Liberian-flagged MSC Elsa 3 off Kochi in May 2025, with containers and fuel oil on board, and the fire on the container ship Wan Hai 503 in June 2025 exposed the State's coast, fisheries and mangroves; Kerala's State Pollution Control Board drew up a plan with sensitivity maps of the coast and placed it before the National Green Tribunal. "
+  "Under the national plan the Indian Coast Guard leads the response at sea, but clearing oil that comes ashore is the job of the coastal State governments, which is why each needs its own contingency plan, approved by the Coast Guard, with clear lines of command for shoreline clean-up.",
+  "तीनों कथन सही हैं। मई 2025 में ईंधन तेल और कंटेनर लिए लाइबेरिया-ध्वज वाले एमएससी एल्सा 3 के कोच्चि के पास डूबने और जून 2025 में कंटेनर जहाज़ वान हाई 503 में लगी आग ने राज्य के तट, मत्स्य संसाधनों और मैंग्रोव को जोखिम में डाला; केरल राज्य प्रदूषण नियंत्रण बोर्ड ने तट के संवेदनशीलता मानचित्रों के साथ एक योजना बनाई और उसे राष्ट्रीय हरित अधिकरण के समक्ष रखा। "
+  "राष्ट्रीय योजना के अंतर्गत समुद्र में प्रतिक्रिया का नेतृत्व भारतीय तटरक्षक बल करता है, पर तट पर आए तेल की सफ़ाई तटीय राज्य सरकारों का काम है, इसीलिए हर राज्य को तट की सफ़ाई के लिए स्पष्ट कमान-शृंखला वाली अपनी आकस्मिक योजना चाहिए, जिसे तटरक्षक बल स्वीकृत करता है।",
+  "Indian Coast Guard, National Oil Spill Disaster Contingency Plan; Kerala State Pollution Control Board, draft Oil Spill Contingency Plan before the National Green Tribunal (April-May 2026).",
+  "ca-t2-env-kerala-oil-spill-plan-shoreline-states", craft="application")
+
+finish("ca_t2_d.sql", FORMAT, "2026-Q2", update="--update" in sys.argv)

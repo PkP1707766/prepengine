@@ -231,7 +231,15 @@ CA_DESC = [
     "the anniversaries of the quarter, from Somnath (1026) to Startup India (2016). Sources: PIB and the ministries, "
     "the Constitution and Acts, the RBI and NSO, the UN bodies; NCERT for the static background. "
     "100 questions · 200 marks · 2 hours · +2 / -0.66.",
-    "", "", "", ""]   # Tests 2-5 get their syllabus when their rows are written
+    "Current affairs of April to June 2026, each question set against the static syllabus it points to: the State "
+    "elections and Assam's redrawn constituencies, the Supreme Court's strength and the 131st Amendment Bill, Jan "
+    "Vishwas 2026 and the new IIP series; the US-Iran memorandum, the G7 at Evian, the UN elections and the Indus "
+    "Waters award; the new service chiefs, DRDO's tests and the Navy's inductions; the Prototype Fast Breeder Reactor, "
+    "Artemis II and the Ebola and hantavirus alerts; Ramsar's hundredth site and the Western Ghats; and the "
+    "anniversaries of the quarter, from Panipat (1526) and Haldighati (1576) to Bhoodan (1951) and Doordarshan "
+    "(1976). Sources: PIB and the ministries, the Constitution and Acts, the RBI and NSO, the UN bodies; NCERT for "
+    "the static background. 100 questions · 200 marks · 2 hours · +2 / -0.66.",
+    "", "", ""]   # Tests 3-5 get their syllabus when their rows are written
 
 L1_CSAT_DESC = ("CSAT Paper II at the foundation level, as a one-hour half paper: 17 quantitative-aptitude, 9 logical-reasoning "
                 "and 14 reading-comprehension questions on five passages, in the UPSC order, with a short data-sufficiency block. "
@@ -455,8 +463,15 @@ def main():
             continue
         assert len(rows) == 100, f"Current Affairs Test {i}: {len(rows)} rows"
         bp_ids[("ca", i)] = (uid(f"blueprint/ca/{i}"), "upsc27-ca")
+        frozen = os.path.join(HERE, f"ca_t{i}_order.txt")    # the order a paper was published in, kept when its rows are revised
+        if os.path.exists(frozen):
+            at = {qid: k for k, qid in enumerate(io.open(frozen, encoding="utf-8").read().split())}
+            assert set(at) == {r["id"] for r in rows}, f"Current Affairs Test {i}: {frozen} does not match the bank"
+            rows = sorted(rows, key=lambda r: at[r["id"]])
+        else:
+            rows = arrange(rows, seed=500 + i)
         tests.append(("ca", i, *ca_titles[i], CA_DESC[i - 1], f"{CA_DATES[i - 1]} 09:30:00+05:30",
-                      "General Studies Paper I", "सामान्य अध्ययन प्रश्नपत्र I", arrange(rows, seed=500 + i)))
+                      "General Studies Paper I", "सामान्य अध्ययन प्रश्नपत्र I", rows))
     seen = set()
     for kind, n, title, title_hi, desc, when, sec, sec_hi, rows in tests:
         ids = [r["id"] for r in rows]

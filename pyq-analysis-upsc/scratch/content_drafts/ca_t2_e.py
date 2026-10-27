@@ -1,0 +1,248 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 2 (April to June 2026) -- part E: Science & Technology.
+
+Science in the news in April-June 2026: the first criticality of the Prototype Fast Breeder Reactor, forty years of
+Chernobyl, Artemis II, the Andes-virus cluster on a cruise ship, the Bundibugyo Ebola emergency, the renaming of
+PCOS, the quantum reference facilities at Amaravati, the Cell Broadcast Alert System, thorium as a fuel, plans for an
+orbital data centre, the SMILE mission, the RAS-inhibitor trial in pancreatic cancer, India's fungal disease burden
+and the pathogen-sharing annex of the Pandemic Agreement. Every fact was searched in the whole UPSC bank and is one
+no row tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t2_format import FORMAT, POS
+
+d.SUBJECT = "Science & Technology"
+d.REQUIRE_CRAFT = True
+SP, AS, BH = "Space Technology & Missions", "Astronomy & Earth Science", "Biology, Health & Biotechnology"
+EN, IT = "Energy & Environmental Technology", "IT, Communication & Emerging Technologies"
+
+S(EN, "hard", "On 6 April 2026 the Prototype Fast Breeder Reactor at Kalpakkam attained first criticality. Consider the following statements:",
+  "6 अप्रैल 2026 को कलपक्कम के प्रोटोटाइप फ़ास्ट ब्रीडर रिएक्टर ने पहली क्रांतिकता प्राप्त की। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Its fuel is a mixed oxide of uranium and plutonium.",
+   "Its reactor core is cooled by liquid sodium rather than water.",
+   "It is the first fast reactor to operate in India.",
+   "It is designed to produce more fissile material than it consumes."],
+  ["इसका ईंधन यूरेनियम और प्लूटोनियम का मिश्रित ऑक्साइड है।",
+   "इसके रिएक्टर कोर को पानी के बजाय द्रव सोडियम से ठंडा किया जाता है।",
+   "यह भारत में चलने वाला पहला फ़ास्ट रिएक्टर है।",
+   "इसे जितना विखंडनीय पदार्थ यह खपत करता है उससे अधिक उत्पन्न करने के लिए बनाया गया है।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. The 500 MWe reactor, built by Bharatiya Nabhikiya Vidyut Nigam (BHAVINI) to a design of the Indira Gandhi Centre for Atomic Research, burns uranium-plutonium mixed oxide fuel. Its fast neutrons must not be slowed, so it has no moderator and is cooled by liquid sodium, which carries heat away well without moderating neutrons. A blanket of uranium-238 around the core captures neutrons and turns into plutonium-239, so the reactor breeds more fissile fuel than it burns -- the heart of the second stage of India's nuclear programme. "
+  "Statement 3 is wrong: the Fast Breeder Test Reactor at the same site has run since 1985, and the experience gained there went into the PFBR's design. The Atomic Energy Regulatory Board cleared the first approach to criticality, and the reactor is to be raised to full power in stages.",
+  "कथन 1, 2 और 4 सही हैं। भारतीय नाभिकीय विद्युत निगम (भाविनी) द्वारा इंदिरा गांधी परमाणु अनुसंधान केंद्र के डिज़ाइन पर बना 500 मेगावाट (विद्युत) का यह रिएक्टर यूरेनियम-प्लूटोनियम मिश्रित ऑक्साइड ईंधन जलाता है। इसके तीव्र न्यूट्रॉनों को धीमा नहीं होना चाहिए, इसलिए इसमें कोई मंदक नहीं है और इसे द्रव सोडियम से ठंडा किया जाता है, जो न्यूट्रॉनों को मंद किए बिना ऊष्मा अच्छी तरह ले जाता है। कोर के चारों ओर यूरेनियम-238 का आवरण न्यूट्रॉन पकड़कर प्लूटोनियम-239 में बदलता है, इसलिए रिएक्टर जितना विखंडनीय ईंधन जलाता है उससे अधिक बनाता है -- भारत के परमाणु कार्यक्रम के दूसरे चरण का मूल। "
+  "कथन 3 ग़लत है: उसी स्थल पर फ़ास्ट ब्रीडर टेस्ट रिएक्टर 1985 से चल रहा है, और वहाँ के अनुभव का उपयोग पीएफ़बीआर के डिज़ाइन में हुआ। परमाणु ऊर्जा नियामक बोर्ड ने क्रांतिकता की ओर पहले क़दम की अनुमति दी, और रिएक्टर को चरणों में पूरी क्षमता तक लाया जाना है।",
+  "Department of Atomic Energy and PIB, first criticality of the Prototype Fast Breeder Reactor (April 2026); Indira Gandhi Centre for Atomic Research, Fast Breeder Test Reactor; NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
+  "ca-t2-sci-pfbr-criticality-mox-sodium-fbtr", craft="multi")
+
+S(EN, "medium", "26 April 2026 marked forty years since the accident at the Chernobyl nuclear power plant. Consider the following statements:",
+  "26 अप्रैल 2026 को चेर्नोबिल परमाणु बिजलीघर की दुर्घटना के चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The reactor that exploded was of a Soviet design moderated by graphite and cooled by water.",
+   "The plant lies in present-day Belarus.",
+   "Chernobyl and Fukushima Daiichi are the only two accidents rated at the highest level, 7, on the International Nuclear and Radiological Event Scale."],
+  ["जिस रिएक्टर में विस्फोट हुआ वह ग्रेफ़ाइट से मंदित और पानी से ठंडा किया जाने वाला सोवियत डिज़ाइन का था।",
+   "यह बिजलीघर वर्तमान बेलारूस में है।",
+   "चेर्नोबिल और फ़ुकुशिमा दाइची ही अंतरराष्ट्रीय नाभिकीय और रेडियोलॉजिकल घटना पैमाने के सर्वोच्च स्तर, 7, पर आँकी गई केवल दो दुर्घटनाएँ हैं।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. Unit 4 at Chernobyl was an RBMK reactor, moderated by graphite and cooled by boiling water. During a safety test on 26 April 1986 a power surge, made worse by a design flaw -- steam bubbles in the coolant increased rather than reduced the reaction -- caused explosions and a graphite fire that spread radioactive material across Europe. The International Atomic Energy Agency's scale grades events from 1 to 7, and only Chernobyl and Fukushima Daiichi (2011) have been rated 7, a 'major accident'. "
+  "Statement 2 is wrong: the plant lies in northern Ukraine, near the town of Pripyat and close to the border with Belarus, which received much of the fallout; an exclusion zone of about 30 km still surrounds the site.",
+  "कथन 1 और 3 सही हैं। चेर्नोबिल की इकाई 4 एक आरबीएमके रिएक्टर थी, जो ग्रेफ़ाइट से मंदित और उबलते पानी से ठंडी की जाती थी। 26 अप्रैल 1986 को एक सुरक्षा परीक्षण के दौरान शक्ति में अचानक वृद्धि, जिसे एक डिज़ाइन दोष ने और बिगाड़ा -- शीतलक में भाप के बुलबुले अभिक्रिया को घटाने के बजाय बढ़ाते थे -- से विस्फोट हुए और ग्रेफ़ाइट की आग लगी, जिसने रेडियोधर्मी पदार्थ पूरे यूरोप में फैला दिया। अंतरराष्ट्रीय परमाणु ऊर्जा एजेंसी का पैमाना घटनाओं को 1 से 7 तक श्रेणी देता है, और केवल चेर्नोबिल और फ़ुकुशिमा दाइची (2011) को 7, ‘बड़ी दुर्घटना’, आँका गया है। "
+  "कथन 2 ग़लत है: बिजलीघर उत्तरी यूक्रेन में, प्रिप्यात नगर के पास और बेलारूस की सीमा के निकट है, जिस पर रेडियोधर्मी पतन का बड़ा भाग गिरा; स्थल के चारों ओर लगभग 30 किमी का निषिद्ध क्षेत्र आज भी है।",
+  "International Atomic Energy Agency, the Chernobyl accident and the International Nuclear and Radiological Event Scale (INES); NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
+  "ca-t2-sci-chernobyl-40-rbmk-ines-7", craft="precision")
+
+S(SP, "easy", "In April 2026 the Artemis II mission flew four astronauts around the Moon. Consider the following statements:",
+  "अप्रैल 2026 में आर्टेमिस II मिशन चार अंतरिक्ष यात्रियों को चंद्रमा के चारों ओर ले गया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It flew past the Moon and returned without landing on it.",
+   "Its crew included an astronaut of the Canadian Space Agency.",
+   "Its crew travelled farther from Earth than any humans before, beating the record set by Apollo 13.",
+   "It was the first mission to land astronauts near the Moon's south pole."],
+  ["यह चंद्रमा के पास से गुज़रकर उस पर उतरे बिना लौट आया।",
+   "इसके दल में कनाडाई अंतरिक्ष एजेंसी का एक अंतरिक्ष यात्री था।",
+   "इसके दल ने अपोलो 13 का रिकॉर्ड तोड़ते हुए पृथ्वी से किसी भी पूर्ववर्ती मनुष्य से अधिक दूरी तय की।",
+   "यह अंतरिक्ष यात्रियों को चंद्रमा के दक्षिणी ध्रुव के पास उतारने वाला पहला मिशन था।"],
+  C4, 2,
+  "Statements 1, 2 and 3 are correct. Launched on 1 April 2026 on the Space Launch System, the Orion spacecraft carried NASA's Reid Wiseman, Victor Glover and Christina Koch and Canada's Jeremy Hansen on a free-return path around the far side of the Moon -- the first crewed flight beyond low Earth orbit since Apollo 17 in 1972. On 6 April it passed the record of about 400,171 km from Earth set by Apollo 13 in 1970. "
+  "Statement 4 is wrong: Artemis II tested Orion's life-support and other systems with a crew aboard; landing astronauts near the lunar south pole, where water ice may lie in permanently shadowed craters, is the aim of a later Artemis mission. India signed the Artemis Accords, the US-led principles for the civil exploration of the Moon, in 2023.",
+  "कथन 1, 2 और 3 सही हैं। 1 अप्रैल 2026 को स्पेस लॉन्च सिस्टम से प्रक्षेपित ओरायन अंतरिक्ष यान नासा के रीड वाइज़मैन, विक्टर ग्लोवर और क्रिस्टीना कोच तथा कनाडा के जेरेमी हैनसेन को चंद्रमा के सुदूर भाग के चारों ओर एक मुक्त-वापसी पथ पर ले गया -- 1972 में अपोलो 17 के बाद निम्न भू-कक्षा से आगे की पहली मानवयुक्त उड़ान। 6 अप्रैल को इसने 1970 में अपोलो 13 द्वारा बनाया पृथ्वी से लगभग 4,00,171 किमी का रिकॉर्ड पार किया। "
+  "कथन 4 ग़लत है: आर्टेमिस II ने दल के साथ ओरायन की जीवन-रक्षा और अन्य प्रणालियों का परीक्षण किया; चंद्रमा के दक्षिणी ध्रुव के पास, जहाँ स्थायी रूप से छायादार गड्ढों में जल-हिम हो सकता है, अंतरिक्ष यात्रियों को उतारना बाद के आर्टेमिस मिशन का लक्ष्य है। भारत ने 2023 में आर्टेमिस समझौतों, चंद्रमा के नागरिक अन्वेषण के अमेरिका-नेतृत्व वाले सिद्धांतों, पर हस्ताक्षर किए।",
+  "National Aeronautics and Space Administration, Artemis II mission (April 2026); Ministry of External Affairs, India's signing of the Artemis Accords (June 2023).",
+  "ca-t2-sci-artemis-ii-flyby-apollo-13-record", craft="precision")
+
+S(BH, "medium", "In May 2026 the World Health Organization confirmed that a cluster of severe respiratory illness aboard a cruise ship was caused by the Andes virus. Consider the following statements about hantaviruses:",
+  "मई 2026 में विश्व स्वास्थ्य संगठन ने पुष्टि की कि एक क्रूज़ जहाज़ पर गंभीर श्वसन रोग का एक समूह एंडीज़ वायरस से हुआ था। हंटावायरस के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["They are carried by rodents, and people are usually infected by breathing in particles from rodent urine or droppings.",
+   "No hantavirus is known to spread from person to person.",
+   "They are transmitted mainly by the bite of Aedes mosquitoes."],
+  ["ये कृंतकों द्वारा वाहित होते हैं, और मनुष्य सामान्यतः कृंतकों के मूत्र या मल के कणों को साँस में लेने से संक्रमित होते हैं।",
+   "किसी भी हंटावायरस के व्यक्ति से व्यक्ति में फैलने की जानकारी नहीं है।",
+   "ये मुख्यतः एडीज़ मच्छरों के काटने से फैलते हैं।"],
+  C3, 0,
+  "Only statement 1 is correct. Hantaviruses live in rodents without harming them, and people catch them mostly by inhaling dust contaminated with rodent urine, droppings or saliva. In the Americas they cause hantavirus pulmonary syndrome, which kills a large share of those who fall ill, and in Asia and Europe a haemorrhagic fever with kidney failure. Statement 2 is wrong: the Andes virus of South America is the one exception known to pass between people, through close contact -- which is why the cluster aboard the expedition ship MV Hondius, notified to WHO on 2 May 2026, needed contact tracing in several countries, though WHO judged the wider risk low. "
+  "Statement 3 is wrong: hantaviruses are not spread by mosquitoes; Aedes mosquitoes carry dengue, chikungunya and Zika.",
+  "केवल कथन 1 सही है। हंटावायरस कृंतकों में उन्हें नुक़सान पहुँचाए बिना रहते हैं, और मनुष्य इनसे मुख्यतः कृंतकों के मूत्र, मल या लार से दूषित धूल साँस में लेकर संक्रमित होते हैं। अमेरिका महाद्वीपों में ये हंटावायरस पल्मोनरी सिंड्रोम करते हैं, जो बीमार पड़ने वालों के बड़े हिस्से की जान ले लेता है, और एशिया तथा यूरोप में गुर्दे की विफलता वाला रक्तस्रावी ज्वर। कथन 2 ग़लत है: दक्षिण अमेरिका का एंडीज़ वायरस एकमात्र ज्ञात अपवाद है जो निकट संपर्क से लोगों के बीच फैलता है -- इसीलिए 2 मई 2026 को डब्ल्यूएचओ को सूचित, अभियान-जहाज़ एमवी होंडियस पर हुए समूह के लिए कई देशों में संपर्क-अनुरेखण करना पड़ा, यद्यपि डब्ल्यूएचओ ने व्यापक जोखिम कम आँका। "
+  "कथन 3 ग़लत है: हंटावायरस मच्छरों से नहीं फैलते; एडीज़ मच्छर डेंगू, चिकनगुनिया और ज़ीका फैलाते हैं।",
+  "World Health Organization, Disease Outbreak News on the Andes virus cluster (May 2026) and fact sheet on hantavirus.",
+  "ca-t2-sci-hantavirus-andes-rodents-person-to-person", craft="precision")
+
+S(BH, "hard", "In May 2026 the World Health Organization declared the Ebola outbreak in the Democratic Republic of the Congo a Public Health Emergency of International Concern (PHEIC). Consider the following statements:",
+  "मई 2026 में विश्व स्वास्थ्य संगठन ने कांगो लोकतांत्रिक गणराज्य में इबोला प्रकोप को अंतरराष्ट्रीय चिंता की सार्वजनिक स्वास्थ्य आपात स्थिति (पीएचईआईसी) घोषित किया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The outbreak was caused by the Bundibugyo species of ebolavirus, against which no vaccine had been licensed.",
+   "Ervebo, the vaccine used in earlier Ebola outbreaks, was developed against the Zaire species of the virus.",
+   "Ebola spreads mainly through the air over long distances, as measles does.",
+   "Under the International Health Regulations as amended in 2024, a PHEIC can further be determined to be a 'pandemic emergency'."],
+  ["यह प्रकोप इबोलावायरस की बुंडीबुग्यो प्रजाति से हुआ, जिसके विरुद्ध कोई टीका लाइसेंस प्राप्त नहीं था।",
+   "पिछले इबोला प्रकोपों में प्रयुक्त टीका एर्वेबो वायरस की ज़ायर प्रजाति के विरुद्ध विकसित किया गया था।",
+   "इबोला मुख्यतः खसरे की तरह हवा के माध्यम से लंबी दूरी तक फैलता है।",
+   "2024 में संशोधित अंतरराष्ट्रीय स्वास्थ्य विनियमों के अंतर्गत किसी पीएचईआईसी को आगे ‘महामारी आपात स्थिति’ भी निर्धारित किया जा सकता है।"],
+  C4, 2,
+  "Statements 1, 2 and 4 are correct. Ebola disease is caused by several species of virus of the family Filoviridae; the 2026 outbreak, which also reached Uganda, was of the Bundibugyo species, first identified in Uganda in 2007. Ervebo, a vaccine licensed in 2019, was built against the Zaire species, so its value against Bundibugyo was uncertain and WHO advised using it only within research protocols. Amendments to the International Health Regulations adopted in 2024, in force since 19 September 2025, added the 'pandemic emergency' -- a PHEIC with wide spread, health systems overwhelmed and severe social and economic disruption -- as a higher threshold within the PHEIC framework. "
+  "Statement 3 is wrong: Ebola spreads through direct contact with the blood or body fluids of a sick or dead person, or with contaminated material, not through the air over a distance; that is why safe burials and the protection of health workers are central to controlling it.",
+  "कथन 1, 2 और 4 सही हैं। इबोला रोग फ़िलोविरिडी कुल के वायरस की कई प्रजातियों से होता है; 2026 का प्रकोप, जो युगांडा तक भी पहुँचा, बुंडीबुग्यो प्रजाति का था, जिसकी पहली पहचान 2007 में युगांडा में हुई। 2019 में लाइसेंस प्राप्त टीका एर्वेबो ज़ायर प्रजाति के विरुद्ध बना था, इसलिए बुंडीबुग्यो के विरुद्ध उसका मूल्य अनिश्चित था और डब्ल्यूएचओ ने उसे केवल शोध प्रोटोकॉल के भीतर प्रयोग करने की सलाह दी। 2024 में अपनाए गए और 19 सितंबर 2025 से लागू अंतरराष्ट्रीय स्वास्थ्य विनियमों के संशोधनों ने ‘महामारी आपात स्थिति’ जोड़ी -- व्यापक फैलाव, चरमराई स्वास्थ्य प्रणालियों और गंभीर सामाजिक-आर्थिक व्यवधान वाला पीएचईआईसी -- जो पीएचईआईसी ढाँचे के भीतर एक ऊँची दहलीज़ है। "
+  "कथन 3 ग़लत है: इबोला बीमार या मृत व्यक्ति के रक्त या शारीरिक द्रवों, या दूषित सामग्री, के सीधे संपर्क से फैलता है, दूर तक हवा से नहीं; इसीलिए सुरक्षित अंत्येष्टि और स्वास्थ्यकर्मियों की सुरक्षा इसके नियंत्रण के केंद्र में हैं।",
+  "World Health Organization, statement of the IHR Emergency Committee on the Ebola (Bundibugyo virus disease) outbreak (May 2026) and Ebola fact sheet; WHO, amendments to the International Health Regulations (2005) in force from 19 September 2025.",
+  "ca-t2-sci-ebola-bundibugyo-ervebo-pandemic-emergency", craft="multi")
+
+S(BH, "easy", "In May 2026 polycystic ovary syndrome (PCOS) was renamed after a global consensus process. Consider the following statements:",
+  "मई 2026 में एक वैश्विक सहमति प्रक्रिया के बाद पॉलीसिस्टिक ओवरी सिंड्रोम (पीसीओएस) का नाम बदला गया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Its new name is polyendocrine metabolic ovarian syndrome (PMOS).",
+   "The name was changed because the condition was found to be confined to the ovaries."],
+  ["इसका नया नाम पॉलीएंडोक्राइन मेटाबोलिक ओवेरियन सिंड्रोम (पीएमओएस) है।",
+   "नाम इसलिए बदला गया क्योंकि यह स्थिति केवल अंडाशयों तक सीमित पाई गई।"],
+  T2, 0,
+  "Only statement 1 is correct. The new name, polyendocrine metabolic ovarian syndrome, was set out in a consensus published in The Lancet in May 2026 after a process involving patients and health professionals worldwide, and it is to replace the old name over about three years. "
+  "Statement 2 is wrong: the change was made for the opposite reason. The old name pointed to ovarian 'cysts' that many patients do not have -- the 'cysts' are arrested follicles -- and hid the condition's hormonal and metabolic side: insulin resistance, a higher risk of type 2 diabetes and heart disease, and effects on weight and mood. Affecting roughly one woman of reproductive age in ten, it is one of the commonest endocrine disorders.",
+  "केवल कथन 1 सही है। नया नाम, पॉलीएंडोक्राइन मेटाबोलिक ओवेरियन सिंड्रोम, मई 2026 में द लैंसेट में प्रकाशित एक सहमति में तय हुआ, जो दुनिया भर के रोगियों और स्वास्थ्य पेशेवरों को शामिल करने वाली प्रक्रिया के बाद आई, और यह लगभग तीन वर्षों में पुराने नाम का स्थान लेगा। "
+  "कथन 2 ग़लत है: बदलाव उलटे कारण से हुआ। पुराना नाम अंडाशय की ‘पुटियों’ की ओर इशारा करता था जो अनेक रोगियों में होती ही नहीं -- ये ‘पुटियाँ’ रुके हुए फ़ॉलिकल हैं -- और स्थिति के हार्मोनल और चयापचयी पक्ष को छिपाता था: इंसुलिन प्रतिरोध, टाइप 2 मधुमेह और हृदय रोग का बढ़ा जोखिम, और वज़न तथा मनोदशा पर प्रभाव। प्रजनन आयु की लगभग हर दस में से एक महिला को प्रभावित करने वाला यह सबसे आम अंतःस्रावी विकारों में है।",
+  "The Lancet, international consensus on renaming polycystic ovary syndrome (May 2026); Ministry of Health and Family Welfare, information on PCOS.",
+  "ca-t2-sci-pcos-renamed-pmos-multisystem", craft="precision")
+
+S(IT, "medium", "On World Quantum Day, 14 April 2026, Andhra Pradesh opened quantum reference facilities at Amaravati. Consider the following statements:",
+  "विश्व क्वांटम दिवस, 14 अप्रैल 2026 को आंध्र प्रदेश ने अमरावती में क्वांटम संदर्भ सुविधाएँ खोलीं। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The facilities are meant to let researchers and start-ups test, benchmark and certify quantum hardware and software.",
+   "World Quantum Day falls on 14 April because Max Planck presented his quantum hypothesis on that date.",
+   "Under the National Quantum Mission, the thematic hub for quantum computing has been set up at Amaravati."],
+  ["ये सुविधाएँ शोधकर्ताओं और स्टार्ट-अप को क्वांटम हार्डवेयर और सॉफ़्टवेयर का परीक्षण, मानदंडन और प्रमाणन करने देने के लिए हैं।",
+   "विश्व क्वांटम दिवस 14 अप्रैल को इसलिए होता है क्योंकि मैक्स प्लांक ने उसी तिथि को अपनी क्वांटम परिकल्पना प्रस्तुत की थी।",
+   "राष्ट्रीय क्वांटम मिशन के अंतर्गत क्वांटम कंप्यूटिंग का विषयगत केंद्र अमरावती में स्थापित किया गया है।"],
+  C3, 0,
+  "Only statement 1 is correct. The open-access facilities, set up with technical support from the Tata Institute of Fundamental Research, the Indian Institute of Science and DRDO as part of the State's Amaravati Quantum Valley, are meant to let users from across the country check how quantum devices and software perform. Statement 2 is wrong: World Quantum Day takes its date from Planck's constant, about 4.14 × 10^-15 electron-volt seconds, the quantity that sets the scale of the quantum world; Planck presented his quantum hypothesis in December 1900. "
+  "Statement 3 is wrong: the National Quantum Mission (2023-24 to 2030-31) has four thematic hubs -- quantum computing at IISc Bengaluru, communication at IIT Madras with C-DOT, sensing and metrology at IIT Bombay, and materials and devices at IIT Delhi. The Amaravati facilities are a State initiative aligned with the mission.",
+  "केवल कथन 1 सही है। राज्य की अमरावती क्वांटम वैली के अंग के रूप में टाटा मूलभूत अनुसंधान संस्थान, भारतीय विज्ञान संस्थान और डीआरडीओ के तकनीकी सहयोग से बनी ये खुली-पहुँच सुविधाएँ देश भर के उपयोगकर्ताओं को यह जाँचने देने के लिए हैं कि क्वांटम उपकरण और सॉफ़्टवेयर कैसा प्रदर्शन करते हैं। कथन 2 ग़लत है: विश्व क्वांटम दिवस अपनी तिथि प्लांक नियतांक से लेता है, लगभग 4.14 × 10^-15 इलेक्ट्रॉन-वोल्ट सेकंड, वह राशि जो क्वांटम जगत का पैमाना तय करती है; प्लांक ने अपनी क्वांटम परिकल्पना दिसंबर 1900 में प्रस्तुत की थी। "
+  "कथन 3 ग़लत है: राष्ट्रीय क्वांटम मिशन (2023-24 से 2030-31) के चार विषयगत केंद्र हैं -- क्वांटम कंप्यूटिंग आईआईएससी बेंगलुरु में, संचार आईआईटी मद्रास में सी-डॉट के साथ, संवेदन और मापिकी आईआईटी बॉम्बे में, और पदार्थ तथा उपकरण आईआईटी दिल्ली में। अमरावती की सुविधाएँ मिशन के अनुरूप राज्य की पहल हैं।",
+  "Department of Science and Technology, National Quantum Mission and its thematic hubs; Government of Andhra Pradesh, Quantum Reference Facilities at Amaravati (April 2026).",
+  "ca-t2-sci-quantum-reference-facility-t-hubs", craft="linkage")
+
+S(IT, "medium", "On 2 May 2026 the Centre launched a Cell Broadcast Alert System for warnings of disasters and emergencies. Consider the following statements:",
+  "2 मई 2026 को केंद्र ने आपदाओं और आपात स्थितियों की चेतावनी के लिए सेल ब्रॉडकास्ट अलर्ट सिस्टम शुरू किया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A cell broadcast message reaches only those handsets whose numbers the sender has registered in advance.",
+   "The system was developed by the Indian Space Research Organisation (ISRO).",
+   "Like bulk SMS, cell broadcast messages are delayed when the network is congested."],
+  ["सेल ब्रॉडकास्ट संदेश केवल उन हैंडसेट तक पहुँचता है जिनके नंबर भेजने वाले ने पहले से पंजीकृत किए हों।",
+   "यह प्रणाली भारतीय अंतरिक्ष अनुसंधान संगठन (इसरो) ने विकसित की है।",
+   "थोक एसएमएस की तरह सेल ब्रॉडकास्ट संदेश भी नेटवर्क में भीड़ होने पर देर से पहुँचते हैं।"],
+  C3, 3,
+  "None of the statements is correct. Unlike SMS, which is sent number by number, cell broadcast is a one-to-many service: the alert goes from a central platform to the base stations covering the threatened area, and each tower broadcasts it to all handsets in its range, which show it with a distinct alert tone. Developed by C-DOT with the National Disaster Management Authority, it is delivered through SACHET, the integrated alert system built on the Common Alerting Protocol recommended by the International Telecommunication Union. "
+  "Statement 3 is wrong: because cell broadcast uses a separate broadcast channel rather than individual messages, it is not slowed by the congestion that delays SMS in a disaster, when everyone is calling at once -- the main reason it is preferred for emergency warnings.",
+  "कोई भी कथन सही नहीं है। एसएमएस, जो नंबर-दर-नंबर भेजा जाता है, के विपरीत सेल ब्रॉडकास्ट एक-से-अनेक सेवा है: चेतावनी एक केंद्रीय मंच से ख़तरे वाले क्षेत्र को कवर करने वाले बेस स्टेशनों तक जाती है, और हर टावर उसे अपनी पहुँच के सभी हैंडसेट पर प्रसारित करता है, जो उसे एक अलग चेतावनी-ध्वनि के साथ दिखाते हैं। राष्ट्रीय आपदा प्रबंधन प्राधिकरण के साथ सी-डॉट द्वारा विकसित यह प्रणाली ‘सचेत’ के माध्यम से भेजी जाती है, जो अंतरराष्ट्रीय दूरसंचार संघ द्वारा अनुशंसित कॉमन अलर्टिंग प्रोटोकॉल पर बनी एकीकृत चेतावनी प्रणाली है। "
+  "कथन 3 ग़लत है: चूँकि सेल ब्रॉडकास्ट अलग-अलग संदेशों के बजाय एक पृथक प्रसारण चैनल का उपयोग करता है, आपदा में, जब सब एक साथ फ़ोन कर रहे होते हैं, एसएमएस को देर कराने वाली भीड़ इसे धीमा नहीं करती -- आपात चेतावनियों के लिए इसे प्राथमिकता देने का मुख्य कारण यही है।",
+  "Department of Telecommunications and PIB, launch of the Cell Broadcast Alert System (2 May 2026); National Disaster Management Authority, SACHET integrated alert system.",
+  "ca-t2-sci-cell-broadcast-cdot-sachet", craft="application")
+
+A(EN, "medium",
+  "Thorium can be used on its own as the fuel to start a nuclear reactor.",
+  "थोरियम को अकेले नाभिकीय रिएक्टर शुरू करने के ईंधन के रूप में प्रयोग किया जा सकता है।",
+  "Thorium-232 is a fertile, not a fissile, nuclide.",
+  "थोरियम-232 एक उर्वर (फ़र्टाइल) नाभिक है, विखंडनीय नहीं।",
+  3,
+  "Statement-I is incorrect but Statement-II is correct, and Statement-II is the very reason Statement-I is wrong. A fissile nuclide -- uranium-235, plutonium-239 or uranium-233 -- splits when struck by a slow neutron and so keeps a chain reaction going. Thorium-232 cannot; it is fertile: on absorbing a neutron it turns, through two beta decays, into uranium-233, which is fissile. A thorium reactor therefore needs a 'driver' of fissile material to supply the first neutrons, which is why India's programme uses fast breeders in its second stage to multiply plutonium before thorium is used at scale in the third. "
+  "The case for thorium was argued afresh in May 2026, as the Prototype Fast Breeder Reactor moved towards power.",
+  "कथन-I ग़लत है पर कथन-II सही है, और कथन-II ही वह कारण है जिससे कथन-I ग़लत है। विखंडनीय नाभिक -- यूरेनियम-235, प्लूटोनियम-239 या यूरेनियम-233 -- धीमे न्यूट्रॉन के टकराने पर विखंडित होता है और इस तरह श्रृंखला अभिक्रिया चलाए रखता है। थोरियम-232 ऐसा नहीं कर सकता; वह उर्वर है: एक न्यूट्रॉन अवशोषित करने पर वह दो बीटा क्षयों से होकर यूरेनियम-233 में बदलता है, जो विखंडनीय है। इसलिए थोरियम रिएक्टर को पहले न्यूट्रॉन देने के लिए विखंडनीय पदार्थ के ‘चालक’ की आवश्यकता होती है, इसीलिए भारत का कार्यक्रम अपने दूसरे चरण में प्लूटोनियम बढ़ाने के लिए फ़ास्ट ब्रीडर का उपयोग करता है, ताकि तीसरे चरण में थोरियम का बड़े पैमाने पर उपयोग हो सके। "
+  "मई 2026 में, जब प्रोटोटाइप फ़ास्ट ब्रीडर रिएक्टर बिजली उत्पादन की ओर बढ़ रहा था, थोरियम के पक्ष में तर्क फिर रखे गए।",
+  "Department of Atomic Energy, India's three-stage nuclear power programme; NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
+  "ca-t2-sci-thorium-fertile-not-fissile-si", craft="inference")
+
+S(IT, "hard", "In May 2026 two Indian companies announced plans to launch the country's first orbital data-centre satellite, Pathfinder, by the end of the year. Consider the following statements about running computers in orbit:",
+  "मई 2026 में दो भारतीय कंपनियों ने वर्ष के अंत तक देश का पहला कक्षीय डेटा-केंद्र उपग्रह, पाथफ़ाइंडर, प्रक्षेपित करने की योजना घोषित की। कक्षा में कंप्यूटर चलाने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["In a suitable orbit, solar panels can supply power almost continuously, without the night and clouds that limit them on the ground.",
+   "In the vacuum of space, waste heat cannot be carried away by air and must be radiated into space.",
+   "Because they are in space, such data centres will respond faster than ground data centres to users anywhere on Earth."],
+  ["उपयुक्त कक्षा में सौर पैनल लगभग लगातार बिजली दे सकते हैं, उन रातों और बादलों के बिना जो भूमि पर उन्हें सीमित करते हैं।",
+   "अंतरिक्ष के निर्वात में अपशिष्ट ऊष्मा को हवा नहीं ले जा सकती और उसे अंतरिक्ष में विकिरित करना पड़ता है।",
+   "अंतरिक्ष में होने के कारण ऐसे डेटा केंद्र पृथ्वी पर कहीं भी उपयोगकर्ताओं को भूमि के डेटा केंद्रों से अधिक तेज़ी से उत्तर देंगे।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The attraction of computing in orbit is energy: in a dawn-dusk sun-synchronous orbit a satellite stays in sunlight almost all the time, with no clouds or night, and no land or water is used. The difficulty is heat: with no air for convection, the heat of processors can leave only as infrared radiation from large radiator panels, which add mass. Pathfinder, being built by Pixxel with the AI company Sarvam, is a 200 kg-class satellite carrying data-centre-class processors, meant partly to process Earth-observation images in orbit and send down only the results. "
+  "Statement 3 is wrong: orbital computing is not faster for users everywhere -- a nearby ground data centre over optical fibre is usually quicker, and a satellite is often out of view of a given ground station. It suits tasks such as processing data gathered in space rather than low-latency services for all.",
+  "कथन 1 और 2 सही हैं। कक्षा में गणना का आकर्षण ऊर्जा है: भोर-संध्या सूर्य-तुल्यकालिक कक्षा में उपग्रह लगभग हर समय धूप में रहता है, बादलों या रात के बिना, और न भूमि लगती है न पानी। कठिनाई ऊष्मा की है: संवहन के लिए हवा न होने से प्रोसेसरों की ऊष्मा केवल बड़े विकिरक पैनलों से अवरक्त विकिरण के रूप में निकल सकती है, जो द्रव्यमान बढ़ाते हैं। पिक्सेल द्वारा एआई कंपनी सर्वम के साथ बनाया जा रहा पाथफ़ाइंडर 200 किलोग्राम श्रेणी का उपग्रह है जिसमें डेटा-केंद्र स्तर के प्रोसेसर हैं, जिसका एक उद्देश्य पृथ्वी-अवलोकन चित्रों को कक्षा में ही संसाधित कर केवल परिणाम नीचे भेजना है। "
+  "कथन 3 ग़लत है: कक्षीय गणना हर जगह के उपयोगकर्ताओं के लिए तेज़ नहीं है -- ऑप्टिकल फ़ाइबर से जुड़ा पास का भूमि डेटा केंद्र सामान्यतः अधिक तेज़ होता है, और उपग्रह अक्सर किसी भू-स्टेशन की दृष्टि से बाहर होता है। यह अंतरिक्ष में जुटाए गए आँकड़ों के संसाधन जैसे कामों के अनुकूल है, सबके लिए कम विलंब वाली सेवाओं के नहीं।",
+  "Indian National Space Promotion and Authorisation Centre (IN-SPACe), private satellite missions; NCERT, Physics Part I (Class XI), Chapter 10 (Thermal Properties of Matter), on radiation.",
+  "ca-t2-sci-orbital-data-centre-solar-radiative-cooling", craft="application")
+
+S(SP, "medium", "On 19 May 2026 the SMILE spacecraft was launched to study how Earth's magnetic field shields it from the Sun. Consider the following statements:",
+  "19 मई 2026 को स्माइल अंतरिक्ष यान प्रक्षेपित किया गया, यह अध्ययन करने के लिए कि पृथ्वी का चुंबकीय क्षेत्र उसे सूर्य से कैसे बचाता है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was launched by ISRO's PSLV from Sriharikota.",
+   "It is a joint mission of the European Space Agency and the Chinese Academy of Sciences.",
+   "It is to image in X-rays the region where the solar wind meets Earth's magnetosphere."],
+  ["इसे इसरो के पीएसएलवी से श्रीहरिकोटा से प्रक्षेपित किया गया।",
+   "यह यूरोपीय अंतरिक्ष एजेंसी और चीनी विज्ञान अकादमी का संयुक्त मिशन है।",
+   "इसे उस क्षेत्र का एक्स-किरणों में चित्र लेना है जहाँ सौर पवन पृथ्वी के चुंबकमंडल से मिलती है।"],
+  C3, 1,
+  "Statements 2 and 3 are correct. SMILE -- the Solar wind Magnetosphere Ionosphere Link Explorer -- was built jointly by ESA, which supplied the payload module, the launcher and one instrument, and the Chinese Academy of Sciences, which supplied three instruments and runs the mission. From a highly elongated orbit reaching about 121,000 km, its soft X-ray imager is to picture the boundary where the solar wind is deflected by the magnetosphere, while an ultraviolet camera watches the aurora -- tracing how storms from the Sun pour energy into the space around Earth and threaten satellites and power grids. "
+  "Statement 1 is wrong: it was launched by a European Vega-C rocket from Kourou in French Guiana.",
+  "कथन 2 और 3 सही हैं। स्माइल -- सोलर विंड मैग्नेटोस्फ़ीयर आयनोस्फ़ीयर लिंक एक्सप्लोरर -- को ईएसए, जिसने पेलोड मॉड्यूल, प्रक्षेपक और एक उपकरण दिया, और चीनी विज्ञान अकादमी, जिसने तीन उपकरण दिए और जो मिशन चलाती है, ने मिलकर बनाया। लगभग 1,21,000 किमी तक जाने वाली अत्यधिक दीर्घवृत्ताकार कक्षा से इसका मृदु एक्स-किरण इमेजर उस सीमा का चित्र लेगा जहाँ सौर पवन चुंबकमंडल से मुड़ती है, जबकि एक पराबैंगनी कैमरा ध्रुवीय ज्योति को देखेगा -- यह जानने के लिए कि सूर्य के तूफ़ान पृथ्वी के आसपास के अंतरिक्ष में ऊर्जा कैसे भरते हैं और उपग्रहों तथा बिजली ग्रिडों को कैसे ख़तरे में डालते हैं। "
+  "कथन 1 ग़लत है: इसे फ़्रेंच गुयाना के कुरू से यूरोपीय वेगा-सी रॉकेट ने प्रक्षेपित किया।",
+  "European Space Agency, SMILE mission (launch of 19 May 2026); NCERT, Physics Part I (Class XII), Chapter 5 (Magnetism and Matter), on the Earth's magnetism.",
+  "ca-t2-sci-smile-esa-cas-magnetosphere-xray", craft="precision")
+
+S(BH, "hard", "On 31 May 2026 results were announced from a large trial in which a daily pill, daraxonrasib, roughly doubled the median survival of patients with advanced pancreatic cancer. Consider the following statements:",
+  "31 मई 2026 को एक बड़े परीक्षण के परिणाम घोषित हुए जिसमें एक दैनिक गोली, डैराक्सोनरासिब, ने उन्नत अग्नाशय कैंसर के रोगियों की माध्यिका उत्तरजीविता लगभग दोगुनी कर दी। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["RAS proteins act as switches that relay signals telling a cell to grow and divide.",
+   "Mutations in the KRAS gene are found in the great majority of pancreatic cancers.",
+   "The drug works by blocking RAS proteins in their active, signal-sending state."],
+  ["आरएएस प्रोटीन ऐसे स्विच का काम करते हैं जो कोशिका को बढ़ने और विभाजित होने के संकेत आगे पहुँचाते हैं।",
+   "अधिकांश अग्नाशय कैंसरों में केआरएएस जीन में उत्परिवर्तन पाए जाते हैं।",
+   "यह दवा आरएएस प्रोटीनों को उनकी सक्रिय, संकेत भेजने वाली अवस्था में अवरुद्ध करके काम करती है।"],
+  C3, 2,
+  "All three statements are correct. RAS proteins are molecular switches: bound to GTP they are 'on' and pass on growth signals, and mutations that lock them on drive uncontrolled division. KRAS is mutated in more than nine in ten pancreatic cancers, and for decades RAS was called 'undruggable' because its smooth surface offered no pocket for a drug. Daraxonrasib, an oral 'RAS(ON)' inhibitor, blocks the active form of several RAS variants; in the phase 3 RASolute 302 trial in previously treated metastatic pancreatic cancer, presented at the American Society of Clinical Oncology on 31 May 2026, it cut the risk of death by about 60 per cent compared with chemotherapy. "
+  "Pancreatic cancer is among the deadliest cancers because it is usually found late; the trial showed a benefit whether or not a RAS mutation had been identified in the tumour.",
+  "तीनों कथन सही हैं। आरएएस प्रोटीन आणविक स्विच हैं: जीटीपी से जुड़े होने पर वे ‘चालू’ होते हैं और वृद्धि के संकेत आगे बढ़ाते हैं, और उन्हें चालू अवस्था में जकड़ देने वाले उत्परिवर्तन अनियंत्रित विभाजन कराते हैं। दस में से नौ से अधिक अग्नाशय कैंसरों में केआरएएस उत्परिवर्तित होता है, और दशकों तक आरएएस को ‘दवा से अछूता’ कहा गया क्योंकि उसकी चिकनी सतह में दवा के लिए कोई खाँचा नहीं था। मुख से ली जाने वाली ‘आरएएस(ऑन)’ अवरोधक डैराक्सोनरासिब कई आरएएस रूपों के सक्रिय रूप को अवरुद्ध करती है; पहले उपचार ले चुके मेटास्टैटिक अग्नाशय कैंसर में तीसरे चरण के रासॉल्यूट 302 परीक्षण में, जो 31 मई 2026 को अमेरिकन सोसाइटी ऑफ़ क्लिनिकल ऑन्कोलॉजी में प्रस्तुत हुआ, इसने कीमोथेरेपी की तुलना में मृत्यु का जोखिम लगभग 60 प्रतिशत घटाया। "
+  "अग्नाशय कैंसर सबसे घातक कैंसरों में है क्योंकि इसका पता प्रायः देर से चलता है; परीक्षण में लाभ दिखा, चाहे ट्यूमर में आरएएस उत्परिवर्तन की पहचान हुई हो या नहीं।",
+  "New England Journal of Medicine and American Society of Clinical Oncology annual meeting, results of the RASolute 302 trial (31 May 2026); NCERT, Biology (Class XII), Chapter 8 (Human Health and Disease), on cancer.",
+  "ca-t2-sci-daraxonrasib-kras-ras-on-switch", craft="multi")
+
+S(BH, "medium", "In May 2026 experts warned that India still lacks the expertise and tools to manage its burden of fungal disease. Consider the following statements:",
+  "मई 2026 में विशेषज्ञों ने चेताया कि भारत के पास अब भी कवक रोगों के बोझ से निपटने की विशेषज्ञता और साधनों की कमी है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The World Health Organization published its first list of priority fungal pathogens in 2022.",
+   "Candida auris, often resistant to several antifungal drugs, is in the list's critical group.",
+   "The list ranks the fungi in three groups: critical, high and medium priority."],
+  ["विश्व स्वास्थ्य संगठन ने प्राथमिकता वाले कवक रोगजनकों की अपनी पहली सूची 2022 में प्रकाशित की।",
+   "कई कवकरोधी दवाओं के प्रति प्रायः प्रतिरोधी कैंडिडा ऑरिस सूची के अत्यंत गंभीर समूह में है।",
+   "सूची कवकों को तीन समूहों में रखती है: अत्यंत गंभीर, उच्च और मध्यम प्राथमिकता।"],
+  C3, 2,
+  "All three statements are correct. WHO's fungal priority pathogens list of October 2022 ranked 19 fungi in three groups -- critical, high and medium priority; the critical group is Cryptococcus neoformans, Candida auris, Aspergillus fumigatus and Candida albicans. Candida auris spreads in hospitals, survives on surfaces and is often resistant to several classes of antifungals. India saw a surge of mucormycosis, the 'black fungus', among patients in the second COVID-19 wave of 2021, linked to uncontrolled diabetes and the use of steroids. "
+  "Treating such infections is hard: fungi are eukaryotes, with cells much like our own, so antibacterial antibiotics such as penicillin, which attack the cell walls of bacteria, do not work on them. Antifungals such as azoles, echinocandins and amphotericin B are needed, and the few classes available make resistance a serious threat.",
+  "तीनों कथन सही हैं। अक्टूबर 2022 की डब्ल्यूएचओ की कवक प्राथमिकता रोगजनक सूची ने 19 कवकों को तीन समूहों -- अत्यंत गंभीर, उच्च और मध्यम प्राथमिकता -- में रखा; अत्यंत गंभीर समूह में क्रिप्टोकॉकस नियोफ़ॉर्मन्स, कैंडिडा ऑरिस, एस्परजिलस फ़्यूमिगेटस और कैंडिडा एल्बिकेन्स हैं। कैंडिडा ऑरिस अस्पतालों में फैलता है, सतहों पर बचा रहता है और प्रायः कवकरोधी दवाओं के कई वर्गों के प्रति प्रतिरोधी होता है। 2021 की कोविड-19 की दूसरी लहर में भारत में रोगियों के बीच म्यूकरमाइकोसिस, ‘काला कवक’, के मामले बढ़े, जो अनियंत्रित मधुमेह और स्टेरॉयड के उपयोग से जुड़े थे। "
+  "इनका उपचार कठिन है: कवक यूकैरियोट हैं, जिनकी कोशिकाएँ हमारी कोशिकाओं जैसी होती हैं, इसलिए पेनिसिलिन जैसे जीवाणुरोधी एंटीबायोटिक, जो जीवाणुओं की कोशिका-भित्ति पर प्रहार करते हैं, उन पर काम नहीं करते। एज़ोल, इकाइनोकैंडिन और एम्फ़ोटेरिसिन बी जैसी कवकरोधी दवाएँ चाहिए, और उपलब्ध गिने-चुने वर्ग प्रतिरोध को गंभीर ख़तरा बनाते हैं।",
+  "World Health Organization, fungal priority pathogens list (October 2022); Ministry of Health and Family Welfare, advisories on mucormycosis (2021); NCERT, Biology (Class XI), Chapter 2 (Biological Classification).",
+  "ca-t2-sci-who-fungal-priority-candida-auris", craft="precision")
+
+S(BH, "hard", "The World Health Assembly of May 2026 took stock of the WHO Pandemic Agreement. Consider the following statements:",
+  "मई 2026 की विश्व स्वास्थ्य सभा ने डब्ल्यूएचओ महामारी समझौते की स्थिति की समीक्षा की। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Pandemic Agreement was adopted by the UN General Assembly.",
+   "It opens for signature only after an annex on pathogen access and benefit-sharing is adopted.",
+   "That annex was adopted by the World Health Assembly of May 2026."],
+  ["महामारी समझौता संयुक्त राष्ट्र महासभा ने अपनाया।",
+   "यह रोगजनक पहुँच और लाभ-साझेदारी पर एक अनुबंध अपनाए जाने के बाद ही हस्ताक्षर के लिए खुलता है।",
+   "वह अनुबंध मई 2026 की विश्व स्वास्थ्य सभा ने अपनाया।"],
+  C3, 0,
+  "Only statement 2 is correct. The WHO Pandemic Agreement was adopted on 20 May 2025 by the World Health Assembly -- WHO's governing body of all its Member States, not the UN General Assembly -- under Article 19 of the WHO Constitution, after the failings of the COVID-19 response. It commits parties to prevention, fairer access to vaccines and medicines in a pandemic and the transfer of technology, but it opens for signature only after the Assembly adopts an annex on a Pathogen Access and Benefit-Sharing (PABS) system, under which countries share samples and genetic sequences of pathogens and in return get a share of the vaccines and medicines made from them. "
+  "Statement 3 is wrong: the negotiators could not agree on the annex in time -- developing countries sought binding benefit-sharing and richer countries voluntary terms -- so in May 2026 the Assembly extended the talks, with the outcome due at the next Assembly in 2027 or at an earlier special session.",
+  "केवल कथन 2 सही है। डब्ल्यूएचओ महामारी समझौता 20 मई 2025 को विश्व स्वास्थ्य सभा -- डब्ल्यूएचओ के सभी सदस्य देशों के शासी निकाय, न कि संयुक्त राष्ट्र महासभा -- ने कोविड-19 की प्रतिक्रिया की विफलताओं के बाद डब्ल्यूएचओ संविधान के अनुच्छेद 19 के अंतर्गत अपनाया। यह पक्षकारों को रोकथाम, महामारी में टीकों और दवाओं तक अधिक न्यायपूर्ण पहुँच और प्रौद्योगिकी हस्तांतरण के लिए प्रतिबद्ध करता है, पर यह हस्ताक्षर के लिए तभी खुलता है जब सभा रोगजनक पहुँच और लाभ-साझेदारी (पीएबीएस) प्रणाली पर एक अनुबंध अपनाए, जिसके अंतर्गत देश रोगजनकों के नमूने और आनुवंशिक अनुक्रम साझा करते हैं और बदले में उनसे बने टीकों और दवाओं का हिस्सा पाते हैं। "
+  "कथन 3 ग़लत है: वार्ताकार समय पर अनुबंध पर सहमत नहीं हो सके -- विकासशील देश बाध्यकारी लाभ-साझेदारी चाहते थे और धनी देश स्वैच्छिक शर्तें -- इसलिए मई 2026 में सभा ने वार्ता बढ़ा दी, जिसका परिणाम 2027 की अगली सभा या उससे पहले किसी विशेष सत्र में आना है।",
+  "World Health Organization, WHO Pandemic Agreement (resolution WHA78.1, May 2025) and the Intergovernmental Working Group on the PABS annex (May 2026); Constitution of the World Health Organization, Article 19.",
+  "ca-t2-sci-pandemic-agreement-pabs-annex-pending", craft="precision")
+
+finish("ca_t2_e.sql", FORMAT, "2026-Q2", update="--update" in sys.argv)

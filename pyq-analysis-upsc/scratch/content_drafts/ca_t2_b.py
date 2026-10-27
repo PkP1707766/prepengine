@@ -1,0 +1,250 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 2 (April to June 2026) -- part B: Economy.
+
+Economy in the news in April-June 2026: the new Index of Industrial Production, the IMF's ranking of India, the draft
+change to Antyodaya entitlements, the Bharat Maritime Insurance Pool, critical-minerals partnerships with the US and
+the UK, the sugar export ban, Jan Vishwas 2026, women in corporate management, net FDI, the Indian crude basket during
+the West Asian conflict, GST on online gaming, the carry trade, the RBI's directions on digital fraud and the UAE's
+exit from OPEC. Every fact was searched in the whole UPSC bank and is one no row tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t2_format import FORMAT, POS
+
+d.SUBJECT = "Economy"
+d.REQUIRE_CRAFT = True
+BD = "Budget, Deficits & Public Debt"
+TF = "Taxation & Fiscal Federalism"
+MC = "Macro Concepts, National Income & Inflation"
+MB = "Money, Banking & Monetary Policy"
+IN = "Industry, Infrastructure, Energy & Services"
+GD = "Growth, Development, Poverty & Planning"
+IG = "Inclusive Growth, Welfare & Demography"
+EX = "External Sector & International Institutions"
+AG = "Agriculture & Food Economy"
+
+S(IN, "medium", "On 1 June 2026 the Ministry of Statistics and Programme Implementation released a new series of the Index of Industrial Production. Consider the following statements:",
+  "1 जून 2026 को सांख्यिकी और कार्यक्रम कार्यान्वयन मंत्रालय ने औद्योगिक उत्पादन सूचकांक की एक नई शृंखला जारी की। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The new series uses 2022-23 as its base year.",
+   "Its basket covers more than a thousand products.",
+   "In its first reading, for April 2026, mining and quarrying was the fastest-growing sector."],
+  ["नई शृंखला 2022-23 को आधार वर्ष मानती है।",
+   "इसकी टोकरी में एक हज़ार से अधिक उत्पाद हैं।",
+   "अप्रैल 2026 की इसकी पहली रीडिंग में खनन और उत्खनन सबसे तेज़ी से बढ़ने वाला क्षेत्र था।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The revision, following a technical advisory committee whose report came out on 25 May 2026, moves the base from 2011-12 to 2022-23 and updates the basket to 1,042 products in 463 item groups, 120 of them new, so that the index reflects today's industry -- in step with the new national accounts and Consumer Price Index series released earlier in 2026. "
+  "Statement 3 is wrong: in April 2026 the index rose 4.9 per cent, led by manufacturing (6.2 per cent), while mining and quarrying contracted by 5.1 per cent; electricity grew 4.9 per cent and water supply and waste management 6.6 per cent.",
+  "कथन 1 और 2 सही हैं। एक तकनीकी सलाहकार समिति, जिसकी रिपोर्ट 25 मई 2026 को आई, के बाद हुआ यह संशोधन आधार को 2011-12 से 2022-23 पर लाता है और टोकरी को 463 मद-समूहों में 1,042 उत्पादों तक अद्यतन करता है, जिनमें 120 नए हैं, ताकि सूचकांक आज के उद्योग को दर्शाए -- 2026 में पहले जारी राष्ट्रीय लेखों और उपभोक्ता मूल्य सूचकांक की नई शृंखलाओं के अनुरूप। "
+  "कथन 3 ग़लत है: अप्रैल 2026 में सूचकांक 4.9 प्रतिशत बढ़ा, विनिर्माण (6.2 प्रतिशत) के नेतृत्व में, जबकि खनन और उत्खनन 5.1 प्रतिशत घटा; बिजली 4.9 प्रतिशत और जल-आपूर्ति तथा अपशिष्ट प्रबंधन 6.6 प्रतिशत बढ़े।",
+  "Ministry of Statistics and Programme Implementation, Index of Industrial Production (base 2022-23), press release of 1 June 2026, and report of the Technical Advisory Committee (25 May 2026).",
+  "ca-t2-eco-iip-new-series-2022-23-1042-products", craft="precision")
+
+S(MC, "medium", "In its World Economic Outlook of April 2026 the International Monetary Fund placed India sixth among the world's largest economies, behind Japan and the United Kingdom. Consider the following statements:",
+  "अप्रैल 2026 के अपने विश्व आर्थिक परिदृश्य में अंतरराष्ट्रीय मुद्रा कोष ने भारत को विश्व की सबसे बड़ी अर्थव्यवस्थाओं में जापान और यूनाइटेड किंगडम के बाद छठे स्थान पर रखा। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Such rankings compare GDP converted into US dollars at market exchange rates.",
+   "A fall in the rupee against the dollar can lower India's rank even when its output measured in rupees keeps growing.",
+   "India slipped in the ranking because its real GDP contracted in 2025-26."],
+  ["ऐसी रैंकिंग बाज़ार विनिमय दरों पर अमेरिकी डॉलर में परिवर्तित जीडीपी की तुलना करती है।",
+   "डॉलर के मुक़ाबले रुपये की गिरावट भारत की रैंक घटा सकती है, भले ही रुपये में मापा गया उसका उत्पादन बढ़ता रहे।",
+   "भारत रैंकिंग में इसलिए फिसला क्योंकि 2025-26 में उसका वास्तविक जीडीपी घटा।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The IMF's headline table converts each country's nominal GDP into dollars at market exchange rates, so a weaker rupee shrinks India's dollar GDP; the revision of India's national accounts to the 2022-23 base in February 2026, which lowered the level of nominal GDP for 2025-26, also pulled the figure down. "
+  "Statement 3 is wrong: India's real GDP kept growing faster than that of almost every other large economy; the slip reflects the currency and the statistical revision, not a fall in output, and the IMF expected India to regain fourth place within a year or two. Measured at purchasing power parity, which corrects for differences in price levels, India's economy ranks third.",
+  "कथन 1 और 2 सही हैं। आईएमएफ़ की मुख्य तालिका हर देश के नाममात्र जीडीपी को बाज़ार विनिमय दरों पर डॉलर में बदलती है, इसलिए कमज़ोर रुपया भारत का डॉलर जीडीपी घटाता है; फ़रवरी 2026 में भारत के राष्ट्रीय लेखों के 2022-23 आधार पर संशोधन ने, जिसने 2025-26 के नाममात्र जीडीपी का स्तर घटाया, आँकड़े को और नीचे खींचा। "
+  "कथन 3 ग़लत है: भारत का वास्तविक जीडीपी लगभग हर दूसरी बड़ी अर्थव्यवस्था से तेज़ बढ़ता रहा; यह गिरावट मुद्रा और सांख्यिकीय संशोधन को दर्शाती है, उत्पादन में कमी को नहीं, और आईएमएफ़ को एक-दो वर्षों में भारत के फिर चौथे स्थान पर आने की आशा थी। क्रय-शक्ति समता पर, जो मूल्य-स्तरों के अंतर को सुधारती है, भारत की अर्थव्यवस्था तीसरे स्थान पर है।",
+  "International Monetary Fund, World Economic Outlook database (April 2026); Ministry of Statistics and Programme Implementation, national accounts with base year 2022-23 (February 2026).",
+  "ca-t2-eco-imf-weo-sixth-exchange-rate-rebasing", craft="inference")
+
+S(AG, "hard", "In June 2026 the Centre circulated a draft amendment to the National Food Security Act to give Antyodaya Anna Yojana households 7 kg of foodgrains per person a month, subject to a maximum of 35 kg per household. Consider the following statements:",
+  "जून 2026 में केंद्र ने राष्ट्रीय खाद्य सुरक्षा अधिनियम में एक प्रारूप संशोधन परिचालित किया, जिससे अंत्योदय अन्न योजना परिवारों को प्रति व्यक्ति प्रति माह 7 किलो अनाज, प्रति परिवार अधिकतम 35 किलो, मिले। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Under the change, an Antyodaya household of four members would get less grain each month than it does now.",
+   "Households with more than five members would get less grain per person than smaller households.",
+   "The draft also makes pulses and edible oil part of the legal entitlement."],
+  ["इस बदलाव से चार सदस्यों वाले अंत्योदय परिवार को हर महीने अभी से कम अनाज मिलेगा।",
+   "पाँच से अधिक सदस्यों वाले परिवारों को छोटे परिवारों की तुलना में प्रति व्यक्ति कम अनाज मिलेगा।",
+   "प्रारूप दालों और खाद्य तेल को भी विधिक हक़ का भाग बनाता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The National Food Security Act, 2013 gives Antyodaya households, the poorest, a flat 35 kg of foodgrains a month and priority households 5 kg per person. The draft would give Antyodaya households 7 kg per person, capped at 35 kg: a family of four would get 28 kg instead of 35, while a family of six would still get 35 kg, under 6 kg a head. The Centre argues that the flat entitlement gives small households more per person than large ones; Tamil Nadu and Kerala, where families are smaller, objected that their poorest would lose. "
+  "Statement 3 is wrong: the draft deals only with foodgrains; pulses and edible oils are not legal entitlements under the Act, though some States supply them on their own.",
+  "कथन 1 और 2 सही हैं। राष्ट्रीय खाद्य सुरक्षा अधिनियम, 2013 सबसे निर्धन अंत्योदय परिवारों को हर महीने एक समान 35 किलो अनाज और प्राथमिकता वाले परिवारों को प्रति व्यक्ति 5 किलो देता है। प्रारूप अंत्योदय परिवारों को प्रति व्यक्ति 7 किलो, अधिकतम 35 किलो, देगा: चार का परिवार 35 के बजाय 28 किलो पाएगा, जबकि छह का परिवार अब भी 35 किलो, यानी प्रति व्यक्ति 6 किलो से कम, पाएगा। केंद्र का तर्क है कि एक समान हक़ छोटे परिवारों को बड़े परिवारों से अधिक प्रति व्यक्ति देता है; तमिलनाडु और केरल ने, जहाँ परिवार छोटे हैं, आपत्ति की कि उनके सबसे निर्धन लोग घाटे में रहेंगे। "
+  "कथन 3 ग़लत है: प्रारूप केवल अनाज से जुड़ा है; दालें और खाद्य तेल अधिनियम के अंतर्गत विधिक हक़ नहीं हैं, यद्यपि कुछ राज्य इन्हें अपनी ओर से देते हैं।",
+  "Department of Food and Public Distribution, draft National Food Security (Amendment) Bill, 2026 for public comment (June-July 2026); National Food Security Act, 2013, section 3.",
+  "ca-t2-eco-nfsa-draft-aay-7kg-per-person", craft="application")
+
+S(IN, "medium", "On 12 May 2026 the Bharat Maritime Insurance Pool was launched to insure ships against war and other risks. Consider the following statements:",
+  "12 मई 2026 को जहाज़ों को युद्ध और अन्य जोखिमों से बीमा देने के लिए भारत समुद्री बीमा पूल शुरू किया गया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is backed by a sovereign guarantee of the Government of India.",
+   "Its cover includes war risks, hull and machinery, cargo, and protection and indemnity.",
+   "It was set up after the insurance regulator barred foreign insurers from covering ships calling at Indian ports."],
+  ["इसे भारत सरकार की संप्रभु गारंटी का समर्थन प्राप्त है।",
+   "इसके बीमा में युद्ध-जोखिम, पतवार और मशीनरी, माल, और संरक्षण तथा क्षतिपूर्ति शामिल हैं।",
+   "इसे तब बनाया गया जब बीमा नियामक ने विदेशी बीमाकर्ताओं को भारतीय बंदरगाहों पर आने वाले जहाज़ों का बीमा करने से रोक दिया।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. With the Strait of Hormuz disrupted by the West Asian conflict, foreign insurers withdrew war cover or priced it out of reach, threatening the imports on which India depends -- most of its crude oil and liquefied petroleum gas comes from the Gulf. Approved by the Cabinet in April, the pool is administered by the national reinsurer GIC Re with Indian insurers as members, and has about $1.5 billion of capacity backed by a sovereign guarantee of ₹12,980 crore that is drawn on only for very large claims. "
+  "Statement 3 is wrong: no regulator barred foreign cover; the gap arose because foreign markets themselves pulled back or raised war-risk premiums steeply, and the pool gives Indian-flagged and Indian-controlled ships, and cargo to and from India, a domestic source of cover.",
+  "कथन 1 और 2 सही हैं। पश्चिम एशियाई संघर्ष से होर्मुज़ जलडमरूमध्य बाधित होने पर विदेशी बीमाकर्ताओं ने युद्ध-बीमा वापस ले लिया या उसे पहुँच से बाहर महँगा कर दिया, जिससे वे आयात ख़तरे में पड़े जिन पर भारत निर्भर है -- उसका अधिकांश कच्चा तेल और द्रवित पेट्रोलियम गैस खाड़ी से आती है। अप्रैल में मंत्रिमंडल द्वारा अनुमोदित इस पूल का संचालन राष्ट्रीय पुनर्बीमाकर्ता जीआईसी री भारतीय बीमाकर्ताओं को सदस्य बनाकर करता है, और इसकी लगभग 1.5 अरब डॉलर की क्षमता को ₹12,980 करोड़ की संप्रभु गारंटी का समर्थन है, जिसका उपयोग केवल बहुत बड़े दावों में होता है। "
+  "कथन 3 ग़लत है: किसी नियामक ने विदेशी बीमा पर रोक नहीं लगाई; कमी इसलिए आई कि विदेशी बाज़ार स्वयं पीछे हटे या उन्होंने युद्ध-जोखिम प्रीमियम बहुत बढ़ा दिए, और पूल भारतीय ध्वज वाले और भारतीय नियंत्रण वाले जहाज़ों तथा भारत आने-जाने वाले माल को बीमा का घरेलू स्रोत देता है।",
+  "Ministry of Finance and Ministry of Ports, Shipping and Waterways, launch of the Bharat Maritime Insurance Pool (12 May 2026) and Cabinet approval (April 2026).",
+  "ca-t2-eco-bharat-maritime-insurance-pool-sovereign", craft="precision")
+
+S(IN, "medium", "In May-June 2026 India signed a framework on critical minerals with the United States and launched a Critical Minerals Global Supply Chain Observatory with the United Kingdom. Consider the following statements:",
+  "मई-जून 2026 में भारत ने संयुक्त राज्य अमेरिका के साथ महत्त्वपूर्ण खनिजों पर एक ढाँचे पर हस्ताक्षर किए और यूनाइटेड किंगडम के साथ एक महत्त्वपूर्ण खनिज वैश्विक आपूर्ति-शृंखला वेधशाला शुरू की। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The India-US framework was signed during the US Secretary of State's visit to New Delhi.",
+   "The observatory is run by a foundation at IIT (ISM) Dhanbad together with the University of Cambridge.",
+   "The observatory has been set up to acquire mines abroad on India's behalf."],
+  ["भारत-अमेरिका ढाँचे पर अमेरिकी विदेश मंत्री की नई दिल्ली यात्रा के दौरान हस्ताक्षर हुए।",
+   "वेधशाला का संचालन आईआईटी (आईएसएम) धनबाद का एक फ़ाउंडेशन कैम्ब्रिज विश्वविद्यालय के साथ मिलकर करता है।",
+   "वेधशाला भारत की ओर से विदेशों में खदानें प्राप्त करने के लिए बनाई गई है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The India-US framework, signed on 26 May 2026 by the External Affairs Minister and the US Secretary of State during his visit, covers mining, processing, recycling, investment and technology across the supply chain, to reduce dependence on a single dominant supplier. The observatory, launched on 4 June 2026, is run by the Technology Innovation in Exploration and Mining Foundation at IIT (ISM) Dhanbad with the University of Cambridge; it tracks global mineral flows, maps supply risks and warns of disruptions, in support of India's National Critical Mineral Mission. "
+  "Statement 3 is wrong: the observatory is a data and intelligence platform; acquiring mineral assets abroad is the task of Khanij Bidesh India Ltd (KABIL), a joint venture of three public sector companies -- NALCO, Hindustan Copper and Mineral Exploration and Consultancy Ltd.",
+  "कथन 1 और 2 सही हैं। 26 मई 2026 को विदेश मंत्री और अमेरिकी विदेश मंत्री द्वारा उनकी यात्रा के दौरान हस्ताक्षरित भारत-अमेरिका ढाँचा आपूर्ति-शृंखला भर में खनन, प्रसंस्करण, पुनर्चक्रण, निवेश और प्रौद्योगिकी को समेटता है, ताकि किसी एक प्रभुत्वशाली आपूर्तिकर्ता पर निर्भरता घटे। 4 जून 2026 को शुरू हुई वेधशाला का संचालन आईआईटी (आईएसएम) धनबाद का टेक्नोलॉजी इनोवेशन इन एक्सप्लोरेशन एंड माइनिंग फ़ाउंडेशन कैम्ब्रिज विश्वविद्यालय के साथ करता है; यह भारत के राष्ट्रीय महत्त्वपूर्ण खनिज मिशन के समर्थन में वैश्विक खनिज प्रवाहों पर नज़र रखती है, आपूर्ति के जोखिमों का मानचित्रण करती है और व्यवधानों की चेतावनी देती है। "
+  "कथन 3 ग़लत है: वेधशाला आँकड़ों और सूचना का मंच है; विदेशों में खनिज परिसंपत्तियाँ प्राप्त करना खनिज बिदेश इंडिया लिमिटेड (काबिल) का काम है, जो तीन सार्वजनिक उपक्रमों -- नाल्को, हिंदुस्तान कॉपर और मिनरल एक्सप्लोरेशन एंड कंसल्टेंसी लिमिटेड -- का संयुक्त उद्यम है।",
+  "Ministry of External Affairs, India-US framework on critical minerals and rare earths (26 May 2026); Ministry of Mines and PIB, launch of the India-UK Critical Minerals Global Supply Chain Observatory (4 June 2026); Ministry of Mines, Khanij Bidesh India Ltd.",
+  "ca-t2-eco-critical-minerals-us-framework-uk-observatory", craft="linkage")
+
+S(EX, "easy", "On 13 May 2026 the Directorate General of Foreign Trade prohibited the export of sugar until 30 September 2026. Consider the following statements:",
+  "13 मई 2026 को विदेश व्यापार महानिदेशालय ने 30 सितंबर 2026 तक चीनी के निर्यात पर प्रतिबंध लगा दिया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The notification moved sugar exports from the 'restricted' to the 'prohibited' category.",
+   "Exports to the European Union and the United States under tariff-rate quotas were exempted.",
+   "India is the world's largest exporter of sugar."],
+  ["अधिसूचना ने चीनी के निर्यात को ‘प्रतिबंधित’ से ‘निषिद्ध’ श्रेणी में डाल दिया।",
+   "शुल्क-दर कोटा के अंतर्गत यूरोपीय संघ और संयुक्त राज्य अमेरिका को निर्यात को छूट दी गई।",
+   "भारत विश्व का सबसे बड़ा चीनी निर्यातक है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Under India's export policy an item may be 'free', 'restricted' (allowed only under licence or quota) or 'prohibited'; sugar, restricted since 2022, was prohibited to keep supplies at home after lower output, with exceptions for quota exports to the EU and the US, government-to-government sales and consignments already in the pipeline. Such orders are issued under the Foreign Trade (Development and Regulation) Act, 1992. "
+  "Statement 3 is wrong: Brazil is by far the largest producer and exporter of sugar; India is the second-largest producer and the largest consumer, and its exports swing with each season's output and with the cane diverted to ethanol.",
+  "कथन 1 और 2 सही हैं। भारत की निर्यात नीति में कोई वस्तु ‘मुक्त’, ‘प्रतिबंधित’ (केवल लाइसेंस या कोटा के अंतर्गत अनुमत) या ‘निषिद्ध’ हो सकती है; 2022 से प्रतिबंधित चीनी को कम उत्पादन के बाद देश में आपूर्ति बनाए रखने के लिए निषिद्ध किया गया, यूरोपीय संघ और अमेरिका को कोटा निर्यात, सरकार-से-सरकार बिक्री और पहले से भेजे जा रहे माल के अपवादों के साथ। ऐसे आदेश विदेश व्यापार (विकास और विनियमन) अधिनियम, 1992 के अंतर्गत जारी होते हैं। "
+  "कथन 3 ग़लत है: ब्राज़ील चीनी का कहीं सबसे बड़ा उत्पादक और निर्यातक है; भारत दूसरा सबसे बड़ा उत्पादक और सबसे बड़ा उपभोक्ता है, और उसका निर्यात हर मौसम के उत्पादन और एथेनॉल की ओर मोड़े गए गन्ने के साथ घटता-बढ़ता है।",
+  "Directorate General of Foreign Trade, notification on the export policy of sugar (13 May 2026); Foreign Trade (Development and Regulation) Act, 1992; Department of Food and Public Distribution, sugar sector overview.",
+  "ca-t2-eco-sugar-export-prohibited-dgft", craft="precision")
+
+S(IN, "easy", "In April 2026 Parliament passed the Jan Vishwas (Amendment of Provisions) Bill, 2026. Consider the following statements:",
+  "अप्रैल 2026 में संसद ने जन विश्वास (उपबंधों का संशोधन) विधेयक, 2026 पारित किया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It amends provisions in more Central Acts than the Jan Vishwas Act of 2023 did.",
+   "For some first contraventions it provides only for a warning.",
+   "Some of its amendments are meant to ease living rather than to ease business."],
+  ["यह 2023 के जन विश्वास अधिनियम से अधिक केंद्रीय अधिनियमों के उपबंधों में संशोधन करता है।",
+   "कुछ पहले उल्लंघनों के लिए यह केवल चेतावनी का प्रावधान करता है।",
+   "इसके कुछ संशोधन कारोबार के बजाय जीवन को आसान बनाने के लिए हैं।"],
+  C3, 2,
+  "All three statements are correct. The 2026 law amends 784 provisions in 79 Central Acts administered by 23 ministries -- 717 decriminalised to ease business and 67 changed to ease living -- against 183 provisions in 42 Acts in the Jan Vishwas Act of 2023. Imprisonment for minor, technical or procedural lapses gives way to monetary penalties, and in several laws a first contravention draws only a warning, easing the load on courts. "
+  "Like its predecessor, it is an ordinary Act of Parliament amending the Central laws concerned; offences and penalties are matters of ordinary legislation, so no constitutional amendment is needed.",
+  "तीनों कथन सही हैं। 2026 का क़ानून 23 मंत्रालयों द्वारा प्रशासित 79 केंद्रीय अधिनियमों के 784 उपबंधों में संशोधन करता है -- 717 को कारोबार आसान बनाने के लिए अपराध की श्रेणी से हटाया गया और 67 को जीवन आसान बनाने के लिए बदला गया -- जबकि 2023 के जन विश्वास अधिनियम ने 42 अधिनियमों के 183 उपबंध बदले थे। छोटी, तकनीकी या प्रक्रियात्मक चूकों के लिए कारावास का स्थान आर्थिक दंड लेते हैं, और कई क़ानूनों में पहला उल्लंघन केवल चेतावनी पाता है, जिससे न्यायालयों का बोझ घटता है। "
+  "अपने पूर्ववर्ती की तरह यह संबंधित केंद्रीय क़ानूनों में संशोधन करने वाला संसद का एक साधारण अधिनियम है; अपराध और दंड साधारण विधान के विषय हैं, इसलिए संविधान संशोधन की आवश्यकता नहीं होती।",
+  "Jan Vishwas (Amendment of Provisions) Bill, 2026, as passed by the Lok Sabha (1 April 2026) and the Rajya Sabha (2 April 2026); Jan Vishwas (Amendment of Provisions) Act, 2023.",
+  "ca-t2-eco-jan-vishwas-2026-79-acts-warning", craft="precision")
+
+S(IG, "medium", "A study reported in May 2026 found that 48 per cent of the companies listed on the National Stock Exchange had no woman among their key managerial personnel. Consider the following statements:",
+  "मई 2026 में बताए गए एक अध्ययन में पाया गया कि नेशनल स्टॉक एक्सचेंज पर सूचीबद्ध 48 प्रतिशत कंपनियों के प्रमुख प्रबंधकीय कार्मिकों में कोई महिला नहीं थी। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Every company, whether listed or not, must have at least one woman director on its board.",
+   "SEBI requires every listed company to have at least one independent woman director.",
+   "A company's independent directors are counted among its key managerial personnel."],
+  ["प्रत्येक कंपनी के बोर्ड में, चाहे वह सूचीबद्ध हो या नहीं, कम से कम एक महिला निदेशक होनी चाहिए।",
+   "सेबी हर सूचीबद्ध कंपनी से कम से कम एक स्वतंत्र महिला निदेशक रखने की अपेक्षा करता है।",
+   "किसी कंपनी के स्वतंत्र निदेशक उसके प्रमुख प्रबंधकीय कार्मिकों में गिने जाते हैं।"],
+  C3, 3,
+  "None of the statements is correct. Statement 1 overreaches: the Companies Act, 2013 (section 149 with its rules) requires a woman director only in every listed company and in other public companies above thresholds of paid-up capital or turnover, not in every company. Statement 2 overreaches too: SEBI's listing regulations require an independent woman director only in the top 1,000 listed entities by market value. Even so, nearly all listed firms now have a woman on the board. "
+  "Statement 3 is wrong: under section 2(51) of the Act, key managerial personnel are the executives who run the company -- the chief executive or managing director or manager, the company secretary, whole-time directors and the chief financial officer -- not independent directors. The study, by the Udaiti Foundation, found an average of only 0.64 women in such roles per company in 2024-25, showing that board quotas have not carried women into management.",
+  "कोई भी कथन सही नहीं है। कथन 1 बढ़ा-चढ़ाकर कहता है: कंपनी अधिनियम, 2013 (धारा 149 और उसके नियम) महिला निदेशक केवल हर सूचीबद्ध कंपनी और चुकता पूँजी या कारोबार की सीमा से ऊपर की अन्य सार्वजनिक कंपनियों में अनिवार्य करता है, हर कंपनी में नहीं। कथन 2 भी बढ़ा-चढ़ाकर कहता है: सेबी के सूचीकरण विनियम स्वतंत्र महिला निदेशक केवल बाज़ार मूल्य के आधार पर शीर्ष 1,000 सूचीबद्ध इकाइयों में अनिवार्य करते हैं। फिर भी लगभग सभी सूचीबद्ध कंपनियों के बोर्ड में अब एक महिला है। "
+  "कथन 3 ग़लत है: अधिनियम की धारा 2(51) के अंतर्गत प्रमुख प्रबंधकीय कार्मिक वे अधिकारी हैं जो कंपनी चलाते हैं -- मुख्य कार्यकारी या प्रबंध निदेशक या प्रबंधक, कंपनी सचिव, पूर्णकालिक निदेशक और मुख्य वित्तीय अधिकारी -- स्वतंत्र निदेशक नहीं। उदैती फ़ाउंडेशन के अध्ययन में 2024-25 में ऐसी भूमिकाओं में प्रति कंपनी औसतन केवल 0.64 महिलाएँ मिलीं, जो दिखाता है कि बोर्ड के कोटे महिलाओं को प्रबंधन तक नहीं ले गए।",
+  "Companies Act, 2013, sections 2(51) and 149, and the Companies (Appointment and Qualification of Directors) Rules, 2014; SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, regulation 17.",
+  "ca-t2-eco-women-kmp-woman-director-sebi", craft="linkage")
+
+A(EX, "medium",
+  "India's net foreign direct investment can fall in a year in which gross FDI inflows rise.",
+  "भारत का शुद्ध प्रत्यक्ष विदेशी निवेश उस वर्ष भी घट सकता है जिसमें सकल एफ़डीआई अंतर्वाह बढ़ें।",
+  "Net FDI is reported by the Reserve Bank of India as part of India's balance of payments.",
+  "शुद्ध एफ़डीआई को भारतीय रिज़र्व बैंक भारत के भुगतान संतुलन के अंग के रूप में दर्ज करता है।",
+  1,
+  "Both statements are correct, but Statement-II does not explain Statement-I. Statement-I holds because net FDI is gross inflows less the repatriation of earlier investment by foreign investors and the outward FDI of Indian companies. Gross inflows measure fresh foreign investment in Indian firms; foreign investors who sell their stakes -- for instance through public offers of their Indian subsidiaries -- and take the money home, and Indian companies investing abroad, both reduce the net figure. That is why recent Reserve Bank data have shown net FDI shrinking sharply even while gross inflows stayed high, a trend examined afresh in June 2026. "
+  "Statement-II is true -- the Reserve Bank compiles the balance of payments, in which FDI flows are recorded -- but it only says where the figure is reported, not why it can fall. A low net figure does not by itself mean that foreigners have lost interest in India; it can also reflect mature investors cashing out at a profit and Indian firms expanding overseas.",
+  "दोनों कथन सही हैं, पर कथन-II कथन-I की व्याख्या नहीं करता। कथन-I इसलिए सही है कि शुद्ध एफ़डीआई सकल अंतर्वाह में से विदेशी निवेशकों द्वारा पहले के निवेश के प्रत्यावर्तन और भारतीय कंपनियों के बाहरी एफ़डीआई को घटाकर निकलता है। सकल अंतर्वाह भारतीय कंपनियों में नया विदेशी निवेश मापते हैं; अपनी हिस्सेदारी बेचकर -- जैसे अपनी भारतीय सहायक कंपनियों के सार्वजनिक निर्गम के माध्यम से -- पैसा वापस ले जाने वाले विदेशी निवेशक, और विदेशों में निवेश करने वाली भारतीय कंपनियाँ, दोनों शुद्ध आँकड़े को घटाते हैं। इसीलिए हाल के रिज़र्व बैंक आँकड़ों में सकल अंतर्वाह ऊँचे रहने पर भी शुद्ध एफ़डीआई तेज़ी से घटता दिखा, एक प्रवृत्ति जिसकी जून 2026 में फिर पड़ताल हुई। "
+  "कथन-II सही है -- भुगतान संतुलन रिज़र्व बैंक संकलित करता है, जिसमें एफ़डीआई प्रवाह दर्ज होते हैं -- पर यह केवल बताता है कि आँकड़ा कहाँ दर्ज होता है, यह नहीं कि वह क्यों घट सकता है। कम शुद्ध आँकड़ा अपने आप में यह नहीं बताता कि विदेशियों की भारत में रुचि घट गई है; यह परिपक्व निवेशकों के लाभ के साथ निकलने और भारतीय कंपनियों के विदेश में विस्तार को भी दर्शा सकता है।",
+  "Reserve Bank of India, data on foreign investment flows and Balance of Payments; Department for Promotion of Industry and Internal Trade, FDI factsheet.",
+  "ca-t2-eco-net-fdi-repatriation-outward-si", craft="inference")
+
+M(IN, "medium",
+  "In April-May 2026 the Indian basket of crude oil averaged about $110 a barrel as the West Asian conflict disrupted supplies. The Indian basket is:",
+  "अप्रैल-मई 2026 में पश्चिम एशियाई संघर्ष से आपूर्ति बाधित होने के कारण कच्चे तेल की भारतीय टोकरी का औसत लगभग 110 डॉलर प्रति बैरल रहा। भारतीय टोकरी है:",
+  ["a weighted average of a sour grade (Oman and Dubai) and a sweet grade (Brent)",
+   "the price of crude oil bought from Russia under the Western price cap",
+   "the simple average of the Brent and West Texas Intermediate benchmarks",
+   "the price at which crude is released from India's strategic petroleum reserves"],
+  ["एक खट्टे ग्रेड (ओमान और दुबई) और एक मीठे ग्रेड (ब्रेंट) का भारित औसत",
+   "पश्चिमी मूल्य-सीमा के अंतर्गत रूस से ख़रीदे गए कच्चे तेल का मूल्य",
+   "ब्रेंट और वेस्ट टेक्सास इंटरमीडिएट मानकों का सरल औसत",
+   "वह मूल्य जिस पर भारत के रणनीतिक पेट्रोलियम भंडार से कच्चा तेल जारी किया जाता है"],
+  0,
+  "The Indian basket, computed by the Petroleum Planning and Analysis Cell of the Ministry of Petroleum and Natural Gas, reflects the crude Indian refiners actually process: mostly 'sour' (high-sulphur) Middle Eastern crude, represented by the average of Oman and Dubai, and some 'sweet' (low-sulphur) crude, represented by Dated Brent, weighted by their shares in refinery intake. Brent from the North Sea and West Texas Intermediate from the United States are both light, sweet benchmarks. "
+  "The basket can therefore move differently from Brent, the price usually quoted in the news -- one reason headline benchmarks do not show what India pays. The other options are wrong: the basket is not tied to any single supplier, to a simple average of two Western benchmarks, or to the strategic reserves.",
+  "भारतीय टोकरी, जिसकी गणना पेट्रोलियम और प्राकृतिक गैस मंत्रालय का पेट्रोलियम योजना और विश्लेषण प्रकोष्ठ करता है, उस कच्चे तेल को दर्शाती है जिसे भारतीय रिफ़ाइनरियाँ वास्तव में संसाधित करती हैं: अधिकतर ‘खट्टा’ (अधिक गंधक वाला) पश्चिम एशियाई तेल, जिसका प्रतिनिधित्व ओमान और दुबई का औसत करता है, और कुछ ‘मीठा’ (कम गंधक वाला) तेल, जिसका प्रतिनिधित्व डेटेड ब्रेंट करता है, रिफ़ाइनरी में उनके हिस्से के अनुसार भारित। उत्तरी सागर का ब्रेंट और अमेरिका का वेस्ट टेक्सास इंटरमीडिएट दोनों हल्के, मीठे मानक हैं। "
+  "इसलिए टोकरी ब्रेंट से, जो समाचारों में प्रायः बताया जाने वाला मूल्य है, अलग चल सकती है -- यह एक कारण है कि प्रमुख मानक यह नहीं दिखाते कि भारत कितना चुकाता है। अन्य विकल्प ग़लत हैं: टोकरी न किसी एक आपूर्तिकर्ता से, न दो पश्चिमी मानकों के सरल औसत से, न रणनीतिक भंडार से जुड़ी है।",
+  "Ministry of Petroleum and Natural Gas, Petroleum Planning and Analysis Cell, international prices of crude oil (Indian basket); Reserve Bank of India, Monetary Policy Statement (June 2026).",
+  "ca-t2-eco-indian-basket-crude-sour-sweet", pos=POS.get("ca-t2-eco-indian-basket-crude-sour-sweet", 2), craft="precision")
+
+S(TF, "hard", "On 27 May 2026 the Supreme Court upheld the levy of GST on online real-money gaming at 28 per cent of the full value of the bets placed. Consider the following statements:",
+  "27 मई 2026 को सर्वोच्च न्यायालय ने ऑनलाइन रियल-मनी गेमिंग पर लगाए गए दाँवों के पूरे मूल्य के 28 प्रतिशत की दर से जीएसटी को वैध ठहराया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The Court held that staking money on an uncertain outcome is betting for GST purposes, whether skill or chance decides the result.",
+   "Under the GST law, betting and gambling are among the few actionable claims taxed as a supply of goods.",
+   "The Court held that the levy could apply only from the date of its judgment."],
+  ["न्यायालय ने कहा कि अनिश्चित परिणाम पर पैसा लगाना जीएसटी के प्रयोजन से दाँव लगाना है, परिणाम चाहे कौशल से तय हो या संयोग से।",
+   "जीएसटी क़ानून के अंतर्गत दाँव और जुआ उन गिने-चुने अनुयोज्य दावों में हैं जिन पर माल की आपूर्ति के रूप में कर लगता है।",
+   "न्यायालय ने कहा कि यह कर केवल उसके निर्णय की तिथि से लागू हो सकता है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. In Directorate General of GST Intelligence v. Gameskraft Technologies, the Court held that once money is staked on an uncertain result the activity is betting, so the old distinction between games of skill and of chance does not matter for this tax, and that platforms are suppliers of actionable claims, not mere intermediaries earning a fee. Schedule III of the CGST Act keeps actionable claims out of GST except lottery, betting and gambling -- and, since the 2023 amendments, online money gaming -- which are taxed on the full face value. "
+  "Statement 3 is wrong: the Court upheld the government's position that tax was due for earlier periods too, validating large demands against gaming companies, and rejected challenges under Articles 14, 19, 20, 21 and 265. Separately, the Promotion and Regulation of Online Gaming Act, 2025 bans online money games altogether.",
+  "कथन 1 और 2 सही हैं। जीएसटी आसूचना महानिदेशालय बनाम गेम्सक्राफ़्ट टेक्नोलॉजीज़ में न्यायालय ने कहा कि अनिश्चित परिणाम पर पैसा लगते ही गतिविधि दाँव बन जाती है, इसलिए इस कर के लिए कौशल और संयोग के खेलों का पुराना भेद मायने नहीं रखता, और प्लेटफ़ॉर्म अनुयोज्य दावों के आपूर्तिकर्ता हैं, शुल्क कमाने वाले मात्र मध्यस्थ नहीं। सीजीएसटी अधिनियम की अनुसूची III अनुयोज्य दावों को जीएसटी से बाहर रखती है, लॉटरी, दाँव और जुए -- और 2023 के संशोधनों से ऑनलाइन मनी गेमिंग -- को छोड़कर, जिन पर पूरे अंकित मूल्य पर कर लगता है। "
+  "कथन 3 ग़लत है: न्यायालय ने सरकार की यह स्थिति मानी कि कर पहले की अवधियों के लिए भी देय था, गेमिंग कंपनियों के विरुद्ध बड़ी माँगों को वैध ठहराया, और अनुच्छेद 14, 19, 20, 21 और 265 के आधार पर दी गई चुनौतियाँ अस्वीकार कीं। अलग से, ऑनलाइन गेमिंग संवर्धन और विनियमन अधिनियम, 2025 ऑनलाइन मनी गेम पर पूरी तरह रोक लगाता है।",
+  "Supreme Court of India, Directorate General of GST Intelligence v. Gameskraft Technologies (27 May 2026); Central Goods and Services Tax Act, 2017, Schedule III, as amended in 2023.",
+  "ca-t2-eco-online-gaming-gst-full-face-value", craft="precision")
+
+A(MB, "hard",
+  "A rise in interest rates in Japan can slow the flow of foreign portfolio money into emerging markets such as India.",
+  "जापान में ब्याज दरों में वृद्धि भारत जैसे उभरते बाज़ारों में विदेशी पोर्टफ़ोलियो धन के प्रवाह को धीमा कर सकती है।",
+  "In a carry trade, investors borrow in a currency with low interest rates to invest in higher-yielding assets elsewhere.",
+  "कैरी ट्रेड में निवेशक कम ब्याज दर वाली मुद्रा में उधार लेकर कहीं और अधिक प्रतिफल वाली परिसंपत्तियों में निवेश करते हैं।",
+  0,
+  "Both statements are correct, and Statement-II explains Statement-I. For years Japan's near-zero rates made the yen a cheap currency to borrow; investors borrowed yen and put the money into higher-yielding bonds and shares abroad, India's among them. When Japanese rates rise -- or the yen strengthens -- the trade loses its profit, and investors sell those assets to repay their yen loans, so money flows out of emerging markets, pushing down their currencies and share prices. "
+  "This is one reason analysts warned in June 2026 that the 'cheap' global money that had flowed into India was drying up, adding to the pressure on the rupee.",
+  "दोनों कथन सही हैं, और कथन-II कथन-I की सही व्याख्या है। वर्षों तक जापान की लगभग शून्य दरों ने येन को उधार लेने के लिए सस्ती मुद्रा बनाए रखा; निवेशकों ने येन उधार लेकर पैसा विदेशों के अधिक प्रतिफल वाले बॉण्डों और शेयरों में लगाया, जिनमें भारत के भी थे। जब जापानी दरें बढ़ती हैं -- या येन मज़बूत होता है -- तो इस सौदे का लाभ घटता है, और निवेशक अपने येन ऋण चुकाने के लिए वे परिसंपत्तियाँ बेचते हैं, जिससे पैसा उभरते बाज़ारों से बाहर जाता है और उनकी मुद्राएँ तथा शेयर-मूल्य गिरते हैं। "
+  "यही एक कारण था कि जून 2026 में विश्लेषकों ने चेताया कि भारत में आया ‘सस्ता’ वैश्विक धन सूख रहा है, जिससे रुपये पर दबाव बढ़ा।",
+  "Reserve Bank of India, Financial Stability Report and data on foreign portfolio investment; NCERT, Introductory Macroeconomics (Class XII), Chapter 6 (Open Economy Macroeconomics).",
+  "ca-t2-eco-carry-trade-japan-rates-fpi-si", craft="inference")
+
+S(MB, "medium", "In June 2026 the Reserve Bank of India issued revised directions on customers' liability in fraudulent electronic banking transactions. Consider the following statements:",
+  "जून 2026 में भारतीय रिज़र्व बैंक ने धोखाधड़ी वाले इलेक्ट्रॉनिक बैंकिंग लेन-देन में ग्राहकों के दायित्व पर संशोधित निर्देश जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["A customer who loses up to ₹50,000 in a small-value digital fraud can receive compensation of up to ₹25,000, once in a lifetime.",
+   "The burden of proving a customer's liability lies on the bank.",
+   "The revised directions came into force on 1 July 2026."],
+  ["छोटे मूल्य की डिजिटल धोखाधड़ी में ₹50,000 तक गँवाने वाला ग्राहक जीवन में एक बार ₹25,000 तक का मुआवज़ा पा सकता है।",
+   "ग्राहक का दायित्व सिद्ध करने का भार बैंक पर है।",
+   "संशोधित निर्देश 1 जुलाई 2026 को लागू हुए।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. The directions, amending the rules on responsible business conduct of commercial banks and widening the 2017 framework on customer liability, extend protection to more kinds of fraud. A customer who reports a small-value fraud to the bank and to the National Cyber Crime Helpline (1930) within five days can get compensation of up to ₹25,000 for losses of up to ₹50,000, once in a lifetime; banks must prove any negligence on the customer's part, reverse eligible amounts without loss of interest and, for unauthorised credit-card charges, give a 'shadow reversal' within five days of a complaint. "
+  "Statement 3 is wrong: a draft had proposed 1 July 2026, but the final directions apply to transactions on or after 1 January 2027.",
+  "कथन 1 और 2 सही हैं। वाणिज्यिक बैंकों के उत्तरदायी व्यावसायिक आचरण के नियमों में संशोधन करने और ग्राहक-दायित्व के 2017 के ढाँचे को व्यापक बनाने वाले ये निर्देश अधिक प्रकार की धोखाधड़ी तक सुरक्षा बढ़ाते हैं। छोटे मूल्य की धोखाधड़ी की सूचना पाँच दिनों के भीतर बैंक और राष्ट्रीय साइबर अपराध हेल्पलाइन (1930) को देने वाला ग्राहक ₹50,000 तक के नुक़सान पर जीवन में एक बार ₹25,000 तक का मुआवज़ा पा सकता है; बैंकों को ग्राहक की किसी भी लापरवाही को सिद्ध करना होगा, पात्र राशियाँ ब्याज की हानि के बिना लौटानी होंगी और अनधिकृत क्रेडिट-कार्ड प्रभारों पर शिकायत के पाँच दिनों के भीतर ‘छाया प्रत्यावर्तन’ देना होगा। "
+  "कथन 3 ग़लत है: एक प्रारूप ने 1 जुलाई 2026 का प्रस्ताव किया था, पर अंतिम निर्देश 1 जनवरी 2027 को या उसके बाद के लेन-देन पर लागू होते हैं।",
+  "Reserve Bank of India, Commercial Banks (Responsible Business Conduct) Third Amendment Directions, 2026 (June 2026), and circular on customer protection in unauthorised electronic banking transactions (2017).",
+  "ca-t2-eco-rbi-digital-fraud-compensation-2027", craft="precision")
+
+S(EX, "easy", "On 28 April 2026 the United Arab Emirates announced that it would leave the Organization of the Petroleum Exporting Countries (OPEC) and the wider OPEC+ group. Consider the following statements:",
+  "28 अप्रैल 2026 को संयुक्त अरब अमीरात ने घोषणा की कि वह पेट्रोलियम निर्यातक देशों के संगठन (ओपेक) और व्यापक ओपेक+ समूह को छोड़ देगा। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The UAE's exit took effect on 1 May 2026.",
+   "Qatar and Angola had left OPEC in earlier years.",
+   "The UAE joined OPEC after the organisation was founded, Abu Dhabi becoming a member in 1967."],
+  ["संयुक्त अरब अमीरात का बाहर होना 1 मई 2026 से प्रभावी हुआ।",
+   "क़तर और अंगोला पहले के वर्षों में ओपेक छोड़ चुके थे।",
+   "संयुक्त अरब अमीरात ओपेक की स्थापना के बाद उसमें शामिल हुआ; अबू धाबी 1967 में सदस्य बना।"],
+  C3, 2,
+  "All three statements are correct. The UAE -- a member since 1967, when Abu Dhabi joined -- said it had reviewed its production policy and capacity; its national oil company aims at a capacity of 5 million barrels a day by 2027, which sat poorly with the output curbs of OPEC+. Qatar left at the start of 2019 to concentrate on natural gas, and Angola at the start of 2024 after disputes over quotas. "
+  "OPEC itself was founded at the Baghdad Conference of September 1960 by Iran, Iraq, Kuwait, Saudi Arabia and Venezuela, and is headquartered in Vienna. OPEC+, formed in 2016, adds producers such as Russia that are not members of OPEC.",
+  "तीनों कथन सही हैं। संयुक्त अरब अमीरात -- जो 1967 से, अबू धाबी के शामिल होने के समय से, सदस्य था -- ने कहा कि उसने अपनी उत्पादन नीति और क्षमता की समीक्षा की है; उसकी राष्ट्रीय तेल कंपनी 2027 तक 50 लाख बैरल प्रतिदिन की क्षमता का लक्ष्य रखती है, जो ओपेक+ की उत्पादन-कटौती से मेल नहीं खाता था। क़तर 2019 के आरंभ में प्राकृतिक गैस पर ध्यान देने के लिए और अंगोला 2024 के आरंभ में कोटा पर विवादों के बाद अलग हुआ। "
+  "ओपेक की स्थापना स्वयं सितंबर 1960 के बग़दाद सम्मेलन में ईरान, इराक़, कुवैत, सऊदी अरब और वेनेज़ुएला ने की, और इसका मुख्यालय वियना में है। 2016 में बना ओपेक+ रूस जैसे उत्पादकों को जोड़ता है जो ओपेक के सदस्य नहीं हैं।",
+  "Organization of the Petroleum Exporting Countries, member countries and history; Ministry of External Affairs, India-UAE bilateral brief.",
+  "ca-t2-eco-uae-exit-opec-may-2026", craft="precision")
+
+finish("ca_t2_b.sql", FORMAT, "2026-Q2", update="--update" in sys.argv)

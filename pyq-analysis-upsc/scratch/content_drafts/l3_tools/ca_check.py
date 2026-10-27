@@ -37,6 +37,16 @@ def fmt(r):
 # matches, about five negative items and three statement-relationship items.
 print("formats", dict(Counter(fmt(r) for r in rows)))
 print("ladder answers", dict(Counter(r["options"][[o["isCorrect"] for o in r["options"]].index(True)]["body"] for r in rows if r["type"] != "mcq")))
+# Authors drift to two true statements of three (CA2's first draft had 62 of 67); the real paper spreads one, two,
+# all and none, so a lopsided count here is a pattern a candidate can play.
+import ca_common
+tt = Counter()
+for r in rows:
+    st = r["question_data"].get("statements") or []
+    if r["type"] == "statement_based" and len(st) > 2:
+        t = ca_common._truth_from_expl(r["explanation"], len(st))
+        tt[f"{sum(t)} of {len(st)}" if t is not None else "unread"] += 1
+print("true statements per item", dict(sorted(tt.items())))
 seq = "".join(key(r) for r in rows)
 print("longest run of one key in module order:", max(len(m.group(0)) for m in re.finditer(r"(.)\1*", seq)))
 for r in rows:
