@@ -20,12 +20,12 @@ COI = "Constitution of India"
 GV, FD, EX, JV = "Governance", "Federalism & Special Provisions", "Union & State Executive", "Judicial-Verdicts"
 CB, SL, EL, FR, CF = "Constitutional & Statutory Bodies", "Statutory-Laws", "Elections", "Fundamental Rights, DPSP & Duties", "Constitutional Framework"
 
-S(GV, "easy", "The houselisting phase of Census 2027 began on 1 April 2026. Consider the following statements:",
-  "जनगणना 2027 का मकान-सूचीकरण चरण 1 अप्रैल 2026 को शुरू हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["Houselisting was to be completed between 1 April and 30 September 2026, each State and Union Territory choosing its own thirty-day window.",
+S(GV, "easy", "Consider the following statements about Census 2027, whose houselisting phase is under way:",
+  "जनगणना 2027, जिसका मकान-सूचीकरण चरण चल रहा है, के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Houselisting is spread over six months, with each State and Union Territory choosing its own thirty-day window within them.",
    "Households were given the option of enumerating themselves online for fifteen days before the house-to-house listing.",
    "'Census' is a subject in the Union List of the Seventh Schedule."],
-  ["मकान-सूचीकरण 1 अप्रैल से 30 सितंबर 2026 के बीच पूरा होना था, जिसमें हर राज्य और संघ राज्यक्षेत्र अपनी तीस-दिनी अवधि स्वयं चुनता।",
+  ["मकान-सूचीकरण छह महीनों में फैला है, जिनके भीतर हर राज्य और संघ राज्यक्षेत्र अपनी तीस-दिनी अवधि स्वयं चुनता है।",
    "परिवारों को घर-घर सूचीकरण से पहले पंद्रह दिनों तक ऑनलाइन स्व-गणना का विकल्प दिया गया।",
    "‘जनगणना’ सातवीं अनुसूची की संघ सूची का विषय है।"],
   C3, 2,
@@ -52,8 +52,8 @@ S(FD, "medium", "Puducherry went to the polls in 2026 along with Assam, Kerala, 
   f"{COI}, Articles 239A and 239AA; Government of Union Territories Act, 1963, section 3; Supreme Court, K. Lakshminarayanan v. Union of India (2018).",
   "ca-t1-pol-puducherry-239a-nominated-members-vote", craft="precision")
 
-S(EX, "medium", "In January 2026 the Governor's customary address to the legislatures of some States again became a matter of dispute between Governors and State governments. Consider the following statements:",
-  "जनवरी 2026 में कुछ राज्यों के विधानमंडलों में राज्यपाल का परंपरागत अभिभाषण फिर राज्यपालों और राज्य सरकारों के बीच विवाद का विषय बना। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EX, "medium", "The Governor's customary address to the State legislature has again become a matter of dispute between some Governors and State governments. Consider the following statements:",
+  "राज्य विधानमंडल में राज्यपाल का प्रथागत अभिभाषण फिर कुछ राज्यपालों और राज्य सरकारों के बीच विवाद का विषय बना है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under Article 176, the Governor addresses the Legislature at the beginning of the first session after each general election and of the first session of each year.",
    "Since the address is the Governor's own, the Governor may leave out any part of it that he or she disagrees with."],
   ["अनुच्छेद 176 के अंतर्गत राज्यपाल प्रत्येक आम चुनाव के बाद के पहले सत्र और प्रत्येक वर्ष के पहले सत्र के आरंभ में विधानमंडल को संबोधित करते हैं।",
@@ -66,8 +66,8 @@ S(EX, "medium", "In January 2026 the Governor's customary address to the legisla
   f"{COI}, Articles 87, 163 and 176; Supreme Court, Shamsher Singh v. State of Punjab (1974) and Nabam Rebia v. Deputy Speaker (2016).",
   "ca-t1-pol-governor-address-article-176", craft="precision")
 
-S(JV, "medium", "In March 2026 the Supreme Court allowed life support to be withdrawn from a man who had been in a vegetative state for thirteen years. Consider the following statements:",
-  "मार्च 2026 में सर्वोच्च न्यायालय ने तेरह वर्ष से निष्क्रिय अवस्था में पड़े एक व्यक्ति का जीवन-रक्षक उपचार हटाने की अनुमति दी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "medium", "The Supreme Court has allowed life support to be withdrawn from a man who had been in a vegetative state for thirteen years. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने तेरह वर्षों से अचेत अवस्था में रहे एक व्यक्ति से जीवन-रक्षक सहायता हटाने की अनुमति दी है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["In the Aruna Shanbaug case of 2011, the Court accepted passive euthanasia in principle but refused it in her own case.",
    "In 2023 the Court simplified the procedure for giving effect to advance medical directives.",
    "The 2026 case was the first in which the Court allowed life support to be withdrawn for a particular patient under this framework."],
@@ -82,8 +82,8 @@ S(JV, "medium", "In March 2026 the Supreme Court allowed life support to be with
   "Supreme Court, Aruna Ramchandra Shanbaug v. Union of India (2011), Common Cause v. Union of India (2018, modified 2023) and Harish Rana v. Union of India (11 March 2026); Constitution of India, Article 21.",
   "ca-t1-pol-passive-euthanasia-harish-rana", craft="linkage")
 
-S(JV, "hard", "In March 2026 the Supreme Court held that a person who converts from Hinduism, Sikhism or Buddhism to another religion loses Scheduled Caste status. Consider the following statements:",
-  "मार्च 2026 में सर्वोच्च न्यायालय ने निर्णय दिया कि हिंदू, सिख या बौद्ध धर्म से किसी अन्य धर्म में धर्मांतरण करने वाला व्यक्ति अनुसूचित जाति का दर्जा खो देता है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "hard", "With reference to Scheduled Caste status and religious conversion in India, consider the following statements:",
+  "भारत में अनुसूचित जाति के दर्जे और धर्मांतरण के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["Paragraph 3 of the Constitution (Scheduled Castes) Order, 1950 says that no person professing a religion different from Hinduism, Sikhism or Buddhism shall be deemed a member of a Scheduled Caste.",
    "As first issued, the Order covered Hindus alone; Sikhs were added in 1956 and Buddhists in 1990.",
    "The list of Scheduled Castes notified for a State can be modified by the President alone, by issuing a further order."],
@@ -100,10 +100,10 @@ S(JV, "hard", "In March 2026 the Supreme Court held that a person who converts f
 
 S(JV, "medium", "Consider the following statements about judgments of the Supreme Court in the first quarter of 2026:",
   "2026 की पहली तिमाही में सर्वोच्च न्यायालय के निर्णयों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The Court held that menstrual hygiene in schools is a matter of State policy alone and lies outside the right to life under Article 21.",
+  ["Access to menstrual hygiene in schools has been held to be a matter of State policy alone, outside the right to life under Article 21.",
    "The Court upheld the rule that an adoptive mother gets maternity benefit only if the child she adopts is below three months of age.",
    "The Court directed all private employers to grant paid menstrual leave to women employees."],
-  ["न्यायालय ने निर्णय दिया कि विद्यालयों में मासिक धर्म स्वच्छता केवल राज्य की नीति का विषय है और अनुच्छेद 21 के अंतर्गत जीवन के अधिकार से बाहर है।",
+  ["विद्यालयों में मासिक धर्म स्वच्छता तक पहुँच को केवल राज्य की नीति का विषय और अनुच्छेद 21 के अंतर्गत जीवन के अधिकार से बाहर माना गया है।",
    "न्यायालय ने उस नियम को बरक़रार रखा कि दत्तक माता को मातृत्व लाभ तभी मिलता है जब गोद लिया गया बच्चा तीन महीने से कम का हो।",
    "न्यायालय ने सभी निजी नियोक्ताओं को महिला कर्मचारियों को सवेतन मासिक धर्म अवकाश देने का निर्देश दिया।"],
   C3, 3,
@@ -114,8 +114,8 @@ S(JV, "medium", "Consider the following statements about judgments of the Suprem
   f"{COI}, Articles 14, 21 and 21A; Code on Social Security, 2020, section 60; Supreme Court judgments of 30 January and March 2026.",
   "ca-t1-pol-sc-2026-menstrual-health-adoption-leave", craft="multi")
 
-S(GV, "medium", "In February 2026 the Union Government told Parliament that it had no plans for a distinct legal recognition of the Denotified Tribes. Consider the following statements:",
-  "फ़रवरी 2026 में केंद्र सरकार ने संसद को बताया कि विमुक्त जनजातियों को अलग विधिक मान्यता देने की उसकी कोई योजना नहीं है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(GV, "medium", "With reference to the Denotified, Nomadic and Semi-Nomadic Tribes of India, consider the following statements:",
+  "भारत की विमुक्त, घुमंतू और अर्ध-घुमंतू जनजातियों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Criminal Tribes Act, first passed in 1871, was repealed after independence, and the communities notified under it were 'denotified' in 1952.",
    "The Renke Commission and the Idate Commission were set up to study the condition of the Denotified, Nomadic and Semi-Nomadic Tribes.",
    "The Denotified Tribes are a separate category in the Constitution, with seats reserved for them in the Lok Sabha."],
@@ -130,12 +130,12 @@ S(GV, "medium", "In February 2026 the Union Government told Parliament that it h
   "Ministry of Social Justice and Empowerment, Development and Welfare Board for DNTs, SNTs and NTs; reports of the National Commission for Denotified, Nomadic and Semi-Nomadic Tribes (2008, 2017).",
   "ca-t1-pol-denotified-tribes-renke-idate", craft="linkage")
 
-S(CB, "easy", "In January 2026 the Supreme Court stayed the University Grants Commission (Promotion of Equity in Higher Education Institutions) Regulations, 2026. Consider the following statements:",
-  "जनवरी 2026 में सर्वोच्च न्यायालय ने विश्वविद्यालय अनुदान आयोग (उच्च शिक्षा संस्थानों में समता संवर्धन) विनियम, 2026 पर रोक लगा दी। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The Court found the regulations prima facie vague and capable of misuse.",
+S(CB, "easy", "The Supreme Court has stayed the University Grants Commission (Promotion of Equity in Higher Education Institutions) Regulations, 2026. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने विश्वविद्यालय अनुदान आयोग (उच्च शिक्षा संस्थानों में समता संवर्धन) विनियम, 2026 पर रोक लगाई है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The stay rests on the Court's prima facie view that the regulations were vague and open to misuse.",
    "To avoid a vacuum, the Court directed that the equity regulations of 2012 continue in force for the time being.",
    "The University Grants Commission is a statutory body set up under an Act of Parliament."],
-  ["न्यायालय ने विनियमों को प्रथम दृष्टया अस्पष्ट और दुरुपयोग-योग्य पाया।",
+  ["रोक न्यायालय के इस प्रथम दृष्टया मत पर टिकी है कि विनियम अस्पष्ट और दुरुपयोग-योग्य थे।",
    "रिक्तता से बचने के लिए न्यायालय ने निर्देश दिया कि 2012 के समता विनियम फ़िलहाल लागू रहें।",
    "विश्वविद्यालय अनुदान आयोग संसद के एक अधिनियम के अंतर्गत बना सांविधिक निकाय है।"],
   C3, 2,
@@ -146,8 +146,8 @@ S(CB, "easy", "In January 2026 the Supreme Court stayed the University Grants Co
   f"{COI}, Article 142; University Grants Commission Act, 1956, sections 12 and 26; Supreme Court order of 29 January 2026.",
   "ca-t1-pol-ugc-equity-regulations-stay", craft="recall")
 
-S(SL, "hard", "In January 2026 it was pointed out that the Arbitration Council of India, provided for by law, had still not been constituted. Consider the following statements:",
-  "जनवरी 2026 में बताया गया कि विधि द्वारा प्रावधानित भारतीय मध्यस्थता परिषद अभी तक गठित नहीं हुई है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SL, "hard", "With reference to institutional arbitration in India, consider the following statements:",
+  "भारत में संस्थागत मध्यस्थता के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Arbitration Council of India was provided for by a 2019 amendment to grade arbitral institutions and accredit arbitrators.",
    "The India International Arbitration Centre was set up by an Act of Parliament and declared an institution of national importance.",
    "The Arbitration and Conciliation Act, 1996 was modelled on a law drafted by the World Trade Organization."],
@@ -181,8 +181,8 @@ M(EL, "medium",
   "Registration of Electors Rules, 1960, rules 13, 17-21A and Forms 6, 6A, 7 and 8; Representation of the People Act, 1950, sections 20A and 22.",
   "ca-t1-pol-form-7-objection-deletion", pos=POS.get("ca-t1-pol-form-7-objection-deletion", 1), craft="recall")
 
-S(FR, "medium", "In February 2026 the Supreme Court issued notices to twelve States on a petition challenging their anti-conversion laws. Consider the following statements:",
-  "फ़रवरी 2026 में सर्वोच्च न्यायालय ने बारह राज्यों को उनके धर्मांतरण-विरोधी क़ानूनों को चुनौती देने वाली याचिका पर नोटिस जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FR, "medium", "The Supreme Court has issued notices to several States on a petition challenging their anti-conversion laws. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने कई राज्यों को उनके धर्मांतरण-विरोधी कानूनों को चुनौती देने वाली याचिका पर नोटिस जारी किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["In Rev. Stainislaus v. State of Madhya Pradesh (1977), the Supreme Court held that the right to propagate religion does not include a right to convert another person.",
    "Parliament has enacted a law regulating religious conversion that applies throughout India.",
    "Article 25 of the Constitution expressly mentions a right to convert other persons."],
@@ -197,12 +197,12 @@ S(FR, "medium", "In February 2026 the Supreme Court issued notices to twelve Sta
   f"{COI}, Article 25; Supreme Court, Rev. Stainislaus v. State of Madhya Pradesh (1977).",
   "ca-t1-pol-anti-conversion-stainislaus", craft="precision")
 
-S(GV, "medium", "In February 2026 the Prime Minister's Office's guidance on which questions about the PM CARES Fund could be asked in the Lok Sabha was reported. Consider the following statements about the Fund:",
-  "फ़रवरी 2026 में यह ख़बर आई कि प्रधानमंत्री कार्यालय ने बताया है कि लोकसभा में पीएम केयर्स फ़ंड के बारे में कौन-से प्रश्न पूछे जा सकते हैं। फ़ंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
-  ["It was set up in March 2020 as a public charitable trust, with the Prime Minister as its chairperson.",
+S(GV, "medium", "Consider the following statements about the PM CARES Fund:",
+  "पीएम केयर्स फ़ंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was set up in 2020 as a public charitable trust, with the Prime Minister as its chairperson.",
    "It is financed through appropriations from the Consolidated Fund of India.",
    "Its accounts are audited by the Comptroller and Auditor General of India."],
-  ["इसे मार्च 2020 में एक सार्वजनिक धर्मार्थ न्यास के रूप में स्थापित किया गया, जिसके अध्यक्ष प्रधानमंत्री हैं।",
+  ["इसे 2020 में एक सार्वजनिक धर्मार्थ न्यास के रूप में स्थापित किया गया, जिसके अध्यक्ष प्रधानमंत्री हैं।",
    "इसका वित्तपोषण भारत की संचित निधि से विनियोग के माध्यम से होता है।",
    "इसके लेखों की लेखापरीक्षा भारत के नियंत्रक-महालेखापरीक्षक करते हैं।"],
   C3, 0,
@@ -213,8 +213,8 @@ S(GV, "medium", "In February 2026 the Prime Minister's Office's guidance on whic
   "PM CARES Fund, trust deed and annual statements (pmcares.gov.in); Income-tax Act, section 80G; Companies Act, 2013, Schedule VII.",
   "ca-t1-pol-pm-cares-trust-not-cag", craft="precision")
 
-S(FD, "medium", "In February 2026 the Centre, the Government of Nagaland and the Eastern Nagaland People's Organisation signed an agreement to create the Frontier Nagaland Territorial Authority. Consider the following statements:",
-  "फ़रवरी 2026 में केंद्र, नागालैंड सरकार और ईस्टर्न नागालैंड पीपल्स ऑर्गनाइज़ेशन ने फ़्रंटियर नागालैंड टेरिटोरियल अथॉरिटी बनाने के समझौते पर हस्ताक्षर किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FD, "medium", "The Centre, the Government of Nagaland and the Eastern Nagaland People's Organisation have agreed to create a Frontier Nagaland Territorial Authority. Consider the following statements:",
+  "केंद्र, नगालैंड सरकार और ईस्टर्न नगालैंड पीपल्स ऑर्गनाइज़ेशन ने फ़्रंटियर नगालैंड प्रादेशिक प्राधिकरण बनाने पर सहमति की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Authority is to cover six eastern districts of Nagaland, among them Tuensang and Mon, with powers devolved on a list of subjects.",
    "Its creation required a constitutional amendment bringing Nagaland under the Sixth Schedule."],
   ["यह प्राधिकरण नागालैंड के छह पूर्वी ज़िलों, जिनमें त्युएनसांग और मोन हैं, को समेटेगा, जिसे विषयों की एक सूची पर शक्तियाँ सौंपी गई हैं।",
@@ -227,8 +227,8 @@ S(FD, "medium", "In February 2026 the Centre, the Government of Nagaland and the
   f"{COI}, Article 371A and Sixth Schedule; Ministry of Home Affairs, memorandum of agreement on the Frontier Nagaland Territorial Authority (5 February 2026).",
   "ca-t1-pol-fnta-eastern-nagaland-371a", craft="linkage")
 
-S(CF, "medium", "In January 2026 a proposal to grant Scheduled Tribe status to six communities of Assam, among them the Tai-Ahom and the tea tribes, met opposition from existing tribal groups. Consider the following statements:",
-  "जनवरी 2026 में असम के छह समुदायों, जिनमें ताई-अहोम और चाय जनजातियाँ हैं, को अनुसूचित जनजाति का दर्जा देने के प्रस्ताव का मौजूदा जनजातीय समूहों ने विरोध किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(CF, "medium", "A proposal to grant Scheduled Tribe status to six communities of Assam, among them the Tai-Ahom and the tea tribes, has met opposition from existing tribal groups. Consider the following statements:",
+  "असम के छह समुदायों, जिनमें ताई-आहोम और चाय जनजातियाँ शामिल हैं, को अनुसूचित जनजाति का दर्जा देने के प्रस्ताव का मौजूदा जनजातीय समूहों ने विरोध किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The tea tribes of Assam are largely descended from people brought from Chota Nagpur and central India to work on tea estates in the colonial period.",
    "The six communities are at present listed among Assam's Other Backward Classes, so the change would move them from one list to another.",
    "Assam notifies its Scheduled Tribes in separate lists for the plains and for the hill districts."],

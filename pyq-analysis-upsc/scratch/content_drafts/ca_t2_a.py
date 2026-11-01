@@ -21,8 +21,8 @@ d.REQUIRE_CRAFT = True
 IN, NA, DF, SC, SP = "International", "National", "Defence", "Schemes & Indices", "Sports"
 
 # ================================================================ INTERNATIONAL
-S(IN, "medium", "On 21 May 2026 India and the African Union postponed the fourth India-Africa Forum Summit, which was to be held in New Delhi at the end of May. Consider the following statements:",
-  "21 मई 2026 को भारत और अफ़्रीकी संघ ने चौथा भारत-अफ़्रीका फ़ोरम शिखर सम्मेलन स्थगित कर दिया, जो मई के अंत में नई दिल्ली में होना था। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India and the African Union have postponed the fourth India-Africa Forum Summit, which was to be held in New Delhi. Consider the following statements:",
+  "भारत और अफ़्रीकी संघ ने चौथा भारत-अफ़्रीका फ़ोरम शिखर सम्मेलन, जो नई दिल्ली में होना था, स्थगित कर दिया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The summit was postponed because of the Ebola outbreak in Africa.",
    "The first India-Africa Forum Summit was held in New Delhi in 2008.",
    "The second summit was held in Addis Ababa in 2011."],
@@ -37,8 +37,8 @@ S(IN, "medium", "On 21 May 2026 India and the African Union postponed the fourth
   "Ministry of External Affairs, press release on the postponement of the fourth India-Africa Forum Summit (21 May 2026) and records of the India-Africa Forum Summits (2008, 2011, 2015).",
   "ca-t2-ca-iafs-iv-postponed-2008-addis-2011", craft="precision")
 
-S(IN, "medium", "In June 2026 attention turned to what the India-Russia Reciprocal Exchange of Logistics Support (RELOS) agreement, in force since early 2026, allows. Consider the following statements:",
-  "जून 2026 में इस पर ध्यान गया कि 2026 के आरंभ से लागू भारत-रूस रेसिप्रोकल एक्सचेंज ऑफ़ लॉजिस्टिक्स सपोर्ट (रिलोस) समझौता क्या अनुमति देता है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "With reference to the India-Russia Reciprocal Exchange of Logistics Support (RELOS) agreement and similar logistics pacts, consider the following statements:",
+  "भारत-रूस पारस्परिक लॉजिस्टिक्स सहायता विनिमय (रेलोस) समझौते और ऐसे ही लॉजिस्टिक्स समझौतों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["It lets each side's forces use the other's ports and airfields for refuelling, repairs and supplies on agreed visits and exercises.",
    "It allows Russian troops to be stationed permanently at Indian bases.",
    "India's first such logistics agreement was the one signed with the United States in 2016."],
@@ -53,8 +53,8 @@ S(IN, "medium", "In June 2026 attention turned to what the India-Russia Reciproc
   "Ministry of Defence, India's logistics support agreements; Ministry of External Affairs, India-Russia Reciprocal Exchange of Logistics Support agreement (signed February 2025).",
   "ca-t2-ca-relos-access-not-basing-lemoa-2016", craft="linkage")
 
-S(IN, "medium", "In June 2026 the Stockholm International Peace Research Institute (SIPRI) released its Yearbook with estimates of nuclear arsenals as of January 2026. Consider the following statements:",
-  "जून 2026 में स्टॉकहोम अंतरराष्ट्रीय शांति अनुसंधान संस्थान (सिपरी) ने जनवरी 2026 तक के परमाणु शस्त्रागारों के अनुमानों के साथ अपनी वार्षिकी जारी की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The Stockholm International Peace Research Institute (SIPRI) Yearbook has released new estimates of the world's nuclear arsenals. Consider the following statements:",
+  "स्टॉकहोम अंतरराष्ट्रीय शांति अनुसंधान संस्थान (सिपरी) की वार्षिकी ने विश्व के परमाणु शस्त्रागारों के नए अनुमान जारी किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It estimated that India has more nuclear warheads than Pakistan.",
    "For the first time, it classed some of India's warheads as deployed rather than held in storage.",
    "It estimated that China has fewer nuclear warheads than India."],
@@ -69,8 +69,8 @@ S(IN, "medium", "In June 2026 the Stockholm International Peace Research Institu
   "Stockholm International Peace Research Institute, SIPRI Yearbook 2026 (June 2026), chapter on world nuclear forces.",
   "ca-t2-ca-sipri-2026-india-190-deployed-china-620", craft="precision")
 
-S(IN, "medium", "On 20 May 2026 India and Italy raised their relationship to a Special Strategic Partnership during the Prime Minister's visit to Rome. Consider the following statements:",
-  "20 मई 2026 को प्रधानमंत्री की रोम यात्रा के दौरान भारत और इटली ने अपने संबंधों को विशेष रणनीतिक साझेदारी तक बढ़ाया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India and Italy have raised their relationship to a Special Strategic Partnership. Consider the following statements:",
+  "भारत और इटली ने अपने संबंधों को विशेष रणनीतिक साझेदारी तक बढ़ाया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The two sides follow a Joint Strategic Action Plan for 2025-2029.",
    "Italy is among the signatories of the 2023 memorandum on the India-Middle East-Europe Economic Corridor (IMEC).",
    "IMEC was announced on the sidelines of the G20 summit held in New Delhi in 2023."],
@@ -85,8 +85,8 @@ S(IN, "medium", "On 20 May 2026 India and Italy raised their relationship to a S
   "Ministry of External Affairs, India-Italy Joint Statement on the Special Strategic Partnership (May 2026) and Joint Strategic Action Plan 2025-2029; MoU on the India-Middle East-Europe Economic Corridor (September 2023).",
   "ca-t2-ca-india-italy-ssp-imec-g20-not-g7", craft="linkage")
 
-S(IN, "medium", "During the state visit of Vietnam's top leader To Lam to India on 5-7 May 2026, the two countries upgraded their ties. Consider the following statements:",
-  "5-7 मई 2026 को वियतनाम के शीर्ष नेता तो लाम की भारत की राजकीय यात्रा के दौरान दोनों देशों ने अपने संबंधों का उन्नयन किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India and Vietnam have upgraded their ties during a state visit by Vietnam's top leader To Lam. Consider the following statements:",
+  "वियतनाम के शीर्ष नेता तो लाम की राजकीय यात्रा के दौरान भारत और वियतनाम ने अपने संबंधों को उन्नत किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The two countries raised their ties to an Enhanced Comprehensive Strategic Partnership.",
    "Vietnam joined India's Indo-Pacific Oceans Initiative.",
    "India's Act East Policy, announced in 2014, grew out of the Look East Policy of the early 1990s."],
@@ -101,8 +101,8 @@ S(IN, "medium", "During the state visit of Vietnam's top leader To Lam to India 
   "Ministry of External Affairs, India-Vietnam Joint Statement (6 May 2026); President's Secretariat, banquet for the President of Viet Nam (May 2026).",
   "ca-t2-ca-vietnam-enhanced-csp-ipoi-act-east-2014", craft="linkage")
 
-S(IN, "medium", "On 15 May 2026 India and the United Arab Emirates signed several agreements during the Prime Minister's visit to Abu Dhabi. Consider the following statements:",
-  "15 मई 2026 को प्रधानमंत्री की अबू धाबी यात्रा के दौरान भारत और संयुक्त अरब अमीरात ने कई समझौतों पर हस्ताक्षर किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India and the United Arab Emirates have signed several agreements, including on defence and energy. Consider the following statements:",
+  "भारत और संयुक्त अरब अमीरात ने रक्षा और ऊर्जा सहित कई समझौतों पर हस्ताक्षर किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["They agreed to set up a ship-repair cluster at Vizhinjam in Kerala.",
    "They agreed on a framework for a Strategic Defence Partnership.",
    "They signed a memorandum of understanding on strategic petroleum reserves."],
@@ -118,8 +118,8 @@ S(IN, "medium", "On 15 May 2026 India and the United Arab Emirates signed severa
   "ca-t2-ca-india-uae-defence-framework-spr-vadinar", craft="precision")
 
 # ================================================================ DEFENCE
-MX(DF, "medium", "In April-June 2026 the Indian Navy added several vessels to its fleet. Match List-I (vessel) with List-II (type of vessel):",
-   "अप्रैल-जून 2026 में भारतीय नौसेना ने अपने बेड़े में कई पोत जोड़े। सूची-I (पोत) का सूची-II (पोत का प्रकार) से मिलान कीजिए:",
+MX(DF, "medium", "The Indian Navy has added several vessels to its fleet. Match List-I (vessel) with List-II (type of vessel):",
+   "भारतीय नौसेना ने अपने बेड़े में कई पोत जोड़े हैं। सूची-I (पोत) का सूची-II (पोत का प्रकार) से मिलान कीजिए:",
    ["INS Aridhaman", "INS Dunagiri", "INS Sanshodhak", "INS Agray"],
    ["आईएनएस अरिधमन", "आईएनएस दूनागिरि", "आईएनएस संशोधक", "आईएनएस अग्रय"],
    ["Anti-submarine warfare shallow water craft", "Nuclear-powered ballistic missile submarine", "Stealth frigate of Project 17A", "Large survey vessel"],
@@ -133,8 +133,8 @@ MX(DF, "medium", "In April-June 2026 the Indian Navy added several vessels to it
    "ca-t2-ca-navy-vessels-aridhaman-dunagiri-sanshodhak-agray", "precision")
 
 M(DF, "medium",
-  "In May 2026 the Indian Navy and DRDO carried out the first salvo launch of the NASM-SR. The NASM-SR is:",
-  "मई 2026 में भारतीय नौसेना और डीआरडीओ ने एनएएसएम-एसआर का पहला साल्वो प्रक्षेपण किया। एनएएसएम-एसआर है:",
+  "The Indian Navy and DRDO have carried out the first salvo launch of the NASM-SR. The NASM-SR is:",
+  "भारतीय नौसेना और डीआरडीओ ने एनएएसएम-एसआर का पहला सैल्वो प्रक्षेपण किया है। एनएएसएम-एसआर है:",
   ["a short-range anti-ship missile fired from a naval helicopter",
    "a submarine-launched ballistic missile of the K series",
    "a long-range surface-to-air missile developed with Israel",
@@ -151,8 +151,8 @@ M(DF, "medium",
   "Ministry of Defence and PIB, maiden salvo launch of NASM-SR from a naval helicopter (May 2026); Defence Research and Development Organisation, missile programmes.",
   "ca-t2-ca-nasm-sr-salvo-helicopter", pos=POS.get("ca-t2-ca-nasm-sr-salvo-helicopter", 0), craft="precision")
 
-S(DF, "medium", "In April-May 2026 the Indian Army took part in Exercise Dustlik abroad and hosted Exercise Pragati at home. Consider the following statements:",
-  "अप्रैल-मई 2026 में भारतीय सेना ने विदेश में अभ्यास दुस्तलिक में भाग लिया और देश में अभ्यास प्रगति की मेज़बानी की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(DF, "medium", "The Indian Army took part in Exercise Dustlik abroad and hosted Exercise Pragati at home. Consider the following statements:",
+  "भारतीय सेना ने विदेश में अभ्यास दस्तलिक में भाग लिया और देश में अभ्यास प्रगति की मेज़बानी की। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Dustlik is India's joint military exercise with Kazakhstan.",
    "Pragati 2026, held in Meghalaya, brought together the Indian Army and troops from twelve friendly countries.",
    "Bangladesh was among the countries taking part in Pragati 2026."],
@@ -168,8 +168,8 @@ S(DF, "medium", "In April-May 2026 the Indian Army took part in Exercise Dustlik
   "ca-t2-ca-exercises-dustlik-uzbekistan-pragati-12", craft="precision")
 
 # ================================================================ INDICES, SPORTS, AWARDS
-S(SC, "easy", "On 30 April 2026 the World Press Freedom Index 2026 was released. Consider the following statements:",
-  "30 अप्रैल 2026 को विश्व प्रेस स्वतंत्रता सूचकांक 2026 जारी हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SC, "easy", "Consider the following statements about the World Press Freedom Index 2026:",
+  "विश्व प्रेस स्वतंत्रता सूचकांक 2026 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["India was ranked 157th of 180 countries, lower than in 2025.",
    "The index is compiled by UNESCO."],
   ["भारत को 180 देशों में 157वाँ स्थान मिला, जो 2025 से नीचे है।",
@@ -182,8 +182,8 @@ S(SC, "easy", "On 30 April 2026 the World Press Freedom Index 2026 was released.
   "Reporters Without Borders, World Press Freedom Index 2026 (30 April 2026); UNESCO, World Press Freedom Day.",
   "ca-t2-ca-press-freedom-index-157-rsf-not-unesco", craft="precision")
 
-S(SP, "medium", "The FIDE Candidates tournaments of 2026 were held in Cyprus from late March to mid-April. Consider the following statements:",
-  "2026 के फ़िडे कैंडिडेट्स टूर्नामेंट मार्च के अंत से अप्रैल के मध्य तक साइप्रस में हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "medium", "Consider the following statements about the FIDE Candidates tournaments of 2026:",
+  "2026 के फ़िडे कैंडिडेट्स टूर्नामेंटों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["R. Vaishali became the first Indian woman to win the Women's Candidates tournament.",
    "The open Candidates tournament was won by an Indian player.",
    "The winner of the open tournament earned the right to challenge D. Gukesh, the reigning world champion."],
@@ -198,8 +198,8 @@ S(SP, "medium", "The FIDE Candidates tournaments of 2026 were held in Cyprus fro
   "International Chess Federation (FIDE), Candidates Tournament and Women's Candidates Tournament 2026 (Cyprus, March-April 2026); Ministry of Youth Affairs and Sports, congratulatory releases.",
   "ca-t2-ca-candidates-2026-vaishali-sindarov-gukesh", craft="precision")
 
-S(SP, "easy", "The Thomas and Uber Cup Finals, badminton's world team championships, were held at Horsens in Denmark from 24 April to 3 May 2026. Consider the following statements:",
-  "बैडमिंटन की विश्व टीम चैंपियनशिप, थॉमस और उबेर कप फ़ाइनल्स, 24 अप्रैल से 3 मई 2026 तक डेनमार्क के हॉर्सेंस में हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "easy", "Consider the following statements about the Thomas and Uber Cup Finals of 2026, badminton's world team championships:",
+  "बैडमिंटन की विश्व टीम चैंपियनशिप, 2026 के थॉमस और उबर कप फ़ाइनल्स के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["China won the Thomas Cup in 2026.",
    "The Uber Cup is the men's team championship."],
   ["2026 में चीन ने थॉमस कप जीता।",
@@ -212,8 +212,8 @@ S(SP, "easy", "The Thomas and Uber Cup Finals, badminton's world team championsh
   "Badminton World Federation, Thomas and Uber Cup Finals 2026 (Horsens); Ministry of Youth Affairs and Sports.",
   "ca-t2-ca-thomas-cup-2026-china-uber-women", craft="precision")
 
-S(SP, "easy", "The FIFA World Cup 2026 began on 11 June 2026. Consider the following statements:",
-  "फ़ीफ़ा विश्व कप 2026 11 जून 2026 को शुरू हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "easy", "Consider the following statements about the FIFA World Cup 2026:",
+  "फ़ीफ़ा विश्व कप 2026 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is the first World Cup with 48 teams.",
    "It is the first World Cup hosted jointly by three countries.",
    "Its opening match was played in Mexico City."],
@@ -226,8 +226,8 @@ S(SP, "easy", "The FIFA World Cup 2026 began on 11 June 2026. Consider the follo
   "Fédération Internationale de Football Association (FIFA), FIFA World Cup 26: format, hosts and match schedule.",
   "ca-t2-ca-fifa-2026-48-teams-three-hosts-azteca", craft="precision")
 
-S(SC, "medium", "On 19 May 2026 the International Booker Prize was awarded to 'Taiwan Travelogue' by Yáng Shuāng-zǐ, translated by Lin King. Consider the following statements:",
-  "19 मई 2026 को अंतरराष्ट्रीय बुकर पुरस्कार यांग शुआंग-ज़ी की ‘ताइवान ट्रैवलॉग’ को दिया गया, जिसका अनुवाद लिन किंग ने किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SC, "medium", "The International Booker Prize 2026 was awarded to 'Taiwan Travelogue' by Yáng Shuāng-zǐ, translated by Lin King. Consider the following statements:",
+  "अंतरराष्ट्रीय बुकर पुरस्कार 2026 यांग शुआंग-ज़ी की ‘ताइवान ट्रैवलॉग’ को मिला, जिसका अनुवाद लिन किंग ने किया। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is the first book written in Mandarin Chinese to win the prize.",
    "The entire prize money goes to the author.",
    "The 2025 prize was won by a novel translated from Hindi."],
@@ -243,8 +243,8 @@ S(SC, "medium", "On 19 May 2026 the International Booker Prize was awarded to 'T
   "ca-t2-ca-international-booker-2026-mandarin-heart-lamp", craft="linkage")
 
 # ================================================================ NATIONAL
-S(NA, "medium", "In May 2026 the National Crime Records Bureau released 'Crime in India 2024', which showed a fall of about 6 per cent in registered cognisable crimes and a rise of about 17 per cent in cybercrime. Consider the following statements:",
-  "मई 2026 में राष्ट्रीय अपराध रिकॉर्ड ब्यूरो ने ‘भारत में अपराध 2024’ जारी किया, जिसमें दर्ज संज्ञेय अपराधों में लगभग 6 प्रतिशत की कमी और साइबर अपराध में लगभग 17 प्रतिशत की वृद्धि दिखी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "The National Crime Records Bureau's 'Crime in India 2024' showed a fall of about 6 per cent in registered cognisable crimes and a rise of about 17 per cent in cybercrime. Consider the following statements:",
+  "राष्ट्रीय अपराध रिकॉर्ड ब्यूरो की ‘क्राइम इन इंडिया 2024’ ने दर्ज संज्ञेय अपराधों में लगभग 6 प्रतिशत की गिरावट और साइबर अपराध में लगभग 17 प्रतिशत की वृद्धि दिखाई। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The National Crime Records Bureau functions under the Ministry of Statistics and Programme Implementation.",
    "Part of the fall was attributed to the Bharatiya Nyaya Sanhita making simple hurt a non-cognisable offence.",
    "The Bureau's tables count every offence named in a First Information Report as a separate crime."],
@@ -259,8 +259,8 @@ S(NA, "medium", "In May 2026 the National Crime Records Bureau released 'Crime i
   "National Crime Records Bureau, Crime in India 2024 (May 2026), including its note on methodology; Ministry of Home Affairs.",
   "ca-t2-ca-ncrb-2024-bns-simple-hurt-principal-offence", craft="inference")
 
-S(NA, "medium", "A circular of the Central Board of Secondary Education (CBSE) issued in May 2026 made the study of three languages compulsory in Class IX from 1 July 2026. Consider the following statements:",
-  "मई 2026 में जारी केंद्रीय माध्यमिक शिक्षा बोर्ड (सीबीएसई) के एक परिपत्र ने 1 जुलाई 2026 से कक्षा IX में तीन भाषाओं का अध्ययन अनिवार्य कर दिया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "The Central Board of Secondary Education (CBSE) has made the study of three languages compulsory in Class IX. Consider the following statements:",
+  "केंद्रीय माध्यमिक शिक्षा बोर्ड (सीबीएसई) ने कक्षा IX में तीन भाषाओं का अध्ययन अनिवार्य कर दिया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["At least two of the three languages must be native Indian languages.",
    "The third language is to be assessed by the school rather than in the Class X board examination.",
    "The three-language formula was part of the National Policy on Education, 1968."],

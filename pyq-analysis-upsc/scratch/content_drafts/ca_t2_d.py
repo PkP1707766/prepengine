@@ -19,8 +19,8 @@ PA, IC, CM = "Protected Areas & Wildlife Protection", "International Conventions
 CA, FF, EP = "Climate Agreements & Carbon Markets", "Flora, Fungi & Forests", "Ecosystems & Ecological Processes"
 PO = "Pollution & Waste Management"
 
-S(PA, "medium", "On World Environment Day, 5 June 2026, India announced its 100th Ramsar site. Consider the following statements:",
-  "विश्व पर्यावरण दिवस, 5 जून 2026 को भारत ने अपने 100वें रामसर स्थल की घोषणा की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(PA, "medium", "India's list of Ramsar sites has reached one hundred. Consider the following statements:",
+  "भारत के रामसर स्थलों की सूची सौ तक पहुँच गई है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The 100th site is the Jai Prakash Narayan Bird Sanctuary, at Surha Tal in Ballia district of Uttar Pradesh.",
    "Surha Tal is an oxbow lake left behind by the meandering of the Ganga.",
    "Shekha Jheel, designated as the 99th site a few weeks earlier, is a brackish lagoon on the Gujarat coast."],
@@ -35,8 +35,8 @@ S(PA, "medium", "On World Environment Day, 5 June 2026, India announced its 100t
   "Ministry of Environment, Forest and Climate Change and PIB, India's 99th and 100th Ramsar sites (April and June 2026); Ramsar Convention Secretariat, Ramsar Sites Information Service.",
   "ca-t2-env-ramsar-100-surha-tal-shekha-jheel", craft="precision")
 
-S(EP, "medium", "In April 2026 Odisha became the first State to begin preparing a Marine Spatial Plan for its coastal waters. Consider the following statements:",
-  "अप्रैल 2026 में ओडिशा अपने तटीय जल के लिए समुद्री स्थानिक योजना तैयार करना शुरू करने वाला पहला राज्य बना। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EP, "medium", "Odisha has become the first State to begin preparing a Marine Spatial Plan for its coastal waters. Consider the following statements:",
+  "ओडिशा अपने तटीय जल के लिए समुद्री स्थानिक योजना बनाना शुरू करने वाला पहला राज्य बना है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Marine spatial planning maps a sea area and allots zones to uses such as fishing, tourism, shipping and conservation.",
    "Odisha's plan is being prepared by the Indian National Centre for Ocean Information Services.",
    "The first phase of such planning in India, under an initiative with Norway, covered Puducherry and Lakshadweep."],
@@ -67,8 +67,8 @@ S(EP, "medium", "A study published in 2026 recorded a population of barn swallow
   "Wildlife Institute of India, natural history note on a resident breeding population of the barn swallow in the Imphal valley (2026); NCERT, Biology (Class XII), Chapter 11 (Organisms and Populations), on adaptation.",
   "ca-t2-env-barn-swallow-imphal-resident-wii", craft="inference")
 
-S(PO, "medium", "The Plastic Waste Management (Amendment) Rules, 2026 were notified on 31 March 2026. Consider the following statements:",
-  "प्लास्टिक अपशिष्ट प्रबंधन (संशोधन) नियम, 2026 को 31 मार्च 2026 को अधिसूचित किया गया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(PO, "medium", "Consider the following statements about the Plastic Waste Management (Amendment) Rules, 2026:",
+  "प्लास्टिक अपशिष्ट प्रबंधन (संशोधन) नियम, 2026 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["A producer that falls short of its recycling target for 2025-26 may make up the shortfall over the following three years instead of being penalised at once.",
    "The obligation to use a minimum share of recycled plastic in rigid packaging has been retained."],
   ["2025-26 के अपने पुनर्चक्रण लक्ष्य से चूकने वाला उत्पादक तुरंत दंडित होने के बजाय अगले तीन वर्षों में कमी पूरी कर सकता है।",
@@ -81,8 +81,8 @@ S(PO, "medium", "The Plastic Waste Management (Amendment) Rules, 2026 were notif
   "Ministry of Environment, Forest and Climate Change, Plastic Waste Management (Amendment) Rules, 2026, G.S.R. 237(E) (31 March 2026); Central Pollution Control Board, guidelines on Extended Producer Responsibility for plastic packaging.",
   "ca-t2-env-pwm-amendment-2026-epr-carry-forward", craft="precision")
 
-S(FF, "hard", "In June 2026 the Centre was reported to be preparing to finalise the notification of Ecologically Sensitive Areas (ESAs) in the Western Ghats. Consider the following statements:",
-  "जून 2026 में बताया गया कि केंद्र पश्चिमी घाट में पारिस्थितिक रूप से संवेदनशील क्षेत्रों (ईएसए) की अधिसूचना को अंतिम रूप देने की तैयारी कर रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FF, "hard", "The Centre is moving to finalise the notification of Ecologically Sensitive Areas (ESAs) in the Western Ghats. Consider the following statements:",
+  "केंद्र पश्चिमी घाट में पारिस्थितिक रूप से संवेदनशील क्षेत्रों (ईएसए) की अधिसूचना को अंतिम रूप देने की ओर बढ़ रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["ESAs are notified by the State Governments under the Wild Life (Protection) Act, 1972.",
    "The draft notifications have proposed an ESA of about 56,800 sq km spread over six States.",
    "Among the six States, Kerala has the largest area proposed as ESA."],
@@ -97,8 +97,8 @@ S(FF, "hard", "In June 2026 the Centre was reported to be preparing to finalise 
   "Ministry of Environment, Forest and Climate Change, draft notifications on the Western Ghats Ecologically Sensitive Area (sixth draft, July 2024); Environment (Protection) Act, 1986, section 3, and Environment (Protection) Rules, 1986, rule 5.",
   "ca-t2-env-western-ghats-esa-56800-karnataka", craft="precision")
 
-S(CA, "medium", "In April 2026 India withdrew its offer to host the 33rd Conference of the Parties (COP33) to the UN climate convention in 2028. Consider the following statements:",
-  "अप्रैल 2026 में भारत ने 2028 में संयुक्त राष्ट्र जलवायु अभिसमय के पक्षकारों के 33वें सम्मेलन (कॉप33) की मेज़बानी का अपना प्रस्ताव वापस ले लिया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(CA, "medium", "India has withdrawn its offer to host the 33rd Conference of the Parties (COP33) to the UN climate convention in 2028. Consider the following statements:",
+  "भारत ने 2028 में संयुक्त राष्ट्र जलवायु अभिसमय के पक्षकारों के 33वें सम्मेलन (कॉप33) की मेज़बानी का अपना प्रस्ताव वापस ले लिया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["India had made the offer at COP28 in Dubai in 2023.",
    "COP32, in 2027, is to be held in Brazil.",
    "COP33 remains with the Asia-Pacific group, which must now put forward another host."],
@@ -113,8 +113,8 @@ S(CA, "medium", "In April 2026 India withdrew its offer to host the 33rd Confere
   "United Nations Framework Convention on Climate Change, hosts of future sessions of the COP; Ministry of Environment, Forest and Climate Change, India at COP28 (December 2023).",
   "ca-t2-env-cop33-offer-withdrawn-cop32-ethiopia", craft="precision")
 
-S(PO, "hard", "In May 2026 Kerala finalised a draft Oil Spill Contingency Plan for its 590-km coastline. Consider the following statements:",
-  "मई 2026 में केरल ने अपनी 590 किमी लंबी तटरेखा के लिए तेल-रिसाव आकस्मिक योजना का प्रारूप अंतिम किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(PO, "hard", "Kerala has finalised a draft Oil Spill Contingency Plan for its 590-km coastline. Consider the following statements:",
+  "केरल ने अपनी 590 किमी तटरेखा के लिए एक प्रारूप तेल रिसाव आकस्मिकता योजना को अंतिम रूप दिया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The plan was prompted by two shipping accidents off the Kerala coast in 2025, including the sinking of the container ship MSC Elsa 3.",
    "State plans of this kind are prepared within the framework of the National Oil Spill Disaster Contingency Plan.",
    "Cleaning up oil that reaches the shoreline is the responsibility of the coastal State governments."],

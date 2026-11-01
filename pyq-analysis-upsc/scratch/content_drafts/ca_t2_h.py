@@ -22,8 +22,8 @@ d.REQUIRE_CRAFT = True
 IN, NA, DF, SC, SP = "International", "National", "Defence", "Schemes & Indices", "Sports"
 
 # ================================================================ DEFENCE
-S(DF, "medium", "In May-June 2026 India got a new Chief of Defence Staff, a new Chief of the Naval Staff and a new Chief of the Army Staff. Consider the following statements:",
-  "मई-जून 2026 में भारत को नया चीफ़ ऑफ़ डिफ़ेंस स्टाफ़, नया नौसेनाध्यक्ष और नया थलसेनाध्यक्ष मिला। निम्नलिखित कथनों पर विचार कीजिए:",
+S(DF, "medium", "India has a new Chief of Defence Staff, a new Chief of the Naval Staff and a new Chief of the Army Staff. Consider the following statements:",
+  "भारत के नए चीफ़ ऑफ़ डिफ़ेंस स्टाफ़, नए नौसेना प्रमुख और नए थल सेना प्रमुख हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The new Chief of Defence Staff was appointed after retiring from the Army, which the rules have permitted since 2022.",
    "General Dhiraj Seth took over as Chief of the Army Staff from General Anil Chauhan.",
    "A Chief of Defence Staff can hold office only until the age of 62, like the service chiefs."],
@@ -40,8 +40,8 @@ S(DF, "medium", "In May-June 2026 India got a new Chief of Defence Staff, a new 
   "Ministry of Defence and PIB, appointments of the Chief of Defence Staff and the Chief of the Naval Staff (May 2026) and of the Chief of the Army Staff (June 2026); Ministry of Defence, amendments to the eligibility rules for the CDS (June 2022).",
   "ca-t2-ca-cds-retired-eligible-65-new-chiefs", craft="precision")
 
-S(DF, "medium", "In June 2026 DRDO flight-tested RudraM-II and the Long Range Land Attack Cruise Missile (LRLACM). Consider the following statements:",
-  "जून 2026 में डीआरडीओ ने रुद्रम-II और लॉन्ग रेंज लैंड अटैक क्रूज़ मिसाइल (एलआरएलएसीएम) का उड़ान परीक्षण किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(DF, "medium", "DRDO has flight-tested RudraM-II and the Long Range Land Attack Cruise Missile (LRLACM). Consider the following statements:",
+  "डीआरडीओ ने रुद्रम-II और लंबी दूरी की भूमि-आक्रमण क्रूज़ मिसाइल (एलआरएलएसीएम) का उड़ान-परीक्षण किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["RudraM-II is a surface-to-air missile meant to shoot down hostile aircraft.",
    "The LRLACM is a cruise missile meant to strike targets on land at long range.",
    "Both missiles were developed by the Indo-Russian BrahMos joint venture."],
@@ -59,8 +59,8 @@ S(DF, "medium", "In June 2026 DRDO flight-tested RudraM-II and the Long Range La
   "ca-t2-ca-rudram-ii-lrlacm-drdo-not-brahmos", craft="precision")
 
 # ================================================================ INTERNATIONAL
-S(IN, "hard", "On 18 June 2026 a US-Iran memorandum of understanding, signed in the wake of talks in Islamabad, entered into force. Consider the following statements:",
-  "18 जून 2026 को इस्लामाबाद में हुई वार्ताओं के बाद हस्ताक्षरित एक अमेरिका-ईरान समझौता ज्ञापन लागू हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "A US-Iran memorandum of understanding, signed in the wake of talks in Islamabad, has entered into force. Consider the following statements:",
+  "इस्लामाबाद में वार्ता के बाद हस्ताक्षरित अमेरिका-ईरान समझौता ज्ञापन लागू हो गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Pakistan acted as a mediator between the two sides.",
    "It provided for Iran to reopen the Strait of Hormuz and for the United States to lift its naval blockade.",
    "It left the question of Iran's nuclear programme to later negotiations."],
@@ -75,8 +75,8 @@ S(IN, "hard", "On 18 June 2026 a US-Iran memorandum of understanding, signed in 
   "Ministry of External Affairs, statements on the West Asia situation (June 2026); United Nations Security Council resolution 2231 (2015).",
   "ca-t2-ca-islamabad-mou-hormuz-interim-jcpoa", craft="linkage")
 
-S(IN, "medium", "From 15 to 17 June 2026 the 52nd G7 summit was held at Evian, France, with India among the invited countries. Consider the following statements:",
-  "15 से 17 जून 2026 तक फ़्रांस के एवियाँ में 52वाँ जी7 शिखर सम्मेलन हुआ, जिसमें आमंत्रित देशों में भारत भी था। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The 52nd G7 summit was held at Evian, France, with India among the invited countries. Consider the following statements:",
+  "52वाँ जी7 शिखर सम्मेलन फ़्रांस के एवियाँ में हुआ, जिसमें भारत आमंत्रित देशों में था। निम्नलिखित कथनों पर विचार कीजिए:",
   ["India is not a member of the G7 but has repeatedly been invited to its summits.",
    "Russia's participation in the group was suspended in 2014 after it annexed Crimea.",
    "The European Union takes part in the summits, but the presidency rotates only among the seven member countries."],
@@ -91,8 +91,8 @@ S(IN, "medium", "From 15 to 17 June 2026 the 52nd G7 summit was held at Evian, F
   "Ministry of External Affairs, Prime Minister's participation in the G7 Summit at Evian (June 2026); G7 presidency of France, 2026.",
   "ca-t2-ca-g7-evian-india-invitee-russia-2014-eu", craft="precision")
 
-S(IN, "medium", "On 3 June 2026 the UN General Assembly elected five non-permanent members of the Security Council for 2027-2028. Consider the following statements:",
-  "3 जून 2026 को संयुक्त राष्ट्र महासभा ने 2027-2028 के लिए सुरक्षा परिषद के पाँच अस्थायी सदस्य चुने। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The UN General Assembly has elected five non-permanent members of the Security Council for 2027-2028. Consider the following statements:",
+  "संयुक्त राष्ट्र महासभा ने 2027-2028 के लिए सुरक्षा परिषद के पाँच अस्थायी सदस्य चुने हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Pakistan's present term on the Council ends in 2026.",
    "A candidate needs only a simple majority of the members present and voting.",
    "Germany was among the countries elected."],
@@ -107,8 +107,8 @@ S(IN, "medium", "On 3 June 2026 the UN General Assembly elected five non-permane
   "United Nations General Assembly, election of non-permanent members of the Security Council (3 June 2026); Charter of the United Nations, Articles 18 and 23.",
   "ca-t2-ca-unsc-election-2027-28-two-thirds-pakistan", craft="precision")
 
-S(IN, "easy", "On 2 June 2026 Bangladesh's Foreign Minister Khalilur Rahman was elected President of the 81st session of the UN General Assembly. Consider the following statements:",
-  "2 जून 2026 को बांग्लादेश के विदेश मंत्री ख़लीलुर रहमान संयुक्त राष्ट्र महासभा के 81वें सत्र के अध्यक्ष चुने गए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "easy", "Bangladesh's Foreign Minister Khalilur Rahman has been elected President of the 81st session of the UN General Assembly. Consider the following statements:",
+  "बांग्लादेश के विदेश मंत्री ख़लीलुर रहमान संयुक्त राष्ट्र महासभा के 81वें सत्र के अध्यक्ष चुने गए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The presidency of the 81st session was due by rotation to the Asia-Pacific group.",
    "The President of the General Assembly is elected for a term of two years."],
   ["81वें सत्र की अध्यक्षता बारी के अनुसार एशिया-प्रशांत समूह को मिलनी थी।",
@@ -121,8 +121,8 @@ S(IN, "easy", "On 2 June 2026 Bangladesh's Foreign Minister Khalilur Rahman was 
   "United Nations General Assembly, election of the President of the 81st session (2 June 2026); Rules of Procedure of the General Assembly.",
   "ca-t2-ca-pga-81-asia-pacific-one-year", craft="precision")
 
-S(IN, "medium", "On 15 May 2026 the Court of Arbitration under the Indus Waters Treaty issued an award on pondage, which India rejected the next day. Consider the following statements:",
-  "15 मई 2026 को सिंधु जल संधि के अंतर्गत मध्यस्थता न्यायालय ने जलसंग्रह (पॉन्डेज) पर एक निर्णय दिया, जिसे भारत ने अगले दिन अस्वीकार कर दिया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The Court of Arbitration under the Indus Waters Treaty has issued an award on pondage, which India has rejected. Consider the following statements:",
+  "सिंधु जल संधि के अंतर्गत मध्यस्थता न्यायालय ने पॉन्डेज पर एक निर्णय दिया है, जिसे भारत ने अस्वीकार कर दिया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It was the first award issued by the Court of Arbitration in the dispute.",
    "India rejected it, holding that the Court of Arbitration had been illegally constituted.",
    "The Court of Arbitration had been set up at India's request."],
@@ -140,8 +140,8 @@ S(IN, "medium", "On 15 May 2026 the Court of Arbitration under the Indus Waters 
   "ca-t2-ca-iwt-pondage-award-coa-pakistan-request", craft="linkage")
 
 # ================================================================ INDICES
-S(SC, "hard", "Several international rankings and data sets released in April-June 2026 placed India as follows. Consider the following statements:",
-  "अप्रैल-जून 2026 में जारी कई अंतरराष्ट्रीय रैंकिंग और आँकड़ों ने भारत को इस प्रकार रखा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SC, "hard", "Several international rankings and data sets have placed India as follows. Consider the following statements:",
+  "कई अंतरराष्ट्रीय रैंकिंग और आँकड़ा-समूहों ने भारत को इस प्रकार रखा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["SIPRI's data on military expenditure placed India fifth among the world's biggest military spenders in 2025.",
    "India ranked as more peaceful in the Global Peace Index 2026 than in the 2025 edition.",
    "Germany spent more on its military in 2025 than India did.",
@@ -159,8 +159,8 @@ S(SC, "hard", "Several international rankings and data sets released in April-Ju
   "ca-t2-ca-sipri-milex-5th-gpi-127-imd-44", craft="multi")
 
 # ================================================================ NATIONAL
-MX(NA, "medium", "The results of the Assembly elections held in April 2026 were declared on 4 May 2026. Match List-I (State or Union territory) with List-II (party or alliance that formed the government):",
-   "अप्रैल 2026 में हुए विधानसभा चुनावों के परिणाम 4 मई 2026 को घोषित हुए। सूची-I (राज्य या संघ राज्यक्षेत्र) का सूची-II (सरकार बनाने वाला दल या गठबंधन) से मिलान कीजिए:",
+MX(NA, "medium", "Assembly elections were held in 2026 in four States and a Union territory. Match List-I (State or Union territory) with List-II (party or alliance that formed the government):",
+   "2026 में चार राज्यों और एक संघ राज्यक्षेत्र में विधानसभा चुनाव हुए। सूची-I (राज्य या संघ राज्यक्षेत्र) का सूची-II (सरकार बनाने वाला दल या गठबंधन) से मिलान कीजिए:",
    ["West Bengal", "Tamil Nadu", "Kerala", "Puducherry"],
    ["पश्चिम बंगाल", "तमिलनाडु", "केरल", "पुदुचेरी"],
    ["Congress-led United Democratic Front", "Bharatiya Janata Party", "Tamilaga Vettri Kazhagam", "All India N.R. Congress-led alliance"],
@@ -173,8 +173,8 @@ MX(NA, "medium", "The results of the Assembly elections held in April 2026 were 
    "Election Commission of India, results of the general elections to the Legislative Assemblies of Assam, Kerala, Tamil Nadu, West Bengal and Puducherry (4 May 2026).",
    "ca-t2-ca-state-elections-2026-match", "precision")
 
-S(NA, "hard", "The Assam Assembly election of April 2026 was the first held on the constituencies redrawn in 2023. Consider the following statements about that delimitation:",
-  "अप्रैल 2026 का असम विधानसभा चुनाव 2023 में पुनर्निर्धारित निर्वाचन क्षेत्रों पर हुआ पहला चुनाव था। उस परिसीमन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "hard", "Assam's Assembly election of 2026 was the first held on the constituencies redrawn in 2023. Consider the following statements about that delimitation:",
+  "असम का 2026 का विधानसभा चुनाव 2023 में पुनर्निर्धारित निर्वाचन क्षेत्रों पर हुआ पहला चुनाव था। उस परिसीमन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It was carried out by the Election Commission of India rather than by a Delimitation Commission.",
    "It was based on the population figures of the 2011 Census.",
    "It changed the total number of seats in the Assam Legislative Assembly."],
@@ -191,8 +191,8 @@ S(NA, "hard", "The Assam Assembly election of April 2026 was the first held on t
   "Election Commission of India, Delimitation Order for Assam (August 2023); Representation of the People Act, 1950, section 8A; Constitution of India, Articles 82 and 170.",
   "ca-t2-ca-assam-delimitation-eci-8a-2001-126", craft="application")
 
-S(NA, "medium", "In May 2026 the Centre was reported to be bringing about 1,200 fishing harbours and fish-landing centres under the security oversight of the Central Industrial Security Force (CISF). Consider the following statements:",
-  "मई 2026 में बताया गया कि केंद्र लगभग 1,200 मत्स्य बंदरगाहों और मछली-उतराई केंद्रों को केंद्रीय औद्योगिक सुरक्षा बल (सीआईएसएफ़) की सुरक्षा निगरानी में ला रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "The Centre is bringing about 1,200 fishing harbours and fish-landing centres under the security oversight of the Central Industrial Security Force (CISF). Consider the following statements:",
+  "केंद्र लगभग 1,200 मत्स्य बंदरगाहों और मछली उतराई केंद्रों को केंद्रीय औद्योगिक सुरक्षा बल (सीआईएसएफ़) की सुरक्षा निगरानी में ला रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The CISF functions under the Ministry of Home Affairs.",
    "The attackers of 26 November 2008 reached Mumbai on a hijacked Indian fishing trawler.",
    "At airports the CISF is the regulator that lays down the standards of aviation security."],
@@ -207,8 +207,8 @@ S(NA, "medium", "In May 2026 the Centre was reported to be bringing about 1,200 
   "Ministry of Home Affairs, plan for the security of fishing harbours under CISF oversight (May 2026); Bureau of Civil Aviation Security, Ministry of Civil Aviation.",
   "ca-t2-ca-cisf-fishing-harbours-26-11-bcas", craft="linkage")
 
-S(NA, "medium", "On 19 June 2026 the Centre launched Abhigyan, a mobile application that lets the police check fingerprints on the spot. Consider the following statements:",
-  "19 जून 2026 को केंद्र ने अभिज्ञान नाम का मोबाइल ऐप्लिकेशन शुरू किया, जिससे पुलिस मौक़े पर ही उँगलियों के निशान जाँच सकती है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "The Centre has launched Abhigyan, a mobile application that lets the police check fingerprints on the spot. Consider the following statements:",
+  "केंद्र ने ‘अभिज्ञान’ शुरू किया है, एक मोबाइल ऐप्लिकेशन जो पुलिस को मौक़े पर ही उँगलियों के निशान जाँचने देता है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The app matches fingerprints against the National Automated Fingerprint Identification System maintained by the National Crime Records Bureau.",
    "The Criminal Procedure (Identification) Act, 2022 allows such records of measurements to be kept for 75 years.",
    "The 2022 Act replaced the Identification of Prisoners Act, 1920."],
@@ -224,8 +224,8 @@ S(NA, "medium", "On 19 June 2026 the Centre launched Abhigyan, a mobile applicat
   "ca-t2-ca-abhigyan-nafis-identification-act-75-years", craft="linkage")
 
 M(NA, "easy",
-  "In May 2026 the Ministry of Health and Family Welfare launched JANANI. It is:",
-  "मई 2026 में स्वास्थ्य और परिवार कल्याण मंत्रालय ने जननी शुरू किया। यह है:",
+  "JANANI, recently launched by the Ministry of Health and Family Welfare, is:",
+  "स्वास्थ्य और परिवार कल्याण मंत्रालय द्वारा हाल में शुरू किया गया ‘जननी’ है:",
   ["a digital platform that replaces the RCH portal and follows mothers from pregnancy, and children up to the age of five",
    "a cash-assistance scheme for institutional deliveries that replaces the Janani Suraksha Yojana for poor pregnant women",
    "a scheme of take-home rations for pregnant women and nursing mothers, delivered through anganwadi centres in every district",
@@ -242,8 +242,8 @@ M(NA, "easy",
   "Ministry of Health and Family Welfare and PIB, launch of the JANANI digital platform (May 2026); National Health Mission, Janani Suraksha Yojana.",
   "ca-t2-ca-janani-replaces-rch-mother-child-five", pos=POS.get("ca-t2-ca-janani-replaces-rch-mother-child-five", 2), craft="precision")
 
-S(NA, "medium", "In May-June 2026 the Ministry of Health and Family Welfare released the findings of the sixth National Family Health Survey (NFHS-6, 2023-24). Consider the following statements:",
-  "मई-जून 2026 में स्वास्थ्य और परिवार कल्याण मंत्रालय ने छठे राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण (एनएफ़एचएस-6, 2023-24) के निष्कर्ष जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "The Ministry of Health and Family Welfare has released the findings of the sixth National Family Health Survey (NFHS-6, 2023-24). Consider the following statements:",
+  "स्वास्थ्य और परिवार कल्याण मंत्रालय ने छठे राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण (एनएफ़एचएस-6, 2023-24) के निष्कर्ष जारी किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The share of women who are obese fell compared with NFHS-5.",
    "The share of births by caesarean section was above the range of 10-15 per cent that WHO has suggested.",
    "The survey is conducted by the National Statistics Office."],
@@ -260,8 +260,8 @@ S(NA, "medium", "In May-June 2026 the Ministry of Health and Family Welfare rele
   "Ministry of Health and Family Welfare, National Family Health Survey (NFHS-6), 2023-24, national fact sheet; International Institute for Population Sciences, Mumbai.",
   "ca-t2-ca-nfhs-6-institutional-90-csection-iips", craft="precision")
 
-S(NA, "easy", "On 7 May 2026 the Employees' State Insurance Corporation (ESIC) launched a nationwide free annual health check-up for insured workers aged 40 and above. Consider the following statements:",
-  "7 मई 2026 को कर्मचारी राज्य बीमा निगम (ईएसआईसी) ने 40 वर्ष और अधिक आयु के बीमित श्रमिकों के लिए देशव्यापी निःशुल्क वार्षिक स्वास्थ्य जाँच शुरू की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "easy", "The Employees' State Insurance Corporation (ESIC) has launched a nationwide free annual health check-up for insured workers aged 40 and above. Consider the following statements:",
+  "कर्मचारी राज्य बीमा निगम (ईएसआईसी) ने 40 वर्ष और अधिक आयु के बीमित श्रमिकों के लिए राष्ट्रव्यापी निःशुल्क वार्षिक स्वास्थ्य जाँच शुरू की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The check-up follows from the Occupational Safety, Health and Working Conditions Code, 2020, which provides for annual health check-ups of workers.",
    "ESIC functions under the Ministry of Health and Family Welfare."],
   ["यह जाँच व्यावसायिक सुरक्षा, स्वास्थ्य और कार्य-दशा संहिता, 2020 से निकलती है, जो श्रमिकों की वार्षिक स्वास्थ्य जाँच का प्रावधान करती है।",
@@ -274,8 +274,8 @@ S(NA, "easy", "On 7 May 2026 the Employees' State Insurance Corporation (ESIC) l
   "Ministry of Labour and Employment and PIB, launch of the nationwide free annual health check-up through ESIC (7 May 2026); Occupational Safety, Health and Working Conditions Code, 2020; Employees' State Insurance Act, 1948.",
   "ca-t2-ca-esic-health-check-40-osh-code-labour", craft="precision")
 
-S(NA, "medium", "On 18 May 2026 the new Kerala government decided to set up a separate Department of Senior Citizens, the first such department in the country. Consider the following statements:",
-  "18 मई 2026 को केरल की नई सरकार ने वरिष्ठ नागरिकों का एक अलग विभाग बनाने का निर्णय लिया, जो देश में अपनी तरह का पहला विभाग है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "Kerala has decided to set up a separate Department of Senior Citizens, the first such department in the country. Consider the following statements:",
+  "केरल ने वरिष्ठ नागरिकों का एक अलग विभाग बनाने का निर्णय लिया है, जो देश में ऐसा पहला विभाग है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Kerala has the highest proportion of people aged 60 and above among the major States.",
    "A National Policy on Older Persons was adopted by the Central Government in 1999.",
    "'Old age pensions' figure in the Concurrent List of the Seventh Schedule."],
@@ -291,8 +291,8 @@ S(NA, "medium", "On 18 May 2026 the new Kerala government decided to set up a se
   "ca-t2-ca-kerala-senior-citizens-dept-oldest-state-entry-24", craft="linkage")
 
 M(NA, "easy",
-  "On 30 May 2026 the Department of Administrative Reforms and Public Grievances launched 'Samadhan Didi'. It is:",
-  "30 मई 2026 को प्रशासनिक सुधार और लोक शिकायत विभाग ने ‘समाधान दीदी’ शुरू की। यह है:",
+  "'Samadhan Didi', launched by the Department of Administrative Reforms and Public Grievances, is:",
+  "प्रशासनिक सुधार और लोक शिकायत विभाग द्वारा शुरू की गई ‘समाधान दीदी’ है:",
   ["an AI voice chatbot through which citizens can lodge grievances on CPGRAMS",
    "a scheme to train women of self-help groups as para-legal volunteers for Lok Adalats",
    "a toll-free helpline for women facing harassment at the workplace",
@@ -309,8 +309,8 @@ M(NA, "easy",
   "Department of Administrative Reforms and Public Grievances, launch of the CPGRAMS AI-enabled voice chatbot 'Samadhan Didi' (30 May 2026) and monthly CPGRAMS report.",
   "ca-t2-ca-samadhan-didi-cpgrams-bhashini", pos=POS.get("ca-t2-ca-samadhan-didi-cpgrams-bhashini", 3), craft="precision")
 
-S(NA, "medium", "The Kailash Manasarovar Yatra was held from June to August 2026, with pilgrims crossing into Tibet by two routes. Consider the following statements:",
-  "कैलाश मानसरोवर यात्रा जून से अगस्त 2026 तक हुई, जिसमें तीर्थयात्री दो मार्गों से तिब्बत गए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "medium", "The Kailash Manasarovar Yatra has been held again, with pilgrims crossing into Tibet by two routes. Consider the following statements:",
+  "कैलाश मानसरोवर यात्रा फिर हुई है, जिसमें तीर्थयात्री दो मार्गों से तिब्बत में गए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The yatra is organised by the Ministry of Home Affairs.",
    "Its resumption followed the understanding reached by India and China in October 2024 on patrolling along the Line of Actual Control.",
    "The 2026 yatra was the first to be held since it was suspended in 2020."],
@@ -348,8 +348,8 @@ M(SP, "easy",
   "ca-t2-ca-womens-t20-wc-2026-12-teams-lords", pos=POS.get("ca-t2-ca-womens-t20-wc-2026-12-teams-lords", 1), craft="precision")
 
 M(SC, "medium",
-  "International Day of Yoga was observed for the twelfth time on 21 June 2026. With reference to the day, which one of the following statements is NOT correct?",
-  "21 जून 2026 को बारहवीं बार अंतरराष्ट्रीय योग दिवस मनाया गया। इस दिवस के संदर्भ में निम्नलिखित में से कौन-सा कथन सही नहीं है?",
+  "With reference to the International Day of Yoga, observed for the twelfth time in 2026, which one of the following statements is NOT correct?",
+  "2026 में बारहवीं बार मनाए गए अंतरराष्ट्रीय योग दिवस के संदर्भ में, निम्नलिखित में से कौन-सा कथन सही नहीं है?",
   ["It was first observed in 2014, the year India proposed it at the United Nations.",
    "It was proclaimed, on India's proposal, by a resolution of the UN General Assembly adopted in December 2014.",
    "Its main national event in 2026 was held at Red Road in Kolkata.",
@@ -367,8 +367,8 @@ M(SC, "medium",
   "ca-t2-ca-idy-2026-healthy-ageing-69-131-2015", pos=POS.get("ca-t2-ca-idy-2026-healthy-ageing-69-131-2015", 3), craft="precision")
 
 M(SC, "easy",
-  "With reference to the Goldman Environmental Prize 2026, announced on 20 April 2026, which one of the following statements is NOT correct?",
-  "20 अप्रैल 2026 को घोषित गोल्डमैन पर्यावरण पुरस्कार 2026 के संदर्भ में निम्नलिखित में से कौन-सा कथन सही नहीं है?",
+  "With reference to the Goldman Environmental Prize 2026, which one of the following statements is NOT correct?",
+  "गोल्डमैन पर्यावरण पुरस्कार 2026 के संदर्भ में, निम्नलिखित में से कौन-सा कथन सही नहीं है?",
   ["The prize is awarded by the United Nations Environment Programme.",
    "For the first time in the prize's history, all the winners in a year were women.",
    "Its winner for Asia in 2026 was from South Korea.",

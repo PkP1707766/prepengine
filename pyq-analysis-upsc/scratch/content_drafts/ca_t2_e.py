@@ -20,8 +20,8 @@ d.REQUIRE_CRAFT = True
 SP, AS, BH = "Space Technology & Missions", "Astronomy & Earth Science", "Biology, Health & Biotechnology"
 EN, IT = "Energy & Environmental Technology", "IT, Communication & Emerging Technologies"
 
-S(EN, "hard", "On 6 April 2026 the Prototype Fast Breeder Reactor at Kalpakkam attained first criticality. Consider the following statements:",
-  "6 अप्रैल 2026 को कलपक्कम के प्रोटोटाइप फ़ास्ट ब्रीडर रिएक्टर ने पहली क्रांतिकता प्राप्त की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EN, "hard", "The Prototype Fast Breeder Reactor at Kalpakkam has attained first criticality. Consider the following statements:",
+  "कलपक्कम के प्रोटोटाइप फ़ास्ट ब्रीडर रिएक्टर ने पहली क्रांतिकता प्राप्त की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its fuel is a mixed oxide of uranium and plutonium.",
    "Its reactor core is cooled by liquid sodium rather than water.",
    "It is the first fast reactor to operate in India.",
@@ -38,8 +38,8 @@ S(EN, "hard", "On 6 April 2026 the Prototype Fast Breeder Reactor at Kalpakkam a
   "Department of Atomic Energy and PIB, first criticality of the Prototype Fast Breeder Reactor (April 2026); Indira Gandhi Centre for Atomic Research, Fast Breeder Test Reactor; NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
   "ca-t2-sci-pfbr-criticality-mox-sodium-fbtr", craft="multi")
 
-S(EN, "medium", "26 April 2026 marked forty years since the accident at the Chernobyl nuclear power plant. Consider the following statements:",
-  "26 अप्रैल 2026 को चेर्नोबिल परमाणु बिजलीघर की दुर्घटना के चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EN, "medium", "The accident at the Chernobyl nuclear power plant completed forty years in 2026. Consider the following statements:",
+  "चेर्नोबिल परमाणु बिजलीघर दुर्घटना के 2026 में चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The reactor that exploded was of a Soviet design moderated by graphite and cooled by water.",
    "The plant lies in present-day Belarus.",
    "Chernobyl and Fukushima Daiichi are the only two accidents rated at the highest level, 7, on the International Nuclear and Radiological Event Scale."],
@@ -54,8 +54,8 @@ S(EN, "medium", "26 April 2026 marked forty years since the accident at the Cher
   "International Atomic Energy Agency, the Chernobyl accident and the International Nuclear and Radiological Event Scale (INES); NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
   "ca-t2-sci-chernobyl-40-rbmk-ines-7", craft="precision")
 
-S(SP, "easy", "In April 2026 the Artemis II mission flew four astronauts around the Moon. Consider the following statements:",
-  "अप्रैल 2026 में आर्टेमिस II मिशन चार अंतरिक्ष यात्रियों को चंद्रमा के चारों ओर ले गया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "easy", "The Artemis II mission has flown four astronauts around the Moon. Consider the following statements:",
+  "आर्टेमिस II मिशन चार अंतरिक्ष यात्रियों को चंद्रमा के चारों ओर ले गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It flew past the Moon and returned without landing on it.",
    "Its crew included an astronaut of the Canadian Space Agency.",
    "Its crew travelled farther from Earth than any humans before, beating the record set by Apollo 13.",
@@ -72,8 +72,8 @@ S(SP, "easy", "In April 2026 the Artemis II mission flew four astronauts around 
   "National Aeronautics and Space Administration, Artemis II mission (April 2026); Ministry of External Affairs, India's signing of the Artemis Accords (June 2023).",
   "ca-t2-sci-artemis-ii-flyby-apollo-13-record", craft="precision")
 
-S(BH, "medium", "In May 2026 the World Health Organization confirmed that a cluster of severe respiratory illness aboard a cruise ship was caused by the Andes virus. Consider the following statements about hantaviruses:",
-  "मई 2026 में विश्व स्वास्थ्य संगठन ने पुष्टि की कि एक क्रूज़ जहाज़ पर गंभीर श्वसन रोग का एक समूह एंडीज़ वायरस से हुआ था। हंटावायरस के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "medium", "The World Health Organization has confirmed that a cluster of severe respiratory illness aboard a cruise ship was caused by the Andes virus. Consider the following statements about hantaviruses:",
+  "विश्व स्वास्थ्य संगठन ने पुष्टि की है कि एक क्रूज़ जहाज़ पर गंभीर श्वसन रोग का समूह एंडीज़ वायरस से हुआ था। हंतावायरस के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["They are carried by rodents, and people are usually infected by breathing in particles from rodent urine or droppings.",
    "No hantavirus is known to spread from person to person.",
    "They are transmitted mainly by the bite of Aedes mosquitoes."],
@@ -88,8 +88,8 @@ S(BH, "medium", "In May 2026 the World Health Organization confirmed that a clus
   "World Health Organization, Disease Outbreak News on the Andes virus cluster (May 2026) and fact sheet on hantavirus.",
   "ca-t2-sci-hantavirus-andes-rodents-person-to-person", craft="precision")
 
-S(BH, "hard", "In May 2026 the World Health Organization declared the Ebola outbreak in the Democratic Republic of the Congo a Public Health Emergency of International Concern (PHEIC). Consider the following statements:",
-  "मई 2026 में विश्व स्वास्थ्य संगठन ने कांगो लोकतांत्रिक गणराज्य में इबोला प्रकोप को अंतरराष्ट्रीय चिंता की सार्वजनिक स्वास्थ्य आपात स्थिति (पीएचईआईसी) घोषित किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "hard", "The World Health Organization has declared the Ebola outbreak in the Democratic Republic of the Congo a Public Health Emergency of International Concern (PHEIC). Consider the following statements:",
+  "विश्व स्वास्थ्य संगठन ने कांगो लोकतांत्रिक गणराज्य में इबोला प्रकोप को अंतरराष्ट्रीय चिंता का सार्वजनिक स्वास्थ्य आपातकाल (पीएचईआईसी) घोषित किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The outbreak was caused by the Bundibugyo species of ebolavirus, against which no vaccine had been licensed.",
    "Ervebo, the vaccine used in earlier Ebola outbreaks, was developed against the Zaire species of the virus.",
    "Ebola spreads mainly through the air over long distances, as measles does.",
@@ -106,8 +106,8 @@ S(BH, "hard", "In May 2026 the World Health Organization declared the Ebola outb
   "World Health Organization, statement of the IHR Emergency Committee on the Ebola (Bundibugyo virus disease) outbreak (May 2026) and Ebola fact sheet; WHO, amendments to the International Health Regulations (2005) in force from 19 September 2025.",
   "ca-t2-sci-ebola-bundibugyo-ervebo-pandemic-emergency", craft="multi")
 
-S(BH, "easy", "In May 2026 polycystic ovary syndrome (PCOS) was renamed after a global consensus process. Consider the following statements:",
-  "मई 2026 में एक वैश्विक सहमति प्रक्रिया के बाद पॉलीसिस्टिक ओवरी सिंड्रोम (पीसीओएस) का नाम बदला गया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "easy", "Polycystic ovary syndrome (PCOS) has been renamed after a global consensus process. Consider the following statements:",
+  "वैश्विक सर्वसम्मति प्रक्रिया के बाद पॉलीसिस्टिक ओवरी सिंड्रोम (पीसीओएस) का नाम बदला गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its new name is polyendocrine metabolic ovarian syndrome (PMOS).",
    "The name was changed because the condition was found to be confined to the ovaries."],
   ["इसका नया नाम पॉलीएंडोक्राइन मेटाबोलिक ओवेरियन सिंड्रोम (पीएमओएस) है।",
@@ -120,8 +120,8 @@ S(BH, "easy", "In May 2026 polycystic ovary syndrome (PCOS) was renamed after a 
   "The Lancet, international consensus on renaming polycystic ovary syndrome (May 2026); Ministry of Health and Family Welfare, information on PCOS.",
   "ca-t2-sci-pcos-renamed-pmos-multisystem", craft="precision")
 
-S(IT, "medium", "On World Quantum Day, 14 April 2026, Andhra Pradesh opened quantum reference facilities at Amaravati. Consider the following statements:",
-  "विश्व क्वांटम दिवस, 14 अप्रैल 2026 को आंध्र प्रदेश ने अमरावती में क्वांटम संदर्भ सुविधाएँ खोलीं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IT, "medium", "Andhra Pradesh has opened quantum reference facilities at Amaravati on World Quantum Day. Consider the following statements:",
+  "आंध्र प्रदेश ने विश्व क्वांटम दिवस पर अमरावती में क्वांटम संदर्भ सुविधाएँ खोली हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The facilities are meant to let researchers and start-ups test, benchmark and certify quantum hardware and software.",
    "World Quantum Day falls on 14 April because Max Planck presented his quantum hypothesis on that date.",
    "Under the National Quantum Mission, the thematic hub for quantum computing has been set up at Amaravati."],
@@ -136,8 +136,8 @@ S(IT, "medium", "On World Quantum Day, 14 April 2026, Andhra Pradesh opened quan
   "Department of Science and Technology, National Quantum Mission and its thematic hubs; Government of Andhra Pradesh, Quantum Reference Facilities at Amaravati (April 2026).",
   "ca-t2-sci-quantum-reference-facility-t-hubs", craft="linkage")
 
-S(IT, "medium", "On 2 May 2026 the Centre launched a Cell Broadcast Alert System for warnings of disasters and emergencies. Consider the following statements:",
-  "2 मई 2026 को केंद्र ने आपदाओं और आपात स्थितियों की चेतावनी के लिए सेल ब्रॉडकास्ट अलर्ट सिस्टम शुरू किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IT, "medium", "The Centre has launched a Cell Broadcast Alert System for warnings of disasters and emergencies. Consider the following statements:",
+  "केंद्र ने आपदाओं और आपात स्थितियों की चेतावनी के लिए सेल ब्रॉडकास्ट अलर्ट प्रणाली शुरू की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["A cell broadcast message reaches only those handsets whose numbers the sender has registered in advance.",
    "The system was developed by the Indian Space Research Organisation (ISRO).",
    "Like bulk SMS, cell broadcast messages are delayed when the network is congested."],
@@ -165,8 +165,8 @@ A(EN, "medium",
   "Department of Atomic Energy, India's three-stage nuclear power programme; NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
   "ca-t2-sci-thorium-fertile-not-fissile-si", craft="inference")
 
-S(IT, "hard", "In May 2026 two Indian companies announced plans to launch the country's first orbital data-centre satellite, Pathfinder, by the end of the year. Consider the following statements about running computers in orbit:",
-  "मई 2026 में दो भारतीय कंपनियों ने वर्ष के अंत तक देश का पहला कक्षीय डेटा-केंद्र उपग्रह, पाथफ़ाइंडर, प्रक्षेपित करने की योजना घोषित की। कक्षा में कंप्यूटर चलाने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(IT, "hard", "Two Indian companies plan to launch the country's first orbital data-centre satellite, Pathfinder. Consider the following statements about running computers in orbit:",
+  "दो भारतीय कंपनियाँ देश का पहला कक्षीय डेटा-केंद्र उपग्रह, पाथफ़ाइंडर, प्रक्षेपित करने की योजना बना रही हैं। कक्षा में कंप्यूटर चलाने के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["In a suitable orbit, solar panels can supply power almost continuously, without the night and clouds that limit them on the ground.",
    "In the vacuum of space, waste heat cannot be carried away by air and must be radiated into space.",
    "Because they are in space, such data centres will respond faster than ground data centres to users anywhere on Earth."],
@@ -181,8 +181,8 @@ S(IT, "hard", "In May 2026 two Indian companies announced plans to launch the co
   "Indian National Space Promotion and Authorisation Centre (IN-SPACe), private satellite missions; NCERT, Physics Part I (Class XI), Chapter 10 (Thermal Properties of Matter), on radiation.",
   "ca-t2-sci-orbital-data-centre-solar-radiative-cooling", craft="application")
 
-S(SP, "medium", "On 19 May 2026 the SMILE spacecraft was launched to study how Earth's magnetic field shields it from the Sun. Consider the following statements:",
-  "19 मई 2026 को स्माइल अंतरिक्ष यान प्रक्षेपित किया गया, यह अध्ययन करने के लिए कि पृथ्वी का चुंबकीय क्षेत्र उसे सूर्य से कैसे बचाता है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "medium", "The SMILE spacecraft has been launched to study how Earth's magnetic field shields it from the Sun. Consider the following statements:",
+  "पृथ्वी का चुंबकीय क्षेत्र उसे सूर्य से कैसे बचाता है, इसके अध्ययन के लिए स्माइल अंतरिक्ष यान प्रक्षेपित किया गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It was launched by ISRO's PSLV from Sriharikota.",
    "It is a joint mission of the European Space Agency and the Chinese Academy of Sciences.",
    "It is to image in X-rays the region where the solar wind meets Earth's magnetosphere."],
@@ -197,8 +197,8 @@ S(SP, "medium", "On 19 May 2026 the SMILE spacecraft was launched to study how E
   "European Space Agency, SMILE mission (launch of 19 May 2026); NCERT, Physics Part I (Class XII), Chapter 5 (Magnetism and Matter), on the Earth's magnetism.",
   "ca-t2-sci-smile-esa-cas-magnetosphere-xray", craft="precision")
 
-S(BH, "hard", "On 31 May 2026 results were announced from a large trial in which a daily pill, daraxonrasib, roughly doubled the median survival of patients with advanced pancreatic cancer. Consider the following statements:",
-  "31 मई 2026 को एक बड़े परीक्षण के परिणाम घोषित हुए जिसमें एक दैनिक गोली, डैराक्सोनरासिब, ने उन्नत अग्नाशय कैंसर के रोगियों की माध्यिका उत्तरजीविता लगभग दोगुनी कर दी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "hard", "In a large trial, a daily pill, daraxonrasib, roughly doubled the median survival of patients with advanced pancreatic cancer. Consider the following statements:",
+  "एक बड़े परीक्षण में दैनिक गोली डैराक्सोनरासिब ने उन्नत अग्न्याशय कैंसर के रोगियों की माध्यिका उत्तरजीविता लगभग दोगुनी कर दी। निम्नलिखित कथनों पर विचार कीजिए:",
   ["RAS proteins act as switches that relay signals telling a cell to grow and divide.",
    "Mutations in the KRAS gene are found in the great majority of pancreatic cancers.",
    "The drug works by blocking RAS proteins in their active, signal-sending state."],
@@ -213,8 +213,8 @@ S(BH, "hard", "On 31 May 2026 results were announced from a large trial in which
   "New England Journal of Medicine and American Society of Clinical Oncology annual meeting, results of the RASolute 302 trial (31 May 2026); NCERT, Biology (Class XII), Chapter 8 (Human Health and Disease), on cancer.",
   "ca-t2-sci-daraxonrasib-kras-ras-on-switch", craft="multi")
 
-S(BH, "medium", "In May 2026 experts warned that India still lacks the expertise and tools to manage its burden of fungal disease. Consider the following statements:",
-  "मई 2026 में विशेषज्ञों ने चेताया कि भारत के पास अब भी कवक रोगों के बोझ से निपटने की विशेषज्ञता और साधनों की कमी है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "medium", "Experts have warned that India still lacks the expertise and tools to manage its burden of fungal disease. Consider the following statements:",
+  "विशेषज्ञों ने चेताया है कि भारत में अब भी कवक रोगों के बोझ से निपटने की विशेषज्ञता और साधनों की कमी है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The World Health Organization published its first list of priority fungal pathogens in 2022.",
    "Candida auris, often resistant to several antifungal drugs, is in the list's critical group.",
    "The list ranks the fungi in three groups: critical, high and medium priority."],
@@ -229,14 +229,14 @@ S(BH, "medium", "In May 2026 experts warned that India still lacks the expertise
   "World Health Organization, fungal priority pathogens list (October 2022); Ministry of Health and Family Welfare, advisories on mucormycosis (2021); NCERT, Biology (Class XI), Chapter 2 (Biological Classification).",
   "ca-t2-sci-who-fungal-priority-candida-auris", craft="precision")
 
-S(BH, "hard", "The World Health Assembly of May 2026 took stock of the WHO Pandemic Agreement. Consider the following statements:",
-  "मई 2026 की विश्व स्वास्थ्य सभा ने डब्ल्यूएचओ महामारी समझौते की स्थिति की समीक्षा की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "hard", "Consider the following statements about the WHO Pandemic Agreement:",
+  "डब्ल्यूएचओ महामारी समझौते के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Pandemic Agreement was adopted by the UN General Assembly.",
    "It opens for signature only after an annex on pathogen access and benefit-sharing is adopted.",
-   "That annex was adopted by the World Health Assembly of May 2026."],
+   "That annex has already been adopted by the World Health Assembly."],
   ["महामारी समझौता संयुक्त राष्ट्र महासभा ने अपनाया।",
    "यह रोगजनक पहुँच और लाभ-साझेदारी पर एक अनुबंध अपनाए जाने के बाद ही हस्ताक्षर के लिए खुलता है।",
-   "वह अनुबंध मई 2026 की विश्व स्वास्थ्य सभा ने अपनाया।"],
+   "वह अनुबंध विश्व स्वास्थ्य सभा द्वारा पहले ही अपनाया जा चुका है।"],
   C3, 0,
   "Only statement 2 is correct. The WHO Pandemic Agreement was adopted on 20 May 2025 by the World Health Assembly -- WHO's governing body of all its Member States, not the UN General Assembly -- under Article 19 of the WHO Constitution, after the failings of the COVID-19 response. It commits parties to prevention, fairer access to vaccines and medicines in a pandemic and the transfer of technology, but it opens for signature only after the Assembly adopts an annex on a Pathogen Access and Benefit-Sharing (PABS) system, under which countries share samples and genetic sequences of pathogens and in return get a share of the vaccines and medicines made from them. "
   "Statement 3 is wrong: the negotiators could not agree on the annex in time -- developing countries sought binding benefit-sharing and richer countries voluntary terms -- so in May 2026 the Assembly extended the talks, with the outcome due at the next Assembly in 2027 or at an earlier special session.",

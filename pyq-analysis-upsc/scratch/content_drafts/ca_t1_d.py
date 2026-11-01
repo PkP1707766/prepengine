@@ -18,8 +18,8 @@ d.REQUIRE_CRAFT = True
 PA, IC, CM = "Protected Areas & Wildlife Protection", "International Conventions & Organisations", "Climate Science & Mitigation"
 CA, FF, EP = "Climate Agreements & Carbon Markets", "Flora, Fungi & Forests", "Ecosystems & Ecological Processes"
 
-S(PA, "medium", "Chhari-Dhand in Gujarat was designated a Ramsar site on World Wetlands Day, 2 February 2026. Consider the following statements:",
-  "गुजरात के छारी-ढंड को 2 फ़रवरी 2026, विश्व आर्द्रभूमि दिवस, पर रामसर स्थल घोषित किया गया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(PA, "medium", "Chhari-Dhand in Gujarat has been designated a Ramsar site. Consider the following statements:",
+  "गुजरात के छारी-ढंड को रामसर स्थल घोषित किया गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Chhari-Dhand is a seasonal wetland on the edge of the Banni grasslands of Kutch.",
    "The Banni grasslands are grazed by the herds of the Maldhari pastoralists.",
    "Designation as a Ramsar site by itself gives a wetland the legal status of a protected area under Indian law."],
@@ -65,8 +65,8 @@ S(CM, "medium", "The Union Budget 2026-27 earmarked ₹20,000 crore over five ye
   "Union Budget 2026-27, Budget Speech (1 February 2026); NITI Aayog, Carbon Capture, Utilization and Storage (CCUS) Policy Framework and its Deployment Mechanism in India (2022).",
   "ca-t1-env-ccus-mission-eor-mineralisation", craft="application")
 
-S(IC, "hard", "The Agreement on Marine Biological Diversity of Areas beyond National Jurisdiction (the 'High Seas Treaty') entered into force in January 2026. Consider the following statements:",
-  "राष्ट्रीय अधिकार-क्षेत्र से परे क्षेत्रों की समुद्री जैव-विविधता पर समझौता (‘उच्च सागर संधि’) जनवरी 2026 में लागू हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IC, "hard", "The Agreement on Marine Biological Diversity of Areas beyond National Jurisdiction (the 'High Seas Treaty') has entered into force. Consider the following statements:",
+  "राष्ट्रीय क्षेत्राधिकार से परे क्षेत्रों की समुद्री जैव विविधता पर समझौता (‘हाई सीज़ संधि’) लागू हो गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It entered into force 120 days after the sixtieth instrument of ratification or accession was deposited.",
    "It allows coastal States to extend their exclusive economic zones beyond 200 nautical miles."],
   ["यह अनुसमर्थन या अधिमिलन का साठवाँ लिखत जमा होने के 120 दिन बाद लागू हुआ।",
@@ -79,12 +79,12 @@ S(IC, "hard", "The Agreement on Marine Biological Diversity of Areas beyond Nati
   "Agreement under UNCLOS on the Conservation and Sustainable Use of Marine Biological Diversity of Areas beyond National Jurisdiction (2023), Articles 68 and 47; UNCLOS, Articles 57 and 76.",
   "ca-t1-env-bbnj-entry-into-force-120-days", craft="precision")
 
-S(PA, "medium", "Project Cheetah received a new batch of animals in February 2026. Consider the following statements:",
-  "फ़रवरी 2026 में प्रोजेक्ट चीता को जानवरों का एक नया दल मिला। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The batch of cheetahs that reached Kuno in February 2026 came from Botswana.",
+S(PA, "medium", "With reference to Project Cheetah, which has received a new batch of animals, consider the following statements:",
+  "प्रोजेक्ट चीता, जिसे पशुओं का एक नया दल मिला है, के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The latest batch of cheetahs to reach Kuno came from Botswana.",
    "Gandhi Sagar Wildlife Sanctuary, which became the project's second home for cheetahs, is in Rajasthan.",
    "The African cheetah is classified as Endangered on the IUCN Red List."],
-  ["फ़रवरी 2026 में कूनो पहुँचे चीतों का दल बोत्सवाना से आया था।",
+  ["कूनो पहुँचा चीतों का नवीनतम दल बोत्सवाना से आया था।",
    "परियोजना के चीतों का दूसरा घर बना गांधी सागर वन्यजीव अभयारण्य राजस्थान में है।",
    "अफ़्रीकी चीता आईयूसीएन रेड लिस्ट में संकटग्रस्त (एंडेंजर्ड) श्रेणी में है।"],
   C3, 0,
@@ -95,8 +95,8 @@ S(PA, "medium", "Project Cheetah received a new batch of animals in February 202
   "Ministry of Environment, Forest and Climate Change and National Tiger Conservation Authority, releases on Project Cheetah (February 2026); IUCN Red List, Acinonyx jubatus.",
   "ca-t1-env-cheetah-botswana-gandhi-sagar", craft="precision")
 
-S(CM, "hard", "In February 2026 district cooling was discussed as a way of meeting the fast-growing demand for cooling in Indian cities. Consider the following statements:",
-  "फ़रवरी 2026 में भारतीय शहरों में शीतलन की तेज़ी से बढ़ती माँग पूरी करने के एक उपाय के रूप में डिस्ट्रिक्ट कूलिंग पर चर्चा हुई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(CM, "hard", "District cooling is being discussed as a way of meeting the fast-growing demand for cooling in Indian cities. Consider the following statements:",
+  "भारतीय शहरों में शीतलन की तेज़ी से बढ़ती माँग पूरी करने के एक उपाय के रूप में डिस्ट्रिक्ट कूलिंग पर चर्चा हो रही है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["In district cooling, chilled water from a central plant is piped to many buildings instead of each building running its own air-conditioning plant.",
    "The India Cooling Action Plan, released in 2019, aims to reduce cooling demand across sectors by 20 to 25 per cent by 2037-38.",
    "The Plan also aims to reduce the demand for refrigerants by 25 to 30 per cent by 2037-38.",
@@ -113,8 +113,8 @@ S(CM, "hard", "In February 2026 district cooling was discussed as a way of meeti
   "Ministry of Environment, Forest and Climate Change, India Cooling Action Plan (March 2019).",
   "ca-t1-env-district-cooling-icap-kigali", craft="linkage")
 
-S(FF, "medium", "In January 2026 the Air Force was called in to fight a forest fire in the Valley of Flowers National Park. Consider the following statements:",
-  "जनवरी 2026 में फूलों की घाटी राष्ट्रीय उद्यान में वन-अग्नि बुझाने के लिए वायु सेना बुलाई गई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FF, "medium", "The Air Force had to be called in to fight a winter forest fire in the Valley of Flowers National Park. Consider the following statements:",
+  "फूलों की घाटी राष्ट्रीय उद्यान में सर्दियों की वनाग्नि से लड़ने के लिए वायु सेना बुलानी पड़ी। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Valley of Flowers National Park lies in Chamoli district of Uttarakhand.",
    "It forms a core zone of the Khangchendzonga Biosphere Reserve.",
    "In the Himalaya, forest fires are commonest in the winter months of December and January."],

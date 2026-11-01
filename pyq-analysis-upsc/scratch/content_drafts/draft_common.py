@@ -134,13 +134,16 @@ def write_updates(name, replaces=None, statuses=("draft",), tags=None):
     stmts = []
     for r in ROWS:
         old = replaces.get(r["concept_group_id"], r["concept_group_id"])
+        # A renamed row matches its old id the first time and its new id on every later revision (CA1's
+        # stems were reframed after its renames, and an old-id-only match silently updated nothing).
+        match = ", ".join(sql_q(x) for x in dict.fromkeys([old, r["concept_group_id"]]))
         sets = {"subject": SUBJECT, "topic": r["topic"], "type": r["type"], "difficulty": r["difficulty"], "body": r["body"],
                 "body_hi": r["body_hi"], "explanation": r["explanation"], "explanation_hi": r["explanation_hi"],
                 "concept_group_id": r["concept_group_id"], "source_citation": r["source_citation"]}
         sql = ("update public.questions set " + ", ".join(f"{k} = {sql_q(v)}" for k, v in sets.items())
                + ", question_data = " + sql_q(json.dumps(r["question_data"], ensure_ascii=False)) + "::jsonb"
                + ", options = " + sql_q(json.dumps(r["options"], ensure_ascii=False)) + "::jsonb, updated_at = now()"
-               + f" where exam_category = 'upsc' and status in ({st}) and concept_group_id = {sql_q(old)} returning concept_group_id;")
+               + f" where exam_category = 'upsc' and status in ({st}) and concept_group_id in ({match}) returning concept_group_id;")
         stmts.append(sql)
     for cg, craft in (tags or {}).items():
         assert craft in CRAFTS, f"{cg}: bad craft {craft}"

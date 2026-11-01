@@ -22,8 +22,8 @@ COI = "Constitution of India"
 GV, FD, EX, JV = "Governance", "Federalism & Special Provisions", "Union & State Executive", "Judicial-Verdicts"
 CB, SL, EL, FR, CF = "Constitutional & Statutory Bodies", "Statutory-Laws", "Elections", "Fundamental Rights, DPSP & Duties", "Constitutional Framework"
 
-S(JV, "hard", "On 16 May 2026 the President promulgated an ordinance to increase the number of judges of the Supreme Court. Consider the following statements:",
-  "16 मई 2026 को राष्ट्रपति ने सर्वोच्च न्यायालय के न्यायाधीशों की संख्या बढ़ाने के लिए एक अध्यादेश प्रख्यापित किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "hard", "The President has promulgated an ordinance to increase the number of judges of the Supreme Court. Consider the following statements:",
+  "राष्ट्रपति ने सर्वोच्च न्यायालय के न्यायाधीशों की संख्या बढ़ाने के लिए एक अध्यादेश प्रख्यापित किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It raised the sanctioned strength of the Court to 38, including the Chief Justice of India.",
    "The previous increase, in 2019, had also been made by an ordinance.",
    "The number of judges of each High Court is likewise fixed by an Act of Parliament."],
@@ -38,14 +38,14 @@ S(JV, "hard", "On 16 May 2026 the President promulgated an ordinance to increase
   "Supreme Court (Number of Judges) Amendment Ordinance, 2026 (16 May 2026) and the Supreme Court (Number of Judges) Amendment Act, 2019; Constitution of India, Articles 123, 124(1) and 216.",
   "ca-t2-pol-sc-strength-ordinance-38-art-216", craft="precision")
 
-S(FR, "medium", "On 19 June 2026 the Supreme Court held that walking on safe footpaths is a fundamental right. Consider the following statements:",
-  "19 जून 2026 को सर्वोच्च न्यायालय ने निर्णय दिया कि सुरक्षित फ़ुटपाथ पर चलना एक मौलिक अधिकार है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FR, "medium", "With reference to the right of pedestrians to safe footpaths, which the Supreme Court has recognised as a fundamental right, consider the following statements:",
+  "सुरक्षित फ़ुटपाथ पर पैदल यात्रियों के अधिकार के संदर्भ में, जिसे सर्वोच्च न्यायालय ने मौलिक अधिकार माना है, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Court grounded the right in the freedom of movement under Article 19(1)(d), read with Article 21.",
-   "It held that the existence of a road places a duty on municipal bodies and other local authorities to provide safe footpaths.",
-   "It held that pedestrians can pursue their claims only under the Motor Vehicles Act, 1988."],
+   "The existence of a road places a duty on municipal bodies and other local authorities to provide safe footpaths.",
+   "Pedestrians can pursue such claims only under the Motor Vehicles Act, 1988."],
   ["न्यायालय ने इस अधिकार का आधार अनुच्छेद 21 के साथ पठित अनुच्छेद 19(1)(घ) के अंतर्गत संचरण की स्वतंत्रता को बनाया।",
-   "इसने कहा कि सड़क के होने मात्र से नगर निकायों और अन्य स्थानीय प्राधिकरणों पर सुरक्षित फ़ुटपाथ उपलब्ध कराने का दायित्व आता है।",
-   "इसने कहा कि पैदल यात्री अपने दावे केवल मोटर यान अधिनियम, 1988 के अंतर्गत उठा सकते हैं।"],
+   "सड़क के होने मात्र से नगर निकायों और अन्य स्थानीय प्राधिकरणों पर सुरक्षित फ़ुटपाथ उपलब्ध कराने का दायित्व आता है।",
+   "पैदल यात्री ऐसे दावे केवल मोटर यान अधिनियम, 1988 के अंतर्गत उठा सकते हैं।"],
   C3, 1,
   "Statements 1 and 2 are correct. In a case arising from a five-year-old child struck by a tanker on a road without a footpath, a bench of Justices P.S. Narasimha and A.S. Chandurkar read a right to walk safely into the freedom to move freely throughout India (Article 19(1)(d)), with the other freedoms of Article 19(1) and the right to life (Article 21), and gave it priority over the movement of motor vehicles. It held that urban development authorities, municipalities and panchayats are bound to demarcate, build and keep footpaths free of encroachment, and turned the wider question into a continuing suo motu case. "
   "Statement 3 is wrong: the Court held that this constitutional right can be enforced independently of the remedies under the Motor Vehicles Act, 1988.",
@@ -54,8 +54,8 @@ S(FR, "medium", "On 19 June 2026 the Supreme Court held that walking on safe foo
   "Supreme Court of India, Maniyar Iliyaz alias Shaik Riyaz v. P. Ayyappan (19 June 2026); Constitution of India, Articles 19(1)(d) and 21.",
   "ca-t2-pol-right-to-walk-footpaths-19-1-d", craft="application")
 
-S(FR, "medium", "On 29 May 2026 the Delhi High Court recognised a right to be forgotten in respect of judicial records available online. Consider the following statements:",
-  "29 मई 2026 को दिल्ली उच्च न्यायालय ने ऑनलाइन उपलब्ध न्यायिक अभिलेखों के संबंध में भुलाए जाने के अधिकार को मान्यता दी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FR, "medium", "The Delhi High Court has recognised a right to be forgotten in respect of judicial records available online. Consider the following statements:",
+  "दिल्ली उच्च न्यायालय ने ऑनलाइन उपलब्ध न्यायिक अभिलेखों के संबंध में भुला दिए जाने के अधिकार को मान्यता दी है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Court treated the right as a facet of the freedom of speech and expression under Article 19(1)(a).",
    "The reliefs it set out include de-indexing judgments from search results on a person's name and masking personal identifiers.",
    "The right allows a person to have the judgment itself deleted from the court's records."],
@@ -71,8 +71,8 @@ S(FR, "medium", "On 29 May 2026 the Delhi High Court recognised a right to be fo
   "ca-t2-pol-delhi-hc-right-to-be-forgotten-de-indexing", craft="application")
 
 A(COI, "hard",
-  "On 17 April 2026 the Lok Sabha rejected the Constitution (131st Amendment) Bill, although more members voted for it than against it.",
-  "17 अप्रैल 2026 को लोकसभा ने संविधान (131वाँ संशोधन) विधेयक अस्वीकार कर दिया, यद्यपि इसके पक्ष में विपक्ष से अधिक सदस्यों ने मत दिया।",
+  "The Lok Sabha rejected the Constitution (131st Amendment) Bill, although more members voted for it than against it.",
+  "लोकसभा ने संविधान (131वाँ संशोधन) विधेयक अस्वीकार कर दिया, यद्यपि इसके पक्ष में विपक्ष से अधिक सदस्यों ने मत दिया।",
   "A Bill to amend the Constitution must be passed in each House by a majority of its total membership and by not less than two-thirds of the members present and voting.",
   "संविधान संशोधन विधेयक को प्रत्येक सदन में उसकी कुल सदस्यता के बहुमत और उपस्थित तथा मत देने वाले सदस्यों के कम से कम दो-तिहाई बहुमत से पारित होना चाहिए।",
   0,
@@ -96,8 +96,8 @@ A(FD, "medium",
   "Andhra Pradesh Reorganisation Act, 2014, section 5, and the Andhra Pradesh Reorganisation (Amendment) Act, 2026; Constitution of India, Articles 3 and 4 and the First Schedule.",
   "ca-t2-pol-amaravati-capital-parliament-first-schedule-si", craft="inference")
 
-S(FR, "hard", "On 21 May 2026 the Supreme Court clarified how pending cases under Section 124A of the Indian Penal Code (sedition) may proceed. Consider the following statements:",
-  "21 मई 2026 को सर्वोच्च न्यायालय ने स्पष्ट किया कि भारतीय दंड संहिता की धारा 124ए (राजद्रोह) के अंतर्गत लंबित मामले कैसे आगे बढ़ सकते हैं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(FR, "hard", "The Supreme Court has clarified how pending cases under Section 124A of the Indian Penal Code (sedition) may proceed. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने स्पष्ट किया है कि भारतीय दंड संहिता की धारा 124क (राजद्रोह) के अंतर्गत लंबित मामले कैसे आगे बढ़ सकते हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["In 1962 the Supreme Court upheld Section 124A but confined it to words or acts that tend to incite violence or public disorder.",
    "The 2026 order allows trials and appeals under Section 124A to proceed where the accused does not object.",
    "By the 2026 order the Court decided the challenge to the validity of Section 124A and upheld the section afresh."],
@@ -112,8 +112,8 @@ S(FR, "hard", "On 21 May 2026 the Supreme Court clarified how pending cases unde
   "Supreme Court of India, Kedar Nath Singh v. State of Bihar (1962), S.G. Vombatkere v. Union of India (order of 11 May 2022) and Kamran v. State of Madhya Pradesh (order of 21 May 2026).",
   "ca-t2-pol-sedition-kedar-nath-2026-clarification-pending", craft="multi")
 
-S(SL, "medium", "On 22 June 2026 the Ministry of Home Affairs notified the Foreign Contribution (Regulation) Amendment Rules, 2026. Consider the following statements:",
-  "22 जून 2026 को गृह मंत्रालय ने विदेशी अंशदान (विनियमन) संशोधन नियम, 2026 अधिसूचित किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SL, "medium", "The Ministry of Home Affairs has notified the Foreign Contribution (Regulation) Amendment Rules, 2026. Consider the following statements:",
+  "गृह मंत्रालय ने विदेशी अंशदान (विनियमन) संशोधन नियम, 2026 अधिसूचित किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Rules bar the use of foreign contribution for religious conversion.",
    "Organisations seeking registration must now specify their activities from a prescribed list.",
    "The Foreign Contribution (Regulation) Amendment Bill, 2026 had been enacted by Parliament before the Rules were notified."],
@@ -128,8 +128,8 @@ S(SL, "medium", "On 22 June 2026 the Ministry of Home Affairs notified the Forei
   "Ministry of Home Affairs, Foreign Contribution (Regulation) Amendment Rules, 2026, S.O. 3272(E) (22 June 2026); Foreign Contribution (Regulation) Amendment Bill, 2026 (Lok Sabha, March 2026); Supreme Court of India, Noel Harper v. Union of India (2022).",
   "ca-t2-pol-fcra-rules-2026-conversion-activity-list", craft="precision")
 
-S(JV, "hard", "In June 2026 a case of alleged misappropriation of temple funds at Ayodhya drew attention to the idea of a deity as a 'juristic person'. Consider the following statements:",
-  "जून 2026 में अयोध्या में मंदिर निधि के कथित दुरुपयोग के एक मामले ने देवता के ‘विधिक व्यक्ति’ होने की अवधारणा की ओर ध्यान खींचा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "hard", "A case of alleged misappropriation of temple funds at Ayodhya has drawn attention to the idea of a deity as a 'juristic person'. Consider the following statements:",
+  "अयोध्या में मंदिर निधियों के कथित दुरुपयोग के एक मामले ने देवता को ‘विधिक व्यक्ति’ मानने की अवधारणा की ओर ध्यान खींचा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Indian courts have long treated a consecrated Hindu idol as a juristic person able to own property.",
    "In the Ayodhya judgment of 2019 the Supreme Court treated Ram Lalla Virajman as a juristic person but did not give that status to the birthplace itself.",
    "The Supreme Court has held the Guru Granth Sahib to be a juristic person."],
@@ -144,8 +144,8 @@ S(JV, "hard", "In June 2026 a case of alleged misappropriation of temple funds a
   "Supreme Court of India, M. Siddiq (D) through LRs v. Mahant Suresh Das (2019) and Shiromani Gurdwara Prabandhak Committee v. Som Nath Dass (2000).",
   "ca-t2-pol-juristic-person-deity-ram-lalla-guru-granth", craft="linkage")
 
-S(JV, "medium", "On 3 June 2026 a committee of the Supreme Court released draft Regulations for Use of Artificial Intelligence in Courts. Consider the following statements:",
-  "3 जून 2026 को सर्वोच्च न्यायालय की एक समिति ने न्यायालयों में कृत्रिम बुद्धिमत्ता के उपयोग के विनियमों का प्रारूप जारी किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "medium", "A committee of the Supreme Court has released draft Regulations for Use of Artificial Intelligence in Courts. Consider the following statements:",
+  "सर्वोच्च न्यायालय की एक समिति ने न्यायालयों में कृत्रिम बुद्धिमत्ता के उपयोग के लिए प्रारूप विनियम जारी किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The draft allows AI to decide the outcome of minor cases, subject to review by a judge.",
    "It bars the use of AI even for legal research and the translation of judgments.",
    "The draft was issued by the Ministry of Electronics and Information Technology under the Information Technology Act, 2000."],
@@ -160,8 +160,8 @@ S(JV, "medium", "On 3 June 2026 a committee of the Supreme Court released draft 
   "Supreme Court of India, draft Regulations for Use of Artificial Intelligence in Courts, 2026 (3 June 2026).",
   "ca-t2-pol-sc-draft-ai-regulations-courts", craft="precision")
 
-S(GV, "medium", "On 21 April 2026 the Supreme Court asked a high-powered committee to draw up an action plan for the rights of prisoners with disabilities. Consider the following statements:",
-  "21 अप्रैल 2026 को सर्वोच्च न्यायालय ने एक उच्चाधिकार समिति से दिव्यांग क़ैदियों के अधिकारों के लिए कार्ययोजना बनाने को कहा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(GV, "medium", "The Supreme Court has asked a high-powered committee to draw up an action plan for the rights of prisoners with disabilities. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने एक उच्चाधिकार प्राप्त समिति से दिव्यांग क़ैदियों के अधिकारों के लिए कार्ययोजना बनाने को कहा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["'Prisons' is a subject in the Concurrent List of the Seventh Schedule.",
    "The Model Prisons and Correctional Services Act, 2023, prepared by the Ministry of Home Affairs, is meant to replace the colonial Prisons Act, 1894 in the States.",
    "The Model Act was passed by Parliament and binds all the States directly."],
@@ -176,8 +176,8 @@ S(GV, "medium", "On 21 April 2026 the Supreme Court asked a high-powered committ
   "Constitution of India, Seventh Schedule, List II, Entry 4; Ministry of Home Affairs, Model Prisons and Correctional Services Act, 2023; Supreme Court of India, Sathyan Naravoor v. Union of India (21 April 2026).",
   "ca-t2-pol-prisons-state-list-model-act-2023", craft="linkage")
 
-S(GV, "easy", "On 24 June 2026 the Ministry of External Affairs said that a passport is a travel document, not proof of citizenship. Consider the following statements:",
-  "24 जून 2026 को विदेश मंत्रालय ने कहा कि पासपोर्ट यात्रा दस्तावेज़ है, नागरिकता का प्रमाण नहीं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(GV, "easy", "The Ministry of External Affairs has said that a passport is a travel document, not proof of citizenship. Consider the following statements:",
+  "विदेश मंत्रालय ने कहा है कि पासपोर्ट एक यात्रा दस्तावेज़ है, नागरिकता का प्रमाण नहीं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Passports Act, 1967 allows the Central Government to issue a passport to a person who is not a citizen of India.",
    "The deletion of a person's name from the electoral roll in a revision amounts to a loss of Indian citizenship."],
   ["पासपोर्ट अधिनियम, 1967 केंद्र सरकार को किसी ऐसे व्यक्ति को पासपोर्ट जारी करने देता है जो भारत का नागरिक नहीं है।",
@@ -190,8 +190,8 @@ S(GV, "easy", "On 24 June 2026 the Ministry of External Affairs said that a pass
   "Passports Act, 1967, section 20; Citizenship Act, 1955; Ministry of External Affairs, statement of 24 June 2026; Supreme Court of India, judgment on the special intensive revision of electoral rolls (May 2026).",
   "ca-t2-pol-passport-not-citizenship-section-20", craft="precision")
 
-S(JV, "medium", "In June 2026 senior advocate V. Mohana became a judge of the Supreme Court, elevated directly from the Bar. Consider the following statements:",
-  "जून 2026 में वरिष्ठ अधिवक्ता वी. मोहना सीधे बार से पदोन्नत होकर सर्वोच्च न्यायालय की न्यायाधीश बनीं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "medium", "Senior advocate V. Mohana has become a judge of the Supreme Court, elevated directly from the Bar. Consider the following statements:",
+  "वरिष्ठ अधिवक्ता वी. मोहना सीधे बार से उन्नत होकर सर्वोच्च न्यायालय की न्यायाधीश बनी हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["A person who has been an advocate of a High Court for at least seven years is eligible to be appointed a judge of the Supreme Court.",
    "She is only the second woman to be appointed to the Supreme Court directly from the Bar.",
    "A distinguished jurist can be appointed to the Supreme Court only on the recommendation of the Bar Council of India."],
@@ -206,8 +206,8 @@ S(JV, "medium", "In June 2026 senior advocate V. Mohana became a judge of the Su
   "Constitution of India, Article 124(3); Supreme Court of India, collegium resolutions of May 2026; Department of Justice, notification of appointment (June 2026).",
   "ca-t2-pol-mohana-direct-from-bar-art-124-3", craft="precision")
 
-S(JV, "medium", "From 7 April 2026 a nine-judge bench of the Supreme Court heard the reference arising from the Sabarimala case. Consider the following statements:",
-  "7 अप्रैल 2026 से सर्वोच्च न्यायालय की नौ न्यायाधीशों की पीठ ने सबरीमला मामले से उत्पन्न संदर्भ की सुनवाई की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(JV, "medium", "A nine-judge bench of the Supreme Court has heard the reference arising from the Sabarimala case. Consider the following statements:",
+  "सर्वोच्च न्यायालय की नौ न्यायाधीशों की पीठ ने सबरीमला मामले से उत्पन्न संदर्भ की सुनवाई की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The questions referred include the 'essential religious practices' test and the interplay of Articles 25 and 26 with Article 14.",
    "One question is whether a person who does not belong to a religious denomination can challenge its practice through a public interest litigation.",
    "A nine-judge bench is the largest bench the Supreme Court has ever constituted."],
@@ -222,8 +222,8 @@ S(JV, "medium", "From 7 April 2026 a nine-judge bench of the Supreme Court heard
   "Supreme Court of India, Kantaru Rajeevaru v. Indian Young Lawyers Association (reference orders of November 2019 and February 2020) and hearings of the nine-judge bench (April 2026); Kesavananda Bharati v. State of Kerala (1973).",
   "ca-t2-pol-sabarimala-nine-judge-reference-largest-bench", craft="linkage")
 
-S(SL, "easy", "In May 2026 the Supreme Court held that survivors who were forced to swallow acid are covered by the term 'acid attack victim' in the Rights of Persons with Disabilities Act, 2016. Consider the following statements:",
-  "मई 2026 में सर्वोच्च न्यायालय ने निर्णय दिया कि जिन्हें तेज़ाब पीने के लिए विवश किया गया, वे दिव्यांगजन अधिकार अधिनियम, 2016 में ‘तेज़ाब हमले के पीड़ित’ शब्द के अंतर्गत आते हैं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SL, "easy", "The Supreme Court has held that survivors who were forced to swallow acid are covered by the term 'acid attack victim' in the Rights of Persons with Disabilities Act, 2016. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने कहा है कि जिन पीड़ितों को तेज़ाब पीने को विवश किया गया, वे दिव्यांगजन अधिकार अधिनियम, 2016 में ‘एसिड हमला पीड़ित’ शब्द के अंतर्गत आते हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Before this ruling, the term had been read to cover mainly those disfigured by acid thrown on them.",
    "The 2016 Act was enacted to give effect to the United Nations Convention on the Rights of Persons with Disabilities."],
   ["इस निर्णय से पहले इस शब्द को मुख्यतः उन लोगों तक पढ़ा जाता था जो अपने ऊपर फेंके गए तेज़ाब से विरूपित हुए।",

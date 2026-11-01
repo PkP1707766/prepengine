@@ -17,8 +17,8 @@ d.SUBJECT = "History"
 d.REQUIRE_CRAFT = True
 AN, MD, MO, CU = "Ancient", "Medieval", "Modern", "Culture-Other"
 
-S(MD, "hard", "The Somnath Swabhiman Parv of January 2026 marked a thousand years since Mahmud of Ghazni's attack on the Somnath temple. Consider the following statements:",
-  "जनवरी 2026 के सोमनाथ स्वाभिमान पर्व ने महमूद ग़ज़नवी के सोमनाथ मंदिर पर आक्रमण के एक हज़ार वर्ष पूरे होने को चिह्नित किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MD, "hard", "The Somnath Swabhiman Parv marked a thousand years since Mahmud of Ghazni's attack on the Somnath temple. Consider the following statements:",
+  "सोमनाथ स्वाभिमान पर्व ने सोमनाथ मंदिर पर महमूद ग़ज़नवी के आक्रमण के एक हज़ार वर्ष चिह्नित किए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Mahmud's attack on Somnath took place in 1025-26, during the reign of the Chaulukya (Solanki) king Bhima I of Gujarat.",
    "The Somnath temple is counted among the twelve Jyotirlingas.",
    "The rebuilding of the temple after independence was taken up at the initiative of Sardar Vallabhbhai Patel.",
@@ -35,8 +35,8 @@ S(MD, "hard", "The Somnath Swabhiman Parv of January 2026 marked a thousand year
   "NCERT, Themes in Indian History Part II and Our Pasts II (Class VII), on Mahmud of Ghazni; Ministry of Culture and PIB, Somnath Swabhiman Parv (January 2026); Shree Somnath Trust, history of the temple.",
   "ca-t1-his-somnath-thousand-years-1951-reconsecration", craft="multi")
 
-S(AN, "medium", "In January 2026 the Prime Minister opened an exposition of the Piprahwa relics of the Buddha, brought back to India in 2025. Consider the following statements:",
-  "जनवरी 2026 में प्रधानमंत्री ने बुद्ध के पिपरहवा अवशेषों की एक प्रदर्शनी का उद्घाटन किया, जो 2025 में भारत वापस लाए गए थे। निम्नलिखित कथनों पर विचार कीजिए:",
+S(AN, "medium", "An exposition of the Piprahwa relics of the Buddha, brought back to India, has been opened. Consider the following statements:",
+  "भारत वापस लाए गए बुद्ध के पिपरहवा अवशेषों की एक प्रदर्शनी खोली गई है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Piprahwa lies in the Lumbini Province of Nepal.",
    "The relics were excavated from a stupa there in 1898 by William Claxton Peppé.",
    "The inscription on the reliquary found there is in the Kharosthi script."],
@@ -51,8 +51,8 @@ S(AN, "medium", "In January 2026 the Prime Minister opened an exposition of the 
   "Ministry of Culture and PIB, exposition of the sacred Piprahwa relics (3 January 2026); Archaeological Survey of India, excavations at Piprahwa-Ganwaria; NCERT, Themes in Indian History Part I (Class XII), Chapter 4.",
   "ca-t1-his-piprahwa-relics-brahmi-siddharthnagar", craft="precision")
 
-S(MO, "medium", "In January 2026, during the 150th year of 'Vande Mataram', the Ministry of Home Affairs issued the first protocols for singing the National Song. Consider the following statements:",
-  "जनवरी 2026 में, ‘वंदे मातरम्’ के 150वें वर्ष में, गृह मंत्रालय ने राष्ट्रगीत गाने के लिए पहली बार प्रोटोकॉल जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MO, "medium", "During the 150th year of 'Vande Mataram', the Ministry of Home Affairs issued the first protocols for singing the National Song. Consider the following statements:",
+  "‘वंदे मातरम्’ के 150वें वर्ष में गृह मंत्रालय ने राष्ट्रगीत के गायन के लिए पहले प्रोटोकॉल जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["When the National Song and the National Anthem are performed together, the National Song is to be sung or played first.",
    "The protocols prescribe all six stanzas of the song as its official version.",
    "The Prevention of Insults to National Honour Act, 1971 makes it an offence to prevent the singing of the National Song."],
@@ -67,8 +67,8 @@ S(MO, "medium", "In January 2026, during the 150th year of 'Vande Mataram', the 
   "Ministry of Home Affairs, order on the protocol for the National Song (28 January 2026); Constituent Assembly Debates, 24 January 1950; Prevention of Insults to National Honour Act, 1971, sections 2 and 3; Constitution of India, Article 51A(a).",
   "ca-t1-his-vande-mataram-protocol-six-stanzas", craft="linkage")
 
-C(MO, "hard", "March 2026 marked a hundred years since the founding of the Naujawan Bharat Sabha. Arrange the following events in chronological order:",
-  "मार्च 2026 में नौजवान भारत सभा की स्थापना के सौ वर्ष पूरे हुए। निम्नलिखित घटनाओं को कालानुक्रम में व्यवस्थित कीजिए:",
+C(MO, "hard", "The Naujawan Bharat Sabha was founded a hundred years ago. Arrange the following events in chronological order:",
+  "नौजवान भारत सभा की स्थापना सौ वर्ष पहले हुई थी। निम्नलिखित घटनाओं को कालानुक्रम में व्यवस्थित कीजिए:",
   ["Founding of the Naujawan Bharat Sabha at Lahore",
    "Formation of the Hindustan Socialist Republican Association at a meeting in Delhi",
    "Death of Lala Lajpat Rai after the police lathi charge on the protest against the Simon Commission at Lahore",
@@ -87,8 +87,8 @@ C(MO, "hard", "March 2026 marked a hundred years since the founding of the Nauja
   "ca-t1-his-naujawan-bharat-sabha-centenary-chronology")
 d.ROWS[-1]["question_data"]["craft"] = "precision"
 
-S(AN, "medium", "In February 2026 researchers reported Tamil-Brahmi, Prakrit and Sanskrit names scratched on the walls of ancient tombs in Egypt. Consider the following statements about India's ancient trade with the Roman world:",
-  "फ़रवरी 2026 में शोधकर्ताओं ने मिस्र के प्राचीन मक़बरों की दीवारों पर खुरचे गए तमिल-ब्राह्मी, प्राकृत और संस्कृत नामों की सूचना दी। रोमन जगत के साथ भारत के प्राचीन व्यापार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(AN, "medium", "Researchers have reported Tamil-Brahmi, Prakrit and Sanskrit names scratched on the walls of ancient tombs in Egypt. Consider the following statements about India's ancient trade with the Roman world:",
+  "शोधकर्ताओं ने मिस्र के प्राचीन मक़बरों की दीवारों पर खुरचे गए तमिल-ब्राह्मी, प्राकृत और संस्कृत नामों की सूचना दी है। रोमन जगत के साथ भारत के प्राचीन व्यापार के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["Tamil-Brahmi writing on pottery has been found at Red Sea ports such as Berenike and Quseir al-Qadim.",
    "The 'Muziris papyrus' records a loan agreement for a cargo shipped from Muziris on the Malabar coast to Egypt.",
    "The names reported in 2026 were found in tombs of the Theban necropolis, beside Greek graffiti left by ancient visitors."],
@@ -103,8 +103,8 @@ S(AN, "medium", "In February 2026 researchers reported Tamil-Brahmi, Prakrit and
   "NCERT, Themes in Indian History Part I (Class XII), Chapter 2 (Kings, Farmers and Towns); International Conference on Tamil Epigraphy, Chennai (February 2026), paper on Indian inscriptions in the Theban tombs.",
   "ca-t1-his-tamil-brahmi-egypt-muziris-papyrus", craft="linkage")
 
-S(CU, "medium", "In January 2026 INSV Kaundinya, a sailing ship built by an ancient Indian method, completed its first voyage, from Porbandar to Muscat. Consider the following statements:",
-  "जनवरी 2026 में प्राचीन भारतीय विधि से बने नौकायन जहाज़ आईएनएसवी कौंडिन्य ने पोरबंदर से मस्कट तक अपनी पहली यात्रा पूरी की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(CU, "medium", "INSV Kaundinya, a sailing ship built by an ancient Indian method, has completed its first voyage, from Porbandar to Muscat. Consider the following statements:",
+  "प्राचीन भारतीय विधि से बने पाल-पोत आईएनएसवी कौंडिन्य ने पोरबंदर से मस्क़त तक अपनी पहली यात्रा पूरी की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its wooden planks were stitched together with coir rope instead of being joined with metal fastenings.",
    "Its design was inspired by a ship depicted in the paintings of the Ajanta caves.",
    "The voyage marked seventy years of diplomatic relations between India and Oman."],

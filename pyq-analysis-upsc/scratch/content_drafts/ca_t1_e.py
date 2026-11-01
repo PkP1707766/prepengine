@@ -19,8 +19,8 @@ d.REQUIRE_CRAFT = True
 SP, AS, BH = "Space Technology & Missions", "Astronomy & Earth Science", "Biology, Health & Biotechnology"
 EN, IT = "Energy & Environmental Technology", "IT, Communication & Emerging Technologies"
 
-S(SP, "medium", "On 12 January 2026 the PSLV-C62 mission failed to place its satellites in orbit. Consider the following statements about the Polar Satellite Launch Vehicle:",
-  "12 जनवरी 2026 को पीएसएलवी-सी62 मिशन अपने उपग्रहों को कक्षा में स्थापित करने में विफल रहा। ध्रुवीय उपग्रह प्रक्षेपण यान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "medium", "After the failure of the PSLV-C62 mission, consider the following statements about the Polar Satellite Launch Vehicle:",
+  "पीएसएलवी-सी62 मिशन की विफलता के बाद, ध्रुवीय उपग्रह प्रक्षेपण यान के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its third stage uses a cryogenic engine that burns liquid hydrogen with liquid oxygen.",
    "PSLV-C62 was the first failure in the vehicle's history.",
    "Its fourth stage cannot be restarted once it has shut down."],
@@ -36,8 +36,8 @@ S(SP, "medium", "On 12 January 2026 the PSLV-C62 mission failed to place its sat
   "ca-t1-sci-pslv-c62-stages-restartable-ps4", craft="precision")
 
 M(SP, "medium",
-  "March 2026 marked a hundred years since Robert Goddard launched the first liquid-propellant rocket. Compared with a solid-propellant rocket motor, a liquid-propellant engine has the advantage that it:",
-  "मार्च 2026 में रॉबर्ट गोडार्ड द्वारा पहला द्रव-नोदक रॉकेट प्रक्षेपित किए जाने के सौ वर्ष पूरे हुए। ठोस-नोदक रॉकेट मोटर की तुलना में द्रव-नोदक इंजन का लाभ यह है कि वह:",
+  "Robert Goddard's launch of the first liquid-propellant rocket completed a hundred years in 2026. Compared with a solid-propellant rocket motor, a liquid-propellant engine has the advantage that it:",
+  "रॉबर्ट गोडार्ड द्वारा पहले द्रव-नोदक रॉकेट के प्रक्षेपण ने 2026 में सौ वर्ष पूरे किए। ठोस-नोदक रॉकेट मोटर की तुलना में द्रव-नोदक इंजन का लाभ यह है कि वह:",
   ["can be throttled, shut down and often restarted, because the flow of propellants can be controlled",
    "can be stored fully fuelled for years and fired at short notice, which suits missiles kept on alert",
    "needs no oxidiser of its own, since it burns the oxygen of the atmosphere, and so is lighter for the same thrust",
@@ -54,8 +54,8 @@ M(SP, "medium",
   "NCERT, Physics Part I (Class XI), Chapter 5 (Laws of Motion), on rocket propulsion; Indian Space Research Organisation, launch vehicle propulsion; NASA History Office, Robert H. Goddard (1926).",
   "ca-t1-sci-goddard-centenary-liquid-propellant", pos=POS.get("ca-t1-sci-goddard-centenary-liquid-propellant", 3), craft="application")
 
-S(IT, "medium", "January 2026 marked a hundred years since John Logie Baird first demonstrated television in public. Consider the following statements:",
-  "जनवरी 2026 में जॉन लोगी बेयर्ड द्वारा पहली बार सार्वजनिक रूप से टेलीविज़न प्रदर्शित किए जाने के सौ वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IT, "medium", "John Logie Baird's first public demonstration of television completed a hundred years in 2026. Consider the following statements:",
+  "जॉन लोगी बेयर्ड द्वारा टेलीविज़न के पहले सार्वजनिक प्रदर्शन ने 2026 में सौ वर्ष पूरे किए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Baird's demonstration of 1926 took place in London.",
    "Television broadcasting in India began in Bombay in 1972.",
    "The Satellite Instructional Television Experiment of 1975-76 used a satellite built by ISRO."],
@@ -70,8 +70,8 @@ S(IT, "medium", "January 2026 marked a hundred years since John Logie Baird firs
   "Prasar Bharati, history of Doordarshan; Indian Space Research Organisation, Satellite Instructional Television Experiment (1975-76).",
   "ca-t1-sci-baird-centenary-site-ats6", craft="linkage")
 
-S(AS, "easy", "A total lunar eclipse took place on 3 March 2026. Consider the following statements:",
-  "3 मार्च 2026 को पूर्ण चंद्रग्रहण हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+S(AS, "easy", "With reference to a total lunar eclipse, such as the one seen across Asia in 2026, consider the following statements:",
+  "पूर्ण चंद्रग्रहण, जैसे 2026 में पूरे एशिया में दिखा ग्रहण, के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["During totality the Moon often looks reddish, because the Earth's atmosphere bends and filters sunlight so that mainly red light reaches it.",
    "A total lunar eclipse can be seen from anywhere on the night side of the Earth where the Moon is above the horizon.",
    "Like a solar eclipse, a lunar eclipse is unsafe to watch with the naked eye."],
@@ -86,8 +86,8 @@ S(AS, "easy", "A total lunar eclipse took place on 3 March 2026. Consider the fo
   "NCERT, Physics Part II (Class XII), Chapter 9 (Ray Optics), on refraction and scattering of light; NASA, eclipse catalogue (total lunar eclipse of 3 March 2026).",
   "ca-t1-sci-lunar-eclipse-blood-moon-visibility", craft="application")
 
-S(BH, "medium", "Two cases of Nipah virus infection were confirmed in West Bengal in January 2026. Consider the following statements:",
-  "जनवरी 2026 में पश्चिम बंगाल में निपाह विषाणु संक्रमण के दो मामलों की पुष्टि हुई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "medium", "Cases of Nipah virus infection have been confirmed in West Bengal. Consider the following statements:",
+  "पश्चिम बंगाल में निपाह वायरस संक्रमण के मामलों की पुष्टि हुई है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The virus was first identified in India, during an outbreak in Kerala in 2018.",
    "Pigs are the virus's natural reservoir.",
    "A licensed Nipah vaccine is given to children under the Universal Immunisation Programme."],
@@ -102,8 +102,8 @@ S(BH, "medium", "Two cases of Nipah virus infection were confirmed in West Benga
   "Ministry of Health and Family Welfare and National Centre for Disease Control, releases on Nipah virus disease in West Bengal (January 2026); World Health Organization, Nipah virus fact sheet.",
   "ca-t1-sci-nipah-bengal-history-transmission", craft="precision")
 
-S(SP, "hard", "In March 2026 the last working atomic clock on the satellite IRNSS-1F stopped, ending its role in NavIC's navigation service. Consider the following statements:",
-  "मार्च 2026 में उपग्रह आईआरएनएसएस-1एफ़ की अंतिम कार्यरत परमाणु घड़ी बंद हो गई, जिससे नाविक की नेविगेशन सेवा में उसकी भूमिका समाप्त हो गई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "hard", "The last working atomic clock on the satellite IRNSS-1F has stopped, ending its role in NavIC's navigation service. Consider the following statements:",
+  "उपग्रह आईआरएनएसएस-1एफ़ की अंतिम कार्यरत परमाणु घड़ी बंद हो गई है, जिससे नाविक की नेविगेशन सेवा में उसकी भूमिका समाप्त हुई। निम्नलिखित कथनों पर विचार कीजिए:",
   ["A receiver needs signals from at least four satellites to fix its position on its own.",
    "NVS-01, launched in 2023, was the first NavIC satellite to carry an indigenously developed atomic clock.",
    "Each NavIC satellite carries only one atomic clock, so a single clock failure ends its navigation role."],
@@ -118,8 +118,8 @@ S(SP, "hard", "In March 2026 the last working atomic clock on the satellite IRNS
   "Indian Space Research Organisation, statement on IRNSS-1F (March 2026) and NVS-01 mission brochure (2023).",
   "ca-t1-sci-navic-irnss-1f-clocks-four-satellites", craft="inference")
 
-S(EN, "hard", "During the Canadian Prime Minister's visit in March 2026, the Canadian company Cameco agreed to supply uranium to India's Department of Atomic Energy from 2027 to 2035. Consider the following statements:",
-  "मार्च 2026 में कनाडा के प्रधानमंत्री की यात्रा के दौरान कनाडाई कंपनी कैमेको ने 2027 से 2035 तक भारत के परमाणु ऊर्जा विभाग को यूरेनियम आपूर्ति पर सहमति दी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EN, "hard", "The Canadian company Cameco has agreed to supply uranium to India's Department of Atomic Energy. Consider the following statements:",
+  "कनाडाई कंपनी कैमेको ने भारत के परमाणु ऊर्जा विभाग को यूरेनियम देने पर सहमति दी है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["India's import of uranium for civilian use became possible after the Nuclear Suppliers Group granted it a waiver in 2008.",
    "Uranium imported under such agreements can be used in any Indian reactor, including those not under IAEA safeguards.",
    "India and Canada had never cooperated in civil nuclear energy before this agreement."],
@@ -134,8 +134,8 @@ S(EN, "hard", "During the Canadian Prime Minister's visit in March 2026, the Can
   "Department of Atomic Energy, nuclear power programme and India-specific safeguards; Ministry of External Affairs, India–Canada joint statement (March 2026); NCERT, Physics Part II (Class XII), Chapter 13 (Nuclei).",
   "ca-t1-sci-cameco-uranium-phwr-safeguards", craft="linkage")
 
-S(IT, "medium", "In February 2026 the government amended the IT intermediary rules to deal with 'synthetically generated information'. Consider the following statements:",
-  "फ़रवरी 2026 में सरकार ने ‘कृत्रिम रूप से सृजित सूचना’ से निपटने के लिए आईटी मध्यवर्ती नियमों में संशोधन किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IT, "medium", "The IT intermediary rules have been amended to deal with 'synthetically generated information'. Consider the following statements:",
+  "आईटी मध्यस्थ नियमों में ‘कृत्रिम रूप से उत्पन्न सूचना’ से निपटने के लिए संशोधन किया गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The amended rules were made under the Information Technology Act, 2000.",
    "Platforms must ensure that synthetic content, such as deepfakes, carries a prominent label and embedded identifying metadata.",
    "The time allowed to intermediaries to remove unlawful content after a government or court order was cut from 36 hours to 3 hours."],
@@ -182,8 +182,8 @@ S(BH, "easy", "India aims to eliminate malaria by 2030. Consider the following s
   "Ministry of Health and Family Welfare, National Framework for Malaria Elimination in India 2016-2030; World Health Organization, certification of malaria elimination; NCERT, Biology (Class XII), Chapter 7 (Human Health and Disease).",
   "ca-t1-sci-malaria-elimination-2030-certification", craft="precision")
 
-S(SP, "medium", "The satellite lost on the PSLV-C62 mission in January 2026 was 'Anvesha', a hyperspectral imaging satellite. Consider the following statements:",
-  "जनवरी 2026 में पीएसएलवी-सी62 मिशन पर नष्ट हुआ उपग्रह ‘अन्वेषा’ एक हाइपरस्पेक्ट्रल इमेजिंग उपग्रह था। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "medium", "'Anvesha', the satellite lost on the PSLV-C62 mission, was a hyperspectral imaging satellite. Consider the following statements:",
+  "पीएसएलवी-सी62 मिशन पर खोया उपग्रह ‘अन्वेषा’ एक हाइपरस्पेक्ट्रल इमेजिंग उपग्रह था। निम्नलिखित कथनों पर विचार कीजिए:",
   ["A hyperspectral imager records the light from each point in hundreds of narrow, adjoining wavelength bands, which helps identify materials such as minerals, crops and pollutants.",
    "Anvesha was developed by ISRO's Space Applications Centre."],
   ["हाइपरस्पेक्ट्रल इमेजर हर बिंदु से आने वाले प्रकाश को सैकड़ों संकरी, सटी हुई तरंगदैर्ध्य पट्टियों में दर्ज करता है, जिससे खनिज, फ़सलें और प्रदूषक जैसे पदार्थ पहचानने में मदद मिलती है।",
@@ -196,8 +196,8 @@ S(SP, "medium", "The satellite lost on the PSLV-C62 mission in January 2026 was 
   "Indian Space Research Organisation, PSLV-C62/EOS-N1 mission (January 2026) and HySIS (2018); NCERT, Fundamentals of Remote Sensing (Practical Work in Geography, Class XI), Chapter 7.",
   "ca-t1-sci-hyperspectral-anvesha-drdo", craft="application")
 
-S(SP, "medium", "In January 2026 the question of how patent law would apply to a permanent human presence in space was debated. With reference to international space law, consider the following statements:",
-  "जनवरी 2026 में इस प्रश्न पर बहस हुई कि अंतरिक्ष में स्थायी मानव उपस्थिति पर पेटेंट क़ानून कैसे लागू होगा। अंतरराष्ट्रीय अंतरिक्ष विधि के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "medium", "How patent law would apply to a permanent human presence in space has become a live question. With reference to international space law, consider the following statements:",
+  "अंतरिक्ष में स्थायी मानव उपस्थिति पर पेटेंट कानून कैसे लागू होगा, यह एक जीवंत प्रश्न बन गया है। अंतरराष्ट्रीय अंतरिक्ष कानून के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Outer Space Treaty of 1967 allows a State to claim sovereignty over a celestial body by occupying it first.",
    "India is a party to the Outer Space Treaty.",
    "The United States is a party to the Moon Agreement of 1979."],
@@ -212,8 +212,8 @@ S(SP, "medium", "In January 2026 the question of how patent law would apply to a
   "Treaty on Principles Governing the Activities of States in the Exploration and Use of Outer Space (1967), Articles II, IV and VIII; Agreement Governing the Activities of States on the Moon and Other Celestial Bodies (1979); UN Office for Outer Space Affairs, status of treaties.",
   "ca-t1-sci-outer-space-treaty-moon-agreement", craft="precision")
 
-S(AS, "easy", "February 2026 marked sixty years since the Luna 9 landing and forty years since the launch of the Mir space station. Consider the following statements:",
-  "फ़रवरी 2026 में लूना 9 के उतरने के साठ वर्ष और मीर अंतरिक्ष स्टेशन के प्रक्षेपण के चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(AS, "easy", "The Luna 9 landing completed sixty years, and the launch of the Mir space station forty years, in 2026. Consider the following statements:",
+  "2026 में लूना 9 की लैंडिंग के साठ वर्ष और मीर अंतरिक्ष स्टेशन के प्रक्षेपण के चालीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Luna 9 of the Soviet Union made the first soft landing on the Moon.",
    "Mir, launched in 1986, was the world's first space station.",
    "Giotto, the probe that photographed the nucleus of Halley's Comet in 1986, was a NASA mission."],
@@ -228,8 +228,8 @@ S(AS, "easy", "February 2026 marked sixty years since the Luna 9 landing and for
   "NASA Space Science Data Coordinated Archive, Luna 9 and Mir; European Space Agency, Giotto mission (1986).",
   "ca-t1-sci-luna9-mir-giotto-anniversaries", craft="recall")
 
-S(BH, "easy", "In February 2026 the Prime Minister's call for organ donation drew attention to the shortage of deceased donors in India. Consider the following statements:",
-  "फ़रवरी 2026 में प्रधानमंत्री के अंगदान के आह्वान ने भारत में मृत दाताओं की कमी की ओर ध्यान खींचा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(BH, "easy", "With reference to deceased organ donation in India, consider the following statements:",
+  "भारत में मृतक अंगदान के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Transplantation of Human Organs Act, 1994 recognises brain-stem death, so that organs can be retrieved from brain-dead donors.",
    "Commercial dealing in human organs is a punishable offence under the Act.",
    "The organs a deceased donor can give include the heart, lungs, liver and pancreas, not only the kidneys.",

@@ -18,8 +18,8 @@ d.SUBJECT = "History"
 d.REQUIRE_CRAFT = True
 AN, MD, MO, CU = "Ancient", "Medieval", "Modern", "Culture-Other"
 
-S(MD, "medium", "21 April 2026 marked five hundred years of the First Battle of Panipat. Consider the following statements about Babur:",
-  "21 अप्रैल 2026 को पानीपत की पहली लड़ाई के पाँच सौ वर्ष पूरे हुए। बाबर के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(MD, "medium", "The First Battle of Panipat completed five hundred years in 2026. Consider the following statements about Babur:",
+  "पानीपत के पहले युद्ध के 2026 में पाँच सौ वर्ष पूरे हुए। बाबर के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["He was descended from Chingiz Khan on his father's side and from Timur on his mother's.",
    "He took the title Padshah only after his victory at Panipat.",
    "He wrote his memoirs in Persian, the court language of the Delhi Sultanate."],
@@ -34,8 +34,8 @@ S(MD, "medium", "21 April 2026 marked five hundred years of the First Battle of 
   "NCERT, Themes in Indian History Part II (Class XII), Chapter 9 (Kings and Chronicles); NCERT, Our Pasts II (Class VII), Chapter 4 (The Mughal Empire).",
   "ca-t2-his-panipat-500-babur-padshah-chagatai", craft="precision")
 
-S(MD, "medium", "18 June 2026 marked 450 years of the Battle of Haldighati. Consider the following statements:",
-  "18 जून 2026 को हल्दीघाटी की लड़ाई के 450 वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MD, "medium", "The Battle of Haldighati completed 450 years in 2026. Consider the following statements:",
+  "हल्दीघाटी के युद्ध के 2026 में 450 वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Akbar himself commanded the Mughal army in the battle.",
    "An Afghan, Hakim Khan Sur, led a contingent on Maharana Pratap's side.",
    "Before his death Pratap recaptured Chittor, which Akbar had taken in 1568.",
@@ -52,8 +52,8 @@ S(MD, "medium", "18 June 2026 marked 450 years of the Battle of Haldighati. Cons
   "NCERT, Our Pasts II (Class VII), Chapter 4 (The Mughal Empire); NCERT, Themes in Indian History Part II (Class XII), Chapter 9 (Kings and Chronicles).",
   "ca-t2-his-haldighati-450-hakim-khan-chavand", craft="multi")
 
-S(MO, "hard", "18 April 2026 marked seventy-five years of the Bhoodan movement. Consider the following statements:",
-  "18 अप्रैल 2026 को भूदान आंदोलन के पचहत्तर वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MO, "hard", "The Bhoodan movement completed seventy-five years in 2026. Consider the following statements:",
+  "भूदान आंदोलन के 2026 में पचहत्तर वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It began at Pochampally, in a region then in the grip of a communist-led peasant uprising.",
    "Under Gramdan, the ownership of a village's land was to pass to the village community as a whole.",
    "The first village to be given in Gramdan was Mangroth, in Uttar Pradesh."],
@@ -68,8 +68,8 @@ S(MO, "hard", "18 April 2026 marked seventy-five years of the Bhoodan movement. 
   "Government of Telangana, Bhoodan Pochampally; Gandhi Smriti and Darshan Samiti, on Vinoba Bhave and the Bhoodan and Gramdan movements.",
   "ca-t2-his-bhoodan-75-pochampally-gramdan-mangroth", craft="linkage")
 
-S(CU, "easy", "1 April 2026 marked fifty years of Doordarshan as a service separate from All India Radio. Consider the following statements:",
-  "1 अप्रैल 2026 को आकाशवाणी से अलग सेवा के रूप में दूरदर्शन के पचास वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(CU, "easy", "Doordarshan completed fifty years as a service separate from All India Radio in 2026. Consider the following statements:",
+  "आकाशवाणी से अलग सेवा के रूप में दूरदर्शन के 2026 में पचास वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Television in India began in 1959 as an experimental service of All India Radio in Delhi.",
    "Doordarshan was separated from All India Radio when the Prasar Bharati Act came into force.",
    "Prasar Bharati, which runs both Doordarshan and All India Radio, is a statutory body."],
@@ -84,8 +84,8 @@ S(CU, "easy", "1 April 2026 marked fifty years of Doordarshan as a service separ
   "Prasar Bharati (Broadcasting Corporation of India) Act, 1990; Ministry of Information and Broadcasting and Prasar Bharati, history of Doordarshan.",
   "ca-t2-his-doordarshan-50-prasar-bharati-1997", craft="precision")
 
-S(MO, "medium", "May Day 2026 brought renewed attention to B. R. Ambedkar's role in Indian labour law. Consider the following statements:",
-  "मई दिवस 2026 ने भारतीय श्रम क़ानून में बी. आर. आंबेडकर की भूमिका की ओर फिर ध्यान खींचा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MO, "medium", "With reference to B. R. Ambedkar's role in Indian labour law, consider the following statements:",
+  "भारतीय श्रम कानून में बी. आर. आंबेडकर की भूमिका के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["As Labour Member of the Viceroy's Executive Council, he announced at the Indian Labour Conference of 1942 that working hours would be cut to eight a day.",
    "He held the Labour portfolio in the Interim Government formed in September 1946."],
   ["वायसराय की कार्यकारी परिषद के श्रम सदस्य के रूप में उन्होंने 1942 के भारतीय श्रम सम्मेलन में घोषणा की कि काम के घंटे घटाकर आठ प्रतिदिन किए जाएँगे।",
@@ -98,8 +98,8 @@ S(MO, "medium", "May Day 2026 brought renewed attention to B. R. Ambedkar's role
   "Ministry of Labour and Employment, on Dr B. R. Ambedkar and labour reforms; Proceedings of the seventh Indian Labour Conference (November 1942); NCERT, Indian Constitution at Work (Class XI), Chapter 1.",
   "ca-t2-his-ambedkar-labour-member-eight-hour-day", craft="linkage")
 
-S(MO, "hard", "The seventy-fifth anniversary of the reconsecration of the Somnath temple, in May 2026, recalled an episode of 1842. Consider the following statements:",
-  "मई 2026 में सोमनाथ मंदिर की पुनर्प्रतिष्ठा की पचहत्तरवीं वर्षगाँठ ने 1842 की एक घटना याद दिलाई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MO, "hard", "The seventy-fifth anniversary of the reconsecration of the Somnath temple recalled an episode of 1842. Consider the following statements:",
+  "सोमनाथ मंदिर की पुनर्प्रतिष्ठा की पचहत्तरवीं वर्षगाँठ ने 1842 की एक घटना की याद दिलाई। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Governor-General Lord Auckland ordered the 'gates of Somnath' to be brought back from Afghanistan at the end of the First Anglo-Afghan War.",
    "The gates were taken from the tomb of Mahmud of Ghazni.",
    "On examination they proved to be the temple's original sandalwood gates, and they were restored to Somnath."],

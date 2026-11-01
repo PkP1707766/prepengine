@@ -26,14 +26,14 @@ IG = "Inclusive Growth, Welfare & Demography"
 EX = "External Sector & International Institutions"
 AG = "Agriculture & Food Economy"
 
-S(IN, "medium", "On 1 June 2026 the Ministry of Statistics and Programme Implementation released a new series of the Index of Industrial Production. Consider the following statements:",
-  "1 जून 2026 को सांख्यिकी और कार्यक्रम कार्यान्वयन मंत्रालय ने औद्योगिक उत्पादन सूचकांक की एक नई शृंखला जारी की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The Ministry of Statistics and Programme Implementation has released a new series of the Index of Industrial Production. Consider the following statements:",
+  "सांख्यिकी और कार्यक्रम कार्यान्वयन मंत्रालय ने औद्योगिक उत्पादन सूचकांक की एक नई शृंखला जारी की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The new series uses 2022-23 as its base year.",
    "Its basket covers more than a thousand products.",
-   "In its first reading, for April 2026, mining and quarrying was the fastest-growing sector."],
+   "In the first monthly reading of the new series, mining and quarrying was the fastest-growing sector."],
   ["नई शृंखला 2022-23 को आधार वर्ष मानती है।",
    "इसकी टोकरी में एक हज़ार से अधिक उत्पाद हैं।",
-   "अप्रैल 2026 की इसकी पहली रीडिंग में खनन और उत्खनन सबसे तेज़ी से बढ़ने वाला क्षेत्र था।"],
+   "नई शृंखला की पहली मासिक रीडिंग में खनन और उत्खनन सबसे तेज़ी से बढ़ने वाला क्षेत्र था।"],
   C3, 1,
   "Statements 1 and 2 are correct. The revision, following a technical advisory committee whose report came out on 25 May 2026, moves the base from 2011-12 to 2022-23 and updates the basket to 1,042 products in 463 item groups, 120 of them new, so that the index reflects today's industry -- in step with the new national accounts and Consumer Price Index series released earlier in 2026. "
   "Statement 3 is wrong: in April 2026 the index rose 4.9 per cent, led by manufacturing (6.2 per cent), while mining and quarrying contracted by 5.1 per cent; electricity grew 4.9 per cent and water supply and waste management 6.6 per cent.",
@@ -42,8 +42,8 @@ S(IN, "medium", "On 1 June 2026 the Ministry of Statistics and Programme Impleme
   "Ministry of Statistics and Programme Implementation, Index of Industrial Production (base 2022-23), press release of 1 June 2026, and report of the Technical Advisory Committee (25 May 2026).",
   "ca-t2-eco-iip-new-series-2022-23-1042-products", craft="precision")
 
-S(MC, "medium", "In its World Economic Outlook of April 2026 the International Monetary Fund placed India sixth among the world's largest economies, behind Japan and the United Kingdom. Consider the following statements:",
-  "अप्रैल 2026 के अपने विश्व आर्थिक परिदृश्य में अंतरराष्ट्रीय मुद्रा कोष ने भारत को विश्व की सबसे बड़ी अर्थव्यवस्थाओं में जापान और यूनाइटेड किंगडम के बाद छठे स्थान पर रखा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MC, "medium", "In its World Economic Outlook the International Monetary Fund has placed India sixth among the world's largest economies, behind Japan and the United Kingdom. Consider the following statements:",
+  "अपने विश्व आर्थिक परिदृश्य में अंतरराष्ट्रीय मुद्रा कोष ने भारत को जापान और यूनाइटेड किंगडम के बाद विश्व की सबसे बड़ी अर्थव्यवस्थाओं में छठे स्थान पर रखा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Such rankings compare GDP converted into US dollars at market exchange rates.",
    "A fall in the rupee against the dollar can lower India's rank even when its output measured in rupees keeps growing.",
    "India slipped in the ranking because its real GDP contracted in 2025-26."],
@@ -58,8 +58,8 @@ S(MC, "medium", "In its World Economic Outlook of April 2026 the International M
   "International Monetary Fund, World Economic Outlook database (April 2026); Ministry of Statistics and Programme Implementation, national accounts with base year 2022-23 (February 2026).",
   "ca-t2-eco-imf-weo-sixth-exchange-rate-rebasing", craft="inference")
 
-S(AG, "hard", "In June 2026 the Centre circulated a draft amendment to the National Food Security Act to give Antyodaya Anna Yojana households 7 kg of foodgrains per person a month, subject to a maximum of 35 kg per household. Consider the following statements:",
-  "जून 2026 में केंद्र ने राष्ट्रीय खाद्य सुरक्षा अधिनियम में एक प्रारूप संशोधन परिचालित किया, जिससे अंत्योदय अन्न योजना परिवारों को प्रति व्यक्ति प्रति माह 7 किलो अनाज, प्रति परिवार अधिकतम 35 किलो, मिले। निम्नलिखित कथनों पर विचार कीजिए:",
+S(AG, "hard", "A draft amendment to the National Food Security Act would give Antyodaya Anna Yojana households 7 kg of foodgrains per person a month, subject to a maximum of 35 kg per household. Consider the following statements:",
+  "राष्ट्रीय खाद्य सुरक्षा अधिनियम का एक प्रारूप संशोधन अंत्योदय अन्न योजना परिवारों को प्रति व्यक्ति प्रति माह 7 किग्रा अनाज देगा, प्रति परिवार अधिकतम 35 किग्रा। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under the change, an Antyodaya household of four members would get less grain each month than it does now.",
    "Households with more than five members would get less grain per person than smaller households.",
    "The draft also makes pulses and edible oil part of the legal entitlement."],
@@ -74,8 +74,8 @@ S(AG, "hard", "In June 2026 the Centre circulated a draft amendment to the Natio
   "Department of Food and Public Distribution, draft National Food Security (Amendment) Bill, 2026 for public comment (June-July 2026); National Food Security Act, 2013, section 3.",
   "ca-t2-eco-nfsa-draft-aay-7kg-per-person", craft="application")
 
-S(IN, "medium", "On 12 May 2026 the Bharat Maritime Insurance Pool was launched to insure ships against war and other risks. Consider the following statements:",
-  "12 मई 2026 को जहाज़ों को युद्ध और अन्य जोखिमों से बीमा देने के लिए भारत समुद्री बीमा पूल शुरू किया गया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The Bharat Maritime Insurance Pool has been launched to insure ships against war and other risks. Consider the following statements:",
+  "जहाज़ों का युद्ध और अन्य जोखिमों के विरुद्ध बीमा करने के लिए भारत समुद्री बीमा पूल शुरू किया गया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is backed by a sovereign guarantee of the Government of India.",
    "Its cover includes war risks, hull and machinery, cargo, and protection and indemnity.",
    "It was set up after the insurance regulator barred foreign insurers from covering ships calling at Indian ports."],
@@ -90,8 +90,8 @@ S(IN, "medium", "On 12 May 2026 the Bharat Maritime Insurance Pool was launched 
   "Ministry of Finance and Ministry of Ports, Shipping and Waterways, launch of the Bharat Maritime Insurance Pool (12 May 2026) and Cabinet approval (April 2026).",
   "ca-t2-eco-bharat-maritime-insurance-pool-sovereign", craft="precision")
 
-S(IN, "medium", "In May-June 2026 India signed a framework on critical minerals with the United States and launched a Critical Minerals Global Supply Chain Observatory with the United Kingdom. Consider the following statements:",
-  "मई-जून 2026 में भारत ने संयुक्त राज्य अमेरिका के साथ महत्त्वपूर्ण खनिजों पर एक ढाँचे पर हस्ताक्षर किए और यूनाइटेड किंगडम के साथ एक महत्त्वपूर्ण खनिज वैश्विक आपूर्ति-शृंखला वेधशाला शुरू की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India has signed a framework on critical minerals with the United States and launched a Critical Minerals Global Supply Chain Observatory with the United Kingdom. Consider the following statements:",
+  "भारत ने संयुक्त राज्य अमेरिका के साथ महत्त्वपूर्ण खनिजों पर एक ढाँचे पर हस्ताक्षर किए हैं और यूनाइटेड किंगडम के साथ एक महत्त्वपूर्ण खनिज वैश्विक आपूर्ति शृंखला वेधशाला शुरू की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The India-US framework was signed during the US Secretary of State's visit to New Delhi.",
    "The observatory is run by a foundation at IIT (ISM) Dhanbad together with the University of Cambridge.",
    "The observatory has been set up to acquire mines abroad on India's behalf."],
@@ -106,8 +106,8 @@ S(IN, "medium", "In May-June 2026 India signed a framework on critical minerals 
   "Ministry of External Affairs, India-US framework on critical minerals and rare earths (26 May 2026); Ministry of Mines and PIB, launch of the India-UK Critical Minerals Global Supply Chain Observatory (4 June 2026); Ministry of Mines, Khanij Bidesh India Ltd.",
   "ca-t2-eco-critical-minerals-us-framework-uk-observatory", craft="linkage")
 
-S(EX, "easy", "On 13 May 2026 the Directorate General of Foreign Trade prohibited the export of sugar until 30 September 2026. Consider the following statements:",
-  "13 मई 2026 को विदेश व्यापार महानिदेशालय ने 30 सितंबर 2026 तक चीनी के निर्यात पर प्रतिबंध लगा दिया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EX, "easy", "The Directorate General of Foreign Trade has prohibited the export of sugar for the rest of the sugar season. Consider the following statements:",
+  "विदेश व्यापार महानिदेशालय ने शेष चीनी मौसम के लिए चीनी के निर्यात पर रोक लगा दी है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The notification moved sugar exports from the 'restricted' to the 'prohibited' category.",
    "Exports to the European Union and the United States under tariff-rate quotas were exempted.",
    "India is the world's largest exporter of sugar."],
@@ -122,8 +122,8 @@ S(EX, "easy", "On 13 May 2026 the Directorate General of Foreign Trade prohibite
   "Directorate General of Foreign Trade, notification on the export policy of sugar (13 May 2026); Foreign Trade (Development and Regulation) Act, 1992; Department of Food and Public Distribution, sugar sector overview.",
   "ca-t2-eco-sugar-export-prohibited-dgft", craft="precision")
 
-S(IN, "easy", "In April 2026 Parliament passed the Jan Vishwas (Amendment of Provisions) Bill, 2026. Consider the following statements:",
-  "अप्रैल 2026 में संसद ने जन विश्वास (उपबंधों का संशोधन) विधेयक, 2026 पारित किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "easy", "Consider the following statements about the Jan Vishwas (Amendment of Provisions) Bill, 2026, passed by Parliament:",
+  "संसद द्वारा पारित जन विश्वास (उपबंधों का संशोधन) विधेयक, 2026 के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It amends provisions in more Central Acts than the Jan Vishwas Act of 2023 did.",
    "For some first contraventions it provides only for a warning.",
    "Some of its amendments are meant to ease living rather than to ease business."],
@@ -138,8 +138,8 @@ S(IN, "easy", "In April 2026 Parliament passed the Jan Vishwas (Amendment of Pro
   "Jan Vishwas (Amendment of Provisions) Bill, 2026, as passed by the Lok Sabha (1 April 2026) and the Rajya Sabha (2 April 2026); Jan Vishwas (Amendment of Provisions) Act, 2023.",
   "ca-t2-eco-jan-vishwas-2026-79-acts-warning", craft="precision")
 
-S(IG, "medium", "A study reported in May 2026 found that 48 per cent of the companies listed on the National Stock Exchange had no woman among their key managerial personnel. Consider the following statements:",
-  "मई 2026 में बताए गए एक अध्ययन में पाया गया कि नेशनल स्टॉक एक्सचेंज पर सूचीबद्ध 48 प्रतिशत कंपनियों के प्रमुख प्रबंधकीय कार्मिकों में कोई महिला नहीं थी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IG, "medium", "A study has found that 48 per cent of the companies listed on the National Stock Exchange had no woman among their key managerial personnel. Consider the following statements:",
+  "एक अध्ययन में पाया गया कि राष्ट्रीय स्टॉक एक्सचेंज पर सूचीबद्ध 48 प्रतिशत कंपनियों के प्रमुख प्रबंधकीय कार्मिकों में कोई महिला नहीं थी। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Every company, whether listed or not, must have at least one woman director on its board.",
    "SEBI requires every listed company to have at least one independent woman director.",
    "A company's independent directors are counted among its key managerial personnel."],
@@ -168,8 +168,8 @@ A(EX, "medium",
   "ca-t2-eco-net-fdi-repatriation-outward-si", craft="inference")
 
 M(IN, "medium",
-  "In April-May 2026 the Indian basket of crude oil averaged about $110 a barrel as the West Asian conflict disrupted supplies. The Indian basket is:",
-  "अप्रैल-मई 2026 में पश्चिम एशियाई संघर्ष से आपूर्ति बाधित होने के कारण कच्चे तेल की भारतीय टोकरी का औसत लगभग 110 डॉलर प्रति बैरल रहा। भारतीय टोकरी है:",
+  "The Indian basket of crude oil has averaged about $110 a barrel as the West Asian conflict disrupted supplies. The Indian basket is:",
+  "पश्चिम एशियाई संघर्ष से आपूर्ति बाधित होने के कारण कच्चे तेल की भारतीय बास्केट का औसत लगभग 110 डॉलर प्रति बैरल रहा है। भारतीय बास्केट है:",
   ["a weighted average of a sour grade (Oman and Dubai) and a sweet grade (Brent)",
    "the price of crude oil bought from Russia under the Western price cap",
    "the simple average of the Brent and West Texas Intermediate benchmarks",
@@ -186,14 +186,14 @@ M(IN, "medium",
   "Ministry of Petroleum and Natural Gas, Petroleum Planning and Analysis Cell, international prices of crude oil (Indian basket); Reserve Bank of India, Monetary Policy Statement (June 2026).",
   "ca-t2-eco-indian-basket-crude-sour-sweet", pos=POS.get("ca-t2-eco-indian-basket-crude-sour-sweet", 2), craft="precision")
 
-S(TF, "hard", "On 27 May 2026 the Supreme Court upheld the levy of GST on online real-money gaming at 28 per cent of the full value of the bets placed. Consider the following statements:",
-  "27 मई 2026 को सर्वोच्च न्यायालय ने ऑनलाइन रियल-मनी गेमिंग पर लगाए गए दाँवों के पूरे मूल्य के 28 प्रतिशत की दर से जीएसटी को वैध ठहराया। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The Court held that staking money on an uncertain outcome is betting for GST purposes, whether skill or chance decides the result.",
+S(TF, "hard", "The Supreme Court has upheld the levy of GST on online real-money gaming at 28 per cent of the full value of the bets placed. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने ऑनलाइन वास्तविक-धन गेमिंग पर लगाए गए दाँवों के पूरे मूल्य के 28 प्रतिशत की दर से जीएसटी को बरकरार रखा है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Staking money on an uncertain outcome is 'betting' for GST purposes, whether skill or chance decides the result.",
    "Under the GST law, betting and gambling are among the few actionable claims taxed as a supply of goods.",
-   "The Court held that the levy could apply only from the date of its judgment."],
-  ["न्यायालय ने कहा कि अनिश्चित परिणाम पर पैसा लगाना जीएसटी के प्रयोजन से दाँव लगाना है, परिणाम चाहे कौशल से तय हो या संयोग से।",
+   "The levy on the full value of the bets applies only from the date of the Supreme Court's judgment."],
+  ["अनिश्चित परिणाम पर पैसा लगाना जीएसटी के प्रयोजन से ‘दाँव लगाना’ है, परिणाम चाहे कौशल से तय हो या संयोग से।",
    "जीएसटी क़ानून के अंतर्गत दाँव और जुआ उन गिने-चुने अनुयोज्य दावों में हैं जिन पर माल की आपूर्ति के रूप में कर लगता है।",
-   "न्यायालय ने कहा कि यह कर केवल उसके निर्णय की तिथि से लागू हो सकता है।"],
+   "दाँवों के पूरे मूल्य पर यह कर केवल सर्वोच्च न्यायालय के निर्णय की तिथि से लागू होता है।"],
   C3, 1,
   "Statements 1 and 2 are correct. In Directorate General of GST Intelligence v. Gameskraft Technologies, the Court held that once money is staked on an uncertain result the activity is betting, so the old distinction between games of skill and of chance does not matter for this tax, and that platforms are suppliers of actionable claims, not mere intermediaries earning a fee. Schedule III of the CGST Act keeps actionable claims out of GST except lottery, betting and gambling -- and, since the 2023 amendments, online money gaming -- which are taxed on the full face value. "
   "Statement 3 is wrong: the Court upheld the government's position that tax was due for earlier periods too, validating large demands against gaming companies, and rejected challenges under Articles 14, 19, 20, 21 and 265. Separately, the Promotion and Regulation of Online Gaming Act, 2025 bans online money games altogether.",
@@ -215,14 +215,14 @@ A(MB, "hard",
   "Reserve Bank of India, Financial Stability Report and data on foreign portfolio investment; NCERT, Introductory Macroeconomics (Class XII), Chapter 6 (Open Economy Macroeconomics).",
   "ca-t2-eco-carry-trade-japan-rates-fpi-si", craft="inference")
 
-S(MB, "medium", "In June 2026 the Reserve Bank of India issued revised directions on customers' liability in fraudulent electronic banking transactions. Consider the following statements:",
-  "जून 2026 में भारतीय रिज़र्व बैंक ने धोखाधड़ी वाले इलेक्ट्रॉनिक बैंकिंग लेन-देन में ग्राहकों के दायित्व पर संशोधित निर्देश जारी किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MB, "medium", "The Reserve Bank of India has issued revised directions on customers' liability in fraudulent electronic banking transactions. Consider the following statements:",
+  "भारतीय रिज़र्व बैंक ने धोखाधड़ी वाले इलेक्ट्रॉनिक बैंकिंग लेन-देन में ग्राहकों की देयता पर संशोधित निर्देश जारी किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["A customer who loses up to ₹50,000 in a small-value digital fraud can receive compensation of up to ₹25,000, once in a lifetime.",
    "The burden of proving a customer's liability lies on the bank.",
-   "The revised directions came into force on 1 July 2026."],
+   "The revised directions came into force as soon as they were issued."],
   ["छोटे मूल्य की डिजिटल धोखाधड़ी में ₹50,000 तक गँवाने वाला ग्राहक जीवन में एक बार ₹25,000 तक का मुआवज़ा पा सकता है।",
    "ग्राहक का दायित्व सिद्ध करने का भार बैंक पर है।",
-   "संशोधित निर्देश 1 जुलाई 2026 को लागू हुए।"],
+   "संशोधित निर्देश जारी होते ही लागू हो गए।"],
   C3, 1,
   "Statements 1 and 2 are correct. The directions, amending the rules on responsible business conduct of commercial banks and widening the 2017 framework on customer liability, extend protection to more kinds of fraud. A customer who reports a small-value fraud to the bank and to the National Cyber Crime Helpline (1930) within five days can get compensation of up to ₹25,000 for losses of up to ₹50,000, once in a lifetime; banks must prove any negligence on the customer's part, reverse eligible amounts without loss of interest and, for unauthorised credit-card charges, give a 'shadow reversal' within five days of a complaint. "
   "Statement 3 is wrong: a draft had proposed 1 July 2026, but the final directions apply to transactions on or after 1 January 2027.",
@@ -231,12 +231,12 @@ S(MB, "medium", "In June 2026 the Reserve Bank of India issued revised direction
   "Reserve Bank of India, Commercial Banks (Responsible Business Conduct) Third Amendment Directions, 2026 (June 2026), and circular on customer protection in unauthorised electronic banking transactions (2017).",
   "ca-t2-eco-rbi-digital-fraud-compensation-2027", craft="precision")
 
-S(EX, "easy", "On 28 April 2026 the United Arab Emirates announced that it would leave the Organization of the Petroleum Exporting Countries (OPEC) and the wider OPEC+ group. Consider the following statements:",
-  "28 अप्रैल 2026 को संयुक्त अरब अमीरात ने घोषणा की कि वह पेट्रोलियम निर्यातक देशों के संगठन (ओपेक) और व्यापक ओपेक+ समूह को छोड़ देगा। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The UAE's exit took effect on 1 May 2026.",
+S(EX, "easy", "The United Arab Emirates has left the Organization of the Petroleum Exporting Countries (OPEC) and the wider OPEC+ group. Consider the following statements:",
+  "संयुक्त अरब अमीरात पेट्रोलियम निर्यातक देशों के संगठन (ओपेक) और व्यापक ओपेक+ समूह से बाहर हो गया है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The UAE's exit took effect within days of its announcement.",
    "Qatar and Angola had left OPEC in earlier years.",
    "The UAE joined OPEC after the organisation was founded, Abu Dhabi becoming a member in 1967."],
-  ["संयुक्त अरब अमीरात का बाहर होना 1 मई 2026 से प्रभावी हुआ।",
+  ["संयुक्त अरब अमीरात का बाहर होना घोषणा के कुछ ही दिनों में प्रभावी हो गया।",
    "क़तर और अंगोला पहले के वर्षों में ओपेक छोड़ चुके थे।",
    "संयुक्त अरब अमीरात ओपेक की स्थापना के बाद उसमें शामिल हुआ; अबू धाबी 1967 में सदस्य बना।"],
   C3, 2,

@@ -22,10 +22,10 @@ IN, NA, DF, SC, SP = "International", "National", "Defence", "Schemes & Indices"
 # ================================================================ INTERNATIONAL
 S(IN, "medium", "With reference to the India–European Union Free Trade Agreement, consider the following statements:",
   "भारत–यूरोपीय संघ मुक्त व्यापार समझौते के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
-  ["Negotiations on it were concluded at an India–EU Summit held in New Delhi in January 2026.",
+  ["Negotiations on it were concluded at an India–EU Summit held in New Delhi.",
    "Under the EU treaties, trade policy is an exclusive competence of the Union, so the European Commission negotiates such agreements on behalf of all the member states.",
    "Once its negotiations were concluded, the agreement entered into force at once, without any further approval within the EU."],
-  ["इस पर वार्ता जनवरी 2026 में नई दिल्ली में आयोजित भारत–यूरोपीय संघ शिखर सम्मेलन में संपन्न हुई।",
+  ["इस पर वार्ता नई दिल्ली में आयोजित भारत–यूरोपीय संघ शिखर सम्मेलन में संपन्न हुई।",
    "यूरोपीय संघ की संधियों के अंतर्गत व्यापार नीति संघ की अनन्य क्षमता है, इसलिए ऐसे समझौतों पर सभी सदस्य देशों की ओर से यूरोपीय आयोग वार्ता करता है।",
    "वार्ता संपन्न होते ही यह समझौता यूरोपीय संघ के भीतर किसी और अनुमोदन के बिना तुरंत लागू हो गया।"],
   C3, 1,
@@ -55,8 +55,8 @@ M(IN, "medium",
   "Treaty on European Union, Articles 13-17; Ministry of External Affairs, Republic Day 2026 chief guests; Council of Europe, Statute (1949).",
   "ca-t1-ca-european-council-three-councils", pos=POS.get("ca-t1-ca-european-council-three-councils", 1), craft="precision")
 
-S(IN, "hard", "The United States' withdrawal from the Paris Agreement took effect in January 2026. With reference to withdrawal from international treaties and bodies, consider the following statements:",
-  "जनवरी 2026 में पेरिस समझौते से संयुक्त राज्य अमेरिका का हटना प्रभावी हुआ। अंतरराष्ट्रीय संधियों और निकायों से हटने के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "The United States has recently left the Paris Agreement. With reference to withdrawal from international treaties and bodies, consider the following statements:",
+  "संयुक्त राज्य अमेरिका हाल में पेरिस समझौते से बाहर हुआ है। अंतरराष्ट्रीय संधियों और निकायों से हटने के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under the Paris Agreement, a Party's withdrawal takes effect one year after the depositary receives its notification.",
    "A Party that withdraws from the UN Framework Convention on Climate Change still remains a Party to the Paris Agreement.",
    "The Constitution of the World Health Organization lays down a procedure under which any member may withdraw after giving one year's notice."],
@@ -73,10 +73,10 @@ S(IN, "hard", "The United States' withdrawal from the Paris Agreement took effec
 
 S(IN, "medium", "With reference to nuclear arms control between the United States and Russia, consider the following statements:",
   "संयुक्त राज्य अमेरिका और रूस के बीच परमाणु शस्त्र नियंत्रण के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The New START Treaty, which expired in February 2026, limited each side to 1,550 deployed strategic nuclear warheads.",
+  ["The New START Treaty, which has now expired, limited each side to 1,550 deployed strategic nuclear warheads.",
    "The Intermediate-Range Nuclear Forces Treaty, which banned ground-launched missiles with ranges of 500 to 5,500 km, ceased to bind the two after the United States withdrew from it in 2019.",
    "Russia had announced in 2023 that it was suspending its participation in New START."],
-  ["फ़रवरी 2026 में समाप्त हुई न्यू स्टार्ट संधि ने प्रत्येक पक्ष को 1,550 तैनात सामरिक परमाणु आयुधों तक सीमित किया था।",
+  ["अब समाप्त हो चुकी न्यू स्टार्ट संधि ने प्रत्येक पक्ष को 1,550 तैनात सामरिक परमाणु आयुधों तक सीमित किया था।",
    "500 से 5,500 किमी मारक दूरी वाली ज़मीन से छोड़ी जाने वाली मिसाइलों पर प्रतिबंध लगाने वाली मध्यम-दूरी परमाणु बल संधि 2019 में संयुक्त राज्य अमेरिका के उससे हटने के बाद दोनों पर बाध्यकारी नहीं रही।",
    "रूस ने 2023 में घोषणा की थी कि वह न्यू स्टार्ट में अपनी भागीदारी निलंबित कर रहा है।"],
   C3, 2,
@@ -105,8 +105,8 @@ S(IN, "medium", "India holds the chairship of BRICS in 2026. Consider the follow
   "Ministry of External Affairs, release on India's BRICS Chairship 2026 (13 January 2026); Kazan Declaration (2024).",
   "ca-t1-ca-brics-2026-chairship-no-secretariat", craft="precision")
 
-S(IN, "medium", "The AI Impact Summit held in New Delhi in February 2026 was the fourth in a series of global summits on artificial intelligence. Consider the following statements about the series:",
-  "फ़रवरी 2026 में नई दिल्ली में आयोजित एआई इम्पैक्ट शिखर सम्मेलन कृत्रिम बुद्धिमत्ता पर वैश्विक शिखर सम्मेलनों की शृंखला में चौथा था। इस शृंखला के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India hosted the AI Impact Summit in New Delhi, the fourth in a series of global summits on artificial intelligence. Consider the following statements about the series:",
+  "भारत ने नई दिल्ली में एआई इम्पैक्ट समिट की मेज़बानी की, जो कृत्रिम बुद्धिमत्ता पर वैश्विक शिखर सम्मेलनों की शृंखला में चौथा था। इस शृंखला के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The New Delhi summit was the first of the series to be hosted in the Global South.",
    "The summit of 2024 was hosted jointly by the Republic of Korea and the United Kingdom.",
    "The series began with a summit hosted by France in 2023."],
@@ -121,8 +121,8 @@ S(IN, "medium", "The AI Impact Summit held in New Delhi in February 2026 was the
   "Ministry of Electronics and Information Technology, IndiaAI, AI Impact Summit 2026 releases (February 2026); Government of the United Kingdom, AI Safety Summit (2023) and AI Seoul Summit (2024); Élysée and MEA, AI Action Summit, Paris (February 2025).",
   "ca-t1-ca-ai-summit-series-hosts", craft="recall")
 
-S(IN, "hard", "Nepal elected a new House of Representatives in March 2026. With reference to Nepal's Constitution of 2015, consider the following statements:",
-  "मार्च 2026 में नेपाल ने नई प्रतिनिधि सभा चुनी। नेपाल के 2015 के संविधान के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "Nepal has elected a new House of Representatives. With reference to Nepal's Constitution of 2015, consider the following statements:",
+  "नेपाल ने नई प्रतिनिधि सभा चुनी है। नेपाल के 2015 के संविधान के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["Of the 275 members of the House of Representatives, 165 are elected from single-member constituencies and 110 by proportional representation.",
    "The President of Nepal is elected directly by the people.",
    "Nepal's federal Parliament is unicameral."],
@@ -137,8 +137,8 @@ S(IN, "hard", "Nepal elected a new House of Representatives in March 2026. With 
   "Constitution of Nepal (2015), Articles 62, 76, 84 and 86; Election Commission of Nepal, results of the House of Representatives election (March 2026).",
   "ca-t1-ca-nepal-mixed-system-indirect-president", craft="precision")
 
-S(IN, "medium", "Bangladesh held a general election and a referendum on the same day in February 2026. Consider the following statements:",
-  "फ़रवरी 2026 में बांग्लादेश ने एक ही दिन आम चुनाव और जनमत-संग्रह कराया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "Bangladesh held a general election and a referendum on the same day. Consider the following statements:",
+  "बांग्लादेश ने एक ही दिन आम चुनाव और जनमत-संग्रह कराया। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Bangladesh's Parliament, the Jatiya Sangsad, is unicameral, with 300 directly elected seats and 50 seats reserved for women.",
    "The 'July Charter' that was put to the referendum proposes, among other reforms, an upper house of Parliament."],
   ["बांग्लादेश की संसद, जातीय संसद, एकसदनीय है, जिसमें 300 सीधे चुनी गई सीटें और महिलाओं के लिए आरक्षित 50 सीटें हैं।",
@@ -167,8 +167,8 @@ S(IN, "medium", "The process of selecting the next Secretary-General of the Unit
   "Charter of the United Nations, Article 97; General Assembly resolutions 11(I) (1946) and 79/327 (2025); joint letter of the Presidents of the General Assembly and the Security Council (25 November 2025).",
   "ca-t1-ca-unsg-selection-article-97", craft="precision")
 
-S(IN, "easy", "January 2026 marked eighty years since the first session of the UN General Assembly. Consider the following statements:",
-  "जनवरी 2026 में संयुक्त राष्ट्र महासभा के पहले सत्र के अस्सी वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "easy", "The UN General Assembly has completed eighty years since its first session. Consider the following statements:",
+  "संयुक्त राष्ट्र महासभा ने अपने पहले सत्र के अस्सी वर्ष पूरे किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The first session of the General Assembly opened in London.",
    "India was among the original members of the United Nations although it was not yet independent.",
    "The first woman to preside over the General Assembly was an Indian."],
@@ -183,13 +183,13 @@ S(IN, "easy", "January 2026 marked eighty years since the first session of the U
   "United Nations, history of the General Assembly and list of Presidents of the General Assembly; Charter of the United Nations, Article 3.",
   "ca-t1-ca-unga-eighty-years-first-session", craft="recall")
 
-S(IN, "medium", "India joined 'Pax Silica' in February 2026. Consider the following statements about it:",
-  "भारत फ़रवरी 2026 में ‘पैक्स सिलिका’ में शामिल हुआ। इसके बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "Consider the following statements about 'Pax Silica', which India has joined:",
+  "भारत जिसमें शामिल हुआ है, उस ‘पैक्स सिलिका’ के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is a United States-led initiative to build secure supply chains for semiconductors, artificial intelligence and critical minerals.",
-   "India was one of its founding members when it was launched in December 2025.",
+   "India was one of its founding members when it was launched.",
    "It is a treaty-based military alliance with a mutual-defence clause, modelled on NATO."],
   ["यह सेमीकंडक्टर, कृत्रिम बुद्धिमत्ता और महत्त्वपूर्ण खनिजों की सुरक्षित आपूर्ति शृंखलाएँ बनाने की संयुक्त राज्य अमेरिका के नेतृत्व वाली पहल है।",
-   "दिसंबर 2025 में इसकी शुरुआत के समय भारत इसके संस्थापक सदस्यों में था।",
+   "इसकी शुरुआत के समय भारत इसके संस्थापक सदस्यों में था।",
    "यह नाटो की तर्ज़ पर बना, पारस्परिक रक्षा उपबंध वाला संधि-आधारित सैन्य गठबंधन है।"],
   C3, 0,
   "Only statement 1 is correct. The United States launched Pax Silica in December 2025 to coordinate trusted supply chains for chips, AI infrastructure and the critical minerals they depend on, with a first group of mostly high-income allies. Statement 2 is wrong: India was not among them -- the US announced in January 2026 that India would join, and India signed on 20 February 2026 on the sidelines of the AI Impact Summit in New Delhi, the first developing country in the group. "
@@ -199,8 +199,8 @@ S(IN, "medium", "India joined 'Pax Silica' in February 2026. Consider the follow
   "Ministry of Electronics and Information Technology, release on India joining Pax Silica (20 February 2026); US Department of State, Pax Silica Declaration (December 2025).",
   "ca-t1-ca-pax-silica-india-joins", craft="precision")
 
-S(IN, "hard", "With reference to the 14th Ministerial Conference (MC14) of the World Trade Organization, held in March 2026, consider the following statements:",
-  "मार्च 2026 में आयोजित विश्व व्यापार संगठन के 14वें मंत्रिस्तरीय सम्मेलन (एमसी14) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "With reference to the 14th Ministerial Conference (MC14) of the World Trade Organization, consider the following statements:",
+  "विश्व व्यापार संगठन के 14वें मंत्रिस्तरीय सम्मेलन (एमसी14) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["It was held in Yaoundé, Cameroon.",
    "The moratorium on customs duties on electronic transmissions, in place since 1998, lapsed after members failed to agree on extending it.",
    "India has long pressed for that moratorium to be made permanent."],
@@ -215,8 +215,8 @@ S(IN, "hard", "With reference to the 14th Ministerial Conference (MC14) of the W
   "World Trade Organization, MC14 outcome documents (March 2026); WTO Declaration on Global Electronic Commerce (1998); Ministry of Commerce and Industry statements on MC14.",
   "ca-t1-ca-wto-mc14-ecommerce-moratorium", craft="linkage")
 
-S(IN, "hard", "In February 2026 the Supreme Court of the United States held that the International Emergency Economic Powers Act does not authorise the President to impose tariffs. In this context, consider the following statements:",
-  "फ़रवरी 2026 में संयुक्त राज्य अमेरिका के सर्वोच्च न्यायालय ने निर्णय दिया कि अंतरराष्ट्रीय आपातकालीन आर्थिक शक्तियाँ अधिनियम राष्ट्रपति को टैरिफ़ लगाने का अधिकार नहीं देता। इस संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "The Supreme Court of the United States has held that the International Emergency Economic Powers Act does not authorise the President to impose tariffs. In this context, consider the following statements:",
+  "संयुक्त राज्य अमेरिका के सर्वोच्च न्यायालय ने कहा है कि अंतरराष्ट्रीय आपातकालीन आर्थिक शक्ति अधिनियम राष्ट्रपति को शुल्क लगाने का अधिकार नहीं देता। इस संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Court reasoned that tariffs are a form of taxation, a power the US Constitution gives to Congress.",
    "In India, the Customs Tariff Act, 1975 allows the Central Government, when immediate action is needed, to raise import duty by notification, which must then be laid before Parliament."],
   ["न्यायालय का तर्क था कि टैरिफ़ कराधान का एक रूप हैं, जो शक्ति अमेरिकी संविधान कांग्रेस को देता है।",
@@ -229,8 +229,8 @@ S(IN, "hard", "In February 2026 the Supreme Court of the United States held that
   "Supreme Court of the United States, Learning Resources, Inc. v. Trump (20 February 2026); Constitution of India, Article 265; Customs Tariff Act, 1975, section 8A.",
   "ca-t1-ca-ieepa-ruling-customs-tariff-8a", craft="linkage")
 
-S(IN, "medium", "On 1 January 2026 India and Pakistan exchanged lists, as they do every year. Consider the following statements:",
-  "1 जनवरी 2026 को भारत और पाकिस्तान ने, हर वर्ष की तरह, सूचियों का आदान-प्रदान किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India and Pakistan exchange certain lists with each other at the start of every year. Consider the following statements:",
+  "भारत और पाकिस्तान हर वर्ष के आरंभ में एक-दूसरे के साथ कुछ सूचियों का आदान-प्रदान करते हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under an agreement signed in 1988, the two countries exchange lists of their nuclear installations and facilities on 1 January every year, and undertake not to attack them.",
    "Lists of each other's nationals held in prison are exchanged under the same 1988 agreement."],
   ["1988 में हस्ताक्षरित एक समझौते के अंतर्गत दोनों देश हर वर्ष 1 जनवरी को अपने परमाणु प्रतिष्ठानों और सुविधाओं की सूचियों का आदान-प्रदान करते हैं, और उन पर हमला न करने का वचन देते हैं।",
@@ -243,8 +243,8 @@ S(IN, "medium", "On 1 January 2026 India and Pakistan exchanged lists, as they d
   "Ministry of External Affairs, press releases on the exchange of lists of nuclear installations and of prisoners (1 January 2026); India–Pakistan Agreement on the Prohibition of Attack against Nuclear Installations and Facilities (1988).",
   "ca-t1-ca-india-pakistan-nuclear-lists-1988", craft="precision")
 
-S(IN, "medium", "India began a new three-year term on the UN Human Rights Council in January 2026. Consider the following statements:",
-  "जनवरी 2026 में भारत ने संयुक्त राष्ट्र मानवाधिकार परिषद में तीन वर्ष का नया कार्यकाल शुरू किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "India has begun a new three-year term on the UN Human Rights Council. Consider the following statements:",
+  "भारत ने संयुक्त राष्ट्र मानवाधिकार परिषद में नया तीन वर्षीय कार्यकाल आरंभ किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Members of the Council are chosen by the Security Council on the recommendation of the General Assembly.",
    "A member that has served two consecutive terms is not eligible for immediate re-election.",
    "The Council is one of the principal organs of the United Nations named in the UN Charter."],
@@ -259,8 +259,8 @@ S(IN, "medium", "India began a new three-year term on the UN Human Rights Counci
   "UN General Assembly resolution 60/251 (2006); Charter of the United Nations, Article 7; Ministry of External Affairs, release on India's election to the Human Rights Council for 2026–28 (October 2025).",
   "ca-t1-ca-hrc-india-two-term-rule", craft="application")
 
-S(IN, "medium", "The US operation in Venezuela in January 2026 revived debate over the Monroe Doctrine. Consider the following statements:",
-  "जनवरी 2026 में वेनेज़ुएला में अमेरिकी कार्रवाई ने मनरो सिद्धांत पर बहस फिर छेड़ दी। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "A US military operation in Venezuela has revived debate over the Monroe Doctrine. Consider the following statements:",
+  "वेनेज़ुएला में अमेरिका के एक सैन्य अभियान ने मुनरो सिद्धांत पर बहस फिर छेड़ दी है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Declared in 1823, it warned European powers against further colonisation of, or intervention in, the Americas.",
    "The 'Roosevelt Corollary' of 1904 gave up any claim by the United States to intervene in the affairs of Latin American states.",
    "It was a treaty that the United States signed with the newly independent states of Latin America."],
@@ -291,8 +291,8 @@ S(IN, "medium", "US pressure over Greenland in early 2026 strained relations wit
   "North Atlantic Treaty (1949), Article 5; NATO, The Hague Summit Declaration (25 June 2025).",
   "ca-t1-ca-nato-hague-five-percent-article-5", craft="precision")
 
-S(IN, "hard", "The strikes on Iran that began on 28 February 2026 were debated in terms of the UN Charter. Consider the following statements:",
-  "28 फ़रवरी 2026 को शुरू हुए ईरान पर हमलों पर संयुक्त राष्ट्र चार्टर के संदर्भ में बहस हुई। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "The strikes on Iran have been debated in terms of the UN Charter's rules on the use of force. Consider the following statements:",
+  "ईरान पर हमलों पर बल-प्रयोग संबंधी संयुक्त राष्ट्र चार्टर के नियमों के संदर्भ में बहस हुई है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Article 2(4) of the Charter obliges members to refrain from the threat or use of force against the territorial integrity or political independence of any state.",
    "Article 51 recognises the inherent right of self-defence if an armed attack occurs, until the Security Council has taken the measures necessary to maintain peace.",
    "Measures taken by a member in exercise of the right of self-defence must be reported immediately to the Security Council."],
@@ -307,8 +307,8 @@ S(IN, "hard", "The strikes on Iran that began on 28 February 2026 were debated i
   "Charter of the United Nations, Articles 2(4), 10-14, 39-42 and 51.",
   "ca-t1-ca-un-charter-2-4-article-51", craft="application")
 
-S(IN, "hard", "Consider the following statements about Pakistan's 27th Constitutional Amendment of November 2025:",
-  "नवंबर 2025 के पाकिस्तान के 27वें संविधान संशोधन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "hard", "Consider the following statements about Pakistan's 27th Constitutional Amendment:",
+  "पाकिस्तान के 27वें संवैधानिक संशोधन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The amendment created a Federal Constitutional Court to hear constitutional cases, taking them away from Pakistan's Supreme Court.",
    "It created the post of Chief of Defence Forces, held by the army chief, and abolished the post of Chairman of the Joint Chiefs of Staff Committee.",
    "It lets an officer holding a five-star rank, such as Field Marshal, keep the rank and its privileges for life, with immunity from criminal prosecution."],
@@ -323,8 +323,8 @@ S(IN, "hard", "Consider the following statements about Pakistan's 27th Constitut
   "Constitution of the Islamic Republic of Pakistan, Article 243 as amended by the Constitution (Twenty-seventh Amendment) Act, 2025; Ministry of Defence (India), notification on the creation of the post of Chief of Defence Staff (December 2019); Constitution of India, Article 361.",
   "ca-t1-ca-pakistan-27th-amendment-fcc-cdf-immunity", craft="linkage")
 
-S(IN, "medium", "The Ganga Water Treaty between India and Bangladesh, signed in December 1996, comes up for renewal in 2026. Consider the following statements:",
-  "दिसंबर 1996 में हस्ताक्षरित भारत और बांग्लादेश के बीच गंगा जल संधि 2026 में नवीनीकरण के लिए सामने है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The Ganga Water Treaty between India and Bangladesh, signed in 1996, comes up for renewal in 2026. Consider the following statements:",
+  "भारत और बांग्लादेश के बीच 1996 में हस्ताक्षरित गंगा जल संधि 2026 में नवीनीकरण के लिए आ रही है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["It was signed for a period of thirty years.",
    "It governs the sharing of the Ganga's waters at Farakka during the lean season, from January to May.",
    "Like the Indus Waters Treaty, it provides for the World Bank to appoint a neutral expert to settle differences."],
@@ -341,8 +341,8 @@ S(IN, "medium", "The Ganga Water Treaty between India and Bangladesh, signed in 
 
 # ================================================================ NATIONAL
 A(NA, "medium",
-  "The Union Government's drive to end Left Wing Extremism by 31 March 2026 relied on operations led by the State police forces, with the central armed police forces deployed in their support.",
-  "31 मार्च 2026 तक वामपंथी उग्रवाद समाप्त करने का केंद्र सरकार का अभियान राज्य पुलिस बलों के नेतृत्व वाले अभियानों पर टिका था, जिनकी सहायता में केंद्रीय सशस्त्र पुलिस बल तैनात थे।",
+  "The Union Government's campaign to end Left Wing Extremism relied on operations led by the State police forces, with the central armed police forces deployed in their support.",
+  "वामपंथी उग्रवाद को समाप्त करने का केंद्र सरकार का अभियान राज्य पुलिस बलों के नेतृत्व वाले अभियानों पर टिका था, जिनके समर्थन में केंद्रीय सशस्त्र पुलिस बल तैनात थे।",
   "'Police' and 'public order' are subjects in the State List of the Seventh Schedule.",
   "‘पुलिस’ और ‘लोक व्यवस्था’ सातवीं अनुसूची की राज्य सूची के विषय हैं।",
   1,
@@ -356,8 +356,8 @@ A(NA, "medium",
   s3_hi="वामपंथी उग्रवाद के विरुद्ध जंगल युद्ध के लिए खड़ी की गई इकाई कोबरा केंद्रीय रिज़र्व पुलिस बल का भाग है।",
   craft="inference")
 
-S(NA, "easy", "In February 2026 the Ministry of Home Affairs released a document named PRAHAAR. Consider the following statements:",
-  "फ़रवरी 2026 में गृह मंत्रालय ने प्रहार नामक एक दस्तावेज़ जारी किया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(NA, "easy", "Consider the following statements about PRAHAAR, a document released by the Ministry of Home Affairs:",
+  "गृह मंत्रालय द्वारा जारी दस्तावेज़ ‘प्रहार’ के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is India's first national counter-terrorism policy and strategy.",
    "It is a law enacted by Parliament in 2026, which repealed the earlier anti-terror laws."],
   ["यह भारत की पहली राष्ट्रीय आतंकवाद-रोधी नीति और रणनीति है।",
@@ -371,8 +371,8 @@ S(NA, "easy", "In February 2026 the Ministry of Home Affairs released a document
   "ca-t1-ca-prahaar-counter-terror-policy", craft="recall")
 
 # ================================================================ DEFENCE
-S(DF, "medium", "In February 2026 India hosted the International Fleet Review together with Exercise MILAN at Visakhapatnam. Consider the following statements:",
-  "फ़रवरी 2026 में भारत ने विशाखापत्तनम में मिलन अभ्यास के साथ अंतरराष्ट्रीय बेड़ा समीक्षा की मेज़बानी की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(DF, "medium", "India hosted the International Fleet Review together with Exercise MILAN at Visakhapatnam. Consider the following statements:",
+  "भारत ने विशाखापत्तनम में अभ्यास मिलन के साथ अंतरराष्ट्रीय फ़्लीट रिव्यू की मेज़बानी की। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The fleet was reviewed by the President of India, the Supreme Commander of the armed forces.",
    "India's previous International Fleet Review, before the one of 2026, was held at Mumbai.",
    "MILAN began in 1995 as a gathering of regional navies hosted at Port Blair.",
@@ -403,8 +403,8 @@ MX(DF, "medium", "Match List-I (joint military exercise) with List-II (India's p
    "Ministry of Defence, releases on Exercise Dharma Guardian and Exercise Vajra Prahar (February 2026) and on Exercises Desert Cyclone, Cyclone and Ajeya Warrior.",
    "ca-t1-ca-exercises-dharma-guardian-vajra-prahar", "precision")
 
-S(DF, "medium", "In January 2026 the Army Day parade was held in Jaipur, where the newly raised Bhairav battalions made their debut. Consider the following statements:",
-  "जनवरी 2026 में सेना दिवस परेड जयपुर में हुई, जहाँ नई खड़ी की गई भैरव बटालियनों ने पहली बार भाग लिया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(DF, "medium", "The Army Day parade, held in Jaipur, saw the debut of the newly raised Bhairav battalions. Consider the following statements:",
+  "जयपुर में हुई सेना दिवस परेड में नवगठित भैरव बटालियनों ने पहली बार भाग लिया। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Army Day marks the day in 1949 when K.M. Cariappa took over as the first Indian Commander-in-Chief of the Indian Army.",
    "K.M. Cariappa is the only officer of the Indian Army to have held the rank of Field Marshal.",
    "The Bhairav battalions are light commando units meant to fill the gap between regular infantry and the special forces."],
@@ -455,8 +455,8 @@ S(SC, "easy", "The Union Budget 2026-27 allotted ₹67,600 crore to the Jal Jeev
   "Ministry of Jal Shakti, Department of Drinking Water and Sanitation, Jal Jeevan Mission operational guidelines; Union Budget 2025-26 and 2026-27, Budget speeches.",
   "ca-t1-ca-jal-jeevan-55-lpcd-rural", craft="precision")
 
-S(SC, "medium", "In January 2026 a gram panchayat in Rajasthan was certified as fully organic, ten years after Sikkim's declaration. Consider the following statements about organic certification in India:",
-  "जनवरी 2026 में राजस्थान की एक ग्राम पंचायत को पूर्णतः जैविक प्रमाणित किया गया, सिक्किम की घोषणा के दस वर्ष बाद। भारत में जैविक प्रमाणन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(SC, "medium", "A gram panchayat in Rajasthan has been certified as fully organic, ten years after Sikkim's declaration. Consider the following statements about organic certification in India:",
+  "सिक्किम की घोषणा के दस वर्ष बाद राजस्थान की एक ग्राम पंचायत को पूर्णतः जैविक प्रमाणित किया गया है। भारत में जैविक प्रमाणन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The National Programme for Organic Production is run by the Ministry of Agriculture and Farmers' Welfare.",
    "Produce certified under the Participatory Guarantee System (PGS-India) can be exported as certified organic.",
    "Sikkim was declared India's first fully organic State in 2003."],
@@ -471,8 +471,8 @@ S(SC, "medium", "In January 2026 a gram panchayat in Rajasthan was certified as 
   "Ministry of Commerce and Industry (APEDA), National Programme for Organic Production; Ministry of Agriculture and Farmers' Welfare, PGS-India operational manual; Government of Sikkim, State Organic Mission.",
   "ca-t1-ca-organic-npop-pgs-sikkim", craft="precision")
 
-S(SC, "medium", "Startup India completed ten years on 16 January 2026, observed as National Startup Day. Consider the following statements:",
-  "स्टार्टअप इंडिया ने 16 जनवरी 2026 को दस वर्ष पूरे किए, जिसे राष्ट्रीय स्टार्टअप दिवस के रूप में मनाया जाता है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SC, "medium", "Startup India has completed ten years. Consider the following statements:",
+  "स्टार्टअप इंडिया ने दस वर्ष पूरे किए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under the Startup India Seed Fund Scheme, money reaches startups through selected incubators rather than directly from the government.",
    "The Credit Guarantee Scheme for Startups is operated by the National Credit Guarantee Trustee Company.",
    "Recognition as a startup by the DPIIT is available to an entity of any age, so long as its turnover stays below the prescribed limit."],
@@ -487,8 +487,8 @@ S(SC, "medium", "Startup India completed ten years on 16 January 2026, observed 
   "Department for Promotion of Industry and Internal Trade, notification on the definition of a startup (G.S.R. 127(E), 2019) and Startup India Seed Fund Scheme guidelines (2021); Credit Guarantee Scheme for Startups (2022).",
   "ca-t1-ca-startup-india-ten-years-seed-cgss", craft="precision")
 
-S(SC, "easy", "Chhattisgarh and Puducherry were reported in January 2026 to have cut tuberculosis deaths by pairing cash support with early nutrition. Consider the following statements:",
-  "जनवरी 2026 में बताया गया कि छत्तीसगढ़ और पुदुच्चेरी ने नक़द सहायता को शीघ्र पोषण से जोड़कर तपेदिक से मौतें घटाईं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SC, "easy", "Some States have cut tuberculosis deaths by pairing cash support with early nutrition for patients. Consider the following statements:",
+  "कुछ राज्यों ने रोगियों को नक़द सहायता के साथ प्रारंभिक पोषण देकर क्षय रोग से मौतें घटाई हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under the Ni-kshay Poshan Yojana, TB patients receive direct benefit transfers to support their nutrition during treatment.",
    "The amount paid under it was raised to ₹1,000 a month in 2024.",
    "India's national target for ending TB was set for 2030, the same year as the Sustainable Development Goals."],
@@ -504,8 +504,8 @@ S(SC, "easy", "Chhattisgarh and Puducherry were reported in January 2026 to have
   "ca-t1-ca-nikshay-poshan-tb-2025", craft="linkage")
 
 # ================================================================ SPORTS
-S(SP, "easy", "March 2026 marked seventy-five years since the first Asian Games. Consider the following statements:",
-  "मार्च 2026 में पहले एशियाई खेलों के पचहत्तर वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(SP, "easy", "The first Asian Games completed seventy-five years in 2026. Consider the following statements:",
+  "पहले एशियाई खेलों ने 2026 में पचहत्तर वर्ष पूरे किए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The first Asian Games were held in New Delhi in 1951.",
    "The idea of the Asian Games was put forward by G.D. Sondhi, India's member of the International Olympic Committee.",
    "Ahmedabad has been chosen to host the Commonwealth Games in 2030."],
@@ -537,8 +537,8 @@ S("Awards & Appointments", "medium", "On the eve of Republic Day 2026, Group Cap
   "Ministry of Defence, release on gallantry awards on the eve of Republic Day 2026 (25 January 2026); Ministry of Defence, Ashoka Chakra series statutes.",
   "ca-t1-ca-ashok-chakra-peacetime-series", craft="precision")
 
-S(DF, "medium", "In February 2026 the Assam Rifles inducted two indigenous dog breeds, the Tangkhul Hui and the Kombai, into its canine squads. Consider the following statements about the Assam Rifles:",
-  "फ़रवरी 2026 में असम राइफ़ल्स ने अपने श्वान दस्तों में दो देशी नस्लों, तांगखुल हुई और कोम्बई, को शामिल किया। असम राइफ़ल्स के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(DF, "medium", "The Assam Rifles has inducted two indigenous dog breeds, the Tangkhul Hui and the Kombai, into its canine squads. Consider the following statements about the Assam Rifles:",
+  "असम राइफ़ल्स ने अपने श्वान दस्तों में दो देशी नस्लों, तंगखुल हुई और कोम्बई, को शामिल किया है। असम राइफ़ल्स के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is the oldest of India's central paramilitary forces, raised in 1835 as the Cachar Levy.",
    "Its administrative control lies with the Ministry of Home Affairs, while its operational control lies with the Indian Army.",
    "It guards India's border with Myanmar.",

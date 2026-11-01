@@ -19,8 +19,8 @@ d.REQUIRE_CRAFT = True
 WR, GM, OC = "World Regions, Water Bodies & Places", "Geomorphology & Earth's Interior", "Oceanography & Hydrosphere"
 IP = "Indian Physiography, Climate & Regions"
 
-S(IP, "medium", "On 13 April 2026 the India Meteorological Department forecast the south-west monsoon rainfall at 92 per cent of the Long Period Average (LPA). Consider the following statements:",
-  "13 अप्रैल 2026 को भारत मौसम विज्ञान विभाग ने दक्षिण-पश्चिम मानसून की वर्षा दीर्घावधि औसत (एलपीए) का 92 प्रतिशत रहने का पूर्वानुमान दिया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IP, "medium", "The India Meteorological Department forecast the south-west monsoon rainfall of 2026 at 92 per cent of the Long Period Average (LPA). Consider the following statements:",
+  "भारत मौसम विज्ञान विभाग ने 2026 की दक्षिण-पश्चिम मानसून वर्षा दीर्घावधि औसत (एलपीए) के 92 प्रतिशत रहने का पूर्वानुमान दिया। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The LPA now in use is the average all-India rainfall of 1961-2010.",
    "A season with rainfall of 92 per cent of the LPA falls in IMD's 'deficient' category.",
    "A below-normal seasonal forecast implies that the monsoon will set in over Kerala later than usual."],
@@ -35,8 +35,8 @@ S(IP, "medium", "On 13 April 2026 the India Meteorological Department forecast t
   "India Meteorological Department and Ministry of Earth Sciences, Long Range Forecast for the 2026 Southwest Monsoon Season Rainfall (13 April 2026) and its update (29 May 2026).",
   "ca-t2-geo-imd-lrf-92-lpa-categories-onset", craft="application")
 
-S(GM, "medium", "On 27 April 2026 India and New Zealand signed a free trade agreement. Consider the following statements about New Zealand:",
-  "27 अप्रैल 2026 को भारत और न्यूज़ीलैंड ने एक मुक्त व्यापार समझौते पर हस्ताक्षर किए। न्यूज़ीलैंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(GM, "medium", "India and New Zealand have signed a free trade agreement. Consider the following statements about New Zealand:",
+  "भारत और न्यूज़ीलैंड ने एक मुक्त व्यापार समझौते पर हस्ताक्षर किए हैं। न्यूज़ीलैंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It lies across the boundary between the Pacific and the Australian plates.",
    "The Southern Alps of its South Island have been raised along a fault where the two plates slide past each other.",
    "Its North and South Islands are separated by the Cook Strait."],
@@ -51,8 +51,8 @@ S(GM, "medium", "On 27 April 2026 India and New Zealand signed a free trade agre
   "Ministry of Commerce and Industry and PIB, India-New Zealand Free Trade Agreement (27 April 2026); NCERT, Fundamentals of Physical Geography (Class XI), Chapter 4 (Distribution of Oceans and Continents).",
   "ca-t2-geo-new-zealand-plates-alpine-fault-cook-strait", craft="linkage")
 
-S(WR, "hard", "In June 2026 the Narcotics Control Bureau reported that the flow of opium from Myanmar was affecting India's eastern borders. Consider the following statements:",
-  "जून 2026 में स्वापक नियंत्रण ब्यूरो ने बताया कि म्यांमार से अफ़ीम का प्रवाह भारत की पूर्वी सीमाओं को प्रभावित कर रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
+S(WR, "hard", "The Narcotics Control Bureau has reported that the flow of opium from Myanmar is affecting India's eastern borders. Consider the following statements:",
+  "स्वापक नियंत्रण ब्यूरो ने बताया है कि म्यांमार से अफ़ीम का प्रवाह भारत की पूर्वी सीमाओं को प्रभावित कर रहा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Golden Triangle is the area where the borders of Myanmar, Laos and Thailand meet.",
    "The Golden Crescent spans parts of Afghanistan, Iran and Pakistan.",
    "Myanmar overtook Afghanistan as the largest source of opium after the Taliban banned poppy cultivation in 2022.",
@@ -69,8 +69,8 @@ S(WR, "hard", "In June 2026 the Narcotics Control Bureau reported that the flow 
   "Narcotics Control Bureau, Annual Report (June 2026); United Nations Office on Drugs and Crime, Southeast Asia Opium Survey 2023.",
   "ca-t2-geo-golden-triangle-crescent-myanmar-opium", craft="linkage")
 
-S(WR, "hard", "In April 2026 a ceasefire between Israel and Lebanon was extended, months before the UN peacekeeping force in southern Lebanon is due to end its operations. Consider the following statements:",
-  "अप्रैल 2026 में इज़रायल और लेबनान के बीच युद्धविराम बढ़ाया गया, दक्षिणी लेबनान में संयुक्त राष्ट्र शांति सेना के अपना संचालन समाप्त करने से कुछ महीने पहले। निम्नलिखित कथनों पर विचार कीजिए:",
+S(WR, "hard", "A ceasefire between Israel and Lebanon has been extended, as the UN peacekeeping force in southern Lebanon prepares to end its operations. Consider the following statements:",
+  "इज़रायल और लेबनान के बीच युद्धविराम बढ़ाया गया है, जबकि दक्षिणी लेबनान में संयुक्त राष्ट्र शांति सेना अपने अभियान समाप्त करने की तैयारी में है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Lebanon has land borders with only two countries, Syria and Israel.",
    "The Blue Line in southern Lebanon is the internationally agreed boundary between Lebanon and Israel.",
    "The Security Council has extended the mandate of the United Nations Interim Force in Lebanon (UNIFIL) for a final time, to the end of 2026.",
@@ -87,13 +87,13 @@ S(WR, "hard", "In April 2026 a ceasefire between Israel and Lebanon was extended
   "United Nations Security Council resolutions 425 and 426 (1978), 1701 (2006) and 2790 (2025); United Nations Interim Force in Lebanon, mandate and Blue Line; Ministry of External Affairs, India and UN peacekeeping.",
   "ca-t2-geo-lebanon-blue-line-unifil-final-mandate", craft="multi")
 
-S(IP, "hard", "In June 2026 the Supreme Court set up an expert committee to examine afresh how the Aravalli hills should be defined. Consider the following statements:",
-  "जून 2026 में सर्वोच्च न्यायालय ने अरावली पहाड़ियों की परिभाषा पर नए सिरे से विचार के लिए एक विशेषज्ञ समिति बनाई। निम्नलिखित कथनों पर विचार कीजिए:",
-  ["The definition the Court had accepted in November 2025 counted as an Aravalli hill only a landform rising at least 100 metres above its local relief.",
+S(IP, "hard", "The Supreme Court has set up an expert committee to examine afresh how the Aravalli hills should be defined. Consider the following statements:",
+  "सर्वोच्च न्यायालय ने अरावली पहाड़ियों की परिभाषा पर नए सिरे से विचार के लिए एक विशेषज्ञ समिति गठित की है। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The definition the Court had accepted earlier counted as an Aravalli hill only a landform rising at least 100 metres above its local relief.",
    "By the Forest Survey of India's mapping, most of the Aravalli hills would have met that 100-metre test.",
    "The Delhi Ridge is the northern extension of the Aravalli range.",
    "Pending the review, the Court has barred new mining leases in the Aravallis without its permission."],
-  ["नवंबर 2025 में न्यायालय द्वारा स्वीकार की गई परिभाषा केवल उसी भू-आकृति को अरावली पहाड़ी मानती थी जो अपने स्थानीय उच्चावच से कम से कम 100 मीटर ऊँची उठे।",
+  ["न्यायालय द्वारा पहले स्वीकार की गई परिभाषा केवल उसी भू-आकृति को अरावली पहाड़ी मानती थी जो अपने स्थानीय उच्चावच से कम से कम 100 मीटर ऊँची उठे।",
    "भारतीय वन सर्वेक्षण के मानचित्रण के अनुसार अधिकांश अरावली पहाड़ियाँ उस 100 मीटर की कसौटी पर खरी उतरतीं।",
    "दिल्ली रिज अरावली पर्वतमाला का उत्तरी विस्तार है।",
    "समीक्षा पूरी होने तक न्यायालय ने उसकी अनुमति के बिना अरावली में नए खनन पट्टों पर रोक लगा दी है।"],
@@ -105,8 +105,8 @@ S(IP, "hard", "In June 2026 the Supreme Court set up an expert committee to exam
   "Supreme Court of India, orders in the suo motu matter on the definition of the Aravalli hills (20 November 2025, 29 December 2025 and May-June 2026); Forest Survey of India, mapping of the Aravalli hills; NCERT, Contemporary India I (Class IX), Chapter 2 (Physical Features of India).",
   "ca-t2-geo-aravalli-definition-100m-review", craft="precision")
 
-C(IP, "medium", "In June 2026 the Border Security Force and Border Guard Bangladesh held their 57th conference at the level of Directors-General. Arrange the following States in decreasing order of the length of their border with Bangladesh:",
-  "जून 2026 में सीमा सुरक्षा बल और बॉर्डर गार्ड बांग्लादेश ने महानिदेशक स्तर का अपना 57वाँ सम्मेलन किया। बांग्लादेश के साथ अपनी सीमा की लंबाई के घटते क्रम में निम्नलिखित राज्यों को व्यवस्थित कीजिए:",
+C(IP, "medium", "The Border Security Force and Border Guard Bangladesh have held their 57th conference at the level of Directors-General. Arrange the following States in decreasing order of the length of their border with Bangladesh:",
+  "सीमा सुरक्षा बल और बॉर्डर गार्ड बांग्लादेश ने महानिदेशक स्तर का अपना 57वाँ सम्मेलन किया है। बांग्लादेश के साथ अपनी सीमा की लंबाई के घटते क्रम में निम्नलिखित राज्यों को व्यवस्थित कीजिए:",
   ["Assam", "Meghalaya", "Tripura", "Mizoram"],
   ["असम", "मेघालय", "त्रिपुरा", "मिज़ोरम"],
   ["2-3-4-1", "3-2-1-4", "3-2-4-1", "2-3-1-4"], 2,
@@ -118,8 +118,8 @@ C(IP, "medium", "In June 2026 the Border Security Force and Border Guard Banglad
   "ca-t2-geo-india-bangladesh-border-lengths-order")
 d.ROWS[-1]["question_data"]["craft"] = "precision"
 
-S(WR, "medium", "In May 2026 India's External Affairs Minister visited Trinidad and Tobago, where eight memorandums of understanding were signed. Consider the following statements:",
-  "मई 2026 में भारत के विदेश मंत्री ने त्रिनिदाद और टोबैगो की यात्रा की, जहाँ आठ समझौता ज्ञापनों पर हस्ताक्षर हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(WR, "medium", "India's External Affairs Minister has visited Trinidad and Tobago, where eight memorandums of understanding were signed. Consider the following statements:",
+  "भारत के विदेश मंत्री ने त्रिनिदाद और टोबैगो की यात्रा की, जहाँ आठ समझौता ज्ञापनों पर हस्ताक्षर हुए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The country marks the arrival of the first ship of Indian indentured labourers, in 1838, as Indian Arrival Day.",
    "Trinidad lies off the coast of Brazil, near the mouth of the Amazon.",
    "Trinidad and Tobago is a member of the Organization of the Petroleum Exporting Countries (OPEC)."],
@@ -134,8 +134,8 @@ S(WR, "medium", "In May 2026 India's External Affairs Minister visited Trinidad 
   "Ministry of External Affairs, visit of the External Affairs Minister to Trinidad and Tobago (May 2026) and India-Trinidad and Tobago bilateral brief; Organization of the Petroleum Exporting Countries, member countries.",
   "ca-t2-geo-trinidad-arrival-day-orinoco-not-opec", craft="linkage")
 
-S(GM, "medium", "India's ties with Seychelles, where people of Indian origin form a notable community, were in the news in June 2026. Consider the following statements about Seychelles:",
-  "जून 2026 में सेशेल्स के साथ भारत के संबंध, जहाँ भारतीय मूल के लोग एक उल्लेखनीय समुदाय हैं, चर्चा में रहे। सेशेल्स के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(GM, "medium", "India's ties with Seychelles, where people of Indian origin form a notable community, have been in the news. Consider the following statements about Seychelles:",
+  "सेशेल्स, जहाँ भारतीय मूल के लोग एक उल्लेखनीय समुदाय हैं, के साथ भारत के संबंध समाचारों में रहे हैं। सेशेल्स के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its granite inner islands are a fragment of continental crust that was left behind when India drifted away about 65 million years ago.",
    "It was one of the founding members of the Colombo Security Conclave in 2011."],
   ["इसके ग्रेनाइट वाले भीतरी द्वीप महाद्वीपीय भूपर्पटी का वह टुकड़ा हैं जो लगभग 6.5 करोड़ वर्ष पहले भारत के दूर खिसकने पर पीछे छूट गया।",

@@ -18,8 +18,8 @@ d.REQUIRE_CRAFT = True
 WR, GM, OC = "World Regions, Water Bodies & Places", "Geomorphology & Earth's Interior", "Oceanography & Hydrosphere"
 IP = "Indian Physiography, Climate & Regions"
 
-S(WR, "medium", "The US operation of January 2026 in which Venezuela's President was captured drew attention to the country's geography. Consider the following statements:",
-  "जनवरी 2026 के जिस अमेरिकी अभियान में वेनेज़ुएला के राष्ट्रपति को पकड़ा गया, उसने देश के भूगोल की ओर ध्यान खींचा। निम्नलिखित कथनों पर विचार कीजिए:",
+S(WR, "medium", "A US operation in which Venezuela's President was captured has drawn attention to the country's geography. Consider the following statements:",
+  "उस अमेरिकी अभियान ने, जिसमें वेनेज़ुएला के राष्ट्रपति को पकड़ा गया, देश के भूगोल की ओर ध्यान खींचा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Venezuela has the largest proven reserves of crude oil of any country.",
    "The Orinoco belt holds very large deposits of extra-heavy crude oil.",
    "Lake Maracaibo is a freshwater lake with no connection to the sea.",
@@ -36,8 +36,8 @@ S(WR, "medium", "The US operation of January 2026 in which Venezuela's President
   "OPEC, Annual Statistical Bulletin (proven crude oil reserves by country); NCERT, Fundamentals of Human Geography (Class XII), on mineral and energy resources; Oxford School Atlas.",
   "ca-t1-geo-venezuela-orinoco-maracaibo", craft="multi")
 
-S(WR, "easy", "In January 2026 US pressure to acquire Greenland strained relations between the United States and Europe. Consider the following statements about Greenland:",
-  "जनवरी 2026 में ग्रीनलैंड को हासिल करने के अमेरिकी दबाव ने संयुक्त राज्य अमेरिका और यूरोप के संबंधों पर तनाव डाला। ग्रीनलैंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(WR, "easy", "US pressure to acquire Greenland has strained relations between the United States and Europe. Consider the following statements about Greenland:",
+  "ग्रीनलैंड को प्राप्त करने के अमेरिकी दबाव ने संयुक्त राज्य अमेरिका और यूरोप के संबंधों में तनाव पैदा किया है। ग्रीनलैंड के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["It is a self-governing part of the Kingdom of Denmark.",
    "It left the European Economic Community in 1985, although Denmark remains in the European Union.",
    "Most of its area lies north of the Arctic Circle."],
@@ -53,8 +53,8 @@ S(WR, "easy", "In January 2026 US pressure to acquire Greenland strained relatio
   "ca-t1-geo-greenland-self-rule-eec-exit", craft="recall")
 
 M(WR, "hard",
-  "After the strikes on Iran that began in February 2026, shipping through the Strait of Hormuz was disrupted. Which one of the following ports can ships reach and leave without passing through the Strait?",
-  "फ़रवरी 2026 में ईरान पर शुरू हुए हमलों के बाद होर्मुज़ जलडमरूमध्य से नौवहन बाधित हुआ। निम्नलिखित में से किस बंदरगाह तक जहाज़ जलडमरूमध्य से गुज़रे बिना पहुँच और वहाँ से निकल सकते हैं?",
+  "Shipping through the Strait of Hormuz has been disrupted by the war involving Iran. Which one of the following ports can ships reach and leave without passing through the Strait?",
+  "ईरान से जुड़े युद्ध से होर्मुज़ जलडमरूमध्य से जहाज़रानी बाधित हुई है। निम्नलिखित में से किस बंदरगाह तक जहाज़ जलडमरूमध्य से गुज़रे बिना आ-जा सकते हैं?",
   ["Chabahar in Iran", "Ras Laffan in Qatar", "Ras Tanura in Saudi Arabia", "Jebel Ali in the United Arab Emirates"],
   ["ईरान का चाबहार", "क़तर का रास लफ़ान", "सऊदी अरब का रास तनूरा", "संयुक्त अरब अमीरात का जेबेल अली"],
   0,
@@ -85,8 +85,8 @@ MX(OC, "hard", "During the West Asian conflict of 2026, several islands were in 
    "Oxford School Atlas (West Asia and the Arabian Sea); NCERT, Fundamentals of Physical Geography (Class XI), on oceans and seas.",
    "ca-t1-geo-gulf-islands-kharg-qeshm-socotra", "precision")
 
-S(GM, "hard", "January 2026 marked twenty-five years since the Bhuj earthquake of 26 January 2001. Consider the following statements:",
-  "जनवरी 2026 में 26 जनवरी 2001 के भुज भूकंप के पच्चीस वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(GM, "hard", "The Bhuj earthquake of 2001 completed twenty-five years in 2026. Consider the following statements:",
+  "2001 के भुज भूकंप ने 2026 में पच्चीस वर्ष पूरे किए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Bhuj earthquake occurred on the boundary between the Indian and Eurasian plates.",
    "The revised seismic code of 2025, which added a new highest-hazard Zone VI, is in force across India.",
    "Under India's seismic zoning, the whole of Gujarat lies in Zone V."],
@@ -101,8 +101,8 @@ S(GM, "hard", "January 2026 marked twenty-five years since the Bhuj earthquake o
   "Bureau of Indian Standards, IS 1893 (Part 1): 2016 and the withdrawal of IS 1893: 2025 (March 2026); NCERT, India: Physical Environment (Class XI), Chapter 7 (Natural Hazards and Disasters); Disaster Management Act, 2005.",
   "ca-t1-geo-bhuj-25-years-intraplate-zone-code", craft="multi")
 
-S(IP, "hard", "In January 2026 Chinese construction in the Shaksgam Valley drew a protest from India. Consider the following statements:",
-  "जनवरी 2026 में शक्सगाम घाटी में चीनी निर्माण पर भारत ने विरोध दर्ज कराया। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IP, "hard", "Chinese construction in the Shaksgam Valley has drawn a protest from India. Consider the following statements:",
+  "शक्सगाम घाटी में चीनी निर्माण पर भारत ने विरोध दर्ज किया है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Pakistan ceded the Shaksgam Valley to China under their boundary agreement of 1963.",
    "India accepted that agreement as part of its 1993 agreement with China on peace along the Line of Actual Control.",
    "The Shaksgam Valley lies in the Aksai Chin area of eastern Ladakh."],
@@ -117,8 +117,8 @@ S(IP, "hard", "In January 2026 Chinese construction in the Shaksgam Valley drew 
   "Ministry of External Affairs, statements on the Shaksgam Valley (January 2026); Survey of India, political map of India; China–Pakistan Boundary Agreement (1963), Article 6.",
   "ca-t1-geo-shaksgam-1963-cession-not-aksai-chin", craft="precision")
 
-S(OC, "hard", "In March 2026 Sri Lanka allowed an Iranian naval ship in distress to dock, and the law of the sea in wartime came under discussion. With reference to the UN Convention on the Law of the Sea, consider the following statements:",
-  "मार्च 2026 में श्रीलंका ने संकटग्रस्त एक ईरानी नौसैनिक पोत को लंगर डालने दिया, और युद्धकाल में समुद्री विधि पर चर्चा हुई। समुद्री विधि पर संयुक्त राष्ट्र अभिसमय के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(OC, "hard", "Sri Lanka allowed an Iranian naval ship in distress to dock, bringing the law of the sea in wartime under discussion. With reference to the UN Convention on the Law of the Sea, consider the following statements:",
+  "श्रीलंका ने संकटग्रस्त एक ईरानी नौसैनिक पोत को बंदरगाह में आने दिया, जिससे युद्धकाल में समुद्री कानून पर चर्चा हुई। समुद्र के कानून पर संयुक्त राष्ट्र अभिसमय के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["A coastal State's territorial sea may extend up to 12 nautical miles from its baselines.",
    "Ships of all States enjoy the right of innocent passage through the territorial sea.",
    "In straits used for international navigation, ships and aircraft enjoy the right of transit passage, which the States bordering the strait may not suspend."],

@@ -44,8 +44,8 @@ M(IN, "medium",
   "Union Budget 2026-27, Budget Speech (1 February 2026); Ministry of Railways, National High Speed Rail Corporation Limited, Mumbai–Ahmedabad High Speed Rail project.",
   "ca-t1-eco-hsr-seven-corridors-hyderabad", pos=POS.get("ca-t1-eco-hsr-seven-corridors-hyderabad", 0), craft="precision")
 
-S(TF, "hard", "With reference to the report of the Sixteenth Finance Commission, laid before Parliament on 1 February 2026, consider the following statements:",
-  "1 फ़रवरी 2026 को संसद के समक्ष रखी गई सोलहवें वित्त आयोग की रिपोर्ट के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(TF, "hard", "With reference to the report of the Sixteenth Finance Commission, consider the following statements:",
+  "सोलहवें वित्त आयोग की रिपोर्ट के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["It kept the States' share of the divisible pool of Central taxes at 41 per cent for 2026-31.",
    "It introduced a criterion based on each State's contribution to the national GDP and dropped the 'tax and fiscal effort' criterion.",
    "Among the criteria for sharing taxes among the States, it gave population the largest weight."],
@@ -61,8 +61,8 @@ S(TF, "hard", "With reference to the report of the Sixteenth Finance Commission,
   "ca-t1-eco-sixteenth-fc-criteria-gdp-contribution", craft="precision")
 
 A(MC, "hard",
-  "Since the Consumer Price Index was revised in February 2026, a given rise in food prices moves India's headline retail inflation less than it did before.",
-  "फ़रवरी 2026 में उपभोक्ता मूल्य सूचकांक के संशोधन के बाद से, खाद्य क़ीमतों में एक निश्चित वृद्धि भारत की मुख्य खुदरा मुद्रास्फीति को पहले से कम बढ़ाती है।",
+  "Under the revised Consumer Price Index series, a given rise in food prices moves India's headline retail inflation less than it did under the old series.",
+  "उपभोक्ता मूल्य सूचकांक की संशोधित शृंखला में खाद्य कीमतों में एक निश्चित वृद्धि भारत की प्रमुख खुदरा मुद्रास्फीति को पुरानी शृंखला की तुलना में कम प्रभावित करती है।",
   "Food and beverages carry a smaller share of the weights in the new Consumer Price Index than in the 2012 series.",
   "नए उपभोक्ता मूल्य सूचकांक के भारों में खाद्य और पेय पदार्थों का हिस्सा 2012 की शृंखला से कम है।",
   0,
@@ -73,8 +73,8 @@ A(MC, "hard",
   "Ministry of Statistics and Programme Implementation, Consumer Price Index (base 2024 = 100) and its methodology note (February 2026); Reserve Bank of India Act, 1934, section 45ZA.",
   "ca-t1-eco-cpi-food-weight-headline-sensitivity", craft="inference")
 
-S(MC, "medium", "On 27 February 2026 the National Statistics Office released a new series of national accounts. Consider the following statements:",
-  "27 फ़रवरी 2026 को राष्ट्रीय सांख्यिकी कार्यालय ने राष्ट्रीय लेखों की एक नई शृंखला जारी की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(MC, "medium", "The National Statistics Office has released a new series of national accounts. Consider the following statements:",
+  "राष्ट्रीय सांख्यिकी कार्यालय ने राष्ट्रीय लेखों की एक नई शृंखला जारी की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The new series uses 2022-23 as its base year, replacing 2011-12.",
    "It draws on newer administrative data sources such as GST returns.",
    "A change of base year can change the growth rates already published for earlier years."],
@@ -89,8 +89,8 @@ S(MC, "medium", "On 27 February 2026 the National Statistics Office released a n
   "Ministry of Statistics and Programme Implementation, National Statistics Office, release of the new series of National Accounts with base year 2022-23 (27 February 2026).",
   "ca-t1-eco-gdp-new-series-2022-23", craft="inference")
 
-S(MC, "hard", "In February 2026 the National Statistics Office replaced the Consumer Price Index series of 2012 with a new series. Consider the following statements about the new series:",
-  "फ़रवरी 2026 में राष्ट्रीय सांख्यिकी कार्यालय ने 2012 की उपभोक्ता मूल्य सूचकांक शृंखला के स्थान पर एक नई शृंखला लागू की। नई शृंखला के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(MC, "hard", "The National Statistics Office has replaced the Consumer Price Index series of 2012 with a new series. Consider the following statements about the new series:",
+  "राष्ट्रीय सांख्यिकी कार्यालय ने 2012 की उपभोक्ता मूल्य सूचकांक शृंखला के स्थान पर एक नई शृंखला लाई है। नई शृंखला के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["Its base year is 2024.",
    "Its basket covers more items than that of the 2012 series.",
    "Its weights are drawn from the Household Consumption Expenditure Survey of 2023-24.",
@@ -107,8 +107,8 @@ S(MC, "hard", "In February 2026 the National Statistics Office replaced the Cons
   "Ministry of Statistics and Programme Implementation, release of the Consumer Price Index (base 2024 = 100) and its methodology note (12 February 2026).",
   "ca-t1-eco-cpi-2024-series-weights", craft="multi")
 
-S(MB, "medium", "February 2026 marked fifty years of the Regional Rural Banks Act, 1976. Consider the following statements about Regional Rural Banks:",
-  "फ़रवरी 2026 में क्षेत्रीय ग्रामीण बैंक अधिनियम, 1976 के पचास वर्ष पूरे हुए। क्षेत्रीय ग्रामीण बैंकों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(MB, "medium", "The Regional Rural Banks Act, 1976 completed fifty years in 2026. Consider the following statements about Regional Rural Banks:",
+  "क्षेत्रीय ग्रामीण बैंक अधिनियम, 1976 ने 2026 में पचास वर्ष पूरे किए। क्षेत्रीय ग्रामीण बैंकों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The first Regional Rural Banks were set up in 1975, under an ordinance later replaced by the Act of 1976.",
    "Like commercial banks, they need lend only 40 per cent of their adjusted net bank credit to the priority sectors.",
    "Under the 'One State, One RRB' policy, all of them have been merged into a single national rural bank."],
@@ -172,12 +172,12 @@ S(IN, "medium", "The Union Budget 2026-27 announced 'Biopharma SHAKTI', a progra
   "Union Budget 2026-27, Budget Speech; Central Drugs Standard Control Organisation and Department of Biotechnology, Guidelines on Similar Biologics (2016).",
   "ca-t1-eco-biopharma-shakti-biosimilars", craft="precision")
 
-S(GD, "hard", "With reference to the Economic Survey 2025-26, tabled on 29 January 2026, consider the following statements:",
-  "29 जनवरी 2026 को प्रस्तुत आर्थिक समीक्षा 2025-26 के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+S(GD, "hard", "With reference to the Economic Survey 2025-26, consider the following statements:",
+  "आर्थिक सर्वेक्षण 2025-26 के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
   ["It put India's medium-term potential growth rate at about 7 per cent.",
-   "It found that business enterprises account for a larger share of research and development spending in India than in China."],
+   "Business enterprises account for a larger share of research and development spending in India than in China."],
   ["इसने भारत की मध्यम-अवधि की संभावित वृद्धि दर लगभग 7 प्रतिशत आँकी।",
-   "इसने पाया कि अनुसंधान और विकास व्यय में व्यावसायिक उद्यमों का हिस्सा भारत में चीन से अधिक है।"],
+   "अनुसंधान और विकास व्यय में व्यावसायिक उद्यमों का हिस्सा भारत में चीन से अधिक है।"],
   T2, 0,
   "Only statement 1 is correct. The Survey, prepared under the Chief Economic Adviser, raised its estimate of India's medium-term growth potential to about 7 per cent, estimated growth of 7.4 per cent for 2025-26 and projected 6.8 to 7.2 per cent for 2026-27, driven mainly by domestic demand. "
   "Statement 2 reverses the finding: India spends only about 0.64 per cent of GDP on R&D, and business enterprises account for about 41 per cent of it, against about 77 per cent in China. The Survey used this gap to argue for far more private R&D, and recommended that India pursue application-led AI that builds on its human capital rather than racing to build frontier models.",
@@ -186,13 +186,13 @@ S(GD, "hard", "With reference to the Economic Survey 2025-26, tabled on 29 Janua
   "Ministry of Finance, Economic Survey 2025-26 (29 January 2026), Volume I, chapters on the state of the economy, industry and AI.",
   "ca-t1-eco-survey-2025-26-potential-growth-rnd", craft="precision")
 
-S(IG, "hard", "March 2026 marked a hundred years since the Indian Trade Unions Act was passed. Consider the following statements:",
-  "मार्च 2026 में भारतीय ट्रेड यूनियन अधिनियम पारित होने के सौ वर्ष पूरे हुए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IG, "hard", "The Indian Trade Unions Act completed a hundred years in 2026. Consider the following statements:",
+  "भारतीय ट्रेड यूनियन अधिनियम ने 2026 में सौ वर्ष पूरे किए। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Trade Unions Act, 1926 provided for the registration of trade unions and gave registered unions protection from certain civil and criminal liability.",
-   "That Act has been subsumed in the Industrial Relations Code, 2020, which came into force in November 2025.",
+   "That Act has been subsumed in the Industrial Relations Code, 2020, which came into force in 2025.",
    "Under the Industrial Relations Code, prior government permission for lay-off, retrenchment or closure is needed in establishments employing 100 or more workers."],
   ["ट्रेड यूनियन अधिनियम, 1926 ने ट्रेड यूनियनों के पंजीकरण का प्रावधान किया और पंजीकृत यूनियनों को कुछ सिविल और आपराधिक दायित्वों से संरक्षण दिया।",
-   "वह अधिनियम औद्योगिक संबंध संहिता, 2020 में समाहित हो गया है, जो नवंबर 2025 में लागू हुई।",
+   "वह अधिनियम औद्योगिक संबंध संहिता, 2020 में समाहित हो गया है, जो 2025 में लागू हुई।",
    "औद्योगिक संबंध संहिता के अंतर्गत 100 या अधिक कर्मकार वाले प्रतिष्ठानों में ले-ऑफ़, छँटनी या बंदी के लिए सरकार की पूर्व अनुमति आवश्यक है।"],
   C3, 1,
   "Statements 1 and 2 are correct. The Trade Unions Act, passed in March 1926 after the growth of the labour movement and the founding of the All India Trade Union Congress in 1920, let unions register and protected registered unions from prosecution for criminal conspiracy and from civil suits over acts in furtherance of a trade dispute. It was one of three laws merged into the Industrial Relations Code, with the Industrial Disputes Act, 1947 and the Industrial Employment (Standing Orders) Act, 1946; the four labour codes came into force on 21 November 2025. "
@@ -202,8 +202,8 @@ S(IG, "hard", "March 2026 marked a hundred years since the Indian Trade Unions A
   "Trade Unions Act, 1926, sections 13, 17 and 18; Industrial Relations Code, 2020, sections 77 and 104; Ministry of Labour and Employment, notification bringing the labour codes into force (21 November 2025).",
   "ca-t1-eco-trade-unions-act-centenary-ir-code", craft="linkage")
 
-S(EX, "medium", "In February 2026 India and the United States announced a framework for an interim trade agreement. Consider the following statements:",
-  "फ़रवरी 2026 में भारत और संयुक्त राज्य अमेरिका ने एक अंतरिम व्यापार समझौते के ढाँचे की घोषणा की। निम्नलिखित कथनों पर विचार कीजिए:",
+S(EX, "medium", "India and the United States have announced a framework for an interim trade agreement. Consider the following statements:",
+  "भारत और संयुक्त राज्य अमेरिका ने एक अंतरिम व्यापार समझौते के ढाँचे की घोषणा की है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["The United States lowered the tariff on most Indian goods to 18 per cent.",
    "India agreed to remove its import duties on wheat, rice and dairy products.",
    "The framework is the final, comprehensive bilateral trade agreement between the two countries."],
@@ -232,8 +232,8 @@ S(IG, "medium", "The Economic Survey 2025-26 projected a sharp rise in gig and p
   "Code on Social Security, 2020, sections 2(35), 2(61) and 114; Ministry of Finance, Economic Survey 2025-26, chapter on employment.",
   "ca-t1-eco-gig-aggregator-levy-survey", craft="linkage")
 
-S(AG, "medium", "During the LPG shortage of March 2026 the government invoked the Essential Commodities Act. Consider the following statements about the Act:",
-  "मार्च 2026 की एलपीजी कमी के दौरान सरकार ने आवश्यक वस्तु अधिनियम का प्रयोग किया। इस अधिनियम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+S(AG, "medium", "During a shortage of LPG the government invoked the Essential Commodities Act. Consider the following statements about the Act:",
+  "एलपीजी की कमी के दौरान सरकार ने आवश्यक वस्तु अधिनियम का प्रयोग किया। इस अधिनियम के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
   ["The Essential Commodities Act, 1955 lets the Central Government control the production, supply and distribution of commodities it declares essential.",
    "The amendment made to the Act in 2020 was repealed in 2021 along with the other farm laws.",
    "Petroleum and its products cannot be declared essential commodities under the Act."],
@@ -248,8 +248,8 @@ S(AG, "medium", "During the LPG shortage of March 2026 the government invoked th
   "Essential Commodities Act, 1955, section 3 and Schedule; Farm Laws Repeal Act, 2021; Ministry of Petroleum and Natural Gas, orders on LPG supply (March 2026).",
   "ca-t1-eco-essential-commodities-act-lpg", craft="linkage")
 
-S(IN, "medium", "In February 2026 the Supreme Court heard appeals in the Competition Commission of India's case against Meta and WhatsApp. Consider the following statements:",
-  "फ़रवरी 2026 में सर्वोच्च न्यायालय ने मेटा और व्हाट्सऐप के विरुद्ध भारतीय प्रतिस्पर्धा आयोग के मामले में अपीलें सुनीं। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "The Competition Commission of India's case against Meta and WhatsApp has reached the Supreme Court. Consider the following statements:",
+  "मेटा और व्हाट्सऐप के विरुद्ध भारतीय प्रतिस्पर्धा आयोग का मामला सर्वोच्च न्यायालय पहुँचा है। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Under the Competition (Amendment) Act, 2023, an acquisition valued above ₹2,000 crore can need the Commission's approval even if the target's assets and turnover are below the usual thresholds.",
    "Appeals against the Commission's orders lie directly with the Supreme Court.",
    "The Commission can impose penalties only with reference to a company's turnover in India."],
@@ -264,8 +264,8 @@ S(IN, "medium", "In February 2026 the Supreme Court heard appeals in the Competi
   "Competition Act, 2002, sections 5, 7, 27 and 53A, as amended by the Finance Act, 2017 and the Competition (Amendment) Act, 2023; Competition Commission of India (Combinations) Regulations, 2024.",
   "ca-t1-eco-cci-deal-value-nclat-global-turnover", craft="precision")
 
-S(IN, "medium", "In March 2026 Bihar made transit passes compulsory for moving minor minerals such as sand. Consider the following statements:",
-  "मार्च 2026 में बिहार ने बालू जैसे गौण खनिजों के परिवहन के लिए पारगमन पास अनिवार्य किए। निम्नलिखित कथनों पर विचार कीजिए:",
+S(IN, "medium", "Bihar has made transit passes compulsory for moving minor minerals such as sand. Consider the following statements:",
+  "बिहार ने बालू जैसे गौण खनिजों के परिवहन के लिए पारगमन पास अनिवार्य कर दिए हैं। निम्नलिखित कथनों पर विचार कीजिए:",
   ["Ordinary sand used for building is classed as a minor mineral under the Mines and Minerals (Development and Regulation) Act, 1957.",
    "Holders of mining leases pay a contribution to the District Mineral Foundation, which spends it on people and areas affected by mining.",
    "The royalty on minor minerals is collected by the Central Government."],
