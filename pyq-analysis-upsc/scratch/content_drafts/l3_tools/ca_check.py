@@ -47,6 +47,20 @@ for r in rows:
         t = ca_common._truth_from_expl(r["explanation"], len(st))
         tt[f"{sum(t)} of {len(st)}" if t is not None else "unread"] += 1
 print("true statements per item", dict(sorted(tt.items())))
+# The owner's review of CA3's first drafts: stems read like news bulletins ("On 29 July 2026 the Supreme Court ...")
+# and statements recapped what was said. The 2025-26 papers name the issue and never a day; a month and year appear
+# only when an event (a summit, a visit) is itself the subject. Design doc, section 7.
+MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
+DAY = re.compile(rf"\b\d{{1,2}} ({MONTHS})\b|\b({MONTHS}) \d{{1,2}}\b")
+MONTH = re.compile(rf"\b({MONTHS})\b")
+RECAP = re.compile(r"^(It|They|The (Court|court|Bench|bench|committee|Committee|Commission|report|Cabinet|Ministry|Government|Centre))"
+                   r" (said|held|ruled|recommended|noted|found|announced|approved|reported|observed|stated|urged|clarified)\b")
+dated = [r["concept_group_id"] for r in rows if DAY.search(r["body"] + " " + (r["question_data"].get("assertion") or ""))]
+for cg in dated: print("  DAY-DATED STEM", cg)
+print("stems naming a month (keep for events that are the subject):", [r["concept_group_id"] for r in rows if MONTH.search(r["body"]) and r["concept_group_id"] not in dated])
+recap = [(r["concept_group_id"], s[:60]) for r in rows for s in (r["question_data"].get("statements") or []) if RECAP.match(s)]
+for cg, s in recap: print("  NEWS-RECAP STATEMENT", cg, "|", s)
+assert not dated, f"{len(dated)} stems carry a day date"
 seq = "".join(key(r) for r in rows)
 print("longest run of one key in module order:", max(len(m.group(0)) for m in re.finditer(r"(.)\1*", seq)))
 for r in rows:

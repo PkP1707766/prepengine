@@ -239,7 +239,16 @@ CA_DESC = [
     "anniversaries of the quarter, from Panipat (1526) and Haldighati (1576) to Bhoodan (1951) and Doordarshan "
     "(1976). Sources: PIB and the ministries, the Constitution and Acts, the RBI and NSO, the UN bodies; NCERT for "
     "the static background. 100 questions · 200 marks · 2 hours · +2 / -0.66.",
-    "", "", ""]   # Tests 3-5 get their syllabus when their rows are written
+    "Current affairs of July to September 2026, framed on the issue behind each event rather than its date: the "
+    "first-quarter GDP and balance of payments, the MDR on UPI, the EPFO ceiling and mineral taxation; the Monsoon "
+    "Session's laws on paper leaks, tribunals, Keralam and national honour, and the Supreme Court on industry, re-arrest "
+    "and clearance after the fact; BRICS in New Delhi, the SCO at 25, Japan and the UN Charter's 'enemy state' clauses; "
+    "Vikram-1, Gaganyaan and the Roman telescope; Glaw Lake, tiger reserves and the third Green Energy Corridor; and the "
+    "anniversaries of the quarter, from the Geological Survey (1851) and Pingali Venkayya (1876) to IIT Kharagpur "
+    "(1951), the Non-Aligned Movement (1961) and the CTBT (1996). Sources: PIB and the ministries, the Constitution and "
+    "Acts, the RBI and NSO, the UN bodies; NCERT for the static background. "
+    "100 questions · 200 marks · 2 hours · +2 / -0.66.",
+    "", ""]   # Tests 4-5 get their syllabus when their rows are written
 
 L1_CSAT_DESC = ("CSAT Paper II at the foundation level, as a one-hour half paper: 17 quantitative-aptitude, 9 logical-reasoning "
                 "and 14 reading-comprehension questions on five passages, in the UPSC order, with a short data-sufficiency block. "

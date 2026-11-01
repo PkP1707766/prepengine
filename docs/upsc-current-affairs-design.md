@@ -105,3 +105,56 @@ After applying the update, check that:
 - **A negative MCQ's explanation must not name an option's position.** `M()` moves the key to its `POS`, so "the first statement is wrong" can end up pointing at the wrong option. Name the statement by what it says.
 - **An item's stem can answer another item's statement.** A "Home Minister launched" stem, next to an item asking which ministry the NCRB is under, was a cue; the stem now says "the Centre".
 - **A published paper keeps its order.** `upsc_series_setup.py` reads `ca_tN_order.txt` (one question id per line, written from the database after publishing) when it exists. Without it, a paper whose rows are revised, as CA 1's were, would be re-arranged in the setup file, although the database guard leaves the live order alone.
+
+## 7. Framing like the paper (owner's review of CA 3, October 2026)
+
+The owner read CA 3's first drafts and found them dated news bulletins. Stems said "On 29 July 2026 the Supreme Court ..." or "From 17 September 2026 the wage ceiling ...", and the statements recapped what was announced. Section 1 already asked for the static concept behind the news; the stems did not follow it. The 2025 GS paper (read verbatim) and the 2026 paper are built differently:
+
+1. **The stem names the issue, never the day.** Examples: "With reference to 'Direct Air Capture', an emerging technology, ..." (2025 Q36); "With reference to monoclonal antibodies, often mentioned in news, ..." (2025 Q48); "Consider the following statements about the Rashtriya Gokul Mission" (2025 Q30). A month and year appear only when an event is itself the subject: "the AI Action Summit held in Grand Palais, Paris in February 2025" (2025 Q95), or the German Chancellor's visit in January 2026 (2026 Q78). `ca_check` fails a stem that carries a day date and lists every stem that names a month.
+2. **Statements say what a thing is, does or implies, not what someone said.** They cover:
+   - purpose and design: PM Surya Ghar's target and its skilling component (2025 Q70);
+   - who runs it: the Deep Ocean Mission "launched by the Ministry of Ports" (2026 Q50);
+   - the mechanism: GAGAN (2025 Q94);
+   - the scope: Mission Sudarshan Chakra and "all public places" (2026 Q60);
+   - the static link: the States and the Centre's power over minor minerals (2025 Q89).
+
+   "The Court held", "the committee recommended" and "It approved" are news, not statements; `ca_check` lists them.
+3. **Ask why.** Every paper since 2025 carries reason items:
+   - Statement I/II/III explanations: India and the COP28 health declaration (2025 Q32); cement's share of emissions (2025 Q31).
+   - Implications: wet-bulb temperature (2025 Q64); Oeko-Tex certification for Eri silk (2026 Q29).
+   - Rationale or structural shift: mangroves (2026 Q23); Vizhinjam (2026 Q24); Amur falcons (2026 Q27).
+   - Relationships among statements: LT-LEDS (2026 Q21); Sagarmala (2026 Q35).
+
+   Each part of a CA paper has at least two such items. Before writing the statements, write down in one line why UPSC would ask this item: the syllabus line and the static link.
+4. **Traps come from wording.**
+   - Institution or ministry swapped: BRSR "mandated by the RBI" (2025 Q4); Majorana 1 "by AWS" (2025 Q47); Bharat Forecast System "by IIT Delhi" (2026 Q84).
+   - Scope inflated with all, every, only, exclusively, binding, single-handedly or entire: "all the 30 critical minerals" (2025 Q6); the IBRD "works single-handedly" (2025 Q67).
+   - Origin swapped: Kavach "developed with Germany" (2025 Q82).
+   - A sister scheme's aim slipped in: JSY and JSSK (2023 Q51).
+   - An invented outcome in a list (2026 Q78).
+   - A famous name in the wrong place: Robert Bruce Foote (2026 Q11).
+
+   A number is a trap only when it defines the policy (a threshold, a target, a count of minerals), never the date of an announcement.
+5. **Spread the formats as the paper does.** Besides statement items, the paper uses:
+   - "How many of the above ...?" lists: NATO members, UPI countries, activities the PNGRB regulates, missions that support microgravity research.
+   - Three-column rows: "In how many of the above rows is the information correctly matched?" (2025 Q3).
+   - "Which one best describes" concepts: crowding out, sustainability bonds, ONDC.
+   - "Which organisation launched (or enacted)": the Nature Restoration Law (2025 Q90).
+   - Negatives: "not correct" (2025 Q82, Q91).
+   - The 2026 conclusion codes: "Two correct statements, that include statement 2".
+
+   The builders support all of these. A custom question line goes in `closing=` (CODE, or a "How many of them ...?" line, which then belongs in `KEEP_COUNT`). Conclusion codes use `opts=` with `closing=CONCLUDE` and also go in `KEEP_COUNT`. `ca_common._truth_from_expl` reads "Only row 1 is correctly matched" and "Only three of them -- Jordan (1), Iraq (2) and Oman (3) --" as well as the statement heads.
+
+## 8. Lessons from CA 3
+
+- **Rewrite cost.** The framing review came after 56 items were written, and every one was reframed. Write the issue first.
+- **The bank already holds the obvious static link for many topics.** These were dropped or re-angled:
+  - Art 345; Article 371 pairs; the Telegraph Act's repeal; the DV Act and live-in relationships;
+  - urea outside NBS; fuel-cell basics; the mRNA mechanism; the cryogenic stage; the 82°30′ meridian;
+  - the Western Ghats ESA (CA 2); the Hawaii hotspot; UNCLOS transit passage (CA 1); the Outer Space Treaty (CA 1);
+  - delimitation; RUPPs; NFSA (CA 2); the Puhar port (L3 T1); NBPW and the Harappans.
+
+  Run `bank_find` on the static fact, not just on the event.
+- **A stale fact can sit in another level's paper.** L3 T5 tested "no MDR on UPI", which became false on 15 October 2026. It was fixed in place before L3 T5 was published. When a CA item records a change of law or rate, search the bank for the old rule.
+- **Two items can share a premise.** The ISI and IIT Kharagpur items both rested on "institution of national importance by an Act of Parliament". Read the cue pairs for shared premises, not only shared words.
+- **The tracker list is a lead sheet.** Read the window's Must Read list once (titles and tags), choose by syllabus value, and verify each fact officially. CA 3 ended at 6 none, 24 one, 29 two and 21 all-true across three-statement items, with keys at 25 each.

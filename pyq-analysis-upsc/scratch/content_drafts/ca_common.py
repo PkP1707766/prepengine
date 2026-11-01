@@ -54,13 +54,17 @@ _WORDS = {"one": 1, "two": 2, "three": 3, "four": 4}
 
 def _truth_from_expl(expl, n):
     """Read the explanation's opening claim: 'Statements 1 and 3 are correct', 'Only statement 2 is correct',
-    'All three statements are correct', 'Both statements are correct', 'None of the statements is correct'."""
+    'All three statements are correct', 'Both statements are correct', 'None of the statements is correct'; and for
+    three-column items, 'Only row 1 is correctly matched', 'Rows 1 and 3 are correctly matched' and so on."""
     head = expl.split(".")[0]
-    if re.match(r"(All (three|four)|Both) statements are correct", head):
+    if re.match(r"(All (three|four)|Both) (statements are correct|rows are correctly matched)", head):
         return tuple([1] * n)
-    if head.startswith("None of the statements"):
+    if head.startswith(("None of the statements", "None of the rows")):
         return tuple([0] * n)
-    m = re.match(r"(?:Only )?[Ss]tatements? ([\d, and]+) (?:is|are) correct", head)
+    if re.match(r"(?:Only (?:one|two|three)|All (?:three|four)|None) of them\b", head):   # a 'How many of them ...?' list:
+        nums = {int(x) for x in re.findall(r"\((\d)\)", head)}                       # 'Only two of them, Jordan (1) and Oman (3), ...'
+        return tuple(1 if i + 1 in nums else 0 for i in range(n))
+    m = re.match(r"(?:Only )?(?:[Ss]tatements?|[Rr]ows?) ([\d, and]+) (?:is|are) correct", head)
     if m:
         nums = {int(x) for x in re.findall(r"\d", m.group(1))}
         return tuple(1 if i + 1 in nums else 0 for i in range(n))
@@ -146,7 +150,11 @@ def finish(name, plan, window, update=False, replaces=None):
         assert said is None or said == truth, f"{cg}: renumbered explanation {said} disagrees with {truth}"
         opts = combo(truth, pos)
         r["options"] = options_json(opts, pos)
-        r["question_data"].update({"closing": WHICH, "closing_hi": CLOSING_HI[WHICH]})
+        closing = r["question_data"]["closing"]
+        if closing == HOW_MANY:            # an item's own closing ('Select the correct answer using the code') stays
+            r["question_data"].update({"closing": WHICH, "closing_hi": CLOSING_HI[WHICH]})
+        else:
+            assert not closing.startswith("How many"), f"{cg}: a 'How many' question keeps its count (KEEP_COUNT)"
     d.write(name)                      # the INSERT stays the paper's full build
     if update:                         # rows already in the bank: rewrite them in place, keeping their ids
         upd = name.replace(".sql", "_upd.sql")  # published rows too: a CA paper is revised only before anyone sits it

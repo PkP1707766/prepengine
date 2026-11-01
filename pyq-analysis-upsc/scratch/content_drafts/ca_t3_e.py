@@ -1,0 +1,247 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 3 (July to September 2026) -- part E: Science and Technology.
+
+Framed as the 2025-26 papers frame science news ("With reference to ..., often mentioned in the news"): each item
+names the technology or discovery (a private orbital rocket, dengue vaccines, an imaging satellite on GSLV, the Roman
+telescope, Indian Standard Time, exoplanet atmospheres, eclipses, the hydrogen train, mRNA flu vaccines, a parrot
+virus, a new wild cat, weekly insulin, an offline messaging app, diving support ships) and asks how it works, why it
+matters and where the wording misleads. No stem carries a date (design doc, section 7). Every fact was searched in
+the whole UPSC bank and is one no row tests."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, write
+from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t3_format import FORMAT, POS
+
+d.SUBJECT = "Science & Technology"
+d.REQUIRE_CRAFT = True
+SP, AS, BH = "Space Technology & Missions", "Astronomy & Earth Science", "Biology, Health & Biotechnology"
+EN, IT = "Energy & Environmental Technology", "IT, Communication & Emerging Technologies"
+
+S(SP, "medium", "With reference to Vikram-1, a rocket often mentioned in the news, consider the following statements:",
+  "समाचारों में प्रायः चर्चित रॉकेट विक्रम-1 के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It is the first rocket built by a private Indian company to reach orbit from Indian soil.",
+   "Its main stages burn solid fuel, with a small liquid-fuelled module for final adjustments to the orbit.",
+   "It was launched from the new spaceport at Kulasekarapattinam, which is meant mainly for heavy satellites bound for geostationary orbit."],
+  ["यह किसी निजी भारतीय कंपनी द्वारा बनाया गया पहला रॉकेट है जो भारतीय धरती से कक्षा तक पहुँचा।",
+   "इसके मुख्य चरण ठोस ईंधन जलाते हैं, और कक्षा में अंतिम समायोजन के लिए तरल ईंधन वाला एक छोटा मॉड्यूल है।",
+   "इसे कुलशेखरपट्टिनम के नए अंतरिक्ष-पत्तन से प्रक्षेपित किया गया, जो मुख्यतः भूस्थिर कक्षा जाने वाले भारी उपग्रहों के लिए है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Skyroot Aerospace's 22-metre rocket, with three solid stages topped by a liquid orbital adjustment module and a capacity of up to 350 kg to low Earth orbit, reached a 450-km orbit on its first flight in July 2026, with ISRO's facilities and authorisation from IN-SPACe. Its predecessor Vikram-S made a sub-orbital flight in 2022. Solid stages are simple and quick to prepare, which suits a small launcher meant for rapid, frequent launches of small satellites. "
+  "Statement 3 is wrong on both counts: Vikram-1 lifted off from ISRO's spaceport at Sriharikota, and the Kulasekarapattinam spaceport in Tamil Nadu, still being built, is meant for small launchers such as the SSLV, since from there a rocket can fly due south to polar orbits without the costly turn around Sri Lanka needed from Sriharikota.",
+  "कथन 1 और 2 सही हैं। स्काईरूट एयरोस्पेस का 22 मीटर का रॉकेट, तीन ठोस चरणों के ऊपर तरल कक्षीय समायोजन मॉड्यूल के साथ और निम्न भू-कक्षा तक 350 किग्रा तक की क्षमता वाला, जुलाई 2026 में अपनी पहली उड़ान में इसरो की सुविधाओं और इन-स्पेस के प्राधिकार के साथ 450 किमी की कक्षा तक पहुँचा। इसके पूर्ववर्ती विक्रम-एस ने 2022 में उप-कक्षीय उड़ान भरी थी। ठोस चरण सरल और जल्दी तैयार होते हैं, जो छोटे उपग्रहों के शीघ्र और बार-बार प्रक्षेपण के लिए बने छोटे रॉकेट के अनुकूल है। "
+  "कथन 3 दोनों बातों में ग़लत है: विक्रम-1 श्रीहरिकोटा में इसरो के अंतरिक्ष-पत्तन से उड़ा, और तमिलनाडु का कुलशेखरपट्टिनम अंतरिक्ष-पत्तन, जो अभी बन रहा है, एसएसएलवी जैसे छोटे रॉकेटों के लिए है, क्योंकि वहाँ से रॉकेट सीधे दक्षिण की ओर ध्रुवीय कक्षाओं तक जा सकता है, बिना उस महँगे मोड़ के जो श्रीहरिकोटा से श्रीलंका से बचने के लिए लेना पड़ता है।",
+  "Indian Space Research Organisation, first private orbital launch from Sriharikota (July 2026); IN-SPACe, Department of Space; ISRO, Kulasekarapattinam launch complex.",
+  "ca-t3-sci-vikram-1-first-private-orbital-solid-sriharikota", craft="application")
+
+S(BH, "medium", "With reference to vaccines against dengue, consider the following statements:",
+  "डेंगू के विरुद्ध टीकों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Because the dengue virus has four serotypes, a vaccine is designed to protect against all four.",
+   "The first dengue vaccine approved in India is a live attenuated vaccine.",
+   "It can be given without first testing whether a person has had dengue before."],
+  ["चूँकि डेंगू वायरस के चार सीरोटाइप हैं, टीका चारों से रक्षा के लिए बनाया जाता है।",
+   "भारत में स्वीकृत पहला डेंगू टीका एक जीवित क्षीणीकृत टीका है।",
+   "इसे यह जाँचे बिना दिया जा सकता है कि व्यक्ति को पहले डेंगू हुआ है या नहीं।"],
+  C3, 2,
+  "All three statements are correct. A second dengue infection with a different serotype can be more severe than the first, because antibodies from the first may help the new virus enter cells; a vaccine that covered only some serotypes could create the same risk, so dengue vaccines are tetravalent. Takeda's Qdenga (TAK-003), authorised by the Drugs Controller General of India in July 2026 for ages 4 to 60, is built on a weakened dengue-2 virus carrying genes for the surface proteins of the other three, given as two doses three months apart. "
+  "Unlike the earlier Dengvaxia, which raised the risk of severe disease in people never infected and so needed a prior test, Qdenga can be given without screening. India carries about a third of the world's dengue burden, spread by Aedes mosquitoes.",
+  "तीनों कथन सही हैं। भिन्न सीरोटाइप से दूसरा डेंगू संक्रमण पहले से अधिक गंभीर हो सकता है, क्योंकि पहले संक्रमण की एंटीबॉडी नए वायरस को कोशिकाओं में प्रवेश में सहायता कर सकती हैं; केवल कुछ सीरोटाइप वाला टीका यही जोखिम पैदा कर सकता है, इसलिए डेंगू टीके चतुर्संयोजी होते हैं। टाकेडा का क्यूडेंगा (टीएके-003), जिसे जुलाई 2026 में भारत के औषधि महानियंत्रक ने 4 से 60 वर्ष आयु के लिए प्राधिकृत किया, कमज़ोर किए गए डेंगू-2 वायरस पर बना है जिसमें शेष तीन के सतही प्रोटीनों के जीन हैं, और दो ख़ुराकें तीन महीने के अंतर पर दी जाती हैं। "
+  "पहले के डेंगवैक्सिया के विपरीत, जिसने कभी संक्रमित न हुए लोगों में गंभीर रोग का जोखिम बढ़ाया और इसलिए पूर्व-जाँच चाहिए थी, क्यूडेंगा बिना जाँच दिया जा सकता है। विश्व के डेंगू बोझ का लगभग एक-तिहाई भारत पर है, जो एडीज़ मच्छरों से फैलता है।",
+  "Central Drugs Standard Control Organisation, marketing authorisation of Qdenga (July 2026); World Health Organization, position paper on dengue vaccines.",
+  "ca-t3-sci-qdenga-4-60-tetravalent-live-attenuated", craft="inference")
+
+S(SP, "medium", "Consider the following statements about EOS-05 (GISAT-1A), launched by ISRO on a GSLV:",
+  "इसरो द्वारा जीएसएलवी से प्रक्षेपित ईओएस-05 (जीसैट-1ए) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It replaces a satellite lost in 2021 when the cryogenic upper stage of its GSLV failed.",
+   "The rocket placed it directly in its final geostationary orbit.",
+   "It is a communication satellite meant for direct-to-home television."],
+  ["यह उस उपग्रह का स्थान लेता है जो 2021 में अपने जीएसएलवी के क्रायोजेनिक ऊपरी चरण के विफल होने से खो गया था।",
+   "रॉकेट ने इसे सीधे इसकी अंतिम भूस्थिर कक्षा में स्थापित किया।",
+   "यह डायरेक्ट-टू-होम टेलीविज़न के लिए बना एक संचार उपग्रह है।"],
+  C3, 0,
+  "Only statement 1 is correct. GISAT-1 was lost when the GSLV-F10 mission failed in August 2021; EOS-05, launched in September 2026, was ISRO's first launch since the failure of PSLV-C62 in January 2026. "
+  "Statement 2 is wrong: like most geostationary satellites, it was left in a transfer orbit, here a sub-geosynchronous one, from which its own motor raised it to the final orbit; this saves the rocket from carrying the extra propellant for the last climb. Statement 3 is wrong: it is an earth-observation satellite, an imager that can look at large parts of India repeatedly through the day for disasters, crops and forests, which imaging satellites in low orbits, revisiting a spot every few days, cannot.",
+  "केवल कथन 1 सही है। जीसैट-1 तब खो गया जब अगस्त 2021 में जीएसएलवी-एफ़10 मिशन विफल हुआ; सितंबर 2026 में प्रक्षेपित ईओएस-05 जनवरी 2026 में पीएसएलवी-सी62 की विफलता के बाद इसरो का पहला प्रक्षेपण था। "
+  "कथन 2 ग़लत है: अधिकांश भूस्थिर उपग्रहों की तरह इसे एक अंतरण कक्षा, यहाँ उप-भू-तुल्यकाली कक्षा, में छोड़ा गया, जहाँ से उसकी अपनी मोटर ने उसे अंतिम कक्षा तक उठाया; इससे रॉकेट को अंतिम चढ़ाई का अतिरिक्त प्रणोदक नहीं ले जाना पड़ता। कथन 3 ग़लत है: यह पृथ्वी अवलोकन उपग्रह है, एक इमेजर जो आपदाओं, फ़सलों और वनों के लिए भारत के बड़े भागों को दिन में बार-बार देख सकता है, जो कुछ दिनों में एक बार किसी स्थान पर लौटने वाले निम्न कक्षा के इमेजिंग उपग्रह नहीं कर सकते।",
+  "Indian Space Research Organisation, GSLV-F17/EOS-05 mission (September 2026) and GSLV-F10/EOS-03 failure analysis (2021).",
+  "ca-t3-sci-eos-05-gslv-f17-sub-gto-gisat-1-replacement", craft="application")
+
+S(AS, "medium", "Consider the following statements about the Nancy Grace Roman Space Telescope, recently launched by NASA:",
+  "नासा द्वारा हाल में प्रक्षेपित नैन्सी ग्रेस रोमन अंतरिक्ष दूरबीन के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It was launched on Europe's Ariane 6 rocket.",
+   "It is to operate around the second Sun-Earth Lagrange point, about 1.5 million km from the Earth.",
+   "Its field of view is much narrower than that of the Hubble Space Telescope."],
+  ["इसे यूरोप के एरियन 6 रॉकेट से प्रक्षेपित किया गया।",
+   "इसे पृथ्वी से लगभग 15 लाख किमी दूर दूसरे सूर्य-पृथ्वी लैग्रांज बिंदु के आसपास कार्य करना है।",
+   "इसका दृश्य-क्षेत्र हबल अंतरिक्ष दूरबीन की तुलना में बहुत संकरा है।"],
+  C3, 0,
+  "Only statement 2 is correct. At L2 a spacecraft keeps the Sun, the Earth and the Moon on one side, behind its shield, and stays cold and stable, which an infrared telescope needs. Roman's wide-field instrument will map hundreds of millions of galaxies to study dark energy and dark matter, and find thousands of exoplanets by microlensing. "
+  "Statement 1 is wrong: it lifted off on a SpaceX Falcon Heavy from the Kennedy Space Center in August 2026, months ahead of schedule. Statement 3 is wrong: its field of view is about a hundred times that of Hubble at similar sharpness, which is what makes it a survey telescope rather than one for close study of single objects.",
+  "केवल कथन 2 सही है। एल2 पर कोई अंतरिक्ष यान सूर्य, पृथ्वी और चंद्रमा को एक ओर, अपनी ढाल के पीछे, रखता है और ठंडा तथा स्थिर रहता है, जिसकी अवरक्त दूरबीन को आवश्यकता है। रोमन का विस्तृत-क्षेत्र उपकरण अदृश्य ऊर्जा और अदृश्य पदार्थ के अध्ययन के लिए करोड़ों आकाशगंगाओं का मानचित्र बनाएगा, और माइक्रोलेंसिंग से हज़ारों बाह्यग्रह खोजेगा। "
+  "कथन 1 ग़लत है: यह अगस्त 2026 में निर्धारित समय से महीनों पहले कैनेडी अंतरिक्ष केंद्र से स्पेसएक्स के फ़ैल्कन हेवी पर उड़ी। कथन 3 ग़लत है: इसका दृश्य-क्षेत्र समान तीक्ष्णता पर हबल का लगभग सौ गुना है, यही इसे अकेली वस्तुओं के निकट अध्ययन के बजाय सर्वेक्षण दूरबीन बनाता है।",
+  "National Aeronautics and Space Administration, Nancy Grace Roman Space Telescope launch (August 2026) and mission overview.",
+  "ca-t3-sci-roman-telescope-falcon-heavy-l2-wide-field", craft="precision")
+
+S(IT, "medium", "With reference to Indian Standard Time (IST), consider the following statements:",
+  "भारतीय मानक समय (आईएसटी) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["IST is maintained by the India Meteorological Department.",
+   "IST is generated from atomic clocks.",
+   "Rules under the Legal Metrology Act require systems in sectors such as banking, telecom and power to synchronise with time traceable to IST."],
+  ["आईएसटी भारत मौसम विज्ञान विभाग द्वारा बनाए रखा जाता है।",
+   "आईएसटी परमाणु घड़ियों से उत्पन्न किया जाता है।",
+   "विधिक माप विज्ञान अधिनियम के अंतर्गत नियम बैंकिंग, दूरसंचार और बिजली जैसे क्षेत्रों की प्रणालियों से आईएसटी से संबद्ध समय के साथ तालमेल की अपेक्षा करते हैं।"],
+  C3, 1,
+  "Statements 2 and 3 are correct. CSIR-National Physical Laboratory, New Delhi, keeps IST with caesium clocks and hydrogen masers, and with ISRO and the Legal Metrology department has set up secondary timescales at Regional Reference Standard Laboratories in Ahmedabad, Bengaluru, Bhubaneswar, Faridabad and Guwahati. "
+  "The Legal Metrology (Indian Standard Time) Rules, 2026, a step towards 'One Nation, One Time', require such systems to stop relying on foreign time sources such as GPS, so that records, trades and logs can be matched to the second, which matters for cyber forensics and financial settlement. Statement 1 is wrong: the IMD forecasts weather; it does not keep time. The institution swap is the trap.",
+  "कथन 2 और 3 सही हैं। सीएसआईआर-राष्ट्रीय भौतिक प्रयोगशाला, नई दिल्ली, सीज़ियम घड़ियों और हाइड्रोजन मेज़रों से आईएसटी रखती है, और इसरो तथा विधिक माप विज्ञान विभाग के साथ इसने अहमदाबाद, बेंगलुरु, भुवनेश्वर, फ़रीदाबाद और गुवाहाटी की क्षेत्रीय संदर्भ मानक प्रयोगशालाओं में द्वितीयक समय-पैमाने स्थापित किए हैं। "
+  "‘एक राष्ट्र, एक समय’ की दिशा में क़दम, विधिक माप विज्ञान (भारतीय मानक समय) नियम, 2026, ऐसी प्रणालियों से जीपीएस जैसे विदेशी समय-स्रोतों पर निर्भरता छोड़ने की अपेक्षा करते हैं, ताकि अभिलेखों, सौदों और लॉग का सेकंड तक मिलान हो सके, जो साइबर फ़ॉरेंसिक और वित्तीय निपटान के लिए महत्त्वपूर्ण है। कथन 1 ग़लत है: आईएमडी मौसम का पूर्वानुमान करता है, समय नहीं रखता। संस्था की अदला-बदली ही जाल है।",
+  "Department of Consumer Affairs, Legal Metrology (Indian Standard Time) Rules, 2026 (G.S.R. 761(E), August 2026); CSIR-National Physical Laboratory.",
+  "ca-t3-sci-ist-rules-2026-npl-atomic-clocks", craft="precision")
+
+S(AS, "hard", "With reference to the search for atmospheres on planets beyond the Solar System, consider the following statements:",
+  "सौरमंडल से बाहर के ग्रहों पर वायुमंडल की खोज के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["When a planet passes in front of its star, gases in its atmosphere absorb particular wavelengths of the starlight passing through it.",
+   "The habitable zone of a red dwarf lies closer to the star than the Sun's habitable zone lies to the Sun.",
+   "Helium was detected escaping from the 'super-Earth' LHS 1140 b in every transit that astronomers observed."],
+  ["जब कोई ग्रह अपने तारे के सामने से गुज़रता है, तो उसके वायुमंडल की गैसें उससे होकर आने वाले तारे के प्रकाश की विशेष तरंगदैर्ध्य सोख लेती हैं।",
+   "लाल बौने तारे का रहने योग्य क्षेत्र तारे के उतना निकट है जितना सूर्य का रहने योग्य क्षेत्र सूर्य के निकट नहीं है।",
+   "‘सुपर-अर्थ’ एलएचएस 1140 बी से निकलती हीलियम खगोलविदों द्वारा देखे गए हर पारगमन में पाई गई।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Transmission spectroscopy compares the starlight during and outside a transit, and the missing wavelengths identify the gases; helium escaping into space leaves a tell-tale infrared line. Red dwarfs are small and cool, so a planet must orbit close in to be warm enough for liquid water. "
+  "Statement 3 is wrong: for LHS 1140 b, a rocky planet about 48 light years away in its red dwarf's habitable zone, helium was seen in a transit in 2024 but not in 2025, which suggests the escape varies; reported in Science in July 2026, it was hailed as the first atmosphere detected on a rocky planet in a habitable zone, though what else that atmosphere contains is unknown.",
+  "कथन 1 और 2 सही हैं। पारेषण स्पेक्ट्रमिकी पारगमन के दौरान और उसके बाहर के तारे के प्रकाश की तुलना करती है, और अनुपस्थित तरंगदैर्ध्य गैसों की पहचान करती हैं; अंतरिक्ष में निकलती हीलियम एक विशिष्ट अवरक्त रेखा छोड़ती है। लाल बौने छोटे और ठंडे होते हैं, इसलिए तरल जल के योग्य गर्म रहने के लिए ग्रह को पास परिक्रमा करनी होती है। "
+  "कथन 3 ग़लत है: एलएचएस 1140 बी, लगभग 48 प्रकाश वर्ष दूर अपने लाल बौने के रहने योग्य क्षेत्र में एक चट्टानी ग्रह, के लिए हीलियम 2024 के एक पारगमन में दिखी पर 2025 में नहीं, जो बताता है कि उसका निकलना बदलता है; जुलाई 2026 में साइंस में प्रकाशित इस खोज को रहने योग्य क्षेत्र के किसी चट्टानी ग्रह पर पहली बार पता चला वायुमंडल कहा गया, यद्यपि उस वायुमंडल में और क्या है, यह अज्ञात है।",
+  "Science (July 2026), detection of helium escape from LHS 1140 b; NCERT, Physics Part II (Class XII), chapters on atoms and spectra.",
+  "ca-t3-sci-lhs-1140-b-helium-red-dwarf-variable", craft="inference")
+
+A(AS, "easy",
+  "The total solar eclipse of August 2026 could not be seen as a total eclipse from anywhere in India.",
+  "अगस्त 2026 का पूर्ण सूर्यग्रहण भारत में कहीं से भी पूर्ण ग्रहण के रूप में नहीं देखा जा सकता था।",
+  "At any one place, the total phase of a solar eclipse lasts no more than about seven and a half minutes.",
+  "किसी एक स्थान पर सूर्यग्रहण की पूर्ण अवस्था अधिक से अधिक लगभग साढ़े सात मिनट रहती है।",
+  1,
+  "Both statements are correct, but Statement II does not explain Statement I. Totality is seen only inside the narrow track swept by the Moon's dark inner shadow, the umbra, a band a few hundred kilometres wide; on 12 August 2026 it crossed the Arctic, Greenland, Iceland and northern Spain, so India, far from the track and with the Sun set or low by then, saw no totality. "
+  "Statement II is true: the umbra sweeps across the Earth at well over a thousand kilometres an hour, so totality at any place lasts at most about seven and a half minutes. But it says how long totality lasts, not where it can be seen, which depends on the umbra's path. The eclipse was the first total one seen from mainland Europe since 1999; the next, on 2 August 2027, will cross southern Spain, North Africa and Arabia.",
+  "दोनों कथन सही हैं, पर कथन II कथन I की व्याख्या नहीं करता। पूर्णता केवल चंद्रमा की गहरी आंतरिक छाया, प्रच्छाया, द्वारा बनाए संकरे पथ के भीतर दिखती है, जो कुछ सौ किलोमीटर चौड़ी पट्टी है; 12 अगस्त 2026 को यह आर्कटिक, ग्रीनलैंड, आइसलैंड और उत्तरी स्पेन से गुज़री, इसलिए पथ से दूर और जहाँ तब तक सूर्य अस्त या नीचे था, उस भारत ने कोई पूर्णता नहीं देखी। "
+  "कथन II सत्य है: प्रच्छाया पृथ्वी पर एक हज़ार किलोमीटर प्रति घंटे से कहीं अधिक गति से गुज़रती है, इसलिए किसी स्थान पर पूर्णता अधिक से अधिक लगभग साढ़े सात मिनट रहती है। पर यह बताता है कि पूर्णता कितनी देर रहती है, यह नहीं कि वह कहाँ दिखती है, जो प्रच्छाया के पथ पर निर्भर है। यह 1999 के बाद मुख्य भूमि यूरोप से दिखा पहला पूर्ण ग्रहण था; अगला, 2 अगस्त 2027 को, दक्षिणी स्पेन, उत्तरी अफ़्रीका और अरब से गुज़रेगा।",
+  "European Space Agency, total solar eclipse of 12 August 2026: global map and path of totality; NCERT, Science (Class VIII/X), on eclipses.",
+  "ca-t3-sci-eclipse-12-aug-2026-umbra-path-si", craft="application")
+
+M(EN, "easy",
+  "India's first hydrogen-powered passenger train runs on which one of the following sections?",
+  "भारत की पहली हाइड्रोजन-चालित यात्री रेलगाड़ी निम्नलिखित में से किस खंड पर चलती है?",
+  ["Jind to Sonipat, in Haryana",
+   "Kalka to Shimla, on the mountain railway",
+   "Neral to Matheran, in Maharashtra",
+   "New Jalpaiguri to Darjeeling, in West Bengal"],
+  ["हरियाणा में जींद से सोनीपत",
+   "पर्वतीय रेल पर कालका से शिमला",
+   "महाराष्ट्र में नेरल से माथेरान",
+   "पश्चिम बंगाल में न्यू जलपाईगुड़ी से दार्जिलिंग"],
+  0,
+  "The ten-car trainset, flagged off at Jind in July 2026, runs about 89 km on the broad-gauge Jind-Sonipat section; its fuel cells turn hydrogen into electricity for the traction motors, and the Railways called it the world's longest broad-gauge hydrogen train. "
+  "The other three are narrow-gauge hill lines, two of them part of the 'Mountain Railways of India' World Heritage property; they have been named for hydrogen trains in future, partly because overhead electrification is hard on heritage lines, which is the trap.",
+  "दस डिब्बों वाला यह ट्रेनसेट, जिसे जुलाई 2026 में जींद में हरी झंडी दिखाई गई, ब्रॉड गेज जींद-सोनीपत खंड पर लगभग 89 किमी चलता है; इसके ईंधन सेल कर्षण मोटरों के लिए हाइड्रोजन को बिजली में बदलते हैं, और रेलवे ने इसे विश्व की सबसे लंबी ब्रॉड गेज हाइड्रोजन रेल बताया। "
+  "शेष तीन नैरो गेज पहाड़ी लाइनें हैं, जिनमें दो ‘भारत की पर्वतीय रेलें’ विश्व धरोहर का भाग हैं; इन्हें भविष्य में हाइड्रोजन रेलों के लिए नामित किया गया है, आंशिक रूप से इसलिए कि धरोहर लाइनों पर ऊपरी विद्युतीकरण कठिन है, यही जाल है।",
+  "Ministry of Railways and PIB, flag-off of India's first hydrogen train on the Jind-Sonipat section (17 July 2026).",
+  "ca-t3-sci-hydrogen-train-jind-sonipat", pos=POS.get("ca-t3-sci-hydrogen-train-jind-sonipat", 1), craft="precision")
+
+S(BH, "medium", "With reference to mRNA vaccines against influenza, consider the following statements:",
+  "इन्फ़्लुएंज़ा के विरुद्ध एमआरएनए टीकों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Unlike most seasonal flu vaccines, they do not need the virus to be grown in hen's eggs.",
+   "They change the DNA of the person who receives them.",
+   "The first mRNA vaccine against seasonal influenza has been approved in the United States."],
+  ["अधिकांश मौसमी फ़्लू टीकों के विपरीत, इनके लिए वायरस को मुर्गी के अंडों में उगाने की आवश्यकता नहीं होती।",
+   "ये लेने वाले व्यक्ति के डीएनए को बदल देते हैं।",
+   "मौसमी इन्फ़्लुएंज़ा के विरुद्ध पहला एमआरएनए टीका संयुक्त राज्य अमेरिका में स्वीकृत हुआ है।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. Because the influenza virus keeps changing its surface proteins, flu vaccines are reformulated every year, and most are still made by growing the virus in eggs, which takes months; an mRNA vaccine is made from a written genetic sequence and can be updated quickly. The US Food and Drug Administration approved Moderna's mFLUSIVA in August 2026 for adults aged 50 and above, the first mRNA flu vaccine. "
+  "Statement 2 is wrong: the mRNA stays in the cytoplasm, is read to make a protein and is broken down within days; it does not enter the nucleus or alter the DNA, a common misconception.",
+  "कथन 1 और 3 सही हैं। चूँकि इन्फ़्लुएंज़ा वायरस अपने सतही प्रोटीन बदलता रहता है, फ़्लू के टीके हर वर्ष नए सिरे से बनाए जाते हैं, और अधिकांश अब भी वायरस को अंडों में उगाकर बनते हैं, जिसमें महीनों लगते हैं; एमआरएनए टीका लिखित आनुवंशिक अनुक्रम से बनता है और शीघ्र अद्यतन किया जा सकता है। अमेरिकी खाद्य एवं औषधि प्रशासन ने अगस्त 2026 में मॉडर्ना के एमफ़्लूसिवा को 50 वर्ष और अधिक आयु के वयस्कों के लिए स्वीकृति दी, जो पहला एमआरएनए फ़्लू टीका है। "
+  "कथन 2 ग़लत है: एमआरएनए कोशिकाद्रव्य में रहता है, प्रोटीन बनाने के लिए पढ़ा जाता है और कुछ दिनों में टूट जाता है; यह केंद्रक में प्रवेश नहीं करता और डीएनए नहीं बदलता, जो एक आम भ्रांति है।",
+  "US Food and Drug Administration, approval of mFLUSIVA (influenza vaccine, mRNA) (August 2026); NCERT, Biology (Class XII), Chapter 6 (Molecular Basis of Inheritance).",
+  "ca-t3-sci-mflusiva-first-mrna-flu-50-plus", craft="inference")
+
+S(BH, "medium", "Consider the following statements about parrot bornavirus 4 (PaBV-4), recently detected in India for the first time:",
+  "भारत में हाल में पहली बार पाए गए पैरट बोर्नावायरस 4 (पीएबीवी-4) के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It causes proventricular dilatation disease, a wasting disease of parrots.",
+   "It was found in wild parrots of the Western Ghats.",
+   "It is a bacterium, so it can be treated with antibiotics."],
+  ["यह प्रोवेंट्रिकुलर डाइलेटेशन रोग करता है, जो तोतों का एक क्षयकारी रोग है।",
+   "यह पश्चिमी घाट के जंगली तोतों में मिला।",
+   "यह एक जीवाणु है, इसलिए इसका उपचार एंटीबायोटिक से हो सकता है।"],
+  C3, 0,
+  "Only statement 1 is correct. The disease damages the nerves of the gut, so that food passes undigested and birds waste away. "
+  "Statement 2 is wrong: a team led from Assam found the virus in captive parrots in Assam, Karnataka and West Bengal, in 44 of 83 birds tested between 2020 and 2024; its strains resembled those reported from the United States, Canada, Israel, Japan and South Korea, pointing to the international trade in pet birds as the route of entry. Statement 3 is wrong: bornaviruses are RNA viruses, which antibiotics do not touch. The authors urged quarantine and screening, since the virus could reach the captive breeding of threatened parrots.",
+  "केवल कथन 1 सही है। यह रोग आहारनाल की तंत्रिकाओं को क्षति पहुँचाता है, जिससे भोजन बिना पचे निकलता है और पक्षी क्षीण होते जाते हैं। "
+  "कथन 2 ग़लत है: असम से नेतृत्व किए गए एक दल ने यह वायरस असम, कर्नाटक और पश्चिम बंगाल के बंदी तोतों में पाया, 2020 से 2024 के बीच जाँचे गए 83 में से 44 पक्षियों में; इसके स्ट्रेन संयुक्त राज्य अमेरिका, कनाडा, इज़रायल, जापान और दक्षिण कोरिया से बताए गए स्ट्रेन जैसे थे, जो प्रवेश के मार्ग के रूप में पालतू पक्षियों के अंतरराष्ट्रीय व्यापार की ओर संकेत करता है। कथन 3 ग़लत है: बोर्नावायरस आरएनए वायरस हैं, जिन पर एंटीबायोटिक असर नहीं करते। लेखकों ने संगरोध और जाँच का आग्रह किया, क्योंकि वायरस संकटग्रस्त तोतों के बंदी प्रजनन तक पहुँच सकता है।",
+  "Scientific Reports (July 2026), first detection of parrot bornavirus 4 in India; Ministry of Fisheries, Animal Husbandry and Dairying, biosecurity guidance.",
+  "ca-t3-sci-pabv-4-parrots-pdd-captive-rna-virus", craft="precision")
+
+S(BH, "medium", "Consider the following statements about Leopardus tilcayo, a wild cat recently described by scientists:",
+  "वैज्ञानिकों द्वारा हाल में वर्णित जंगली बिल्ली लियोपार्डस टिलकायो के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It lives in the Yungas cloud forests of Bolivia.",
+   "It was recognised largely through DNA analysis, which showed that the small spotted 'tiger cats' of South America are several distinct species.",
+   "It is a big cat of the genus Panthera, like the jaguar."],
+  ["यह बोलीविया के युंगास मेघ-वनों में रहती है।",
+   "इसकी पहचान मुख्यतः डीएनए विश्लेषण से हुई, जिसने दिखाया कि दक्षिण अमेरिका की छोटी चित्तीदार ‘टाइगर कैट’ कई अलग-अलग प्रजातियाँ हैं।",
+   "यह जगुआर की तरह पैंथेरा वंश की एक बड़ी बिल्ली है।"],
+  C3, 1,
+  "Statements 1 and 2 are correct. Reported in Current Biology in September 2026 and hailed as the first new living wild cat identified in more than a century, the study compared DNA from 38 cats, including museum specimens, and found that the tigrillos form five genetic species; animals that look alike can be separate species, which is why cryptic species are found mostly through genetics. It is known from very few animals and camera-trap records, so its range and status are still unknown. "
+  "Statement 3 is wrong: it is a small cat of the genus Leopardus, about 46 cm long and around 1.4 kg, smaller than a house cat; the jaguar, the only Panthera of the Americas, is a big cat.",
+  "कथन 1 और 2 सही हैं। सितंबर 2026 में करंट बायोलॉजी में प्रकाशित और सौ वर्षों से अधिक में पहचानी गई पहली नई जीवित जंगली बिल्ली बताए गए अध्ययन ने संग्रहालय नमूनों सहित 38 बिल्लियों के डीएनए की तुलना की और पाया कि टिग्रिलो पाँच आनुवंशिक प्रजातियाँ हैं; एक जैसे दिखने वाले पशु अलग प्रजातियाँ हो सकते हैं, इसी कारण गुप्त प्रजातियाँ अधिकतर आनुवंशिकी से मिलती हैं। यह बहुत कम पशुओं और कैमरा-ट्रैप अभिलेखों से ज्ञात है, इसलिए इसका विस्तार और स्थिति अभी अज्ञात हैं। "
+  "कथन 3 ग़लत है: यह लियोपार्डस वंश की एक छोटी बिल्ली है, लगभग 46 सेमी लंबी और लगभग 1.4 किग्रा, घरेलू बिल्ली से भी छोटी; अमेरिका महाद्वीपों का एकमात्र पैंथेरा, जगुआर, बड़ी बिल्ली है।",
+  "Current Biology (September 2026), description of Leopardus tilcayo; NCERT, Biology (Class XI), Chapter 1 (The Living World), on taxonomic categories.",
+  "ca-t3-sci-leopardus-tilcayo-bolivia-dna-small-cat", craft="precision")
+
+S(BH, "easy", "With reference to the once-weekly basal insulin recently launched in India, consider the following statements:",
+  "भारत में हाल में उतारी गई सप्ताह में एक बार ली जाने वाली आधारी इंसुलिन के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Basal insulin supplies the steady background level the body needs between meals and overnight.",
+   "A once-weekly basal insulin removes the need for mealtime insulin in every patient.",
+   "Insulin is secreted by the alpha cells of the pancreas."],
+  ["आधारी इंसुलिन भोजनों के बीच और रात में शरीर को आवश्यक स्थिर पृष्ठभूमि स्तर देती है।",
+   "सप्ताह में एक बार ली जाने वाली आधारी इंसुलिन हर रोगी में भोजन-समय इंसुलिन की आवश्यकता समाप्त कर देती है।",
+   "इंसुलिन अग्न्याशय की अल्फ़ा कोशिकाएँ स्रावित करती हैं।"],
+  C3, 0,
+  "Only statement 1 is correct. Insulin icodec, sold as Awiqli, binds to albumin in the blood and is released slowly, so one weekly injection can replace seven daily ones, cutting basal injections from 365 a year to 52, which may help people who skip doses; India has one of the world's largest numbers of people with diabetes. "
+  "Statement 2 is wrong: fast-acting mealtime (bolus) insulin covers the surge in blood sugar after food, so patients who need it still take it; the 'every' is the trap. Statement 3 is wrong: insulin comes from the beta cells of the islets of Langerhans, while the alpha cells secrete glucagon, which raises blood sugar.",
+  "केवल कथन 1 सही है। अविक्ली नाम से बिकने वाली इंसुलिन आइकोडेक रक्त में एल्ब्यूमिन से बँधकर धीरे-धीरे मुक्त होती है, इसलिए एक साप्ताहिक इंजेक्शन सात दैनिक इंजेक्शनों का स्थान ले सकता है, जिससे आधारी इंजेक्शन वर्ष में 365 से घटकर 52 हो जाते हैं, जो ख़ुराक छोड़ देने वालों के लिए सहायक हो सकता है; विश्व में मधुमेह रोगियों की सबसे बड़ी संख्याओं में से एक भारत में है। "
+  "कथन 2 ग़लत है: तेज़ी से काम करने वाली भोजन-समय (बोलस) इंसुलिन भोजन के बाद रक्त शर्करा की वृद्धि को सँभालती है, इसलिए जिन रोगियों को उसकी आवश्यकता है वे उसे लेते रहते हैं; ‘हर’ ही जाल है। कथन 3 ग़लत है: इंसुलिन लैंगरहैंस द्वीपों की बीटा कोशिकाओं से आती है, जबकि अल्फ़ा कोशिकाएँ ग्लूकागॉन स्रावित करती हैं, जो रक्त शर्करा बढ़ाता है।",
+  "Central Drugs Standard Control Organisation, approval of insulin icodec; NCERT, Biology (Class XI), Chapter 19 (Chemical Coordination and Integration).",
+  "ca-t3-sci-insulin-icodec-weekly-basal", craft="application")
+
+S(IT, "medium", "Consider the following statements about BitChat, a messaging application in the news:",
+  "समाचारों में रहे संदेश ऐप्लिकेशन बिटचैट के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+  ["It needs an internet connection or a mobile network to send messages.",
+   "It relays messages through a central server run by its developer.",
+   "Under the Information Technology Act, only the Telecom Regulatory Authority of India can direct an intermediary to take down such an application."],
+  ["इसे संदेश भेजने के लिए इंटरनेट कनेक्शन या मोबाइल नेटवर्क चाहिए।",
+   "यह संदेशों को इसके विकासकर्ता द्वारा चलाए जाने वाले एक केंद्रीय सर्वर से होकर भेजता है।",
+   "सूचना प्रौद्योगिकी अधिनियम के अंतर्गत केवल भारतीय दूरसंचार विनियामक प्राधिकरण ही किसी मध्यस्थ को ऐसा ऐप्लिकेशन हटाने का निर्देश दे सकता है।"],
+  C3, 3,
+  "None of the statements is correct. BitChat relays encrypted messages over Bluetooth from phone to phone, forming a mesh with no central server, so it works without the internet or mobile networks; that is why the government saw a risk of its use to evade shutdowns and lawful interception after protesters used it in Delhi, and why it appeals in disasters when networks fail. "
+  "Statement 3 is wrong: in July 2026 the Indian Cyber Crime Coordination Centre of the Home Ministry asked GitHub to disable its repositories under Section 79(3)(b) of the IT Act and the intermediary rules of 2021, at the risk of losing 'safe harbour'; blocking orders under Section 69A come from the Ministry of Electronics and IT with reasons in writing, as upheld in Shreya Singhal (2015). TRAI regulates telecom tariffs and services, not online content.",
+  "कोई भी कथन सही नहीं है। बिटचैट एन्क्रिप्टेड संदेशों को ब्लूटूथ से एक फ़ोन से दूसरे फ़ोन तक पहुँचाता है, जिससे बिना किसी केंद्रीय सर्वर का एक मेश बनता है, इसलिए यह इंटरनेट या मोबाइल नेटवर्क के बिना चलता है; इसीलिए दिल्ली में प्रदर्शनकारियों द्वारा इसके उपयोग के बाद सरकार ने शटडाउन और वैध अवरोधन से बचने में इसके उपयोग का जोखिम देखा, और इसीलिए नेटवर्क विफल होने पर आपदाओं में यह उपयोगी है। "
+  "कथन 3 ग़लत है: जुलाई 2026 में गृह मंत्रालय के भारतीय साइबर अपराध समन्वय केंद्र ने आईटी अधिनियम की धारा 79(3)(ख) और 2021 के मध्यस्थ नियमों के अंतर्गत गिटहब से इसकी रिपॉज़िटरी निष्क्रिय करने को कहा, ‘सेफ़ हार्बर’ खोने के जोखिम के साथ; धारा 69क के अंतर्गत ब्लॉकिंग आदेश इलेक्ट्रॉनिकी और सूचना प्रौद्योगिकी मंत्रालय से लिखित कारणों सहित आते हैं, जैसा श्रेया सिंघल (2015) में बरकरार रखा गया। ट्राई दूरसंचार शुल्क और सेवाओं का विनियमन करता है, ऑनलाइन सामग्री का नहीं।",
+  "Ministry of Home Affairs (I4C), notice to GitHub on BitChat repositories (July 2026); Information Technology Act, 2000, sections 69A and 79; Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021.",
+  "ca-t3-sci-bitchat-bluetooth-mesh-79-3-b-i4c", craft="precision")
+
+S(IT, "medium", "With reference to the diving support vessels of the Indian Navy, consider the following statements:",
+  "भारतीय नौसेना के डाइविंग सहायता पोतों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+  ["INS Nipun is the Navy's first diving support vessel.",
+   "In saturation diving, divers live under pressure for days, so they need not decompress after every dive.",
+   "The Nistar-class vessels were built abroad and bought under an inter-governmental agreement."],
+  ["आईएनएस निपुण नौसेना का पहला डाइविंग सहायता पोत है।",
+   "संतृप्ति गोताख़ोरी में गोताख़ोर कई दिनों तक दबाव में रहते हैं, ताकि उन्हें हर गोते के बाद विसंपीडन न करना पड़े।",
+   "निस्तार श्रेणी के पोत विदेश में बनाकर अंतर-सरकारी समझौते के अंतर्गत ख़रीदे गए।"],
+  C3, 0,
+  "Only statement 2 is correct. In saturation diving the divers' tissues are saturated with the breathing gas once, in a pressurised chamber on board, so they can work at depths of about 300 metres for days and decompress only once at the end; the ships also operate the Navy's deep submergence rescue vehicle, which can mate with a stricken submarine to bring its crew up. "
+  "Statement 1 is wrong: INS Nipun, commissioned at Mumbai in August 2026, is the second of the class; INS Nistar, commissioned in July 2025, is based at Visakhapatnam. Statement 3 is wrong: both were built by Hindustan Shipyard Limited, Visakhapatnam, under a contract of 2018, as part of the drive for indigenous warships.",
+  "केवल कथन 2 सही है। संतृप्ति गोताख़ोरी में गोताख़ोरों के ऊतक पोत पर एक दाबित कक्ष में एक बार श्वसन गैस से संतृप्त किए जाते हैं, ताकि वे कई दिनों तक लगभग 300 मीटर की गहराई पर काम कर सकें और अंत में केवल एक बार विसंपीडन करें; ये पोत नौसेना के गहन जलमग्न बचाव वाहन का भी संचालन करते हैं, जो संकटग्रस्त पनडुब्बी से जुड़कर उसके चालक दल को ऊपर ला सकता है। "
+  "कथन 1 ग़लत है: अगस्त 2026 में मुंबई में कमीशन हुआ आईएनएस निपुण इस श्रेणी का दूसरा पोत है; जुलाई 2025 में कमीशन हुआ आईएनएस निस्तार विशाखापत्तनम में स्थित है। कथन 3 ग़लत है: दोनों पोत स्वदेशी युद्धपोतों के अभियान के अंतर्गत 2018 के एक अनुबंध पर हिंदुस्तान शिपयार्ड लिमिटेड, विशाखापत्तनम ने बनाए।",
+  "Ministry of Defence and PIB, commissioning of INS Nipun (August 2026) and INS Nistar (July 2025).",
+  "ca-t3-sci-ins-nipun-second-dsv-saturation-hsl", craft="precision")
+
+finish("ca_t3_e.sql", FORMAT, "2026-Q3", update="--update" in sys.argv)
