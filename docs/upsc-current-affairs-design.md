@@ -159,3 +159,12 @@ The owner read CA 3's first drafts and found them dated news bulletins. Stems sa
 - **Two items can share a premise.** The ISI and IIT Kharagpur items both rested on "institution of national importance by an Act of Parliament". Read the cue pairs for shared premises, not only shared words.
 - **CA 1 and CA 2 were reframed in place to the same rules.** Before either was sat, 168 stems (74 and 94) and 18 statements were rewritten without dates. Truth values, keys, question IDs and the published order were kept, and the database was checked field by field against the build. Rows renamed in an earlier revision were at first missed, because `write_updates` matched only their old concept ids; it now matches the old id or the current one.
 - **The tracker list is a lead sheet.** Read the window's Must Read list once (titles and tags), choose by syllabus value, and verify each fact officially. CA 3 ended at 6 none, 24 one, 29 two and 21 all-true across three-statement items, with keys at 25 each.
+
+## 9. CA 4: built month by month
+
+CA 4's window, October to December 2026, runs past the date its writing began (1 November 2026), so the paper is written one month at a time:
+
+- **October first.** 25 items were written across the seven parts, each marked with an `October 2026` comment so that later months append below it. All were checked with `ca_check` and the bank overlap scan.
+- **Held back from the database until the paper is whole.** `ca_plan` balances keys to 25 per letter across 100 rows, and a dropped item would otherwise need a permanent delete. Until then `ca_t4_format.py` holds only `POS`, and every statement item keeps its count ladder.
+- **Leads come from the full list as well as Must Read.** For a single month, the tracker's Must Read list is mostly editorials (249 of 339 rows in October). The All CA list (825 rows) supplies the dated events: Cabinet decisions, launches, rulings and prizes.
+- **A stale fact turned up in two papers.** NPCI deferred the 0.4 per cent MDR on UPI payments to merchants, due on 15 October 2026, until after Diwali. The explanations of `ca-t3-eco-upi-mdr-p2m-2000-section-10a` (CA 3) and `l3-t5-eco-dlg-zero-mdr-npci-status` (L3 T5) said it applied from that date. Both were rewritten in place, with truths and keys unchanged. Before each month's items, search the bank for any rule or date that the month changed.

@@ -1,0 +1,72 @@
+# -*- coding: utf-8 -*-
+"""Current Affairs · Test 4 (October to December 2026) -- part F: history and culture.
+
+The quarter's anniversaries, each asked through what it changed: Ambedkar's embrace of Buddhism at seventy years,
+India's first general election at seventy-five, and the hundred years of the public service commissions. Written month
+by month: October 2026 first. No stem carries a day date (design doc, section 7)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, P, A, C, write
+from polity_common import C3, C4, T2
+from ca_common import MX, finish
+from ca_t4_format import FORMAT, POS
+
+d.SUBJECT = "History"
+d.REQUIRE_CRAFT = True
+MI, PI = "Modern India", "Personalities"
+
+# ---------------------------------------------------------------- October 2026
+
+S(PI, "medium", "Seventy years ago, in October 1956, B. R. Ambedkar embraced Buddhism together with lakhs of his followers. Consider the following statements:",
+  "सत्तर वर्ष पहले, अक्टूबर 1956 में, बी. आर. आंबेडकर ने अपने लाखों अनुयायियों के साथ बौद्ध धर्म अपनाया। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["The ceremony took place at Nagpur, a few weeks before his death.",
+   "His book 'The Buddha and His Dhamma' had been published before the ceremony.",
+   "He had declared at the Yeola conference in 1935 that, though born a Hindu, he would not die one."],
+  ["यह समारोह नागपुर में, उनके निधन से कुछ सप्ताह पहले, हुआ।",
+   "उनकी पुस्तक ‘द बुद्ध एंड हिज़ धम्म’ समारोह से पहले प्रकाशित हो चुकी थी।",
+   "उन्होंने 1935 में येवला सम्मेलन में घोषणा की थी कि हिंदू के रूप में जन्म लेने के बावजूद वे हिंदू के रूप में नहीं मरेंगे।"],
+  C3, 1,
+  "Statements 1 and 3 are correct. On 14 October 1956, the day of Ashoka Vijayadashami, Ambedkar took the three refuges and the five precepts from the monk Chandramani at Nagpur, on the ground now called Deekshabhoomi, and then himself administered twenty-two vows to his followers, renouncing caste and the worship of Hindu deities; he died in Delhi on 6 December 1956. "
+  "The decision came two decades after Yeola, where he concluded, after the failure of efforts such as the Kalaram temple-entry satyagraha at Nashik (1930), that the depressed classes could not win equality within the Hindu fold; he studied several faiths before choosing Buddhism for its rejection of caste and its rational ethics. Statement 2 is wrong: 'The Buddha and His Dhamma', his reading of the Buddha's teaching, was published in 1957, after his death.",
+  "कथन 1 और 3 सही हैं। 14 अक्टूबर 1956 को, अशोक विजयादशमी के दिन, आंबेडकर ने नागपुर में, उस स्थल पर जिसे अब दीक्षाभूमि कहते हैं, भिक्षु चंद्रमणि से त्रिशरण और पंचशील ग्रहण किए और फिर स्वयं अपने अनुयायियों को बाईस प्रतिज्ञाएँ दिलाईं, जिनमें जाति और हिंदू देवताओं की पूजा का त्याग था; 6 दिसंबर 1956 को दिल्ली में उनका निधन हुआ। "
+  "यह निर्णय येवला के दो दशक बाद आया, जहाँ नासिक के कालाराम मंदिर-प्रवेश सत्याग्रह (1930) जैसे प्रयासों की विफलता के बाद वे इस निष्कर्ष पर पहुँचे कि दलित वर्ग हिंदू समाज के भीतर समानता नहीं पा सकते; बौद्ध धर्म को उसकी जाति-अस्वीकृति और तर्कसंगत नैतिकता के लिए चुनने से पहले उन्होंने कई धर्मों का अध्ययन किया। कथन 2 ग़लत है: बुद्ध की शिक्षा की उनकी व्याख्या ‘द बुद्ध एंड हिज़ धम्म’ उनके निधन के बाद 1957 में प्रकाशित हुई।",
+  "Dr. Babasaheb Ambedkar: Writings and Speeches (Government of Maharashtra and Dr. Ambedkar Foundation); NCERT, Themes in Indian History and Politics in India since Independence.",
+  "ca-t4-his-ambedkar-diksha-70-nagpur-yeola-book-1957", craft="precision")
+
+S(MI, "medium", "India's first general election began seventy-five years ago. Consider the following statements:",
+  "भारत का पहला आम चुनाव पचहत्तर वर्ष पहले आरंभ हुआ। निम्नलिखित कथनों पर विचार कीजिए:",
+  ["Polling began in parts of Himachal Pradesh months ahead of most of the country, so that it would be over before snow cut those areas off.",
+   "Some constituencies returned two members, one of whom had to belong to the Scheduled Castes or the Scheduled Tribes.",
+   "The Representation of the People Act, 1951, under which it was held, was passed by the Provisional Parliament after the Constitution had come into force."],
+  ["हिमाचल प्रदेश के कुछ भागों में मतदान देश के अधिकांश भाग से महीनों पहले आरंभ हुआ, ताकि बर्फ़ से उन क्षेत्रों के कट जाने से पहले वह पूरा हो जाए।",
+   "कुछ निर्वाचन-क्षेत्रों ने दो सदस्य चुने, जिनमें से एक का अनुसूचित जाति या अनुसूचित जनजाति से होना आवश्यक था।",
+   "जिस लोक प्रतिनिधित्व अधिनियम, 1951 के अंतर्गत यह हुआ, उसे संविधान के प्रवृत्त होने के बाद अंतरिम संसद ने पारित किया था।"],
+  C3, 2,
+  "All three statements are correct. The first votes were cast on 25 October 1951 in Chini tehsil, in today's Kinnaur district, while most of the country voted in January and February 1952. Of the 401 Lok Sabha constituencies, 314 elected one member, 86 elected two and one elected three, for 489 seats; in a two-member constituency every voter had two votes, and one seat went to the highest-placed candidate from the reserved category, a way of reserving seats without separate electorates. Such constituencies were abolished in 1961. "
+  "The Constituent Assembly continued as the Provisional Parliament under Article 379 until the first Lok Sabha met, and it passed the Representation of the People Acts of 1950 (rolls and seats) and 1951 (the conduct of elections) to make the election possible.",
+  "तीनों कथन सही हैं। पहले मत 25 अक्टूबर 1951 को आज के किन्नौर ज़िले की चीनी तहसील में डाले गए, जबकि देश के अधिकांश भाग ने जनवरी और फ़रवरी 1952 में मतदान किया। 401 लोकसभा निर्वाचन-क्षेत्रों में से 314 ने एक, 86 ने दो और एक ने तीन सदस्य चुने, कुल 489 सीटें; दो-सदस्यीय निर्वाचन-क्षेत्र में हर मतदाता के दो मत थे, और एक सीट आरक्षित वर्ग के सबसे ऊँचे स्थान वाले प्रत्याशी को मिलती थी, यह पृथक निर्वाचक-मंडलों के बिना सीटें आरक्षित करने का तरीक़ा था। ऐसे निर्वाचन-क्षेत्र 1961 में समाप्त किए गए। "
+  "संविधान सभा पहली लोकसभा की बैठक तक अनुच्छेद 379 के अंतर्गत अंतरिम संसद के रूप में बनी रही, और उसने चुनाव संभव बनाने के लिए 1950 (निर्वाचक नामावली और सीटें) और 1951 (चुनावों का संचालन) के लोक प्रतिनिधित्व अधिनियम पारित किए।",
+  "Election Commission of India, Report on the First General Elections in India 1951-52; Two-Member Constituencies (Abolition) Act, 1961; Constitution of India, Article 379 (as originally enacted).",
+  "ca-t4-his-first-election-75-chini-two-member-rpa-provisional", craft="precision")
+
+C(MI, "medium", "The Union Public Service Commission completed a hundred years in 2026, counting from the first Public Service Commission. Arrange the following in chronological order:",
+  "संघ लोक सेवा आयोग ने पहले लोक सेवा आयोग से गिनती करते हुए 2026 में सौ वर्ष पूरे किए। निम्नलिखित को कालानुक्रम में व्यवस्थित कीजिए:",
+  ["The Lee Commission recommends setting up a Public Service Commission",
+   "The Federal Public Service Commission begins work under the Government of India Act, 1935",
+   "The Islington Commission reports on the public services in India",
+   "The first Public Service Commission is set up"],
+  ["ली आयोग लोक सेवा आयोग की स्थापना की संस्तुति करता है",
+   "भारत शासन अधिनियम, 1935 के अंतर्गत संघीय लोक सेवा आयोग कार्य आरंभ करता है",
+   "इस्लिंगटन आयोग भारत में लोक सेवाओं पर प्रतिवेदन देता है",
+   "पहला लोक सेवा आयोग स्थापित होता है"],
+  ["1-3-4-2", "3-4-1-2", "3-1-4-2", "1-4-3-2"], 2,
+  "The order is 3-1-4-2. The Royal Commission on the Public Services under Lord Islington (1912-15; report published in 1917) examined how far the services should be opened to Indians. The Government of India Act, 1919 provided for a Public Service Commission, and the Lee Commission on the Superior Civil Services (1923-24) recommended setting one up; the first Commission was constituted on 1 October 1926, with Sir Ross Barker as its chairman. "
+  "The Government of India Act, 1935 provided for a Federal Public Service Commission, which began work in 1937, and for Provincial Commissions; at the commencement of the Constitution in 1950 it became the Union Public Service Commission under Articles 315-323. The centenary year closed with a commemorative coin and stamp in October 2026.",
+  "क्रम 3-1-4-2 है। लॉर्ड इस्लिंगटन के अधीन लोक सेवाओं पर शाही आयोग (1912-15; प्रतिवेदन 1917 में प्रकाशित) ने परखा कि सेवाएँ भारतीयों के लिए किस सीमा तक खोली जाएँ। भारत शासन अधिनियम, 1919 ने लोक सेवा आयोग का प्रावधान किया, और उच्चतर सिविल सेवाओं पर ली आयोग (1923-24) ने उसकी स्थापना की संस्तुति की; पहला आयोग 1 अक्टूबर 1926 को सर रॉस बार्कर की अध्यक्षता में गठित हुआ। "
+  "भारत शासन अधिनियम, 1935 ने संघीय लोक सेवा आयोग का प्रावधान किया, जिसने 1937 में कार्य आरंभ किया, और प्रांतीय आयोगों का भी; 1950 में संविधान के प्रारंभ पर यह अनुच्छेद 315-323 के अंतर्गत संघ लोक सेवा आयोग बन गया। शताब्दी वर्ष अक्टूबर 2026 में एक स्मारक सिक्के और डाक टिकट के साथ समाप्त हुआ।",
+  "Union Public Service Commission, history of the Commission and centenary celebrations (1 October 2026); Government of India Acts, 1919 and 1935; Constitution of India, Articles 315-323.",
+  "ca-t4-his-upsc-100-islington-lee-psc-fpsc-order")
+d.ROWS[-1]["question_data"]["craft"] = "precision"
+
+finish("ca_t4_f.sql", FORMAT, "2026-Q4", update="--update" in sys.argv)
