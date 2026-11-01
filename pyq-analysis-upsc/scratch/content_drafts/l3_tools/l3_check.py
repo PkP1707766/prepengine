@@ -1,4 +1,6 @@
 # Level 3 Test N (static 84): combined cell tally vs targets, key letters, crafts, and the cue scan (new vs new only).
+# Usage: python l3_check.py <N> <module-prefix> <concept-prefix> [targets file, default l3_targets.jsonl]
+# (Level 4 GS: python l3_check.py 1 gs_l4_s01 l4-s01- l4_gs_targets.jsonl)
 import contextlib, importlib, io, json, os, sys
 from collections import Counter
 D = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -7,14 +9,14 @@ sys.path.insert(0, D); os.chdir(D)
 import draft_common as d
 d.write = lambda name: None
 rows = []
-for m in [f"{sys.argv[2]}_{x}" for x in "abcdef" if os.path.exists(f"{D}/{sys.argv[2]}_{x}.py")]:
+for m in [f"{sys.argv[2]}_{x}" for x in "abcdefgh" if os.path.exists(f"{D}/{sys.argv[2]}_{x}.py")]:
     d.ROWS.clear(); d.CGS.clear(); d._mcq_n[0] = 0
     with contextlib.redirect_stdout(io.StringIO()):
         importlib.import_module(m)
     for r in d.ROWS: r["mod"] = m[-1]
     rows += list(d.ROWS)
 tgt = None
-for line in io.open(S + "l3_targets.jsonl", encoding="utf-8"):
+for line in io.open(S + (sys.argv[4] if len(sys.argv) > 4 else "l3_targets.jsonl"), encoding="utf-8"):
     t = json.loads(line)
     if t["no"] == int(sys.argv[1]): tgt = Counter({(c[0], c[1], c[2]): c[3] for c in t["cells"]})
 have = Counter((r["difficulty"], r["type"], r["topic"]) for r in rows)
@@ -56,4 +58,4 @@ for i in range(len(shs)):
             k = sorted(common)[0]; n += 1
             print(f"{shs[i][0]} <> {shs[j][0]} [{len(common)}] '{k}'\n    A: {shs[i][1][k][:140]}\n    B: {shs[j][1][k][:140]}")
 print("pairs flagged:", n)
-json.dump(rows, io.open(S + f"_data/l3_t{sys.argv[1]}_rows.json", "w", encoding="utf-8"), ensure_ascii=False)
+json.dump(rows, io.open(S + f"_data/{sys.argv[2]}_rows.json", "w", encoding="utf-8"), ensure_ascii=False)
