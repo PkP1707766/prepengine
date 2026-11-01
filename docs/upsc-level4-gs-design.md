@@ -29,3 +29,12 @@ The subject mixes are counted from the tagged papers in `pyq-analysis-upsc/upsc_
   - Prefer untested provisions, such as Articles 130, 139, 144, 146, 177, 243ZC, 309, 311(2), 339 and 340, and the Fifth Schedule's paragraph 3.
   - Prefer recent laws and rulings, and application items that combine provisions in a new case.
   - In Simulator 1's first draft, the overlap scan caught three repeats that `bank_find` had cleared: the re-election rule for a dissolved body (Article 243U, already asked for panchayats), ratification of amendments, and the Rajya Sabha's special majorities.
+
+## Progress
+
+**Simulator 1 (shape A)** has its 82 static drafts written and loaded into the database as drafts, with the database matching the build field by field.
+
+- Cells match the targets exactly. Answer keys are a 21, b 21, c 21 and d 19; 7 of the 17 MCQs are keyed (d).
+- **The gap-finder.** Sweep 100-200 candidate terms (monuments, species, places, instruments, articles) against `bank_dump.json` in one pass, and draft from the terms with no match.
+- **Run the overlap scan as well.** It caught repeats that the term sweep missed because the bank spells them differently or tests them inside a larger item: "sulphur hexafluoride" for SF6, green ammonia, solid-state batteries, carbon mineralisation in CA 1, the Foreign Trade Policy's open-ended term, and fiscal drag.
+- **The current-affairs part is still to come.** Simulator 1's 18 current-affairs rows are written in April 2027. The Level 4 branch in `upsc_series_setup.py` is added when the first simulator is complete.
