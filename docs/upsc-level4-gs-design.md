@@ -38,3 +38,10 @@ The subject mixes are counted from the tagged papers in `pyq-analysis-upsc/upsc_
 - **The gap-finder.** Sweep 100-200 candidate terms (monuments, species, places, instruments, articles) against `bank_dump.json` in one pass, and draft from the terms with no match.
 - **Run the overlap scan as well.** It caught repeats that the term sweep missed because the bank spells them differently or tests them inside a larger item: "sulphur hexafluoride" for SF6, green ammonia, solid-state batteries, carbon mineralisation in CA 1, the Foreign Trade Policy's open-ended term, and fiscal drag.
 - **The current-affairs part is still to come.** Simulator 1's 18 current-affairs rows are written in April 2027. The Level 4 branch in `upsc_series_setup.py` is added when the first simulator is complete.
+
+**Simulator 2 (shape B)** has its 76 static drafts written and loaded into the database as drafts, with the database matching the build field by field.
+
+- Cells match the targets exactly: 27 hard and 7 easy. Answer keys are a 19, b 19, c 20 and d 18. There are 9 Statement-I/II items, 3 of them with a Statement III, as in the 2025 paper.
+- **Economy is the most saturated subject.** The overlap scan caught eight Level 1-3 repeats while it was being drafted: bond-index inclusion, the UPI credit line, the shipbuilding package, commercial coal mining, the 2019 corporate tax cut, Namo Drone Didi, Ways and Means Advances, and PM Vishwakarma and e-Shram. Elsewhere it caught Article 276, Selvi, the Paris Agreement's Article 2.1(c) (already in Simulator 1), polarised sunglasses and the satellite-versus-cable question.
+- **Search every spelling, then run the scan.** A term sweep that returns nothing is not enough. The bank often words the same fact differently, as with "commercial mining of coal" or "the index from June 2024", so only the scan catches it.
+- Simulator 2's 24 current-affairs rows are written in March-April 2027.
