@@ -1,6 +1,6 @@
 # JUNOONIAS — Market-Launch Readiness Tracker
 
-Last updated: 8 Sep 2026
+Last updated: 7 Nov 2026
 
 Status key: 🔴 Not started · 🟡 In progress · 🟢 Done & verified
 
@@ -30,6 +30,62 @@ made it "demo mode", and all three are fixed:
    data yet.
 
 ---
+
+## 7 Nov 2026 — Mains, slice 1: the Essay section and topper copies
+
+A new **Essay** item in the student dashboard and a **Mains & Essay** screen in
+the admin. Design and next slices: `docs/upsc-essay-design.md`. Migration
+`0028_mains_essay.sql`.
+
+Students pick an essay theme (or a year), see UPSC's essay topics in it, and
+open the topper essays written on that topic or a close cousin of it — the
+same question first, then related topics, best score first. Each essay opens
+at the page where it starts: in a new in-app reader when we host the copy, or
+in the publisher's own PDF at `#page=N` when we only link to it. A "Topper
+essays" tab lists the whole library by marks or year, with search. The marks
+shown are the topper's real UPSC Essay paper score, and every list says so in
+a line underneath, because most copies are coaching mock tests and the mark
+is easy to misread as the copy's own.
+
+Built around the spreadsheets we already keep, so they import as-is: the
+admin exports a sheet tab as CSV and the importer recognises three layouts by
+their header row (PYQs with categories and confidence; subject/topper/rank/
+coaching/question/page/link; a copy's topic with its similar PYQs). It shows
+what it will create and which rows it skipped, and why, before writing
+anything, and every step is an upsert that ignores duplicates, so re-importing
+a newer export only adds. Essay answers are linked to PYQs automatically
+(`essay_autolink()`: exact topic match, plus the similar-PYQ map); the copy
+editor lets an admin fix links by hand, with suggestions ranked by word
+overlap.
+
+Access is a checkbox on any bundle ("Mains: Essay and topper copies"), not a
+new code path. Hosted page images sit in a private bucket and are only ever
+handed out as ten-minute signed URLs, which storage signs only when
+`can_read_topper_copy()` passes — so the lock on a hosted copy is enforced by
+the database, not by a button. A link copy points at a PDF already public on
+its publisher's site; its lock is presentational and the design doc says so.
+
+Hosting a copy happens in the admin's own browser: pdf.js renders each page
+to a 1240 px WebP, so there is no rendering server. pdf.js (411 kB) and the
+admin screen live in their own chunks — the catch-all `vendor` rule in
+`vite.config.js` would otherwise have put pdf.js in the chunk every student
+downloads — and the Essay section is lazy-loaded too. The main chunk grew
+23 kB (6 kB gzipped) over `main`, which was already over the 700 kB warning.
+
+Caught along the way: the essay cards' "main theme" chip used the class
+`main`, which StudentApp's layout column also uses — the chip stretched into a
+full-width bar. Renamed to `es-lead`, the same collision story as `.pb-news`
+below. The admin stylesheet defines no `.tab`/`.tabs` (they live in the
+student CSS), so tab rows there render as bare white-on-cream buttons; the new
+screen has its own, and **Public Content's tabs still have this bug**.
+
+Verified in the dev harness at 1280 px and 375 px, EN and HI, light and dark:
+theme and year filters, PYQ → grouped essays, the reader opening at the start
+page with the essay's pages edged in gold, lazy page loading (4 of 27 pages
+painted on open, far pages released), page jump and zoom, the link copy's
+`href` carrying `#page=17`, the import preview on real sheet rows, and pdf.js
+rendering a PDF to WebP in the browser. Not verified: anything against the
+live database, because 0028 has not been applied.
 
 ## 8 Sep 2026 — FAQ questions and answers themselves, now bilingual
 

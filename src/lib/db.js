@@ -13,6 +13,7 @@ import { getSupabase } from "./supabase.js";
 import { bandFor } from "./format.js";
 import { sortTests } from "./testOrder.js";
 import { loadKey, saveKey, removeKey } from "./storage.js";
+import { essayKey, copyLinkAt } from "./mainsKeys.js";
 
 /* ---------------------------------------------------------------------------
  * DEV-ONLY responsiveness harness.
@@ -327,6 +328,10 @@ export async function adminListBundles() {
     isActive: r.is_active !== false,
     sortOrder: r.sort_order ?? 0,
     brochureUrl: r.brochure_url || null,
+    // Undefined until migration 0028 adds the column, so a bundle saved by a
+    // build deployed ahead of that migration never sends a column that is
+    // not there yet.
+    includesMains: "includes_mains" in r ? r.includes_mains === true : undefined,
   }));
 }
 
@@ -350,6 +355,9 @@ export async function upsertBundle(b) {
     // (the form uses an explicit removal button for that). An empty string
     // is normalised to null so the DB stays clean.
     ...(b.brochureUrl === undefined ? {} : { brochure_url: b.brochureUrl || null }),
+    // Same "undefined means don't touch" rule, so a save from an older form
+    // can never quietly switch Mains off for a bundle.
+    ...(b.includesMains === undefined ? {} : { includes_mains: b.includesMains === true }),
     updated_at: new Date().toISOString(),
   };
   const { data, error } = await sb.from("plans").upsert(row).select().single();
@@ -1937,4 +1945,653 @@ export async function adminReferrals() {
       at: r.created_at,
     };
   });
+}
+
+/* ------------------------------------------------------------ mains -- */
+/* Mains, slice 1 (migration 0028): essay themes and PYQs, toppers, their
+ * copies and the answers inside them.
+ *
+ * Themes and PYQs are public. Everything about copies needs a session. A copy
+ * is a LINK (a publisher's public PDF, opened at the page in a new tab), or
+ * HOSTED (pages rendered to WebP in the private copy-pages bucket), or both.
+ * Hosted pages come back as ten-minute signed URLs, which storage only signs
+ * when can_read_topper_copy() passes -- so the lock on a hosted copy is real,
+ * not a button the browser could skip. */
+
+const COPY_PAGES = "copy-pages";
+const COPY_PDFS = "copy-pdfs";
+export const COPY_URL_TTL = 600;
+
+export { essayKey, copyLinkAt };
+
+/* Long `in.(...)` lists overflow the request URL, so lookups go in chunks.
+ * URLs are long, uuids short: the caller picks the size. */
+async function selectIn(sb, table, cols, col, values, size = 150) {
+  const out = [];
+  for (let i = 0; i < values.length; i += size) {
+    const { data, error } = await sb.from(table).select(cols).in(col, values.slice(i, i + size));
+    if (error) throw error;
+    out.push(...(data ?? []));
+  }
+  return out;
+}
+
+async function inBatches(rows, size, fn) {
+  for (let i = 0; i < rows.length; i += size) await fn(rows.slice(i, i + size), i);
+}
+
+function themeFromRow(r) {
+  return { id: r.id, slug: r.slug, name: r.name, nameHi: r.name_hi || "", parentId: r.parent_id || null, sortOrder: r.sort_order ?? 0 };
+}
+
+export async function essayThemes() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_ESSAY_THEMES;
+  const sb = await getSupabase();
+  const { data, error } = await sb
+    .from("essay_themes")
+    .select("id, slug, name, name_hi, parent_id, sort_order")
+    .order("sort_order")
+    .order("name");
+  if (error) throw error;
+  return (data ?? []).map(themeFromRow);
+}
+
+/**
+ * Every essay PYQ, newest first, with its themes (highest confidence first --
+ * the first is the main theme, the rest are "also under") and how many
+ * published topper essays answer it.
+ */
+export async function essayPyqs({ includeDrafts = false } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_ESSAY_PYQS;
+  const sb = await getSupabase();
+  let q = sb
+    .from("essay_pyqs")
+    .select("id, year, q_no, section, topic, topic_hi, is_published, essay_pyq_themes(theme_id, confidence)")
+    .order("year", { ascending: false })
+    .order("q_no", { ascending: true, nullsFirst: false })
+    .order("topic");
+  if (!includeDrafts) q = q.eq("is_published", true);
+  const [{ data, error }, { data: stats }] = await Promise.all([
+    q,
+    // The counts read copies, which need a session; a visitor just gets none.
+    sb.from("essay_pyq_stats_v").select("pyq_id, essay_count, exact_count"),
+  ]);
+  if (error) throw error;
+  const n = new Map((stats ?? []).map((s) => [s.pyq_id, s]));
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    year: r.year,
+    qNo: r.q_no ?? null,
+    section: r.section || "",
+    topic: r.topic,
+    topicHi: r.topic_hi || "",
+    isPublished: r.is_published !== false,
+    themes: (r.essay_pyq_themes ?? [])
+      .slice()
+      .sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))
+      .map((x) => ({ id: x.theme_id, confidence: x.confidence ?? null })),
+    essayCount: Number(n.get(r.id)?.essay_count ?? 0),
+    exactCount: Number(n.get(r.id)?.exact_count ?? 0),
+  }));
+}
+
+const LIB_COLS =
+  "answer_id, paper, paper_label, question, start_page, end_page, copy_id, source, title, written_year, " +
+  "source_url, page_count, pages_ready, is_free, is_published, topper_id, topper_name, topper_rank, cse_year, essay_marks";
+
+export function libraryEntryFromRow(r) {
+  return {
+    answerId: r.answer_id,
+    paper: r.paper,
+    paperLabel: r.paper_label || "",
+    question: r.question,
+    startPage: r.start_page ?? null,
+    endPage: r.end_page ?? null,
+    copyId: r.copy_id,
+    source: r.source || "",
+    title: r.title || "",
+    writtenYear: r.written_year ?? null,
+    sourceUrl: r.source_url || "",
+    pageCount: r.page_count ?? 0,
+    hosted: r.pages_ready === true,
+    isFree: r.is_free === true,
+    isPublished: r.is_published !== false,
+    topper: {
+      id: r.topper_id,
+      name: r.topper_name,
+      rank: r.topper_rank ?? null,
+      cseYear: r.cse_year ?? null,
+      essayMarks: r.essay_marks ?? null,
+    },
+  };
+}
+
+/** One page of the topper-answer library for a paper. `q` matches the
+ *  question or the topper's name. */
+export async function topperLibrary({ paper = "essay", sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLibrary({ paper, sort, year, q, offset, limit });
+  const sb = await getSupabase();
+  let query = sb.from("topper_library_v").select(LIB_COLS, { count: "exact" })
+    .eq("paper", paper)
+    .eq("is_published", true);
+  if (year) query = query.eq("written_year", year);
+  // Commas and brackets are PostgREST's own syntax inside or(); a stray one
+  // would break the filter rather than match nothing.
+  const needle = String(q || "").replace(/[%,()*\\]/g, " ").trim();
+  if (needle) query = query.or(`question.ilike.%${needle}%,topper_name.ilike.%${needle}%`);
+  if (sort === "marks") query = query.order("essay_marks", { ascending: false, nullsFirst: false });
+  query = query
+    .order("written_year", { ascending: sort === "oldest", nullsFirst: false })
+    .order("answer_id");
+  const { data, error, count } = await query.range(offset, offset + limit - 1);
+  if (error) throw error;
+  return { items: (data ?? []).map(libraryEntryFromRow), total: count ?? 0 };
+}
+
+/** The years that actually have answers, for the year filter. */
+export async function topperLibraryYears(paper = "essay") {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLibraryYears(paper);
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("topper_library_v").select("written_year")
+    .eq("paper", paper).eq("is_published", true).not("written_year", "is", null).limit(1000);
+  if (error) throw error;
+  return [...new Set((data ?? []).map((r) => r.written_year))].sort((a, b) => b - a);
+}
+
+/**
+ * A PYQ's topper essays, grouped the way a student reads them: the same
+ * question first, then each related topic, each group best score first.
+ */
+export async function essaysForPyq(pyqId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return groupEssays(fx().fxEssaysForPyq(pyqId));
+  const sb = await getSupabase();
+  const { data: links, error } = await sb
+    .from("essay_answer_pyqs").select("answer_id, kind, confidence").eq("pyq_id", pyqId);
+  if (error) throw error;
+  if (!links?.length) return [];
+  const meta = new Map(links.map((l) => [l.answer_id, l]));
+  const rows = (await selectIn(sb, "topper_library_v", LIB_COLS, "answer_id", [...meta.keys()]))
+    .filter((r) => r.is_published !== false);
+  return groupEssays(rows.map((r) => ({
+    ...libraryEntryFromRow(r),
+    kind: meta.get(r.answer_id)?.kind || "related",
+    confidence: meta.get(r.answer_id)?.confidence ?? null,
+  })));
+}
+
+export function groupEssays(entries) {
+  const groups = new Map();
+  for (const e of entries) {
+    const key = essayKey(e.question) || e.answerId;
+    if (!groups.has(key)) groups.set(key, { key, question: e.question, kind: e.kind, confidence: e.confidence ?? null, entries: [] });
+    const g = groups.get(key);
+    if (e.kind === "exact") g.kind = "exact";
+    if ((e.confidence ?? -1) > (g.confidence ?? -1)) g.confidence = e.confidence;
+    g.entries.push(e);
+  }
+  const byScore = (a, b) =>
+    (b.topper.essayMarks ?? -1) - (a.topper.essayMarks ?? -1)
+    || (a.topper.rank ?? 1e6) - (b.topper.rank ?? 1e6)
+    || (b.writtenYear ?? 0) - (a.writtenYear ?? 0);
+  const list = [...groups.values()];
+  list.forEach((g) => g.entries.sort(byScore));
+  return list.sort((a, b) =>
+    (a.kind === "exact" ? 0 : 1) - (b.kind === "exact" ? 0 : 1)
+    || (b.confidence ?? 0) - (a.confidence ?? 0)
+    || b.entries.length - a.entries.length);
+}
+
+/** Does this student hold Mains? Failing closed: an error means "locked",
+ *  and free copies still open. */
+export async function mainsAccess() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return true;
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("has_mains_access");
+  if (error) { console.error("mains access check failed", error); return false; }
+  return data === true;
+}
+
+/**
+ * Signed URLs for some pages of one hosted copy, as { page: url }. A page the
+ * caller may not read simply comes back missing.
+ */
+export async function copyPageUrls(copyId, pages) {
+  if (import.meta.env.DEV && FIXTURES_ON()) {
+    return Object.fromEntries(pages.map((p) => [p, fx().fxPageImage(copyId, p)]));
+  }
+  const sb = await getSupabase();
+  const paths = pages.map((p) => `${copyId}/p${p}.webp`);
+  const { data, error } = await sb.storage.from(COPY_PAGES).createSignedUrls(paths, COPY_URL_TTL);
+  if (error) throw error;
+  const out = {};
+  (data ?? []).forEach((d, i) => { if (d && !d.error && d.signedUrl) out[pages[i]] = d.signedUrl; });
+  return out;
+}
+
+/* ------------------------------------------------------ admin: mains -- */
+
+export function slugify(s) {
+  return String(s || "").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80) || "theme";
+}
+
+export async function upsertEssayTheme(th) {
+  const sb = await getSupabase();
+  const row = {
+    ...(th.id ? { id: th.id } : {}),
+    slug: th.slug || slugify(th.name),
+    name: th.name.trim(),
+    name_hi: (th.nameHi || "").trim() || null,
+    parent_id: th.parentId || null,
+    sort_order: Number(th.sortOrder || 0),
+  };
+  const { data, error } = await sb.from("essay_themes").upsert(row).select().single();
+  if (error) throw error;
+  return themeFromRow(data);
+}
+
+export async function deleteEssayTheme(id) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("essay_themes").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** Save one PYQ and, when `themes` is given, replace its themes. */
+export async function upsertEssayPyq(p) {
+  const sb = await getSupabase();
+  const row = {
+    ...(p.id ? { id: p.id } : {}),
+    year: Number(p.year),
+    q_no: p.qNo === "" || p.qNo == null ? null : Number(p.qNo),
+    section: (p.section || "").trim() || null,
+    topic: p.topic.trim(),
+    topic_hi: (p.topicHi || "").trim() || null,
+    is_published: p.isPublished !== false,
+    updated_at: new Date().toISOString(),
+  };
+  const { data, error } = await sb.from("essay_pyqs").upsert(row).select("id").single();
+  if (error) throw error;
+  if (Array.isArray(p.themes)) {
+    const { error: e1 } = await sb.from("essay_pyq_themes").delete().eq("pyq_id", data.id);
+    if (e1) throw e1;
+    const links = p.themes.filter((x) => x.id).map((x) => ({ pyq_id: data.id, theme_id: x.id, confidence: x.confidence ?? null }));
+    if (links.length) {
+      const { error: e2 } = await sb.from("essay_pyq_themes").insert(links);
+      if (e2) throw e2;
+    }
+  }
+  return data.id;
+}
+
+export async function deleteEssayPyq(id) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("essay_pyqs").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** Copies for the admin list, newest first, with topper and answer count. */
+export async function adminCopies({ q = "", paper = "", offset = 0, limit = 40 } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminCopies({ q, paper, offset, limit });
+  const sb = await getSupabase();
+  const needle = String(q || "").replace(/[%,()*\\]/g, " ").trim();
+  const topperEmbed = needle ? "toppers!inner(id, name, rank, cse_year, essay_marks)" : "toppers(id, name, rank, cse_year, essay_marks)";
+  const answersEmbed = paper ? "topper_answers!inner(paper)" : "topper_answers(count)";
+  let query = sb.from("topper_copies")
+    .select(`id, source, title, written_year, source_url, page_count, pages_ready, is_free, is_published, created_at, ${topperEmbed}, ${answersEmbed}`, { count: "exact" })
+    .order("created_at", { ascending: false });
+  if (needle) query = query.ilike("toppers.name", `%${needle}%`);
+  if (paper) query = query.eq("topper_answers.paper", paper);
+  const { data, error, count } = await query.range(offset, offset + limit - 1);
+  if (error) throw error;
+  return {
+    total: count ?? 0,
+    items: (data ?? []).map((r) => ({
+      id: r.id,
+      source: r.source || "",
+      title: r.title || "",
+      writtenYear: r.written_year ?? null,
+      sourceUrl: r.source_url || "",
+      pageCount: r.page_count ?? 0,
+      hosted: r.pages_ready === true,
+      isFree: r.is_free === true,
+      isPublished: r.is_published !== false,
+      topper: {
+        id: r.toppers?.id,
+        name: r.toppers?.name || "—",
+        rank: r.toppers?.rank ?? null,
+        cseYear: r.toppers?.cse_year ?? null,
+        essayMarks: r.toppers?.essay_marks ?? null,
+      },
+      answerCount: paper ? (r.topper_answers ?? []).length : Number(r.topper_answers?.[0]?.count ?? 0),
+    })),
+  };
+}
+
+/** One copy, in the same shape as an adminCopies() row. */
+export async function adminCopy(id) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminCopies({}).items.find((c) => c.id === id) || null;
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("topper_copies")
+    .select("id, source, title, written_year, source_url, page_count, pages_ready, is_free, is_published, toppers(id, name, rank, cse_year, essay_marks), topper_answers(count)")
+    .eq("id", id)
+    .maybeSingle();
+  if (error) throw error;
+  if (!data) return null;
+  return {
+    id: data.id,
+    source: data.source || "",
+    title: data.title || "",
+    writtenYear: data.written_year ?? null,
+    sourceUrl: data.source_url || "",
+    pageCount: data.page_count ?? 0,
+    hosted: data.pages_ready === true,
+    isFree: data.is_free === true,
+    isPublished: data.is_published !== false,
+    topper: {
+      id: data.toppers?.id,
+      name: data.toppers?.name || "—",
+      rank: data.toppers?.rank ?? null,
+      cseYear: data.toppers?.cse_year ?? null,
+      essayMarks: data.toppers?.essay_marks ?? null,
+    },
+    answerCount: Number(data.topper_answers?.[0]?.count ?? 0),
+  };
+}
+
+/** Find a topper by name (the same essay_key() rule), or create one. */
+export async function findOrCreateTopper({ name, rank = null, cseYear = null, essayMarks = null, note = null }) {
+  const sb = await getSupabase();
+  const key = essayKey(name);
+  if (!key) throw new Error("A topper needs a name.");
+  const { data: hit } = await sb.from("toppers").select("id").eq("name_key", key).maybeSingle();
+  if (hit) return hit.id;
+  const { data, error } = await sb.from("toppers")
+    .insert({ name: name.trim(), rank, cse_year: cseYear, essay_marks: essayMarks, note })
+    .select("id").single();
+  if (error) throw error;
+  return data.id;
+}
+
+export async function updateTopper(id, patch) {
+  const sb = await getSupabase();
+  const num = (v) => (v === "" || v == null ? null : Number(v));
+  const row = {};
+  if (patch.name !== undefined) row.name = patch.name.trim();
+  if (patch.rank !== undefined) row.rank = num(patch.rank);
+  if (patch.cseYear !== undefined) row.cse_year = num(patch.cseYear);
+  if (patch.essayMarks !== undefined) row.essay_marks = num(patch.essayMarks);
+  const { error } = await sb.from("toppers").update(row).eq("id", id);
+  if (error) throw error;
+}
+
+export async function createCopy(c) {
+  const sb = await getSupabase();
+  const { data: { user } } = await sb.auth.getUser();
+  const { data, error } = await sb.from("topper_copies").insert({
+    topper_id: c.topperId,
+    source: c.source || null,
+    title: c.title || null,
+    written_year: c.writtenYear ? Number(c.writtenYear) : null,
+    source_url: c.sourceUrl ? copyLinkAt(c.sourceUrl) : null,
+    sha256: c.sha256 || null,
+    is_free: c.isFree === true,
+    is_published: c.isPublished !== false,
+    created_by: user?.id ?? null,
+  }).select("id").single();
+  if (error) throw error;
+  return data.id;
+}
+
+export async function updateCopy(id, patch) {
+  const sb = await getSupabase();
+  const map = {
+    source: "source", title: "title", writtenYear: "written_year", sourceUrl: "source_url", pageCount: "page_count",
+    hosted: "pages_ready", sha256: "sha256", pdfPath: "pdf_path", isFree: "is_free", isPublished: "is_published",
+  };
+  const row = { updated_at: new Date().toISOString() };
+  for (const [k, col] of Object.entries(map)) if (patch[k] !== undefined) row[col] = patch[k] === "" ? null : patch[k];
+  const { error } = await sb.from("topper_copies").update(row).eq("id", id);
+  if (error) throw error;
+}
+
+export async function copyBySha(sha) {
+  const sb = await getSupabase();
+  const { data } = await sb.from("topper_copies").select("id, toppers(name)").eq("sha256", sha).maybeSingle();
+  return data ? { id: data.id, topper: data.toppers?.name || "" } : null;
+}
+
+export async function uploadCopyPdf(copyId, file) {
+  const sb = await getSupabase();
+  const path = `${copyId}/copy.pdf`;
+  const { error } = await sb.storage.from(COPY_PDFS).upload(path, file, { upsert: true, contentType: "application/pdf" });
+  if (error) throw error;
+  return path;
+}
+
+export async function uploadCopyPage(copyId, n, blob) {
+  const sb = await getSupabase();
+  const { error } = await sb.storage.from(COPY_PAGES)
+    .upload(`${copyId}/p${n}.webp`, blob, { upsert: true, contentType: "image/webp", cacheControl: "3600" });
+  if (error) throw error;
+}
+
+/** Delete a copy, its answers (cascade) and every stored file of it. */
+export async function deleteCopy(id) {
+  const sb = await getSupabase();
+  for (const bucket of [COPY_PAGES, COPY_PDFS]) {
+    const { data: files } = await sb.storage.from(bucket).list(id, { limit: 1000 });
+    const paths = (files ?? []).map((f) => `${id}/${f.name}`);
+    if (paths.length) await sb.storage.from(bucket).remove(paths);
+  }
+  const { error } = await sb.from("topper_copies").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** A copy's answers, each with its linked essay PYQs. */
+export async function copyAnswers(copyId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxCopyAnswers(copyId);
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("topper_answers")
+    .select("id, paper, paper_label, question, start_page, end_page, sort_order, essay_answer_pyqs(pyq_id, kind, confidence)")
+    .eq("copy_id", copyId)
+    .order("start_page", { ascending: true, nullsFirst: false })
+    .order("sort_order");
+  if (error) throw error;
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    paper: r.paper,
+    paperLabel: r.paper_label || "",
+    question: r.question,
+    startPage: r.start_page ?? "",
+    endPage: r.end_page ?? "",
+    links: (r.essay_answer_pyqs ?? []).map((l) => ({ pyqId: l.pyq_id, kind: l.kind, confidence: l.confidence ?? null })),
+  }));
+}
+
+export async function upsertAnswer(a) {
+  const sb = await getSupabase();
+  const num = (v) => (v === "" || v == null ? null : Number(v));
+  const row = {
+    ...(a.id ? { id: a.id } : {}),
+    copy_id: a.copyId,
+    paper: a.paper || "essay",
+    paper_label: a.paperLabel || null,
+    question: a.question.trim(),
+    start_page: num(a.startPage),
+    end_page: num(a.endPage),
+  };
+  const { data, error } = await sb.from("topper_answers").upsert(row).select("id").single();
+  if (error) throw error;
+  return data.id;
+}
+
+export async function deleteAnswer(id) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("topper_answers").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** Replace an essay answer's PYQ links with exactly this list. */
+export async function setAnswerLinks(answerId, links) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("essay_answer_pyqs").delete().eq("answer_id", answerId);
+  if (error) throw error;
+  if (!links.length) return;
+  const { error: e2 } = await sb.from("essay_answer_pyqs").insert(
+    links.map((l) => ({ answer_id: answerId, pyq_id: l.pyqId, kind: l.kind, confidence: l.confidence ?? null })));
+  if (e2) throw e2;
+}
+
+export async function essayAutolink() {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("essay_autolink");
+  if (error) throw error;
+  return data || { exact: 0, related: 0 };
+}
+
+/* ------------------------------------------------------- mains import -- */
+/* The importers take rows already parsed by lib/mainsImport.js. Each step is
+ * an upsert that ignores duplicates, so re-importing the same sheet -- or a
+ * newer version of it -- adds what is new and leaves edited rows alone. */
+
+/** PYQs with their categories: themes, PYQs and theme links. */
+export async function importEssayPyqs(items, onStep = () => {}) {
+  const sb = await getSupabase();
+
+  const themeNames = new Map();
+  items.forEach((it) => it.themes.forEach((t) => {
+    const slug = slugify(t.name);
+    if (!themeNames.has(slug)) themeNames.set(slug, t.name);
+  }));
+  onStep("themes");
+  await inBatches([...themeNames], 500, async (chunk) => {
+    const { error } = await sb.from("essay_themes")
+      .upsert(chunk.map(([slug, name]) => ({ slug, name })), { onConflict: "slug", ignoreDuplicates: true });
+    if (error) throw error;
+  });
+  const themes = await selectIn(sb, "essay_themes", "id, slug", "slug", [...themeNames.keys()], 100);
+  const themeId = new Map(themes.map((t) => [t.slug, t.id]));
+
+  onStep("pyqs");
+  await inBatches(items, 500, async (chunk) => {
+    const { error } = await sb.from("essay_pyqs")
+      .upsert(chunk.map((it) => ({ year: it.year, topic: it.topic })), { onConflict: "year,topic_key", ignoreDuplicates: true });
+    if (error) throw error;
+  });
+  const years = [...new Set(items.map((it) => it.year))];
+  const pyqs = await selectIn(sb, "essay_pyqs", "id, year, topic_key", "year", years, 50);
+  const pyqId = new Map(pyqs.map((p) => [`${p.year}|${p.topic_key}`, p.id]));
+
+  onStep("links");
+  const links = [];
+  for (const it of items) {
+    const id = pyqId.get(`${it.year}|${essayKey(it.topic)}`);
+    if (!id) continue;
+    for (const t of it.themes) {
+      const tid = themeId.get(slugify(t.name));
+      if (tid) links.push({ pyq_id: id, theme_id: tid, confidence: t.confidence ?? null });
+    }
+  }
+  await inBatches(links, 500, async (chunk) => {
+    const { error } = await sb.from("essay_pyq_themes").upsert(chunk, { onConflict: "pyq_id,theme_id" });
+    if (error) throw error;
+  });
+  return { themes: themeNames.size, pyqs: items.length, links: links.length };
+}
+
+/** Topper answers (any paper): toppers, link copies and answers, then links. */
+export async function importTopperAnswers(items, onStep = () => {}) {
+  const sb = await getSupabase();
+
+  onStep("toppers");
+  const toppers = new Map();
+  items.forEach((it) => {
+    const k = essayKey(it.topper.name);
+    if (k && !toppers.has(k)) toppers.set(k, it.topper);
+  });
+  await inBatches([...toppers.values()], 500, async (chunk) => {
+    const { error } = await sb.from("toppers").upsert(
+      chunk.map((t) => ({ name: t.name, rank: t.rank, cse_year: t.cseYear, note: t.note || null })),
+      { onConflict: "name_key", ignoreDuplicates: true });
+    if (error) throw error;
+  });
+  const topperRows = await selectIn(sb, "toppers", "id, name_key", "name_key", [...toppers.keys()], 100);
+  const topperId = new Map(topperRows.map((t) => [t.name_key, t.id]));
+
+  onStep("copies");
+  const copies = new Map();
+  items.forEach((it) => {
+    if (!it.url || copies.has(it.url)) return;
+    const tid = topperId.get(essayKey(it.topper.name));
+    if (tid) {
+      copies.set(it.url, {
+        topper_id: tid, source: it.coaching || null, written_year: it.topper.cseYear || null,
+        source_url: it.url, title: it.title || null,
+      });
+    }
+  });
+  await inBatches([...copies.values()], 300, async (chunk) => {
+    const { error } = await sb.from("topper_copies").upsert(chunk, { onConflict: "source_url", ignoreDuplicates: true });
+    if (error) throw error;
+  });
+  // URLs are long; 20 per lookup keeps the request line short.
+  const copyRows = await selectIn(sb, "topper_copies", "id, source_url", "source_url", [...copies.keys()], 20);
+  const copyId = new Map(copyRows.map((c) => [c.source_url, c.id]));
+
+  onStep("answers");
+  const answers = [];
+  const seen = new Set();
+  for (const it of items) {
+    const cid = copyId.get(it.url);
+    if (!cid) continue;
+    const dedupe = `${cid}|${essayKey(it.question)}|${it.page || 0}`;
+    if (seen.has(dedupe)) continue;
+    seen.add(dedupe);
+    answers.push({ copy_id: cid, paper: it.paper, paper_label: it.paperLabel || null, question: it.question, start_page: it.page || null });
+  }
+  await inBatches(answers, 500, async (chunk) => {
+    const { error } = await sb.from("topper_answers")
+      .upsert(chunk, { onConflict: "copy_id,question_key,page_key", ignoreDuplicates: true });
+    if (error) throw error;
+  });
+
+  onStep("linking");
+  const linked = await essayAutolink();
+  return { toppers: toppers.size, copies: copies.size, answers: answers.length, ...linked };
+}
+
+/** "Similar PYQs" per mock topic: essay_topic_map, then links. */
+export async function importTopicMap(items, onStep = () => {}) {
+  const sb = await getSupabase();
+  onStep("matching");
+  const pyqs = await essayPyqs({ includeDrafts: true });
+  const byKeyYear = new Map(pyqs.map((p) => [`${p.year}|${essayKey(p.topic)}`, p.id]));
+  const byKey = new Map();
+  pyqs.forEach((p) => {
+    const k = essayKey(p.topic);
+    if (!byKey.has(k)) byKey.set(k, p.id);
+  });
+
+  const rows = new Map();
+  const unmatched = new Set();
+  for (const it of items) {
+    const tk = essayKey(it.topic);
+    if (!tk) continue;
+    for (const s of it.similar) {
+      const sk = essayKey(s.topic);
+      const id = byKeyYear.get(`${s.year}|${sk}`) || byKey.get(sk);
+      if (!id) { unmatched.add(s.year ? `${s.topic} (${s.year})` : s.topic); continue; }
+      const key = `${tk}|${id}`;
+      if (!rows.has(key) || (rows.get(key).confidence ?? 0) < (s.confidence ?? 0)) {
+        rows.set(key, { topic_key: tk, topic: it.topic, pyq_id: id, confidence: s.confidence ?? null });
+      }
+    }
+  }
+  onStep("saving");
+  await inBatches([...rows.values()], 500, async (chunk) => {
+    const { error } = await sb.from("essay_topic_map").upsert(chunk, { onConflict: "topic_key,pyq_id" });
+    if (error) throw error;
+  });
+  onStep("linking");
+  const linked = await essayAutolink();
+  return { topics: items.length, mapped: rows.size, unmatched: [...unmatched], ...linked };
 }
