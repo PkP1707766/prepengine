@@ -18,6 +18,9 @@ const files = [
   "src/screens/ExamApp.jsx",
   "src/lib/i18n.jsx",
   "src/ui/BrochureButton.jsx",
+  "src/screens/EssayView.jsx",
+  "src/ui/CopyViewer.jsx",
+  "src/screens/MainsAdmin.jsx",
 ];
 
 let bad = 0;

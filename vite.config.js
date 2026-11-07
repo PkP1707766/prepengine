@@ -13,6 +13,9 @@ export default defineConfig({
           if (!id.includes('node_modules')) return
           if (id.includes('recharts') || id.includes('d3-') || id.includes('victory')) return 'charts'
           if (id.includes('@supabase')) return 'supabase'
+          // Only the admin's copy upload renders PDFs. Its own chunk keeps it
+          // out of the shared 'vendor' chunk every student downloads.
+          if (id.includes('pdfjs-dist')) return 'pdfjs'
           if (id.includes('lucide-react')) return 'icons'
           if (id.includes('react-dom') || id.includes('/react/') || id.includes('scheduler')) return 'react'
           return 'vendor'

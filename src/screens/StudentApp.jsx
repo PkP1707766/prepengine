@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Menu, CheckCircle2, BookOpen, Clock, Layers, Eye, Save, TrendingUp, Home, BarChart3, Trophy, User, Flame, Target, Award, Play, RotateCcw, Lock, Calendar, Bell, Zap, ArrowUp, ArrowDown, Medal, Sparkles, LogOut, Share2, Camera, Gift, Copy, Users, UserPlus, Wallet, IndianRupee, MessageSquare, Star, Send } from "lucide-react";
+import { FileText, GraduationCap, FolderOpen, Search, X, Check, ChevronRight, Menu, CheckCircle2, BookOpen, Clock, Layers, Eye, Save, TrendingUp, Home, BarChart3, Trophy, User, Flame, Target, Award, Play, RotateCcw, Lock, Calendar, Bell, Zap, ArrowUp, ArrowDown, Medal, Sparkles, LogOut, Share2, Camera, Gift, Copy, Users, UserPlus, Wallet, IndianRupee, MessageSquare, Star, Send, PenLine } from "lucide-react";
 import { AreaChart, Area, LineChart, Line, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
-import { EmptyState, ErrorState } from "../ui/Feedback.jsx";
+import { EmptyState, ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
 import * as DB from "../lib/db.js";
 import { fmtDate, fmtLongDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
 import { groupBySeries, seriesIn, shortTestTitle, titleIn } from "../lib/testOrder.js";
 import Pattern from "../ui/Pattern.jsx";
 import { ReviewCard, ReviewStyles } from "../ui/Review.jsx";
+
+// The Essay section is its own chunk, fetched the first time a student opens
+// it, so it adds nothing to the dashboard's first paint.
+const EssayView = React.lazy(() => import("./EssayView.jsx"));
 
 const StudentApp = (() => {
 /* ============================================================
@@ -2086,6 +2090,7 @@ function FeedbackView({ toast }) {
 const NAV = [
   { id: "home", key: "sd_home", icon: Home },
   { id: "tests", key: "sd_tests", icon: FileText },
+  { id: "essay", key: "sd_essay", icon: PenLine },
   { id: "performance", key: "sd_perf", icon: BarChart3 },
   { id: "batches", key: "sd_batches", icon: GraduationCap },
   { id: "materials", key: "sd_materials", icon: FolderOpen },
@@ -2095,7 +2100,7 @@ const NAV = [
   { id: "profile", key: "sd_profile", icon: User },
 ];
 const META_KEY = {
-  home: "sd_home", tests: "sd_tests", performance: "sd_perf", batches: "sd_batches",
+  home: "sd_home", tests: "sd_tests", essay: "sd_essay", performance: "sd_perf", batches: "sd_batches",
   materials: "sd_materials", leaderboard: "sd_leaderboard", refer: "sd_refer",
   feedback: "sd_feedback", profile: "sd_profile",
 };
@@ -2329,6 +2334,11 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
           <main className="content">
             {view === "home" && <HomeView go={go} setAnalysis={setAnalysis} onStart={onLaunchExam} />}
             {view === "tests" && <TestsView setAnalysis={setAnalysis} onStart={onLaunchExam} toast={toast} />}
+            {view === "essay" && (
+              <React.Suspense fallback={<SkeletonCards count={3} height={120} />}>
+                <EssayView onBrowse={onBrowse} />
+              </React.Suspense>
+            )}
             {view === "performance" && <PerformanceView go={go} />}
             {view === "batches" && <BatchesView go={go} onStart={onLaunchExam} toast={toast} />}
             {view === "materials" && <MaterialsView toast={toast} />}
