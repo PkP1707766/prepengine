@@ -2498,10 +2498,9 @@ export async function importEssayPyqs(items, onStep = () => {}) {
   return { themes: themeNames.size, pyqs: items.length, links: links.length };
 }
 
-/** Topper answers (any paper): toppers, link copies and answers, then links. */
-export async function importTopperAnswers(items, onStep = () => {}) {
-  const sb = await getSupabase();
-
+/** Toppers, link copies and answers from parsed items (topper answers or
+ *  topper essays). Existing rows are kept: every step ignores duplicates. */
+async function saveCopiesAndAnswers(sb, items, onStep) {
   onStep("toppers");
   const toppers = new Map();
   items.forEach((it) => {
@@ -2510,7 +2509,7 @@ export async function importTopperAnswers(items, onStep = () => {}) {
   });
   await inBatches([...toppers.values()], 500, async (chunk) => {
     const { error } = await sb.from("toppers").upsert(
-      chunk.map((t) => ({ name: t.name, rank: t.rank, cse_year: t.cseYear, note: t.note || null })),
+      chunk.map((t) => ({ name: t.name, rank: t.rank, cse_year: t.cseYear, note: t.note || null, essay_marks: t.essayMarks ?? null })),
       { onConflict: "name_key", ignoreDuplicates: true });
     if (error) throw error;
   });
@@ -2553,15 +2552,41 @@ export async function importTopperAnswers(items, onStep = () => {}) {
       .upsert(chunk, { onConflict: "copy_id,question_key,page_key", ignoreDuplicates: true });
     if (error) throw error;
   });
+  return { toppers: toppers.size, copies: copies.size, answers: answers.length };
+}
 
+/** Topper answers (any paper): toppers, link copies and answers, then links. */
+export async function importTopperAnswers(items, onStep = () => {}) {
+  const sb = await getSupabase();
+  const saved = await saveCopiesAndAnswers(sb, items, onStep);
   onStep("linking");
   const linked = await essayAutolink();
-  return { toppers: toppers.size, copies: copies.size, answers: answers.length, ...linked };
+  return { ...saved, ...linked };
+}
+
+/** The topper-essay tab: its similar-PYQ map, then each essay with its
+ *  writer and copy, then links. Either part may be empty. */
+export async function importTopperEssays(items, topics = [], onStep = () => {}) {
+  const sb = await getSupabase();
+  const map = topics.length ? await saveTopicMap(sb, topics, onStep) : { mapped: 0, unmatched: [] };
+  const saved = items.length ? await saveCopiesAndAnswers(sb, items, onStep) : { toppers: 0, copies: 0, answers: 0 };
+  onStep("linking");
+  const linked = await essayAutolink();
+  return { essays: saved.answers, copies: saved.copies, writers: saved.toppers, mapped: map.mapped, ...linked, unmatched: map.unmatched };
 }
 
 /** "Similar PYQs" per mock topic: essay_topic_map, then links. */
 export async function importTopicMap(items, onStep = () => {}) {
   const sb = await getSupabase();
+  const { mapped, unmatched } = await saveTopicMap(sb, items, onStep);
+  onStep("linking");
+  const linked = await essayAutolink();
+  return { topics: items.length, mapped, unmatched, ...linked };
+}
+
+/** essay_topic_map rows for each topic's similar PYQs, matched by year and
+ *  topic (or topic alone). Returns how many rows and which PYQs had no match. */
+async function saveTopicMap(sb, items, onStep) {
   onStep("matching");
   const pyqs = await essayPyqs({ includeDrafts: true });
   const byKeyYear = new Map(pyqs.map((p) => [`${p.year}|${essayKey(p.topic)}`, p.id]));
@@ -2591,7 +2616,5 @@ export async function importTopicMap(items, onStep = () => {}) {
     const { error } = await sb.from("essay_topic_map").upsert(chunk, { onConflict: "topic_key,pyq_id" });
     if (error) throw error;
   });
-  onStep("linking");
-  const linked = await essayAutolink();
-  return { topics: items.length, mapped: rows.size, unmatched: [...unmatched], ...linked };
+  return { mapped: rows.size, unmatched: [...unmatched] };
 }

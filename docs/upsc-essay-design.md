@@ -31,17 +31,21 @@ Topics, names and questions meet through `essay_key()`: lowercase letters and di
 
 ## 3. Getting data in
 
-Admin → Mains & Essay → Import sheets. Export each Google Sheet tab as CSV (File → Download → Comma-separated values) and add it. The importer recognises three layouts by their header row, wherever it sits:
+Admin → Mains & Essay → Import sheets. Export each Google Sheet tab as CSV (File → Download → Comma-separated values) and add it; several files can be picked at once. The importer recognises these layouts by their header row, wherever it sits:
 
 | Layout | Header | Creates |
 |---|---|---|
 | PYQs with categories | `PYQ`, `Categories…` (cells like `Truth knows no color.(2025)` and `{Justice(70), Power(80)}`) | themes, PYQs, theme links with confidence |
+| Topper essays | `File name`, `Topper Copy (Hand written)`, `Question from Topper Copy`, `Similar PYQs…`; optional `Topper`, `Source`, `AIR`, `Essay marks` | the similar-PYQ map, then writers, link copies and essay answers (no start page) |
 | Topper answers | `Subject, Year, Rank, Topper, Coaching, Question, Page, Link` | toppers, link copies (one per PDF, `#page` stripped), answers with their start page |
 | Similar-PYQ map | `Question from Topper Copy`, `Similar PYQs…` (entries like `Topic.(2025) (Confidence: 90)`) | `essay_topic_map` rows |
+| Link list | `file_name`, `drive_id` | nothing by itself: it resolves the topper-essay tab's file names |
 
-Import them in that order: PYQs first, so the other two have something to link to. Each import ends by running `essay_autolink()`, which links every essay answer whose topic matches a PYQ (exact) or appears in the map (related). Re-importing a newer export is safe: every step is an upsert that ignores duplicates, so existing rows, including any an admin edited, are kept.
+Import the PYQs first, so the others have something to link to; then the topper essays; then the topper answers. Each import ends by running `essay_autolink()`, which links every essay answer whose topic matches a PYQ (exact) or appears in the map (related). Re-importing a newer export is safe: every step is an upsert that ignores duplicates, so existing rows, including any an admin edited, are kept.
 
-The importer also repairs what the sheets carry: `Q.2)` prefixes, `â€™`-style mojibake, `2025, 2024, 2023` against `217, 267, 297` (the best rank and its year are shown; every attempt goes in the note), and coaching names ("Forumias" becomes "Forum IAS"). Rows with no link or no question are skipped and listed with the reason.
+**The topper-essay tab** needs its HandwrittenLinks list picked with it: the tab's copy links are `HYPERLINK(VLOOKUP(…))` formulas, and a CSV export keeps only the word "Link". The importer matches each file name to its Drive file and links the copy there (`…/file/d/<id>/view`); a Drive link opens at the first page, since Drive's viewer ignores `#page`. The writer comes from the file name ("VisionIAS Toppers Answer Booklet <Name>_<n>.pdf", "<Name> AIR211 Essay(149)-1.pdf", "<Name> - Essay …"). A row whose file name names nobody ("1.pdf", "230718 Essay Practice.pdf") is skipped and listed: some of these are evaluated practice copies, not toppers'. A `Topper` column replaces the file name as the source of the writer, so a reviewed CSV can name them and be imported again. The TypedLinks list (machine transcripts of the same copies) is recognised but not imported yet. The essay tab alone, without a link list, still imports its similar-PYQ map.
+
+The importer also repairs what the sheets carry: `Q.2)` prefixes, `â€™`-style mojibake, a stray ` Domain` glued onto some topics (`…a selfish medium Domain.(2017)`), `2025, 2024, 2023` against `217, 267, 297` (the best rank and its year are shown; every attempt goes in the note), and coaching names ("Forumias" becomes "Forum IAS", "Vision" Vision IAS, "Mgp" Forum IAS). Rows with no link or no question are skipped and listed with the reason.
 
 ## 4. Hosting a copy
 
@@ -72,8 +76,11 @@ The reader paints pages onto canvases, so no image URL sits in the page. It load
 
 ## 6. Still to decide or do
 
-- **Apply 0028**, then tick Mains on the bundle(s) that should include it.
-- **Which copies to host.** Most sheet rows link to coaching institutes' own PDFs; linking does not re-publish their work, hosting does.
+- **Tick Mains** on the bundle(s) that should include it (0028 is applied).
+- **Which copies to host.** Most sheet rows link to coaching institutes' own PDFs, or to Drive copies of them; linking does not re-publish their work, hosting does. A Drive link depends on its owner keeping it shared.
+- **Writers for the unnamed essay copies.** 48 copies in the topper-essay tab name no writer; fill a `Topper` column only where the writer is known.
+- **The topper-answer sheet** needs its names and ranks reviewed before import: its AIR disagrees with the publisher's own file name on 72 copies, a few names are misspellings of another topper's, and its essay rows are mostly headings from inside the essays rather than topics. 117 of its 626 PDF links are dead (nextias.com and cdn.visionias.in).
+- **Typed transcripts.** Import their text (not just a link) when search and Learn to Write need it.
 - **Hindi.** Theme and PYQ Hindi fields fall back to English when empty, and the admin flags each missing one in red. UPSC's own Hindi wording is the source to use for PYQs.
 - **Builds need Node 22.13 or newer**, because pdf.js 5 requires it.
 

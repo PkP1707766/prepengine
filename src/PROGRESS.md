@@ -1,6 +1,6 @@
 # JUNOONIAS — Market-Launch Readiness Tracker
 
-Last updated: 7 Nov 2026
+Last updated: 8 Nov 2026
 
 Status key: 🔴 Not started · 🟡 In progress · 🟢 Done & verified
 
@@ -28,6 +28,42 @@ made it "demo mode", and all three are fixed:
    heatmap and the "980 students / rank #88" figures were all hardcoded arrays.
    Every one is now a real query, with an honest empty state when there is no
    data yet.
+
+---
+
+## 8 Nov 2026 — Mains: the topper-essay tab imports with its copies
+
+The essay sheet's richest tab has one row per essay a topper wrote: the
+copy's file name, the essay topic and its similar PYQs. Until now only its
+similar-PYQ column imported, because its copy links are spreadsheet formulas
+and a CSV export keeps just the word "Link". The importer now reads that tab
+together with its HandwrittenLinks list (pick both files at once). Each file
+name resolves to its Drive PDF, and the writer comes from the file name
+("VisionIAS Toppers Answer Booklet <Name>", "<Name> AIR211 Essay(149)",
+"<Name> - Essay …"). One import saves the similar-PYQ map, the writers, the
+copies (as links to the Drive PDFs) and the essays, then runs the
+autolinker. Rows whose file name names no writer ("1.pdf", "230718 Essay
+Practice.pdf") are skipped and listed, since some are evaluated practice
+copies rather than toppers'. A Topper column (with optional Source, AIR and
+Essay marks) overrides the file name, so a reviewed CSV can name them later.
+
+In a dry run on the real sheet: 233 essays in 118 copies by 68 writers, and
+73 rows skipped for having no writer. With the PYQs imported first, every
+essay links to at least one PYQ (3 exact, 1,345 related links), and 89 of
+the 96 PYQs get topper essays. The admin's import screen now takes several
+files at once and says what each one is.
+
+Also: topics with a stray " Domain" glued on by the sheet ("…a selfish
+medium Domain.(2017)") are cleaned on import, so a raw re-export no longer
+adds duplicate PYQs; and the coaching names "Vision" and "Mgp" now read as
+Vision IAS and Forum IAS. Typed transcripts (the TypedLinks list) are not
+imported yet. No migration.
+
+Checked: the parser on the real exports in every combination (both lists,
+the essay tab alone, link lists alone, two data sheets, unnamed lists), the
+other three layouts unchanged, the import preview in the dev harness with
+the real files (nothing imported there: its writes go to the live database),
+eslint on the changed files, css:check, i18n and build.
 
 ---
 
