@@ -45,3 +45,19 @@ The subject mixes are counted from the tagged papers in `pyq-analysis-upsc/upsc_
 - **Economy is the most saturated subject.** The overlap scan caught eight Level 1-3 repeats while it was being drafted: bond-index inclusion, the UPI credit line, the shipbuilding package, commercial coal mining, the 2019 corporate tax cut, Namo Drone Didi, Ways and Means Advances, and PM Vishwakarma and e-Shram. Elsewhere it caught Article 276, Selvi, the Paris Agreement's Article 2.1(c) (already in Simulator 1), polarised sunglasses and the satellite-versus-cable question.
 - **Search every spelling, then run the scan.** A term sweep that returns nothing is not enough. The bank often words the same fact differently, as with "commercial mining of coal" or "the index from June 2024", so only the scan catches it.
 - Simulator 2's 24 current-affairs rows are written in March-April 2027.
+
+**Simulator 3 (shape C)** has its 86 static drafts written and loaded into the database as drafts, with the database matching the build field by field.
+
+- Cells match the targets exactly: 34 hard and 5 easy. Answer keys are a 21, b 22, c 21 and d 22.
+- It follows the 2026 paper:
+  - most multi-statement items use combination codes, built with `ca_common.combo`;
+  - there are 9 List-I/List-II items, built with `ca_common.MX`;
+  - there are only 3 Statement-I/II items.
+- The overlap scan caught several repeats, all of them replaced:
+  - cyclone naming (Level 3 Test 2);
+  - the deficit definitions and off-budget borrowing;
+  - the Fisher relation;
+  - the Trade Unions Act, 1926;
+  - the radio-window statements;
+  - the blue-sky scattering statement.
+- Simulator 3's 14 current-affairs rows are written in April 2027.
