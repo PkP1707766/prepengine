@@ -21,7 +21,7 @@ const defined = new Set([...i18n.matchAll(anyKeyRe)].map((m) => m[1]));
 const files = [
   "src/screens/PublicSite.jsx", "src/screens/StudentApp.jsx", "src/screens/ExamApp.jsx",
   "src/screens/ContentPages.jsx", "src/screens/JoinScreen.jsx", "src/screens/LoginScreen.jsx",
-  "src/screens/authChrome.jsx",
+  "src/screens/authChrome.jsx", "src/screens/EssayView.jsx", "src/ui/CopyViewer.jsx",
 ];
 const used = new Map();
 for (const f of files) {

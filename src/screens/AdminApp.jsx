@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { LayoutDashboard, ListChecks, FileText, GraduationCap, FolderOpen, Users, IndianRupee, Plus, Search, Pencil, Trash2, X, Upload, Check, ChevronRight, Menu, AlertCircle, CheckCircle2, Clock, Layers, Eye, EyeOff, Save, ArrowLeft, TrendingUp, Sparkles, Newspaper, Tag, LogOut, Download, Gift, MessageSquare, Star, MonitorPlay } from "lucide-react";
+import { useState, useEffect, useMemo, useRef, useCallback, lazy, Suspense } from "react";
+import { LayoutDashboard, ListChecks, FileText, GraduationCap, FolderOpen, Users, IndianRupee, Plus, Search, Pencil, Trash2, X, Upload, Check, ChevronRight, Menu, AlertCircle, CheckCircle2, Clock, Layers, Eye, EyeOff, Save, ArrowLeft, TrendingUp, Sparkles, Newspaper, Tag, LogOut, Download, Gift, MessageSquare, Star, MonitorPlay, PenLine } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { DiyaLogo } from "../ui/Brand.jsx";
 import { ChromeControls } from "../lib/i18n.jsx";
@@ -9,6 +9,10 @@ import { generateTest, testDurationFor, UPSC_PAPER_FORMATS, upscPaperFormat } fr
 import { fmtINR, fmtLongDate, initials, uid } from "../lib/format.js";
 import { sortTests, groupBySeries, seriesLabel } from "../lib/testOrder.js";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
+
+// Loaded only when an admin opens it: it carries the CSV importer, and its
+// PDF upload pulls in pdf.js. Neither belongs in the bundle students get.
+const MainsAdmin = lazy(() => import("./MainsAdmin.jsx"));
 
 const AdminApp = (() => {
 /* ============================================================
@@ -1812,6 +1816,7 @@ const NAV = [
     { id: "courses", label: "Courses & Batches", icon: GraduationCap },
     { id: "materials", label: "Free Materials", icon: FolderOpen },
     { id: "content", label: "Public Content", icon: Newspaper },
+    { id: "mains", label: "Mains & Essay", icon: PenLine },
   ]},
   { group: "People & Revenue", items: [
     { id: "students", label: "Students", icon: Users },
@@ -1833,6 +1838,7 @@ const PAGE_META = {
   courses: { title: "Courses & Batches", sub: "Organise your offerings and pricing" },
   materials: { title: "Free Materials", sub: "PDFs, notes and videos for students" },
   content: { title: "Public Content", sub: "Syllabus, PYQ, NCERT, current affairs and FAQ" },
+  mains: { title: "Mains & Essay", sub: "Essay PYQs, themes and topper copies" },
   students: { title: "Students", sub: "Enrolled learners and their activity" },
   sales: { title: "Sales", sub: "Revenue and transactions" },
 };
@@ -2170,6 +2176,11 @@ function App({ onLogout }) {
           {view === "exams" && <Exams {...{ toast, askDelete }} />}
           {view === "coupons" && <Coupons {...{ toast, askDelete }} />}
           {view === "content" && <Content {...{ toast, askDelete }} />}
+          {view === "mains" && (
+            <Suspense fallback={<SkeletonCards count={2} height={120} />}>
+              <MainsAdmin {...{ toast, askDelete }} />
+            </Suspense>
+          )}
           {view === "students" && <Students toast={toast} />}
           {view === "referrals" && <Referrals />}
           {view === "feedback" && <Feedback toast={toast} />}
@@ -2779,7 +2790,7 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
   const [f, setF] = useState(initial || {
     code: "", name: "", exam: "upsc", tagline: "", description: "",
     price: "", mrp: "", durationDays: 365, features: [], isActive: true, sortOrder: 0,
-    brochureUrl: null,
+    brochureUrl: null, includesMains: undefined,
   });
   const [featureText, setFeatureText] = useState((initial?.features || []).join("\n"));
   const [err, setErr] = useState("");
@@ -2932,6 +2943,14 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
         <div className="seg">
           <button type="button" className={f.isActive ? "on" : ""} onClick={() => set("isActive", true)}>Live on the site</button>
           <button type="button" className={!f.isActive ? "on" : ""} onClick={() => set("isActive", false)}>Hidden</button>
+        </div>
+      </Field>
+
+      <Field label="Mains: Essay and topper copies"
+             hint="Holders of this bundle can open every topper copy in the Essay section. Copies marked Free open for every student either way.">
+        <div className="seg">
+          <button type="button" className={f.includesMains ? "on" : ""} onClick={() => set("includesMains", true)}>Included</button>
+          <button type="button" className={!f.includesMains ? "on" : ""} onClick={() => set("includesMains", false)}>Not included</button>
         </div>
       </Field>
     </Modal>

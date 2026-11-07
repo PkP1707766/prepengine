@@ -561,3 +561,140 @@ export const FX_ADMIN_FEEDBACK = Array.from({ length: 7 }, (_, i) => ({
   reply: i % 4 === 3 ? "Fixed and deployed. Thanks for the report." : "",
   at: new Date(Date.now() - i * 2 * 86400000).toISOString(),
 }));
+
+/* ---------------------------------------------------------------- mains --
+   Essay PYQs are UPSC's real topics; toppers, ranks and marks are invented,
+   in this file's usual awkward lengths. Themes are named like the categories
+   our PYQ sheet carries. Copies 1 and 3 are hosted (their pages
+   are drawn below as SVG answer-booklet pages); copy 2 is a link copy. */
+
+const TH = (id, name, nameHi = "") => ({ id, slug: id, name, nameHi, parentId: null, sortOrder: 0 });
+export const FX_ESSAY_THEMES = [
+  TH("th-happy", "Happiness", "सुख"),
+  TH("th-self", "Self-discovery or journey of life", "आत्म-खोज और जीवन-यात्रा"),
+  TH("th-wisdom", "Knowledge & Wisdom", "ज्ञान और विवेक"),
+  TH("th-mind", "Mindfulness or inner work or tranquility"),
+  TH("th-justice", "Justice", "न्याय"),
+  TH("th-power", "Power", "शक्ति"),
+  TH("th-rise", "Rising every time we fall/failure/facing challenges"),
+  TH("th-excel", "Excellence or Perfection"),
+  TH("th-env", "Environment Sustainability", "पर्यावरणीय स्थिरता"),
+  TH("th-tech", "Technology/AI", "प्रौद्योगिकी और AI"),
+  TH("th-edu", "Education", "शिक्षा"),
+  TH("th-fem", "Feminism & Patriarchy"),
+];
+
+const PQ = (id, year, topic, themes, essayCount = 0, exactCount = 0, topicHi = "") =>
+  ({ id, year, qNo: null, section: "", topic, topicHi, isPublished: true,
+     themes: themes.map(([tid, c]) => ({ id: tid, confidence: c })), essayCount, exactCount });
+
+export const FX_ESSAY_PYQS = [
+  PQ("pq-1", 2025, "Truth knows no color.", [["th-justice", 70]]),
+  PQ("pq-2", 2025, "The supreme art of war is to subdue the enemy without fighting.", [["th-power", 80], ["th-wisdom", 60]], 2, 0),
+  PQ("pq-3", 2025, "Best lessons are learnt through bitter experiences.", [["th-rise", 90], ["th-self", 70]], 1, 0),
+  PQ("pq-4", 2025, "Contentment is natural wealth; luxury is artificial poverty.", [["th-happy", 90], ["th-mind", 70]]),
+  PQ("pq-5", 2024, "There is no path to happiness; Happiness is the path.", [["th-happy", 90], ["th-self", 70]], 3, 2,
+     "सुख का कोई मार्ग नहीं है; सुख स्वयं मार्ग है।"),
+  PQ("pq-6", 2024, "Forests precede civilizations and deserts follow them.", [["th-env", 90]]),
+  PQ("pq-7", 2024, "The empires of the future will be the empires of the mind.", [["th-wisdom", 90], ["th-tech", 60]]),
+  PQ("pq-8", 2023, "Thinking is like a game; it does not begin unless there is an opposite team.", [["th-wisdom", 80]]),
+  PQ("pq-9", 2022, "A ship in harbour is safe, but that is not what ship is for.", [["th-rise", 85], ["th-self", 70]], 1, 0),
+  PQ("pq-10", 2019, "Courage to accept and dedication to improve are two keys to success.", [["th-excel", 90], ["th-rise", 70]], 2, 0),
+  PQ("pq-11", 2017, "Destiny of a nation is shaped in its classrooms.", [["th-edu", 90]]),
+  PQ("pq-12", 2015, "Lending hands to someone is better than giving a dole.", [["th-justice", 80]]),
+  PQ("pq-13", 2015, "Education without values, as useful as it is, seems rather to make a man more clever devil.",
+     [["th-edu", 90], ["th-justice", 60]]),
+  PQ("pq-14", 2021, "Hand that rocks the cradle rules the world.", [["th-fem", 90]]),
+];
+
+const TOP = {
+  t1: { id: "tp-1", name: "Aishwaryalakshmi Venkatasubramanian", rank: 7, cseYear: 2024, essayMarks: 151 },
+  t2: { id: "tp-2", name: "Raghvendra Pratap Singh Chauhan", rank: 112, cseYear: 2023, essayMarks: 128 },
+  t3: { id: "tp-3", name: "Zoya Khan", rank: 289, cseYear: 2025, essayMarks: null },
+};
+const COPY = {
+  c1: { copyId: "fxc-1", source: "Vision IAS", title: "Essay test 12", writtenYear: 2024, sourceUrl: "", pageCount: 27, hosted: true, isFree: true },
+  c2: { copyId: "fxc-2", source: "Forum IAS", title: "Mains guidance copy 3", writtenYear: 2023, sourceUrl: "https://example.org/forum-ias/sample-copy-3.pdf", pageCount: 0, hosted: false, isFree: false },
+  c3: { copyId: "fxc-3", source: "Next IAS", title: "Essay practice 4", writtenYear: 2025, sourceUrl: "", pageCount: 19, hosted: true, isFree: false },
+};
+const ANS = (answerId, copy, topper, question, startPage, endPage, links) => ({
+  answerId, paper: "essay", paperLabel: "", question, startPage, endPage, ...copy, isPublished: true, topper, links,
+});
+const FX_ANSWERS = [
+  ANS("fa-1", COPY.c1, TOP.t1, "There is no path to happiness. Happiness is the path.", 3, 14, [["pq-5", "exact", 100]]),
+  ANS("fa-2", COPY.c1, TOP.t1, "Gentle persuasion succeeds where force fails.", 15, 27, [["pq-2", "related", 85]]),
+  ANS("fa-3", COPY.c2, TOP.t2, "There is no path to happiness; happiness is the path.", 17, null, [["pq-5", "exact", 100]]),
+  ANS("fa-4", COPY.c2, TOP.t2, "Champions keep playing until they get it right.", 5, null, [["pq-10", "related", 90], ["pq-3", "related", 60]]),
+  ANS("fa-5", COPY.c3, TOP.t3, "Joy is the simplest form of gratitude.", 2, 10, [["pq-5", "related", 70]]),
+  ANS("fa-6", COPY.c3, TOP.t3, "A smooth sea never made a skilled sailor.", 11, 19, [["pq-9", "related", 90], ["pq-10", "related", 75], ["pq-2", "related", 55]]),
+];
+
+export function fxLibrary({ sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
+  const needle = q.trim().toLowerCase();
+  let list = FX_ANSWERS.filter((a) => (!year || a.writtenYear === year)
+    && (!needle || a.question.toLowerCase().includes(needle) || a.topper.name.toLowerCase().includes(needle)));
+  list = list.slice().sort((a, b) => sort === "marks"
+    ? (b.topper.essayMarks ?? -1) - (a.topper.essayMarks ?? -1) || b.writtenYear - a.writtenYear
+    : sort === "oldest" ? a.writtenYear - b.writtenYear : b.writtenYear - a.writtenYear);
+  return { items: list.slice(offset, offset + limit).map((a) => ({ ...a, links: undefined })), total: list.length };
+}
+
+export function fxLibraryYears() {
+  return [...new Set(FX_ANSWERS.map((a) => a.writtenYear))].sort((a, b) => b - a);
+}
+
+export function fxEssaysForPyq(pyqId) {
+  return FX_ANSWERS.flatMap(({ links, ...a }) =>
+    links.filter(([p]) => p === pyqId).map(([, kind, confidence]) => ({ ...a, kind, confidence })));
+}
+
+export function fxAdminCopies({ q = "" } = {}) {
+  const needle = q.trim().toLowerCase();
+  const items = Object.values(COPY).map((c) => {
+    const answers = FX_ANSWERS.filter((a) => a.copyId === c.copyId);
+    return {
+      id: c.copyId, source: c.source, title: c.title, writtenYear: c.writtenYear, sourceUrl: c.sourceUrl,
+      pageCount: c.pageCount, hosted: c.hosted, isFree: c.isFree, isPublished: true,
+      topper: answers[0].topper, answerCount: answers.length,
+    };
+  }).filter((c) => !needle || c.topper.name.toLowerCase().includes(needle));
+  return { items, total: items.length };
+}
+
+export function fxCopyAnswers(copyId) {
+  return FX_ANSWERS.filter((a) => a.copyId === copyId).map((a) => ({
+    id: a.answerId, paper: "essay", paperLabel: "", question: a.question,
+    startPage: a.startPage ?? "", endPage: a.endPage ?? "",
+    links: a.links.map(([pyqId, kind, confidence]) => ({ pyqId, kind, confidence })),
+  }));
+}
+
+/* A ruled answer-booklet page with wavy "handwriting", page number and a
+   heading on the pages where a fixture essay starts. Deterministic per
+   (copy, page), so a page looks the same every time it is drawn. */
+export function fxPageImage(copyId, page) {
+  let seed = [...`${copyId}:${page}`].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7);
+  const rnd = () => ((seed = (seed * 1103515245 + 12345) >>> 0) / 4294967296);
+  const W = 1240, H = 1754;
+  const starts = FX_ANSWERS.filter((a) => a.copyId === copyId && a.startPage === page);
+  const lines = [];
+  for (let y = 300; y < H - 140; y += 58) {
+    const x0 = 190, x1 = x0 + 640 + rnd() * 330;
+    let d = `M${x0} ${y}`;
+    for (let x = x0; x < x1; x += 34) d += ` q8 ${-10 - rnd() * 8} 17 0 t17 0`;
+    lines.push(`<path d="${d}" fill="none" stroke="#24318f" stroke-width="3.2" stroke-linecap="round" opacity="${0.75 + rnd() * 0.2}"/>`);
+  }
+  const rules = Array.from({ length: Math.floor((H - 420) / 58) }, (_, i) =>
+    `<line x1="160" x2="${W - 70}" y1="${312 + i * 58}" y2="${312 + i * 58}" stroke="#c9d6ea" stroke-width="2"/>`).join("");
+  const heading = starts.map((a) =>
+    `<text x="620" y="250" font-family="Georgia,serif" font-size="40" text-anchor="middle" fill="#1d2a6e" font-style="italic">${a.question.replace(/[<&>]/g, "").slice(0, 48)}</text>`).join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`
+    + `<rect width="${W}" height="${H}" fill="#fffef9"/>`
+    + `<rect x="60" y="60" width="${W - 120}" height="120" fill="none" stroke="#333" stroke-width="3"/>`
+    + `<text x="${W / 2}" y="138" font-family="Georgia,serif" font-size="56" text-anchor="middle" fill="#222">ANSWER BOOKLET</text>`
+    + `<line x1="150" x2="150" y1="200" y2="${H - 90}" stroke="#d24a5e" stroke-width="3"/>`
+    + rules + heading + lines.join("")
+    + `<text x="${W / 2}" y="${H - 50}" font-family="Georgia,serif" font-size="34" text-anchor="middle" fill="#555">— ${page} —</text>`
+    + `</svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
