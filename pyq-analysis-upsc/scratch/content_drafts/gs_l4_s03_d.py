@@ -1,0 +1,175 @@
+# -*- coding: utf-8 -*-
+"""Level 4 · Simulator 3 (GS Paper I full mock, Layout C: the 2026 shape) -- part D: Geography (9)
+(upsc_l4_gs_cell_targets.mjs 3).
+Every tested proposition was swept against the whole UPSC bank and no row tests it: Rossby waves; temperate
+rainforests; the Dharwar, Cuddapah, Vindhyan and Gondwana systems; the Pat lands and the
+Telangana plateau; the Rihand and Singrauli; the laterisation origin of bauxite; the Raika, Monpa, Kuruma and Dhangar
+pastoralists; Nunavut; Luzon, Mindanao and Zanzibar. MCQ keys are pinned (pos)."""
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+import draft_common as d
+from draft_common import S, M, A, write
+from ca_common import combo, MX
+from bilingual import combo_hi
+
+d.SUBJECT = "Geography"
+d.REQUIRE_CRAFT = True
+
+def SC(topic, diff, body, body_hi, st, st_hi, truth, pos, expl, expl_hi, cite, cg, craft):
+    opts = combo(truth, pos)
+    S(topic, diff, body, body_hi, st, st_hi, None, pos, expl, expl_hi, cite, cg, opts=opts, opts_hi=[combo_hi(o) for o in opts], craft=craft)
+
+# ---------------------------------------------------------------- Climatology & Biomes (MCQ, hard)
+M("Climatology & Biomes", "hard", "Rossby waves in the atmosphere are",
+  "वायुमंडल में रॉस्बी तरंगें क्या हैं?",
+  ["large meanders in the upper-level westerly winds, caused by the Earth's rotation",
+   "sea waves set off by undersea earthquakes that can cross entire oceans at great speed",
+   "seismic surface waves that travel along the Earth's crust after a large earthquake",
+   "pressure waves from thunderstorms that bring sudden gusts of wind to coastal areas"],
+  ["ऊपरी स्तर की पछुआ हवाओं में बड़े घुमाव, जो पृथ्वी के घूर्णन से होते हैं",
+   "समुद्र के नीचे के भूकंपों से उठी समुद्री तरंगें जो बड़ी गति से पूरे महासागर पार कर सकती हैं",
+   "बड़े भूकंप के बाद पृथ्वी की भूपर्पटी के साथ चलने वाली भूकंपीय सतही तरंगें",
+   "गरज वाले तूफ़ानों से उठी दाब तरंगें जो तटीय क्षेत्रों में अचानक तेज़ हवा लाती हैं"],
+  0,
+  "Named after the meteorologist Carl-Gustaf Rossby, these planetary waves are huge north-south loops in the westerlies and the jet streams of the upper air. They arise because the Coriolis effect grows with latitude, which steers moving air back towards its original latitude and so sets up the meanders. Ridges and troughs in these waves steer the depressions of the mid-latitudes, and when a pattern gets stuck -- a 'blocking' pattern -- the result can be a long heatwave, cold spell or flood, including winter western disturbances over north India. "
+  "Tsunamis, seismic surface waves and gust fronts are the other options, none of them connected with the Rossby mechanism; slow Rossby waves also exist in the oceans, moving across the basins over months and years.",
+  "मौसम-विज्ञानी कार्ल-गुस्ताफ़ रॉस्बी के नाम पर ये ग्रहीय तरंगें पछुआ हवाओं और ऊपरी वायु की जेट धाराओं में उत्तर-दक्षिण के विशाल घुमाव हैं। ये इसलिए बनती हैं कि कोरिऑलिस प्रभाव अक्षांश के साथ बढ़ता है, जो चलती हवा को उसके मूल अक्षांश की ओर वापस मोड़ता है और इस प्रकार घुमाव बनाता है। इन तरंगों के कटक और गर्त मध्य अक्षांशों के अवदाबों को दिशा देते हैं, और जब कोई प्रतिरूप अटक जाता है -- 'ब्लॉकिंग' प्रतिरूप -- तो परिणाम लंबी लू, शीत लहर या बाढ़ हो सकता है, जिसमें उत्तर भारत के ऊपर शीतकालीन पश्चिमी विक्षोभ भी शामिल हैं। "
+  "अन्य विकल्प सुनामी, भूकंपीय सतही तरंगें और झोंका-अग्रभाग हैं, जिनमें से कोई रॉस्बी क्रियाविधि से नहीं जुड़ा; धीमी रॉस्बी तरंगें महासागरों में भी होती हैं, जो महीनों और वर्षों में द्रोणियों को पार करती हैं।",
+  "India Meteorological Department; NCERT, Class XI, Fundamentals of Physical Geography, chapter on atmospheric circulation.",
+  "l4-s03-geo-rossby-waves-westerlies-blocking", pos=2, craft="precision")
+
+# ---------------------------------------------------------------- Climatology & Biomes (statement, medium)
+SC("Climatology & Biomes", "medium", "With reference to the temperate rainforests of the world, consider the following statements:",
+   "विश्व के शीतोष्ण वर्षावनों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+   ["They grow on mid-latitude west coasts where moist westerly winds meet mountains, as in the Pacific Northwest of North America.",
+    "The Valdivian rainforest of southern Chile lies on the western side of the Andes.",
+    "They get most of their rain from afternoon convectional thunderstorms, as the equatorial forests do.",
+    "The west of Tasmania has temperate rainforest."],
+   ["ये मध्य अक्षांशों के पश्चिमी तटों पर उगते हैं जहाँ आर्द्र पछुआ हवाएँ पर्वतों से टकराती हैं, जैसे उत्तरी अमेरिका के प्रशांत उत्तर-पश्चिम में।",
+    "दक्षिणी चिली का वाल्दिवियन वर्षावन एंडीज़ के पश्चिमी भाग में स्थित है।",
+    "भूमध्यरेखीय वनों की तरह इन्हें अधिकांश वर्षा दोपहर बाद की संवहनी गरज वाली वर्षा से मिलती है।",
+    "तस्मानिया के पश्चिमी भाग में शीतोष्ण वर्षावन हैं।"],
+   (1, 1, 0, 1), 0,
+   "Statements 1, 2 and 4 are correct. Temperate rainforests need heavy rain spread through the year and mild temperatures, which occur where the westerlies blow in from a cool ocean and are forced up by coastal mountains: the coast from northern California to Alaska, southern Chile, western Tasmania, New Zealand's South Island and parts of Norway. The Valdivian rainforest of Chile, on the windward western slopes of the Andes, is cut off from other forests by the Atacama desert and the mountains, and has many species found nowhere else. "
+   "Statement 3 is wrong: their rain is orographic and frontal, brought by the depressions of the westerlies, often as long spells of steady rain and fog rather than daily convectional storms. The cool, wet conditions let fallen trees decay slowly, so these forests store more carbon per hectare than almost any other.",
+   "केवल कथन 1, 2 और 4 सही हैं। शीतोष्ण वर्षावनों को वर्ष भर फैली भारी वर्षा और मृदु तापमान चाहिए, जो वहाँ मिलते हैं जहाँ पछुआ हवाएँ ठंडे महासागर से आती हैं और तटीय पर्वतों द्वारा ऊपर उठने को विवश होती हैं: उत्तरी कैलिफ़ोर्निया से अलास्का तक का तट, दक्षिणी चिली, पश्चिमी तस्मानिया, न्यूज़ीलैंड का दक्षिणी द्वीप और नॉर्वे के कुछ भाग। एंडीज़ की पवनमुखी पश्चिमी ढलानों पर चिली का वाल्दिवियन वर्षावन अटाकामा मरुस्थल और पर्वतों के कारण अन्य वनों से कटा हुआ है, और इसमें ऐसी अनेक प्रजातियाँ हैं जो कहीं और नहीं मिलतीं। "
+   "कथन 3 ग़लत है: इनकी वर्षा पर्वतकृत और वाताग्री होती है, जो पछुआ हवाओं के अवदाब लाते हैं, प्रायः दैनिक संवहनी तूफ़ानों के बजाय लगातार वर्षा और कोहरे की लंबी अवधियों के रूप में। ठंडी, आर्द्र दशाओं में गिरे पेड़ धीरे सड़ते हैं, इसलिए ये वन प्रति हेक्टेयर लगभग किसी भी अन्य वन से अधिक कार्बन संग्रहित करते हैं।",
+   "NCERT, Class XI, Fundamentals of Physical Geography, chapters on world climate and on biodiversity; UNESCO World Heritage Centre (Tasmanian Wilderness).",
+   "l4-s03-geo-temperate-rainforests-valdivian-tasmania", "precision")
+
+# ---------------------------------------------------------------- Geomorphology & Earth's Interior (statement, hard)
+SC("Geomorphology & Earth's Interior", "hard", "With reference to the rock systems of India, consider the following statements:",
+   "भारत के शैल तंत्रों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+   ["The Dharwar rocks are important for iron ore and for gold.",
+    "The Gondwana rocks hold most of India's petroleum.",
+    "The Cuddapah basin in Andhra Pradesh hosts the uranium deposit of Tummalapalle.",
+    "The Vindhyan system has supplied building sandstones and hosts the diamond-bearing beds of Panna."],
+   ["धारवाड़ शैल लौह अयस्क और सोने के लिए महत्त्वपूर्ण हैं।",
+    "गोंडवाना शैलों में भारत का अधिकांश पेट्रोलियम है।",
+    "आंध्र प्रदेश की कडप्पा द्रोणी में तुम्मलपल्ले का यूरेनियम निक्षेप है।",
+    "विंध्य तंत्र ने भवन-निर्माण के बलुआ पत्थर दिए हैं और इसमें पन्ना के हीरा-युक्त स्तर हैं।"],
+   (1, 0, 1, 1), 3,
+   "Statements 1, 3 and 4 are correct. The Dharwar system, among India's oldest metamorphosed rocks, holds the schist belts of Karnataka and neighbouring areas, with iron ore in the Bababudan hills and gold at Kolar and Hutti. The Cuddapah basin, of Proterozoic age, is known for its slates and quartzites and for the stratabound uranium deposit of Tummalapalle. The Vindhyan rocks provided the red and buff sandstones used in monuments such as Sanchi and the Red Fort, and their conglomerates in the Panna belt yield diamonds. "
+   "Statement 2 is wrong: the Gondwana rocks, laid down in river basins such as the Damodar and the Mahanadi, hold about 98 per cent of India's coal; petroleum occurs mostly in younger Tertiary sedimentary rocks, as in Assam, Gujarat and Mumbai High. Knowing a rock's age and setting thus helps predict what it holds.",
+   "केवल कथन 1, 3 और 4 सही हैं। भारत की सबसे पुरानी कायांतरित शैलों में धारवाड़ तंत्र कर्नाटक और पड़ोसी क्षेत्रों की शिस्ट पट्टियाँ रखता है, जिनमें बाबाबूदन पहाड़ियों में लौह अयस्क और कोलार तथा हुट्टी में सोना है। प्रोटेरोज़ोइक युग की कडप्पा द्रोणी अपनी स्लेट और क्वार्टज़ाइट तथा तुम्मलपल्ले के स्तरबद्ध यूरेनियम निक्षेप के लिए जानी जाती है। विंध्य शैलों ने साँची और लाल क़िले जैसे स्मारकों में प्रयुक्त लाल और हल्के रंग के बलुआ पत्थर दिए, और पन्ना पट्टी में उनके पिंडशैलों से हीरे मिलते हैं। "
+   "कथन 2 ग़लत है: दामोदर और महानदी जैसी नदी द्रोणियों में जमी गोंडवाना शैलों में भारत का लगभग 98 प्रतिशत कोयला है; पेट्रोलियम अधिकतर नवीन तृतीयक अवसादी शैलों में मिलता है, जैसे असम, गुजरात और मुंबई हाई में। इस प्रकार किसी शैल की आयु और परिवेश जानने से पता चलता है कि उसमें क्या होगा।",
+   "Geological Survey of India; Atomic Minerals Directorate for Exploration and Research (Tummalapalle); NCERT, Class XI, India: Physical Environment.",
+   "l4-s03-geo-dharwar-cuddapah-vindhyan-gondwana", "linkage")
+
+# ---------------------------------------------------------------- Indian Physiography, Climate & Regions (statement, medium)
+SC("Indian Physiography, Climate & Regions", "medium", "With reference to the plateaus of peninsular India, consider the following statements:",
+   "प्रायद्वीपीय भारत के पठारों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+   ["The Pat lands of the Chotanagpur plateau, such as Netarhat, are flat-topped remnants of old erosion surfaces.",
+    "The Telangana plateau is drained mainly by the Narmada and the Tapi.",
+    "The Telangana plateau is underlain largely by ancient granites and gneisses."],
+   ["छोटानागपुर पठार के पाट क्षेत्र, जैसे नेतरहाट, पुरानी अपरदन सतहों के समतल शीर्ष वाले अवशेष हैं।",
+    "तेलंगाना पठार का अपवाह मुख्यतः नर्मदा और तापी से होता है।",
+    "तेलंगाना पठार के नीचे मुख्यतः प्राचीन ग्रेनाइट और नाइस शैलें हैं।"],
+   (1, 0, 1), 1,
+   "Only statements 1 and 3 are correct. The Chotanagpur plateau rises in steps, and its highest level is the Pat lands of western Jharkhand: flat-topped mesas, capped with laterite and bauxite, left over from old erosion surfaces, of which Netarhat is the best known. The Telangana plateau, part of the Deccan, is made up largely of Archaean granites and gneisses, weathered into the rounded boulders and tors seen around Hyderabad, which hold little groundwater -- one reason for the region's many old tanks. "
+   "Statement 2 is wrong: Telangana lies in the basins of the Godavari and the Krishna, which flow east to the Bay of Bengal; the Narmada and the Tapi flow west in rift valleys far to the north.",
+   "केवल कथन 1 और 3 सही हैं। छोटानागपुर पठार सीढ़ियों में उठता है, और इसका सबसे ऊँचा स्तर पश्चिमी झारखंड के पाट क्षेत्र हैं: लैटेराइट और बॉक्साइट से ढके समतल शीर्ष वाले मेसा, जो पुरानी अपरदन सतहों के बचे रूप हैं, जिनमें नेतरहाट सबसे प्रसिद्ध है। दक्कन का भाग, तेलंगाना पठार मुख्यतः आर्कियन ग्रेनाइट और नाइस से बना है, जो हैदराबाद के आसपास दिखने वाले गोल शिलाखंडों और टॉर में अपक्षयित हैं, और जिनमें कम भूजल होता है -- इस क्षेत्र के अनेक पुराने तालाबों का एक कारण। "
+   "कथन 2 ग़लत है: तेलंगाना गोदावरी और कृष्णा की द्रोणियों में है, जो पूर्व में बंगाल की खाड़ी की ओर बहती हैं; नर्मदा और तापी बहुत उत्तर में भ्रंश घाटियों में पश्चिम की ओर बहती हैं।",
+   "NCERT, Class XI, India: Physical Environment; Geological Survey of India; Survey of India.",
+   "l4-s03-geo-pat-lands-netarhat-telangana-plateau", "precision")
+
+# ---------------------------------------------------------------- Indian Rivers, Lakes & Wetlands (statement, medium)
+SC("Indian Rivers, Lakes & Wetlands", "medium", "With reference to the Rihand river, consider the following statements:",
+   "रिहंद नदी के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:",
+   ["It is a tributary of the Son.",
+    "A dam on it created the Govind Ballabh Pant Sagar, one of the largest artificial lakes in India.",
+    "It flows into the Arabian Sea through Gujarat.",
+    "The Singrauli region around its reservoir has become a major centre of coal-based power generation."],
+   ["यह सोन की एक सहायक नदी है।",
+    "इस पर बने एक बाँध से गोविंद बल्लभ पंत सागर बना, जो भारत की सबसे बड़ी कृत्रिम झीलों में से है।",
+    "यह गुजरात से होकर अरब सागर में गिरती है।",
+    "इसके जलाशय के आसपास का सिंगरौली क्षेत्र कोयला-आधारित बिजली उत्पादन का एक बड़ा केंद्र बन गया है।"],
+   (1, 1, 0, 1), 2,
+   "Statements 1, 2 and 4 are correct. The Rihand rises in the Chhattisgarh hills and joins the Son, itself a major right-bank tributary of the Ganga. The dam at Pipri in Sonbhadra district of Uttar Pradesh, completed in the early 1960s as a multipurpose project, created the Govind Ballabh Pant Sagar on the border of Uttar Pradesh and Madhya Pradesh. The coalfields around it have made Singrauli one of India's biggest clusters of thermal power stations, often called its energy capital, and the water of the reservoir serves those plants. "
+   "Statement 3 is wrong: the Rihand drains towards the Son and so to the Ganga and the Bay of Bengal. The region is also an example of the cost of such development, with repeated displacement of people and serious fluoride and mercury pollution.",
+   "केवल कथन 1, 2 और 4 सही हैं। रिहंद छत्तीसगढ़ की पहाड़ियों से निकलकर सोन में मिलती है, जो स्वयं गंगा की एक बड़ी दाहिने तट की सहायक नदी है। 1960 के दशक के आरंभ में एक बहुउद्देश्यीय परियोजना के रूप में पूरे हुए, उत्तर प्रदेश के सोनभद्र ज़िले में पिपरी के बाँध से उत्तर प्रदेश और मध्य प्रदेश की सीमा पर गोविंद बल्लभ पंत सागर बना। इसके आसपास के कोयला क्षेत्रों ने सिंगरौली को भारत के सबसे बड़े ताप विद्युत केंद्र-समूहों में से एक बना दिया है, जिसे प्रायः उसकी ऊर्जा राजधानी कहा जाता है, और जलाशय का जल इन संयंत्रों के काम आता है। "
+   "कथन 3 ग़लत है: रिहंद सोन की ओर और इस प्रकार गंगा तथा बंगाल की खाड़ी की ओर बहती है। यह क्षेत्र ऐसे विकास की क़ीमत का भी उदाहरण है, जहाँ लोगों का बार-बार विस्थापन और फ़्लोराइड तथा पारे का गंभीर प्रदूषण हुआ है।",
+   "Central Water Commission; Central Pollution Control Board, Singrauli critically polluted area reports; NTPC Limited.",
+   "l4-s03-geo-rihand-son-pant-sagar-singrauli", "linkage")
+
+# ---------------------------------------------------------------- Resources: Minerals, Energy & Agriculture (AR, medium)
+A("Resources: Minerals, Energy & Agriculture", "medium",
+  "In India, bauxite occurs mostly as caps on plateaus and hills in the tropical belt.",
+  "भारत में बॉक्साइट अधिकतर उष्णकटिबंधीय पट्टी में पठारों और पहाड़ियों पर आवरण के रूप में मिलता है।",
+  "Bauxite forms when intense weathering in hot, wet climates leaches away silica and leaves aluminium oxides behind.",
+  "बॉक्साइट तब बनता है जब गर्म, आर्द्र जलवायु में तीव्र अपक्षय सिलिका को बहा ले जाता है और ऐलुमिनियम के ऑक्साइड पीछे छोड़ देता है।",
+  0,
+  "Both statements are correct, and Statement II explains Statement I. Bauxite is a product of laterisation: under high temperature and heavy rainfall, soluble silica and bases are carried away from rocks such as basalt and khondalite, and aluminium hydroxides remain as a residual cap, best preserved on old, flat-topped surfaces where erosion is slow. That is why the deposits sit on top of the plateau, as at Panchpatmali in the Koraput district of Odisha, which feeds NALCO's alumina refinery at Damanjodi, and on the plateaus of Jharkhand, Chhattisgarh and Maharashtra. "
+  "Mining the caps can damage the watersheds of the hills beneath them, as the Niyamgiri dispute in Odisha showed.",
+  "दोनों कथन सही हैं, और कथन II कथन I की व्याख्या करता है। बॉक्साइट लैटेराइटीकरण का परिणाम है: उच्च तापमान और भारी वर्षा में घुलनशील सिलिका और क्षार बेसाल्ट और खोंडालाइट जैसी शैलों से बह जाते हैं, और ऐलुमिनियम के हाइड्रॉक्साइड अवशिष्ट आवरण के रूप में बचे रहते हैं, जो पुरानी, समतल शीर्ष वाली सतहों पर, जहाँ अपरदन धीमा है, सबसे अच्छे सुरक्षित रहते हैं। इसी कारण निक्षेप पठार के ऊपर हैं, जैसे ओडिशा के कोरापुट ज़िले में पंचपटमाली, जो दामनजोड़ी में नाल्को के ऐलुमिना शोधन संयंत्र को कच्चा माल देता है, और झारखंड, छत्तीसगढ़ और महाराष्ट्र के पठारों पर। "
+  "इन आवरणों के खनन से नीचे की पहाड़ियों के जल-ग्रहण क्षेत्रों को क्षति पहुँच सकती है, जैसा ओडिशा के नियमगिरि विवाद ने दिखाया।",
+  "Indian Bureau of Mines, Indian Minerals Yearbook (Bauxite); National Aluminium Company Limited; NCERT, Class XI, India: Physical Environment.",
+  "l4-s03-geo-bauxite-laterisation-plateau-caps-panchpatmali", craft="linkage")
+
+# ---------------------------------------------------------------- Transport, Ports & Human Geography (List-I/List-II, easy)
+MX("Transport, Ports & Human Geography", "easy", "Match List-I (pastoral community) with List-II (the State with which it is mainly associated):",
+   "सूची-I (पशुपालक समुदाय) को सूची-II (मुख्यतः संबंधित राज्य) से सुमेलित कीजिए:",
+   ["Raika", "Monpa", "Kuruma", "Dhangar"],
+   ["राइका", "मोनपा", "कुरुमा", "धनगर"],
+   ["Karnataka", "Rajasthan", "Maharashtra", "Arunachal Pradesh"],
+   ["कर्नाटक", "राजस्थान", "महाराष्ट्र", "अरुणाचल प्रदेश"],
+   [2, 4, 1, 3], 1,
+   "The correct code is A-2, B-4, C-1, D-3. The Raikas of Rajasthan herd camels, sheep and goats in the Thar and move with the seasons in search of pasture. The Monpas of Tawang and West Kameng in Arunachal Pradesh, a Buddhist people, keep yaks and move them to high pastures in summer. The Kurumas (Kurubas) of Karnataka and Andhra are sheep and goat herders of the Deccan who also weave blankets. "
+   "The Dhangars of Maharashtra move their flocks between the dry central plateau and the wetter Konkan, where farmers welcomed them because their animals manured the fields after the harvest. Such movements follow the seasons and depend on old links with farmers; forest laws and changes in land use have made them harder.",
+   "सही कूट क-2, ख-4, ग-1, घ-3 है। राजस्थान के राइका थार में ऊँट, भेड़ और बकरियाँ पालते हैं और चरागाह की खोज में ऋतुओं के साथ चलते हैं। अरुणाचल प्रदेश के तवांग और पश्चिम कामेंग के मोनपा, एक बौद्ध समुदाय, याक पालते हैं और गर्मियों में उन्हें ऊँचे चरागाहों में ले जाते हैं। कर्नाटक और आंध्र के कुरुमा (कुरुबा) दक्कन के भेड़-बकरी पालक हैं जो कंबल भी बुनते हैं। "
+   "महाराष्ट्र के धनगर अपने रेवड़ों को सूखे मध्य पठार और अधिक आर्द्र कोंकण के बीच ले जाते हैं, जहाँ किसान उनका स्वागत करते थे क्योंकि फ़सल के बाद उनके पशु खेतों को खाद देते थे। ऐसे आवागमन ऋतुओं का अनुसरण करते हैं और किसानों से पुराने संबंधों पर निर्भर हैं; वन क़ानूनों और भूमि उपयोग में बदलावों ने इन्हें कठिन बना दिया है।",
+   "NCERT, Class IX, India and the Contemporary World I, chapter on pastoralists in the modern world; Ministry of Tribal Affairs.",
+   "l4-s03-geo-pastoralists-raika-monpa-kuruma-dhangar", "recall")
+
+# ---------------------------------------------------------------- World Regions, Water Bodies & Places (MCQ, medium)
+M("World Regions, Water Bodies & Places", "medium",
+  "Nunavut, the largest and newest territory of Canada, was created in 1999 as a homeland mainly for which people?",
+  "कनाडा का सबसे बड़ा और सबसे नया राज्यक्षेत्र, नुनावुत, 1999 में मुख्यतः किन लोगों की मातृभूमि के रूप में बनाया गया?",
+  ["The Inuit", "The Sami", "The Maori", "The Ainu"],
+  ["इनुइट", "सामी", "माओरी", "ऐनू"],
+  0,
+  "Nunavut ('our land' in Inuktitut) was carved out of the Northwest Territories on 1 April 1999, under a land claims agreement with the Inuit, who form the large majority of its small population; its capital is Iqaluit on Baffin Island. It stretches across Canada's Arctic Archipelago, and its people depend partly on hunting, which makes it one of the places where the effects of a warming Arctic are most immediate. "
+  "The other peoples live elsewhere: the Sami in northern Norway, Sweden, Finland and Russia; the Maori in New Zealand; and the Ainu in northern Japan.",
+  "नुनावुत (इनुक्टिटुट में 'हमारी भूमि') 1 अप्रैल 1999 को इनुइट के साथ एक भूमि दावा समझौते के अंतर्गत नॉर्थवेस्ट टेरिटरीज़ से अलग बनाया गया, जो इसकी छोटी आबादी का बड़ा बहुमत हैं; इसकी राजधानी बैफ़िन द्वीप पर इकालुइट है। यह कनाडा के आर्कटिक द्वीपसमूह में फैला है, और इसके लोग आंशिक रूप से शिकार पर निर्भर हैं, जिससे यह उन स्थानों में है जहाँ गर्म होते आर्कटिक के प्रभाव सबसे तात्कालिक हैं। "
+  "अन्य लोग कहीं और रहते हैं: सामी उत्तरी नॉर्वे, स्वीडन, फ़िनलैंड और रूस में; माओरी न्यूज़ीलैंड में; और ऐनू उत्तरी जापान में।",
+  "Government of Nunavut; Government of Canada, Nunavut Land Claims Agreement (1993); NCERT, Class XI, Fundamentals of Human Geography.",
+  "l4-s03-geo-nunavut-inuit-1999", pos=3, craft="recall")
+
+# ---------------------------------------------------------------- World Regions, Water Bodies & Places (statement, medium)
+SC("World Regions, Water Bodies & Places", "medium", "Consider the following statements about islands of the world:",
+   "विश्व के द्वीपों के बारे में निम्नलिखित कथनों पर विचार कीजिए:",
+   ["Luzon is the largest island of the Philippines, and Mindanao the second largest.",
+    "Zanzibar forms part of Tanzania.",
+    "Madagascar is separated from the mainland of Africa by the Red Sea."],
+   ["लूज़ॉन फ़िलीपींस का सबसे बड़ा और मिंडानाओ दूसरा सबसे बड़ा द्वीप है।",
+    "ज़ांज़ीबार तंज़ानिया का भाग है।",
+    "मेडागास्कर अफ़्रीका की मुख्य भूमि से लाल सागर द्वारा अलग है।"],
+   (1, 1, 0), 0,
+   "Only statements 1 and 2 are correct. Luzon holds the capital Manila, and Mindanao in the south, with its large Muslim population, is home to the Bangsamoro autonomous region. Zanzibar, an old centre of the Indian Ocean spice and slave trades under the Sultans of Oman, joined Tanganyika in 1964 to form Tanzania, while keeping its own autonomous government. "
+   "Statement 3 is wrong: Madagascar, which broke away from Africa and India as Gondwana split up and so has a large share of species found nowhere else, is separated from Africa by the Mozambique Channel. The Red Sea lies far to the north, between Africa and Arabia.",
+   "केवल कथन 1 और 2 सही हैं। लूज़ॉन में राजधानी मनीला है, और दक्षिण में अपनी बड़ी मुस्लिम आबादी वाला मिंडानाओ बंगसामोरो स्वायत्त क्षेत्र का घर है। ओमान के सुल्तानों के अधीन हिंद महासागर के मसाला और दास व्यापार का पुराना केंद्र, ज़ांज़ीबार, 1964 में तंगानिका से मिलकर तंज़ानिया बना, और अपनी स्वायत्त सरकार बनाए रखी। "
+   "कथन 3 ग़लत है: मेडागास्कर, जो गोंडवाना के टूटने पर अफ़्रीका और भारत से अलग हुआ और इसलिए जिसमें ऐसी अनेक प्रजातियाँ हैं जो कहीं और नहीं मिलतीं, अफ़्रीका से मोज़ाम्बिक चैनल द्वारा अलग है। लाल सागर बहुत उत्तर में, अफ़्रीका और अरब के बीच है।",
+   "NCERT, Class XI, Fundamentals of Physical Geography and Class XII, Fundamentals of Human Geography; Survey of India, world maps.",
+   "l4-s03-geo-luzon-mindanao-zanzibar-mozambique-channel", "precision")
+
+write("gs_l4_s03_d.sql")
