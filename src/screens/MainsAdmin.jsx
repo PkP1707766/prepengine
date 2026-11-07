@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { Upload, FileText, Search, Pencil, Trash2, X, Eye, ExternalLink, Plus, Save, AlertCircle, CheckCircle2, BookOpen } from "lucide-react";
 import * as DB from "../lib/db.js";
-import { parseImport } from "../lib/mainsImport.js";
+import { parseImportFiles } from "../lib/mainsImport.js";
 import CopyViewer from "../ui/CopyViewer.jsx";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
@@ -69,8 +69,10 @@ const PAPER_LABEL = Object.fromEntries(PAPERS);
 const FORMAT_LABEL = {
   pyq_categories: "Essay PYQs with categories",
   topper_answers: "Topper answers (subject, topper, page, link)",
+  topper_essays: "Topper essays with their copies",
   topic_map: "Similar-PYQ map (topic → similar PYQs)",
 };
+const FORMAT_UNIT = { pyq_categories: ["PYQ", "PYQs"], topper_answers: ["answer", "answers"], topper_essays: ["essay", "essays"], topic_map: ["topic", "topics"] };
 
 /* Word overlap, for suggesting which PYQs an essay answers. Crude next to an
    embedding, but the bank is ~100 PYQs and the admin decides. */
@@ -161,16 +163,16 @@ function ImportPanel({ toast }) {
   const [papers, setPapers] = useState(() => new Set(PAPERS.map(([k]) => k)));
   const [run, setRun] = useState(null);   // { step } while running, { result } or { err } after
 
-  const read = (text, label) => {
-    setName(label);
+  const read = (files) => {
+    setName(files.map((f) => f.name).join(", "));
     setRun(null);
-    setParsed(parseImport(text));
+    setParsed(parseImportFiles(files));
   };
   const onFile = async (e) => {
-    const f = e.target.files?.[0];
+    const picked = [...(e.target.files || [])];
     if (fileRef.current) fileRef.current.value = "";
-    if (!f) return;
-    read(await f.text(), f.name);
+    if (!picked.length) return;
+    read(await Promise.all(picked.map(async (f) => ({ name: f.name, text: await f.text() }))));
   };
 
   const items = useMemo(() => {
@@ -191,6 +193,7 @@ function ImportPanel({ toast }) {
       let result;
       if (parsed.format === "pyq_categories") result = await DB.importEssayPyqs(items, step);
       else if (parsed.format === "topper_answers") result = await DB.importTopperAnswers(items, step);
+      else if (parsed.format === "topper_essays") result = await DB.importTopperEssays(items, parsed.topics, step);
       else result = await DB.importTopicMap(items, step);
       setRun({ result });
       toast("Import finished");
@@ -202,21 +205,27 @@ function ImportPanel({ toast }) {
   };
 
   const running = run && run.step;
+  const unit = (parsed && FORMAT_UNIT[parsed.format]) || ["row", "rows"];
+  const similarCount = parsed?.topics?.reduce((n, t) => n + t.similar.length, 0) || 0;
+  // The essay tab alone still carries its similar-PYQ map.
+  const canImport = items.length > 0 || (parsed?.format === "topper_essays" && similarCount > 0);
+  const skipReasons = Object.entries((parsed?.skipped || []).reduce((m, s) => ((m[s.reason] = (m[s.reason] || 0) + 1), m), {}));
   return (
     <div>
       <div className="banner">
         <AlertCircle size={17} />
         <span>
           Export each Google Sheet tab as CSV (File → Download → Comma-separated values) and add it here.
-          Import the <b>PYQs</b> first, then <b>topper answers</b>, then the <b>similar-PYQ</b> sheet. Re-importing a newer
-          export is safe: existing rows are kept, new ones are added.
+          Import the <b>PYQs</b> first. For <b>topper essays</b>, add the essay tab together with its <b>HandwrittenLinks</b> tab
+          (select both files): the essay tab&apos;s links are formulas, which a CSV keeps only as the word &quot;Link&quot;.
+          Re-importing a newer export is safe: existing rows are kept, new ones are added.
         </span>
       </div>
 
       <div className="panel panel-pad" style={{ marginBottom: 16 }}>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-          <button className="btn btn-primary" onClick={() => fileRef.current?.click()} disabled={running}><Upload size={16} />Choose a CSV file</button>
-          <input ref={fileRef} type="file" accept=".csv,text/csv" style={{ display: "none" }} onChange={onFile} />
+          <button className="btn btn-primary" onClick={() => fileRef.current?.click()} disabled={running}><Upload size={16} />Choose CSV files</button>
+          <input ref={fileRef} type="file" accept=".csv,text/csv" multiple style={{ display: "none" }} onChange={onFile} />
           {name && <span style={{ fontSize: 13, color: "var(--muted)" }}><FileText size={14} style={{ verticalAlign: -2 }} /> {name}</span>}
         </div>
         <details style={{ marginTop: 12 }}>
@@ -224,12 +233,17 @@ function ImportPanel({ toast }) {
           <textarea className="inp" rows={6} value={paste} onChange={(e) => setPaste(e.target.value)}
                     placeholder="Subject,Year,Rank,Topper,Coaching,Question,Page,Link" style={{ marginTop: 8, fontFamily: "ui-monospace,monospace", fontSize: 12.5 }} />
           <button className="btn btn-ghost btn-sm" style={{ marginTop: 8 }} disabled={!paste.trim() || running}
-                  onClick={() => read(paste, "pasted text")}>Read pasted text</button>
+                  onClick={() => read([{ name: "pasted text", text: paste }])}>Read pasted text</button>
         </details>
       </div>
 
       {parsed && (
         <div className="panel panel-pad">
+          {parsed.files.length > 1 && (
+            <ul className="ma-skip" style={{ marginTop: 0, marginBottom: 12 }}>
+              {parsed.files.map((f, i) => <li key={i}><b>{f.name}</b> · {f.role}{f.rows ? ` · ${f.rows} rows` : ""}</li>)}
+            </ul>
+          )}
           {!parsed.format ? (
             <div className="form-err"><AlertCircle size={16} />{parsed.notes[0]}</div>
           ) : (
@@ -255,13 +269,16 @@ function ImportPanel({ toast }) {
               )}
 
               <div className="ma-pre">
-                <div className="ma-stat"><b>{items.length}</b><span>rows to import</span></div>
+                <div className="ma-stat"><b>{items.length}</b><span>{unit[1]} to import</span></div>
+                {parsed.format === "topper_essays" && <div className="ma-stat"><b>{similarCount}</b><span>similar-PYQ entries</span></div>}
                 <div className="ma-stat"><b>{parsed.skipped.length}</b><span>rows skipped</span></div>
               </div>
 
               {parsed.skipped.length > 0 && (
                 <details>
-                  <summary style={{ cursor: "pointer", fontSize: 13, color: "var(--muted)" }}>Why rows were skipped</summary>
+                  <summary style={{ cursor: "pointer", fontSize: 13, color: "var(--muted)" }}>
+                    Why rows were skipped: {skipReasons.map(([r, n]) => `${r} (${n})`).join("; ")}
+                  </summary>
                   <ul className="ma-skip">
                     {parsed.skipped.slice(0, 12).map((s, i) => <li key={i}>Row {s.row}: {s.reason}{s.text ? ` — ${s.text.slice(0, 90)}` : ""}</li>)}
                     {parsed.skipped.length > 12 && <li>…and {parsed.skipped.length - 12} more</li>}
@@ -272,8 +289,9 @@ function ImportPanel({ toast }) {
               <ImportSample format={parsed.format} items={items} />
 
               <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 16, flexWrap: "wrap" }}>
-                <button className="btn btn-primary" onClick={start} disabled={!items.length || running}>
-                  <Upload size={16} />{running ? "Importing…" : `Import ${items.length} ${items.length === 1 ? "row" : "rows"}`}
+                <button className="btn btn-primary" onClick={start} disabled={!canImport || running}>
+                  <Upload size={16} />
+                  {running ? "Importing…" : items.length ? `Import ${items.length} ${unit[items.length === 1 ? 0 : 1]}` : "Import the similar-PYQ map"}
                 </button>
                 {running && <span style={{ fontSize: 13, color: "var(--muted)" }}>Step: <b>{run.step}</b></span>}
               </div>
@@ -325,6 +343,25 @@ function ImportSample({ format, items }) {
               <td>{it.question}</td>
               <td className="nowrap">{it.page ?? "—"}</td>
               <td>{it.coaching}</td>
+            </tr>
+          ))}</tbody>
+        </table>
+      </div>
+    );
+  }
+  if (format === "topper_essays") {
+    return (
+      <div className="tbl-wrap" style={{ marginTop: 12 }}>
+        <table className="tbl">
+          <thead><tr><th>Writer</th><th>Essay topic</th><th>Copy</th></tr></thead>
+          <tbody>{rows.map((it, i) => (
+            <tr key={i}>
+              <td>
+                {it.topper.name}{it.topper.rank ? ` · AIR ${it.topper.rank}` : ""}
+                {it.topper.essayMarks ? ` · Essay ${it.topper.essayMarks}` : ""}{it.coaching ? ` · ${it.coaching}` : ""}
+              </td>
+              <td>{it.question}</td>
+              <td><a href={it.url} target="_blank" rel="noopener noreferrer">{it.title || "PDF"}</a></td>
             </tr>
           ))}</tbody>
         </table>
