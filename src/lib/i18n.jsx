@@ -817,6 +817,20 @@ Object.assign(STR, {
   /* --- catalogue --- */
   cat_h2:    { en: "One exam. One price. Nothing extra.", hi: "एक परीक्षा। एक क़ीमत। कुछ भी अतिरिक्त नहीं।" },
   tab_all:   { en: "All exams", hi: "सभी परीक्षाएँ" },
+  /* --- mains (public site) --- */
+  pm_eyebrow:   { en: "Mains · Essay", hi: "मेन्स · निबंध" },
+  pm_h2_a:      { en: "Every essay topic UPSC has set. Read how ", hi: "UPSC के हर निबंध विषय पर — पढ़िए " },
+  pm_h2_em:     { en: "toppers", hi: "टॉपर्स" },
+  pm_h2_b:      { en: " wrote them.", hi: " ने कैसे लिखा।" },
+  pm_sub:       { en: "{n} essay topics from {y1} to {y2}, sorted into {k} themes, with the topper copies written on them.",
+                  hi: "{y1} से {y2} तक के {n} निबंध विषय, {k} थीम में बँटे हुए — साथ में उन पर लिखी टॉपर्स की कॉपियाँ।" },
+  pm_count:     { en: "{n} PYQs", hi: "{n} पिछले प्रश्न" },
+  pm_count_one: { en: "1 PYQ", hi: "1 पिछला प्रश्न" },
+  pm_all:       { en: "All {k} themes", hi: "सभी {k} थीम" },
+  pm_all_s:     { en: "and every topic, year by year", hi: "और साल-दर-साल हर विषय" },
+  pm_cta:       { en: "Open the Essay section", hi: "निबंध सेक्शन खोलें" },
+  pm_included:  { en: "Topper copies come with", hi: "टॉपर्स की कॉपियाँ इसके साथ मिलती हैं:" },
+  pm_tile_aria: { en: "Open the {name} theme in the Essay section", hi: "निबंध सेक्शन में {name} थीम खोलें" },
   cat_empty: { en: "No test series published for this exam yet.", hi: "इस परीक्षा के लिए अभी कोई टेस्ट सीरीज़ नहीं आई है।" },
 
   /* --- cards --- */

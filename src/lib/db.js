@@ -2035,6 +2035,16 @@ export async function essayPyqs({ includeDrafts = false } = {}) {
   }));
 }
 
+/** Codes of the live bundles that include Mains. Readable without an
+ *  account, so the public site can say which bundle brings the copies. */
+export async function mainsBundleCodes() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return [];
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("plans").select("code").eq("includes_mains", true).eq("is_active", true);
+  if (error) throw error;
+  return (data ?? []).map((r) => r.code);
+}
+
 const LIB_COLS =
   "answer_id, paper, paper_label, question, start_page, end_page, copy_id, source, title, written_year, " +
   "source_url, page_count, pages_ready, is_free, is_published, topper_id, topper_name, topper_rank, cse_year, essay_marks";
