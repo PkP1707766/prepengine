@@ -4,6 +4,8 @@ import * as DB from "../lib/db.js";
 import { parseImportFiles, cleanBody, wordCount } from "../lib/mainsImport.js";
 import CopyViewer from "../ui/CopyViewer.jsx";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
+import { useLang } from "../lib/contexts.js";
+import { LtwDoc, STUDY_CSS } from "./EssayStudy.jsx";
 
 /* ============================================================
    ADMIN: MAINS & ESSAY  (slice 1, migration 0028)
@@ -146,13 +148,15 @@ export default function MainsAdmin({ toast, askDelete }) {
       {/* Own classes: the admin stylesheet defines no .tabs/.tab (those live
           in the student dashboard's CSS), so those render as bare buttons. */}
       <div className="ma-tabs" role="tablist">
-        {[["import", "Import sheets"], ["copies", "Copies"], ["pyqs", "Essay PYQs & themes"]].map(([k, l]) => (
+        {[["import", "Import sheets"], ["copies", "Copies"], ["pyqs", "Essay PYQs & themes"], ["wiki", "Essay Wiki"], ["ltw", "Learn to Write"]].map(([k, l]) => (
           <button key={k} role="tab" aria-selected={tab === k} className={"ma-tab" + (tab === k ? " on" : "")} onClick={() => setTab(k)}>{l}</button>
         ))}
       </div>
       {tab === "import" && <ImportPanel toast={toast} />}
       {tab === "copies" && <CopiesPanel toast={toast} askDelete={askDelete} />}
       {tab === "pyqs" && <PyqsPanel toast={toast} askDelete={askDelete} />}
+      {tab === "wiki" && <WikiPanel toast={toast} askDelete={askDelete} />}
+      {tab === "ltw" && <LtwAdminPanel toast={toast} askDelete={askDelete} />}
     </div>
   );
 }
@@ -650,6 +654,7 @@ function CopyEditor({ copyId, toast, askDelete, onUploadPages, onRead, onClose }
   const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true }), "pyqs");
   const [form, setForm] = useState(null);
   const [answer, setAnswer] = useState(null);   // the answer being edited, or {} for new
+  const [picking, setPicking] = useState(false);
   const refresh = () => setReload((n) => n + 1);
 
   // The form starts from the copy once it has loaded, and stays the admin's after that.
@@ -717,7 +722,14 @@ function CopyEditor({ copyId, toast, askDelete, onUploadPages, onRead, onClose }
                   <h2>{answers.data ? `${answers.data.length} answers` : "Answers"}</h2>
                   <div className="note">Where each answer starts, and which essay PYQs it answers</div>
                 </div>
-                <button className="btn btn-ghost btn-sm" onClick={() => setAnswer({})}><Plus size={15} />Add answer</button>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {answers.data?.length > 0 && (
+                    <button className="btn btn-ghost btn-sm" onClick={() => setPicking(true)} title="Open the copy's PDF from this computer and click where each answer starts">
+                      <FileText size={15} />Find start pages
+                    </button>
+                  )}
+                  <button className="btn btn-ghost btn-sm" onClick={() => setAnswer({})}><Plus size={15} />Add answer</button>
+                </div>
               </div>
               {answers.err ? <ErrorState compact message={answers.err} onRetry={refresh} />
                 : answers.loading ? <SkeletonCards count={2} height={70} />
@@ -758,6 +770,10 @@ function CopyEditor({ copyId, toast, askDelete, onUploadPages, onRead, onClose }
           onClose={() => setAnswer(null)}
           onSaved={() => { setAnswer(null); refresh(); }}
         />
+      )}
+      {picking && copy && answers.data && (
+        <PagePicker copy={copy} answers={answers.data} toast={toast}
+                    onClose={() => setPicking(false)} onSaved={() => { setPicking(false); refresh(); }} />
       )}
     </Modal>
   );
@@ -1053,6 +1069,456 @@ function ThemeForm({ initial, toast, onClose, onSaved }) {
       </Field>
       <Field label="Display order" hint="Lower numbers first; ties sort by name."><input className="inp" type="number" value={f.sortOrder} onChange={(e) => setF((p) => ({ ...p, sortOrder: e.target.value }))} /></Field>
       <div style={{ fontSize: 12.5, color: "var(--muted)" }}><BookOpen size={13} style={{ verticalAlign: -2 }} /> Students see themes with at least one PYQ, busiest first.</div>
+    </Modal>
+  );
+}
+
+/* ============================================================ START PAGES == */
+/* Mark where each answer starts and ends by looking at the copy itself. The
+   admin picks the copy's PDF from this computer; pages are drawn right here
+   (nothing is uploaded), so this works for link copies we do not host. */
+
+const firstLine = (body) => String(body || "").split(/\n+/).map((s) => s.trim()).find(Boolean)?.slice(0, 180) || "";
+
+function PagePicker({ copy, answers, toast, onClose, onSaved }) {
+  const fileRef = useRef(null);
+  const urlsRef = useRef([]);
+  const cancelRef = useRef(false);
+  const [pages, setPages] = useState([]);   // [{ n, url }]
+  const [total, setTotal] = useState(0);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+  const [warn, setWarn] = useState("");
+  const [size, setSize] = useState(200);
+  const [saving, setSaving] = useState(false);
+  const orig = useMemo(() => Object.fromEntries(answers.map((a) => [a.id, {
+    start: a.startPage === "" || a.startPage == null ? null : Number(a.startPage),
+    end: a.endPage === "" || a.endPage == null ? null : Number(a.endPage),
+  }])), [answers]);
+  const [marks, setMarks] = useState(orig);
+  const [sel, setSel] = useState(() => (answers.find((a) => orig[a.id].start == null) || answers[0])?.id || null);
+  const [step, setStep] = useState("start");
+  const heads = useLoad(async () => {
+    const list = await Promise.all(answers.map((a) => (a.words
+      ? DB.essayText(a.id).then((x) => [a.id, firstLine(x?.body)], () => [a.id, ""])
+      : Promise.resolve([a.id, ""]))));
+    return Object.fromEntries(list);
+  }, `heads|${answers.map((a) => a.id).join(",")}`);
+
+  useEffect(() => {
+    const urls = urlsRef;
+    return () => {
+      cancelRef.current = true;
+      urls.current.forEach((u) => URL.revokeObjectURL(u));
+    };
+  }, []);
+
+  const choose = async (file) => {
+    if (!file) return;
+    setErr(""); setWarn("");
+    cancelRef.current = true;                     // stop a render still running
+    urlsRef.current.forEach((u) => URL.revokeObjectURL(u));
+    urlsRef.current = [];
+    setPages([]);
+    try {
+      const R = await import("../lib/copyRender.js");
+      const pdf = await R.openPdf(file);
+      cancelRef.current = false;
+      setTotal(pdf.numPages);
+      if (copy.pageCount && copy.pageCount !== pdf.numPages) {
+        setWarn(`This PDF has ${pdf.numPages} pages; the hosted copy has ${copy.pageCount}. Check it is the same copy.`);
+      }
+      setBusy(true);
+      for (let n = 1; n <= pdf.numPages; n++) {
+        if (cancelRef.current) break;
+        const blob = await R.renderPage(pdf, n, { width: 520, quality: 0.7 });
+        const url = URL.createObjectURL(blob);
+        urlsRef.current.push(url);
+        setPages((p) => [...p, { n, url }]);
+      }
+    } catch (e) {
+      console.error(e);
+      setErr(e?.message || "Couldn't open this PDF.");
+    }
+    setBusy(false);
+  };
+
+  const pick = (n) => {
+    if (!sel) return;
+    const cur = marks[sel] || { start: null, end: null };
+    if (step === "start" || (cur.start != null && n < cur.start)) {
+      setMarks((m) => ({ ...m, [sel]: { start: n, end: cur.end != null && cur.end >= n ? cur.end : null } }));
+      setStep("end");
+      return;
+    }
+    const next = { ...marks, [sel]: { ...cur, end: n } };
+    setMarks(next);
+    // On to the next answer: the next one still without a page, else simply
+    // the next one, else an earlier one still without a page.
+    const idx = answers.findIndex((a) => a.id === sel);
+    const blank = (a) => next[a.id]?.start == null;
+    const after = answers.slice(idx + 1).find(blank) || answers[idx + 1] || answers.slice(0, idx).find(blank);
+    if (after) setSel(after.id);
+    setStep("start");
+  };
+
+  const changed = answers.filter((a) => marks[a.id].start !== orig[a.id].start || marks[a.id].end !== orig[a.id].end);
+  const save = async () => {
+    setSaving(true);
+    try {
+      await DB.setAnswerPages(changed.map((a) => ({ id: a.id, startPage: marks[a.id].start ?? "", endPage: marks[a.id].end ?? "" })));
+      toast(`Saved pages for ${changed.length} answer${changed.length === 1 ? "" : "s"}`);
+      onSaved();
+    } catch (e) { console.error(e); toast(e?.message || "Couldn't save", "err"); setSaving(false); }
+  };
+
+  const selIdx = answers.findIndex((a) => a.id === sel);
+  const selM = sel ? marks[sel] : null;
+  const badge = (n) => answers.flatMap((a, i) => {
+    const m = marks[a.id];
+    const out = [];
+    if (m.start === n) out.push(<span key={`s${a.id}`} className="ma-pg-tag s">{i + 1} starts</span>);
+    if (m.end === n) out.push(<span key={`e${a.id}`} className="ma-pg-tag e">{i + 1} ends</span>);
+    return out;
+  });
+
+  return (
+    <Modal title={`Start pages · ${copy.topper.name}`} onClose={saving ? () => {} : onClose} wide
+           footer={<>
+             <span style={{ marginRight: "auto", fontSize: 12.5, color: "var(--muted)" }}>
+               {changed.length ? `${changed.length} answer${changed.length === 1 ? "" : "s"} changed` : "No changes yet"}
+             </span>
+             <button className="btn btn-ghost" onClick={onClose} disabled={saving}>Cancel</button>
+             <button className="btn btn-primary" onClick={save} disabled={!changed.length || saving}><Save size={16} />Save pages</button>
+           </>}>
+      <style>{PICKER_CSS}</style>
+      {err && <div className="form-err"><AlertCircle size={16} />{err}</div>}
+      {warn && <div className="form-err" style={{ background: "var(--amb-bg)", color: "var(--ink)" }}><AlertCircle size={16} />{warn}</div>}
+      <div className="ma-picker">
+        <div className="ma-pick-side">
+          <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 10 }}>
+            <button type="button" className="btn btn-ghost btn-sm" onClick={() => fileRef.current?.click()}>
+              <Upload size={15} />{pages.length ? "Choose another PDF" : "Choose the copy's PDF"}
+            </button>
+            <input ref={fileRef} type="file" accept="application/pdf,.pdf" style={{ display: "none" }}
+                   onChange={(e) => { choose(e.target.files?.[0] || null); e.target.value = ""; }} />
+          </div>
+          <div className="ma-pick-help">
+            {sel
+              ? <>Answer {selIdx + 1}: click the page where it <b>{step === "start" ? "starts" : "ends"}</b>.</>
+              : "Pick an answer below."}
+            {" "}The PDF stays on this computer.
+          </div>
+          {answers.map((a, i) => {
+            const m = marks[a.id];
+            return (
+              <button key={a.id} className={"ma-pick-ans" + (sel === a.id ? " on" : "")} onClick={() => { setSel(a.id); setStep("start"); }}>
+                <span className="n">{i + 1}</span>
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span className="q">{a.question}</span>
+                  {heads.data?.[a.id] && <span className="h">Text begins: “{heads.data[a.id]}”</span>}
+                  <span className="p">{m.start != null ? `pages ${m.start}${m.end != null ? `–${m.end}` : "–?"}` : "no page yet"}</span>
+                </span>
+              </button>
+            );
+          })}
+          {sel && selM?.start != null && (
+            <button className="btn btn-ghost btn-sm" style={{ marginTop: 8 }} onClick={() => { setMarks((m) => ({ ...m, [sel]: { start: null, end: null } })); setStep("start"); }}>
+              Clear answer {selIdx + 1}
+            </button>
+          )}
+        </div>
+        <div style={{ minWidth: 0 }}>
+          {pages.length > 0 && (
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, fontSize: 12.5, color: "var(--muted)" }}>
+              <span>{busy ? `Drawing page ${pages.length} of ${total}…` : `${total} pages`}</span>
+              <span style={{ marginLeft: "auto" }}>Size</span>
+              {[[150, "S"], [200, "M"], [300, "L"]].map(([w, l]) => (
+                <button key={w} className={"ma-tab" + (size === w ? " on" : "")} style={{ padding: "4px 10px" }} onClick={() => setSize(w)}>{l}</button>
+              ))}
+            </div>
+          )}
+          {pages.length === 0
+            ? <div className="ma-pick-empty">{busy ? "Opening the PDF…" : "Choose the copy's PDF to see its pages here."}</div>
+            : (
+              <div className="ma-pages" style={{ gridTemplateColumns: `repeat(auto-fill, minmax(${size}px, 1fr))` }}>
+                {pages.map(({ n, url }) => {
+                  const inSel = selM && selM.start != null && n >= selM.start && n <= (selM.end ?? selM.start);
+                  return (
+                    <button key={n} className={"ma-page" + (inSel ? " in" : "")} onClick={() => pick(n)} title={`Page ${n}`}>
+                      <img src={url} alt={`Page ${n}`} loading="lazy" />
+                      <span className="pn">{n}</span>
+                      <span className="tags">{badge(n)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+const PICKER_CSS = `
+.overlay .modal.wide:has(.ma-picker){max-width:min(1400px,calc(100vw - 32px));width:calc(100vw - 32px)}
+.ma-picker{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.ma-pick-side{position:sticky;top:0}
+.ma-pick-help{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.ma-pick-ans{display:flex;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:8px;background:var(--card);color:var(--ink)}
+.ma-pick-ans.on{border-color:var(--gold-2);background:var(--amb-bg)}
+.ma-pick-ans .n{font-weight:800;color:var(--gold-2);min-width:16px}
+.ma-pick-ans .q{display:block;font-size:13px;font-weight:700;line-height:1.35}
+.ma-pick-ans .h{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.ma-pick-ans .p{display:block;font-size:11.5px;font-weight:700;color:var(--navy);margin-top:4px}
+.ma-pick-empty{border:1.5px dashed var(--line);border-radius:12px;padding:40px 16px;text-align:center;color:var(--muted);font-size:13.5px}
+.ma-pages{display:grid;gap:10px}
+.ma-page{position:relative;border:2px solid var(--line);border-radius:8px;overflow:hidden;background:#ffffff;padding:0;cursor:pointer}
+.ma-page:hover{border-color:var(--gold-2)}
+.ma-page.in{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.ma-page img{display:block;width:100%;height:auto}
+.ma-page .pn{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);color:#ffffff;font-size:11px;font-weight:800;border-radius:6px;padding:2px 6px}
+.ma-page .tags{position:absolute;bottom:6px;left:6px;right:6px;display:flex;flex-wrap:wrap;gap:4px}
+.ma-pg-tag{font-size:10.5px;font-weight:800;border-radius:6px;padding:2px 6px;color:#ffffff}
+.ma-pg-tag.s{background:#1f7a4c}
+.ma-pg-tag.e{background:#9b2c2c}
+@media(max-width:900px){.ma-picker{grid-template-columns:minmax(0,1fr)}.ma-pick-side{position:static}}
+`;
+
+/* ================================================================== WIKI == */
+/* Review the drafted wiki: each passage is verbatim from a topper's essay,
+   with our note on why it works and the PYQs it suits. Students see only
+   published ones. */
+
+const SN_KINDS = ["opening", "closing", "quote", "anecdote", "example", "statistic"];
+
+function WikiPanel({ toast, askDelete }) {
+  const [status, setStatus] = useState("draft");
+  const [kind, setKind] = useState("");
+  const [q, setQ] = useState("");
+  const [needle, setNeedle] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [reload, setReload] = useState(0);
+  const refresh = () => setReload((n) => n + 1);
+  useEffect(() => { const id = setTimeout(() => { setNeedle(q.trim()); setOffset(0); }, 300); return () => clearTimeout(id); }, [q]);
+  const stats = useLoad(() => DB.adminStudyStats(), `stats|${reload}`);
+  const list = useLoad(() => DB.adminSnippets({ status, kind, q: needle, offset, limit: 30 }), `${status}|${kind}|${needle}|${offset}|${reload}`);
+  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true }), "pyqs");
+  const pyqById = useMemo(() => new Map((pyqs.data || []).map((p) => [p.id, p])), [pyqs.data]);
+  const items = list.data?.items || [];
+
+  const publishPage = async () => {
+    const ids = items.filter((s) => s.status === "draft").map((s) => s.id);
+    if (!ids.length) return;
+    try { await DB.setSnippetsStatus(ids, "published"); toast(`Published ${ids.length}`); refresh(); }
+    catch (e) { console.error(e); toast(e?.message || "Couldn't publish", "err"); }
+  };
+
+  const s = stats.data;
+  return (
+    <div>
+      {s?.missing && <div className="form-err"><AlertCircle size={16} />Migration 0030 is not applied yet, so there is nothing to review.</div>}
+      <div className="ma-pre">
+        <div className="ma-stat"><b>{s ? s.snippets.draft : "–"}</b><span>drafts to review</span></div>
+        <div className="ma-stat"><b>{s ? s.snippets.published : "–"}</b><span>published</span></div>
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+        <select className="sel" value={status} onChange={(e) => { setStatus(e.target.value); setOffset(0); }} aria-label="Status">
+          <option value="draft">Drafts</option><option value="published">Published</option><option value="">All</option>
+        </select>
+        <select className="sel" value={kind} onChange={(e) => { setKind(e.target.value); setOffset(0); }} aria-label="Kind">
+          <option value="">Every kind</option>{SN_KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
+        </select>
+        <div className="search" style={{ flex: 1, minWidth: 200 }}>
+          <Search size={15} /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the passages" aria-label="Search" />
+        </div>
+        {status === "draft" && items.length > 0 && (
+          <button className="btn btn-primary btn-sm" onClick={publishPage}><CheckCircle2 size={15} />Publish these {items.length}</button>
+        )}
+      </div>
+      {list.err ? <ErrorState message={list.err} onRetry={refresh} />
+        : list.loading ? <SkeletonCards count={3} height={150} />
+        : items.length === 0 ? <div className="card card-pad" style={{ fontSize: 13.5, color: "var(--muted)" }}>Nothing here.</div>
+        : items.map((sn) => <SnippetAdminRow key={sn.id} sn={sn} pyqById={pyqById} toast={toast} askDelete={askDelete} onChanged={refresh} />)}
+      {list.data && list.data.total > 30 && (
+        <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center", marginTop: 12, fontSize: 13 }}>
+          <button className="btn btn-ghost btn-sm" disabled={offset === 0} onClick={() => setOffset((o) => Math.max(0, o - 30))}>Previous</button>
+          <span>{offset + 1}–{Math.min(offset + 30, list.data.total)} of {list.data.total}</span>
+          <button className="btn btn-ghost btn-sm" disabled={offset + 30 >= list.data.total} onClick={() => setOffset((o) => o + 30)}>Next</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SnippetAdminRow({ sn, pyqById, toast, askDelete, onChanged }) {
+  const [f, setF] = useState({ kind: sn.kind, body: sn.body, attribution: sn.attribution, why: sn.why, reviewNote: sn.reviewNote });
+  const dirty = ["kind", "body", "attribution", "why", "reviewNote"].some((k) => (f[k] || "") !== (sn[k] || ""));
+  const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
+  const save = async (status) => {
+    try {
+      await DB.updateSnippet(sn.id, { ...f, ...(status ? { status } : {}) });
+      toast(status === "published" ? "Published" : status === "draft" ? "Moved back to drafts" : "Saved");
+      onChanged();
+    } catch (e) { console.error(e); toast(e?.message || "Couldn't save", "err"); }
+  };
+  const remove = () => askDelete("Delete this passage from the wiki?", async () => {
+    try { await DB.deleteSnippet(sn.id); toast("Deleted"); onChanged(); }
+    catch (e) { console.error(e); toast(e?.message || "Couldn't delete", "err"); }
+  });
+  return (
+    <div className="ma-ans">
+      <div className="ma-ans-top" style={{ alignItems: "center", flexWrap: "wrap" }}>
+        <select className="sel" value={f.kind} onChange={(e) => set("kind", e.target.value)} aria-label="Kind">
+          {SN_KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
+        </select>
+        <span className={"ma-kind " + (sn.status === "published" ? "exact" : "related")}>{sn.status}</span>
+        <span className="ma-ans-meta" style={{ flex: 1, minWidth: 160, marginTop: 0 }}>{sn.topperName} · {sn.question}</span>
+        <button className="btn-icon danger" title="Delete" onClick={remove}><Trash2 size={14} /></button>
+      </div>
+      {f.reviewNote && <div className="form-err" style={{ marginTop: 8, background: "var(--amb-bg)", color: "var(--ink)" }}><AlertCircle size={15} />{f.reviewNote}</div>}
+      <textarea className="inp" rows={Math.min(8, Math.max(2, Math.ceil(f.body.length / 110)))} value={f.body} onChange={(e) => set("body", e.target.value)}
+                style={{ marginTop: 8, fontFamily: "Georgia,serif", fontSize: 14.5, lineHeight: 1.6 }} aria-label="Passage" />
+      <div className="field-row" style={{ marginTop: 8 }}>
+        {f.kind === "quote" && <Field label="Said by (as the topper credits it)"><input className="inp" value={f.attribution} onChange={(e) => set("attribution", e.target.value)} /></Field>}
+        <Field label="Why it works"><input className="inp" value={f.why} onChange={(e) => set("why", e.target.value)} /></Field>
+      </div>
+      <Field label="Note for reviewers" hint="Not shown to students. Clear it once checked.">
+        <input className="inp" value={f.reviewNote} onChange={(e) => set("reviewNote", e.target.value)} />
+      </Field>
+      <div style={{ fontSize: 12.5, color: "var(--muted)", marginBottom: 8 }}>
+        Fits {sn.fits.length} topic{sn.fits.length === 1 ? "" : "s"}:
+        <ul style={{ margin: "4px 0 0", paddingLeft: 18 }}>
+          {sn.fits.map((x) => <li key={x.pyqId}><b style={{ color: "var(--ink)" }}>{pyqById.get(x.pyqId)?.topic || "PYQ"}</b> — {x.use}</li>)}
+        </ul>
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {dirty && <button className="btn btn-ghost btn-sm" onClick={() => save()}><Save size={15} />Save edits</button>}
+        {sn.status === "draft"
+          ? <button className="btn btn-primary btn-sm" onClick={() => save("published")}><CheckCircle2 size={15} />{dirty ? "Save and publish" : "Publish"}</button>
+          : <button className="btn btn-ghost btn-sm" onClick={() => save("draft")}>Unpublish</button>}
+      </div>
+    </div>
+  );
+}
+
+/* ======================================================== LEARN TO WRITE == */
+
+function ltwProblems(doc) {
+  const out = [];
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) return ["The guide must be a JSON object."];
+  if (typeof doc.spine !== "string" || !doc.spine.trim()) out.push("spine is missing");
+  if (!Array.isArray(doc.sides) || doc.sides.length !== 3) out.push("sides needs Thesis, Antithesis, Synthesis");
+  if (!Array.isArray(doc.arguments) || doc.arguments.length < 3) out.push("arguments needs at least 3");
+  (doc.arguments || []).forEach((a, i) => {
+    if (![0, 1, 2].includes(a?.side)) out.push(`argument ${i + 1}: side must be 0, 1 or 2`);
+    if (!a?.title) out.push(`argument ${i + 1}: title is missing`);
+  });
+  if (!Array.isArray(doc.introductions) || !doc.introductions.length) out.push("introductions is empty");
+  if (!Array.isArray(doc.conclusions) || !doc.conclusions.length) out.push("conclusions is empty");
+  return out;
+}
+
+function LtwAdminPanel({ toast, askDelete }) {
+  const [reload, setReload] = useState(0);
+  const [filter, setFilter] = useState("draft");
+  const [editing, setEditing] = useState(null);
+  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true }), "pyqs");
+  const states = useLoad(() => DB.adminLtwList(), `ltw|${reload}`);
+  const stateOf = (id) => states.data?.get(id)?.status || "none";
+  const rows = (pyqs.data || []).filter((p) => !filter || stateOf(p.id) === filter);
+  const count = (s) => (pyqs.data || []).filter((p) => stateOf(p.id) === s).length;
+  return (
+    <div>
+      <div className="ma-pre">
+        <div className="ma-stat"><b>{states.data ? count("draft") : "–"}</b><span>drafts to review</span></div>
+        <div className="ma-stat"><b>{states.data ? count("published") : "–"}</b><span>published</span></div>
+        <div className="ma-stat"><b>{states.data ? count("none") : "–"}</b><span>PYQs without a guide</span></div>
+      </div>
+      <div className="ma-tabs" style={{ marginBottom: 12 }}>
+        {[["draft", "Drafts"], ["published", "Published"], ["none", "No guide"], ["", "All"]].map(([k, l]) => (
+          <button key={k} className={"ma-tab" + (filter === k ? " on" : "")} onClick={() => setFilter(k)}>{l}</button>
+        ))}
+      </div>
+      {pyqs.err || states.err ? <ErrorState message={pyqs.err || states.err} onRetry={() => setReload((n) => n + 1)} />
+        : pyqs.loading || states.loading ? <SkeletonCards count={3} height={60} />
+        : rows.length === 0 ? <div className="card card-pad" style={{ fontSize: 13.5, color: "var(--muted)" }}>Nothing here.</div>
+        : (
+          <div className="tbl-wrap">
+            <table className="tbl">
+              <thead><tr><th>Year</th><th>Topic</th><th>Guide</th><th /></tr></thead>
+              <tbody>
+                {rows.map((p) => (
+                  <tr key={p.id}>
+                    <td>{p.year}</td>
+                    <td style={{ maxWidth: 520 }}>{p.topic}</td>
+                    <td><span className={"ma-kind " + (stateOf(p.id) === "published" ? "exact" : "related")}>{stateOf(p.id)}</span></td>
+                    <td style={{ textAlign: "right" }}>
+                      {stateOf(p.id) !== "none" && <button className="btn btn-ghost btn-sm" onClick={() => setEditing(p)}><Eye size={14} />Review</button>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      {editing && (
+        <LtwEditor pyq={editing} toast={toast} askDelete={askDelete} onClose={() => setEditing(null)}
+                   onSaved={() => { setEditing(null); setReload((n) => n + 1); }} />
+      )}
+    </div>
+  );
+}
+
+function LtwEditor({ pyq, toast, askDelete, onClose, onSaved }) {
+  const { t } = useLang();
+  const row = useLoad(() => DB.adminLtw(pyq.id), `ltwdoc|${pyq.id}`);
+  const essays = useLoad(() => DB.essaysForPyq(pyq.id), `ess|${pyq.id}`);
+  const entries = useMemo(() => new Map((essays.data || []).flatMap((g) => g.entries.map((e) => [e.answerId, e]))), [essays.data]);
+  const [text, setText] = useState(null);
+  const [view, setView] = useState("preview");
+  const value = text ?? (row.data ? JSON.stringify(row.data.doc, null, 2) : "");
+  const parsed = useMemo(() => {
+    try { return { doc: value ? JSON.parse(value) : null, err: "" }; } catch (e) { return { doc: null, err: e.message }; }
+  }, [value]);
+  const problems = parsed.err ? [`Not valid JSON: ${parsed.err}`] : ltwProblems(parsed.doc);
+  const status = row.data?.status || "draft";
+
+  const save = async (next) => {
+    try { await DB.saveLtw(pyq.id, parsed.doc, next); toast(next === "published" ? "Published" : "Saved as draft"); onSaved(); }
+    catch (e) { console.error(e); toast(e?.message || "Couldn't save", "err"); }
+  };
+  const remove = () => askDelete("Delete this Learn to Write guide?", async () => {
+    try { await DB.deleteLtw(pyq.id); toast("Deleted"); onSaved(); }
+    catch (e) { console.error(e); toast(e?.message || "Couldn't delete", "err"); }
+  });
+
+  return (
+    <Modal title={`Learn to Write · ${pyq.topic} (${pyq.year})`} onClose={onClose} wide
+           footer={<>
+             <button className="btn btn-ghost" style={{ marginRight: "auto" }} onClick={remove}><Trash2 size={15} />Delete</button>
+             <button className="btn btn-ghost" onClick={() => save("draft")} disabled={!!problems.length}>{status === "published" ? "Unpublish" : "Save draft"}</button>
+             <button className="btn btn-primary" onClick={() => save("published")} disabled={!!problems.length}><CheckCircle2 size={16} />{status === "published" ? "Save" : "Publish"}</button>
+           </>}>
+      <style>{STUDY_CSS}</style>
+      <div className="ma-tabs" style={{ marginBottom: 12 }}>
+        {[["preview", "Preview"], ["json", "Edit"]].map(([k, l]) => (
+          <button key={k} className={"ma-tab" + (view === k ? " on" : "")} onClick={() => setView(k)}>{l}</button>
+        ))}
+        <span className={"ma-kind " + (status === "published" ? "exact" : "related")} style={{ alignSelf: "center" }}>{status}</span>
+      </div>
+      {problems.length > 0 && <div className="form-err"><AlertCircle size={16} />{problems.slice(0, 4).join("; ")}</div>}
+      {row.err ? <ErrorState message={row.err} />
+        : row.loading ? <SkeletonCards count={2} height={120} />
+        : view === "json"
+          ? (
+            <Field hint="The guide as JSON: spine, how_to, dimensions, sides, arguments (side 0 thesis, 1 antithesis, 2 synthesis; sources are essay ids), introductions, conclusions, pitfalls.">
+              <textarea className="inp" rows={26} value={value} onChange={(e) => setText(e.target.value)} spellCheck={false}
+                        style={{ fontFamily: "ui-monospace,Consolas,monospace", fontSize: 12.5, lineHeight: 1.5 }} aria-label="Guide JSON" />
+            </Field>
+          )
+          : parsed.doc ? <LtwDoc doc={parsed.doc} entries={entries} onText={() => {}} onOpen={() => {}} t={t} />
+          : null}
     </Modal>
   );
 }

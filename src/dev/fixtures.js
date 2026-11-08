@@ -699,6 +699,145 @@ export function fxCopyAnswers(copyId) {
   }));
 }
 
+/* ---- study tools (0030): marks, notes, reads, wiki, Learn to Write ----
+   In-memory, so the harness can star, finish and note things without a
+   database. Snippet text is taken verbatim from the sample essays above. */
+const fxMarks = new Map([["pyq:pq-2", { starred: true, done: true, doneAt: "2026-11-07T10:00:00Z" }]]);
+let fxNotes = [
+  { id: "fn-1", kind: "pyq", itemId: "pq-5", label: "There is no path to happiness; Happiness is the path. (2024)",
+    body: "Open with the Buddha's middle path; close on Bhutan's GNH as policy.", createdAt: "2026-11-07T09:00:00Z", updatedAt: "2026-11-07T09:00:00Z" },
+];
+const fxReads = new Set(["2026-11-06", "2026-11-07"]);
+const fxToday = () => new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
+
+export function fxEssayMarks() {
+  const out = { pyq: new Map(), answer: new Map(), snippet: new Map() };
+  for (const [k, v] of fxMarks) { const [kind, id] = k.split(":"); out[kind].set(id, v); }
+  return out;
+}
+export function fxSetEssayMark(kind, id, { starred, done }) {
+  const key = `${kind}:${id}`;
+  if (!starred && !done) { fxMarks.delete(key); return null; }
+  const prev = fxMarks.get(key);
+  const v = { starred: !!starred, done: !!done, doneAt: done ? (prev?.done ? prev.doneAt : new Date().toISOString()) : null };
+  fxMarks.set(key, v);
+  if (done) fxReads.add(fxToday());
+  return v;
+}
+export function fxEssayNotes() { return fxNotes.slice(); }
+export function fxSaveEssayNote({ id, kind, itemId, label, body }) {
+  const now = new Date().toISOString();
+  if (id) {
+    fxNotes = fxNotes.map((n) => (n.id === id ? { ...n, body: body.trim(), updatedAt: now } : n));
+    return fxNotes.find((n) => n.id === id);
+  }
+  const n = { id: `fn-${Date.now()}`, kind, itemId: kind === "free" ? null : itemId, label, body: body.trim(), createdAt: now, updatedAt: now };
+  fxNotes = [n, ...fxNotes];
+  return n;
+}
+export function fxDeleteEssayNote(id) { fxNotes = fxNotes.filter((n) => n.id !== id); }
+export function fxLogEssayRead() { fxReads.add(fxToday()); }
+export function fxEssayActivityDays() { return [...fxReads].sort(); }
+export function fxEssayReaderCounts(ids) { return new Map(ids.map((id, i) => [id, (i * 7 + 3) % 40])); }
+
+const SN = (id, answerId, kind, body, why, fits, attribution = "") =>
+  ({ id, answerId, kind, body, attribution, why, page: null, status: "published", fits: fits.map(([pyqId, use], i) => ({ pyqId, use, rank: i + 1 })) });
+const FX_SNIPPETS = [
+  SN("fs-1", "fa-1", "opening", "Happiness is often described as a destination: a promotion, a house, a result day. Yet people who reach these places rarely stay happy for long, because the mind quickly resets to its old level.",
+    "Starts from a belief the reader already holds, then turns it in two sentences.",
+    [["pq-5", "Use as the hook, then state your thesis that the walk matters more than the goal."], ["pq-4", "Bend it towards luxury: the mind resets after every purchase, so contentment is the real wealth."]]),
+  SN("fs-2", "fa-1", "example", "Bhutan's Gross National Happiness index and a growing focus on mental health show the idea moving from philosophy into policy.",
+    "Moves the argument from the individual to the state with one concrete case.",
+    [["pq-5", "A governance paragraph: what a happiness-first state measures."]]),
+  SN("fs-3", "fa-2", "anecdote", "In 1930, a march to the sea for a pinch of salt shook an empire that armies could not.",
+    "A single image that carries the whole argument about persuasion.",
+    [["pq-2", "Open with it: victory without a battle, through moral pressure."], ["pq-12", "Show dignity-based help: people moved by example, not handouts."]]),
+  SN("fs-4", "fa-2", "closing", "Force still has a place against those who will not be persuaded, but it buys time, not consent. Lasting change is talked into being.",
+    "Concedes the counter-view, then lands on a short, quotable line.",
+    [["pq-2", "Close the essay: grant force its role, then reassert the thesis."]]),
+  SN("fs-5", "fa-4", "anecdote", "A batter who fails in the nets on Monday and keeps practising until Friday is not lucky when the century comes.",
+    "Everyday sporting image that makes effort feel concrete.",
+    [["pq-10", "Illustrate 'dedication to improve' before moving to public life."], ["pq-3", "Show that bitter failures in practice teach the lasting lessons."]]),
+];
+export function fxWikiCounts() {
+  const out = new Map();
+  for (const s of FX_SNIPPETS) for (const f of s.fits) {
+    const p = FX_ESSAY_PYQS.find((x) => x.id === f.pyqId);
+    for (const th of p?.themes ?? []) { const k = `${th.id}|${s.kind}`; out.set(k, (out.get(k) || new Set()).add(s.id)); }
+  }
+  return [...out].map(([k, set]) => { const [themeId, kind] = k.split("|"); return { themeId, kind, n: set.size }; });
+}
+export function fxSnippetsForPyqs(pyqIds) {
+  const want = new Set(pyqIds);
+  return FX_SNIPPETS.filter((s) => s.fits.some((f) => want.has(f.pyqId))).map((s) => {
+    const a = FX_ANSWERS.find((x) => x.answerId === s.answerId);
+    return { ...s, use: "", fitPyqId: null, fits: s.fits.filter((f) => want.has(f.pyqId)), entry: a ? { ...a, links: undefined } : null };
+  });
+}
+export function fxLibraryEntries(ids) {
+  return FX_ANSWERS.filter((a) => ids.includes(a.answerId)).map((a) => ({ ...a, links: undefined }));
+}
+export function fxSnippetsByIds(ids) {
+  return FX_SNIPPETS.filter((s) => ids.includes(s.id)).map((s) => ({
+    ...s, use: "", fitPyqId: null, entry: fxLibraryEntries([s.answerId])[0] || null,
+  }));
+}
+export function fxAdminSnippets({ status = "", kind = "", q = "", offset = 0, limit = 30 } = {}) {
+  const n = q.trim().toLowerCase();
+  const all = FX_SNIPPETS.map((s, i) => ({ ...s, status: i === 1 ? "draft" : s.status, reviewNote: i === 2 ? "Check the year of the march." : "",
+    use: "", fitPyqId: null, question: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.question || "",
+    topperName: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.topper.name || "" }))
+    .filter((s) => (!status || s.status === status) && (!kind || s.kind === kind) && (!n || s.body.toLowerCase().includes(n)));
+  return { items: all.slice(offset, offset + limit), total: all.length };
+}
+export function fxAdminStudyStats() { return { snippets: { draft: 1, published: 4 }, ltw: { draft: 0, published: 1 } }; }
+
+const FX_LTW_DOC = {
+  spine: "Happiness is not a prize at the end of achievement but the quality of attention and purpose we bring to each step.",
+  how_to: [
+    "Read 'path' two ways: the route to a goal, and the way of walking. The topic rejects the first and praises the second.",
+    "Do not turn it into a lecture against ambition; the claim is about where joy is found, not whether goals matter.",
+    "Move from the individual to society: a state that measures only output repeats the same mistake at scale.",
+  ],
+  dimensions: ["Individual", "Philosophy", "Society", "Economy", "Governance", "Psychology"],
+  sides: [
+    { label: "Thesis", blurb: "Joy lives in the process: meaningful work, relationships and growth, not a finish line." },
+    { label: "Antithesis", blurb: "Goals give direction; without targets, effort drifts and poverty or insecurity leaves little room for joy." },
+    { label: "Synthesis", blurb: "Hold goals lightly and invest in the daily practice; let policy secure the floor so people can walk the path." },
+  ],
+  arguments: [
+    { side: 0, title: "The mind resets after every win", point: "Achievements lift mood briefly before we adapt to them.", paragraph: "Every result day ends. A new phone, a promotion or a rank brings a short lift and then becomes ordinary, because people quickly adapt to gains. If happiness depended on arrivals, it would always be one goal away. Treating the journey itself as the source of satisfaction breaks this loop: the student who enjoys learning is content on the days marks do not come.", sources: ["fa-1"] },
+    { side: 0, title: "Old traditions agree", point: "The middle path and action without attachment place joy in conduct.", paragraph: "Indian and Greek thought reached the same answer from different roads. The Buddha's middle path rejects both indulgence and self-denial; the Gita asks for action without attachment to its fruit; Aristotle's good life is a practice, not an outcome. Each places fulfilment in how one lives each day, which is exactly the claim that happiness is the path.", sources: ["fa-1", "fa-3"] },
+    { side: 1, title: "Hunger is not a mindset", point: "For the poor, material goals are the precondition of any joy.", paragraph: "Telling a family without a ration card that happiness is a way of walking can sound hollow. Basic security, food, health and dignity are not optional destinations; they decide whether a person can think beyond survival. An honest essay grants that some goals must be reached before the journey can be enjoyed, and that public policy has to secure them.", sources: [] },
+    { side: 2, title: "Measure well-being, not only output", point: "A state can put the floor in place and still value the journey.", paragraph: "The two views meet in public policy. A government can secure the material floor through welfare and growth while also measuring how people actually live: time, health, trust and mental well-being. Bhutan's happiness index is one attempt; India's attention to mental health is another. Policy that values the path lets citizens find joy along it.", sources: ["fa-1"] },
+  ],
+  introductions: [
+    { type: "story", text: "A young athlete trains for years for one medal. On the podium she feels a rush, and a week later an emptiness. What she misses is not the medal but the mornings of practice, the small daily wins and the people who trained beside her. Her experience is common, and it suggests that the joy we chase at the finish line was present all along in the running.", sources: [] },
+    { type: "quote", text: "\"There is no path to happiness; happiness is the path\" captures a truth that philosophers in many traditions reached independently. It asks us to look for joy in the way we work, relate and grow, rather than in a distant reward. This essay examines that claim for the individual and for society, and asks where it holds and where it needs a floor of material security to be true.", sources: [] },
+    { type: "context", text: "India's young population is told that success lies at the end of a long ladder of exams, jobs and possessions. Rising anxiety among students suggests the ladder is not delivering contentment. The topic invites a different reading of success: one in which the daily practice of learning, service and relationships is itself the reward, and where policy helps make such a life possible for everyone.", sources: [] },
+  ],
+  conclusions: [
+    { type: "wayforward", text: "The way forward lies in schools that value curiosity over rank, workplaces that value meaning as well as output, and a state that measures well-being alongside growth. Individuals can choose to find joy in practice; institutions can make that choice easier by securing the basics.", sources: [] },
+    { type: "reconciliation", text: "Goals and journeys are not enemies. Goals give the path its direction, while the path gives the goal its meaning. A person or a nation that keeps both in view, holding ambitions lightly and attending to each step, will find that contentment arrives not at the end but along the way.", sources: [] },
+    { type: "quote", text: "The traveller who enjoys the road arrives contented wherever the road ends. If happiness is the path, then every day of honest work, every act of kindness and every lesson learnt is already a small arrival, and that is the wealth no result can take away.", sources: [] },
+  ],
+  pitfalls: [
+    "Treating the topic as anti-ambition; the claim is about where joy is found, not whether goals matter.",
+    "Staying only at the personal level and ignoring policy and society.",
+    "Ignoring poverty: the antithesis about material security must be answered, not skipped.",
+  ],
+};
+export function fxLtwReady() { return new Set(["pq-5", "pq-10"]); }
+export function fxLtw(pyqId) {
+  if (pyqId === "pq-5") return { doc: FX_LTW_DOC, status: "published", updatedAt: "2026-11-08T00:00:00Z" };
+  if (pyqId === "pq-10") {
+    return { preview: { spine: "Accepting what is and improving what can be are two halves of one discipline.",
+      sides: FX_LTW_DOC.sides, titles: FX_LTW_DOC.arguments.map((a) => ({ side: a.side, title: a.title })), introductions: 3, conclusions: 3 } };
+  }
+  return null;
+}
+export function fxAdminLtwList() { return new Map([["pq-5", { status: "published", source: "drafted", updatedAt: "2026-11-08T00:00:00Z" }]]); }
+
 /* A ruled answer-booklet page with wavy "handwriting", page number and a
    heading on the pages where a fixture essay starts. Deterministic per
    (copy, page), so a page looks the same every time it is drawn. */

@@ -2237,6 +2237,213 @@ export async function copyPageUrls(copyId, pages) {
   return out;
 }
 
+/* ------------------------------------------------- mains: study tools -- */
+/* Migration 0030. A student's own stars, "done" marks, notes and reading log
+ * (row-level security keeps each to its owner), the Essay Wiki (verbatim
+ * passages behind the copy's lock) and Learn to Write (behind Mains, with a
+ * preview for everyone signed in). Before 0030 is applied every read here
+ * comes back empty instead of failing the Essay section. */
+
+const missingTable = (error) => /does not exist|schema cache|Could not find/i.test(String(error?.message || ""));
+const IST_DAY = () => new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
+
+/** Every star and "done" this student has, as { pyq, answer, snippet } maps of
+ *  item id → { starred, done, doneAt }. */
+export async function essayMyMarks() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxEssayMarks();
+  const sb = await getSupabase();
+  const empty = { pyq: new Map(), answer: new Map(), snippet: new Map() };
+  const { data, error } = await sb.from("essay_marks").select("kind, item_id, starred, done, done_at").limit(5000);
+  if (error) { if (missingTable(error)) return empty; throw error; }
+  for (const r of data ?? []) empty[r.kind]?.set(r.item_id, { starred: r.starred, done: r.done, doneAt: r.done_at });
+  return empty;
+}
+
+/** Star or mark done. A row with neither is removed. */
+export async function setEssayMark(kind, itemId, { starred, done }) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSetEssayMark(kind, itemId, { starred, done });
+  const sb = await getSupabase();
+  if (!starred && !done) {
+    const { error } = await sb.from("essay_marks").delete().eq("kind", kind).eq("item_id", itemId);
+    if (error) throw error;
+    return null;
+  }
+  const { data, error } = await sb.from("essay_marks")
+    .upsert({ kind, item_id: itemId, starred: !!starred, done: !!done }, { onConflict: "user_id,kind,item_id" })
+    .select("starred, done, done_at").single();
+  if (error) throw error;
+  return { starred: data.starred, done: data.done, doneAt: data.done_at };
+}
+
+function noteFromRow(r) {
+  return { id: r.id, kind: r.kind, itemId: r.item_id ?? null, label: r.label || "", body: r.body, createdAt: r.created_at, updatedAt: r.updated_at };
+}
+
+/** This student's notes, newest first. */
+export async function essayNotes() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxEssayNotes();
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("essay_notes")
+    .select("id, kind, item_id, label, body, created_at, updated_at")
+    .order("updated_at", { ascending: false }).limit(1000);
+  if (error) { if (missingTable(error)) return []; throw error; }
+  return (data ?? []).map(noteFromRow);
+}
+
+/** Add a note (no id) or change one. */
+export async function saveEssayNote({ id, kind, itemId = null, label = "", body }) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSaveEssayNote({ id, kind, itemId, label, body });
+  const sb = await getSupabase();
+  const text = String(body || "").trim();
+  const q = id
+    ? sb.from("essay_notes").update({ body: text }).eq("id", id)
+    : sb.from("essay_notes").insert({ kind, item_id: kind === "free" ? null : itemId, label: String(label || "").slice(0, 300) || null, body: text });
+  const { data, error } = await q.select("id, kind, item_id, label, body, created_at, updated_at").single();
+  if (error) throw error;
+  return noteFromRow(data);
+}
+
+export async function deleteEssayNote(id) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxDeleteEssayNote(id);
+  const sb = await getSupabase();
+  const { error } = await sb.from("essay_notes").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** Count today's reading of an essay (once a day per essay). Never throws:
+ *  a missed log must not break the reader. */
+export async function logEssayRead(answerId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLogEssayRead(answerId);
+  try {
+    const sb = await getSupabase();
+    const { error } = await sb.from("essay_reads").insert({ answer_id: answerId });
+    if (error && error.code !== "23505" && !missingTable(error)) console.warn("essay read not logged", error.message);
+  } catch (e) { console.warn("essay read not logged", e); }
+}
+
+/** The days (India time, YYYY-MM-DD) this student read an essay or finished a
+ *  PYQ, for the streak. */
+export async function essayActivityDays(days = 120) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxEssayActivityDays();
+  const sb = await getSupabase();
+  const since = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  const [reads, marks] = await Promise.all([
+    sb.from("essay_reads").select("read_on").gte("read_on", since).limit(5000),
+    sb.from("essay_marks").select("done_at").eq("done", true).gte("done_at", since).limit(5000),
+  ]);
+  if (reads.error && !missingTable(reads.error)) throw reads.error;
+  const out = new Set((reads.data ?? []).map((r) => r.read_on));
+  (marks.data ?? []).forEach((m) => { if (m.done_at) out.add(new Date(new Date(m.done_at).getTime() + 5.5 * 3600e3).toISOString().slice(0, 10)); });
+  return [...out].sort();
+}
+
+/** Days in a row, ending today or yesterday, with any essay activity. */
+export function essayStreak(days, today = IST_DAY()) {
+  const set = new Set(days);
+  const step = (d) => new Date(Date.parse(`${d}T00:00:00Z`) - 864e5).toISOString().slice(0, 10);
+  let d = set.has(today) ? today : step(today);
+  let n = 0;
+  while (set.has(d)) { n += 1; d = step(d); }
+  return n;
+}
+
+/** How many students have read each essay: Map answerId → count. */
+export async function essayReaderCounts(ids) {
+  if (!ids?.length) return new Map();
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxEssayReaderCounts(ids);
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("essay_reader_counts", { p_ids: ids.slice(0, 300) });
+  if (error) { console.warn("reader counts unavailable", error.message); return new Map(); }
+  return new Map((data ?? []).map((r) => [r.answer_id, r.readers]));
+}
+
+/** Ids of the PYQs that have a published Learn to Write guide. */
+export async function essayLtwReady() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLtwReady();
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("essay_ltw_ready");
+  if (error) { if (!missingTable(error)) console.warn("ltw list unavailable", error.message); return new Set(); }
+  return new Set((data ?? []).map((r) => (typeof r === "string" ? r : r.essay_ltw_ready)));
+}
+
+/** A PYQ's guide: { doc } when this student may read it, { preview } when it
+ *  is locked, or null when there is none. */
+export async function essayLtw(pyqId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLtw(pyqId);
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("essay_ltw").select("doc, status, updated_at").eq("pyq_id", pyqId).maybeSingle();
+  if (error && !missingTable(error)) throw error;
+  if (data?.doc) return { doc: data.doc, status: data.status, updatedAt: data.updated_at };
+  const { data: preview, error: e2 } = await sb.rpc("essay_ltw_preview", { p_pyq: pyqId });
+  if (e2) { if (!missingTable(e2)) console.warn("ltw preview unavailable", e2.message); return null; }
+  return preview ? { preview } : null;
+}
+
+function snippetFromRow(s, fit = null) {
+  return {
+    id: s.id, answerId: s.answer_id, kind: s.kind, body: s.body, attribution: s.attribution || "",
+    why: s.why || "", page: s.page ?? null, status: s.status,
+    use: fit?.use_note || "", fitPyqId: fit?.pyq_id || null,
+  };
+}
+
+/** Published wiki snippets per theme and kind: [{ themeId, kind, n }]. */
+export async function essayWikiCounts() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxWikiCounts();
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("essay_wiki_counts");
+  if (error) { if (!missingTable(error)) console.warn("wiki counts unavailable", error.message); return []; }
+  return (data ?? []).map((r) => ({ themeId: r.theme_id, kind: r.kind, n: r.n }));
+}
+
+/** The snippets that fit any of these PYQs, each once, with the essay it came
+ *  from and every fit among these PYQs. Locked ones are simply absent. */
+export async function essaySnippetsForPyqs(pyqIds) {
+  if (!pyqIds?.length) return [];
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSnippetsForPyqs(pyqIds);
+  const sb = await getSupabase();
+  const fits = await selectIn(sb, "essay_snippet_fits",
+    "snippet_id, pyq_id, use_note, rank, essay_snippets!inner(id, answer_id, kind, body, attribution, why, page, status)",
+    "pyq_id", pyqIds, 100).catch((e) => { if (missingTable(e)) return []; throw e; });
+  const byId = new Map();
+  for (const f of fits) {
+    const s = f.essay_snippets;
+    if (!s || s.status !== "published") continue;
+    if (!byId.has(s.id)) byId.set(s.id, { ...snippetFromRow(s), fits: [] });
+    byId.get(s.id).fits.push({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 });
+  }
+  const list = [...byId.values()];
+  const answers = [...new Set(list.map((s) => s.answerId))];
+  const rows = answers.length ? await withLibCols((cols) => selectIn(sb, "topper_library_v", cols, "answer_id", answers)) : [];
+  const entry = new Map(rows.map((r) => [r.answer_id, libraryEntryFromRow(r)]));
+  return list.map((s) => ({ ...s, entry: entry.get(s.answerId) || null })).filter((s) => s.entry);
+}
+
+/** Library entries for these essays (e.g. a student's starred ones). */
+export async function libraryEntries(ids) {
+  if (!ids?.length) return [];
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLibraryEntries(ids);
+  const sb = await getSupabase();
+  const rows = await withLibCols((cols) => selectIn(sb, "topper_library_v", cols, "answer_id", ids));
+  return rows.filter((r) => r.is_published !== false).map(libraryEntryFromRow);
+}
+
+/** These snippets with their essays (e.g. a student's starred ones). */
+export async function snippetsByIds(ids) {
+  if (!ids?.length) return [];
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSnippetsByIds(ids);
+  const sb = await getSupabase();
+  const rows = await selectIn(sb, "essay_snippets",
+    "id, answer_id, kind, body, attribution, why, page, status, essay_snippet_fits(pyq_id, use_note, rank)", "id", ids)
+    .catch((e) => { if (missingTable(e)) return []; throw e; });
+  const list = rows.filter((s) => s.status === "published").map((s) => ({
+    ...snippetFromRow(s),
+    fits: (s.essay_snippet_fits ?? []).map((f) => ({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 })).sort((a, b) => a.rank - b.rank),
+  }));
+  const entries = new Map((await libraryEntries([...new Set(list.map((s) => s.answerId))])).map((e) => [e.answerId, e]));
+  return list.map((s) => ({ ...s, entry: entries.get(s.answerId) || null })).filter((s) => s.entry);
+}
+
 /* ------------------------------------------------------ admin: mains -- */
 
 export function slugify(s) {
@@ -2523,6 +2730,118 @@ export async function setAnswerLinks(answerId, links) {
   const { error: e2 } = await sb.from("essay_answer_pyqs").insert(
     links.map((l) => ({ answer_id: answerId, pyq_id: l.pyqId, kind: l.kind, confidence: l.confidence ?? null })));
   if (e2) throw e2;
+}
+
+/** Save start and end pages for several answers of one copy at once. */
+export async function setAnswerPages(list) {
+  const sb = await getSupabase();
+  const num = (v) => (v === "" || v == null ? null : Number(v));
+  for (const a of list) {
+    const { error } = await sb.from("topper_answers")
+      .update({ start_page: num(a.startPage), end_page: num(a.endPage) }).eq("id", a.id);
+    if (error) throw error;
+  }
+}
+
+/* ------------------------------------------- admin: wiki and Learn to Write -- */
+
+/** One page of wiki snippets for review, with each one's essay and fits. */
+export async function adminSnippets({ status = "", kind = "", q = "", offset = 0, limit = 30 } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminSnippets({ status, kind, q, offset, limit });
+  const sb = await getSupabase();
+  let query = sb.from("essay_snippets")
+    .select("id, answer_id, kind, body, attribution, why, review_note, page, status, updated_at, "
+      + "essay_snippet_fits(pyq_id, use_note, rank), topper_answers(question, topper_copies(toppers(name)))", { count: "exact" });
+  if (status) query = query.eq("status", status);
+  if (kind) query = query.eq("kind", kind);
+  const needle = String(q || "").replace(/[%,()*\\]/g, " ").trim();
+  if (needle) query = query.or(`body.ilike.%${needle}%,attribution.ilike.%${needle}%`);
+  const { data, error, count } = await query
+    .order("answer_id").order("kind").order("id")
+    .range(offset, offset + limit - 1);
+  if (error) { if (missingTable(error)) return { items: [], total: 0, missing: true }; throw error; }
+  return {
+    total: count ?? 0,
+    items: (data ?? []).map((s) => ({
+      ...snippetFromRow(s),
+      reviewNote: s.review_note || "",
+      question: s.topper_answers?.question || "",
+      topperName: s.topper_answers?.topper_copies?.toppers?.name || "",
+      fits: (s.essay_snippet_fits ?? []).slice().sort((a, b) => (a.rank ?? 1) - (b.rank ?? 1))
+        .map((f) => ({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 })),
+    })),
+  };
+}
+
+/** Counts of snippets by status, and Learn to Write guides by status. */
+export async function adminStudyStats() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminStudyStats();
+  const sb = await getSupabase();
+  const head = (t, s) => sb.from(t).select("*", { count: "exact", head: true }).eq("status", s);
+  const res = await Promise.all([head("essay_snippets", "draft"), head("essay_snippets", "published"), head("essay_ltw", "draft"), head("essay_ltw", "published")]);
+  if (res.some((r) => r.error && missingTable(r.error))) return { missing: true, snippets: { draft: 0, published: 0 }, ltw: { draft: 0, published: 0 } };
+  const bad = res.find((r) => r.error);
+  if (bad) throw bad.error;
+  return { snippets: { draft: res[0].count ?? 0, published: res[1].count ?? 0 }, ltw: { draft: res[2].count ?? 0, published: res[3].count ?? 0 } };
+}
+
+export async function updateSnippet(id, patch) {
+  const sb = await getSupabase();
+  const row = {};
+  if (patch.body !== undefined) row.body = String(patch.body).trim();
+  if (patch.kind !== undefined) row.kind = patch.kind;
+  if (patch.attribution !== undefined) row.attribution = String(patch.attribution || "").trim() || null;
+  if (patch.why !== undefined) row.why = String(patch.why || "").trim() || null;
+  if (patch.reviewNote !== undefined) row.review_note = String(patch.reviewNote || "").trim() || null;
+  if (patch.status !== undefined) row.status = patch.status;
+  const { error } = await sb.from("essay_snippets").update(row).eq("id", id);
+  if (error) throw error;
+}
+
+/** Publish or unpublish many snippets at once. */
+export async function setSnippetsStatus(ids, status) {
+  const sb = await getSupabase();
+  await inBatches(ids, 150, async (part) => {
+    const { error } = await sb.from("essay_snippets").update({ status }).in("id", part);
+    if (error) throw error;
+  });
+}
+
+export async function deleteSnippet(id) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("essay_snippets").delete().eq("id", id);
+  if (error) throw error;
+}
+
+/** Every Learn to Write guide's state, by PYQ id. */
+export async function adminLtwList() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminLtwList();
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("essay_ltw").select("pyq_id, status, source, updated_at");
+  if (error) { if (missingTable(error)) return new Map(); throw error; }
+  return new Map((data ?? []).map((r) => [r.pyq_id, { status: r.status, source: r.source, updatedAt: r.updated_at }]));
+}
+
+export async function adminLtw(pyqId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLtw(pyqId);
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("essay_ltw").select("doc, status, source, updated_at").eq("pyq_id", pyqId).maybeSingle();
+  if (error) throw error;
+  return data ? { doc: data.doc, status: data.status, source: data.source, updatedAt: data.updated_at } : null;
+}
+
+export async function saveLtw(pyqId, doc, status) {
+  const sb = await getSupabase();
+  const { data: { user } = {} } = await sb.auth.getUser();
+  const { error } = await sb.from("essay_ltw")
+    .upsert({ pyq_id: pyqId, doc, status, updated_by: user?.id ?? null }, { onConflict: "pyq_id" });
+  if (error) throw error;
+}
+
+export async function deleteLtw(pyqId) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("essay_ltw").delete().eq("pyq_id", pyqId);
+  if (error) throw error;
 }
 
 export async function essayAutolink() {

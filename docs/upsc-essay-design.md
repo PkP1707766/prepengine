@@ -78,6 +78,23 @@ Dashboard → Essay.
 
 The reader paints pages onto canvases, so no image URL sits in the page. It loads only the pages near the reader and releases far ones (4 of 27 painted on opening a fixture copy). It re-signs URLs before they expire.
 
+## 5b. Study tools (slice 2, migration `0030_essay_study.sql`)
+
+| Table / function | Holds |
+|---|---|
+| `essay_marks` | a student's star and done per PYQ, essay or wiki passage; `done_at` is stamped by a trigger |
+| `essay_notes` | a student's notes (on an item, or free), with the item's label at the time; 1,000 per student |
+| `essay_reads` + `essay_reader_counts()` | one row per student, essay and IST day; inserts only for today or yesterday. Counts are public to signed-in users, rows are not |
+| `essay_snippets` + `essay_snippet_fits` | wiki passages (verbatim, behind `can_read_topper_copy()`), each fitted to PYQs with a "use it here" note; `review_note` is for admins |
+| `essay_wiki_counts()` | published passages per theme and kind, for tab counts and locked views |
+| `essay_ltw` + `essay_ltw_ready()` + `essay_ltw_preview()` | one Learn to Write guide per PYQ as JSON; readable with Mains, an outline (spine, sides, argument titles) for everyone signed in |
+
+Wiki passages and guides are drafts until an admin publishes them.
+
+**Drafting** happens outside the app (`mains-import/essay-drafting/`, kept out of git): the essays and PYQs are exported, split into batches (16 of 15 essays for the wiki, 24 of 4 PYQs for guides), drafted to a written spec, checked by `validate.mjs`, and turned into SQL by `to_sql.mjs`. Loading twice changes nothing: a passage already in place is skipped, and a published guide is never overwritten.
+
+**Start pages** come from the admin's own copy of the PDF, drawn in the browser by the same pdf.js chunk the upload uses.
+
 ## 6. Still to decide or do
 
 - **Tick Mains** on the bundle(s) that should include it (0028 is applied).

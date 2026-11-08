@@ -31,6 +31,55 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 8 Nov 2026 — Mains: study tools (Learn to Write, Essay Wiki, notes, start pages)
+
+Migration `0030_essay_study.sql` and three new pieces around the essay library.
+
+**For students** (Dashboard → Essay, now four tabs):
+- **Done, star and notes.** Every PYQ card can be starred and marked done; any
+  essay or wiki passage can be starred; a note can sit on a PYQ, an essay, a
+  passage, or stand alone. A strip on the PYQ tab shows PYQs done, the streak
+  (days with an essay read for 40 seconds or a PYQ finished) and what is
+  saved. **My notes** lists notes and stars and opens them again. The database
+  stamps "done" times and only accepts today's or yesterday's reading, so a
+  streak cannot be back-filled.
+- **Reader counts** on each essay ("12 readers"): counts only, never who.
+- **Learn to Write** on a PYQ: the core idea, how to read the topic, three
+  sides, 9-12 arguments with model paragraphs, three ways to open and close,
+  and traps. Each point names the topper essays it draws on, which open as
+  text. Mains holders read it all; others see the outline.
+- **Essay Wiki**: openings, closings, quotes, stories, examples and data
+  points taken word for word from toppers' essays, by theme, each with "why it
+  works", "use it here" for the open PYQ, and the other topics it fits. The
+  passages are the copy, so they sit behind its lock. A PYQ page shows its own
+  passages too.
+
+**For admins** (Mains & Essay):
+- **Find start pages** on a copy: pick the copy's PDF from this computer,
+  its pages are drawn in the browser (nothing is uploaded), and two clicks per
+  answer mark where it starts and ends. Works for link copies.
+- **Essay Wiki** and **Learn to Write** tabs to review drafts: edit, publish
+  (one by one or a page at a time), unpublish, delete. Each drafted passage
+  carries a reviewer note where the topper's fact or attribution looks wrong.
+
+**Content.** Drafted here from the 233 essay texts, checked by a validator
+(word limits, every passage verbatim from its essay, every source one of the
+PYQ's essays, no ten-word run copied from any essay into our own writing),
+and loaded as drafts. A pilot is ready: 4 guides and 82 passages from 15
+essays (35 with reviewer notes). A trial on the live database (migration and
+the pilot loaded twice, then rolled back) gave 82 passages, 205 fits and 4
+guides, all drafts, with no duplicates on the second load.
+
+**Live (8 Nov 2026).** 0030 is applied and the pilot is loaded as drafts:
+82 passages from 15 essays, 205 fits, 35 with reviewer notes, 4 guides.
+Supabase's default privileges had also given visitors (anon) rights on the
+new tables, so a free copy's passages would have been readable signed out;
+those rights are revoked (in the file too). Checked as a signed-in
+non-admin student: 0 passages, 0 fits, 0 guides and no preview while
+everything is a draft.
+
+---
+
 ## 8 Nov 2026 — Mains: a QA pass, and the dark-mode and lint debts it found
 
 A sweep of everything built for Mains (code, live data, and the screens at
