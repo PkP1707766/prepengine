@@ -71,8 +71,12 @@ const FORMAT_LABEL = {
   topper_answers: "Topper answers (subject, topper, page, link)",
   topper_essays: "Topper essays with their copies",
   topic_map: "Similar-PYQ map (topic → similar PYQs)",
+  essay_texts: "Essay texts (typed transcripts)",
 };
-const FORMAT_UNIT = { pyq_categories: ["PYQ", "PYQs"], topper_answers: ["answer", "answers"], topper_essays: ["essay", "essays"], topic_map: ["topic", "topics"] };
+const FORMAT_UNIT = {
+  pyq_categories: ["PYQ", "PYQs"], topper_answers: ["answer", "answers"], topper_essays: ["essay", "essays"],
+  topic_map: ["topic", "topics"], essay_texts: ["essay text", "essay texts"],
+};
 
 /* Word overlap, for suggesting which PYQs an essay answers. Crude next to an
    embedding, but the bank is ~100 PYQs and the admin decides. */
@@ -194,6 +198,7 @@ function ImportPanel({ toast }) {
       if (parsed.format === "pyq_categories") result = await DB.importEssayPyqs(items, step);
       else if (parsed.format === "topper_answers") result = await DB.importTopperAnswers(items, step);
       else if (parsed.format === "topper_essays") result = await DB.importTopperEssays(items, parsed.topics, step);
+      else if (parsed.format === "essay_texts") result = await DB.importEssayTexts(items, step);
       else result = await DB.importTopicMap(items, step);
       setRun({ result });
       toast("Import finished");
@@ -218,6 +223,7 @@ function ImportPanel({ toast }) {
           Export each Google Sheet tab as CSV (File → Download → Comma-separated values) and add it here.
           Import the <b>PYQs</b> first. For <b>topper essays</b>, add the essay tab together with its <b>HandwrittenLinks</b> tab
           (select both files): the essay tab&apos;s links are formulas, which a CSV keeps only as the word &quot;Link&quot;.
+          Essay texts (typed transcripts) go in after the topper essays.
           Re-importing a newer export is safe: existing rows are kept, new ones are added.
         </span>
       </div>
@@ -299,11 +305,17 @@ function ImportPanel({ toast }) {
               {run?.result && (
                 <div className="ma-steps">
                   <div><CheckCircle2 size={15} style={{ verticalAlign: -3, color: "var(--green)" }} /> <b>Imported.</b></div>
-                  {Object.entries(run.result).filter(([k]) => k !== "unmatched").map(([k, v]) => <div key={k}>{k}: <b>{v}</b></div>)}
+                  {Object.entries(run.result).filter(([k]) => k !== "unmatched" && k !== "missing").map(([k, v]) => <div key={k}>{k}: <b>{v}</b></div>)}
                   {run.result.unmatched?.length > 0 && (
                     <details>
                       <summary style={{ cursor: "pointer" }}>{run.result.unmatched.length} similar PYQs not found in the PYQ list</summary>
                       <ul className="ma-skip">{run.result.unmatched.slice(0, 20).map((u) => <li key={u}>{u}</li>)}</ul>
+                    </details>
+                  )}
+                  {run.result.missing?.length > 0 && (
+                    <details>
+                      <summary style={{ cursor: "pointer" }}>{run.result.missing.length} rows matched no imported essay</summary>
+                      <ul className="ma-skip">{run.result.missing.slice(0, 20).map((u) => <li key={u}>{u}</li>)}</ul>
                     </details>
                   )}
                 </div>
@@ -343,6 +355,23 @@ function ImportSample({ format, items }) {
               <td>{it.question}</td>
               <td className="nowrap">{it.page ?? "—"}</td>
               <td>{it.coaching}</td>
+            </tr>
+          ))}</tbody>
+        </table>
+      </div>
+    );
+  }
+  if (format === "essay_texts") {
+    return (
+      <div className="tbl-wrap" style={{ marginTop: 12 }}>
+        <table className="tbl">
+          <thead><tr><th>Essay topic</th><th>Copy</th><th>Words</th><th>Opening</th></tr></thead>
+          <tbody>{rows.map((it, i) => (
+            <tr key={i}>
+              <td>{it.question}</td>
+              <td>{(it.file || "").replace(/\.pdf$/i, "") || "—"}</td>
+              <td className="nowrap">{it.words.toLocaleString("en-IN")}</td>
+              <td style={{ color: "var(--muted)" }}>{it.body.slice(0, 140)}{it.body.length > 140 ? "…" : ""}</td>
             </tr>
           ))}</tbody>
         </table>

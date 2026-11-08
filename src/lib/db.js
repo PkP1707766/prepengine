@@ -2045,9 +2045,25 @@ export async function mainsBundleCodes() {
   return (data ?? []).map((r) => r.code);
 }
 
-const LIB_COLS =
+const LIB_COLS_BASE =
   "answer_id, paper, paper_label, question, start_page, end_page, copy_id, source, title, written_year, " +
   "source_url, page_count, pages_ready, is_free, is_published, topper_id, topper_name, topper_rank, cse_year, essay_marks";
+
+// body_words arrives with migration 0029. Asking for a column that does not
+// exist yet fails the whole query, so a build that goes out before the
+// migration drops the word count (once) rather than the Essay section.
+let libHasWords = true;
+const libCols = () => (libHasWords ? `${LIB_COLS_BASE}, body_words` : LIB_COLS_BASE);
+const isMissingWords = (error) => libHasWords && /body_words/.test(String(error?.message || ""));
+async function withLibCols(run) {
+  try {
+    return await run(libCols());
+  } catch (e) {
+    if (!isMissingWords(e)) throw e;
+    libHasWords = false;
+    return run(libCols());
+  }
+}
 
 export function libraryEntryFromRow(r) {
   return {
@@ -2066,6 +2082,7 @@ export function libraryEntryFromRow(r) {
     hosted: r.pages_ready === true,
     isFree: r.is_free === true,
     isPublished: r.is_published !== false,
+    words: r.body_words ?? null,   // set when the essay has its text
     topper: {
       id: r.topper_id,
       name: r.topper_name,
@@ -2076,26 +2093,63 @@ export function libraryEntryFromRow(r) {
   };
 }
 
+/** Ids of the published essays whose text contains these words (websearch
+ *  syntax), best match first. Empty when nothing matches, the query is only
+ *  stop words, or the search does not exist yet (before migration 0029). */
+export async function searchEssayIds(q, limit = 100) {
+  const needle = String(q || "").trim();
+  if (!needle) return [];
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSearchEssayIds(needle);
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("search_topper_essays", { p_q: needle, p_limit: limit });
+  if (error) {
+    console.warn("essay text search unavailable", error.message);
+    return [];
+  }
+  return (data ?? []).map((r) => r.answer_id);
+}
+
 /** One page of the topper-answer library for a paper. `q` matches the
- *  question or the topper's name. */
+ *  question, the topper's name, or any word in the essay's text. */
 export async function topperLibrary({ paper = "essay", sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
   if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxLibrary({ paper, sort, year, q, offset, limit });
   const sb = await getSupabase();
-  let query = sb.from("topper_library_v").select(LIB_COLS, { count: "exact" })
-    .eq("paper", paper)
-    .eq("is_published", true);
-  if (year) query = query.eq("written_year", year);
   // Commas and brackets are PostgREST's own syntax inside or(); a stray one
   // would break the filter rather than match nothing.
   const needle = String(q || "").replace(/[%,()*\\]/g, " ").trim();
-  if (needle) query = query.or(`question.ilike.%${needle}%,topper_name.ilike.%${needle}%`);
-  if (sort === "marks") query = query.order("essay_marks", { ascending: false, nullsFirst: false });
-  query = query
-    .order("written_year", { ascending: sort === "oldest", nullsFirst: false })
-    .order("answer_id");
-  const { data, error, count } = await query.range(offset, offset + limit - 1);
-  if (error) throw error;
+  // Text matches ride along as ids. 100 keeps the request line well short of
+  // proxy limits; the search ranks, so these are the best hundred.
+  const textIds = needle && paper === "essay" ? await searchEssayIds(q, 100) : [];
+  const { data, count } = await withLibCols(async (cols) => {
+    let query = sb.from("topper_library_v").select(cols, { count: "exact" })
+      .eq("paper", paper)
+      .eq("is_published", true);
+    if (year) query = query.eq("written_year", year);
+    if (needle) {
+      const ors = [`question.ilike.%${needle}%`, `topper_name.ilike.%${needle}%`];
+      if (textIds.length) ors.push(`answer_id.in.(${textIds.join(",")})`);
+      query = query.or(ors.join(","));
+    }
+    if (sort === "marks") query = query.order("essay_marks", { ascending: false, nullsFirst: false });
+    query = query
+      .order("written_year", { ascending: sort === "oldest", nullsFirst: false })
+      .order("answer_id");
+    const res = await query.range(offset, offset + limit - 1);
+    if (res.error) throw res.error;
+    return res;
+  });
   return { items: (data ?? []).map(libraryEntryFromRow), total: count ?? 0 };
+}
+
+/** An essay's text, or null when it has none -- or when the reader may not
+ *  open this copy (the text sits behind the copy's own lock). */
+export async function essayText(answerId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxEssayText(answerId);
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("topper_answer_texts")
+    .select("body, source, updated_at").eq("answer_id", answerId).maybeSingle();
+  if (error) throw error;
+  return data ? { body: data.body, source: data.source || "", updatedAt: data.updated_at } : null;
 }
 
 /** The years that actually have answers, for the year filter. */
@@ -2120,7 +2174,7 @@ export async function essaysForPyq(pyqId) {
   if (error) throw error;
   if (!links?.length) return [];
   const meta = new Map(links.map((l) => [l.answer_id, l]));
-  const rows = (await selectIn(sb, "topper_library_v", LIB_COLS, "answer_id", [...meta.keys()]))
+  const rows = (await withLibCols((cols) => selectIn(sb, "topper_library_v", cols, "answer_id", [...meta.keys()])))
     .filter((r) => r.is_published !== false);
   return groupEssays(rows.map((r) => ({
     ...libraryEntryFromRow(r),
@@ -2583,6 +2637,42 @@ export async function importTopperEssays(items, topics = [], onStep = () => {}) 
   onStep("linking");
   const linked = await essayAutolink();
   return { essays: saved.answers, copies: saved.copies, writers: saved.toppers, mapped: map.mapped, ...linked, unmatched: map.unmatched };
+}
+
+/** Essay texts (typed transcripts): each matched to an imported essay by its
+ *  copy (link, else file name as the copy's title) and its question. A newer
+ *  text replaces the old one -- the transcript is the source of truth. */
+export async function importEssayTexts(items, onStep = () => {}) {
+  const sb = await getSupabase();
+  onStep("matching");
+  const titleOf = (file) => String(file || "").replace(/\.pdf$/i, "");
+  const urls = [...new Set(items.map((it) => it.url).filter(Boolean))];
+  const titles = [...new Set(items.map((it) => titleOf(it.file)).filter(Boolean))];
+  const copies = [
+    ...(await selectIn(sb, "topper_copies", "id, source_url, title", "source_url", urls, 20)),
+    ...(await selectIn(sb, "topper_copies", "id, source_url, title", "title", titles, 20)),
+  ];
+  const byUrl = new Map(copies.map((c) => [c.source_url, c.id]));
+  const byTitle = new Map(copies.filter((c) => c.title).map((c) => [c.title, c.id]));
+  const answers = await selectIn(sb, "topper_answers", "id, copy_id, question_key", "copy_id", [...new Set(copies.map((c) => c.id))], 50);
+  const answerId = new Map(answers.map((a) => [`${a.copy_id}|${a.question_key}`, a.id]));
+
+  const rows = new Map();
+  const missing = [];
+  for (const it of items) {
+    const cid = (it.url && byUrl.get(it.url)) || byTitle.get(titleOf(it.file));
+    const aid = cid && answerId.get(`${cid}|${essayKey(it.question)}`);
+    if (!aid) { missing.push(`${titleOf(it.file) || it.url} — ${it.question}`.slice(0, 180)); continue; }
+    rows.set(aid, { answer_id: aid, body: it.body, source: "typed transcript", source_url: it.source || null });
+  }
+  onStep("saving");
+  // Each text is a few kilobytes: 25 a request keeps each body small.
+  await inBatches([...rows.values()], 25, async (chunk) => {
+    const { error } = await sb.from("topper_answer_texts").upsert(chunk, { onConflict: "answer_id" });
+    if (error) throw error;
+  });
+  const words = [...rows.values()].reduce((n, r) => n + (r.body.match(/\S+/g) || []).length, 0);
+  return { texts: rows.size, words, missing };
 }
 
 /** "Similar PYQs" per mock topic: essay_topic_map, then links. */

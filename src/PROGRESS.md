@@ -31,6 +31,43 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 8 Nov 2026 — Mains: every topper essay as text
+
+Most copies come with a typed transcript, and the essay sheet links one for
+each copy. Their text now goes in alongside the essays: a new
+`topper_answer_texts` table (migration `0029_essay_texts.sql`) holds each
+essay's text, `topper_answers.body_words` its word count (kept by a trigger),
+and `search_topper_essays()` finds essays by any word in them. The text is
+the copy, so it carries the copy's lock: it is readable only by whoever may
+read the copy's pages (an admin, a tester, a free copy, or a bundle that
+includes Mains). The search returns ids and a rank, never text, so a locked
+essay can still be found and its lock explained.
+
+Students see "1,168 words" on each essay, a "Read as text" button that opens
+the essay in a reading view, with a note that a third party typed it from the
+handwritten copy and a button to open the copy itself, and a library search
+box that also matches any word inside an essay. The admin import takes a new
+"essay texts" layout (file name, copy link, question, text), matched to the
+imported essay by its copy and question.
+
+The 118 transcripts for the imported copies were split into essays offline:
+all 233 essays matched their question exactly, 727 to 1,759 words each
+(median 1,168, 275,544 in all), and every one matched an essay in the live
+database in a read-only check. One transcript has a sentence that wraps onto
+a line beginning "question:", so only a capitalised "Question:" straight after
+an "Essay N" marker starts an essay.
+
+If this build reaches the site before the migration, the library drops the
+word count once and search falls back to topics and names; nothing breaks.
+
+Checked: the parser on the real file, the match against the live database
+(read-only), the reader, word counts and text search in the dev harness, the
+admin preview with the real file (not imported), eslint on the changed files,
+css:check, i18n and build. Not checked: the phone layout of the new buttons
+and reader.
+
+---
+
 ## 8 Nov 2026 — Mains on the home page
 
 The home page gains a "Mains · Essay" section between the quote strip and

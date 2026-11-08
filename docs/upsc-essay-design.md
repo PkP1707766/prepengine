@@ -40,6 +40,7 @@ Admin → Mains & Essay → Import sheets. Export each Google Sheet tab as CSV (
 | Topper answers | `Subject, Year, Rank, Topper, Coaching, Question, Page, Link` | toppers, link copies (one per PDF, `#page` stripped), answers with their start page |
 | Similar-PYQ map | `Question from Topper Copy`, `Similar PYQs…` (entries like `Topic.(2025) (Confidence: 90)`) | `essay_topic_map` rows |
 | Link list | `file_name`, `drive_id` | nothing by itself: it resolves the topper-essay tab's file names |
+| Essay texts | `File name`, `Topper Copy (Hand written)`, `Question from Topper Copy`, `Text` | each essay's full text (paragraphs split by a blank line), matched to an imported essay by its copy and question; a newer text replaces the old |
 
 Import the PYQs first, so the others have something to link to; then the topper essays; then the topper answers. Each import ends by running `essay_autolink()`, which links every essay answer whose topic matches a PYQ (exact) or appears in the map (related). Re-importing a newer export is safe: every step is an upsert that ignores duplicates, so existing rows, including any an admin edited, are kept.
 
@@ -72,6 +73,8 @@ Dashboard → Essay.
   - A hosted copy opens in the reader at its start page, with the essay's pages edged in gold.
   - A link copy opens the publisher's PDF at `#page=N` in a new tab.
   - A locked copy explains which bundles include it.
+  - **Read as text** opens the essay's typed transcript, with its word count and a note that a third party typed it from the handwritten copy. The text sits behind the copy's own lock (`topper_answer_texts`, readable only where `can_read_topper_copy()` passes).
+- **Search** in the library matches topics, toppers and any word inside an essay's text (`search_topper_essays()`, ids only).
 
 The reader paints pages onto canvases, so no image URL sits in the page. It loads only the pages near the reader and releases far ones (4 of 27 painted on opening a fixture copy). It re-signs URLs before they expire.
 
@@ -81,7 +84,7 @@ The reader paints pages onto canvases, so no image URL sits in the page. It load
 - **Which copies to host.** Most sheet rows link to coaching institutes' own PDFs, or to Drive copies of them; linking does not re-publish their work, hosting does. A Drive link depends on its owner keeping it shared.
 - **Writers for the unnamed essay copies.** 48 copies in the topper-essay tab name no writer; fill a `Topper` column only where the writer is known.
 - **The topper-answer sheet** needs its names and ranks reviewed before import: its AIR disagrees with the publisher's own file name on 72 copies, a few names are misspellings of another topper's, and its essay rows are mostly headings from inside the essays rather than topics. 117 of its 626 PDF links are dead (nextias.com and cdn.visionias.in).
-- **Typed transcripts.** Import their text (not just a link) when search and Learn to Write need it.
+- **Typed transcripts.** Their text is imported per essay (migration 0029): students read it as text, see word counts and search it. They carry no page numbers, so start and end pages still need the scans.
 - **Hindi.** Theme and PYQ Hindi fields fall back to English when empty, and the admin flags each missing one in red. UPSC's own Hindi wording is the source to use for PYQs.
 - **Builds need Node 22.13 or newer**, because pdf.js 5 requires it.
 

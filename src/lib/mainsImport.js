@@ -19,6 +19,10 @@
  *   copy_links        file_name | drive_id: a lookup list, read together with
  *                     the topper-essay tab. That tab's "Link" cells are formulas,
  *                     so its CSV export holds only the word "Link".
+ *   essay_texts       File name | Topper Copy (Hand written) | Question from
+ *                     Topper Copy | Text: each essay's full text, paragraphs
+ *                     split by a blank line, matched to an imported essay by its
+ *                     copy and question.
  *
  * Imports only mainsKeys.js, so it runs under plain Node for checking a
  * sheet too.
@@ -78,6 +82,18 @@ export function cleanText(s) {
   for (const [bad, good] of MOJIBAKE) out = out.split(bad).join(good);
   return out.replace(/\s+/g, " ").trim();
 }
+
+/** An essay's text: paragraphs split by a blank line, each paragraph's
+ *  spacing tidied and mojibake repaired. Unlike cleanText, the paragraph
+ *  breaks survive. */
+export function cleanBody(s) {
+  let out = String(s ?? "");
+  for (const [bad, good] of MOJIBAKE) out = out.split(bad).join(good);
+  return out.replace(/\r\n?/g, "\n").split(/\n\s*\n/)
+    .map((p) => p.replace(/\s+/g, " ").trim()).filter(Boolean).join("\n\n");
+}
+
+export const wordCount = (s) => (String(s || "").match(/\S+/g) || []).length;
 
 /** "Q.2) Elucidate…", "Q.12 The…", "Q 3. …" → the question alone. */
 export function cleanQuestion(s) {
@@ -175,6 +191,11 @@ function findHeader(rows, test) {
 
 const FORMATS = [
   {
+    // First: an essay-text file carries the copy link and question as well.
+    key: "essay_texts",
+    test: (c) => c.includes("text") && c.some((h) => h.startsWith("question from topper")),
+  },
+  {
     key: "topper_answers",
     test: (c) => ["subject", "topper", "question", "link"].every((h) => c.includes(h)),
   },
@@ -240,7 +261,8 @@ function detect(rows) {
 }
 
 const NO_HEADER = "No known header row. Expected one of: PYQ + Categories; Subject, Year, Rank, Topper, Coaching, Question, Page, Link; "
-  + "File name + Topper Copy (Hand written) + Question from Topper Copy; or Question from Topper Copy + Similar PYQs.";
+  + "File name + Topper Copy (Hand written) + Question from Topper Copy; Question from Topper Copy + Similar PYQs; "
+  + "or File name + Question from Topper Copy + Text.";
 
 /** A link list: cleaned file name → copy URL (the drive_id column, or any
  *  cell holding a link). */
@@ -322,6 +344,24 @@ function parseData({ rows, header, format }, links) {
     items.push(...mergeTopics(body, col("question from topper"), col("similar pyq")));
   }
 
+  if (format === "essay_texts") {
+    const c = {
+      file: col("file name"), q: col("question from topper"), text: exact("text"), source: exact("source"),
+      hand: header.cells.findIndex((h) => h.startsWith("topper copy (hand") || h.startsWith("handwritten")),
+    };
+    body.forEach((r, i) => {
+      const rowNo = header.index + i + 2;
+      const question = cleanQuestion(r[c.q]);
+      if (!question) return;
+      const text = cleanBody(r[c.text]);
+      const file = cleanText(r[c.file]);
+      const url = c.hand >= 0 ? driveViewUrl(r[c.hand]) : null;
+      if (!text) { skipped.push({ row: rowNo, reason: "no text", text: question }); return; }
+      if (!url && !file) { skipped.push({ row: rowNo, reason: "no file name or copy link", text: question }); return; }
+      items.push({ file, url, question, body: text, words: wordCount(text), source: c.source >= 0 ? cleanText(r[c.source]) || null : null });
+    });
+  }
+
   if (format === "topper_essays") {
     const c = {
       file: col("file name"), q: col("question from topper"), similar: col("similar pyq"),
@@ -373,6 +413,11 @@ function parseData({ rows, header, format }, links) {
   }
   if (format === "topic_map") {
     notes.push(`${items.reduce((n, it) => n + it.similar.length, 0)} similar-PYQ entries across ${items.length} topics`);
+  }
+  if (format === "essay_texts") {
+    const ws = items.map((it) => it.words).sort((a, b) => a - b);
+    notes.push(`${items.length} essay texts, ${ws.reduce((a, b) => a + b, 0).toLocaleString("en-IN")} words`);
+    if (ws.length) notes.push(`${ws[0]}–${ws[ws.length - 1]} words per essay, median ${ws[Math.floor(ws.length / 2)]}`);
   }
   if (format === "topper_essays") {
     notes.push(`${items.length} essays in ${new Set(items.map((it) => it.url)).size} copies by ${new Set(items.map((it) => essayKey(it.topper.name))).size} writers`);
