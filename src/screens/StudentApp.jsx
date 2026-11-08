@@ -119,6 +119,18 @@ const CSS = `
 [data-theme="dark"] .scrim{ background:rgba(0,0,0,.62); }
 [data-theme="dark"] .tbl thead th{ background:var(--hair); color:var(--muted); }
 [data-theme="dark"] .tbl tbody tr:hover{ background:var(--hair); }
+/* These three were painted #ffffff outright, so in dark mode the top bar hid
+   the page title (light ink on white) and ghost buttons and tabs glared. */
+[data-theme="dark"] .topbar{ background:var(--card); border-bottom-color:var(--line); }
+[data-theme="dark"] .btn-ghost{ background:transparent; border-color:var(--line); color:var(--ink); }
+[data-theme="dark"] .btn-ghost:hover{ background:var(--hair); border-color:var(--gold-2); }
+[data-theme="dark"] .tab{ background:var(--card); border-color:var(--line); color:var(--ink); }
+[data-theme="dark"] .tab.active{ background:var(--navy); border-color:var(--navy); color:#2a1608; }
+[data-theme="dark"] .stat,
+[data-theme="dark"] .test-card,
+[data-theme="dark"] .batch-card,
+[data-theme="dark"] .ach,
+[data-theme="dark"] .mat-card{ background:var(--card); }
 *{box-sizing:border-box}
 .sd-root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);
   font-variant-numeric:tabular-nums;line-height:1.5;background:var(--bg);min-height:100vh;display:flex}

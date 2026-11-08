@@ -147,7 +147,12 @@ function apportion(cells, total) {
     bump(move[0], -1); bump(move[1], 1);
   }
 
-  return work.filter((c) => c.n > 0).map(({ i, x, keys, ...c }) => c);
+  // Drop the working fields; a copy, so the cells above are untouched.
+  return work.filter((c) => c.n > 0).map((c) => {
+    const out = { ...c };
+    delete out.i; delete out.x; delete out.keys;
+    return out;
+  });
 }
 
 /* ------------------------------------------------------------------- pacing -- */

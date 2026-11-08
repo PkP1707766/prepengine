@@ -169,6 +169,12 @@ function useBrandChrome() {
           --ink-900:#e8f3ec; --ink-600:#a3b8ab; --ink-400:#7a8c81; --line:#213026;
         }
 
+        /* index.html offers "light dark", so without this the browser drew
+           native checkboxes, selects and scrollbars in the OS theme rather
+           than the app's: dark controls on the light app, and the reverse. */
+        [data-theme="light"]:root{ color-scheme:light; }
+        [data-theme="dark"]:root{ color-scheme:dark; }
+
         [data-theme="dark"]:root{
           --brand-900:#1c0a0e; --foot-ground:#100407; --brand-800:#2a0d13; --brand-700:#c4566a;
           --brand-600:#d4707f; --brand-500:#e08a95;
@@ -1708,6 +1714,7 @@ Object.assign(STR, {
   es_pyq_no_essays:    { en: "No topper essays are linked to this question yet.", hi: "इस प्रश्न से अभी कोई टॉपर निबंध नहीं जुड़ा है।" },
   es_search_copies:    { en: "Search topics, toppers or any word in an essay", hi: "विषय, टॉपर या निबंध का कोई भी शब्द खोजें" },
   es_words:            { en: "{n} words", hi: "{n} शब्द" },
+  es_more_topics:      { en: "Show {n} more related topics ({m} essays)", hi: "{n} और मिलते-जुलते विषय दिखाएँ ({m} निबंध)" },
   es_read_text:        { en: "Read as text", hi: "टेक्स्ट में पढ़ें" },
   es_text_note:        { en: "Typed from the handwritten copy by a third party, so a word here and there may differ from what the topper wrote. The copy is the original.",
                          hi: "हाथ से लिखी कॉपी से किसी और ने टाइप किया है, इसलिए कहीं-कहीं कोई शब्द टॉपर के लिखे से अलग हो सकता है। मूल कॉपी ही असली है।" },
