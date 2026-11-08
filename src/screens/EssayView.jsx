@@ -1,10 +1,14 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Lock, ExternalLink, BookOpen, Search, X, PenLine, FileText } from "lucide-react";
+import { ChevronLeft, ChevronRight, Lock, ExternalLink, BookOpen, Search, X, PenLine, FileText, GraduationCap } from "lucide-react";
 import { useLang } from "../lib/contexts.js";
 import { EmptyState, ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 import CopyViewer from "../ui/CopyViewer.jsx";
 import * as DB from "../lib/db.js";
 import { loadKey, saveKey } from "../lib/storage.js";
+import {
+  STUDY_CSS, StudyStrip, StarButton, NoteButton, DoneButton, NoteModal,
+  LtwPanel, PyqSnippets, WikiTab, NotesTab,
+} from "./EssayStudy.jsx";
 
 /* ============================================================
    VIEW: ESSAY  (Mains, slice 1)
@@ -16,10 +20,11 @@ import { loadKey, saveKey } from "../lib/storage.js";
    copy, or in the publisher's own PDF at #page=N when we only
    link to it.
 
-   Two tabs: Essay PYQs (theme or year rail + cards → one PYQ's
-   topper essays) and Topper essays (the whole library, by marks or
-   year). Everything a student reads here is either UPSC's own text
-   or the topper's own copy; nothing is generated yet.
+   Four tabs: Essay PYQs (theme or year rail + cards → one PYQ's
+   topper essays, Learn to Write and wiki), Topper essays (the whole
+   library, by marks or year), the Essay Wiki (openings, quotes,
+   stories by theme) and My notes (stars and the student's notes).
+   The study tools live in EssayStudy.jsx.
    ============================================================ */
 
 const ES_CSS = `
@@ -109,23 +114,42 @@ const PYQ_GROUPS_SHOWN = 6;
 
 const fill = (s, vars) => Object.entries(vars).reduce((out, [k, v]) => out.split(`{${k}}`).join(String(v)), s);
 
+const TABS = [["pyqs", "es_tab_pyqs"], ["copies", "es_tab_copies"], ["wiki", "es_tab_wiki"], ["notes", "es_tab_notes"]];
+const EMPTY_MARKS = { pyq: new Map(), answer: new Map(), snippet: new Map() };
+
 export default function EssayView({ onBrowse }) {
   const { t, lang } = useLang();
-  const [tab, setTab] = useState(() => (loadKey("essay:tab", "pyqs") === "copies" ? "copies" : "pyqs"));
+  const [tab, setTab] = useState(() => {
+    const k = loadKey("essay:tab", "pyqs");
+    return TABS.some(([x]) => x === k) ? k : "pyqs";
+  });
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
   const [reload, setReload] = useState(0);
-  const [openPyq, setOpenPyq] = useState(null);
+  const [openPyq, setOpenPyq] = useState(null);   // { pyq, section }
   const [reader, setReader] = useState(null);
   const [locked, setLocked] = useState(null);
   const [textOf, setTextOf] = useState(null);
+  const [marks, setMarks] = useState(EMPTY_MARKS);
+  const [notes, setNotes] = useState([]);
+  const [streak, setStreak] = useState(0);
+  const [noteDraft, setNoteDraft] = useState(null);
 
   useEffect(() => {
     let alive = true;
     (async () => {
       try {
-        const [themes, pyqs, access] = await Promise.all([DB.essayThemes(), DB.essayPyqs(), DB.mainsAccess()]);
-        if (alive) { setData({ themes, pyqs, access }); setErr(""); }
+        // The study tools are extras: if they fail, the library still opens.
+        const soft = (p, empty) => p.catch((e) => { console.warn("essay study data unavailable", e); return empty; });
+        const [themes, pyqs, access, ltwReady, myMarks, myNotes, days] = await Promise.all([
+          DB.essayThemes(), DB.essayPyqs(), DB.mainsAccess(),
+          soft(DB.essayLtwReady(), new Set()), soft(DB.essayMyMarks(), EMPTY_MARKS),
+          soft(DB.essayNotes(), []), soft(DB.essayActivityDays(), []),
+        ]);
+        if (alive) {
+          setData({ themes, pyqs, access, ltwReady });
+          setMarks(myMarks); setNotes(myNotes); setStreak(DB.essayStreak(days)); setErr("");
+        }
       } catch (e) {
         console.error("essay load failed", e);
         if (alive) setErr(e?.message || t("es_load_fail"));
@@ -137,6 +161,9 @@ export default function EssayView({ onBrowse }) {
   }, [reload]);
 
   const switchTab = (k) => { setTab(k); saveKey("essay:tab", k); setOpenPyq(null); };
+  const openPyqAt = useCallback((pyq, section = "essays") => {
+    setTab("pyqs"); saveKey("essay:tab", "pyqs"); setOpenPyq({ pyq, section });
+  }, []);
 
   const themeName = useCallback((th) => (lang === "hi" && th?.nameHi ? th.nameHi : th?.name || ""), [lang]);
   const topicOf = useCallback((p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic), [lang]);
@@ -151,22 +178,61 @@ export default function EssayView({ onBrowse }) {
     setTextOf(entry);
   }, [data]);
 
+  const refreshStreak = useCallback(() => {
+    DB.essayActivityDays().then((days) => setStreak(DB.essayStreak(days)), () => {});
+  }, []);
+
+  /* Star or finish something: shown at once, undone if the save fails. */
+  const toggleMark = useCallback((kind, id, field) => {
+    const before = marks[kind].get(id) || null;
+    const cur = before || { starred: false, done: false, doneAt: null };
+    const next = { ...cur, [field]: !cur[field] };
+    const apply = (val) => setMarks((m) => {
+      const map = new Map(m[kind]);
+      if (!val || (!val.starred && !val.done)) map.delete(id); else map.set(id, val);
+      return { ...m, [kind]: map };
+    });
+    apply(next);
+    DB.setEssayMark(kind, id, next).then(
+      () => { if (field === "done") refreshStreak(); },
+      (e) => { console.error("essay mark failed", e); apply(before); },
+    );
+  }, [marks, refreshStreak]);
+
+  const notesFor = useCallback((kind, id) => notes.filter((n) => n.kind === kind && n.itemId === id), [notes]);
+  // One note per item: the pencil opens the existing one if there is one.
+  const editNote = useCallback((draft) => {
+    const existing = !draft.id && draft.kind !== "free" ? notes.find((n) => n.kind === draft.kind && n.itemId === draft.itemId) : null;
+    setNoteDraft(existing || draft);
+  }, [notes]);
+  const onNoteSaved = (n) => {
+    setNotes((list) => [n, ...list.filter((x) => x.id !== n.id)]);
+    setNoteDraft(null);
+  };
+  const onNoteDeleted = (id) => { setNotes((list) => list.filter((x) => x.id !== id)); setNoteDraft(null); };
+
+  const pyqById = useMemo(() => new Map((data?.pyqs || []).map((p) => [p.id, p])), [data]);
+
   if (err) return <div className="card card-pad"><ErrorState message={err} onRetry={() => { setErr(""); setData(null); setReload((n) => n + 1); }} /></div>;
   if (!data) return <SkeletonCards count={3} height={120} />;
 
-  const ctx = { t, lang, themeName, topicOf, access: data.access, open, openText };
+  const ctx = {
+    t, lang, themeName, topicOf, access: data.access, open, openText, onBrowse,
+    marks, toggleMark, notes, notesFor, editNote, openPyq: openPyqAt, pyqById, ltwReady: data.ltwReady,
+  };
 
   return (
     <div>
       <style>{ES_CSS}</style>
+      <style>{STUDY_CSS}</style>
       <div className="es-head">
         <div className="tabs">
-          {[["pyqs", "es_tab_pyqs"], ["copies", "es_tab_copies"]].map(([k, key]) => (
+          {TABS.map(([k, key]) => (
             <button key={k} className={"tab" + (tab === k ? " active" : "")} onClick={() => switchTab(k)}>{t(key)}</button>
           ))}
         </div>
       </div>
-      {!data.access && (
+      {!data.access && tab !== "notes" && tab !== "wiki" && (
         <div className="es-note">
           <Lock size={15} /><span style={{ flex: 1, minWidth: 200 }}>{t("es_access_note")}</span>
           {onBrowse && <button className="btn btn-sm btn-ghost" onClick={onBrowse}>{t("es_see_bundles")}</button>}
@@ -174,9 +240,17 @@ export default function EssayView({ onBrowse }) {
       )}
 
       {tab === "pyqs" && (openPyq
-        ? <PyqDetail pyq={openPyq} themes={data.themes} onBack={() => setOpenPyq(null)} {...ctx} />
-        : <PyqList themes={data.themes} pyqs={data.pyqs} onOpen={setOpenPyq} {...ctx} />)}
+        ? <PyqDetail key={openPyq.pyq.id} pyq={openPyq.pyq} section={openPyq.section} themes={data.themes}
+                     onSection={(s) => setOpenPyq((o) => ({ ...o, section: s }))} onBack={() => setOpenPyq(null)} ctx={ctx} {...ctx} />
+        : (
+          <>
+            <StudyStrip pyqs={data.pyqs} marks={marks} streak={streak} notesCount={notes.length} onNotes={() => switchTab("notes")} t={t} />
+            <PyqList themes={data.themes} pyqs={data.pyqs} onOpen={openPyqAt} {...ctx} />
+          </>
+        ))}
       {tab === "copies" && <CopiesTab {...ctx} />}
+      {tab === "wiki" && <WikiTab themes={data.themes} pyqs={data.pyqs} ctx={ctx} />}
+      {tab === "notes" && <NotesTab pyqs={data.pyqs} ctx={ctx} />}
 
       {reader && (
         <CopyViewer
@@ -192,15 +266,22 @@ export default function EssayView({ onBrowse }) {
       {locked && <LockedModal entry={locked} onClose={() => setLocked(null)} onBrowse={onBrowse} t={t} />}
       {textOf && (
         <TextReader entry={textOf} t={t} onClose={() => setTextOf(null)}
-          onOpenCopy={(e) => { setTextOf(null); open(e); }} />
+          onOpenCopy={(e) => { setTextOf(null); open(e); }}
+          starred={!!marks.answer.get(textOf.answerId)?.starred}
+          onStar={() => toggleMark("answer", textOf.answerId, "starred")}
+          noteCount={notesFor("answer", textOf.answerId).length}
+          onNote={() => editNote({ kind: "answer", itemId: textOf.answerId, label: `${textOf.question} · ${textOf.topper.name}` })}
+          onRead={refreshStreak} />
       )}
+      {/* Last, so it sits above the text reader it can be opened from. */}
+      {noteDraft && <NoteModal draft={noteDraft} t={t} onClose={() => setNoteDraft(null)} onSaved={onNoteSaved} onDeleted={onNoteDeleted} />}
     </div>
   );
 }
 
 /* ---------------------------------------------------------------- PYQs -- */
 
-function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang }) {
+function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, toggleMark, ltwReady }) {
   const [mode, setMode] = useState(() => (loadKey("essay:mode", "theme") === "year" ? "year" : "theme"));
   const [pick, setPick] = useState(() => loadKey("essay:pick", "all"));
   const byId = useMemo(() => new Map(themes.map((th) => [th.id, th])), [themes]);
@@ -279,24 +360,36 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang }) {
               {g.items.map((p) => {
                 const [main, ...rest] = p.themes.map((x) => byId.get(x.id)).filter(Boolean);
                 const n = p.essayCount;
+                const mk = marks.pyq.get(p.id);
+                const ltw = ltwReady.has(p.id);
                 return (
                   <article className="card es-card" key={p.id}>
                     <div className="es-card-top">
                       {/* Not "main": StudentApp's layout column is .main, and the two collided. */}
                       {main ? <span className="es-chip es-lead">{themeName(main)}</span> : <span />}
-                      <span className="es-yr">{p.section ? `${p.year} · ${p.section}` : p.year}</span>
+                      <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        {mk?.done && <span className="st-chip-done">✓ {t("st_done")}</span>}
+                        <span className="es-yr">{p.section ? `${p.year} · ${p.section}` : p.year}</span>
+                        <StarButton on={!!mk?.starred} onClick={() => toggleMark("pyq", p.id, "starred")} t={t} />
+                      </span>
                     </div>
                     <div className={"es-topic" + (lang === "hi" && p.topicHi ? " hi" : "")}>{topicOf(p)}</div>
                     {rest.length > 0 && (
                       <div className="es-also">{t("es_also_under")}{rest.map((th) => <span key={th.id} className="es-chip">{themeName(th)}</span>)}</div>
                     )}
                     <div className="es-actions">
-                      <button className={"btn btn-sm " + (n ? "btn-primary" : "btn-ghost")} disabled={!n} onClick={() => onOpen(p)}
+                      <button className={"btn btn-sm " + (n ? "btn-primary" : "btn-ghost")} disabled={!n} onClick={() => onOpen(p, "essays")}
                               style={n ? undefined : { opacity: 0.7, cursor: "default" }}>
                         <BookOpen size={15} />
                         {n === 0 ? t("es_no_essays") : n === 1 ? t("es_read_one") : fill(t("es_read_n"), { n })}
                         {n > 0 && <ChevronRight size={15} />}
                       </button>
+                      {ltw && (
+                        <button className="btn btn-sm btn-ghost" onClick={() => onOpen(p, "ltw")}>
+                          <GraduationCap size={15} />{t("ltw_btn")}
+                        </button>
+                      )}
+                      <DoneButton on={!!mk?.done} onClick={() => toggleMark("pyq", p.id, "done")} t={t} />
                     </div>
                   </article>
                 );
@@ -309,11 +402,13 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang }) {
   );
 }
 
-function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, open, openText }) {
+function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, themeName, topicOf, access, open, openText,
+  marks, toggleMark, notesFor, editNote, ltwReady, onBrowse }) {
   const [groups, setGroups] = useState(null);
   const [err, setErr] = useState("");
   const [reload, setReload] = useState(0);
   const [showAll, setShowAll] = useState(false);
+  const [readers, setReaders] = useState(new Map());
   const byId = useMemo(() => new Map(themes.map((th) => [th.id, th])), [themes]);
 
   useEffect(() => {
@@ -322,6 +417,8 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
       try {
         const g = await DB.essaysForPyq(pyq.id);
         if (alive) { setGroups(g); setErr(""); }
+        const counts = await DB.essayReaderCounts(g.flatMap((x) => x.entries.map((e) => e.answerId)));
+        if (alive) setReaders(counts);
       } catch (e) {
         console.error("essays for pyq failed", e);
         if (alive) setErr(e?.message || "");
@@ -332,13 +429,24 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
 
   useEffect(() => { window.scrollTo({ top: 0 }); }, [pyq.id]);
 
-  const total = (groups || []).reduce((n, g) => n + g.entries.length, 0);
+  const entries = useMemo(() => new Map((groups || []).flatMap((g) => g.entries.map((e) => [e.answerId, e]))), [groups]);
+  const total = entries.size;
   // Half the PYQs gather more than six topics (up to 36). The page leads with
   // the strongest ones -- same question first, then by confidence -- and the
   // rest wait behind one button.
   const visible = showAll ? (groups || []) : (groups || []).slice(0, PYQ_GROUPS_SHOWN);
   const hidden = (groups || []).slice(visible.length);
   const hiddenEssays = hidden.reduce((n, g) => n + g.entries.length, 0);
+  const mk = marks.pyq.get(pyq.id);
+  const label = `${pyq.topic} (${pyq.year})`;
+  const sections = [
+    ["essays", total ? fill(t("st_sec_essays_n"), { n: total }) : t("st_sec_essays")],
+    ["ltw", t("ltw_btn")],
+    ["wiki", t("st_sec_wiki")],
+  ];
+  // A PYQ with no guide and no essays still opens on its essays (empty) view;
+  // the guide tab says when one is coming.
+  const sec = sections.some(([k]) => k === section) ? section : (ltwReady.has(pyq.id) ? "ltw" : "essays");
   return (
     <div>
       <button className="es-back" onClick={onBack}><ChevronLeft size={16} />{t("es_back")}</button>
@@ -351,9 +459,25 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
           <span className="es-yr">{pyq.year}</span>
         </div>
         <div className={"es-topic" + (lang === "hi" && pyq.topicHi ? " hi" : "")}>{topicOf(pyq)}</div>
+        <div className="st-head-acts">
+          <DoneButton on={!!mk?.done} onClick={() => toggleMark("pyq", pyq.id, "done")} t={t} />
+          <StarButton on={!!mk?.starred} onClick={() => toggleMark("pyq", pyq.id, "starred")} t={t} />
+          <NoteButton count={notesFor("pyq", pyq.id).length} onClick={() => editNote({ kind: "pyq", itemId: pyq.id, label })} t={t} />
+        </div>
       </div>
 
-      {err ? <div className="card card-pad"><ErrorState message={err} onRetry={() => { setErr(""); setGroups(null); setReload((n) => n + 1); }} /></div>
+      <div className="st-sec" role="tablist">
+        {sections.map(([k, text]) => (
+          <button key={k} className={sec === k ? "on" : ""} onClick={() => onSection(k)} role="tab" aria-selected={sec === k}>
+            {text}
+          </button>
+        ))}
+      </div>
+
+      {sec === "ltw" && <LtwPanel pyq={pyq} entries={entries} onText={openText} onOpen={open} onBrowse={onBrowse} t={t} />}
+      {sec === "wiki" && <PyqSnippets pyq={pyq} ctx={ctx} />}
+
+      {sec === "essays" && (err ? <div className="card card-pad"><ErrorState message={err} onRetry={() => { setErr(""); setGroups(null); setReload((n) => n + 1); }} /></div>
         : groups === null ? <SkeletonCards count={2} height={140} />
         : total === 0 ? <div className="card card-pad"><EmptyState compact icon={<BookOpen size={24} />} title={t("es_pyq_no_essays")} /></div>
         : (
@@ -367,7 +491,11 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
                   </div>
                   <span className="c">{g.entries.length === 1 ? t("es_one_essay") : fill(t("es_n_essays"), { n: g.entries.length })}</span>
                 </div>
-                {g.entries.map((e) => <EntryRow key={e.answerId} e={e} access={access} onOpen={open} onText={openText} t={t} />)}
+                {g.entries.map((e) => (
+                  <EntryRow key={e.answerId} e={e} access={access} onOpen={open} onText={openText} t={t}
+                            readers={readers.get(e.answerId) || 0}
+                            starred={!!marks.answer.get(e.answerId)?.starred} onStar={() => toggleMark("answer", e.answerId, "starred")} />
+                ))}
               </section>
             ))}
             {hidden.length > 0 && (
@@ -379,14 +507,14 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
             )}
             <p className="es-foot">{t("es_marks_note")}</p>
           </>
-        )}
+        ))}
     </div>
   );
 }
 
 /* --------------------------------------------------------- the library -- */
 
-function CopiesTab({ t, access, open, openText }) {
+function CopiesTab({ t, access, open, openText, marks, toggleMark }) {
   const [sort, setSort] = useState(() => {
     const s = loadKey("essay:sort", "marks");
     return ["marks", "newest", "oldest"].includes(s) ? s : "marks";
@@ -415,7 +543,8 @@ function CopiesTab({ t, access, open, openText }) {
     (async () => {
       try {
         const r = await DB.topperLibrary({ paper: "essay", sort: effSort, year: year ? Number(year) : null, q: needle, offset: 0, limit: 24 });
-        if (alive) setPage({ key: queryKey, items: r.items, total: r.total, err: "" });
+        const readers = await DB.essayReaderCounts(r.items.map((e) => e.answerId));
+        if (alive) setPage({ key: queryKey, items: r.items, total: r.total, err: "", readers });
       } catch (e) {
         console.error("topper library failed", e);
         if (alive) setPage({ key: queryKey, items: [], total: 0, err: e?.message || " " });
@@ -428,7 +557,8 @@ function CopiesTab({ t, access, open, openText }) {
     setBusy(true);
     try {
       const r = await DB.topperLibrary({ paper: "essay", sort: effSort, year: year ? Number(year) : null, q: needle, offset: page.items.length, limit: 24 });
-      setPage((p) => ({ ...p, items: [...p.items, ...r.items], total: r.total }));
+      const readers = await DB.essayReaderCounts(r.items.map((e) => e.answerId));
+      setPage((p) => ({ ...p, items: [...p.items, ...r.items], total: r.total, readers: new Map([...(p.readers || []), ...readers]) }));
     } catch (e) { console.error(e); }
     setBusy(false);
   };
@@ -473,7 +603,11 @@ function CopiesTab({ t, access, open, openText }) {
         ) : (
           <>
             <section className="card es-group">
-              {page.items.map((e) => <EntryRow key={e.answerId} e={e} headline access={access} onOpen={open} onText={openText} t={t} />)}
+              {page.items.map((e) => (
+                <EntryRow key={e.answerId} e={e} headline access={access} onOpen={open} onText={openText} t={t}
+                          readers={page.readers?.get(e.answerId) || 0}
+                          starred={!!marks.answer.get(e.answerId)?.starred} onStar={() => toggleMark("answer", e.answerId, "starred")} />
+              ))}
             </section>
             <p className="es-foot">{t("es_marks_note")}</p>
             {page.items.length < page.total && (
@@ -491,7 +625,7 @@ function CopiesTab({ t, access, open, openText }) {
 
 /* ------------------------------------------------------------ one essay -- */
 
-function EntryRow({ e, headline = false, access, onOpen, onText, t }) {
+function EntryRow({ e, headline = false, access, onOpen, onText, t, readers = 0, starred = false, onStar = null }) {
   const locked = !e.isFree && !access;
   const tp = e.topper;
   const rank = tp.rank != null ? (tp.cseYear ? fill(t("es_rank_year"), { n: tp.rank, y: tp.cseYear }) : fill(t("es_rank_only"), { n: tp.rank })) : null;
@@ -529,16 +663,25 @@ function EntryRow({ e, headline = false, access, onOpen, onText, t }) {
           {e.writtenYear && <span>{fill(t("es_written"), { y: e.writtenYear })}</span>}
           {e.source && <span>{e.source}</span>}
           {e.words > 0 && <span>{fill(t("es_words"), { n: e.words.toLocaleString("en-IN") })}</span>}
+          {readers > 0 && <span>{readers === 1 ? t("st_read_one") : fill(t("st_read_n"), { n: readers })}</span>}
           {e.isFree && <span className="es-free">{t("sd_free")}</span>}
         </div>
       </div>
-      {(textBtn || action) && <div className="es-entry-acts">{textBtn}{action}</div>}
+      {(textBtn || action || onStar) && (
+        <div className="es-entry-acts">
+          {onStar && <StarButton on={starred} onClick={onStar} t={t} />}
+          {textBtn}{action}
+        </div>
+      )}
     </div>
   );
 }
 
 /* An essay as text: the typed transcript, behind the copy's own lock. */
-function TextReader({ entry, onClose, onOpenCopy, t }) {
+/* Reading for this long counts the essay as read today (streak, reader count). */
+const READ_AFTER_MS = 40000;
+
+function TextReader({ entry, onClose, onOpenCopy, t, starred = false, onStar, noteCount = 0, onNote, onRead }) {
   // Keyed by answer and attempt, like the library: while the result belongs to
   // another request, this one shows as loading. Nothing is reset in the effect.
   const [tries, setTries] = useState(0);
@@ -562,6 +705,14 @@ function TextReader({ entry, onClose, onOpenCopy, t }) {
     document.body.style.overflow = "hidden";
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
   }, [onClose]);
+
+  // Only a text that actually loaded, kept open for a while, counts as read.
+  const hasText = !loading && !!res.text?.body;
+  useEffect(() => {
+    if (!hasText) return undefined;
+    const id = setTimeout(() => { DB.logEssayRead(entry.answerId).then(() => onRead?.()); }, READ_AFTER_MS);
+    return () => clearTimeout(id);
+  }, [hasText, entry.answerId, onRead]);
 
   const paras = res.text?.body ? res.text.body.split(/\n{2,}/) : [];
   const by = [entry.topper.name, entry.source, entry.words > 0 ? fill(t("es_words"), { n: entry.words.toLocaleString("en-IN") }) : null]
@@ -595,6 +746,9 @@ function TextReader({ entry, onClose, onOpenCopy, t }) {
             : <article className="es-text">{paras.map((p, i) => <p key={i}>{p}</p>)}</article>}
         </div>
         <div className="modal-foot">
+          {onStar && <StarButton on={starred} onClick={onStar} t={t} />}
+          {onNote && <NoteButton count={noteCount} onClick={onNote} t={t} />}
+          <span style={{ flex: 1 }} />
           {copyBtn}
           <button className="btn btn-primary btn-sm" onClick={onClose}>{t("es_v_close")}</button>
         </div>
