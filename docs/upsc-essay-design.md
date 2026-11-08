@@ -85,7 +85,8 @@ The reader paints pages onto canvases, so no image URL sits in the page. It load
 - **Writers for the unnamed essay copies.** 48 copies in the topper-essay tab name no writer; fill a `Topper` column only where the writer is known.
 - **The topper-answer sheet** needs its names and ranks reviewed before import: its AIR disagrees with the publisher's own file name on 72 copies, a few names are misspellings of another topper's, and its essay rows are mostly headings from inside the essays rather than topics. 117 of its 626 PDF links are dead (nextias.com and cdn.visionias.in).
 - **Typed transcripts.** Their text is imported per essay (migration 0029): students read it as text, see word counts and search it. They carry no page numbers, so start and end pages still need the scans.
-- **Hindi.** Theme and PYQ Hindi fields fall back to English when empty, and the admin flags each missing one in red. UPSC's own Hindi wording is the source to use for PYQs.
+- **Hindi.** All 25 themes have Hindi names (8 Nov 2026). PYQ topics still fall back to English, and the admin flags each missing one in red; UPSC's own Hindi wording is the source to use for them.
+- **Writer details.** Only 2 of the 68 essay writers have an AIR or Essay mark, and no copy has a year written, so the library's marks and year sorting have little to work with until these are filled (Admin → Copies → Edit).
 - **Builds need Node 22.13 or newer**, because pdf.js 5 requires it.
 
 ## 7. Next slices

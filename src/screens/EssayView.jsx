@@ -104,6 +104,9 @@ const ES_CSS = `
 }
 `;
 
+/* A PYQ page leads with this many topic groups; the rest are one tap away. */
+const PYQ_GROUPS_SHOWN = 6;
+
 const fill = (s, vars) => Object.entries(vars).reduce((out, [k, v]) => out.split(`{${k}}`).join(String(v)), s);
 
 export default function EssayView({ onBrowse }) {
@@ -310,6 +313,7 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
   const [groups, setGroups] = useState(null);
   const [err, setErr] = useState("");
   const [reload, setReload] = useState(0);
+  const [showAll, setShowAll] = useState(false);
   const byId = useMemo(() => new Map(themes.map((th) => [th.id, th])), [themes]);
 
   useEffect(() => {
@@ -329,6 +333,12 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
   useEffect(() => { window.scrollTo({ top: 0 }); }, [pyq.id]);
 
   const total = (groups || []).reduce((n, g) => n + g.entries.length, 0);
+  // Half the PYQs gather more than six topics (up to 36). The page leads with
+  // the strongest ones -- same question first, then by confidence -- and the
+  // rest wait behind one button.
+  const visible = showAll ? (groups || []) : (groups || []).slice(0, PYQ_GROUPS_SHOWN);
+  const hidden = (groups || []).slice(visible.length);
+  const hiddenEssays = hidden.reduce((n, g) => n + g.entries.length, 0);
   return (
     <div>
       <button className="es-back" onClick={onBack}><ChevronLeft size={16} />{t("es_back")}</button>
@@ -348,7 +358,7 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
         : total === 0 ? <div className="card card-pad"><EmptyState compact icon={<BookOpen size={24} />} title={t("es_pyq_no_essays")} /></div>
         : (
           <>
-            {groups.map((g) => (
+            {visible.map((g) => (
               <section className="card es-group" key={g.key}>
                 <div className="es-group-head">
                   <div>
@@ -360,6 +370,13 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
                 {g.entries.map((e) => <EntryRow key={e.answerId} e={e} access={access} onOpen={open} onText={openText} t={t} />)}
               </section>
             ))}
+            {hidden.length > 0 && (
+              <div className="es-more">
+                <button className="btn btn-ghost" onClick={() => setShowAll(true)}>
+                  {fill(t("es_more_topics"), { n: hidden.length, m: hiddenEssays })}
+                </button>
+              </div>
+            )}
             <p className="es-foot">{t("es_marks_note")}</p>
           </>
         )}
@@ -383,7 +400,9 @@ function CopiesTab({ t, access, open, openText }) {
 
   // Each result remembers the query that produced it; while it belongs to an
   // older query the list shows as loading. No state is reset in the effect.
-  const queryKey = `${sort}|${year}|${needle}|${reload}`;
+  // Until some essay has a year, newest/oldest have nothing to order by.
+  const effSort = years.length > 0 ? sort : "marks";
+  const queryKey = `${effSort}|${year}|${needle}|${reload}`;
   const [page, setPage] = useState({ key: null, items: [], total: 0, err: "" });
   const loading = page.key !== queryKey;
 
@@ -395,7 +414,7 @@ function CopiesTab({ t, access, open, openText }) {
     let alive = true;
     (async () => {
       try {
-        const r = await DB.topperLibrary({ paper: "essay", sort, year: year ? Number(year) : null, q: needle, offset: 0, limit: 24 });
+        const r = await DB.topperLibrary({ paper: "essay", sort: effSort, year: year ? Number(year) : null, q: needle, offset: 0, limit: 24 });
         if (alive) setPage({ key: queryKey, items: r.items, total: r.total, err: "" });
       } catch (e) {
         console.error("topper library failed", e);
@@ -403,18 +422,20 @@ function CopiesTab({ t, access, open, openText }) {
       }
     })();
     return () => { alive = false; };
-  }, [sort, year, needle, queryKey]);
+  }, [effSort, year, needle, queryKey]);
 
   const more = async () => {
     setBusy(true);
     try {
-      const r = await DB.topperLibrary({ paper: "essay", sort, year: year ? Number(year) : null, q: needle, offset: page.items.length, limit: 24 });
+      const r = await DB.topperLibrary({ paper: "essay", sort: effSort, year: year ? Number(year) : null, q: needle, offset: page.items.length, limit: 24 });
       setPage((p) => ({ ...p, items: [...p.items, ...r.items], total: r.total }));
     } catch (e) { console.error(e); }
     setBusy(false);
   };
 
   const changeSort = (s) => { setSort(s); saveKey("essay:sort", s); };
+  // A year filter with no years in it is noise: shown only once there are some.
+  const hasYears = years.length > 0;
 
   return (
     <div>
@@ -425,18 +446,20 @@ function CopiesTab({ t, access, open, openText }) {
           {q && <button onClick={() => setQ("")} aria-label={t("es_v_close")} style={{ color: "var(--muted)", display: "grid" }}><X size={15} /></button>}
         </label>
         <div className="es-tool">
-          <select value={sort} onChange={(e) => changeSort(e.target.value)} aria-label={t("es_sort_label")}>
+          <select value={effSort} onChange={(e) => changeSort(e.target.value)} aria-label={t("es_sort_label")}>
             <option value="marks">{t("es_sort_marks")}</option>
-            <option value="newest">{t("es_sort_new")}</option>
-            <option value="oldest">{t("es_sort_old")}</option>
+            {hasYears && <option value="newest">{t("es_sort_new")}</option>}
+            {hasYears && <option value="oldest">{t("es_sort_old")}</option>}
           </select>
         </div>
-        <div className="es-tool">
-          <select value={year} onChange={(e) => setYear(e.target.value)} aria-label={t("es_year_label")}>
-            <option value="">{t("es_any_year")}</option>
-            {years.map((y) => <option key={y} value={y}>{y}</option>)}
-          </select>
-        </div>
+        {hasYears && (
+          <div className="es-tool">
+            <select value={year} onChange={(e) => setYear(e.target.value)} aria-label={t("es_year_label")}>
+              <option value="">{t("es_any_year")}</option>
+              {years.map((y) => <option key={y} value={y}>{y}</option>)}
+            </select>
+          </div>
+        )}
       </div>
 
       {loading ? <SkeletonCards count={3} height={100} />

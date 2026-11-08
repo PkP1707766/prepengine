@@ -593,7 +593,7 @@ export const FX_ESSAY_PYQS = [
   PQ("pq-2", 2025, "The supreme art of war is to subdue the enemy without fighting.", [["th-power", 80], ["th-wisdom", 60]], 2, 0),
   PQ("pq-3", 2025, "Best lessons are learnt through bitter experiences.", [["th-rise", 90], ["th-self", 70]], 1, 0),
   PQ("pq-4", 2025, "Contentment is natural wealth; luxury is artificial poverty.", [["th-happy", 90], ["th-mind", 70]]),
-  PQ("pq-5", 2024, "There is no path to happiness; Happiness is the path.", [["th-happy", 90], ["th-self", 70]], 3, 2,
+  PQ("pq-5", 2024, "There is no path to happiness; Happiness is the path.", [["th-happy", 90], ["th-self", 70]], 9, 2,
      "सुख का कोई मार्ग नहीं है; सुख स्वयं मार्ग है।"),
   PQ("pq-6", 2024, "Forests precede civilizations and deserts follow them.", [["th-env", 90]]),
   PQ("pq-7", 2024, "The empires of the future will be the empires of the mind.", [["th-wisdom", 90], ["th-tech", 60]]),
@@ -651,6 +651,10 @@ const FX_ANSWERS = [
   ANS("fa-4", COPY.c2, TOP.t2, "Champions keep playing until they get it right.", 5, null, [["pq-10", "related", 90], ["pq-3", "related", 60]]),
   ANS("fa-5", COPY.c3, TOP.t3, "Joy is the simplest form of gratitude.", 2, 10, [["pq-5", "related", 70]]),
   ANS("fa-6", COPY.c3, TOP.t3, "A smooth sea never made a skilled sailor.", 11, 19, [["pq-9", "related", 90], ["pq-10", "related", 75], ["pq-2", "related", 55]]),
+  // Enough related topics on pq-5 to exercise the "show more topics" button.
+  ...["Contentment is natural wealth.", "The mind is everything; what you think you become.", "Simplicity is the ultimate sophistication.",
+    "Gratitude turns what we have into enough.", "Peace comes from within.", "Small joys make a large life."]
+    .map((q, i) => ANS(`fa-r${i + 1}`, i % 2 ? COPY.c2 : COPY.c3, i % 2 ? TOP.t2 : TOP.t3, q, 2 + i, null, [["pq-5", "related", 80 - i * 5]])),
 ];
 
 export function fxLibrary({ sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
@@ -658,9 +662,10 @@ export function fxLibrary({ sort = "marks", year = null, q = "", offset = 0, lim
   let list = FX_ANSWERS.filter((a) => (!year || a.writtenYear === year)
     && (!needle || a.question.toLowerCase().includes(needle) || a.topper.name.toLowerCase().includes(needle)
       || (FX_TEXTS[a.answerId] || "").toLowerCase().includes(needle)));
-  list = list.slice().sort((a, b) => sort === "marks"
+  list = list.slice().sort((a, b) => (sort === "marks"
     ? (b.topper.essayMarks ?? -1) - (a.topper.essayMarks ?? -1) || b.writtenYear - a.writtenYear
-    : sort === "oldest" ? a.writtenYear - b.writtenYear : b.writtenYear - a.writtenYear);
+    : sort === "oldest" ? a.writtenYear - b.writtenYear : b.writtenYear - a.writtenYear)
+    || a.topper.name.localeCompare(b.topper.name) || a.question.localeCompare(b.question));
   return { items: list.slice(offset, offset + limit).map((a) => ({ ...a, links: undefined })), total: list.length };
 }
 
@@ -689,7 +694,7 @@ export function fxAdminCopies({ q = "" } = {}) {
 export function fxCopyAnswers(copyId) {
   return FX_ANSWERS.filter((a) => a.copyId === copyId).map((a) => ({
     id: a.answerId, paper: "essay", paperLabel: "", question: a.question,
-    startPage: a.startPage ?? "", endPage: a.endPage ?? "",
+    startPage: a.startPage ?? "", endPage: a.endPage ?? "", words: a.words,
     links: a.links.map(([pyqId, kind, confidence]) => ({ pyqId, kind, confidence })),
   }));
 }

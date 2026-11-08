@@ -2131,8 +2131,13 @@ export async function topperLibrary({ paper = "essay", sort = "marks", year = nu
       query = query.or(ors.join(","));
     }
     if (sort === "marks") query = query.order("essay_marks", { ascending: false, nullsFirst: false });
+    // Most essays have no marks and no year yet; without a readable tie-break
+    // they came out in answer_id (random uuid) order. answer_id stays last so
+    // paging stays stable.
     query = query
       .order("written_year", { ascending: sort === "oldest", nullsFirst: false })
+      .order("topper_name")
+      .order("question")
       .order("answer_id");
     const res = await query.range(offset, offset + limit - 1);
     if (res.error) throw res.error;
@@ -2455,7 +2460,7 @@ export async function copyAnswers(copyId) {
   if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxCopyAnswers(copyId);
   const sb = await getSupabase();
   const { data, error } = await sb.from("topper_answers")
-    .select("id, paper, paper_label, question, start_page, end_page, sort_order, essay_answer_pyqs(pyq_id, kind, confidence)")
+    .select("id, paper, paper_label, question, start_page, end_page, sort_order, body_words, essay_answer_pyqs(pyq_id, kind, confidence)")
     .eq("copy_id", copyId)
     .order("start_page", { ascending: true, nullsFirst: false })
     .order("sort_order");
@@ -2467,8 +2472,23 @@ export async function copyAnswers(copyId) {
     question: r.question,
     startPage: r.start_page ?? "",
     endPage: r.end_page ?? "",
+    words: r.body_words ?? null,
     links: (r.essay_answer_pyqs ?? []).map((l) => ({ pyqId: l.pyq_id, kind: l.kind, confidence: l.confidence ?? null })),
   }));
+}
+
+/** Save an essay's text from the admin. A new text is marked as entered by
+ *  an admin; an edit keeps its source. An empty text removes it. */
+export async function saveEssayText(answerId, body, { isNew = false } = {}) {
+  const sb = await getSupabase();
+  if (!String(body || "").trim()) {
+    const { error } = await sb.from("topper_answer_texts").delete().eq("answer_id", answerId);
+    if (error) throw error;
+    return;
+  }
+  const row = { answer_id: answerId, body, ...(isNew ? { source: "entered by admin" } : {}) };
+  const { error } = await sb.from("topper_answer_texts").upsert(row, { onConflict: "answer_id" });
+  if (error) throw error;
 }
 
 export async function upsertAnswer(a) {

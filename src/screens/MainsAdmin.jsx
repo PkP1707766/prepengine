@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { Upload, FileText, Search, Pencil, Trash2, X, Eye, ExternalLink, Plus, Save, AlertCircle, CheckCircle2, BookOpen } from "lucide-react";
 import * as DB from "../lib/db.js";
-import { parseImportFiles } from "../lib/mainsImport.js";
+import { parseImportFiles, cleanBody, wordCount } from "../lib/mainsImport.js";
 import CopyViewer from "../ui/CopyViewer.jsx";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
@@ -732,6 +732,7 @@ function CopyEditor({ copyId, toast, askDelete, onUploadPages, onRead, onClose }
                     <div className="ma-ans-meta">
                       {PAPER_LABEL[a.paper]}{a.paperLabel ? ` · ${a.paperLabel}` : ""}
                       {a.startPage !== "" ? ` · pages ${a.startPage}${a.endPage !== "" ? `–${a.endPage}` : ""}` : " · no page marked"}
+                      {a.words ? ` · ${a.words.toLocaleString("en-IN")} words` : " · no text"}
                     </div>
                     {a.paper === "essay" && (
                       <div className="ma-chips" style={{ marginTop: 8 }}>
@@ -768,6 +769,10 @@ function AnswerForm({ copyId, initial, pyqs, toast, onClose, onSaved }) {
     startPage: num(initial.startPage), endPage: num(initial.endPage),
   });
   const [links, setLinks] = useState(initial.links || []);
+  // The essay's text: loaded for an existing answer, the admin's once edited.
+  const textLoad = useLoad(() => (initial.id ? DB.essayText(initial.id) : Promise.resolve(null)), `text|${initial.id || "new"}`);
+  const [text, setText] = useState(null);
+  const textValue = text ?? textLoad.data?.body ?? "";
   const [find, setFind] = useState("");
   const [err, setErr] = useState("");
   const set = (k, v) => setA((p) => ({ ...p, [k]: v }));
@@ -795,6 +800,11 @@ function AnswerForm({ copyId, initial, pyqs, toast, onClose, onSaved }) {
     try {
       const id = await DB.upsertAnswer({ ...a, id: initial.id, copyId });
       if (a.paper === "essay") await DB.setAnswerLinks(id, links);
+      if (text !== null) {
+        const body = cleanBody(text);
+        const had = !!textLoad.data;
+        if (body || had) await DB.saveEssayText(id, body, { isNew: !had });
+      }
       toast("Answer saved");
       onSaved();
     } catch (e) { console.error(e); setErr(e?.message || "Couldn't save"); }
@@ -814,6 +824,12 @@ function AnswerForm({ copyId, initial, pyqs, toast, onClose, onSaved }) {
       </div>
       <Field label="Question, as written in the copy" req>
         <textarea className="inp" rows={2} value={a.question} onChange={(e) => set("question", e.target.value)} />
+      </Field>
+      <Field label={`Essay text${textValue.trim() ? ` · ${wordCount(cleanBody(textValue)).toLocaleString("en-IN")} words` : ""}`}
+             hint="What students read under Read as text. Split paragraphs with a blank line; leave it empty for no text.">
+        <textarea className="inp" rows={8} value={textValue} disabled={textLoad.loading}
+                  onChange={(e) => setText(e.target.value)} placeholder={textLoad.loading ? "Loading…" : "No text yet"}
+                  style={{ fontFamily: "Georgia, serif", fontSize: 14, lineHeight: 1.6 }} />
       </Field>
       <div className="field-row">
         <Field label="Starts on page" hint="The PDF page, not the booklet's printed number."><input className="inp" type="number" min="1" value={a.startPage} onChange={(e) => set("startPage", e.target.value)} /></Field>

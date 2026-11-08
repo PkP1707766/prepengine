@@ -233,6 +233,24 @@ const CSS = `
 [data-theme="dark"] .scrim{ background:rgba(0,0,0,.62); }
 [data-theme="dark"] .tbl thead th{ background:var(--hair); color:var(--muted); }
 [data-theme="dark"] .tbl tbody tr:hover{ background:var(--hair); }
+/* Painted #ffffff outright: in dark mode the top bar hid the page title and
+   ghost buttons glared. */
+[data-theme="dark"] .topbar{ background:var(--card); border-bottom-color:var(--line); }
+[data-theme="dark"] .btn-ghost{ background:transparent; border-color:var(--line); color:var(--ink); }
+[data-theme="dark"] .btn-ghost:hover{ background:var(--hair); border-color:var(--gold-2); }
+[data-theme="dark"] .tab{ background:var(--card); border-color:var(--line); color:var(--ink); }
+[data-theme="dark"] .tab.active{ background:var(--navy); border-color:var(--navy); color:#2a1608; }
+/* Every table sat in a white .tbl-wrap, so dark-mode text was near-white on
+   white; the same for these other white surfaces. */
+[data-theme="dark"] .stat,
+[data-theme="dark"] .tbl-wrap,
+[data-theme="dark"] .search,
+[data-theme="dark"] .modal-head,
+[data-theme="dark"] .picked-q,
+[data-theme="dark"] .opt-edit .pick{ background:var(--card); border-color:var(--line); }
+[data-theme="dark"] .btn-icon,
+[data-theme="dark"] .sel,
+[data-theme="dark"] .seg button{ background:var(--card); border-color:var(--line); color:var(--ink); }
 [data-theme="dark"] .tbl tbody tr:hover td:has(> .row-actions){ background:var(--hair); }
 [data-theme="dark"] .q-peek{ color:var(--muted); }
 *{box-sizing:border-box}
@@ -284,6 +302,12 @@ const CSS = `
 .btn-gold:hover{filter:brightness(.94)}
 .btn-ghost{background:#ffffff;border-color:#e6d6b2;color:#5c4636}
 .btn-ghost:hover{border-color:#d8c79c;background:#fdf6e3}
+/* Public Content and Feedback use .tabs/.tab, which only the student
+   stylesheet defined: here they rendered as bare text, nearly invisible. */
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tab{font-size:13px;font-weight:700;padding:9px 16px;border-radius:20px;border:1.5px solid #e6dcc4;color:#5c4636;background:#ffffff;transition:.13s;cursor:pointer}
+.tab:hover{border-color:#d8c79c}
+.tab.active{background:var(--navy);border-color:var(--navy);color:#ffffff}
 .btn-danger{background:var(--red);color:#ffffff}
 .btn-danger:hover{filter:brightness(.94)}
 .btn-sm{padding:7px 12px;font-size:12.5px}
@@ -2969,6 +2993,9 @@ function BundleTests({ bundle, onDone, toast }) {
     let alive = true;
     DB.listTests({ examCategory: bundle.exam }).then((t) => { if (alive) setTests(t); }).catch((e) => { console.error(e); toast(e?.message || "Couldn't load tests", "err"); });
     return () => { alive = false; };
+    // toast is left out on purpose: the parent hands down a new one on each
+    // render, and that must not refetch the test list.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bundle.exam]);
   const [q, setQ] = useState("");
   const [saving, setSaving] = useState(false);

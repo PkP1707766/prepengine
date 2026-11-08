@@ -31,6 +31,44 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 8 Nov 2026 — Mains: a QA pass, and the dark-mode and lint debts it found
+
+A sweep of everything built for Mains (code, live data, and the screens at
+desktop and phone width, in Hindi and dark mode) turned up these, now fixed:
+
+- **Dark mode painted white surfaces.** The top bar, ghost buttons, tabs,
+  stat and test cards, and every admin table box were `#ffffff` outright, so
+  in dark mode the page title vanished (light ink on white) and admin tables
+  showed near-white text on white. They now take the dark surface.
+- **Admin tabs had no styles at all.** Public Content and Feedback use
+  `.tabs`/`.tab`, which only the student stylesheet defined; in the admin
+  they rendered as bare text.
+- **Native controls ignored the app's theme.** `index.html` offers "light
+  dark", so checkboxes and scrollbars followed the OS instead of the app;
+  `color-scheme` now follows `data-theme`.
+- **The essay library's order was random.** With marks for 2 of 68 writers
+  and no years on any copy, ties fell back to answer_id (a uuid). Ties now go
+  by topper name, then question; the year filter and newest/oldest appear
+  only once some essay has a year.
+- **Long PYQ pages.** Half the PYQs gather more than six topics (up to 36);
+  a page now shows the six strongest and a "Show N more related topics"
+  button.
+- **Admins could not see or fix an essay's text.** The answer editor shows it
+  with its word count and saves edits; the copy's answer list shows each
+  essay's length.
+- **`npm run verify` stopped at lint** on three unused names in
+  `generate.js` (a rest-destructure that dropped working fields) and a hook
+  warning in the bundle-tests loader. Lint is clean and verify passes.
+- **Hindi theme names.** The 25 essay themes had none; they now do (our own
+  taxonomy, filled only where empty). PYQ topics stay English until UPSC's
+  own Hindi wording is entered.
+
+Checked: every fix in the browser (student and admin, light and dark, Hindi,
+375 px), the live Hindi names through the API and on the home page, and
+`npm run verify`.
+
+---
+
 ## 8 Nov 2026 — Mains: every topper essay as text
 
 Most copies come with a typed transcript, and the essay sheet links one for
