@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Lock, ExternalLink, BookOpen, Search, X, PenLine } from "lucide-react";
+import { ChevronLeft, ChevronRight, Lock, ExternalLink, BookOpen, Search, X, PenLine, FileText } from "lucide-react";
 import { useLang } from "../lib/contexts.js";
 import { EmptyState, ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 import CopyViewer from "../ui/CopyViewer.jsx";
@@ -81,6 +81,16 @@ const ES_CSS = `
 .es-search input{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;font-size:13.5px;padding:10px 0;outline:none;min-width:0}
 .es-more{display:flex;justify-content:center;margin-top:14px}
 .es-more .btn{width:auto}
+.es-entry-acts{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.modal.es-text-modal{max-width:760px;width:calc(100% - 28px);max-height:calc(100vh - 40px);display:flex;flex-direction:column}
+.es-text-modal .modal-body{overflow:auto;flex:1;min-height:0}
+.es-text-modal .modal-head h3{line-height:1.35}
+.es-text-by{font-size:12.5px;color:var(--muted);margin-top:4px}
+.es-text-note{font-size:12.5px;line-height:1.55;color:var(--muted);background:var(--amb-bg);border:1px solid var(--line);
+  border-radius:9px;padding:8px 11px;margin:0 0 18px}
+.es-text p{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;line-height:1.75;color:var(--ink);margin:0 0 14px}
+.es-text p:last-child{margin-bottom:0}
+.es-text-none{font-size:14px;color:var(--muted)}
 @media(max-width:860px){
   .es-grid{grid-template-columns:minmax(0,1fr)}
   .es-rail{display:none}
@@ -89,6 +99,8 @@ const ES_CSS = `
 @media(max-width:560px){
   .es-entry{flex-direction:column;align-items:stretch;gap:10px}
   .es-entry .btn{width:100%}
+  .es-entry-acts{flex-direction:column;align-items:stretch}
+  .es-text p{font-size:16px;line-height:1.7}
 }
 `;
 
@@ -103,6 +115,7 @@ export default function EssayView({ onBrowse }) {
   const [openPyq, setOpenPyq] = useState(null);
   const [reader, setReader] = useState(null);
   const [locked, setLocked] = useState(null);
+  const [textOf, setTextOf] = useState(null);
 
   useEffect(() => {
     let alive = true;
@@ -129,11 +142,16 @@ export default function EssayView({ onBrowse }) {
     if (!entry.isFree && !data?.access) { setLocked(entry); return; }
     if (entry.hosted) setReader(entry);
   }, [data]);
+  // The text is the copy, so it carries the copy's lock.
+  const openText = useCallback((entry) => {
+    if (!entry.isFree && !data?.access) { setLocked(entry); return; }
+    setTextOf(entry);
+  }, [data]);
 
   if (err) return <div className="card card-pad"><ErrorState message={err} onRetry={() => { setErr(""); setData(null); setReload((n) => n + 1); }} /></div>;
   if (!data) return <SkeletonCards count={3} height={120} />;
 
-  const ctx = { t, lang, themeName, topicOf, access: data.access, open };
+  const ctx = { t, lang, themeName, topicOf, access: data.access, open, openText };
 
   return (
     <div>
@@ -169,6 +187,10 @@ export default function EssayView({ onBrowse }) {
         />
       )}
       {locked && <LockedModal entry={locked} onClose={() => setLocked(null)} onBrowse={onBrowse} t={t} />}
+      {textOf && (
+        <TextReader entry={textOf} t={t} onClose={() => setTextOf(null)}
+          onOpenCopy={(e) => { setTextOf(null); open(e); }} />
+      )}
     </div>
   );
 }
@@ -284,7 +306,7 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang }) {
   );
 }
 
-function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, open }) {
+function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, open, openText }) {
   const [groups, setGroups] = useState(null);
   const [err, setErr] = useState("");
   const [reload, setReload] = useState(0);
@@ -335,7 +357,7 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
                   </div>
                   <span className="c">{g.entries.length === 1 ? t("es_one_essay") : fill(t("es_n_essays"), { n: g.entries.length })}</span>
                 </div>
-                {g.entries.map((e) => <EntryRow key={e.answerId} e={e} access={access} onOpen={open} t={t} />)}
+                {g.entries.map((e) => <EntryRow key={e.answerId} e={e} access={access} onOpen={open} onText={openText} t={t} />)}
               </section>
             ))}
             <p className="es-foot">{t("es_marks_note")}</p>
@@ -347,7 +369,7 @@ function PyqDetail({ pyq, themes, onBack, t, lang, themeName, topicOf, access, o
 
 /* --------------------------------------------------------- the library -- */
 
-function CopiesTab({ t, access, open }) {
+function CopiesTab({ t, access, open, openText }) {
   const [sort, setSort] = useState(() => {
     const s = loadKey("essay:sort", "marks");
     return ["marks", "newest", "oldest"].includes(s) ? s : "marks";
@@ -428,7 +450,7 @@ function CopiesTab({ t, access, open }) {
         ) : (
           <>
             <section className="card es-group">
-              {page.items.map((e) => <EntryRow key={e.answerId} e={e} headline access={access} onOpen={open} t={t} />)}
+              {page.items.map((e) => <EntryRow key={e.answerId} e={e} headline access={access} onOpen={open} onText={openText} t={t} />)}
             </section>
             <p className="es-foot">{t("es_marks_note")}</p>
             {page.items.length < page.total && (
@@ -446,7 +468,7 @@ function CopiesTab({ t, access, open }) {
 
 /* ------------------------------------------------------------ one essay -- */
 
-function EntryRow({ e, headline = false, access, onOpen, t }) {
+function EntryRow({ e, headline = false, access, onOpen, onText, t }) {
   const locked = !e.isFree && !access;
   const tp = e.topper;
   const rank = tp.rank != null ? (tp.cseYear ? fill(t("es_rank_year"), { n: tp.rank, y: tp.cseYear }) : fill(t("es_rank_only"), { n: tp.rank })) : null;
@@ -468,6 +490,10 @@ function EntryRow({ e, headline = false, access, onOpen, t }) {
   } else {
     action = null;
   }
+  // Locked, the one lock button explains both the copy and its text.
+  const textBtn = !locked && e.words > 0 && onText
+    ? <button className="btn btn-sm btn-ghost" onClick={() => onText(e)}><FileText size={14} />{t("es_read_text")}</button>
+    : null;
 
   return (
     <div className="es-entry">
@@ -479,10 +505,77 @@ function EntryRow({ e, headline = false, access, onOpen, t }) {
           {tp.essayMarks != null && <span className="marks">{fill(t("es_marks"), { m: tp.essayMarks })}</span>}
           {e.writtenYear && <span>{fill(t("es_written"), { y: e.writtenYear })}</span>}
           {e.source && <span>{e.source}</span>}
+          {e.words > 0 && <span>{fill(t("es_words"), { n: e.words.toLocaleString("en-IN") })}</span>}
           {e.isFree && <span className="es-free">{t("sd_free")}</span>}
         </div>
       </div>
-      {action}
+      {(textBtn || action) && <div className="es-entry-acts">{textBtn}{action}</div>}
+    </div>
+  );
+}
+
+/* An essay as text: the typed transcript, behind the copy's own lock. */
+function TextReader({ entry, onClose, onOpenCopy, t }) {
+  // Keyed by answer and attempt, like the library: while the result belongs to
+  // another request, this one shows as loading. Nothing is reset in the effect.
+  const [tries, setTries] = useState(0);
+  const key = `${entry.answerId}|${tries}`;
+  const [res, setRes] = useState({ key: null, text: null, err: "" });
+  const loading = res.key !== key;
+
+  useEffect(() => {
+    let alive = true;
+    DB.essayText(entry.answerId).then(
+      (text) => { if (alive) setRes({ key, text, err: "" }); },
+      (e) => { if (alive) setRes({ key, text: null, err: e?.message || " " }); },
+    );
+    return () => { alive = false; };
+  }, [key, entry.answerId]);
+
+  useEffect(() => {
+    const onKey = (ev) => { if (ev.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [onClose]);
+
+  const paras = res.text?.body ? res.text.body.split(/\n{2,}/) : [];
+  const by = [entry.topper.name, entry.source, entry.words > 0 ? fill(t("es_words"), { n: entry.words.toLocaleString("en-IN") }) : null]
+    .filter(Boolean).join(" · ");
+  let copyBtn = null;
+  if (entry.hosted) {
+    copyBtn = <button className="btn btn-sm btn-ghost" onClick={() => onOpenCopy(entry)}><BookOpen size={14} />{t("es_open_copy")}</button>;
+  } else if (entry.sourceUrl) {
+    copyBtn = (
+      <a className="btn btn-sm btn-ghost" href={DB.copyLinkAt(entry.sourceUrl, entry.startPage)} target="_blank" rel="noopener noreferrer">
+        <ExternalLink size={14} />{t("es_open_copy")}
+      </a>
+    );
+  }
+
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="modal es-text-modal" onClick={(ev) => ev.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="es-text-title">
+        <div className="modal-head">
+          <div style={{ minWidth: 0 }}>
+            <h3 id="es-text-title">{entry.question}</h3>
+            {by && <div className="es-text-by">{by}</div>}
+          </div>
+          <button className="x" onClick={onClose} aria-label={t("es_v_close")}><X size={19} /></button>
+        </div>
+        <div className="modal-body es-text-body">
+          <p className="es-text-note">{t("es_text_note")}</p>
+          {loading ? <SkeletonCards count={3} height={70} />
+            : res.err ? <ErrorState message={res.err.trim() || t("es_load_fail")} onRetry={() => setTries((n) => n + 1)} />
+            : !paras.length ? <p className="es-text-none">{t("es_text_none")}</p>
+            : <article className="es-text">{paras.map((p, i) => <p key={i}>{p}</p>)}</article>}
+        </div>
+        <div className="modal-foot">
+          {copyBtn}
+          <button className="btn btn-primary btn-sm" onClick={onClose}>{t("es_v_close")}</button>
+        </div>
+      </div>
     </div>
   );
 }

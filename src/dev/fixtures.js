@@ -617,9 +617,33 @@ const COPY = {
   c2: { copyId: "fxc-2", source: "Forum IAS", title: "Mains guidance copy 3", writtenYear: 2023, sourceUrl: "https://example.org/forum-ias/sample-copy-3.pdf", pageCount: 0, hosted: false, isFree: false },
   c3: { copyId: "fxc-3", source: "Next IAS", title: "Essay practice 4", writtenYear: 2025, sourceUrl: "", pageCount: 19, hosted: true, isFree: false },
 };
+// Sample essay texts for the harness: original placeholder prose, not taken
+// from any copy.
+const FX_TEXTS = {
+  "fa-1": "Happiness is often described as a destination: a promotion, a house, a result day. Yet people who reach these places rarely stay happy for long, because the mind quickly resets to its old level.\n\n"
+    + "The Buddha's middle path, Aristotle's eudaimonia and the Gita's idea of action without attachment all point the other way: happiness is the quality of the walk, not the view at the end.\n\n"
+    + "For a society, this means measuring well-being as well as income. Bhutan's Gross National Happiness index and a growing focus on mental health show the idea moving from philosophy into policy.\n\n"
+    + "The path, then, is the happiness: curiosity, kindness and steady effort, practised daily.",
+  "fa-2": "In 1930, a march to the sea for a pinch of salt shook an empire that armies could not. Persuasion works because it changes what people want, while force only changes what they do while watched.\n\n"
+    + "At home, sanitation campaigns succeeded where fines alone had failed. Abroad, soft power through culture, yoga and diaspora goodwill opens doors that pressure keeps shut.\n\n"
+    + "Force still has a place against those who will not be persuaded, but it buys time, not consent. Lasting change is talked into being.",
+  "fa-4": "A batter who fails in the nets on Monday and keeps practising until Friday is not lucky when the century comes. Champions are made by the willingness to be wrong many times before being right once.\n\n"
+    + "In public life too, missions improve through trial, error and correction rather than a perfect first plan.\n\n"
+    + "The lesson for a student is simple: keep playing until you get it right, and treat each mistake as information.",
+};
+const fxWords = (s) => (s ? (s.match(/\S+/g) || []).length : null);
 const ANS = (answerId, copy, topper, question, startPage, endPage, links) => ({
   answerId, paper: "essay", paperLabel: "", question, startPage, endPage, ...copy, isPublished: true, topper, links,
+  words: fxWords(FX_TEXTS[answerId]),
 });
+
+export function fxEssayText(answerId) {
+  return FX_TEXTS[answerId] ? { body: FX_TEXTS[answerId], source: "typed transcript", updatedAt: "2026-11-08T00:00:00Z" } : null;
+}
+export function fxSearchEssayIds(needle) {
+  const n = needle.toLowerCase();
+  return Object.keys(FX_TEXTS).filter((id) => FX_TEXTS[id].toLowerCase().includes(n));
+}
 const FX_ANSWERS = [
   ANS("fa-1", COPY.c1, TOP.t1, "There is no path to happiness. Happiness is the path.", 3, 14, [["pq-5", "exact", 100]]),
   ANS("fa-2", COPY.c1, TOP.t1, "Gentle persuasion succeeds where force fails.", 15, 27, [["pq-2", "related", 85]]),
@@ -632,7 +656,8 @@ const FX_ANSWERS = [
 export function fxLibrary({ sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
   const needle = q.trim().toLowerCase();
   let list = FX_ANSWERS.filter((a) => (!year || a.writtenYear === year)
-    && (!needle || a.question.toLowerCase().includes(needle) || a.topper.name.toLowerCase().includes(needle)));
+    && (!needle || a.question.toLowerCase().includes(needle) || a.topper.name.toLowerCase().includes(needle)
+      || (FX_TEXTS[a.answerId] || "").toLowerCase().includes(needle)));
   list = list.slice().sort((a, b) => sort === "marks"
     ? (b.topper.essayMarks ?? -1) - (a.topper.essayMarks ?? -1) || b.writtenYear - a.writtenYear
     : sort === "oldest" ? a.writtenYear - b.writtenYear : b.writtenYear - a.writtenYear);
