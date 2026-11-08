@@ -7,6 +7,7 @@ import { useLang } from "../lib/contexts.js";
 import { EmptyState, ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 
 import * as DB from "../lib/db.js";
+import { askedOpenView, removeKey, OPEN_VIEW_KEY } from "../lib/storage.js";
 import { fmtDate, fmtLongDate, fmtDuration, daysUntil, uid, initials, gradeFor, SEM } from "../lib/format.js";
 import { groupBySeries, seriesIn, shortTestTitle, titleIn } from "../lib/testOrder.js";
 import Pattern from "../ui/Pattern.jsx";
@@ -2114,7 +2115,16 @@ const NOTIF_ICON = {
 
 function App({ onLaunchExam, onLogout, onBrowse }) {
   const { t } = useLang();
-  const [view, setView] = useState("home");
+  // The public site's Mains section can ask for the Essay view to open first
+  // (OPEN_VIEW_KEY). The request is kept until the student moves on from that
+  // view: the dashboard can mount more than once on the way in, and dropping
+  // it on the first mount sent the second one home.
+  const [askedView] = useState(() => {
+    const asked = askedOpenView();
+    return NAV.some((n) => n.id === asked) ? asked : null;
+  });
+  const [view, setView] = useState(askedView || "home");
+  useEffect(() => { if (view !== askedView) removeKey(OPEN_VIEW_KEY); }, [view, askedView]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
   const [sbOpen, setSbOpen] = useState(false);

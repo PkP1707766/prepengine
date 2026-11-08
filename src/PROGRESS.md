@@ -31,6 +31,30 @@ made it "demo mode", and all three are fixed:
 
 ---
 
+## 8 Nov 2026 — Mains on the home page
+
+The home page gains a "Mains · Essay" section between the quote strip and
+the test series. It says what the Essay section holds, counted live (96 essay
+topics from 2014 to 2025, in 25 themes), shows its five biggest themes as
+tiles, each quoting a real recent topic, adds an "All 25 themes" tile, and
+names the bundle that brings the topper copies. That name is read from
+`plans.includes_mains`, so it follows the Bundles & Pricing setting. PYQs and
+themes are public, so a visitor sees real content; the copies need a session,
+so the section shows topics, not copies, and hides itself when nothing is
+published.
+
+A tile or the button opens the student dashboard on Essay, on that theme. The
+public page leaves a one-shot request (`askOpenView` in `storage.js`) that
+the dashboard honours for half an hour and drops once the student moves on; a
+visitor signs in first. Dropping it on the first mount instead sent students
+home, because the dashboard mounts twice on the way in.
+
+Checked in the browser at 1440 and 375 px, in Hindi and in dark mode; the
+dashboard opening on Essay, and letting go of the request, in the dev
+harness; eslint on the changed files, css:check, i18n and build.
+
+---
+
 ## 8 Nov 2026 — Mains: the topper-essay tab imports with its copies
 
 The essay sheet's richest tab has one row per essay a topper wrote: the

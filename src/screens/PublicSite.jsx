@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
-  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History,
+  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History, PenLine,
 } from "lucide-react";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
@@ -14,6 +14,7 @@ import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
 import { Instagram, YouTube, Telegram, WhatsApp, LinkedIn, XMark } from "../ui/SocialIcons.jsx";
 import BrochureButton, { BROCHURE_CSS } from "../ui/BrochureButton.jsx";
 import * as DB from "../lib/db.js";
+import { saveKey, askOpenView } from "../lib/storage.js";
 import { fmtLongDate } from "../lib/format.js";
 import { groupBySeries, seriesIn, titleIn } from "../lib/testOrder.js";
 
@@ -402,6 +403,53 @@ const CSS = `
 .pb-card-btns{margin-top:auto;display:flex;align-items:center;gap:9px}
 .pb-owned{background:color-mix(in srgb,var(--ok-600) 12%,transparent) !important;color:var(--ok-600) !important;
   border:1.5px solid color-mix(in srgb,var(--ok-600) 34%,transparent) !important;box-shadow:none !important}
+
+/* ---------- MAINS ---------- */
+/* The Essay section's shop window. Its tiles echo the catalogue cards (cream,
+   hairline border, the gold-to-maroon accent, here down the left edge) but sit
+   lower and tighter, so the test series below stays the main event. */
+.pb-mains{padding-bottom:24px}
+.pb-mains-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pb-mtile{font:inherit;color:inherit;text-align:left;margin:0;appearance:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:134px;
+  background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:20px 22px 18px 26px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;
+  transition:transform .26s cubic-bezier(.2,.8,.3,1),box-shadow .26s ease,border-color .26s ease}
+.pb-mtile::before{content:"";position:absolute;top:0;left:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--gold-500),var(--brand-600))}
+.pb-mtile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--gold-300)}
+.pb-mtile:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
+.pb-mtile-n{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--gold-600)}
+.pb-mtile-name{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.25;color:var(--ink-900)}
+.pb-mtile-q{font-family:var(--font-quote);font-style:italic;font-size:15.5px;line-height:1.45;color:var(--ink-600);
+  display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pb-mtile-q b{font-family:var(--font-body);font-style:normal;font-weight:700;font-size:12px;color:var(--ink-400)}
+.pb-mtile-all{justify-content:center;border-style:dashed;padding-right:52px;
+  background:color-mix(in srgb,var(--gold-300) 14%,var(--cream-50))}
+.pb-mtile-all::before{display:none}
+.pb-mtile-all .pb-mtile-name{color:var(--brand-700)}
+.pb-mtile-s{font-size:13.5px;line-height:1.45;color:var(--ink-600)}
+.pb-mtile-go{position:absolute;right:20px;top:50%;margin-top:-9px;color:var(--brand-600);transition:transform .2s ease}
+.pb-mtile-all:hover .pb-mtile-go{transform:translateX(4px)}
+.pb-mtile-ghost{cursor:default}
+.pb-mtile-ghost:hover{transform:none;box-shadow:var(--shadow-card);border-color:var(--line)}
+.pb-mains-foot{display:flex;align-items:center;justify-content:center;gap:12px 20px;flex-wrap:wrap;
+  margin-top:28px;text-align:center;position:relative;z-index:2}
+.pb-mains-inc{margin:0;font-size:14px;line-height:1.5;color:var(--ink-600)}
+.pb-mains-inc button{font:inherit;font-weight:700;color:var(--brand-700);background:none;border:0;padding:0;cursor:pointer;
+  text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--brand-700) 35%,transparent);text-underline-offset:3px}
+.pb-mains-inc button:hover{text-decoration-color:currentColor}
+.pb-mains-inc button:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px;border-radius:3px}
+/* The quote serif's italic has no Devanagari: in Hindi the emphasis takes the
+   Devanagari display face, upright, as the quote strip's does. */
+[data-applang="hi"] .pb-mains .pb-h2 em{font-family:var(--font-deva-display);font-style:normal;font-weight:400;font-size:1em}
+@media (max-width:980px){ .pb-mains-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){
+  .pb-mains-grid{grid-template-columns:1fr;gap:12px}
+  .pb-mtile{min-height:0}
+  /* Three themes and the "all themes" tile: the rest is one tap away. */
+  .pb-mains-grid > .pb-mtile:nth-child(n+4):not(.pb-mtile-all){display:none}
+}
 
 /* ---------- JOURNEY ---------- */
 .pb-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -2113,6 +2161,127 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
 }
 
 /* ------------------------------------------------------------------ site -- */
+/* ---------------- MAINS ----------------
+   The Essay section's shop window, between the quote strip and the test
+   series: what it holds (live counts), its biggest themes as tiles, each
+   quoting a real recent topic, and the bundle that brings the topper copies.
+   PYQs and themes are public; the copies need a session, so this shows
+   topics, not copies. Nothing renders when no PYQ is published or the read
+   fails: it is a shop window, not a page anyone came for. */
+let mainsCache = null;   // the resolved read, kept for the page's life
+let mainsLoad = null;    // the read in flight
+function loadMains() {
+  mainsLoad ||= Promise.all([DB.essayPyqs(), DB.essayThemes(), DB.mainsBundleCodes().catch(() => [])])
+    .then(([pyqs, themes, codes]) => (mainsCache = { pyqs, themes, codes }))
+    .catch((e) => { mainsLoad = null; throw e; });
+  return mainsLoad;
+}
+const fillIn = (s, vars) => String(s).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
+const MAINS_TILES = 5;   // plus an "all themes" tile: two rows of three
+
+function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) {
+  const { t, lang } = useLang();
+  const [data, setData] = useState(() => mainsCache);
+  useEffect(() => {
+    if (mainsCache) return undefined;
+    let alive = true;
+    loadMains().then((d) => { if (alive) setData(d); }, () => { if (alive) setData({ failed: true }); });
+    return () => { alive = false; };
+  }, []);
+
+  const view = useMemo(() => {
+    if (!data?.pyqs?.length) return null;
+    const { pyqs, themes } = data;
+    // Counted the way the Essay section counts: a PYQ under every theme it carries.
+    const counts = new Map();
+    pyqs.forEach((p) => p.themes.forEach((x) => counts.set(x.id, (counts.get(x.id) || 0) + 1)));
+    const ranked = themes.filter((th) => counts.get(th.id))
+      .sort((a, b) => counts.get(b.id) - counts.get(a.id) || a.name.localeCompare(b.name));
+    // Each tile quotes the newest PYQ whose main theme it is (else the newest
+    // filed under it) that no earlier tile has quoted.
+    const used = new Set();
+    const tiles = ranked.slice(0, MAINS_TILES).map((th) => {
+      const pick = pyqs.find((p) => !used.has(p.id) && p.themes[0]?.id === th.id)
+        || pyqs.find((p) => !used.has(p.id) && p.themes.some((x) => x.id === th.id));
+      if (pick) used.add(pick.id);
+      return { th, count: counts.get(th.id), sample: pick || null };
+    });
+    const years = pyqs.map((p) => p.year);
+    return { tiles, themeTotal: ranked.length, pyqTotal: pyqs.length, y1: Math.min(...years), y2: Math.max(...years) };
+  }, [data]);
+
+  if (data && !view) return null;
+
+  const nameOf = (th) => (lang === "hi" && th.nameHi ? th.nameHi : th.name);
+  const topicOf = (p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic);
+  const included = view ? (bundles || []).filter((b) => data.codes?.includes(b.code)) : [];
+  // Leave word of where to land, then go: the dashboard opens on Essay, on the
+  // theme picked; a visitor signs in first.
+  const open = (themeId) => {
+    saveKey("essay:tab", "pyqs");
+    saveKey("essay:mode", "theme");
+    saveKey("essay:pick", themeId || "all");
+    askOpenView("essay");
+    if (session) onDashboard(); else onLogin();
+  };
+
+  return (
+    <section className="pb-sec pb-mains" id="mains" aria-labelledby="pb-mains-h">
+      <div className="pb-sec-narrow">
+        <div className="pb-sec-head reveal">
+          <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
+          <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")}<em>{t("pm_h2_em")}</em>{t("pm_h2_b")}</h2>
+          {view
+            ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
+            : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
+        </div>
+
+        <div className="pb-mains-grid">
+          {view ? (
+            <>
+              {view.tiles.map(({ th, count, sample }, i) => (
+                <button type="button" key={th.id} className={`pb-mtile reveal reveal-d${(i % 3) + 1}`}
+                        onClick={() => open(th.id)} aria-label={fillIn(t("pm_tile_aria"), { name: nameOf(th) })}>
+                  <span className="pb-mtile-n">{fillIn(t(count === 1 ? "pm_count_one" : "pm_count"), { n: count })}</span>
+                  <span className="pb-mtile-name">{nameOf(th)}</span>
+                  {sample && <span className="pb-mtile-q">{topicOf(sample)} <b>{sample.year}</b></span>}
+                </button>
+              ))}
+              <button type="button" className="pb-mtile pb-mtile-all reveal reveal-d3" onClick={() => open(null)}>
+                <span className="pb-mtile-name">{fillIn(t("pm_all"), { k: view.themeTotal })}</span>
+                <span className="pb-mtile-s">{t("pm_all_s")}</span>
+                <ArrowRight size={18} className="pb-mtile-go" aria-hidden="true" />
+              </button>
+            </>
+          ) : (
+            [0, 1, 2, 3, 4, 5].map((i) => (
+              <div className="pb-mtile pb-mtile-ghost" key={i} aria-hidden="true">
+                <Skeleton h={11} w="34%" /><Skeleton h={18} w="70%" style={{ marginTop: 10 }} /><Skeleton h={30} style={{ marginTop: 10 }} />
+              </div>
+            ))
+          )}
+        </div>
+
+        {view && (
+          <div className="pb-mains-foot reveal">
+            <button type="button" className="pb-btn pb-btn-maroon" onClick={() => open(null)}>
+              <PenLine size={17} />{t("pm_cta")}<ArrowRight size={17} />
+            </button>
+            {included.length > 0 && (
+              <p className="pb-mains-inc">
+                {t("pm_included")}{" "}
+                {included.map((b, i) => (
+                  <Fragment key={b.code}>{i > 0 && ", "}<button type="button" onClick={() => onViewBundle(b.code)}>{b.name}</button></Fragment>
+                ))}
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function PublicSite({ onLogin, onEnroll, onDashboard, session, page, onNavigate }) {
   const { t, lang } = useLang();
   const [bundles, setBundles] = useState(null);
@@ -2370,6 +2539,10 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               ]} />
             </div>
           </div>
+
+          {/* ---------------- MAINS ---------------- */}
+          <MainsCatalog bundles={bundles} session={session} onDashboard={onDashboard} onLogin={onLogin}
+            onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
           {/* ---------------- CATALOG ---------------- */}
           <section className="pb-sec" id="catalog">

@@ -64,6 +64,7 @@ Then mark where each answer starts and ends. Use the PDF page, not the booklet's
 
 Dashboard → Essay.
 
+- **On the home page.** A "Mains · Essay" section sits between the quote strip and the test series: live counts, the five biggest themes as tiles (each quoting a recent topic), and the bundle that includes Mains. A tile opens the dashboard on Essay at that theme; a visitor signs in first.
 - **Essay PYQs.** A theme or year rail (a dropdown on phones), PYQ cards with the main theme and "also under", and "Read N topper essays".
 - **A PYQ's topper essays.** The same question first, then each related topic, each group best UPSC Essay mark first.
 - **Topper essays.** The whole essay library, sorted by marks, newest or oldest, filtered by year, with search.
