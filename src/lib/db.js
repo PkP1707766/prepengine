@@ -2045,6 +2045,35 @@ export async function mainsBundleCodes() {
   return (data ?? []).map((r) => r.code);
 }
 
+/**
+ * What sits behind the Essay section, counted for a visitor (0032): topper
+ * essays and toppers, essays per PYQ, the PYQs with a guide, wiki entries by
+ * kind, the free part of one guide and one Editor's pick. Null when the
+ * function is not there yet, so the public page simply shows less.
+ */
+export async function essayCatalog() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return null;
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("essay_catalog");
+  if (error) { console.warn("essay catalogue unavailable", error.message); return null; }
+  if (!data) return null;
+  const sample = data.guide_sample;
+  return {
+    essays: Number(data.essays) || 0,
+    toppers: Number(data.toppers) || 0,
+    topMarks: data.top_marks == null ? null : Number(data.top_marks),
+    perPyq: new Map(Object.entries(data.per_pyq || {}).map(([k, v]) => [k, Number(v) || 0])),
+    guides: new Set(data.guides || []),
+    kinds: data.kinds || {},
+    guideSample: sample ? {
+      pyqId: sample.pyq_id, topic: sample.topic, year: sample.year, spine: sample.spine || "",
+      sides: Array.isArray(sample.sides) ? sample.sides : [],
+      titles: Array.isArray(sample.titles) ? sample.titles : [],
+    } : null,
+    pick: data.pick?.body ? { body: data.pick.body, attribution: data.pick.attribution || "" } : null,
+  };
+}
+
 const LIB_COLS_BASE =
   "answer_id, paper, paper_label, question, start_page, end_page, copy_id, source, title, written_year, " +
   "source_url, page_count, pages_ready, is_free, is_published, topper_id, topper_name, topper_rank, cse_year, essay_marks";
