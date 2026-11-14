@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
-  ShieldCheck, Clock, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History, PenLine,
+  ShieldCheck, Clock, Shuffle, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History, PenLine,
 } from "lucide-react";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
@@ -459,7 +459,7 @@ const CSS = `
    away for the arrow: the cut (.pb-cc-notch) is painted in the band's flat
    ground, and its two neighbouring pieces round the card's corners on either
    side of it, so the edge runs in one continuous curve. */
-.pb-cc-shelf{--ground:var(--brand-900);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;
+.pb-cc-shelf{--ground:var(--brand-900);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:start;
   max-width:1000px;margin:46px auto 0}
 [data-theme="dark"] .pb-cc-shelf{--ground:#150609}
 .pb-cc{--cut:86px;--r:24px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
@@ -509,6 +509,111 @@ button.pb-cc-go:hover svg{transform:translateX(3px)}
 span.pb-cc-go{cursor:default;color:var(--ink-400)}
 [data-theme="dark"] .pb-cc-n,[data-theme="dark"] .pb-cc-foot button,[data-theme="dark"] button.pb-cc-go{color:var(--gold-300)}
 .pb-ess-browse{padding-top:76px}
+
+/* The Mains price block, in a shelf card and on the closing panel. */
+.pb-cc-offer{padding:16px 10px 18px;border-top:1px solid var(--line)}
+.pb-offer .pb-price-row{margin-bottom:4px}
+.pb-offer-in{font-size:12.5px;line-height:1.45;color:var(--ink-400);margin-bottom:14px}
+.pb-offer-dark .pb-price{color:var(--gold-300);font-size:34px}
+.pb-offer-dark .pb-price-mrp{color:#c9b99c}
+.pb-offer-dark .pb-off{color:#9fe0bb;background:rgba(159,224,187,.14)}
+.pb-offer-dark .pb-offer-in{color:#d8c9ae}
+.pb-offer-dark .pb-btn-ghost{color:var(--on-dark);background:rgba(255,255,255,.06);border-color:rgba(227,200,119,.45);box-shadow:none}
+
+/* The sixty-second opening: a topic card that shuffles and lands, beside a
+   ruled sheet with a clock that starts on the first keystroke. */
+.pb-hk-sec{padding-top:84px}
+.pb-hk{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px;max-width:1040px;margin:0 auto;align-items:stretch}
+.pb-hk-lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.pb-hk-topic{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;min-height:320px;padding:26px 28px 24px;
+  border-radius:var(--radius-lg);color:var(--on-dark);background:var(--brand-900);
+  background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.16),transparent 70%),
+    linear-gradient(160deg,var(--brand-800),var(--brand-900) 60%);
+  box-shadow:var(--shadow-lift)}
+[data-theme="dark"] .pb-hk-topic{background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.12),transparent 70%),linear-gradient(160deg,#210c11,#150609 60%)}
+.pb-hk-topic .pb-hk-lbl{color:var(--gold-300)}
+.pb-hk-q{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:clamp(23px,2.5vw,30px);line-height:1.3;color:var(--on-dark)}
+.pb-hk-q > span{animation:pb-hk-land .45s cubic-bezier(.2,.8,.3,1) both}
+.pb-hk.is-draw .pb-hk-q > span{animation-duration:.09s;opacity:.75}
+.pb-hk-idle{font-style:normal;font-family:var(--font-body);font-weight:600;font-size:15px;color:#d8c9ae;
+  border:1.5px dashed rgba(227,200,119,.4);border-radius:14px;padding:22px 26px}
+@keyframes pb-hk-land{from{opacity:0;transform:translateY(10px) scale(.98);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.pb-hk-meta{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.pb-hk-meta span{font-size:12px;font-weight:700;padding:4px 11px;border-radius:100px;color:var(--gold-300);
+  background:rgba(227,200,119,.12);border:1px solid rgba(227,200,119,.3)}
+.pb-hk-topic .pb-btn{align-self:center}
+.pb-hk-sheet{position:relative;display:flex;flex-direction:column;border-radius:16px;padding:20px 22px 16px 46px;
+  background-color:#fffdf6;color:#22306b;box-shadow:var(--shadow-lift);
+  background-image:linear-gradient(90deg,transparent 30px,rgba(163,49,42,.35) 30px,rgba(163,49,42,.35) 31px,transparent 31px),
+    repeating-linear-gradient(180deg,transparent 0 31px,rgba(34,48,107,.12) 31px 32px);
+  background-position:0 0,0 14px}
+.pb-hk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.pb-hk-sheet .pb-hk-lbl{color:#7d1a28}
+.pb-hk-ring{width:52px;height:52px;flex:none}
+.pb-hk-ring circle{fill:none;stroke-width:4}
+.pb-hk-ring-bg{stroke:rgba(34,48,107,.14)}
+.pb-hk-ring-fg{stroke:#7d1a28;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .25s linear}
+.pb-hk-ring text{font:700 15px var(--font-body);fill:#22306b}
+.pb-hk-late .pb-hk-ring-fg{stroke:#c9521f}
+.pb-hk-late{animation:pb-hk-pulse 1s ease-in-out infinite}
+@keyframes pb-hk-pulse{50%{transform:scale(1.08)}}
+.pb-hk-area{flex:1;min-height:128px;width:100%;resize:none;border:0;outline:0;background:transparent;padding:0;margin:0;
+  font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:21px;line-height:32px;color:#22306b}
+.pb-hk-area::placeholder{color:rgba(34,48,107,.4)}
+.pb-hk-area:disabled{cursor:not-allowed}
+.pb-hk-line{flex:1;margin:0;font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:21px;line-height:32px;
+  white-space:pre-wrap;overflow-wrap:anywhere;animation:pb-hk-land .5s ease both}
+.pb-hk-foot,.pb-hk-stat{display:flex;align-items:center;gap:12px;margin-top:10px;font-size:12.5px;color:#5a4a3f}
+.pb-hk-tip{flex:1;font-style:italic;min-width:0}
+.pb-hk-wc{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pb-hk-stat{font-weight:700;color:#7d1a28}
+.pb-hk-res{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:20px;align-items:center;
+  padding:22px 24px;border-radius:var(--radius-lg);background:var(--cream-50);border:1px solid var(--gold-300);
+  box-shadow:var(--shadow-card);animation:pb-hk-land .55s cubic-bezier(.2,.8,.3,1) both}
+.pb-hk-res-t b{display:block;font-family:var(--font-display);font-size:21px;font-weight:600;line-height:1.3;color:var(--ink-900)}
+.pb-hk-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+[data-applang="hi"] .pb-hk-q,[data-applang="hi"] .pb-hk-area,[data-applang="hi"] .pb-hk-line{font-family:var(--font-body);font-style:normal;font-weight:500}
+[data-applang="hi"] .pb-hk-area,[data-applang="hi"] .pb-hk-line{font-size:17px}
+@media (prefers-reduced-motion:reduce){ .pb-hk-q > span,.pb-hk-res,.pb-hk-line,.pb-hk-late{animation:none} }
+
+/* The closing panel: the pitch on the left, the price on the right. */
+.pb-ess-end{padding-block:84px 76px}
+.pb-fin{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:40px;align-items:center;
+  padding:44px 48px;border-radius:28px;color:var(--on-dark);background:var(--brand-900);
+  background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.16),transparent 70%),
+    linear-gradient(150deg,var(--brand-800),var(--brand-900) 55%);
+  box-shadow:var(--shadow-soft)}
+[data-theme="dark"] .pb-fin{background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.12),transparent 70%),linear-gradient(150deg,#210c11,#150609 55%)}
+.pb-fin-mandala{position:absolute;right:-150px;bottom:-170px;width:460px;height:460px;opacity:.09;color:var(--gold-300);pointer-events:none}
+.pb-fin-t,.pb-fin-o{position:relative;z-index:1}
+.pb-fin .pb-eyebrow{color:var(--gold-300);text-align:left}
+.pb-fin .pb-eyebrow::after{margin-left:0}
+.pb-fin .pb-h2{color:var(--on-dark);margin:10px 0 12px}
+.pb-fin .pb-h2 em{color:var(--gold-300)}
+.pb-fin-t p{margin:0;font-size:15.5px;line-height:1.65;color:#d8c9ae}
+.pb-fin-free{margin-top:18px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:700;color:var(--gold-300);
+  background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:rgba(227,200,119,.4)}
+.pb-fin-free:hover{text-decoration-color:currentColor}
+.pb-fin-free:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px;border-radius:3px}
+.pb-fin-o{padding:26px;border-radius:22px;background:rgba(251,246,236,.06);border:1px solid rgba(227,200,119,.3);backdrop-filter:blur(4px)}
+[data-applang="hi"] .pb-fin .pb-h2 em,[data-applang="hi"] .pb-hk-sec .pb-h2 em{font-family:var(--font-deva-display);font-style:normal;font-weight:400;font-size:1em}
+@media (max-width:980px){
+  .pb-fin{grid-template-columns:minmax(0,1fr);gap:26px;padding:34px 30px}
+}
+@media (max-width:720px){
+  .pb-hk-sec{padding-top:56px}
+  .pb-hk{grid-template-columns:minmax(0,1fr);gap:14px}
+  .pb-hk-topic{min-height:240px;padding:20px 20px 18px}
+  .pb-hk-sheet{padding:16px 16px 14px 40px;background-position:0 0,0 10px}
+  .pb-hk-res{grid-template-columns:minmax(0,1fr);padding:18px}
+  .pb-hk-foot{flex-wrap:wrap}
+  .pb-hk-tip{flex-basis:100%;order:3}
+  .pb-ess-end{padding-block:56px 52px}
+  .pb-fin{padding:28px 20px;border-radius:22px}
+  .pb-fin-o{padding:20px 18px}
+}
 
 /* The explorer: a rail of themes or years beside one page of topics. */
 .pb-ess-ex{margin:44px auto 0;max-width:1080px;display:grid;grid-template-columns:272px minmax(0,1fr);
@@ -630,7 +735,6 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 .pb-ess-pick blockquote{margin:0;font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:17px;line-height:1.35;color:var(--ink-900)}
 .pb-ess-pick cite{display:block;margin-top:6px;font-style:normal;font-size:12px;color:var(--ink-400)}
 
-.pb-ess-end{padding-block:34px 70px}
 .pb-mains-foot{display:flex;align-items:center;justify-content:center;gap:12px 20px;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
 .pb-ess-cta{padding-inline:26px}
 .pb-mains-inc{margin:0;font-size:14px;line-height:1.5;color:var(--ink-600)}
@@ -683,7 +787,6 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-ess-q{font-size:17px}
   .pb-ess-in{padding-top:56px}
   .pb-ess-card{padding:20px 18px 16px}
-  .pb-ess-end{padding-block:26px 52px}
 }
 
 /* ---------- JOURNEY ---------- */
@@ -2475,7 +2578,7 @@ function CountUp({ n, go, still }) {
    painted in the band's own ground (--ground), so the band stays flat there. */
 const GS_PAPERS = [["I", "pm_gs1"], ["II", "pm_gs2"], ["III", "pm_gs3"], ["IV", "pm_gs4"]];
 
-function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = false }) {
+function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = false, children = null }) {
   return (
     <article className={`pb-cc reveal${soon ? " pb-cc-soon" : ""}`}>
       <div className="pb-cc-art">
@@ -2494,6 +2597,7 @@ function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = 
           </li>
         ))}
       </ul>
+      {children && <div className="pb-cc-offer">{children}</div>}
       <div className="pb-cc-foot">
         {soon ? <span>{foot}</span> : <button type="button" onClick={onGo}>{foot}</button>}
       </div>
@@ -2587,7 +2691,169 @@ function MainsStats({ items }) {
   );
 }
 
-function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) {
+/* The price block the Prelims cards carry, for Mains: the cheapest active
+   plan that includes it, struck MRP and saving, Enroll and Details. An owner
+   gets a way in instead. No plan at all leaves just the way in. */
+function MainsOffer({ offer, owns, onEnroll, onDetails, onOpen, dark = false }) {
+  const { t } = useLang();
+  if (owns) {
+    return (
+      <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={onOpen}>
+        <CheckCircle2 size={16} />{t("pm_owned_open")}
+      </button>
+    );
+  }
+  if (!offer) {
+    return (
+      <button type="button" className="pb-btn pb-btn-block pb-btn-maroon" onClick={onOpen}>
+        {t("pm_cta")}<ArrowRight size={15} />
+      </button>
+    );
+  }
+  const off = offer.mrp && offer.mrp > offer.price ? Math.round((1 - offer.price / offer.mrp) * 100) : 0;
+  return (
+    <div className={`pb-offer${dark ? " pb-offer-dark" : ""}`}>
+      <div className="pb-price-row">
+        <span className="pb-price">{money(offer.price)}</span>
+        {off > 0 && <><span className="pb-price-mrp">{money(offer.mrp)}</span><span className="pb-off">{off}% off</span></>}
+      </div>
+      <div className="pb-offer-in">{fillIn(t("pm_offer_in"), { name: offer.name })}</div>
+      <div className="pb-card-btns">
+        <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} style={{ flex: 1 }} onClick={onEnroll}>
+          {t("card_enroll")}<ArrowRight size={15} />
+        </button>
+        <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onDetails}>{t("card_details")}</button>
+      </div>
+    </div>
+  );
+}
+
+/* The sixty-second opening. Draw a real topic (it shuffles through the
+   others before it lands), write the line you would open with -- the clock
+   starts on the first keystroke -- and see what waits behind that topic.
+   Nothing typed here leaves the page. */
+const HOOK_SECS = 60;
+const HOOK_TIPS = ["pm_hk_tip1", "pm_hk_tip2", "pm_hk_tip3"];
+
+function HookChallenge({ pool, topicOf, themeOf, copiesOf, hasGuide, cta }) {
+  const { t } = useLang();
+  const [phase, setPhase] = useState("idle");   // idle | draw | write | done
+  const [cur, setCur] = useState(null);
+  const [text, setText] = useState("");
+  const [startAt, setStartAt] = useState(0);
+  const [now, setNow] = useState(0);
+  const [took, setTook] = useState(0);
+  const timers = useRef([]);
+  const area = useRef(null);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+
+  useEffect(() => {
+    if (phase !== "write" || !startAt) return undefined;
+    const id = setInterval(() => {
+      const n = Date.now();
+      setNow(n);
+      if (n - startAt >= HOOK_SECS * 1000) { setTook(HOOK_SECS); setPhase("done"); }
+    }, 200);
+    return () => clearInterval(id);
+  }, [phase, startAt]);
+
+  const any = () => pool[Math.floor(Math.random() * pool.length)];
+  const draw = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setText(""); setStartAt(0); setNow(0); setTook(0);
+    const final = pool.length > 1 ? (() => { let p; do p = any(); while (p === cur); return p; })() : pool[0];
+    const land = () => { setCur(final); setPhase("write"); setTimeout(() => area.current?.focus({ preventScroll: true }), 60); };
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { land(); return; }
+    setPhase("draw");
+    let at = 0;
+    for (let i = 0; i < 14; i++) {
+      at += 45 + i * i * 2.2;
+      timers.current.push(setTimeout(() => setCur(any()), at));
+    }
+    timers.current.push(setTimeout(land, at + 220));
+  };
+  const type = (e) => {
+    if (phase !== "write") return;
+    if (!startAt && e.target.value.trim()) { const n = Date.now(); setStartAt(n); setNow(n); }
+    setText(e.target.value.slice(0, 600));
+  };
+  const finish = () => {
+    setTook(startAt ? Math.max(1, Math.min(HOOK_SECS, Math.round((Date.now() - startAt) / 1000))) : 0);
+    setPhase("done");
+  };
+
+  const left = startAt ? Math.max(0, HOOK_SECS - Math.floor((now - startAt) / 1000)) : HOOK_SECS;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const R = 22, C = 2 * Math.PI * R;
+  const main = cur ? themeOf(cur) : null;
+  const n = cur ? copiesOf(cur) : 0;
+  const tip = HOOK_TIPS[Math.floor((HOOK_SECS - left) / 20) % HOOK_TIPS.length];
+
+  return (
+    <div className={`pb-hk is-${phase}`}>
+      <div className="pb-hk-topic">
+        <span className="pb-hk-lbl">{t("pm_hk_lbl")}</span>
+        <div className="pb-hk-q" aria-live="polite">
+          {cur ? <span key={phase === "draw" ? cur.id : `l-${cur.id}`}>{topicOf(cur)}</span>
+            : <span className="pb-hk-idle">{t("pm_hk_idle")}</span>}
+        </div>
+        {cur && phase !== "draw" && (
+          <div className="pb-hk-meta">
+            <span>{cur.year}</span>{main && <span>{main}</span>}
+          </div>
+        )}
+        <button type="button" className="pb-btn pb-btn-gold pb-hk-go" onClick={draw} disabled={phase === "draw"}>
+          <Shuffle size={16} />{t(cur ? "pm_hk_again" : "pm_hk_draw")}
+        </button>
+      </div>
+
+      <div className="pb-hk-sheet">
+        <div className="pb-hk-top">
+          <span className="pb-hk-lbl">{t(phase === "done" ? "pm_hk_yours" : "pm_hk_sheet")}</span>
+          <svg className={`pb-hk-ring${startAt && left <= 10 && phase === "write" ? " pb-hk-late" : ""}`} viewBox="0 0 52 52" aria-hidden="true">
+            <circle cx="26" cy="26" r={R} className="pb-hk-ring-bg" />
+            <circle cx="26" cy="26" r={R} className="pb-hk-ring-fg"
+                    style={{ strokeDasharray: C, strokeDashoffset: C * (1 - left / HOOK_SECS) }} />
+            <text x="26" y="30.5" textAnchor="middle">{phase === "done" ? took : left}</text>
+          </svg>
+        </div>
+        {phase === "done" ? (
+          <>
+            <p className="pb-hk-line">{text}</p>
+            <div className="pb-hk-stat">{fillIn(t("pm_hk_time"), { w: words, s: took })}</div>
+          </>
+        ) : (
+          <>
+            <textarea ref={area} className="pb-hk-area" rows={4} value={text} onChange={type}
+                      disabled={phase !== "write"} aria-label={t("pm_hk_sheet")}
+                      placeholder={t(phase === "write" ? "pm_hk_ph" : "pm_hk_ph0")} />
+            <div className="pb-hk-foot">
+              <span className="pb-hk-tip">{phase === "write" ? t(tip) : " "}</span>
+              <span className="pb-hk-wc">{fillIn(t("pm_hk_words"), { n: words })}</span>
+              <button type="button" className="pb-btn pb-btn-maroon pb-btn-sm" onClick={finish} disabled={!words}>{t("pm_hk_done")}</button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {phase === "done" && cur && (
+        <div className="pb-hk-res">
+          <div className="pb-hk-res-t">
+            <b>{t("pm_hk_res_h")}</b>
+            <span className="pb-hk-chips">
+              {n > 0 && <span className="pb-ess-tag">{fillIn(t(n === 1 ? "pm_copies_one" : "pm_copies"), { n })}</span>}
+              {hasGuide(cur) && <span className="pb-ess-tag pb-ess-tag-g">{t("pm_hk_guide")}</span>}
+            </span>
+          </div>
+          <div className="pb-hk-res-a">{cta}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin, onViewBundle }) {
   const { t, lang } = useLang();
   const [data, setData] = useState(() => mainsCache);
   const [mode, setMode] = useState("theme");
@@ -2629,7 +2895,9 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
   const nameOf = (th) => (lang === "hi" && th.nameHi ? th.nameHi : th.name);
   const topicOf = (p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic);
   const included = view ? (bundles || []).filter((b) => data.codes?.includes(b.code)) : [];
-  const fromPrice = included.length ? Math.min(...included.map((b) => Number(b.price) || 0)) : null;
+  // The plan to sell from: the cheapest active one that includes Mains.
+  const offer = included.length ? [...included].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0))[0] : null;
+  const owns = !!session && included.some((b) => owned?.has(b.code));
   // Leave word of where to land, then go: the dashboard opens on Essay, on the
   // theme or year picked; a visitor signs in first.
   const open = (m = "theme", pick = null) => {
@@ -2655,6 +2923,17 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
   const switchMode = (m) => { if (m !== mode) { setMode(m); setSel(null); if (listRef.current) listRef.current.scrollTop = 0; } };
   const themeById = view ? new Map(data.themes.map((th) => [th.id, th])) : new Map();
   const pageGuides = page ? page.items.filter((p) => view.hasGuide(p)).length : 0;
+  const offerEl = (dark) => (
+    <MainsOffer offer={offer} owns={owns} dark={dark} onOpen={() => open()}
+      onEnroll={() => offer && onEnroll(offer.code)} onDetails={() => offer && onViewBundle(offer.code)} />
+  );
+  // The challenge draws from topics with copies and a guide behind them, so
+  // what it reveals is worth having.
+  const hookPool = !view ? [] : (() => {
+    const rich = data.pyqs.filter((p) => view.copiesOf(p) > 0 && view.hasGuide(p));
+    return rich.length >= 6 ? rich : data.pyqs;
+  })();
+  const themeOf = (p) => { const th = themeById.get(p.themes[0]?.id); return th ? nameOf(th) : null; };
 
   const stats = !view ? [] : cat ? [
     { key: "t", n: view.pyqTotal, label: t("pm_st_topics") },
@@ -2677,23 +2956,6 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
   ];
   // Two lanes of real topics drifting past the head of the band.
   const lanes = view ? [data.pyqs.filter((_, i) => i % 2 === 0), data.pyqs.filter((_, i) => i % 2 === 1)] : [];
-
-  const ctaFoot = view && (
-    <div className="pb-mains-foot">
-      <button type="button" className="pb-btn pb-btn-maroon pb-ess-cta" onClick={() => open()}>
-        <PenLine size={17} />{t("pm_cta")}<ArrowRight size={17} />
-      </button>
-      {included.length > 0 && (
-        <p className="pb-mains-inc">
-          {t("pm_included")}{" "}
-          {included.map((b, i) => (
-            <Fragment key={b.code}>{i > 0 && ", "}<button type="button" onClick={() => onViewBundle(b.code)}>{b.name}</button></Fragment>
-          ))}
-          {fromPrice > 0 && <span className="pb-ess-from"> · {fillIn(t("pm_from"), { p: money(fromPrice) })}</span>}
-        </p>
-      )}
-    </div>
-  );
 
   const sample = cat?.guideSample;
   const shownTitles = sample ? sample.titles.slice(0, 4) : [];
@@ -2719,7 +2981,7 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
         <div className="pb-sec-narrow pb-ess-band-in">
           <div className="pb-sec-head reveal">
             <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
-            <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")}<em>{t("pm_h2_em")}</em>{t("pm_h2_b")}</h2>
+            <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")} <em>{t("pm_h2_em")}</em></h2>
             {view
               ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
               : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
@@ -2729,8 +2991,9 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
           {view && (
             <div className="pb-cc-shelf">
               <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")}
-                badge={fromPrice > 0 ? fillIn(t("pm_from"), { p: money(fromPrice) }) : null}
-                items={essayItems} foot={t("pm_cta")} onGo={() => open()} goLabel={t("pm_cta")} />
+                items={essayItems} foot={t("pm_cc_e_foot")} onGo={() => open()} goLabel={t("pm_cta")}>
+                {offerEl(false)}
+              </ShelfCard>
               <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("card_soon")}
                 items={GS_PAPERS.map(([n, k]) => ({ k, n, label: t(`${k}_t`), text: t(k) }))}
                 foot={t("pm_cc_g_foot")} soon />
@@ -2738,6 +3001,20 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
           )}
         </div>
       </div>
+
+      {view && (
+        <div className="pb-sec-narrow pb-hk-sec">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("pm_hk_eyebrow")}</div>
+            <h2 className="pb-h2">{t("pm_hk_h_a")} <em>{t("pm_hk_h_em")}</em></h2>
+            <p className="pb-sub">{t("pm_hk_s")}</p>
+          </div>
+          <div className="reveal">
+            <HookChallenge pool={hookPool} topicOf={topicOf} themeOf={themeOf}
+              copiesOf={view.copiesOf} hasGuide={view.hasGuide} cta={offerEl(false)} />
+          </div>
+        </div>
+      )}
 
       <div className="pb-sec-narrow pb-ess-browse">
           <div className="pb-sec-head reveal">
@@ -2898,7 +3175,26 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
         </div>
       )}
 
-      {view && <div className="pb-sec-narrow pb-ess-end reveal">{ctaFoot}</div>}
+      {view && (
+        <div className="pb-sec-narrow pb-ess-end">
+          <div className="pb-fin reveal">
+            <Mandala className="pb-fin-mandala" />
+            <div className="pb-fin-t">
+              <div className="pb-eyebrow">{t("pm_fin_eyebrow")}</div>
+              <h2 className="pb-h2">{t("pm_fin_h_a")} <em>{t("pm_fin_h_em")}</em></h2>
+              <p>{cat
+                ? fillIn(t("pm_fin_s"), { c: nPlus(cat.essays), w: nPlus(view.wikiTotal) })
+                : fillIn(t("pm_fin_s0"), { n: view.pyqTotal })}</p>
+              {!owns && (
+                <button type="button" className="pb-fin-free" onClick={() => open()}>
+                  {t("pm_cc_e_foot")}<ArrowRight size={15} />
+                </button>
+              )}
+            </div>
+            <div className="pb-fin-o">{offerEl(true)}</div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -3162,7 +3458,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </div>
 
           {/* ---------------- MAINS ---------------- */}
-          <MainsCatalog bundles={bundles} session={session} onDashboard={onDashboard} onLogin={onLogin}
+          <MainsCatalog bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
             onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
           {/* ---------------- CATALOG ---------------- */}
