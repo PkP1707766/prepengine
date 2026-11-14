@@ -2850,7 +2850,11 @@ function MainsOffer({ offer, owns, onEnroll, onDetails, onOpen, dark = false }) 
         <span className="pb-price">{money(offer.price)}</span>
         {off > 0 && <><span className="pb-price-mrp">{money(offer.mrp)}</span><span className="pb-off">{off}% off</span></>}
       </div>
-      <div className="pb-offer-in">{fillIn(t("pm_offer_in"), { name: offer.name })}</div>
+      <div className="pb-offer-in">
+        {offer.testCount
+          ? fillIn(t("pm_offer_in"), { name: offer.name })
+          : offer.durationDays ? fillIn(t("pm_offer_days"), { d: offer.durationDays }) : t("pm_offer_life")}
+      </div>
       <div className="pb-card-btns">
         <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} style={{ flex: 1 }} onClick={onEnroll}>
           {t("card_enroll")}<ArrowRight size={15} />
@@ -3056,9 +3060,23 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const switchMode = (m) => { if (m !== mode) { setMode(m); setSel(null); if (listRef.current) listRef.current.scrollTop = 0; } };
   const themeById = view ? new Map(data.themes.map((th) => [th.id, th])) : new Map();
   const pageGuides = page ? page.items.filter((p) => view.hasGuide(p)).length : 0;
+  // A Mains-only plan has no series page of its own: its Details is the Essay
+  // catalogue (the page, or its "What's inside" when already on it). Buying
+  // it leaves word to open the dashboard on Essay.
+  const mainsOnly = !!offer && !offer.testCount;
+  const enrollOffer = () => {
+    if (!offer) return;
+    if (mainsOnly) { saveKey("essay:tab", "pyqs"); askOpenView("essay"); }
+    onEnroll(offer.code);
+  };
   const offerEl = (dark, details = null) => (
-    <MainsOffer offer={offer} owns={owns} dark={dark} onOpen={() => open()}
-      onEnroll={() => offer && onEnroll(offer.code)} onDetails={details || (() => offer && onViewBundle(offer.code))} />
+    <MainsOffer offer={offer} owns={owns} dark={dark} onOpen={() => open()} onEnroll={enrollOffer}
+      onDetails={details || (() => {
+        if (!offer) return;
+        if (!mainsOnly) onViewBundle(offer.code);
+        else if (full) jump("ess-inside");
+        else onOpenPage?.();
+      })} />
   );
   // The challenge draws from topics with copies and a guide behind them, so
   // what it reveals is worth having.
@@ -3482,15 +3500,18 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
 
   // One tab per exam that actually has a bundle, ordered by the exam's own
   // sort_order so UPSC leads and "Other" trails.
+  // Mains plans sell the Mains section, not papers: they live in the Essay
+  // catalogue, never as an empty series here.
+  const seriesBundles = (bundles || []).filter((b) => !(b.includesMains && !b.testCount));
   const examTabs = [];
   const seen = new Set();
-  (bundles || []).forEach((b) => {
+  seriesBundles.forEach((b) => {
     if (seen.has(b.exam)) return;
     seen.add(b.exam);
     examTabs.push({ code: b.exam, label: b.examLabel, sort: b.examSort });
   });
   examTabs.sort((a, b) => a.sort - b.sort);
-  const shown = (bundles || []).filter((b) => exam === "all" || b.exam === exam);
+  const shown = seriesBundles.filter((b) => exam === "all" || b.exam === exam);
 
   const scrollTo = (id) => setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 70);
   const goCatalog = () => { setDetail(null); if (page) onNavigate(null); scrollTo("catalog"); };

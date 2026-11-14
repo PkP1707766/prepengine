@@ -907,6 +907,8 @@ Object.assign(STR, {
   pm_r4_l:      { en: "wiki entries", hi: "विकी प्रविष्टियाँ" },
   pm_r4_t:      { en: "Quotes, stories and data, already matched to the topic you are writing.", hi: "उद्धरण, कहानियाँ और आँकड़े, आपके विषय से पहले से जुड़े।" },
   pm_r5_l:      { en: "themes", hi: "थीम" },
+  pm_offer_days:{ en: "Full Essay access for {d} days", hi: "{d} दिन तक निबंध का पूरा एक्सेस" },
+  pm_offer_life:{ en: "Full Essay access, no expiry", hi: "निबंध का पूरा एक्सेस, बिना समय सीमा" },
   pm_ex_h:      { en: "Browse every topic", hi: "हर विषय देखें" },
   pm_by_theme:  { en: "By theme", hi: "थीम से" },
   pm_by_year:   { en: "By year", hi: "साल से" },
