@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import {
   CheckCircle2, ArrowRight, ArrowLeft, Lock, Headphones, Menu, X,
-  ShieldCheck, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History, PenLine,
+  ShieldCheck, Clock, Shuffle, Layers, Target, Timer, Compass, BookOpen, BarChart3, Gift, Calculator, History, PenLine,
 } from "lucide-react";
 import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
@@ -405,50 +405,472 @@ const CSS = `
   border:1.5px solid color-mix(in srgb,var(--ok-600) 34%,transparent) !important;box-shadow:none !important}
 
 /* ---------- MAINS ---------- */
-/* The Essay section's shop window. Its tiles echo the catalogue cards (cream,
-   hairline border, the gold-to-maroon accent, here down the left edge) but sit
-   lower and tighter, so the test series below stays the main event. */
-.pb-mains{padding-bottom:24px}
-.pb-mains-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.pb-mtile{font:inherit;color:inherit;text-align:left;margin:0;appearance:none;cursor:pointer;
-  display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:134px;
-  background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);
-  padding:20px 22px 18px 26px;box-shadow:var(--shadow-card);position:relative;overflow:hidden;
+/* The Essay catalogue. A dark "library" band (the free-resources band's
+   ground, with its gold hairlines) holds the head, the live counts and the
+   topic explorer, which sits on it as one cream page of an open register.
+   Below it, on cream, three cards look inside what a topic opens onto. */
+.pb-mains{position:relative}
+.pb-ess-band{position:relative;overflow:hidden;color:var(--on-dark);padding:0 0 70px;
+  background:var(--brand-900);
+  background:
+    radial-gradient(900px 360px at 50% 0%, rgba(224,178,64,.15), transparent 70%),
+    linear-gradient(180deg,var(--brand-800) 0%,var(--brand-900) 38%,var(--brand-900) 100%)}
+[data-theme="dark"] .pb-ess-band{background:#150609;
+  background:
+    radial-gradient(900px 360px at 50% 0%, rgba(224,178,64,.12), transparent 70%),
+    linear-gradient(180deg,#210c11 0%,#150609 40%,#150609 100%)}
+.pb-ess-band::before,.pb-ess-band::after{content:"";position:absolute;left:0;right:0;height:1px;z-index:3;pointer-events:none;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 62%,transparent) 50%,transparent)}
+.pb-ess-band::before{top:0}
+.pb-ess-band::after{bottom:0}
+.pb-ess-band-in{position:relative;z-index:2}
+.pb-ess-band .pb-sec-head{margin-bottom:0}
+.pb-ess-band .pb-h2{color:var(--on-dark)}
+.pb-ess-band .pb-h2 em{color:var(--gold-300)}
+.pb-ess-band .pb-sub{color:#d8c9ae}
+.pb-ess-band .pb-eyebrow{color:var(--gold-300)}
+
+/* Real topics drifting past, two lanes in opposite directions. Each lane is
+   its list twice over, so sliding it by half lands on an identical frame. */
+.pb-ess-drift{display:flex;flex-direction:column;gap:12px;padding:30px 0 34px;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.pb-ess-lane{display:flex;width:max-content;animation:pb-ess-drift 260s linear infinite}
+.pb-ess-lane-b{animation-direction:reverse;animation-duration:300s}
+.pb-ess-lane-set{display:flex;flex:none}
+.pb-ess-lane-set > span{flex:none;white-space:nowrap;padding-right:54px;font-family:var(--font-quote);font-style:italic;
+  font-size:22px;line-height:1.3;color:color-mix(in srgb,var(--gold-300) 46%,transparent)}
+.pb-ess-lane-b .pb-ess-lane-set > span{color:color-mix(in srgb,var(--on-dark) 24%,transparent)}
+.pb-ess-lane-set i{font-family:var(--font-body);font-style:normal;font-size:12px;font-weight:700;letter-spacing:.06em;
+  margin-left:10px;opacity:.8;vertical-align:2px}
+@keyframes pb-ess-drift{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){ .pb-ess-lane{animation:none} }
+
+/* The counts: one ruled row, figures in gold. */
+.pb-ess-stats{display:flex;flex-wrap:wrap;justify-content:center;max-width:1000px;margin:34px auto 0;padding:0;
+  border-block:1px solid rgba(227,200,119,.22)}
+.pb-ess-stat{flex:1 1 150px;padding:22px 12px 20px;text-align:center;position:relative;display:flex;flex-direction:column-reverse}
+.pb-ess-stat + .pb-ess-stat::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:rgba(227,200,119,.22)}
+.pb-ess-num{margin:0;font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(32px,3.7vw,46px);font-weight:600;
+  line-height:1;color:var(--gold-300);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pb-ess-unit{font-size:.5em;font-weight:600;letter-spacing:.01em;margin-left:1px}
+.pb-ess-lbl{margin-top:9px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-soft)}
+
+/* The shelf. Each card is cream on the band, with its bottom-right corner cut
+   away for the arrow: the cut (.pb-cc-notch) is painted in the band's flat
+   ground, and its two neighbouring pieces round the card's corners on either
+   side of it, so the edge runs in one continuous curve. */
+.pb-cc-shelf{--ground:var(--brand-900);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:start;
+  max-width:1000px;margin:46px auto 0}
+[data-theme="dark"] .pb-cc-shelf{--ground:#150609}
+.pb-cc{--cut:86px;--r:24px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
+  border-radius:30px;padding:14px 14px 0;
+  transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px));
+  transition:transform .45s cubic-bezier(.2,.8,.3,1)}
+.pb-cc:hover{--lift:-6px}
+.pb-cc-glare{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px 200px at var(--gx,50%) var(--gy,30%),rgba(255,236,190,.28),transparent 70%);mix-blend-mode:screen}
+.pb-cc:hover .pb-cc-glare{opacity:1}
+.pb-cc-art{position:relative;height:210px;border-radius:22px;overflow:hidden;isolation:isolate}
+.pb-cc-svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+.pb-cc:hover .pb-cc-svg{transform:scale(1.045)}
+.pb-cc-art::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 48% at 50% 50%,rgba(10,2,4,.42),transparent 75%)}
+.pb-cc-cap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 20px 18px;color:#fff;z-index:1}
+.pb-cc-cap h3{margin:0;font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(28px,3.2vw,38px);font-weight:600;
+  line-height:1.05;letter-spacing:.01em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.pb-cc-sub{font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#f5e6bd;margin-bottom:8px;
+  text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.pb-cc-badge{position:absolute;top:14px;right:14px;z-index:2;font-size:12px;font-weight:800;letter-spacing:.03em;
+  padding:6px 12px;border-radius:100px;background:#fbf6ec;color:#631322;box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
+.pb-cc-soon .pb-cc-badge{background:rgba(251,246,236,.16);color:#f5e6bd;border:1px solid rgba(245,230,189,.45);backdrop-filter:blur(4px)}
+.pb-cc-list{list-style:none;margin:10px 0 0;padding:0 10px;flex:1}
+.pb-cc-list li{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:start;
+  padding:14px 10px;margin:0 -6px;border-radius:14px;transition:background .25s}
+.pb-cc-list li + li::before{content:"";position:absolute;top:0;left:66px;right:10px;height:1px;background:var(--line)}
+.pb-cc-list li:hover{background:color-mix(in srgb,var(--gold-300) 16%,transparent)}
+.pb-cc-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;color:var(--brand-700);
+  background:linear-gradient(145deg,color-mix(in srgb,var(--gold-300) 45%,transparent),color-mix(in srgb,var(--gold-300) 18%,transparent));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold-500) 30%,transparent);
+  transition:background .3s,color .3s,transform .35s cubic-bezier(.2,.8,.3,1)}
+.pb-cc-ic b{font-family:var(--font-display);font-size:15px;font-weight:700;color:inherit}
+.pb-cc-list li:hover .pb-cc-ic{background:var(--brand-700);color:var(--gold-300);transform:rotate(-6deg) scale(1.06)}
+.pb-cc-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;line-height:1.15}
+.pb-cc-n{font-family:var(--font-display);font-optical-sizing:auto;font-size:25px;font-weight:600;line-height:1;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:var(--brand-700);
+  background:linear-gradient(100deg,var(--brand-700) 20%,var(--gold-600) 50%,var(--brand-700) 80%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pb-cc.is-seen .pb-cc-n{animation:pb-cc-shine 1.6s ease .9s both}
+@keyframes pb-cc-shine{from{background-position:100% 0}to{background-position:0 0}}
+.pb-cc-l{font-size:15.5px;font-weight:700;color:var(--ink-900)}
+.pb-cc-t em{display:block;font-style:normal;font-size:13.5px;line-height:1.5;color:var(--ink-600);margin-top:4px}
+.pb-cc:not(.is-seen) .pb-cc-list li{opacity:0}
+.pb-cc.is-seen .pb-cc-list li{animation:pb-cc-row .6s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
+@keyframes pb-cc-row{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.pb-cc-foot{min-height:var(--cut);display:flex;align-items:center;padding:0 calc(var(--cut) + 6px) 0 14px;
+  border-top:1px solid var(--line);margin:0 -14px 0 0}
+.pb-cc-foot button,.pb-cc-foot span{font:inherit;font-size:14.5px;font-weight:700;color:var(--brand-700);background:none;border:0;padding:0;
+  text-align:left;cursor:pointer}
+.pb-cc-foot button{display:inline-flex;align-items:center;gap:7px;background-image:linear-gradient(currentColor,currentColor);
+  background-size:0 1.5px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:2px;transition:background-size .35s ease}
+.pb-cc-foot button:hover{background-size:100% 1.5px}
+.pb-cc-foot button svg{transition:transform .25s}
+.pb-cc-foot button:hover svg{transform:translateX(4px)}
+.pb-cc-soon .pb-cc-foot span{color:var(--ink-600);font-weight:600;cursor:default}
+.pb-cc-notch{position:absolute;right:-1px;bottom:-1px;width:calc(var(--cut) + 1px);height:calc(var(--cut) + 1px);background:var(--ground);
+  border-top-left-radius:var(--r)}
+.pb-cc-notch::before,.pb-cc-notch::after{content:"";position:absolute;width:var(--r);height:var(--r);
+  background:radial-gradient(circle at 0 0,transparent calc(var(--r) - .5px),var(--ground) var(--r))}
+.pb-cc-notch::before{right:0;top:calc(var(--r) * -1)}
+.pb-cc-notch::after{left:calc(var(--r) * -1);bottom:0}
+.pb-cc-go{position:absolute;right:1px;bottom:1px;width:calc(var(--cut) - 12px);height:calc(var(--cut) - 12px);border-radius:22px;
+  display:grid;place-items:center;border:0;cursor:pointer;background:var(--cream-50);color:var(--brand-700);
+  transition:background .2s,color .2s,transform .2s}
+button.pb-cc-go:hover{background:var(--gold-300);color:var(--brand-900)}
+button.pb-cc-go{animation:pb-cc-breathe 2.8s ease-in-out infinite}
+button.pb-cc-go:hover{animation:none}
+@keyframes pb-cc-breathe{0%,100%{box-shadow:0 0 0 0 rgba(227,200,119,0)}50%{box-shadow:0 0 0 7px rgba(227,200,119,.22)}}
+
+/* The art, alive: stars twinkle, the lamplight breathes, the nib bobs as
+   a gold line writes itself across the page; on GS the orbit turns and the
+   papers float. All of it stops under reduced motion. */
+.pb-tw{animation:pb-tw 2.6s ease-in-out infinite}
+@keyframes pb-tw{0%,100%{opacity:.25}50%{opacity:.95}}
+.pb-breathe{animation:pb-breathe 4.5s ease-in-out infinite;transform-origin:200px 168px}
+@keyframes pb-breathe{0%,100%{opacity:.75}50%{opacity:1}}
+.pb-nib{animation:pb-nib 3.2s ease-in-out infinite}
+@keyframes pb-nib{0%,100%{transform:translate(0,0)}50%{transform:translate(-7px,5px)}}
+.pb-ink{fill:none;stroke:#d8a92a;stroke-width:2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;
+  animation:pb-ink 3.2s ease-in-out infinite}
+@keyframes pb-ink{0%{stroke-dashoffset:100;opacity:0}15%{opacity:1}60%{stroke-dashoffset:0;opacity:1}85%,100%{stroke-dashoffset:0;opacity:0}}
+.pb-orbit{transform-box:view-box;transform-origin:300px 96px;animation:pb-orbit 26s linear infinite}
+@keyframes pb-orbit{to{transform:rotate(360deg)}}
+.pb-float{animation:pb-float 5s ease-in-out infinite}
+@keyframes pb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){
+  .pb-tw,.pb-breathe,.pb-nib,.pb-ink,.pb-orbit,.pb-float,button.pb-cc-go,.pb-cc.is-seen .pb-cc-list li,.pb-cc.is-seen .pb-cc-n{animation:none}
+  .pb-ink{stroke-dashoffset:0}
+  .pb-cc{transform:none}
+}
+button.pb-cc-go:hover svg{transform:translateX(3px)}
+.pb-cc-go svg{transition:transform .2s}
+.pb-cc-go:focus-visible,.pb-cc-foot button:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
+span.pb-cc-go{cursor:default;color:var(--ink-400)}
+[data-theme="dark"] .pb-cc-foot button,[data-theme="dark"] button.pb-cc-go{color:var(--gold-300)}
+[data-theme="dark"] .pb-cc-n{background-image:linear-gradient(100deg,var(--gold-300) 20%,#fff3c9 50%,var(--gold-300) 80%)}
+[data-theme="dark"] .pb-cc-ic{color:var(--gold-300)}
+.pb-ess-browse{padding-top:76px}
+
+/* The Essay catalogue page: the band becomes its hero -- pitch on the left,
+   price on the right, the counts, and quick jumps to the three sections. */
+.pb-ess-hero{padding-bottom:44px}
+.pb-ess-back{margin-top:24px}
+.pb-ess-hero .pb-ess-drift{padding:22px 0 26px}
+.pb-ess-hero-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:44px;align-items:center}
+.pb-ess-hero-t .pb-eyebrow{text-align:left}
+.pb-ess-hero-t .pb-eyebrow::after{margin-left:0}
+.pb-ess-hero-t .pb-h2{font-size:clamp(32px,4.2vw,52px);line-height:1.08;margin:12px 0 16px;color:var(--on-dark)}
+.pb-ess-hero-t .pb-sub{max-width:560px;color:#d8c9ae;font-size:16px}
+.pb-ess-hero-o{box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.pb-ess-hero .pb-ess-stats{margin-top:40px}
+.pb-ess-jump{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.pb-ess-jump button{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;
+  padding:10px 18px;border-radius:100px;color:var(--on-dark);background:rgba(255,255,255,.05);
+  border:1px solid rgba(227,200,119,.35);transition:background .18s,border-color .18s,transform .18s}
+.pb-ess-jump button svg{color:var(--gold-300)}
+.pb-ess-jump button:hover{background:rgba(227,200,119,.14);border-color:var(--gold-300);transform:translateY(-2px)}
+.pb-ess-jump button:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
+.pb-ess-pg .pb-ess-in,.pb-ess-pg .pb-hk-sec,.pb-ess-pg .pb-ess-browse{scroll-margin-top:72px}
+[data-applang="hi"] .pb-ess-hero-t .pb-h2 em{font-family:var(--font-deva-display);font-style:normal;font-weight:400;font-size:1em}
+@media (max-width:980px){
+  .pb-ess-hero-g{grid-template-columns:minmax(0,1fr);gap:24px}
+}
+@media (max-width:720px){
+  .pb-ess-back{margin-top:16px}
+  .pb-ess-hero{padding-bottom:30px}
+  .pb-ess-jump{gap:8px;margin-top:20px}
+  .pb-ess-jump button{padding:8px 13px;font-size:12.5px}
+}
+
+/* The Mains price block, in a shelf card and on the closing panel. */
+.pb-cc-offer{padding:16px 10px 18px;border-top:1px solid var(--line)}
+.pb-offer .pb-price-row{margin-bottom:4px}
+.pb-offer-in{font-size:12.5px;line-height:1.45;color:var(--ink-400);margin-bottom:14px}
+.pb-offer-dark .pb-price{color:var(--gold-300);font-size:34px}
+.pb-offer-dark .pb-price-mrp{color:#c9b99c}
+.pb-offer-dark .pb-off{color:#9fe0bb;background:rgba(159,224,187,.14)}
+.pb-offer-dark .pb-offer-in{color:#d8c9ae}
+.pb-offer-dark .pb-btn-ghost{color:var(--on-dark);background:rgba(255,255,255,.06);border-color:rgba(227,200,119,.45);box-shadow:none}
+
+/* The sixty-second opening: a topic card that shuffles and lands, beside a
+   ruled sheet with a clock that starts on the first keystroke. */
+.pb-hk-sec{padding-top:84px}
+.pb-hk{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px;max-width:1040px;margin:0 auto;align-items:stretch}
+.pb-hk-lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.pb-hk-topic{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;min-height:320px;padding:26px 28px 24px;
+  border-radius:var(--radius-lg);color:var(--on-dark);background:var(--brand-900);
+  background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.16),transparent 70%),
+    linear-gradient(160deg,var(--brand-800),var(--brand-900) 60%);
+  box-shadow:var(--shadow-lift)}
+[data-theme="dark"] .pb-hk-topic{background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.12),transparent 70%),linear-gradient(160deg,#210c11,#150609 60%)}
+.pb-hk-topic .pb-hk-lbl{color:var(--gold-300)}
+.pb-hk-q{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:clamp(23px,2.5vw,30px);line-height:1.3;color:var(--on-dark)}
+.pb-hk-q > span{animation:pb-hk-land .45s cubic-bezier(.2,.8,.3,1) both}
+.pb-hk.is-draw .pb-hk-q > span{animation-duration:.09s;opacity:.75}
+.pb-hk-idle{font-style:normal;font-family:var(--font-body);font-weight:600;font-size:15px;color:#d8c9ae;
+  border:1.5px dashed rgba(227,200,119,.4);border-radius:14px;padding:22px 26px}
+@keyframes pb-hk-land{from{opacity:0;transform:translateY(10px) scale(.98);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.pb-hk-meta{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.pb-hk-meta span{font-size:12px;font-weight:700;padding:4px 11px;border-radius:100px;color:var(--gold-300);
+  background:rgba(227,200,119,.12);border:1px solid rgba(227,200,119,.3)}
+.pb-hk-topic .pb-btn{align-self:center}
+.pb-hk-sheet{position:relative;display:flex;flex-direction:column;border-radius:16px;padding:20px 22px 16px 46px;
+  background-color:#fffdf6;color:#22306b;box-shadow:var(--shadow-lift);
+  background-image:linear-gradient(90deg,transparent 30px,rgba(163,49,42,.35) 30px,rgba(163,49,42,.35) 31px,transparent 31px),
+    repeating-linear-gradient(180deg,transparent 0 31px,rgba(34,48,107,.12) 31px 32px);
+  background-position:0 0,0 14px}
+.pb-hk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.pb-hk-sheet .pb-hk-lbl{color:#7d1a28}
+.pb-hk-ring{width:52px;height:52px;flex:none}
+.pb-hk-ring circle{fill:none;stroke-width:4}
+.pb-hk-ring-bg{stroke:rgba(34,48,107,.14)}
+.pb-hk-ring-fg{stroke:#7d1a28;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .25s linear}
+.pb-hk-ring text{font:700 15px var(--font-body);fill:#22306b}
+.pb-hk-late .pb-hk-ring-fg{stroke:#c9521f}
+.pb-hk-late{animation:pb-hk-pulse 1s ease-in-out infinite}
+@keyframes pb-hk-pulse{50%{transform:scale(1.08)}}
+.pb-hk-area{flex:1;min-height:128px;width:100%;resize:none;border:0;outline:0;background:transparent;padding:0;margin:0;
+  font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:21px;line-height:32px;color:#22306b}
+.pb-hk-area::placeholder{color:rgba(34,48,107,.4)}
+.pb-hk-area:disabled{cursor:not-allowed}
+.pb-hk-line{flex:1;margin:0;font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:21px;line-height:32px;
+  white-space:pre-wrap;overflow-wrap:anywhere;animation:pb-hk-land .5s ease both}
+.pb-hk-foot,.pb-hk-stat{display:flex;align-items:center;gap:12px;margin-top:10px;font-size:12.5px;color:#5a4a3f}
+.pb-hk-tip{flex:1;font-style:italic;min-width:0}
+.pb-hk-wc{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pb-hk-stat{font-weight:700;color:#7d1a28}
+.pb-hk-res{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:20px;align-items:center;
+  padding:22px 24px;border-radius:var(--radius-lg);background:var(--cream-50);border:1px solid var(--gold-300);
+  box-shadow:var(--shadow-card);animation:pb-hk-land .55s cubic-bezier(.2,.8,.3,1) both}
+.pb-hk-res-t b{display:block;font-family:var(--font-display);font-size:21px;font-weight:600;line-height:1.3;color:var(--ink-900)}
+.pb-hk-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+[data-applang="hi"] .pb-hk-q,[data-applang="hi"] .pb-hk-area,[data-applang="hi"] .pb-hk-line{font-family:var(--font-body);font-style:normal;font-weight:500}
+[data-applang="hi"] .pb-hk-area,[data-applang="hi"] .pb-hk-line{font-size:17px}
+@media (prefers-reduced-motion:reduce){ .pb-hk-q > span,.pb-hk-res,.pb-hk-line,.pb-hk-late{animation:none} }
+
+/* The closing panel: the pitch on the left, the price on the right. */
+.pb-ess-end{padding-block:84px 76px}
+.pb-fin{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:40px;align-items:center;
+  padding:44px 48px;border-radius:28px;color:var(--on-dark);background:var(--brand-900);
+  background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.16),transparent 70%),
+    linear-gradient(150deg,var(--brand-800),var(--brand-900) 55%);
+  box-shadow:var(--shadow-soft)}
+[data-theme="dark"] .pb-fin{background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.12),transparent 70%),linear-gradient(150deg,#210c11,#150609 55%)}
+.pb-fin-mandala{position:absolute;right:-150px;bottom:-170px;width:460px;height:460px;opacity:.09;color:var(--gold-300);pointer-events:none}
+.pb-fin-t,.pb-fin-o{position:relative;z-index:1}
+.pb-fin .pb-eyebrow{color:var(--gold-300);text-align:left}
+.pb-fin .pb-eyebrow::after{margin-left:0}
+.pb-fin .pb-h2{color:var(--on-dark);margin:10px 0 12px}
+.pb-fin .pb-h2 em{color:var(--gold-300)}
+.pb-fin-t p{margin:0;font-size:15.5px;line-height:1.65;color:#d8c9ae}
+.pb-fin-free{margin-top:18px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:700;color:var(--gold-300);
+  background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:rgba(227,200,119,.4)}
+.pb-fin-free:hover{text-decoration-color:currentColor}
+.pb-fin-free:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px;border-radius:3px}
+.pb-fin-o{padding:26px;border-radius:22px;background:rgba(251,246,236,.06);border:1px solid rgba(227,200,119,.3);backdrop-filter:blur(4px)}
+[data-applang="hi"] .pb-fin .pb-h2 em,[data-applang="hi"] .pb-hk-sec .pb-h2 em{font-family:var(--font-deva-display);font-style:normal;font-weight:400;font-size:1em}
+@media (max-width:980px){
+  .pb-fin{grid-template-columns:minmax(0,1fr);gap:26px;padding:34px 30px}
+}
+@media (max-width:720px){
+  .pb-hk-sec{padding-top:56px}
+  .pb-hk{grid-template-columns:minmax(0,1fr);gap:14px}
+  .pb-hk-topic{min-height:240px;padding:20px 20px 18px}
+  .pb-hk-sheet{padding:16px 16px 14px 40px;background-position:0 0,0 10px}
+  .pb-hk-res{grid-template-columns:minmax(0,1fr);padding:18px}
+  .pb-hk-foot{flex-wrap:wrap}
+  .pb-hk-tip{flex-basis:100%;order:3}
+  .pb-ess-end{padding-block:56px 52px}
+  .pb-fin{padding:28px 20px;border-radius:22px}
+  .pb-fin-o{padding:20px 18px}
+}
+
+/* The explorer: a rail of themes or years beside one page of topics. */
+.pb-ess-ex{margin:44px auto 0;max-width:1080px;display:grid;grid-template-columns:272px minmax(0,1fr);
+  background:var(--cream-50);color:var(--ink-900);border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-lift)}
+.pb-ess-ghost{grid-column:1 / -1;padding:36px 34px;min-height:360px}
+.pb-ess-side{background:var(--cream-100);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.pb-ess-modes{display:flex;gap:4px;margin:14px;padding:4px;border-radius:100px;background:var(--cream-200)}
+.pb-ess-mode{flex:1;font:inherit;font-size:13px;font-weight:700;padding:8px 10px;border-radius:100px;border:0;
+  background:none;color:var(--ink-600);cursor:pointer;transition:background .18s,color .18s}
+.pb-ess-mode.on{background:var(--brand-700);color:#fff;box-shadow:0 4px 12px -6px rgba(61,13,22,.6)}
+.pb-ess-mode:focus-visible,.pb-ess-ri:focus-visible,.pb-ess-row:focus-visible,.pb-ess-pgo:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px}
+.pb-ess-rail{list-style:none;margin:0;padding:0 10px 14px;overflow-y:auto;max-height:476px;scrollbar-width:thin}
+.pb-ess-ri{width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:inherit;text-align:left;
+  font-size:14px;line-height:1.35;padding:9px 12px;border-radius:10px;border:0;background:none;color:var(--ink-600);cursor:pointer;
+  transition:background .15s,color .15s}
+.pb-ess-ri:hover{background:color-mix(in srgb,var(--gold-300) 24%,transparent);color:var(--ink-900)}
+.pb-ess-ri.on{background:var(--cream-50);color:var(--brand-700);font-weight:700;box-shadow:var(--shadow-card)}
+.pb-ess-ri b{font-size:12px;font-weight:700;color:var(--ink-400);font-variant-numeric:tabular-nums;flex-shrink:0;white-space:nowrap}
+.pb-ess-ri.on b{color:var(--gold-600)}
+.pb-ess-page{display:flex;flex-direction:column;min-width:0}
+.pb-ess-ph{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 28px 16px;
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--gold-100) 45%,transparent),transparent)}
+.pb-ess-pt{font-family:var(--font-display);font-size:24px;font-weight:600;line-height:1.2;margin:0;color:var(--ink-900)}
+.pb-ess-pm{font-size:13px;color:var(--ink-400);margin-top:5px}
+.pb-ess-pgo{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  border:1px solid var(--line);background:var(--cream-50);color:var(--brand-700);transition:transform .2s,background .2s,color .2s}
+.pb-ess-pgo:hover{background:var(--brand-700);color:#fff;transform:translateX(3px)}
+.pb-ess-list{list-style:none;margin:0;padding:6px 14px 16px;overflow-y:auto;max-height:440px;scrollbar-width:thin;
+  animation:pb-ess-in .35s ease both}
+@keyframes pb-ess-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){ .pb-ess-list{animation:none} }
+.pb-ess-list li + li .pb-ess-row{border-top:1px dashed var(--line)}
+.pb-ess-row{width:100%;display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;
+  font:inherit;color:inherit;padding:13px 14px;border:0;background:none;cursor:pointer;border-radius:10px;transition:background .15s}
+.pb-ess-row-y{grid-template-columns:minmax(0,1fr) auto}
+.pb-ess-row:hover{background:color-mix(in srgb,var(--gold-300) 17%,transparent)}
+.pb-ess-yr{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--gold-600);font-variant-numeric:tabular-nums}
+.pb-ess-q{font-family:var(--font-quote);font-style:italic;font-weight:500;font-size:18.5px;line-height:1.35;color:var(--ink-900)}
+.pb-ess-k{display:block;font-family:var(--font-body);font-style:normal;font-size:11px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--gold-600);margin-bottom:3px}
+.pb-ess-tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.pb-ess-tag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:100px;white-space:nowrap;
+  background:color-mix(in srgb,var(--brand-600) 9%,transparent);color:var(--brand-700)}
+.pb-ess-tag-g{background:color-mix(in srgb,var(--gold-300) 34%,transparent);color:color-mix(in srgb,var(--gold-600) 70%,var(--ink-900))}
+[data-applang="hi"] .pb-ess-q,
+[data-applang="hi"] .pb-ess-lane-set > span{font-family:var(--font-body);font-style:normal;font-size:16px}
+[data-applang="hi"] .pb-ess-lane-set > span{font-size:18px}
+
+/* Look inside. */
+.pb-ess-in{padding-top:84px}
+.pb-ess-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+.pb-ess-card{background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);
+  padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;
   transition:transform .26s cubic-bezier(.2,.8,.3,1),box-shadow .26s ease,border-color .26s ease}
-.pb-mtile::before{content:"";position:absolute;top:0;left:0;bottom:0;width:4px;
-  background:linear-gradient(180deg,var(--gold-500),var(--brand-600))}
-.pb-mtile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--gold-300)}
-.pb-mtile:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
-.pb-mtile-n{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--gold-600)}
-.pb-mtile-name{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.25;color:var(--ink-900)}
-.pb-mtile-q{font-family:var(--font-quote);font-style:italic;font-size:15.5px;line-height:1.45;color:var(--ink-600);
-  display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pb-mtile-q b{font-family:var(--font-body);font-style:normal;font-weight:700;font-size:12px;color:var(--ink-400)}
-.pb-mtile-all{justify-content:center;border-style:dashed;padding-right:52px;
-  background:color-mix(in srgb,var(--gold-300) 14%,var(--cream-50))}
-.pb-mtile-all::before{display:none}
-.pb-mtile-all .pb-mtile-name{color:var(--brand-700)}
-.pb-mtile-s{font-size:13.5px;line-height:1.45;color:var(--ink-600)}
-.pb-mtile-go{position:absolute;right:20px;top:50%;margin-top:-9px;color:var(--brand-600);transition:transform .2s ease}
-.pb-mtile-all:hover .pb-mtile-go{transform:translateX(4px)}
-.pb-mtile-ghost{cursor:default}
-.pb-mtile-ghost:hover{transform:none;box-shadow:var(--shadow-card);border-color:var(--line)}
-.pb-mains-foot{display:flex;align-items:center;justify-content:center;gap:12px 20px;flex-wrap:wrap;
-  margin-top:28px;text-align:center;position:relative;z-index:2}
+.pb-ess-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-500),var(--brand-600))}
+.pb-ess-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--gold-300)}
+.pb-ess-card h3{font-family:var(--font-display);font-size:21px;font-weight:600;margin:0;color:var(--ink-900);display:flex;align-items:center;gap:11px}
+.pb-ess-ic{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--gold-300) 34%,transparent);color:var(--brand-700)}
+.pb-ess-card > p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-600)}
+.pb-ess-art{border-radius:14px;background:var(--cream-100);border:1px solid var(--line);padding:18px;position:relative;flex:1;min-height:250px}
+.pb-ess-fact{font-size:13px;font-weight:700;color:var(--brand-700)}
+.pb-ess-lock{margin-top:auto;display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--ink-400);
+  padding-top:12px;border-top:1px dashed var(--line)}
+
+/* A topper's sheet, stacked on two more: the topic in ink, the essay itself
+   only as blurred lines, and a seal. Paper stays paper in the dark theme. */
+.pb-ess-paper{padding:0;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--gold-100) 60%,transparent),transparent 70%),var(--cream-100)}
+.pb-ess-sheet{position:absolute;inset:22px 26px 18px 26px;border-radius:5px;background:#fffdf6;
+  box-shadow:0 10px 22px -12px rgba(61,13,22,.45)}
+.pb-ess-sheet-c{transform:rotate(4deg);background:#f6efe0}
+.pb-ess-sheet-b{transform:rotate(-3deg);background:#faf4e6}
+.pb-ess-sheet-a{display:flex;flex-direction:column;padding:16px 18px 18px 30px;overflow:hidden;
+  background-color:#fffdf6;
+  background-image:linear-gradient(90deg,transparent 21px,rgba(163,49,42,.32) 21px,rgba(163,49,42,.32) 22px,transparent 22px),
+    repeating-linear-gradient(180deg,transparent 0 25px,rgba(43,58,118,.13) 25px 26px);
+  transition:transform .4s cubic-bezier(.2,.8,.3,1)}
+.pb-ess-card:hover .pb-ess-sheet-a{transform:rotate(-1deg) translateY(-3px)}
+.pb-ess-hand{font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:17px;line-height:26px;color:#22306b;
+  display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+[data-applang="hi"] .pb-ess-hand{font-family:var(--font-body);font-style:normal;font-size:15px}
+.pb-ess-scrib{display:block;height:7px;border-radius:4px;margin-top:19px;background:rgba(34,48,107,.3);filter:blur(1.6px)}
+.pb-ess-seal{position:absolute;right:14px;bottom:14px;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;
+  text-align:center;padding:8px;font-size:9.5px;font-weight:800;letter-spacing:.08em;line-height:1.25;text-transform:uppercase;
+  color:var(--gold-300);background:radial-gradient(circle,#7d1a28 0%,#4a0f19 100%);
+  border:2px dashed rgba(227,200,119,.55);box-shadow:0 6px 16px -6px rgba(61,13,22,.7);transform:rotate(-12deg)}
+
+/* A guide's free part: topic, spine, three sides, the first arguments. */
+.pb-ess-guide{display:flex;flex-direction:column;gap:10px;background:var(--cream-50);overflow:hidden}
+.pb-ess-kick{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-600)}
+.pb-ess-gq{font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:19px;line-height:1.3;color:var(--ink-900)}
+.pb-ess-spine{font-size:13px;line-height:1.55;color:var(--ink-600);padding:9px 12px;border-radius:10px;
+  background:color-mix(in srgb,var(--gold-300) 16%,transparent);border-left:3px solid var(--gold-500)}
+.pb-ess-spine span{display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pb-ess-spine b{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-700);margin-bottom:2px}
+.pb-ess-sides{display:flex;gap:6px;flex-wrap:wrap}
+.pb-ess-side-chip{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid currentColor}
+.pb-ess-t0{color:var(--gold-600)} .pb-ess-t1{color:var(--brand-600)} .pb-ess-t2{color:var(--ok-600)}
+.pb-ess-args{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.pb-ess-args li{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--ink-900)}
+.pb-ess-dot{width:8px;height:8px;border-radius:50%;flex:none;background:currentColor}
+.pb-ess-args li.pb-ess-fade{filter:blur(2.5px);opacity:.7;user-select:none}
+.pb-ess-more{font-size:12.5px;font-weight:700;color:var(--brand-700);margin-top:auto}
+
+/* The wiki: what it holds, by kind, and one Editor's pick. */
+.pb-ess-wiki{display:flex;flex-direction:column;gap:16px}
+.pb-ess-bars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.pb-ess-bars li{display:grid;grid-template-columns:92px minmax(0,1fr) 44px;align-items:center;gap:10px;font-size:13px;color:var(--ink-600)}
+.pb-ess-bars b{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-900)}
+.pb-ess-bt{height:8px;border-radius:100px;background:color-mix(in srgb,var(--ink-400) 16%,transparent);overflow:hidden}
+.pb-ess-bt span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold-500),var(--brand-600));
+  transform-origin:left;animation:pb-ess-bar 1.1s cubic-bezier(.2,.8,.3,1) both}
+@keyframes pb-ess-bar{from{transform:scaleX(0)}}
+@media (prefers-reduced-motion:reduce){ .pb-ess-bt span{animation:none} }
+.pb-ess-pick{margin:auto 0 0;padding:14px 16px 14px 18px;border-radius:12px;background:var(--cream-50);border:1px solid var(--line);position:relative}
+.pb-ess-pick figcaption{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-600);margin-bottom:5px}
+.pb-ess-pick blockquote{margin:0;font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:17px;line-height:1.35;color:var(--ink-900)}
+.pb-ess-pick cite{display:block;margin-top:6px;font-style:normal;font-size:12px;color:var(--ink-400)}
+
+.pb-mains-foot{display:flex;align-items:center;justify-content:center;gap:12px 20px;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
+.pb-ess-cta{padding-inline:26px}
 .pb-mains-inc{margin:0;font-size:14px;line-height:1.5;color:var(--ink-600)}
 .pb-mains-inc button{font:inherit;font-weight:700;color:var(--brand-700);background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--brand-700) 35%,transparent);text-underline-offset:3px}
 .pb-mains-inc button:hover{text-decoration-color:currentColor}
 .pb-mains-inc button:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px;border-radius:3px}
+.pb-ess-from{font-weight:700;color:var(--ink-900)}
 /* The quote serif's italic has no Devanagari: in Hindi the emphasis takes the
    Devanagari display face, upright, as the quote strip's does. */
 [data-applang="hi"] .pb-mains .pb-h2 em{font-family:var(--font-deva-display);font-style:normal;font-weight:400;font-size:1em}
-@media (max-width:980px){ .pb-mains-grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:640px){
-  .pb-mains-grid{grid-template-columns:1fr;gap:12px}
-  .pb-mtile{min-height:0}
-  /* Three themes and the "all themes" tile: the rest is one tap away. */
-  .pb-mains-grid > .pb-mtile:nth-child(n+4):not(.pb-mtile-all){display:none}
+@media (max-width:980px){
+  .pb-ess-cards{grid-template-columns:minmax(0,1fr);max-width:560px;margin-inline:auto}
+  .pb-ess-ex{grid-template-columns:230px minmax(0,1fr)}
+  .pb-cc-shelf{gap:18px}
+  .pb-cc-n{font-size:22px}
+}
+@media (max-width:720px){
+  .pb-ess-band{padding-bottom:46px}
+  .pb-ess-drift{padding:20px 0 24px;gap:8px}
+  .pb-ess-lane-set > span{font-size:17px;padding-right:38px}
+  .pb-ess-stats{margin-top:24px}
+  .pb-ess-stat{flex:1 1 33%;padding:16px 6px 14px}
+  .pb-ess-stat + .pb-ess-stat::before{display:none}
+  .pb-ess-lbl{font-size:10.5px;letter-spacing:.05em}
+  .pb-ess-ex{grid-template-columns:minmax(0,1fr)}
+  .pb-cc-shelf{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:30px}
+  .pb-cc{--cut:74px;--r:20px;border-radius:26px;padding:12px 12px 0}
+  .pb-cc-art{height:172px;border-radius:18px}
+  .pb-cc-list{padding:0 4px}
+  .pb-cc-list li{padding:12px 8px;gap:12px;grid-template-columns:38px minmax(0,1fr)}
+  .pb-cc-ic{width:38px;height:38px;border-radius:12px}
+  .pb-cc-list li + li::before{left:58px}
+  .pb-cc-go{border-radius:18px}
+  .pb-ess-browse{padding-top:56px}
+  .pb-ess-side{border-right:0;border-bottom:1px solid var(--line)}
+  .pb-ess-modes{margin:12px 12px 6px}
+  .pb-ess-rail{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;max-height:none;padding:4px 12px 12px;
+    scroll-snap-type:x proximity}
+  .pb-ess-rail li{flex:none;scroll-snap-align:start}
+  .pb-ess-ri{white-space:nowrap;border:1px solid var(--line);border-radius:100px;padding:7px 13px;background:var(--cream-50)}
+  .pb-ess-ri.on{background:var(--brand-700);color:#fff;border-color:var(--brand-700)}
+  .pb-ess-ri.on b{color:var(--gold-300)}
+  .pb-ess-ph{padding:16px 18px 12px}
+  .pb-ess-pt{font-size:20px}
+  .pb-ess-list{max-height:420px;padding:4px 8px 12px}
+  .pb-ess-row{grid-template-columns:42px minmax(0,1fr);gap:4px 10px;padding:12px 10px}
+  .pb-ess-row-y{grid-template-columns:minmax(0,1fr)}
+  .pb-ess-tags{grid-column:2;justify-content:flex-start}
+  .pb-ess-row-y .pb-ess-tags{grid-column:1}
+  .pb-ess-q{font-size:17px}
+  .pb-ess-in{padding-top:56px}
+  .pb-ess-card{padding:20px 18px 16px}
 }
 
 /* ---------- JOURNEY ---------- */
@@ -2162,26 +2584,418 @@ function BundleDetail({ code, owned, onBack, onEnroll }) {
 
 /* ------------------------------------------------------------------ site -- */
 /* ---------------- MAINS ----------------
-   The Essay section's shop window, between the quote strip and the test
-   series: what it holds (live counts), its biggest themes as tiles, each
-   quoting a real recent topic, and the bundle that brings the topper copies.
-   PYQs and themes are public; the copies need a session, so this shows
-   topics, not copies. Nothing renders when no PYQ is published or the read
-   fails: it is a shop window, not a page anyone came for. */
+   The Essay section's catalogue, between the quote strip and the test series.
+   It is built to be browsed, not glanced at: a dark "library" band with the
+   live counts and every topic UPSC has set (by theme or by year, each with
+   how many topper copies and whether a guide sits behind it), then a look
+   inside the three things a topic opens onto. PYQs and themes are public;
+   the rest arrives as counts and two small tasters from essay_catalog()
+   (0032). Without that function the band still shows topics and themes.
+   Nothing renders when no PYQ is published or the read fails. */
 let mainsCache = null;   // the resolved read, kept for the page's life
 let mainsLoad = null;    // the read in flight
 function loadMains() {
-  mainsLoad ||= Promise.all([DB.essayPyqs(), DB.essayThemes(), DB.mainsBundleCodes().catch(() => [])])
-    .then(([pyqs, themes, codes]) => (mainsCache = { pyqs, themes, codes }))
+  mainsLoad ||= Promise.all([
+    DB.essayPyqs(), DB.essayThemes(),
+    DB.mainsBundleCodes().catch(() => []),
+    DB.essayCatalog().catch(() => null),
+  ])
+    .then(([pyqs, themes, codes, cat]) => (mainsCache = { pyqs, themes, codes, cat }))
     .catch((e) => { mainsLoad = null; throw e; });
   return mainsLoad;
 }
 const fillIn = (s, vars) => String(s).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
-const MAINS_TILES = 5;   // plus an "all themes" tile: two rows of three
+const num = (n) => Number(n || 0).toLocaleString("en-IN");
+/* Counts are shown as an honest floor with a plus -- "200+" for 233, "1,600+"
+   for 1,666 -- never rounded up: a visitor who counts must find at least as
+   many as we claim. Small counts stay exact. */
+const floorPlus = (n) => {
+  const x = Number(n) || 0;
+  if (x < 20) return { v: x, plus: false };
+  const step = x < 100 ? 10 : x < 1000 ? 50 : 100;
+  return { v: Math.floor(x / step) * step, plus: true };
+};
+const nPlus = (n) => { const r = floorPlus(n); return num(r.v) + (r.plus ? "+" : ""); };
+const WIKI_KINDS = ["example", "opening", "closing", "quote", "anecdote", "statistic"];
+const SIDE_TONE = ["pb-ess-t0", "pb-ess-t1", "pb-ess-t2"];
 
-function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) {
+/* A number that counts up the first time its row scrolls into view. Without
+   IntersectionObserver, or with reduced motion, it is simply the number. */
+function useSeen(ref) {
+  const still = typeof window === "undefined" || !("IntersectionObserver" in window)
+    || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [seen, setSeen] = useState(still);
+  useEffect(() => {
+    const el = ref.current;
+    if (seen || !el) return undefined;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect(); } },
+      { threshold: 0.35 });
+    io.observe(el);
+    // As with the scroll reveal: a page that never reports the row (a hidden
+    // tab, a print) still gets its figures.
+    const failsafe = setTimeout(() => setSeen(true), 4000);
+    return () => { io.disconnect(); clearTimeout(failsafe); };
+  }, [ref, seen]);
+  return { seen, still };
+}
+function CountUp({ n, go, still, dec = 0 }) {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    if (still || !go) return undefined;
+    let raf = 0;
+    const t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / 1500);
+      setV(n * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    // A hidden tab pauses animation frames; the figure must land regardless.
+    const land = setTimeout(() => setV(n), 1700);
+    return () => { cancelAnimationFrame(raf); clearTimeout(land); };
+  }, [n, go, still]);
+  const x = still ? n : v;
+  return <>{dec ? x.toFixed(dec) : num(Math.round(x))}</>;
+}
+
+/* The shelf: one catalogue card per Mains paper. A picture, what is inside
+   as ruled rows, and the corner cut out of the card for its arrow. The cut is
+   painted in the band's own ground (--ground), so the band stays flat there. */
+const GS_PAPERS = [["I", "pm_gs1"], ["II", "pm_gs2"], ["III", "pm_gs3"], ["IV", "pm_gs4"]];
+
+function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = false, children = null }) {
+  const ref = useRef(null);
+  const { seen, still } = useSeen(ref);
+  // A slight tilt toward the pointer, and the art's light follows it. Mouse
+  // only, and never under reduced motion.
+  const move = (e) => {
+    if (still || e.pointerType !== "mouse") return;
+    const el = e.currentTarget, r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty("--rx", `${(-y * 3.2).toFixed(2)}deg`);
+    el.style.setProperty("--ry", `${(x * 4.2).toFixed(2)}deg`);
+    el.style.setProperty("--gx", `${((x + 0.5) * 100).toFixed(1)}%`);
+    el.style.setProperty("--gy", `${((y + 0.5) * 100).toFixed(1)}%`);
+  };
+  const leave = (e) => ["--rx", "--ry", "--gx", "--gy"].forEach((k) => e.currentTarget.style.removeProperty(k));
+  return (
+    <div className="reveal">
+      <article ref={ref} className={`pb-cc${soon ? " pb-cc-soon" : ""}${seen ? " is-seen" : ""}`}
+               onPointerMove={move} onPointerLeave={leave}>
+        <div className="pb-cc-art">
+          {art}
+          <span className="pb-cc-glare" aria-hidden="true" />
+          {badge && <span className="pb-cc-badge">{badge}</span>}
+          <div className="pb-cc-cap">
+            <span className="pb-cc-sub">{sub}</span>
+            <h3>{title}</h3>
+          </div>
+        </div>
+        <ul className="pb-cc-list">
+          {items.map((it, i) => {
+            const fig = it.num != null ? floorPlus(it.num) : null;
+            return (
+              <li key={it.k} style={{ "--i": i }}>
+                <span className="pb-cc-ic" aria-hidden="true">{it.icon || <b>{it.mark}</b>}</span>
+                <span className="pb-cc-t">
+                  <span className="pb-cc-h">
+                    {fig && (
+                      <b className="pb-cc-n" aria-label={nPlus(it.num)}>
+                        <span aria-hidden="true"><CountUp n={fig.v} go={seen} still={still} />{fig.plus && "+"}</span>
+                      </b>
+                    )}
+                    <span className="pb-cc-l">{it.label}</span>
+                  </span>
+                  <em>{it.text}</em>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        {children && <div className="pb-cc-offer">{children}</div>}
+        <div className="pb-cc-foot">
+          {soon ? <span>{foot}</span> : <button type="button" onClick={onGo}>{foot}<ArrowRight size={15} /></button>}
+        </div>
+        <div className="pb-cc-notch">
+          {soon
+            ? <span className="pb-cc-go" aria-hidden="true"><Clock size={22} /></span>
+            : <button type="button" className="pb-cc-go" onClick={onGo} aria-label={goLabel}><ArrowRight size={24} /></button>}
+        </div>
+      </article>
+    </div>
+  );
+}
+
+/* Card art, drawn rather than photographed: an open book under lamplight
+   with a nib above it for the essay; a globe and four fanned papers for GS. */
+function EssayArt() {
+  const stars = [[34, 30, 1.4], [78, 62, 1], [126, 22, 1.2], [176, 48, .9], [242, 18, 1.3], [290, 56, 1], [338, 26, 1.5], [372, 70, 1], [20, 88, 1]];
+  return (
+    <svg className="pb-cc-svg" viewBox="0 0 400 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="ea-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#22070d" /><stop offset="1" stopColor="#6e1526" /></linearGradient>
+        <radialGradient id="ea-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stopColor="#f7c948" stopOpacity=".5" /><stop offset="1" stopColor="#f7c948" stopOpacity="0" /></radialGradient>
+        <linearGradient id="ea-pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffaf0" /><stop offset="1" stopColor="#e6d6b4" /></linearGradient>
+        <linearGradient id="ea-nib" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e6bd" /><stop offset=".55" stopColor="#d8a92a" /><stop offset="1" stopColor="#8c6414" /></linearGradient>
+      </defs>
+      <rect width="400" height="210" fill="url(#ea-bg)" />
+      {stars.map(([x, y, r], i) => <circle key={i} className="pb-tw" style={{ animationDelay: `${(i * 0.37) % 2.6}s` }} cx={x} cy={y} r={r} fill="#f5e6bd" opacity=".7" />)}
+      <text x="28" y="170" fontSize="190" fontFamily="Georgia,serif" fill="#e3c877" opacity=".07">&ldquo;</text>
+      <ellipse className="pb-breathe" cx="200" cy="168" rx="200" ry="92" fill="url(#ea-glow)" />
+      <path d="M200 214 C160 196 108 192 52 200 L64 150 C112 140 162 144 200 164 Z" fill="url(#ea-pg)" />
+      <path d="M200 214 C240 196 292 192 348 200 L336 150 C288 140 238 144 200 164 Z" fill="url(#ea-pg)" />
+      <path d="M200 164 L200 214" stroke="#b9a184" strokeWidth="1.2" />
+      {[0, 1, 2, 3].map((i) => (
+        <g key={i} stroke="#7d1a28" strokeOpacity=".22" strokeWidth="1.4" fill="none">
+          <path d={`M${80 + i * 2} ${162 + i * 10} C${118} ${155 + i * 10} ${158} ${158 + i * 10} ${188} ${172 + i * 10}`} />
+          <path d={`M${320 - i * 2} ${162 + i * 10} C${282} ${155 + i * 10} ${242} ${158 + i * 10} ${212} ${172 + i * 10}`} />
+        </g>
+      ))}
+      <path className="pb-ink" d="M216 182 C246 175 284 174 322 180" pathLength="100" />
+      <g className="pb-nib"><g transform="translate(330 14) rotate(38)">
+        <path d="M0 0 L13 0 L13 66 L6.5 92 L0 66 Z" fill="url(#ea-nib)" />
+        <path d="M6.5 60 L6.5 90" stroke="#4a0f19" strokeWidth="1.2" />
+        <circle cx="6.5" cy="58" r="2.6" fill="#4a0f19" />
+        <rect x="-3" y="-46" width="19" height="48" rx="4" fill="#3d0d16" stroke="#c9a227" strokeWidth="1.2" />
+      </g></g>
+    </svg>
+  );
+}
+
+function GsArt() {
+  return (
+    <svg className="pb-cc-svg" viewBox="0 0 400 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="ga-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#141a3a" /><stop offset="1" stopColor="#4a0f19" /></linearGradient>
+        <radialGradient id="ga-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stopColor="#e3c877" stopOpacity=".42" /><stop offset="1" stopColor="#e3c877" stopOpacity="0" /></radialGradient>
+        <linearGradient id="ga-pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffaf0" /><stop offset="1" stopColor="#e6d6b4" /></linearGradient>
+      </defs>
+      <rect width="400" height="210" fill="url(#ga-bg)" />
+      <circle cx="300" cy="96" r="130" fill="url(#ga-glow)" />
+      <g fill="none" stroke="#e3c877" strokeOpacity=".55" strokeWidth="1.4">
+        <circle cx="300" cy="96" r="74" />
+        <ellipse cx="300" cy="96" rx="30" ry="74" />
+        <ellipse cx="300" cy="96" rx="56" ry="74" />
+        <path d="M226 96 H374 M234 60 H366 M234 132 H366" />
+      </g>
+      <g className="pb-orbit">
+        <g fill="none" stroke="#e3c877" strokeOpacity=".35" strokeWidth="1"><ellipse cx="300" cy="96" rx="104" ry="24" transform="rotate(-18 300 96)" /></g>
+        <circle cx="398" cy="62" r="4" fill="#f7c948" transform="rotate(-18 300 96)" />
+      </g>
+      <g className="pb-float">
+      {["IV", "III", "II", "I"].map((n, i) => (
+        <g key={n} transform={`translate(${22 + i * 24} ${122 + i * 7}) rotate(${-18 + i * 7}) scale(.82)`}>
+          <rect width="78" height="104" rx="5" fill="url(#ga-pg)" stroke="#b9a184" strokeWidth=".8" />
+          <text x="10" y="24" fontFamily="Georgia,serif" fontSize="17" fontWeight="700" fill="#7d1a28">{n}</text>
+          {[38, 50, 62, 74, 86].map((y) => <rect key={y} x="10" y={y} width={y === 86 ? 36 : 58} height="3" rx="1.5" fill="#22306b" opacity=".22" />)}
+        </g>
+      ))}
+      </g>
+    </svg>
+  );
+}
+
+/* A count as shown: the honest floor with a plus, and from a lakh up in
+   lakhs to one decimal (2,75,544 words reads "2.7 lakh+"). */
+function statFigure(n, lakh) {
+  if (n >= 100000) return { v: Math.floor(n / 10000) / 10, dec: 1, sfx: lakh };
+  const r = floorPlus(n);
+  return { v: r.v, dec: 0, sfx: r.plus ? "+" : "" };
+}
+
+function MainsStats({ items }) {
+  const { t } = useLang();
+  const ref = useRef(null);
+  const { seen, still } = useSeen(ref);
+  return (
+    <dl className="pb-ess-stats reveal" ref={ref}>
+      {items.filter((s) => s.n > 0).map((s) => {
+        const fig = statFigure(s.n, t("pm_lakh"));
+        return (
+          <div className="pb-ess-stat" key={s.key}>
+            <dt className="pb-ess-lbl">{s.label}</dt>
+            <dd className="pb-ess-num" aria-label={`${fig.dec ? fig.v.toFixed(fig.dec) : num(fig.v)}${fig.sfx}`}>
+              <span aria-hidden="true"><CountUp n={fig.v} dec={fig.dec} go={seen} still={still} />{fig.dec ? <small className="pb-ess-unit">{fig.sfx}</small> : fig.sfx}</span>
+            </dd>
+          </div>
+        );
+      })}
+    </dl>
+  );
+}
+
+/* The price block the Prelims cards carry, for Mains: the cheapest active
+   plan that includes it, struck MRP and saving, Enroll and Details. An owner
+   gets a way in instead. No plan at all leaves just the way in. */
+function MainsOffer({ offer, owns, onEnroll, onDetails, onOpen, dark = false }) {
+  const { t } = useLang();
+  if (owns) {
+    return (
+      <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={onOpen}>
+        <CheckCircle2 size={16} />{t("pm_owned_open")}
+      </button>
+    );
+  }
+  if (!offer) {
+    return (
+      <button type="button" className="pb-btn pb-btn-block pb-btn-maroon" onClick={onOpen}>
+        {t("pm_cta")}<ArrowRight size={15} />
+      </button>
+    );
+  }
+  const off = offer.mrp && offer.mrp > offer.price ? Math.round((1 - offer.price / offer.mrp) * 100) : 0;
+  return (
+    <div className={`pb-offer${dark ? " pb-offer-dark" : ""}`}>
+      <div className="pb-price-row">
+        <span className="pb-price">{money(offer.price)}</span>
+        {off > 0 && <><span className="pb-price-mrp">{money(offer.mrp)}</span><span className="pb-off">{off}% off</span></>}
+      </div>
+      <div className="pb-offer-in">
+        {offer.testCount
+          ? fillIn(t("pm_offer_in"), { name: offer.name })
+          : offer.durationDays ? fillIn(t("pm_offer_days"), { d: offer.durationDays }) : t("pm_offer_life")}
+      </div>
+      <div className="pb-card-btns">
+        <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} style={{ flex: 1 }} onClick={onEnroll}>
+          {t("card_enroll")}<ArrowRight size={15} />
+        </button>
+        <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onDetails}>{t("card_details")}</button>
+      </div>
+    </div>
+  );
+}
+
+/* The sixty-second opening. Draw a real topic (it shuffles through the
+   others before it lands), write the line you would open with -- the clock
+   starts on the first keystroke -- and see what waits behind that topic.
+   Nothing typed here leaves the page. */
+const HOOK_SECS = 60;
+const HOOK_TIPS = ["pm_hk_tip1", "pm_hk_tip2", "pm_hk_tip3"];
+
+function HookChallenge({ pool, topicOf, themeOf, copiesOf, hasGuide, cta }) {
+  const { t } = useLang();
+  const [phase, setPhase] = useState("idle");   // idle | draw | write | done
+  const [cur, setCur] = useState(null);
+  const [text, setText] = useState("");
+  const [startAt, setStartAt] = useState(0);
+  const [now, setNow] = useState(0);
+  const [took, setTook] = useState(0);
+  const timers = useRef([]);
+  const area = useRef(null);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+
+  useEffect(() => {
+    if (phase !== "write" || !startAt) return undefined;
+    const id = setInterval(() => {
+      const n = Date.now();
+      setNow(n);
+      if (n - startAt >= HOOK_SECS * 1000) { setTook(HOOK_SECS); setPhase("done"); }
+    }, 200);
+    return () => clearInterval(id);
+  }, [phase, startAt]);
+
+  const any = () => pool[Math.floor(Math.random() * pool.length)];
+  const draw = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setText(""); setStartAt(0); setNow(0); setTook(0);
+    const final = pool.length > 1 ? (() => { let p; do p = any(); while (p === cur); return p; })() : pool[0];
+    const land = () => { setCur(final); setPhase("write"); setTimeout(() => area.current?.focus({ preventScroll: true }), 60); };
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { land(); return; }
+    setPhase("draw");
+    let at = 0;
+    for (let i = 0; i < 14; i++) {
+      at += 45 + i * i * 2.2;
+      timers.current.push(setTimeout(() => setCur(any()), at));
+    }
+    timers.current.push(setTimeout(land, at + 220));
+  };
+  const type = (e) => {
+    if (phase !== "write") return;
+    if (!startAt && e.target.value.trim()) { const n = Date.now(); setStartAt(n); setNow(n); }
+    setText(e.target.value.slice(0, 600));
+  };
+  const finish = () => {
+    setTook(startAt ? Math.max(1, Math.min(HOOK_SECS, Math.round((Date.now() - startAt) / 1000))) : 0);
+    setPhase("done");
+  };
+
+  const left = startAt ? Math.max(0, HOOK_SECS - Math.floor((now - startAt) / 1000)) : HOOK_SECS;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const R = 22, C = 2 * Math.PI * R;
+  const main = cur ? themeOf(cur) : null;
+  const n = cur ? copiesOf(cur) : 0;
+  const tip = HOOK_TIPS[Math.floor((HOOK_SECS - left) / 20) % HOOK_TIPS.length];
+
+  return (
+    <div className={`pb-hk is-${phase}`}>
+      <div className="pb-hk-topic">
+        <span className="pb-hk-lbl">{t("pm_hk_lbl")}</span>
+        <div className="pb-hk-q" aria-live="polite">
+          {cur ? <span key={phase === "draw" ? cur.id : `l-${cur.id}`}>{topicOf(cur)}</span>
+            : <span className="pb-hk-idle">{t("pm_hk_idle")}</span>}
+        </div>
+        {cur && phase !== "draw" && (
+          <div className="pb-hk-meta">
+            <span>{cur.year}</span>{main && <span>{main}</span>}
+          </div>
+        )}
+        <button type="button" className="pb-btn pb-btn-gold pb-hk-go" onClick={draw} disabled={phase === "draw"}>
+          <Shuffle size={16} />{t(cur ? "pm_hk_again" : "pm_hk_draw")}
+        </button>
+      </div>
+
+      <div className="pb-hk-sheet">
+        <div className="pb-hk-top">
+          <span className="pb-hk-lbl">{t(phase === "done" ? "pm_hk_yours" : "pm_hk_sheet")}</span>
+          <svg className={`pb-hk-ring${startAt && left <= 10 && phase === "write" ? " pb-hk-late" : ""}`} viewBox="0 0 52 52" aria-hidden="true">
+            <circle cx="26" cy="26" r={R} className="pb-hk-ring-bg" />
+            <circle cx="26" cy="26" r={R} className="pb-hk-ring-fg"
+                    style={{ strokeDasharray: C, strokeDashoffset: C * (1 - left / HOOK_SECS) }} />
+            <text x="26" y="30.5" textAnchor="middle">{phase === "done" ? took : left}</text>
+          </svg>
+        </div>
+        {phase === "done" ? (
+          <>
+            <p className="pb-hk-line">{text}</p>
+            <div className="pb-hk-stat">{fillIn(t("pm_hk_time"), { w: words, s: took })}</div>
+          </>
+        ) : (
+          <>
+            <textarea ref={area} className="pb-hk-area" rows={4} value={text} onChange={type}
+                      disabled={phase !== "write"} aria-label={t("pm_hk_sheet")}
+                      placeholder={t(phase === "write" ? "pm_hk_ph" : "pm_hk_ph0")} />
+            <div className="pb-hk-foot">
+              <span className="pb-hk-tip">{phase === "write" ? t(tip) : " "}</span>
+              <span className="pb-hk-wc">{fillIn(t("pm_hk_words"), { n: words })}</span>
+              <button type="button" className="pb-btn pb-btn-maroon pb-btn-sm" onClick={finish} disabled={!words}>{t("pm_hk_done")}</button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {phase === "done" && cur && (
+        <div className="pb-hk-res">
+          <div className="pb-hk-res-t">
+            <b>{t("pm_hk_res_h")}</b>
+            <span className="pb-hk-chips">
+              {n > 0 && <span className="pb-ess-tag">{fillIn(t(n === 1 ? "pm_copies_one" : "pm_copies"), { n })}</span>}
+              {hasGuide(cur) && <span className="pb-ess-tag pb-ess-tag-g">{t("pm_hk_guide")}</span>}
+            </span>
+          </div>
+          <div className="pb-hk-res-a">{cta}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin, onViewBundle, full = false, onOpenPage, onBack }) {
   const { t, lang } = useLang();
   const [data, setData] = useState(() => mainsCache);
+  const [mode, setMode] = useState("theme");
+  const [sel, setSel] = useState(null);
+  const listRef = useRef(null);
   useEffect(() => {
     if (mainsCache) return undefined;
     let alive = true;
@@ -2191,96 +3005,398 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
 
   const view = useMemo(() => {
     if (!data?.pyqs?.length) return null;
-    const { pyqs, themes } = data;
+    const { pyqs, themes, cat } = data;
     // Counted the way the Essay section counts: a PYQ under every theme it carries.
     const counts = new Map();
     pyqs.forEach((p) => p.themes.forEach((x) => counts.set(x.id, (counts.get(x.id) || 0) + 1)));
     const ranked = themes.filter((th) => counts.get(th.id))
       .sort((a, b) => counts.get(b.id) - counts.get(a.id) || a.name.localeCompare(b.name));
-    // Each tile quotes the newest PYQ whose main theme it is (else the newest
-    // filed under it) that no earlier tile has quoted.
-    const used = new Set();
-    const tiles = ranked.slice(0, MAINS_TILES).map((th) => {
-      const pick = pyqs.find((p) => !used.has(p.id) && p.themes[0]?.id === th.id)
-        || pyqs.find((p) => !used.has(p.id) && p.themes.some((x) => x.id === th.id));
-      if (pick) used.add(pick.id);
-      return { th, count: counts.get(th.id), sample: pick || null };
-    });
-    const years = pyqs.map((p) => p.year);
-    return { tiles, themeTotal: ranked.length, pyqTotal: pyqs.length, y1: Math.min(...years), y2: Math.max(...years) };
+    const yearMap = new Map();
+    pyqs.forEach((p) => yearMap.set(p.year, (yearMap.get(p.year) || 0) + 1));
+    const years = [...yearMap].sort((a, b) => b[0] - a[0]);
+    const copiesOf = (p) => cat?.perPyq.get(p.id) || 0;
+    const hasGuide = (p) => !!cat?.guides.has(p.id);
+    // The handwritten sheet quotes the topic with the most copies behind it.
+    const copySample = cat ? [...pyqs].sort((a, b) => copiesOf(b) - copiesOf(a) || b.year - a.year)[0] : null;
+    const wikiTotal = cat ? Object.values(cat.kinds).reduce((s, n) => s + (Number(n) || 0), 0) : 0;
+    return {
+      ranked, counts, years, copiesOf, hasGuide, copySample, wikiTotal,
+      themeTotal: ranked.length, pyqTotal: pyqs.length,
+      y1: years[years.length - 1][0], y2: years[0][0],
+    };
   }, [data]);
 
   if (data && !view) return null;
 
+  const cat = data?.cat || null;
   const nameOf = (th) => (lang === "hi" && th.nameHi ? th.nameHi : th.name);
   const topicOf = (p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic);
   const included = view ? (bundles || []).filter((b) => data.codes?.includes(b.code)) : [];
+  // The plan to sell from: the cheapest active one that includes Mains.
+  const offer = included.length ? [...included].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0))[0] : null;
+  const owns = !!session && included.some((b) => owned?.has(b.code));
   // Leave word of where to land, then go: the dashboard opens on Essay, on the
-  // theme picked; a visitor signs in first.
-  const open = (themeId) => {
+  // theme or year picked; a visitor signs in first.
+  const open = (m = "theme", pick = null) => {
     saveKey("essay:tab", "pyqs");
-    saveKey("essay:mode", "theme");
-    saveKey("essay:pick", themeId || "all");
+    saveKey("essay:mode", m);
+    saveKey("essay:pick", pick == null ? "all" : String(pick));
     askOpenView("essay");
     if (session) onDashboard(); else onLogin();
   };
 
-  return (
-    <section className="pb-sec pb-mains" id="mains" aria-labelledby="pb-mains-h">
-      <div className="pb-sec-narrow">
-        <div className="pb-sec-head reveal">
-          <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
-          <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")}<em>{t("pm_h2_em")}</em>{t("pm_h2_b")}</h2>
-          {view
-            ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
-            : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
-        </div>
+  // What the explorer shows: the picked theme or year, else the first of its rail.
+  let page = null;
+  if (view) {
+    if (mode === "theme") {
+      const th = view.ranked.find((x) => x.id === sel) || view.ranked[0];
+      page = th && { key: th.id, title: nameOf(th), items: data.pyqs.filter((p) => p.themes.some((x) => x.id === th.id)) };
+    } else {
+      const y = view.years.find(([yr]) => String(yr) === String(sel))?.[0] ?? view.years[0][0];
+      page = { key: y, title: String(y), items: data.pyqs.filter((p) => p.year === y) };
+    }
+  }
+  const pick = (k) => { setSel(k); if (listRef.current) listRef.current.scrollTop = 0; };
+  const switchMode = (m) => { if (m !== mode) { setMode(m); setSel(null); if (listRef.current) listRef.current.scrollTop = 0; } };
+  const themeById = view ? new Map(data.themes.map((th) => [th.id, th])) : new Map();
+  const pageGuides = page ? page.items.filter((p) => view.hasGuide(p)).length : 0;
+  // A Mains-only plan has no series page of its own: its Details is the Essay
+  // catalogue (the page, or its "What's inside" when already on it). Buying
+  // it leaves word to open the dashboard on Essay.
+  const mainsOnly = !!offer && !offer.testCount;
+  const enrollOffer = () => {
+    if (!offer) return;
+    if (mainsOnly) { saveKey("essay:tab", "pyqs"); askOpenView("essay"); }
+    onEnroll(offer.code);
+  };
+  const offerEl = (dark, details = null) => (
+    <MainsOffer offer={offer} owns={owns} dark={dark} onOpen={() => open()} onEnroll={enrollOffer}
+      onDetails={details || (() => {
+        if (!offer) return;
+        if (!mainsOnly) onViewBundle(offer.code);
+        else if (full) jump("ess-inside");
+        else onOpenPage?.();
+      })} />
+  );
+  // The challenge draws from topics with copies and a guide behind them, so
+  // what it reveals is worth having.
+  const hookPool = !view ? [] : (() => {
+    const rich = data.pyqs.filter((p) => view.copiesOf(p) > 0 && view.hasGuide(p));
+    return rich.length >= 6 ? rich : data.pyqs;
+  })();
+  const themeOf = (p) => { const th = themeById.get(p.themes[0]?.id); return th ? nameOf(th) : null; };
 
-        <div className="pb-mains-grid">
-          {view ? (
-            <>
-              {view.tiles.map(({ th, count, sample }, i) => (
-                <button type="button" key={th.id} className={`pb-mtile reveal reveal-d${(i % 3) + 1}`}
-                        onClick={() => open(th.id)} aria-label={fillIn(t("pm_tile_aria"), { name: nameOf(th) })}>
-                  <span className="pb-mtile-n">{fillIn(t(count === 1 ? "pm_count_one" : "pm_count"), { n: count })}</span>
-                  <span className="pb-mtile-name">{nameOf(th)}</span>
-                  {sample && <span className="pb-mtile-q">{topicOf(sample)} <b>{sample.year}</b></span>}
-                </button>
-              ))}
-              <button type="button" className="pb-mtile pb-mtile-all reveal reveal-d3" onClick={() => open(null)}>
-                <span className="pb-mtile-name">{fillIn(t("pm_all"), { k: view.themeTotal })}</span>
-                <span className="pb-mtile-s">{t("pm_all_s")}</span>
-                <ArrowRight size={18} className="pb-mtile-go" aria-hidden="true" />
-              </button>
-            </>
-          ) : (
-            [0, 1, 2, 3, 4, 5].map((i) => (
-              <div className="pb-mtile pb-mtile-ghost" key={i} aria-hidden="true">
-                <Skeleton h={11} w="34%" /><Skeleton h={18} w="70%" style={{ marginTop: 10 }} /><Skeleton h={30} style={{ marginTop: 10 }} />
+  const stats = !view ? [] : cat ? [
+    { key: "w", n: cat.words, label: t("pm_st_words") },
+    { key: "c", n: cat.essays, label: t("pm_st_copies") },
+    { key: "a", n: cat.arguments, label: t("pm_st_args") },
+    { key: "o", n: cat.openings, label: t("pm_st_ends") },
+    { key: "k", n: view.wikiTotal, label: t("pm_st_wiki") },
+  ] : [
+    { key: "t", n: view.pyqTotal, label: t("pm_st_topics") },
+    { key: "k", n: view.themeTotal, label: t("pm_st_themes") },
+    { key: "y", n: view.years.length, label: t("pm_st_years") },
+  ];
+  const essayItems = !view ? [] : [
+    { k: "t", icon: <Compass size={18} />, num: view.pyqTotal, label: t("pm_r1_l"), text: fillIn(t("pm_r1_t"), { y1: view.y1 }) },
+    ...(cat ? [
+      { k: "c", icon: <BookOpen size={18} />, num: cat.essays, label: t("pm_r2_l"), text: fillIn(t("pm_r2_t"), { t: nPlus(cat.toppers) }) },
+      cat.arguments > 0
+        ? { k: "g", icon: <PenLine size={18} />, num: cat.arguments, label: t("pm_r3_l"), text: fillIn(t("pm_r3_t"), { g: nPlus(cat.guides.size) }) }
+        : { k: "g", icon: <PenLine size={18} />, num: cat.guides.size, label: t("pm_r3g_l"), text: t("pm_cc_e3") },
+      { k: "w", icon: <Layers size={18} />, num: view.wikiTotal, label: t("pm_r4_l"), text: t("pm_r4_t") },
+    ] : [{ k: "k", icon: <Layers size={18} />, num: view.themeTotal, label: t("pm_r5_l"), text: t("pm_cc_e5") }]),
+  ];
+  // Two lanes of real topics drifting past the head of the band.
+  const lanes = view ? [data.pyqs.filter((_, i) => i % 2 === 0), data.pyqs.filter((_, i) => i % 2 === 1)] : [];
+
+  const sample = cat?.guideSample;
+  const shownTitles = sample ? sample.titles.slice(0, 4) : [];
+  const kindMax = cat ? Math.max(1, ...WIKI_KINDS.map((k) => Number(cat.kinds[k]) || 0)) : 1;
+
+  const jump = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const driftEl = (
+    lanes.length > 0 && (
+      <div className="pb-ess-drift" aria-hidden="true">
+        {lanes.map((lane, i) => (
+          <div className={`pb-ess-lane${i ? " pb-ess-lane-b" : ""}`} key={i}>
+            {[0, 1].map((rep) => (
+              <span className="pb-ess-lane-set" key={rep}>
+                {lane.map((p) => <span key={p.id}>{topicOf(p)}<i>{p.year}</i></span>)}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  );
+
+  // The home page carries the band and the shelf; everything else is on the
+  // Essay catalogue page, opened from the Essay card.
+  if (!full) {
+    return (
+      <section className="pb-mains" id="mains" aria-labelledby="pb-mains-h">
+        <div className="pb-ess-band">
+          {driftEl}
+          <div className="pb-sec-narrow pb-ess-band-in">
+            <div className="pb-sec-head reveal">
+              <div className="pb-eyebrow">{t("pm_home_eyebrow")}</div>
+              <h2 className="pb-h2" id="pb-mains-h">{t("pm_home_h_a")} <em>{t("pm_home_h_em")}</em></h2>
+              {view
+                ? <p className="pb-sub">{cat
+                  ? fillIn(t("pm_home_sub"), { t: nPlus(cat.toppers), y1: view.y1 })
+                  : fillIn(t("pm_home_sub0"), { y1: view.y1 })}</p>
+                : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
+            </div>
+
+            {view && <MainsStats items={stats} />}
+            {view && (
+              <div className="pb-cc-shelf">
+                <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")}
+                  items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
+                  {offerEl(false, onOpenPage)}
+                </ShelfCard>
+                <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("card_soon")}
+                  items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
+                  foot={t("pm_cc_g_foot")} soon />
               </div>
-            ))
-          )}
-        </div>
-
-        {view && (
-          <div className="pb-mains-foot reveal">
-            <button type="button" className="pb-btn pb-btn-maroon" onClick={() => open(null)}>
-              <PenLine size={17} />{t("pm_cta")}<ArrowRight size={17} />
-            </button>
-            {included.length > 0 && (
-              <p className="pb-mains-inc">
-                {t("pm_included")}{" "}
-                {included.map((b, i) => (
-                  <Fragment key={b.code}>{i > 0 && ", "}<button type="button" onClick={() => onViewBundle(b.code)}>{b.name}</button></Fragment>
-                ))}
-              </p>
             )}
           </div>
-        )}
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <div className="pb-ess-pg">
+      <section className="pb-ess-band pb-ess-hero" aria-labelledby="pb-ess-h1">
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <button type="button" className="pb-btn pb-btn-onDark pb-btn-sm pb-ess-back" onClick={onBack}>
+            <ArrowLeft size={15} />{t("pm_back")}
+          </button>
+        </div>
+        {driftEl}
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <div className="pb-ess-hero-g">
+            <div className="pb-ess-hero-t">
+              <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
+              <h1 className="pb-h2" id="pb-ess-h1">{t("pm_h2_a")} <em>{t("pm_h2_em")}</em></h1>
+              {view
+                ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
+                : <Skeleton h={16} w="78%" />}
+            </div>
+            <div className="pb-fin-o pb-ess-hero-o">{view ? offerEl(true) : <Skeleton h={120} />}</div>
+          </div>
+          {view && <MainsStats items={stats} />}
+          {view && (
+            <nav className="pb-ess-jump" aria-label={t("pm_cc_e_t")}>
+              {cat && <button type="button" onClick={() => jump("ess-inside")}><Layers size={15} />{t("pm_jump_in")}</button>}
+              <button type="button" onClick={() => jump("ess-try")}><Timer size={15} />{t("pm_jump_try")}</button>
+              <button type="button" onClick={() => jump("ess-topics")}><BookOpen size={15} />{t("pm_jump_all")}</button>
+            </nav>
+          )}
+        </div>
+      </section>
+
+      {view && cat && (
+        <div className="pb-sec-narrow pb-ess-in" id="ess-inside">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("pm_in_eyebrow")}</div>
+            <h2 className="pb-h2">{t("pm_in_h")}</h2>
+          </div>
+
+          <div className="pb-ess-cards">
+            <article className="pb-ess-card reveal reveal-d1">
+              <h3><span className="pb-ess-ic"><BookOpen size={18} /></span>{t("pm_cp_t")}</h3>
+              <p>{fillIn(t("pm_cp_d"), { c: nPlus(cat.essays), t: nPlus(cat.toppers) })}</p>
+              <div className="pb-ess-art pb-ess-paper" aria-hidden="true">
+                <div className="pb-ess-sheet pb-ess-sheet-c" />
+                <div className="pb-ess-sheet pb-ess-sheet-b" />
+                <div className="pb-ess-sheet pb-ess-sheet-a">
+                  <span className="pb-ess-hand">{view.copySample ? topicOf(view.copySample) : ""}</span>
+                  {[92, 100, 84, 97, 70, 88].map((w, i) => <span className="pb-ess-scrib" key={i} style={{ width: `${w}%` }} />)}
+                  <span className="pb-ess-seal">{t("pm_seal")}</span>
+                </div>
+              </div>
+              {cat.topMarks > 0 && <div className="pb-ess-fact">{fillIn(t("pm_cp_marks"), { m: cat.topMarks })}</div>}
+              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d2">
+              <h3><span className="pb-ess-ic"><PenLine size={18} /></span>{t("pm_lw_t")}</h3>
+              <p>{fillIn(t("pm_lw_d"), { g: nPlus(cat.guides.size) })}</p>
+              {sample && (
+                <div className="pb-ess-art pb-ess-guide">
+                  <span className="pb-ess-kick">{fillIn(t("pm_lw_sample"), { y: sample.year })}</span>
+                  <div className="pb-ess-gq">{sample.topic}</div>
+                  {sample.spine && <div className="pb-ess-spine"><b>{t("pm_lw_spine")}</b><span>{sample.spine}</span></div>}
+                  {sample.sides.length > 0 && (
+                    <div className="pb-ess-sides">
+                      {sample.sides.slice(0, 3).map((s, i) => <span className={`pb-ess-side-chip ${SIDE_TONE[i]}`} key={i}>{s.label}</span>)}
+                    </div>
+                  )}
+                  <ol className="pb-ess-args">
+                    {shownTitles.map((a, i) => (
+                      <li key={i} className={i >= 2 ? "pb-ess-fade" : ""}>
+                        <span className={`pb-ess-dot ${SIDE_TONE[Number(a.side) || 0] || ""}`} />{a.title}
+                      </li>
+                    ))}
+                  </ol>
+                  {sample.titles.length > shownTitles.length && (
+                    <div className="pb-ess-more">{fillIn(t("pm_lw_more"), { n: sample.titles.length - shownTitles.length })}</div>
+                  )}
+                </div>
+              )}
+              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d3">
+              <h3><span className="pb-ess-ic"><Layers size={18} /></span>{t("pm_wk_t")}</h3>
+              <p>{fillIn(t("pm_wk_d"), { n: nPlus(view.wikiTotal) })}</p>
+              <div className="pb-ess-art pb-ess-wiki">
+                <ul className="pb-ess-bars">
+                  {WIKI_KINDS.filter((k) => Number(cat.kinds[k]) > 0).map((k) => (
+                    <li key={k}>
+                      <span className="pb-ess-bl">{t(`wk_ks_${k}`)}</span>
+                      <span className="pb-ess-bt"><span style={{ width: `${Math.max(6, (Number(cat.kinds[k]) / kindMax) * 100)}%` }} /></span>
+                      <b>{nPlus(cat.kinds[k])}</b>
+                    </li>
+                  ))}
+                </ul>
+                {cat.pick && (
+                  <figure className="pb-ess-pick">
+                    <figcaption>{t("pm_wk_pick")}</figcaption>
+                    <blockquote>{cat.pick.body}</blockquote>
+                    {cat.pick.attribution && <cite>{cat.pick.attribution}</cite>}
+                  </figure>
+                )}
+              </div>
+              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
+            </article>
+          </div>
+        </div>
+      )}
+
+      {view && (
+        <div className="pb-sec-narrow pb-hk-sec" id="ess-try">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("pm_hk_eyebrow")}</div>
+            <h2 className="pb-h2">{t("pm_hk_h_a")} <em>{t("pm_hk_h_em")}</em></h2>
+            <p className="pb-sub">{t("pm_hk_s")}</p>
+          </div>
+          <div className="reveal">
+            <HookChallenge pool={hookPool} topicOf={topicOf} themeOf={themeOf}
+              copiesOf={view.copiesOf} hasGuide={view.hasGuide} cta={offerEl(false)} />
+          </div>
+        </div>
+      )}
+
+      <div className="pb-sec-narrow pb-ess-browse" id="ess-topics">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("pm_ex_eyebrow")}</div>
+            <h2 className="pb-h2">{t("pm_ex_h")}</h2>
+            <p className="pb-sub">{t("pm_ex_s")}</p>
+          </div>
+          <div className="pb-ess-ex reveal">
+            {view && page ? (
+              <>
+                <div className="pb-ess-side">
+                  <div className="pb-ess-modes" role="group" aria-label={t("pm_ex_h")}>
+                    {["theme", "year"].map((m) => (
+                      <button type="button" key={m} className={`pb-ess-mode${mode === m ? " on" : ""}`}
+                              aria-pressed={mode === m} onClick={() => switchMode(m)}>
+                        {t(m === "theme" ? "pm_by_theme" : "pm_by_year")}
+                      </button>
+                    ))}
+                  </div>
+                  <ul className="pb-ess-rail">
+                    {(mode === "theme"
+                      ? view.ranked.map((th) => [th.id, nameOf(th), view.counts.get(th.id)])
+                      : view.years.map(([y, n]) => [y, String(y), n])
+                    ).map(([k, label, n]) => (
+                      <li key={k}>
+                        <button type="button" className={`pb-ess-ri${String(page.key) === String(k) ? " on" : ""}`}
+                                aria-pressed={String(page.key) === String(k)} onClick={() => pick(k)}>
+                          <span>{label}</span><b>{n}</b>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pb-ess-page">
+                  <div className="pb-ess-ph">
+                    <div>
+                      <h3 className="pb-ess-pt">{page.title}</h3>
+                      <div className="pb-ess-pm">
+                        {fillIn(t(page.items.length === 1 ? "pm_topics_one" : "pm_topics"), { n: page.items.length })}
+                        {pageGuides > 0 && <> · {fillIn(t(pageGuides === 1 ? "pm_guides_one" : "pm_guides"), { n: pageGuides })}</>}
+                      </div>
+                    </div>
+                    <button type="button" className="pb-ess-pgo" onClick={() => open(mode, page.key)}
+                            aria-label={fillIn(t("pm_tile_aria"), { name: page.title })}>
+                      <ArrowRight size={18} />
+                    </button>
+                  </div>
+                  <ul className="pb-ess-list" ref={listRef} key={`${mode}:${page.key}`}>
+                    {page.items.map((p) => {
+                      const n = view.copiesOf(p);
+                      const main = themeById.get(p.themes[0]?.id);
+                      return (
+                        <li key={p.id}>
+                          <button type="button" className={`pb-ess-row${mode === "year" ? " pb-ess-row-y" : ""}`}
+                                  onClick={() => open(mode, page.key)}
+                                  aria-label={fillIn(t("pm_row_aria"), { q: topicOf(p) })}>
+                            {mode === "theme" && <span className="pb-ess-yr">{p.year}</span>}
+                            <span className="pb-ess-q">
+                              {mode === "year" && main && <span className="pb-ess-k">{nameOf(main)}</span>}
+                              {topicOf(p)}
+                            </span>
+                            <span className="pb-ess-tags">
+                              {n > 0 && <span className="pb-ess-tag">{fillIn(t(n === 1 ? "pm_copies_one" : "pm_copies"), { n })}</span>}
+                              {view.hasGuide(p) && <span className="pb-ess-tag pb-ess-tag-g">{t("pm_guide")}</span>}
+                            </span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <div className="pb-ess-ghost" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((i) => <Skeleton key={i} h={18} w={`${86 - i * 9}%`} style={{ marginTop: i ? 20 : 0 }} />)}
+              </div>
+            )}
+          </div>
       </div>
-    </section>
+
+      {view && (
+        <div className="pb-sec-narrow pb-ess-end">
+          <div className="pb-fin reveal">
+            <Mandala className="pb-fin-mandala" />
+            <div className="pb-fin-t">
+              <div className="pb-eyebrow">{t("pm_fin_eyebrow")}</div>
+              <h2 className="pb-h2">{t("pm_fin_h_a")} <em>{t("pm_fin_h_em")}</em></h2>
+              <p>{cat
+                ? fillIn(t("pm_fin_s"), { c: nPlus(cat.essays), w: nPlus(view.wikiTotal) })
+                : fillIn(t("pm_fin_s0"), { n: view.pyqTotal })}</p>
+              {!owns && (
+                <button type="button" className="pb-fin-free" onClick={() => open()}>
+                  {t("pm_cc_e_foot")}<ArrowRight size={15} />
+                </button>
+              )}
+            </div>
+            <div className="pb-fin-o">{offerEl(true)}</div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
+
+/* The Essay catalogue page rides on the detail slot, under a name no plan code can take. */
+const ESSAY_PAGE = "__essay__";
 
 export default function PublicSite({ onLogin, onEnroll, onDashboard, session, page, onNavigate }) {
   const { t, lang } = useLang();
@@ -2384,18 +3500,22 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
 
   // One tab per exam that actually has a bundle, ordered by the exam's own
   // sort_order so UPSC leads and "Other" trails.
+  // Mains plans sell the Mains section, not papers: they live in the Essay
+  // catalogue, never as an empty series here.
+  const seriesBundles = (bundles || []).filter((b) => !(b.includesMains && !b.testCount));
   const examTabs = [];
   const seen = new Set();
-  (bundles || []).forEach((b) => {
+  seriesBundles.forEach((b) => {
     if (seen.has(b.exam)) return;
     seen.add(b.exam);
     examTabs.push({ code: b.exam, label: b.examLabel, sort: b.examSort });
   });
   examTabs.sort((a, b) => a.sort - b.sort);
-  const shown = (bundles || []).filter((b) => exam === "all" || b.exam === exam);
+  const shown = seriesBundles.filter((b) => exam === "all" || b.exam === exam);
 
   const scrollTo = (id) => setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 70);
   const goCatalog = () => { setDetail(null); if (page) onNavigate(null); scrollTo("catalog"); };
+  const goMains = () => { setDetail(null); scrollTo("mains"); };
   const goResources = () => { setDetail(null); if (page) onNavigate(null); scrollTo("resources"); };
   const enroll = (code) => (owned.has(code) ? onDashboard() : onEnroll(code));
   const home = () => { setDetail(null); onNavigate(null); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -2469,6 +3589,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           )}
           <ContentPage page={page} />
         </div>
+      ) : detail === ESSAY_PAGE ? (
+        <MainsCatalog full bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
+          onBack={goMains} onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
       ) : detail ? (
         <BundleDetail code={detail} owned={owned.has(detail)} onBack={goCatalog} onEnroll={() => enroll(detail)} />
       ) : (
@@ -2541,7 +3664,8 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </div>
 
           {/* ---------------- MAINS ---------------- */}
-          <MainsCatalog bundles={bundles} session={session} onDashboard={onDashboard} onLogin={onLogin}
+          <MainsCatalog bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
+            onOpenPage={() => { setDetail(ESSAY_PAGE); window.scrollTo({ top: 0 }); }}
             onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
           {/* ---------------- CATALOG ---------------- */}

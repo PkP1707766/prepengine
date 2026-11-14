@@ -182,6 +182,8 @@ const bundleFromRow = (r) => ({
   features: Array.isArray(r.features) ? r.features : [],
   testCount: r.test_count ?? 0,
   freeTestCount: r.free_test_count ?? 0,
+  // A Mains plan sells the Mains section, not papers (0033).
+  includesMains: r.includes_mains === true,
   sortOrder: r.sort_order ?? 0,
   // Null when no PDF has been uploaded yet -- the UI reads this as "don't
   // render the brochure button at all", so a plan without a flyer is silent
@@ -2043,6 +2045,38 @@ export async function mainsBundleCodes() {
   const { data, error } = await sb.from("plans").select("code").eq("includes_mains", true).eq("is_active", true);
   if (error) throw error;
   return (data ?? []).map((r) => r.code);
+}
+
+/**
+ * What sits behind the Essay section, counted for a visitor (0032): topper
+ * essays and toppers, essays per PYQ, the PYQs with a guide, wiki entries by
+ * kind, the free part of one guide and one Editor's pick. Null when the
+ * function is not there yet, so the public page simply shows less.
+ */
+export async function essayCatalog() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return null;
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("essay_catalog");
+  if (error) { console.warn("essay catalogue unavailable", error.message); return null; }
+  if (!data) return null;
+  const sample = data.guide_sample;
+  return {
+    essays: Number(data.essays) || 0,
+    words: Number(data.words) || 0,
+    arguments: Number(data.arguments) || 0,
+    openings: Number(data.openings) || 0,
+    toppers: Number(data.toppers) || 0,
+    topMarks: data.top_marks == null ? null : Number(data.top_marks),
+    perPyq: new Map(Object.entries(data.per_pyq || {}).map(([k, v]) => [k, Number(v) || 0])),
+    guides: new Set(data.guides || []),
+    kinds: data.kinds || {},
+    guideSample: sample ? {
+      pyqId: sample.pyq_id, topic: sample.topic, year: sample.year, spine: sample.spine || "",
+      sides: Array.isArray(sample.sides) ? sample.sides : [],
+      titles: Array.isArray(sample.titles) ? sample.titles : [],
+    } : null,
+    pick: data.pick?.body ? { body: data.pick.body, attribution: data.pick.attribution || "" } : null,
+  };
 }
 
 const LIB_COLS_BASE =
