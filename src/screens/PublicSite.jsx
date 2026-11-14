@@ -452,7 +452,8 @@ const CSS = `
 .pb-ess-stat{flex:1 1 150px;padding:22px 12px 20px;text-align:center;position:relative;display:flex;flex-direction:column-reverse}
 .pb-ess-stat + .pb-ess-stat::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:rgba(227,200,119,.22)}
 .pb-ess-num{margin:0;font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(32px,3.7vw,46px);font-weight:600;
-  line-height:1;color:var(--gold-300);font-variant-numeric:tabular-nums}
+  line-height:1;color:var(--gold-300);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pb-ess-unit{font-size:.5em;font-weight:600;letter-spacing:.01em;margin-left:1px}
 .pb-ess-lbl{margin-top:9px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-soft)}
 
 /* The shelf. Each card is cream on the band, with its bottom-right corner cut
@@ -2585,7 +2586,7 @@ function useSeen(ref) {
   }, [ref, seen]);
   return { seen, still };
 }
-function CountUp({ n, go, still }) {
+function CountUp({ n, go, still, dec = 0 }) {
   const [v, setV] = useState(0);
   useEffect(() => {
     if (still || !go) return undefined;
@@ -2593,7 +2594,7 @@ function CountUp({ n, go, still }) {
     const t0 = performance.now();
     const step = (now) => {
       const p = Math.min(1, (now - t0) / 1500);
-      setV(Math.round(n * (1 - Math.pow(1 - p, 3))));
+      setV(n * (1 - Math.pow(1 - p, 3)));
       if (p < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
@@ -2601,7 +2602,8 @@ function CountUp({ n, go, still }) {
     const land = setTimeout(() => setV(n), 1700);
     return () => { cancelAnimationFrame(raf); clearTimeout(land); };
   }, [n, go, still]);
-  return <>{num(still ? n : v)}</>;
+  const x = still ? n : v;
+  return <>{dec ? x.toFixed(dec) : num(Math.round(x))}</>;
 }
 
 /* The shelf: one catalogue card per Mains paper. A picture, what is inside
@@ -2705,19 +2707,31 @@ function GsArt() {
   );
 }
 
+/* A count as shown: the honest floor with a plus, and from a lakh up in
+   lakhs to one decimal (2,75,544 words reads "2.7 lakh+"). */
+function statFigure(n, lakh) {
+  if (n >= 100000) return { v: Math.floor(n / 10000) / 10, dec: 1, sfx: lakh };
+  const r = floorPlus(n);
+  return { v: r.v, dec: 0, sfx: r.plus ? "+" : "" };
+}
+
 function MainsStats({ items }) {
+  const { t } = useLang();
   const ref = useRef(null);
   const { seen, still } = useSeen(ref);
   return (
     <dl className="pb-ess-stats reveal" ref={ref}>
-      {items.map((s) => (
-        <div className="pb-ess-stat" key={s.key}>
-          <dt className="pb-ess-lbl">{s.label}</dt>
-          <dd className="pb-ess-num" aria-label={nPlus(s.n)}>
-            <span aria-hidden="true"><CountUp n={floorPlus(s.n).v} go={seen} still={still} />{floorPlus(s.n).plus && "+"}</span>
-          </dd>
-        </div>
-      ))}
+      {items.filter((s) => s.n > 0).map((s) => {
+        const fig = statFigure(s.n, t("pm_lakh"));
+        return (
+          <div className="pb-ess-stat" key={s.key}>
+            <dt className="pb-ess-lbl">{s.label}</dt>
+            <dd className="pb-ess-num" aria-label={`${fig.dec ? fig.v.toFixed(fig.dec) : num(fig.v)}${fig.sfx}`}>
+              <span aria-hidden="true"><CountUp n={fig.v} dec={fig.dec} go={seen} still={still} />{fig.dec ? <small className="pb-ess-unit">{fig.sfx}</small> : fig.sfx}</span>
+            </dd>
+          </div>
+        );
+      })}
     </dl>
   );
 }
@@ -2967,11 +2981,11 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const themeOf = (p) => { const th = themeById.get(p.themes[0]?.id); return th ? nameOf(th) : null; };
 
   const stats = !view ? [] : cat ? [
-    { key: "t", n: view.pyqTotal, label: t("pm_st_topics") },
+    { key: "w", n: cat.words, label: t("pm_st_words") },
     { key: "c", n: cat.essays, label: t("pm_st_copies") },
-    { key: "p", n: cat.toppers, label: t("pm_st_toppers") },
-    { key: "g", n: cat.guides.size, label: t("pm_st_guides") },
-    { key: "w", n: view.wikiTotal, label: t("pm_st_wiki") },
+    { key: "a", n: cat.arguments, label: t("pm_st_args") },
+    { key: "o", n: cat.openings, label: t("pm_st_ends") },
+    { key: "k", n: view.wikiTotal, label: t("pm_st_wiki") },
   ] : [
     { key: "t", n: view.pyqTotal, label: t("pm_st_topics") },
     { key: "k", n: view.themeTotal, label: t("pm_st_themes") },
@@ -2981,7 +2995,9 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
     { k: "t", n: nPlus(view.pyqTotal), label: fillIn(t("pm_cc_e1_t"), { y1: view.y1 }), text: t("pm_cc_e1") },
     ...(cat ? [
       { k: "c", n: nPlus(cat.essays), label: t("pm_st_copies"), text: fillIn(t("pm_cc_e2"), { t: nPlus(cat.toppers) }) },
-      { k: "g", n: nPlus(cat.guides.size), label: t("pm_st_guides"), text: t("pm_cc_e3") },
+      cat.arguments > 0
+        ? { k: "g", n: nPlus(cat.arguments), label: t("pm_st_args"), text: fillIn(t("pm_cc_e3b"), { g: nPlus(cat.guides.size) }) }
+        : { k: "g", n: nPlus(cat.guides.size), label: t("pm_st_guides"), text: t("pm_cc_e3") },
       { k: "w", n: nPlus(view.wikiTotal), label: t("pm_cc_e4_t"), text: t("pm_cc_e4") },
     ] : [{ k: "k", n: nPlus(view.themeTotal), label: t("pm_st_themes"), text: t("pm_cc_e5") }]),
   ];
@@ -3018,10 +3034,12 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
           {driftEl}
           <div className="pb-sec-narrow pb-ess-band-in">
             <div className="pb-sec-head reveal">
-              <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
-              <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")} <em>{t("pm_h2_em")}</em></h2>
+              <div className="pb-eyebrow">{t("pm_home_eyebrow")}</div>
+              <h2 className="pb-h2" id="pb-mains-h">{t("pm_home_h_a")} <em>{t("pm_home_h_em")}</em></h2>
               {view
-                ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
+                ? <p className="pb-sub">{cat
+                  ? fillIn(t("pm_home_sub"), { t: nPlus(cat.toppers), y1: view.y1 })
+                  : fillIn(t("pm_home_sub0"), { y1: view.y1 })}</p>
                 : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
             </div>
 

@@ -2060,6 +2060,9 @@ export async function essayCatalog() {
   const sample = data.guide_sample;
   return {
     essays: Number(data.essays) || 0,
+    words: Number(data.words) || 0,
+    arguments: Number(data.arguments) || 0,
+    openings: Number(data.openings) || 0,
     toppers: Number(data.toppers) || 0,
     topMarks: data.top_marks == null ? null : Number(data.top_marks),
     perPyq: new Map(Object.entries(data.per_pyq || {}).map(([k, v]) => [k, Number(v) || 0])),

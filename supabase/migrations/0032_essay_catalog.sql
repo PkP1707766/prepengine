@@ -1,9 +1,10 @@
 -- 0032: the Essay catalogue on the public page.
 --
 -- A visitor may read PYQs and themes but nothing behind them, so the public
--- catalogue could only say "96 topics" -- not how many topper copies, guides
--- and wiki entries sit behind each one. This hands out those COUNTS, plus two
--- small tasters chosen here rather than by the caller: the free part of one
+-- catalogue could only say "96 topics" -- not how many topper copies, words,
+-- guides, model arguments and wiki entries sit behind each one. This hands
+-- out those COUNTS, plus two small tasters chosen here rather than by the
+-- caller: the free part of one
 -- guide (the same spine, sides and argument titles any signed-in student
 -- already sees as a preview) and one Editor's pick quote. No copy, no page,
 -- no paragraph of a guide leaves through it.
@@ -41,6 +42,13 @@ as $$
   )
   select jsonb_build_object(
     'essays',  (select count(distinct answer_id) from cp),
+    'words',   (select coalesce(sum(a.body_words), 0) from public.topper_answers a
+                where a.id in (select answer_id from cp)),
+    'arguments', (select coalesce(sum(jsonb_array_length(coalesce(l.doc -> 'arguments', '[]'::jsonb))), 0)
+                  from public.essay_ltw l where l.status = 'published'),
+    'openings',  (select coalesce(sum(jsonb_array_length(coalesce(l.doc -> 'introductions', '[]'::jsonb))
+                                    + jsonb_array_length(coalesce(l.doc -> 'conclusions', '[]'::jsonb))), 0)
+                  from public.essay_ltw l where l.status = 'published'),
     'toppers', (select count(distinct topper_id) from cp),
     'top_marks', (select max(t.essay_marks) from public.toppers t
                   where t.id in (select topper_id from cp)),
