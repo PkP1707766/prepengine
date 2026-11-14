@@ -42,7 +42,7 @@ const ES_CSS = `
   font-size:13px;font-weight:600;color:var(--ink);padding:8px 10px;border-radius:8px;line-height:1.35}
 .es-rail-item:hover{background:var(--hair)}
 .es-rail-item.on{background:var(--navy);color:#ffffff}
-.es-rail-item .n{font-size:11.5px;font-weight:700;opacity:.7;font-variant-numeric:tabular-nums}
+.es-rail-item .n{font-size:11.5px;font-weight:700;opacity:.7;font-variant-numeric:tabular-nums;flex-shrink:0;white-space:nowrap}
 .es-pick{display:none;margin-bottom:12px}
 .es-pick select,.es-tool select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;
   background:var(--card);color:var(--ink);font:inherit;font-size:13.5px}
