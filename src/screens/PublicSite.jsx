@@ -510,6 +510,37 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 [data-theme="dark"] .pb-cc-n,[data-theme="dark"] .pb-cc-foot button,[data-theme="dark"] button.pb-cc-go{color:var(--gold-300)}
 .pb-ess-browse{padding-top:76px}
 
+/* The Essay catalogue page: the band becomes its hero -- pitch on the left,
+   price on the right, the counts, and quick jumps to the three sections. */
+.pb-ess-hero{padding-bottom:44px}
+.pb-ess-back{margin-top:24px}
+.pb-ess-hero .pb-ess-drift{padding:22px 0 26px}
+.pb-ess-hero-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:44px;align-items:center}
+.pb-ess-hero-t .pb-eyebrow{text-align:left}
+.pb-ess-hero-t .pb-eyebrow::after{margin-left:0}
+.pb-ess-hero-t .pb-h2{font-size:clamp(32px,4.2vw,52px);line-height:1.08;margin:12px 0 16px;color:var(--on-dark)}
+.pb-ess-hero-t .pb-sub{max-width:560px;color:#d8c9ae;font-size:16px}
+.pb-ess-hero-o{box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.pb-ess-hero .pb-ess-stats{margin-top:40px}
+.pb-ess-jump{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.pb-ess-jump button{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;
+  padding:10px 18px;border-radius:100px;color:var(--on-dark);background:rgba(255,255,255,.05);
+  border:1px solid rgba(227,200,119,.35);transition:background .18s,border-color .18s,transform .18s}
+.pb-ess-jump button svg{color:var(--gold-300)}
+.pb-ess-jump button:hover{background:rgba(227,200,119,.14);border-color:var(--gold-300);transform:translateY(-2px)}
+.pb-ess-jump button:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
+.pb-ess-pg .pb-ess-in,.pb-ess-pg .pb-hk-sec,.pb-ess-pg .pb-ess-browse{scroll-margin-top:72px}
+[data-applang="hi"] .pb-ess-hero-t .pb-h2 em{font-family:var(--font-deva-display);font-style:normal;font-weight:400;font-size:1em}
+@media (max-width:980px){
+  .pb-ess-hero-g{grid-template-columns:minmax(0,1fr);gap:24px}
+}
+@media (max-width:720px){
+  .pb-ess-back{margin-top:16px}
+  .pb-ess-hero{padding-bottom:30px}
+  .pb-ess-jump{gap:8px;margin-top:20px}
+  .pb-ess-jump button{padding:8px 13px;font-size:12.5px}
+}
+
 /* The Mains price block, in a shelf card and on the closing panel. */
 .pb-cc-offer{padding:16px 10px 18px;border-top:1px solid var(--line)}
 .pb-offer .pb-price-row{margin-bottom:4px}
@@ -2853,7 +2884,7 @@ function HookChallenge({ pool, topicOf, themeOf, copiesOf, hasGuide, cta }) {
   );
 }
 
-function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin, onViewBundle }) {
+function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin, onViewBundle, full = false, onOpenPage, onBack }) {
   const { t, lang } = useLang();
   const [data, setData] = useState(() => mainsCache);
   const [mode, setMode] = useState("theme");
@@ -2923,9 +2954,9 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const switchMode = (m) => { if (m !== mode) { setMode(m); setSel(null); if (listRef.current) listRef.current.scrollTop = 0; } };
   const themeById = view ? new Map(data.themes.map((th) => [th.id, th])) : new Map();
   const pageGuides = page ? page.items.filter((p) => view.hasGuide(p)).length : 0;
-  const offerEl = (dark) => (
+  const offerEl = (dark, details = null) => (
     <MainsOffer offer={offer} owns={owns} dark={dark} onOpen={() => open()}
-      onEnroll={() => offer && onEnroll(offer.code)} onDetails={() => offer && onViewBundle(offer.code)} />
+      onEnroll={() => offer && onEnroll(offer.code)} onDetails={details || (() => offer && onViewBundle(offer.code))} />
   );
   // The challenge draws from topics with copies and a guide behind them, so
   // what it reveals is worth having.
@@ -2961,49 +2992,169 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const shownTitles = sample ? sample.titles.slice(0, 4) : [];
   const kindMax = cat ? Math.max(1, ...WIKI_KINDS.map((k) => Number(cat.kinds[k]) || 0)) : 1;
 
-  return (
-    <section className="pb-mains" id="mains" aria-labelledby="pb-mains-h">
-      <div className="pb-ess-band">
-        {lanes.length > 0 && (
-          <div className="pb-ess-drift" aria-hidden="true">
-            {lanes.map((lane, i) => (
-              <div className={`pb-ess-lane${i ? " pb-ess-lane-b" : ""}`} key={i}>
-                {[0, 1].map((rep) => (
-                  <span className="pb-ess-lane-set" key={rep}>
-                    {lane.map((p) => <span key={p.id}>{topicOf(p)}<i>{p.year}</i></span>)}
-                  </span>
-                ))}
-              </div>
+  const jump = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const driftEl = (
+    lanes.length > 0 && (
+      <div className="pb-ess-drift" aria-hidden="true">
+        {lanes.map((lane, i) => (
+          <div className={`pb-ess-lane${i ? " pb-ess-lane-b" : ""}`} key={i}>
+            {[0, 1].map((rep) => (
+              <span className="pb-ess-lane-set" key={rep}>
+                {lane.map((p) => <span key={p.id}>{topicOf(p)}<i>{p.year}</i></span>)}
+              </span>
             ))}
           </div>
-        )}
+        ))}
+      </div>
+    )
+  );
 
-        <div className="pb-sec-narrow pb-ess-band-in">
-          <div className="pb-sec-head reveal">
-            <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
-            <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")} <em>{t("pm_h2_em")}</em></h2>
-            {view
-              ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
-              : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
+  // The home page carries the band and the shelf; everything else is on the
+  // Essay catalogue page, opened from the Essay card.
+  if (!full) {
+    return (
+      <section className="pb-mains" id="mains" aria-labelledby="pb-mains-h">
+        <div className="pb-ess-band">
+          {driftEl}
+          <div className="pb-sec-narrow pb-ess-band-in">
+            <div className="pb-sec-head reveal">
+              <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
+              <h2 className="pb-h2" id="pb-mains-h">{t("pm_h2_a")} <em>{t("pm_h2_em")}</em></h2>
+              {view
+                ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
+                : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
+            </div>
+
+            {view && <MainsStats items={stats} />}
+            {view && (
+              <div className="pb-cc-shelf">
+                <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")}
+                  items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
+                  {offerEl(false, onOpenPage)}
+                </ShelfCard>
+                <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("card_soon")}
+                  items={GS_PAPERS.map(([n, k]) => ({ k, n, label: t(`${k}_t`), text: t(k) }))}
+                  foot={t("pm_cc_g_foot")} soon />
+              </div>
+            )}
           </div>
+        </div>
+      </section>
+    );
+  }
 
+  return (
+    <div className="pb-ess-pg">
+      <section className="pb-ess-band pb-ess-hero" aria-labelledby="pb-ess-h1">
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <button type="button" className="pb-btn pb-btn-onDark pb-btn-sm pb-ess-back" onClick={onBack}>
+            <ArrowLeft size={15} />{t("pm_back")}
+          </button>
+        </div>
+        {driftEl}
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <div className="pb-ess-hero-g">
+            <div className="pb-ess-hero-t">
+              <div className="pb-eyebrow">{t("pm_eyebrow")}</div>
+              <h1 className="pb-h2" id="pb-ess-h1">{t("pm_h2_a")} <em>{t("pm_h2_em")}</em></h1>
+              {view
+                ? <p className="pb-sub">{fillIn(t("pm_sub"), { n: view.pyqTotal, y1: view.y1, y2: view.y2, k: view.themeTotal })}</p>
+                : <Skeleton h={16} w="78%" />}
+            </div>
+            <div className="pb-fin-o pb-ess-hero-o">{view ? offerEl(true) : <Skeleton h={120} />}</div>
+          </div>
           {view && <MainsStats items={stats} />}
           {view && (
-            <div className="pb-cc-shelf">
-              <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")}
-                items={essayItems} foot={t("pm_cc_e_foot")} onGo={() => open()} goLabel={t("pm_cta")}>
-                {offerEl(false)}
-              </ShelfCard>
-              <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("card_soon")}
-                items={GS_PAPERS.map(([n, k]) => ({ k, n, label: t(`${k}_t`), text: t(k) }))}
-                foot={t("pm_cc_g_foot")} soon />
-            </div>
+            <nav className="pb-ess-jump" aria-label={t("pm_cc_e_t")}>
+              {cat && <button type="button" onClick={() => jump("ess-inside")}><Layers size={15} />{t("pm_jump_in")}</button>}
+              <button type="button" onClick={() => jump("ess-try")}><Timer size={15} />{t("pm_jump_try")}</button>
+              <button type="button" onClick={() => jump("ess-topics")}><BookOpen size={15} />{t("pm_jump_all")}</button>
+            </nav>
           )}
         </div>
-      </div>
+      </section>
+
+      {view && cat && (
+        <div className="pb-sec-narrow pb-ess-in" id="ess-inside">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("pm_in_eyebrow")}</div>
+            <h2 className="pb-h2">{t("pm_in_h")}</h2>
+          </div>
+
+          <div className="pb-ess-cards">
+            <article className="pb-ess-card reveal reveal-d1">
+              <h3><span className="pb-ess-ic"><BookOpen size={18} /></span>{t("pm_cp_t")}</h3>
+              <p>{fillIn(t("pm_cp_d"), { c: nPlus(cat.essays), t: nPlus(cat.toppers) })}</p>
+              <div className="pb-ess-art pb-ess-paper" aria-hidden="true">
+                <div className="pb-ess-sheet pb-ess-sheet-c" />
+                <div className="pb-ess-sheet pb-ess-sheet-b" />
+                <div className="pb-ess-sheet pb-ess-sheet-a">
+                  <span className="pb-ess-hand">{view.copySample ? topicOf(view.copySample) : ""}</span>
+                  {[92, 100, 84, 97, 70, 88].map((w, i) => <span className="pb-ess-scrib" key={i} style={{ width: `${w}%` }} />)}
+                  <span className="pb-ess-seal">{t("pm_seal")}</span>
+                </div>
+              </div>
+              {cat.topMarks > 0 && <div className="pb-ess-fact">{fillIn(t("pm_cp_marks"), { m: cat.topMarks })}</div>}
+              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d2">
+              <h3><span className="pb-ess-ic"><PenLine size={18} /></span>{t("pm_lw_t")}</h3>
+              <p>{fillIn(t("pm_lw_d"), { g: nPlus(cat.guides.size) })}</p>
+              {sample && (
+                <div className="pb-ess-art pb-ess-guide">
+                  <span className="pb-ess-kick">{fillIn(t("pm_lw_sample"), { y: sample.year })}</span>
+                  <div className="pb-ess-gq">{sample.topic}</div>
+                  {sample.spine && <div className="pb-ess-spine"><b>{t("pm_lw_spine")}</b><span>{sample.spine}</span></div>}
+                  {sample.sides.length > 0 && (
+                    <div className="pb-ess-sides">
+                      {sample.sides.slice(0, 3).map((s, i) => <span className={`pb-ess-side-chip ${SIDE_TONE[i]}`} key={i}>{s.label}</span>)}
+                    </div>
+                  )}
+                  <ol className="pb-ess-args">
+                    {shownTitles.map((a, i) => (
+                      <li key={i} className={i >= 2 ? "pb-ess-fade" : ""}>
+                        <span className={`pb-ess-dot ${SIDE_TONE[Number(a.side) || 0] || ""}`} />{a.title}
+                      </li>
+                    ))}
+                  </ol>
+                  {sample.titles.length > shownTitles.length && (
+                    <div className="pb-ess-more">{fillIn(t("pm_lw_more"), { n: sample.titles.length - shownTitles.length })}</div>
+                  )}
+                </div>
+              )}
+              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d3">
+              <h3><span className="pb-ess-ic"><Layers size={18} /></span>{t("pm_wk_t")}</h3>
+              <p>{fillIn(t("pm_wk_d"), { n: nPlus(view.wikiTotal) })}</p>
+              <div className="pb-ess-art pb-ess-wiki">
+                <ul className="pb-ess-bars">
+                  {WIKI_KINDS.filter((k) => Number(cat.kinds[k]) > 0).map((k) => (
+                    <li key={k}>
+                      <span className="pb-ess-bl">{t(`wk_ks_${k}`)}</span>
+                      <span className="pb-ess-bt"><span style={{ width: `${Math.max(6, (Number(cat.kinds[k]) / kindMax) * 100)}%` }} /></span>
+                      <b>{nPlus(cat.kinds[k])}</b>
+                    </li>
+                  ))}
+                </ul>
+                {cat.pick && (
+                  <figure className="pb-ess-pick">
+                    <figcaption>{t("pm_wk_pick")}</figcaption>
+                    <blockquote>{cat.pick.body}</blockquote>
+                    {cat.pick.attribution && <cite>{cat.pick.attribution}</cite>}
+                  </figure>
+                )}
+              </div>
+              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
+            </article>
+          </div>
+        </div>
+      )}
 
       {view && (
-        <div className="pb-sec-narrow pb-hk-sec">
+        <div className="pb-sec-narrow pb-hk-sec" id="ess-try">
           <div className="pb-sec-head reveal">
             <div className="pb-eyebrow">{t("pm_hk_eyebrow")}</div>
             <h2 className="pb-h2">{t("pm_hk_h_a")} <em>{t("pm_hk_h_em")}</em></h2>
@@ -3016,7 +3167,7 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
         </div>
       )}
 
-      <div className="pb-sec-narrow pb-ess-browse">
+      <div className="pb-sec-narrow pb-ess-browse" id="ess-topics">
           <div className="pb-sec-head reveal">
             <div className="pb-eyebrow">{t("pm_ex_eyebrow")}</div>
             <h2 className="pb-h2">{t("pm_ex_h")}</h2>
@@ -3096,85 +3247,6 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
           </div>
       </div>
 
-      {view && cat && (
-        <div className="pb-sec-narrow pb-ess-in">
-          <div className="pb-sec-head reveal">
-            <div className="pb-eyebrow">{t("pm_in_eyebrow")}</div>
-            <h2 className="pb-h2">{t("pm_in_h")}</h2>
-          </div>
-
-          <div className="pb-ess-cards">
-            <article className="pb-ess-card reveal reveal-d1">
-              <h3><span className="pb-ess-ic"><BookOpen size={18} /></span>{t("pm_cp_t")}</h3>
-              <p>{fillIn(t("pm_cp_d"), { c: nPlus(cat.essays), t: nPlus(cat.toppers) })}</p>
-              <div className="pb-ess-art pb-ess-paper" aria-hidden="true">
-                <div className="pb-ess-sheet pb-ess-sheet-c" />
-                <div className="pb-ess-sheet pb-ess-sheet-b" />
-                <div className="pb-ess-sheet pb-ess-sheet-a">
-                  <span className="pb-ess-hand">{view.copySample ? topicOf(view.copySample) : ""}</span>
-                  {[92, 100, 84, 97, 70, 88].map((w, i) => <span className="pb-ess-scrib" key={i} style={{ width: `${w}%` }} />)}
-                  <span className="pb-ess-seal">{t("pm_seal")}</span>
-                </div>
-              </div>
-              {cat.topMarks > 0 && <div className="pb-ess-fact">{fillIn(t("pm_cp_marks"), { m: cat.topMarks })}</div>}
-              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
-            </article>
-
-            <article className="pb-ess-card reveal reveal-d2">
-              <h3><span className="pb-ess-ic"><PenLine size={18} /></span>{t("pm_lw_t")}</h3>
-              <p>{fillIn(t("pm_lw_d"), { g: nPlus(cat.guides.size) })}</p>
-              {sample && (
-                <div className="pb-ess-art pb-ess-guide">
-                  <span className="pb-ess-kick">{fillIn(t("pm_lw_sample"), { y: sample.year })}</span>
-                  <div className="pb-ess-gq">{sample.topic}</div>
-                  {sample.spine && <div className="pb-ess-spine"><b>{t("pm_lw_spine")}</b><span>{sample.spine}</span></div>}
-                  {sample.sides.length > 0 && (
-                    <div className="pb-ess-sides">
-                      {sample.sides.slice(0, 3).map((s, i) => <span className={`pb-ess-side-chip ${SIDE_TONE[i]}`} key={i}>{s.label}</span>)}
-                    </div>
-                  )}
-                  <ol className="pb-ess-args">
-                    {shownTitles.map((a, i) => (
-                      <li key={i} className={i >= 2 ? "pb-ess-fade" : ""}>
-                        <span className={`pb-ess-dot ${SIDE_TONE[Number(a.side) || 0] || ""}`} />{a.title}
-                      </li>
-                    ))}
-                  </ol>
-                  {sample.titles.length > shownTitles.length && (
-                    <div className="pb-ess-more">{fillIn(t("pm_lw_more"), { n: sample.titles.length - shownTitles.length })}</div>
-                  )}
-                </div>
-              )}
-              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
-            </article>
-
-            <article className="pb-ess-card reveal reveal-d3">
-              <h3><span className="pb-ess-ic"><Layers size={18} /></span>{t("pm_wk_t")}</h3>
-              <p>{fillIn(t("pm_wk_d"), { n: nPlus(view.wikiTotal) })}</p>
-              <div className="pb-ess-art pb-ess-wiki">
-                <ul className="pb-ess-bars">
-                  {WIKI_KINDS.filter((k) => Number(cat.kinds[k]) > 0).map((k) => (
-                    <li key={k}>
-                      <span className="pb-ess-bl">{t(`wk_ks_${k}`)}</span>
-                      <span className="pb-ess-bt"><span style={{ width: `${Math.max(6, (Number(cat.kinds[k]) / kindMax) * 100)}%` }} /></span>
-                      <b>{nPlus(cat.kinds[k])}</b>
-                    </li>
-                  ))}
-                </ul>
-                {cat.pick && (
-                  <figure className="pb-ess-pick">
-                    <figcaption>{t("pm_wk_pick")}</figcaption>
-                    <blockquote>{cat.pick.body}</blockquote>
-                    {cat.pick.attribution && <cite>{cat.pick.attribution}</cite>}
-                  </figure>
-                )}
-              </div>
-              <div className="pb-ess-lock"><Lock size={13} />{t("pm_lock")}</div>
-            </article>
-          </div>
-        </div>
-      )}
-
       {view && (
         <div className="pb-sec-narrow pb-ess-end">
           <div className="pb-fin reveal">
@@ -3195,9 +3267,12 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 }
+
+/* The Essay catalogue page rides on the detail slot, under a name no plan code can take. */
+const ESSAY_PAGE = "__essay__";
 
 export default function PublicSite({ onLogin, onEnroll, onDashboard, session, page, onNavigate }) {
   const { t, lang } = useLang();
@@ -3313,6 +3388,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
 
   const scrollTo = (id) => setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 70);
   const goCatalog = () => { setDetail(null); if (page) onNavigate(null); scrollTo("catalog"); };
+  const goMains = () => { setDetail(null); scrollTo("mains"); };
   const goResources = () => { setDetail(null); if (page) onNavigate(null); scrollTo("resources"); };
   const enroll = (code) => (owned.has(code) ? onDashboard() : onEnroll(code));
   const home = () => { setDetail(null); onNavigate(null); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -3386,6 +3462,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           )}
           <ContentPage page={page} />
         </div>
+      ) : detail === ESSAY_PAGE ? (
+        <MainsCatalog full bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
+          onBack={goMains} onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
       ) : detail ? (
         <BundleDetail code={detail} owned={owned.has(detail)} onBack={goCatalog} onEnroll={() => enroll(detail)} />
       ) : (
@@ -3459,6 +3538,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
 
           {/* ---------------- MAINS ---------------- */}
           <MainsCatalog bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
+            onOpenPage={() => { setDetail(ESSAY_PAGE); window.scrollTo({ top: 0 }); }}
             onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
           {/* ---------------- CATALOG ---------------- */}
