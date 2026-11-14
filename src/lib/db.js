@@ -2912,7 +2912,7 @@ export async function importEssayPyqs(items, onStep = () => {}) {
   onStep("pyqs");
   await inBatches(items, 500, async (chunk) => {
     const { error } = await sb.from("essay_pyqs")
-      .upsert(chunk.map((it) => ({ year: it.year, topic: it.topic })), { onConflict: "year,topic_key", ignoreDuplicates: true });
+      .upsert(chunk.map((it) => ({ year: it.year, topic: it.topic })), { onConflict: "paper,year,topic_hash", ignoreDuplicates: true });
     if (error) throw error;
   });
   const years = [...new Set(items.map((it) => it.year))];
@@ -2987,7 +2987,7 @@ async function saveCopiesAndAnswers(sb, items, onStep) {
   }
   await inBatches(answers, 500, async (chunk) => {
     const { error } = await sb.from("topper_answers")
-      .upsert(chunk, { onConflict: "copy_id,question_key,page_key", ignoreDuplicates: true });
+      .upsert(chunk, { onConflict: "copy_id,question_hash,page_key", ignoreDuplicates: true });
     if (error) throw error;
   });
   return { toppers: toppers.size, copies: copies.size, answers: answers.length };
