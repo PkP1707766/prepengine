@@ -2413,10 +2413,11 @@ export async function essaySnippetsForPyqs(pyqIds) {
     byId.get(s.id).fits.push({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 });
   }
   const list = [...byId.values()];
-  const answers = [...new Set(list.map((s) => s.answerId))];
+  const answers = [...new Set(list.map((s) => s.answerId).filter(Boolean))];
   const rows = answers.length ? await withLibCols((cols) => selectIn(sb, "topper_library_v", cols, "answer_id", answers)) : [];
   const entry = new Map(rows.map((r) => [r.answer_id, libraryEntryFromRow(r)]));
-  return list.map((s) => ({ ...s, entry: entry.get(s.answerId) || null })).filter((s) => s.entry);
+  // Editor's picks have no essay (answerId null); topper snippets need theirs.
+  return list.map((s) => ({ ...s, entry: entry.get(s.answerId) || null })).filter((s) => s.entry || !s.answerId);
 }
 
 /** Library entries for these essays (e.g. a student's starred ones). */
@@ -2440,8 +2441,8 @@ export async function snippetsByIds(ids) {
     ...snippetFromRow(s),
     fits: (s.essay_snippet_fits ?? []).map((f) => ({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 })).sort((a, b) => a.rank - b.rank),
   }));
-  const entries = new Map((await libraryEntries([...new Set(list.map((s) => s.answerId))])).map((e) => [e.answerId, e]));
-  return list.map((s) => ({ ...s, entry: entries.get(s.answerId) || null })).filter((s) => s.entry);
+  const entries = new Map((await libraryEntries([...new Set(list.map((s) => s.answerId).filter(Boolean))])).map((e) => [e.answerId, e]));
+  return list.map((s) => ({ ...s, entry: entries.get(s.answerId) || null })).filter((s) => s.entry || !s.answerId);
 }
 
 /* ------------------------------------------------------ admin: mains -- */

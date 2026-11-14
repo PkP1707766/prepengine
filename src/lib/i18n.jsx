@@ -1842,6 +1842,7 @@ Object.assign(STR, {
   wk_all:              { en: "All", hi: "सभी" },
   wk_from:             { en: "From {n}'s essay: {q}", hi: "{n} के निबंध से: {q}" },
   wk_read_essay:       { en: "Read the essay", hi: "निबंध पढ़ें" },
+  wk_editor_pick:      { en: "Editor's pick: written and fact-checked by our team", hi: "संपादक की पसंद: हमारी टीम द्वारा लिखित और जाँची हुई" },
   wk_use_here:         { en: "Use it here:", hi: "यहाँ ऐसे लगाएँ:" },
   wk_why:              { en: "Why it works: {x}", hi: "क्यों असरदार है: {x}" },
   wk_fits_one:         { en: "Fits 1 more topic", hi: "1 और विषय में काम आता है" },

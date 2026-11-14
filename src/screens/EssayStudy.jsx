@@ -418,11 +418,13 @@ export function SnippetCard({ s, focusPyqId = null, pyqById, topicOf, starred, o
       </div>
       <blockquote className="sn-body">{s.body}</blockquote>
       {s.kind === "quote" && s.attribution && <div className="sn-by">— {s.attribution}</div>}
-      {e && (
+      {e ? (
         <div className="sn-src">
           <span>{fill(t("wk_from"), { n: e.topper.name, q: e.question })}</span>
           {e.words > 0 && <button onClick={() => onText(e)}><FileText size={13} style={{ verticalAlign: -2 }} /> {t("wk_read_essay")}</button>}
         </div>
+      ) : !s.answerId && (
+        <div className="sn-src"><span>{t("wk_editor_pick")}</span></div>
       )}
       {here && <div className="sn-use"><b>{t("wk_use_here")}</b> {here.use}</div>}
       {s.why && <div className="sn-why">{fill(t("wk_why"), { x: s.why })}</div>}
