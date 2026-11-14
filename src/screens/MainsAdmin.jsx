@@ -1373,7 +1373,7 @@ function SnippetAdminRow({ sn, pyqById, toast, askDelete, onChanged }) {
           {SN_KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
         </select>
         <span className={"ma-kind " + (sn.status === "published" ? "exact" : "related")}>{sn.status}</span>
-        <span className="ma-ans-meta" style={{ flex: 1, minWidth: 160, marginTop: 0 }}>{sn.topperName} · {sn.question}</span>
+        <span className="ma-ans-meta" style={{ flex: 1, minWidth: 160, marginTop: 0 }}>{sn.answerId ? `${sn.topperName} · ${sn.question}` : "Editor's pick (no topper essay)"}</span>
         <button className="btn-icon danger" title="Delete" onClick={remove}><Trash2 size={14} /></button>
       </div>
       {f.reviewNote && <div className="form-err" style={{ marginTop: 8, background: "var(--amb-bg)", color: "var(--ink)" }}><AlertCircle size={15} />{f.reviewNote}</div>}

@@ -758,6 +758,11 @@ const FX_SNIPPETS = [
   SN("fs-5", "fa-4", "anecdote", "A batter who fails in the nets on Monday and keeps practising until Friday is not lucky when the century comes.",
     "Everyday sporting image that makes effort feel concrete.",
     [["pq-10", "Illustrate 'dedication to improve' before moving to public life."], ["pq-3", "Show that bitter failures in practice teach the lasting lessons."]]),
+  // An editor's pick: written by the team, so it belongs to no topper essay.
+  SN("fs-6", null, "quote", "I learned that courage was not the absence of fear, but the triumph over it.",
+    "Courage defined by mastery of fear.",
+    [["pq-10", "Captures the courage to accept as the first key to success."], ["pq-5", "Use to show that the journey asks for courage at every step."]],
+    "Nelson Mandela, Long Walk to Freedom (1994)"),
 ];
 export function fxWikiCounts() {
   const out = new Map();
