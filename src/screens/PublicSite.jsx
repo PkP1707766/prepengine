@@ -618,7 +618,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 /* The wiki: what it holds, by kind, and one Editor's pick. */
 .pb-ess-wiki{display:flex;flex-direction:column;gap:16px}
 .pb-ess-bars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.pb-ess-bars li{display:grid;grid-template-columns:92px minmax(0,1fr) 38px;align-items:center;gap:10px;font-size:13px;color:var(--ink-600)}
+.pb-ess-bars li{display:grid;grid-template-columns:92px minmax(0,1fr) 44px;align-items:center;gap:10px;font-size:13px;color:var(--ink-600)}
 .pb-ess-bars b{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-900)}
 .pb-ess-bt{height:8px;border-radius:100px;background:color-mix(in srgb,var(--ink-400) 16%,transparent);overflow:hidden}
 .pb-ess-bt span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold-500),var(--brand-600));
@@ -2419,6 +2419,16 @@ function loadMains() {
 }
 const fillIn = (s, vars) => String(s).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 const num = (n) => Number(n || 0).toLocaleString("en-IN");
+/* Counts are shown as an honest floor with a plus -- "200+" for 233, "1,600+"
+   for 1,666 -- never rounded up: a visitor who counts must find at least as
+   many as we claim. Small counts stay exact. */
+const floorPlus = (n) => {
+  const x = Number(n) || 0;
+  if (x < 20) return { v: x, plus: false };
+  const step = x < 100 ? 10 : x < 1000 ? 50 : 100;
+  return { v: Math.floor(x / step) * step, plus: true };
+};
+const nPlus = (n) => { const r = floorPlus(n); return num(r.v) + (r.plus ? "+" : ""); };
 const WIKI_KINDS = ["example", "opening", "closing", "quote", "anecdote", "statistic"];
 const SIDE_TONE = ["pb-ess-t0", "pb-ess-t1", "pb-ess-t2"];
 
@@ -2568,7 +2578,9 @@ function MainsStats({ items }) {
       {items.map((s) => (
         <div className="pb-ess-stat" key={s.key}>
           <dt className="pb-ess-lbl">{s.label}</dt>
-          <dd className="pb-ess-num" aria-label={num(s.n)}><span aria-hidden="true"><CountUp n={s.n} go={seen} still={still} /></span></dd>
+          <dd className="pb-ess-num" aria-label={nPlus(s.n)}>
+            <span aria-hidden="true"><CountUp n={floorPlus(s.n).v} go={seen} still={still} />{floorPlus(s.n).plus && "+"}</span>
+          </dd>
         </div>
       ))}
     </dl>
@@ -2656,12 +2668,12 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
     { key: "y", n: view.years.length, label: t("pm_st_years") },
   ];
   const essayItems = !view ? [] : [
-    { k: "t", n: num(view.pyqTotal), label: fillIn(t("pm_cc_e1_t"), { y1: view.y1 }), text: t("pm_cc_e1") },
+    { k: "t", n: nPlus(view.pyqTotal), label: fillIn(t("pm_cc_e1_t"), { y1: view.y1 }), text: t("pm_cc_e1") },
     ...(cat ? [
-      { k: "c", n: num(cat.essays), label: t("pm_st_copies"), text: fillIn(t("pm_cc_e2"), { t: num(cat.toppers) }) },
-      { k: "g", n: num(cat.guides.size), label: t("pm_st_guides"), text: t("pm_cc_e3") },
-      { k: "w", n: num(view.wikiTotal), label: t("pm_cc_e4_t"), text: t("pm_cc_e4") },
-    ] : [{ k: "k", n: num(view.themeTotal), label: t("pm_st_themes"), text: t("pm_cc_e5") }]),
+      { k: "c", n: nPlus(cat.essays), label: t("pm_st_copies"), text: fillIn(t("pm_cc_e2"), { t: nPlus(cat.toppers) }) },
+      { k: "g", n: nPlus(cat.guides.size), label: t("pm_st_guides"), text: t("pm_cc_e3") },
+      { k: "w", n: nPlus(view.wikiTotal), label: t("pm_cc_e4_t"), text: t("pm_cc_e4") },
+    ] : [{ k: "k", n: nPlus(view.themeTotal), label: t("pm_st_themes"), text: t("pm_cc_e5") }]),
   ];
   // Two lanes of real topics drifting past the head of the band.
   const lanes = view ? [data.pyqs.filter((_, i) => i % 2 === 0), data.pyqs.filter((_, i) => i % 2 === 1)] : [];
@@ -2817,7 +2829,7 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
           <div className="pb-ess-cards">
             <article className="pb-ess-card reveal reveal-d1">
               <h3><span className="pb-ess-ic"><BookOpen size={18} /></span>{t("pm_cp_t")}</h3>
-              <p>{fillIn(t("pm_cp_d"), { c: num(cat.essays), t: num(cat.toppers) })}</p>
+              <p>{fillIn(t("pm_cp_d"), { c: nPlus(cat.essays), t: nPlus(cat.toppers) })}</p>
               <div className="pb-ess-art pb-ess-paper" aria-hidden="true">
                 <div className="pb-ess-sheet pb-ess-sheet-c" />
                 <div className="pb-ess-sheet pb-ess-sheet-b" />
@@ -2833,7 +2845,7 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
 
             <article className="pb-ess-card reveal reveal-d2">
               <h3><span className="pb-ess-ic"><PenLine size={18} /></span>{t("pm_lw_t")}</h3>
-              <p>{fillIn(t("pm_lw_d"), { g: cat.guides.size })}</p>
+              <p>{fillIn(t("pm_lw_d"), { g: nPlus(cat.guides.size) })}</p>
               {sample && (
                 <div className="pb-ess-art pb-ess-guide">
                   <span className="pb-ess-kick">{fillIn(t("pm_lw_sample"), { y: sample.year })}</span>
@@ -2861,14 +2873,14 @@ function MainsCatalog({ bundles, session, onDashboard, onLogin, onViewBundle }) 
 
             <article className="pb-ess-card reveal reveal-d3">
               <h3><span className="pb-ess-ic"><Layers size={18} /></span>{t("pm_wk_t")}</h3>
-              <p>{fillIn(t("pm_wk_d"), { n: num(view.wikiTotal) })}</p>
+              <p>{fillIn(t("pm_wk_d"), { n: nPlus(view.wikiTotal) })}</p>
               <div className="pb-ess-art pb-ess-wiki">
                 <ul className="pb-ess-bars">
                   {WIKI_KINDS.filter((k) => Number(cat.kinds[k]) > 0).map((k) => (
                     <li key={k}>
                       <span className="pb-ess-bl">{t(`wk_ks_${k}`)}</span>
                       <span className="pb-ess-bt"><span style={{ width: `${Math.max(6, (Number(cat.kinds[k]) / kindMax) * 100)}%` }} /></span>
-                      <b>{num(cat.kinds[k])}</b>
+                      <b>{nPlus(cat.kinds[k])}</b>
                     </li>
                   ))}
                 </ul>

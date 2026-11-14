@@ -834,7 +834,7 @@ Object.assign(STR, {
   pm_st_copies: { en: "Topper copies", hi: "टॉपर कॉपियाँ" },
   pm_st_toppers:{ en: "Toppers", hi: "टॉपर्स" },
   pm_st_guides: { en: "Writing guides", hi: "लेखन गाइड" },
-  pm_st_wiki:   { en: "Quotes, stories, examples", hi: "उद्धरण, कहानियाँ, उदाहरण" },
+  pm_st_wiki:   { en: "Quotes & examples", hi: "उद्धरण और उदाहरण" },
   pm_st_themes: { en: "Themes", hi: "थीम" },
   pm_st_years:  { en: "Years of papers", hi: "वर्षों के पेपर" },
   pm_cc_e_sub:  { en: "Essay paper · 250 marks", hi: "निबंध पेपर · 250 अंक" },
