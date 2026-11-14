@@ -464,8 +464,13 @@ const CSS = `
   max-width:1000px;margin:46px auto 0}
 [data-theme="dark"] .pb-cc-shelf{--ground:#150609}
 .pb-cc{--cut:86px;--r:24px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
-  border-radius:30px;padding:14px 14px 0;transition:transform .3s cubic-bezier(.2,.8,.3,1)}
-.pb-cc:hover{transform:translateY(-5px)}
+  border-radius:30px;padding:14px 14px 0;
+  transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px));
+  transition:transform .45s cubic-bezier(.2,.8,.3,1)}
+.pb-cc:hover{--lift:-6px}
+.pb-cc-glare{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px 200px at var(--gx,50%) var(--gy,30%),rgba(255,236,190,.28),transparent 70%);mix-blend-mode:screen}
+.pb-cc:hover .pb-cc-glare{opacity:1}
 .pb-cc-art{position:relative;height:210px;border-radius:22px;overflow:hidden;isolation:isolate}
 .pb-cc-svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
 .pb-cc:hover .pb-cc-svg{transform:scale(1.045)}
@@ -481,18 +486,37 @@ const CSS = `
   padding:6px 12px;border-radius:100px;background:#fbf6ec;color:#631322;box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
 .pb-cc-soon .pb-cc-badge{background:rgba(251,246,236,.16);color:#f5e6bd;border:1px solid rgba(245,230,189,.45);backdrop-filter:blur(4px)}
 .pb-cc-list{list-style:none;margin:10px 0 0;padding:0 10px;flex:1}
-.pb-cc-list li{display:grid;grid-template-columns:minmax(64px,auto) minmax(0,1fr);gap:14px;align-items:center;padding:14px 4px}
-.pb-cc-list li + li{border-top:1px solid var(--line)}
-.pb-cc-n{font-family:var(--font-display);font-optical-sizing:auto;font-size:26px;font-weight:600;line-height:1;
-  color:var(--brand-700);font-variant-numeric:tabular-nums;text-align:center;white-space:nowrap}
-.pb-cc-soon .pb-cc-n{font-size:22px;color:var(--gold-600)}
-.pb-cc-t b{display:block;font-size:15px;font-weight:700;color:var(--ink-900);line-height:1.3}
-.pb-cc-t em{display:block;font-style:normal;font-size:13.5px;line-height:1.5;color:var(--ink-600);margin-top:2px}
+.pb-cc-list li{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:start;
+  padding:14px 10px;margin:0 -6px;border-radius:14px;transition:background .25s}
+.pb-cc-list li + li::before{content:"";position:absolute;top:0;left:66px;right:10px;height:1px;background:var(--line)}
+.pb-cc-list li:hover{background:color-mix(in srgb,var(--gold-300) 16%,transparent)}
+.pb-cc-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;color:var(--brand-700);
+  background:linear-gradient(145deg,color-mix(in srgb,var(--gold-300) 45%,transparent),color-mix(in srgb,var(--gold-300) 18%,transparent));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold-500) 30%,transparent);
+  transition:background .3s,color .3s,transform .35s cubic-bezier(.2,.8,.3,1)}
+.pb-cc-ic b{font-family:var(--font-display);font-size:15px;font-weight:700;color:inherit}
+.pb-cc-list li:hover .pb-cc-ic{background:var(--brand-700);color:var(--gold-300);transform:rotate(-6deg) scale(1.06)}
+.pb-cc-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;line-height:1.15}
+.pb-cc-n{font-family:var(--font-display);font-optical-sizing:auto;font-size:25px;font-weight:600;line-height:1;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:var(--brand-700);
+  background:linear-gradient(100deg,var(--brand-700) 20%,var(--gold-600) 50%,var(--brand-700) 80%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pb-cc.is-seen .pb-cc-n{animation:pb-cc-shine 1.6s ease .9s both}
+@keyframes pb-cc-shine{from{background-position:100% 0}to{background-position:0 0}}
+.pb-cc-l{font-size:15.5px;font-weight:700;color:var(--ink-900)}
+.pb-cc-t em{display:block;font-style:normal;font-size:13.5px;line-height:1.5;color:var(--ink-600);margin-top:4px}
+.pb-cc:not(.is-seen) .pb-cc-list li{opacity:0}
+.pb-cc.is-seen .pb-cc-list li{animation:pb-cc-row .6s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
+@keyframes pb-cc-row{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 .pb-cc-foot{min-height:var(--cut);display:flex;align-items:center;padding:0 calc(var(--cut) + 6px) 0 14px;
   border-top:1px solid var(--line);margin:0 -14px 0 0}
 .pb-cc-foot button,.pb-cc-foot span{font:inherit;font-size:14.5px;font-weight:700;color:var(--brand-700);background:none;border:0;padding:0;
   text-align:left;cursor:pointer}
-.pb-cc-foot button:hover{text-decoration:underline;text-underline-offset:3px}
+.pb-cc-foot button{display:inline-flex;align-items:center;gap:7px;background-image:linear-gradient(currentColor,currentColor);
+  background-size:0 1.5px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:2px;transition:background-size .35s ease}
+.pb-cc-foot button:hover{background-size:100% 1.5px}
+.pb-cc-foot button svg{transition:transform .25s}
+.pb-cc-foot button:hover svg{transform:translateX(4px)}
 .pb-cc-soon .pb-cc-foot span{color:var(--ink-600);font-weight:600;cursor:default}
 .pb-cc-notch{position:absolute;right:-1px;bottom:-1px;width:calc(var(--cut) + 1px);height:calc(var(--cut) + 1px);background:var(--ground);
   border-top-left-radius:var(--r)}
@@ -504,11 +528,38 @@ const CSS = `
   display:grid;place-items:center;border:0;cursor:pointer;background:var(--cream-50);color:var(--brand-700);
   transition:background .2s,color .2s,transform .2s}
 button.pb-cc-go:hover{background:var(--gold-300);color:var(--brand-900)}
+button.pb-cc-go{animation:pb-cc-breathe 2.8s ease-in-out infinite}
+button.pb-cc-go:hover{animation:none}
+@keyframes pb-cc-breathe{0%,100%{box-shadow:0 0 0 0 rgba(227,200,119,0)}50%{box-shadow:0 0 0 7px rgba(227,200,119,.22)}}
+
+/* The art, alive: stars twinkle, the lamplight breathes, the nib bobs as
+   a gold line writes itself across the page; on GS the orbit turns and the
+   papers float. All of it stops under reduced motion. */
+.pb-tw{animation:pb-tw 2.6s ease-in-out infinite}
+@keyframes pb-tw{0%,100%{opacity:.25}50%{opacity:.95}}
+.pb-breathe{animation:pb-breathe 4.5s ease-in-out infinite;transform-origin:200px 168px}
+@keyframes pb-breathe{0%,100%{opacity:.75}50%{opacity:1}}
+.pb-nib{animation:pb-nib 3.2s ease-in-out infinite}
+@keyframes pb-nib{0%,100%{transform:translate(0,0)}50%{transform:translate(-7px,5px)}}
+.pb-ink{fill:none;stroke:#d8a92a;stroke-width:2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;
+  animation:pb-ink 3.2s ease-in-out infinite}
+@keyframes pb-ink{0%{stroke-dashoffset:100;opacity:0}15%{opacity:1}60%{stroke-dashoffset:0;opacity:1}85%,100%{stroke-dashoffset:0;opacity:0}}
+.pb-orbit{transform-box:view-box;transform-origin:300px 96px;animation:pb-orbit 26s linear infinite}
+@keyframes pb-orbit{to{transform:rotate(360deg)}}
+.pb-float{animation:pb-float 5s ease-in-out infinite}
+@keyframes pb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){
+  .pb-tw,.pb-breathe,.pb-nib,.pb-ink,.pb-orbit,.pb-float,button.pb-cc-go,.pb-cc.is-seen .pb-cc-list li,.pb-cc.is-seen .pb-cc-n{animation:none}
+  .pb-ink{stroke-dashoffset:0}
+  .pb-cc{transform:none}
+}
 button.pb-cc-go:hover svg{transform:translateX(3px)}
 .pb-cc-go svg{transition:transform .2s}
 .pb-cc-go:focus-visible,.pb-cc-foot button:focus-visible{outline:2px solid var(--gold-500);outline-offset:3px}
 span.pb-cc-go{cursor:default;color:var(--ink-400)}
-[data-theme="dark"] .pb-cc-n,[data-theme="dark"] .pb-cc-foot button,[data-theme="dark"] button.pb-cc-go{color:var(--gold-300)}
+[data-theme="dark"] .pb-cc-foot button,[data-theme="dark"] button.pb-cc-go{color:var(--gold-300)}
+[data-theme="dark"] .pb-cc-n{background-image:linear-gradient(100deg,var(--gold-300) 20%,#fff3c9 50%,var(--gold-300) 80%)}
+[data-theme="dark"] .pb-cc-ic{color:var(--gold-300)}
 .pb-ess-browse{padding-top:76px}
 
 /* The Essay catalogue page: the band becomes its hero -- pitch on the left,
@@ -782,7 +833,6 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-ess-cards{grid-template-columns:minmax(0,1fr);max-width:560px;margin-inline:auto}
   .pb-ess-ex{grid-template-columns:230px minmax(0,1fr)}
   .pb-cc-shelf{gap:18px}
-  .pb-cc-list li{grid-template-columns:minmax(52px,auto) minmax(0,1fr);gap:10px}
   .pb-cc-n{font-size:22px}
 }
 @media (max-width:720px){
@@ -798,7 +848,9 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-cc{--cut:74px;--r:20px;border-radius:26px;padding:12px 12px 0}
   .pb-cc-art{height:172px;border-radius:18px}
   .pb-cc-list{padding:0 4px}
-  .pb-cc-list li{padding:12px 2px}
+  .pb-cc-list li{padding:12px 8px;gap:12px;grid-template-columns:38px minmax(0,1fr)}
+  .pb-cc-ic{width:38px;height:38px;border-radius:12px}
+  .pb-cc-list li + li::before{left:58px}
   .pb-cc-go{border-radius:18px}
   .pb-ess-browse{padding-top:56px}
   .pb-ess-side{border-right:0;border-bottom:1px solid var(--line)}
@@ -2612,34 +2664,65 @@ function CountUp({ n, go, still, dec = 0 }) {
 const GS_PAPERS = [["I", "pm_gs1"], ["II", "pm_gs2"], ["III", "pm_gs3"], ["IV", "pm_gs4"]];
 
 function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = false, children = null }) {
+  const ref = useRef(null);
+  const { seen, still } = useSeen(ref);
+  // A slight tilt toward the pointer, and the art's light follows it. Mouse
+  // only, and never under reduced motion.
+  const move = (e) => {
+    if (still || e.pointerType !== "mouse") return;
+    const el = e.currentTarget, r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty("--rx", `${(-y * 3.2).toFixed(2)}deg`);
+    el.style.setProperty("--ry", `${(x * 4.2).toFixed(2)}deg`);
+    el.style.setProperty("--gx", `${((x + 0.5) * 100).toFixed(1)}%`);
+    el.style.setProperty("--gy", `${((y + 0.5) * 100).toFixed(1)}%`);
+  };
+  const leave = (e) => ["--rx", "--ry", "--gx", "--gy"].forEach((k) => e.currentTarget.style.removeProperty(k));
   return (
-    <article className={`pb-cc reveal${soon ? " pb-cc-soon" : ""}`}>
-      <div className="pb-cc-art">
-        {art}
-        {badge && <span className="pb-cc-badge">{badge}</span>}
-        <div className="pb-cc-cap">
-          <span className="pb-cc-sub">{sub}</span>
-          <h3>{title}</h3>
+    <div className="reveal">
+      <article ref={ref} className={`pb-cc${soon ? " pb-cc-soon" : ""}${seen ? " is-seen" : ""}`}
+               onPointerMove={move} onPointerLeave={leave}>
+        <div className="pb-cc-art">
+          {art}
+          <span className="pb-cc-glare" aria-hidden="true" />
+          {badge && <span className="pb-cc-badge">{badge}</span>}
+          <div className="pb-cc-cap">
+            <span className="pb-cc-sub">{sub}</span>
+            <h3>{title}</h3>
+          </div>
         </div>
-      </div>
-      <ul className="pb-cc-list">
-        {items.map((it) => (
-          <li key={it.k}>
-            <span className="pb-cc-n">{it.n}</span>
-            <span className="pb-cc-t"><b>{it.label}</b><em>{it.text}</em></span>
-          </li>
-        ))}
-      </ul>
-      {children && <div className="pb-cc-offer">{children}</div>}
-      <div className="pb-cc-foot">
-        {soon ? <span>{foot}</span> : <button type="button" onClick={onGo}>{foot}</button>}
-      </div>
-      <div className="pb-cc-notch">
-        {soon
-          ? <span className="pb-cc-go" aria-hidden="true"><Clock size={22} /></span>
-          : <button type="button" className="pb-cc-go" onClick={onGo} aria-label={goLabel}><ArrowRight size={24} /></button>}
-      </div>
-    </article>
+        <ul className="pb-cc-list">
+          {items.map((it, i) => {
+            const fig = it.num != null ? floorPlus(it.num) : null;
+            return (
+              <li key={it.k} style={{ "--i": i }}>
+                <span className="pb-cc-ic" aria-hidden="true">{it.icon || <b>{it.mark}</b>}</span>
+                <span className="pb-cc-t">
+                  <span className="pb-cc-h">
+                    {fig && (
+                      <b className="pb-cc-n" aria-label={nPlus(it.num)}>
+                        <span aria-hidden="true"><CountUp n={fig.v} go={seen} still={still} />{fig.plus && "+"}</span>
+                      </b>
+                    )}
+                    <span className="pb-cc-l">{it.label}</span>
+                  </span>
+                  <em>{it.text}</em>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        {children && <div className="pb-cc-offer">{children}</div>}
+        <div className="pb-cc-foot">
+          {soon ? <span>{foot}</span> : <button type="button" onClick={onGo}>{foot}<ArrowRight size={15} /></button>}
+        </div>
+        <div className="pb-cc-notch">
+          {soon
+            ? <span className="pb-cc-go" aria-hidden="true"><Clock size={22} /></span>
+            : <button type="button" className="pb-cc-go" onClick={onGo} aria-label={goLabel}><ArrowRight size={24} /></button>}
+        </div>
+      </article>
+    </div>
   );
 }
 
@@ -2656,9 +2739,9 @@ function EssayArt() {
         <linearGradient id="ea-nib" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e6bd" /><stop offset=".55" stopColor="#d8a92a" /><stop offset="1" stopColor="#8c6414" /></linearGradient>
       </defs>
       <rect width="400" height="210" fill="url(#ea-bg)" />
-      {stars.map(([x, y, r], i) => <circle key={i} cx={x} cy={y} r={r} fill="#f5e6bd" opacity=".7" />)}
+      {stars.map(([x, y, r], i) => <circle key={i} className="pb-tw" style={{ animationDelay: `${(i * 0.37) % 2.6}s` }} cx={x} cy={y} r={r} fill="#f5e6bd" opacity=".7" />)}
       <text x="28" y="170" fontSize="190" fontFamily="Georgia,serif" fill="#e3c877" opacity=".07">&ldquo;</text>
-      <ellipse cx="200" cy="168" rx="200" ry="92" fill="url(#ea-glow)" />
+      <ellipse className="pb-breathe" cx="200" cy="168" rx="200" ry="92" fill="url(#ea-glow)" />
       <path d="M200 214 C160 196 108 192 52 200 L64 150 C112 140 162 144 200 164 Z" fill="url(#ea-pg)" />
       <path d="M200 214 C240 196 292 192 348 200 L336 150 C288 140 238 144 200 164 Z" fill="url(#ea-pg)" />
       <path d="M200 164 L200 214" stroke="#b9a184" strokeWidth="1.2" />
@@ -2668,12 +2751,13 @@ function EssayArt() {
           <path d={`M${320 - i * 2} ${162 + i * 10} C${282} ${155 + i * 10} ${242} ${158 + i * 10} ${212} ${172 + i * 10}`} />
         </g>
       ))}
-      <g transform="translate(330 14) rotate(38)">
+      <path className="pb-ink" d="M216 182 C246 175 284 174 322 180" pathLength="100" />
+      <g className="pb-nib"><g transform="translate(330 14) rotate(38)">
         <path d="M0 0 L13 0 L13 66 L6.5 92 L0 66 Z" fill="url(#ea-nib)" />
         <path d="M6.5 60 L6.5 90" stroke="#4a0f19" strokeWidth="1.2" />
         <circle cx="6.5" cy="58" r="2.6" fill="#4a0f19" />
         <rect x="-3" y="-46" width="19" height="48" rx="4" fill="#3d0d16" stroke="#c9a227" strokeWidth="1.2" />
-      </g>
+      </g></g>
     </svg>
   );
 }
@@ -2694,8 +2778,11 @@ function GsArt() {
         <ellipse cx="300" cy="96" rx="56" ry="74" />
         <path d="M226 96 H374 M234 60 H366 M234 132 H366" />
       </g>
-      <g fill="none" stroke="#e3c877" strokeOpacity=".35" strokeWidth="1"><ellipse cx="300" cy="96" rx="104" ry="24" transform="rotate(-18 300 96)" /></g>
-      <circle cx="398" cy="62" r="4" fill="#f7c948" transform="rotate(-18 300 96)" />
+      <g className="pb-orbit">
+        <g fill="none" stroke="#e3c877" strokeOpacity=".35" strokeWidth="1"><ellipse cx="300" cy="96" rx="104" ry="24" transform="rotate(-18 300 96)" /></g>
+        <circle cx="398" cy="62" r="4" fill="#f7c948" transform="rotate(-18 300 96)" />
+      </g>
+      <g className="pb-float">
       {["IV", "III", "II", "I"].map((n, i) => (
         <g key={n} transform={`translate(${22 + i * 24} ${122 + i * 7}) rotate(${-18 + i * 7}) scale(.82)`}>
           <rect width="78" height="104" rx="5" fill="url(#ga-pg)" stroke="#b9a184" strokeWidth=".8" />
@@ -2703,6 +2790,7 @@ function GsArt() {
           {[38, 50, 62, 74, 86].map((y) => <rect key={y} x="10" y={y} width={y === 86 ? 36 : 58} height="3" rx="1.5" fill="#22306b" opacity=".22" />)}
         </g>
       ))}
+      </g>
     </svg>
   );
 }
@@ -2992,14 +3080,14 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
     { key: "y", n: view.years.length, label: t("pm_st_years") },
   ];
   const essayItems = !view ? [] : [
-    { k: "t", n: nPlus(view.pyqTotal), label: fillIn(t("pm_cc_e1_t"), { y1: view.y1 }), text: t("pm_cc_e1") },
+    { k: "t", icon: <Compass size={18} />, num: view.pyqTotal, label: t("pm_r1_l"), text: fillIn(t("pm_r1_t"), { y1: view.y1 }) },
     ...(cat ? [
-      { k: "c", n: nPlus(cat.essays), label: t("pm_st_copies"), text: fillIn(t("pm_cc_e2"), { t: nPlus(cat.toppers) }) },
+      { k: "c", icon: <BookOpen size={18} />, num: cat.essays, label: t("pm_r2_l"), text: fillIn(t("pm_r2_t"), { t: nPlus(cat.toppers) }) },
       cat.arguments > 0
-        ? { k: "g", n: nPlus(cat.arguments), label: t("pm_st_args"), text: fillIn(t("pm_cc_e3b"), { g: nPlus(cat.guides.size) }) }
-        : { k: "g", n: nPlus(cat.guides.size), label: t("pm_st_guides"), text: t("pm_cc_e3") },
-      { k: "w", n: nPlus(view.wikiTotal), label: t("pm_cc_e4_t"), text: t("pm_cc_e4") },
-    ] : [{ k: "k", n: nPlus(view.themeTotal), label: t("pm_st_themes"), text: t("pm_cc_e5") }]),
+        ? { k: "g", icon: <PenLine size={18} />, num: cat.arguments, label: t("pm_r3_l"), text: fillIn(t("pm_r3_t"), { g: nPlus(cat.guides.size) }) }
+        : { k: "g", icon: <PenLine size={18} />, num: cat.guides.size, label: t("pm_r3g_l"), text: t("pm_cc_e3") },
+      { k: "w", icon: <Layers size={18} />, num: view.wikiTotal, label: t("pm_r4_l"), text: t("pm_r4_t") },
+    ] : [{ k: "k", icon: <Layers size={18} />, num: view.themeTotal, label: t("pm_r5_l"), text: t("pm_cc_e5") }]),
   ];
   // Two lanes of real topics drifting past the head of the band.
   const lanes = view ? [data.pyqs.filter((_, i) => i % 2 === 0), data.pyqs.filter((_, i) => i % 2 === 1)] : [];
@@ -3051,7 +3139,7 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                   {offerEl(false, onOpenPage)}
                 </ShelfCard>
                 <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("card_soon")}
-                  items={GS_PAPERS.map(([n, k]) => ({ k, n, label: t(`${k}_t`), text: t(k) }))}
+                  items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
                   foot={t("pm_cc_g_foot")} soon />
               </div>
             )}
