@@ -2585,6 +2585,7 @@ export async function upsertEssayTheme(th) {
     name_hi: (th.nameHi || "").trim() || null,
     parent_id: th.parentId || null,
     sort_order: Number(th.sortOrder || 0),
+    ...(th.paper ? { paper: th.paper } : {}),
   };
   const { data, error } = await sb.from("essay_themes").upsert(row).select().single();
   if (error) throw error;
@@ -2609,6 +2610,10 @@ export async function upsertEssayPyq(p) {
     topic_hi: (p.topicHi || "").trim() || null,
     is_published: p.isPublished !== false,
     updated_at: new Date().toISOString(),
+    ...(p.paper ? { paper: p.paper } : {}),
+    // GS questions carry marks and a word limit; essay rows leave them alone.
+    ...(p.marks !== undefined ? { marks: p.marks === "" || p.marks == null ? null : Number(p.marks) } : {}),
+    ...(p.wordLimit !== undefined ? { word_limit: p.wordLimit === "" || p.wordLimit == null ? null : Number(p.wordLimit) } : {}),
   };
   const { data, error } = await sb.from("essay_pyqs").upsert(row).select("id").single();
   if (error) throw error;
@@ -2872,12 +2877,13 @@ export async function setAnswerPages(list) {
 /* ------------------------------------------- admin: wiki and Learn to Write -- */
 
 /** One page of wiki snippets for review, with each one's essay and fits. */
-export async function adminSnippets({ status = "", kind = "", q = "", offset = 0, limit = 30 } = {}) {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminSnippets({ status, kind, q, offset, limit });
+export async function adminSnippets({ status = "", kind = "", q = "", paper = "", offset = 0, limit = 30 } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminSnippets({ status, kind, q, paper, offset, limit });
   const sb = await getSupabase();
   let query = sb.from("essay_snippets")
     .select("id, answer_id, kind, body, attribution, why, review_note, page, status, updated_at, "
-      + "essay_snippet_fits(pyq_id, use_note, rank), topper_answers(question, topper_copies(toppers(name)))", { count: "exact" });
+      + "essay_snippet_fits(pyq_id, use_note, rank), essay_snippet_topics(theme_id, use_note), topper_answers(question, topper_copies(toppers(name)))", { count: "exact" });
+  if (paper) query = query.eq("paper", paper);
   if (status) query = query.eq("status", status);
   if (kind) query = query.eq("kind", kind);
   const needle = String(q || "").replace(/[%,()*\\]/g, " ").trim();
@@ -2895,15 +2901,20 @@ export async function adminSnippets({ status = "", kind = "", q = "", offset = 0
       topperName: s.topper_answers?.topper_copies?.toppers?.name || "",
       fits: (s.essay_snippet_fits ?? []).slice().sort((a, b) => (a.rank ?? 1) - (b.rank ?? 1))
         .map((f) => ({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 })),
+      topics: (s.essay_snippet_topics ?? []).map((x) => ({ themeId: x.theme_id, use: x.use_note })),
     })),
   };
 }
 
 /** Counts of snippets by status, and Learn to Write guides by status. */
-export async function adminStudyStats() {
+export async function adminStudyStats(paper = "") {
   if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxAdminStudyStats();
   const sb = await getSupabase();
-  const head = (t, s) => sb.from(t).select("*", { count: "exact", head: true }).eq("status", s);
+  // Snippets carry their paper; guides are counted for every paper.
+  const head = (t, s) => {
+    const q = sb.from(t).select("*", { count: "exact", head: true }).eq("status", s);
+    return paper && t === "essay_snippets" ? q.eq("paper", paper) : q;
+  };
   const res = await Promise.all([head("essay_snippets", "draft"), head("essay_snippets", "published"), head("essay_ltw", "draft"), head("essay_ltw", "published")]);
   if (res.some((r) => r.error && missingTable(r.error))) return { missing: true, snippets: { draft: 0, published: 0 }, ltw: { draft: 0, published: 0 } };
   const bad = res.find((r) => r.error);

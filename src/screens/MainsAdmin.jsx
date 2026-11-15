@@ -5,7 +5,7 @@ import { parseImportFiles, cleanBody, wordCount } from "../lib/mainsImport.js";
 import CopyViewer from "../ui/CopyViewer.jsx";
 import { ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 import { useLang } from "../lib/contexts.js";
-import { LtwDoc, STUDY_CSS } from "./EssayStudy.jsx";
+import { LtwDoc, GsGuideDoc, STUDY_CSS } from "./EssayStudy.jsx";
 
 /* ============================================================
    ADMIN: MAINS & ESSAY  (slice 1, migration 0028)
@@ -140,23 +140,35 @@ function useLoad(load, key) {
   return { loading: res.key !== key, data: res.key === key ? res.data : null, err: res.key === key ? res.err : "" };
 }
 
+// The papers whose PYQs, wiki and guides the admin manages here.
+const STUDY_PAPERS = [["essay", "Essay"], ["gs1", "GS I"], ["gs2", "GS II"], ["gs3", "GS III"], ["gs4", "GS IV"]];
+
 export default function MainsAdmin({ toast, askDelete }) {
   const [tab, setTab] = useState("import");
+  const [paper, setPaper] = useState("essay");
+  const gs = paper !== "essay";
+  const perPaper = tab === "pyqs" || tab === "wiki" || tab === "ltw";
   return (
     <div>
       <style>{MA_CSS}</style>
       {/* Own classes: the admin stylesheet defines no .tabs/.tab (those live
           in the student dashboard's CSS), so those render as bare buttons. */}
       <div className="ma-tabs" role="tablist">
-        {[["import", "Import sheets"], ["copies", "Copies"], ["pyqs", "Essay PYQs & themes"], ["wiki", "Essay Wiki"], ["ltw", "Learn to Write"]].map(([k, l]) => (
+        {[["import", "Import sheets"], ["copies", "Copies"], ["pyqs", gs ? "PYQs & topics" : "PYQs & themes"], ["wiki", gs ? "Fact Bank" : "Essay Wiki"], ["ltw", "Learn to Write"]].map(([k, l]) => (
           <button key={k} role="tab" aria-selected={tab === k} className={"ma-tab" + (tab === k ? " on" : "")} onClick={() => setTab(k)}>{l}</button>
         ))}
+        {perPaper && (
+          <select className="sel" style={{ marginLeft: "auto" }} value={paper} onChange={(e) => setPaper(e.target.value)} aria-label="Paper">
+            {STUDY_PAPERS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+          </select>
+        )}
       </div>
       {tab === "import" && <ImportPanel toast={toast} />}
       {tab === "copies" && <CopiesPanel toast={toast} askDelete={askDelete} />}
-      {tab === "pyqs" && <PyqsPanel toast={toast} askDelete={askDelete} />}
-      {tab === "wiki" && <WikiPanel toast={toast} askDelete={askDelete} />}
-      {tab === "ltw" && <LtwAdminPanel toast={toast} askDelete={askDelete} />}
+      {/* Keyed by paper so a switch starts the panel afresh. */}
+      {tab === "pyqs" && <PyqsPanel key={paper} paper={paper} toast={toast} askDelete={askDelete} />}
+      {tab === "wiki" && <WikiPanel key={paper} paper={paper} toast={toast} askDelete={askDelete} />}
+      {tab === "ltw" && <LtwAdminPanel key={paper} paper={paper} toast={toast} askDelete={askDelete} />}
     </div>
   );
 }
@@ -890,10 +902,11 @@ function AnswerForm({ copyId, initial, pyqs, toast, onClose, onSaved }) {
 
 /* ========================================================== PYQS & THEMES == */
 
-function PyqsPanel({ toast, askDelete }) {
+function PyqsPanel({ paper = "essay", toast, askDelete }) {
+  const gs = paper !== "essay";
   const [reload, setReload] = useState(0);
-  const themes = useLoad(() => DB.essayThemes(), `themes|${reload}`);
-  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true }), `pyqs|${reload}`);
+  const themes = useLoad(() => DB.essayThemes(paper), `themes|${paper}|${reload}`);
+  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true, paper }), `pyqs|${paper}|${reload}`);
   const [q, setQ] = useState("");
   const [year, setYear] = useState("");
   const [editPyq, setEditPyq] = useState(null);
@@ -926,7 +939,7 @@ function PyqsPanel({ toast, askDelete }) {
     <div className="ma-stack">
       <div className="panel panel-pad">
         <div className="sec-head" style={{ marginBottom: 10 }}>
-          <div><h2>{themes.data.length} themes</h2><div className="note">What students browse essays by</div></div>
+          <div><h2>{themes.data.length} {gs ? "syllabus topics" : "themes"}</h2><div className="note">{gs ? "What students browse this paper's PYQs by" : "What students browse essays by"}</div></div>
           <button className="btn btn-ghost btn-sm" onClick={() => setEditTheme({})}><Plus size={15} />Add</button>
         </div>
         {themes.data.length === 0 ? <div style={{ fontSize: 13, color: "var(--muted)" }}>Import the PYQ sheet and its categories become themes.</div>
@@ -944,9 +957,9 @@ function PyqsPanel({ toast, askDelete }) {
 
       <div>
         <div className="sec-head">
-          <div><h2>{shown.length} essay PYQs</h2><div className="note">UPSC's topics; the first theme is the main one</div></div>
+          <div><h2>{shown.length} {gs ? "PYQs" : "essay PYQs"}</h2><div className="note">{gs ? "UPSC's questions in paper order; the first topic is the main one" : "UPSC's topics; the first theme is the main one"}</div></div>
           <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-            <div className="search"><Search size={15} /><input placeholder="Search topics…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+            <div className="search"><Search size={15} /><input placeholder={gs ? "Search questions…" : "Search topics…"} value={q} onChange={(e) => setQ(e.target.value)} /></div>
             <select className="sel" value={year} onChange={(e) => setYear(e.target.value)} aria-label="Year">
               <option value="">Every year</option>
               {years.map((y) => <option key={y} value={y}>{y}</option>)}
@@ -956,23 +969,24 @@ function PyqsPanel({ toast, askDelete }) {
         </div>
         {shown.length === 0 ? (
           <div className="panel panel-pad" style={{ textAlign: "center", color: "var(--muted)" }}>
-            {pyqs.data.length ? "No PYQ matches." : "No essay PYQs yet. Import the PYQ sheet, or add one."}
+            {pyqs.data.length ? "No PYQ matches." : gs ? "No PYQs for this paper yet. Add one." : "No essay PYQs yet. Import the PYQ sheet, or add one."}
           </div>
         ) : (
           <div className="tbl-wrap">
             <table className="tbl">
-              <thead><tr><th>Year</th><th>Topic</th><th>Themes</th><th>Essays</th><th>Live</th><th></th></tr></thead>
+              <thead><tr><th>Year</th>{gs && <th>Q</th>}<th>{gs ? "Question" : "Topic"}</th><th>{gs ? "Topics" : "Themes"}</th><th>{gs ? "Marks" : "Essays"}</th><th>Live</th><th></th></tr></thead>
               <tbody>
                 {shown.map((p) => (
                   <tr key={p.id}>
                     <td className="nowrap">{p.year}</td>
+                    {gs && <td className="nowrap">{p.qNo ?? ""}{p.section ? `(${p.section})` : ""}</td>}
                     <td>
                       <div>{p.topic}</div>
                       <div style={{ fontSize: 12, color: p.topicHi ? "var(--muted)" : "var(--red)" }}>{p.topicHi || "No Hindi yet"}</div>
                     </td>
                     <td>{p.themes.map((t) => themeById.get(t.id)).filter(Boolean).map((t, i) =>
                       <div key={t.id} style={{ fontSize: 12.5, fontWeight: i === 0 ? 700 : 400 }}>{t.name}{p.themes[i].confidence != null ? ` (${p.themes[i].confidence})` : ""}</div>)}</td>
-                    <td className="nowrap">{p.essayCount}</td>
+                    <td className="nowrap">{gs ? `${p.marks ?? "–"}${p.wordLimit ? ` / ${p.wordLimit}w` : ""}` : p.essayCount}</td>
                     <td>{p.isPublished ? "Yes" : "No"}</td>
                     <td>
                       <div className="row-actions">
@@ -988,16 +1002,18 @@ function PyqsPanel({ toast, askDelete }) {
         )}
       </div>
 
-      {editPyq && <PyqForm initial={editPyq} themes={themes.data} toast={toast} onClose={() => setEditPyq(null)} onSaved={() => { setEditPyq(null); refresh(); }} />}
-      {editTheme && <ThemeForm initial={editTheme} toast={toast} onClose={() => setEditTheme(null)} onSaved={() => { setEditTheme(null); refresh(); }} />}
+      {editPyq && <PyqForm initial={editPyq} paper={paper} themes={themes.data} toast={toast} onClose={() => setEditPyq(null)} onSaved={() => { setEditPyq(null); refresh(); }} />}
+      {editTheme && <ThemeForm initial={editTheme} paper={paper} toast={toast} onClose={() => setEditTheme(null)} onSaved={() => { setEditTheme(null); refresh(); }} />}
     </div>
   );
 }
 
-function PyqForm({ initial, themes, toast, onClose, onSaved }) {
+function PyqForm({ initial, paper = "essay", themes, toast, onClose, onSaved }) {
+  const gs = paper !== "essay";
   const [f, setF] = useState({
     year: num(initial.year) || String(new Date().getFullYear()), section: initial.section || "", qNo: num(initial.qNo),
     topic: initial.topic || "", topicHi: initial.topicHi || "", isPublished: initial.isPublished !== false,
+    marks: num(initial.marks), wordLimit: num(initial.wordLimit),
   });
   const [tags, setTags] = useState(initial.themes || []);
   const [err, setErr] = useState("");
@@ -1007,28 +1023,36 @@ function PyqForm({ initial, themes, toast, onClose, onSaved }) {
   const save = async () => {
     const y = Number(f.year);
     if (!Number.isInteger(y) || y < 1990 || y > 2100) return setErr("Enter the year of the paper.");
-    if (!f.topic.trim()) return setErr("The topic is required.");
+    if (!f.topic.trim()) return setErr(gs ? "The question is required." : "The topic is required.");
+    if (gs && f.marks !== "" && !(Number(f.marks) >= 1 && Number(f.marks) <= 250)) return setErr("Marks must be between 1 and 250.");
     setErr("");
     try {
-      await DB.upsertEssayPyq({ ...f, id: initial.id, themes: tags });
+      await DB.upsertEssayPyq({ ...f, paper, id: initial.id, themes: tags });
       toast("PYQ saved");
       onSaved();
     } catch (e) { console.error(e); setErr(e?.message || "Couldn't save"); }
   };
 
   return (
-    <Modal title={initial.id ? "Edit essay PYQ" : "Add essay PYQ"} onClose={onClose} wide
+    <Modal title={`${initial.id ? "Edit" : "Add"} ${gs ? `${STUDY_PAPERS.find(([k]) => k === paper)?.[1]} PYQ` : "essay PYQ"}`} onClose={onClose} wide
            footer={<><button className="btn btn-ghost" onClick={onClose}>Cancel</button><button className="btn btn-primary" onClick={save}><Save size={16} />Save</button></>}>
       {err && <div className="form-err"><AlertCircle size={16} />{err}</div>}
       <div className="field-row">
         <Field label="Year" req><input className="inp" type="number" value={f.year} onChange={(e) => set("year", e.target.value)} /></Field>
-        <Field label="Section" hint="A or B, where the paper has them"><input className="inp" value={f.section} onChange={(e) => set("section", e.target.value)} /></Field>
+        {gs && <Field label="Question no."><input className="inp" type="number" value={f.qNo} onChange={(e) => set("qNo", e.target.value)} /></Field>}
+        <Field label={gs ? "Part" : "Section"} hint={gs ? "a, b or c for a part of a question; blank for a whole question" : "A or B, where the paper has them"}><input className="inp" value={f.section} onChange={(e) => set("section", e.target.value)} /></Field>
       </div>
-      <Field label="Topic (English)" req><textarea className="inp" rows={2} value={f.topic} onChange={(e) => set("topic", e.target.value)} /></Field>
-      <Field label="Topic (Hindi)" hint="UPSC's own Hindi wording where available. Students in Hindi mode see this; without it they see the English.">
+      {gs && (
+        <div className="field-row">
+          <Field label="Marks" hint="12.5 for GS I-III up to 2016"><input className="inp" type="number" step="0.5" value={f.marks} onChange={(e) => set("marks", e.target.value)} /></Field>
+          <Field label="Word limit"><input className="inp" type="number" value={f.wordLimit} onChange={(e) => set("wordLimit", e.target.value)} /></Field>
+        </div>
+      )}
+      <Field label={gs ? "Question (English)" : "Topic (English)"} req><textarea className="inp" rows={2} value={f.topic} onChange={(e) => set("topic", e.target.value)} /></Field>
+      <Field label={gs ? "Question (Hindi)" : "Topic (Hindi)"} hint="UPSC's own Hindi wording where available. Students in Hindi mode see this; without it they see the English.">
         <textarea className="inp" rows={2} value={f.topicHi} onChange={(e) => set("topicHi", e.target.value)} />
       </Field>
-      <Field label="Themes" hint="Highest confidence first; the first is the main theme, the rest show as 'also under'.">
+      <Field label={gs ? "Syllabus topics" : "Themes"} hint="Highest confidence first; the first is the main one, the rest show as 'also under'.">
         {tags.map((t) => (
           <div key={t.id} style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 6 }}>
             <span style={{ flex: 1, fontSize: 13.5 }}>{themes.find((x) => x.id === t.id)?.name || "Theme"}</span>
@@ -1047,14 +1071,15 @@ function PyqForm({ initial, themes, toast, onClose, onSaved }) {
   );
 }
 
-function ThemeForm({ initial, toast, onClose, onSaved }) {
+function ThemeForm({ initial, paper = "essay", toast, onClose, onSaved }) {
   const [f, setF] = useState({ name: initial.name || "", nameHi: initial.nameHi || "", sortOrder: num(initial.sortOrder) || "0" });
   const [err, setErr] = useState("");
   const save = async () => {
     if (!f.name.trim()) return setErr("The theme needs a name.");
     setErr("");
     try {
-      await DB.upsertEssayTheme({ ...f, id: initial.id, slug: initial.slug });
+      // A new GS topic's slug carries its paper, as the imported ones do (gs2-judiciary).
+      await DB.upsertEssayTheme({ ...f, paper, id: initial.id, slug: initial.slug || (paper !== "essay" ? `${paper}-${DB.slugify(f.name)}` : undefined) });
       toast("Theme saved");
       onSaved();
     } catch (e) { console.error(e); setErr(e?.message || "Couldn't save"); }
@@ -1290,9 +1315,12 @@ const PICKER_CSS = `
    with our note on why it works and the PYQs it suits. Students see only
    published ones. */
 
+// Essay kinds first; GS Fact Bank cards add the rest (migration 0039).
 const SN_KINDS = ["opening", "closing", "quote", "anecdote", "example", "statistic"];
+const GS_SN_KINDS = ["statistic", "example", "judgment", "report", "scheme", "constitution", "history", "thinker", "quote"];
 
-function WikiPanel({ toast, askDelete }) {
+function WikiPanel({ paper = "essay", toast, askDelete }) {
+  const gs = paper !== "essay";
   const [status, setStatus] = useState("draft");
   const [kind, setKind] = useState("");
   const [q, setQ] = useState("");
@@ -1301,10 +1329,12 @@ function WikiPanel({ toast, askDelete }) {
   const [reload, setReload] = useState(0);
   const refresh = () => setReload((n) => n + 1);
   useEffect(() => { const id = setTimeout(() => { setNeedle(q.trim()); setOffset(0); }, 300); return () => clearTimeout(id); }, [q]);
-  const stats = useLoad(() => DB.adminStudyStats(), `stats|${reload}`);
-  const list = useLoad(() => DB.adminSnippets({ status, kind, q: needle, offset, limit: 30 }), `${status}|${kind}|${needle}|${offset}|${reload}`);
-  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true }), "pyqs");
+  const stats = useLoad(() => DB.adminStudyStats(paper), `stats|${paper}|${reload}`);
+  const list = useLoad(() => DB.adminSnippets({ status, kind, q: needle, paper, offset, limit: 30 }), `${paper}|${status}|${kind}|${needle}|${offset}|${reload}`);
+  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true, paper }), `pyqs|${paper}`);
+  const themes = useLoad(() => (gs ? DB.essayThemes(paper) : Promise.resolve([])), `themes|${paper}`);
   const pyqById = useMemo(() => new Map((pyqs.data || []).map((p) => [p.id, p])), [pyqs.data]);
+  const themeById = useMemo(() => new Map((themes.data || []).flatMap((t) => [[t.id, t], [t.slug, t]])), [themes.data]);
   const items = list.data?.items || [];
 
   const publishPage = async () => {
@@ -1327,7 +1357,7 @@ function WikiPanel({ toast, askDelete }) {
           <option value="draft">Drafts</option><option value="published">Published</option><option value="">All</option>
         </select>
         <select className="sel" value={kind} onChange={(e) => { setKind(e.target.value); setOffset(0); }} aria-label="Kind">
-          <option value="">Every kind</option>{SN_KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
+          <option value="">Every kind</option>{(gs ? GS_SN_KINDS : SN_KINDS).map((k) => <option key={k} value={k}>{k}</option>)}
         </select>
         <div className="search" style={{ flex: 1, minWidth: 200 }}>
           <Search size={15} /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the passages" aria-label="Search" />
@@ -1339,7 +1369,7 @@ function WikiPanel({ toast, askDelete }) {
       {list.err ? <ErrorState message={list.err} onRetry={refresh} />
         : list.loading ? <SkeletonCards count={3} height={150} />
         : items.length === 0 ? <div className="card card-pad" style={{ fontSize: 13.5, color: "var(--muted)" }}>Nothing here.</div>
-        : items.map((sn) => <SnippetAdminRow key={sn.id} sn={sn} pyqById={pyqById} toast={toast} askDelete={askDelete} onChanged={refresh} />)}
+        : items.map((sn) => <SnippetAdminRow key={sn.id} sn={sn} gs={gs} pyqById={pyqById} themeById={themeById} toast={toast} askDelete={askDelete} onChanged={refresh} />)}
       {list.data && list.data.total > 30 && (
         <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center", marginTop: 12, fontSize: 13 }}>
           <button className="btn btn-ghost btn-sm" disabled={offset === 0} onClick={() => setOffset((o) => Math.max(0, o - 30))}>Previous</button>
@@ -1351,7 +1381,7 @@ function WikiPanel({ toast, askDelete }) {
   );
 }
 
-function SnippetAdminRow({ sn, pyqById, toast, askDelete, onChanged }) {
+function SnippetAdminRow({ sn, gs = false, pyqById, themeById = new Map(), toast, askDelete, onChanged }) {
   const [f, setF] = useState({ kind: sn.kind, body: sn.body, attribution: sn.attribution, why: sn.why, reviewNote: sn.reviewNote });
   const dirty = ["kind", "body", "attribution", "why", "reviewNote"].some((k) => (f[k] || "") !== (sn[k] || ""));
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
@@ -1370,10 +1400,11 @@ function SnippetAdminRow({ sn, pyqById, toast, askDelete, onChanged }) {
     <div className="ma-ans">
       <div className="ma-ans-top" style={{ alignItems: "center", flexWrap: "wrap" }}>
         <select className="sel" value={f.kind} onChange={(e) => set("kind", e.target.value)} aria-label="Kind">
-          {SN_KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
+          {/* The card's own kind always shows, even one this paper's list lacks. */}
+          {[...new Set([...(gs ? GS_SN_KINDS : SN_KINDS), f.kind])].map((k) => <option key={k} value={k}>{k}</option>)}
         </select>
         <span className={"ma-kind " + (sn.status === "published" ? "exact" : "related")}>{sn.status}</span>
-        <span className="ma-ans-meta" style={{ flex: 1, minWidth: 160, marginTop: 0 }}>{sn.answerId ? `${sn.topperName} · ${sn.question}` : "Editor's pick (no topper essay)"}</span>
+        <span className="ma-ans-meta" style={{ flex: 1, minWidth: 160, marginTop: 0 }}>{sn.answerId ? `${sn.topperName} · ${sn.question}` : gs ? "Fact card (written by the team)" : "Editor's pick (no topper essay)"}</span>
         <button className="btn-icon danger" title="Delete" onClick={remove}><Trash2 size={14} /></button>
       </div>
       {f.reviewNote && <div className="form-err" style={{ marginTop: 8, background: "var(--amb-bg)", color: "var(--ink)" }}><AlertCircle size={15} />{f.reviewNote}</div>}
@@ -1387,9 +1418,13 @@ function SnippetAdminRow({ sn, pyqById, toast, askDelete, onChanged }) {
         <input className="inp" value={f.reviewNote} onChange={(e) => set("reviewNote", e.target.value)} />
       </Field>
       <div style={{ fontSize: 12.5, color: "var(--muted)", marginBottom: 8 }}>
-        Fits {sn.fits.length} topic{sn.fits.length === 1 ? "" : "s"}:
+        {gs ? `Fits ${sn.fits.length} question${sn.fits.length === 1 ? "" : "s"}` : `Fits ${sn.fits.length} topic${sn.fits.length === 1 ? "" : "s"}`}{(sn.topics || []).length ? ` and ${sn.topics.length} syllabus topic${sn.topics.length === 1 ? "" : "s"}` : ""}:
         <ul style={{ margin: "4px 0 0", paddingLeft: 18 }}>
-          {sn.fits.map((x) => <li key={x.pyqId}><b style={{ color: "var(--ink)" }}>{pyqById.get(x.pyqId)?.topic || "PYQ"}</b> — {x.use}</li>)}
+          {sn.fits.map((x) => {
+            const p = pyqById.get(x.pyqId);
+            return <li key={x.pyqId}><b style={{ color: "var(--ink)" }}>{p ? (gs ? `${p.year} Q${p.qNo ?? ""}${p.section ? `(${p.section})` : ""}: ` : "") + p.topic : "PYQ"}</b> — {x.use}</li>;
+          })}
+          {(sn.topics || []).map((x) => <li key={x.themeId}><b style={{ color: "var(--ink)" }}>Topic: {themeById.get(x.themeId)?.name || "syllabus topic"}</b> — {x.use}</li>)}
         </ul>
       </div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -1404,9 +1439,31 @@ function SnippetAdminRow({ sn, pyqById, toast, askDelete, onChanged }) {
 
 /* ======================================================== LEARN TO WRITE == */
 
+// The checks a GS guide must pass before it can be saved: the same rules as
+// the drafting validator, only the ones that would break the page.
+function gsGuideProblems(doc) {
+  const out = [];
+  const arr = (k, min) => { if (!Array.isArray(doc[k]) || doc[k].length < min) out.push(`${k} needs at least ${min}`); };
+  if (typeof doc.demand !== "string" || !doc.demand.trim()) out.push("demand is missing");
+  if (!Array.isArray(doc.conclusion) || !doc.conclusion.length) out.push("conclusion is empty");
+  if (doc.kind === "gs-case") {
+    arr("facts", 3); arr("stakeholders", 3); arr("issues", 3); arr("options", 3); arr("course", 4); arr("values", 4);
+    const chosen = (doc.options || []).filter((o) => o?.chosen).length;
+    if (Array.isArray(doc.options) && chosen !== 1) out.push("options needs exactly one chosen");
+  } else {
+    arr("intro", 1); arr("body", 2); arr("value_adds", 1);
+    (doc.body || []).forEach((b, i) => {
+      if (!b?.heading) out.push(`body ${i + 1}: heading is missing`);
+      if (!Array.isArray(b?.points) || !b.points.length) out.push(`body ${i + 1}: points are empty`);
+    });
+  }
+  return out;
+}
+
 function ltwProblems(doc) {
   const out = [];
   if (!doc || typeof doc !== "object" || Array.isArray(doc)) return ["The guide must be a JSON object."];
+  if (doc.kind === "gs" || doc.kind === "gs-case") return gsGuideProblems(doc);
   if (typeof doc.spine !== "string" || !doc.spine.trim()) out.push("spine is missing");
   if (!Array.isArray(doc.sides) || doc.sides.length !== 3) out.push("sides needs Thesis, Antithesis, Synthesis");
   if (!Array.isArray(doc.arguments) || doc.arguments.length < 3) out.push("arguments needs at least 3");
@@ -1419,14 +1476,17 @@ function ltwProblems(doc) {
   return out;
 }
 
-function LtwAdminPanel({ toast, askDelete }) {
+function LtwAdminPanel({ paper = "essay", toast, askDelete }) {
+  const gs = paper !== "essay";
   const [reload, setReload] = useState(0);
   const [filter, setFilter] = useState("draft");
+  const [year, setYear] = useState("");
   const [editing, setEditing] = useState(null);
-  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true }), "pyqs");
+  const pyqs = useLoad(() => DB.essayPyqs({ includeDrafts: true, paper }), `pyqs|${paper}`);
   const states = useLoad(() => DB.adminLtwList(), `ltw|${reload}`);
   const stateOf = (id) => states.data?.get(id)?.status || "none";
-  const rows = (pyqs.data || []).filter((p) => !filter || stateOf(p.id) === filter);
+  const years = useMemo(() => [...new Set((pyqs.data || []).map((p) => p.year))].sort((a, b) => b - a), [pyqs.data]);
+  const rows = (pyqs.data || []).filter((p) => (!filter || stateOf(p.id) === filter) && (!year || String(p.year) === year));
   const count = (s) => (pyqs.data || []).filter((p) => stateOf(p.id) === s).length;
   return (
     <div>
@@ -1439,6 +1499,10 @@ function LtwAdminPanel({ toast, askDelete }) {
         {[["draft", "Drafts"], ["published", "Published"], ["none", "No guide"], ["", "All"]].map(([k, l]) => (
           <button key={k} className={"ma-tab" + (filter === k ? " on" : "")} onClick={() => setFilter(k)}>{l}</button>
         ))}
+        <select className="sel" style={{ marginLeft: "auto" }} value={year} onChange={(e) => setYear(e.target.value)} aria-label="Year">
+          <option value="">Every year</option>
+          {years.map((y) => <option key={y} value={y}>{y}</option>)}
+        </select>
       </div>
       {pyqs.err || states.err ? <ErrorState message={pyqs.err || states.err} onRetry={() => setReload((n) => n + 1)} />
         : pyqs.loading || states.loading ? <SkeletonCards count={3} height={60} />
@@ -1446,12 +1510,13 @@ function LtwAdminPanel({ toast, askDelete }) {
         : (
           <div className="tbl-wrap">
             <table className="tbl">
-              <thead><tr><th>Year</th><th>Topic</th><th>Guide</th><th /></tr></thead>
+              <thead><tr><th>Year</th>{gs && <th>Q</th>}<th>{gs ? "Question" : "Topic"}</th><th>Guide</th><th /></tr></thead>
               <tbody>
                 {rows.map((p) => (
                   <tr key={p.id}>
                     <td>{p.year}</td>
-                    <td style={{ maxWidth: 520 }}>{p.topic}</td>
+                    {gs && <td className="nowrap">{p.qNo ?? ""}{p.section ? `(${p.section})` : ""}</td>}
+                    <td style={{ maxWidth: 520 }}>{gs && p.topic.length > 220 ? `${p.topic.slice(0, 220)}…` : p.topic}</td>
                     <td><span className={"ma-kind " + (stateOf(p.id) === "published" ? "exact" : "related")}>{stateOf(p.id)}</span></td>
                     <td style={{ textAlign: "right" }}>
                       {stateOf(p.id) !== "none" && <button className="btn btn-ghost btn-sm" onClick={() => setEditing(p)}><Eye size={14} />Review</button>}
@@ -1463,17 +1528,18 @@ function LtwAdminPanel({ toast, askDelete }) {
           </div>
         )}
       {editing && (
-        <LtwEditor pyq={editing} toast={toast} askDelete={askDelete} onClose={() => setEditing(null)}
+        <LtwEditor pyq={editing} gs={gs} toast={toast} askDelete={askDelete} onClose={() => setEditing(null)}
                    onSaved={() => { setEditing(null); setReload((n) => n + 1); }} />
       )}
     </div>
   );
 }
 
-function LtwEditor({ pyq, toast, askDelete, onClose, onSaved }) {
+function LtwEditor({ pyq, gs = false, toast, askDelete, onClose, onSaved }) {
   const { t } = useLang();
   const row = useLoad(() => DB.adminLtw(pyq.id), `ltwdoc|${pyq.id}`);
-  const essays = useLoad(() => DB.essaysForPyq(pyq.id), `ess|${pyq.id}`);
+  // GS guides cite no topper essays, so there is nothing to look up.
+  const essays = useLoad(() => (gs ? Promise.resolve([]) : DB.essaysForPyq(pyq.id)), `ess|${pyq.id}`);
   const entries = useMemo(() => new Map((essays.data || []).flatMap((g) => g.entries.map((e) => [e.answerId, e]))), [essays.data]);
   const [text, setText] = useState(null);
   const [view, setView] = useState("preview");
@@ -1494,7 +1560,7 @@ function LtwEditor({ pyq, toast, askDelete, onClose, onSaved }) {
   });
 
   return (
-    <Modal title={`Learn to Write · ${pyq.topic} (${pyq.year})`} onClose={onClose} wide
+    <Modal title={`Learn to Write · ${gs ? `${pyq.year} Q${pyq.qNo ?? ""}${pyq.section ? `(${pyq.section})` : ""}` : `${pyq.topic} (${pyq.year})`}`} onClose={onClose} wide
            footer={<>
              <button className="btn btn-ghost" style={{ marginRight: "auto" }} onClick={remove}><Trash2 size={15} />Delete</button>
              <button className="btn btn-ghost" onClick={() => save("draft")} disabled={!!problems.length}>{status === "published" ? "Unpublish" : "Save draft"}</button>
@@ -1512,12 +1578,14 @@ function LtwEditor({ pyq, toast, askDelete, onClose, onSaved }) {
         : row.loading ? <SkeletonCards count={2} height={120} />
         : view === "json"
           ? (
-            <Field hint="The guide as JSON: spine, how_to, dimensions, sides, arguments (side 0 thesis, 1 antithesis, 2 synthesis; sources are essay ids), introductions, conclusions, pitfalls.">
+            <Field hint={gs ? "The guide as JSON: kind 'gs' (directive, demand, parts, intro, body headings with points, value_adds, way_forward, conclusion, pitfalls, keywords) or 'gs-case' (facts, stakeholders, issues, options with one chosen, course, values, conclusion)." : "The guide as JSON: spine, how_to, dimensions, sides, arguments (side 0 thesis, 1 antithesis, 2 synthesis; sources are essay ids), introductions, conclusions, pitfalls."}>
               <textarea className="inp" rows={26} value={value} onChange={(e) => setText(e.target.value)} spellCheck={false}
                         style={{ fontFamily: "ui-monospace,Consolas,monospace", fontSize: 12.5, lineHeight: 1.5 }} aria-label="Guide JSON" />
             </Field>
           )
-          : parsed.doc ? <LtwDoc doc={parsed.doc} entries={entries} onText={() => {}} onOpen={() => {}} t={t} />
+          : parsed.doc ? (parsed.doc.kind === "gs" || parsed.doc.kind === "gs-case"
+            ? <><div style={{ fontSize: 13.5, marginBottom: 10 }}>{pyq.topic}</div><GsGuideDoc doc={parsed.doc} t={t} /></>
+            : <LtwDoc doc={parsed.doc} entries={entries} onText={() => {}} onOpen={() => {}} t={t} />)
           : null}
     </Modal>
   );

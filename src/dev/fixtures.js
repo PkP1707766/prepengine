@@ -677,6 +677,9 @@ const GQ = (id, paper, year, qNo, section, marks, wordLimit, topic, theme, n) =>
   id, paper, year, qNo, section: section || "", marks, wordLimit, topic, topicHi: "", isPublished: true,
   themes: [{ id: theme, confidence: 100 }], essayCount: n, exactCount: 0 });
 const FX_GS_PYQS = [
+  // Older papers: 2016 GS I-III questions carried 12.5 marks.
+  GQ("gq-11", "gs1", 2016, 9, null, 12.5, 200, "\"An essential condition to eradicate poverty is to liberate the poor from the process of deprivation.\" Substantiate this statement with suitable examples.", "gs1-urbanisation", 0),
+  GQ("gq-12", "gs2", 2018, 12, null, 15, 250, "How far do you agree with the view that tribunals curtail the jurisdiction of ordinary courts? In view of the above, discuss the constitutional validity and competency of the tribunals in India.", "gs2-judiciary", 1),
   GQ("gq-1", "gs1", 2025, 3, null, 10, 150, "'The sculptors filled the Chandella artform with resilient vigor and breadth of life.' Elucidate.", "gs1-art-culture", 2),
   GQ("gq-2", "gs1", 2025, 8, null, 10, 150, "How does smart city in India, address the issues of urban poverty and distributive justice?", "gs1-urbanisation", 1),
   GQ("gq-3", "gs1", 2024, 3, null, 10, 150, "What were the events that led to the Quit India Movement? Point out its results.", "gs1-modern-history", 0),
@@ -716,7 +719,11 @@ const gsEntry = (r) => ({
   hosted: false, isFree: r.is_free, isPublished: true, words: null,
   topper: { id: r.topper_id, name: r.topper_name, rank: r.topper_rank, cseYear: r.cse_year, essayMarks: null } });
 export function fxGsThemes(paper) { return FX_GS_THEMES.filter((t) => t.paper === paper); }
-export function fxGsPyqs(paper) { return FX_GS_PYQS.filter((p) => p.paper === paper); }
+// Newest first, then paper order, as the live query returns them.
+export function fxGsPyqs(paper) {
+  return FX_GS_PYQS.filter((p) => p.paper === paper)
+    .sort((a, b) => b.year - a.year || (a.qNo ?? 99) - (b.qNo ?? 99) || String(a.section).localeCompare(String(b.section)));
+}
 export function fxGsAnswers(themeId) { return FX_GS_ROWS.filter((r) => r.theme_id === themeId); }
 
 export function fxLibrary({ paper = "essay", sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
@@ -877,11 +884,18 @@ export function fxSnippetsByIds(ids) {
     ...s, use: "", fitPyqId: null, entry: fxLibraryEntries([s.answerId])[0] || null,
   }));
 }
-export function fxAdminSnippets({ status = "", kind = "", q = "", offset = 0, limit = 30 } = {}) {
+export function fxAdminSnippets({ status = "", kind = "", q = "", paper = "", offset = 0, limit = 30 } = {}) {
   const n = q.trim().toLowerCase();
+  // A card's paper: GS cards fit GS PYQs (gq-*) or link a GS topic.
+  const paperOf = (s) => {
+    const p = s.fits.map((f) => FX_GS_PYQS.find((x) => x.id === f.pyqId)).find(Boolean);
+    return p?.paper || (s.topics?.length ? s.topics[0][0].split("-")[0] : "essay");
+  };
   const all = FX_SNIPPETS.map((s, i) => ({ ...s, status: i === 1 ? "draft" : s.status, reviewNote: i === 2 ? "Check the year of the march." : "",
     use: "", fitPyqId: null, question: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.question || "",
-    topperName: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.topper.name || "" }))
+    topperName: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.topper.name || "",
+    topics: (s.topics ?? []).map(([slug, use]) => ({ themeId: slug, use })) }))
+    .filter((s, i) => (!paper || paperOf(FX_SNIPPETS[i]) === paper))
     .filter((s) => (!status || s.status === status) && (!kind || s.kind === kind) && (!n || s.body.toLowerCase().includes(n)));
   return { items: all.slice(offset, offset + limit), total: all.length };
 }
@@ -934,7 +948,10 @@ export function fxLtw(pyqId) {
   }
   return null;
 }
-export function fxAdminLtwList() { return new Map([["pq-5", { status: "published", source: "drafted", updatedAt: "2026-11-08T00:00:00Z" }]]); }
+export function fxAdminLtwList() {
+  return new Map([["pq-5", { status: "published", source: "drafted", updatedAt: "2026-11-08T00:00:00Z" }],
+    ["gq-4", { status: "published", source: "drafted", updatedAt: "2026-11-15T00:00:00Z" }]]);
+}
 
 /* A ruled answer-booklet page with wavy "handwriting", page number and a
    heading on the pages where a fixture essay starts. Deterministic per
