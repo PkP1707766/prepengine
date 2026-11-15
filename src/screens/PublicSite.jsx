@@ -460,10 +460,14 @@ const CSS = `
    away for the arrow: the cut (.pb-cc-notch) is painted in the band's flat
    ground, and its two neighbouring pieces round the card's corners on either
    side of it, so the edge runs in one continuous curve. */
-.pb-cc-shelf{--ground:var(--brand-900);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:start;
+.pb-cc-shelf{--ground:var(--brand-900);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:stretch;
   max-width:1000px;margin:46px auto 0}
 [data-theme="dark"] .pb-cc-shelf{--ground:#150609}
-.pb-cc{--cut:86px;--r:24px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
+/* The two cards stand the same height: each fills its grid cell, and the
+   space goes to the rows, so price block and foot line up across. */
+.pb-cc-shelf > .reveal{display:flex;min-width:0}
+.pb-cc-shelf > .reveal > .pb-cc{flex:1;min-width:0}
+.pb-cc{--cut:72px;--r:22px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
   border-radius:30px;padding:14px 14px 0;
   transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px));
   transition:transform .45s cubic-bezier(.2,.8,.3,1)}
@@ -471,7 +475,7 @@ const CSS = `
 .pb-cc-glare{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .3s;
   background:radial-gradient(260px 200px at var(--gx,50%) var(--gy,30%),rgba(255,236,190,.28),transparent 70%);mix-blend-mode:screen}
 .pb-cc:hover .pb-cc-glare{opacity:1}
-.pb-cc-art{position:relative;height:210px;border-radius:22px;overflow:hidden;isolation:isolate}
+.pb-cc-art{position:relative;height:160px;border-radius:22px;overflow:hidden;isolation:isolate}
 .pb-cc-svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
 .pb-cc:hover .pb-cc-svg{transform:scale(1.045)}
 .pb-cc-art::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -485,26 +489,29 @@ const CSS = `
 .pb-cc-badge{position:absolute;top:14px;right:14px;z-index:2;font-size:12px;font-weight:800;letter-spacing:.03em;
   padding:6px 12px;border-radius:100px;background:#fbf6ec;color:#631322;box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
 .pb-cc-soon .pb-cc-badge{background:rgba(251,246,236,.16);color:#f5e6bd;border:1px solid rgba(245,230,189,.45);backdrop-filter:blur(4px)}
-.pb-cc-list{list-style:none;margin:10px 0 0;padding:0 10px;flex:1}
-.pb-cc-list li{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:start;
-  padding:14px 10px;margin:0 -6px;border-radius:14px;transition:background .25s}
-.pb-cc-list li + li::before{content:"";position:absolute;top:0;left:66px;right:10px;height:1px;background:var(--line)}
+.pb-cc-list{list-style:none;margin:6px 0 0;padding:0 10px;flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.pb-cc-list li{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:center;
+  padding:9px 10px;margin:0 -6px;border-radius:14px;transition:background .25s}
+.pb-cc-list li + li::before{content:"";position:absolute;top:0;left:58px;right:10px;height:1px;background:var(--line)}
 .pb-cc-list li:hover{background:color-mix(in srgb,var(--gold-300) 16%,transparent)}
-.pb-cc-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;color:var(--brand-700);
+.pb-cc-ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;color:var(--brand-700);
   background:linear-gradient(145deg,color-mix(in srgb,var(--gold-300) 45%,transparent),color-mix(in srgb,var(--gold-300) 18%,transparent));
   box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold-500) 30%,transparent);
   transition:background .3s,color .3s,transform .35s cubic-bezier(.2,.8,.3,1)}
 .pb-cc-ic b{font-family:var(--font-display);font-size:15px;font-weight:700;color:inherit}
 .pb-cc-list li:hover .pb-cc-ic{background:var(--brand-700);color:var(--gold-300);transform:rotate(-6deg) scale(1.06)}
 .pb-cc-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;line-height:1.15}
-.pb-cc-n{font-family:var(--font-display);font-optical-sizing:auto;font-size:25px;font-weight:600;line-height:1;white-space:nowrap;
+.pb-cc-n{font-family:var(--font-display);font-optical-sizing:auto;font-size:22px;font-weight:600;line-height:1;white-space:nowrap;
   font-variant-numeric:tabular-nums;color:var(--brand-700);
   background:linear-gradient(100deg,var(--brand-700) 20%,var(--gold-600) 50%,var(--brand-700) 80%);background-size:250% 100%;
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .pb-cc.is-seen .pb-cc-n{animation:pb-cc-shine 1.6s ease .9s both}
 @keyframes pb-cc-shine{from{background-position:100% 0}to{background-position:0 0}}
-.pb-cc-l{font-size:15.5px;font-weight:700;color:var(--ink-900)}
-.pb-cc-t em{display:block;font-style:normal;font-size:13.5px;line-height:1.5;color:var(--ink-600);margin-top:4px}
+.pb-cc-l{font-size:15px;font-weight:700;color:var(--ink-900)}
+.pb-cc-t{display:block;min-width:0}
+/* One line each: the card stays short; the full line is in the title. */
+.pb-cc-t em{display:block;font-style:normal;font-size:13px;line-height:1.45;color:var(--ink-600);margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pb-cc:not(.is-seen) .pb-cc-list li{opacity:0}
 .pb-cc.is-seen .pb-cc-list li{animation:pb-cc-row .6s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
 @keyframes pb-cc-row{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
@@ -594,7 +601,14 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 }
 
 /* The Mains price block, in a shelf card and on the closing panel. */
-.pb-cc-offer{padding:16px 10px 18px;border-top:1px solid var(--line)}
+.pb-cc-offer{padding:12px 8px 14px;border-top:1px solid var(--line)}
+.pb-cc-offer .pb-offer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 14px}
+.pb-cc-offer .pb-price-row{grid-column:1;margin:0}
+.pb-cc-offer .pb-price{font-size:24px}
+.pb-cc-offer .pb-offer-in{grid-column:1;margin:0}
+.pb-cc-offer .pb-card-btns{grid-column:2;grid-row:1 / span 2;margin:0}
+.pb-cc-offer .pb-card-btns .pb-btn{padding:9px 16px;font-size:13.5px}
+.pb-cc-offer .pb-free .pb-price{color:var(--ok-600)}
 .pb-offer .pb-price-row{margin-bottom:4px}
 .pb-offer-in{font-size:12.5px;line-height:1.45;color:var(--ink-400);margin-bottom:14px}
 .pb-offer-dark .pb-price{color:var(--gold-300);font-size:34px}
@@ -845,12 +859,14 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-ess-lbl{font-size:10.5px;letter-spacing:.05em}
   .pb-ess-ex{grid-template-columns:minmax(0,1fr)}
   .pb-cc-shelf{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:30px}
-  .pb-cc{--cut:74px;--r:20px;border-radius:26px;padding:12px 12px 0}
-  .pb-cc-art{height:172px;border-radius:18px}
+  .pb-cc{--cut:66px;--r:20px;border-radius:26px;padding:12px 12px 0}
+  .pb-cc-art{height:148px;border-radius:18px}
+  .pb-cc-offer .pb-offer{grid-template-columns:minmax(0,1fr)}
+  .pb-cc-offer .pb-card-btns{grid-column:1;grid-row:auto;margin-top:10px}
   .pb-cc-list{padding:0 4px}
-  .pb-cc-list li{padding:12px 8px;gap:12px;grid-template-columns:38px minmax(0,1fr)}
-  .pb-cc-ic{width:38px;height:38px;border-radius:12px}
-  .pb-cc-list li + li::before{left:58px}
+  .pb-cc-list li{padding:9px 8px;gap:10px;grid-template-columns:34px minmax(0,1fr)}
+  .pb-cc-ic{width:34px;height:34px;border-radius:11px}
+  .pb-cc-list li + li::before{left:52px}
   .pb-cc-go{border-radius:18px}
   .pb-ess-browse{padding-top:56px}
   .pb-ess-side{border-right:0;border-bottom:1px solid var(--line)}
@@ -2706,7 +2722,7 @@ function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = 
                     )}
                     <span className="pb-cc-l">{it.label}</span>
                   </span>
-                  <em>{it.text}</em>
+                  <em title={it.text}>{it.text}</em>
                 </span>
               </li>
             );
@@ -3166,7 +3182,15 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                 </ShelfCard>
                 <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("pm_cc_g_badge")}
                   items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
-                  foot={t("pm_cc_g_open")} onGo={openGs} goLabel={t("pm_cc_g_open")} />
+                  foot={t("pm_cc_g_open")} onGo={openGs} goLabel={t("pm_cc_g_open")}>
+                  <div className="pb-offer pb-free">
+                    <div className="pb-price-row"><span className="pb-price">{t("pm_gs_free")}</span></div>
+                    <div className="pb-offer-in">{t("pm_gs_free_s")}</div>
+                    <div className="pb-card-btns">
+                      <button type="button" className="pb-btn pb-btn-maroon" onClick={openGs}>{t("pm_gs_start")}<ArrowRight size={15} /></button>
+                    </div>
+                  </div>
+                </ShelfCard>
               </div>
             )}
           </div>
