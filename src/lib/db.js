@@ -2514,19 +2514,28 @@ export async function essayWikiCounts() {
 
 /** The snippets that fit any of these PYQs, each once, with the essay it came
  *  from and every fit among these PYQs. Locked ones are simply absent. */
-export async function essaySnippetsForPyqs(pyqIds) {
-  if (!pyqIds?.length) return [];
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSnippetsForPyqs(pyqIds);
+export async function essaySnippetsForPyqs(pyqIds, themeIds = []) {
+  if (!pyqIds?.length && !themeIds?.length) return [];
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxSnippetsForPyqs(pyqIds || [], themeIds || []);
   const sb = await getSupabase();
-  const fits = await selectIn(sb, "essay_snippet_fits",
-    "snippet_id, pyq_id, use_note, rank, essay_snippets!inner(id, answer_id, kind, body, attribution, why, page, status)",
-    "pyq_id", pyqIds, 100).catch((e) => { if (missingTable(e)) return []; throw e; });
+  const cols = "essay_snippets!inner(id, answer_id, kind, body, attribution, why, page, status)";
+  const fits = pyqIds?.length ? await selectIn(sb, "essay_snippet_fits", `snippet_id, pyq_id, use_note, rank, ${cols}`,
+    "pyq_id", pyqIds, 100).catch((e) => { if (missingTable(e)) return []; throw e; }) : [];
+  // Cards linked straight to a topic (a GS topic with no recent PYQ, say).
+  const links = themeIds?.length ? await selectIn(sb, "essay_snippet_topics", `snippet_id, theme_id, use_note, ${cols}`,
+    "theme_id", themeIds, 100).catch((e) => { if (missingTable(e)) return []; throw e; }) : [];
   const byId = new Map();
   for (const f of fits) {
     const s = f.essay_snippets;
     if (!s || s.status !== "published") continue;
     if (!byId.has(s.id)) byId.set(s.id, { ...snippetFromRow(s), fits: [] });
     byId.get(s.id).fits.push({ pyqId: f.pyq_id, use: f.use_note, rank: f.rank ?? 1 });
+  }
+  for (const l of links) {
+    const s = l.essay_snippets;
+    if (!s || s.status !== "published") continue;
+    if (!byId.has(s.id)) byId.set(s.id, { ...snippetFromRow(s), fits: [] });
+    if (!byId.get(s.id).topicUse) byId.get(s.id).topicUse = l.use_note;
   }
   const list = [...byId.values()];
   const answers = [...new Set(list.map((s) => s.answerId).filter(Boolean))];

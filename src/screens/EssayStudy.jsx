@@ -604,6 +604,7 @@ export function SnippetCard({ s, focusPyqId = null, pyqById, topicOf, starred, o
         <div className="sn-src"><span>{t("wk_editor_pick")}</span></div>
       )}
       {here && <div className="sn-use"><b>{t("wk_use_here")}</b> {here.use}</div>}
+      {!here && !focusPyqId && s.topicUse && <div className="sn-use"><b>{t("wk_use_here")}</b> {s.topicUse}</div>}
       {s.why && <div className="sn-why">{fill(t("wk_why"), { x: s.why })}</div>}
       {others.length > 0 && (
         <div className="sn-fits">
@@ -622,19 +623,20 @@ export function SnippetCard({ s, focusPyqId = null, pyqById, topicOf, starred, o
 }
 
 /* Snippets that fit these PYQs, keyed like the other loaders. */
-function useSnippets(pyqIds) {
+function useSnippets(pyqIds, themeIds = []) {
   const [tries, setTries] = useState(0);
   const ids = pyqIds.join(",");
-  const key = `${ids}|${tries}`;
+  const tids = themeIds.join(",");
+  const key = `${ids}|${tids}|${tries}`;
   const [res, setRes] = useState({ key: null, list: [], err: "" });
   useEffect(() => {
     let alive = true;
-    DB.essaySnippetsForPyqs(ids ? ids.split(",") : []).then(
+    DB.essaySnippetsForPyqs(ids ? ids.split(",") : [], tids ? tids.split(",") : []).then(
       (list) => { if (alive) setRes({ key, list, err: "" }); },
       (e) => { if (alive) setRes({ key, list: [], err: e?.message || " " }); },
     );
     return () => { alive = false; };
-  }, [key, ids]);
+  }, [key, ids, tids]);
   return { loading: res.key !== key, list: res.list, err: res.err, retry: () => setTries((n) => n + 1) };
 }
 
@@ -744,7 +746,7 @@ export function WikiTab({ themes, pyqs, ctx }) {
             {onBrowse && <button className="btn btn-sm btn-ghost" onClick={onBrowse}>{t("es_see_bundles")}</button>}
           </div>
         )}
-        <WikiList key={active} pyqIds={pyqIds} counts={perTheme.get(active)} kind={kind} setKind={setKind} q={q} setQ={setQ} ctx={ctx} />
+        <WikiList key={active} pyqIds={pyqIds} themeId={active} counts={perTheme.get(active)} kind={kind} setKind={setKind} q={q} setQ={setQ} ctx={ctx} />
       </div>
     </div>
   );
@@ -752,9 +754,10 @@ export function WikiTab({ themes, pyqs, ctx }) {
 
 const WIKI_PAGE = 20;
 
-function WikiList({ pyqIds, counts, kind, setKind, q, setQ, ctx }) {
+function WikiList({ pyqIds, themeId, counts, kind, setKind, q, setQ, ctx }) {
   const { t } = ctx;
-  const { loading, list, err, retry } = useSnippets(pyqIds);
+  const themeIds = useMemo(() => (themeId ? [themeId] : []), [themeId]);
+  const { loading, list, err, retry } = useSnippets(pyqIds, themeIds);
   const [shownN, setShownN] = useState(WIKI_PAGE);
   const needle = q.trim().toLowerCase();
   const matches = list

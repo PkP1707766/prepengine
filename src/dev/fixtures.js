@@ -671,6 +671,7 @@ const FX_GS_THEMES = [
   GT("gs3", "gs3-new-technologies", "IT, Space, AI, Biotech & Nanotech", "IT, अंतरिक्ष, AI, जैव एवं नैनो प्रौद्योगिकी", 13),
   GT("gs4", "gs4-quotations", "Quotations", "उद्धरण", 7),
   GT("gs4", "gs4-case-studies", "Case Studies", "केस स्टडी", 14),
+  GT("gs4", "gs4-attitude", "Attitude", "अभिवृत्ति", 3),   // no PYQs: its cards are linked to the topic directly
 ];
 const GQ = (id, paper, year, qNo, section, marks, wordLimit, topic, theme, n) => ({
   id, paper, year, qNo, section: section || "", marks, wordLimit, topic, topicHi: "", isPublished: true,
@@ -843,20 +844,29 @@ const FX_SNIPPETS = [
     "", [["gq-9", "Add under 'Meaning' to ground the quotation in evidence from psychology."]]),
   SN("gf-5", null, "example", "NASA's DART mission in 2022 shortened the orbit of the asteroid Dimorphos by about 32 minutes, the first test of planetary defence.",
     "", [["gq-8", "Add under 'Deflection strategies' as proof that kinetic impact works."]]),
+  // Linked straight to a topic that has no PYQ.
+  { ...SN("gf-6", null, "thinker", "Leon Festinger's theory of cognitive dissonance (1957) holds that people feel discomfort when their actions conflict with their attitudes, and often change attitudes to restore harmony.",
+    "", []), topics: [["gs4-attitude", "Use in answers on attitude change to explain why people rationalise or revise their beliefs."]] },
 ];
 export function fxWikiCounts() {
   const out = new Map();
-  for (const s of FX_SNIPPETS) for (const f of s.fits) {
-    const p = FX_ESSAY_PYQS.find((x) => x.id === f.pyqId) || FX_GS_PYQS.find((x) => x.id === f.pyqId);
-    for (const th of p?.themes ?? []) { const k = `${th.id}|${s.kind}`; out.set(k, (out.get(k) || new Set()).add(s.id)); }
+  const put = (themeId, s) => { const k = `${themeId}|${s.kind}`; out.set(k, (out.get(k) || new Set()).add(s.id)); };
+  for (const s of FX_SNIPPETS) {
+    for (const f of s.fits) {
+      const p = FX_ESSAY_PYQS.find((x) => x.id === f.pyqId) || FX_GS_PYQS.find((x) => x.id === f.pyqId);
+      for (const th of p?.themes ?? []) put(th.id, s);
+    }
+    for (const [themeId] of s.topics ?? []) put(themeId, s);
   }
   return [...out].map(([k, set]) => { const [themeId, kind] = k.split("|"); return { themeId, kind, n: set.size }; });
 }
-export function fxSnippetsForPyqs(pyqIds) {
+export function fxSnippetsForPyqs(pyqIds, themeIds = []) {
   const want = new Set(pyqIds);
-  return FX_SNIPPETS.filter((s) => s.fits.some((f) => want.has(f.pyqId))).map((s) => {
+  const wantTh = new Set(themeIds);
+  return FX_SNIPPETS.filter((s) => s.fits.some((f) => want.has(f.pyqId)) || (s.topics ?? []).some(([th]) => wantTh.has(th))).map((s) => {
     const a = FX_ANSWERS.find((x) => x.answerId === s.answerId);
-    return { ...s, use: "", fitPyqId: null, fits: s.fits.filter((f) => want.has(f.pyqId)), entry: a ? { ...a, links: undefined } : null };
+    const topicUse = (s.topics ?? []).find(([th]) => wantTh.has(th))?.[1];
+    return { ...s, use: "", fitPyqId: null, fits: s.fits.filter((f) => want.has(f.pyqId)), topicUse, entry: a ? { ...a, links: undefined } : null };
   });
 }
 export function fxLibraryEntries(ids) {
