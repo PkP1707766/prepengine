@@ -832,11 +832,22 @@ const FX_SNIPPETS = [
     "Courage defined by mastery of fear.",
     [["pq-10", "Captures the courage to accept as the first key to success."], ["pq-5", "Use to show that the journey asks for courage at every step."]],
     "Nelson Mandela, Long Walk to Freedom (1994)"),
+  // GS Fact Bank cards: editor-written, linked to GS PYQs.
+  SN("gf-1", null, "judgment", "In the Fourth Judges case (2015), the Supreme Court struck down the NJAC, holding that judicial primacy in appointments is part of the basic structure.",
+    "", [["gq-4", "Add under 'Evolution of the collegium' to show why the collegium survived the 2014 reform."]]),
+  SN("gf-2", null, "report", "The Second ARC recommended clear devolution of functions, funds and functionaries to local bodies.",
+    "", [["gq-5", "Cite under 'Recent reforms' to show what fiscal federalism still lacks at the local level."]]),
+  SN("gf-3", null, "statistic", "India's foodgrain production reached a record of about 358 million tonnes in 2024-25, according to the Agriculture Ministry's final estimates.",
+    "", [["gq-7", "Use in the introduction to set the context of a food-surplus country diversifying its crops."]]),
+  SN("gf-4", null, "thinker", "Carol Dweck's research on a growth mindset shows that believing ability can grow improves learning and resilience.",
+    "", [["gq-9", "Add under 'Meaning' to ground the quotation in evidence from psychology."]]),
+  SN("gf-5", null, "example", "NASA's DART mission in 2022 shortened the orbit of the asteroid Dimorphos by about 32 minutes, the first test of planetary defence.",
+    "", [["gq-8", "Add under 'Deflection strategies' as proof that kinetic impact works."]]),
 ];
 export function fxWikiCounts() {
   const out = new Map();
   for (const s of FX_SNIPPETS) for (const f of s.fits) {
-    const p = FX_ESSAY_PYQS.find((x) => x.id === f.pyqId);
+    const p = FX_ESSAY_PYQS.find((x) => x.id === f.pyqId) || FX_GS_PYQS.find((x) => x.id === f.pyqId);
     for (const th of p?.themes ?? []) { const k = `${th.id}|${s.kind}`; out.set(k, (out.get(k) || new Set()).add(s.id)); }
   }
   return [...out].map(([k, set]) => { const [themeId, kind] = k.split("|"); return { themeId, kind, n: set.size }; });

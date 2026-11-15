@@ -189,6 +189,10 @@ const GS_TEXT = {
   st_sec_essays: "gs_sec_answers", st_sec_essays_n: "gs_sec_answers_n",
   es_copies_empty_text: "gs_copies_empty_text", es_copies_empty_title: "gs_copies_empty_title", es_load_fail: "gs_load_fail",
   es_search_copies: "gs_search_copies", st_done_pyqs: "gs_done_pyqs", st_streak_hint: "gs_streak_hint",
+  es_tab_wiki: "gs_tab_wiki", st_sec_wiki: "gs_sec_wiki", wk_editor_pick: "gs_wk_editor_pick", wk_pyq_none: "gs_wk_pyq_none",
+  wk_none_here: "gs_wk_none_here", wk_empty_title: "gs_wk_empty_title", wk_empty_text: "gs_wk_empty_text", wk_search: "gs_wk_search",
+  wk_locked: "gs_wk_locked", wk_locked_text: "gs_wk_locked_text", wk_fail: "gs_wk_fail",
+  wk_fits_one: "gs_wk_fits_one", wk_fits_n: "gs_wk_fits_n",
 };
 /* A GS topic gathers a hundred or more test questions: shown a dozen at a time. */
 const GS_GROUPS_STEP = 12;
@@ -198,8 +202,8 @@ export default function EssayView({ onBrowse, paper = "essay" }) {
   const { t: t0, lang } = useLang();
   const gs = paper !== "essay";
   const t = useCallback((k) => t0(gs && GS_TEXT[k] ? GS_TEXT[k] : k), [gs, t0]);
-  // The wiki is the Essay's for now; a GS paper has PYQs, copies and notes.
-  const tabs = gs ? TABS.filter(([k]) => k !== "wiki") : TABS;
+  // A GS paper's wiki is its Fact Bank: the same tab, with GS card types.
+  const tabs = TABS;
   const [tab, setTab] = useState(() => {
     const k = loadKey(`${paper}:tab`, "pyqs");
     return tabs.some(([x]) => x === k) ? k : "pyqs";
@@ -649,6 +653,7 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
   const sections = gs ? [
     ["essays", total ? fill(t("st_sec_essays_n"), { n: total }) : t("st_sec_essays")],
     ...(ltwReady.has(pyq.id) ? [["ltw", t("ltw_btn")]] : []),
+    ["wiki", t("st_sec_wiki")],
   ] : [
     ["essays", total ? fill(t("st_sec_essays_n"), { n: total }) : t("st_sec_essays")],
     ["ltw", t("ltw_btn")],
