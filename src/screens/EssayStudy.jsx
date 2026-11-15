@@ -142,7 +142,9 @@ button.st-stat:hover{border-color:var(--gold-2)}
 `;
 
 const fill = (s, vars) => Object.entries(vars).reduce((out, [k, v]) => out.split(`{${k}}`).join(String(v)), s);
-const KINDS = ["opening", "closing", "quote", "anecdote", "example", "statistic"];
+// The Essay Wiki's kinds, then the GS Fact Bank's; a list shows only the kinds it has.
+const KINDS = ["opening", "closing", "quote", "anecdote", "example", "statistic",
+  "judgment", "constitution", "report", "scheme", "history", "thinker"];
 const words = (s) => (String(s || "").match(/\S+/g) || []).length;
 
 /* ------------------------------------------------------------ the strip -- */
