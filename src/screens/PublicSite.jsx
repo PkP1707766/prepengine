@@ -3032,8 +3032,10 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const nameOf = (th) => (lang === "hi" && th.nameHi ? th.nameHi : th.name);
   const topicOf = (p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic);
   const included = view ? (bundles || []).filter((b) => data.codes?.includes(b.code)) : [];
-  // The plan to sell from: the cheapest active one that includes Mains.
-  const offer = included.length ? [...included].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0))[0] : null;
+  // The plan to sell from: the Essay's own plan (a Mains plan with no papers)
+  // when there is one, else the cheapest bundle that brings Mains along.
+  const byPrice = [...included].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+  const offer = byPrice.find((b) => !b.testCount) || byPrice[0] || null;
   const owns = !!session && included.some((b) => owned?.has(b.code));
   // Leave word of where to land, then go: the dashboard opens on Essay, on the
   // theme or year picked; a visitor signs in first.
@@ -3042,6 +3044,12 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
     saveKey("essay:mode", m);
     saveKey("essay:pick", pick == null ? "all" : String(pick));
     askOpenView("essay");
+    if (session) onDashboard(); else onLogin();
+  };
+
+  // GS opens on the dashboard's General Studies view; a visitor signs in first.
+  const openGs = () => {
+    askOpenView("gs");
     if (session) onDashboard(); else onLogin();
   };
 
@@ -3156,9 +3164,9 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                   items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
                   {offerEl(false, onOpenPage)}
                 </ShelfCard>
-                <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("card_soon")}
+                <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("pm_cc_g_badge")}
                   items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
-                  foot={t("pm_cc_g_foot")} soon />
+                  foot={t("pm_cc_g_open")} onGo={openGs} goLabel={t("pm_cc_g_open")} />
               </div>
             )}
           </div>
@@ -3502,7 +3510,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
   // sort_order so UPSC leads and "Other" trails.
   // Mains plans sell the Mains section, not papers: they live in the Essay
   // catalogue, never as an empty series here.
-  const seriesBundles = (bundles || []).filter((b) => !(b.includesMains && !b.testCount));
+  const seriesBundles = (bundles || []).filter((b) => !((b.includesMains || b.includesGs) && !b.testCount));
   const examTabs = [];
   const seen = new Set();
   seriesBundles.forEach((b) => {

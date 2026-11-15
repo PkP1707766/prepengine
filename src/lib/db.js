@@ -184,6 +184,7 @@ const bundleFromRow = (r) => ({
   freeTestCount: r.free_test_count ?? 0,
   // A Mains plan sells the Mains section, not papers (0033).
   includesMains: r.includes_mains === true,
+  includesGs: r.includes_gs === true,
   sortOrder: r.sort_order ?? 0,
   // Null when no PDF has been uploaded yet -- the UI reads this as "don't
   // render the brochure button at all", so a plan without a flyer is silent
