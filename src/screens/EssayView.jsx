@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Lock, ExternalLink, BookOpen, Search, X, PenLine, FileText, GraduationCap } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, Lock, ExternalLink, BookOpen, Search, X, PenLine, FileText, GraduationCap, Check, Filter, BarChart3 } from "lucide-react";
 import { useLang } from "../lib/contexts.js";
 import { EmptyState, ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 import CopyViewer from "../ui/CopyViewer.jsx";
@@ -42,7 +42,63 @@ const ES_CSS = `
   font-size:13px;font-weight:600;color:var(--ink);padding:8px 10px;border-radius:8px;line-height:1.35}
 .es-rail-item:hover{background:var(--hair)}
 .es-rail-item.on{background:var(--navy);color:#ffffff}
-.es-rail-item .n{font-size:11.5px;font-weight:700;opacity:.7;font-variant-numeric:tabular-nums;flex-shrink:0;white-space:nowrap}
+.es-rail-item .n{font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;flex-shrink:0;white-space:nowrap;
+  padding:2px 8px;border-radius:999px;background:var(--hair);border:1px solid var(--line);color:var(--ink)}
+/* A rail item: its name, then "x% completed" and its count, then a bar. */
+.es-rail-item{flex-direction:column;align-items:stretch;gap:6px;padding:10px 10px 11px;border-bottom:1px solid var(--line);border-radius:0}
+.es-rail-item.on{border-radius:8px;border-bottom-color:transparent}
+.es-ri-name{display:block}
+.es-ri-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.es-ri-pct{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+.es-rail-item.on .es-ri-pct,.es-rail-item.on .n{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);color:#fff}
+.es-ri-bar{display:block;height:4px;border-radius:999px;background:var(--line);overflow:hidden}
+.es-ri-bar span{display:block;height:100%;border-radius:inherit;background:var(--green);transition:width .3s}
+.es-rail-item.on .es-ri-bar{background:rgba(255,255,255,.25)}
+.es-rail-item.on .es-ri-bar span{background:#fff}
+.es-ri-bar.big{height:6px;margin-top:8px}
+.es-rail-search{margin-bottom:8px}
+.es-rail-search input{padding:8px 0;font-size:13px}
+.es-rail-search button{display:grid;place-items:center;color:var(--muted)}
+.es-grid.rail-shut{grid-template-columns:minmax(0,1fr)}
+.es-sel-head{display:flex;align-items:flex-start;gap:12px;padding:2px 2px 14px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.es-rail-toggle{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);margin-top:2px}
+.es-rail-toggle:hover{border-color:var(--gold-2)}
+.es-sel-main{flex:1;min-width:0}
+.es-sel-title{font-size:15px;font-weight:800;color:var(--ink);line-height:1.4}
+.es-sel-title span{font-weight:600;color:var(--muted)}
+.es-sel-prog{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.es-sel-prog span{display:inline-flex;align-items:center;gap:5px}
+.es-sel-count{color:var(--green)}
+.es-prog-btn{flex:none;width:auto}
+.es-filters{padding:0;margin-bottom:14px;overflow:hidden}
+.es-filters-h{display:flex;align-items:center;gap:8px;width:100%;padding:11px 14px;font-size:13.5px;font-weight:700;color:var(--ink);text-align:left}
+.es-filters-on{font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--amb-bg);color:var(--gold-2)}
+.es-chev{margin-left:auto;transition:transform .2s;color:var(--muted)}
+.es-chev.up{transform:rotate(180deg)}
+.es-filters-body{display:flex;flex-direction:column;gap:10px;padding:2px 14px 14px;border-top:1px solid var(--line);padding-top:12px}
+.es-fgroup{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.es-fgroup > span{font-size:12px;font-weight:700;color:var(--muted);min-width:64px}
+.es-pill{font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid var(--line);color:var(--muted);background:var(--card)}
+.es-pill.on{border-color:var(--navy-2);color:var(--navy-2);background:var(--amb-bg)}
+.es-clear{align-self:flex-start;font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:underline}
+.es-year-btn{display:flex;align-items:center;gap:10px;width:100%;text-align:left}
+.es-year-line{flex:1;height:1px;background:var(--line)}
+.es-tags{font-size:12px;font-weight:600;color:var(--muted);line-height:1.45;min-width:0}
+.es-done-tick{display:inline-flex;align-items:center;gap:6px;flex:none;font-size:12.5px;font-weight:700;color:var(--muted)}
+.es-done-tick .o{width:16px;height:16px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center}
+.es-done-tick.on{color:var(--green)}
+.es-done-tick.on .o{background:var(--green);border-color:var(--green);color:#fff}
+.es-card.is-done{border-color:color-mix(in srgb,var(--green) 40%,var(--line))}
+.es-qsuffix{font-weight:600;color:var(--muted);white-space:nowrap}
+.es-card .es-actions{border-top:1px solid var(--line);padding-top:12px;align-items:center}
+.modal.es-prog-modal{max-width:560px;width:calc(100% - 28px);max-height:calc(100vh - 40px);display:flex;flex-direction:column}
+.es-prog-modal .modal-body{overflow:auto;flex:1;min-height:0}
+.es-prog-total{margin-bottom:14px;font-size:14px;color:var(--ink)}
+.es-prog-row{display:grid;grid-template-columns:minmax(0,1fr) 110px 52px;align-items:center;gap:10px;width:100%;text-align:left;
+  padding:9px 4px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink)}
+.es-prog-row:hover{background:var(--hair)}
+.es-prog-row .c{font-size:12px;font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
 .es-pick{display:none;margin-bottom:12px}
 .es-pick select,.es-tool select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;
   background:var(--card);color:var(--ink);font:inherit;font-size:13.5px}
@@ -124,7 +180,7 @@ const TABS = [["pyqs", "es_tab_pyqs"], ["copies", "es_tab_copies"], ["wiki", "es
    there, not essays, and PYQs are filed under syllabus topics, not themes.
    Each key on the left reads as the key on the right when the paper is GS. */
 const GS_TEXT = {
-  es_tab_pyqs: "gs_tab_pyqs", es_tab_copies: "gs_tab_copies", es_by_theme: "gs_by_topic", es_all_themes: "gs_all_topics",
+  es_rail_search: "gs_rail_search", es_tab_pyqs: "gs_tab_pyqs", es_tab_copies: "gs_tab_copies", es_by_theme: "gs_by_topic", es_all_themes: "gs_all_topics",
   es_theme_label: "gs_topic_label", es_read_n: "gs_read_n", es_read_one: "gs_read_one", es_no_essays: "gs_no_answers",
   es_empty_title: "gs_empty_title", es_empty_text: "gs_empty_text", es_theme_empty: "gs_topic_empty",
   es_related_q: "gs_test_q", es_n_essays: "gs_n_answers", es_one_essay: "gs_one_answer", es_marks_note: "gs_answers_note",
@@ -314,13 +370,24 @@ const pyqTag = (p, gs) => (gs
 function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, toggleMark, ltwReady, paper, gs }) {
   const [mode, setMode] = useState(() => (loadKey(`${paper}:mode`, "theme") === "year" ? "year" : "theme"));
   const [pick, setPick] = useState(() => loadKey(`${paper}:pick`, "all"));
+  const [railOpen, setRailOpen] = useState(() => loadKey(`${paper}:rail`, "open") !== "closed");
+  const [railQ, setRailQ] = useState("");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [status, setStatus] = useState("all");      // all | todo | done | starred
+  const [guideOnly, setGuideOnly] = useState(false);
+  const [markF, setMarkF] = useState("all");
+  const [sort, setSort] = useState("new");
+  const [shut, setShut] = useState(() => new Set()); // years folded away
+  const [progressOpen, setProgressOpen] = useState(false);
   const byId = useMemo(() => new Map(themes.map((th) => [th.id, th])), [themes]);
+  const isDone = useCallback((p) => !!marks.pyq.get(p.id)?.done, [marks]);
 
   const themeCounts = useMemo(() => {
     const m = new Map();
     pyqs.forEach((p) => p.themes.forEach((x) => m.set(x.id, (m.get(x.id) || 0) + 1)));
     return m;
   }, [pyqs]);
+  const doneIn = useCallback((list) => list.filter(isDone).length, [isDone]);
   const railThemes = useMemo(() => themes
     .filter((th) => themeCounts.get(th.id))
     // Essay themes by size; GS topics in the order the syllabus lists them.
@@ -334,15 +401,23 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
 
   const setModeKeep = (m) => { setMode(m); setPick("all"); saveKey(`${paper}:mode`, m); saveKey(`${paper}:pick`, "all"); };
   const choose = (v) => { setPick(v); saveKey(`${paper}:pick`, v); };
+  const toggleRail = () => setRailOpen((o) => { saveKey(`${paper}:rail`, o ? "closed" : "open"); return !o; });
   // A remembered pick that no longer exists (a theme renamed away) falls back to all.
   const valid = pick === "all"
     || (mode === "theme" ? themeCounts.has(pick) : years.some(([y]) => String(y) === String(pick)));
   const active = valid ? pick : "all";
+  const inPick = (p) => active === "all"
+    || (mode === "theme" ? p.themes.some((x) => x.id === active) : String(p.year) === String(active));
+  const picked = pyqs.filter(inPick);
 
-  const shown = pyqs.filter((p) => active === "all"
-    || (mode === "theme" ? p.themes.some((x) => x.id === active) : String(p.year) === String(active)));
+  const markOptions = useMemo(() => [...new Set(pyqs.map((p) => p.marks).filter(Boolean))].sort((a, b) => a - b), [pyqs]);
+  const filtersOn = status !== "all" || guideOnly || markF !== "all";
+  const shown = picked.filter((p) => (status === "all" || (status === "done" ? isDone(p)
+      : status === "todo" ? !isDone(p) : !!marks.pyq.get(p.id)?.starred))
+    && (!guideOnly || ltwReady.has(p.id))
+    && (markF === "all" || String(p.marks) === markF));
   const groups = [];
-  shown.forEach((p) => {
+  (sort === "old" ? [...shown].reverse() : shown).forEach((p) => {
     const last = groups[groups.length - 1];
     if (last && last.year === p.year) last.items.push(p);
     else groups.push({ year: p.year, items: [p] });
@@ -352,24 +427,45 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
     return <div className="card card-pad"><EmptyState icon={<PenLine size={26} />} title={t("es_empty_title")} text={t("es_empty_text")} /></div>;
   }
 
+  // [id, label, pyqs in it]
   const railItems = mode === "theme"
-    ? [["all", t("es_all_themes"), pyqs.length], ...railThemes.map((th) => [th.id, themeName(th), themeCounts.get(th.id)])]
-    : [["all", t("es_all_years"), pyqs.length], ...years.map(([y, n]) => [String(y), String(y), n])];
+    ? [["all", t("es_all_themes"), pyqs], ...railThemes.map((th) => [th.id, themeName(th), pyqs.filter((p) => p.themes.some((x) => x.id === th.id))])]
+    : [["all", t("es_all_years"), pyqs], ...years.map(([y]) => [String(y), String(y), pyqs.filter((p) => p.year === y)])];
+  const needle = railQ.trim().toLowerCase();
+  const railShown = needle ? railItems.filter(([id, label]) => id === "all" || label.toLowerCase().includes(needle)) : railItems;
+  const activeLabel = railItems.find(([id]) => id === active)?.[1] || "";
+  const pct = (list) => (list.length ? Math.round((doneIn(list) / list.length) * 100) : 0);
+  const qTag = (p) => (gs && p.qNo ? `Q${p.qNo}${p.section ? `(${p.section})` : ""}) ` : "");
 
   return (
-    <div className="es-grid">
-      <aside className="card es-rail">
-        <div className="es-seg" role="tablist">
-          <button className={mode === "theme" ? "on" : ""} onClick={() => setModeKeep("theme")}>{t("es_by_theme")}</button>
-          <button className={mode === "year" ? "on" : ""} onClick={() => setModeKeep("year")}>{t("es_by_year")}</button>
-        </div>
-        {railItems.map(([id, label, n]) => (
-          <button key={id} className={"es-rail-item" + (active === id ? " on" : "")} onClick={() => choose(id)}
-                  aria-current={active === id ? "true" : undefined}>
-            <span>{label}</span><span className="n">{n}</span>
-          </button>
-        ))}
-      </aside>
+    <div className={"es-grid" + (railOpen ? "" : " rail-shut")}>
+      {railOpen && (
+        <aside className="card es-rail">
+          <div className="es-seg" role="tablist">
+            <button className={mode === "theme" ? "on" : ""} onClick={() => setModeKeep("theme")}>{t("es_by_theme")}</button>
+            <button className={mode === "year" ? "on" : ""} onClick={() => setModeKeep("year")}>{t("es_by_year")}</button>
+          </div>
+          <label className="es-search es-rail-search">
+            <Search size={14} />
+            <input value={railQ} onChange={(e) => setRailQ(e.target.value)} placeholder={t(mode === "theme" ? "es_rail_search" : "es_rail_search_y")} />
+            {railQ && <button onClick={() => setRailQ("")} aria-label={t("es_clear")}><X size={14} /></button>}
+          </label>
+          {railShown.map(([id, label, list]) => {
+            const p = pct(list);
+            return (
+              <button key={id} className={"es-rail-item" + (active === id ? " on" : "")} onClick={() => choose(id)}
+                      aria-current={active === id ? "true" : undefined}>
+                <span className="es-ri-name">{label}</span>
+                <span className="es-ri-meta">
+                  <span className="es-ri-pct">{fill(t("es_pct_done"), { p })}</span>
+                  <span className="n">{list.length === 1 ? t("es_n_pyq_one") : fill(t("es_n_pyqs"), { n: list.length })}</span>
+                </span>
+                <span className="es-ri-bar"><span style={{ width: `${p}%` }} /></span>
+              </button>
+            );
+          })}
+        </aside>
+      )}
 
       <div style={{ minWidth: 0 }}>
         <div className="es-pick">
@@ -378,60 +474,134 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
             <button className={mode === "year" ? "on" : ""} onClick={() => setModeKeep("year")}>{t("es_by_year")}</button>
           </div>
           <select value={active} onChange={(e) => choose(e.target.value)} aria-label={mode === "theme" ? t("es_theme_label") : t("es_year_label")}>
-            {railItems.map(([id, label, n]) => <option key={id} value={id}>{label} ({n})</option>)}
+            {railItems.map(([id, label, list]) => <option key={id} value={id}>{label} ({list.length})</option>)}
           </select>
         </div>
 
+        <div className="es-sel-head">
+          <button className="es-rail-toggle" onClick={toggleRail} aria-label={t(railOpen ? "es_hide_rail" : "es_show_rail")} title={t(railOpen ? "es_hide_rail" : "es_show_rail")}>
+            {railOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+          </button>
+          <div className="es-sel-main">
+            <div className="es-sel-title"><span>{t(mode === "theme" ? "es_theme_label" : "es_year_label")}:</span> {activeLabel}</div>
+            <div className="es-sel-prog">
+              <span><Check size={13} /> {t("es_pyqs_completed")}</span>
+              <span className="es-sel-count">{fill(t("es_done_of"), { d: doneIn(picked), n: picked.length })}</span>
+            </div>
+            <span className="es-ri-bar big"><span style={{ width: `${pct(picked)}%` }} /></span>
+          </div>
+          <button className="btn btn-sm btn-ghost es-prog-btn" onClick={() => setProgressOpen(true)}><BarChart3 size={14} />{t("es_progress")}</button>
+        </div>
+
+        <div className="card es-filters">
+          <button className="es-filters-h" onClick={() => setFiltersOpen((o) => !o)} aria-expanded={filtersOpen}>
+            <Filter size={14} />{t("es_filter_sort")}
+            {filtersOn && <span className="es-filters-on">{t("es_filters_on")}</span>}
+            <ChevronDown size={16} className={"es-chev" + (filtersOpen ? " up" : "")} />
+          </button>
+          {filtersOpen && (
+            <div className="es-filters-body">
+              <div className="es-fgroup">
+                <span>{t("es_f_status")}</span>
+                {[["all", "es_f_all"], ["todo", "es_f_todo"], ["done", "es_f_done"], ["starred", "es_f_starred"]].map(([k, key]) => (
+                  <button key={k} className={"es-pill" + (status === k ? " on" : "")} onClick={() => setStatus(k)}>{t(key)}</button>
+                ))}
+              </div>
+              {markOptions.length > 1 && (
+                <div className="es-fgroup">
+                  <span>{t("es_f_marks")}</span>
+                  <button className={"es-pill" + (markF === "all" ? " on" : "")} onClick={() => setMarkF("all")}>{t("es_f_all")}</button>
+                  {markOptions.map((m) => <button key={m} className={"es-pill" + (markF === String(m) ? " on" : "")} onClick={() => setMarkF(String(m))}>{m}M</button>)}
+                </div>
+              )}
+              <div className="es-fgroup">
+                <span>{t("es_f_sort")}</span>
+                <button className={"es-pill" + (sort === "new" ? " on" : "")} onClick={() => setSort("new")}>{t("es_sort_new")}</button>
+                <button className={"es-pill" + (sort === "old" ? " on" : "")} onClick={() => setSort("old")}>{t("es_sort_old")}</button>
+                <button className={"es-pill" + (guideOnly ? " on" : "")} onClick={() => setGuideOnly((g) => !g)}>{t("es_f_guide")}</button>
+              </div>
+              {filtersOn && <button className="es-clear" onClick={() => { setStatus("all"); setGuideOnly(false); setMarkF("all"); }}>{t("es_clear")}</button>}
+            </div>
+          )}
+        </div>
+
         {shown.length === 0 ? (
-          <div className="card card-pad"><EmptyState compact title={t("es_theme_empty")} /></div>
-        ) : groups.map((g) => (
-          <div key={g.year}>
-            <div className="es-year">{g.year}</div>
-            <div className="es-cards">
-              {g.items.map((p) => {
-                const [main, ...rest] = p.themes.map((x) => byId.get(x.id)).filter(Boolean);
-                const n = p.essayCount;
-                const mk = marks.pyq.get(p.id);
-                const ltw = ltwReady.has(p.id);
-                return (
-                  <article className="card es-card" key={p.id}>
-                    <div className="es-card-top">
-                      {/* Not "main": StudentApp's layout column is .main, and the two collided. */}
-                      {main ? <span className="es-chip es-lead">{themeName(main)}</span> : <span />}
-                      <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        {mk?.done && <span className="st-chip-done">✓ {t("st_done")}</span>}
-                        <span className="es-yr">{pyqTag(p, gs)}</span>
-                        <StarButton on={!!mk?.starred} onClick={() => toggleMark("pyq", p.id, "starred")} t={t} />
-                      </span>
-                    </div>
-                    <div className={"es-topic" + (gs ? " es-clamp" : "") + (lang === "hi" && p.topicHi ? " hi" : "")}>{topicOf(p)}</div>
-                    {gs && p.marks != null && (
-                      <div className="es-qmeta">{fill(t("gs_marks_words"), { m: p.marks, w: p.wordLimit ?? "" })}</div>
-                    )}
-                    {rest.length > 0 && (
-                      <div className="es-also">{t("es_also_under")}{rest.map((th) => <span key={th.id} className="es-chip">{themeName(th)}</span>)}</div>
-                    )}
-                    <div className="es-actions">
-                      <button className={"btn btn-sm " + (n ? "btn-primary" : "btn-ghost")} disabled={!n} onClick={() => onOpen(p, "essays")}
-                              style={n ? undefined : { opacity: 0.7, cursor: "default" }}>
-                        <BookOpen size={15} />
-                        {n === 0 ? t("es_no_essays") : n === 1 ? t("es_read_one") : fill(t("es_read_n"), { n })}
-                        {n > 0 && <ChevronRight size={15} />}
-                      </button>
-                      {ltw && (
-                        <button className="btn btn-sm btn-ghost" onClick={() => onOpen(p, "ltw")}>
-                          <GraduationCap size={15} />{t("ltw_btn")}
-                        </button>
-                      )}
-                      <DoneButton on={!!mk?.done} onClick={() => toggleMark("pyq", p.id, "done")} t={t} />
-                    </div>
-                  </article>
-                );
-              })}
+          <div className="card card-pad"><EmptyState compact title={t(filtersOn ? "es_no_filter_match" : "es_theme_empty")} /></div>
+        ) : groups.map((g) => {
+          const folded = shut.has(g.year);
+          return (
+            <div key={g.year}>
+              <button className="es-year es-year-btn" onClick={() => setShut((s) => { const n = new Set(s); if (n.has(g.year)) n.delete(g.year); else n.add(g.year); return n; })}
+                      aria-expanded={!folded}>
+                <span>{g.year}</span><span className="es-year-line" /><ChevronDown size={15} className={"es-chev" + (folded ? "" : " up")} />
+              </button>
+              {!folded && (
+                <div className="es-cards">
+                  {g.items.map((p) => {
+                    const tags = p.themes.map((x) => byId.get(x.id)).filter(Boolean);
+                    const n = p.essayCount;
+                    const mk = marks.pyq.get(p.id);
+                    const ltw = ltwReady.has(p.id);
+                    return (
+                      <article className={"card es-card" + (mk?.done ? " is-done" : "")} key={p.id}>
+                        <div className="es-card-top">
+                          {/* Not "main": StudentApp's layout column is .main, and the two collided. */}
+                          <span className="es-tags">{tags.map((th) => themeName(th)).join(" · ") || " "}</span>
+                          <button className={"es-done-tick" + (mk?.done ? " on" : "")} onClick={() => toggleMark("pyq", p.id, "done")} aria-pressed={!!mk?.done}>
+                            <span className="o">{mk?.done && <Check size={11} />}</span>{mk?.done ? t("st_done") : t("st_mark_done")}
+                          </button>
+                        </div>
+                        <div className={"es-topic" + (gs ? " es-clamp" : "") + (lang === "hi" && p.topicHi ? " hi" : "")}>
+                          {qTag(p)}{topicOf(p)}
+                          <span className="es-qsuffix">{gs && p.marks ? ` (${p.marks}M, ${p.year})` : ` (${p.section ? `${p.year} · ${p.section}` : p.year})`}</span>
+                        </div>
+                        <div className="es-actions">
+                          <button className={"btn btn-sm " + (n ? "btn-primary" : "btn-ghost")} disabled={!n} onClick={() => onOpen(p, "essays")}
+                                  style={n ? undefined : { opacity: 0.7, cursor: "default" }}>
+                            <BookOpen size={15} />
+                            {n === 0 ? t("es_no_essays") : n === 1 ? t("es_read_one") : fill(t("es_read_n"), { n })}
+                            {n > 0 && <ChevronRight size={15} />}
+                          </button>
+                          {ltw && (
+                            <button className="btn btn-sm btn-ghost" onClick={() => onOpen(p, "ltw")}>
+                              <GraduationCap size={15} />{t("ltw_btn")}
+                            </button>
+                          )}
+                          <span style={{ marginLeft: "auto" }}><StarButton on={!!mk?.starred} onClick={() => toggleMark("pyq", p.id, "starred")} t={t} /></span>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {progressOpen && (
+        <div className="overlay" onClick={() => setProgressOpen(false)}>
+          <div className="modal es-prog-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+            <div className="modal-head">
+              <h3>{t("es_progress_title")}</h3>
+              <button className="x" onClick={() => setProgressOpen(false)} aria-label={t("es_v_close")}><X size={19} /></button>
+            </div>
+            <div className="modal-body">
+              <div className="es-prog-total">
+                <b>{fill(t("es_done_of"), { d: doneIn(pyqs), n: pyqs.length })}</b>
+                <span className="es-ri-bar big"><span style={{ width: `${pct(pyqs)}%` }} /></span>
+              </div>
+              {(mode === "theme" ? railItems.slice(1) : railItems.slice(1)).map(([id, label, list]) => (
+                <button key={id} className="es-prog-row" onClick={() => { choose(id); setProgressOpen(false); }}>
+                  <span className="l">{label}</span>
+                  <span className="es-ri-bar"><span style={{ width: `${pct(list)}%` }} /></span>
+                  <span className="c">{doneIn(list)}/{list.length}</span>
+                </button>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

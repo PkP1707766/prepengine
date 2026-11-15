@@ -70,6 +70,27 @@ button.st-stat:hover{border-color:var(--gold-2)}
 .ltw-lock .btn{width:auto}
 .ltw-blur{filter:blur(3.5px);user-select:none;pointer-events:none;color:var(--muted)}
 .ltw-foot{font-size:12px;color:var(--muted);margin:6px 2px 0;line-height:1.55}
+.gsg-directive{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--navy-2);color:#fff;margin-bottom:8px}
+.gsg-demand{font-size:15px;line-height:1.6;color:var(--ink);font-weight:600}
+.gsg-parts{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px;font-size:14px;line-height:1.55;color:var(--ink)}
+.gsg-points{margin:10px 0 0;padding-left:54px;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.6;color:var(--ink)}
+.gsg-va{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.gsg-va li{display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.6;color:var(--ink)}
+.gsg-tag{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:6px;background:var(--amb-bg);color:var(--gold-2);border:1px solid var(--line);min-width:72px;text-align:center}
+.gsg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.gsg-cell{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--hair);display:flex;flex-direction:column;gap:3px}
+.gsg-cell b{font-size:13.5px;color:var(--ink)}
+.gsg-cell span{font-size:13px;line-height:1.5;color:var(--muted)}
+.gsg-opt{padding:14px 16px;margin-bottom:10px}
+.gsg-opt.on{border-color:var(--gold-2);box-shadow:0 0 0 1px var(--gold-2) inset}
+.gsg-opt-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.gsg-opt-h b{font-size:15px;color:var(--ink);line-height:1.4;flex:1;min-width:200px}
+.gsg-chosen{font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--grn-bg);color:var(--green)}
+.gsg-pc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:10px;padding-left:36px}
+.gsg-pc ul{margin:4px 0 0;padding-left:16px;font-size:13.5px;line-height:1.55;color:var(--ink);display:flex;flex-direction:column;gap:4px}
+.gsg-pc-h{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.gsg-pc-h.ok{color:var(--green)} .gsg-pc-h.no{color:var(--red)}
+@media(max-width:560px){ .gsg-points{padding-left:20px} .gsg-pc{grid-template-columns:minmax(0,1fr);padding-left:0} .gsg-va li{flex-direction:column;gap:3px} }
 .sn-card{padding:16px 18px;margin-bottom:10px}
 .sn-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .sn-kind{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-2)}
@@ -296,6 +317,29 @@ export function LtwPanel({ pyq, entries, onText, onOpen, onBrowse, t }) {
 
   const sideName = [t("ltw_thesis"), t("ltw_antithesis"), t("ltw_synthesis")];
 
+  const gsKind = String(data.doc?.kind || data.preview?.kind || "").startsWith("gs");
+  if (data.preview && gsKind) {
+    const p = data.preview;
+    return (
+      <div>
+        <div className="card ltw-lock">
+          <Lock size={18} style={{ flex: "0 0 auto", marginTop: 2 }} />
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 800, marginBottom: 4 }}>{t("gsg_locked")}</div>
+            <div style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.55 }}>{t("gsg_locked_text")}</div>
+          </div>
+          {onBrowse && <button className="btn btn-sm btn-primary" onClick={onBrowse}>{t("es_see_bundles")}</button>}
+        </div>
+        <GsDemand d={p} t={t} />
+        {Array.isArray(p.headings) && p.headings.length > 0 && (
+          <div className="card ltw-card">
+            <div className="ltw-k">{t(p.kind === "gs-case" ? "gsg_issues" : "gsg_body")}</div>
+            <ol className="ltw-list">{p.headings.map((h, i) => <li key={i}><b>{h}</b> <span className="ltw-blur">{t("ltw_blur_line")}</span></li>)}</ol>
+          </div>
+        )}
+      </div>
+    );
+  }
   if (data.preview) {
     const p = data.preview;
     return (
@@ -327,6 +371,7 @@ export function LtwPanel({ pyq, entries, onText, onOpen, onBrowse, t }) {
     );
   }
 
+  if (gsKind) return <GsGuideDoc doc={data.doc} t={t} />;
   return <LtwDoc doc={data.doc || {}} entries={entries} onText={onText} onOpen={onOpen} t={t} />;
 }
 
@@ -396,6 +441,136 @@ export function LtwDoc({ doc, entries, onText, onOpen, t }) {
         </div>
       )}
       <p className="ltw-foot">{t("ltw_note")}</p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------- GS answer guides -- */
+
+/* A GS guide (doc.kind 'gs'): what the question asks, openings, the body as
+   headings with points, value-adds, way forward, closings, traps. A GS-IV
+   case study (doc.kind 'gs-case'): the facts, stakeholders, the ethical
+   issues, the options weighed, a course of action, the values at stake. */
+const GS_VA = ["data", "example", "case", "committee", "judgment", "report", "scheme", "article", "diagram", "quote", "thinker"];
+
+function GsVariants({ items, t }) {
+  const [i, setI] = useState(0);
+  const list = Array.isArray(items) ? items : [];
+  const cur = list[Math.min(i, list.length - 1)];
+  if (!cur) return null;
+  return (
+    <>
+      {list.length > 1 && (
+        <div className="ltw-tabs" role="tablist">
+          {list.map((x, k) => (
+            <button key={k} className={k === i ? "on" : ""} onClick={() => setI(k)} role="tab" aria-selected={k === i}>
+              {t(`gsg_v_${x.type}`) !== `gsg_v_${x.type}` ? t(`gsg_v_${x.type}`) : x.type}
+            </button>
+          ))}
+        </div>
+      )}
+      <p className="ltw-text">{cur.text}</p>
+      <div className="ltw-meta">{fill(t("es_words"), { n: words(cur.text) })}</div>
+    </>
+  );
+}
+
+function GsDemand({ d, t }) {
+  if (!d.demand && !d.parts?.length) return null;
+  return (
+    <div className="card ltw-card">
+      <div className="ltw-k">{t("gsg_demand")}</div>
+      {d.directive && <span className="gsg-directive">{d.directive}</span>}
+      {d.demand && <div className="gsg-demand">{d.demand}</div>}
+      {d.parts?.length > 0 && <ol className="gsg-parts">{d.parts.map((p, i) => <li key={i}>{p}</li>)}</ol>}
+    </div>
+  );
+}
+
+function GsList({ k, items, t, ordered = false }) {
+  if (!items?.length) return null;
+  const L = ordered ? "ol" : "ul";
+  return <div className="card ltw-card"><div className="ltw-k">{t(k)}</div><L className="ltw-list">{items.map((x, i) => <li key={i}>{x}</li>)}</L></div>;
+}
+
+/** A GS answer or case-study guide as students see it. */
+export function GsGuideDoc({ doc, t }) {
+  const d = doc || {};
+  const values = (d.values || d.keywords || []);
+  return (
+    <div>
+      <GsDemand d={d} t={t} />
+      {d.kind === "gs-case" ? (
+        <>
+          <GsList k="gsg_facts" items={d.facts} t={t} />
+          {d.stakeholders?.length > 0 && (
+            <div className="card ltw-card">
+              <div className="ltw-k">{t("gsg_stakeholders")}</div>
+              <div className="gsg-grid">{d.stakeholders.map((s, i) => <div className="gsg-cell" key={i}><b>{s.who}</b><span>{s.stake}</span></div>)}</div>
+            </div>
+          )}
+          {d.issues?.length > 0 && (
+            <section>
+              <div className="ltw-group-h"><span className="s">{t("gsg_issues")}</span><span className="b">{d.issues.length}</span></div>
+              {d.issues.map((x, i) => (
+                <article className="card ltw-arg" key={i}>
+                  <div className="ltw-arg-top"><span className="ltw-num">{String(i + 1).padStart(2, "0")}</span>
+                    <div><div className="ltw-title">{x.heading}</div>{x.note && <div className="ltw-point">{x.note}</div>}</div></div>
+                </article>
+              ))}
+            </section>
+          )}
+          {d.options?.length > 0 && (
+            <section>
+              <div className="ltw-group-h"><span className="s">{t("gsg_options")}</span><span className="b">{d.options.length}</span></div>
+              {d.options.map((o, i) => (
+                <article className={"card gsg-opt" + (o.chosen ? " on" : "")} key={i}>
+                  <div className="gsg-opt-h"><span className="ltw-num">{String.fromCharCode(65 + i)}</span><b>{o.option}</b>
+                    {o.chosen && <span className="gsg-chosen">{t("gsg_chosen")}</span>}</div>
+                  <div className="gsg-pc">
+                    {o.merits?.length > 0 && <div><div className="gsg-pc-h ok">{t("gsg_merits")}</div><ul>{o.merits.map((m, k) => <li key={k}>{m}</li>)}</ul></div>}
+                    {o.demerits?.length > 0 && <div><div className="gsg-pc-h no">{t("gsg_demerits")}</div><ul>{o.demerits.map((m, k) => <li key={k}>{m}</li>)}</ul></div>}
+                  </div>
+                </article>
+              ))}
+            </section>
+          )}
+          <GsList k="gsg_course" items={d.course} t={t} ordered />
+        </>
+      ) : (
+        <>
+          {d.intro?.length > 0 && <div className="card ltw-card"><div className="ltw-k">{t("gsg_intro")}</div><GsVariants items={d.intro} t={t} /></div>}
+          {d.body?.length > 0 && (
+            <section>
+              <div className="ltw-group-h"><span className="s">{t("gsg_body")}</span><span className="b">{fill(t("gsg_n_heads"), { n: d.body.length })}</span></div>
+              {d.body.map((b, i) => (
+                <article className="card ltw-arg" key={i}>
+                  <div className="ltw-arg-top"><span className="ltw-num">{String(i + 1).padStart(2, "0")}</span><div className="ltw-title">{b.heading}</div></div>
+                  <ul className="gsg-points">{(b.points || []).map((p, k) => <li key={k}>{p}</li>)}</ul>
+                </article>
+              ))}
+            </section>
+          )}
+          {d.value_adds?.length > 0 && (
+            <div className="card ltw-card">
+              <div className="ltw-k">{t("gsg_value_adds")}</div>
+              <ul className="gsg-va">{d.value_adds.map((v, i) => (
+                <li key={i}><span className="gsg-tag">{GS_VA.includes(v.type) ? t(`gsg_va_${v.type}`) : v.type}</span><span>{v.text}</span></li>
+              ))}</ul>
+            </div>
+          )}
+          <GsList k="gsg_way_forward" items={d.way_forward} t={t} />
+        </>
+      )}
+      {d.conclusion?.length > 0 && <div className="card ltw-card"><div className="ltw-k">{t("gsg_conclusion")}</div><GsVariants items={d.conclusion} t={t} /></div>}
+      <GsList k="gsg_pitfalls" items={d.pitfalls} t={t} />
+      {values.length > 0 && (
+        <div className="card ltw-card">
+          <div className="ltw-k">{t(d.kind === "gs-case" ? "gsg_values" : "gsg_keywords")}</div>
+          <div className="ltw-dims">{values.map((x) => <span key={x}>{x}</span>)}</div>
+        </div>
+      )}
+      <p className="ltw-foot">{t("gsg_note")}</p>
     </div>
   );
 }
