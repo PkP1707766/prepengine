@@ -677,6 +677,9 @@ const GQ = (id, paper, year, qNo, section, marks, wordLimit, topic, theme, n) =>
   id, paper, year, qNo, section: section || "", marks, wordLimit, topic, topicHi: "", isPublished: true,
   themes: [{ id: theme, confidence: 100 }], essayCount: n, exactCount: 0 });
 const FX_GS_PYQS = [
+  // Older papers: 2016 GS I-III questions carried 12.5 marks.
+  GQ("gq-11", "gs1", 2016, 9, null, 12.5, 200, "\"An essential condition to eradicate poverty is to liberate the poor from the process of deprivation.\" Substantiate this statement with suitable examples.", "gs1-urbanisation", 0),
+  GQ("gq-12", "gs2", 2018, 12, null, 15, 250, "How far do you agree with the view that tribunals curtail the jurisdiction of ordinary courts? In view of the above, discuss the constitutional validity and competency of the tribunals in India.", "gs2-judiciary", 1),
   GQ("gq-1", "gs1", 2025, 3, null, 10, 150, "'The sculptors filled the Chandella artform with resilient vigor and breadth of life.' Elucidate.", "gs1-art-culture", 2),
   GQ("gq-2", "gs1", 2025, 8, null, 10, 150, "How does smart city in India, address the issues of urban poverty and distributive justice?", "gs1-urbanisation", 1),
   GQ("gq-3", "gs1", 2024, 3, null, 10, 150, "What were the events that led to the Quit India Movement? Point out its results.", "gs1-modern-history", 0),
@@ -716,7 +719,11 @@ const gsEntry = (r) => ({
   hosted: false, isFree: r.is_free, isPublished: true, words: null,
   topper: { id: r.topper_id, name: r.topper_name, rank: r.topper_rank, cseYear: r.cse_year, essayMarks: null } });
 export function fxGsThemes(paper) { return FX_GS_THEMES.filter((t) => t.paper === paper); }
-export function fxGsPyqs(paper) { return FX_GS_PYQS.filter((p) => p.paper === paper); }
+// Newest first, then paper order, as the live query returns them.
+export function fxGsPyqs(paper) {
+  return FX_GS_PYQS.filter((p) => p.paper === paper)
+    .sort((a, b) => b.year - a.year || (a.qNo ?? 99) - (b.qNo ?? 99) || String(a.section).localeCompare(String(b.section)));
+}
 export function fxGsAnswers(themeId) { return FX_GS_ROWS.filter((r) => r.theme_id === themeId); }
 
 export function fxLibrary({ paper = "essay", sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
@@ -877,11 +884,18 @@ export function fxSnippetsByIds(ids) {
     ...s, use: "", fitPyqId: null, entry: fxLibraryEntries([s.answerId])[0] || null,
   }));
 }
-export function fxAdminSnippets({ status = "", kind = "", q = "", offset = 0, limit = 30 } = {}) {
+export function fxAdminSnippets({ status = "", kind = "", q = "", paper = "", offset = 0, limit = 30 } = {}) {
   const n = q.trim().toLowerCase();
+  // A card's paper: GS cards fit GS PYQs (gq-*) or link a GS topic.
+  const paperOf = (s) => {
+    const p = s.fits.map((f) => FX_GS_PYQS.find((x) => x.id === f.pyqId)).find(Boolean);
+    return p?.paper || (s.topics?.length ? s.topics[0][0].split("-")[0] : "essay");
+  };
   const all = FX_SNIPPETS.map((s, i) => ({ ...s, status: i === 1 ? "draft" : s.status, reviewNote: i === 2 ? "Check the year of the march." : "",
     use: "", fitPyqId: null, question: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.question || "",
-    topperName: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.topper.name || "" }))
+    topperName: FX_ANSWERS.find((a) => a.answerId === s.answerId)?.topper.name || "",
+    topics: (s.topics ?? []).map(([slug, use]) => ({ themeId: slug, use })) }))
+    .filter((s, i) => (!paper || paperOf(FX_SNIPPETS[i]) === paper))
     .filter((s) => (!status || s.status === status) && (!kind || s.kind === kind) && (!n || s.body.toLowerCase().includes(n)));
   return { items: all.slice(offset, offset + limit), total: all.length };
 }
@@ -922,16 +936,22 @@ const FX_LTW_DOC = {
     "Ignoring poverty: the antithesis about material security must be answered, not skipped.",
   ],
 };
-export function fxLtwReady() { return new Set(["pq-5", "pq-10"]); }
+// A GS answer guide (the collegium question, gq-4), as drafted for GS-II 2025 Q13.
+const FX_GS_GUIDE = {"kind":"gs","directive":"Discuss + Critically examine","demand":"Trace how the collegium system arose through the Judges cases and the NJAC verdict, then compare its strengths and weaknesses with the US model of presidential nomination and Senate confirmation.","parts":["Evolution of the collegium system","Advantages and disadvantages of India's system","Advantages and disadvantages of the US system"],"intro":[{"type":"context","text":"India is one of the few democracies where judges largely appoint judges. The collegium grew not from the Constitution's text but from Supreme Court judgments interpreting the word 'consultation' in Article 124(2)."},{"type":"constitution","text":"Article 124(2) requires the President to appoint Supreme Court judges after consulting the Chief Justice and other judges. How much weight 'consultation' carries has shaped Indian judicial appointments for four decades."}],"body":[{"heading":"Evolution in India","points":["First Judges case (S. P. Gupta, 1981): executive primacy; consultation did not mean concurrence.","Second Judges case (1993): primacy of the Chief Justice acting with senior judges, creating the collegium.","Third Judges case (1998): a collegium of the Chief Justice and four senior-most judges.","Fourth Judges case (2015): the NJAC and the 99th Amendment struck down as violating judicial independence."]},{"heading":"India: merits and demerits","points":["Merit: insulates appointments from executive and political pressure.","Demerit: opaque process, with few recorded reasons.","Demerit: delays and a long-pending Memorandum of Procedure; limited diversity."]},{"heading":"USA: merits and demerits","points":["The President nominates and the Senate confirms (Article II); judges serve during good behaviour.","Merit: democratic legitimacy and public confirmation hearings.","Demerit: deeply politicised confirmations and ideological court-packing debates."]},{"heading":"Lessons","points":["India can adopt transparency from the US model without its politicisation.","A broad-based body with judicial primacy could balance independence and accountability."]}],"value_adds":[{"type":"judgment","text":"In the NJAC case (2015), the Supreme Court admitted the collegium's flaws and invited suggestions to improve it."},{"type":"example","text":"In 2016 the US Senate declined to hold hearings on Merrick Garland's nomination for months, a sign of politicised appointments."},{"type":"example","text":"Since 2017 the Supreme Court has published collegium resolutions online, a partial step toward transparency."}],"way_forward":["Finalise the Memorandum of Procedure with clear criteria and timelines.","Publish reasons for selections and a secretariat to vet candidates.","Fixed timelines for the government to act on recommendations."],"conclusion":[{"type":"balance","text":"India's collegium protects independence but lacks transparency; the US model is transparent but political. The answer lies in a reformed, rule-bound process that keeps judicial primacy and opens its reasons."},{"type":"wayforward","text":"Clear criteria, recorded reasons and fixed timelines can make the collegium both independent and accountable without importing American politicisation."}],"pitfalls":["Narrating the Judges cases without the comparison with the USA.","Ignoring the advantages of either system, which 'critically examine' requires."],"keywords":["collegium","Article 124(2)","Judges cases","NJAC","Memorandum of Procedure","Senate confirmation","judicial independence","transparency"]};
+export function fxLtwReady() { return new Set(["pq-5", "pq-10", "gq-4"]); }
 export function fxLtw(pyqId) {
   if (pyqId === "pq-5") return { doc: FX_LTW_DOC, status: "published", updatedAt: "2026-11-08T00:00:00Z" };
+  if (pyqId === "gq-4") return { doc: FX_GS_GUIDE, status: "published", updatedAt: "2026-11-15T00:00:00Z" };
   if (pyqId === "pq-10") {
     return { preview: { spine: "Accepting what is and improving what can be are two halves of one discipline.",
       sides: FX_LTW_DOC.sides, titles: FX_LTW_DOC.arguments.map((a) => ({ side: a.side, title: a.title })), introductions: 3, conclusions: 3 } };
   }
   return null;
 }
-export function fxAdminLtwList() { return new Map([["pq-5", { status: "published", source: "drafted", updatedAt: "2026-11-08T00:00:00Z" }]]); }
+export function fxAdminLtwList() {
+  return new Map([["pq-5", { status: "published", source: "drafted", updatedAt: "2026-11-08T00:00:00Z" }],
+    ["gq-4", { status: "published", source: "drafted", updatedAt: "2026-11-15T00:00:00Z" }]]);
+}
 
 /* A ruled answer-booklet page with wavy "handwriting", page number and a
    heading on the pages where a fixture essay starts. Deterministic per

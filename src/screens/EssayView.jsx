@@ -5,6 +5,7 @@ import { EmptyState, ErrorState, SkeletonCards } from "../ui/Feedback.jsx";
 import CopyViewer from "../ui/CopyViewer.jsx";
 import * as DB from "../lib/db.js";
 import { loadKey, saveKey } from "../lib/storage.js";
+import { GS_TAGS, gsTagsOf } from "../lib/gsTags.js";
 import {
   STUDY_CSS, StudyStrip, StarButton, NoteButton, DoneButton, NoteModal,
   LtwPanel, PyqSnippets, WikiTab, NotesTab,
@@ -35,7 +36,7 @@ const ES_CSS = `
 .es-note .btn{width:auto}
 .es-grid{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px;align-items:start}
 .es-rail{position:sticky;top:84px;max-height:calc(100vh - 110px);overflow:auto;padding:12px}
-.es-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--hair);border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:10px}
+.es-seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;background:var(--hair);border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:10px}
 .es-seg button{font-size:12.5px;font-weight:700;padding:7px 6px;border-radius:7px;color:var(--muted)}
 .es-seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .es-rail-item{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;
@@ -57,6 +58,12 @@ const ES_CSS = `
 .es-rail-item.on .es-ri-bar span{background:#fff}
 .es-ri-bar.big{height:6px;margin-top:8px}
 .es-rail-search{margin-bottom:8px}
+.es-rail-note{font-size:11.5px;line-height:1.45;color:var(--muted);margin:-2px 2px 8px}
+.es-find{margin:0 0 12px}
+.es-find input{padding:10px 0;font-size:14px}
+.es-find button{display:grid;place-items:center;color:var(--muted)}
+.es-find-n{font-size:12px;font-weight:600;color:var(--muted);margin-top:2px}
+.es-seg button{white-space:nowrap}
 .es-rail-search input{padding:8px 0;font-size:13px}
 .es-rail-search button{display:grid;place-items:center;color:var(--muted)}
 .es-grid.rail-shut{grid-template-columns:minmax(0,1fr)}
@@ -189,6 +196,7 @@ const GS_TEXT = {
   st_sec_essays: "gs_sec_answers", st_sec_essays_n: "gs_sec_answers_n",
   es_copies_empty_text: "gs_copies_empty_text", es_copies_empty_title: "gs_copies_empty_title", es_load_fail: "gs_load_fail",
   es_search_copies: "gs_search_copies", st_done_pyqs: "gs_done_pyqs", st_streak_hint: "gs_streak_hint",
+  es_find_q: "gs_find_q", es_find_n: "gs_find_n", es_find_one: "gs_find_one",
   es_tab_wiki: "gs_tab_wiki", st_sec_wiki: "gs_sec_wiki", wk_editor_pick: "gs_wk_editor_pick", wk_pyq_none: "gs_wk_pyq_none",
   wk_none_here: "gs_wk_none_here", wk_empty_title: "gs_wk_empty_title", wk_empty_text: "gs_wk_empty_text", wk_search: "gs_wk_search",
   wk_locked: "gs_wk_locked", wk_locked_text: "gs_wk_locked_text", wk_fail: "gs_wk_fail",
@@ -372,10 +380,15 @@ const pyqTag = (p, gs) => (gs
   : p.section ? `${p.year} · ${p.section}` : String(p.year));
 
 function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, toggleMark, ltwReady, paper, gs }) {
-  const [mode, setMode] = useState(() => (loadKey(`${paper}:mode`, "theme") === "year" ? "year" : "theme"));
+  // theme: the essay's themes or a GS paper's syllabus; tag: GS themes that cut across it; year.
+  const [mode, setMode] = useState(() => {
+    const m = loadKey(`${paper}:mode`, "theme");
+    return m === "year" || (m === "tag" && gs) ? m : "theme";
+  });
   const [pick, setPick] = useState(() => loadKey(`${paper}:pick`, "all"));
   const [railOpen, setRailOpen] = useState(() => loadKey(`${paper}:rail`, "open") !== "closed");
   const [railQ, setRailQ] = useState("");
+  const [find, setFind] = useState("");              // search the questions themselves
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [status, setStatus] = useState("all");      // all | todo | done | starred
   const [guideOnly, setGuideOnly] = useState(false);
@@ -402,17 +415,37 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
     pyqs.forEach((p) => m.set(p.year, (m.get(p.year) || 0) + 1));
     return [...m].sort((a, b) => b[0] - a[0]);
   }, [pyqs]);
+  // GS themes, read from each question's words. A theme shows once it gathers two questions.
+  const tagsOf = useMemo(() => new Map(gs ? pyqs.map((p) => [p.id, gsTagsOf(p.topic)]) : []), [pyqs, gs]);
+  const railTags = useMemo(() => {
+    if (!gs) return [];
+    const n = new Map();
+    tagsOf.forEach((ids) => ids.forEach((id) => n.set(id, (n.get(id) || 0) + 1)));
+    return GS_TAGS.filter((tg) => (n.get(tg.id) || 0) >= 2).sort((a, b) => n.get(b.id) - n.get(a.id));
+  }, [tagsOf, gs]);
+  const tagName = (tg) => (lang === "hi" ? tg.hi : tg.en);
 
   const setModeKeep = (m) => { setMode(m); setPick("all"); saveKey(`${paper}:mode`, m); saveKey(`${paper}:pick`, "all"); };
-  const choose = (v) => { setPick(v); saveKey(`${paper}:pick`, v); };
+  const choose = (v) => { setPick(v); setFind(""); saveKey(`${paper}:pick`, v); };
   const toggleRail = () => setRailOpen((o) => { saveKey(`${paper}:rail`, o ? "closed" : "open"); return !o; });
   // A remembered pick that no longer exists (a theme renamed away) falls back to all.
   const valid = pick === "all"
-    || (mode === "theme" ? themeCounts.has(pick) : years.some(([y]) => String(y) === String(pick)));
+    || (mode === "theme" ? themeCounts.has(pick)
+      : mode === "tag" ? railTags.some((tg) => tg.id === pick)
+      : years.some(([y]) => String(y) === String(pick)));
   const active = valid ? pick : "all";
   const inPick = (p) => active === "all"
-    || (mode === "theme" ? p.themes.some((x) => x.id === active) : String(p.year) === String(active));
-  const picked = pyqs.filter(inPick);
+    || (mode === "theme" ? p.themes.some((x) => x.id === active)
+      : mode === "tag" ? (tagsOf.get(p.id) || []).includes(active)
+      : String(p.year) === String(active));
+  // A search looks through every question, whatever the rail has picked.
+  const findNeedle = find.trim().toLowerCase();
+  const findWords = findNeedle.split(/\s+/).filter(Boolean);
+  const matchesFind = (p) => {
+    const hay = `${p.topic} ${p.topicHi || ""}`.toLowerCase();
+    return findWords.every((w) => hay.includes(w));
+  };
+  const picked = findWords.length ? pyqs.filter(matchesFind) : pyqs.filter(inPick);
 
   const markOptions = useMemo(() => [...new Set(pyqs.map((p) => p.marks).filter(Boolean))].sort((a, b) => a - b), [pyqs]);
   const filtersOn = status !== "all" || guideOnly || markF !== "all";
@@ -434,10 +467,15 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
   // [id, label, pyqs in it]
   const railItems = mode === "theme"
     ? [["all", t("es_all_themes"), pyqs], ...railThemes.map((th) => [th.id, themeName(th), pyqs.filter((p) => p.themes.some((x) => x.id === th.id))])]
-    : [["all", t("es_all_years"), pyqs], ...years.map(([y]) => [String(y), String(y), pyqs.filter((p) => p.year === y)])];
+    : mode === "tag"
+      ? [["all", t("gs_all_tags"), pyqs], ...railTags.map((tg) => [tg.id, tagName(tg), pyqs.filter((p) => (tagsOf.get(p.id) || []).includes(tg.id))])]
+      : [["all", t("es_all_years"), pyqs], ...years.map(([y]) => [String(y), String(y), pyqs.filter((p) => p.year === y)])];
   const needle = railQ.trim().toLowerCase();
   const railShown = needle ? railItems.filter(([id, label]) => id === "all" || label.toLowerCase().includes(needle)) : railItems;
   const activeLabel = railItems.find(([id]) => id === active)?.[1] || "";
+  const modes = gs ? [["theme", "es_by_theme"], ["tag", "gs_by_tag"], ["year", "es_by_year"]] : [["theme", "es_by_theme"], ["year", "es_by_year"]];
+  const modeLabel = mode === "theme" ? "es_theme_label" : mode === "tag" ? "gs_tag_label" : "es_year_label";
+  const railHint = mode === "theme" ? "es_rail_search" : mode === "tag" ? "gs_rail_search_tag" : "es_rail_search_y";
   const pct = (list) => (list.length ? Math.round((doneIn(list) / list.length) * 100) : 0);
   const qTag = (p) => (gs && p.qNo ? `Q${p.qNo}${p.section ? `(${p.section})` : ""}) ` : "");
 
@@ -446,19 +484,19 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
       {railOpen && (
         <aside className="card es-rail">
           <div className="es-seg" role="tablist">
-            <button className={mode === "theme" ? "on" : ""} onClick={() => setModeKeep("theme")}>{t("es_by_theme")}</button>
-            <button className={mode === "year" ? "on" : ""} onClick={() => setModeKeep("year")}>{t("es_by_year")}</button>
+            {modes.map(([m, key]) => <button key={m} className={mode === m ? "on" : ""} onClick={() => setModeKeep(m)}>{t(key)}</button>)}
           </div>
+          {mode === "tag" && <div className="es-rail-note">{t("gs_tags_note")}</div>}
           <label className="es-search es-rail-search">
             <Search size={14} />
-            <input value={railQ} onChange={(e) => setRailQ(e.target.value)} placeholder={t(mode === "theme" ? "es_rail_search" : "es_rail_search_y")} />
+            <input value={railQ} onChange={(e) => setRailQ(e.target.value)} placeholder={t(railHint)} />
             {railQ && <button onClick={() => setRailQ("")} aria-label={t("es_clear")}><X size={14} /></button>}
           </label>
           {railShown.map(([id, label, list]) => {
             const p = pct(list);
             return (
-              <button key={id} className={"es-rail-item" + (active === id ? " on" : "")} onClick={() => choose(id)}
-                      aria-current={active === id ? "true" : undefined}>
+              <button key={id} className={"es-rail-item" + (active === id && !findWords.length ? " on" : "")} onClick={() => choose(id)}
+                      aria-current={active === id && !findWords.length ? "true" : undefined}>
                 <span className="es-ri-name">{label}</span>
                 <span className="es-ri-meta">
                   <span className="es-ri-pct">{fill(t("es_pct_done"), { p })}</span>
@@ -474,20 +512,27 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
       <div style={{ minWidth: 0 }}>
         <div className="es-pick">
           <div className="es-seg">
-            <button className={mode === "theme" ? "on" : ""} onClick={() => setModeKeep("theme")}>{t("es_by_theme")}</button>
-            <button className={mode === "year" ? "on" : ""} onClick={() => setModeKeep("year")}>{t("es_by_year")}</button>
+            {modes.map(([m, key]) => <button key={m} className={mode === m ? "on" : ""} onClick={() => setModeKeep(m)}>{t(key)}</button>)}
           </div>
-          <select value={active} onChange={(e) => choose(e.target.value)} aria-label={mode === "theme" ? t("es_theme_label") : t("es_year_label")}>
+          <select value={active} onChange={(e) => choose(e.target.value)} aria-label={t(modeLabel)}>
             {railItems.map(([id, label, list]) => <option key={id} value={id}>{label} ({list.length})</option>)}
           </select>
         </div>
+
+        <label className="es-search es-find">
+          <Search size={15} />
+          <input value={find} onChange={(e) => setFind(e.target.value)} placeholder={t("es_find_q")} aria-label={t("es_find_q")} />
+          {find && <button onClick={() => setFind("")} aria-label={t("es_clear")}><X size={14} /></button>}
+        </label>
 
         <div className="es-sel-head">
           <button className="es-rail-toggle" onClick={toggleRail} aria-label={t(railOpen ? "es_hide_rail" : "es_show_rail")} title={t(railOpen ? "es_hide_rail" : "es_show_rail")}>
             {railOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
           </button>
           <div className="es-sel-main">
-            <div className="es-sel-title"><span>{t(mode === "theme" ? "es_theme_label" : "es_year_label")}:</span> {activeLabel}</div>
+            {findWords.length
+              ? <div className="es-sel-title"><span>{t("es_find_label")}:</span> “{find.trim()}”<div className="es-find-n">{picked.length === 1 ? t("es_find_one") : fill(t("es_find_n"), { n: picked.length })}</div></div>
+              : <div className="es-sel-title"><span>{t(modeLabel)}:</span> {activeLabel}</div>}
             <div className="es-sel-prog">
               <span><Check size={13} /> {t("es_pyqs_completed")}</span>
               <span className="es-sel-count">{fill(t("es_done_of"), { d: doneIn(picked), n: picked.length })}</span>
