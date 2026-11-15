@@ -1983,15 +1983,17 @@ async function inBatches(rows, size, fn) {
 }
 
 function themeFromRow(r) {
-  return { id: r.id, slug: r.slug, name: r.name, nameHi: r.name_hi || "", parentId: r.parent_id || null, sortOrder: r.sort_order ?? 0 };
+  return { id: r.id, slug: r.slug, name: r.name, nameHi: r.name_hi || "", parentId: r.parent_id || null, sortOrder: r.sort_order ?? 0, paper: r.paper || "essay" };
 }
 
-export async function essayThemes() {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_ESSAY_THEMES;
+/** One paper's themes: the Essay's categories, or a GS paper's syllabus topics. */
+export async function essayThemes(paper = "essay") {
+  if (import.meta.env.DEV && FIXTURES_ON()) return paper === "essay" ? fx().FX_ESSAY_THEMES : fx().fxGsThemes(paper);
   const sb = await getSupabase();
   const { data, error } = await sb
     .from("essay_themes")
-    .select("id, slug, name, name_hi, parent_id, sort_order")
+    .select("id, slug, name, name_hi, parent_id, sort_order, paper")
+    .eq("paper", paper)
     .order("sort_order")
     .order("name");
   if (error) throw error;
@@ -2003,28 +2005,41 @@ export async function essayThemes() {
  * the first is the main theme, the rest are "also under") and how many
  * published topper essays answer it.
  */
-export async function essayPyqs({ includeDrafts = false } = {}) {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().FX_ESSAY_PYQS;
+export async function essayPyqs({ includeDrafts = false, paper = "essay" } = {}) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return paper === "essay" ? fx().FX_ESSAY_PYQS : fx().fxGsPyqs(paper);
   const sb = await getSupabase();
+  const gs = paper !== "essay";
   let q = sb
     .from("essay_pyqs")
-    .select("id, year, q_no, section, topic, topic_hi, is_published, essay_pyq_themes(theme_id, confidence)")
+    .select("id, paper, year, q_no, section, topic, topic_hi, marks, word_limit, is_published, essay_pyq_themes(theme_id, confidence)")
+    .eq("paper", paper)
     .order("year", { ascending: false })
-    .order("q_no", { ascending: true, nullsFirst: false })
-    .order("topic");
+    .order("q_no", { ascending: true, nullsFirst: false });
+  // A GS paper reads in paper order (1(a), 1(b), 2...); essay topics by name.
+  q = gs ? q.order("section", { ascending: true, nullsFirst: true }) : q.order("topic");
   if (!includeDrafts) q = q.eq("is_published", true);
   const [{ data, error }, { data: stats }] = await Promise.all([
     q,
     // The counts read copies, which need a session; a visitor just gets none.
-    sb.from("essay_pyq_stats_v").select("pyq_id, essay_count, exact_count"),
+    // An essay PYQ counts the essays linked to it; a GS PYQ, the topper
+    // answers filed under its topic.
+    gs ? sb.from("topper_theme_counts_v").select("theme_id, answers").eq("paper", paper)
+      : sb.from("essay_pyq_stats_v").select("pyq_id, essay_count, exact_count"),
   ]);
   if (error) throw error;
-  const n = new Map((stats ?? []).map((s) => [s.pyq_id, s]));
+  const byTheme = new Map(gs ? (stats ?? []).map((s) => [s.theme_id, Number(s.answers) || 0]) : []);
+  const mainTheme = (r) => (r.essay_pyq_themes ?? []).slice().sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))[0]?.theme_id;
+  const n = new Map(gs
+    ? (data ?? []).map((r) => [r.id, { essay_count: byTheme.get(mainTheme(r)) || 0, exact_count: 0 }])
+    : (stats ?? []).map((s) => [s.pyq_id, s]));
   return (data ?? []).map((r) => ({
     id: r.id,
+    paper: r.paper || "essay",
     year: r.year,
     qNo: r.q_no ?? null,
     section: r.section || "",
+    marks: r.marks ?? null,
+    wordLimit: r.word_limit ?? null,
     topic: r.topic,
     topicHi: r.topic_hi || "",
     isPublished: r.is_published !== false,
@@ -2246,6 +2261,72 @@ export function groupEssays(entries) {
 
 /** Does this student hold Mains? Failing closed: an error means "locked",
  *  and free copies still open. */
+/* Words that carry no topic: dropped before two questions are compared. */
+const STOP = new Set(("the a an of in on to for and or is are was were be been by with as at from that this these those it its their his her " +
+  "what which how why when who whom do does did can could should would will may might has have had not no nor but if then than so such " +
+  "discuss examine explain analyse analyze comment critically evaluate elucidate describe illustrate suitable examples example give your " +
+  "answer context light statement above following india indian also between into over under about there here more most some any all each " +
+  "being both while during after before through against within without how far extent role impact issues challenges measures").split(" "));
+const topicWords = (s) => new Set(String(s || "").toLowerCase().match(/[a-z][a-z-]{3,}/g)?.filter((w) => !STOP.has(w)) ?? []);
+/** How alike two questions are, 0..1, by the words they share. */
+export function questionOverlap(a, b) {
+  const A = topicWords(a), B = topicWords(b);
+  if (!A.size || !B.size) return 0;
+  let both = 0;
+  A.forEach((w) => { if (B.has(w)) both++; });
+  return both / Math.sqrt(A.size * B.size);
+}
+
+/**
+ * The topper answers behind a GS PYQ: every published answer filed under its
+ * topic, grouped by the test-series question it answers, the questions most
+ * like the PYQ first. Same shape as essaysForPyq's groups.
+ */
+export async function answersForPyq(pyq) {
+  const themeId = pyq?.themes?.[0]?.id;
+  if (!themeId) return [];
+  let rows;
+  if (import.meta.env.DEV && FIXTURES_ON()) rows = fx().fxGsAnswers(themeId);
+  else {
+    const sb = await getSupabase();
+    rows = await withLibCols(async (cols) => {
+      const { data, error } = await sb.from("topper_library_v").select(cols)
+        .eq("theme_id", themeId).eq("is_published", true).limit(1000);
+      if (error) throw error;
+      return data ?? [];
+    });
+  }
+  const groups = new Map();
+  rows.map(libraryEntryFromRow).forEach((e) => {
+    const key = essayKey(e.question) || e.answerId;
+    if (!groups.has(key)) groups.set(key, { key, question: e.question, kind: "related", confidence: null, score: questionOverlap(pyq.topic, e.question), entries: [] });
+    groups.get(key).entries.push({ ...e, kind: "related" });
+  });
+  const list = [...groups.values()];
+  list.forEach((g) => g.entries.sort((a, b) => (a.topper.rank ?? 1e6) - (b.topper.rank ?? 1e6) || (b.writtenYear ?? 0) - (a.writtenYear ?? 0)));
+  return list.sort((a, b) => b.score - a.score || b.entries.length - a.entries.length || a.question.localeCompare(b.question));
+}
+
+/** Is any GS question published? The dashboard shows GS only then. */
+export async function gsLive() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return true;
+  const sb = await getSupabase();
+  const { count, error } = await sb.from("essay_pyqs").select("id", { count: "exact", head: true })
+    .neq("paper", "essay").eq("is_published", true);
+  if (error) { console.warn("gs check failed", error.message); return false; }
+  return (count ?? 0) > 0;
+}
+
+/** May this student read this paper's Mains material (Essay, or GS I-IV)? */
+export async function paperAccess(paper = "essay") {
+  if (paper === "essay") return mainsAccess();
+  if (import.meta.env.DEV && FIXTURES_ON()) return true;
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("has_paper_access", { p_paper: paper });
+  if (error) { console.error("paper access check failed", error); return false; }
+  return data === true;
+}
+
 export async function mainsAccess() {
   if (import.meta.env.DEV && FIXTURES_ON()) return true;
   const sb = await getSupabase();

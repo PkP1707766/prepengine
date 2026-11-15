@@ -16,6 +16,7 @@ import { ReviewCard, ReviewStyles } from "../ui/Review.jsx";
 // The Essay section is its own chunk, fetched the first time a student opens
 // it, so it adds nothing to the dashboard's first paint.
 const EssayView = React.lazy(() => import("./EssayView.jsx"));
+const GsView = React.lazy(() => import("./GsView.jsx"));
 
 const StudentApp = (() => {
 /* ============================================================
@@ -2104,6 +2105,8 @@ const NAV = [
   { id: "home", key: "sd_home", icon: Home },
   { id: "tests", key: "sd_tests", icon: FileText },
   { id: "essay", key: "sd_essay", icon: PenLine },
+  // Shown once a GS paper has a published PYQ (see gsLive below).
+  { id: "gs", key: "sd_gs", icon: Layers },
   { id: "performance", key: "sd_perf", icon: BarChart3 },
   { id: "batches", key: "sd_batches", icon: GraduationCap },
   { id: "materials", key: "sd_materials", icon: FolderOpen },
@@ -2113,7 +2116,7 @@ const NAV = [
   { id: "profile", key: "sd_profile", icon: User },
 ];
 const META_KEY = {
-  home: "sd_home", tests: "sd_tests", essay: "sd_essay", performance: "sd_perf", batches: "sd_batches",
+  home: "sd_home", tests: "sd_tests", essay: "sd_essay", gs: "sd_gs", performance: "sd_perf", batches: "sd_batches",
   materials: "sd_materials", leaderboard: "sd_leaderboard", refer: "sd_refer",
   feedback: "sd_feedback", profile: "sd_profile",
 };
@@ -2136,6 +2139,15 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
     return NAV.some((n) => n.id === asked) ? asked : null;
   });
   const [view, setView] = useState(askedView || "home");
+  // GS stays out of the menu until some GS question is published, so the
+  // section never opens onto an empty shelf.
+  const [gsLive, setGsLive] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    DB.gsLive().then((v) => { if (alive) setGsLive(v); }, () => {});
+    return () => { alive = false; };
+  }, []);
+  const nav = NAV.filter((n) => n.id !== "gs" || gsLive);
   useEffect(() => { if (view !== askedView) removeKey(OPEN_VIEW_KEY); }, [view, askedView]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -2297,7 +2309,7 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
             </div>
           </div>
           <nav className="sb-nav">
-            {NAV.map((it) => { const Icon = it.icon; return (
+            {nav.map((it) => { const Icon = it.icon; return (
               <button key={it.id} className={"sb-item" + (view === it.id ? " active" : "")} onClick={() => go(it.id)}
                       aria-current={view === it.id ? "page" : undefined}><Icon size={18} />{t(it.key)}</button>
             ); })}
@@ -2359,6 +2371,11 @@ function App({ onLaunchExam, onLogout, onBrowse }) {
             {view === "essay" && (
               <React.Suspense fallback={<SkeletonCards count={3} height={120} />}>
                 <EssayView onBrowse={onBrowse} />
+              </React.Suspense>
+            )}
+            {view === "gs" && (
+              <React.Suspense fallback={<SkeletonCards count={3} height={120} />}>
+                <GsView onBrowse={onBrowse} />
               </React.Suspense>
             )}
             {view === "performance" && <PerformanceView go={go} />}

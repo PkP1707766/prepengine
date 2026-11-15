@@ -657,8 +657,76 @@ const FX_ANSWERS = [
     .map((q, i) => ANS(`fa-r${i + 1}`, i % 2 ? COPY.c2 : COPY.c3, i % 2 ? TOP.t2 : TOP.t3, q, 2 + i, null, [["pq-5", "related", 80 - i * 5]])),
 ];
 
-export function fxLibrary({ sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
+/* ---- GS: a few syllabus topics per paper, real UPSC questions, and test-
+   series answers filed under the topics. Topper names are placeholders. */
+const GT = (paper, id, name, nameHi, sortOrder) => ({ id, slug: id, name, nameHi, parentId: null, sortOrder, paper });
+const FX_GS_THEMES = [
+  GT("gs1", "gs1-art-culture", "Indian Art & Culture", "भारतीय कला एवं संस्कृति", 1),
+  GT("gs1", "gs1-modern-history", "Modern Indian History", "आधुनिक भारतीय इतिहास", 3),
+  GT("gs1", "gs1-urbanisation", "Urbanisation", "नगरीकरण", 9),
+  GT("gs2", "gs2-federalism", "Federalism & Centre-State Relations", "संघवाद एवं केंद्र-राज्य संबंध", 3),
+  GT("gs2", "gs2-judiciary", "The Judiciary", "न्यायपालिका", 9),
+  GT("gs2", "gs2-groupings-agreements", "Bilateral, Regional & Global Groupings", "द्विपक्षीय, क्षेत्रीय एवं वैश्विक समूह", 20),
+  GT("gs3", "gs3-agriculture", "Agriculture: Cropping, Irrigation & Marketing", "कृषि: फसल, सिंचाई एवं विपणन", 5),
+  GT("gs3", "gs3-new-technologies", "IT, Space, AI, Biotech & Nanotech", "IT, अंतरिक्ष, AI, जैव एवं नैनो प्रौद्योगिकी", 13),
+  GT("gs4", "gs4-quotations", "Quotations", "उद्धरण", 7),
+  GT("gs4", "gs4-case-studies", "Case Studies", "केस स्टडी", 14),
+];
+const GQ = (id, paper, year, qNo, section, marks, wordLimit, topic, theme, n) => ({
+  id, paper, year, qNo, section: section || "", marks, wordLimit, topic, topicHi: "", isPublished: true,
+  themes: [{ id: theme, confidence: 100 }], essayCount: n, exactCount: 0 });
+const FX_GS_PYQS = [
+  GQ("gq-1", "gs1", 2025, 3, null, 10, 150, "'The sculptors filled the Chandella artform with resilient vigor and breadth of life.' Elucidate.", "gs1-art-culture", 2),
+  GQ("gq-2", "gs1", 2025, 8, null, 10, 150, "How does smart city in India, address the issues of urban poverty and distributive justice?", "gs1-urbanisation", 1),
+  GQ("gq-3", "gs1", 2024, 3, null, 10, 150, "What were the events that led to the Quit India Movement? Point out its results.", "gs1-modern-history", 0),
+  GQ("gq-4", "gs2", 2025, 13, null, 15, 250, "Discuss the evolution of collegium system in India. Critically examine the advantages and disadvantages of the system of appointment of the Judges of the Supreme Court of India and that of the USA.", "gs2-judiciary", 3),
+  GQ("gq-5", "gs2", 2025, 14, null, 15, 250, "Examine the evolving pattern of Centre-State financial relations in the context of planned development in India. How far have the recent reforms impacted the fiscal federalism in India?", "gs2-federalism", 2),
+  GQ("gq-6", "gs2", 2024, 10, null, 10, 150, "Critically analyse India's evolving diplomatic, economic and strategic relations with the Central Asian Republics (CARs) highlighting their increasing significance in regional and global geopolitics.", "gs2-groupings-agreements", 1),
+  GQ("gq-7", "gs3", 2025, 3, null, 10, 150, "Explain the factors influencing the decision of the farmers on the selection of high value crops in India.", "gs3-agriculture", 2),
+  GQ("gq-8", "gs3", 2024, 16, null, 15, 250, "What are asteroids? How real is the threat of them causing extinction of life? What strategies have been developed to prevent such a catastrophe?", "gs3-new-technologies", 1),
+  GQ("gq-9", "gs4", 2025, 3, "b", 10, 150, "What does this quotation convey to you in the present context? \"The greatest discovery of my generation is that a human being can alter his life by altering his attitudes.\" – William James", "gs4-quotations", 1),
+  GQ("gq-10", "gs4", 2025, 10, null, 20, 250, "Rajesh is a Group A officer with nine years of service. He is posted as Administrative Officer in an Oil Public Sector undertaking. One day his reporting officer asks him to buy computer-related stationery on priority from a particular vendor, and the estimate comes to Rupees Thirty Five Lakhs, above his delegated financial powers. His office suggests splitting the order to avoid the higher sanction. (a) What are the options available with Rajesh in the above situation? (b) What are the ethical issues involved in this case? (c) Which would be the most appropriate option for Rajesh and why?", "gs4-case-studies", 2),
+];
+const GR = (id, paper, theme, question, topper, rank, year, page, free = false) => ({
+  answer_id: id, paper, paper_label: null, question, start_page: page, end_page: null, copy_id: `gc-${id}`,
+  source: "Forum IAS", title: "GS test copy", written_year: year, source_url: "https://example.org/gs-copy.pdf",
+  page_count: 0, pages_ready: false, is_free: free, is_published: true, topper_id: `gt-${topper}`, topper_name: topper,
+  topper_rank: rank, cse_year: year, essay_marks: null, body_words: null, theme_id: theme });
+const FX_GS_ROWS = [
+  GR("ga-1", "gs1", "gs1-art-culture", "Chandela temples at Khajuraho mark the high point of the Nagara style. Discuss.", "Sample Topper A", 12, 2025, 4, true),
+  GR("ga-2", "gs1", "gs1-art-culture", "Indian temple sculpture blends the sacred and the everyday. Illustrate.", "Sample Topper B", 48, 2024, 7),
+  GR("ga-3", "gs1", "gs1-urbanisation", "Smart cities must also be inclusive cities. Comment.", "Sample Topper A", 12, 2025, 11),
+  GR("ga-4", "gs2", "gs2-judiciary", "Critically examine the collegium system of appointing judges.", "Sample Topper C", 5, 2025, 3),
+  GR("ga-5", "gs2", "gs2-judiciary", "Compare judicial appointments in India and the USA.", "Sample Topper B", 48, 2024, 9),
+  GR("ga-6", "gs2", "gs2-judiciary", "Critically examine the collegium system of appointing judges.", "Sample Topper D", 101, 2023, 5),
+  GR("ga-7", "gs2", "gs2-federalism", "Fiscal federalism after the GST: assess the change.", "Sample Topper C", 5, 2025, 12),
+  GR("ga-8", "gs2", "gs2-federalism", "Discuss the role of the Finance Commission in Centre-State financial relations.", "Sample Topper A", 12, 2025, 6),
+  GR("ga-9", "gs2", "gs2-groupings-agreements", "Central Asia is India's extended neighbourhood. Discuss.", "Sample Topper D", 101, 2023, 15),
+  GR("ga-10", "gs3", "gs3-agriculture", "What drives farmers towards high value crops? Discuss.", "Sample Topper B", 48, 2024, 2),
+  GR("ga-11", "gs3", "gs3-agriculture", "Crop diversification can raise farm incomes. Examine.", "Sample Topper C", 5, 2025, 8),
+  GR("ga-12", "gs3", "gs3-new-technologies", "Planetary defence: how can asteroid threats be tracked and averted?", "Sample Topper A", 12, 2025, 10),
+  GR("ga-13", "gs4", "gs4-quotations", "\"Change your attitude and you change your life.\" What does this mean to you?", "Sample Topper D", 101, 2023, 4),
+  GR("ga-14", "gs4", "gs4-case-studies", "A procurement officer is asked to split an order to avoid sanction. Discuss the options.", "Sample Topper C", 5, 2025, 21),
+  GR("ga-15", "gs4", "gs4-case-studies", "An officer under pressure from a superior to favour a vendor. What should he do?", "Sample Topper B", 48, 2024, 18),
+];
+const gsEntry = (r) => ({
+  answerId: r.answer_id, paper: r.paper, paperLabel: "", question: r.question, startPage: r.start_page, endPage: null,
+  copyId: r.copy_id, source: r.source, title: r.title, writtenYear: r.written_year, sourceUrl: r.source_url, pageCount: 0,
+  hosted: false, isFree: r.is_free, isPublished: true, words: null,
+  topper: { id: r.topper_id, name: r.topper_name, rank: r.topper_rank, cseYear: r.cse_year, essayMarks: null } });
+export function fxGsThemes(paper) { return FX_GS_THEMES.filter((t) => t.paper === paper); }
+export function fxGsPyqs(paper) { return FX_GS_PYQS.filter((p) => p.paper === paper); }
+export function fxGsAnswers(themeId) { return FX_GS_ROWS.filter((r) => r.theme_id === themeId); }
+
+export function fxLibrary({ paper = "essay", sort = "marks", year = null, q = "", offset = 0, limit = 24 } = {}) {
   const needle = q.trim().toLowerCase();
+  if (paper !== "essay") {
+    const list = FX_GS_ROWS.filter((r) => r.paper === paper && (!year || r.written_year === year)
+      && (!needle || r.question.toLowerCase().includes(needle) || r.topper_name.toLowerCase().includes(needle)))
+      .sort((a, b) => (sort === "oldest" ? a.written_year - b.written_year : b.written_year - a.written_year) || a.question.localeCompare(b.question))
+      .map(gsEntry);
+    return { items: list.slice(offset, offset + limit), total: list.length };
+  }
   let list = FX_ANSWERS.filter((a) => (!year || a.writtenYear === year)
     && (!needle || a.question.toLowerCase().includes(needle) || a.topper.name.toLowerCase().includes(needle)
       || (FX_TEXTS[a.answerId] || "").toLowerCase().includes(needle)));
@@ -669,8 +737,9 @@ export function fxLibrary({ sort = "marks", year = null, q = "", offset = 0, lim
   return { items: list.slice(offset, offset + limit).map((a) => ({ ...a, links: undefined })), total: list.length };
 }
 
-export function fxLibraryYears() {
-  return [...new Set(FX_ANSWERS.map((a) => a.writtenYear))].sort((a, b) => b - a);
+export function fxLibraryYears(paper = "essay") {
+  const years = paper === "essay" ? FX_ANSWERS.map((a) => a.writtenYear) : FX_GS_ROWS.filter((r) => r.paper === paper).map((r) => r.written_year);
+  return [...new Set(years)].sort((a, b) => b - a);
 }
 
 export function fxEssaysForPyq(pyqId) {

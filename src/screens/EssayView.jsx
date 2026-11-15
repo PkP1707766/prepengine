@@ -63,6 +63,11 @@ const ES_CSS = `
 .es-back{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px}
 .es-detail-head{padding:18px 20px;margin-bottom:14px}
 .es-detail-head .es-topic{font-size:18px}
+/* A GS question can be a 400-word case study: a card shows its opening, the
+   question page all of it at reading size. */
+.es-clamp{display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.es-detail-head .es-topic.es-long{font-size:16px;font-weight:600;line-height:1.6}
+.es-qmeta{font-size:12.5px;font-weight:700;color:var(--muted);margin-top:6px}
 .es-group{margin-bottom:14px;overflow:hidden}
 .es-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;
   padding:12px 18px;background:var(--hair);border-bottom:1px solid var(--line)}
@@ -115,13 +120,33 @@ const PYQ_GROUPS_SHOWN = 6;
 const fill = (s, vars) => Object.entries(vars).reduce((out, [k, v]) => out.split(`{${k}}`).join(String(v)), s);
 
 const TABS = [["pyqs", "es_tab_pyqs"], ["copies", "es_tab_copies"], ["wiki", "es_tab_wiki"], ["notes", "es_tab_notes"]];
+/* A GS paper is the same screen with its own words: toppers write answers
+   there, not essays, and PYQs are filed under syllabus topics, not themes.
+   Each key on the left reads as the key on the right when the paper is GS. */
+const GS_TEXT = {
+  es_tab_pyqs: "gs_tab_pyqs", es_tab_copies: "gs_tab_copies", es_by_theme: "gs_by_topic", es_all_themes: "gs_all_topics",
+  es_theme_label: "gs_topic_label", es_read_n: "gs_read_n", es_read_one: "gs_read_one", es_no_essays: "gs_no_answers",
+  es_empty_title: "gs_empty_title", es_empty_text: "gs_empty_text", es_theme_empty: "gs_topic_empty",
+  es_related_q: "gs_test_q", es_n_essays: "gs_n_answers", es_one_essay: "gs_one_answer", es_marks_note: "gs_answers_note",
+  es_pyq_no_essays: "gs_pyq_no_answers", es_more_topics: "gs_more_questions", es_access_note: "gs_access_note",
+  es_locked_title: "gs_locked_title", es_locked_text: "gs_locked_text",
+  st_sec_essays: "gs_sec_answers", st_sec_essays_n: "gs_sec_answers_n",
+  es_copies_empty_text: "gs_copies_empty_text", es_copies_empty_title: "gs_copies_empty_title", es_load_fail: "gs_load_fail",
+  es_search_copies: "gs_search_copies", st_done_pyqs: "gs_done_pyqs", st_streak_hint: "gs_streak_hint",
+};
+/* A GS topic gathers a hundred or more test questions: shown a dozen at a time. */
+const GS_GROUPS_STEP = 12;
 const EMPTY_MARKS = { pyq: new Map(), answer: new Map(), snippet: new Map() };
 
-export default function EssayView({ onBrowse }) {
-  const { t, lang } = useLang();
+export default function EssayView({ onBrowse, paper = "essay" }) {
+  const { t: t0, lang } = useLang();
+  const gs = paper !== "essay";
+  const t = useCallback((k) => t0(gs && GS_TEXT[k] ? GS_TEXT[k] : k), [gs, t0]);
+  // The wiki is the Essay's for now; a GS paper has PYQs, copies and notes.
+  const tabs = gs ? TABS.filter(([k]) => k !== "wiki") : TABS;
   const [tab, setTab] = useState(() => {
-    const k = loadKey("essay:tab", "pyqs");
-    return TABS.some(([x]) => x === k) ? k : "pyqs";
+    const k = loadKey(`${paper}:tab`, "pyqs");
+    return tabs.some(([x]) => x === k) ? k : "pyqs";
   });
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
@@ -142,7 +167,7 @@ export default function EssayView({ onBrowse }) {
         // The study tools are extras: if they fail, the library still opens.
         const soft = (p, empty) => p.catch((e) => { console.warn("essay study data unavailable", e); return empty; });
         const [themes, pyqs, access, ltwReady, myMarks, myNotes, days] = await Promise.all([
-          DB.essayThemes(), DB.essayPyqs(), DB.mainsAccess(),
+          DB.essayThemes(paper), DB.essayPyqs({ paper }), DB.paperAccess(paper),
           soft(DB.essayLtwReady(), new Set()), soft(DB.essayMyMarks(), EMPTY_MARKS),
           soft(DB.essayNotes(), []), soft(DB.essayActivityDays(), []),
         ]);
@@ -160,10 +185,10 @@ export default function EssayView({ onBrowse }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
 
-  const switchTab = (k) => { setTab(k); saveKey("essay:tab", k); setOpenPyq(null); };
+  const switchTab = (k) => { setTab(k); saveKey(`${paper}:tab`, k); setOpenPyq(null); };
   const openPyqAt = useCallback((pyq, section = "essays") => {
-    setTab("pyqs"); saveKey("essay:tab", "pyqs"); setOpenPyq({ pyq, section });
-  }, []);
+    setTab("pyqs"); saveKey(`${paper}:tab`, "pyqs"); setOpenPyq({ pyq, section });
+  }, [paper]);
 
   const themeName = useCallback((th) => (lang === "hi" && th?.nameHi ? th.nameHi : th?.name || ""), [lang]);
   const topicOf = useCallback((p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic), [lang]);
@@ -217,7 +242,7 @@ export default function EssayView({ onBrowse }) {
   if (!data) return <SkeletonCards count={3} height={120} />;
 
   const ctx = {
-    t, lang, themeName, topicOf, access: data.access, open, openText, onBrowse,
+    t, lang, paper, gs, themeName, topicOf, access: data.access, open, openText, onBrowse,
     marks, toggleMark, notes, notesFor, editNote, openPyq: openPyqAt, pyqById, ltwReady: data.ltwReady,
   };
 
@@ -227,7 +252,7 @@ export default function EssayView({ onBrowse }) {
       <style>{STUDY_CSS}</style>
       <div className="es-head">
         <div className="tabs">
-          {TABS.map(([k, key]) => (
+          {tabs.map(([k, key]) => (
             <button key={k} className={"tab" + (tab === k ? " active" : "")} onClick={() => switchTab(k)}>{t(key)}</button>
           ))}
         </div>
@@ -281,9 +306,14 @@ export default function EssayView({ onBrowse }) {
 
 /* ---------------------------------------------------------------- PYQs -- */
 
-function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, toggleMark, ltwReady }) {
-  const [mode, setMode] = useState(() => (loadKey("essay:mode", "theme") === "year" ? "year" : "theme"));
-  const [pick, setPick] = useState(() => loadKey("essay:pick", "all"));
+/* "2025 · Q3(b)" for a GS question; "2025 · A" for an essay in a section. */
+const pyqTag = (p, gs) => (gs
+  ? `${p.year} · Q${p.qNo ?? ""}${p.section ? `(${p.section})` : ""}`
+  : p.section ? `${p.year} · ${p.section}` : String(p.year));
+
+function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, toggleMark, ltwReady, paper, gs }) {
+  const [mode, setMode] = useState(() => (loadKey(`${paper}:mode`, "theme") === "year" ? "year" : "theme"));
+  const [pick, setPick] = useState(() => loadKey(`${paper}:pick`, "all"));
   const byId = useMemo(() => new Map(themes.map((th) => [th.id, th])), [themes]);
 
   const themeCounts = useMemo(() => {
@@ -293,16 +323,17 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
   }, [pyqs]);
   const railThemes = useMemo(() => themes
     .filter((th) => themeCounts.get(th.id))
-    .sort((a, b) => (themeCounts.get(b.id) - themeCounts.get(a.id)) || themeName(a).localeCompare(themeName(b))),
-  [themes, themeCounts, themeName]);
+    // Essay themes by size; GS topics in the order the syllabus lists them.
+    .sort((a, b) => (gs ? a.sortOrder - b.sortOrder : themeCounts.get(b.id) - themeCounts.get(a.id)) || themeName(a).localeCompare(themeName(b))),
+  [themes, themeCounts, themeName, gs]);
   const years = useMemo(() => {
     const m = new Map();
     pyqs.forEach((p) => m.set(p.year, (m.get(p.year) || 0) + 1));
     return [...m].sort((a, b) => b[0] - a[0]);
   }, [pyqs]);
 
-  const setModeKeep = (m) => { setMode(m); setPick("all"); saveKey("essay:mode", m); saveKey("essay:pick", "all"); };
-  const choose = (v) => { setPick(v); saveKey("essay:pick", v); };
+  const setModeKeep = (m) => { setMode(m); setPick("all"); saveKey(`${paper}:mode`, m); saveKey(`${paper}:pick`, "all"); };
+  const choose = (v) => { setPick(v); saveKey(`${paper}:pick`, v); };
   // A remembered pick that no longer exists (a theme renamed away) falls back to all.
   const valid = pick === "all"
     || (mode === "theme" ? themeCounts.has(pick) : years.some(([y]) => String(y) === String(pick)));
@@ -369,11 +400,14 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
                       {main ? <span className="es-chip es-lead">{themeName(main)}</span> : <span />}
                       <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
                         {mk?.done && <span className="st-chip-done">✓ {t("st_done")}</span>}
-                        <span className="es-yr">{p.section ? `${p.year} · ${p.section}` : p.year}</span>
+                        <span className="es-yr">{pyqTag(p, gs)}</span>
                         <StarButton on={!!mk?.starred} onClick={() => toggleMark("pyq", p.id, "starred")} t={t} />
                       </span>
                     </div>
-                    <div className={"es-topic" + (lang === "hi" && p.topicHi ? " hi" : "")}>{topicOf(p)}</div>
+                    <div className={"es-topic" + (gs ? " es-clamp" : "") + (lang === "hi" && p.topicHi ? " hi" : "")}>{topicOf(p)}</div>
+                    {gs && p.marks != null && (
+                      <div className="es-qmeta">{fill(t("gs_marks_words"), { m: p.marks, w: p.wordLimit ?? "" })}</div>
+                    )}
                     {rest.length > 0 && (
                       <div className="es-also">{t("es_also_under")}{rest.map((th) => <span key={th.id} className="es-chip">{themeName(th)}</span>)}</div>
                     )}
@@ -403,11 +437,11 @@ function PyqList({ themes, pyqs, onOpen, t, themeName, topicOf, lang, marks, tog
 }
 
 function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, themeName, topicOf, access, open, openText,
-  marks, toggleMark, notesFor, editNote, ltwReady, onBrowse }) {
+  marks, toggleMark, notesFor, editNote, ltwReady, onBrowse, gs }) {
   const [groups, setGroups] = useState(null);
   const [err, setErr] = useState("");
   const [reload, setReload] = useState(0);
-  const [showAll, setShowAll] = useState(false);
+  const [shownN, setShownN] = useState(PYQ_GROUPS_SHOWN);
   const [readers, setReaders] = useState(new Map());
   const byId = useMemo(() => new Map(themes.map((th) => [th.id, th])), [themes]);
 
@@ -415,7 +449,7 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
     let alive = true;
     (async () => {
       try {
-        const g = await DB.essaysForPyq(pyq.id);
+        const g = gs ? await DB.answersForPyq(pyq) : await DB.essaysForPyq(pyq.id);
         if (alive) { setGroups(g); setErr(""); }
         const counts = await DB.essayReaderCounts(g.flatMap((x) => x.entries.map((e) => e.answerId)));
         if (alive) setReaders(counts);
@@ -425,7 +459,9 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
       }
     })();
     return () => { alive = false; };
-  }, [pyq.id, reload]);
+    // pyq is read whole for GS (its topic and wording); its id says when it changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pyq.id, reload, gs]);
 
   useEffect(() => { window.scrollTo({ top: 0 }); }, [pyq.id]);
 
@@ -434,12 +470,16 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
   // Half the PYQs gather more than six topics (up to 36). The page leads with
   // the strongest ones -- same question first, then by confidence -- and the
   // rest wait behind one button.
-  const visible = showAll ? (groups || []) : (groups || []).slice(0, PYQ_GROUPS_SHOWN);
+  const visible = (groups || []).slice(0, shownN);
   const hidden = (groups || []).slice(visible.length);
   const hiddenEssays = hidden.reduce((n, g) => n + g.entries.length, 0);
   const mk = marks.pyq.get(pyq.id);
   const label = `${pyq.topic} (${pyq.year})`;
-  const sections = [
+  // A GS question has its topic's answers, and a guide once one is written.
+  const sections = gs ? [
+    ["essays", total ? fill(t("st_sec_essays_n"), { n: total }) : t("st_sec_essays")],
+    ...(ltwReady.has(pyq.id) ? [["ltw", t("ltw_btn")]] : []),
+  ] : [
     ["essays", total ? fill(t("st_sec_essays_n"), { n: total }) : t("st_sec_essays")],
     ["ltw", t("ltw_btn")],
     ["wiki", t("st_sec_wiki")],
@@ -456,9 +496,10 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
             {pyq.themes.map((x) => byId.get(x.id)).filter(Boolean).map((th, i) =>
               <span key={th.id} className={"es-chip" + (i === 0 ? " es-lead" : "")}>{themeName(th)}</span>)}
           </span>
-          <span className="es-yr">{pyq.year}</span>
+          <span className="es-yr">{pyqTag(pyq, gs)}</span>
         </div>
-        <div className={"es-topic" + (lang === "hi" && pyq.topicHi ? " hi" : "")}>{topicOf(pyq)}</div>
+        <div className={"es-topic" + (gs ? " es-long" : "") + (lang === "hi" && pyq.topicHi ? " hi" : "")}>{topicOf(pyq)}</div>
+        {gs && pyq.marks != null && <div className="es-qmeta">{fill(t("gs_marks_words"), { m: pyq.marks, w: pyq.wordLimit ?? "" })}</div>}
         <div className="st-head-acts">
           <DoneButton on={!!mk?.done} onClick={() => toggleMark("pyq", pyq.id, "done")} t={t} />
           <StarButton on={!!mk?.starred} onClick={() => toggleMark("pyq", pyq.id, "starred")} t={t} />
@@ -500,7 +541,7 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
             ))}
             {hidden.length > 0 && (
               <div className="es-more">
-                <button className="btn btn-ghost" onClick={() => setShowAll(true)}>
+                <button className="btn btn-ghost" onClick={() => setShownN((n) => (gs ? n + GS_GROUPS_STEP : Infinity))}>
                   {fill(t("es_more_topics"), { n: hidden.length, m: hiddenEssays })}
                 </button>
               </div>
@@ -514,9 +555,10 @@ function PyqDetail({ pyq, section, onSection, themes, onBack, ctx, t, lang, them
 
 /* --------------------------------------------------------- the library -- */
 
-function CopiesTab({ t, access, open, openText, marks, toggleMark }) {
+function CopiesTab({ t, access, open, openText, marks, toggleMark, paper = "essay", gs = false }) {
   const [sort, setSort] = useState(() => {
-    const s = loadKey("essay:sort", "marks");
+    // GS toppers carry no paper-wise marks to sort by: newest first.
+    const s = loadKey(`${paper}:sort`, gs ? "newest" : "marks");
     return ["marks", "newest", "oldest"].includes(s) ? s : "marks";
   });
   const [year, setYear] = useState("");
@@ -534,7 +576,7 @@ function CopiesTab({ t, access, open, openText, marks, toggleMark }) {
   const [page, setPage] = useState({ key: null, items: [], total: 0, err: "" });
   const loading = page.key !== queryKey;
 
-  useEffect(() => { DB.topperLibraryYears("essay").then(setYears).catch(() => setYears([])); }, []);
+  useEffect(() => { DB.topperLibraryYears(paper).then(setYears).catch(() => setYears([])); }, [paper]);
   // Typing should not fire a query per keystroke.
   useEffect(() => { const id = setTimeout(() => setNeedle(q.trim()), 300); return () => clearTimeout(id); }, [q]);
 
@@ -542,7 +584,7 @@ function CopiesTab({ t, access, open, openText, marks, toggleMark }) {
     let alive = true;
     (async () => {
       try {
-        const r = await DB.topperLibrary({ paper: "essay", sort: effSort, year: year ? Number(year) : null, q: needle, offset: 0, limit: 24 });
+        const r = await DB.topperLibrary({ paper, sort: effSort, year: year ? Number(year) : null, q: needle, offset: 0, limit: 24 });
         const readers = await DB.essayReaderCounts(r.items.map((e) => e.answerId));
         if (alive) setPage({ key: queryKey, items: r.items, total: r.total, err: "", readers });
       } catch (e) {
@@ -551,19 +593,19 @@ function CopiesTab({ t, access, open, openText, marks, toggleMark }) {
       }
     })();
     return () => { alive = false; };
-  }, [effSort, year, needle, queryKey]);
+  }, [effSort, year, needle, queryKey, paper]);
 
   const more = async () => {
     setBusy(true);
     try {
-      const r = await DB.topperLibrary({ paper: "essay", sort: effSort, year: year ? Number(year) : null, q: needle, offset: page.items.length, limit: 24 });
+      const r = await DB.topperLibrary({ paper, sort: effSort, year: year ? Number(year) : null, q: needle, offset: page.items.length, limit: 24 });
       const readers = await DB.essayReaderCounts(r.items.map((e) => e.answerId));
       setPage((p) => ({ ...p, items: [...p.items, ...r.items], total: r.total, readers: new Map([...(p.readers || []), ...readers]) }));
     } catch (e) { console.error(e); }
     setBusy(false);
   };
 
-  const changeSort = (s) => { setSort(s); saveKey("essay:sort", s); };
+  const changeSort = (s) => { setSort(s); saveKey(`${paper}:sort`, s); };
   // A year filter with no years in it is noise: shown only once there are some.
   const hasYears = years.length > 0;
 
@@ -577,7 +619,7 @@ function CopiesTab({ t, access, open, openText, marks, toggleMark }) {
         </label>
         <div className="es-tool">
           <select value={effSort} onChange={(e) => changeSort(e.target.value)} aria-label={t("es_sort_label")}>
-            <option value="marks">{t("es_sort_marks")}</option>
+            {!gs && <option value="marks">{t("es_sort_marks")}</option>}
             {hasYears && <option value="newest">{t("es_sort_new")}</option>}
             {hasYears && <option value="oldest">{t("es_sort_old")}</option>}
           </select>
