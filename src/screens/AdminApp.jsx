@@ -2814,7 +2814,7 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
   const [f, setF] = useState(initial || {
     code: "", name: "", exam: "upsc", tagline: "", description: "",
     price: "", mrp: "", durationDays: 365, features: [], isActive: true, sortOrder: 0,
-    brochureUrl: null, includesMains: undefined,
+    brochureUrl: null, includesMains: undefined, includesGs: undefined,
   });
   const [featureText, setFeatureText] = useState((initial?.features || []).join("\n"));
   const [err, setErr] = useState("");
@@ -2975,6 +2975,14 @@ function BundleForm({ initial, exams = [], existingCodes, onSave, onClose }) {
         <div className="seg">
           <button type="button" className={f.includesMains ? "on" : ""} onClick={() => set("includesMains", true)}>Included</button>
           <button type="button" className={!f.includesMains ? "on" : ""} onClick={() => set("includesMains", false)}>Not included</button>
+        </div>
+      </Field>
+
+      <Field label="Mains: General Studies (GS I to IV)"
+             hint="Holders of this bundle can open every GS topper copy, Learn to Write guide and Fact Bank card. Without it, a student gets 7 copies and 7 guides of their choice free.">
+        <div className="seg">
+          <button type="button" className={f.includesGs ? "on" : ""} onClick={() => set("includesGs", true)}>Included</button>
+          <button type="button" className={!f.includesGs ? "on" : ""} onClick={() => set("includesGs", false)}>Not included</button>
         </div>
       </Field>
     </Modal>
