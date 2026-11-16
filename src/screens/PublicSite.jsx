@@ -428,6 +428,9 @@ const CSS = `
 .pb-ess-band .pb-h2{color:var(--on-dark)}
 .pb-ess-band .pb-h2 em{color:var(--gold-300)}
 .pb-ess-band .pb-sub{color:#d8c9ae}
+#pb-mains-h em{display:block;font-size:1.08em}
+.pb-uline{color:#fff7e6;font-weight:600;padding-bottom:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C40 2.5 80 2 118 3.6S178 6.6 198 3' fill='none' stroke='%23e0a83c' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") left bottom/100% 9px no-repeat}
 .pb-ess-band .pb-eyebrow{color:var(--gold-300)}
 
 /* Real topics drifting past, two lanes in opposite directions. Each lane is
@@ -474,7 +477,7 @@ const CSS = `
   .pb-cc-shelf.is-3 > .reveal:nth-child(3){grid-column:1 / -1;justify-self:center;width:calc(50% - 11px)}
 }
 .pb-cc-shelf > .reveal > .pb-cc{flex:1;min-width:0}
-.pb-cc{--cut:72px;--r:22px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
+.pb-cc{--cut:60px;--r:20px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
   border-radius:30px;padding:14px 14px 0;
   transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px));
   transition:transform .45s cubic-bezier(.2,.8,.3,1)}
@@ -522,29 +525,52 @@ const CSS = `
 .pb-cc:not(.is-seen) .pb-cc-list li{opacity:0}
 .pb-cc.is-seen .pb-cc-list li{animation:pb-cc-row .6s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
 @keyframes pb-cc-row{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
-.pb-cc-foot{min-height:var(--cut);display:flex;align-items:center;padding:0 calc(var(--cut) + 6px) 0 14px;
+/* The foot is one slim line that keeps moving: a live dot, and three short
+   lines that roll up in turn (what you can open, what is in it). The cards
+   roll a beat apart; hovering holds the line in place. */
+.pb-cc-foot{--row:24px;min-height:var(--cut);display:flex;align-items:center;padding:0 calc(var(--cut) + 4px) 0 12px;
   border-top:1px solid var(--line);margin:0 -14px 0 0}
-.pb-cc-foot button,.pb-cc-foot span{font:inherit;font-size:14.5px;font-weight:700;color:var(--brand-700);background:none;border:0;padding:0;
-  text-align:left;cursor:pointer}
-.pb-cc-foot button{display:inline-flex;align-items:center;gap:7px;background-image:linear-gradient(currentColor,currentColor);
-  background-size:0 1.5px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:2px;transition:background-size .35s ease}
-.pb-cc-foot button:hover{background-size:100% 1.5px}
-.pb-cc-foot button svg{transition:transform .25s}
-.pb-cc-foot button:hover svg{transform:translateX(4px)}
-.pb-cc-soon .pb-cc-foot span{color:var(--ink-600);font-weight:600;cursor:default}
+.pb-cc-foot > span{font-size:14px;font-weight:600;color:var(--ink-600);cursor:default}
+.pb-cc-more{display:flex;align-items:center;gap:11px;width:100%;min-width:0;font:inherit;font-size:14px;font-weight:700;
+  color:var(--brand-700);background:none;border:0;padding:4px 0;cursor:pointer;text-align:left}
+.pb-cc-live{position:relative;flex:none;width:8px;height:8px;border-radius:50%;background:var(--gold-500)}
+.pb-cc-live::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--gold-500);
+  animation:pb-cc-ping 2.2s cubic-bezier(0,0,.2,1) infinite}
+@keyframes pb-cc-ping{70%,100%{transform:scale(2.8);opacity:0}}
+.pb-cc-tick{display:block;flex:1;min-width:0;height:var(--row);overflow:hidden}
+.pb-cc-roll{display:flex;flex-direction:column}
+.pb-cc-roll > span{flex:none;height:var(--row);line-height:var(--row);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-decoration:underline 1.5px transparent;text-underline-offset:4px;transition:text-decoration-color .25s}
+.pb-cc-more:hover .pb-cc-roll > span{text-decoration-color:currentColor}
+.pb-cc-roll.is-on{animation:pb-cc-roll 10.5s cubic-bezier(.75,0,.25,1) infinite;animation-delay:var(--tick-d,0s)}
+.pb-cc-shelf > .reveal:nth-child(2) .pb-cc-roll{--tick-d:1.2s}
+.pb-cc-shelf > .reveal:nth-child(3) .pb-cc-roll{--tick-d:2.4s}
+.pb-cc-more:hover .pb-cc-roll,.pb-cc-more:focus-visible .pb-cc-roll{animation-play-state:paused}
+@keyframes pb-cc-roll{0%,29%{transform:translateY(0)}33.3%,62%{transform:translateY(calc(var(--row) * -1))}
+  66.6%,95%{transform:translateY(calc(var(--row) * -2))}100%{transform:translateY(calc(var(--row) * -3))}}
 .pb-cc-notch{position:absolute;right:-1px;bottom:-1px;width:calc(var(--cut) + 1px);height:calc(var(--cut) + 1px);background:var(--ground);
   border-top-left-radius:var(--r)}
 .pb-cc-notch::before,.pb-cc-notch::after{content:"";position:absolute;width:var(--r);height:var(--r);
   background:radial-gradient(circle at 0 0,transparent calc(var(--r) - .5px),var(--ground) var(--r))}
 .pb-cc-notch::before{right:0;top:calc(var(--r) * -1)}
 .pb-cc-notch::after{left:calc(var(--r) * -1);bottom:0}
-.pb-cc-go{position:absolute;right:1px;bottom:1px;width:calc(var(--cut) - 12px);height:calc(var(--cut) - 12px);border-radius:22px;
+.pb-cc-go{position:absolute;right:1px;bottom:1px;width:calc(var(--cut) - 10px);height:calc(var(--cut) - 10px);border-radius:18px;
   display:grid;place-items:center;border:0;cursor:pointer;background:var(--cream-50);color:var(--brand-700);
-  transition:background .2s,color .2s,transform .2s}
-button.pb-cc-go:hover{background:var(--gold-300);color:var(--brand-900)}
-button.pb-cc-go{animation:pb-cc-breathe 2.8s ease-in-out infinite}
-button.pb-cc-go:hover{animation:none}
-@keyframes pb-cc-breathe{0%,100%{box-shadow:0 0 0 0 rgba(227,200,119,0)}50%{box-shadow:0 0 0 7px rgba(227,200,119,.22)}}
+  transition:background .25s,color .25s,transform .25s}
+button.pb-cc-go:hover{background:var(--gold-300);color:var(--brand-900);transform:scale(1.06)}
+/* A thin gold arc runs round the arrow, like a second hand. */
+@property --pb-arc{syntax:"<angle>";inherits:false;initial-value:0deg}
+button.pb-cc-go::before{content:"";position:absolute;inset:-4px;border-radius:21px;padding:2px;pointer-events:none;
+  background:conic-gradient(from var(--pb-arc),transparent 0deg 230deg,rgba(227,200,119,.15) 280deg,var(--gold-300) 350deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:pb-cc-arc 3.4s linear infinite}
+@keyframes pb-cc-arc{to{--pb-arc:360deg}}
+/* On hover the arrow leaves to the right and a fresh one slides in. */
+.pb-cc-arw{position:relative;display:block;width:22px;height:22px;overflow:hidden}
+.pb-cc-arw svg{position:absolute;inset:0;transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.pb-cc-arw svg + svg{transform:translateX(-150%)}
+.pb-cc:hover .pb-cc-arw svg:first-child{transform:translateX(150%)}
+.pb-cc:hover .pb-cc-arw svg + svg{transform:none}
 
 /* The art, alive: stars twinkle, the lamplight breathes, the nib bobs as
    a gold line writes itself across the page; on GS the orbit turns and the
@@ -563,7 +589,9 @@ button.pb-cc-go:hover{animation:none}
 .pb-float{animation:pb-float 5s ease-in-out infinite}
 @keyframes pb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @media (prefers-reduced-motion:reduce){
-  .pb-tw,.pb-breathe,.pb-nib,.pb-ink,.pb-orbit,.pb-float,button.pb-cc-go,.pb-cc.is-seen .pb-cc-list li,.pb-cc.is-seen .pb-cc-n{animation:none}
+  .pb-tw,.pb-breathe,.pb-nib,.pb-ink,.pb-orbit,.pb-float,button.pb-cc-go,.pb-cc.is-seen .pb-cc-list li,.pb-cc.is-seen .pb-cc-n,
+  .pb-cc-live::after,.pb-cc-roll.is-on,button.pb-cc-go::before{animation:none}
+  .pb-cc-arw svg{transition:none}
   .pb-ink{stroke-dashoffset:0}
   .pb-cc{transform:none}
 }
@@ -962,7 +990,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-ess-ex{grid-template-columns:minmax(0,1fr)}
   .pb-cc-shelf,.pb-cc-shelf.is-3{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:30px}
   .pb-cc-shelf.is-3 > .reveal:nth-child(3){width:auto;justify-self:stretch}
-  .pb-cc{--cut:66px;--r:20px;border-radius:26px;padding:12px 12px 0}
+  .pb-cc{--cut:56px;--r:18px;border-radius:26px;padding:12px 12px 0}
   .pb-cc-art{height:148px;border-radius:18px}
   .pb-cc-offer .pb-offer{grid-template-columns:minmax(0,1fr)}
   .pb-cc-offer .pb-card-btns{grid-column:1;grid-row:auto;margin-top:10px}
@@ -2725,6 +2753,9 @@ function loadMains() {
   return mainsLoad;
 }
 const fillIn = (s, vars) => String(s).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
+/* Copy may mark one phrase with [[ ]]; it gets the hand-drawn underline. */
+const marked = (s) => String(s).split(/\[\[(.+?)\]\]/).map((part, i) =>
+  i % 2 ? <span key={i} className="pb-uline">{part}</span> : part);
 const num = (n) => Number(n || 0).toLocaleString("en-IN");
 /* Counts are shown as an honest floor with a plus -- "200+" for 233, "1,600+"
    for 1,666 -- never rounded up: a visitor who counts must find at least as
@@ -2783,7 +2814,7 @@ function CountUp({ n, go, still, dec = 0 }) {
    painted in the band's own ground (--ground), so the band stays flat there. */
 const GS_PAPERS = [["I", "pm_gs1"], ["II", "pm_gs2"], ["III", "pm_gs3"], ["IV", "pm_gs4"]];
 
-function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = false, children = null }) {
+function ShelfCard({ art, sub, title, badge, items, foot, ticker = null, onGo, goLabel, soon = false, children = null }) {
   const ref = useRef(null);
   const { seen, still } = useSeen(ref);
   // A slight tilt toward the pointer, and the art's light follows it. Mouse
@@ -2834,12 +2865,24 @@ function ShelfCard({ art, sub, title, badge, items, foot, onGo, goLabel, soon = 
         </ul>
         {children && <div className="pb-cc-offer">{children}</div>}
         <div className="pb-cc-foot">
-          {soon ? <span>{foot}</span> : <button type="button" onClick={onGo}>{foot}<ArrowRight size={15} /></button>}
+          {soon ? <span>{foot}</span> : (
+            <button type="button" className="pb-cc-more" onClick={onGo} aria-label={goLabel}>
+              <span className="pb-cc-live" aria-hidden="true" />
+              <span className="pb-cc-tick" aria-hidden="true">
+                {/* Three lines roll; the first comes round again so the loop has no jump. */}
+                <span className={"pb-cc-roll" + (ticker?.length === 3 ? " is-on" : "")}>
+                  {(ticker?.length === 3 ? [...ticker, ticker[0]] : [foot]).map((l, i) => <span key={i}>{l}</span>)}
+                </span>
+              </span>
+            </button>
+          )}
         </div>
         <div className="pb-cc-notch">
           {soon
             ? <span className="pb-cc-go" aria-hidden="true"><Clock size={22} /></span>
-            : <button type="button" className="pb-cc-go" onClick={onGo} aria-label={goLabel}><ArrowRight size={24} /></button>}
+            : <button type="button" className="pb-cc-go" onClick={onGo} aria-label={goLabel}>
+                <span className="pb-cc-arw" aria-hidden="true"><ArrowRight size={22} /><ArrowRight size={22} /></span>
+              </button>}
         </div>
       </article>
     </div>
@@ -3409,8 +3452,7 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
               <h2 className="pb-h2" id="pb-mains-h">{t("pm_home_h_a")} <em>{t("pm_home_h_em")}</em></h2>
               {view
                 ? <p className="pb-sub">{tot
-                  ? fillIn(t("pm_home_sub2"), { a: nPlus(tot.answers), t: nPlus(tot.toppers), q: num(tot.questions),
-                    y1: tot.essayY1 || view.y1, g1: tot.gsY1 || 2016 })
+                  ? marked(fillIn(t("pm_home_sub2"), { a: nPlus(tot.answers), t: nPlus(tot.toppers), q: num(tot.questions) }))
                   : fillIn(t("pm_home_sub0"), { y1: view.y1 })}</p>
                 : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
             </div>
@@ -3419,12 +3461,14 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
             {view && (
               <div className={"pb-cc-shelf" + (showCombo ? " is-3" : "")}>
                 <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")} badge={owns ? null : t("pm_es_badge_free7")}
-                  items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
+                  items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}
+                  ticker={[t("cc_tk_e1"), t("cc_tk_e2"), t("cc_tk_e3")]}>
                   {offerEl(false, onOpenPage)}
                 </ShelfCard>
                 <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={gsLocked ? t("pm_gs_badge_free7") : t("pm_cc_g_badge")}
                   items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
                   foot={onOpenGsPage ? t("gpg_look") : t("pm_cc_g_open")} onGo={onOpenGsPage || openGs}
+                  ticker={onOpenGsPage ? [t("cc_tk_g1"), t("cc_tk_g2"), t("cc_tk_g3")] : null}
                   goLabel={onOpenGsPage ? t("gpg_look") : t("pm_cc_g_open")}>
                   {!gsLocked ? (
                     <div className="pb-offer pb-free">
@@ -3453,6 +3497,8 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                       { k: "d", icon: <Clock size={18} />, label: fillIn(t("pm_cb_d_l"), { d: comboPlan.durationDays || 365 }), text: t("pm_cb_d_t") },
                     ]}
                     foot={onOpenComboPage ? t("cbp_look") : ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}
+                    ticker={onOpenComboPage ? [t("cc_tk_c1"), t("cc_tk_c2"),
+                      save > 0 ? fillIn(t("cc_tk_c3"), { s: money(save) }) : t("cc_tk_c3b")] : null}
                     onGo={onOpenComboPage || (ownsCombo ? openGs : () => enrollGs(comboPlan.code))}
                     goLabel={onOpenComboPage ? t("cbp_look") : ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}>
                     {ownsCombo ? (
