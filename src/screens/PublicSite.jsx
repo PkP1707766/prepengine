@@ -466,6 +466,13 @@ const CSS = `
 /* The two cards stand the same height: each fills its grid cell, and the
    space goes to the rows, so price block and foot line up across. */
 .pb-cc-shelf > .reveal{display:flex;min-width:0}
+/* Three cards (Essay, GS, Essay + GS) once the combo is on sale: three
+   columns where they fit, else two with the combo centred below, else one. */
+.pb-cc-shelf.is-3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1200px;gap:22px}
+@media (max-width:1100px){
+  .pb-cc-shelf.is-3{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1000px}
+  .pb-cc-shelf.is-3 > .reveal:nth-child(3){grid-column:1 / -1;justify-self:center;width:calc(50% - 11px)}
+}
 .pb-cc-shelf > .reveal > .pb-cc{flex:1;min-width:0}
 .pb-cc{--cut:72px;--r:22px;position:relative;display:flex;flex-direction:column;background:var(--cream-50);color:var(--ink-900);
   border-radius:30px;padding:14px 14px 0;
@@ -609,6 +616,14 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 .pb-cc-offer .pb-card-btns{grid-column:2;grid-row:1 / span 2;margin:0}
 .pb-cc-offer .pb-card-btns .pb-btn{padding:9px 16px;font-size:13.5px}
 .pb-cc-offer .pb-free .pb-price{color:var(--ok-600)}
+.pb-cc-offer .pb-price,.pb-cc-offer .pb-price-mrp{white-space:nowrap}
+/* Three cards side by side are narrow: the price sits above its buttons, the
+   buttons share the row, and the picture's caption clears the badge. */
+.pb-cc-shelf.is-3 .pb-cc-offer .pb-offer{grid-template-columns:minmax(0,1fr)}
+.pb-cc-shelf.is-3 .pb-cc-offer .pb-card-btns{grid-column:1;grid-row:auto;margin-top:12px;display:flex;gap:8px}
+.pb-cc-shelf.is-3 .pb-cc-offer .pb-card-btns .pb-btn{flex:1;justify-content:center}
+.pb-cc-shelf.is-3 .pb-cc-cap{padding-top:30px}
+.pb-cc-shelf.is-3 .pb-cc-badge{font-size:11px;padding:5px 10px;top:12px;right:12px}
 .pb-offer .pb-price-row{margin-bottom:4px}
 .pb-offer-in{font-size:12.5px;line-height:1.45;color:var(--ink-400);margin-bottom:14px}
 .pb-combo{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed color-mix(in srgb,var(--ink-400) 35%,transparent)}
@@ -862,7 +877,8 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-ess-stat + .pb-ess-stat::before{display:none}
   .pb-ess-lbl{font-size:10.5px;letter-spacing:.05em}
   .pb-ess-ex{grid-template-columns:minmax(0,1fr)}
-  .pb-cc-shelf{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:30px}
+  .pb-cc-shelf,.pb-cc-shelf.is-3{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:30px}
+  .pb-cc-shelf.is-3 > .reveal:nth-child(3){width:auto;justify-self:stretch}
   .pb-cc{--cut:66px;--r:20px;border-radius:26px;padding:12px 12px 0}
   .pb-cc-art{height:148px;border-radius:18px}
   .pb-cc-offer .pb-offer{grid-template-columns:minmax(0,1fr)}
@@ -2815,6 +2831,47 @@ function GsArt() {
   );
 }
 
+/* The combo: the essay's open book and GS's four papers on one desk, joined
+   by a gold plus. */
+function ComboArt() {
+  const stars = [[30, 26, 1.2], [96, 18, 1], [164, 40, .9], [236, 20, 1.3], [312, 34, 1], [372, 18, 1.2]];
+  return (
+    <svg className="pb-cc-svg" viewBox="0 0 400 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="cb-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#4a0f19" /><stop offset=".55" stopColor="#2a0a12" /><stop offset="1" stopColor="#141a3a" /></linearGradient>
+        <radialGradient id="cb-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stopColor="#f7c948" stopOpacity=".45" /><stop offset="1" stopColor="#f7c948" stopOpacity="0" /></radialGradient>
+        <linearGradient id="cb-pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffaf0" /><stop offset="1" stopColor="#e6d6b4" /></linearGradient>
+      </defs>
+      <rect width="400" height="210" fill="url(#cb-bg)" />
+      {stars.map(([x, y, r], i) => <circle key={i} className="pb-tw" style={{ animationDelay: (i * 0.41) % 2.6 + "s" }} cx={x} cy={y} r={r} fill="#f5e6bd" opacity=".7" />)}
+      <ellipse className="pb-breathe" cx="200" cy="170" rx="210" ry="90" fill="url(#cb-glow)" />
+      <g transform="translate(-92 16)">
+        <path d="M200 214 C164 198 120 194 72 200 L82 156 C124 147 166 151 200 168 Z" fill="url(#cb-pg)" />
+        <path d="M200 214 C236 198 280 194 328 200 L318 156 C276 147 234 151 200 168 Z" fill="url(#cb-pg)" opacity=".92" />
+        <path d="M200 168 L200 214" stroke="#b9a184" strokeWidth="1.2" />
+        {[0, 1, 2].map((i) => (
+          <path key={i} d={"M" + (96 + i * 2) + " " + (168 + i * 10) + " C130 " + (161 + i * 10) + " 164 " + (164 + i * 10) + " 190 " + (176 + i * 10)}
+                stroke="#7d1a28" strokeOpacity=".22" strokeWidth="1.4" fill="none" />
+        ))}
+      </g>
+      <g className="pb-float">
+        {["IV", "III", "II", "I"].map((n, i) => (
+          <g key={n} transform={"translate(" + (306 + i * 17) + " " + (140 + i * 5) + ") rotate(" + (-12 + i * 7) + ") scale(.62)"}>
+            <rect width="78" height="104" rx="5" fill="url(#cb-pg)" stroke="#b9a184" strokeWidth=".8" />
+            <text x="10" y="24" fontFamily="Georgia,serif" fontSize="17" fontWeight="700" fill="#7d1a28">{n}</text>
+            {[38, 50, 62, 74].map((y) => <rect key={y} x="10" y={y} width={y === 74 ? 36 : 58} height="3" rx="1.5" fill="#22306b" opacity=".22" />)}
+          </g>
+        ))}
+      </g>
+      <g transform="translate(200 188)">
+        <circle r="17" fill="#f7c948" />
+        <circle r="17" fill="none" stroke="#fffaf0" strokeOpacity=".6" strokeWidth="1.5" />
+        <path d="M-7 0 H7 M0 -7 V7" stroke="#4a0f19" strokeWidth="3.2" strokeLinecap="round" />
+      </g>
+    </svg>
+  );
+}
+
 /* A count as shown: the honest floor with a plus, and from a lakh up in
    lakhs to one decimal (2,75,544 words reads "2.7 lakh+"). */
 function statFigure(n, lakh) {
@@ -2847,40 +2904,51 @@ function MainsStats({ items }) {
 /* The price block the Prelims cards carry, for Mains: the cheapest active
    plan that includes it, struck MRP and saving, Enroll and Details. An owner
    gets a way in instead. No plan at all leaves just the way in. */
-/* The GS card's price block after the lock: the GS plan, the Essay + GS combo
-   under it, and a way in for the 7 free copies and 7 free guides. */
-function GsOffer({ plan, combo, onEnroll, onTry }) {
+/* The GS card's price block after the lock: the GS plan alone, and a way in
+   for the 7 free copies and 7 free guides. The combo has its own card. */
+function GsOffer({ plan, onEnroll, onTry }) {
   const { t } = useLang();
-  const offOf = (p) => (p?.mrp && p.mrp > p.price ? Math.round((1 - p.price / p.mrp) * 100) : 0);
-  const main = plan || combo;
-  const off = offOf(main);
+  const off = plan?.mrp && plan.mrp > plan.price ? Math.round((1 - plan.price / plan.mrp) * 100) : 0;
   return (
     <div className="pb-offer">
       <div className="pb-price-row">
-        <span className="pb-price">{money(main.price)}</span>
-        {off > 0 && <><span className="pb-price-mrp">{money(main.mrp)}</span><span className="pb-off">{off}% off</span></>}
+        <span className="pb-price">{money(plan.price)}</span>
+        {off > 0 && <><span className="pb-price-mrp">{money(plan.mrp)}</span><span className="pb-off">{off}% off</span></>}
       </div>
       <div className="pb-offer-in">
-        {main.includesMains ? t("pm_gs_combo_in") : main.durationDays ? fillIn(t("pm_gs_offer_days"), { d: main.durationDays }) : t("pm_offer_life")}
+        {plan.includesMains ? t("pm_gs_combo_in") : plan.durationDays ? fillIn(t("pm_gs_offer_days"), { d: plan.durationDays }) : t("pm_offer_life")}
       </div>
       <div className="pb-card-btns">
-        <button type="button" className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={() => onEnroll(main.code)}>
+        <button type="button" className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={() => onEnroll(plan.code)}>
           {t("card_enroll")}<ArrowRight size={15} />
         </button>
         <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onTry}>{t("pm_gs_try_free")}</button>
       </div>
-      {plan && combo && (
-        <div className="pb-combo">
-          <div className="pb-combo-t">
-            <b>{t("pm_gs_combo_t")}</b>
-            <span>
-              {money(combo.price)}
-              {offOf(combo) > 0 && <> <s>{money(combo.mrp)}</s> · {offOf(combo)}% off</>}
-            </span>
-          </div>
-          <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={() => onEnroll(combo.code)}>{t("pm_gs_combo_go")}</button>
-        </div>
-      )}
+    </div>
+  );
+}
+
+/* The combo card's price block: the price, the MRP, and what the two plans
+   cost bought one by one. */
+function ComboOffer({ plan, apart, onEnroll }) {
+  const { t } = useLang();
+  const off = plan.mrp && plan.mrp > plan.price ? Math.round((1 - plan.price / plan.mrp) * 100) : 0;
+  return (
+    <div className="pb-offer">
+      <div className="pb-price-row">
+        <span className="pb-price">{money(plan.price)}</span>
+        {off > 0 && <><span className="pb-price-mrp">{money(plan.mrp)}</span><span className="pb-off">{off}% off</span></>}
+      </div>
+      <div className="pb-offer-in">
+        {apart > plan.price
+          ? fillIn(t("pm_cb_offer_apart"), { a: money(apart), d: plan.durationDays || 365 })
+          : fillIn(t("pm_cb_offer_in"), { d: plan.durationDays || 365 })}
+      </div>
+      <div className="pb-card-btns">
+        <button type="button" className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={onEnroll}>
+          {t("card_enroll")}<ArrowRight size={15} />
+        </button>
+      </div>
     </div>
   );
 }
@@ -3104,10 +3172,13 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const cat = data?.cat || null;
   const nameOf = (th) => (lang === "hi" && th.nameHi ? th.nameHi : th.name);
   const topicOf = (p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic);
+  // The Essay card sells the Essay alone: a plan that also brings GS has its
+  // own card (the combo), so it never becomes this card's offer.
   const included = view ? (bundles || []).filter((b) => data.codes?.includes(b.code)) : [];
+  const essayOffers = included.filter((b) => !b.includesGs);
   // The plan to sell from: the Essay's own plan (a Mains plan with no papers)
   // when there is one, else the cheapest bundle that brings Mains along.
-  const byPrice = [...included].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+  const byPrice = [...(essayOffers.length ? essayOffers : included)].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
   const offer = byPrice.find((b) => !b.testCount) || byPrice[0] || null;
   const owns = !!session && included.some((b) => owned?.has(b.code));
   // GS (0042): free for every signed-in student while gs_open is on; after the
@@ -3118,6 +3189,12 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const comboPlan = gsPlans.filter((b) => b.includesMains).sort((a, b) => a.price - b.price)[0] || null;
   const ownsGs = !!session && gsPlans.some((b) => owned?.has(b.code));
   const gsLocked = gsOpenFlag === false && !!(gsPlan || comboPlan);
+  const ownsCombo = !!session && !!comboPlan && owned?.has(comboPlan.code);
+  // What the combo saves against buying the Essay and GS plans one by one.
+  const essayAlone = byPrice.find((b) => !b.testCount && !b.includesGs) || null;
+  const apart = essayAlone && gsPlan ? essayAlone.price + gsPlan.price : 0;
+  const save = comboPlan && apart > comboPlan.price ? apart - comboPlan.price : 0;
+  const showCombo = !!comboPlan && gsOpenFlag === false;
   const enrollGs = (code) => { askOpenView("gs"); onEnroll(code); };
   // Leave word of where to land, then go: the dashboard opens on Essay, on the
   // theme or year picked; a visitor signs in first.
@@ -3241,7 +3318,7 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
 
             {view && <MainsStats items={stats} />}
             {view && (
-              <div className="pb-cc-shelf">
+              <div className={"pb-cc-shelf" + (showCombo ? " is-3" : "")}>
                 <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")}
                   items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
                   {offerEl(false, onOpenPage)}
@@ -3262,9 +3339,31 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                       <CheckCircle2 size={16} />{t("pm_gs_owned_open")}
                     </button>
                   ) : (
-                    <GsOffer plan={gsPlan} combo={comboPlan} onEnroll={enrollGs} onTry={openGs} />
+                    <GsOffer plan={gsPlan || comboPlan} onEnroll={enrollGs} onTry={openGs} />
                   )}
                 </ShelfCard>
+                {showCombo && (
+                  <ShelfCard art={<ComboArt />} sub={t("pm_cb_sub")} title={t("pm_cb_t")}
+                    badge={save > 0 ? fillIn(t("pm_cb_badge"), { s: money(save) }) : t("pm_cb_badge0")}
+                    items={[
+                      { k: "e", icon: <PenLine size={18} />, label: t("pm_cb_e_l"), text: t("pm_cb_e_t") },
+                      { k: "g", mark: "GS", label: t("pm_cb_g_l"), text: t("pm_cb_g_t") },
+                      { k: "s", icon: <Layers size={18} />, label: t("pm_cb_s_l"),
+                        text: save > 0 ? fillIn(t("pm_cb_s_t"), { a: money(apart), s: money(save) }) : t("pm_cb_s_t0") },
+                      { k: "d", icon: <Clock size={18} />, label: fillIn(t("pm_cb_d_l"), { d: comboPlan.durationDays || 365 }), text: t("pm_cb_d_t") },
+                    ]}
+                    foot={ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}
+                    onGo={ownsCombo ? openGs : () => enrollGs(comboPlan.code)}
+                    goLabel={ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}>
+                    {ownsCombo ? (
+                      <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={openGs}>
+                        <CheckCircle2 size={16} />{t("pm_cb_owned")}
+                      </button>
+                    ) : (
+                      <ComboOffer plan={comboPlan} apart={apart} onEnroll={() => enrollGs(comboPlan.code)} />
+                    )}
+                  </ShelfCard>
+                )}
               </div>
             )}
           </div>
