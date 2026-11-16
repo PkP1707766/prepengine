@@ -14,7 +14,7 @@ import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
 import { Instagram, YouTube, Telegram, WhatsApp, LinkedIn, XMark } from "../ui/SocialIcons.jsx";
 import BrochureButton, { BROCHURE_CSS } from "../ui/BrochureButton.jsx";
 import * as DB from "../lib/db.js";
-import { saveKey, askOpenView } from "../lib/storage.js";
+import { saveKey, loadKey, removeKey, askOpenView } from "../lib/storage.js";
 import { fmtLongDate } from "../lib/format.js";
 import { groupBySeries, seriesIn, titleIn } from "../lib/testOrder.js";
 
@@ -611,6 +611,10 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 .pb-cc-offer .pb-free .pb-price{color:var(--ok-600)}
 .pb-offer .pb-price-row{margin-bottom:4px}
 .pb-offer-in{font-size:12.5px;line-height:1.45;color:var(--ink-400);margin-bottom:14px}
+.pb-combo{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed color-mix(in srgb,var(--ink-400) 35%,transparent)}
+.pb-combo-t{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.35}
+.pb-combo-t span{color:var(--ink-400)}
+.pb-combo-t s{opacity:.75}
 .pb-offer-dark .pb-price{color:var(--gold-300);font-size:34px}
 .pb-offer-dark .pb-price-mrp{color:#c9b99c}
 .pb-offer-dark .pb-off{color:#9fe0bb;background:rgba(159,224,187,.14)}
@@ -2843,6 +2847,44 @@ function MainsStats({ items }) {
 /* The price block the Prelims cards carry, for Mains: the cheapest active
    plan that includes it, struck MRP and saving, Enroll and Details. An owner
    gets a way in instead. No plan at all leaves just the way in. */
+/* The GS card's price block after the lock: the GS plan, the Essay + GS combo
+   under it, and a way in for the 7 free copies and 7 free guides. */
+function GsOffer({ plan, combo, onEnroll, onTry }) {
+  const { t } = useLang();
+  const offOf = (p) => (p?.mrp && p.mrp > p.price ? Math.round((1 - p.price / p.mrp) * 100) : 0);
+  const main = plan || combo;
+  const off = offOf(main);
+  return (
+    <div className="pb-offer">
+      <div className="pb-price-row">
+        <span className="pb-price">{money(main.price)}</span>
+        {off > 0 && <><span className="pb-price-mrp">{money(main.mrp)}</span><span className="pb-off">{off}% off</span></>}
+      </div>
+      <div className="pb-offer-in">
+        {main.includesMains ? t("pm_gs_combo_in") : main.durationDays ? fillIn(t("pm_gs_offer_days"), { d: main.durationDays }) : t("pm_offer_life")}
+      </div>
+      <div className="pb-card-btns">
+        <button type="button" className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={() => onEnroll(main.code)}>
+          {t("card_enroll")}<ArrowRight size={15} />
+        </button>
+        <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onTry}>{t("pm_gs_try_free")}</button>
+      </div>
+      {plan && combo && (
+        <div className="pb-combo">
+          <div className="pb-combo-t">
+            <b>{t("pm_gs_combo_t")}</b>
+            <span>
+              {money(combo.price)}
+              {offOf(combo) > 0 && <> <s>{money(combo.mrp)}</s> · {offOf(combo)}% off</>}
+            </span>
+          </div>
+          <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={() => onEnroll(combo.code)}>{t("pm_gs_combo_go")}</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function MainsOffer({ offer, owns, onEnroll, onDetails, onOpen, dark = false }) {
   const { t } = useLang();
   if (owns) {
@@ -3012,6 +3054,12 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const [mode, setMode] = useState("theme");
   const [sel, setSel] = useState(null);
   const listRef = useRef(null);
+  const [gsOpenFlag, setGsOpenFlag] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    DB.gsOpen().then((v) => { if (alive) setGsOpenFlag(v); }, () => {});
+    return () => { alive = false; };
+  }, []);
   useEffect(() => {
     if (mainsCache) return undefined;
     let alive = true;
@@ -3042,6 +3090,15 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
     };
   }, [data]);
 
+  // A student sent here by "Get GS" lands on the Mains cards, not the top.
+  const hasView = !!view;
+  useEffect(() => {
+    if (full || !hasView || loadKey("public:jump") !== "mains") return undefined;
+    removeKey("public:jump");
+    const id = setTimeout(() => document.getElementById("mains")?.scrollIntoView({ behavior: "smooth", block: "start" }), 250);
+    return () => clearTimeout(id);
+  }, [full, hasView]);
+
   if (data && !view) return null;
 
   const cat = data?.cat || null;
@@ -3053,6 +3110,15 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   const byPrice = [...included].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
   const offer = byPrice.find((b) => !b.testCount) || byPrice[0] || null;
   const owns = !!session && included.some((b) => owned?.has(b.code));
+  // GS (0042): free for every signed-in student while gs_open is on; after the
+  // lock the card sells the GS plan, with the Essay + GS combo beside it. The
+  // prices come from the plans, so the admin screen can change them.
+  const gsPlans = (bundles || []).filter((b) => b.includesGs && !b.testCount);
+  const gsPlan = gsPlans.filter((b) => !b.includesMains).sort((a, b) => a.price - b.price)[0] || null;
+  const comboPlan = gsPlans.filter((b) => b.includesMains).sort((a, b) => a.price - b.price)[0] || null;
+  const ownsGs = !!session && gsPlans.some((b) => owned?.has(b.code));
+  const gsLocked = gsOpenFlag === false && !!(gsPlan || comboPlan);
+  const enrollGs = (code) => { askOpenView("gs"); onEnroll(code); };
   // Leave word of where to land, then go: the dashboard opens on Essay, on the
   // theme or year picked; a visitor signs in first.
   const open = (m = "theme", pick = null) => {
@@ -3180,16 +3246,24 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                   items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
                   {offerEl(false, onOpenPage)}
                 </ShelfCard>
-                <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={t("pm_cc_g_badge")}
+                <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={gsLocked ? t("pm_gs_badge_free7") : t("pm_cc_g_badge")}
                   items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
                   foot={t("pm_cc_g_open")} onGo={openGs} goLabel={t("pm_cc_g_open")}>
-                  <div className="pb-offer pb-free">
-                    <div className="pb-price-row"><span className="pb-price">{t("pm_gs_free")}</span></div>
-                    <div className="pb-offer-in">{t("pm_gs_free_s")}</div>
-                    <div className="pb-card-btns">
-                      <button type="button" className="pb-btn pb-btn-maroon" onClick={openGs}>{t("pm_gs_start")}<ArrowRight size={15} /></button>
+                  {!gsLocked ? (
+                    <div className="pb-offer pb-free">
+                      <div className="pb-price-row"><span className="pb-price">{t("pm_gs_free")}</span></div>
+                      <div className="pb-offer-in">{t("pm_gs_free_s")}</div>
+                      <div className="pb-card-btns">
+                        <button type="button" className="pb-btn pb-btn-maroon" onClick={openGs}>{t("pm_gs_start")}<ArrowRight size={15} /></button>
+                      </div>
                     </div>
-                  </div>
+                  ) : ownsGs ? (
+                    <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={openGs}>
+                      <CheckCircle2 size={16} />{t("pm_gs_owned_open")}
+                    </button>
+                  ) : (
+                    <GsOffer plan={gsPlan} combo={comboPlan} onEnroll={enrollGs} onTry={openGs} />
+                  )}
                 </ShelfCard>
               </div>
             )}

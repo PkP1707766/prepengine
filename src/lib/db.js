@@ -204,8 +204,18 @@ export async function listBundles() {
     .order("exam_sort_order", { nullsFirst: false })
     .order("sort_order");
   if (error) throw error;
-  return (data ?? []).map(bundleFromRow);
+  const list = (data ?? []).map(bundleFromRow);
+  // Dev only: localStorage "fx:gsLocked" = "1" previews the GS card after the
+  // lock, with the two GS plans as 0042 creates them (inactive until then).
+  if (import.meta.env.DEV && DEV_GS_LOCKED() && !list.some((b) => b.includesGs)) {
+    const gs = { exam: "upsc", examLabel: "UPSC", examFullName: "", conductedBy: "", examSort: 0, tagline: "", description: "",
+      currency: "INR", durationDays: 365, features: [], testCount: 0, freeTestCount: 0, includesGs: true, sortOrder: 90, brochureUrl: null };
+    list.push({ ...gs, code: "mains-gs", name: "UPSC Mains General Studies", price: 1999, mrp: 5999, includesMains: false },
+              { ...gs, code: "mains-combo", name: "UPSC Mains Essay + General Studies", price: 2499, mrp: 4998, includesMains: true });
+  }
+  return list;
 }
+const DEV_GS_LOCKED = () => { try { return window.localStorage.getItem("fx:gsLocked") === "1"; } catch { return false; } };
 
 /**
  * Exam categories. These used to be a CHECK constraint in the schema and a
@@ -335,6 +345,7 @@ export async function adminListBundles() {
     // build deployed ahead of that migration never sends a column that is
     // not there yet.
     includesMains: "includes_mains" in r ? r.includes_mains === true : undefined,
+    includesGs: "includes_gs" in r ? r.includes_gs === true : undefined,
   }));
 }
 
@@ -361,6 +372,7 @@ export async function upsertBundle(b) {
     // Same "undefined means don't touch" rule, so a save from an older form
     // can never quietly switch Mains off for a bundle.
     ...(b.includesMains === undefined ? {} : { includes_mains: b.includesMains === true }),
+    ...(b.includesGs === undefined ? {} : { includes_gs: b.includesGs === true }),
     updated_at: new Date().toISOString(),
   };
   const { data, error } = await sb.from("plans").upsert(row).select().single();
@@ -2321,11 +2333,49 @@ export async function gsLive() {
 /** May this student read this paper's Mains material (Essay, or GS I-IV)? */
 export async function paperAccess(paper = "essay") {
   if (paper === "essay") return mainsAccess();
-  if (import.meta.env.DEV && FIXTURES_ON()) return true;
+  if (import.meta.env.DEV && FIXTURES_ON()) return !fx().fxGsLocked();
   const sb = await getSupabase();
   const { data, error } = await sb.rpc("has_paper_access", { p_paper: paper });
   if (error) { console.error("paper access check failed", error); return false; }
   return data === true;
+}
+
+/* GS free allowance (0042). A student without GS may open a few topper copies
+ * and Learn to Write guides of their own choosing; the server counts them. */
+
+/** Is GS open to every signed-in student (the build-time preview)? */
+export async function gsOpen() {
+  if (import.meta.env.DEV && (FIXTURES_ON() || DEV_GS_LOCKED())) return !DEV_GS_LOCKED();
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("mains_settings").select("value").eq("key", "gs_open").maybeSingle();
+  if (error) { console.warn("gs_open unavailable", error.message); return true; }
+  return data?.value !== false;
+}
+
+/** { paid, copyLimit, guideLimit, copies: Set, guides: Set } for this student. */
+export async function gsFreeStatus() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxGsFreeStatus();
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("gs_free_status");
+  if (error) { if (!missingTable(error)) console.warn("gs free status unavailable", error.message); return null; }
+  if (!data) return null;
+  return {
+    paid: data.paid === true,
+    copyLimit: Number(data.copyLimit) || 0,
+    guideLimit: Number(data.guideLimit) || 0,
+    copies: new Set(data.copies || []),
+    guides: new Set(data.guides || []),
+  };
+}
+
+/** Spend one free open on a copy ('copy', copyId) or a guide ('guide', pyqId).
+ *  Resolves to { ok, reason?, used?, limit? }. */
+export async function gsFreeClaim(kind, itemId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxGsFreeClaim(kind, itemId);
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("gs_free_claim", { p_kind: kind, p_item: itemId });
+  if (error) throw error;
+  return data || { ok: false, reason: "error" };
 }
 
 export async function mainsAccess() {

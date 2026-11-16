@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
 
   const { data: plan, error: planErr } = await sb
     .from("plans")
-    .select("code, name, price_paise, currency, is_active, includes_mains")
+    .select("code, name, price_paise, currency, is_active, includes_mains, includes_gs")
     .eq("code", planCode)
     .single();
 
@@ -46,9 +46,10 @@ Deno.serve(async (req) => {
   // the rule. Three of the four live bundles had zero published papers and a
   // working checkout, which is a chargeback waiting to happen.
   //
-  // A Mains plan is the exception: what it sells is the Mains section (topper
-  // copies, guides, the wiki), not papers, so it has none by design.
-  if (!plan.includes_mains) {
+  // A Mains plan (Essay, GS or both) is the exception: what it sells is the
+  // Mains section (topper copies, guides, the wiki), not papers, so it has
+  // none by design.
+  if (!plan.includes_mains && !plan.includes_gs) {
     const { data: hasPaper } = await sb
       .from("plan_tests")
       .select("test_id, tests!inner(id, is_published)")

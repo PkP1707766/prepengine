@@ -938,9 +938,46 @@ const FX_LTW_DOC = {
 };
 // A GS answer guide (the collegium question, gq-4), as drafted for GS-II 2025 Q13.
 const FX_GS_GUIDE = {"kind":"gs","directive":"Discuss + Critically examine","demand":"Trace how the collegium system arose through the Judges cases and the NJAC verdict, then compare its strengths and weaknesses with the US model of presidential nomination and Senate confirmation.","parts":["Evolution of the collegium system","Advantages and disadvantages of India's system","Advantages and disadvantages of the US system"],"intro":[{"type":"context","text":"India is one of the few democracies where judges largely appoint judges. The collegium grew not from the Constitution's text but from Supreme Court judgments interpreting the word 'consultation' in Article 124(2)."},{"type":"constitution","text":"Article 124(2) requires the President to appoint Supreme Court judges after consulting the Chief Justice and other judges. How much weight 'consultation' carries has shaped Indian judicial appointments for four decades."}],"body":[{"heading":"Evolution in India","points":["First Judges case (S. P. Gupta, 1981): executive primacy; consultation did not mean concurrence.","Second Judges case (1993): primacy of the Chief Justice acting with senior judges, creating the collegium.","Third Judges case (1998): a collegium of the Chief Justice and four senior-most judges.","Fourth Judges case (2015): the NJAC and the 99th Amendment struck down as violating judicial independence."]},{"heading":"India: merits and demerits","points":["Merit: insulates appointments from executive and political pressure.","Demerit: opaque process, with few recorded reasons.","Demerit: delays and a long-pending Memorandum of Procedure; limited diversity."]},{"heading":"USA: merits and demerits","points":["The President nominates and the Senate confirms (Article II); judges serve during good behaviour.","Merit: democratic legitimacy and public confirmation hearings.","Demerit: deeply politicised confirmations and ideological court-packing debates."]},{"heading":"Lessons","points":["India can adopt transparency from the US model without its politicisation.","A broad-based body with judicial primacy could balance independence and accountability."]}],"value_adds":[{"type":"judgment","text":"In the NJAC case (2015), the Supreme Court admitted the collegium's flaws and invited suggestions to improve it."},{"type":"example","text":"In 2016 the US Senate declined to hold hearings on Merrick Garland's nomination for months, a sign of politicised appointments."},{"type":"example","text":"Since 2017 the Supreme Court has published collegium resolutions online, a partial step toward transparency."}],"way_forward":["Finalise the Memorandum of Procedure with clear criteria and timelines.","Publish reasons for selections and a secretariat to vet candidates.","Fixed timelines for the government to act on recommendations."],"conclusion":[{"type":"balance","text":"India's collegium protects independence but lacks transparency; the US model is transparent but political. The answer lies in a reformed, rule-bound process that keeps judicial primacy and opens its reasons."},{"type":"wayforward","text":"Clear criteria, recorded reasons and fixed timelines can make the collegium both independent and accountable without importing American politicisation."}],"pitfalls":["Narrating the Judges cases without the comparison with the USA.","Ignoring the advantages of either system, which 'critically examine' requires."],"keywords":["collegium","Article 124(2)","Judges cases","NJAC","Memorandum of Procedure","Senate confirmation","judicial independence","transparency"]};
+/* GS lock (0042). localStorage "fx:gsLocked" = "1" plays a student without
+   GS after the lock: 7 free copies and 7 free guides, the rest blurred. */
+export function fxGsLocked() {
+  try { return window.localStorage.getItem("fx:gsLocked") === "1"; } catch { return false; }
+}
+export function fxGsOpen() { return !fxGsLocked(); }
+const FX_FREE = { copies: new Set(), guides: new Set() };
+export function fxGsFreeStatus() {
+  return { paid: !fxGsLocked(), copyLimit: 7, guideLimit: 7, copies: new Set(FX_FREE.copies), guides: new Set(FX_FREE.guides) };
+}
+export function fxGsFreeClaim(kind, id) {
+  const set = kind === "copy" ? FX_FREE.copies : FX_FREE.guides;
+  if (set.has(id)) return { ok: true, already: true };
+  if (set.size >= 7) return { ok: false, reason: "limit", used: set.size, limit: 7 };
+  set.add(id);
+  return { ok: true, used: set.size, limit: 7 };
+}
+// The same filler the server sends (gs_skeleton): same word count, no words.
+const LOREM = "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo".split(" ");
+const blur = (s) => { const n = String(s || "").trim() ? String(s).trim().split(/\s+/).length : 0; return Array.from({ length: n }, (_, i) => LOREM[i % LOREM.length]).join(" "); };
+const blurList = (a) => (Array.isArray(a) ? a.map(blur) : []);
+const blurTyped = (a) => (Array.isArray(a) ? a.map((x) => ({ type: x.type, text: blur(x.text) })) : []);
+function fxSkeleton(d) {
+  const base = { kind: d.kind, directive: d.directive, demand: d.demand, parts: d.parts || [], conclusion: blurTyped(d.conclusion), pitfalls: blurList(d.pitfalls) };
+  if (d.kind === "gs-case") {
+    return { ...base, facts: blurList(d.facts), course: blurList(d.course), values: blurList(d.values),
+      stakeholders: (d.stakeholders || []).map((s) => ({ who: s.who, stake: blur(s.stake) })),
+      issues: (d.issues || []).map((x) => ({ heading: x.heading, note: blur(x.note) })),
+      options: (d.options || []).map((o) => ({ option: blur(o.option), merits: blurList(o.merits), demerits: blurList(o.demerits) })) };
+  }
+  return { ...base, intro: blurTyped(d.intro), value_adds: blurTyped(d.value_adds), way_forward: blurList(d.way_forward), keywords: blurList(d.keywords),
+    body: (d.body || []).map((b) => ({ heading: b.heading, points: blurList(b.points) })) };
+}
+
 export function fxLtwReady() { return new Set(["pq-5", "pq-10", "gq-4"]); }
 export function fxLtw(pyqId) {
   if (pyqId === "pq-5") return { doc: FX_LTW_DOC, status: "published", updatedAt: "2026-11-08T00:00:00Z" };
+  if (pyqId === "gq-4" && fxGsLocked() && !FX_FREE.guides.has(pyqId)) {
+    return { preview: { kind: "gs", demand: FX_GS_GUIDE.demand, headings: FX_GS_GUIDE.body.map((b) => b.heading), skeleton: fxSkeleton(FX_GS_GUIDE) } };
+  }
   if (pyqId === "gq-4") return { doc: FX_GS_GUIDE, status: "published", updatedAt: "2026-11-15T00:00:00Z" };
   if (pyqId === "pq-10") {
     return { preview: { spine: "Accepting what is and improving what can be are two halves of one discipline.",
