@@ -2990,7 +2990,7 @@ function MainsStats({ items }) {
    gets a way in instead. No plan at all leaves just the way in. */
 /* The GS card's price block after the lock: the GS plan alone, and a way in
    for the 7 free copies and 7 free guides. The combo has its own card. */
-function GsOffer({ plan, onEnroll, onTry, dark = false }) {
+function GsOffer({ plan, onEnroll, onTry, onDetails = null, dark = false }) {
   const { t } = useLang();
   const off = plan?.mrp && plan.mrp > plan.price ? Math.round((1 - plan.price / plan.mrp) * 100) : 0;
   return (
@@ -3006,7 +3006,10 @@ function GsOffer({ plan, onEnroll, onTry, dark = false }) {
         <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} style={{ flex: 1 }} onClick={() => onEnroll(plan.code)}>
           {t("card_enroll")}<ArrowRight size={15} />
         </button>
-        <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onTry}>{t("pm_gs_try_free")}</button>
+        {/* On the shelf it opens the GS page, like the other cards; on that page, the free tries. */}
+        {onDetails
+          ? <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onDetails}>{t("card_details")}</button>
+          : <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onTry}>{t("pm_gs_try_free")}</button>}
       </div>
     </div>
   );
@@ -3436,7 +3439,7 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                       <CheckCircle2 size={16} />{t("pm_gs_owned_open")}
                     </button>
                   ) : (
-                    <GsOffer plan={gsPlan || comboPlan} onEnroll={enrollGs} onTry={openGs} />
+                    <GsOffer plan={gsPlan || comboPlan} onEnroll={enrollGs} onTry={openGs} onDetails={onOpenGsPage} />
                   )}
                 </ShelfCard>
                 {showCombo && (
