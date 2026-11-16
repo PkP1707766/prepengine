@@ -2107,6 +2107,47 @@ export async function essayCatalog() {
   };
 }
 
+/** The GS public catalogue (0044): counts per paper, toppers and answers,
+ *  guides, case studies, the Fact Bank by type, and three small tasters.
+ *  Readable without an account. Null when unavailable. */
+export async function gsCatalog() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return null;
+  const sb = await getSupabase();
+  let { data, error } = await sb.rpc("gs_catalog");
+  // Dev only: localStorage "fx:gsCatalog" holds a gs_catalog() result, for
+  // previewing the GS page before 0044 is applied.
+  if (import.meta.env.DEV && error) {
+    try { const raw = window.localStorage.getItem("fx:gsCatalog"); if (raw) { data = JSON.parse(raw); error = null; } } catch { /* none */ }
+  }
+  if (error) { console.warn("gs catalogue unavailable", error.message); return null; }
+  if (!data) return null;
+  const n = (v) => Number(v) || 0;
+  const papers = {};
+  for (const [k, v] of Object.entries(data.papers || {})) {
+    papers[k] = { questions: n(v.questions), guides: n(v.guides), cases: n(v.cases), answers: n(v.answers) };
+  }
+  const gs = data.guide_sample, cs = data.case_sample;
+  return {
+    questions: n(data.questions),
+    years: Array.isArray(data.years) ? data.years.map(n) : [],
+    papers,
+    answers: n(data.answers), copies: n(data.copies), toppers: n(data.toppers),
+    guides: new Set(data.guides || []), cases: n(data.cases), headings: n(data.headings),
+    perPyq: new Map(Object.entries(data.per_pyq || {}).map(([k, v]) => [k, n(v)])),
+    facts: n(data.facts), kinds: data.kinds || {},
+    guideSample: gs ? {
+      topic: gs.topic, year: gs.year, paper: gs.paper, directive: gs.directive || "", demand: gs.demand || "",
+      headings: Array.isArray(gs.headings) ? gs.headings : [], intro: Array.isArray(gs.intro) ? gs.intro : [],
+      valueAdds: n(gs.value_adds),
+    } : null,
+    caseSample: cs ? {
+      topic: cs.topic, year: cs.year, issues: Array.isArray(cs.issues) ? cs.issues : [],
+      stakeholders: n(cs.stakeholders), options: n(cs.options),
+    } : null,
+    fact: data.fact?.body ? { body: data.fact.body, kind: data.fact.kind } : null,
+  };
+}
+
 const LIB_COLS_BASE =
   "answer_id, paper, paper_label, question, start_page, end_page, copy_id, source, title, written_year, " +
   "source_url, page_count, pages_ready, is_free, is_published, topper_id, topper_name, topper_rank, cse_year, essay_marks";
