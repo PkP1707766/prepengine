@@ -2718,8 +2718,9 @@ function loadMains() {
     DB.essayPyqs(), DB.essayThemes(),
     DB.mainsBundleCodes().catch(() => []),
     DB.essayCatalog().catch(() => null),
+    DB.mainsTotals().catch(() => null),
   ])
-    .then(([pyqs, themes, codes, cat]) => (mainsCache = { pyqs, themes, codes, cat }))
+    .then(([pyqs, themes, codes, cat, tot]) => (mainsCache = { pyqs, themes, codes, cat, tot }))
     .catch((e) => { mainsLoad = null; throw e; });
   return mainsLoad;
 }
@@ -3349,6 +3350,15 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
     { key: "k", n: view.themeTotal, label: t("pm_st_themes") },
     { key: "y", n: view.years.length, label: t("pm_st_years") },
   ];
+  // The homepage band heads Essay and GS both, so it counts both (0045).
+  const tot = data?.tot && data.tot.answers > 0 ? data.tot : null;
+  const bandStats = tot ? [
+    { key: "t", n: tot.toppers, label: t("pm_st_toppers") },
+    { key: "c", n: tot.copies, label: t("pm_st_hall") },
+    { key: "a", n: tot.answers, label: t("pm_st_answers") },
+    { key: "g", n: tot.guides, label: t("pm_st_guided") },
+    { key: "k", n: tot.cards, label: t("pm_st_cards") },
+  ] : stats;
   const essayItems = !view ? [] : [
     { k: "t", icon: <Compass size={18} />, num: view.pyqTotal, label: t("pm_r1_l"), text: fillIn(t("pm_r1_t"), { y1: view.y1 }) },
     ...(cat ? [
@@ -3395,13 +3405,14 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
               <div className="pb-eyebrow">{t("pm_home_eyebrow")}</div>
               <h2 className="pb-h2" id="pb-mains-h">{t("pm_home_h_a")} <em>{t("pm_home_h_em")}</em></h2>
               {view
-                ? <p className="pb-sub">{cat
-                  ? fillIn(t("pm_home_sub"), { t: nPlus(cat.toppers), y1: view.y1 })
+                ? <p className="pb-sub">{tot
+                  ? fillIn(t("pm_home_sub2"), { a: nPlus(tot.answers), t: nPlus(tot.toppers), q: num(tot.questions),
+                    y1: tot.essayY1 || view.y1, g1: tot.gsY1 || 2016 })
                   : fillIn(t("pm_home_sub0"), { y1: view.y1 })}</p>
                 : <Skeleton h={16} w="78%" style={{ margin: "4px auto 0" }} />}
             </div>
 
-            {view && <MainsStats items={stats} />}
+            {view && <MainsStats items={bandStats} />}
             {view && (
               <div className={"pb-cc-shelf" + (showCombo ? " is-3" : "")}>
                 <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")} badge={owns ? null : t("pm_es_badge_free7")}

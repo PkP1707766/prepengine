@@ -2148,6 +2148,26 @@ export async function gsCatalog() {
   };
 }
 
+/* The homepage band's totals, Essay and GS together (0045): toppers and
+   copies counted once however many papers they cover. Null when missing. */
+export async function mainsTotals() {
+  if (import.meta.env.DEV && FIXTURES_ON()) return null;
+  const sb = await getSupabase();
+  let { data, error } = await sb.rpc("mains_totals");
+  // Dev only: localStorage "fx:mainsTotals" holds a mains_totals() result,
+  // for previewing the band before 0045 is applied.
+  if (import.meta.env.DEV && error) {
+    try { const raw = window.localStorage.getItem("fx:mainsTotals"); if (raw) { data = JSON.parse(raw); error = null; } } catch { /* none */ }
+  }
+  if (error || !data) { if (error) console.warn("mains totals unavailable", error.message); return null; }
+  const n = (v) => Number(v) || 0;
+  return {
+    toppers: n(data.toppers), copies: n(data.copies), answers: n(data.answers),
+    questions: n(data.questions), guides: n(data.guides), cards: n(data.cards),
+    essayY1: n(data.essay_y1), gsY1: n(data.gs_y1),
+  };
+}
+
 const LIB_COLS_BASE =
   "answer_id, paper, paper_label, question, start_page, end_page, copy_id, source, title, written_year, " +
   "source_url, page_count, pages_ready, is_free, is_published, topper_id, topper_name, topper_rank, cse_year, essay_marks";

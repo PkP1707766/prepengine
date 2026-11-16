@@ -278,7 +278,10 @@ function useBrandChrome() {
         }
         [data-applang="hi"] .pb-h1-l1,
         [data-applang="hi"] .pb-h1-l2,
-        [data-applang="hi"] .pb-res .pb-h2{
+        [data-applang="hi"] .pb-res .pb-h2,
+        [data-applang="hi"] .pb-ess-band .pb-h2,
+        [data-applang="hi"] .pb-fin .pb-h2,
+        [data-applang="hi"] .pb-hk-sec .pb-h2{
           background-image:linear-gradient(100deg,
             var(--on-dark) 0%, var(--gold-100) 46%, var(--gold-300) 100%);
         }
@@ -836,9 +839,16 @@ Object.assign(STR, {
   pm_st_args:   { en: "Model arguments", hi: "आदर्श तर्क" },
   pm_st_ends:   { en: "Openings & endings", hi: "शुरुआत और समापन" },
   pm_lakh:      { en: " lakh+", hi: " लाख+" },
-  pm_home_eyebrow:{ en: "UPSC Mains · Essay & GS", hi: "UPSC मेन्स · निबंध और GS" },
-  pm_home_h_a:  { en: "Mains is won on paper.", hi: "मेन्स काग़ज़ पर जीता जाता है।" },
-  pm_home_h_em: { en: "Learn from the papers that won.", hi: "सीखिए उन्हीं कॉपियों से जो जीतीं।" },
+  pm_home_eyebrow:{ en: "UPSC Mains · Essay + GS I to IV", hi: "UPSC मेन्स · निबंध + GS I से IV" },
+  pm_home_h_a:  { en: "Stop guessing what toppers write.", hi: "टॉपर्स क्या लिखते हैं, अंदाज़ा मत लगाइए।" },
+  pm_home_h_em: { en: "Read their copies, page by page.", hi: "उनकी कॉपियाँ पढ़िए, पन्ना-दर-पन्ना।" },
+  pm_home_sub2: { en: "{a} essays and answers from the exam-hall copies of {t} toppers. Every Essay topic since {y1} and every GS I to IV question since {g1}, {q} in all, each with a guide on how to write it. Real copies, no guesswork.",
+                  hi: "{t} टॉपर्स की परीक्षा-हॉल कॉपियों से {a} निबंध और उत्तर। {y1} से हर निबंध विषय और {g1} से GS I से IV का हर प्रश्न, कुल {q}, हर एक के साथ लिखने की गाइड। असली कॉपियाँ, कोई अंदाज़ा नहीं।" },
+  pm_st_toppers:{ en: "Toppers", hi: "टॉपर्स" },
+  pm_st_hall:   { en: "Exam-hall copies", hi: "परीक्षा-हॉल कॉपियाँ" },
+  pm_st_answers:{ en: "Essays & answers", hi: "निबंध और उत्तर" },
+  pm_st_guided: { en: "Writing guides", hi: "लेखन गाइड" },
+  pm_st_cards:  { en: "Quotes, facts & data", hi: "उद्धरण, तथ्य, आँकड़े" },
   pm_home_sub:  { en: "Real exam-hall copies from {t} toppers, a writing guide for every essay topic UPSC has set since {y1}, and every GS question with toppers' answers and a guide. Built from what toppers actually wrote, not from guesswork.",
                   hi: "{t} टॉपर्स की परीक्षा हॉल की असली कॉपियाँ, {y1} से UPSC के हर निबंध विषय की लेखन गाइड, और हर GS प्रश्न टॉपर्स के उत्तरों व गाइड के साथ। अंदाज़ों से नहीं, टॉपर्स ने जो सच में लिखा उससे बना।" },
   pm_home_sub0: { en: "Every essay topic UPSC has set since {y1}, filed by theme and by year, and every GS question with its guide.",
