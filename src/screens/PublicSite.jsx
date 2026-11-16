@@ -3319,7 +3319,7 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
             {view && <MainsStats items={stats} />}
             {view && (
               <div className={"pb-cc-shelf" + (showCombo ? " is-3" : "")}>
-                <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")}
+                <ShelfCard art={<EssayArt />} sub={t("pm_cc_e_sub")} title={t("pm_cc_e_t")} badge={owns ? null : t("pm_es_badge_free7")}
                   items={essayItems} foot={t("pm_cc_e_foot2")} onGo={onOpenPage} goLabel={t("pm_cc_e_foot2")}>
                   {offerEl(false, onOpenPage)}
                 </ShelfCard>

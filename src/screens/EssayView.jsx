@@ -193,6 +193,9 @@ const GS_TEXT = {
   es_related_q: "gs_test_q", es_n_essays: "gs_n_answers", es_one_essay: "gs_one_answer", es_marks_note: "gs_answers_note",
   es_pyq_no_essays: "gs_pyq_no_answers", es_more_topics: "gs_more_questions", es_access_note: "gs_access_note",
   es_locked_title: "gs_locked_title", es_locked_text: "gs_locked_text", es_locked_badge: "gs_locked_badge",
+  es_free_banner: "gs_free_banner", es_get: "gs_get", es_free_open_copy: "gs_free_open_copy", es_free_open_guide: "gs_free_open_guide",
+  es_free_copy_text: "gs_free_copy_text", es_free_used_copies: "gs_free_used_copies", es_free_used_guides: "gs_free_used_guides",
+  es_free_buy_text: "gs_free_buy_text", es_free_fail: "gs_free_fail", es_ltw_locked: "gsg_locked", es_ltw_locked_text: "gsg_locked_text",
   st_sec_essays: "gs_sec_answers", st_sec_essays_n: "gs_sec_answers_n",
   es_copies_empty_text: "gs_copies_empty_text", es_copies_empty_title: "gs_copies_empty_title", es_load_fail: "gs_load_fail",
   es_search_copies: "gs_search_copies", st_done_pyqs: "gs_done_pyqs", st_streak_hint: "gs_streak_hint",
@@ -243,7 +246,7 @@ export default function EssayView({ onBrowse: onBrowse0, paper = "essay" }) {
           soft(DB.essayLtwReady(), new Set()), soft(DB.essayMyMarks(), EMPTY_MARKS),
           soft(DB.essayNotes(), []), soft(DB.essayActivityDays(), []),
         ]);
-        const freeSt = gs && !access ? await soft(DB.gsFreeStatus(), null) : null;
+        const freeSt = !access ? await soft(DB.mainsFreeStatus(gs ? "gs" : "essay"), null) : null;
         if (alive) {
           setFree(freeSt && !freeSt.paid ? freeSt : null);
           setData({ themes, pyqs, access, ltwReady });
@@ -281,19 +284,19 @@ export default function EssayView({ onBrowse: onBrowse0, paper = "essay" }) {
   /* Spend one of the free opens. The server keeps the count; on success the
      copy or guide opens at once. */
   const claimCopy = useCallback(async (entry) => {
-    const r = await DB.gsFreeClaim("copy", entry.copyId);
+    const r = await DB.mainsFreeClaim(gs ? "gs" : "essay", "copy", entry.copyId);
     if (r?.ok) {
       setFree((f) => (f ? { ...f, copies: new Set([...f.copies, entry.copyId]) } : f));
       setLocked(null);
       if (entry.hosted) setReader(entry); else if (entry.words > 0) setTextOf(entry);
     }
     return r;
-  }, []);
+  }, [gs]);
   const claimGuide = useCallback(async (pyqId) => {
-    const r = await DB.gsFreeClaim("guide", pyqId);
+    const r = await DB.mainsFreeClaim(gs ? "gs" : "essay", "guide", pyqId);
     if (r?.ok) setFree((f) => (f ? { ...f, guides: new Set([...f.guides, pyqId]) } : f));
     return r;
-  }, []);
+  }, [gs]);
 
   const refreshStreak = useCallback(() => {
     DB.essayActivityDays().then((days) => setStreak(DB.essayStreak(days)), () => {});
@@ -355,12 +358,12 @@ export default function EssayView({ onBrowse: onBrowse0, paper = "essay" }) {
           <Lock size={15} />
           <span style={{ flex: 1, minWidth: 200 }}>
             {free
-              ? fill(t("gs_free_banner"), {
+              ? fill(t("es_free_banner"), {
                   c: Math.max(0, free.copyLimit - free.copies.size), cl: free.copyLimit,
                   g: Math.max(0, free.guideLimit - free.guides.size), gl: free.guideLimit })
               : t("es_access_note")}
           </span>
-          {onBrowse && <button className={"btn btn-sm " + (free ? "btn-primary" : "btn-ghost")} onClick={onBrowse}>{free ? t("gs_get") : t("es_see_bundles")}</button>}
+          {onBrowse && <button className={"btn btn-sm " + (free ? "btn-primary" : "btn-ghost")} onClick={onBrowse}>{free ? t("es_get") : t("es_see_bundles")}</button>}
         </div>
       )}
 
@@ -1061,8 +1064,8 @@ function LockedModal({ entry, onClose, onBrowse, t, free = null, onClaim = null 
     setBusy(true); setMsg("");
     try {
       const r = await onClaim(entry);
-      if (!r?.ok) setMsg(r?.reason === "limit" ? fill(t("gs_free_used_copies"), { l: free.copyLimit }) : t("gs_free_fail"));
-    } catch { setMsg(t("gs_free_fail")); }
+      if (!r?.ok) setMsg(r?.reason === "limit" ? fill(t("es_free_used_copies"), { l: free.copyLimit }) : t("es_free_fail"));
+    } catch { setMsg(t("es_free_fail")); }
     setBusy(false);
   };
   useEffect(() => {
@@ -1081,7 +1084,7 @@ function LockedModal({ entry, onClose, onBrowse, t, free = null, onClaim = null 
           <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6 }}>{entry.question}</div>
           <div style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.6 }}>
             {free
-              ? (left > 0 ? fill(t("gs_free_copy_text"), { n: left, l: free.copyLimit }) : fill(t("gs_free_used_copies"), { l: free.copyLimit }) + " " + t("gs_free_buy_text"))
+              ? (left > 0 ? fill(t("es_free_copy_text"), { n: left, l: free.copyLimit }) : fill(t("es_free_used_copies"), { l: free.copyLimit }) + " " + t("es_free_buy_text"))
               : t("es_locked_text")}
           </div>
           {msg && <div style={{ fontSize: 13, color: "var(--danger-600, #b42318)", marginTop: 8 }}>{msg}</div>}
@@ -1089,9 +1092,9 @@ function LockedModal({ entry, onClose, onBrowse, t, free = null, onClaim = null 
         <div className="modal-foot">
           <button className="btn btn-ghost btn-sm" onClick={onClose}>{t("es_v_close")}</button>
           {free && left > 0 && onClaim && (
-            <button className="btn btn-primary btn-sm" onClick={claim} disabled={busy}>{fill(t("gs_free_open_copy"), { n: left, l: free.copyLimit })}</button>
+            <button className="btn btn-primary btn-sm" onClick={claim} disabled={busy}>{fill(t("es_free_open_copy"), { n: left, l: free.copyLimit })}</button>
           )}
-          {onBrowse && <button className={"btn btn-sm " + (free && left > 0 ? "btn-ghost" : "btn-primary")} onClick={onBrowse}>{free ? t("gs_get") : t("es_see_bundles")}</button>}
+          {onBrowse && <button className={"btn btn-sm " + (free && left > 0 ? "btn-ghost" : "btn-primary")} onClick={onBrowse}>{free ? t("es_get") : t("es_see_bundles")}</button>}
         </div>
       </div>
     </div>

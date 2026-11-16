@@ -74,7 +74,8 @@ button.st-stat:hover{border-color:var(--gold-2)}
 /* A locked GS guide: headings stay sharp, the filler under them is blurred. */
 .gsg-blurred .ltw-text,.gsg-blurred .gsg-points li,.gsg-blurred .gsg-va li > span:last-child,
 .gsg-blurred .ltw-list li,.gsg-blurred .ltw-point,.gsg-blurred .gsg-cell span,.gsg-blurred .gsg-opt-h b,
-.gsg-blurred .gsg-pc li,.gsg-blurred .ltw-dims span{filter:blur(4.5px);user-select:none}
+.gsg-blurred .gsg-pc li,.gsg-blurred .gsg-kw span{filter:blur(4.5px);user-select:none}
+.gsg-blurred .ltw-para,.gsg-blurred .ltw-side p{filter:blur(4.5px);user-select:none}
 .gsg-blurred .ltw-meta,.gsg-blurred .ltw-foot{display:none}
 .gsg-blurred{pointer-events:none}
 .gsg-blurred .ltw-tabs{pointer-events:auto}
@@ -320,10 +321,11 @@ function Variants({ items, labels, entries, onText, onOpen, t }) {
   );
 }
 
-/* A locked GS guide: the question, its parts and every heading, with the text
+/* A locked guide, Essay or GS: every heading and label in place, the text
    blurred (the server sent filler, not the words), and a free unlock while the
    student still has some of their free guides left. */
-function GsLockedGuide({ pyq, p, free, onClaimGuide, onClaimed, onBrowse, t }) {
+const NO_ENTRIES = new Map();
+function LockedGuide({ pyq, free, onClaimGuide, onClaimed, onBrowse, t, children }) {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const left = free ? Math.max(0, free.guideLimit - free.guides.size) : 0;
@@ -332,8 +334,8 @@ function GsLockedGuide({ pyq, p, free, onClaimGuide, onClaimed, onBrowse, t }) {
     try {
       const r = await onClaimGuide(pyq.id);
       if (r?.ok) onClaimed();
-      else setMsg(r?.reason === "limit" ? fill(t("gs_free_used_guides"), { l: free.guideLimit }) : t("gs_free_fail"));
-    } catch { setMsg(t("gs_free_fail")); }
+      else setMsg(r?.reason === "limit" ? fill(t("es_free_used_guides"), { l: free.guideLimit }) : t("es_free_fail"));
+    } catch { setMsg(t("es_free_fail")); }
     setBusy(false);
   };
   return (
@@ -341,24 +343,22 @@ function GsLockedGuide({ pyq, p, free, onClaimGuide, onClaimed, onBrowse, t }) {
       <div className="card ltw-lock">
         <Lock size={18} style={{ flex: "0 0 auto", marginTop: 2 }} />
         <div style={{ flex: 1, minWidth: 200 }}>
-          <div style={{ fontWeight: 800, marginBottom: 4 }}>{t("gsg_locked")}</div>
+          <div style={{ fontWeight: 800, marginBottom: 4 }}>{t("es_ltw_locked")}</div>
           <div style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.55 }}>
-            {free && left === 0 ? fill(t("gs_free_used_guides"), { l: free.guideLimit }) + " " : ""}{t("gsg_locked_text")}
+            {free && left === 0 ? fill(t("es_free_used_guides"), { l: free.guideLimit }) + " " : ""}{t("es_ltw_locked_text")}
           </div>
           {msg && <div style={{ fontSize: 13, color: "var(--danger-600, #b42318)", marginTop: 6 }}>{msg}</div>}
         </div>
         <div className="gs-lock-btns">
           {free && left > 0 && onClaimGuide && (
             <button className="btn btn-sm btn-primary" onClick={claim} disabled={busy}>
-              {fill(t("gs_free_open_guide"), { n: left, l: free.guideLimit })}
+              {fill(t("es_free_open_guide"), { n: left, l: free.guideLimit })}
             </button>
           )}
-          {onBrowse && <button className={"btn btn-sm " + (free && left > 0 ? "btn-ghost" : "btn-primary")} onClick={onBrowse}>{t("gs_get")}</button>}
+          {onBrowse && <button className={"btn btn-sm " + (free && left > 0 ? "btn-ghost" : "btn-primary")} onClick={onBrowse}>{t("es_get")}</button>}
         </div>
       </div>
-      <div className="gsg-blurred" aria-hidden="true">
-        <GsGuideDoc doc={p.skeleton} t={t} />
-      </div>
+      <div className="gsg-blurred" aria-hidden="true">{children}</div>
     </div>
   );
 }
@@ -372,8 +372,14 @@ export function LtwPanel({ pyq, entries, onText, onOpen, onBrowse, t, free = nul
   const sideName = [t("ltw_thesis"), t("ltw_antithesis"), t("ltw_synthesis")];
 
   const gsKind = String(data.doc?.kind || data.preview?.kind || "").startsWith("gs");
-  if (data.preview && gsKind && data.preview.skeleton) {
-    return <GsLockedGuide pyq={pyq} p={data.preview} free={free} onClaimGuide={onClaimGuide} onClaimed={retry} onBrowse={onBrowse} t={t} />;
+  if (data.preview?.skeleton) {
+    return (
+      <LockedGuide pyq={pyq} free={free} onClaimGuide={onClaimGuide} onClaimed={retry} onBrowse={onBrowse} t={t}>
+        {gsKind
+          ? <GsGuideDoc doc={data.preview.skeleton} t={t} />
+          : <LtwDoc doc={data.preview.skeleton} entries={NO_ENTRIES} onText={() => {}} onOpen={() => {}} t={t} />}
+      </LockedGuide>
+    );
   }
   if (data.preview && gsKind) {
     const p = data.preview;
@@ -624,7 +630,7 @@ export function GsGuideDoc({ doc, t }) {
       {values.length > 0 && (
         <div className="card ltw-card">
           <div className="ltw-k">{t(d.kind === "gs-case" ? "gsg_values" : "gsg_keywords")}</div>
-          <div className="ltw-dims">{values.map((x) => <span key={x}>{x}</span>)}</div>
+          <div className="ltw-dims gsg-kw">{values.map((x, i) => <span key={x + i}>{x}</span>)}</div>
         </div>
       )}
       <p className="ltw-foot">{t("gsg_note")}</p>
