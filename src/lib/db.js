@@ -2352,12 +2352,18 @@ export async function gsOpen() {
   return data?.value !== false;
 }
 
-/** { paid, copyLimit, guideLimit, copies: Set, guides: Set } for this student. */
-export async function gsFreeStatus() {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxGsFreeStatus();
+/* Before 0043 only the GS functions exist: GS falls back to them, and the
+   Essay simply has no allowance yet. */
+const noFunction = (error) => error?.code === "PGRST202" || /Could not find the function/i.test(String(error?.message || ""));
+
+/** The free allowance of one section ('gs' or 'essay') for this student:
+ *  { paid, copyLimit, guideLimit, copies: Set, guides: Set }, or null. */
+export async function mainsFreeStatus(section) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxMainsFreeStatus(section);
   const sb = await getSupabase();
-  const { data, error } = await sb.rpc("gs_free_status");
-  if (error) { if (!missingTable(error)) console.warn("gs free status unavailable", error.message); return null; }
+  let { data, error } = await sb.rpc("mains_free_status", { p_section: section });
+  if (error && noFunction(error) && section === "gs") ({ data, error } = await sb.rpc("gs_free_status"));
+  if (error) { if (!missingTable(error) && !noFunction(error)) console.warn("free status unavailable", error.message); return null; }
   if (!data) return null;
   return {
     paid: data.paid === true,
@@ -2368,18 +2374,19 @@ export async function gsFreeStatus() {
   };
 }
 
-/** Spend one free open on a copy ('copy', copyId) or a guide ('guide', pyqId).
- *  Resolves to { ok, reason?, used?, limit? }. */
-export async function gsFreeClaim(kind, itemId) {
-  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxGsFreeClaim(kind, itemId);
+/** Spend one free open in a section on a copy ('copy', copyId) or a guide
+ *  ('guide', pyqId). Resolves to { ok, reason?, used?, limit? }. */
+export async function mainsFreeClaim(section, kind, itemId) {
+  if (import.meta.env.DEV && FIXTURES_ON()) return fx().fxMainsFreeClaim(section, kind, itemId);
   const sb = await getSupabase();
-  const { data, error } = await sb.rpc("gs_free_claim", { p_kind: kind, p_item: itemId });
+  let { data, error } = await sb.rpc("mains_free_claim", { p_section: section, p_kind: kind, p_item: itemId });
+  if (error && noFunction(error) && section === "gs") ({ data, error } = await sb.rpc("gs_free_claim", { p_kind: kind, p_item: itemId }));
   if (error) throw error;
   return data || { ok: false, reason: "error" };
 }
 
 export async function mainsAccess() {
-  if (import.meta.env.DEV && FIXTURES_ON()) return true;
+  if (import.meta.env.DEV && FIXTURES_ON()) return !fx().fxEssayLocked();
   const sb = await getSupabase();
   const { data, error } = await sb.rpc("has_mains_access");
   if (error) { console.error("mains access check failed", error); return false; }

@@ -944,12 +944,18 @@ export function fxGsLocked() {
   try { return window.localStorage.getItem("fx:gsLocked") === "1"; } catch { return false; }
 }
 export function fxGsOpen() { return !fxGsLocked(); }
-const FX_FREE = { copies: new Set(), guides: new Set() };
-export function fxGsFreeStatus() {
-  return { paid: !fxGsLocked(), copyLimit: 7, guideLimit: 7, copies: new Set(FX_FREE.copies), guides: new Set(FX_FREE.guides) };
+// localStorage "fx:essayLocked" = "1" plays a student without the Essay plan.
+export function fxEssayLocked() {
+  try { return window.localStorage.getItem("fx:essayLocked") === "1"; } catch { return false; }
 }
-export function fxGsFreeClaim(kind, id) {
-  const set = kind === "copy" ? FX_FREE.copies : FX_FREE.guides;
+const FX_FREE = { gs: { copies: new Set(), guides: new Set() }, essay: { copies: new Set(), guides: new Set() } };
+export function fxMainsFreeStatus(section) {
+  const f = FX_FREE[section];
+  const paid = section === "gs" ? !fxGsLocked() : !fxEssayLocked();
+  return { paid, copyLimit: 7, guideLimit: 7, copies: new Set(f.copies), guides: new Set(f.guides) };
+}
+export function fxMainsFreeClaim(section, kind, id) {
+  const set = kind === "copy" ? FX_FREE[section].copies : FX_FREE[section].guides;
   if (set.has(id)) return { ok: true, already: true };
   if (set.size >= 7) return { ok: false, reason: "limit", used: set.size, limit: 7 };
   set.add(id);
@@ -972,10 +978,22 @@ function fxSkeleton(d) {
     body: (d.body || []).map((b) => ({ heading: b.heading, points: blurList(b.points) })) };
 }
 
+// The Essay skeleton the server sends (essay_skeleton): labels kept, prose blurred.
+function fxEssaySkeleton(d) {
+  return { spine: d.spine, dimensions: d.dimensions || [], how_to: blurList(d.how_to), pitfalls: blurList(d.pitfalls),
+    sides: (d.sides || []).map((x) => ({ label: x.label, blurb: blur(x.blurb) })),
+    arguments: (d.arguments || []).map((a) => ({ side: a.side, title: a.title, point: blur(a.point), paragraph: blur(a.paragraph) })),
+    introductions: blurTyped(d.introductions), conclusions: blurTyped(d.conclusions) };
+}
+
 export function fxLtwReady() { return new Set(["pq-5", "pq-10", "gq-4"]); }
 export function fxLtw(pyqId) {
+  if (pyqId === "pq-5" && fxEssayLocked() && !FX_FREE.essay.guides.has(pyqId)) {
+    return { preview: { spine: FX_LTW_DOC.spine, sides: fxEssaySkeleton(FX_LTW_DOC).sides, titles: FX_LTW_DOC.arguments.map((a) => ({ side: a.side, title: a.title })),
+      introductions: 3, conclusions: 3, skeleton: fxEssaySkeleton(FX_LTW_DOC) } };
+  }
   if (pyqId === "pq-5") return { doc: FX_LTW_DOC, status: "published", updatedAt: "2026-11-08T00:00:00Z" };
-  if (pyqId === "gq-4" && fxGsLocked() && !FX_FREE.guides.has(pyqId)) {
+  if (pyqId === "gq-4" && fxGsLocked() && !FX_FREE.gs.guides.has(pyqId)) {
     return { preview: { kind: "gs", demand: FX_GS_GUIDE.demand, headings: FX_GS_GUIDE.body.map((b) => b.heading), skeleton: fxSkeleton(FX_GS_GUIDE) } };
   }
   if (pyqId === "gq-4") return { doc: FX_GS_GUIDE, status: "published", updatedAt: "2026-11-15T00:00:00Z" };
