@@ -783,6 +783,89 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 /* Look inside. */
 .pb-ess-in{padding-top:84px}
 .pb-ess-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+/* The GS and Essay + GS pages: two cards a row, the free steps, the paper
+   tabs, the savings sum and the comparison table. */
+.pb-ess-cards-2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1000px;margin-inline:auto}
+.pb-cbp-hero .pb-ess-hero-g{margin-top:34px}
+.pb-gs-pbars li{grid-template-columns:100px minmax(0,1fr) 62px}
+.pb-ess-bars b{white-space:nowrap}
+.pb-gs-note{margin-top:auto;font-size:12.5px;line-height:1.5;color:var(--ink-600)}
+.pb-gs-dir{align-self:flex-start;font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:100px;color:#fff;background:var(--brand-600)}
+.pb-gs-demand{font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:17px;line-height:1.35;color:var(--ink-900);
+  display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pb-gs-case{font-size:13.5px;line-height:1.55;color:var(--ink-600);display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pb-gs-lbl{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-700);align-self:center}
+.pb-gs-fact{font-size:15px !important;line-height:1.45 !important}
+[data-applang="hi"] .pb-gs-demand{font-family:var(--font-body);font-style:normal;font-size:15px}
+.pb-gs-steps{list-style:none;margin:40px auto 0;padding:0;max-width:1000px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.pb-gs-steps li{display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:var(--radius-lg);background:var(--cream-50);
+  border:1px solid var(--line);box-shadow:var(--shadow-card)}
+.pb-gs-steps b{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--ink-900)}
+.pb-gs-steps li > span:last-child{font-size:14px;line-height:1.6;color:var(--ink-600)}
+.pb-gs-num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;
+  font-size:18px;color:var(--gold-300);background:radial-gradient(circle,#7d1a28 0%,#4a0f19 100%)}
+.pb-gs-steps-go{display:flex;justify-content:center;margin-top:26px}
+.pb-gs-papers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1080px;margin:36px auto 0}
+.pb-gs-papers button{font:inherit;text-align:left;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;align-items:center;
+  padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--cream-50);color:var(--ink-900);
+  transition:border-color .2s,background .2s,transform .2s}
+.pb-gs-papers button:hover{transform:translateY(-2px);border-color:var(--gold-300)}
+.pb-gs-papers button.on{background:var(--brand-700);border-color:var(--brand-700);color:#fff}
+.pb-gs-papers b{grid-row:span 2;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:var(--font-display);
+  font-size:17px;color:var(--brand-700);background:color-mix(in srgb,var(--gold-300) 40%,transparent)}
+.pb-gs-papers button.on b{background:rgba(255,255,255,.14);color:var(--gold-300)}
+.pb-gs-papers span{font-weight:700;font-size:14.5px}
+.pb-gs-papers i{font-style:normal;font-size:12.5px;color:var(--ink-400)}
+.pb-gs-papers button.on i{color:#f0dfc0}
+.pb-gs-papers button:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px}
+.pb-gs-papers + .pb-ess-ex{margin-top:18px}
+.pb-gs-row .pb-ess-q{display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pb-cbp-sum{margin:36px auto 0;max-width:1000px;display:flex;align-items:stretch;justify-content:center;gap:12px;flex-wrap:wrap}
+.pb-cbp-box{flex:1 1 140px;max-width:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:18px 14px;
+  border-radius:18px;background:var(--cream-50);border:1px solid var(--line);text-align:center}
+.pb-cbp-box span{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-400)}
+.pb-cbp-box b{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--ink-900);font-variant-numeric:tabular-nums}
+.pb-cbp-apart b{text-decoration:line-through;text-decoration-color:var(--brand-600);text-decoration-thickness:2px;color:var(--ink-400)}
+.pb-cbp-best{background:var(--brand-700);border-color:var(--brand-700)}
+.pb-cbp-best span{color:#f0dfc0} .pb-cbp-best b{color:var(--gold-300)}
+.pb-cbp-best i{font-style:normal;font-size:12.5px;font-weight:800;color:#9fe0bb}
+.pb-cbp-op{align-self:center;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--brand-700)}
+.pb-cbp-wrap{margin:36px auto 0;max-width:1000px;overflow-x:auto;border-radius:22px;border:1px solid var(--line);background:var(--cream-50);box-shadow:var(--shadow-card)}
+.pb-cbp-table{width:100%;min-width:560px;border-collapse:collapse;font-size:14px}
+.pb-cbp-table th,.pb-cbp-table td{padding:13px 16px;text-align:center;border-bottom:1px solid var(--line);vertical-align:middle}
+.pb-cbp-table tbody th{text-align:left;font-weight:600;color:var(--ink-900);width:38%}
+.pb-cbp-table thead th{padding-top:20px;vertical-align:bottom}
+.pb-cbp-table tfoot td,.pb-cbp-table tfoot th{border-bottom:0;padding-bottom:20px}
+.pb-cbp-best-col{background:color-mix(in srgb,var(--gold-300) 14%,transparent)}
+.pb-cbp-name{display:block;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink-900)}
+.pb-cbp-price{display:block;margin-top:4px;font-weight:800;color:var(--brand-700)}
+.pb-cbp-price s{margin-left:6px;font-weight:600;color:var(--ink-400)}
+.pb-cbp-tag{display:inline-block;margin-bottom:6px;font-size:11px;font-weight:800;padding:3px 10px;border-radius:100px;background:var(--brand-700);color:#fff}
+.pb-cbp-yes{color:var(--ok-600)} .pb-cbp-no{color:var(--ink-400);font-weight:700}
+.pb-cbp-table td .pb-btn{white-space:nowrap}
+.pb-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pb-cbp-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pb-cbp-facts li{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:var(--cream-100);border:1px solid var(--line);
+  font-size:13px;color:var(--ink-600)}
+.pb-cbp-facts b{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--brand-700)}
+.pb-cbp-more{align-self:flex-start;margin-top:auto}
+@media (max-width:980px){
+  .pb-ess-cards-2{grid-template-columns:minmax(0,1fr);max-width:560px}
+  .pb-gs-steps{grid-template-columns:minmax(0,1fr);max-width:560px}
+  .pb-gs-papers{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .pb-cbp-table{min-width:0;font-size:12.5px}
+  .pb-cbp-table th,.pb-cbp-table td{padding:10px 5px}
+  .pb-cbp-table tbody th{width:34%;padding-left:12px}
+  .pb-cbp-name{font-size:14px}
+  .pb-cbp-price s{display:block;margin-left:0}
+  .pb-cbp-tag{font-size:9.5px;padding:2px 7px}
+  .pb-cbp-table td .pb-btn{white-space:normal;padding:7px 9px;font-size:12px;line-height:1.2}
+  .pb-cbp-op{display:none}
+  .pb-cbp-box{flex:1 1 40%;max-width:none}
+  .pb-cbp-box b{font-size:24px}
+}
 .pb-ess-card{background:var(--cream-50);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);
   padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;
   transition:transform .26s cubic-bezier(.2,.8,.3,1),box-shadow .26s ease,border-color .26s ease}
@@ -2906,11 +2989,11 @@ function MainsStats({ items }) {
    gets a way in instead. No plan at all leaves just the way in. */
 /* The GS card's price block after the lock: the GS plan alone, and a way in
    for the 7 free copies and 7 free guides. The combo has its own card. */
-function GsOffer({ plan, onEnroll, onTry }) {
+function GsOffer({ plan, onEnroll, onTry, dark = false }) {
   const { t } = useLang();
   const off = plan?.mrp && plan.mrp > plan.price ? Math.round((1 - plan.price / plan.mrp) * 100) : 0;
   return (
-    <div className="pb-offer">
+    <div className={`pb-offer${dark ? " pb-offer-dark" : ""}`}>
       <div className="pb-price-row">
         <span className="pb-price">{money(plan.price)}</span>
         {off > 0 && <><span className="pb-price-mrp">{money(plan.mrp)}</span><span className="pb-off">{off}% off</span></>}
@@ -2919,7 +3002,7 @@ function GsOffer({ plan, onEnroll, onTry }) {
         {plan.includesMains ? t("pm_gs_combo_in") : plan.durationDays ? fillIn(t("pm_gs_offer_days"), { d: plan.durationDays }) : t("pm_offer_life")}
       </div>
       <div className="pb-card-btns">
-        <button type="button" className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={() => onEnroll(plan.code)}>
+        <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} style={{ flex: 1 }} onClick={() => onEnroll(plan.code)}>
           {t("card_enroll")}<ArrowRight size={15} />
         </button>
         <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onTry}>{t("pm_gs_try_free")}</button>
@@ -2930,11 +3013,11 @@ function GsOffer({ plan, onEnroll, onTry }) {
 
 /* The combo card's price block: the price, the MRP, and what the two plans
    cost bought one by one. */
-function ComboOffer({ plan, apart, onEnroll }) {
+function ComboOffer({ plan, apart, onEnroll, onDetails = null, dark = false }) {
   const { t } = useLang();
   const off = plan.mrp && plan.mrp > plan.price ? Math.round((1 - plan.price / plan.mrp) * 100) : 0;
   return (
-    <div className="pb-offer">
+    <div className={`pb-offer${dark ? " pb-offer-dark" : ""}`}>
       <div className="pb-price-row">
         <span className="pb-price">{money(plan.price)}</span>
         {off > 0 && <><span className="pb-price-mrp">{money(plan.mrp)}</span><span className="pb-off">{off}% off</span></>}
@@ -2945,9 +3028,10 @@ function ComboOffer({ plan, apart, onEnroll }) {
           : fillIn(t("pm_cb_offer_in"), { d: plan.durationDays || 365 })}
       </div>
       <div className="pb-card-btns">
-        <button type="button" className="pb-btn pb-btn-maroon" style={{ flex: 1 }} onClick={onEnroll}>
+        <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} style={{ flex: 1 }} onClick={onEnroll}>
           {t("card_enroll")}<ArrowRight size={15} />
         </button>
+        {onDetails && <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm" onClick={onDetails}>{t("card_details")}</button>}
       </div>
     </div>
   );
@@ -3116,7 +3200,8 @@ function HookChallenge({ pool, topicOf, themeOf, copiesOf, hasGuide, cta }) {
   );
 }
 
-function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin, onViewBundle, full = false, onOpenPage, onBack }) {
+function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin, onViewBundle, full = false, onOpenPage, onBack,
+  onOpenGsPage = null, onOpenComboPage = null }) {
   const { t, lang } = useLang();
   const [data, setData] = useState(() => mainsCache);
   const [mode, setMode] = useState("theme");
@@ -3325,7 +3410,8 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                 </ShelfCard>
                 <ShelfCard art={<GsArt />} sub={t("pm_cc_g_sub")} title={t("pm_cc_g_t")} badge={gsLocked ? t("pm_gs_badge_free7") : t("pm_cc_g_badge")}
                   items={GS_PAPERS.map(([n, k]) => ({ k, mark: n, label: t(`${k}_t`), text: t(k) }))}
-                  foot={t("pm_cc_g_open")} onGo={openGs} goLabel={t("pm_cc_g_open")}>
+                  foot={onOpenGsPage ? t("gpg_look") : t("pm_cc_g_open")} onGo={onOpenGsPage || openGs}
+                  goLabel={onOpenGsPage ? t("gpg_look") : t("pm_cc_g_open")}>
                   {!gsLocked ? (
                     <div className="pb-offer pb-free">
                       <div className="pb-price-row"><span className="pb-price">{t("pm_gs_free")}</span></div>
@@ -3352,15 +3438,15 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
                         text: save > 0 ? fillIn(t("pm_cb_s_t"), { a: money(apart), s: money(save) }) : t("pm_cb_s_t0") },
                       { k: "d", icon: <Clock size={18} />, label: fillIn(t("pm_cb_d_l"), { d: comboPlan.durationDays || 365 }), text: t("pm_cb_d_t") },
                     ]}
-                    foot={ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}
-                    onGo={ownsCombo ? openGs : () => enrollGs(comboPlan.code)}
-                    goLabel={ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}>
+                    foot={onOpenComboPage ? t("cbp_look") : ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}
+                    onGo={onOpenComboPage || (ownsCombo ? openGs : () => enrollGs(comboPlan.code))}
+                    goLabel={onOpenComboPage ? t("cbp_look") : ownsCombo ? t("pm_cb_open") : t("pm_cb_foot")}>
                     {ownsCombo ? (
                       <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={openGs}>
                         <CheckCircle2 size={16} />{t("pm_cb_owned")}
                       </button>
                     ) : (
-                      <ComboOffer plan={comboPlan} apart={apart} onEnroll={() => enrollGs(comboPlan.code)} />
+                      <ComboOffer plan={comboPlan} apart={apart} onEnroll={() => enrollGs(comboPlan.code)} onDetails={onOpenComboPage} />
                     )}
                   </ShelfCard>
                 )}
@@ -3600,6 +3686,612 @@ function MainsCatalog({ bundles, session, owned, onEnroll, onDashboard, onLogin,
   );
 }
 
+/* ---------------- GS AND ESSAY + GS PAGES ----------------
+   The GS catalogue and the Essay + GS page ride on the detail slot, like the
+   Essay's. GS reads its public catalogue (gs_catalog, 0044) and every
+   published GS question with its themes; nothing behind the lock is shown
+   beyond what a locked student already sees: the question, the headings. */
+const GS_PAGE = "__gs__";
+const COMBO_PAGE = "__combo__";
+const GS_KEYS = ["gs1", "gs2", "gs3", "gs4"];
+const GS_ROMAN = { gs1: "I", gs2: "II", gs3: "III", gs4: "IV" };
+const GS_FACT_KINDS = ["example", "scheme", "thinker", "report", "statistic", "judgment", "history", "constitution", "quote"];
+
+let gsPageCache = null;
+let gsPageLoad = null;
+function loadGsPage() {
+  gsPageLoad ||= Promise.all([
+    DB.gsCatalog().catch(() => null),
+    ...GS_KEYS.map((p) => DB.essayPyqs({ paper: p })),
+    ...GS_KEYS.map((p) => DB.essayThemes(p)),
+  ])
+    .then(([cat, ...rest]) => {
+      const pyqs = {}, themes = {};
+      GS_KEYS.forEach((p, i) => { pyqs[p] = rest[i]; themes[p] = rest[i + GS_KEYS.length]; });
+      return (gsPageCache = { cat, pyqs, themes });
+    })
+    .catch((e) => { gsPageLoad = null; throw e; });
+  return gsPageLoad;
+}
+
+/* Which Mains plans are on sale, which the visitor owns, and what the combo
+   saves against buying the Essay and GS one by one. */
+function mainsPlans(bundles, owned, session) {
+  const list = (bundles || []).filter((b) => (b.includesMains || b.includesGs) && !b.testCount);
+  const cheapest = (arr) => arr.slice().sort((a, b) => a.price - b.price)[0] || null;
+  const essay = cheapest(list.filter((b) => b.includesMains && !b.includesGs));
+  const gs = cheapest(list.filter((b) => b.includesGs && !b.includesMains));
+  const combo = cheapest(list.filter((b) => b.includesGs && b.includesMains));
+  const has = (pred) => !!session && list.some((b) => pred(b) && owned?.has(b.code));
+  const apart = essay && gs ? essay.price + gs.price : 0;
+  return {
+    essay, gs, combo, apart,
+    save: combo && apart > combo.price ? apart - combo.price : 0,
+    ownsEssay: has((b) => b.includesMains),
+    ownsGs: has((b) => b.includesGs),
+    ownsCombo: has((b) => b.includesMains && b.includesGs),
+  };
+}
+
+/* A GS question is long: in a drifting lane it is cut at a word. */
+const shortQ = (s, n = 64) => (String(s).length > n ? String(s).slice(0, n).replace(/\s+\S*$/, "") + "…" : String(s));
+
+function GsPage({ bundles, session, owned, onEnroll, onDashboard, onLogin, onBack, onOpenCombo }) {
+  const { t, lang } = useLang();
+  const [data, setData] = useState(() => gsPageCache);
+  const [gsOpenFlag, setGsOpenFlag] = useState(null);
+  const [paper, setPaper] = useState("gs1");
+  const [mode, setMode] = useState("theme");
+  const [sel, setSel] = useState(null);
+  const listRef = useRef(null);
+  useEffect(() => {
+    let alive = true;
+    DB.gsOpen().then((v) => { if (alive) setGsOpenFlag(v); }, () => {});
+    return () => { alive = false; };
+  }, []);
+  useEffect(() => {
+    if (gsPageCache) return undefined;
+    let alive = true;
+    loadGsPage().then((d) => { if (alive) setData(d); }, () => { if (alive) setData({ failed: true }); });
+    return () => { alive = false; };
+  }, []);
+
+  const plans = mainsPlans(bundles, owned, session);
+  const locked = gsOpenFlag === false && !!plans.gs;
+  const cat = data?.cat || null;
+  const nameOf = (th) => (lang === "hi" && th.nameHi ? th.nameHi : th.name);
+  const topicOf = (p) => (lang === "hi" && p.topicHi ? p.topicHi : p.topic);
+  const goGs = (p = null) => { if (p) saveKey("gs:paper", p); askOpenView("gs"); if (session) onDashboard(); else onLogin(); };
+  const enroll = (code) => { askOpenView("gs"); onEnroll(code); };
+  const jump = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const all = useMemo(() => (data?.pyqs ? GS_KEYS.flatMap((p) => data.pyqs[p] || []) : []), [data]);
+  const years = cat?.years?.length === 2 ? cat.years
+    : all.length ? [Math.min(...all.map((p) => p.year)), Math.max(...all.map((p) => p.year))] : null;
+  const qTotal = cat?.questions || all.length;
+
+  // The question index of the chosen paper, by syllabus topic or by year.
+  const view = useMemo(() => {
+    const pyqs = data?.pyqs?.[paper];
+    if (!pyqs?.length) return null;
+    const counts = new Map();
+    pyqs.forEach((p) => p.themes.forEach((x) => counts.set(x.id, (counts.get(x.id) || 0) + 1)));
+    const ranked = (data.themes?.[paper] || []).filter((th) => counts.get(th.id))
+      .sort((a, b) => counts.get(b.id) - counts.get(a.id) || a.name.localeCompare(b.name));
+    const ym = new Map();
+    pyqs.forEach((p) => ym.set(p.year, (ym.get(p.year) || 0) + 1));
+    return { pyqs, ranked, counts, years: [...ym].sort((a, b) => b[0] - a[0]) };
+  }, [data, paper]);
+  const useMode = view && mode === "theme" && !view.ranked.length ? "year" : mode;
+  let page = null;
+  if (view) {
+    if (useMode === "theme") {
+      const th = view.ranked.find((x) => x.id === sel) || view.ranked[0];
+      page = th && { key: th.id, title: nameOf(th), items: view.pyqs.filter((p) => p.themes.some((x) => x.id === th.id)) };
+    } else {
+      const y = view.years.find(([yr]) => String(yr) === String(sel))?.[0] ?? view.years[0][0];
+      page = { key: y, title: String(y), items: view.pyqs.filter((p) => p.year === y) };
+    }
+  }
+  const pick = (k) => { setSel(k); if (listRef.current) listRef.current.scrollTop = 0; };
+  const switchMode = (m) => { if (m !== mode) { setMode(m); setSel(null); if (listRef.current) listRef.current.scrollTop = 0; } };
+  const switchPaper = (p) => { if (p !== paper) { setPaper(p); setSel(null); if (listRef.current) listRef.current.scrollTop = 0; } };
+  const pageGuides = page && cat ? page.items.filter((p) => cat.guides.has(p.id)).length : 0;
+
+  const lanes = all.length ? [all.filter((_, i) => i % 2 === 0).slice(0, 40), all.filter((_, i) => i % 2 === 1).slice(0, 40)] : [];
+  const stats = !cat ? [] : [
+    { key: "q", n: cat.questions, label: t("gpg_st_q") },
+    { key: "a", n: cat.answers, label: t("gpg_st_a") },
+    { key: "g", n: cat.guides.size, label: t("gpg_st_g") },
+    { key: "f", n: cat.facts, label: t("gpg_st_f") },
+    { key: "c", n: cat.cases, label: t("gpg_st_c") },
+  ];
+  const paperMax = cat ? Math.max(1, ...GS_KEYS.map((p) => cat.papers[p]?.answers || 0)) : 1;
+  const kindMax = cat ? Math.max(1, ...GS_FACT_KINDS.map((k) => Number(cat.kinds[k]) || 0)) : 1;
+  const sample = cat?.guideSample;
+  const cs = cat?.caseSample;
+  const lockLine = locked ? t("gpg_lock") : t("gpg_lock_open");
+
+  const offer = (dark) => {
+    if (plans.ownsGs) {
+      return (
+        <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={() => goGs()}>
+          <CheckCircle2 size={16} />{t("pm_gs_owned_open")}
+        </button>
+      );
+    }
+    if (!locked) {
+      return (
+        <div className={`pb-offer pb-free${dark ? " pb-offer-dark" : ""}`}>
+          <div className="pb-price-row"><span className="pb-price">{t("pm_gs_free")}</span></div>
+          <div className="pb-offer-in">{t("pm_gs_free_s")}</div>
+          <div className="pb-card-btns">
+            <button type="button" className={`pb-btn ${dark ? "pb-btn-gold" : "pb-btn-maroon"}`} onClick={() => goGs()}>{t("pm_gs_start")}<ArrowRight size={15} /></button>
+          </div>
+        </div>
+      );
+    }
+    return <GsOffer plan={plans.gs} onEnroll={enroll} onTry={() => goGs()} dark={dark} />;
+  };
+
+  return (
+    <div className="pb-ess-pg">
+      <section className="pb-ess-band pb-ess-hero" aria-labelledby="gpg-h1">
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <button type="button" className="pb-btn pb-btn-onDark pb-btn-sm pb-ess-back" onClick={onBack}>
+            <ArrowLeft size={15} />{t("pm_back")}
+          </button>
+        </div>
+        {lanes.length > 0 && (
+          <div className="pb-ess-drift" aria-hidden="true">
+            {lanes.map((lane, i) => (
+              <div className={`pb-ess-lane${i ? " pb-ess-lane-b" : ""}`} key={i}>
+                {[0, 1].map((rep) => (
+                  <span className="pb-ess-lane-set" key={rep}>
+                    {lane.map((p) => <span key={p.id}>{shortQ(topicOf(p))}<i>{p.year}</i></span>)}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <div className="pb-ess-hero-g">
+            <div className="pb-ess-hero-t">
+              <div className="pb-eyebrow">{t("gpg_eyebrow")}</div>
+              <h1 className="pb-h2" id="gpg-h1">{t("gpg_h_a")} <em>{t("gpg_h_em")}</em></h1>
+              {years && qTotal
+                ? <p className="pb-sub">{fillIn(t(cat ? "gpg_sub" : "gpg_sub0"), { n: num(qTotal), y1: years[0], y2: years[1], t: cat ? nPlus(cat.toppers) : "" })}</p>
+                : <Skeleton h={16} w="78%" />}
+            </div>
+            <div className="pb-fin-o pb-ess-hero-o">{gsOpenFlag === null || !bundles ? <Skeleton h={120} /> : offer(true)}</div>
+          </div>
+          {cat && <MainsStats items={stats} />}
+          <nav className="pb-ess-jump" aria-label={t("pm_cc_g_t")}>
+            {cat && <button type="button" onClick={() => jump("gpg-inside")}><Layers size={15} />{t("pm_jump_in")}</button>}
+            {locked && <button type="button" onClick={() => jump("gpg-free")}><Gift size={15} />{t("gpg_jump_free")}</button>}
+            <button type="button" onClick={() => jump("gpg-questions")}><BookOpen size={15} />{t("gpg_jump_all")}</button>
+          </nav>
+        </div>
+      </section>
+
+      {cat && (
+        <div className="pb-sec-narrow pb-ess-in" id="gpg-inside">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("gpg_in_eyebrow")}</div>
+            <h2 className="pb-h2">{t("gpg_in_h")}</h2>
+          </div>
+          <div className="pb-ess-cards pb-ess-cards-2">
+            <article className="pb-ess-card reveal reveal-d1">
+              <h3><span className="pb-ess-ic"><BookOpen size={18} /></span>{t("gpg_an_t")}</h3>
+              <p>{fillIn(t("gpg_an_d"), { a: nPlus(cat.answers), t: nPlus(cat.toppers), c: nPlus(cat.copies) })}</p>
+              <div className="pb-ess-art pb-ess-wiki">
+                <ul className="pb-ess-bars pb-gs-pbars">
+                  {GS_KEYS.filter((p) => cat.papers[p]).map((p) => (
+                    <li key={p}>
+                      <span className="pb-ess-bl">{t(`${"pm_"}${p}_t`)}</span>
+                      <span className="pb-ess-bt"><span style={{ width: `${Math.max(6, ((cat.papers[p].answers || 0) / paperMax) * 100)}%` }} /></span>
+                      <b>{nPlus(cat.papers[p].answers)}</b>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pb-gs-note">{t("gpg_an_note")}</div>
+              </div>
+              <div className="pb-ess-lock"><Lock size={13} />{lockLine}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d2">
+              <h3><span className="pb-ess-ic"><PenLine size={18} /></span>{t("gpg_lw_t")}</h3>
+              <p>{fillIn(t("gpg_lw_d"), { g: num(cat.guides.size) })}</p>
+              {sample && (
+                <div className="pb-ess-art pb-ess-guide">
+                  <span className="pb-ess-kick">{fillIn(t("gpg_lw_sample"), { p: GS_ROMAN[sample.paper] || "", y: sample.year })}</span>
+                  {sample.directive && <span className="pb-gs-dir">{sample.directive}</span>}
+                  <div className="pb-gs-demand">{sample.demand}</div>
+                  {sample.intro.length > 0 && (
+                    <div className="pb-ess-sides">
+                      <span className="pb-gs-lbl">{t("gpg_lw_opens")}</span>
+                      {sample.intro.map((x, i) => <span className={`pb-ess-side-chip ${SIDE_TONE[i % 3]}`} key={i}>{t(`gsg_v_${x}`) !== `gsg_v_${x}` ? t(`gsg_v_${x}`) : x}</span>)}
+                    </div>
+                  )}
+                  <ol className="pb-ess-args">
+                    {sample.headings.slice(0, 4).map((h, i) => (
+                      <li key={i} className={i >= 2 ? "pb-ess-fade" : ""}><span className={`pb-ess-dot ${SIDE_TONE[i % 3]}`} />{h}</li>
+                    ))}
+                  </ol>
+                  <div className="pb-ess-more">{fillIn(t("gpg_lw_more"), { v: sample.valueAdds })}</div>
+                </div>
+              )}
+              <div className="pb-ess-lock"><Lock size={13} />{lockLine}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d1">
+              <h3><span className="pb-ess-ic"><Layers size={18} /></span>{t("gpg_fb_t")}</h3>
+              <p>{fillIn(t("gpg_fb_d"), { n: nPlus(cat.facts) })}</p>
+              <div className="pb-ess-art pb-ess-wiki">
+                <ul className="pb-ess-bars">
+                  {GS_FACT_KINDS.filter((k) => Number(cat.kinds[k]) > 0).slice(0, 6).map((k) => (
+                    <li key={k}>
+                      <span className="pb-ess-bl">{t(`wk_ks_${k}`)}</span>
+                      <span className="pb-ess-bt"><span style={{ width: `${Math.max(6, (Number(cat.kinds[k]) / kindMax) * 100)}%` }} /></span>
+                      <b>{nPlus(cat.kinds[k])}</b>
+                    </li>
+                  ))}
+                </ul>
+                {cat.fact && (
+                  <figure className="pb-ess-pick">
+                    <figcaption>{fillIn(t("gpg_fb_pick"), { k: t(`wk_ks_${cat.fact.kind}`) })}</figcaption>
+                    <blockquote className="pb-gs-fact">{cat.fact.body}</blockquote>
+                  </figure>
+                )}
+              </div>
+              <div className="pb-ess-lock"><Lock size={13} />{lockLine}</div>
+            </article>
+
+            <article className="pb-ess-card reveal reveal-d2">
+              <h3><span className="pb-ess-ic"><Target size={18} /></span>{t("gpg_cs_t")}</h3>
+              <p>{fillIn(t("gpg_cs_d"), { n: num(cat.cases) })}</p>
+              {cs && (
+                <div className="pb-ess-art pb-ess-guide">
+                  <span className="pb-ess-kick">{fillIn(t("gpg_cs_sample"), { y: cs.year })}</span>
+                  <div className="pb-gs-case">{cs.topic}</div>
+                  <span className="pb-gs-lbl">{t("gpg_cs_issues")}</span>
+                  <ol className="pb-ess-args">
+                    {cs.issues.slice(0, 4).map((h, i) => (
+                      <li key={i} className={i >= 2 ? "pb-ess-fade" : ""}><span className={`pb-ess-dot ${SIDE_TONE[i % 3]}`} />{h}</li>
+                    ))}
+                  </ol>
+                  <div className="pb-ess-more">{fillIn(t("gpg_cs_more"), { s: cs.stakeholders, o: cs.options })}</div>
+                </div>
+              )}
+              <div className="pb-ess-lock"><Lock size={13} />{lockLine}</div>
+            </article>
+          </div>
+        </div>
+      )}
+
+      {locked && (
+        <div className="pb-sec-narrow pb-ess-in" id="gpg-free">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("gpg_fr_eyebrow")}</div>
+            <h2 className="pb-h2">{t("gpg_fr_h_a")} <em>{t("gpg_fr_h_em")}</em></h2>
+            <p className="pb-sub">{t("gpg_fr_s")}</p>
+          </div>
+          <ol className="pb-gs-steps">
+            {[1, 2, 3].map((n) => (
+              <li className="reveal" key={n} style={{ "--i": n }}>
+                <span className="pb-gs-num">{n}</span>
+                <b>{t(`gpg_fr${n}_t`)}</b>
+                <span>{t(`gpg_fr${n}_d`)}</span>
+              </li>
+            ))}
+          </ol>
+          <div className="pb-gs-steps-go reveal">
+            <button type="button" className="pb-btn pb-btn-maroon" onClick={() => goGs()}>{t("gpg_fr_go")}<ArrowRight size={15} /></button>
+          </div>
+        </div>
+      )}
+
+      <div className="pb-sec-narrow pb-ess-browse" id="gpg-questions">
+        <div className="pb-sec-head reveal">
+          <div className="pb-eyebrow">{t("gpg_ex_eyebrow")}</div>
+          <h2 className="pb-h2">{t("gpg_ex_h")}</h2>
+          <p className="pb-sub">{t("gpg_ex_s")}</p>
+        </div>
+        <div className="pb-gs-papers reveal" role="group" aria-label={t("gpg_ex_h")}>
+          {GS_KEYS.map((p) => (
+            <button type="button" key={p} className={paper === p ? "on" : ""} aria-pressed={paper === p} onClick={() => switchPaper(p)}>
+              <b>{GS_ROMAN[p]}</b><span>{t(`pm_${p}_t`)}</span>
+              {data?.pyqs?.[p] && <i>{fillIn(t("gpg_n_q"), { n: data.pyqs[p].length })}</i>}
+            </button>
+          ))}
+        </div>
+        <div className="pb-ess-ex reveal">
+          {view && page ? (
+            <>
+              <div className="pb-ess-side">
+                <div className="pb-ess-modes" role="group" aria-label={t("gpg_ex_h")}>
+                  {["theme", "year"].map((m) => (
+                    <button type="button" key={m} className={`pb-ess-mode${useMode === m ? " on" : ""}`}
+                            aria-pressed={useMode === m} onClick={() => switchMode(m)}>
+                      {t(m === "theme" ? "gpg_by_topic" : "pm_by_year")}
+                    </button>
+                  ))}
+                </div>
+                <ul className="pb-ess-rail">
+                  {(useMode === "theme"
+                    ? view.ranked.map((th) => [th.id, nameOf(th), view.counts.get(th.id)])
+                    : view.years.map(([y, n]) => [y, String(y), n])
+                  ).map(([k, label, n]) => (
+                    <li key={k}>
+                      <button type="button" className={`pb-ess-ri${String(page.key) === String(k) ? " on" : ""}`}
+                              aria-pressed={String(page.key) === String(k)} onClick={() => pick(k)}>
+                        <span>{label}</span><b>{n}</b>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pb-ess-page">
+                <div className="pb-ess-ph">
+                  <div>
+                    <h3 className="pb-ess-pt">{page.title}</h3>
+                    <div className="pb-ess-pm">
+                      {fillIn(t(page.items.length === 1 ? "gpg_q_one" : "gpg_n_q"), { n: page.items.length })}
+                      {pageGuides > 0 && <> · {fillIn(t(pageGuides === 1 ? "pm_guides_one" : "pm_guides"), { n: pageGuides })}</>}
+                    </div>
+                  </div>
+                  <button type="button" className="pb-ess-pgo" onClick={() => goGs(paper)}
+                          aria-label={fillIn(t("pm_tile_aria"), { name: page.title })}>
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+                <ul className="pb-ess-list" ref={listRef} key={`${paper}:${useMode}:${page.key}`}>
+                  {page.items.map((p) => {
+                    const n = cat?.perPyq.get(p.id) || 0;
+                    const label = (p.qNo ? `Q${p.qNo}${p.section ? `(${p.section})` : ""} · ` : "");
+                    return (
+                      <li key={p.id}>
+                        <button type="button" className={`pb-ess-row pb-gs-row${useMode === "year" ? " pb-ess-row-y" : ""}`}
+                                onClick={() => goGs(paper)} aria-label={fillIn(t("pm_row_aria"), { q: topicOf(p) })}>
+                          {useMode === "theme" && <span className="pb-ess-yr">{p.year}</span>}
+                          <span className="pb-ess-q">
+                            {useMode === "year" && label && <span className="pb-ess-k">{label.replace(/ · $/, "")}{p.marks ? ` · ${p.marks}M` : ""}</span>}
+                            {topicOf(p)}
+                          </span>
+                          <span className="pb-ess-tags">
+                            {n > 0 && <span className="pb-ess-tag">{fillIn(t(n === 1 ? "gpg_ans_one" : "gpg_ans"), { n: nPlus(n) })}</span>}
+                            {cat?.guides.has(p.id) && <span className="pb-ess-tag pb-ess-tag-g">{t("pm_guide")}</span>}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </>
+          ) : (
+            <div className="pb-ess-ghost" aria-hidden="true">
+              {[0, 1, 2, 3, 4].map((i) => <Skeleton key={i} h={18} w={`${86 - i * 9}%`} style={{ marginTop: i ? 20 : 0 }} />)}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="pb-sec-narrow pb-ess-end">
+        <div className="pb-fin reveal">
+          <Mandala className="pb-fin-mandala" />
+          <div className="pb-fin-t">
+            <div className="pb-eyebrow">{t("gpg_fin_eyebrow")}</div>
+            <h2 className="pb-h2">{t("gpg_fin_h_a")} <em>{t("gpg_fin_h_em")}</em></h2>
+            <p>{cat
+              ? fillIn(t("gpg_fin_s"), { q: num(cat.questions), a: nPlus(cat.answers), f: nPlus(cat.facts) })
+              : fillIn(t("gpg_fin_s0"), { q: num(qTotal) })}</p>
+            {plans.combo && !plans.ownsGs && onOpenCombo && (
+              <button type="button" className="pb-fin-free" onClick={onOpenCombo}>
+                {fillIn(t("gpg_fin_combo"), { p: money(plans.combo.price) })}<ArrowRight size={15} />
+              </button>
+            )}
+          </div>
+          <div className="pb-fin-o">{gsOpenFlag === null || !bundles ? <Skeleton h={120} /> : offer(true)}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* The Essay + GS page: what the combo holds, what it saves, and how it
+   compares with buying either alone. Counts come from both catalogues. */
+function ComboPage({ bundles, session, owned, onEnroll, onDashboard, onLogin, onBack, onOpenEssay, onOpenGs }) {
+  const { t } = useLang();
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    Promise.all([DB.essayCatalog().catch(() => null), DB.gsCatalog().catch(() => null), DB.essayPyqs().catch(() => [])])
+      .then(([ec, gc, ep]) => { if (alive) setData({ ec, gc, essayTopics: ep.length }); });
+    return () => { alive = false; };
+  }, []);
+  const plans = mainsPlans(bundles, owned, session);
+  const combo = plans.combo;
+  const ec = data?.ec, gc = data?.gc;
+  const go = (view) => { askOpenView(view); if (session) onDashboard(); else onLogin(); };
+  const enroll = (code, view = "gs") => { askOpenView(view); onEnroll(code); };
+  const days = combo?.durationDays || plans.gs?.durationDays || 365;
+
+  const stats = !data ? [] : [
+    { key: "e", n: data.essayTopics, label: t("cbp_st_e") },
+    { key: "q", n: gc?.questions || 0, label: t("cbp_st_q") },
+    { key: "a", n: (ec?.essays || 0) + (gc?.answers || 0), label: t("cbp_st_a") },
+    { key: "g", n: (ec?.guides.size || 0) + (gc?.guides.size || 0), label: t("cbp_st_g") },
+    { key: "w", n: (ec ? Object.values(ec.kinds).reduce((s, n) => s + (Number(n) || 0), 0) : 0) + (gc?.facts || 0), label: t("cbp_st_w") },
+  ];
+
+  const offer = (dark) => {
+    if (plans.ownsCombo || (plans.ownsEssay && plans.ownsGs)) {
+      return (
+        <button type="button" className="pb-btn pb-btn-block pb-owned" onClick={() => go("gs")}>
+          <CheckCircle2 size={16} />{t("pm_cb_owned")}
+        </button>
+      );
+    }
+    if (!combo) return <Skeleton h={120} />;
+    return <ComboOffer plan={combo} apart={plans.apart} onEnroll={() => enroll(combo.code)} dark={dark} />;
+  };
+
+  // One column per plan; a tick, a dash or a line of text per row.
+  const cols = [
+    { k: "essay", plan: plans.essay, owns: plans.ownsEssay, view: "essay", name: t("pm_cc_e_t") },
+    { k: "gs", plan: plans.gs, owns: plans.ownsGs, view: "gs", name: t("pm_cc_g_t") },
+    { k: "combo", plan: combo, owns: plans.ownsCombo, view: "gs", name: t("pm_cb_t"), best: true },
+  ];
+  const yes = <CheckCircle2 size={18} className="pb-cbp-yes" aria-label={t("cbp_yes")} />;
+  const no = <span className="pb-cbp-no" aria-label={t("cbp_no")}>—</span>;
+  const rows = [
+    { k: "e1", label: t("cbp_r_e1"), v: [yes, no, yes] },
+    { k: "e2", label: t("cbp_r_e2"), v: [yes, no, yes] },
+    { k: "e3", label: t("cbp_r_e3"), v: [yes, no, yes] },
+    { k: "g1", label: t("cbp_r_g1"), v: [no, yes, yes] },
+    { k: "g2", label: t("cbp_r_g2"), v: [no, yes, yes] },
+    { k: "g3", label: t("cbp_r_g3"), v: [no, yes, yes] },
+    { k: "d", label: t("cbp_r_d"), v: cols.map((c) => fillIn(t("pm_cb_d_l"), { d: c.plan?.durationDays || 365 })) },
+    { k: "f", label: t("cbp_r_f"), v: [t("cbp_f7"), t("cbp_f7"), t("cbp_fall")] },
+  ];
+
+  return (
+    <div className="pb-ess-pg">
+      <section className="pb-ess-band pb-ess-hero pb-cbp-hero" aria-labelledby="cbp-h1">
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <button type="button" className="pb-btn pb-btn-onDark pb-btn-sm pb-ess-back" onClick={onBack}>
+            <ArrowLeft size={15} />{t("pm_back")}
+          </button>
+        </div>
+        <div className="pb-sec-narrow pb-ess-band-in">
+          <div className="pb-ess-hero-g">
+            <div className="pb-ess-hero-t">
+              <div className="pb-eyebrow">{t("cbp_eyebrow")}</div>
+              <h1 className="pb-h2" id="cbp-h1">{t("cbp_h_a")} <em>{t("cbp_h_em")}</em></h1>
+              {data
+                ? <p className="pb-sub">{fillIn(t("cbp_sub"), { d: days, e: data.essayTopics, q: num(gc?.questions || 0) })}</p>
+                : <Skeleton h={16} w="78%" />}
+            </div>
+            <div className="pb-fin-o pb-ess-hero-o">{!bundles ? <Skeleton h={120} /> : offer(true)}</div>
+          </div>
+          {data && <MainsStats items={stats} />}
+        </div>
+      </section>
+
+      {plans.essay && plans.gs && combo && (
+        <div className="pb-sec-narrow pb-ess-in">
+          <div className="pb-sec-head reveal">
+            <div className="pb-eyebrow">{t("cbp_sv_eyebrow")}</div>
+            <h2 className="pb-h2">{plans.save > 0 ? fillIn(t("cbp_sv_h"), { s: money(plans.save) }) : t("cbp_sv_h0")}</h2>
+          </div>
+          <div className="pb-cbp-sum reveal" aria-label={fillIn(t("cbp_sv_aria"), { a: money(plans.apart), c: money(combo.price) })}>
+            <div className="pb-cbp-box"><span>{t("pm_cc_e_t")}</span><b>{money(plans.essay.price)}</b></div>
+            <span className="pb-cbp-op" aria-hidden="true">+</span>
+            <div className="pb-cbp-box"><span>{t("pm_cc_g_t")}</span><b>{money(plans.gs.price)}</b></div>
+            <span className="pb-cbp-op" aria-hidden="true">=</span>
+            <div className="pb-cbp-box pb-cbp-apart"><span>{t("cbp_sv_apart")}</span><b>{money(plans.apart)}</b></div>
+            <span className="pb-cbp-op" aria-hidden="true"><ArrowRight size={22} /></span>
+            <div className="pb-cbp-box pb-cbp-best"><span>{t("pm_cb_t")}</span><b>{money(combo.price)}</b>
+              {plans.save > 0 && <i>{fillIn(t("cbp_sv_save"), { s: money(plans.save) })}</i>}</div>
+          </div>
+        </div>
+      )}
+
+      <div className="pb-sec-narrow pb-ess-in" id="cbp-compare">
+        <div className="pb-sec-head reveal">
+          <div className="pb-eyebrow">{t("cbp_cmp_eyebrow")}</div>
+          <h2 className="pb-h2">{t("cbp_cmp_h")}</h2>
+        </div>
+        <div className="pb-cbp-wrap reveal">
+          <table className="pb-cbp-table">
+            <thead>
+              <tr>
+                <th scope="col"><span className="pb-visually-hidden">{t("cbp_cmp_feat")}</span></th>
+                {cols.map((c) => (
+                  <th scope="col" key={c.k} className={c.best ? "pb-cbp-best-col" : ""}>
+                    {c.best && <span className="pb-cbp-tag">{t("pm_cb_badge0")}</span>}
+                    <span className="pb-cbp-name">{c.name}</span>
+                    {c.plan && (
+                      <span className="pb-cbp-price">{money(c.plan.price)}
+                        {c.plan.mrp > c.plan.price && <s>{money(c.plan.mrp)}</s>}</span>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.k}>
+                  <th scope="row">{r.label}</th>
+                  {r.v.map((v, i) => <td key={i} className={cols[i].best ? "pb-cbp-best-col" : ""}>{v}</td>)}
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row"><span className="pb-visually-hidden">{t("card_enroll")}</span></th>
+                {cols.map((c) => (
+                  <td key={c.k} className={c.best ? "pb-cbp-best-col" : ""}>
+                    {c.owns
+                      ? <button type="button" className="pb-btn pb-btn-sm pb-owned" onClick={() => go(c.view)}><CheckCircle2 size={14} />{t("cbp_owned")}</button>
+                      : c.plan && <button type="button" className={`pb-btn pb-btn-sm ${c.best ? "pb-btn-maroon" : "pb-btn-ghost"}`}
+                                          onClick={() => enroll(c.plan.code, c.view)}>{t("card_enroll")}</button>}
+                  </td>
+                ))}
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div className="pb-sec-narrow pb-ess-in">
+        <div className="pb-sec-head reveal">
+          <div className="pb-eyebrow">{t("cbp_in_eyebrow")}</div>
+          <h2 className="pb-h2">{t("cbp_in_h")}</h2>
+        </div>
+        <div className="pb-ess-cards pb-ess-cards-2">
+          <article className="pb-ess-card reveal reveal-d1">
+            <h3><span className="pb-ess-ic"><PenLine size={18} /></span>{t("pm_cc_e_t")}</h3>
+            <p>{t("cbp_e_d")}</p>
+            <ul className="pb-cbp-facts">
+              <li><b>{data ? num(data.essayTopics) : "…"}</b>{t("pm_st_topics")}</li>
+              <li><b>{ec ? nPlus(ec.essays) : "…"}</b>{t("pm_st_copies")}</li>
+              <li><b>{ec ? num(ec.guides.size) : "…"}</b>{t("cbp_st_g")}</li>
+              <li><b>{ec ? nPlus(Object.values(ec.kinds).reduce((s, n) => s + (Number(n) || 0), 0)) : "…"}</b>{t("cbp_wiki")}</li>
+            </ul>
+            {onOpenEssay && <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm pb-cbp-more" onClick={onOpenEssay}>{t("pm_cc_e_foot2")}<ArrowRight size={14} /></button>}
+          </article>
+          <article className="pb-ess-card reveal reveal-d2">
+            <h3><span className="pb-ess-ic"><BookOpen size={18} /></span>{t("pm_cc_g_t")}</h3>
+            <p>{t("cbp_g_d")}</p>
+            <ul className="pb-cbp-facts">
+              <li><b>{gc ? num(gc.questions) : "…"}</b>{t("gpg_st_q")}</li>
+              <li><b>{gc ? nPlus(gc.answers) : "…"}</b>{t("gpg_st_a")}</li>
+              <li><b>{gc ? num(gc.guides.size) : "…"}</b>{t("gpg_st_g")}</li>
+              <li><b>{gc ? nPlus(gc.facts) : "…"}</b>{t("gpg_st_f")}</li>
+            </ul>
+            {onOpenGs && <button type="button" className="pb-btn pb-btn-ghost pb-btn-sm pb-cbp-more" onClick={onOpenGs}>{t("gpg_look")}<ArrowRight size={14} /></button>}
+          </article>
+        </div>
+      </div>
+
+      <div className="pb-sec-narrow pb-ess-end">
+        <div className="pb-fin reveal">
+          <Mandala className="pb-fin-mandala" />
+          <div className="pb-fin-t">
+            <div className="pb-eyebrow">{t("cbp_fin_eyebrow")}</div>
+            <h2 className="pb-h2">{t("cbp_fin_h_a")} <em>{t("cbp_fin_h_em")}</em></h2>
+            <p>{fillIn(t("cbp_fin_s"), { d: days })}</p>
+          </div>
+          <div className="pb-fin-o">{!bundles ? <Skeleton h={120} /> : offer(true)}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* The Essay catalogue page rides on the detail slot, under a name no plan code can take. */
 const ESSAY_PAGE = "__essay__";
 
@@ -3797,6 +4489,13 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
       ) : detail === ESSAY_PAGE ? (
         <MainsCatalog full bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
           onBack={goMains} onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+      ) : detail === GS_PAGE ? (
+        <GsPage bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
+          onBack={goMains} onOpenCombo={() => { setDetail(COMBO_PAGE); window.scrollTo({ top: 0 }); }} />
+      ) : detail === COMBO_PAGE ? (
+        <ComboPage bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
+          onBack={goMains} onOpenEssay={() => { setDetail(ESSAY_PAGE); window.scrollTo({ top: 0 }); }}
+          onOpenGs={() => { setDetail(GS_PAGE); window.scrollTo({ top: 0 }); }} />
       ) : detail ? (
         <BundleDetail code={detail} owned={owned.has(detail)} onBack={goCatalog} onEnroll={() => enroll(detail)} />
       ) : (
@@ -3871,6 +4570,8 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           {/* ---------------- MAINS ---------------- */}
           <MainsCatalog bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}
             onOpenPage={() => { setDetail(ESSAY_PAGE); window.scrollTo({ top: 0 }); }}
+            onOpenGsPage={() => { setDetail(GS_PAGE); window.scrollTo({ top: 0 }); }}
+            onOpenComboPage={() => { setDetail(COMBO_PAGE); window.scrollTo({ top: 0 }); }}
             onViewBundle={(code) => { setDetail(code); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
           {/* ---------------- CATALOG ---------------- */}
