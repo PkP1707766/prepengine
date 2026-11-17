@@ -138,7 +138,8 @@ const CSS = `
 .pb-btn[disabled]::after{display:none}
 .pb-btn-gold{background:linear-gradient(155deg,var(--gold-500),var(--gold-600));color:#2a1e05;
   box-shadow:0 10px 24px -10px rgba(197,150,30,.65)}
-.pb-btn-maroon{background:var(--brand-700);color:#fff;box-shadow:0 10px 24px -12px rgba(99,19,34,.7)}
+.pb-btn-maroon{background:var(--brand-700);color:#fff;box-shadow:0 10px 24px -12px rgba(99,19,34,.7);
+  box-shadow:0 10px 24px -12px color-mix(in srgb,var(--brand-700) 70%,transparent)}
 /* Desktop login. It sits beside the gold "Get started", so it must not shout
    in the same voice — but a bare outline is not worth clicking either. A warm
    tinted ground and a gold rim that lights up under the pointer. */
@@ -179,12 +180,12 @@ const CSS = `
     radial-gradient(66% 88% at 74% 42%, color-mix(in srgb,var(--brand-700) 78%,#7a2a14) 0%, color-mix(in srgb,var(--brand-700) 0%,transparent) 70%),
     linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(14,3,6,.3) 100%),
     linear-gradient(100deg, color-mix(in srgb,var(--brand-900) 72%,#0a0205) 0%, var(--brand-900) 44%, color-mix(in srgb,var(--brand-800) 90%,#000) 100%)}
-[data-theme="dark"] .pb-hero{background:linear-gradient(175deg,#2a0d13 0%,#150609 100%);
+[data-theme="dark"] .pb-hero{background:linear-gradient(175deg,var(--dk-2) 0%,var(--dk-1) 100%);
   background:
     radial-gradient(30% 42% at 75% 40%, rgba(200,92,38,.2), rgba(150,52,28,.08) 55%, rgba(150,52,28,0) 100%),
-    radial-gradient(66% 88% at 74% 42%, #3a1110 0%, rgba(58,17,16,0) 70%),
-    linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(6,1,3,.35) 100%),
-    linear-gradient(100deg, #0e0307 0%, #19060b 44%, #21080d 100%)}
+    radial-gradient(66% 88% at 74% 42%, var(--dk-lift) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(0,0,0,.35) 100%),
+    linear-gradient(100deg, var(--dk-0) 0%, var(--dk-1) 44%, var(--dk-2) 100%)}
 /* The ground was carrying a 2px diagonal pinstripe every 26px. On a desktop
    it is a faint texture; on a phone at 2x it lands as visible hairlines
    crawling across the maroon, which is what makes the panel look like a
@@ -545,10 +546,10 @@ const CSS = `
   background:
     radial-gradient(900px 360px at 50% 0%, rgba(224,178,64,.15), transparent 70%),
     linear-gradient(180deg,var(--brand-800) 0%,var(--brand-900) 38%,var(--brand-900) 100%)}
-[data-theme="dark"] .pb-ess-band{background:#150609;
+[data-theme="dark"] .pb-ess-band{background:var(--dk-1);
   background:
     radial-gradient(900px 360px at 50% 0%, rgba(224,178,64,.12), transparent 70%),
-    linear-gradient(180deg,#210c11 0%,#150609 40%,#150609 100%)}
+    linear-gradient(180deg,var(--dk-2) 0%,var(--dk-1) 40%,var(--dk-1) 100%)}
 .pb-ess-band::before,.pb-ess-band::after{content:"";position:absolute;left:0;right:0;height:1px;z-index:3;pointer-events:none;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--gold-500) 62%,transparent) 50%,transparent)}
 .pb-ess-band::before{top:0}
@@ -595,7 +596,7 @@ const CSS = `
    side of it, so the edge runs in one continuous curve. */
 .pb-cc-shelf{--ground:var(--brand-900);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:stretch;
   max-width:1000px;margin:46px auto 0}
-[data-theme="dark"] .pb-cc-shelf{--ground:#150609}
+[data-theme="dark"] .pb-cc-shelf{--ground:var(--dk-1)}
 /* The two cards stand the same height: each fills its grid cell, and the
    space goes to the rows, so price block and foot line up across. */
 .pb-cc-shelf > .reveal{display:flex;min-width:0}
@@ -627,7 +628,7 @@ const CSS = `
 .pb-cc-sub{font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#f5e6bd;margin-bottom:8px;
   text-shadow:0 1px 8px rgba(0,0,0,.6)}
 .pb-cc-badge{position:absolute;top:14px;right:14px;z-index:2;font-size:12px;font-weight:800;letter-spacing:.03em;
-  padding:6px 12px;border-radius:100px;background:#fbf6ec;color:#631322;box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
+  padding:6px 12px;border-radius:100px;background:#fbf6ec;color:#631322;color:var(--brand-800);box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
 .pb-cc-soon .pb-cc-badge{background:rgba(251,246,236,.16);color:#f5e6bd;border:1px solid rgba(245,230,189,.45);backdrop-filter:blur(4px)}
 .pb-cc-list{list-style:none;margin:6px 0 0;padding:0 10px;flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
 .pb-cc-list li{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:center;
@@ -804,7 +805,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.16),transparent 70%),
     linear-gradient(160deg,var(--brand-800),var(--brand-900) 60%);
   box-shadow:var(--shadow-lift)}
-[data-theme="dark"] .pb-hk-topic{background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.12),transparent 70%),linear-gradient(160deg,#210c11,#150609 60%)}
+[data-theme="dark"] .pb-hk-topic{background:radial-gradient(420px 220px at 50% 38%,rgba(224,178,64,.12),transparent 70%),linear-gradient(160deg,var(--dk-2),var(--dk-1) 60%)}
 .pb-hk-topic .pb-hk-lbl{color:var(--gold-300)}
 .pb-hk-q{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;
   font-family:var(--font-quote);font-style:italic;font-weight:600;font-size:clamp(23px,2.5vw,30px);line-height:1.3;color:var(--on-dark)}
@@ -858,7 +859,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.16),transparent 70%),
     linear-gradient(150deg,var(--brand-800),var(--brand-900) 55%);
   box-shadow:var(--shadow-soft)}
-[data-theme="dark"] .pb-fin{background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.12),transparent 70%),linear-gradient(150deg,#210c11,#150609 55%)}
+[data-theme="dark"] .pb-fin{background:radial-gradient(600px 260px at 15% 0%,rgba(224,178,64,.12),transparent 70%),linear-gradient(150deg,var(--dk-2),var(--dk-1) 55%)}
 .pb-fin-mandala{position:absolute;right:-150px;bottom:-170px;width:460px;height:460px;opacity:.09;color:var(--gold-300);pointer-events:none}
 .pb-fin-t,.pb-fin-o{position:relative;z-index:1}
 .pb-fin .pb-eyebrow{color:var(--gold-300);text-align:left}
@@ -1204,11 +1205,11 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
       var(--brand-800) 0%, var(--brand-900) 34%,
       var(--brand-900) 66%, var(--brand-800) 100%);
   color:var(--on-dark);position:relative;overflow:hidden}
-[data-theme="dark"] .pb-res{background:#150609;
+[data-theme="dark"] .pb-res{background:var(--dk-1);
   background:
     radial-gradient(760px 150px at 50% 0%, rgba(224,178,64,.10), transparent 72%),
     radial-gradient(760px 150px at 50% 100%, rgba(224,178,64,.07), transparent 72%),
-    linear-gradient(180deg,#210c11 0%,#150609 36%,#150609 64%,#210c11 100%)}
+    linear-gradient(180deg,var(--dk-2) 0%,var(--dk-1) 36%,var(--dk-1) 64%,var(--dk-2) 100%)}
 /* The hairlines live on pseudo-elements, not in the background list above:
    color-mix() is the one thing here an older WebView may not parse, and a
    dropped decoration is nothing while a dropped background is a broken page. */
@@ -1594,9 +1595,9 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
     linear-gradient(100deg, color-mix(in srgb,var(--brand-900) 72%,#0a0205) 0%, var(--brand-900) 44%, color-mix(in srgb,var(--brand-800) 90%,#000) 100%)}
   [data-theme="dark"] .pb-hero{background:
     radial-gradient(34% 22% at 82% 15%, rgba(200,92,38,.22), rgba(150,52,28,.08) 55%, rgba(150,52,28,0) 100%),
-    radial-gradient(90% 46% at 80% 16%, #3a1110 0%, rgba(58,17,16,0) 70%),
-    linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(6,1,3,.35) 100%),
-    linear-gradient(100deg, #0e0307 0%, #19060b 44%, #21080d 100%)}
+    radial-gradient(90% 46% at 80% 16%, var(--dk-lift) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(0,0,0,.35) 100%),
+    linear-gradient(100deg, var(--dk-0) 0%, var(--dk-1) 44%, var(--dk-2) 100%)}
   .pb-hero::before{background:
     radial-gradient(250px 220px at 82% 15%, rgba(255,170,84,.3), rgba(232,124,52,.09) 48%, transparent 72%),
     radial-gradient(460px 220px at 50% -14%, rgba(255,236,214,.05), transparent 72%),
