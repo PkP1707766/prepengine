@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Globe, Moon, Sun, Palette, Check } from "lucide-react";
 import { loadKey, saveKey } from "./storage.js";
 import { LangCtx, ThemeCtx, useLang, useTheme, PALETTES } from "./contexts.js";
@@ -142,33 +142,6 @@ function useBrandChrome() {
           --shadow-lift:0 22px 44px -18px rgba(15,42,30,.28);
         }
 
-        /* Dark is a genuine re-grade, not an inversion: the cream becomes a
-           warm near-black so the gold still reads as firelight. */
-        [data-theme="dark"] [data-palette="indigo"],
-        [data-theme="dark"][data-palette="indigo"]{
-          --brand-900:#0b0f22; --foot-ground:#070a18; --brand-800:#121737; --brand-700:#8f9ede; --brand-600:#a3b0e6;
-          --cream-50:#0f1120; --cream-100:#171a2d; --cream-200:#1f2338;
-          --ink-900:#eceef8; --ink-600:#a8adc6; --ink-400:#7d829b; --line:#2a2f48;
-        }
-        [data-theme="dark"] [data-palette="sapphire"],
-        [data-theme="dark"][data-palette="sapphire"]{
-          --brand-900:#04161f; --foot-ground:#020e15; --brand-800:#072230; --brand-700:#5fb3dd; --brand-600:#7cc4e8;
-          --cream-50:#08161c; --cream-100:#0e2028; --cream-200:#152b34;
-          --ink-900:#e6f2f6; --ink-600:#9fb6bf; --ink-400:#748a93; --line:#1e333d;
-        }
-        [data-theme="dark"] [data-palette="amethyst"],
-        [data-theme="dark"][data-palette="amethyst"]{
-          --brand-900:#160a1d; --foot-ground:#0f0614; --brand-800:#221031; --brand-700:#b585d8; --brand-600:#c69ce4;
-          --cream-50:#140d1a; --cream-100:#1d1425; --cream-200:#261c30;
-          --ink-900:#f2eaf6; --ink-600:#b6a6c0; --ink-400:#8a7d94; --line:#31243c;
-        }
-        [data-theme="dark"] [data-palette="forest"],
-        [data-theme="dark"][data-palette="forest"]{
-          --brand-900:#07160f; --foot-ground:#040e09; --brand-800:#0d2118; --brand-700:#6fbf93; --brand-600:#8bd0aa;
-          --cream-50:#0a150f; --cream-100:#101d16; --cream-200:#17261d;
-          --ink-900:#e8f3ec; --ink-600:#a3b8ab; --ink-400:#7a8c81; --line:#213026;
-        }
-
         /* index.html offers "light dark", so without this the browser drew
            native checkboxes, selects and scrollbars in the OS theme rather
            than the app's: dark controls on the light app, and the reverse. */
@@ -186,6 +159,50 @@ function useBrandChrome() {
           --shadow-soft:0 24px 48px -24px rgba(0,0,0,.6);
           --shadow-card:0 10px 30px -12px rgba(0,0,0,.5);
           --shadow-lift:0 22px 44px -18px rgba(0,0,0,.55);
+          /* The grounds of the dark bands (hero, catalogue, resources, the
+             close): darkest, deep, a step up, and the lift around a light. */
+          --dk-0:#0e0307; --dk-1:#150609; --dk-2:#210c11; --dk-lift:#3a1110;
+        }
+
+        /* Dark is a genuine re-grade, not an inversion: the cream becomes a
+           warm near-black so the gold still reads as firelight.
+
+           These come AFTER the default dark block above, and must stay after
+           it. Both are two attribute selectors deep, so whichever is written
+           later wins: written first, as they used to be, the Ember dark block
+           overrode every palette and dark mode was always maroon whatever
+           colour theme was picked. */
+        [data-theme="dark"] [data-palette="indigo"],
+        [data-theme="dark"][data-palette="indigo"]{
+          --brand-900:#0b0f22; --foot-ground:#070a18; --brand-800:#121737; --brand-700:#8f9ede; --brand-600:#a3b0e6;
+          --brand-500:#b8c2ee;
+          --cream-50:#0f1120; --cream-100:#171a2d; --cream-200:#1f2338;
+          --ink-900:#eceef8; --ink-600:#a8adc6; --ink-400:#7d829b; --line:#2a2f48;
+          --dk-0:#04060e; --dk-1:#080b1a; --dk-2:#0f1429; --dk-lift:#1a2145;
+        }
+        [data-theme="dark"] [data-palette="sapphire"],
+        [data-theme="dark"][data-palette="sapphire"]{
+          --brand-900:#04161f; --foot-ground:#020e15; --brand-800:#072230; --brand-700:#5fb3dd; --brand-600:#7cc4e8;
+          --brand-500:#9ad3ef;
+          --cream-50:#08161c; --cream-100:#0e2028; --cream-200:#152b34;
+          --ink-900:#e6f2f6; --ink-600:#9fb6bf; --ink-400:#748a93; --line:#1e333d;
+          --dk-0:#01080c; --dk-1:#031118; --dk-2:#071e28; --dk-lift:#0d3043;
+        }
+        [data-theme="dark"] [data-palette="amethyst"],
+        [data-theme="dark"][data-palette="amethyst"]{
+          --brand-900:#160a1d; --foot-ground:#0f0614; --brand-800:#221031; --brand-700:#b585d8; --brand-600:#c69ce4;
+          --brand-500:#d4b3ea;
+          --cream-50:#140d1a; --cream-100:#1d1425; --cream-200:#261c30;
+          --ink-900:#f2eaf6; --ink-600:#b6a6c0; --ink-400:#8a7d94; --line:#31243c;
+          --dk-0:#08030c; --dk-1:#100716; --dk-2:#190d22; --dk-lift:#2b1539;
+        }
+        [data-theme="dark"] [data-palette="forest"],
+        [data-theme="dark"][data-palette="forest"]{
+          --brand-900:#07160f; --foot-ground:#040e09; --brand-800:#0d2118; --brand-700:#6fbf93; --brand-600:#8bd0aa;
+          --brand-500:#a6dcbe;
+          --cream-50:#0a150f; --cream-100:#101d16; --cream-200:#17261d;
+          --ink-900:#e8f3ec; --ink-600:#a3b8ab; --ink-400:#7a8c81; --line:#213026;
+          --dk-0:#020805; --dk-1:#05100a; --dk-2:#0a1b12; --dk-lift:#122e20;
         }
 
         /* Inter carries no Devanagari glyph, so this stack used to hand every
@@ -2380,20 +2397,36 @@ export function ChromeControls({ light = false, palettePicker = false, segmented
   const { lang, t, setLang } = useLang();
   const { theme, toggle, palette, setPalette } = useTheme();
   const [open, setOpen] = useState(false);
+  // The colour menu stays open until a colour is chosen, the pointer presses
+  // somewhere else, or Esc. It used to close on mouse-leave, and the menu
+  // hangs 8px below its button: crossing that gap on the way down to an
+  // option counted as leaving, so all five options vanished before any could
+  // be clicked.
+  const palRef = useRef(null), palBtn = useRef(null);
+  useEffect(() => {
+    if (!open) return undefined;
+    const away = (e) => { if (palRef.current && !palRef.current.contains(e.target)) setOpen(false); };
+    const esc = (e) => { if (e.key === "Escape") { setOpen(false); palBtn.current?.focus(); } };
+    document.addEventListener("pointerdown", away);
+    document.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("pointerdown", away); document.removeEventListener("keydown", esc); };
+  }, [open]);
   // These are inline-styled, and inline styles beat the stylesheet — so the
   // touch-target floor has to be set here rather than in the CSS baseline.
   // The audit measured them at 28px tall on both phone and tablet.
   // Only the colours are inline; all sizing lives in .jn-pill so the
   // coarse-pointer touch-target rule can raise it. An inline minHeight would
   // beat the stylesheet and pin these at the wrong size on a phone.
+  // On a light ground the pills are white chips tinted with the palette's own
+  // deep colour, so they follow the colour theme (they were fixed maroon).
   const pill = {
-    border: "1px solid " + (light ? "rgba(255,255,255,.38)" : "rgba(107,26,26,.22)"),
+    border: "1px solid " + (light ? "rgba(255,255,255,.38)" : "color-mix(in srgb, var(--brand-800) 22%, transparent)"),
     background: light ? "rgba(0,0,0,.22)" : "rgba(255,255,255,.82)",
-    color: light ? "#fdeecb" : "#5c3018",
+    color: light ? "#fdeecb" : "var(--brand-800)",
   };
   const paletteMenu = (
-    <div className="jn-pal-wrap" onMouseLeave={() => setOpen(false)}>
-      <button type="button" className="jn-pill jn-pill-icon" style={pill}
+    <div className="jn-pal-wrap" ref={palRef}>
+      <button type="button" className="jn-pill jn-pill-icon" style={pill} ref={palBtn}
               onClick={() => setOpen(!open)} aria-label={t("nav_colour_change")} aria-expanded={open}>
         <Palette size={14} />
       </button>
