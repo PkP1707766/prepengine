@@ -14,121 +14,322 @@ const nextId = (p) => `${p}-${++uid}`;
 
 /* ============================================================
    THE DIYA — hero centrepiece.
-   Layered: glow, rotating mandala rings, lamp body, flame with
-   an inner core, and embers rising off the tip.
+
+   A terracotta lamp seen from the front and a little above, the way you look
+   down at one on a step: a round bowl pinched to a spout that points at you,
+   the wick lying in the spout and the flame at its tip, centred inside the
+   glow. Shaded the way a lamp in a dark room is lit: by its own flame.
+   The lip and the far inside wall catch the most light, the oil holds the
+   flame's reflection, the bowl rounds away into shadow, the floor around it
+   is a warm pool, and that pool bounces a little light back up the bowl.
+
+   Three stacked layers, so the costly part is painted once:
+     back  — the light in the room: glow, soft rays, the lit floor, dust
+     lamp  — still: bowl, scored grooves, shading, clay grain, oil, wick, petals
+     fire  — animated: the flame, its bloom, the flicker of its light on the
+             lip, the glowing wick end, sparks. Blended as light (screen).
+
+   Nothing clips: the glow runs past the drawing's box and the hero clips.
    ============================================================ */
-export function Diya({ size = 340, rings = true, embers = true }) {
+const FX = 120, FY = 118;   // the centre of the flame's light
+
+const RIM = "M64 136C64 128 90 123 120 123C150 123 176 128 176 136C176 143 150 149 134 153C127 155 123 157.5 120 160C117 157.5 113 155 106 153C90 149 64 143 64 136Z";
+const OPENING = "M71 136C71 130.5 94 127.6 120 127.6C146 127.6 169 130.5 169 136C169 141 148 146 133 149.6C127 151 123 153 120 155C117 153 113 151 107 149.6C92 146 71 141 71 136Z";
+const OIL = "M77 138.5C77 134.4 97 132.4 120 132.4C143 132.4 163 134.4 163 138.5C163 142.2 146 146 132.5 148.8C127 150 123 151.8 120 153.4C117 151.8 113 150 107.5 148.8C94 146 77 142.2 77 138.5Z";
+const BODY = "M65 138C67 160 90 181 120 181.5C150 181 173 160 175 138C174 144 150 150 134 154C127 156 123 158.5 120 161C117 158.5 113 156 106 154C90 150 66 144 65 138Z";
+const LIP_FRONT = "M64 136C64 143 90 149 106 153C113 155 117 157.5 120 160C123 157.5 127 155 134 153C150 149 176 143 176 136";
+const FLAME_EDGE = "M121.1 61.7C124.4 79.3 139.8 96.9 140.9 118.9C142 138.7 132.1 153 120 153C107.9 153 98 139.8 99.1 121.1C100.2 101.3 117.8 85.9 121.1 61.7Z";
+const FLAME_OUT = "M121 70C124 86 138 102 139 122C140 140 131 153 120 153C109 153 100 141 101 124C102 106 118 92 121 70Z";
+const FLAME_MID = "M120.6 88C123 100 132 112 133 125C134 139 128 149 120 149C112 149 106 140 107 127C108 114 118.5 104 120.6 88Z";
+const FLAME_CORE = "M120.3 108C122 116 127 123 127.5 131C128 140 124.5 146 120 146C115.5 146 112.5 140 113 132C113.5 124 118.8 118 120.3 108Z";
+
+/* Soft rays out of the flame, uneven in width and spacing so they read as
+   light through haze rather than as a sunburst. */
+const RAYS = Array.from({ length: 11 }, (_, i) => {
+  const a = ((i * 27.7 + (i % 3) * 9) * Math.PI) / 180, w = (0.035 + (i % 4) * 0.018), r = 178;
+  const p = (t) => `${(FX + Math.cos(t) * r).toFixed(1)} ${(FY + Math.sin(t) * r).toFixed(1)}`;
+  return `M${FX} ${FY}L${p(a - w)}L${p(a + w)}Z`;
+});
+
+/* Marigold petals on the floor, lit by the pool. */
+/* Motes of dust in the lamp's light: x, y, size, phase, seconds a drift. */
+const MOTES = [
+  [62, 96, 1.7, 0, 11], [182, 74, 1.3, 1.6, 13], [94, 56, 1.1, 3.1, 10], [200, 140, 1.5, 0.8, 12],
+  [48, 150, 1.2, 2.4, 14], [152, 46, 1, 4, 9.5], [212, 100, 1.1, 5.2, 12.5], [74, 176, 1.4, 1.1, 13.5],
+  [168, 168, 1.2, 6.3, 11.5], [124, 36, 0.9, 7.4, 10.5],
+];
+
+const PETALS = [
+  [74, 189, -24, 4.2, 1.9, 0], [82, 194, 18, 3.6, 1.6, 0], [164, 190.5, 30, 4, 1.8, 0],
+  [172, 186.5, -12, 3.4, 1.6, 1],
+];
+
+export function Diya({ size = 340, embers = true }) {
   const g = nextId("dg");
+  const u = (n) => `url(#${g}-${n})`;
+  const box = "28 32 184 184";
   return (
-    <svg className="ill-diya" width={size} height={size} viewBox="0 0 240 240"
-         fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation">
-      <defs>
-        {/* The glow has to fade fully to zero well inside the viewBox, or its
-            own edge shows up as a visible disc against the hero gradient. */}
-        <radialGradient id={`${g}-glow`} cx="50%" cy="40%" r="52%">
-          <stop offset="0%"   stopColor="var(--flame-hi)" stopOpacity=".42" />
-          <stop offset="38%"  stopColor="var(--flame-mid)" stopOpacity=".14" />
-          <stop offset="72%"  stopColor="var(--flame-mid)" stopOpacity=".04" />
-          <stop offset="100%" stopColor="var(--flame-mid)" stopOpacity="0" />
-        </radialGradient>
+    <div className="ill-diya" style={{ "--d": `${size}px` }} aria-hidden="true" role="presentation">
+      {/* ---- back: the light in the room ---- */}
+      <svg className="ill-diya-back" viewBox={box} overflow="visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id={`${g}-glow`} cx={FX} cy={FY} r="150" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#FFD58A" stopOpacity=".42" />
+            <stop offset=".16" stopColor="#FFB45A" stopOpacity=".2" />
+            <stop offset=".42" stopColor="#E9873A" stopOpacity=".075" />
+            <stop offset=".72" stopColor="#C8642A" stopOpacity=".02" />
+            <stop offset="1"   stopColor="#C8642A" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-ray`} cx={FX} cy={FY} r="178" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#FFE2A8" stopOpacity="0" />
+            <stop offset=".1"  stopColor="#FFE2A8" stopOpacity=".075" />
+            <stop offset=".45" stopColor="#FFC27A" stopOpacity=".025" />
+            <stop offset="1"   stopColor="#FFC27A" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-mote`}>
+            <stop offset="0"   stopColor="#FFE3B0" stopOpacity=".95" />
+            <stop offset=".4"  stopColor="#FFC37A" stopOpacity=".4" />
+            <stop offset="1"   stopColor="#FFC37A" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-pool`} cx={FX} cy="186" r="100" gradientUnits="userSpaceOnUse"
+                          gradientTransform={`translate(${FX} 186) scale(1 .18) translate(${-FX} -186)`}>
+            <stop offset="0"   stopColor="#FFB866" stopOpacity=".5" />
+            <stop offset=".35" stopColor="#EE8C3E" stopOpacity=".2" />
+            <stop offset=".7"  stopColor="#C8642A" stopOpacity=".06" />
+            <stop offset="1"   stopColor="#C8642A" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle className="ill-glow" cx={FX} cy={FY} r="150" fill={u("glow")} />
+        <g className="ill-rays" fill={u("ray")}>
+          {RAYS.map((d, i) => <path key={i} d={d} />)}
+        </g>
+        <ellipse className="ill-pool" cx={FX} cy="186" rx="100" ry="18" fill={u("pool")} />
+        {/* dust in the lamp's light, drifting up slowly */}
+        {MOTES.map(([x, y, r, d, s], i) => (
+          <circle key={i} className="ill-mote" cx={x} cy={y} r={r} fill={u("mote")}
+                  style={{ animationDelay: `${-d}s`, animationDuration: `${s}s` }} />
+        ))}
+      </svg>
 
-        {/* Flame: bright, near-white at the core so it separates cleanly from
-            the clay body. Gold-on-gold was why it read as one muddy shape. */}
-        <linearGradient id={`${g}-flame`} x1="120" y1="50" x2="120" y2="126">
-          <stop offset="0%"   stopColor="var(--flame-hi)" />
-          <stop offset="30%"  stopColor="var(--flame-mid)" />
-          <stop offset="68%"  stopColor="var(--flame-lo)" />
-          <stop offset="100%" stopColor="var(--flame-base)" />
-        </linearGradient>
-        <linearGradient id={`${g}-core`} x1="120" y1="74" x2="120" y2="120">
-          <stop offset="0%"   stopColor="#FFFFFF" stopOpacity=".96" />
-          <stop offset="55%"  stopColor="var(--flame-hi)" stopOpacity=".85" />
-          <stop offset="100%" stopColor="var(--flame-mid)" stopOpacity=".25" />
-        </linearGradient>
+      {/* ---- lamp: still ---- */}
+      <svg className="ill-diya-lamp" viewBox={box} overflow="visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id={`${g}-clay`} x1="0" y1="138" x2="0" y2="182" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#CC6436" />
+            <stop offset=".45" stopColor="#A9441D" />
+            <stop offset="1"   stopColor="#5C200C" />
+          </linearGradient>
+          <radialGradient id={`${g}-form`} cx="117" cy="150" r="64" gradientUnits="userSpaceOnUse"
+                          gradientTransform="translate(117 150) scale(1 .85) translate(-117 -150)">
+            <stop offset="0"   stopColor="#1E0603" stopOpacity="0" />
+            <stop offset=".55" stopColor="#1E0603" stopOpacity="0" />
+            <stop offset="1"   stopColor="#1E0603" stopOpacity=".6" />
+          </radialGradient>
+          <linearGradient id={`${g}-top`} x1="0" y1="138" x2="0" y2="168" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#FF9A5A" stopOpacity=".26" />
+            <stop offset="1" stopColor="#FFB070" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id={`${g}-low`} x1="0" y1="158" x2="0" y2="182" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#140402" stopOpacity="0" />
+            <stop offset="1" stopColor="#140402" stopOpacity=".42" />
+          </linearGradient>
+          <radialGradient id={`${g}-lip`} cx="120" cy="152" r="78" gradientUnits="userSpaceOnUse"
+                          gradientTransform="translate(120 152) scale(1 .42) translate(-120 -152)">
+            <stop offset="0"   stopColor="#F08E58" />
+            <stop offset=".42" stopColor="#C85C2C" />
+            <stop offset="1"   stopColor="#7E2C12" />
+          </radialGradient>
+          <linearGradient id={`${g}-wall`} x1="0" y1="127" x2="0" y2="150" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#EA9058" />
+            <stop offset=".35" stopColor="#A84A22" />
+            <stop offset="1"   stopColor="#46200C" />
+          </linearGradient>
+          <radialGradient id={`${g}-oil`} cx="120" cy="146" r="48" gradientUnits="userSpaceOnUse"
+                          gradientTransform="translate(120 146) scale(1 .45) translate(-120 -146)">
+            <stop offset="0"   stopColor="#74390F" />
+            <stop offset=".5"  stopColor="#3C1B08" />
+            <stop offset="1"   stopColor="#1C0B04" />
+          </radialGradient>
+          <radialGradient id={`${g}-refl`} cx="120" cy="142.5" r="26" gradientUnits="userSpaceOnUse"
+                          gradientTransform="translate(120 142.5) scale(1 .2) translate(-120 -142.5)">
+            <stop offset="0" stopColor="#FFC873" stopOpacity=".6" />
+            <stop offset="1" stopColor="#FFC873" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-streak`} cx="120" cy="142.5" r="6" gradientUnits="userSpaceOnUse"
+                          gradientTransform="translate(120 142.5) scale(.8 1.2) translate(-120 -142.5)">
+            <stop offset="0" stopColor="#FFF0C8" stopOpacity=".95" />
+            <stop offset="1" stopColor="#FFC873" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-dark`}>
+            <stop offset="0" stopColor="#0E0302" stopOpacity=".7" />
+            <stop offset="1" stopColor="#0E0302" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-petal`} cx=".38" cy=".38" r=".75">
+            <stop offset="0"   stopColor="#FFC24A" />
+            <stop offset=".6"  stopColor="#EF8A1C" />
+            <stop offset="1"   stopColor="#A9480C" />
+          </radialGradient>
+          <radialGradient id={`${g}-rose`} cx=".38" cy=".38" r=".75">
+            <stop offset="0"   stopColor="#D8423C" />
+            <stop offset="1"   stopColor="#7A1219" />
+          </radialGradient>
+          <clipPath id={`${g}-body`}><path d={BODY} /></clipPath>
+          <filter id={`${g}-soft`} x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.8" />
+          </filter>
+          {/* Clay grain: dark specks and light ones, from one noise field. */}
+          <filter id={`${g}-grain`} filterUnits="userSpaceOnUse" x="60" y="120" width="122" height="66">
+            <feTurbulence type="fractalNoise" baseFrequency="1.15" numOctaves="2" seed="7" />
+            <feColorMatrix values="0 0 0 0 .12  0 0 0 0 .05  0 0 0 0 .02  1.7 0 0 0 -.62" />
+          </filter>
+          <filter id={`${g}-fleck`} filterUnits="userSpaceOnUse" x="60" y="120" width="122" height="66">
+            <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="3" />
+            <feColorMatrix values="0 0 0 0 1  0 0 0 0 .86  0 0 0 0 .68  -1.8 0 0 0 .52" />
+          </filter>
+        </defs>
 
-        {/* Clay body — terracotta, lit from the upper left. */}
-        <linearGradient id={`${g}-clay`} x1="66" y1="134" x2="176" y2="176">
-          <stop offset="0%"   stopColor="var(--clay-hi)" />
-          <stop offset="42%"  stopColor="var(--clay-mid)" />
-          <stop offset="100%" stopColor="var(--clay-lo)" />
-        </linearGradient>
-        <linearGradient id={`${g}-rim`} x1="66" y1="128" x2="176" y2="142">
-          <stop offset="0%"   stopColor="var(--clay-rim-hi)" />
-          <stop offset="46%"  stopColor="var(--clay-rim)" />
-          <stop offset="100%" stopColor="var(--clay-lo)" />
-        </linearGradient>
-        <radialGradient id={`${g}-oil`} cx="42%" cy="38%" r="70%">
-          <stop offset="0%"   stopColor="#7A4526" />
-          <stop offset="100%" stopColor="#361A0C" />
-        </radialGradient>
-      </defs>
+        {/* where it touches the floor */}
+        <ellipse cx="120" cy="184.5" rx="46" ry="6" fill={u("dark")} />
+        <ellipse cx="120" cy="182.6" rx="28" ry="2.8" fill="#0E0302" opacity=".85" filter={u("soft")} />
 
-      <circle cx="120" cy="100" r="104" fill={`url(#${g}-glow)`} />
-
-      {rings && (
-        <g>
-          <circle className="ill-ring ill-ring-a" cx="120" cy="112" r="90"
-                  stroke="var(--flame-hi)" strokeOpacity=".26" strokeWidth="1" strokeDasharray="2 10" />
-          <circle className="ill-ring ill-ring-b" cx="120" cy="112" r="70"
-                  stroke="var(--flame-hi)" strokeOpacity=".16" strokeWidth="1" strokeDasharray="1 8" />
-          <g className="ill-ring ill-ring-c" stroke="var(--flame-hi)" strokeOpacity=".20" strokeWidth="1.2">
-            {Array.from({ length: 24 }, (_, i) => (
-              <line key={i} x1="120" y1="18" x2="120" y2="27"
-                    transform={`rotate(${i * 15} 120 112)`} strokeLinecap="round" />
-            ))}
+        {PETALS.map(([x, y, r, rx, ry, red], i) => (
+          <g key={i} transform={`rotate(${r} ${x} ${y})`}>
+            <ellipse cx={x} cy={y + 0.9} rx={rx} ry={ry * 0.6} fill="#120403" opacity=".35" />
+            <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={u(red ? "rose" : "petal")} />
           </g>
+        ))}
+
+        {/* the bowl */}
+        <ellipse cx="120" cy="181" rx="26" ry="4.6" fill="#5A2410" />
+        <path d={BODY} fill={u("clay")} />
+        <g clipPath={u("body")}>
+          {/* bare clay, scored by hand with two grooves while it turned: each
+              a dark cut with a lighter ridge just under it */}
+          <path d="M67 145.6C80 157.6 98 164.1 120 164.6C142 164.1 160 157.6 173 145.6" stroke="#3A1206" strokeOpacity=".8" strokeWidth="1.5" />
+          <path d="M67 146.8C80 158.8 98 165.3 120 165.8C142 165.3 160 158.8 173 146.8" stroke="#F59A66" strokeOpacity=".5" strokeWidth=".9" />
+          <path d="M70 151.6C83 163 99 169.4 120 169.9C141 169.4 157 163 170 151.6" stroke="#3A1206" strokeOpacity=".7" strokeWidth="1.3" />
+          <path d="M70 152.7C83 164.1 99 170.5 120 171C141 170.5 157 164.1 170 152.7" stroke="#F59A66" strokeOpacity=".42" strokeWidth=".8" />
+          {/* shading over the clay */}
+          <rect x="56" y="130" width="128" height="60" fill={u("form")} />
+          <rect x="56" y="130" width="128" height="60" fill={u("top")} />
+          <rect x="56" y="130" width="128" height="60" fill={u("low")} />
+          {/* the glow behind the lamp catching both edges of the bowl */}
+          <path d="M66.5 140C68 157 79 172 97 179.5" stroke="#FFB27A" strokeOpacity=".5" strokeWidth="2.4" filter={u("soft")} />
+          <path d="M173.5 140C172 157 161 172 143 179.5" stroke="#FFB27A" strokeOpacity=".42" strokeWidth="2.4" filter={u("soft")} />
+          {/* the shadow under the lip, and floor light bounced back up */}
+          <path d={LIP_FRONT} transform="translate(0 3)" stroke="#1E0703" strokeOpacity=".6" strokeWidth="5" filter={u("soft")} />
+          <path d="M70 152C75 169 95 180.5 120 181C145 180.5 165 169 170 152" stroke="#FF9E5A" strokeOpacity=".42"
+                strokeWidth="3.4" filter={u("soft")} />
+          <path d="M70 146C73 160 83 172 97 178" stroke="#FFE2C4" strokeOpacity=".2" strokeWidth="3" strokeLinecap="round" filter={u("soft")} />
+          <rect x="60" y="120" width="122" height="66" filter={u("grain")} opacity=".7" />
+          <rect x="60" y="120" width="122" height="66" filter={u("fleck")} opacity=".42" />
         </g>
-      )}
 
-      {embers && (
-        <g fill="var(--flame-hi)">
-          <circle className="ill-ember ill-ember-1" cx="105" cy="72" r="1.7" />
-          <circle className="ill-ember ill-ember-2" cx="133" cy="66" r="1.3" />
-          <circle className="ill-ember ill-ember-3" cx="120" cy="56" r="1"   />
-          <circle className="ill-ember ill-ember-4" cx="112" cy="80" r="1.5" />
+        {/* the lip, lit from the flame above it */}
+        <path d={RIM} fill={u("lip")} />
+        <path d={LIP_FRONT} stroke="#5A220C" strokeOpacity=".75" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M66 133C72 126.5 94 123.6 120 123.6C146 123.6 168 126.5 174 133" stroke="#FFD9A8" strokeOpacity=".55" strokeWidth="1" strokeLinecap="round" />
+
+        {/* the inside: the far wall lit, then the oil, the flame lying in it */}
+        <path d={OPENING} fill={u("wall")} />
+        <path d={OPENING} stroke="#6A2A12" strokeOpacity=".55" strokeWidth=".9" />
+        <path d={OIL} fill={u("oil")} />
+        <path d="M78 137.6C84 134.2 100 132.6 120 132.6C140 132.6 156 134.2 162 137.6" stroke="#FFC890" strokeOpacity=".35" strokeWidth=".8" strokeLinecap="round" />
+        <ellipse cx="120" cy="142.5" rx="26" ry="5" fill={u("refl")} />
+        <ellipse cx="120" cy="142.5" rx="5" ry="7" fill={u("streak")} />
+        {/* soot where the flame has licked the spout */}
+        <ellipse cx="120" cy="155.6" rx="7.5" ry="3" fill={u("dark")} opacity=".7" />
+
+        {/* the wick, oil-soaked */}
+        <path d="M120 141C120 145 120 149 120 152.6" stroke="#3A2316" strokeWidth="3.6" strokeLinecap="round" />
+        <path d="M119.3 141.5C119.3 145 119.3 148.5 119.3 151.5" stroke="#7A5638" strokeWidth=".9" strokeLinecap="round" strokeOpacity=".8" />
+      </svg>
+
+      {/* ---- fire: animated, added as light ---- */}
+      <svg className="ill-diya-fire" viewBox={box} overflow="visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id={`${g}-bloom`} cx={FX} cy="120" r="56" gradientUnits="userSpaceOnUse"
+                          gradientTransform={`translate(${FX} 120) scale(.82 1.25) translate(${-FX} -120)`}>
+            <stop offset="0"   stopColor="#FFC66E" stopOpacity=".55" />
+            <stop offset=".4"  stopColor="#F59A42" stopOpacity=".2" />
+            <stop offset="1"   stopColor="#E07A30" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-halo`} cx={FX} cy="126" r="26" gradientUnits="userSpaceOnUse"
+                          gradientTransform={`translate(${FX} 126) scale(.8 1.35) translate(${-FX} -126)`}>
+            <stop offset="0"   stopColor="#FFE7AE" stopOpacity=".7" />
+            <stop offset="1"   stopColor="#FFB45A" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-lit`} cx="120" cy="150" r="62" gradientUnits="userSpaceOnUse"
+                          gradientTransform="translate(120 150) scale(1 .5) translate(-120 -150)">
+            <stop offset="0"   stopColor="#FFA060" stopOpacity=".32" />
+            <stop offset="1"   stopColor="#FFB774" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id={`${g}-edge`} x1="0" y1="62" x2="0" y2="153" gradientUnits="userSpaceOnUse">
+            <stop offset="0"  stopColor="#FF8A2A" stopOpacity="0" />
+            <stop offset=".3" stopColor="#FF8A2A" stopOpacity=".35" />
+            <stop offset="1"  stopColor="#D2470E" stopOpacity=".45" />
+          </linearGradient>
+          <linearGradient id={`${g}-flame`} x1="0" y1="70" x2="0" y2="154" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#FFB347" stopOpacity=".1" />
+            <stop offset=".2"  stopColor="#FFAA40" stopOpacity=".9" />
+            <stop offset=".65" stopColor="#FF8C26" />
+            <stop offset=".9"  stopColor="#E85A12" />
+            <stop offset="1"   stopColor="#B83A0C" stopOpacity=".7" />
+          </linearGradient>
+          <linearGradient id={`${g}-mid`} x1="0" y1="88" x2="0" y2="150" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#FFE08A" stopOpacity=".35" />
+            <stop offset=".4"  stopColor="#FFEBAA" />
+            <stop offset="1"   stopColor="#FFC155" />
+          </linearGradient>
+          <linearGradient id={`${g}-core`} x1="0" y1="108" x2="0" y2="147" gradientUnits="userSpaceOnUse">
+            <stop offset="0"   stopColor="#FFFDF2" stopOpacity=".5" />
+            <stop offset=".45" stopColor="#FFFDF2" />
+            <stop offset="1"   stopColor="#FFF0C4" stopOpacity=".85" />
+          </linearGradient>
+          <radialGradient id={`${g}-blue`}>
+            <stop offset="0" stopColor="#7C98FF" stopOpacity=".75" />
+            <stop offset="1" stopColor="#4A62D8" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={`${g}-ember`}>
+            <stop offset="0"   stopColor="#FFD39A" />
+            <stop offset=".5"  stopColor="#FF7A2A" />
+            <stop offset="1"   stopColor="#FF5A1A" stopOpacity="0" />
+          </radialGradient>
+          <clipPath id={`${g}-litclip`}><path d={RIM} /><path d={BODY} /></clipPath>
+        </defs>
+
+        {/* the flame's light flickering on the lip and the bowl */}
+        <g clipPath={u("litclip")} className="ill-gustlit">
+          <ellipse className="ill-litflick" cx="120" cy="150" rx="62" ry="31" fill={u("lit")} />
         </g>
-      )}
 
-      {/* ---- FLAME ----------------------------------------------------------
-          One clean teardrop: pointed tip, bulbous base, a slight lean. Drawn
-          at final size — the previous version was scaled with a transform,
-          which is what put that notch in the tip. */}
-      <g className="ill-flame">
-        {/* Taller and narrower than a circle-with-a-point: the silhouette is
-            what makes it read as flame rather than a droplet. */}
-        <path d="M120 34c4.5 17 11.5 27 16.5 34.5 5.8 8.6 9.5 15.6 9.5 24.5
-                 a26 26 0 0 1-52 0c0-8.9 3.7-15.9 9.5-24.5C108.5 61 115.5 51 120 34Z"
-              fill={`url(#${g}-flame)`} />
-        <path d="M120 66c2.6 9.6 6.4 15.2 9.3 19.4 3.1 4.5 4.7 8.4 4.7 13.1
-                 a14 14 0 0 1-28 0c0-4.7 1.6-8.6 4.7-13.1C113.6 81.2 117.4 75.6 120 66Z"
-              fill={`url(#${g}-core)`} />
-      </g>
+        {/* everything the wind leans: bloom, flame, halo */}
+        <g className="ill-gust">
+        <ellipse className="ill-aura" cx={FX} cy="120" rx="46" ry="70" fill={u("bloom")} />
+        <g className="ill-flame">
+          <path d={FLAME_EDGE} fill={u("edge")} />
+          <path d={FLAME_OUT} fill={u("flame")} />
+          <path d={FLAME_MID} fill={u("mid")} />
+          <path className="ill-flame-core" d={FLAME_CORE} fill={u("core")} />
+          <ellipse cx="120" cy="149.5" rx="6.5" ry="4" fill={u("blue")} />
+        </g>
+        <ellipse className="ill-aura" cx={FX} cy="126" rx="21" ry="35" fill={u("halo")} />
+        </g>
+        {/* the end of the wick, glowing under the flame */}
+        <ellipse cx="120" cy="152.2" rx="3.2" ry="2.4" fill={u("ember")} />
 
-      {/* wick, sitting in the oil rather than floating above it */}
-      <path d="M118.5 116h3v14h-3z" fill="#4A2412" />
-      <path d="M118.5 116h3v5h-3z" fill="#1E0C05" />
-
-      {/* ---- LAMP -----------------------------------------------------------
-          Terracotta, not gold. A brass lamp under a gold flame is why the two
-          shapes merged into one mustard blob. */}
-      <ellipse cx="120" cy="200" rx="52" ry="7" fill="#000" opacity=".22" />
-
-      {/* body */}
-      <path d="M66 136c0 26 24 44 54 44s54-18 54-44c0 0-20 10-54 10s-54-10-54-10Z"
-            fill={`url(#${g}-clay)`} />
-      {/* pinched spout at the front */}
-      <path d="M100 141c-6 3-10 7-11 12 5 1.5 10 2 14 1.6-1.8-4.4-2.6-9-3-13.6Z"
-            fill="var(--clay-lo)" opacity=".55" />
-      {/* rim */}
-      <ellipse cx="120" cy="134" rx="54" ry="13.5" fill={`url(#${g}-rim)`} />
-      <ellipse cx="120" cy="134" rx="44" ry="9"   fill={`url(#${g}-oil)`} />
-      {/* oil sheen + rim highlight */}
-      <ellipse cx="107" cy="131" rx="14" ry="3.4" fill="var(--flame-hi)" opacity=".20" />
-      <path d="M70 130c10-6 30-9.5 50-9.5s40 3.5 50 9.5" stroke="var(--clay-rim-hi)"
-            strokeOpacity=".8" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-      <path d="M70 148c12 9 31 14 50 14s38-5 50-14" stroke="var(--clay-hi)"
-            strokeOpacity=".38" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-    </svg>
+        {embers && (
+          <g className="ill-embers" fill="#FFD9A0">
+            <circle className="ill-ember ill-ember-1" cx="114" cy="80" r="1.5" />
+            <circle className="ill-ember ill-ember-2" cx="128" cy="74" r="1.1" />
+            <circle className="ill-ember ill-ember-3" cx="121" cy="64" r="0.9" />
+            <circle className="ill-ember ill-ember-4" cx="124" cy="90" r="1.3" />
+            <circle className="ill-ember ill-ember-5" cx="110" cy="70" r="0.8" />
+            <circle className="ill-ember ill-ember-6" cx="131" cy="84" r="1" />
+          </g>
+        )}
+      </svg>
+    </div>
   );
 }
 

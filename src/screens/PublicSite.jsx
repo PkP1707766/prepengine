@@ -163,21 +163,47 @@ const CSS = `
 .pb-btn-block{width:100%}
 
 /* ---------- HERO ---------- */
+/* One light source, and the room graded to it. The left, where the words
+   are, is the deepest wine; the right, where the lamp is, warms toward amber;
+   everything falls away into a vignette at the edges. The first background
+   line is the fallback for a browser without color-mix(). */
 .pb-hero{position:relative;overflow:hidden;color:var(--on-dark);
-  background:linear-gradient(175deg,var(--brand-800) 0%,var(--brand-900) 100%)}
-[data-theme="dark"] .pb-hero{background:linear-gradient(175deg,#2a0d13 0%,#150609 100%)}
+  background:linear-gradient(175deg,var(--brand-800) 0%,var(--brand-900) 100%);
+  /* Graded to one light, like a frame lit by a single lamp: the shadows are
+     deep wine, never black; the mid-tones oxblood; the light amber-ember,
+     never yellow. Back to front: an ember core where the flame is, an
+     oxblood lift around it, the ground running from deep wine on the left
+     (under the words) to wine on the right, and the floor darker. */
+  background:
+    radial-gradient(30% 42% at 75% 40%, rgba(214,104,44,.26), rgba(170,60,32,.1) 55%, rgba(170,60,32,0) 100%),
+    radial-gradient(66% 88% at 74% 42%, color-mix(in srgb,var(--brand-700) 78%,#7a2a14) 0%, color-mix(in srgb,var(--brand-700) 0%,transparent) 70%),
+    linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(14,3,6,.3) 100%),
+    linear-gradient(100deg, color-mix(in srgb,var(--brand-900) 72%,#0a0205) 0%, var(--brand-900) 44%, color-mix(in srgb,var(--brand-800) 90%,#000) 100%)}
+[data-theme="dark"] .pb-hero{background:linear-gradient(175deg,#2a0d13 0%,#150609 100%);
+  background:
+    radial-gradient(30% 42% at 75% 40%, rgba(200,92,38,.2), rgba(150,52,28,.08) 55%, rgba(150,52,28,0) 100%),
+    radial-gradient(66% 88% at 74% 42%, #3a1110 0%, rgba(58,17,16,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(6,1,3,.35) 100%),
+    linear-gradient(100deg, #0e0307 0%, #19060b 44%, #21080d 100%)}
 /* The ground was carrying a 2px diagonal pinstripe every 26px. On a desktop
    it is a faint texture; on a phone at 2x it lands as visible hairlines
    crawling across the maroon, which is what makes the panel look like a
    rendering fault rather than a surface. Gone.
 
    What replaces it is the one thing the section is about: the lamp lighting
-   the space it sits in. A warm pool centred where the diya actually is, and a
-   second, wider and much fainter one lifting the top edge so the band does
-   not read as flat paint. */
+   the space it sits in. Amber, not yellow -- an oil flame is orange-gold, and
+   a yellow pool on maroon reads as olive. A pool centred on the lamp, a faint
+   lift along the top edge, and a vignette closing the corners. */
 .pb-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(460px 380px at 78% 34%, rgba(224,178,64,.22), transparent 66%),
-             radial-gradient(760px 300px at 50% -18%, rgba(255,255,255,.05), transparent 70%)}
+  background:radial-gradient(420px 360px at 75% 38%, rgba(255,166,82,.19), rgba(226,112,48,.07) 46%, transparent 72%),
+             radial-gradient(860px 300px at 40% -18%, rgba(255,232,206,.045), transparent 70%),
+             radial-gradient(125% 110% at 60% 42%, transparent 48%, rgba(12,2,5,.58) 100%)}
+/* Film grain, fixed and faint: it breaks up the banding a smooth dark
+   gradient shows on most screens, and gives the dark a surface. Under the
+   words, never over them. */
+.pb-hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.55;mix-blend-mode:soft-light;
+  background-size:180px 180px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .pb-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:0 44px;
   grid-template-areas:"head diya" "body diya" "ticks ticks";
   align-items:center;max-width:1180px;margin:0 auto;padding:74px 24px 66px}
@@ -187,7 +213,8 @@ const CSS = `
 .pb-hero-deva{font-family:var(--font-shloka);font-size:19px;letter-spacing:.03em;color:var(--gold-300);
   opacity:.95;margin-bottom:12px;line-height:1.5}
 .pb-h1{font-family:var(--font-display);font-optical-sizing:auto;font-size:clamp(36px,5vw,60px);
-  line-height:1.07;font-weight:600;letter-spacing:-.012em;margin:0 0 18px;text-wrap:balance}
+  line-height:1.07;font-weight:600;letter-spacing:-.012em;margin:0 0 18px;text-wrap:balance;
+  text-shadow:0 1px 0 rgba(20,4,8,.35),0 0 42px rgba(255,160,80,.1)}
 .pb-h1 em{font-family:var(--font-quote);font-style:italic;font-weight:500;color:var(--gold-300);
   font-size:1.14em;letter-spacing:-.005em}
 /* The headline arrives one line at a time. Each line is a block that sweeps
@@ -274,6 +301,42 @@ const CSS = `
    paragraph flows; this one line stands apart as the close. */
 .pb-lede-close{display:block;margin-top:13px;font-family:var(--font-quote);font-style:italic;
   font-weight:500;font-size:1.14em;color:var(--gold-300)}
+
+/* The closing line, lit by the lamp. When the paragraph has finished typing
+   it arrives a word at a time, each one coming out of a soft blur into
+   focus. Then a gold stroke draws itself under its key words ("fair
+   measure"), and from there on the line holds a warm glow that flickers on
+   the same uneven beat as the diya's flame, as if that flame were lighting
+   it. Only opacity, filter, transform and text-shadow move: the words hold
+   their final place from the first frame, so nothing below them shifts. */
+.pb-close-fx{animation:pb-close-lit 3.4s ease-in-out var(--lit,1.8s) infinite}
+.pb-close-fx .pb-cw{display:inline-block;opacity:0;filter:blur(6px);transform:translateY(.32em);
+  animation:pb-cw-in .85s cubic-bezier(.2,.7,.2,1) calc(var(--w) * 80ms + 60ms) forwards}
+@keyframes pb-cw-in{to{opacity:1;filter:blur(0);transform:none}}
+.pb-close-key{position:relative;display:inline-block;white-space:nowrap;color:#f7e2a6;font-weight:600}
+.pb-close-ul{position:absolute;left:-3%;bottom:-.24em;width:106%;height:.46em;overflow:visible;pointer-events:none}
+.pb-close-ul path{fill:none;stroke:var(--gold-300);stroke-width:2.2;stroke-linecap:round;
+  stroke-dasharray:100;stroke-dashoffset:100;filter:drop-shadow(0 0 3px rgba(255,180,90,.65));
+  animation:pb-ul-draw 1.1s cubic-bezier(.6,0,.2,1) var(--uld,1.2s) forwards}
+@keyframes pb-ul-draw{to{stroke-dashoffset:0}}
+@keyframes pb-close-lit{
+  0%,100%{text-shadow:0 0 14px rgba(255,170,82,.3)}
+  14%    {text-shadow:0 0 9px rgba(255,170,82,.16)}
+  29%    {text-shadow:0 0 20px rgba(255,178,90,.44)}
+  46%    {text-shadow:0 0 11px rgba(255,170,82,.2)}
+  61%    {text-shadow:0 0 17px rgba(255,176,86,.36)}
+  79%    {text-shadow:0 0 10px rgba(255,170,82,.18)}
+}
+/* Still: the ghost that holds the layout, and reduced motion. Present, lit,
+   underlined; nothing moves. */
+.pb-close-fx.is-still{animation:none;text-shadow:0 0 14px rgba(255,170,82,.26)}
+.pb-close-fx.is-still .pb-cw{opacity:1;filter:none;transform:none;animation:none}
+.pb-close-fx.is-still .pb-close-ul path{stroke-dashoffset:0;animation:none}
+@media (prefers-reduced-motion: reduce){
+  .pb-close-fx{animation:none;text-shadow:0 0 14px rgba(255,170,82,.26)}
+  .pb-close-fx .pb-cw{opacity:1;filter:none;transform:none;animation:none}
+  .pb-close-fx .pb-close-ul path{stroke-dashoffset:0;animation:none}
+}
 .pb-hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px}
 /* The leading icon is quieter than the label and the trailing arrow; it
    identifies the action rather than competing with it. */
@@ -287,17 +350,84 @@ const CSS = `
    Three across on a wide screen, two on a tablet, two on a phone. */
 .pb-ticks{grid-area:ticks;margin-top:28px;list-style:none;padding:0;
   display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pb-ticks li{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:3px;
+.pb-ticks li{position:relative;isolation:isolate;overflow:hidden;
+  display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:3px;
   align-items:center;padding:13px 15px;border-radius:13px;
-  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);
-  transition:background .2s ease,border-color .2s ease,transform .2s ease}
-.pb-ticks li:hover{background:rgba(255,255,255,.075);transform:translateY(-2px);
-  border-color:rgba(227,200,119,.4);
-  border-color:color-mix(in srgb,var(--gold-300) 42%,transparent)}
+  border:1px solid rgba(255,226,190,.13);
+  background:radial-gradient(240px 170px at var(--mx,50%) var(--my,-60%),rgba(255,184,108,calc(var(--glow) + var(--breath))),rgba(255,184,108,0) 70%),
+    linear-gradient(135deg,rgba(255,236,214,.035),rgba(255,236,214,.065));
+  transition:--glow .35s ease,border-color .3s ease,transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease;
+  animation:pb-tick-in .8s cubic-bezier(.2,.7,.2,1) calc(1.2s + var(--i,0) * 90ms) backwards,
+    pb-tick-breathe 7.2s ease-in-out calc(2.6s + var(--i,0) * 1.2s) infinite}
+/* The tiles breathe.
+   - They arrive one after another once the hero has settled.
+   - Then, one at a time in a slow wave, each zooms gently in and settles
+     back, warming a little as it does, its icon swelling with it.
+   - Under the pointer, the tile zooms in and stays, a warm light follows the
+     pointer inside it, its edge lights nearest the pointer, and its icon
+     moves the way its idea does. */
+/* The breathing moves its own channels (scale, --breath) and the hover its
+   own (transform, --glow), so the two add up rather than fight, and nothing
+   has to be switched off when the pointer arrives or leaves. */
+@property --glow{syntax:"<number>";inherits:true;initial-value:0}
+@property --breath{syntax:"<number>";inherits:true;initial-value:0}
+@keyframes pb-tick-in{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@keyframes pb-tick-breathe{
+  0%,30%,100%{scale:1;--breath:0}
+  13%{scale:1.035;--breath:.1}
+}
+.pb-ticks .tick-ic{animation:pb-ic-breathe 7.2s ease-in-out calc(2.6s + var(--i,0) * 1.2s) infinite}
+@keyframes pb-ic-breathe{0%,30%,100%{scale:1}13%{scale:1.14}}
+.pb-ticks li::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:radial-gradient(150px 110px at var(--mx,50%) var(--my,-60%),rgba(255,206,130,.75),rgba(255,206,130,0) 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .35s ease}
+@media (hover:hover){
+  .pb-ticks li:hover{animation-play-state:running,paused;--glow:.17;
+    transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(1.045);border-color:rgba(255,214,150,.22);
+    box-shadow:0 14px 28px -18px rgba(0,0,0,.8),0 0 24px -12px rgba(255,170,90,.5)}
+  .pb-ticks li:hover::before{opacity:1}
+}
 .pb-ticks .tick-ic{grid-row:span 2;align-self:center;width:36px;height:36px;flex:none;
   border-radius:10px;display:grid;place-items:center;color:var(--gold-300);
   background:rgba(227,200,119,.14);
-  background:color-mix(in srgb,var(--gold-300) 15%,transparent)}
+  background:color-mix(in srgb,var(--gold-300) 15%,transparent);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,background .35s ease}
+.pb-ticks .tick-ic svg{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){
+  .pb-ticks li:hover .tick-ic{animation-play-state:paused;transform:scale(1.08);background:color-mix(in srgb,var(--gold-300) 24%,transparent);
+    box-shadow:0 0 0 4px rgba(255,206,130,.07),0 6px 16px -6px rgba(255,170,90,.6)}
+  /* each icon moves the way its idea does */
+  .pb-ticks li[data-k="rank"]:hover .tick-ic svg{animation:pb-ic-rise .7s cubic-bezier(.2,.7,.2,1)}
+  .pb-ticks li[data-k="pattern"]:hover .tick-ic svg{transform:rotate(90deg)}
+  .pb-ticks li[data-k="gsca"]:hover .tick-ic svg{animation:pb-ic-lift .7s ease}
+  .pb-ticks li[data-k="pyq"]:hover .tick-ic svg{transform:rotate(-360deg);transition-duration:.9s}
+  .pb-ticks li[data-k="csat"]:hover .tick-ic svg{animation:pb-ic-tap .5s ease}
+  .pb-ticks li[data-k="secure"]:hover .tick-ic svg{animation:pb-ic-pulse .8s ease}
+}
+/* Each icon draws itself in, stroke by stroke, as its tile arrives. */
+.pb-ticks .tick-ic svg *{stroke-dasharray:80;stroke-dashoffset:80;
+  animation:pb-ic-draw 1.3s cubic-bezier(.6,.1,.3,1) calc(1.45s + var(--i,0) * 90ms) forwards}
+@keyframes pb-ic-draw{to{stroke-dashoffset:0}}
+/* Under the pointer, two embers rise off the icon, as off the diya. */
+.pb-ticks .tick-ic{position:relative}
+.pb-ticks .tick-ic::before,.pb-ticks .tick-ic::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:3px;
+  border-radius:50%;background:#ffd08a;box-shadow:0 0 6px 1px rgba(255,170,90,.8);opacity:0;pointer-events:none}
+@media (hover:hover){
+  .pb-ticks li:hover .tick-ic::before{animation:pb-spark 1.3s ease-out infinite}
+  .pb-ticks li:hover .tick-ic::after{animation:pb-spark 1.6s ease-out .55s infinite;margin-left:5px}
+}
+@keyframes pb-spark{0%{opacity:0;transform:translate(-4px,4px) scale(.6)}25%{opacity:1}
+  100%{opacity:0;transform:translate(3px,-20px) scale(1)}}
+@keyframes pb-ic-rise{0%{transform:scaleY(1)}35%{transform:scaleY(.7)}70%{transform:scaleY(1.12)}100%{transform:scaleY(1)}}
+@keyframes pb-ic-lift{0%,100%{transform:none}40%{transform:translateY(-3px)}70%{transform:translateY(1px)}}
+@keyframes pb-ic-tap{0%,100%{transform:none}30%{transform:scale(.86)}60%{transform:scale(1.08)}}
+@keyframes pb-ic-pulse{0%,100%{transform:none}45%{transform:scale(1.18)}}
+@media (prefers-reduced-motion:reduce){
+  .pb-ticks li,.pb-ticks .tick-ic{animation:none}
+  .pb-ticks .tick-ic svg *{animation:none;stroke-dashoffset:0}
+  .pb-ticks .tick-ic::before,.pb-ticks .tick-ic::after{display:none}
+}
 .pb-ticks b{font-size:13.5px;font-weight:700;color:var(--on-dark);line-height:1.25;letter-spacing:-.005em}
 .pb-ticks .tick-s{font-size:11.5px;color:#c8b696;line-height:1.32}
 @media (max-width:980px){ .pb-ticks{grid-template-columns:repeat(2,1fr)} }
@@ -1456,9 +1586,21 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   /* The pool sits where the lamp sits -- upper right, beside the headline --
      and a shade stronger than the desktop's, because on a small screen it is
      doing the work of separating the lamp from the maroon behind it. */
+  /* The grade follows the lamp, which on a phone is top right. */
+  .pb-hero{background:
+    radial-gradient(34% 22% at 82% 15%, rgba(214,104,44,.28), rgba(170,60,32,.1) 55%, rgba(170,60,32,0) 100%),
+    radial-gradient(90% 46% at 80% 16%, color-mix(in srgb,var(--brand-700) 78%,#7a2a14) 0%, color-mix(in srgb,var(--brand-700) 0%,transparent) 70%),
+    linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(14,3,6,.3) 100%),
+    linear-gradient(100deg, color-mix(in srgb,var(--brand-900) 72%,#0a0205) 0%, var(--brand-900) 44%, color-mix(in srgb,var(--brand-800) 90%,#000) 100%)}
+  [data-theme="dark"] .pb-hero{background:
+    radial-gradient(34% 22% at 82% 15%, rgba(200,92,38,.22), rgba(150,52,28,.08) 55%, rgba(150,52,28,0) 100%),
+    radial-gradient(90% 46% at 80% 16%, #3a1110 0%, rgba(58,17,16,0) 70%),
+    linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(6,1,3,.35) 100%),
+    linear-gradient(100deg, #0e0307 0%, #19060b 44%, #21080d 100%)}
   .pb-hero::before{background:
-    radial-gradient(260px 230px at 84% 16%, rgba(224,178,64,.34), transparent 66%),
-    radial-gradient(460px 220px at 50% -14%, rgba(255,255,255,.05), transparent 72%)}
+    radial-gradient(250px 220px at 82% 15%, rgba(255,170,84,.3), rgba(232,124,52,.09) 48%, transparent 72%),
+    radial-gradient(460px 220px at 50% -14%, rgba(255,236,214,.05), transparent 72%),
+    radial-gradient(150% 100% at 50% 30%, transparent 55%, rgba(10,2,4,.42) 100%)}
 
   .pb-head-in{padding:10px 16px;gap:10px}
   .pb-name{font-size:17px}
@@ -2194,6 +2336,36 @@ const LEDE_PER = 20, LEDE_START = 260;   // typing: ms per character, and the le
    stutter rather than as something that comes round again. */
 const SHEEN_PER = 46, SHEEN_MIN = 320, SHEEN_PAUSE = 1500;
 
+/* The hero's closing line (see .pb-close-fx). [[ ]] in the copy marks the
+   words that get the drawn underline. Words are counted across the whole
+   line so the cascade runs left to right, and the underline and the glow
+   are timed off that count. `still` draws it finished: for the layout ghost
+   and for reduced motion. */
+const plainLine = (s) => String(s).replace(/\[\[|\]\]/g, "");
+function CloseLine({ text, still = false }) {
+  const parts = String(text).split(/\[\[(.+?)\]\]/);
+  let n = 0;
+  const words = (str) => str.split(/(\s+)/).filter(Boolean).map((w, j) => (
+    /^\s+$/.test(w) ? w : <span key={j} className="pb-cw" style={{ "--w": n++ }}>{w}</span>
+  ));
+  const body = parts.map((part, i) => (i % 2
+    ? (
+      <span key={i} className="pb-close-key">
+        {words(part)}
+        <svg className="pb-close-ul" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M2 6.6C22 3.4 48 2.6 70 3.8S92 6.2 98 4.6" pathLength="100" />
+        </svg>
+      </span>
+    )
+    : <Fragment key={i}>{words(part)}</Fragment>));
+  return (
+    <em className={"pb-lede-close pb-close-fx" + (still ? " is-still" : "")}
+        style={{ "--uld": `${n * 80 + 650}ms`, "--lit": `${n * 80 + 1500}ms` }}>
+      {body}
+    </em>
+  );
+}
+
 function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
   const reduced = usePrefersReducedMotion();
   const ghostRef = useRef(null);
@@ -2283,13 +2455,18 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
     let t = 0;
     const onResize = () => { clearTimeout(t); t = setTimeout(() => setMeasure((v) => v + 1), 180); };
     window.addEventListener("resize", onResize);
-    return () => { window.removeEventListener("resize", onResize); clearTimeout(t); };
+    // The same for the web font arriving: lines measured in the fallback face
+    // break in other places, and set nowrap in the real one they ran past the
+    // edge of the column and were cut off ("We show you th").
+    let live = true;
+    document.fonts?.ready.then(() => { if (live) setMeasure((v) => v + 1); });
+    return () => { live = false; window.removeEventListener("resize", onResize); clearTimeout(t); };
   }, [reduced]);
 
   // Reduced motion gets the plain paragraph and no passes at all.
   if (reduced) {
     return (
-      <p className="pb-lede">{fullMain}{" "}<em className="pb-lede-close">{close}</em></p>
+      <p className="pb-lede">{fullMain}{" "}<CloseLine text={close} still /></p>
     );
   }
 
@@ -2335,7 +2512,7 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
         </span>
       );
     });
-    closeEl = <em className="pb-lede-close pb-glass-close-in">{close}</em>;
+    closeEl = <CloseLine text={close} />;
   }
 
   return (
@@ -2344,7 +2521,7 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
           line measurement reads. */}
       <span className="pb-lede-ghost" aria-hidden="true" ref={ghostRef}>
         <span className="pb-lede-main">{fullMain}</span>
-        <em className="pb-lede-close">{close}</em>
+        <CloseLine text={close} still />
       </span>
       {/* Painted over the ghost — act 1 types, act 2 sweeps line by line. */}
       <span className="pb-lede-live" aria-hidden="true">
@@ -2352,7 +2529,7 @@ function LedeGlassReveal({ a, b1, bh, b2, c, close }) {
         {closeEl}
       </span>
       {/* For screen readers, which get neither of the two above. */}
-      <span className="pb-sr">{`${a} ${b1}${bh}${b2} ${c} ${close}`}</span>
+      <span className="pb-sr">{`${a} ${b1}${bh}${b2} ${c} ${plainLine(close)}`}</span>
     </p>
   );
 }
@@ -2752,6 +2929,27 @@ function loadMains() {
     .catch((e) => { mainsLoad = null; throw e; });
   return mainsLoad;
 }
+/* The six tiles under the hero: what each is called, its icon, its copy. */
+const HERO_TICKS = [
+  ["rank", BarChart3, "tick_rank"], ["pattern", TargetArrow, "tick_pattern"], ["gsca", Layers, "tick_gsca"],
+  ["pyq", History, "tick_pyq"], ["csat", Calculator, "tick_csat"], ["secure", ShieldCheck, "tick_secure"],
+];
+/* The light in a tile follows the pointer: the tile under it is handed the
+   pointer's position, and CSS draws the glow, the lit edge and the tilt
+   from that. */
+const tickLight = (e) => {
+  if (e.pointerType !== "mouse") return;
+  const li = e.target.closest?.("li");
+  if (!li) return;
+  const r = li.getBoundingClientRect();
+  const x = e.clientX - r.left, y = e.clientY - r.top;
+  li.style.setProperty("--mx", `${Math.round(x)}px`);
+  li.style.setProperty("--my", `${Math.round(y)}px`);
+  // and the tile leans toward it, a few degrees at most
+  li.style.setProperty("--rx", `${((0.5 - y / r.height) * 9).toFixed(2)}deg`);
+  li.style.setProperty("--ry", `${((x / r.width - 0.5) * 7).toFixed(2)}deg`);
+};
+
 const fillIn = (s, vars) => String(s).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 /* Copy may mark one phrase with [[ ]]; it gets the hand-drawn underline. */
 const marked = (s) => String(s).split(/\[\[(.+?)\]\]/).map((part, i) =>
@@ -4595,13 +4793,12 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               {/* Its own row across the foot of the hero. Inside the text
                   column it was 490px carrying three claims, so every label
                   broke over two lines. */}
-              <ul className="pb-ticks">
-                <li><span className="tick-ic"><BarChart3 size={18} /></span><b>{t("tick_rank")}</b><span className="tick-s">{t("tick_rank_s")}</span></li>
-                <li><span className="tick-ic"><TargetArrow size={18} /></span><b>{t("tick_pattern")}</b><span className="tick-s">{t("tick_pattern_s")}</span></li>
-                <li><span className="tick-ic"><Layers size={18} /></span><b>{t("tick_gsca")}</b><span className="tick-s">{t("tick_gsca_s")}</span></li>
-                <li><span className="tick-ic"><History size={18} /></span><b>{t("tick_pyq")}</b><span className="tick-s">{t("tick_pyq_s")}</span></li>
-                <li><span className="tick-ic"><Calculator size={18} /></span><b>{t("tick_csat")}</b><span className="tick-s">{t("tick_csat_s")}</span></li>
-                <li><span className="tick-ic"><ShieldCheck size={18} /></span><b>{t("tick_secure")}</b><span className="tick-s">{t("tick_secure_s")}</span></li>
+              <ul className="pb-ticks" onPointerMove={tickLight}>
+                {HERO_TICKS.map(([k, Icon, key], i) => (
+                  <li key={k} data-k={k} style={{ "--i": i }}>
+                    <span className="tick-ic"><Icon size={18} /></span><b>{t(key)}</b><span className="tick-s">{t(key + "_s")}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </section>
