@@ -328,12 +328,44 @@ function useBrandChrome() {
         /* ---- ILLUSTRATION MOTION ---------------------------------------
            Every animation here is decorative and every one of them stops
            under prefers-reduced-motion (handled globally further down).   */
+        /* The flame breathes and leans from its foot, never jumps. */
         @keyframes ill-flicker{
-          0%,100%{ transform:scale(1) translateY(0); opacity:1 }
-          28%    { transform:scale(1.035) translateY(-2px); opacity:.94 }
-          52%    { transform:scale(.985) translateY(1.5px); opacity:1 }
-          74%    { transform:scale(1.02) translateY(-1px); opacity:.97 }
+          0%,100%{ transform:rotate(0deg) scale(1,1); opacity:1 }
+          18%    { transform:rotate(-1.6deg) scale(.985,1.03); opacity:.95 }
+          37%    { transform:rotate(1deg) scale(1.01,.985); opacity:1 }
+          55%    { transform:rotate(-.6deg) scale(.99,1.045); opacity:.96 }
+          76%    { transform:rotate(1.5deg) scale(1.015,.99); opacity:1 }
         }
+        @keyframes ill-core{
+          0%,100%{ opacity:1; transform:scale(1) }
+          40%    { opacity:.86; transform:scale(.96,1.04) }
+          70%    { opacity:.95; transform:scale(1.02,.97) }
+        }
+        @keyframes ill-aura{ 0%,100%{ opacity:.85; transform:scale(1) } 50%{ opacity:1; transform:scale(1.05) } }
+        /* The flame's light on everything near it: uneven, like a real wick. */
+        @keyframes ill-lit{ 0%,100%{ opacity:.9 } 14%{ opacity:.7 } 29%{ opacity:1 } 46%{ opacity:.78 }
+                             61%{ opacity:.96 } 79%{ opacity:.74 } 90%{ opacity:.92 } }
+        @keyframes ill-rays{ 0%,100%{ transform:rotate(-4deg); opacity:.7 } 50%{ transform:rotate(4deg); opacity:1 } }
+        @keyframes ill-rise-l{ 0%{ opacity:0; transform:translate(0,6px) scale(.6) } 25%{ opacity:.9 }
+                               100%{ opacity:0; transform:translate(-9px,-40px) scale(1.1) } }
+        @keyframes ill-rise-r{ 0%{ opacity:0; transform:translate(0,6px) scale(.6) } 25%{ opacity:.9 }
+                               100%{ opacity:0; transform:translate(10px,-38px) scale(1.1) } }
+
+        /* The hero lamp is three stacked drawings (see Illustrations.jsx). The
+           two that move get their own layers, so the still one -- the one with
+           the clay grain and the soft shading -- is painted once. */
+        .ill-diya{ position:relative; display:block; flex:none; width:var(--d,340px); height:var(--d,340px) }
+        .ill-diya > svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible }
+        .ill-diya-back, .ill-diya-fire{ will-change:transform }
+        .ill-diya-fire{ mix-blend-mode:screen }
+        .ill-litflick, .ill-pool{ animation:ill-lit 3.4s ease-in-out infinite }
+        .ill-pool{ animation-delay:-.4s }
+        .ill-rays{ transform-origin:120px 118px; animation:ill-rays 18s ease-in-out infinite }
+        .ill-gust{ transform-origin:120px 153px }
+        /* Dust in the lamp's light: rises slowly, drifts aside, fades. */
+        @keyframes ill-mote{ 0%{ transform:translate(0,10px); opacity:0 } 18%{ opacity:.85 }
+                             70%{ opacity:.55 } 100%{ transform:translate(7px,-34px); opacity:0 } }
+        .ill-mote{ animation:ill-mote 12s ease-in-out infinite }
         @keyframes ill-spin{ to{ transform:rotate(360deg) } }
         @keyframes ill-spin-rev{ to{ transform:rotate(-360deg) } }
         @keyframes ill-rise{
@@ -344,8 +376,11 @@ function useBrandChrome() {
         @keyframes ill-draw{ to{ stroke-dashoffset:0 } }
         @keyframes ill-glow{ 0%,100%{ opacity:.85 } 50%{ opacity:1 } }
 
-        .ill-flame{ transform-origin:120px 118px; animation:ill-flicker 2.9s ease-in-out infinite; }
-        .ill-ring{ transform-origin:120px 110px; }
+        .ill-flame{ transform-origin:120px 152px; animation:ill-flicker 4.4s ease-in-out infinite; }
+        .ill-flame-core{ transform-origin:120px 146px; animation:ill-core 1.9s ease-in-out infinite; }
+        .ill-aura{ transform-origin:120px 140px; animation:ill-aura 3.4s ease-in-out infinite; }
+        .ill-glow{ animation:ill-lit 4.6s ease-in-out infinite; }
+        .ill-ring{ transform-origin:120px 112px; }
         .ill-ring-a{ animation:ill-spin 52s linear infinite; }
         .ill-ring-b{ animation:ill-spin-rev 74s linear infinite; }
         .ill-ring-c{ animation:ill-spin 120s linear infinite; }
@@ -353,6 +388,10 @@ function useBrandChrome() {
         .ill-ember-2{ animation-delay:.9s; animation-duration:4.2s }
         .ill-ember-3{ animation-delay:1.8s; animation-duration:3.1s }
         .ill-ember-4{ animation-delay:2.6s; animation-duration:4.6s }
+        .ill-ember-5{ animation-delay:1.3s; animation-duration:5s }
+        .ill-ember-6{ animation-delay:3.2s; animation-duration:3.8s }
+        .ill-ember-2, .ill-ember-5{ animation-name:ill-rise-l }
+        .ill-ember-3, .ill-ember-6{ animation-name:ill-rise-r }
         .ill-mandala{ color:var(--gold-300); }
         .ill-divider{ color:var(--gold-600); width:120px; height:20px; }
 
@@ -767,7 +806,8 @@ Object.assign(STR, {
   hero_lede_b2:   { en: " pattern.", hi: " का पैटर्न।" },
   hero_lede_c:    { en: "Find your weak topics, measure your accuracy, and see where you stand against everyone who sat the same paper.",
                     hi: "अपने कमज़ोर टॉपिक पहचानिए, अपनी सटीकता नापिए, और देखिए कि उसी पेपर को देने वाले सबके बीच आप कहाँ हैं।" },
-  hero_lede_d:    { en: "Your race starts here.", hi: "आपकी दौड़ यहीं से शुरू होती है।" },
+  /* [[ ]] marks the words the hero underlines in gold. */
+  hero_lede_d:    { en: "Every serious aspirant deserves a [[fair measure]] of their preparation.", hi: "हर गंभीर अभ्यर्थी अपनी तैयारी के [[सही आकलन]] का हक़दार है।" },
   hero_h1_a:      { en: "Lead your prep", hi: "अपनी तैयारी को ले चलिए" },
   hero_h1_b:      { en: "from darkness, unto light.", hi: "अंधकार से प्रकाश की ओर।" },
   hero_lede:      { en: "Papers on the real pattern. Analysis that names your weak topics. And a rank measured against everyone who sat the same paper — not invented.",
