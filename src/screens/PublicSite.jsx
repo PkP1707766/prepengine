@@ -166,8 +166,10 @@ const CSS = `
 /* ---------- HERO ---------- */
 /* One light source, and the room graded to it. The left, where the words
    are, is the deepest wine; the right, where the lamp is, warms toward amber;
-   everything falls away into a vignette at the edges. The first background
-   line is the fallback for a browser without color-mix(). */
+   everything falls away into a vignette at the edges. No color-mix() here:
+   a browser that lacks it drops the whole background and the cream page
+   shows through under cream text (it did, on an Android WebView). Plain
+   var() and rgba() only; the first line below is a last-resort solid. */
 .pb-hero{position:relative;overflow:hidden;color:var(--on-dark);
   background:linear-gradient(175deg,var(--brand-800) 0%,var(--brand-900) 100%);
   /* Graded to one light, like a frame lit by a single lamp: the shadows are
@@ -177,9 +179,11 @@ const CSS = `
      (under the words) to wine on the right, and the floor darker. */
   background:
     radial-gradient(30% 42% at 75% 40%, rgba(214,104,44,.26), rgba(170,60,32,.1) 55%, rgba(170,60,32,0) 100%),
-    radial-gradient(66% 88% at 74% 42%, color-mix(in srgb,var(--brand-700) 78%,#7a2a14) 0%, color-mix(in srgb,var(--brand-700) 0%,transparent) 70%),
+    radial-gradient(66% 88% at 74% 42%, rgba(122,42,20,.24) 0%, rgba(122,42,20,0) 70%),
+    radial-gradient(66% 88% at 74% 42%, var(--brand-700) 0%, transparent 70%),
     linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(14,3,6,.3) 100%),
-    linear-gradient(100deg, color-mix(in srgb,var(--brand-900) 72%,#0a0205) 0%, var(--brand-900) 44%, color-mix(in srgb,var(--brand-800) 90%,#000) 100%)}
+    linear-gradient(100deg, rgba(10,2,5,.28) 0%, rgba(10,2,5,0) 44%),
+    linear-gradient(100deg, var(--brand-900) 0%, var(--brand-900) 44%, var(--brand-800) 100%)}
 [data-theme="dark"] .pb-hero{background:linear-gradient(175deg,var(--dk-2) 0%,var(--dk-1) 100%);
   background:
     radial-gradient(30% 42% at 75% 40%, rgba(200,92,38,.2), rgba(150,52,28,.08) 55%, rgba(150,52,28,0) 100%),
@@ -1172,7 +1176,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   background:linear-gradient(180deg,var(--cream-100) 0%,var(--cream-100) 68%,var(--cream-200) 100%);
   border-top:1px solid var(--line)}
 .pb-show-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center;
-  max-width:1180px;margin:0 auto;padding:76px 24px}
+  max-width:1180px;margin:0 auto;padding:40px 24px}
 .pb-show-list{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:16px}
 .pb-show-list li{display:flex;gap:13px;align-items:flex-start}
 .pb-show-ic{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;
@@ -1206,7 +1210,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 .pb-show-list li.is-on .pb-show-prog.is-hold::after{transform:scaleX(1)}
 @keyframes pb-prog{to{transform:scaleX(1)}}
 
-.pb-rs{position:relative;perspective:1100px;max-width:440px;margin-inline:auto;padding:30px 8px 26px}
+.pb-rs{position:relative;perspective:1100px;max-width:440px;margin-inline:auto;padding:12px 8px 10px}
 .pb-rs-float{transform-style:preserve-3d;animation:pb-rs-float 7s ease-in-out infinite}
 @keyframes pb-rs-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
 .pb-rs-card{position:relative;transform-style:preserve-3d;border-radius:22px;padding:18px 18px 14px;
@@ -1780,9 +1784,11 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   /* The grade follows the lamp, which on a phone is top right. */
   .pb-hero{background:
     radial-gradient(34% 22% at 82% 15%, rgba(214,104,44,.28), rgba(170,60,32,.1) 55%, rgba(170,60,32,0) 100%),
-    radial-gradient(90% 46% at 80% 16%, color-mix(in srgb,var(--brand-700) 78%,#7a2a14) 0%, color-mix(in srgb,var(--brand-700) 0%,transparent) 70%),
+    radial-gradient(90% 46% at 80% 16%, rgba(122,42,20,.24) 0%, rgba(122,42,20,0) 70%),
+    radial-gradient(90% 46% at 80% 16%, var(--brand-700) 0%, transparent 70%),
     linear-gradient(180deg, rgba(0,0,0,0) 62%, rgba(14,3,6,.3) 100%),
-    linear-gradient(100deg, color-mix(in srgb,var(--brand-900) 72%,#0a0205) 0%, var(--brand-900) 44%, color-mix(in srgb,var(--brand-800) 90%,#000) 100%)}
+    linear-gradient(100deg, rgba(10,2,5,.28) 0%, rgba(10,2,5,0) 44%),
+    linear-gradient(100deg, var(--brand-900) 0%, var(--brand-900) 44%, var(--brand-800) 100%)}
   [data-theme="dark"] .pb-hero{background:
     radial-gradient(34% 22% at 82% 15%, rgba(200,92,38,.22), rgba(150,52,28,.08) 55%, rgba(150,52,28,0) 100%),
     radial-gradient(90% 46% at 80% 16%, var(--dk-lift) 0%, transparent 70%),
@@ -1838,7 +1844,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-step h3{font-size:17px}
   .pb-step p{font-size:13.5px}
 
-  .pb-show-grid{padding:48px 18px;gap:26px}
+  .pb-show-grid{padding:32px 18px;gap:26px}
   .pb-show-list{gap:14px;margin-top:18px}
   .pb-show-list b{font-size:14px}
   .pb-show-list em{font-size:13px}
@@ -1957,7 +1963,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 }
 @media (max-width:980px){
   .pb-lede{max-width:none}
-  .pb-show-grid{grid-template-columns:1fr;gap:34px;padding:58px 24px}
+  .pb-show-grid{grid-template-columns:1fr;gap:28px;padding:36px 24px}
   /* Three across on a tablet, one on a phone. Written as a range so it
      does not depend on where this block sits in the sheet. */
   .pb-steps{grid-template-columns:1fr;gap:26px}
@@ -2151,7 +2157,7 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
   .pb-sec-head{margin-bottom:24px}
   .pb-sec-coupon{padding-block:34px}
   .pb-quote{padding:40px 20px}
-  .pb-show-grid{padding:38px 20px;gap:26px}
+  .pb-show-grid{padding:28px 20px;gap:22px}
 
   /* The hero's padding, gap and stage height are set in the phone block
      above, which sits earlier in this sheet -- so a second copy here won at
