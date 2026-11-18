@@ -185,6 +185,8 @@ const bundleFromRow = (r) => ({
   // A Mains plan sells the Mains section, not papers (0033).
   includesMains: r.includes_mains === true,
   includesGs: r.includes_gs === true,
+  // PYQ Practice sells the question bank (0046), not papers.
+  includesPyq: r.includes_pyq === true,
   sortOrder: r.sort_order ?? 0,
   // Null when no PDF has been uploaded yet -- the UI reads this as "don't
   // render the brochure button at all", so a plan without a flyer is silent
@@ -3311,4 +3313,87 @@ async function saveTopicMap(sb, items, onStep) {
     if (error) throw error;
   });
   return { mapped: rows.size, unmatched: [...unmatched] };
+}
+
+
+/* ============================================================
+   PRELIMS PYQ PRACTICE (0046)
+
+   The catalogue and the per-subject index are readable without an account:
+   counts, labels and which rows are free, never text or answers. Text and
+   answers come from pyq_fetch(), which hands back {id, locked} for anything
+   the caller may not read. Answers and results are written by functions that
+   recheck access and decide correctness themselves.
+   ============================================================ */
+export async function pyqCatalog() {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("pyq_catalog");
+  if (error) throw error;
+  // Dev only: the plan stays inactive until the page ships; preview its card.
+  if (import.meta.env.DEV && data && !data.plan) data.plan = { code: "pyq-practice", price: 9, mrp: 9, days: 365 };
+  return data;
+}
+
+/** Light rows for one subject: {id, t[], e, l, y, k, ty, f, fr, r, b}. */
+export async function pyqMeta(subject) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("pyq_meta", { p_subject: subject });
+  if (error) throw error;
+  return Array.isArray(data) ? data : [];
+}
+
+export async function pyqFetch(ids) {
+  if (!ids?.length) return [];
+  const sb = await getSupabase();
+  const out = [];
+  for (let i = 0; i < ids.length; i += 200) {
+    const { data, error } = await sb.rpc("pyq_fetch", { p_ids: ids.slice(i, i + 200) });
+    if (error) throw error;
+    out.push(...(data || []));
+  }
+  return out;
+}
+
+export async function pyqAnswer(id, choice) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("pyq_answer", { p_id: id, p_choice: choice });
+  if (error) throw error;
+  return data;
+}
+
+export async function pyqFinish({ mode, title, filters, items, seconds }) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("pyq_finish", {
+    p_mode: mode, p_title: title || null, p_filters: filters || {}, p_items: items, p_seconds: Math.round(seconds || 0),
+  });
+  if (error) throw error;
+  return data;
+}
+
+export async function pyqMark(id, on) {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("pyq_mark", { p_id: id, p_on: !!on });
+  if (error) throw error;
+  return data === true;
+}
+
+export async function pyqProgress() {
+  const sb = await getSupabase();
+  const { data, error } = await sb.rpc("pyq_progress");
+  if (error) { console.warn("pyq progress unavailable", error.message); return null; }
+  return data || null;
+}
+
+/** Admin: how many questions each subject gives away. */
+export async function pyqSetFreeCount(code, n) {
+  const sb = await getSupabase();
+  const { error } = await sb.from("pyq_subjects").update({ free_count: Math.max(0, Math.round(n)) }).eq("code", code);
+  if (error) throw error;
+}
+
+export async function pyqSubjectsAdmin() {
+  const sb = await getSupabase();
+  const { data, error } = await sb.from("pyq_subjects").select("*").order("sort_order");
+  if (error) throw error;
+  return data || [];
 }

@@ -110,6 +110,10 @@ function Root() {
   const [examTestId, setExamTestId] = useState(null);
   const [examReturn, setExamReturn] = useState("student"); // where "back" leads from a paper
   const [pendingPlan, setPendingPlan] = useState(null); // bundle the visitor chose before signing in
+  // A content page to come back to after signing in or paying. PYQ Practice is
+  // used right there on its page; landing on the dashboard after unlocking it
+  // would drop the student out of the set they were about to start.
+  const [returnPage, setReturnPage] = useState(null);
   const [session, setSession] = useState(null);
   const [booting, setBooting] = useState(true);
 
@@ -241,18 +245,20 @@ function Root() {
       // if this exact bundle is already owned, so it is safe to always honour
       // a pending plan once we know a real session exists (dest !== "public").
       if (pendingPlan && dest !== "public") go("join");
+      else if (returnPage && dest !== "admin") { setReturnPage(null); openContent(returnPage); }
       else go(dest);
     } catch {
       go("join");
     }
-  }, [resolveDestination, go, pendingPlan]);
+  }, [resolveDestination, go, pendingPlan, returnPage, openContent]);
 
   /* "Enroll now" from the storefront. */
   const startEnrolment = useCallback((planCode) => {
     setPendingPlan(planCode);
+    setReturnPage(contentPage === "pyq" ? "pyq" : null);
     if (session) go("join");
     else go("login");
-  }, [session, go]);
+  }, [session, go, contentPage]);
 
   const openDashboard = useCallback(async () => {
     if (!session) return go("login");
@@ -285,7 +291,7 @@ function Root() {
             session={session}
             page={contentPage}
             onNavigate={openContent}
-            onLogin={() => go("login")}
+            onLogin={() => { setReturnPage(contentPage === "pyq" ? "pyq" : null); go("login"); }}
             onEnroll={startEnrolment}
             onDashboard={openDashboard}
           />
@@ -303,7 +309,10 @@ function Root() {
       return (
         <JoinScreen
           planCode={pendingPlan}
-          onJoined={() => { setPendingPlan(null); go("student"); }}
+          onJoined={() => {
+            setPendingPlan(null);
+            if (returnPage) { const p = returnPage; setReturnPage(null); openContent(p); } else go("student");
+          }}
           onBrowse={() => go("public")}
           onLogout={logout}
         />
