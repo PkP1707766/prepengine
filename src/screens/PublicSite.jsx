@@ -7,7 +7,7 @@ import { ChromeControls } from "../lib/i18n.jsx";
 import { useLang } from "../lib/contexts.js";
 import { ContactModal } from "./authChrome.jsx";
 import { ErrorState, Skeleton } from "../ui/Feedback.jsx";
-import { Diya, Mandala, StepArt, ReportArt, TicketIcon, Divider } from "../ui/Illustrations.jsx";
+import { Diya, Mandala, StepArt, TicketIcon, Divider } from "../ui/Illustrations.jsx";
 import ContentPage from "./ContentPages.jsx";
 import { RESOURCES, RESOURCE_TITLES } from "../lib/resources.js";
 import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
@@ -1181,6 +1181,196 @@ span.pb-cc-go{cursor:default;color:var(--ink-400)}
 .pb-show-list em{display:block;font-style:normal;font-size:13.5px;color:var(--ink-600);line-height:1.55}
 .ill-report{width:100%;max-width:440px;height:auto;display:block;margin-inline:auto;
   filter:drop-shadow(var(--shadow-soft))}
+
+/* ---------- THE LIVING REPORT ----------
+   A sample report card, compact, that keeps changing the way a real
+   aspirant's reports do: eight mocks, and the rank does not just climb. It
+   jumps, slips back, recovers, slips again, and ends in the top ten. Each
+   mock moves every figure on the card: the score ring, the A/B/C section
+   split, the rank with its up or down change, the time per question and the
+   subject bars. The list on the left walks through the card at the same
+   beat: the next point lights and the part of the card it is about comes
+   forward. Hovering a point holds both. The card stands in 3D, floats, leans
+   toward the pointer, and four notes hang in front of it. */
+.pb-show-list li{position:relative;padding:10px 12px 12px;margin:-10px -12px -12px;border-radius:14px;cursor:default;
+  transition:background .4s ease,transform .4s cubic-bezier(.2,.7,.2,1)}
+.pb-show-list li.is-on{background:color-mix(in srgb,var(--cream-50) 80%,transparent);
+  box-shadow:0 10px 26px -18px rgba(60,20,10,.45);transform:translateX(4px)}
+.pb-show-list li.is-on .pb-show-ic{background:var(--brand-700);color:var(--gold-300);transform:scale(1.08)}
+.pb-show-ic{transition:background .4s ease,color .4s ease,transform .4s cubic-bezier(.2,.7,.2,1)}
+.pb-show-prog{position:absolute;left:12px;right:12px;bottom:4px;height:2px;border-radius:2px;overflow:hidden;opacity:0}
+.pb-show-list li.is-on .pb-show-prog{opacity:1}
+.pb-show-prog::after{content:"";position:absolute;inset:0;transform-origin:left;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--gold-500),var(--brand-600))}
+.pb-show-list li.is-on .pb-show-prog.is-run::after{animation:pb-prog 4.2s linear forwards}
+.pb-show-list li.is-on .pb-show-prog.is-hold::after{transform:scaleX(1)}
+@keyframes pb-prog{to{transform:scaleX(1)}}
+
+.pb-rs{position:relative;perspective:1100px;max-width:440px;margin-inline:auto;padding:30px 8px 26px}
+.pb-rs-float{transform-style:preserve-3d;animation:pb-rs-float 7s ease-in-out infinite}
+@keyframes pb-rs-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.pb-rs-card{position:relative;transform-style:preserve-3d;border-radius:22px;padding:18px 18px 14px;
+  background:var(--cream-50);border:1px solid var(--line);
+  box-shadow:0 34px 60px -34px rgba(50,14,10,.55),0 12px 24px -18px rgba(50,14,10,.3),inset 0 1px 0 rgba(255,255,255,.55);
+  transform:rotateX(var(--rx,4deg)) rotateY(var(--ry,-8deg));transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pb-rs-glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(320px 220px at var(--gx,30%) var(--gy,10%),rgba(255,255,255,.5),rgba(255,255,255,0) 70%);mix-blend-mode:soft-light}
+.pb-rs-sec{position:relative;transform:translateZ(16px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1),filter .5s ease}
+.pb-rs-sec + .pb-rs-sec{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.pb-rs-card.is-tour .pb-rs-sec{opacity:.42;filter:saturate(.6)}
+.pb-rs-card.a0 .pb-rs-sec[data-p="0"],.pb-rs-card.a1 .pb-rs-sec[data-p="1"],
+.pb-rs-card.a2 .pb-rs-sec[data-p="2"],.pb-rs-card.a3 .pb-rs-sec[data-p="3"]{opacity:1;filter:none;transform:translateZ(38px)}
+.pb-rs-lbl{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-400);margin-bottom:8px;
+  display:flex;justify-content:space-between;gap:8px}
+.pb-rs-lbl i{font-style:normal;letter-spacing:0;text-transform:none;font-weight:700;color:var(--bad-600)}
+.pb-rs-lbl i.ok{color:var(--ok-600)}
+
+/* header: score ring, the three sections, rank and its change */
+.pb-rs-head{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center}
+.pb-rs-ring{position:relative;width:64px;height:64px}
+.pb-rs-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.pb-rs-ring b{position:absolute;inset:0;display:grid;place-items:center;align-content:center;font-family:var(--font-display);
+  font-size:20px;line-height:1;color:var(--ink-900);font-variant-numeric:tabular-nums}
+.pb-rs-ring b small{font-family:var(--font-body);font-size:8.5px;font-weight:700;color:var(--ink-400);margin-top:2px}
+.pb-rs-split{display:flex;flex-direction:column;gap:5px;min-width:0}
+.pb-rs-row{display:grid;grid-template-columns:auto 1fr 28px;gap:7px;align-items:center;font-size:11px;color:var(--ink-600);font-weight:600}
+.pb-rs-row u{text-decoration:none;font-variant-numeric:tabular-nums;color:var(--ink-900);font-weight:700;text-align:right}
+.pb-rs-track{height:6px;border-radius:6px;background:color-mix(in srgb,var(--ink-400) 18%,transparent);overflow:hidden}
+.pb-rs-track span{display:block;height:100%;width:100%;border-radius:inherit;transform-origin:left;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--gold-500),var(--gold-600));transition:transform 1.1s cubic-bezier(.2,.7,.2,1) .3s,background .4s}
+.is-seen .pb-rs-track span{transform:scaleX(var(--w));transition:transform .25s linear,background .4s}
+.pb-rs-row.is-best .pb-rs-track span{background:linear-gradient(90deg,var(--ok-600),color-mix(in srgb,var(--ok-600) 60%,#fff))}
+.pb-rs-row.is-weak .pb-rs-track span{background:linear-gradient(90deg,var(--bad-600),color-mix(in srgb,var(--bad-600) 60%,#fff))}
+.pb-rs-row.is-weak u{color:var(--bad-600)}
+.pb-rs-rank{text-align:center;padding:6px 10px 7px;border-radius:13px;min-width:66px;color:var(--ok-600);
+  background:color-mix(in srgb,var(--ok-600) 12%,transparent);transition:background .4s,color .4s}
+.pb-rs-rank small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.8;white-space:nowrap}
+.pb-rs-rank b{display:block;font-family:var(--font-display);font-size:21px;line-height:1.1;font-variant-numeric:tabular-nums}
+.pb-rs-rank em{display:block;font-style:normal;font-size:10.5px;font-weight:800;white-space:nowrap}
+.pb-rs-rank.is-down{color:var(--bad-600);background:color-mix(in srgb,var(--bad-600) 11%,transparent)}
+.pb-rs-rank.is-top{color:#6b4a06;background:linear-gradient(135deg,var(--gold-300),var(--gold-500))}
+
+/* time per question: thirty strokes; the long ones change from mock to mock */
+.pb-rs-time{position:relative;display:flex;align-items:flex-end;gap:3px;height:50px}
+.pb-rs-time span{flex:1;border-radius:2px;background:color-mix(in srgb,var(--ink-400) 34%,transparent);
+  height:var(--h);transform-origin:bottom;transform:scaleY(0);transition:transform .8s cubic-bezier(.2,.7,.2,1) calc(.5s + var(--i) * 18ms)}
+.pb-rs-time span.is-long{background:linear-gradient(0deg,var(--bad-600),color-mix(in srgb,var(--bad-600) 55%,#fff))}
+.is-seen .pb-rs-time span{transform:scaleY(1)}
+.pb-rs-time::after{content:"";position:absolute;top:0;bottom:0;width:2px;left:0;border-radius:2px;
+  background:linear-gradient(transparent,var(--gold-500),transparent);opacity:.8;animation:pb-rs-scan 4.2s ease-in-out infinite}
+@keyframes pb-rs-scan{0%{left:0;opacity:0}10%{opacity:.8}90%{opacity:.8}100%{left:100%;opacity:0}}
+.pb-rs-avg{position:absolute;left:0;right:0;bottom:15px;border-top:1px dashed color-mix(in srgb,var(--ink-400) 60%,transparent)}
+
+/* by subject */
+.pb-rs-subj{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;align-items:end;height:88px}
+.pb-rs-subj div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.pb-rs-subj i{font-style:normal;font-size:10px;font-weight:700;color:var(--ink-600);font-variant-numeric:tabular-nums}
+.pb-rs-subj span{width:100%;max-width:26px;height:var(--h);border-radius:6px 6px 3px 3px;
+  background:linear-gradient(0deg,var(--gold-600),var(--gold-300));transform-origin:bottom;transform:scaleY(0);
+  transition:transform 1s cubic-bezier(.2,.7,.2,1) calc(.6s + var(--i) * 90ms)}
+.pb-rs-subj .is-weak span{background:linear-gradient(0deg,var(--bad-600),color-mix(in srgb,var(--bad-600) 60%,#fff))}
+.pb-rs-subj .is-weak i{color:var(--bad-600)}
+.is-seen .pb-rs-subj span{transform:scaleY(1)}
+.pb-rs-subj em{font-style:normal;font-size:10px;color:var(--ink-400);white-space:nowrap}
+
+/* The chart panel: one space, four ways of reading the same mock, switched
+   with the tour (or by pointing at a tab). Each view turns in as the last
+   turns away. */
+.pb-rs-tabs{display:flex;gap:4px;margin-bottom:8px}
+.pb-rs-tabs span{flex:1;text-align:center;padding:4px 0;border-radius:8px;font-size:10px;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-400);cursor:pointer;transition:background .3s,color .3s}
+.pb-rs-tabs span.is-on{background:var(--brand-700);color:var(--gold-300)}
+.pb-rs-views{position:relative;height:142px;perspective:700px}
+.pb-rs-view{position:absolute;inset:0;opacity:0;transform:rotateX(-14deg) translateY(8px);transform-origin:50% 100%;
+  transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.pb-rs-view.is-on{opacity:1;transform:none}
+.pb-rs-cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:10px;font-weight:700;color:var(--ink-400);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.pb-rs-cap i{font-style:normal;text-transform:none;letter-spacing:0;color:var(--bad-600)}
+.pb-rs-cap i.ok{color:var(--ok-600)}
+
+/* spider web */
+.pb-rs-web{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;height:100%}
+.pb-rs-web svg{display:block;width:100%;height:auto;overflow:visible}
+.pb-rs-web .ring{fill:none;stroke:var(--line);stroke-width:.8}
+.pb-rs-web .spoke{stroke:var(--line);stroke-width:.8}
+.pb-rs-web .prev{fill:none;stroke:var(--ink-400);stroke-width:1.1;stroke-dasharray:3 3}
+.pb-rs-web .now{fill:color-mix(in srgb,var(--gold-500) 32%,transparent);stroke:var(--gold-600);stroke-width:1.6;stroke-linejoin:round}
+.pb-rs-web .ax{font:700 7.5px var(--font-body);fill:var(--ink-400);text-anchor:middle;dominant-baseline:middle}
+.pb-rs-web .ax.weak{fill:var(--bad-600)}
+.pb-rs-web .dot{fill:var(--gold-600)} .pb-rs-web .dot.weak{fill:var(--bad-600)}
+.pb-rs-key{display:flex;flex-direction:column;gap:7px;font-size:10.5px;color:var(--ink-600);font-weight:600}
+.pb-rs-key span{display:flex;align-items:center;gap:7px}
+.pb-rs-key b{width:14px;height:8px;border-radius:3px;flex:none}
+.pb-rs-key .k-now{background:color-mix(in srgb,var(--gold-500) 45%,transparent);border:1.5px solid var(--gold-600)}
+.pb-rs-key .k-prev{border:1.5px dashed var(--ink-400)}
+.pb-rs-key strong{font-size:11px;color:var(--bad-600)}
+
+/* heat table */
+.pb-rs-tbl{width:100%;border-collapse:separate;border-spacing:3px;font-size:11px;font-variant-numeric:tabular-nums}
+.pb-rs-tbl th{font-size:9.5px;font-weight:800;color:var(--ink-400);text-transform:uppercase;letter-spacing:.06em;padding:2px 4px;text-align:center}
+.pb-rs-tbl th:first-child{text-align:left}
+.pb-rs-tbl td{padding:6px 4px;border-radius:7px;text-align:center;font-weight:700;color:var(--ink-900);transition:background .5s}
+.pb-rs-tbl td:first-child{text-align:left;color:var(--ink-600);font-weight:700;background:none}
+.pb-rs-tbl td.lo{background:color-mix(in srgb,var(--bad-600) 20%,transparent);color:var(--bad-600)}
+.pb-rs-tbl td.mid{background:color-mix(in srgb,var(--gold-500) 22%,transparent)}
+.pb-rs-tbl td.hi{background:color-mix(in srgb,var(--ok-600) 20%,transparent);color:var(--ok-600)}
+.pb-rs-tbl td.now{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink-900) 22%,transparent)}
+.pb-rs-tbl td.up{color:var(--ok-600)} .pb-rs-tbl td.dn{color:var(--bad-600)}
+.pb-rs-tbl td.blank{color:var(--ink-400);background:color-mix(in srgb,var(--ink-400) 8%,transparent)}
+
+/* rank trend */
+.pb-rs-trend svg{display:block;width:100%;height:auto;overflow:visible}
+.pb-rs-trend .grid{stroke:var(--line);stroke-dasharray:2 4}
+.pb-rs-trend .yl{font:600 7px var(--font-body);fill:var(--ink-400)}
+.pb-rs-trend .line{fill:none;stroke:var(--ok-600);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.pb-rs-trend .drop{fill:none;stroke:var(--bad-600);stroke-width:2.4;stroke-linecap:round}
+.pb-rs-trend .fut{fill:none;stroke:var(--line);stroke-width:1.4;stroke-dasharray:3 4}
+.pb-rs-trend .pt{fill:var(--cream-50);stroke:var(--ok-600);stroke-width:1.8}
+.pb-rs-trend .pt.dn{stroke:var(--bad-600)}
+.pb-rs-trend .lab{font:700 8px var(--font-body);fill:var(--ink-600);text-anchor:middle}
+.pb-rs-trend .lab.dn{fill:var(--bad-600)}
+.pb-rs-trend .cur{fill:var(--brand-600)}
+.pb-rs-trend .pulse{fill:none;stroke:var(--brand-600);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pb-rs-pulse 1.8s ease-out infinite}
+@keyframes pb-rs-pulse{from{transform:scale(1);opacity:.8}to{transform:scale(3);opacity:0}}
+@media (prefers-reduced-motion:reduce){ .pb-rs-trend .pulse{animation:none} .pb-rs-view{transition:none} }
+
+/* solutions */
+.pb-rs-sol{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-600)}
+.pb-rs-sol svg{flex:none;color:var(--ok-600)}
+.pb-rs-sol b{color:var(--ink-900);font-weight:700}
+.pb-rs-sol small{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--ok-600);white-space:nowrap}
+
+/* the notes hanging in front of the card */
+.pb-rs-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:12px;white-space:nowrap;
+  font-size:12px;font-weight:700;color:var(--ink-900);
+  background:color-mix(in srgb,var(--cream-50) 86%,transparent);border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 16px 30px -18px rgba(40,10,6,.55);
+  transform:translateZ(46px) scale(.96);opacity:.75;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .5s ease,box-shadow .5s ease;animation:pb-rs-bob 5.5s ease-in-out infinite}
+.pb-rs-chip:nth-of-type(2){animation-delay:-1.4s} .pb-rs-chip:nth-of-type(3){animation-delay:-2.8s} .pb-rs-chip:nth-of-type(4){animation-delay:-4.1s}
+@keyframes pb-rs-bob{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.pb-rs-chip i{width:8px;height:8px;border-radius:50%;flex:none}
+.pb-rs-chip.c0{right:-26px;top:66%} .pb-rs-chip.c0 i{background:var(--bad-600)}
+.pb-rs-chip.c1{left:-30px;top:37%}  .pb-rs-chip.c1 i{background:var(--gold-500)}
+.pb-rs-chip.c2{right:-22px;top:-16px} .pb-rs-chip.c2 i{background:var(--warn-600)}
+.pb-rs-chip.c3{left:14%;bottom:-18px} .pb-rs-chip.c3 i{background:var(--ok-600)}
+.pb-rs-card.a0 .c0,.pb-rs-card.a1 .c1,.pb-rs-card.a2 .c2,.pb-rs-card.a3 .c3{
+  opacity:1;transform:translateZ(92px) scale(1.06);box-shadow:0 24px 40px -18px rgba(40,10,6,.6),0 0 0 3px color-mix(in srgb,var(--gold-300) 45%,transparent)}
+@media (max-width:640px){
+  .pb-rs{padding:26px 4px 24px}
+  .pb-rs-card{padding:15px 13px 12px}
+  .pb-rs-head{gap:9px}
+  .pb-rs-ring{width:56px;height:56px}
+  .pb-rs-rank{min-width:58px;padding:5px 7px 6px}
+  .pb-rs-chip{font-size:11px;padding:7px 10px}
+  .pb-rs-chip.c0{right:-6px} .pb-rs-chip.c1{left:-6px} .pb-rs-chip.c2{right:-4px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pb-rs-float,.pb-rs-chip,.pb-rs-time::after{animation:none}
+  .pb-rs-card{transition:none}
+  .pb-rs-track span,.pb-rs-time span,.pb-rs-subj span{transition:none}
+}
 
 /* ---------- FREE RESOURCES ---------- */
 /* This band is cream above it and cream below it, and a flat fill met both
@@ -2950,6 +3140,298 @@ const tickLight = (e) => {
   li.style.setProperty("--rx", `${((0.5 - y / r.height) * 9).toFixed(2)}deg`);
   li.style.setProperty("--ry", `${((x / r.width - 0.5) * 7).toFixed(2)}deg`);
 };
+
+/* The living report (see .pb-rs in the stylesheet). A sample aspirant over
+   eight mocks; the rank does not just climb: it jumps, slips back, recovers,
+   slips again and ends in the top ten. Scores are out of 200; sections and
+   subjects are accuracy in per cent; `slow` is how many questions ran long. */
+const REP_ITEMS = [[Target, "rep1"], [Timer, "rep2"], [Layers, "rep3"], [CheckCircle2, "rep4"]];
+const REP_MOCKS = [
+  { score: 78,  rank: 562, sec: [52, 34, 41], subj: [58, 46, 50, 28, 44, 40], slow: 6 },
+  { score: 96,  rank: 316, sec: [58, 44, 47], subj: [62, 52, 54, 34, 50, 45], slow: 5 },
+  { score: 84,  rank: 402, sec: [49, 52, 30], subj: [55, 58, 48, 31, 46, 38], slow: 6 },
+  { score: 108, rank: 225, sec: [61, 57, 52], subj: [66, 56, 60, 42, 55, 50], slow: 4 },
+  { score: 121, rank: 96,  sec: [66, 61, 63], subj: [72, 62, 64, 52, 61, 56], slow: 3 },
+  { score: 112, rank: 140, sec: [70, 46, 58], subj: [70, 59, 68, 47, 57, 52], slow: 4 },
+  { score: 129, rank: 48,  sec: [68, 66, 71], subj: [76, 66, 70, 60, 66, 62], slow: 2 },
+  { score: 138, rank: 9,   sec: [74, 70, 69], subj: [82, 70, 74, 68, 72, 66], slow: 1 },
+];
+const REP_SUBJ = ["rp_s1", "rp_s2", "rp_s3", "rp_s4", "rp_s5", "rp_s6"];
+const REP_SECS = ["rp_secA", "rp_secB", "rp_secC"];
+/* Seconds on thirty questions when none ran long, and which run long first. */
+const REP_TIME = [44, 52, 47, 58, 39, 50, 46, 55, 41, 60, 48, 43, 53, 45, 57, 40, 51, 49, 38, 56, 47, 42, 54, 46, 50, 41, 58, 44, 52, 48];
+const REP_SLOW = [13, 6, 21, 27, 9, 17];
+const lerpN = (a, b, u) => a + (b - a) * u;
+/* The report part way between two mocks, every figure interpolated; the rank
+   on a log scale, so 562 to 316 and 48 to 9 move alike. */
+function reportAt(P) {
+  const n = REP_MOCKS.length, i = Math.floor(P) % n, j = (i + 1) % n, u = P - Math.floor(P);
+  const a = REP_MOCKS[i], b = REP_MOCKS[j];
+  return {
+    score: lerpN(a.score, b.score, u),
+    rank: Math.exp(lerpN(Math.log(a.rank), Math.log(b.rank), u)),
+    sec: a.sec.map((v, k) => lerpN(v, b.sec[k], u)),
+    subj: a.subj.map((v, k) => lerpN(v, b.subj[k], u)),
+    slow: lerpN(a.slow, b.slow, u),
+  };
+}
+
+function ReportShowcase() {
+  const { t } = useLang();
+  const reduced = usePrefersReducedMotion();
+  const secRef = useRef(null), cardRef = useRef(null), posRef = useRef(0);
+  const [seen, setSeen] = useState(false);
+  const [active, setActive] = useState(0);  // the point on the left being shown
+  const [idx, setIdx] = useState(0);        // the mock being shown
+  const [pos, setPos] = useState(0);        // the figures, part way to it
+  const [held, setHeld] = useState(false);
+  const [tick, setTick] = useState(0);
+  const n = REP_MOCKS.length;
+
+  useEffect(() => {
+    const el = secRef.current;
+    if (!el) return undefined;
+    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { setSeen(true); io.disconnect(); } }, { threshold: 0.3 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // one beat for both: the next point lights and the next mock comes in
+  useEffect(() => {
+    if (!seen || held || reduced) return undefined;
+    const id = setTimeout(() => {
+      setActive((a) => (a + 1) % REP_ITEMS.length);
+      setIdx((i) => i + 1);
+      setTick((k) => k + 1);
+    }, 4200);
+    return () => clearTimeout(id);
+  }, [seen, held, reduced, active, tick]);
+
+  // move every figure to the new mock
+  useEffect(() => {
+    if (!seen || reduced) return undefined;
+    const from = posRef.current, to = idx;
+    let raf = 0, t0 = 0;
+    const step = (now) => {
+      if (!t0) t0 = now;
+      const u = Math.min(1, (now - t0) / 1200), e = u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+      posRef.current = from + (to - from) * e;
+      setPos(posRef.current);
+      if (u < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [idx, seen, reduced]);
+
+  const hold = (i) => { setHeld(true); setActive(i); };
+  const release = () => { setHeld(false); setTick((k) => k + 1); };
+
+  const lean = (e) => {
+    const el = cardRef.current;
+    if (!el || reduced || e.pointerType !== "mouse") return;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty("--rx", `${(-y * 12).toFixed(2)}deg`);
+    el.style.setProperty("--ry", `${(x * 16).toFixed(2)}deg`);
+    el.style.setProperty("--gx", `${((x + 0.5) * 100).toFixed(1)}%`);
+    el.style.setProperty("--gy", `${((y + 0.5) * 100).toFixed(1)}%`);
+  };
+  const unlean = () => ["--rx", "--ry", "--gx", "--gy"].forEach((k) => cardRef.current?.style.removeProperty(k));
+
+  // reduced motion: the last mock, still
+  const P = reduced ? n - 1 : pos;
+  const R = reportAt(P);
+  const cur = Math.round(P) % n, prevRank = REP_MOCKS[(cur - 1 + n) % n].rank, curRank = REP_MOCKS[cur].rank;
+  const change = cur === 0 ? 0 : prevRank - curRank;   // places gained; negative is a slip
+  const top = cur === n - 1;
+  const C = 2 * Math.PI * 26;
+  const bestS = R.sec.indexOf(Math.max(...R.sec)), weakS = R.sec.indexOf(Math.min(...R.sec));
+  const weakK = R.subj.indexOf(Math.min(...R.subj)), weakV = Math.round(R.subj[weakK]);
+  const slowN = Math.round(R.slow);
+  const times = REP_TIME.map((base, i) => {
+    const k = REP_SLOW.indexOf(i);
+    const extra = k >= 0 ? Math.min(1, Math.max(0, R.slow - k)) : 0;
+    return { h: Math.round(((base + extra * (140 + k * 9)) / 240) * 100), long: extra > 0.5 };
+  });
+  const slipped = change < 0;
+
+  // the chart panel follows the tour
+  const view = active;
+  const prevM = cur > 0 ? REP_MOCKS[cur - 1] : null;
+  const webPt = (v, k, extra = 0) => {
+    // 20% at the centre, 100% at the rim: scores live between, so the web fills
+    const a = ((k * 60 - 90) * Math.PI) / 180, r = 4 + (46 + extra) * Math.max(0, (v - 20) / 80);
+    return [64 + Math.cos(a) * r, 60 + Math.sin(a) * r];
+  };
+  const webPoly = (vals) => vals.map((v, k) => webPt(v, k).map((x) => x.toFixed(1)).join(",")).join(" ");
+  const heat = (v) => (v < 50 ? "lo" : v < 62 ? "mid" : "hi");
+  const tblCols = [cur - 2, cur - 1, cur];
+  const trX = (i) => 22 + i * (270 / (n - 1));
+  const trY = (r) => 6 + (Math.log10(Math.max(1, r)) / 3) * 82;
+  const trPts = REP_MOCKS.map((m, i) => [trX(i), trY(m.rank)]);
+  // the story loops, so the trend reads its place within the current round
+  const Pm = P - Math.floor(P / n) * n;
+  const reach = Math.min(Pm, n - 1);
+  const trHead = [trX(reach), trY(R.rank)];
+
+  return (
+    <section className={"pb-show" + (seen ? " is-seen" : "")} ref={secRef}>
+      <div className="pb-show-grid">
+        <div className="reveal">
+          <div className="pb-eyebrow">{t("rep_eyebrow")}</div>
+          <h2 className="pb-h2" style={{ textAlign: "left" }}>{t("rep_h2")}</h2>
+          <p className="pb-sub">{t("rep_sub")}</p>
+          <ul className="pb-show-list" onMouseLeave={release}>
+            {REP_ITEMS.map(([Icon, k], i) => (
+              <li key={k} className={i === active ? "is-on" : ""} onMouseEnter={() => hold(i)}>
+                <span className="pb-show-ic"><Icon size={17} /></span>
+                <span><b>{t(k + "_t")}</b><em>{t(k + "_d")}</em></span>
+                <i key={`${tick}-${held}`} className={"pb-show-prog " + (held || reduced ? "is-hold" : "is-run")} aria-hidden="true" />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="reveal reveal-d2">
+          <div className="pb-rs" onPointerMove={lean} onPointerLeave={unlean} aria-hidden="true">
+            <div className="pb-rs-float">
+              <div ref={cardRef} className={`pb-rs-card a${active}${seen ? " is-tour" : ""}`}>
+                <i className="pb-rs-glare" />
+                <div className="pb-rs-sec pb-rs-head" data-p="2">
+                  <div className="pb-rs-ring">
+                    <svg viewBox="0 0 64 64">
+                      <circle cx="32" cy="32" r="26" fill="none" stroke="var(--line)" strokeWidth="7" />
+                      <circle cx="32" cy="32" r="26" fill="none" stroke="var(--gold-500)" strokeWidth="7"
+                              strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - R.score / 200)} />
+                    </svg>
+                    <b>{Math.round(R.score)}<small>/200</small></b>
+                  </div>
+                  <div className="pb-rs-split">
+                    {R.sec.map((v, k) => (
+                      <div key={k} className={"pb-rs-row" + (k === bestS ? " is-best" : k === weakS && v < 50 ? " is-weak" : "")}>
+                        {t(REP_SECS[k])}
+                        <span className="pb-rs-track"><span style={{ "--w": (v / 100).toFixed(3) }} /></span>
+                        <u>{Math.round(v)}%</u>
+                      </div>
+                    ))}
+                  </div>
+                  <div className={"pb-rs-rank" + (top ? " is-top" : slipped ? " is-down" : "")}>
+                    <small>{fillIn(t("rp_mock"), { n: cur + 1 })}</small>
+                    <b>{Math.round(R.rank)}</b>
+                    <em>{cur === 0 ? t("rp_air") : top ? t("rp_top") : slipped ? `↓ ${-change}` : `↑ ${change}`}</em>
+                  </div>
+                </div>
+                <div className="pb-rs-sec pb-rs-panel">
+                  <div className="pb-rs-tabs">
+                    {["rp_v0", "rp_v1", "rp_v2", "rp_v3"].map((k, i) => (
+                      <span key={k} className={i === view ? "is-on" : ""} onMouseEnter={() => hold(i)} onMouseLeave={release}>{t(k)}</span>
+                    ))}
+                  </div>
+                  <div className="pb-rs-views">
+                    {/* 1. spider web: this mock's six subjects over the last mock's */}
+                    <div className={"pb-rs-view pb-rs-web" + (view === 0 ? " is-on" : "")}>
+                      <svg viewBox="0 0 128 120">
+                        {[0.25, 0.5, 0.75, 1].map((f) => <polygon key={f} className="ring" points={webPoly(REP_SUBJ.map(() => f * 100))} />)}
+                        {REP_SUBJ.map((_, k) => { const [x, y] = webPt(100, k); return <line key={k} className="spoke" x1="64" y1="60" x2={x} y2={y} />; })}
+                        {prevM && <polygon className="prev" points={webPoly(prevM.subj)} />}
+                        <polygon className="now" points={webPoly(R.subj)} />
+                        {R.subj.map((v, k) => { const [x, y] = webPt(v, k); return <circle key={k} className={"dot" + (k === weakK ? " weak" : "")} cx={x} cy={y} r="2.2" />; })}
+                        {REP_SUBJ.map((key, k) => { const [x, y] = webPt(100, k, 13); return <text key={key} className={"ax" + (k === weakK ? " weak" : "")} x={x} y={y}>{t(key)}</text>; })}
+                      </svg>
+                      <div className="pb-rs-key">
+                        <span><b className="k-now" />{t("rp_this")}</span>
+                        {prevM && <span><b className="k-prev" />{t("rp_last")}</span>}
+                        <span>{t(REP_SUBJ[weakK])} <strong>{weakV}%</strong></span>
+                      </div>
+                    </div>
+
+                    {/* 2. time per question */}
+                    <div className={"pb-rs-view" + (view === 1 ? " is-on" : "")}>
+                      <div className="pb-rs-cap">{t("rp_time")}<i className={slowN > 2 ? "" : "ok"}>{fillIn(t("rp_time_n"), { n: slowN })}</i></div>
+                      <div className="pb-rs-time" style={{ height: 106 }}>
+                        <i className="pb-rs-avg" style={{ bottom: 32 }} />
+                        {times.map((q, i) => (
+                          <span key={i} className={q.long ? "is-long" : ""} style={{ "--h": `${q.h}%`, "--i": i }} />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 3. heat table: the three sections over the last three mocks */}
+                    <div className={"pb-rs-view" + (view === 2 ? " is-on" : "")}>
+                      <table className="pb-rs-tbl">
+                        <thead>
+                          <tr>
+                            <th>{t("rp_v2")}</th>
+                            {tblCols.map((c) => <th key={c}>{c >= 0 ? fillIn(t("rp_mshort"), { n: c + 1 }) : "—"}</th>)}
+                            <th>Δ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {REP_SECS.map((key, k) => {
+                            const cells = tblCols.map((c) => (c === cur ? R.sec[k] : c >= 0 ? REP_MOCKS[c].sec[k] : null));
+                            const d = cells[1] != null ? Math.round(cells[2] - cells[1]) : null;
+                            return (
+                              <tr key={key}>
+                                <td>{t(key)}</td>
+                                {cells.map((v, j) => (
+                                  <td key={j} className={v == null ? "blank" : heat(v) + (j === 2 ? " now" : "")}>{v == null ? "—" : `${Math.round(v)}%`}</td>
+                                ))}
+                                <td className={d == null ? "blank" : d >= 0 ? "up" : "dn"}>{d == null ? "—" : `${d >= 0 ? "↑" : "↓"}${Math.abs(d)}`}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* 4. rank trend: every mock so far, slips in red */}
+                    <div className={"pb-rs-view pb-rs-trend" + (view === 3 ? " is-on" : "")}>
+                      <div className="pb-rs-cap">{t("rp_trend")}<i className="ok">{REP_MOCKS[0].rank} → {Math.round(R.rank)}</i></div>
+                      <svg viewBox="0 0 300 100">
+                        {[1, 10, 100, 1000].map((r) => (
+                          <g key={r}><line className="grid" x1="20" x2="296" y1={trY(r)} y2={trY(r)} /><text className="yl" x="0" y={trY(r) + 2.5}>{r === 1 ? "#1" : r}</text></g>
+                        ))}
+                        <polyline className="fut" points={trPts.map(([x, y]) => `${x},${y}`).join(" ")} />
+                        {trPts.slice(0, Math.floor(reach)).map(([x, y], i) => {
+                          const [x2, y2] = trPts[i + 1];
+                          const down = REP_MOCKS[i + 1].rank > REP_MOCKS[i].rank;
+                          return <line key={i} className={down ? "drop" : "line"} x1={x} y1={y} x2={x2} y2={y2} />;
+                        })}
+                        {reach % 1 > 0 && (() => {
+                          const i = Math.floor(reach), [x, y] = trPts[i];
+                          const down = REP_MOCKS[(i + 1) % n].rank > REP_MOCKS[i].rank;
+                          return <line className={down ? "drop" : "line"} x1={x} y1={y} x2={trHead[0]} y2={trHead[1]} />;
+                        })()}
+                        {trPts.map(([x, y], i) => i <= cur && (
+                          <g key={i}>
+                            <circle className={"pt" + (i > 0 && REP_MOCKS[i].rank > REP_MOCKS[i - 1].rank ? " dn" : "")} cx={x} cy={y} r="3" />
+                            <text className={"lab" + (i > 0 && REP_MOCKS[i].rank > REP_MOCKS[i - 1].rank ? " dn" : "")} x={x} y={y - 6}>{REP_MOCKS[i].rank}</text>
+                          </g>
+                        ))}
+                        <circle className="pulse" cx={trHead[0]} cy={trHead[1]} r="3.5" />
+                        <circle className="cur" cx={trHead[0]} cy={trHead[1]} r="2.8" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="pb-rs-sec pb-rs-sol" data-p="3">
+                  <CheckCircle2 size={18} />
+                  <span><b>{t("rp_sol")}</b></span>
+                  <small>{t("rp_sol_n")}</small>
+                </div>
+                <div className="pb-rs-chip c0"><i />{fillIn(t(weakV < 50 ? "rp_c0w" : "rp_c0g"), { s: t(REP_SUBJ[weakK]), v: weakV })}</div>
+                <div className="pb-rs-chip c1"><i />{fillIn(t("rp_c1"), { n: slowN })}</div>
+                <div className="pb-rs-chip c2"><i />{slipped
+                  ? fillIn(t("rp_c2dn"), { s: t(REP_SECS[weakS]), v: Math.round(R.sec[weakS]) })
+                  : fillIn(t("rp_c2up"), { s: t(REP_SECS[bestS]), v: Math.round(R.sec[bestS]) })}</div>
+                <div className="pb-rs-chip c3"><i />{t("rp_c3")}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const fillIn = (s, vars) => String(s).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 /* Copy may mark one phrase with [[ ]]; it gets the hand-drawn underline. */
@@ -4909,34 +5391,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
           </section>
 
           {/* ---------------- REPORT SHOWCASE ---------------- */}
-          <section className="pb-show">
-            <div className="pb-show-grid">
-              <div className="reveal">
-                <div className="pb-eyebrow">{t("rep_eyebrow")}</div>
-                <h2 className="pb-h2" style={{ textAlign: "left" }}>{t("rep_h2")}</h2>
-                <p className="pb-sub">{t("rep_sub")}</p>
-                <ul className="pb-show-list">
-                  <li>
-                    <span className="pb-show-ic"><Target size={17} /></span>
-                    <span><b>{t("rep1_t")}</b><em>{t("rep1_d")}</em></span>
-                  </li>
-                  <li>
-                    <span className="pb-show-ic"><Timer size={17} /></span>
-                    <span><b>{t("rep2_t")}</b><em>{t("rep2_d")}</em></span>
-                  </li>
-                  <li>
-                    <span className="pb-show-ic"><Layers size={17} /></span>
-                    <span><b>{t("rep3_t")}</b><em>{t("rep3_d")}</em></span>
-                  </li>
-                  <li>
-                    <span className="pb-show-ic"><CheckCircle2 size={17} /></span>
-                    <span><b>{t("rep4_t")}</b><em>{t("rep4_d")}</em></span>
-                  </li>
-                </ul>
-              </div>
-              <div className="reveal reveal-d2"><ReportArt /></div>
-            </div>
-          </section>
+          <ReportShowcase />
 
           {/* ---------------- FREE RESOURCES ---------------- */}
           <section className="pb-res" id="resources">
