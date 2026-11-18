@@ -2797,6 +2797,8 @@ function Bundles({ toast }) {
         </div>
       )}
 
+      <PyqFreeAdmin toast={toast} />
+
       {editing && (
         <BundleForm
           initial={editing.code ? editing : null}
@@ -2806,6 +2808,70 @@ function Bundles({ toast }) {
           onClose={() => setEditing(null)}
         />
       )}
+    </div>
+  );
+}
+
+/* PYQ Practice (0046): how many questions each subject gives away before the
+   'pyq-practice' plan. The plan's price is edited in the table above. */
+function PyqFreeAdmin({ toast }) {
+  const [rows, setRows] = useState(null);
+  const [draft, setDraft] = useState({});
+  const [busy, setBusy] = useState("");
+
+  useEffect(() => {
+    let alive = true;
+    DB.pyqSubjectsAdmin().then((r) => { if (alive) setRows(r); }).catch(() => { if (alive) setRows([]); });
+    return () => { alive = false; };
+  }, []);
+
+  if (!rows || rows.length === 0) return null;
+
+  const save = async (code) => {
+    const n = Number(draft[code]);
+    if (!Number.isFinite(n) || n < 0) { toast("Enter 0 or more", "err"); return; }
+    setBusy(code);
+    try {
+      await DB.pyqSetFreeCount(code, n);
+      setRows((r) => r.map((x) => (x.code === code ? { ...x, free_count: Math.round(n) } : x)));
+      setDraft((d) => { const o = { ...d }; delete o[code]; return o; });
+      toast("Free questions updated");
+    } catch (e) {
+      console.error(e);
+      toast(e?.message || "Couldn't save", "err");
+    }
+    setBusy("");
+  };
+
+  return (
+    <div className="panel" style={{ marginTop: 22 }}>
+      <div className="sec-head" style={{ marginTop: 0 }}>
+        <div><h2>PYQ Practice: free questions per subject</h2>
+          <div className="note">A visitor can practise this many questions in each subject without the PYQ plan. Its price is the &ldquo;pyq-practice&rdquo; row above.</div></div>
+      </div>
+      <div className="tbl-wrap">
+        <table className="tbl">
+          <thead><tr><th>Subject</th><th>Free questions</th><th style={{ textAlign: "right" }}>Save</th></tr></thead>
+          <tbody>
+            {rows.map((s) => (
+              <tr key={s.code}>
+                <td><div style={{ fontWeight: 700, color: "var(--ink)" }}>{s.name}</div><div className="q-sub">{s.code}</div></td>
+                <td>
+                  <input className="inp" type="number" min="0" step="1" style={{ maxWidth: 110 }}
+                         value={draft[s.code] ?? s.free_count}
+                         onChange={(e) => setDraft((d) => ({ ...d, [s.code]: e.target.value }))} />
+                </td>
+                <td style={{ textAlign: "right" }}>
+                  <button className="btn btn-primary btn-sm" style={{ width: "auto" }}
+                          disabled={busy === s.code || draft[s.code] === undefined} onClick={() => save(s.code)}>
+                    {busy === s.code ? "Saving…" : "Save"}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

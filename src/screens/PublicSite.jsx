@@ -9,6 +9,7 @@ import { ContactModal } from "./authChrome.jsx";
 import { ErrorState, Skeleton } from "../ui/Feedback.jsx";
 import { Diya, Mandala, StepArt, TicketIcon, Divider } from "../ui/Illustrations.jsx";
 import ContentPage from "./ContentPages.jsx";
+import PyqPractice, { PyqTeaser } from "./PyqPractice.jsx";
 import { RESOURCES, RESOURCE_TITLES } from "../lib/resources.js";
 import { COMPANY, SOCIAL_LINKS } from "../lib/legal.js";
 import { Instagram, YouTube, Telegram, WhatsApp, LinkedIn, XMark } from "../ui/SocialIcons.jsx";
@@ -108,6 +109,14 @@ const CSS = `
 .pb-nav .link{background:none;border:0;font:inherit;font-size:14.5px;font-weight:600;color:var(--ink-600);
   padding:9px 12px;border-radius:9px;cursor:pointer;transition:color .16s,background .16s;white-space:nowrap}
 .pb-nav .link{position:relative}
+.pb-nav .pb-btn{white-space:nowrap}
+/* Five links since PYQ Practice joined them. Between the burger (1000px) and
+   roomy desktop widths the row ran out of space and the two buttons at its end
+   wrapped a letter per line; the links tighten here instead. */
+@media (min-width:1001px) and (max-width:1200px){
+  .pb-nav{gap:2px}
+  .pb-nav .link{padding:9px 8px;font-size:13.5px}
+}
 .pb-nav .link::after{content:"";position:absolute;left:50%;right:50%;bottom:4px;height:1.5px;
   background:var(--gold-500);transition:left .22s ease,right .22s ease;border-radius:2px}
 .pb-nav .link:hover{color:var(--brand-700);background:color-mix(in srgb,var(--gold-300) 20%,transparent)}
@@ -5112,6 +5121,7 @@ function ComboPage({ bundles, session, owned, onEnroll, onDashboard, onLogin, on
 const ESSAY_PAGE = "__essay__";
 
 export default function PublicSite({ onLogin, onEnroll, onDashboard, session, page, onNavigate }) {
+  const isPyq = page === "pyq";
   const { t, lang } = useLang();
   const [bundles, setBundles] = useState(null);
   const [err, setErr] = useState("");
@@ -5215,7 +5225,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
   // sort_order so UPSC leads and "Other" trails.
   // Mains plans sell the Mains section, not papers: they live in the Essay
   // catalogue, never as an empty series here.
-  const seriesBundles = (bundles || []).filter((b) => !((b.includesMains || b.includesGs) && !b.testCount));
+  const seriesBundles = (bundles || []).filter((b) => !((b.includesMains || b.includesGs || b.includesPyq) && !b.testCount));
   const examTabs = [];
   const seen = new Set();
   seriesBundles.forEach((b) => {
@@ -5266,6 +5276,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
 
           <nav className={"pb-nav" + (navOpen ? " open" : "")}>
             <button className="link" onClick={() => { setNavOpen(false); goCatalog(); }}>{t("nav_tests")}</button>
+            <button className="link" onClick={() => { setNavOpen(false); onNavigate("pyq"); }}>{t("nav_pyq")}</button>
             <button className="link" onClick={() => { setNavOpen(false); onNavigate("syllabus"); }}>{t("nav_syllabus")}</button>
             <button className="link" onClick={() => { setNavOpen(false); goResources(); }}>{t("nav_free")}</button>
             <button className="link" onClick={() => { setNavOpen(false); onNavigate("faq"); }}>{t("nav_faq")}</button>
@@ -5286,7 +5297,9 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
         </div>
       </header>
 
-      {page ? (
+      {isPyq ? (
+        <PyqPractice session={session} onLogin={onLogin} onEnroll={onEnroll} onHome={home} />
+      ) : page ? (
         <div className="pb-sec pb-sec-narrow">
           <button className="pb-btn pb-btn-ghost pb-btn-sm" style={{ marginBottom: 24 }} onClick={home}>
             <ArrowLeft size={15} />{t("back_home")}
@@ -5375,6 +5388,11 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               ]} />
             </div>
           </div>
+
+          {/* ---------------- PYQ PRACTICE ----------------
+              Right under the quote band: the cheapest, quickest thing on the
+              site to try, with a live question to answer on the spot. */}
+          <PyqTeaser onOpen={() => onNavigate("pyq")} />
 
           {/* ---------------- MAINS ---------------- */}
           <MainsCatalog bundles={bundles} session={session} owned={owned} onEnroll={enroll} onDashboard={onDashboard} onLogin={onLogin}

@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
 
   const { data: plan, error: planErr } = await sb
     .from("plans")
-    .select("code, name, price_paise, currency, is_active, includes_mains, includes_gs")
+    .select("code, name, price_paise, currency, is_active, includes_mains, includes_gs, includes_pyq")
     .eq("code", planCode)
     .single();
 
@@ -48,8 +48,8 @@ Deno.serve(async (req) => {
   //
   // A Mains plan (Essay, GS or both) is the exception: what it sells is the
   // Mains section (topper copies, guides, the wiki), not papers, so it has
-  // none by design.
-  if (!plan.includes_mains && !plan.includes_gs) {
+  // none by design. So is PYQ Practice (0046): it sells the question bank.
+  if (!plan.includes_mains && !plan.includes_gs && !plan.includes_pyq) {
     const { data: hasPaper } = await sb
       .from("plan_tests")
       .select("test_id, tests!inner(id, is_published)")
