@@ -359,7 +359,7 @@ const CSS = `
   display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:3px;
   align-items:center;padding:13px 15px;border-radius:13px;
   border:1px solid rgba(255,226,190,.13);
-  background:radial-gradient(240px 170px at var(--mx,50%) var(--my,-60%),rgba(255,184,108,calc(var(--glow) + var(--breath))),rgba(255,184,108,0) 70%),
+  background:radial-gradient(240px 170px at var(--mx,50%) var(--my,-60%),rgba(255,184,108,calc(var(--glow,0) + var(--breath,0))),rgba(255,184,108,0) 70%),
     linear-gradient(135deg,rgba(255,236,214,.035),rgba(255,236,214,.065));
   transition:--glow .35s ease,border-color .3s ease,transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease;
   animation:pb-tick-in .8s cubic-bezier(.2,.7,.2,1) calc(1.2s + var(--i,0) * 90ms) backwards,
@@ -433,6 +433,32 @@ const CSS = `
   .pb-ticks .tick-ic svg *{animation:none;stroke-dashoffset:0}
   .pb-ticks .tick-ic::before,.pb-ticks .tick-ic::after{display:none}
 }
+/* A phone has no pointer to hover with, so the light walks: one tile at a
+   time is lit -- zoomed, warmed, its edge glowing, its icon moving and
+   throwing embers -- and a tap lights the tile tapped. JS sets .is-lit only
+   on touch screens. transform and plain values only (no @property, no
+   individual scale), so an older Android WebView shows it too. */
+.pb-ticks li.is-lit{--glow:.2;--mx:28%;--my:50%;transform:scale(1.045);z-index:1;
+  border-color:rgba(255,214,150,.3);
+  box-shadow:0 14px 28px -16px rgba(0,0,0,.85),0 0 26px -10px rgba(255,170,90,.6)}
+.pb-ticks li.is-lit::before{opacity:1}
+.pb-ticks li.is-lit .tick-ic{transform:scale(1.1);background:rgba(227,200,119,.26);
+  box-shadow:0 0 0 4px rgba(255,206,130,.08),0 6px 16px -6px rgba(255,170,90,.65)}
+.pb-ticks li.is-lit b{color:#fff3df}
+.pb-ticks li[data-k="rank"].is-lit .tick-ic svg{animation:pb-ic-rise .7s cubic-bezier(.2,.7,.2,1)}
+.pb-ticks li[data-k="pattern"].is-lit .tick-ic svg{transform:rotate(90deg)}
+.pb-ticks li[data-k="gsca"].is-lit .tick-ic svg{animation:pb-ic-lift .7s ease}
+.pb-ticks li[data-k="pyq"].is-lit .tick-ic svg{transform:rotate(-360deg);transition-duration:.9s}
+.pb-ticks li[data-k="csat"].is-lit .tick-ic svg{animation:pb-ic-tap .5s ease}
+.pb-ticks li[data-k="secure"].is-lit .tick-ic svg{animation:pb-ic-pulse .8s ease}
+.pb-ticks li.is-lit .tick-ic::before{animation:pb-spark 1.3s ease-out infinite}
+.pb-ticks li.is-lit .tick-ic::after{animation:pb-spark 1.6s ease-out .55s infinite;margin-left:5px}
+/* and a thin band of lamplight crosses the lit tile once as it lights */
+.pb-ticks li::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,200,130,.16) 50%,transparent 70%);
+  background-size:250% 100%;background-position:120% 0}
+.pb-ticks li.is-lit::after{animation:pb-tick-shine 1.1s ease-out}
+@keyframes pb-tick-shine{0%{opacity:1;background-position:120% 0}100%{opacity:0;background-position:-30% 0}}
 .pb-ticks b{font-size:13.5px;font-weight:700;color:var(--on-dark);line-height:1.25;letter-spacing:-.005em}
 .pb-ticks .tick-s{font-size:11.5px;color:#c8b696;line-height:1.32}
 @media (max-width:980px){ .pb-ticks{grid-template-columns:repeat(2,1fr)} }
@@ -3134,6 +3160,49 @@ const HERO_TICKS = [
 /* The light in a tile follows the pointer: the tile under it is handed the
    pointer's position, and CSS draws the glow, the lit edge and the tilt
    from that. */
+/* The six tiles. With a mouse they answer the pointer (CSS :hover). On a
+   touch screen nothing hovers, so a light walks the tiles one at a time
+   while the hero is on screen, and a tap lights the tile tapped. */
+function HeroTicks() {
+  const { t } = useLang();
+  const reduced = usePrefersReducedMotion();
+  const ref = useRef(null);
+  const [touch] = useState(() => typeof window !== "undefined" && !!window.matchMedia?.("(hover: none)").matches);
+  const [lit, setLit] = useState(-1);
+  const [onScreen, setOnScreen] = useState(false);
+  const [beat, setBeat] = useState(0);  // a tap restarts the walk from there
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!touch || !el || typeof IntersectionObserver === "undefined") return undefined;
+    const io = new IntersectionObserver(([en]) => setOnScreen(en.isIntersecting), { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [touch]);
+
+  useEffect(() => {
+    if (!touch || !onScreen || reduced) return undefined;
+    // The first light waits for the tiles to arrive and draw their icons
+    // (or, after a tap, for one beat); then it steps on every 2.6 s.
+    const n = HERO_TICKS.length, step = () => setLit((i) => (i + 1) % n);
+    let id;
+    const t0 = setTimeout(() => { step(); id = setInterval(step, 2600); }, beat ? 2600 : 3000);
+    return () => { clearTimeout(t0); clearInterval(id); };
+  }, [touch, onScreen, reduced, beat]);
+
+  const tap = (i) => { if (!touch) return; setLit(i); setBeat((b) => b + 1); };
+
+  return (
+    <ul ref={ref} className="pb-ticks" onPointerMove={tickLight}>
+      {HERO_TICKS.map(([k, Icon, key], i) => (
+        <li key={k} data-k={k} style={{ "--i": i }} className={touch && i === lit ? "is-lit" : undefined} onClick={() => tap(i)}>
+          <span className="tick-ic"><Icon size={18} /></span><b>{t(key)}</b><span className="tick-s">{t(key + "_s")}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 const tickLight = (e) => {
   if (e.pointerType !== "mouse") return;
   const li = e.target.closest?.("li");
@@ -5282,13 +5351,7 @@ export default function PublicSite({ onLogin, onEnroll, onDashboard, session, pa
               {/* Its own row across the foot of the hero. Inside the text
                   column it was 490px carrying three claims, so every label
                   broke over two lines. */}
-              <ul className="pb-ticks" onPointerMove={tickLight}>
-                {HERO_TICKS.map(([k, Icon, key], i) => (
-                  <li key={k} data-k={k} style={{ "--i": i }}>
-                    <span className="tick-ic"><Icon size={18} /></span><b>{t(key)}</b><span className="tick-s">{t(key + "_s")}</span>
-                  </li>
-                ))}
-              </ul>
+              <HeroTicks />
             </div>
           </section>
 
